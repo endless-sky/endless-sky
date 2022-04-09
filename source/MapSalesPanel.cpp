@@ -219,8 +219,8 @@ void MapSalesPanel::DrawKey() const
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
-		-.5,
-		0.,
+		-.6,
+		-.1,
 		1.
 	};
 

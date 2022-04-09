@@ -229,6 +229,8 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
+		// Because this function is only called in flight it makes no sense to use any local modifiers to outfit prices.
+		// Also the result from this should not fluctuate with local conditions, given it is used to calculate bank allowance etc.
 		value += Value(it.first, day, nullptr, it.second);
 	return value;
 }
@@ -267,13 +269,13 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, const PlayerInfo *pla
 	int64_t cost = outfit->Cost() * ((player && player->GetPlanet()) ? player->GetPlanet()->GetLocalRelativePrice(*outfit, player->Conditions()) : 1);
 	if(outfit->Get("installable") < 0.)
 		return count * cost;
-	
+
 	// Check whether a record exists for this outfit. If not, its value is full
 	// if this is planet's stock, or fully depreciated if this is the player's.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
 		return DefaultDepreciation() * count * cost;
-	
+
 	return Depreciate(recordIt->second, day, count) * cost;
 }
 

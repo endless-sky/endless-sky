@@ -516,7 +516,7 @@ void MapPanel::UpdateColor(double color)
 {
 	if(color > maxColor)
 		maxColor = color;
-	else if(color < minColor)
+	else if(color >= 0 && color < minColor)
 		minColor = color;
 }
 
@@ -847,7 +847,10 @@ void MapPanel::UpdateCache()
 					value = -1 + some + all;
 				}
 				else
+				{
 					value = SystemValue(&system);
+					UpdateColor(value);
+				}
 
 				if(colorSystem)
 					color = (commodity >= 0 ? CommodityColor(value) : MapColor(value));

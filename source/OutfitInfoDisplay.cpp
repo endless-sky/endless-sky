@@ -197,16 +197,17 @@ namespace {
 
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
 {
-	Update(outfit, player, canSell);
+	Update(outfit, canSell);
+	SetPlayerInfo(player);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::Update(const Outfit &outfit, bool canSell)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell);
+	UpdateRequirements(outfit, canSell);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -228,17 +229,17 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 
-	int day = player.GetDate().DaysSinceEpoch();
-	double scale = player.GetPlanet() ? player.GetPlanet()->GetLocalRelativePrice(outfit, player.Conditions()) : 1.0;
+	int day = player->GetDate().DaysSinceEpoch();
+	double scale = player->GetPlanet() ? player->GetPlanet()->GetLocalRelativePrice(outfit, player->Conditions()) : 1.0;
 	int64_t cost = outfit.Cost() * scale;
-	int64_t buyValue = player.StockDepreciation().Value(&outfit, day, &player);
-	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day, &player);
+	int64_t buyValue = player->StockDepreciation().Value(&outfit, day, player);
+	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day, player);
 	
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");

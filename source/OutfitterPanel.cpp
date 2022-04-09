@@ -102,7 +102,7 @@ int OutfitterPanel::VisiblityCheckboxesSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), day, &player);
+	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
 	shipInfo.DrawAttributes(point);
 
 	return shipInfo.AttributesHeight();
@@ -206,7 +206,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in storage: " + to_string(storage);
 	else if(stock)
 		message = "in stock: " + to_string(stock);
-	else if(!outfitter.Has(outfit))
+	else if(!outfitter.count(selectedOutfit) && sellType == CustomSale::SellType::NONE)
 		message = "(not sold here)";
 	
 	if(!show.empty())
@@ -249,7 +249,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell());
+		outfitInfo.Update(*selectedOutfit, CanSell());
 		selectedItem = selectedOutfit->Name();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -488,7 +488,8 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	if(!(outfitter.count(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
+	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
+	if(!((selling != CustomSale::SellType::NONE || outfitter.count(selectedOutfit)) || player.Stock(selectedOutfit) > 0 || isInCargo || isInStorage))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
@@ -496,7 +497,6 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 
-	CustomSale::SellType selling = player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions());
 	if(selling == CustomSale::SellType::IMPORT || selling == CustomSale::SellType::HIDDEN)
 	{
 		GetUI()->Push(new Dialog("You can only sell this outfit here, "

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ITEM_INFO_DISPLAY_H_
 
 #include "Point.h"
+#include "PlayerInfo.h"
 #include "text/WrappedText.h"
 
 #include <string>
@@ -47,6 +48,8 @@ public:
 	void Hover(const Point &point);
 	void ClearHover();
 
+	void SetPlayerInfo(const PlayerInfo &player);
+
 
 protected:
 	void UpdateDescription(const std::string &text, const std::vector<std::string> &licenses, bool isShip);
@@ -56,6 +59,8 @@ protected:
 
 protected:
 	static const int WIDTH = 250;
+
+	const PlayerInfo *player = nullptr;
 
 	WrappedText description;
 	int descriptionHeight = 0;

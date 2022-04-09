@@ -123,9 +123,9 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			const Outfit *outfit = nullptr;
 			auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
 				if(isAdd)
-					amount += line.Value(2);
+					amount += line.Size() > 1 ? line.Value(2) : 1.;
 				else
-					amount = line.Value(1);
+					amount = line.Size() > 1 ? line.Value(1) : 1;
 				// If there is a third element it means a relative % and not a raw value is specified.
 				if(line.Size() == 2 + isAdd)
 					amount /= outfit->Cost();
@@ -136,7 +136,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					isAdd = (kid.Token(0) == "add");
 					outfit = outfits.Get(kid.Token(isAdd));
 					
-					if(kid.Size() < 2 + isAdd)
+					if(kid.Size() < 1 + isAdd)
 						continue;
 
 					if(isValue)
@@ -145,7 +145,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 						parseValueOrOffset(relativeOutfitOffsets[outfit], kid);
 				}
 			// Default behavior assumes value.
-			else if(child.Size() >= 2)
+			else if(child.Size() >= 1)
 			{
 				const Outfit *outfit = outfits.Get(child.Token(0));
 				isAdd = (child.Token(0) == "add");
@@ -162,14 +162,15 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 					bool isAdd = (kid.Token(0) == "add");
 					const Sale<Outfit> *outfitter = items.Get(kid.Token(isAdd));
 
-					if(kid.Size() < 2 + isAdd)
+					if(kid.Size() < 1 + isAdd)
 						continue;
 
 					auto parseValueOrOffset = [isAdd, outfitter](double &amount, const DataNode &line) {
+						// Only % may be specified using outfitter modification.
 						if(isAdd)
-							amount += line.Value(2);
+							amount += line.Size() > 1 ? line.Value(2) : 1.;
 						else
-							amount = line.Value(1);
+							amount = line.Size() > 1 ? line.Value(1) : 1;
 					};
 
 					if(isValue)

@@ -104,7 +104,7 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player);
+		selectedInfo.Update(*selected);
 	}
 	UpdateCache();
 }
@@ -118,7 +118,7 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player);
+		compareInfo.Update(*compare);
 	}
 }
 
@@ -138,29 +138,26 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -.6;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const Planet *planet = object.GetPlanet();
 			double cost = planet->GetLocalRelativePrice(*selected, player.Conditions());
 			CustomSale::SellType sellType = planet->GetAvailability(*selected, player.Conditions());
-			
+
 			if(planet->HasOutfitter())
 			{
 				if(sellType != CustomSale::SellType::NONE)
 				{
 					const auto &storage = player.PlanetaryStorage();
 					bool storedInSystem = (storage.find(planet) != storage.cend());
-					
+
 					if(sellType != CustomSale::SellType::HIDDEN || storedInSystem)
-					{
-						MapPanel::UpdateColor(cost);
 						return cost;
-					}
 				}
 				else
-					value = 0.;
+					value = -.1;
 			}
 		}
 	return value;
@@ -279,6 +276,8 @@ void MapOutfitterPanel::DrawItems()
 
 void MapOutfitterPanel::Init()
 {
+	selectedInfo.SetPlayerInfo(player);
+	compareInfo.SetPlayerInfo(player);
 	catalog.clear();
 	set<const Outfit *> seen;
 

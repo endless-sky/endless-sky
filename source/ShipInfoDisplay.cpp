@@ -33,19 +33,20 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player)
 {
-	Update(ship, depreciation, day, player);
+	Update(ship, depreciation, day);
+	SetPlayerInfo(player);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player)
+void ShipInfoDisplay::Update(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, depreciation, day, player);
-	UpdateOutfits(ship, depreciation, day, player);
+	UpdateAttributes(ship, depreciation, day);
+	UpdateOutfits(ship, depreciation, day);
 
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
@@ -129,7 +130,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -356,7 +357,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 
 
-void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo *player)
+void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day)
 {
 	outfitLabels.clear();
 	outfitValues.clear();

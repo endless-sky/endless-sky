@@ -112,7 +112,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch(), &player);
+		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 	UpdateCache();
 }
@@ -126,7 +126,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch(), &player);
+		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 	}
 }
 
@@ -138,21 +138,16 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -.6;
 	double baseCost = selected ? selected->LocalCost(nullptr, player.Conditions()) : 1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
-			{
-				double relativeCost = selected->LocalCost(object.GetPlanet(), player.Conditions()) / baseCost;
-				
-				MapPanel::UpdateColor(relativeCost);
-				return relativeCost;
-			}
+				return selected->LocalCost(object.GetPlanet(), player.Conditions()) / baseCost;
 			if(!shipyard.empty())
-				value = 0.;
+				value = -.1;
 		}
 	return value;
 }
@@ -236,6 +231,8 @@ void MapShipyardPanel::DrawItems()
 
 void MapShipyardPanel::Init()
 {
+	selectedInfo.SetPlayerInfo(player);
+	compareInfo.SetPlayerInfo(player);
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())

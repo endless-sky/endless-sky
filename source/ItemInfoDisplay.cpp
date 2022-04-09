@@ -129,6 +129,13 @@ void ItemInfoDisplay::ClearHover()
 
 
 
+void ItemInfoDisplay::SetPlayerInfo(const PlayerInfo &player)
+{
+	this->player = &player;
+}
+
+
+
 void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string> &licenses, bool isShip)
 {
 	if(licenses.empty())
