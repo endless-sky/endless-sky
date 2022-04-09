@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Hazard.h"
+#include "pi.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Visual.h"
@@ -81,16 +82,19 @@ void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 	double maxRange = hazard->SystemWide() ? 2. * (Screen::Width() > Screen::Height() ? 
 		Screen::Width() : Screen::Height()) : hazard->MaxRange();
 
+	// Calculate how many squares of 1000x1000 fit into the circle we're going to draw in.
+	double sizeMultiplier = 2. * PI * maxRange * maxRange / (1000. * 1000.);
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
 	int totalAmount = 0;
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		totalAmount += effect.second;
-	totalAmount *= currentStrength;
+	totalAmount *= currentStrength * sizeMultiplier;
 	visuals.reserve(visuals.size() + totalAmount);
 
 	for(auto &&effect : hazard->EnvironmentalEffects())
-		for(int i = 0; i < effect.second * currentStrength; ++i)
+		// The amount of the effect is specified by 1000x1000 distance
+		for(int i = 0; i < effect.second * currentStrength * sizeMultiplier; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
