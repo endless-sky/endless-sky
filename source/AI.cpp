@@ -409,7 +409,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		}
 		else
 		{
-			// if not target (ship) then targeting asteroid is assumed
+			// Assume an asteroid is being targeted if the player isn't targeting a ship.
 			newOrders.type = Orders::MINING;
 			newOrders.targetAsteroid = targetAsteroid;
 			targetDescription = "focusing fire on " + targetAsteroid->Name() + " asteroid.";
@@ -432,9 +432,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
 		if(it->second.type == Orders::MINING && it->first->Cargo().Free() && !(it->second.targetAsteroid.lock()))
-		{
 			orders[it->first].type = Orders::HARVEST;
-		}
 		else if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
@@ -664,18 +662,23 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 		if(isPresent)
 		{
-			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-			// player-owned ships should attack their targeted asteroid otherwise default behavior
-			if(targetAsteroid)
-				AutoFire(*it, firingCommands, *targetAsteroid);
-			else if(HarvestAfterAsteroidMining(*it) && DoHarvesting(*it, command))
+			// Player-owned ships should harvest asteroids when they are destroyed.
+			if(HarvestAfterAsteroidMining(*it) && DoHarvesting(*it, command))
 			{
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
 				continue;
 			}
 			else
-				AutoFire(*it, firingCommands);
+			{
+				// Player-owned ships should attack their targeted asteroid; otherwise it falls back to default
+				// behavior.
+				AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+				if(targetAsteroid)
+					AutoFire(*it, firingCommands, *targetAsteroid);
+				else
+					AutoFire(*it, firingCommands);
+			}
 		}
 
 		// If this ship is hyperspacing, or in the act of
