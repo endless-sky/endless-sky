@@ -202,7 +202,7 @@ ship "Strong Wind"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Wanderer Military"
+			"Wanderer"
 		"cost" 16100000
 		"shields" 28500
 		"hull" 19600

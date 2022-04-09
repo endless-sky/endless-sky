@@ -69,7 +69,7 @@ fleet "Small Southern Merchants"
 		"Hauler"
 		"Berserker"
 	variant 1
-		"Scout" 
+		"Scout"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -519,7 +519,7 @@ fleet "Small Northern Merchants"
 		"Hauler II"
 		"Hauler"
 	variant 10
-		"Scout" 
+		"Scout"
 	variant 5
 		"Scout (Speedy)"
 
@@ -1411,8 +1411,7 @@ fleet "Navy Surveillance"
 
 fleet "Small Deep Merchants"
 	government "Merchant"
-	names "deep"
-	fighters "deep fighter"
+	names "civilian"
 	cargo 0
 	personality
 		heroic
@@ -1446,8 +1445,7 @@ fleet "Small Deep Merchants"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
-	names "deep"
-	fighters "deep fighter"
+	names "civilian"
 	cargo 0
 	personality
 		heroic
