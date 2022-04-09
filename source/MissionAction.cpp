@@ -322,11 +322,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 		{
 			dialog->SetAction(action, ui);
 			ui->Push(dialog);
-		}
-		else
-			action.Do(player, ui);
 
-		return;
+			return;
+		}
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
