@@ -899,14 +899,14 @@ Files:
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
- images/ship/osprey*
  images/ship/quicksilver*
+ images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
- images/thumbnail/osprey*
  images/thumbnail/quicksilver*
+ images/thumbnail/scout*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
