@@ -588,11 +588,11 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 17.1
-	"thrusting energy" 2.65
-	"thrusting heat" 2.5
 	"reverse thrust" 10.3
 	"reverse thrusting energy" 1.59
+	"thrust" 14.4
+	"thrusting energy" 2.1
+	"thrusting heat" 2.0
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
 	"flare sprite" "effect/remnant flare/small"
@@ -612,12 +612,12 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 37.0
-	"thrusting energy" 5.15
-	"thrusting heat" 5.0
 	"reverse thrust" 27.62
 	"reverse thrusting energy" 3.09
 	"reverse thrusting heat" 3.0
+	"thrust" 31.5
+	"thrusting energy" 4.4
+	"thrusting heat" 4.25
 	"slowing resistance" 0.024
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
@@ -636,12 +636,12 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 80.6
-	"thrusting energy" 10.1
-	"thrusting heat" 10.2
 	"reverse thrust" 48.4
 	"reverse thrusting energy" 6.06
 	"reverse thrusting heat" 6.12
+	"thrust" 71.1
+	"thrusting energy" 9.5
+	"thrusting heat" 9.6
 	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
