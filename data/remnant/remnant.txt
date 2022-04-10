@@ -790,7 +790,6 @@ shipyard "Remnant"
 	"Pelican"
 	"Petrel"
 	"Tern"
-	"Merganser"
 
 shipyard "Remnant Puffin"
 	"Puffin"
