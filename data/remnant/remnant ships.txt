@@ -232,6 +232,41 @@ ship "Albatross" "Albatross (Ember Shield)"
 	turret
 	turret
 
+ship "Albatross" "Albatross (Sniper II)"
+	outfits
+		"Inhibitor Cannon" 5
+		"EMP Torpedo II Bay" 2
+		"Point Defense Turret" 3
+		"EMP Torpedo" 39
+		"EMP Torpedo Storage Bay" 3
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
+		"Tuning Rifle" 57
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "EMP Torpedo II Bay"
+	gun "EMP Torpedo II Bay"
+
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret
+	turret
+	turret "Point Defense Turret"
 
 ship "Gull"
 	sprite "ship/gull"
@@ -323,6 +358,27 @@ ship "Gull" "Gull (Sniper)"
 ship "Gull" "Gull (Support)"
 	outfits
 		"EMP Torpedo Bay"
+		"Inhibitor Cannon" 2
+		"Point Defense Turret"
+		"EMP Torpedo" 16
+		"EMP Torpedo Storage Bay"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Salvage Scanner" 2
+		"Outfits Expansion" 2
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Support II)"
+	outfits
+		"EMP Torpedo II Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
 		"EMP Torpedo" 16
@@ -924,6 +980,36 @@ ship "Peregrine"
 	description "The Peregrine is the first capital warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
 	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
 	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
+	
+ship "Peregrine" "Peregrine II"
+	outfits
+		"Thrasher Cannon" 4
+		"EMP Torpedo II Bay" 1
+		"Point Defense Turret"
+		"Thrasher Turret"
+		"EMP Torpedo" 9
+		
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 11
+		
+		"Bellows-Class Afterburner"
+		"Smelter-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+		
+	gun 0 -133.5 "EMP Torpedo II Bay"
+	gun -12.5 -105 "Thrasher Cannon"
+	gun 12.5 -105 "Thrasher Cannon"
+	gun -17.5 -83 "Thrasher Cannon"
+	gun 17.5 -83 "Thrasher Cannon"
+	turret 0 -44 "Point Defense Turret"
+	turret 0 21 "Thrasher Turret"
 
 
 
