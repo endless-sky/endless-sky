@@ -276,12 +276,12 @@ outfit "EMP Torpedo Bay"
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
-outfit "EMP Torpedo Bay II"
+outfit "EMP Torpedo II Bay"
 	category "Secondary Weapons"
 	licenses
 		Remnant
 	cost 583000
-	thumbnail "outfit/emp torpedo bay ii"
+	thumbnail "outfit/emp torpedo ii bay"
 	"mass" 9
 	"outfit space" -14
 	"weapon capacity" -14
@@ -301,10 +301,9 @@ outfit "EMP Torpedo Bay II"
 		"die effect" "tiny explosion"
 		stream
 		safe
-		"reload" 330
+		"reload" 310
 		"firing energy" 400
 		"firing heat" 18
-		"firing ion" -10
 		"inaccuracy" 5
 		"lifetime" 300
 		"velocity" 8
@@ -322,14 +321,14 @@ outfit "EMP Torpedo Bay II"
 		"hit force" 90
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
-	description "Centuries later, the Remnant have unraveled additional secrets from the warrens that allow them to shrink the size of these launchers and improve their reliability."
+	description "Centuries later, the II revision includes a range of upgrades to their efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
 
-outfit "EMP Torpedo Pod II"
+outfit "EMP Torpedo II Pod"
 	category "Secondary Weapons"
 	licenses
 		Remnant
 	cost 583000
-	thumbnail "outfit/emp torpedo pod ii"
+	thumbnail "outfit/emp torpedo ii pod"
 	"mass" 5
 	"outfit space" -6
 	"weapon capacity" -6
@@ -349,10 +348,11 @@ outfit "EMP Torpedo Pod II"
 		"die effect" "tiny explosion"
 		stream
 		safe
-		"reload" 330
-		"firing energy" 400
-		"firing heat" 18
-		"firing ion" -10
+		"burst count" 3
+		"burst reload" 110
+		"reload" 620
+		"firing energy" 350
+		"firing heat" 16
 		"inaccuracy" 5
 		"lifetime" 300
 		"velocity" 8
