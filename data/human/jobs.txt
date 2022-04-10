@@ -3054,8 +3054,8 @@ mission "Bounty Hunting (Solo Marauder I)"
 	to offer
 		or
 			"combat rating" > 100
-			"ships: Interceptor"
-			"ships: Light Warship"
+			has "ships: Interceptor"
+			has "ships: Light Warship"
 		"combat rating" > 50
 		"combat rating" < 600
 		random < 5
