@@ -100,6 +100,13 @@ int OutfitterPanel::VisiblityCheckboxesSize() const
 
 
 
+string OutfitterPanel::ShipsDeselectText() const
+{
+	return "Cargo";
+}
+
+
+
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);

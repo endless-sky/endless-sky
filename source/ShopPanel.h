@@ -52,6 +52,7 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisiblityCheckboxesSize() const;
+	virtual std::string ShipsDeselectText() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
@@ -88,14 +89,17 @@ protected:
 	public:
 		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
 		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, char button, double scrollY = 0.);
 
 		const Ship *GetShip() const;
+		char GetButton() const;
 		const Outfit *GetOutfit() const;
 
 		double ScrollY() const;
 
 	private:
 		double scrollY = 0.;
+		char button = 0;
 		const Outfit *outfit = nullptr;
 	};
 

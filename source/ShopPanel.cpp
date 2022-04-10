@@ -263,6 +263,24 @@ void ShopPanel::DrawShipsSidebar()
 
 		point.X() += ICON_TILE;
 	}
+	string deSelectText = ShipsDeselectText();
+	if(!deSelectText.empty())
+	{
+		const Color &back = *GameData::Colors().Get("faint");
+		const Color &activeBack = *GameData::Colors().Get("dim");
+		const Color &active = *GameData::Colors().Get("active");
+		const Color &inactive = *GameData::Colors().Get("inactive");
+		const Font &bigFont = FontSet::Get(18);
+
+		point.Y() += ICON_TILE;
+		const Point cargoModeButtonCenter = Point(Screen::Right() - SIDEBAR_WIDTH / 2, point.Y());
+		FillShader::Fill(cargoModeButtonCenter, Point(60, 30), playerShip ? back : activeBack);
+		bigFont.Draw(deSelectText,
+			cargoModeButtonCenter - .5 * Point(bigFont.Width(deSelectText), bigFont.Height()),
+			playerShip ? inactive : active);
+
+		zones.emplace_back(cargoModeButtonCenter, Point(60, 30), 'a');
+	}
 	point.Y() += ICON_TILE;
 
 	if(playerShip)
@@ -569,6 +587,13 @@ int ShopPanel::VisiblityCheckboxesSize() const
 
 
 
+string ShopPanel::ShipsDeselectText() const
+{
+	return "";
+}
+
+
+
 void ShopPanel::ToggleForSale()
 {
 	sameSelectedTopY = true;
@@ -660,6 +685,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == 'a')
+	{
+		playerShip = nullptr;
+		playerShips.clear();
+	}
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -789,6 +819,11 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 
 				selectedShip = zone.GetShip();
 			}
+			else if(zone.GetButton())
+			{
+				Command command;
+				KeyDown(zone.GetButton(), 0,  command, true);
+			}
 			else
 				selectedOutfit = zone.GetOutfit();
 
@@ -914,6 +949,13 @@ ShopPanel::Zone::Zone(Point center, Point size, const Ship *ship, double scrollY
 
 
 
+ShopPanel::Zone::Zone(Point center, Point size, char button, double scrollY)
+	: ClickZone(center, size, nullptr), scrollY(scrollY), button(button)
+{
+}
+
+
+
 ShopPanel::Zone::Zone(Point center, Point size, const Outfit *outfit, double scrollY)
 	: ClickZone(center, size, nullptr), scrollY(scrollY), outfit(outfit)
 {
@@ -931,6 +973,13 @@ const Ship *ShopPanel::Zone::GetShip() const
 const Outfit *ShopPanel::Zone::GetOutfit() const
 {
 	return outfit;
+}
+
+
+
+char ShopPanel::Zone::GetButton() const
+{
+	return button;
 }
 
 
