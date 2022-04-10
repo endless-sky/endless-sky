@@ -139,7 +139,7 @@ outfit "X4700 Ion Thruster"
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
-	"thrust" 51
+	"thrust" 53.6
 	"thrusting energy" 3.5
 	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/large"
@@ -220,7 +220,7 @@ outfit "X4200 Ion Steering"
 	"mass" 59
 	"outfit space" -59
 	"engine capacity" -59
-	"turn" 1358
+	"turn" 1426
 	"turning energy" 1.9
 	"turning heat" 3.9
 	"steering flare sprite" "effect/ion flare/large"
@@ -319,7 +319,7 @@ outfit "Orca Plasma Thruster"
 	"mass" 98
 	"outfit space" -98
 	"engine capacity" -98
-	"thrust" 81.5
+	"thrust" 85.6
 	"thrusting energy" 5.8
 	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/large"
@@ -400,7 +400,7 @@ outfit "Orca Plasma Steering"
 	"mass" 74
 	"outfit space" -74
 	"engine capacity" -74
-	"turn" 2174
+	"turn" 2283
 	"turning energy" 2.9
 	"turning heat" 7.7
 	"steering flare sprite" "effect/plasma flare/large"
