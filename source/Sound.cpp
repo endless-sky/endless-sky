@@ -56,7 +56,7 @@ bool Sound::Load(const string &path, const string &name)
 		return false;
 
 	vector<char> data(bytes);
-	if(SDL_RWread(static_cast<SDL_RWops*>(in), &data[0], 1, bytes) != bytes)
+	if(SDL_RWread(in, &data[0], 1, bytes) != bytes)
 		return false;
 
 	if(!buffer)
@@ -126,7 +126,7 @@ namespace {
 
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					SDL_RWseek(static_cast<SDL_RWops*>(in), subchunkSize - 16, RW_SEEK_CUR);
+					SDL_RWseek(in, subchunkSize - 16, RW_SEEK_CUR);
 
 				if(audioFormat != 1)
 					return 0;
@@ -146,7 +146,7 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				SDL_RWseek(static_cast<SDL_RWops*>(in), subchunkSize, RW_SEEK_CUR);
+				SDL_RWseek(in, subchunkSize, RW_SEEK_CUR);
 		}
 	}
 
@@ -155,7 +155,7 @@ namespace {
 	uint32_t Read4(File &in)
 	{
 		unsigned char data[4];
-		if(SDL_RWread(static_cast<SDL_RWops*>(in), data, 1, 4) != 4)
+		if(SDL_RWread(in, data, 1, 4) != 4)
 			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
@@ -168,7 +168,7 @@ namespace {
 	uint16_t Read2(File &in)
 	{
 		unsigned char data[2];
-		if(SDL_RWread(static_cast<SDL_RWops*>(in), data, 1, 2) != 2)
+		if(SDL_RWread(in, data, 1, 2) != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)

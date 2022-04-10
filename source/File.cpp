@@ -62,3 +62,8 @@ File::operator struct SDL_RWops*() const
 {
 	return file;
 }
+
+struct SDL_RWops* File::operator->()
+{
+	return file;
+}

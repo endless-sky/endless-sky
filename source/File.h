@@ -34,6 +34,7 @@ public:
 
 	operator bool() const;
 	operator struct SDL_RWops*() const;
+	struct SDL_RWops* operator->();
 
 private:
 	struct SDL_RWops *file = nullptr;

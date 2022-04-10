@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "File.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_rwops.h>
 
 #if defined _WIN32
 #include "text/Utf8.h"
@@ -48,7 +49,7 @@ namespace {
 	string testPath;
 
 	mutex errorMutex;
-	std::shared_ptr<FILE> errorLog;
+	File errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -540,14 +541,8 @@ void Files::LogError(const string &message)
 	if(!errorLog)
 	{
 		std::string path = config + "errors.txt";
-		// Not using Files::Open here, since it requires SDL, and the unit tests
-		// don't link with it
-#if defined _WIN32
-		FILE* f = _wfopen(Utf8::ToUTF16(path).c_str(), L"w");
-#else
-		FILE* f = fopen(path.c_str(), "wb");
-#endif
-		errorLog.reset(f, fclose);
+		errorLog = File(path, true);
+
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
@@ -555,6 +550,5 @@ void Files::LogError(const string &message)
 		}
 	}
 
-	fprintf(errorLog.get(), "%s\n", message.c_str());
-	fflush(errorLog.get());
+	SDL_RWwrite(errorLog, (message + '\n').c_str(), 1, message.size() + 1);
 }

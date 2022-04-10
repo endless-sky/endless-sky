@@ -77,9 +77,11 @@ if 'steamrt_scout' in chroot_name:
 
 # Required system libraries, such as UUID generator runtimes.
 sys_libs = [
-	"rpcrt4"
+	"rpcrt4",
+   "sdl2.dll"
 ] if is_windows_host else [
-	"uuid"
+	"uuid",
+   "SDL2"
 ]
 env.Append(LIBS = sys_libs)
 
@@ -87,13 +89,11 @@ game_libs = [
 	"winmm",
 	"mingw32",
 	"sdl2main",
-	"sdl2.dll",
 	"png.dll",
 	"turbojpeg.dll",
 	"jpeg.dll",
 	"openal32.dll",
 ] if is_windows_host else [
-	"SDL2",
 	"png",
 	"jpeg",
 	"openal",
