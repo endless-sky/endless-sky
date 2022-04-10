@@ -3926,7 +3926,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// orders. But, if it turns out that they already had the given orders,
 	// their orders will be cleared instead. The only command that does not
 	// toggle is a move command; it always counts as a new command.
-	bool hasMismatch = isMoveOrder; bool gaveOrder = false;
+	bool hasMismatch = isMoveOrder;
+	bool gaveOrder = false;
 	bool alreadyHarvesting = false;
 	if(isValidTarget)
 	{
