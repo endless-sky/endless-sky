@@ -2548,6 +2548,88 @@ fleet "Bounty Hunters"
 		"Splinter"
 		"Fury (Heavy)"
 
+fleet "Marauder I"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Arrow"
+	variant 1
+		"Marauder Arrow (Weapons)"
+	variant 1
+		"Marauder Arrow (Engines)"
+	variant 3
+		"Marauder Bounder"
+	variant 1
+		"Marauder Bounder (Weapons)"
+	variant 1
+		"Marauder Bounder (Engines)"
+
+fleet "Marauder II"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Quicksilver"
+	variant 1
+		"Marauder Quicksilver (Weapons)"
+	variant 1
+		"Marauder Quicksilver (Engines)"
+	variant 3
+		"Marauder Raven"
+	variant 1
+		"Marauder Raven (Weapons)"
+	variant 1
+		"Marauder Raven (Engines)"
+
+fleet "Marauder III"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Firebird"
+	variant 1
+		"Marauder Firebird (Weapons)"
+	variant 1
+		"Marauder Firebird (Engines)"
+	variant 3
+		"Marauder Manta"
+	variant 1
+		"Marauder Manta (Weapons)"
+	variant 1
+		"Marauder Manta (Engines)"
+	variant 3
+		"Marauder Splinter"
+	variant 1
+		"Marauder Splinter (Weapons)"
+	variant 1
+		"Marauder Splinter (Engines)"
+
+fleet "Marauder IV"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Falcon"
+	variant 1
+		"Marauder Falcon (Weapons)"
+	variant 1
+		"Marauder Falcon (Engines)"
+	variant 3
+		"Marauder Leviathan"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Leviathan (Engines)"
+
 fleet "Marauder fleet I"
 	government "Pirate"
 	names "pirate"
