@@ -3224,11 +3224,15 @@ void AI::PlayerTargetAsteroid(Ship &ship, const PlayerInfo &player, Command &act
 			}
 		}
 	}
-	// Since the player is targeting an asteroid the fleet should prepare to harvest.
-	Orders newOrders;
-	newOrders.type = Orders::HARVEST;
-	newOrders.targetAsteroid = ship.GetTargetAsteroid();
-	IssueOrders(player, newOrders, "preparing to harvest.");
+	if(activeCommands.Has(Command::NEAREST_ASTEROID))
+	{
+		// Since the player is targeting an asteroid the fleet should prepare to harvest. Do not send orders if using R
+		// keyboard shortcut to target nearest.
+		Orders newOrders;
+		newOrders.type = Orders::HARVEST;
+		newOrders.targetAsteroid = ship.GetTargetAsteroid();
+		IssueOrders(player, newOrders, "preparing to harvest.");
+	}
 }
 
 
