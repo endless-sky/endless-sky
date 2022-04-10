@@ -12,9 +12,9 @@ outfit "Afterburner"
 	category "Engines"
 	"cost" 70000
 	thumbnail "outfit/afterburner"
-	"mass" 15
-	"outfit space" -15
-	"engine capacity" -15
+	"mass" 10
+	"outfit space" -10
+	"engine capacity" -10
 	"afterburner thrust" 37.5
 	"afterburner fuel" .5
 	"afterburner heat" 10.0
@@ -37,9 +37,9 @@ outfit "Ionic Afterburner"
 	category "Engines"
 	"cost" 340000
 	thumbnail "outfit/ionic afterburner"
-	"mass" 24
-	"outfit space" -24
-	"engine capacity" -24
+	"mass" 16
+	"outfit space" -16
+	"engine capacity" -16
 	"afterburner thrust" 43.5
 	"afterburner fuel" .1
 	"afterburner energy" 5.1
