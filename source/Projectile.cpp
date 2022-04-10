@@ -73,15 +73,15 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(inaccuracy)
 	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->Acceleration())
-		{
-			// Move in this new direction at the same velocity.
-			// To maintain the sign of the velocity, Point::Length can’t be used.
-			Point referenceVector = parent.angle.Unit();
-			double parentVelocity = referenceVector.Dot(parent.velocity);
-			velocity = this->angle.Unit() * parentVelocity;
-		}
-	}
+    }
+    // Move in this new direction at the same velocity.
+    // To maintain the sign of the velocity, Point::Length can’t be used.
+    
+    // It's unclear why but if this is included any submunition with non-zero primary munition velocity will only spawn in front of the firing point and not move (aka proton turret).  If it remains unused, things seem to work.
+    //Point parentSelfVelocity = parent.angle.Unit() * parent.GetWeapon().Velocity();
+    //velocity = parent.velocity - parentSelfVelocity;
+
+    velocity = parent.velocity;
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
 	// If a random lifetime is specified, add a random amount up to that amount.
