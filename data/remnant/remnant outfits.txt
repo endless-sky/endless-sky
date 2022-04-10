@@ -276,6 +276,102 @@ outfit "EMP Torpedo Bay"
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
+outfit "EMP Torpedo Bay II"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 583000
+	thumbnail "outfit/emp torpedo bay ii"
+	"mass" 9
+	"outfit space" -14
+	"weapon capacity" -14
+	"gun ports" -1
+	"emp torpedo capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		safe
+		"reload" 330
+		"firing energy" 400
+		"firing heat" 18
+		"firing ion" -10
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing" 3
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 51
+		"hit force" 90
+		"missile strength" 80
+	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "Centuries later, the Remnant have unraveled additional secrets from the warrens that allow them to shrink the size of these launchers and improve their reliability."
+
+outfit "EMP Torpedo Pod II"
+	category "Secondary Weapons"
+	licenses
+		Remnant
+	cost 583000
+	thumbnail "outfit/emp torpedo pod ii"
+	"mass" 5
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	"emp torpedo capacity" 3
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "EMP Torpedo"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		stream
+		safe
+		"reload" 330
+		"firing energy" 400
+		"firing heat" 18
+		"firing ion" -10
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing" 3
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 700
+		"hull damage" 100
+		"ion damage" 51
+		"hit force" 90
+		"missile strength" 80
+	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor class vessels."
+	description "Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
 		"no repeat"
