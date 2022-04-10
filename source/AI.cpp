@@ -3305,9 +3305,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double distance = other->Position().DistanceSquared(ship.Position());
+					double cost = Has(ship, other, ShipEvent::SCAN_OUTFITS) ? 
+						other->Cost() : (other->ChassisCost() * 2.);
 					double b = distancePriority ? distance : 
-						-agility * 2 * (Has(ship, other, ShipEvent::SCAN_OUTFITS) ? 
-						other->Cost() ^ 2 : other->ChassisCost() ^ 2) / distance;
+						-agility * 2. * (cost * cost) / distance;
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
 						best = b;
