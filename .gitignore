@@ -64,3 +64,5 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
+*.swp
+*.swo

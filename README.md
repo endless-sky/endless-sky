@@ -5,4 +5,9 @@ This is a fork of [endless-sky](https://endless-sky.github.io/) that will attemp
 The android branch will be the main branch that developement takes place against, and the master branch will be the lastest endless-sky branch that the master branch is based on. 
 
 # Build Instructions
-Stay tuned...
+## Desktop build
+Most development is done on using the [SCons](https://scons.org/) build tool to compile the project. For those wishing to use an IDE, project files are provided for [XCode](https://developer.apple.com/xcode/) and [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup. It is possible to use other IDEs or build systems to compile the game, but support is not provided.  
+For full installation instructions, consult the [Build Instructions](https://github.com/thewierdnut/endless-mobile/blob/master/readme-developer.md) readme.
+## Android build
+Android builds are supported using the admittedly antiquated Android.mk build system, and are self-contained with the android/ folder. See the [Build Instructions](https://github.com/thewierdnut/endless-mobile/blob/master/android/build_instructions.md) there for more details.
+
