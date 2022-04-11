@@ -36,6 +36,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 #include <memory>
 
+#ifdef __ANDROID__
+#include "AndroidAsset.h"
+#endif
+
 using namespace std;
 
 namespace {
@@ -83,11 +87,17 @@ void Files::Init(const char * const *argv)
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
 		char *str = SDL_GetBasePath();
-		if(!str)
-			throw runtime_error("Unable to get path to resource directory!");
-
-		resources = str;
-		SDL_free(str);
+		if(str)
+      {
+		   resources = str;
+		   SDL_free(str);
+      }
+      // This is ok on android. we will read the resources from the assets
+#if not defined __ANDROID__
+		else throw runtime_error("Unable to get path to resource directory!");
+#else
+      else resources = "endless-sky-data"; // within assets directory
+#endif
 	}
 #if defined _WIN32
 	FixWindowsSlashes(resources);
@@ -127,15 +137,18 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the directory for saved games (and create it if it does
 		// not already exist). This can also be overridden in the command line.
-		char *str = SDL_GetPrefPath("endless-sky", "saves");
+#if not defined __ANDROID__
+      char *str = SDL_GetPrefPath("endless-sky", "saves");
 		if(!str)
 			throw runtime_error("Unable to get path to saves directory!");
-
 		savePath = str;
+		SDL_free(str);
+#else
+      savePath = SDL_AndroidGetInternalStoragePath();
+#endif
 #if defined _WIN32
 		FixWindowsSlashes(savePath);
 #endif
-		SDL_free(str);
 		if(savePath.back() != '/')
 			savePath += '/';
 		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
@@ -158,8 +171,8 @@ void Files::Init(const char * const *argv)
 			SDL_free(str);
 	}
 
-	// Check that all the directories exist.
-	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
+	// Check that all the directories exist. Allow the sound path to be missing
+	if(!Exists(dataPath) || !Exists(imagePath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create config directory!");
@@ -241,7 +254,24 @@ vector<string> Files::List(string directory)
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
+	{
+#if defined __ANDROID__
+      // try the asset system instead
+      AndroidAsset aa;
+      for (std::string entry: aa.DirectoryList(directory))
+      {
+         // Asset api doesn't have a stat or entry properties. the only
+         // way to tell if its a folder is to fail to open it. Depending
+         // on how slow this is, it may be worth checking for a file
+         // extension instead.
+         if (File(directory + entry))
+         {
+            list.push_back(directory + entry);
+         }
+      }
+#endif
 		return list;
+   }
 
 	while(true)
 	{
@@ -298,7 +328,24 @@ vector<string> Files::ListDirectories(string directory)
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
+	{
+#if defined __ANDROID__
+      // try the asset system
+      AndroidAsset aa;
+      for (std::string entry: aa.DirectoryList(directory))
+      {
+         // Asset api doesn't have a stat or entry properties. the only
+         // way to tell if its a folder is to fail to open it. Depending
+         // on how slow this is, it may be worth checking for a file
+         // extension instead.
+         if (!File(directory + entry))
+         {
+            list.push_back(directory + entry + "/");
+         }
+      }
+#endif
 		return list;
+   }
 
 	while(true)
 	{
@@ -368,7 +415,36 @@ void Files::RecursiveList(string directory, vector<string> *list)
 #else
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
-		return;
+	{
+#if defined __ANDROID__
+      // try the asset system. We don't want to instantiate more than one
+      // AndroidAsset object, so don't recurse.
+      vector<string> directories;
+      directories.push_back(directory);
+      AndroidAsset aa;
+      while (!directories.empty())
+      {
+         directory = directories.back();
+         directories.pop_back();
+         for (std::string entry: aa.DirectoryList(directory))
+         {
+            // Asset api doesn't have a stat or entry properties. the only
+            // way to tell if its a folder is to fail to open it. Depending
+            // on how slow this is, it may be worth checking for a file
+            // extension instead.
+            if (File(directory + entry))
+            {
+               list->push_back(directory + entry);
+            }
+            else
+            {
+               directories.push_back(directory + entry + "/");
+            }
+         }
+      }
+      return;
+#endif
+   }
 
 	while(true)
 	{
@@ -404,6 +480,19 @@ bool Files::Exists(const string &filePath)
 #if defined _WIN32
 	struct _stat buf;
 	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
+#elif defined __ANDROID__
+	// stat only works for normal files, not assets, so just try to open the
+	// file to see if it exists.
+   SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "r");
+   bool ret = f != nullptr;
+   if (f) SDL_RWclose(f);
+   if (!ret)
+   {
+      // its not a file, see if its a folder, at least a non-empty one
+      AndroidAsset aa;
+      ret = !aa.DirectoryList(filePath).empty();
+   }
+   return ret;
 #else
 	struct stat buf;
 	return !stat(filePath.c_str(), &buf);
@@ -549,6 +638,13 @@ void Files::LogError(const string &message)
 			return;
 		}
 	}
+
+#if defined __ANDROID__
+	// On android, this can be read with logcat | grep SDL. We don't want to do
+	// it for other operating systems though, cause we can read errors.txt
+	// directly
+   SDL_Log("%s", message.c_str());
+#endif
 
 	SDL_RWwrite(errorLog, (message + '\n').c_str(), 1, message.size() + 1);
 }
