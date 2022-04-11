@@ -107,6 +107,7 @@ ship "Argosy"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -25 91 0.6
@@ -155,18 +156,18 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile" 8
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
-		"Small Radar Jammer"
 		"Luxury Accommodations"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -8 56
@@ -583,6 +584,7 @@ ship "Berserker"
 		
 		"X2700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -10 45
@@ -680,12 +682,12 @@ ship "Bounder"
 		"Anti-Missile Turret" 2
 		
 		"nGVF-CC Fuel Cell"
-		"KP-6 Photovoltaic Array"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -12 44
@@ -774,6 +776,7 @@ ship "Bulk Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -22 198
@@ -907,7 +910,7 @@ ship "Class C Freighter"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"Heavy Laser Turret" 2
+		"Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fission Reactor"
@@ -917,13 +920,14 @@ ship "Class C Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -20 195.5
 	engine 20 195.5
-	turret -12 -155 "Heavy Laser Turret"
+	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
+	turret 30 175 "Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	bay "Drone" -66 -115 left
 	bay "Drone" -66 -65 left
@@ -1075,6 +1079,7 @@ ship "Container Transport"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1139,6 +1144,7 @@ ship "Corvette"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -11.5 119
@@ -1432,11 +1438,12 @@ ship "Falcon"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
 		"Laser Rifle" 15
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16.5 143
@@ -1638,12 +1645,13 @@ ship "Freighter"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		
-		"nGVF-EE Fuel Cell"
-		"LP036a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -7.5 92
@@ -2533,11 +2541,12 @@ ship "Osprey"
 		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 3
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -42.5 62.5 .8
@@ -2758,14 +2767,15 @@ ship "Raven"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		
-		"RT-I Radiothermal"
+		"Dwarf Core"
 		"KP-6 Photovoltaic Panel" 2
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
 		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -9.5 63
@@ -3098,6 +3108,7 @@ ship "Splinter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -15.5 115
