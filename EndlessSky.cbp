@@ -66,6 +66,7 @@
 					<Add library="libopenal32.dll.a" />
 					<Add library="libglew32.dll.a" />
 					<Add library="libopengl32.a" />
+					<Add library="librpcrt4.a" />
 					<Add directory="C:/dev32/lib" />
 					<Add directory="C:/Program Files (x86)/mingw-w64/i686-5.2.0-posix-dwarf-rt_v4-rev0/mingw32/i686-w64-mingw32/lib" />
 				</Linker>
@@ -75,6 +76,8 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 			<Add option="-Werror" />
+			<Add option="-Wold-style-cast" />
+			<Add option="-fno-rtti" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
 		<Linker>
@@ -90,6 +93,7 @@
 			<Add library="libopenal32.dll.a" />
 			<Add library="libglew32.dll.a" />
 			<Add library="libopengl32.a" />
+			<Add library="librpcrt4.a" />
 			<Add directory="C:/dev64/lib" />
 			<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/lib" />
 		</Linker>
