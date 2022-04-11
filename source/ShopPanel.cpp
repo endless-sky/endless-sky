@@ -274,12 +274,12 @@ void ShopPanel::DrawShipsSidebar()
 
 		point.Y() += ICON_TILE;
 		const Point cargoModeButtonCenter = Point(Screen::Right() - SIDEBAR_WIDTH / 2, point.Y());
-		FillShader::Fill(cargoModeButtonCenter, Point(60, 30), playerShip ? back : activeBack);
+		FillShader::Fill(cargoModeButtonCenter, Point(140, 30), playerShip ? back : activeBack);
 		bigFont.Draw(deSelectText,
 			cargoModeButtonCenter - .5 * Point(bigFont.Width(deSelectText), bigFont.Height()),
 			playerShip ? inactive : active);
 
-		zones.emplace_back(cargoModeButtonCenter, Point(60, 30), 'a');
+		zones.emplace_back(cargoModeButtonCenter, Point(140, 30), 'a');
 	}
 	point.Y() += ICON_TILE;
 

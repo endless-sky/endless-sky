@@ -102,7 +102,7 @@ int OutfitterPanel::VisiblityCheckboxesSize() const
 
 string OutfitterPanel::ShipsDeselectText() const
 {
-	return "Cargo";
+	return "Cargo & Storage";
 }
 
 
