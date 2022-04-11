@@ -172,8 +172,8 @@ ship "Arrow"
 		
 	engine -8 56
 	engine 8 56
-	gun -7.5 -36 "Sidewinder Missile Pod"
-	gun 7.5 -36 "Sidewinder Missile Pod"
+	gun -7.5 -36 "Meteor Missile Pod"
+	gun 7.5 -36 "Meteor Missile Pod"
 	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
