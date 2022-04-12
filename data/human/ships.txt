@@ -1601,11 +1601,13 @@ ship "Flivver"
 		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
+		"KP-6 Photovoltaic Panel" 3
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16 27
