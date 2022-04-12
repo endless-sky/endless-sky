@@ -168,7 +168,6 @@ ship "Arrow"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -8 56
