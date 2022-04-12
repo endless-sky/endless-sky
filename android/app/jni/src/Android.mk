@@ -57,7 +57,7 @@ LOCAL_SRC_FILES := \
 	pngget.c pngmem.c pngpread.c pngread.c pngrio.c pngrtran.c pngrutil.c \
 	pngset.c pngtrans.c pngwio.c pngwrite.c pngwtran.c pngwutil.c \
 	png.h pngconf.h pngdebug.h pnginfo.h pngpriv.h pngstruct.h pngusr.dfa \
-
+	arm/palette_neon_intrinsics.c arm/arm_init.c arm/filter_neon_intrinsics.c 
 
 # $(LOCAL_PATH)/libpng-1.6.37/.libs/libpng16.a: 
 # 	PREFIX=$(LOCAL_PATH)/libpng-1.6.37/ \
@@ -102,7 +102,7 @@ LOCAL_MODULE := main
 
 SDL_PATH := SDL2-2.0.20
 
-OUR_SRCS := $(LOCAL_PATH)/../../..
+OUR_SRCS := $(LOCAL_PATH)/../../../..
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
    $(OUR_SRCS)/src \
@@ -258,8 +258,8 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
    $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/MenuAnimationPanel.cpp) \
 
 
-LOCAL_STATIC_LIBRARIES := SDL2_static png16 jpeg
-
+LOCAL_STATIC_LIBRARIES :=  png16 jpeg
+LOCAL_SHARED_LIBRARIES := SDL2
 LOCAL_LDLIBS := -lGLESv3 -lOpenSLES -llog -lz -landroid
 LOCAL_CPPFLAGS += -std=c++11 -frtti -fexceptions -DES_GLES -flto
 LOCAL_LDFLAGS += -flto 
