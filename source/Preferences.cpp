@@ -65,6 +65,9 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+#ifdef __ANDROID__
+	settings["fullscreen"] = true;
+#endif
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
