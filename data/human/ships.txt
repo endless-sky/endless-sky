@@ -2767,10 +2767,10 @@ ship "Raven"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		
-		"Dwarf Core"
+		"RT-I Radiothermal"
 		"KP-6 Photovoltaic Panel" 2
 		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
+		"D23-QP Shield Generator"
 		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
