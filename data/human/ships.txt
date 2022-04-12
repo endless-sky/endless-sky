@@ -156,13 +156,14 @@ ship "Arrow"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"Meteor Missile Pod" 2
-		"Meteor Missile" 14
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile" 8
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
+		"Small Radar Jammer"
 		"Luxury Accommodations"
 		
 		"A250 Atomic Thruster"
@@ -172,8 +173,8 @@ ship "Arrow"
 		
 	engine -8 56
 	engine 8 56
-	gun -7.5 -36 "Meteor Missile Pod"
-	gun 7.5 -36 "Meteor Missile Pod"
+	gun -7.5 -36 "Sidewinder Missile Pod"
+	gun 7.5 -36 "Sidewinder Missile Pod"
 	turret 0 17.5 "Anti-Missile Turret"
 	leak "leak" 80 50
 	explode "tiny explosion" 12
