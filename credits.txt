@@ -121,9 +121,9 @@ Beta Testers
 Thank you to all the following
 people on GitHub who have
 contributed to Endless Sky:
+  10010101001
   7even
   abenkovskii
-  AdamKauffman
   akien-mga
   AlbertNewton
   AlexBassett
@@ -136,11 +136,14 @@ contributed to Endless Sky:
   Anarchist2
   AraCaputDraco
   Arachi-Lover
+  a-random-lemurian
   arkhne
+  Arrow2thekn33
   ashdnazg
   Aurelite
   barthalion
   beccabunny
+  benflodge
   BlackVegetable
   Bladewood
   BlazingDiesel
@@ -148,7 +151,6 @@ contributed to Endless Sky:
   bojidar-bg
   Brick63
   ChamEV
-  colbygallup
   comnom
   corecontingency
   Corraban2
@@ -162,6 +164,8 @@ contributed to Endless Sky:
   DeBlister
   DingusShingleton
   Disiuze
+  DJF113
+  DownsB
   dplepage
   dragonmaus
   DrBlight
@@ -169,12 +173,11 @@ contributed to Endless Sky:
   dufferzafar
   dzhu
   eflyon
-  EjoThims
   elgeonmb
   Eloraam
   Elyssaen
-  endless-sky
   EndrosG
+  EricFromCanada
   fcfort
   Ferociousfeind
   finite-galaxy
@@ -192,15 +195,14 @@ contributed to Endless Sky:
   har9862
   Hurleveur
   Hyugat
-  Iheckemann
   InfiniteDonuts
   infinitewarp
   ItsNickBarry
   jafdy
+  Jamibaraki
   Janaszar
   JanErikAhrens
   janisozaur
-  jarekchr
   jerith
   jjhankins
   jmathes
@@ -208,6 +210,7 @@ contributed to Endless Sky:
   jostephd
   jozef-mitro
   Jugosloven1612
+  Just-Existing
   Karirawri
   kestrel1110
   KevinKorzekwa
@@ -215,6 +218,7 @@ contributed to Endless Sky:
   kkuchta
   kozbot
   Kryes-Omega
+  LepRyot
   lheckemann
   Lineth
   LocalGod79
@@ -222,6 +226,7 @@ contributed to Endless Sky:
   LordInsane
   Luckz
   luiges90
+  LukeMarlin
   macfreek
   MageKing17
   Mailaender
@@ -233,11 +238,11 @@ contributed to Endless Sky:
   MCOfficer
   MessyMix
   michel-slm
-  MillerNerd
   mimirzero
   mootootwo
   naehc
-  Naminson
+  Nams-2
+  nathan-b
   Nescio0
   nobodywasishere
   NomadicVolcano
@@ -245,16 +250,19 @@ contributed to Endless Sky:
   oo13
   Ornok
   OverYrPaygrade
+  pakyinw
   PaulBlay
+  PeacefulPotato
   pega3
   perey
   petervdmeer
+  peteryager
   ph2000
   ph2000bis
   PhaedrusES
+  pilover100
   pkubaj
   plague006
-  Plip-Plop
   Pointedstick
   prophile
   pscamman
@@ -275,13 +283,20 @@ contributed to Endless Sky:
   Rocketeer456
   rugk
   rzahniser
+  salqadri
+  samoja12
+  samrocketman
   Sandwichs-del
+  saraswativ23
   Saugia
   schrauger
+  Scrinarii1337
   ScruffyKitty
   sdennie
   seanfahey
   sfiera
+  shitwolfymakes
+  skilaa
   solardawning
   SolraBizna
   SpearDane
@@ -301,30 +316,32 @@ contributed to Endless Sky:
   thomasballinger
   ThrosturX
   Thunderforge
+  tibetiroka
   tiennou
   timbennett
   TJesionowski
   tmbutterworth
   toilethinges
+  TotalCaesar659
   TurkeyMcMac
   Turtleroku
   tux2603
-  Unjown
+  unjown
   Vilhelm16
   vitalchip
   W1zrad
   Waffleship
-  Waladil
   warp-core
   waterhouse
+  Wedge009
   whismerhill
   willbeason
+  williaji
   wjbotham
   wjp
   Wrzlprnft
   YellowApple
   yjhn
-  yobbo2020
   ZBok
   Zitchas
   zwparchman
