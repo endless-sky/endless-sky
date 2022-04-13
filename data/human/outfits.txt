@@ -279,19 +279,20 @@ outfit "Outfits Expansion"
 	"heat dissipation" -.01
 	"unplunderable" 1
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
-	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
+	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems. "
 
 outfit "Small Outfits Expansion"
 	category "Systems"
 	thumbnail "outfit/outfit expansion"
 	cost 25000
 	"mass" 2
+	"unplunderable" 1
 	"outfit space" 7
 	"cargo space" -10
 	"cooling ineffciency" .5
 	"heat dissipation" -.005
 	description "This expansion is a smaller version of the outfit expansion."
-	description "	The way that this expansion modifys the interior of your ship tends to interfere with the ship's cooling systems.
+	description "	The way that this expansion modifys the interior of your ship tends to interfere with the ship's cooling systems"
 
 
 outfit "Cargo Expansion"
