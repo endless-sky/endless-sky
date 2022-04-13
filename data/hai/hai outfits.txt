@@ -160,6 +160,7 @@ outfit "rslug"
 		"hit effect" "bullet impact"
 		"lifetime" 49
 		"acceleration" 2.2
+		"velocity" 44
 		"drag" .05
 		"turn" .6
 		"homing" 1

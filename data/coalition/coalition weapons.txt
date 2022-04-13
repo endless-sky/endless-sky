@@ -122,6 +122,7 @@ outfit "Active Finisher"
 		"hit effect" "finisher impact" 2
 		"hit effect" "finisher fragment" 12
 		"die effect" "small explosion"
+		"velocity" 10
 		"lifetime" 500
 		"acceleration" 1
 		"drag" .1
@@ -312,6 +313,7 @@ outfit "ion hail"
 			"random start frame"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 1
+		"velocity" 12
 		"random velocity" 3
 		"lifetime" 40
 		"random lifetime" 4

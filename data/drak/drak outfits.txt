@@ -256,6 +256,7 @@ outfit "Drak Antimatter Fragment"
 		"hit effect" "nuke explosion"
 		"safe"
 		"inaccuracy" 1
+		"velocity" 20
 		"lifetime" 499
 		"hit force" 1000
 		"disruption damage" 300
@@ -276,6 +277,7 @@ outfit "Drak Antimatter Fragment (Augmented)"
 		"hit effect" "nuke explosion"
 		"safe"
 		"inaccuracy" 1
+		"velocity" 20
 		"lifetime" 1000
 		"hit force" 1000
 		"disruption damage" 1000

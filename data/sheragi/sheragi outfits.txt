@@ -322,6 +322,7 @@ outfit "Shard inactive"
 			"random start frame"
 		"hit effect" "shard impact"
 		"die effect" "missile death"
+		"velocity" 15
 		"lifetime" 60
 		"random lifetime" 40
 		"hit force" 20
@@ -366,6 +367,7 @@ outfit "Heavy Ion Fragment"
 		"hit effect" "proton impact"
 		"inaccuracy" 1
 		"random velocity" 8
+		"velocity" 28
 		"lifetime" 25
 		"random lifetime" 8
 		"acceleration" 0.001
