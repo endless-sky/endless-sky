@@ -286,8 +286,12 @@ outfit "Small Outfits Expansion"
 	thumbnail "outfit/outfit expansion"
 	cost 25000
 	"mass" 2
-	
-	
+	"outfit space" 7
+	"cargo space" -10
+	"cooling ineffciency" .5
+	"heat dissipation" -.005
+	description "This expansion is a smaller version of the outfit expansion."
+	description "	The way that this expansion modifys the interior of your ship tends to interfere with the ship's cooling systems."
 
 outfit "Cargo Expansion"
 	category "Systems"
