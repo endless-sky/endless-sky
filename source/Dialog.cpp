@@ -286,6 +286,12 @@ bool Dialog::Click(int x, int y, int clicks)
 		}
 	}
 
+	if (intFun || stringFun)
+	{
+		// Clicked on edit field. popup touchscreen keyboard if needed.
+		SDL_StartTextInput();
+	}
+
 	return true;
 }
 

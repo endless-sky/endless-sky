@@ -145,7 +145,9 @@ void ConversationPanel::Draw()
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
-				AddZone(Rectangle(center, fieldSize), [this, side](){ this->ClickName(side); });
+				AddZone(Rectangle(center, fieldSize), [this, side](){
+					SDL_StartTextInput(); // trigger the keyboard if needed
+					this->ClickName(side); });
 				continue;
 			}
 
