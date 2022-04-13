@@ -1144,7 +1144,7 @@ ship "Corvette"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -11.5 119
@@ -2770,14 +2770,14 @@ ship "Raven"
 		"Torpedo" 60
 		
 		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Panel" 2
+		"KP-6 Photovoltaic Panel" 1
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -9.5 63
