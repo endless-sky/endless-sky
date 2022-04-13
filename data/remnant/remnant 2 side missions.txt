@@ -11,7 +11,7 @@
 
 
 mission "Remnant: Shattered Light 1"
-	name "Shattered Light - Sensor Ghost"
+	name "Shattered Light - Contact"
 	# invisible
 	source
 		government "Remnant"
@@ -21,13 +21,13 @@ mission "Remnant: Shattered Light 1"
 		# random < 30
 	npc "scan outfits"
 		government "Ember Waste"
-		personality uninterested waiting
+		personality uninterested waiting staying mute
 		system Caeculus
 		ship "Dromedary Ghost" "???"
 		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it."
 	on complete
 		conversation
-			`Looking around the Viminal spaceport, you manage to spot Taely using something that looks kind of like a small catapult to throw a large rock across the cavern. A nearby Merganser leaps into the air and chases after it. The ship pounces on the rock, vanishes from sight, and then reappears next to Taely and drops the rock next to her. She turns around, and waves you over.`
+			`Looking around the Viminal spaceport, you manage to spot Taely using something that looks kind of like a small catapult to throw a large rock across the cavern. A nearby Merganser leaps into the air and chases after it. The ship pounces on the rock, vanishes from sight, and then reappears next to Taely and drops the rock next to her. Without looking away from the Merganser she waves you over.`
 			`	"Well met, <first>, how goes your travels, found anything interesting?`
 			`	She listens to your description of the encounter with the ghostly ship, and looks at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the starport."`
 
@@ -36,14 +36,44 @@ mission "Remnant: Shattered Light 1"
 mission "Remnant: Shattered Light 2"
 	name "Shattered Light - Sighting"
 	description "A strange sight in Edusa."
+	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory as well as 2 cargo space and 1 free bunk."
+	cargo "equipment" 2
+	passengers 1
 	source "Viminal"
-	destination "Viminal"
 	to offer
-		has "event: remnant: cognizance calm"
 		has "Remnant: Shattered Light 1: done"
 	npc "scan outfits"
 		government "Ember Waste"
-		personality uninterested waiting
+		personality uninterested waiting staying mute
+		system Levana
+		ship "Dromedary Specter" "???"
+		dialog "This ship seems a bit more solid than it did when you first saw it, but it does not seem to be quite present."
+	on offer
+		require "Research Laboratory"
+		conversation
+			`Your arrival in the starport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They turn as one when you approach, breaking off their conversation.`
+			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher." Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty doing the best with that which the Embers blessed me, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
+			`	Ruach's gestures take on a more precise cadence. "Taely tells me that you have spotted a strange 'ghost' in Caeculus that bears a resemblance to ancestral ships. Could you take me to do a scan of it please?`
+			choice
+				`	"OK"`
+					accept
+				`	"Sorry, not interested."`
+					decline
+	on complete
+		conversation
+			`The <ship> has not even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple spots down to stare up at the gills of an Albatross. A few moments later, Taely drops down to the ground beside her. As you approach you can see Ruach has a holo of the spectral ship `
+			
+
+mission "Remnant: Shattered Light 3"
+	name "Shattered Light - Ghost Touch"
+	description "A strange sight in Edusa."
+	source "Viminal"
+	destination "Far Monad"
+	to offer
+		has "Remnant: Shattered Light 2: done"
+	npc "scan outfits"
+		government "Ember Waste"
+		personality uninterested waiting staying mute
 		system Levana
 		ship "Dromedary Specter" "???"
 		dialog "This ship seems a bit more solid than it used to, but it does not seem to be quite present."
@@ -51,21 +81,21 @@ mission "Remnant: Shattered Light 2"
 		conversation
 			``
 			
+			
 
-mission "Remnant: Shattered Light 2"
-	name "Shattered Light - Sighting"
+mission "Remnant: Shattered Light 4"
+	name "Shattered Light - Homecoming"
 	description "A strange sight in Edusa."
-	source "Viminal"
-	stopover "Far Monad"
+	landing
+	source "Far Monad"
 	destination "Viminal"
 	to offer
-		has "event: remnant: cognizance calm"
-		has "Remnant: Shattered Light 1: done"
+		has "Remnant: Shattered Light 3: done"
 	npc "scan outfits"
-		government "Ember Waste"
-		personality uninterested waiting
+		government "Remnant"
+		personality launching coward escort
 		system Levana
-		ship "Dromedary Specter" "???"
+		ship "Dromedary Wreck" "Shattered Light"
 		dialog "This ship seems a bit more solid than it used to, but it does not seem to be quite present."
 	on complete
 		conversation
