@@ -178,7 +178,7 @@ mission "Lagrange Ring: Cargo"
 	minor
 	name "Human Construction Materials"
 	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
-	cargo "Construction Materials" 254
+	cargo "construction materials" 254
 	source
 		near "Enif" 1
 		government "Quarg"
