@@ -11,22 +11,20 @@
 
 
 mission "Remnant: Shattered Light 1"
-	name "Shattered Light - First Sighting"
+	name "Shattered Light - Sensor Ghost"
 	# invisible
 	source
 		government "Remnant"
 	destination "Viminal"
-	waypoint Segesta
 	to offer
 		has "event: remnant: cognizance calm"
 		# random < 30
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting
-		system
-			Segesta
+		system Caeculus
 		ship "Dromedary Ghost" "???"
-		dialog "This ship barely registers on your sensors, and you can see through it. The Remnant will want to know about it."
+		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it."
 	on complete
 		conversation
 			`Looking around the Viminal spaceport, you manage to spot Taely using something that looks kind of like a small catapult to throw a large rock across the cavern. A nearby Merganser leaps into the air and chases after it. The ship pounces on the rock, vanishes from sight, and then reappears next to Taely and drops the rock next to her. She turns around, and waves you over.`
@@ -38,24 +36,38 @@ mission "Remnant: Shattered Light 1"
 mission "Remnant: Shattered Light 2"
 	name "Shattered Light - Sighting"
 	description "A strange sight in Edusa."
-	invisible
-	source
-		government "Remnant"
+	source "Viminal"
 	destination "Viminal"
-	waypoint Segesta
 	to offer
 		has "event: remnant: cognizance calm"
-		random < 30
+		has "Remnant: Shattered Light 1: done"
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting
-		system
-			Segesta
-		ship "Dromedary Ghost" "???"
-		dialog "This ship barely registers on your sensors, and you can see through it. The Remnant will want to know about it."
+		system Levana
+		ship "Dromedary Specter" "???"
+		dialog "This ship seems a bit more solid than it used to, but it does not seem to be quite present."
 	on complete
 		conversation
-			`Looking around the Viminal spaceport, you manage to spot Taely using something that looks kind of like a small catapult to throw a large rock across the cavern. A nearby Merganser leaps into the air and chases after it. The ship pounces on the rock, vanishes from sight, and then reappears next to Taely and drops the rock next to her. She turns around, and waves you over.`
-			`	"Well met, <first>, how goes your travels, found anything interesting?`
-			`	She listens to your description of the encounter with the ghostly ship, and looks at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the starport."`
+			``
+			
+
+mission "Remnant: Shattered Light 2"
+	name "Shattered Light - Sighting"
+	description "A strange sight in Edusa."
+	source "Viminal"
+	stopover "Far Monad"
+	destination "Viminal"
+	to offer
+		has "event: remnant: cognizance calm"
+		has "Remnant: Shattered Light 1: done"
+	npc "scan outfits"
+		government "Ember Waste"
+		personality uninterested waiting
+		system Levana
+		ship "Dromedary Specter" "???"
+		dialog "This ship seems a bit more solid than it used to, but it does not seem to be quite present."
+	on complete
+		conversation
+			``
 			
