@@ -262,7 +262,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				isPaused = !isPaused;
 			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
+					&& (Command(event.key.keysym.sym).Has(Command::MENU) || event.key.keysym.sym == SDLK_AC_BACK)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.

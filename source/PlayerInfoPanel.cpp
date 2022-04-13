@@ -188,7 +188,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
 		GetUI()->Pop(this);
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER)

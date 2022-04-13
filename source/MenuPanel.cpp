@@ -148,7 +148,7 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
+	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU) || key == SDLK_AC_BACK))
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);

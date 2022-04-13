@@ -386,7 +386,7 @@ bool MapPanel::AllowsFastForward() const noexcept
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
+	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
