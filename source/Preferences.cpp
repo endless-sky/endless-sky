@@ -65,8 +65,10 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
+	settings["Show buttons on map"] = false;
 #ifdef __ANDROID__
 	settings["fullscreen"] = true;
+	settings["Show buttons on map"] = true;
 #endif
 
 	DataFile prefs(Files::Config() + "preferences.txt");

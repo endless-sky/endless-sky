@@ -73,6 +73,7 @@ const Command Command::STOP(1ul << 27, "");
 const Command Command::SHIFT(1uL << 28, "");
 const Command Command::MOVETOWARD(1uL << 29, "");
 
+std::atomic<uint32_t> Command::simulated_command{};
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -102,6 +103,10 @@ Command::Command(int keycode)
 void Command::ReadKeyboard()
 {
 	Clear();
+
+	// inject simulated commands, clear out old ones.
+	state = simulated_command.exchange(0, std::memory_order_relaxed);
+
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
 	// Each command can only have one keycode, but misconfigured settings can

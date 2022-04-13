@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "comparators/ByGivenOrder.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
+#include "Interface.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -179,6 +180,20 @@ void MainPanel::Draw()
 			loadCount = 0;
 		}
 	}
+
+	bool isActive = (GetUI()->Top().get() == this);
+	if (isActive && Preferences::Has("Show buttons on map"))
+	{
+		Information info;
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+		if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+			info.SetCondition("max zoom");
+		if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+			info.SetCondition("min zoom");
+
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		mapButtonUi->Draw(info, this);
+	}
 }
 
 
@@ -230,6 +245,12 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
+	else if(key == SDLK_m) // synthetic keypress via UI button, not keyboard
+		show.Set(Command::MAP);
+	else if(key == SDLK_s) // synthetic keypress via UI button, not keyboard
+		Command::Inject(Command::SCAN);
+	else if(key == SDLK_j) // synthetic keypress via UI button, not keyboard
+		Command::Inject(Command::JUMP);
 	else
 		return false;
 

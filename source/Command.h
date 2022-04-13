@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdint>
 #include <string>
+#include <atomic>
 
 class DataNode;
 
@@ -129,6 +130,8 @@ public:
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
 
+	// Allow UI's to simulate keyboard input
+	static void Inject(const Command& command) { simulated_command.fetch_or(command.state, std::memory_order_relaxed); }
 
 private:
 	explicit Command(uint32_t state);
@@ -141,6 +144,9 @@ private:
 	uint32_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+
+	// If we want to simulate input from the ui, place it here to be read later
+	static std::atomic<uint32_t> simulated_command;
 };
 
 
