@@ -75,20 +75,12 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
     }
     
-    // Move in this new direction at the same velocity.
+    // Revert to the velocity of the parent of the parent projectile
     // To maintain the sign of the velocity, Point::Length can’t be used.
-    Point parentSelfVelocity = parent.angle.Unit() * parent.GetWeapon().Velocity();
-    velocity = parent.velocity - parentSelfVelocity;
-
-    double firingVelocity;
-    if(weapon->Velocity() == 0)
-    {
-        firingVelocity = parent.GetWeapon().Velocity() + Random::Real() * weapon->RandomVelocity();
-    }
-    else {
-        firingVelocity = (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
-    }
-    velocity += this->angle.Unit() * firingVelocity;;
+	velocity = parent.velocity - (parent.angle.Unit() * parent.GetWeapon().Velocity());
+	
+	//Add this projectile's own velocity at its own heading.
+	velocity += this->angle.Unit() * (weapon->Velocity() + (Random::Real() * weapon->RandomVelocity()));
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())

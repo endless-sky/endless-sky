@@ -443,6 +443,7 @@ outfit "Proton Fragment"
 			"frame rate" 2
 		"hit effect" "proton impact"
 		"inaccuracy" 2
+		"velocity" 24
 		"lifetime" 24
 		"hit force" 6
 		"shield damage" 10.1
@@ -608,6 +609,7 @@ outfit "Flamethrower Projectile"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20
+		"velocity" 9
 		"lifetime" 22
 		"shield damage" .8
 		"hull damage" .7
@@ -1355,6 +1357,7 @@ outfit "gbullet"
 			"random start frame"
 			"frame rate" 0
 		"random velocity" 8
+		"velocity" 16
 		"lifetime" 20
 		"random lifetime" 5
 		"shield damage" 3
