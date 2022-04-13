@@ -104,6 +104,22 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
+// Check if a click at the given coordinates is in a clickable zone. If
+// so, return true
+bool Panel::ZoneCheck(const Point &point)
+{
+	for(const Zone &zone : zones)
+	{
+		if(zone.Contains(point))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 // Forward the given TestContext to the Engine under MainPanel.
 void Panel::SetTestContext(TestContext &testContext)
 {
@@ -164,6 +180,27 @@ bool Panel::Scroll(double dx, double dy)
 
 
 bool Panel::Release(int x, int y)
+{
+	return false;
+}
+
+
+
+bool Panel::FingerDown(int x, int y)
+{
+	return false;
+}
+
+
+
+bool Panel::FingerMove(int x, int y)
+{
+	return false;
+}
+
+
+
+bool Panel::FingerUp(int x, int y)
 {
 	return false;
 }

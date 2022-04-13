@@ -56,6 +56,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool FingerDown(int x, int y) override;
+	virtual bool FingerMove(int x, int y) override;
+	virtual bool FingerUp(int x, int y) override;
 
 
 private:

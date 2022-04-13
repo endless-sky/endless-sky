@@ -425,6 +425,11 @@ public:
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
 
+	// Direction to move toward if MOVETOWARD is active. These are relative to
+	// Position()
+	void SetMoveToward(const Point& p) { moveToward = p; }
+	const Point& GetMoveTowardPos() const { return moveToward; }
+
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
@@ -595,6 +600,9 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+
+	// Direction to move toward for MOVETOWARD command
+	Point moveToward;
 };
 
 

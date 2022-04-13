@@ -1152,6 +1152,76 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+bool Engine::FingerDown(const Point &p)
+{
+	isTouch = true;
+	isFingerDown = true;
+	Click(p, p, false);
+
+	// Returning true here means don't convert this to a normal mouse click
+	return true;
+}
+
+
+
+
+bool Engine::FingerUp(const Point &p)
+{
+	isTouch = true;
+	isFingerDown = false;
+
+	// Determine if the point was within the radar display.
+	const Interface *hud = GameData::Interfaces().Get("hud");
+	Point radarCenter = hud->GetPoint("radar");
+	double radarRadius = hud->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+		isRadarClick = true;
+	else
+		isRadarClick = false;
+
+	clickPoint = isRadarClick ? p - radarCenter : p;
+	if(isRadarClick)
+		clickBox = Rectangle::WithCorners(
+			(p - radarCenter) / RADAR_SCALE + center,
+			(p - radarCenter) / RADAR_SCALE  + center);
+	else
+		clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
+
+
+	return true;
+}
+
+
+
+
+bool Engine::FingerMove(const Point &p)
+{
+	isTouch = true;
+	isFingerDown = true;
+
+	// Determine if the left-click was within the radar display.
+	const Interface *hud = GameData::Interfaces().Get("hud");
+	Point radarCenter = hud->GetPoint("radar");
+	double radarRadius = hud->GetValue("radar radius");
+	if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+		isRadarClick = true;
+	else
+		isRadarClick = false;
+
+	clickPoint = isRadarClick ? p - radarCenter : p;
+	if(isRadarClick)
+		clickBox = Rectangle::WithCorners(
+			(p - radarCenter) / RADAR_SCALE + center,
+			(p - radarCenter) / RADAR_SCALE  + center);
+	else
+		clickBox = Rectangle::WithCorners(p / zoom + center, p / zoom + center);
+
+	return true;
+}
+
+
+
+
 // Break targeting on all projectiles between the player and the given
 // government; gov projectiles stop targeting the player and player's
 // projectiles stop targeting gov.
@@ -1428,6 +1498,7 @@ void Engine::CalculateStep()
 	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
+	HandleTouchEvents();
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will
@@ -1964,7 +2035,42 @@ void Engine::HandleMouseClicks()
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+	{
 		flagship->SetTargetShip(nullptr);
+		// If this is a touch event, treat an "empty" click as a request to move
+		// the flagship in that direction.
+		if (isFingerDown)
+		{
+			moveTowardActive = true;
+		}
+	}
+}
+
+
+
+void Engine::HandleTouchEvents()
+{
+	if (!isTouch)
+	{
+		return;
+	}
+
+	Ship *flagship = player.Flagship();
+	if(!flagship)
+		return;
+
+	if (isFingerDown)
+	{
+		if (moveTowardActive)
+		{
+			activeCommands |= Command::MOVETOWARD;
+			flagship->SetMoveToward(clickPoint + center - flagship->Position());
+		}
+	}
+	else
+	{
+		moveTowardActive = false;
+	}
 }
 
 

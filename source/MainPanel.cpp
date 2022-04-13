@@ -318,6 +318,34 @@ bool MainPanel::Scroll(double dx, double dy)
 
 
 
+bool MainPanel::FingerDown(int x, int y)
+{
+	// Don't respond to clicks if another panel is active.
+	if(!canClick)
+		return false;
+
+	return engine.FingerDown(Point(x, y));
+}
+
+
+
+bool MainPanel::FingerMove(int x, int y)
+{
+	if (!canClick)
+		return false;
+
+	return engine.FingerMove(Point(x, y));
+}
+
+
+
+bool MainPanel::FingerUp(int x, int y)
+{
+	return engine.FingerUp(Point(x, y));
+}
+
+
+
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
 	shared_ptr<Ship> target = event.Target();

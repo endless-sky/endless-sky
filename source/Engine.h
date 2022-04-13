@@ -89,6 +89,11 @@ public:
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
+	// Touchscreen controls
+	bool FingerDown(const Point &p);
+	bool FingerUp(const Point &p);
+	bool FingerMove(const Point &p);
+
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
@@ -109,6 +114,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleTouchEvents();
 
 	void FillCollisionSets();
 
@@ -230,6 +236,9 @@ private:
 	bool hasControl = false;
 	bool isRightClick = false;
 	bool isRadarClick = false;
+	bool isTouch = false;
+	bool isFingerDown = false;
+	bool moveTowardActive = false;
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;

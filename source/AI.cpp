@@ -45,7 +45,8 @@ namespace {
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
-			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP
+			| Command::MOVETOWARD);
 
 		return cancelers;
 	}
@@ -1258,7 +1259,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
 	// do so only if they are allowed to leave.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward()) 
+			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
 			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
@@ -3483,7 +3484,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 	}
 	else if(activeCommands.Has(Command::SCAN))
+	{
 		command |= Command::SCAN;
+	}
+	if(activeCommands.Has(Command::MOVETOWARD))
+	{
+		command |= Command::MOVETOWARD;
+		MoveTo(ship, command, ship.GetMoveTowardPos() + ship.Position(), ship.Velocity(), 40.0, 0.8);
+	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));

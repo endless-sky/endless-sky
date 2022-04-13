@@ -61,6 +61,9 @@ public:
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
+	// Check if a click at the given coordinates is within a clicakble zone. If
+	// so, return true, but do not apply any actions.
+	bool ZoneCheck(const Point &point);
 
 	// Forward the given TestContext to the Engine under MainPanel.
 	virtual void SetTestContext(TestContext &testContext);
@@ -78,6 +81,9 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y);
 	virtual bool Scroll(double dx, double dy);
+	virtual bool FingerDown(int x, int y);
+	virtual bool FingerMove(int x, int y);
+	virtual bool FingerUp(int x, int y);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
