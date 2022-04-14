@@ -1878,6 +1878,7 @@ ship "Hauler"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 122.5
@@ -1924,8 +1925,9 @@ ship "Hauler II"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1937,6 +1939,7 @@ ship "Hauler II"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -1983,8 +1986,9 @@ ship "Hauler III"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1996,6 +2000,7 @@ ship "Hauler III"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -2981,8 +2986,8 @@ ship "Skein"
 			"hit force" 1500
 	outfits
 		"Meteor Missile Pod" 2
-		"Meteor Missile Box"
 		"Meteor Missile" 29
+		"Meteor Missile Box"
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
