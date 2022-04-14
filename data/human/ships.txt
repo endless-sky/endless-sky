@@ -524,6 +524,7 @@ ship "Behemoth"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -34 143 0.8
