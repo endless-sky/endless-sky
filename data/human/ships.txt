@@ -2311,8 +2311,8 @@ ship "Manta"
 	gun 21 -35 "Particle Cannon"
 	gun -27 -35 "Particle Cannon"
 	gun 27 -35 "Particle Cannon"
-	gun -66 -32 "Meteor Missile Launcher"
-	gun 66 -32 "Meteor Missile Launcher"
+	gun -66 -32
+	gun 66 -32
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
