@@ -2983,20 +2983,21 @@ ship "Skein"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile Box"
+		"Meteor Missile" 29
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
-		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
