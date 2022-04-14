@@ -584,7 +584,6 @@ ship "Berserker"
 		
 		"X2700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -10 45
@@ -910,7 +909,7 @@ ship "Class C Freighter"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"Laser Turret" 2
+		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fission Reactor"
@@ -920,14 +919,13 @@ ship "Class C Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -20 195.5
 	engine 20 195.5
-	turret -12 -155 "Laser Turret"
+	turret -12 -155 "Heavy Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Laser Turret"
+	turret 30 175 "Heavy Laser Turret"
 	turret -30 175 "Heavy Anti-Missile Turret"
 	bay "Drone" -66 -115 left
 	bay "Drone" -66 -65 left
@@ -1438,12 +1436,11 @@ ship "Falcon"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Water Coolant System"
+		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 15
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16.5 143
@@ -2294,6 +2291,9 @@ ship "Manta"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 75
+		"Meteor Missile Box"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2302,7 +2302,6 @@ ship "Manta"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -33 38
@@ -2311,8 +2310,8 @@ ship "Manta"
 	gun 21 -35 "Particle Cannon"
 	gun -27 -35 "Particle Cannon"
 	gun 27 -35 "Particle Cannon"
-	gun -66 -32
-	gun 66 -32
+	gun -66 -32 "Meteor Missile Launcher"
+	gun 66 -32 "Meteor Missile Launcher"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
@@ -2541,12 +2540,11 @@ ship "Osprey"
 		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
+		"Liquid Helium Cooler"
 		"Laser Rifle" 3
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -42.5 62.5 .8
@@ -2768,14 +2766,13 @@ ship "Raven"
 		"Torpedo" 60
 		
 		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Panel" 1
-		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
+		"KP-6 Photovoltaic Panel" 2
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
 		"Laser Rifle" 2
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -9.5 63
@@ -3109,7 +3106,6 @@ ship "Splinter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -15.5 115
