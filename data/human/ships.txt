@@ -681,12 +681,12 @@ ship "Bounder"
 		"Anti-Missile Turret" 2
 		
 		"nGVF-CC Fuel Cell"
+		"KP-6 Photovoltaic Array"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -12 44
