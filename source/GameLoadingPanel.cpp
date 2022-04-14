@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
+#include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "MaskManager.h"
 #include "PlayerInfo.h"
@@ -46,7 +47,7 @@ void GameLoadingPanel::Step()
 
 	// While the game is loading, upload sprites to the GPU.
 	GameData::ProcessSprites();
-	if(progress == MAX_TICKS)
+	if(GameData::IsLoaded())
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 		// e.g. due to capitalization errors or other typos.
@@ -62,6 +63,8 @@ void GameLoadingPanel::Step()
 
 		GetUI()->Pop(this);
 		GetUI()->Push(new MenuPanel(player, gamePanels));
+		GetUI()->Push(new MenuAnimationPanel());
+
 		finishedLoading = true;
 	}
 }
