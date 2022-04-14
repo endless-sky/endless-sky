@@ -38,8 +38,8 @@ public:
 	virtual void Draw() override;
 	// Navigate through the shown planets when there are too many, otherwise use the parent function.
 	virtual bool Scroll(double dx, double dy) override;
-	
-	
+
+
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
@@ -60,11 +60,11 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
-	
+
 	int planetNbr = 0;
 	double scroll = 0.;
 	double maxScroll = 0.;
-	
+
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
 
