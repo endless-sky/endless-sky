@@ -1142,7 +1142,6 @@ ship "Corvette"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -11.5 119
