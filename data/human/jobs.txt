@@ -2845,45 +2845,6 @@ mission "Bounty Hunting (Big)"
 		payment 250000
 		dialog phrase "generic bounty hunting payment dialog"
 
-mission "Bounty Hunting (Small, Boarding, Entering)"
-	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
-	passengers 1
-	deadline 14
-	repeat
-	job
-	to offer
-		"combat rating" > 80
-		random < 15
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-		distance 2 6
-	npc board
-		government "Bounty"
-		personality timid fleeing uninterested entering target
-		fleet
-			names "civilian"
-			variant
-				"Flivver (Racing)"
-			variant
-				"Arrow"
-			variant
-				"Scout (Speedy)"
-			variant
-				"Clipper (Speedy)"
-		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
-	on visit
-		dialog phrase "generic bounty hunting boarding on visit"
-	on complete
-		payment 175000
-		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
-
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
 	description "A low-end pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
@@ -3005,6 +2966,45 @@ mission "Bounty Hunting (Big, Hidden)"
 		payment 450000
 		dialog phrase "generic bounty hunting payment dialog"
 
+mission "Bounty Hunting (Small, Boarding, Entering)"
+	name "Stolen ship near <system>"
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	passengers 1
+	deadline 14
+	repeat
+	job
+	to offer
+		"combat rating" > 80
+		random < 15
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		distance 2 6
+	npc board
+		government "Bounty"
+		personality timid fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Flivver (Racing)"
+			variant
+				"Arrow"
+			variant
+				"Scout (Speedy)"
+			variant
+				"Clipper (Speedy)"
+		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
+	on complete
+		payment 175000
+		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
+
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
 	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
@@ -3045,6 +3045,114 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
+
+mission "Bounty Hunting (Solo Marauder I)"
+	name "Marauder interceptor near <system>"
+	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 100
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" > 50
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder I"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 80000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder II)"
+	name "Small Marauder near <system>"
+	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 200
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" > 100
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder II"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 130000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder III)"
+	name "Marauder near <system>"
+	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		"combat rating" < 1550
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder III"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 180000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder IV)"
+	name "Large Marauder near <system>"
+	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2980
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder IV"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 280000
+		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
