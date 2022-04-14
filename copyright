@@ -1499,11 +1499,15 @@ License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
 Files:
- images/outfit/anti-materiel?gun*
  images/outfit/small?recovery?module*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/anti-materiel?gun*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
