@@ -2294,9 +2294,6 @@ ship "Manta"
 			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 75
-		"Meteor Missile Box"
 		
 		"RT-I Radiothermal"
 		"LP144a Battery Pack"
@@ -2305,6 +2302,7 @@ ship "Manta"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -33 38
