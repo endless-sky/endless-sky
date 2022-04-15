@@ -44,6 +44,7 @@ public:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
+	void DrawButton(const Point &center, const Point &size, const Color &backColor, const std::string &text, const Font &font, const Color &fontColor);
 	void DrawButtons();
 	void DrawMain();
 
@@ -52,7 +53,7 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisiblityCheckboxesSize() const;
-	virtual std::string ShipsDeselectText() const;
+	virtual const std::string &ShipsDeselectText() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;

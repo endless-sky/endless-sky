@@ -274,10 +274,9 @@ void ShopPanel::DrawShipsSidebar()
 
 		point.Y() += ICON_TILE;
 		const Point cargoModeButtonCenter = Point(Screen::Right() - SIDEBAR_WIDTH / 2, point.Y());
-		FillShader::Fill(cargoModeButtonCenter, Point(60, 30), playerShip ? back : activeBack);
-		bigFont.Draw(deSelectText,
-			cargoModeButtonCenter - .5 * Point(bigFont.Width(deSelectText), bigFont.Height()),
-			playerShip ? inactive : active);
+		const Point cargoModeButtonSize = Point(60, 30);
+		DrawButton(cargoModeButtonCenter, cargoModeButtonSize, playerShip ? back : activeBack,
+			deSelectText, bigFont, playerShip ? inactive : active);
 
 		zones.emplace_back(cargoModeButtonCenter, Point(60, 30), 'a');
 	}
@@ -342,6 +341,17 @@ void ShopPanel::DrawDetailsSidebar()
 
 
 
+void ShopPanel::DrawButton(const Point &center, const Point &size, const Color &backColor,
+	const string &text, const Font &font, const Color &fontColor)
+{
+	// Draw the button background.
+	FillShader::Fill(center, size, backColor);
+	// Draw the text on the button.
+	font.Draw(text, center - .5 * Point(font.Width(text), font.Height()), fontColor);
+}
+
+
+
 void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
@@ -370,25 +380,20 @@ void ShopPanel::DrawButtons()
 	const Color &inactive = *GameData::Colors().Get("inactive");
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
+	const Point buySellSize = Point(60, 30);
 	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
+	DrawButton(buyCenter, buySellSize, back, BUY, bigFont,
 		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
 	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
+	DrawButton(sellCenter, buySellSize, back, SELL, bigFont,
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
 
+	const Point leaveSize = Point(70, 30);
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
 	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	DrawButton(leaveCenter, leaveSize, back, LEAVE, bigFont, hoverButton == 'l' ? hover : active);
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -587,9 +592,10 @@ int ShopPanel::VisiblityCheckboxesSize() const
 
 
 
-string ShopPanel::ShipsDeselectText() const
+const string &ShopPanel::ShipsDeselectText() const
 {
-	return "";
+	static const string emptyString = "";
+	return emptyString;
 }
 
 

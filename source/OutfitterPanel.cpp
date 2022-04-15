@@ -100,9 +100,10 @@ int OutfitterPanel::VisiblityCheckboxesSize() const
 
 
 
-string OutfitterPanel::ShipsDeselectText() const
+const string &OutfitterPanel::ShipsDeselectText() const
 {
-	return "Cargo";
+	const static string cargoString = "Cargo";
+	return cargoString;
 }
 
 
@@ -831,18 +832,6 @@ void OutfitterPanel::ToggleCargo()
 	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
-	}
-
-	if(playerShip)
-	{
-		playerShip = nullptr;
-		playerShips.clear();
-	}
-	else
-	{
-		playerShip = player.Flagship();
-		if(playerShip)
-			playerShips.insert(playerShip);
 	}
 
 	ShopPanel::ToggleCargo();
