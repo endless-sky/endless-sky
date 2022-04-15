@@ -1586,7 +1586,7 @@ mission "Remnant: Cognizance 38"
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
 				`	"I think I should tell this to the prefects first."`
-			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can take start preparing for whatever is necessary.`
+			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can start preparing for whatever is necessary.`
 			choice
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
