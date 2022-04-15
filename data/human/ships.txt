@@ -107,6 +107,7 @@ ship "Argosy"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -25 91 0.6
@@ -523,6 +524,7 @@ ship "Behemoth"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -34 143 0.8
@@ -774,6 +776,7 @@ ship "Bulk Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -22 198
@@ -1075,6 +1078,7 @@ ship "Container Transport"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1593,11 +1597,13 @@ ship "Flivver"
 		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
+		"KP-6 Photovoltaic Panel" 3
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16 27
@@ -1638,12 +1644,13 @@ ship "Freighter"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		
-		"nGVF-EE Fuel Cell"
-		"LP036a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -7.5 92
@@ -1871,6 +1878,7 @@ ship "Hauler"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 122.5
@@ -1917,8 +1925,9 @@ ship "Hauler II"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1930,6 +1939,7 @@ ship "Hauler II"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -1976,8 +1986,9 @@ ship "Hauler III"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1989,6 +2000,7 @@ ship "Hauler III"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -2973,20 +2985,21 @@ ship "Skein"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 29
+		"Meteor Missile Box"
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
-		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
