@@ -1787,7 +1787,7 @@ mission "FW Commitment"
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
 			`Dear Captain <last>,`
-			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 1,100 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean-Jacques Soleau`
@@ -1922,7 +1922,7 @@ mission "Defend Sabik"
 	
 	on offer
 		set "license: Militia"
-		"salary: Free Worlds" = 300
+		"salary: Free Worlds" = 1100
 		event "start of hostilities"
 		event "joined the free worlds"
 		conversation
