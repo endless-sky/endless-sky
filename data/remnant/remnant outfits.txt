@@ -529,7 +529,7 @@ outfit "Bellows-Class Afterburner"
 	"engine capacity" -7
 	"slowing resistance" 0.01
 	"afterburner thrust" 153.0
-	"afterburner fuel" 2.0
+	"afterburner fuel" 0.5
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
