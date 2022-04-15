@@ -33,17 +33,6 @@ class Sprite;
 // killed. A conversation can also branch based on various condition flags that
 // are set for the player, or even trigger various changes to the game's state.
 class Conversation {
-	class Data {
-	public:
-		explicit Data(std::string text, int next)
-			: text(std::move(text)), next(next) {}
-		// The text to display:
-		std::string text;
-		// The next node to visit:
-		int next;
-		// Conditions for displaying the text:
-		ConditionSet conditions;
-	};
 public:
 	// The possible outcomes of a conversation:
 	static const int ACCEPT = -1;
@@ -101,6 +90,20 @@ public:
 
 
 private:
+	// This is the data describing a single choice in the conversation node.
+	class Data {
+	public:
+		explicit Data(std::string text, int next)
+			: text(std::move(text)), next(next) {}
+		// The text to display:
+		std::string text;
+		// The next node to visit:
+		int next;
+		// Conditions for displaying the text:
+		ConditionSet conditions;
+	};
+
+
 	// The conversation is a network of "nodes" that you travel between by
 	// making choices (or by automatic branches that depend on the condition
 	// variable values for the current player).

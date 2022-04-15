@@ -68,6 +68,10 @@ private:
 	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
 	void ClickChoice(int index);
+	// Given an index into the list of displayed choices (i.e. not including
+	// conditionally-skipped choices), return its "raw index" in the
+	// conversation (i.e. including conditionally-skipped choices)
+	int MapChoice(int n) const;
 
 
 private:
@@ -114,7 +118,6 @@ private:
 	// The current choices being presented to you, and their indices:
 	std::list<std::pair<Paragraph, int>> choices;
 	int choice;
-	int MapChoice(int n) const;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;

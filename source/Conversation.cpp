@@ -195,8 +195,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				AddNode();
 
 			// Always append a newline to the end of the text.
-			nodes.back().data.back().text += child.Token(0);
-			nodes.back().data.back().text += '\n';
+			nodes.back().data.back().text += child.Token(0) + '\n';
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
@@ -282,17 +281,19 @@ void Conversation::Save(DataWriter &out) const
 				{
 					out.Write(line);
 					// If the conditions are the same, output them for each
-					// paragraph.
-					//
-					// (We currently don't merge paragraphs with identical
-					// ConditionSets, but some day we might.
+					// paragraph. (We currently don't merge paragraphs with
+					// identical ConditionSets, but some day we might.
 					if(!it.conditions.IsEmpty())
 					{
 						out.BeginChild();
-						out.Write("to", "show");
-						out.BeginChild();
-						it.conditions.Save(out);
-						out.EndChild();
+						{
+							out.Write("to", "show");
+							out.BeginChild();
+							{
+								it.conditions.Save(out);
+							}
+							out.EndChild();
+						}
 						out.EndChild();
 					}
 				}
@@ -490,7 +491,8 @@ bool Conversation::ShouldSkipText(const map<string, int64_t> &vars, int node, in
 // conditions were found.
 bool Conversation::LoadGotos(const DataNode &node)
 {
-	bool hasGoto = false, hasCondition = false;
+	bool hasGoto = false;
+	bool hasCondition = false;
 	for(const DataNode &child : node)
 	{
 		if(hasGoto && hasCondition)
@@ -540,6 +542,17 @@ bool Conversation::LoadGotos(const DataNode &node)
 
 
 
+bool Conversation::HasCondition(const DataNode &node)
+{
+	for(const DataNode &child : node)
+		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "show")
+			return true;
+
+	return false;
+}
+
+
+
 // Add a label, pointing to whatever node is created next.
 void Conversation::AddLabel(const string &label, const DataNode &node)
 {
@@ -584,15 +597,4 @@ void Conversation::AddNode()
 {
 	nodes.emplace_back();
 	nodes.back().data.emplace_back("", nodes.size());
-}
-
-
-
-bool Conversation::HasCondition(const DataNode &node)
-{
-	for(const DataNode &child : node)
-		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "show")
-			return true;
-
-	return false;
 }

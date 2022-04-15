@@ -410,9 +410,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 				node = Conversation::DECLINE;
 		}
 		else
-		{
 			break;
-		}
 	}
 	this->choice = 0;
 }
@@ -464,6 +462,18 @@ void ConversationPanel::ClickChoice(int index)
 }
 
 
+// Given an index into the list of displayed choices (i.e. not including
+// conditionally-skipped choices), return its "raw index" in the conversation
+// (i.e. including conditionally-skipped choices)
+int ConversationPanel::MapChoice(int n) const
+{
+	if(n < 0 || n >= static_cast<int>(choices.size()))
+		return 0;
+	else
+		return next(choices.cbegin(), n)->second;
+}
+
+
 
 // Paragraph constructor.
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
@@ -510,14 +520,4 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
-}
-
-
-
-int ConversationPanel::MapChoice(int n) const
-{
-	if(n < 0 || n >= static_cast<int>(choices.size()))
-		return 0;
-	else
-		return next(choices.cbegin(), n)->second;
 }
