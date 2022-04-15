@@ -1039,6 +1039,7 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1265,7 +1266,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
- images/outfit/decoy?plating*
  images/outfit/refuelling?module*
 Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
