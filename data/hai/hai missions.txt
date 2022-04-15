@@ -12,7 +12,7 @@ mission "First Contact: Hai"
 	landing
 	source
 		government "Hai"
-		not planet "Darkwaste"
+		not attributes "uninhabitated"
 	on offer
 		conversation
 			branch unfettered
@@ -252,7 +252,7 @@ mission "Ask the Hai about the Unfettered"
 	landing
 	source
 		government "Hai"
-		not planet "Darkwaste"
+		not attributes "uninhabitated"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
