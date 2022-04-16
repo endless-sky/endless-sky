@@ -241,7 +241,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
-
 		if(toggleTimeout)
 			--toggleTimeout;
 		chrono::steady_clock::time_point start = chrono::steady_clock::now();

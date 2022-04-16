@@ -61,7 +61,8 @@ void GameLoadingPanel::Step()
 		player.LoadRecent();
 
 		GetUI()->Pop(this);
-		GetUI()->Push(new MenuPanel(player, gamePanels));
+		if(conversation.IsEmpty())
+			GetUI()->Push(new MenuPanel(player, gamePanels));
 		GetUI()->Push(new MenuAnimationPanel());
 
 		if(!conversation.IsEmpty())
