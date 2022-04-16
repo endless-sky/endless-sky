@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_LOADING_PANEL_H_
 #define GAME_LOADING_PANEL_H_
 
+#include "Conversation.h"
+#include "ConversationPanel.h"
 #include "Panel.h"
 
 #include <string>
@@ -27,7 +29,7 @@ class UI;
 // (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
-	GameLoadingPanel(PlayerInfo &player, Conversation &conversation, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -35,7 +37,7 @@ public:
 
 private:
 	PlayerInfo &player;
-	Conversation &conversation;
+	const Conversation &conversation;
 	UI &gamePanels;
 	bool &finishedLoading;
 

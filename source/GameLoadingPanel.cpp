@@ -64,6 +64,9 @@ void GameLoadingPanel::Step()
 		GetUI()->Push(new MenuPanel(player, gamePanels));
 		GetUI()->Push(new MenuAnimationPanel());
 
+		if(!conversation.IsEmpty())
+			GetUI()->Push(new ConversationPanel(player, conversation));
+
 		finishedLoading = true;
 	}
 }

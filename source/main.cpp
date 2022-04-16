@@ -226,7 +226,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
-	bool conversationLoaded = false;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -242,11 +241,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
-		if(!conversation.IsEmpty() && dataFinishedLoading && !conversationLoaded)
-		{
-			menuPanels.Push(new ConversationPanel(player, conversation));
-			conversationLoaded = true;
-		}
 
 		if(toggleTimeout)
 			--toggleTimeout;
