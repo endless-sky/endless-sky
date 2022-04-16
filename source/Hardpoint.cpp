@@ -146,6 +146,20 @@ bool Hardpoint::CanAim() const
 
 
 
+bool Hardpoint::IsDefensive() const
+{
+	return isDefensive;
+}
+
+
+
+bool Hardpoint::IsOpportunistic() const
+{
+	return isOpportunistic;
+}
+
+
+
 // Check if this weapon is ready to fire.
 bool Hardpoint::IsReady() const
 {
