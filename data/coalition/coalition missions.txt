@@ -258,7 +258,7 @@ mission "Coalition Yottrite 1"
 				accept
 	on accept
 		outfit "Yottrite" -1
-		payment 220000
+		payment 350000
 
 
 
@@ -300,7 +300,7 @@ mission "Coalition Yottrite 2"
 				accept
 	on accept
 		outfit "Yottrite" -3
-		payment 660000
+		payment 1050000
 
 
 
@@ -339,7 +339,7 @@ mission "Coalition Yottrite 3"
 				accept
 	on accept
 		outfit "Yottrite" -7
-		payment 1540000
+		payment 2450000
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -490,7 +490,7 @@ mission "Coalition Yottrite 8"
 	on offer
 		conversation
 			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
-			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
+			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
 				`	"Sorry, but I'm not mining that any more."`
@@ -499,7 +499,7 @@ mission "Coalition Yottrite 8"
 				accept
 	on complete
 		outfit "Yottrite" -1
-		payment 220000
+		payment 400000
 		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
 
 
