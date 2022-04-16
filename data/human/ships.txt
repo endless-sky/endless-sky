@@ -2140,7 +2140,7 @@ ship "Heavy Shuttle"
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 130
-		"weapon capacity" 15
+		"weapon capacity" 16
 		"engine capacity" 65
 		weapon
 			"blast radius" 12
