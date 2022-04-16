@@ -3362,8 +3362,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					found = true;
 				}
 			}
-		// If no ship was found, look for nearby asteroids.  This functionality is preserving behavior before the mining
-		// shortcut was introduced.
+		// If no ship was found, look for nearby asteroids.
 		if(!found)
 			PlayerTargetAsteroid(ship, player, activeCommands);
 	}
