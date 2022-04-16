@@ -656,8 +656,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step && targetAsteroid)
 				it->SetTargetAsteroid(targetAsteroid);
-			else if(targetTurn == step || !target || target->IsDestroyed()
-				|| (target->IsDisabled() && personality.Disables()) || !target->IsTargetable())
+			else if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
+					&& personality.Disables()) || !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it));
 		}
 		if(isPresent)
