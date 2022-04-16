@@ -926,11 +926,11 @@ mission "FW Pirates 1"
 			
 			label agree
 			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
-			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 800 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
+			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
 	on accept
-		"salary: Free Worlds" = 800
+		"salary: Free Worlds" = 2100
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
