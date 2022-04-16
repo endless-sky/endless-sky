@@ -417,34 +417,34 @@ void Files::RecursiveList(string directory, vector<string> *list)
 	if(!dir)
 	{
 #if defined __ANDROID__
-      // try the asset system. We don't want to instantiate more than one
-      // AndroidAsset object, so don't recurse.
-      vector<string> directories;
-      directories.push_back(directory);
-      AndroidAsset aa;
-      while (!directories.empty())
-      {
-         directory = directories.back();
-         directories.pop_back();
-         for (std::string entry: aa.DirectoryList(directory))
-         {
-            // Asset api doesn't have a stat or entry properties. the only
-            // way to tell if its a folder is to fail to open it. Depending
-            // on how slow this is, it may be worth checking for a file
-            // extension instead.
-            if (File(directory + entry))
-            {
-               list->push_back(directory + entry);
-            }
-            else
-            {
-               directories.push_back(directory + entry + "/");
-            }
-         }
-      }
-      return;
+	// try the asset system. We don't want to instantiate more than one
+	// AndroidAsset object, so don't recurse.
+	vector<string> directories;
+	directories.push_back(directory);
+	AndroidAsset aa;
+	while (!directories.empty())
+	{
+		directory = directories.back();
+		directories.pop_back();
+		for (std::string entry: aa.DirectoryList(directory))
+		{
+			// Asset api doesn't have a stat or entry properties. the only
+			// way to tell if its a folder is to fail to open it. Depending
+			// on how slow this is, it may be worth checking for a file
+			// extension instead.
+			if (File(directory + entry))
+			{
+				list->push_back(directory + entry);
+			}
+			else
+			{
+				directories.push_back(directory + entry + "/");
+			}
+		}
+	}
 #endif
-   }
+	return;
+	}
 
 	while(true)
 	{
@@ -481,18 +481,22 @@ bool Files::Exists(const string &filePath)
 	struct _stat buf;
 	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
 #elif defined __ANDROID__
-	// stat only works for normal files, not assets, so just try to open the
-	// file to see if it exists.
-   SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "r");
-   bool ret = f != nullptr;
-   if (f) SDL_RWclose(f);
-   if (!ret)
-   {
-      // its not a file, see if its a folder, at least a non-empty one
-      AndroidAsset aa;
-      ret = !aa.DirectoryList(filePath).empty();
-   }
-   return ret;
+	struct stat buf;
+	bool exists = !stat(filePath.c_str(), &buf);
+	if (!exists)
+	{
+		// stat only works for normal files, not assets, so just try to open the
+		// file to see if it exists.
+		SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "r");
+		exists = f != nullptr;
+		if (f) SDL_RWclose(f);
+		if (!exists)
+		{
+			// check and see if it is a directory
+			exists = AndroidAsset().DirectoryExists(filePath);
+		}
+	}
+	return exists;
 #else
 	struct stat buf;
 	return !stat(filePath.c_str(), &buf);

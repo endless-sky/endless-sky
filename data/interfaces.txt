@@ -586,6 +586,9 @@ interface "planet"
 		center -60 -140
 		dimensions 720 360
 
+	box "content"
+		from -300 78 to 180 355
+
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -663,6 +666,12 @@ interface "planet"
 		size 18
 		align right
 		pad 10 0
+
+
+
+interface "spaceport"
+	box "content"
+		from -300 80 to 180 355
 
 
 
@@ -890,6 +899,9 @@ interface "hiring"
 
 
 interface "trade"
+	box "content"
+		from -310 78 to 190 355
+
 	line
 		from -60 95
 		dimensions 480 1
@@ -919,6 +931,9 @@ interface "trade"
 
 
 interface "bank"
+	box "content"
+		from -310 78 to 190 355
+
 	line
 		from -60 95
 		dimensions 480 1
@@ -1199,3 +1214,34 @@ interface "hail panel"
 	button h "Ask For _Help"
 		center -20 115
 		dimensions 140 30
+
+
+interface "main buttons" bottom right
+	active
+	sprite "ui/dialog cancel"
+		from -90 -50 to 0 0
+	button m "_Map"
+		from -80 -40 to -10 -10
+
+	active
+	sprite "ui/dialog cancel"
+		from 0 -40 to -90 -90
+	button s "_Scan"
+		from -80 -80 to -10 -50
+
+	active
+	sprite "ui/dialog cancel"
+		from -184 -50 to -94 0
+	button j "_Jump"
+		from -174 -40 to -104 -10
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
+	active if "!max zoom"
+	button + "_+"
+		from -10 -90 to -40 -120
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -90 to -80 -120
+		size 18
