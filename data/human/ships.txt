@@ -212,7 +212,7 @@ ship "Auxiliary"
 			"hit force" 4200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
