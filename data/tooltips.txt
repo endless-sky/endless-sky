@@ -350,6 +350,12 @@ tip "outfit space needed:"
 tip "outfit space free:"
 	`How much space this ship has for outfits (including weapons and engines).`
 
+tip "overheat damage rate:"
+	`How much hull damage this ship will take per second that it is overheated. Overheat damage scales with how far past the overheat threshold the ship is.`
+
+tip "overheat damage threshold:"
+	`Increases the percentage past overheated at which point overheat damage begins.`
+
 tip "piercing protection:"
 	`Protection against weapons that pierce shields. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
 
