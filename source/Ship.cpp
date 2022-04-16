@@ -2412,7 +2412,19 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan()
 {
-	if(!commands.Has(Command::SCAN) || CannotAct())
+	// on a touchscreen, the player can't hold onto the scan button and fly at
+	// the same time, so contune applying the scan even after the command is
+	// released
+	if (Preferences::Has("Show buttons on map") && isYours && 
+	    ((cargoScan > 0 && cargoScan < SCAN_TIME) || 
+		 (outfitScan > 0 && outfitScan < SCAN_TIME)))
+	{
+		//pass
+	}
+	else if(!commands.Has(Command::SCAN))
+		return 0;
+	
+	if (CannotAct())
 		return 0;
 
 	shared_ptr<const Ship> target = GetTargetShip();
