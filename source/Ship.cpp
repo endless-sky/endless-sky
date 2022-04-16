@@ -3494,8 +3494,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isSteering = false;
 			ship->commands.Clear();
 			// If this fighter collected anything in space, try to store it
-			// (unless this is a player-owned ship).
-			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+			if(cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 			// Return unused fuel to the carrier, for any launching fighter that needs it.
 			ship->TransferFuel(ship->fuel, this);
