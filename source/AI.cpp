@@ -1167,8 +1167,7 @@ bool AI::HarvestAfterAsteroidMining(const Ship &ship) const
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.type == Orders::HARVEST)
-			return true;
+		return it != orders.end() && it->second.type == Orders::HARVEST;
 	}
 	return false;
 }
