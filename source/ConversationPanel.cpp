@@ -404,6 +404,8 @@ void ConversationPanel::Exit()
 	// on the player's missions, or force takeoff from a planet.
 	if(callback)
 		callback(node);
+	if(exitGameOnDone)
+		GetUI()->Quit();
 }
 
 
@@ -469,4 +471,12 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+// If game is started with conversation, then exit game when conversation complete.
+void ConversationPanel::ExitGameOnDone()
+{
+	exitGameOnDone = true;
 }
