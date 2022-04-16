@@ -484,7 +484,7 @@ outfit "NDR-114 Android"
 	bunk -1
 	unplunderable 1
 	description "For the price of more than three year's salary, you can replace one of your crew members with a robotic counterpart, although all its charging and self-maintenance gear will take up a bunk's worth of space. Androids possess sufficient capabilities to perform most work, but each ship still needs a human captain. Due to various technical restrictions, it lacks the capabilities to take part in close quarters combat."
-	description "The Shattered Light carried manufacturing equipment to build more of these, although they apparently require resources that are rare on Remnant worlds. They have made some available for you to purchase, but probably won't build in large quantities."
+	description "The Shattered Light carried a large complement of these, some of which have been made available to you with minor changes so they can be more efficiently directed by the ship itself."
 
 outfit "Research Laboratory"
 	category "Systems"

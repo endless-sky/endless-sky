@@ -1056,3 +1056,9 @@ event "remnant: cognizance salvage expansion"
 		add shipyard "Remnant Salvage Ships"
 	planet "Caelian"
 		add shipyard "Remnant Salvage Ships"
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Dromedary"
