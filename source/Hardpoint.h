@@ -81,6 +81,15 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
+	
+	// Set the defensive value of this hardpoint.
+	void SetDefensive(bool defensive);
+	// Toggle the defensive value of this hardpoint.
+	void ToggleDefensive();
+	// Set the opportunistic value of this hardpoint.
+	void SetOpportunistic(bool opportunistic);
+	// Toggle the opportunistic value of this hardpoint.
+	void ToggleOpportunistic();
 
 
 private:
