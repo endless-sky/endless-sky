@@ -34,10 +34,10 @@ ship "Aphid"
 	outfits
 		"Chameleon Anti-Missile"
 		"Sand Cell" 2
-		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
-		`"Basrem" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
@@ -91,9 +91,9 @@ ship "Centipede"
 		"Hai Tracker" 112
 		"Bullfrog Anti-Missile" 3
 		"Geode Reactor"
-		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
 		"Hai Ravine Batteries"
-		"Hai Williwaw Cooling" 3
+		"Hai Williwaw Cooling" 2
 		"Luxury Accommodations"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
@@ -359,7 +359,7 @@ ship "Lightning Bug"
 		"Bullfrog Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Corundum Regenerator"
+		"Hai Corundum Regenerator" 2
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		`"Benga" Atomic Thruster`
@@ -438,7 +438,8 @@ ship "Pond Strider"
 	outfits
 		"Railgun"
 		"Ion Cannon" 2
-		"Railgun Slug" 1000
+		"Railgun Slug Rack" 2
+		"Railgun Slug" 2000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator" 2
@@ -997,7 +998,7 @@ ship "Water Bug"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
+		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
