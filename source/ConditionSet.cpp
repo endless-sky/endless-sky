@@ -548,7 +548,7 @@ bool ConditionSet::Expression::Test(const Conditions &conditions, const Conditio
 // Assign the computed value to the desired condition.
 void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created) const
 {
-	int64_t &c = conditions[Name()];
+	auto &c = conditions[Name()];
 	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
@@ -558,7 +558,7 @@ void ConditionSet::Expression::Apply(Conditions &conditions, Conditions &created
 // Assign the computed value to the desired temporary condition.
 void ConditionSet::Expression::TestApply(const Conditions &conditions, Conditions &created) const
 {
-	int64_t &c = created[Name()];
+	auto &c = created[Name()];
 	int64_t value = right.Evaluate(conditions, created);
 	c = fun(c, value);
 }
