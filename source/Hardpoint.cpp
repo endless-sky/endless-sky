@@ -344,6 +344,38 @@ void Hardpoint::Uninstall()
 
 
 
+// Set the defensive value of this hardpoint.
+void SetDefensive(bool defensive)
+{
+	isDefensive = defensive;
+}
+
+
+
+// Toggle the defensive value of this hardpoint.
+void ToggleDefensive()
+{
+	isDefensive ^= true;
+}
+
+
+
+// Set the opportunistic value of this hardpoint.
+void SetOpportunistic(bool opportunistic)
+{
+	isOpportunistic = opportunistic;
+}
+
+
+
+// Toggle the opportunistic value of this hardpoint.
+void ToggleOpportunistic()
+{
+	isOpportunistic ^= true;
+}
+
+
+
 // Update any counters that change when this projectile fires.
 void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {
