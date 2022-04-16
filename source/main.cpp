@@ -218,7 +218,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, gamePanels, dataFinishedLoading));
+	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;

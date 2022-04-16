@@ -27,7 +27,7 @@ class UI;
 // (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
-	GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, Conversation &conversation, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -35,6 +35,7 @@ public:
 
 private:
 	PlayerInfo &player;
+	Conversation &conversation;
 	UI &gamePanels;
 	bool &finishedLoading;
 
