@@ -398,23 +398,17 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && ((target && !target->IsYours()) || targetAsteroid))
+	if(activeCommands.Has(Command::FIGHT) && (target && !target->IsYours()))
 	{
-		string targetDescription;
-		if(target)
-		{
-			newOrders.type = (target->IsDisabled()) ? Orders::FINISH_OFF : Orders::ATTACK;
-			newOrders.target = target;
-			targetDescription = "focusing fire on \"" + target->Name() + "\".";
-		}
-		else
-		{
-			// Assume an asteroid is being targeted if the player isn't targeting a ship.
-			newOrders.type = Orders::MINING;
-			newOrders.targetAsteroid = targetAsteroid;
-			targetDescription = "focusing fire on " + targetAsteroid->Name() + " asteroid.";
-		}
-		IssueOrders(player, newOrders, targetDescription);
+		newOrders.type = (target->IsDisabled()) ? Orders::FINISH_OFF : Orders::ATTACK;
+		newOrders.target = target;
+		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
+	}
+	if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
+	{
+		newOrders.type = Orders::MINING;
+		newOrders.targetAsteroid = targetAsteroid;
+		IssueOrders(player, newOrders, "focusing fire on a " + targetAsteroid->Name() + " asteroid.");
 	}
 	if(activeCommands.Has(Command::HOLD))
 	{
@@ -443,8 +437,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			// This check only checks for undocked ships (that have a current system).
 			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
 					&& ship->GetSystem() != flagship->GetSystem());
+			// Alternately, if an asteroid is targeted, then not an invalid target.
+			invalidTarget &= (!asteroid);
+			// Asteroids are never out of reach since they're in the same system as flagship.
+			targetOutOfReach &= (!asteroid);
 
-			if(!asteroid && (invalidTarget || targetOutOfReach))
+			if(invalidTarget || targetOutOfReach)
 			{
 				it = orders.erase(it);
 				continue;
@@ -3208,30 +3206,23 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-void AI::PlayerTargetAsteroid(Ship &ship, const PlayerInfo &player, Command &activeCommands)
+bool AI::TargetAsteroid(Ship &ship)
 {
-	double asteroidRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
-	if(asteroidRange)
+	double scanRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
+	if(!scanRange)
 	{
-		for(const shared_ptr<Minable> &asteroid : minables)
+		return false;
+	}
+	for(const shared_ptr<Minable> &asteroid : minables)
+	{
+		double range = ship.Position().Distance(asteroid->Position());
+		if(range < scanRange)
 		{
-			double range = ship.Position().Distance(asteroid->Position());
-			if(range < asteroidRange)
-			{
-				ship.SetTargetAsteroid(asteroid);
-				asteroidRange = range;
-			}
+			ship.SetTargetAsteroid(asteroid);
+			scanRange = range;
 		}
 	}
-	if(activeCommands.Has(Command::NEAREST_ASTEROID))
-	{
-		// Since the player is targeting an asteroid the fleet should prepare to harvest. Do not send orders if using R
-		// keyboard shortcut to target nearest.
-		Orders newOrders;
-		newOrders.type = Orders::HARVEST;
-		newOrders.targetAsteroid = ship.GetTargetAsteroid();
-		IssueOrders(player, newOrders, "preparing to harvest.");
-	}
+	return (ship.GetTargetAsteroid() != nullptr);
 }
 
 
@@ -3329,9 +3320,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			ship.SetTargetStellar(system->FindStellar(bestDestination));
 	}
 
-	if(activeCommands.Has(Command::NEAREST_ASTEROID))
-		PlayerTargetAsteroid(ship, player, activeCommands);
-	else if(activeCommands.Has(Command::NEAREST))
+	if(activeCommands.Has(Command::NEAREST))
 	{
 		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
@@ -3364,7 +3353,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			}
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
-			PlayerTargetAsteroid(ship, player, activeCommands);
+			TargetAsteroid(ship);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -3580,6 +3569,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	else if(activeCommands.Has(Command::SCAN))
 		command |= Command::SCAN;
+	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
+	{
+		TargetAsteroid(ship);
+		Orders newOrders;
+		newOrders.type = Orders::HARVEST;
+		newOrders.targetAsteroid = ship.GetTargetAsteroid();
+		IssueOrders(player, newOrders, "preparing to harvest.");
+	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));

@@ -110,8 +110,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("friendly disabled");
 		if(isActive && player.Ships().size() > 1)
 			isActive = !DoHelp("multiple ship controls");
-		double scanRange = 100. * sqrt(flagship->Attributes().Get("asteroid scan power"));
-		if(isActive && flagship->IsTargetable() && scanRange > 0. && player.Ships().size() > 1)
+		if(isActive && flagship->IsTargetable() && flagship->Attributes().Get("asteroid scan power") && player.Ships().size() > 1)
 			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
