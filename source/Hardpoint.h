@@ -51,6 +51,9 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
+	
+	bool IsDefensive() const;
+	bool IsOpportunistic() const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -98,6 +101,11 @@ private:
 	bool isParallel = false;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
+	
+	// Indicates whether the hardpoint is set to defensive mode.
+	bool isDefensive = false;
+	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.
+	bool isOpportunistic = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;
