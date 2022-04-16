@@ -13,13 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_LOADING_PANEL_H_
 #define GAME_LOADING_PANEL_H_
 
-#include "Conversation.h"
-#include "ConversationPanel.h"
 #include "Panel.h"
 
 #include <string>
 #include <vector>
 
+class Conversation;
 class PlayerInfo;
 class UI;
 
