@@ -1123,7 +1123,7 @@ ship "Fury" "Fury (Flamethrower)"
 ship "Fury" "Fury (Gatling)"
 	outfits
 		"Gatling Gun" 4
-		"Gatling Gun Ammo" 6000
+		"Gatling Gun Ammo" 12000
 		"nGVF-CC Fuel Cell"
 		"Supercapacitor"
 		"D23-QP Shield Generator"
