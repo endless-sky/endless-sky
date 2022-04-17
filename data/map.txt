@@ -26898,6 +26898,7 @@ planet Darkstone
 		fleet "Small Militia" 18
 
 planet Darkwaste
+	attributes uninhabited
 	landscape land/canyon10-harro
 	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
 

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
+#include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "MaskManager.h"
 #include "PlayerInfo.h"
@@ -58,15 +59,12 @@ void GameLoadingPanel::Step()
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
-		// Load the last loaded save file. If there is none then play the default landing sound.
-		// (If a save file is loaded then the same sound is played when loading it).
-		// TODO: Revert this change when implementing sounds & music
-		//       in the loading phase / animation panel.
-		if(!player.LoadRecent())
-			Audio::Play(Audio::Get("landing"));
+		player.LoadRecent();
 
 		GetUI()->Pop(this);
 		GetUI()->Push(new MenuPanel(player, gamePanels));
+		GetUI()->Push(new MenuAnimationPanel());
+
 		finishedLoading = true;
 	}
 }

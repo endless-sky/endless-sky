@@ -55,6 +55,7 @@ void Preferences::Load()
 	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
+	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;

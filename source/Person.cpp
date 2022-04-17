@@ -61,6 +61,14 @@ void Person::FinishLoading()
 
 
 
+// Prevent this person from being spawned in any system.
+void Person::NeverSpawn()
+{
+	frequency = 0;
+}
+
+
+
 // Find out how often this person should appear in the given system. If this
 // person is dead or already active, this will return zero.
 int Person::Frequency(const System *system) const
