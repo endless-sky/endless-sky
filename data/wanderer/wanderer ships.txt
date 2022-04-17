@@ -115,6 +115,7 @@ ship "Summer Leaf"
 		
 		"Yellow Sun Reactor"
 		"Bright Cloud Shielding"
+		"Dark Storm Shielding"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
@@ -895,11 +896,11 @@ ship "Riptide"
 		"Wanderer Anti-Missile" 2
 		
 		"White Sun Reactor"
-		"Bright Cloud Shielding"
+		"Dark Storm Shielding"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
-		"Type 2 Radiant Thruster"
+		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
