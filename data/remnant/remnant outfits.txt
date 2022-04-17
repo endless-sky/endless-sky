@@ -540,8 +540,6 @@ effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
 	sound "afterburner"
-	"lifetime" 0
-	"velocity scale" 0
 
 
 
