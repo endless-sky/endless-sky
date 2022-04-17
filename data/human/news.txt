@@ -726,7 +726,7 @@ news "human mechanic"
 			`"`
 		word
 			"Don't worry, I keep a strict no-smoking policy when working near the fuel system."
-			"You should really have your coolant system flushed every 50,000 lightyears."
+			"You should really have your coolant system flushed every 50,000 light-years."
 			"They just don't build 'em like they used to."
 			"I've been restoring an old Flivver I bought from a scrapyard as a hobby project. She's going to be a beauty once I get her flying again!"
 			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
