@@ -3480,6 +3480,9 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
+	// Player-owned carried ships should only transfer cargo if they have asteroid scan power.
+	bool shouldTransferCargo = this->IsYours() ? (this->GetParent().get() ? this->GetParent().get()->Attributes().Get("asteroid scan power") : this->Attributes().Get("asteroid scan power")) : true;
+
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
 		{
@@ -3494,7 +3497,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isSteering = false;
 			ship->commands.Clear();
 			// If this fighter collected anything in space, try to store it
-			if(cargo.Free() && !ship->Cargo().IsEmpty())
+			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 			// Return unused fuel to the carrier, for any launching fighter that needs it.
 			ship->TransferFuel(ship->fuel, this);
