@@ -36,7 +36,7 @@ ship "Aphid"
 		"Sand Cell" 2
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
-		`"Benga" Atomic Thruster`
+		`"Basrem" Atomic Thruster`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -8 40
