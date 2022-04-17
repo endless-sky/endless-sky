@@ -397,11 +397,11 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hai Tracker Pod"
 		"Hai Tracker" 56
 		"Pulse Turret"
-		"Chameleon Anti-Missile"
+		"Bullfrog Anti-Missile"
 		"Geode Reactor"
 		"Outfit Scanner" 5
 		"Cargo Scanner" 5
-		"Hai Williwaw Cooling" 2
+		"Hai Williwaw Cooling"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Pulse Rifle" 2
@@ -535,8 +535,7 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 ship "Pond Strider" "Pond Strider (Railgun)"
 	outfits
 		"Railgun" 3
-		"Railgun Slug Rack" 3
-		"Railgun Slug" 4500
+		"Railgun Slug" 3000
 		"Chameleon Anti-Missile" 3
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
