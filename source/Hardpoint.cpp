@@ -340,6 +340,8 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+	isDefensive = false;
+	isOpportunistic = false;
 }
 
 
