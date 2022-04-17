@@ -3480,7 +3480,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
-	// Player-owned carried ships should only transfer cargo if they have asteroid scan power.
+	// Player-owned carried ships should only transfer cargo if flagship has asteroid scan power.
 	bool shouldTransferCargo = this->IsYours() ? (this->GetParent().get() ? this->GetParent().get()->Attributes().Get("asteroid scan power") : this->Attributes().Get("asteroid scan power")) : true;
 
 	for(Bay &bay : bays)
