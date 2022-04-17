@@ -3866,14 +3866,14 @@ mission "Fumbling Mugger"
 				`	(Lift your hands up and slowly turn.)`
 					goto peaceful
 				`	(Spin around and fire.)`
-				`	(Backwards somersault over your attacker and disarm her.)`
+				`	(Try a fancy acrobatic move and disarm your attacker.)`
 					goto flip
 			
 			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label flip
-			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from behind you, before landing on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off breach-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from behind you, before landing on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
 				`	(Put your hands up.)`
 					goto handsup
@@ -3882,7 +3882,7 @@ mission "Fumbling Mugger"
 				decline
 			
 			label peaceful
-			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off breach-action shotgun held single-handed, the end of which is pointed at your abdomen.`
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen.`
 			label handsup
 			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
 			choice
