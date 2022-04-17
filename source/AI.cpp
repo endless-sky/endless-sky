@@ -398,13 +398,13 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
 	Orders newOrders;
-	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
+	if(activeCommands.Has(Command::FIGHT) && (target && !target->IsYours()))
 	{
-		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
+		newOrders.type = (target->IsDisabled()) ? Orders::FINISH_OFF : Orders::ATTACK;
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
-	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
+	if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
 	{
 		newOrders.type = Orders::MINING;
 		newOrders.targetAsteroid = targetAsteroid;
@@ -425,8 +425,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
-		if(it->second.type == Orders::MINING && it->first->Cargo().Free() && it->second.targetAsteroid.expired())
-			it->second.type = Orders::HARVEST;
+		if(it->second.type == Orders::MINING && it->first->Cargo().Free() && !(it->second.targetAsteroid.lock()))
+			orders[it->first].type = Orders::HARVEST;
 		else if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
@@ -438,9 +438,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
 					&& ship->GetSystem() != flagship->GetSystem());
 			// Alternately, if an asteroid is targeted, then not an invalid target.
-			invalidTarget &= !asteroid;
+			invalidTarget &= (!asteroid);
 			// Asteroids are never out of reach since they're in the same system as flagship.
-			targetOutOfReach &= !asteroid;
+			targetOutOfReach &= (!asteroid);
 
 			if(invalidTarget || targetOutOfReach)
 			{
@@ -3203,7 +3203,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-bool AI::TargetAsteroid(Ship &ship) const
+bool AI::TargetAsteroid(Ship &ship)
 {
 	double scanRange = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
 	if(!scanRange)
@@ -3219,7 +3219,7 @@ bool AI::TargetAsteroid(Ship &ship) const
 			scanRange = range;
 		}
 	}
-	return ship.GetTargetAsteroid();
+	return (ship.GetTargetAsteroid() != nullptr);
 }
 
 
