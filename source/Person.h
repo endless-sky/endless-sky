@@ -33,6 +33,8 @@ public:
 	void Load(const DataNode &node);
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
+	// Prevent this person from being spawned in any system.
+	void NeverSpawn();
 
 	// Find out how often this person should appear in the given system. If this
 	// person is dead or already active, this will return zero.
