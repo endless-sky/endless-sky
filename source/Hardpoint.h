@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define HARDPOINT_H_
 
 #include "Angle.h"
+#include "Command.h"
+#include "FireCommand.h"
 #include "Point.h"
 
 #include <vector>
