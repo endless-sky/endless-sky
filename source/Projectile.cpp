@@ -73,17 +73,16 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(inaccuracy)
 	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->Acceleration())
-		{
-			// Move in this new direction at the same velocity.
-			// To maintain the sign of the velocity, Point::Length can’t be used.
-			Point referenceVector = parent.angle.Unit();
-			double parentVelocity = referenceVector.Dot(parent.velocity);
-			velocity = this->angle.Unit() * parentVelocity;
-		}
 	}
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
+	// Revert to the velocity of the parent projectile.
+	velocity = parent.velocity - (parent.angle.Unit() * parent.GetWeapon().Velocity());
+	
+	//Add the velocity of the parent and the child at the child's heading.
+	velocity += this->angle.Unit() * (parent.GetWeapon().Velocity() + weapon->Velocity() + (Random::Real() * weapon->RandomVelocity()));
+	
+	// This retains the intended speeds, but sets the upper limit on how much of that speed can be redirected by a child's innacuracy stat.  High inaccuracies will look odd but low inaccuracies should be fine.
+	
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
