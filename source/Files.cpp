@@ -436,7 +436,11 @@ void Files::Copy(const string &from, const string &to)
 		LogError("Error: Cannot stat \"" + from + "\".");
 	else
 	{
+#ifdef __APPLE__
+		struct timespec times[] = {buf.st_atimespec, buf.st_mtimespec};
+#else
 		struct timespec times[] = {buf.st_atim, buf.st_mtim};
+#endif
 		if(utimensat(0, to.c_str(), times, 0))
 			LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
 	}
