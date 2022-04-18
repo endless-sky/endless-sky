@@ -90,6 +90,8 @@ public:
 	void SetOpportunistic(bool opportunistic);
 	// Toggle the opportunistic value of this hardpoint.
 	void ToggleOpportunistic();
+	
+	void AimIdleTurrets(Ship &ship, FireCommand &command);
 
 
 private:
@@ -124,6 +126,22 @@ private:
 	int burstCount = 0;
 	bool isFiring = false;
 	bool wasFiring = false;
+	
+	class AimTurrets
+	{
+	public:
+		virtual void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &command);
+	} aimTurrets;
+	
+	static class AimFocusedTurrets : AimTurrets
+	{
+		void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &commmand);
+	} aimFocusedTurrets;
+	
+	static class AimOpportunisticTurrets : AimTurrets
+	{
+		void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &commmand);
+	} aimOpportunisticTurrets;
 };
 
 
