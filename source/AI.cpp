@@ -2787,18 +2787,6 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	// If there are no targets to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
-	if(targets.empty() && !opportunistic)
-	{
-		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.CanAim())
-			{
-				// Get the index of this weapon.
-				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
-				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
-			}
-		return;
-	}
 	if(targets.empty())
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
@@ -2806,16 +2794,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				// First, check if this turret is currently in motion. If not,
-				// it only has a small chance of beginning to move.
-				double previous = ship.FiringCommands().Aim(index);
-				if(!previous && (Random::Int(60)))
-					continue;
-
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
-				double acceleration = Random::Real() - Random::Real() + bias;
-				command.SetAim(index, previous + .1 * acceleration);
+				hardpoint.AimIdleTurrets(index, ship, hardpoint, command);
 			}
 		return;
 	}
