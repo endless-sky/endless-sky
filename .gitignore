@@ -4,6 +4,7 @@ endless-sky-tests
 libendless-sky.a
 *.exe
 *.lnk
+*.AppImage
 
 # dlls needed to run the binary
 *.dll
@@ -36,8 +37,11 @@ plugins/
 *.db
 
 # IDEs (no support implied)
+.cache
+.devcontainer
 .vscode
 .vs
+.metadata
 *.psess
 *.vsp
 *.vspx
@@ -60,4 +64,5 @@ ipch/
 .idea/
 .idea_modules/
 CMakeLists.txt
+compile_commands.json
 /.gitmodules

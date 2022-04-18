@@ -37,14 +37,14 @@ class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
 	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
-	
+
 	virtual void Step() override;
 	virtual void Draw() override;
-	
+
 	// The player info panel allow fast-forward to stay active.
-	virtual bool AllowFastForward() const override;
-	
-	
+	bool AllowsFastForward() const noexcept final;
+
+
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -53,43 +53,43 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
-	
-	
+
+
 private:
 	// Draw the two subsections of this panel.
 	void DrawPlayer(const Rectangle &bounds);
 	void DrawFleet(const Rectangle &bounds);
-	
+
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	// Try to scroll to the given position. Return true if position changed.
 	bool ScrollAbsolute(int scroll);
-	
+
 	void SortShips(InfoPanelState::ShipComparator &shipComparator);
-	
+
 	class SortableColumn {
 	public:
 		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
-		
+
 		std::string name;
 		double offset = 0.;
 		double endX = 0.;
 		Layout layout;
 		InfoPanelState::ShipComparator *shipSort = nullptr;
 	};
-	
+
 private:
 	PlayerInfo &player;
-	
+
 	static const SortableColumn columns[];
-	
+
 	InfoPanelState panelState;
-	
+
 	// Column headers that sort ships when clicked.
 	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
-	
+
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
 	
