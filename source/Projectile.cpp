@@ -74,9 +74,6 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	}
-
-	// Start with the parent's current velocity
-	velocity = parent.velocity;
 	
 	// Revert to the velocity of the parent projectile.
 	velocity -= parent.angle.Unit() * (parent.GetWeapon().Velocity() + (Random::Real() * parent.GetWeapon().RandomVelocity()));
