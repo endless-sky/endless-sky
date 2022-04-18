@@ -1217,31 +1217,37 @@ interface "hail panel"
 
 
 interface "main buttons" bottom right
+	sprite "ui/zoom"
+		from 0 -40 to -90 -90
+	active if "!max zoom"
+	button + "_+"
+		from -10 -40 to -40 -90
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -40 to -80 -90
+		size 18
+
 	active
 	sprite "ui/dialog cancel"
 		from -90 -50 to 0 0
 	button m "_Map"
 		from -80 -40 to -10 -10
-
+	
 	active
 	sprite "ui/dialog cancel"
-		from 0 -40 to -90 -90
-	button s "_Scan"
-		from -80 -80 to -10 -50
-
-	active
-	sprite "ui/dialog cancel"
-		from -184 -50 to -94 0
+		from -170 -50 to -80 0
 	button j "_Jump"
-		from -174 -40 to -104 -10
+		from -160 -40 to -90 -10
 
-	sprite "ui/zoom"
-		from 0 -80 to -90 -130
-	active if "!max zoom"
-	button + "_+"
-		from -10 -90 to -40 -120
-		size 18
-	active if "!min zoom"
-	button - "_-"
-		from -50 -90 to -80 -120
-		size 18
+	visible if "can hail"
+	sprite "ui/dialog cancel"
+		from -250 -50 to -160 0
+	button t "_Talk"
+		from -240 -40 to -170 -10
+
+	visible if "can scan"
+	sprite "ui/dialog cancel"
+		from -330 -50 to -240 0
+	button s "_Scan"
+		from -320 -40 to -250 -10

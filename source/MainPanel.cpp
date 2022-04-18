@@ -190,6 +190,18 @@ void MainPanel::Draw()
 			info.SetCondition("max zoom");
 		if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 			info.SetCondition("min zoom");
+		if(player.Flagship())
+		{
+			if (player.Flagship()->GetTargetStellar())
+			{
+				info.SetCondition("can hail");
+			}
+			if (player.Flagship()->GetTargetShip())
+			{
+				info.SetCondition("can hail");
+				info.SetCondition("can scan");
+			}
+		}
 
 		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
 		mapButtonUi->Draw(info, this);
@@ -251,6 +263,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Command::Inject(Command::SCAN);
 	else if(key == SDLK_j) // synthetic keypress via UI button, not keyboard
 		Command::Inject(Command::JUMP);
+	else if(key == SDLK_t) // synthetic keypress via UI button, not keyboard
+		show.Set(Command::HAIL);
 	else
 		return false;
 
