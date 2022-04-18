@@ -76,10 +76,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	}
 	
 	// Revert to the velocity of the parent projectile.
-	velocity -= parent.angle.Unit() * (parent.GetWeapon().Velocity() + (Random::Real() * parent.GetWeapon().RandomVelocity()));
+	velocity -= parent.angle.Unit() * (parent.GetWeapon().Velocity() + (parent.GetWeapon().RandomVelocity()) / 2);
 	
 	//Add the velocity of the parent and the child at the child's heading.
-	velocity += this->angle.Unit() * (parent.GetWeapon().Velocity() + weapon->Velocity() + (Random::Real() * weapon->RandomVelocity()));
+	velocity += this->angle.Unit() * ((parent.GetWeapon().Velocity() + (parent.GetWeapon().RandomVelocity()) / 2) + weapon->Velocity() + (Random::Real() * weapon->RandomVelocity()));
 	
 	// This retains the intended speeds, but sets the upper limit on how much of that speed can be redirected by a child's innacuracy stat.  High inaccuracies will look odd but low inaccuracies should be fine.
 	
