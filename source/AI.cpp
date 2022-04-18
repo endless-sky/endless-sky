@@ -1816,7 +1816,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	{
 		const CargoHold &cargo = ship.Cargo();
 		// Player-owned carried ships should only transfer cargo if flagship has asteroid scan power.
-		bool shouldTransferCargo = ship.IsYours() ? (parent.GetParent().get() ? parent.GetParent().get()->Attributes().Get("asteroid scan power") : parent.Attributes().Get("asteroid scan power")) : true;
+		bool shouldTransferCargo = ship.GetParentFlagship() ? ship.GetParentFlagship().get()->Attributes().Get("asteroid scan power") : true;
 		// Mining ships only mine while they have 5 or more free space. While mining, carried ships
 		// do not consider docking unless their parent is far from a targetable asteroid.
 		if(shouldTransferCargo && parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)

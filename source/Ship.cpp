@@ -3486,7 +3486,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	const string &category = ship->attributes.Category();
 
 	// Player-owned carried ships should only transfer cargo if flagship has asteroid scan power.
-	bool shouldTransferCargo = this->IsYours() ? (this->GetParent().get() ? this->GetParent().get()->Attributes().Get("asteroid scan power") : this->Attributes().Get("asteroid scan power")) : true;
+	bool shouldTransferCargo = this->GetParentFlagship() ? this->GetParentFlagship().get()->Attributes().Get("asteroid scan power") : true;
 
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
@@ -3880,6 +3880,20 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 shared_ptr<Ship> Ship::GetParent() const
 {
 	return parent.lock();
+}
+
+
+
+// If this ship is yours, then return your flagship.  The player flagship will
+// never return itself.
+std::shared_ptr<Ship> Ship::GetParentFlagship() const
+{
+	if(!IsYours())
+		return nullptr;
+	std::shared_ptr<Ship> flagship = GetParent();
+	while(flagship.get() && flagship.get()->GetParent())
+		flagship = flagship.get()->GetParent();
+	return flagship;
 }
 
 
