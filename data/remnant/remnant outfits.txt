@@ -538,14 +538,8 @@ outfit "Bellows-Class Afterburner"
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
-		"no repeat"
-		"frame rate" 30
+		"frame rate" 10
 	sound "afterburner"
-	"lifetime" 0.1
-	"random angle" 0
-	"random spin" 0
-	"random velocity" 1.
-	"velocity scale" 0.1
 
 
 
