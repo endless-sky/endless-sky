@@ -61,8 +61,10 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
-	int planetNbr = 0;
+	// The amount of planets that are shown on screen.
+	int displayedPlanetsAmount = 0;
 	double scroll = 0.;
+	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;
 
 	// Default display scaling for orbits within the currently displayed system.

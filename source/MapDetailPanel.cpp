@@ -479,7 +479,7 @@ void MapDetailPanel::DrawInfo()
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	// Draw the panel.
-	Point size(230., min((Screen::Height() - 360.), planetNbr * 130. + 75.));
+	Point size(230., min((Screen::Height() - 360.), displayedPlanetsAmount * 130. + 75.));
 	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
 
 	// Edges:
@@ -516,7 +516,7 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() += 115.;
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
-	planetNbr = 0.;
+	displayedPlanetsAmount = 0.;
 	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
@@ -535,7 +535,7 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 
-				if((scroll - 65.) / 130. <= planetNbr && uiPoint.Y() + scrollInt % 130 < Screen::Bottom() - 295)
+				if((scroll - 65.) / 130. <= displayedPlanetsAmount && uiPoint.Y() + scrollInt % 130 < Screen::Bottom() - 295)
 				{
 					shown.insert(planet);
 
@@ -577,7 +577,7 @@ void MapDetailPanel::DrawInfo()
 				}
 				else
 					maxScroll += 130.;
-				++planetNbr;
+				++displayedPlanetsAmount;
 			}
 		uiPoint.Y() += scrollInt % 130;
 	}
