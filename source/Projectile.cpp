@@ -52,7 +52,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	marginalVelocity = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
+	velocity += this->angle.Unit() * marginalVelocity;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -71,18 +72,20 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	cachedTarget = TargetPtr().get();
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
-	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-	}
-	
-	// Revert to the velocity of the parent projectile.
-	velocity -= parent.angle.Unit() * (parent.GetWeapon().Velocity() + (parent.GetWeapon().RandomVelocity()) / 2);
-	
-	//Add the velocity of the parent and the child at the child's heading.
-	velocity += this->angle.Unit() * ((parent.GetWeapon().Velocity() + (parent.GetWeapon().RandomVelocity()) / 2) + weapon->Velocity() + (Random::Real() * weapon->RandomVelocity()));
-	
-	// This retains the intended speeds, but sets the upper limit on how much of that speed can be redirected by a child's innacuracy stat.  High inaccuracies will look odd but low inaccuracies should be fine.
-	
+
+	// Given that submunitions inherit the velocity of the parent projectile,
+	// it is often the case that submunitions don't add any additional velocity.
+	// But we still want inaccuracy to have an effect on submunitions. Because of
+	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
+
+	// Find out how much speed the submunition is adding to itself.
+	marginalVelocity = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
+	// Get the velocity of the grandparent.
+	velocity -= parent.angle.Unit() * parent.marginalVelocity;
+	// Apply the inaccuracy to the parent's velocity as well as the submunition's velocity.
+	velocity += this->angle.Unit() * (parent.marginalVelocity + marginalVelocity);
+
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
