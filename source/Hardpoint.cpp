@@ -42,6 +42,7 @@ namespace {
 Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
 {
+	aimTurrets = &aimFocusedTurrets;
 }
 
 
@@ -350,6 +351,7 @@ void Hardpoint::Uninstall()
 void Hardpoint::SetDefensive(bool defensive)
 {
 	isDefensive = defensive;
+	SetOpportunistic(defensive);
 }
 
 
@@ -358,6 +360,7 @@ void Hardpoint::SetDefensive(bool defensive)
 void Hardpoint::ToggleDefensive()
 {
 	isDefensive = !isDefensive;
+	SetOpportunistic(isDefensive);
 }
 
 
@@ -366,6 +369,7 @@ void Hardpoint::ToggleDefensive()
 void Hardpoint::SetOpportunistic(bool opportunistic)
 {
 	isOpportunistic = opportunistic;
+	aimTurrets = opportunistic ? &aimOpportunisticTurrets : &aimFocusedTurrets;
 }
 
 
@@ -374,6 +378,14 @@ void Hardpoint::SetOpportunistic(bool opportunistic)
 void Hardpoint::ToggleOpportunistic()
 {
 	isOpportunistic = !isOpportunistic;
+	aimTurrets = isOpportunistic ? &aimOpportunisticTurrets : &aimFocusedTurrets;
+}
+
+
+
+void Hardpoint::AimIdleTurrets(Ship &ship, FireCommand &command)
+{
+	aimTurrets->AimIdleTurrets(&ship, &this, &command);
 }
 
 
@@ -402,4 +414,33 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
 	ship.ExpendAmmo(*outfit);
+}
+
+
+
+void Hardpoint::AimTurrets::AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &command)
+{
+}
+
+
+
+void Hardpoint::AimFocusedTurrets::AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &command)
+{
+	double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+	command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+}
+
+
+void Hardpoint::AimOpportunisticTurrets::AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &command)
+{
+	// First, check if this turret is currently in motion. If not,
+	// it only has a small chance of beginning to move.
+	double previous = ship.FiringCommands().Aim(index);
+	if(!previous && (Random::Int(60)))
+		continue;
+
+	Angle centerAngle = Angle(hardpoint.GetPoint());
+	double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+	double acceleration = Random::Real() - Random::Real() + bias;
+	command.SetAim(index, previous + .1 * acceleration);
 }
