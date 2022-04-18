@@ -12,16 +12,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "text/alignment.hpp"
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
 #include "FillShader.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -37,16 +44,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
-#include "UI.h"
-#include "pi.h"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
-#include "text/WrappedText.h"
-#include "text/alignment.hpp"
-#include "text/layout.hpp"
 #include "text/truncate.hpp"
+#include "UI.h"
+#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -304,7 +304,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		return true;
 	}
 
-	const System *const &previous = selectedSystem;
+	const System *const previous = selectedSystem;
 	// The click was not on an interface element, so check if it was on a system.
 	MapPanel::Click(x, y, clicks);
 	// If the system just changed, the selected planet is no longer valid.
@@ -516,14 +516,15 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() += 115.;
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
+	planetNbr = 0.;
 	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
 		maxScroll = 0.;
-		planetNbr = 0.;
-		uiPoint.Y() -= int(scroll) % 130;
+		int scrollInt = static_cast<int>(scroll);
+		uiPoint.Y() -= scrollInt % 130;
 		// For planets that go from being half shown to not shown.
-		if(int(scroll) % 130 > 65 && int(scroll) % 130 < 130)
+		if(scrollInt % 130 > 65 && scrollInt % 130 < 130)
 			uiPoint.Y() += 130.;
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
@@ -534,12 +535,12 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 
-				if((scroll - 65.) / 130. <= planetNbr && uiPoint.Y() + int(scroll) % 130 < Screen::Bottom() - 295)
+				if((scroll - 65.) / 130. <= planetNbr && uiPoint.Y() + scrollInt % 130 < Screen::Bottom() - 295)
 				{
 					shown.insert(planet);
 
 					if(planet == selectedPlanet)
-						FillShader::Fill(Point(Screen::Left() + 110., uiPoint.Y()), Point(220., 110.), faint);
+						FillShader::Fill(Point(Screen::Left() + 110., uiPoint.Y()), Point(230., 110.), faint);
 
 					bool hasSpaceport = planet->HasSpaceport();
 
@@ -551,11 +552,10 @@ void MapDetailPanel::DrawInfo()
 					font.Draw({ object.Name(), alignLeft }, uiPoint + Point(0., -52.),
 						planet == selectedPlanet ? medium : dim);
 
-					string reputationLabel = !hasSpaceport			 ? "No Spaceport" :
+					string reputationLabel = !hasSpaceport ? "No Spaceport" :
 						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
-						planet->GetGovernment()->IsEnemy()			 ? "Hostile" :
-						planet->CanLand()							 ? "Friendly" :
-																		 "Restricted";
+						planet->GetGovernment()->IsEnemy() ? "Hostile" :
+						planet->CanLand() ? "Friendly" : "Restricted";
 					font.Draw(reputationLabel, uiPoint + Point(10., -32.), hasSpaceport ? medium : faint);
 					if(commodity == SHOW_REPUTATION)
 						PointerShader::Draw(uiPoint + Point(0. + 10., -25.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
@@ -579,7 +579,7 @@ void MapDetailPanel::DrawInfo()
 					maxScroll += 130.;
 				++planetNbr;
 			}
-		uiPoint.Y() += int(scroll) % 130;
+		uiPoint.Y() += scrollInt % 130;
 	}
 
 	uiPoint.Y() += 50.;
