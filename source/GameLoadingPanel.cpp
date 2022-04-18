@@ -64,15 +64,18 @@ void GameLoadingPanel::Step()
 
 		GetUI()->Pop(this);
 		if(conversation.IsEmpty())
+		{
 			GetUI()->Push(new MenuPanel(player, gamePanels));
-		GetUI()->Push(new MenuAnimationPanel());
-
-		if(!conversation.IsEmpty())
+			GetUI()->Push(new MenuAnimationPanel());
+		}
+		else
 		{
 			ConversationPanel *talkConversation = new ConversationPanel(player, conversation);
 			std::function<void(int)> exitAfterConversation = [&](int response) { GetUI()->Quit(); };
 			talkConversation->SetCallback(exitAfterConversation);
 			GetUI()->Push(talkConversation);
+			// Audio cue to let player know their conersation is ready.
+			Audio::Play(Audio::Get("landing"));
 		}
 
 		finishedLoading = true;
