@@ -130,13 +130,13 @@ outfit "Ionic Blaster"
 		"velocity" 16
 		"lifetime" 45
 		"reload" 60
-		"firing energy" 145
+		"firing energy" 155
 		"firing force" 20
-		"firing heat" 210
+		"firing heat" 220
 		"hit force" 60
-		"shield damage" 125
-		"hull damage" 32
-		"ion damage" 1.6
+		"shield damage" 155
+		"hull damage" 45
+		"ion damage" 2
 	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret"
@@ -160,13 +160,13 @@ outfit "Ionic Turret"
 		"velocity" 16
 		"lifetime" 45
 		"reload" 30
-		"firing energy" 145
+		"firing energy" 155
 		"firing force" 20
-		"firing heat" 210
+		"firing heat" 220
 		"hit force" 60
-		"shield damage" 125
-		"hull damage" 32
-		"ion damage" 1.6
+		"shield damage" 155
+		"hull damage" 45
+		"ion damage" 2
 	description "This is a dual turret version of the Ionic Blaster, the first weapon that the Unfetttered developed completely on their own."
 
 

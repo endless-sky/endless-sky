@@ -359,7 +359,7 @@ mission "Get Jump Drives(1)"
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
-		payment 1000000
+		payment 500000
 		outfit "Jump Drive" -1
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
@@ -383,7 +383,7 @@ mission "Get Jump Drives(2)"
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
-		payment 2000000
+		payment 1000000
 		outfit "Jump Drive" -2
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
@@ -405,7 +405,7 @@ mission "Get Jump Drives(3)"
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
-		payment 3000000
+		payment 1500000
 		outfit "Jump Drive" -3
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
