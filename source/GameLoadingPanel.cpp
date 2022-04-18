@@ -70,7 +70,8 @@ void GameLoadingPanel::Step()
 		if(!conversation.IsEmpty())
 		{
 			ConversationPanel *talkConversation = new ConversationPanel(player, conversation);
-			talkConversation->ExitGameOnDone();
+			std::function<void(int)> exitAfterConversation = [&](int response) { GetUI()->Quit(); };
+			talkConversation->SetCallback(exitAfterConversation);
 			GetUI()->Push(talkConversation);
 		}
 
