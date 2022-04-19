@@ -78,6 +78,13 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
+void ConversationPanel::SetCallback(function<void(int)> fun)
+{
+	callback = std::move(fun);
+}
+
+
+
 // Draw this panel.
 void ConversationPanel::Draw()
 {
