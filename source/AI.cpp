@@ -1258,7 +1258,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
 	// do so only if they are allowed to leave.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward()) 
+			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
 			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
@@ -2098,7 +2098,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
 			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			
+
 			// If the hardpoint is set to defensive, the installed weapon
 			// should not be considered for determining the shortest range
 			// until all other weapons are out of ammo.
@@ -2746,13 +2746,23 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 
+bool AI::HasOpportunisticWeapons(const Ship &ship)
+{
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsOpportunistic())
+			return true;
+	return false;
+}
+
+
+
 // Aim the given ship's turrets.
 void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) const
 {
 	// First, get the set of potential hostile ships.
 	auto targets = vector<const Body *>();
 	const Ship *currentTarget = ship.GetTargetShip().get();
-	if(opportunistic || !currentTarget || !currentTarget->IsTargetable())
+	if(opportunistic || !currentTarget || !currentTarget->IsTargetable() || HasOpportunisticWeapons(ship))
 	{
 		// Find the maximum range of any of this ship's turrets.
 		double maxRange = 0.;
@@ -2790,13 +2800,30 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	if(targets.empty() && !opportunistic)
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
 			if(hardpoint.CanAim())
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
+				// 'opportunistic' can be false but individual hardpoints on a ship may still be set to opportunistic.
+				if(hardpoint.IsOpportunistic())
+				{
+					// First, check if this turret is currently in motion. If not,
+					// it only has a small chance of beginning to move.
+					double previous = ship.FiringCommands().Aim(index);
+					if(!previous && (Random::Int(60)))
+						continue;
+
+					Angle centerAngle = Angle(hardpoint.GetPoint());
+					double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+					double acceleration = Random::Real() - Random::Real() + bias;
+					command.SetAim(index, previous + .1 * acceleration);
+					continue;
+				}
 				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
+		}
 		return;
 	}
 	if(targets.empty())
