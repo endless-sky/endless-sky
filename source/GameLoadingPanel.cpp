@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "opengl.h"
 
 
+
 GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading)
 	: player(player), conversation(conversation), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
@@ -70,12 +71,13 @@ void GameLoadingPanel::Step()
 		}
 		else
 		{
-			ConversationPanel *talkConversation = new ConversationPanel(player, conversation);
-			std::function<void(int)> exitAfterConversation = [&](int response) { GetUI()->Quit(); };
-			talkConversation->SetCallback(exitAfterConversation);
-			GetUI()->Push(talkConversation);
-			// Audio cue to let player know their conersation is ready.
-			Audio::Play(Audio::Get("landing"));
+			GetUI()->Push(new MenuAnimationPanel());
+
+			auto *talk = new ConversationPanel(player, conversation);
+
+			UI *ui = GetUI();
+			talk->SetCallback([ui](int response) { ui->Quit(); });
+			GetUI()->Push(talk);
 		}
 
 		finishedLoading = true;
