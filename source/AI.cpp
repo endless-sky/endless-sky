@@ -3794,8 +3794,22 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked())
-				ships.push_back(it.get());
+		{
+			if (it.get() == player.Flagship())
+			{
+				// For touchscreen targets, apply fight commands to the flagship too.
+				if (!(Preferences::Has("Show buttons on map") &&
+					 (newOrders.type == Orders::FINISH_OFF || newOrders.type == Orders::ATTACK)))
+				{
+					continue;
+				}
+			}
+
+			if (it->IsParked())
+				continue;
+
+			ships.push_back(it.get());
+		}
 		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
 	}
 	else

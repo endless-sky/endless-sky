@@ -69,6 +69,7 @@ void Preferences::Load()
 #ifdef __ANDROID__
 	settings["fullscreen"] = true;
 	settings["Show buttons on map"] = true;
+	settings["Automatic firing"] = true;
 #endif
 
 	DataFile prefs(Files::Config() + "preferences.txt");

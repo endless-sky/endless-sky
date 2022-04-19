@@ -200,6 +200,10 @@ void MainPanel::Draw()
 			{
 				info.SetCondition("can hail");
 				info.SetCondition("can scan");
+				if (!player.Flagship()->GetTargetShip()->IsYours())
+				{
+					info.SetCondition("can attack");
+				}
 			}
 		}
 
@@ -265,6 +269,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Command::Inject(Command::JUMP);
 	else if(key == SDLK_t) // synthetic keypress via UI button, not keyboard
 		show.Set(Command::HAIL);
+	else if(key == SDLK_a) // synthetic keypress via UI button, not keyboard
+		Command::Inject(Command::FIGHT);
 	else
 		return false;
 

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "PlayerInfoPanel.h"
 #include "text/alignment.hpp"
 #include "Angle.h"
 #include "CargoHold.h"
@@ -408,6 +409,10 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
+	}
+	else if(key == 'n')
+	{
+		GetUI()->Push(new PlayerInfoPanel(player));
 	}
 	else if(key == 'f')
 	{
