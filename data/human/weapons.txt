@@ -487,7 +487,8 @@ outfit "Proton Turret"
 		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
-		"inaccuracy velocity" 24		"turret turn" 2.0
+		"inaccuracy velocity" 24
+		"turret turn" 2.0
 		"submunition" "Proton Fragment" 3
 		"velocity" 24
 		"lifetime" 2
