@@ -1729,8 +1729,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// TODO: Reboard if in need of ammo.
 
-	// TODO: Reboard if low power mode.
-	// Duplicates ShipInfoDisplay.cpp
+	// Reboard if low power/no power (battery only).
 	double frames = 60.;
 	double idleEnergy = frames * ship.GetIdleEnergyPerFrame();
 	double maxEnergy = ship.Attributes().Get("energy capacity");
