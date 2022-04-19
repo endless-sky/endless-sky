@@ -424,6 +424,16 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// Helper functions for information display and behavior calculations.
+	double GetCurrentEnergy() const;
+	double GetEnergyConsumptionPerFrame() const;
+	double GetFiringEnergyPerFrame() const;
+	double GetIdleEnergyPerFrame() const;
+	double GetMovingEnergyPerFrame() const;
+	double GetShieldEnergyPerFrame() const;
+	double GetHullEnergyPerFrame() const;
+	double GetRegenEnergyPerFrame() const;
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.

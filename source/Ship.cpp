@@ -4038,3 +4038,71 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
 }
+
+
+
+double Ship::GetIdleEnergyPerFrame() const
+{
+	return attributes.Get("energy generation") + attributes.Get("solar collection") + attributes.Get("fuel energy")
+		- attributes.Get("energy consumption") - attributes.Get("cooling energy");
+}
+
+
+
+double Ship::GetFiringEnergyPerFrame() const
+{
+	double firingEnergy = 0.;
+	for(const auto &it : outfits)
+		if(it.first->IsWeapon() && it.first->Reload())
+			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+	return firingEnergy;
+}
+
+
+
+double Ship::GetMovingEnergyPerFrame() const
+{
+	return max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+		+ attributes.Get("turning energy") + attributes.Get("afterburner energy");
+}
+
+
+
+double Ship::GetShieldEnergyPerFrame() const
+{
+	double shieldRegen = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
+	bool hasShieldRegen = shieldRegen > 0.;
+	return (hasShieldRegen) ? attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) : 0.;
+}
+
+
+
+double Ship::GetHullEnergyPerFrame() const
+{
+	double hullRepair = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
+	bool hasHullRepair = hullRepair > 0.;
+	return (hasHullRepair) ? attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) : 0.;
+}
+
+
+
+double Ship::GetRegenEnergyPerFrame() const
+{
+	return GetHullEnergyPerFrame() + GetShieldEnergyPerFrame();
+}
+
+
+
+// Get the current energy.
+double Ship::GetCurrentEnergy() const
+{
+	return attributes.Get("energy capacity") ? energy : (hull > 0.) ? 1. : 0.;
+}
+
+
+
+// Get the total energy consumption per frame combined from idle, moving, firing, shield regen, and hull regen.
+double Ship::GetEnergyConsumptionPerFrame() const
+{
+	return GetIdleEnergyPerFrame() - GetMovingEnergyPerFrame() - GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
+}

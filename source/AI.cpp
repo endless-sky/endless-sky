@@ -118,7 +118,6 @@ namespace {
 
 	void Deploy(const Ship &ship, bool includingDamaged)
 	{
-		// TODO: fighter low power; do not deploy with low energy
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) && bay.ship->Energy() > .75
 				&& (!bay.ship->IsYours() || bay.ship->HasDeployOrder()))
@@ -1733,32 +1732,10 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// TODO: Reboard if low power mode.
 	// Duplicates ShipInfoDisplay.cpp
 	double frames = 60.;
-	Outfit attributes = ship.Attributes();
-	double idleEnergy = frames
-		* (attributes.Get("energy generation") + attributes.Get("solar collection") + attributes.Get("fuel energy")
-			- attributes.Get("energy consumption") - attributes.Get("cooling energy"));
-	double movingEnergy = -frames
-		* (max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-			+ attributes.Get("turning energy") + attributes.Get("afterburner energy"));
-	double firingEnergy = 0.;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon() && it.first->Reload())
-			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-	firingEnergy *= -frames;
-
-	double shieldRegen = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
-	bool hasShieldRegen = shieldRegen > 0.;
-	double shieldEnergy
-		= (hasShieldRegen) ? attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) : 0.;
-	double hullRepair = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
-	bool hasHullRepair = hullRepair > 0.;
-	double hullEnergy
-		= (hasHullRepair) ? attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) : 0.;
+	double idleEnergy = frames * ship.GetIdleEnergyPerFrame();
 	double maxEnergy = ship.Attributes().Get("energy capacity");
-	double regenConsumption = -frames * (shieldEnergy + hullEnergy);
-	double totalConsumption = idleEnergy + movingEnergy + firingEnergy + regenConsumption;
-
-	double currentEnergy = ship.Energy() * maxEnergy;
+	double totalConsumption = frames * ship.GetEnergyConsumptionPerFrame();
+	double currentEnergy = ship.GetCurrentEnergy();
 	if(totalConsumption < 0.)
 	{
 		double secondsToEmpty = currentEnergy / (-totalConsumption);
