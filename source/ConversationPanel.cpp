@@ -78,7 +78,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
-void ConversationPanel::SetCallback(std::function<void(int)> fun)
+void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
 }
