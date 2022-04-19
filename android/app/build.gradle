@@ -12,7 +12,7 @@ android {
     ndkVersion "19.2.5345600"
     defaultConfig {
         if (buildAsApplication) {
-            applicationId "org.libsdl.app"
+            applicationId "com.github.thewierdnut.endless_mobile"
         }
         minSdkVersion 18
         targetSdkVersion 29
@@ -55,18 +55,6 @@ android {
         abortOnError false
     }
     
-    if (buildAsLibrary) {
-        libraryVariants.all { variant ->
-            variant.outputs.each { output ->
-                def outputFile = output.outputFile
-                if (outputFile != null && outputFile.name.endsWith(".aar")) {
-                    def fileName = "org.libsdl.app.aar";
-                    output.outputFile = new File(outputFile.parent, fileName);
-                }
-            }
-        }
-    }
-
     aaptOptions {
         ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
     }
