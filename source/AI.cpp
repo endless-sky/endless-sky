@@ -2762,6 +2762,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	// First, get the set of potential hostile ships.
 	auto targets = vector<const Body *>();
 	const Ship *currentTarget = ship.GetTargetShip().get();
+	auto focusedTargets = vector<const Body *>();
 	if(opportunistic || !currentTarget || !currentTarget->IsTargetable() || HasOpportunisticWeapons(ship))
 	{
 		// Find the maximum range of any of this ship's turrets.
@@ -2789,15 +2790,19 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			targets.push_back(currentTarget);
 	}
 	else
-		targets.push_back(currentTarget);
+		focusedTargets.push_back(currentTarget);
 	// If this ship is mining, consider aiming at its target asteroid.
 	if(ship.GetTargetAsteroid())
-		targets.push_back(ship.GetTargetAsteroid().get());
+	{
+		auto targetAsteroid = ship.GetTargetAsteroid().get();
+		targets.push_back(targetAsteroid);
+		focusedTargets.push_back(targetAsteroid);
+	}
 
 	// If there are no targets to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
-	if(targets.empty() && !opportunistic)
+	if(focusedTargets.empty() && targets.empty() && !opportunistic)
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
@@ -2864,7 +2869,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			// to aim at it and for a projectile to hit it.
 			double bestScore = numeric_limits<double>::infinity();
 			double bestAngle = 0.;
-			for(const Body *target : targets)
+			for(const Body *target : ((opportunistic || hardpoint.IsOpportunistic()) ? targets : focusedTargets))
 			{
 				Point p = target->Position() - start;
 				Point v = target->Velocity();
