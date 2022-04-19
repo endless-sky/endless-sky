@@ -144,6 +144,7 @@ outfit "Drak Turret"
 			"random start frame"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
+		"inaccuracy velocity" 30
 		"turret turn" 4.
 		"velocity" 30
 		"lifetime" 36
@@ -171,6 +172,7 @@ outfit "Drak Turret (Augmented)"
 			"random start frame"
 		"hit effect" "drak bolt impact"
 		"inaccuracy" 1
+		"inaccuracy velocity" 30
 		"turret turn" 8.
 		"velocity" 30
 		"lifetime" 36
@@ -205,6 +207,7 @@ outfit "Drak Antimatter Cannon"
 	"inscrutable" 1
 	weapon
 		"inaccuracy" 0
+		"inaccuracy velocity" 20
 		"velocity" 20
 		"lifetime" 1
 		"submunition" "Drak Antimatter Fragment" 3
@@ -231,6 +234,7 @@ outfit "Drak Antimatter Cannon (Augmented)"
 	weapon
 		ammo "Jump Drive" 0
 		"inaccuracy" 0
+		"inaccuracy velocity" 20
 		"velocity" 20
 		"lifetime" 1
 		"submunition" "Drak Antimatter Fragment (Augmented)" 5
@@ -256,6 +260,7 @@ outfit "Drak Antimatter Fragment"
 		"hit effect" "nuke explosion"
 		"safe"
 		"inaccuracy" 1
+		"inaccuracy velocity" 20
 		"lifetime" 499
 		"hit force" 1000
 		"disruption damage" 300
@@ -276,6 +281,7 @@ outfit "Drak Antimatter Fragment (Augmented)"
 		"hit effect" "nuke explosion"
 		"safe"
 		"inaccuracy" 1
+		"inaccuracy velocity" 20
 		"lifetime" 1000
 		"hit force" 1000
 		"disruption damage" 1000

@@ -151,6 +151,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "inaccuracy")
 				inaccuracy = value;
+			else if(key == "inaccuracy velocity")
+				inaccuracyVelocity = value;
+			else if(key == "inaccuracy random velocity")
+				inaccuracyRandomVelocity = value;
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")

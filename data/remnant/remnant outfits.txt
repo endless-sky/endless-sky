@@ -27,6 +27,7 @@ outfit "Inhibitor Cannon"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
+		"inaccuracy velocity" 36
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -72,6 +73,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
+		"inaccuracy velocity" 36
 		"turret turn" 3.5
 		"velocity" 36
 		"random velocity" .5
@@ -107,6 +109,7 @@ outfit "Thrasher Cannon"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 9
+		"inaccuracy velocity" 10
 		"velocity" 10
 		"lifetime" 36
 		"reload" 20
@@ -148,6 +151,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
+		"inaccuracy velocity" 10
 		"turret turn" 2.4
 		"velocity" 10
 		"lifetime" 36
@@ -259,6 +263,7 @@ outfit "EMP Torpedo Bay"
 		"firing energy" 400
 		"firing heat" 18
 		"inaccuracy" 5
+		"inaccuracy velocity" 7
 		"lifetime" 300
 		"velocity" 7
 		"acceleration" .7
@@ -330,6 +335,7 @@ outfit "Ember Tear"
 		"fire effect" "ember tear fire"
 		"velocity" 800
 		"inaccuracy" 0
+		"inaccuracy velocity" 800
 		"safe"
 		"lifetime" 1
 		"reload" 1

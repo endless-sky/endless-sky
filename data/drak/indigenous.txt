@@ -254,6 +254,7 @@ outfit Mouthparts?
 		sound "crunch"
 		"hit effect" "void sprite chewing"
 		"inaccuracy" 180
+		"inaccuracy velocity" 10
 		"velocity" 10
 		"lifetime" 1
 		"reload" 70

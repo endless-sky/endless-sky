@@ -28,6 +28,7 @@ outfit "Korath Grab-Strike"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
+		"inaccuracy velocity" 10
 		"turret turn" 1.9
 		"velocity" 10
 		"lifetime" 100
@@ -70,6 +71,7 @@ outfit "Korath Banisher"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
+		"inaccuracy velocity" 590
 		"turret turn" 4.2
 		"velocity" 590
 		"lifetime" 1
@@ -134,6 +136,7 @@ outfit "Korath Fire-Lance"
 		sound "fire-lance"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
+		"inaccuracy velocity" 350
 		"velocity" 350
 		"lifetime" 1
 		"reload" 1
@@ -168,6 +171,7 @@ outfit "Korath Repeater"
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 4
+		"inaccuracy velocity" 13
 		"velocity" 13
 		"lifetime" 40
 		"reload" 10
@@ -209,6 +213,7 @@ outfit "Korath Repeater Turret"
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
+		"inaccuracy velocity" 13
 		"turret turn" 2.6
 		"velocity" 13
 		"lifetime" 40
@@ -264,6 +269,7 @@ outfit "Korath Piercer Launcher"
 		"hit effect" "piercer explosion"
 		"die effect" "piercer explosion"
 		"inaccuracy" 3
+		"inaccuracy velocity" 18
 		"velocity" 18
 		"lifetime" 200
 		"reload" 72
@@ -331,6 +337,7 @@ outfit "Korath Detainer"
 		"hit effect" "detainer smoke" 5
 		"live effect" "detainer sparks" 50
 		"inaccuracy" .5
+		"inaccuracy velocity" 14
 		"velocity" 14
 		"lifetime" 140
 		"reload" 60
@@ -416,6 +423,7 @@ outfit "Korath Minelayer"
 		"die effect" "minelayer split" 5
 		"submunition" "Korath Mine Submunition" 11
 		"inaccuracy" 10
+		"inaccuracy velocity" 3
 		"velocity" 3
 		"lifetime" 100
 		"reload" 180
@@ -441,6 +449,8 @@ outfit "Korath Mine Submunition"
 		"hit effect" "large explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
+		"inaccuracy velocity" 2
+		"inaccuracy random velocity" 5
 		"velocity" 2
 		"random velocity" 5
 		"lifetime" 1000
@@ -491,6 +501,7 @@ outfit "Korath Disruptor"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
+		"inaccuracy velocity" 480
 		"turret turn" 1.5
 		"velocity" 480
 		"lifetime" 1
@@ -527,6 +538,7 @@ outfit "Korath Slicer"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
+		"inaccuracy velocity" 520
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62
@@ -555,6 +567,7 @@ outfit "Korath Slicer Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
+		"inaccuracy velocity" 520
 		"turret turn" 2.9
 		"velocity" 520
 		"lifetime" 1

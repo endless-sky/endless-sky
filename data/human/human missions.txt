@@ -841,6 +841,7 @@ outfit "Imaginary Weapon"
 		"hit effect" "puff"
 		"die effect" "puff"
 		"inaccuracy" 20
+		"inaccuracy velocity" 12
 		"velocity" 12
 		"lifetime" 60
 		"reload" 10
