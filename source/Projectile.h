@@ -105,9 +105,9 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 
-	// How much velocity this projectile added to itself on top of the
-	// velocity of its parent.
-	double marginalVelocity = 0.;
+	// How much speed this has been added by all stages
+	// of this projectile.
+	double speed = 0.;
 	double clip = 1.;
 	int lifetime = 0;
 	double distanceTraveled = 0;
