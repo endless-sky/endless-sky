@@ -53,7 +53,7 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
-	
+
 	bool IsDefensive() const;
 	bool IsOpportunistic() const;
 
@@ -83,7 +83,7 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
-	
+
 	// Set the defensive value of this hardpoint.
 	void SetDefensive(bool defensive);
 	// Toggle the defensive value of this hardpoint.
@@ -92,8 +92,8 @@ public:
 	void SetOpportunistic(bool opportunistic);
 	// Toggle the opportunistic value of this hardpoint.
 	void ToggleOpportunistic();
-	
-	void AimIdleTurrets(Ship &ship, FireCommand &command);
+
+	void AimIdleTurrets(int index, Ship &ship, FireCommand &command);
 
 
 private:
@@ -114,7 +114,7 @@ private:
 	bool isParallel = false;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
-	
+
 	// Indicates whether the hardpoint is set to defensive mode.
 	bool isDefensive = false;
 	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.
@@ -128,21 +128,21 @@ private:
 	int burstCount = 0;
 	bool isFiring = false;
 	bool wasFiring = false;
-	
+
 	class AimTurrets
 	{
 	public:
-		virtual void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &command);
+		virtual void AimIdleTurrets(int index, Ship &ship, Hardpoint *hardpoint, FireCommand &command);
 	} aimTurrets;
-	
-	static class AimFocusedTurrets : AimTurrets
+
+	static class AimFocusedTurrets : public AimTurrets
 	{
-		void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &commmand);
+		void AimIdleTurrets(int index, Ship &ship, Hardpoint *hardpoint, FireCommand &commmand);
 	} aimFocusedTurrets;
-	
-	static class AimOpportunisticTurrets : AimTurrets
+
+	static class AimOpportunisticTurrets : public AimTurrets
 	{
-		void AimIdleTurrets(int index, Ship &ship, Hardpoint &hardpoint, FireCommand &commmand);
+		void AimIdleTurrets(int index, Ship &ship, Hardpoint *hardpoint, FireCommand &commmand);
 	} aimOpportunisticTurrets;
 };
 

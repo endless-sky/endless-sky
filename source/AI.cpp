@@ -1258,7 +1258,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
 	// do so only if they are allowed to leave.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward()) 
+			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
 			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
@@ -2098,7 +2098,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
 			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			
+
 			// If the hardpoint is set to defensive, the installed weapon
 			// should not be considered for determining the shortest range
 			// until all other weapons are out of ammo.
@@ -2747,7 +2747,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 // Aim the given ship's turrets.
-void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) const
+void AI::AimTurrets(Ship &ship, FireCommand &command, bool opportunistic) const
 {
 	// First, get the set of potential hostile ships.
 	auto targets = vector<const Body *>();
@@ -2789,12 +2789,13 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	// angle. Focused turrets should just point forward.
 	if(targets.empty())
 	{
-		for(const Hardpoint &hardpoint : ship.Weapons())
+		for(Hardpoint &hardpoint : ship.Weapons())
 			if(hardpoint.CanAim())
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				hardpoint.AimIdleTurrets(index, ship, hardpoint, command);
+				hardpoint.AimIdleTurrets(index, ship, command);
+
 			}
 		return;
 	}
