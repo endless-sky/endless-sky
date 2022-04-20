@@ -100,6 +100,7 @@ public:
 	double Inaccuracy() const;
 	double InaccuracyVelocity() const;
 	double InaccuracyRandomVelocity() const;
+	double UniformInaccuracy() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -249,6 +250,7 @@ private:
 	double inaccuracy = 0.;
 	double inaccuracyVelocity = 0;
 	double inaccuracyRandomVelocity = 0;
+	double uniformInaccuracy = 0;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -346,6 +348,7 @@ inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::InaccuracyVelocity() const { return inaccuracyVelocity; }
 inline double Weapon::InaccuracyRandomVelocity() const { return inaccuracyRandomVelocity; }
+inline double Weapon::UniformInaccuracy() const { return uniformInaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

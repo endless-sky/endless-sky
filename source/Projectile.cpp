@@ -65,7 +65,17 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	// Update the heading of the projectile with the inaccuracy stat.
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	{
+		double uniformInaccuracy = weapon->UniformInaccuracy();
+		if(uniformInaccuracy)
+		{
+			this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
+		}
+		else
+		{
+			this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+		}
+	}
 
 	// Add back the velocity reserved for inaccuracy calulations
 	// at the updated heading.
@@ -102,7 +112,17 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	// Update the heading of the projectile with the inaccuracy stat.
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	{
+		double uniformInaccuracy = weapon->UniformInaccuracy();
+		if(uniformInaccuracy)
+		{
+			this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
+		}
+		else
+		{
+			this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+		}
+	}
 
 	// Add back the velocity reserved for inaccuracy calulations
 	// at the updated heading.
