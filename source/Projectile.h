@@ -92,6 +92,9 @@ public:
 
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
+	
+	// Apply inaccuracy to an angle.
+	void ApplyInaccuracy(Angle &angle, double inaccuracy, double mode);
 
 
 private:
