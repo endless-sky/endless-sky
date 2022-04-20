@@ -2374,12 +2374,14 @@ mission "Eliminating Competition (North, Small)"
 		government "Pirate"
 		attributes "north pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 2
 		fleet "Small Northern Pirates" 4
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
@@ -2396,13 +2398,15 @@ mission "Eliminating Competition (North, Large)"
 		government "Pirate"
 		attributes "north pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 3
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
@@ -2419,12 +2423,14 @@ mission "Eliminating Competition (Core, Small)"
 		government "Pirate"
 		attributes "core pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 2
 		fleet "Small Core Pirates" 4
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
@@ -2441,13 +2447,15 @@ mission "Eliminating Competition (Core, Large)"
 		government "Pirate"
 		attributes "core pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 3
 		fleet "Large Core Pirates" 2
 		fleet "Small Core Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
@@ -2464,12 +2472,14 @@ mission "Eliminating Competition (South, Small)"
 		government "Pirate"
 		attributes "south pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 2
 		fleet "Small Southern Pirates" 4
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
@@ -2486,15 +2496,92 @@ mission "Eliminating Competition (South, Large)"
 		government "Pirate"
 		attributes "south pirate"
 	npc kill
-		government Pirate
+		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
 			distance 1 3
 		fleet "Large Southern Pirates" 2
 		fleet "Small Southern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 750000
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
+
+mission "Eliminating Competition (Marauders, Small)"
+	name "Competition near <system>"
+	description "A small marauder gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	repeat
+	job
+	to offer
+		random < 5
+		"combat rating" > 600
+	source
+		government "Pirate"
+	npc kill
+		government "Pirate (Rival)"
+		personality heroic staying target marked
+		system
+			distance 1 2
+		fleet "Marauder I" 2
+		fleet "Marauder II" 2
+		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
+	on complete
+		payment 500000
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
+
+mission "Eliminating Competition (Marauders, Medium)"
+	name "Competition near <system>"
+	description "A marauder gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	repeat
+	job
+	to offer
+		random < 5
+		"combat rating" > 1100
+	source
+		government "Pirate"
+	npc kill
+		government "Pirate (Rival)"
+		personality heroic staying target marked
+		system
+			distance 1 2
+		fleet "Marauder I"
+		fleet "Marauder II"
+		fleet "Marauder III" 2
+		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
+	on complete
+		payment 750000
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
+
+mission "Eliminating Competition (Marauders, Large)"
+	name "Marauder Elimination"
+	description "The pirates of the <system> system have grown dissatisified with the actions of the ruling Marauder gang. Take them out and return to <planet> for a payment of <payment>."
+	repeat
+	job
+	to offer
+		random < 5
+		"combat rating" > 2100
+	source
+		government "Pirate"
+	npc kill
+		government "Pirate (Rival)"
+		personality heroic staying target marked
+		system
+			distance 1 3
+		fleet "Marauder I" 2
+		fleet "Marauder II" 2
+		fleet "Marauder III"
+		fleet "Marauder IV"
+		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
+	on accept
+		"reputation: Pirate (Rival)" = "reputation: Pirate"
+	on complete
+		payment 900000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 

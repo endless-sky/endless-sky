@@ -715,6 +715,30 @@ news "economist"
 
 
 
+news "human mechanic"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			"Don't worry, I keep a strict no-smoking policy when working near the fuel system."
+			"You should really have your coolant system flushed every 50,000 light-years."
+			"They just don't build 'em like they used to."
+			"I've been restoring an old Flivver I bought from a scrapyard as a hobby project. She's going to be a beauty once I get her flying again!"
+			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
+			"I did my apprenticeship with the Navy, but after I finished my tour, I just wanted to open up my own repair shop."
+			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
+			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
+			"Pass me the 10 mm socket wrench?"
+		word
+			`"`
+
+
+
 news "nuclear technician"
 	location
 		government "Syndicate"
