@@ -1098,6 +1098,50 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
+		"Some"
+		"Some of my"
+	word
+		" "
+	word
+		"passengers"
+		"guests"
+		"VIP passengers"
+	word
+		" "
+	word
+		"ate asparagus"
+		"ate garlic"
+		"ate beans"
+	word
+		". "
+	word
+		"I left them at the spaceport. Let them reek in someone else's ship."
+		"The heads are still stinking, badly."
+		"I'm happy they are leaving on the next stop."
+
+phrase "friendly civilian"
+	word
+		"Do you known anybody from "
+	word
+		"Bielefeld"
+		"Hasselt"
+		"Finland"
+		"Wyoming"
+	word
+		"? "
+	word
+		"Do you know anybody who has ever been there?"
+	word
+		" "
+	word
+		"No to all three? I believe that place just doesn't exist."
+		"Even the Earth government couldn't confirm that it exists."
+		"That place is not real, it is just an illusion."
+		"It's a conspiracy by aliens, who use the university there as a disguise for their spaceship."
+		"'They' want to make us believe the place actually exists."
+
+phrase "friendly civilian"
+	word
 		"Man, it feels bad"
 		"I hate it"
 		"It's the worst feeling"
