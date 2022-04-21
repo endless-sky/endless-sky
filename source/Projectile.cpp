@@ -52,6 +52,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
+	// Inaccuracy is only applied to the velocity of the projectile, not the velocity of the ship,
+	// so we don't include the firing ship's velocity in the recorded speed of the projectile.
 	speed = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
 	velocity += this->angle.Unit() * speed;
 

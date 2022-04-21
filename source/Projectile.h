@@ -105,7 +105,8 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 
-	// How much speed has been added by all stages of this projectile.
+	// How much speed has been added by all stages of this projectile
+	// relative to the firing ship.
 	double speed = 0.;
 	double clip = 1.;
 	int lifetime = 0;
