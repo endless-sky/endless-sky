@@ -39,7 +39,7 @@ on:
 jobs:
   build_ubuntu:
     # TODO: only build if source changed. otherwise, d/l latest continuous
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
         ANDROID_SDK_ROOT: /path/to/sdk 
         ARTIFACT: endless-mobile
