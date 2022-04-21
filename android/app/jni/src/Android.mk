@@ -255,6 +255,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
    $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/Personality.cpp) \
    $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/Screen.cpp) \
    $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/Bitset.cpp) \
+   $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/InfoPanelState.cpp) \
    $(subst $(LOCAL_PATH)/,, $(OUR_SRCS)/source/MenuAnimationPanel.cpp) \
 
 
