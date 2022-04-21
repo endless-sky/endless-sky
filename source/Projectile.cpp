@@ -48,35 +48,31 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
+
+	// Update the net speed that this projectile is responsible for.
+	// In this special case this stage is responsible for all of it.
+	speed = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
 	
 	if(weapon->InaccuracyVelocity())
 	{
-		// Update the net speed that this projectile is responsible for.
-		// In this special case this stage is responsible for all of it.
-		speed = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
-		
-		//Calculate the inaccurate speed.
-		double inaccurateSpeed = weapon->InaccuracyVelocity() + Random::Real() * weapon->InaccuracyRandomVelocity();
-		
 		// Apply net speed to velocity.  Again, this is a special case.
 		velocity += this->angle.Unit() * speed;
 		
+		//Calculate the speed to be applied to inaccuracy.
+		double inaccurateSpeed = weapon->InaccuracyVelocity() + Random::Real() * weapon->InaccuracyRandomVelocity();
 		// Back off the velocity reserved for inaccuracy calculations.
 		velocity -= this->angle.Unit() * inaccurateSpeed;
 		
 		// Update the heading of the projectile with the inaccuracy stat.
 		ApplyInaccuracy(this->angle, weapon->Inaccuracy(), weapon->UniformInaccuracy());
-
-		// Add back the velocity reserved for inaccuracy calulations
-		// at the updated heading.
+		// Add back the velocity reserved for inaccuracy calulations at the updated heading.
 		velocity += this->angle.Unit() * inaccurateSpeed;
 	}
 	else
 	{
 		// Update the heading of the projectile with the inaccuracy stat.
 		ApplyInaccuracy(this->angle, weapon->Inaccuracy(), weapon->UniformInaccuracy());
-
-		speed = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
+		// Apply net speed to velocity.  Again, this is a special case.
 		velocity += this->angle.Unit() * speed;
 	}
 
@@ -86,7 +82,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 }
 
 
-// TODO: Place the incaccuracy determination in a function call in order to clean up the code
+
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
@@ -95,35 +91,30 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	targetGovernment = parent.targetGovernment;
 
 	cachedTarget = TargetPtr().get();
+
+	// Calculate the speed of this projectile, which is the speed
+	// of the parent plus whatever speed the submunition adds.
+	speed = parent.speed + weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
 	
 	if(weapon->InaccuracyVelocity())
 	{
-		// Update the net speed that this projectile is responsible for.
-		speed = parent.speed + weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
-		
-		//Calculate the inaccurate speed.
+		//Calculate the speed to be applied to inaccuracy.
 		double inaccurateSpeed = weapon->InaccuracyVelocity() + Random::Real() * weapon->InaccuracyRandomVelocity();
 		
 		// Only add the velocity that came from the submunition.
 		velocity += this->angle.Unit() * (speed - parent.speed);
-		
 		// Back off the velocity reserved for inaccuracy calculations.
 		velocity -= this->angle.Unit() * inaccurateSpeed;
 	
 		// Update the heading of the projectile with the inaccuracy stat.
 		ApplyInaccuracy(this->angle, weapon->Inaccuracy(), weapon->UniformInaccuracy());
-
-		// Add back the velocity reserved for inaccuracy calulations
-		// at the updated heading.
+		// Add back the velocity reserved for inaccuracy calulations at the updated heading.
 		velocity += this->angle.Unit() * inaccurateSpeed;
 	}
 	else
 	{
+		// Update the heading of the projectile with the inaccuracy stat.
 		ApplyInaccuracy(this->angle, weapon->Inaccuracy(), weapon->UniformInaccuracy());
-
-		// Calculate the speed of this projectile, which is the speed of the parent
-		// plus whatever speed the submunition adds.
-		speed = parent.speed + weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
 
 		// Given that submunitions inherit the velocity of the parent projectile,
 		// it is often the case that submunitions don't add any additional velocity.
@@ -133,7 +124,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 		// projectile's actual velocity won't match the recorded speed value.
 		if(weapon->Inaccuracy() && !parent.weapon->Acceleration())
 		{
-			// Unwind the inaccuracy of the parent.
+			// Unwind the velocity of all parents.
 			velocity -= parent.angle.Unit() * parent.speed;
 			// Apply the inaccuracy of the submunition.
 			velocity += this->angle.Unit() * speed;
