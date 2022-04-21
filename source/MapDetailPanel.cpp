@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Interface.h"
 #include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -126,13 +127,16 @@ void MapDetailPanel::Draw()
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
-	if(maxScroll && point.X() < Screen::Left() + 160 && point.Y() > Screen::Top() + 90
-		&& point.Y() < Screen::Bottom() - 230)
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	if(maxScroll && point.X() < Screen::Left() + mapInterface->GetValue("planet max X")
+		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet start Y")
+		&& point.Y() < Screen::Top() + displayedPlanetsAmount * mapInterface->GetValue("one planet display height"))
 	{
-		if(dy > 0. && scroll > dy * 25.)
-			scroll -= dy * 25.;
-		else if(dy < 0. && scroll - dy * 25. < maxScroll)
-			scroll -= dy * 25.;
+		double scrollSpeed = mapInterface->GetValue("planet scroll speed");
+		if(dy > 0. && scroll > dy * scrollSpeed)
+			scroll -= dy * scrollSpeed;
+		else if(dy < 0. && scroll - dy * scrollSpeed < maxScroll)
+			scroll -= dy * scrollSpeed;
 
 		return true;
 	}
@@ -253,12 +257,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			SetCommodity(SHOW_GOVERNMENT);
 		else
 		{
+			int planetHeight = static_cast<int>(GameData::Interfaces().Get("map detail panel")->GetValue("one planet display height"));
 			// The player clicked within the region associated with this system's planets.
 			for(const auto &it : planetY)
-				if(y >= it.second && y < it.second + 110)
+				if(y >= it.second && y < it.second + planetHeight)
 				{
 					selectedPlanet = it.first;
-					if(y >= it.second + 30 && y < it.second + 110)
+					if(y >= it.second + 30 && y < it.second + planetHeight)
 					{
 						// Figure out what row of the planet info was clicked.
 						int row = (y - (it.second + 30)) / 20;
@@ -312,7 +317,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		selectedPlanet = nullptr;
 	// If the system just changed, the planet scroll in the system needs to be reset.
 	if(selectedSystem != previous)
+	{
 		scroll = 0.;
+		displayedPlanetsAmount = 0;
+	}
 	return true;
 }
 
@@ -478,10 +486,18 @@ void MapDetailPanel::DrawInfo()
 	const Color &medium = *GameData::Colors().Get("medium");
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	// Draw the panel.
-	Point size(230., min((Screen::Height() - 360.), displayedPlanetsAmount * 130. + 75.));
-	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
 
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	double planetHeight = mapInterface->GetValue("one planet display height");
+	// It cannot be 0 because we use it in divisions. It has to be an error so use the standard size instead.
+	planetHeight = planetHeight ? planetHeight : 130.;
+	double planetWidth = mapInterface->GetValue("planet display width");
+
+	// Draw the panel for the planets.
+	Point size(planetWidth, min((Screen::Height() - mapInterface->GetValue("planet max bottom Y")),
+		displayedPlanetsAmount * planetHeight + mapInterface->GetValue("planet start Y") - 20.));
+	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
+	
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point pos(Screen::TopLeft());
@@ -516,16 +532,19 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() += 115.;
 	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
-	displayedPlanetsAmount = 0.;
 	if(player.HasVisited(*selectedSystem))
 	{
+		displayedPlanetsAmount = 0;
 		set<const Planet *> shown;
 		maxScroll = 0.;
 		int scrollInt = static_cast<int>(scroll);
-		uiPoint.Y() -= scrollInt % 130;
-		// For planets that go from being half shown to not shown.
-		if(scrollInt % 130 > 65 && scrollInt % 130 < 130)
-			uiPoint.Y() += 130.;
+		int planetHeightInt = static_cast<int>(planetHeight);
+		
+		uiPoint.Y() -= scrollInt % planetHeightInt;
+		// For planets that go from being half shown to not shown (and are partially drawn).
+		if(scrollInt % planetHeightInt > planetHeightInt / 2 && scrollInt % planetHeightInt < planetHeightInt)
+			uiPoint.Y() += planetHeight;
+			
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -535,19 +554,23 @@ void MapDetailPanel::DrawInfo()
 				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 					continue;
 
-				if((scroll - 65.) / 130. <= displayedPlanetsAmount && uiPoint.Y() + scrollInt % 130 < Screen::Bottom() - 295)
+				// Fit another planet, if we can.
+				if((scroll - planetHeight / 2.) / planetHeight <= displayedPlanetsAmount &&	
+					uiPoint.Y() + scrollInt % planetHeightInt < 
+					Screen::Bottom() - mapInterface->GetValue("planet max bottom Y") + planetHeightInt / 2)
 				{
 					shown.insert(planet);
 
 					if(planet == selectedPlanet)
-						FillShader::Fill(Point(Screen::Left() + 110., uiPoint.Y()), Point(230., 110.), faint);
+						FillShader::Fill(Point(Screen::Left() + planetHeight - 20., uiPoint.Y()), Point(planetWidth, planetHeight), faint);
 
 					bool hasSpaceport = planet->HasSpaceport();
 
 					const Sprite *sprite = object.GetSprite();
-					double scale = min(.5f, min((100) / sprite->Width(), (100) / sprite->Height()));
-					SpriteShader::Draw(sprite, Point(Screen::Left() + 50, uiPoint.Y()), scale);
-					planetY[planet] = uiPoint.Y() - 65;
+					int maxSize = static_cast<int>(mapInterface->GetValue("planet icon max size"));
+					double scale = min(.5f, min((maxSize) / sprite->Width(), (maxSize) / sprite->Height()));
+					SpriteShader::Draw(sprite, Point(Screen::Left() + maxSize / 2, uiPoint.Y()), scale);
+					planetY[planet] = uiPoint.Y() - planetHeight / 2.;
 
 					font.Draw({ object.Name(), alignLeft }, uiPoint + Point(0., -52.),
 						planet == selectedPlanet ? medium : dim);
@@ -573,13 +596,13 @@ void MapDetailPanel::DrawInfo()
 					if(commodity == SHOW_VISITED)
 						PointerShader::Draw(uiPoint + Point(0. + 10., 35), Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
-					uiPoint.Y() += 130.;
+					uiPoint.Y() += planetHeight;
 				}
 				else
-					maxScroll += 130.;
+					maxScroll += planetHeight;
 				++displayedPlanetsAmount;
 			}
-		uiPoint.Y() += scrollInt % 130;
+		uiPoint.Y() += scrollInt % planetHeightInt;
 	}
 
 	uiPoint.Y() += 50.;
