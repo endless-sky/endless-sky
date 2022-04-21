@@ -218,6 +218,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// offset of (.5 * velocity) and that velocity includes the velocity of the
 	// ship that fired them.
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
+	Point visualStart = ship.Position() + aim.Rotate(point);
 
 	// Apply the aim and hardpoint offset.
 	aim += angle;
@@ -227,7 +228,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	projectiles.emplace_back(ship, start, aim, outfit);
 
 	// Create any effects this weapon creates when it is fired.
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+	CreateEffects(outfit->FireEffects(), visualStart, ship.Velocity(), aim, visuals);
 
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
