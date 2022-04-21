@@ -1723,8 +1723,8 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 		return true;
 
 	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
-	// retreating and attacking when at exactly 25% health by adding hysteresis to the check.
-	double minHealth = RETREAT_HEALTH + .1 * !ship.Commands().Has(Command::DEPLOY);
+	// retreating and attacking when at exactly 50% health by adding hysteresis to the check.
+	double minHealth = RETREAT_HEALTH + .25 + .25 * !ship.Commands().Has(Command::DEPLOY);
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 
@@ -3865,7 +3865,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
-
+			
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
