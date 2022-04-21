@@ -510,7 +510,7 @@ mission "Deep: Mystery Cubes 3"
 			`	"For now, you can walk around the spaceport and see what there might be to do, but don't stray too far, otherwise you might never get back to your ship in time." Paris hands you a communication device. "This way you can be notified when something happens regardless of where you are. I'm going to stay on my ship and monitor the incoming transmissions."`
 			choice
 				`	(Wander the spaceport.)`
-				`	(Stay near my ship.)`
+				`	(Stay near your ship.)`
 					goto ship
 			`	Other than the occasional blaring of a train whistle, the spaceport of <planet> is rather tranquil. You pass the time by talking to a few tourists, most of whom are getting ready to go rock climbing. While walking through the restaurant district, the ground begins to shake slightly. Many of the locals don't even react to the earthquake, and eventually it subsides. Once you have walked through the entire spaceport and seen all that it has to offer, you begin to make your way back to your ship.`
 				goto mirfak
