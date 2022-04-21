@@ -42,7 +42,6 @@ outfit "Nano Strike"
 		"hit effect" "nano spark"
 		"die effect" "nano spark"
 		"inaccuracy" 10
-		"inaccuracy velocity" 200
 		"velocity" 200
 		"lifetime" 1
 		"reload" 10

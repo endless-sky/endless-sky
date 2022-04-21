@@ -250,7 +250,6 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"inaccuracy velocity" 50
 		"turret turn" 1.8
 		"velocity" 50
 		"lifetime" 18
@@ -299,7 +298,6 @@ outfit "Shard Fabricator"
 		"hit effect" "shard impact"
 		"submunition" "Shard inactive"
 		"inaccuracy" 80
-		"inaccuracy velocity" 15
 		"velocity" 15
 		"lifetime" 40
 		"random lifetime" 20
@@ -367,8 +365,6 @@ outfit "Heavy Ion Fragment"
 			"frame time" 8
 		"hit effect" "proton impact"
 		"inaccuracy" 1
-		"inaccuracy velocity" 0
-		"inaccuracy random velocity" 8
 		"random velocity" 8
 		"lifetime" 25
 		"random lifetime" 8

@@ -181,7 +181,6 @@ outfit "Pug Zapper"
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
-		"inaccuracy velocity" 320
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -209,7 +208,6 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
-		"inaccuracy velocity" 320
 		"turret turn" 2.5
 		"velocity" 320
 		"lifetime" 1
@@ -237,7 +235,6 @@ outfit "Pug Seeker"
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
 		"inaccuracy" 2
-		"inaccuracy velocity" 13
 		"velocity" 13
 		"lifetime" 200
 		"reload" 10

@@ -47,7 +47,6 @@ outfit "Quarg Skylance"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
-		"inaccuracy velocity" 500
 		"turret turn" 4.
 		"velocity" 500
 		"lifetime" 1

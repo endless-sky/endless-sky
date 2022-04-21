@@ -21,7 +21,6 @@ outfit "Pulse Cannon"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"inaccuracy velocity" 15
 		"velocity" 15
 		"lifetime" 30
 		"reload" 20
@@ -47,7 +46,6 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"inaccuracy velocity" 15
 		"turret turn" 2.3
 		"velocity" 15
 		"lifetime" 30
@@ -83,7 +81,6 @@ outfit "Ion Cannon"
 		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
-		"inaccuracy velocity" 16
 		"velocity" 16
 		"lifetime" 50
 		"reload" 60
@@ -144,7 +141,6 @@ outfit "Railgun"
 		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
-		"inaccuracy velocity" 44
 		"velocity" 44
 		"lifetime" 1
 		"range override" 2100
@@ -231,7 +227,6 @@ outfit "Hai Tracker Pod"
 		"hit effect" "tracker cloud" 3
 		"die effect" "tracker impact"
 		"inaccuracy" 20
-		"inaccuracy velocity" 14
 		"velocity" 14
 		"lifetime" 600
 		"reload" 60

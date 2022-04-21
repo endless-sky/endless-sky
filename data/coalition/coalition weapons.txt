@@ -25,8 +25,6 @@ outfit "Bombardment Cannon"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
-		"inaccuracy velocity" 6
-		"inaccuracy random velocity" 1
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -57,8 +55,6 @@ outfit "Bombardment Turret"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
-		"inaccuracy velocity" 6
-		"inaccuracy random velocity" 1
 		"turret turn" 2.8
 		"velocity" 6
 		"random velocity" 1
@@ -104,7 +100,6 @@ outfit "Finisher Pod"
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 5
-		"inaccuracy velocity" 10
 		"velocity" 10
 		"lifetime" 60
 		"reload" 80
@@ -217,7 +212,6 @@ outfit "Heliarch Attractor"
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
-		"inaccuracy velocity" 640
 		"turret turn" 4.1
 		"velocity" 640
 		"lifetime" 1
@@ -261,7 +255,6 @@ outfit "Heliarch Repulsor"
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"inaccuracy velocity" 560
 		"turret turn" 3.4
 		"velocity" 560
 		"lifetime" 1
@@ -302,7 +295,6 @@ outfit "Ion Hail Turret"
 		"hardpoint offset" 10.
 		sound "ion rain"
 		"inaccuracy" 3
-		"inaccuracy velocity" 12
 		"turret turn" 4.2
 		"velocity" 12
 		"reload" 15
@@ -320,8 +312,6 @@ outfit "ion hail"
 			"random start frame"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 1
-		"inaccuracy velocity" 12
-		"inaccuracy random velocity" 3
 		"random velocity" 3
 		"lifetime" 40
 		"random lifetime" 4
@@ -348,8 +338,6 @@ outfit "Ion Rain Gun"
 		sound "ion rain"
 		"hit effect" "ion rain impact"
 		"inaccuracy" 4.5
-		"inaccuracy velocity" 16
-		"inaccuracy random velocity" 2
 		"velocity" 16
 		"random velocity" 2
 		"lifetime" 25

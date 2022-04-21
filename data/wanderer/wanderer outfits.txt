@@ -25,7 +25,6 @@ outfit "Sunbeam"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"inaccuracy velocity" 540
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -66,7 +65,6 @@ outfit "Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"inaccuracy velocity" 540
 		"turret turn" 1.3
 		"velocity" 540
 		"lifetime" 1
@@ -98,7 +96,6 @@ outfit "Dual Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"inaccuracy velocity" 540
 		"turret turn" 1.0
 		"velocity" 540
 		"lifetime" 1
@@ -127,7 +124,6 @@ outfit "Moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
-		"inaccuracy velocity" 490
 		"velocity" 490
 		"lifetime" 1
 		# A full cycle is 45 frames. Beam is active 56% of the time.
@@ -175,7 +171,6 @@ outfit "Moonbeam Turret"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
-		"inaccuracy velocity" 490
 		"turret turn" 3.6
 		"velocity" 490
 		"lifetime" 1
@@ -243,7 +238,6 @@ outfit "Thunderhead Launcher"
 		"die effect" "missile death"
 		"hit effect" "medium explosion"
 		"inaccuracy" 10
-		"inaccuracy velocity" 4
 		"velocity" 4
 		"lifetime" 400
 		"reload" 75
@@ -274,7 +268,6 @@ outfit "Thunderhead"
 		"die effect" "missile death"
 		"hit effect" "small explosion"
 		"inaccuracy" 90
-		"inaccuracy velocity" 2
 		"velocity" 2
 		"lifetime" 400
 		"acceleration" 1.4
