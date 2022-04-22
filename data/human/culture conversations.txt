@@ -532,7 +532,7 @@ mission "Scientists at the Pub after a Conference"
 		attributes "urban"
 		not attributes "station"
 	to offer
-		random < 100
+		random < 1
 	on offer
 		conversation
 			`After a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting. They stream in from the conference complex across the street. They vary in age, dress, and regional accent, but most have an identical badge dangling from a lanyard around their necks. You notice one that's been dropped on the floor.`
