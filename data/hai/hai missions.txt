@@ -12,7 +12,7 @@ mission "First Contact: Hai"
 	landing
 	source
 		government "Hai"
-		not attributes "uninhabitated"
+		not attributes "uninhabited"
 	on offer
 		conversation
 			branch unfettered
@@ -252,7 +252,7 @@ mission "Ask the Hai about the Unfettered"
 	landing
 	source
 		government "Hai"
-		not attributes "uninhabitated"
+		not attributes "uninhabited"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
@@ -1867,6 +1867,7 @@ mission "Strider Alt Start"
 	source
 		government "Hai"
 		not planet "Hai-home"
+		not attributes "uninhabited"
 	destination "Hai-home"
 	clearance
 	to offer
