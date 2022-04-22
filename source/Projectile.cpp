@@ -52,10 +52,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
-	// Inaccuracy is only applied to the velocity of the projectile, not the velocity of the ship,
-	// so we don't include the firing ship's velocity in the recorded speed of the projectile.
-	speed = weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
-	velocity += this->angle.Unit() * speed;
+	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -76,28 +74,12 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
-	// Calculate the speed of this projectile, which is the speed of the parent
-	// plus whatever speed the submunition adds.
-	speed = parent.speed + weapon->Velocity() + Random::Real() * weapon->RandomVelocity();
-
 	// Given that submunitions inherit the velocity of the parent projectile,
 	// it is often the case that submunitions don't add any additional velocity.
 	// But we still want inaccuracy to have an effect on submunitions. Because of
 	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
-	// This isn't done for submunitions with an accelerating parent, as an accelerating
-	// projectile's actual velocity won't match the recorded speed value.
-	if(inaccuracy && !parent.weapon->Acceleration())
-	{
-		// Unwind the inaccuracy of the parent.
-		velocity -= parent.angle.Unit() * parent.speed;
-		// Apply the inaccuracy of the submunition.
-		velocity += this->angle.Unit() * speed;
-	}
-	else
-	{
-		// Only add the velocity that came from the submunition.
-		velocity += this->angle.Unit() * (speed - parent.speed);
-	}
+	dV = this->angle.Unit() * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV - parent.dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -259,8 +241,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	if(accel)
 	{
-		velocity *= 1. - weapon->Drag();
-		velocity += accel * angle.Unit();
+		double d = 1. - weapon->Drag();
+		double a = accel * angle.Unit();
+		velocity *= d;
+		velocity += a;
+		dV *= d;
+		dV += a;
 	}
 
 	position += velocity;
