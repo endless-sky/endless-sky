@@ -547,8 +547,22 @@ void Ship::FinishLoading(bool isNewInstance)
 				{
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
-					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, nextGun->IsDefensive());
+					const Outfit *outfit;
+					bool defensive;
+					bool opportunistic;
+					if (nextGun == end)
+					{
+						outfit = nullptr;
+						defensive = false;
+						opportunistic = false;
+					}
+					else
+					{
+						outfit = nextGun->GetOutfit();
+						defensive = nextGun->IsDefensive();
+						opportunistic = nextGun->IsOpportunistic();
+					}
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, defensive, opportunistic);
 					if(nextGun != end)
 						++nextGun;
 				}
@@ -556,8 +570,22 @@ void Ship::FinishLoading(bool isNewInstance)
 				{
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
-					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, nextTurret->IsDefensive(), nextTurret->IsOpportunistic());
+					const Outfit *outfit;
+					bool defensive;
+					bool opportunistic;
+					if (nextTurret == end)
+					{
+						outfit = nullptr;
+						defensive = false;
+						opportunistic = false;
+					}
+					else
+					{
+						outfit = nextTurret->GetOutfit();
+						defensive = nextTurret->IsDefensive();
+						opportunistic = nextTurret->IsOpportunistic();
+					}
+					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, defensive, opportunistic);
 					if(nextTurret != end)
 						++nextTurret;
 				}
