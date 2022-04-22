@@ -242,7 +242,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	if(accel)
 	{
 		double d = 1. - weapon->Drag();
-		double a = accel * angle.Unit();
+		Point a = accel * angle.Unit();
 		velocity *= d;
 		velocity += a;
 		dV *= d;
