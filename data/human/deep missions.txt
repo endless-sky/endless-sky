@@ -2468,7 +2468,7 @@ mission "Stone of our Fathers 1"
 			choice
 				`	"If you have coin, I have room."`
 				`	"I guess I can take a small detour."`
-				`	(Shake your head. You have better things to do than bus old men around.)`
+				`	(Shake my head. I have better things to do than bus old men around.)`
 					goto decline
 			`	He nods, grunts, and heads to your ship with a small knapsack cradled under his arm, clearly ready to travel to <planet> at a moment's notice.`
 				accept
@@ -2503,7 +2503,7 @@ mission "Stone of our Fathers 2"
 			`	"Got a nephew who works at the port, let me know he saw you comin' in." He claps you on the back. "Things have been mostly good, hard though, the family - some are glad to see me, to remember me, and others..." he pauses. "Well, some mistakes you just can't take back."`
 			`	He looks away briefly, and then nods at his packed bag. "It was good to come back here one last time. But the soil, the work calls to me. I'm only good at one thing in this world, and I intend to do it to the very end. So, I was wonderin', could ya take me back to <planet>?`
 			choice
-				`	(Nod. Skaldgar and his hard-earned money are more than welcome aboard your ship.)`
+				`	(Nod. Skaldgar and his hard-earned money are more than welcome aboard my ship.)`
 					goto accept
 				`	"No thanks. I have better things to do than bus old men around."`
 			`	Skaldgar glares at you briefly then shrugs. "S'pose you do. S'pose you do." He turns and wanders away.`
@@ -2599,8 +2599,8 @@ mission "Stone of our Fathers 4"
 			`	After a brief wait the door opens ponderously revealing, a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
 			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
 			choice
-				`	(Answer for yourself.)`
-				`	(Let Helm answer for you.)`
+				`	(Answer for myself.)`
+				`	(Let Helm answer for me.)`
 					goto helm
 			`	You smile somberly at Thorleif. "I was a friend of Skaldgar. I gave him a ride a few times, and, most recently, was entrusted with his stone."`
 					goto stone
@@ -2662,9 +2662,7 @@ mission "Stone of our Fathers 4"
 			`	The day is bright and the sky is clear, the storm long forgotten as you prepare your things. Both men meet you in the main room. Thorleif opens up his hand to accept the stone, which you gladly place into it. He smiles and looks it over, tracing his finger along its chiseled runes.`
 			`	"Thank you, <first>". You nod, happy to be done with this mission and free to fly the space lanes once more.`
 			`	"Just more thing," Thorleif adds with a sly grin. "I'll need a captain willing to ferry me to Alfheim. That's where my family's cairn is located."`
-			choice
-				`	(After all you've been through, you don't see any way to refuse the request.)`
-			`	"Of course," you answer, and before you know it the three of you are on Helm's boat and heading for the spaceport.`
+			`	Before you know it, the three of you are on Helm's boat and heading for the spaceport.`
 			`	"Alfheim," Thorleif says idly, "you know of it? The name means the home of the Alfar, or elves as you call them. I've never been there, only heard of it. It'll be strange to visit the world of my ancestors."`
 			`	Helm stays behind as you and Thorleif load your gear onto your ship.`
 			`	You're not sure exactly how you got mixed up into all this, and yet, it all feels right to you. Like you are where you should be, doing what you should do. This adventure may not involve intergalactic wars or the secrets of the ancients, but sometimes it really is just about people. People like Skaldgar and Thorleif and Helm.`
@@ -2697,20 +2695,20 @@ mission "Stone of our Fathers 5"
 			`	The woman frowns for a second then seems to break from a trance as real warmth washes over her face. "I am sorry, it's just been so long since I've dealt with people who weren't looking for work. Alfheim, well, it is what it used to be, but only just more so now." She shrugs, "I know of Grimssalr though. I'm actually from Lindsvoll, in the same valley."`
 			`	"So can you tell us where it is?" Thorleif asks earnestly. The woman smiles shyly at Thorleif. "Tell you? How about I take you there?"`
 			choice
-				`	(Invite her with you.)`
+				`	(Invite her onboard.)`
 					goto accompany
 				`	(Reject the offer.)`
 			`	You start to say that it isn't necessary for her to accompany you, when Thorleif cuts you off. "That sounds great!"`
 			`	She smiles broadly at Thorleif and nods.`
 			choice
-				`	(Sigh and shake your head.)`
+				`	(Sigh and shake my head.)`
 			label accompany
 			`	She immediately abandons her kiosk and shrugs. "I didn't care much for that job anyways."`
 			`	You and Thorleif follow her to a local transit hovercraft, where she and Thorleif quickly sit together. You find yourself sitting alone.`
 			`	For the next three hours, it sounds as if they are in deep conversation, while you drift in and out of sleep watching as oil fields give way to rainforests and then rainforests shrink before great wooded mountains.`
 			`	At some point you feel Thorleif shaking your shoulder. "We're here."`
 			choice
-				`	(Rise from your seat.)`
+				`	(Rise from my seat.)`
 			`	The town of Grimssalr is nestled along the foothills of the towering Ettin mountains in western Alfheim. Town is perhaps too generous a word; it is instead more like a couple dozen houses filled with old people long abandoned by their children seeking wealth and adventure elsewhere.`
 			`	The woman, who you've learned is named Ragnhild, introduces Thorleif to some of the folks here, and before long they have found ways to connect their ancient genealogies together and everyone is suddenly treated as family. Before you know it, you are eating their meager yet hearty fare, swapping stories of adventures, and listening to legends about the old times.`
 			`	As the sun begins to set, Thorleif approaches you, "It is time," he says. "The journey to the cairn is only a short hike from here. I would like you to accompany me. I think Skaldgar would have wanted that."`
@@ -2810,7 +2808,7 @@ mission "Home for Skadenga 1"
 			`	The woman pulls out a small touchscreen. "For very standard liability reasons, I need you to quickly put your digital signature right here. You, or your estate, can't sue us if you're injured or die on the excursion. Furthermore there is no expectation of rescue should you get lost out there, or the Ice-Crawler breaks down." She gives you a small forced smile. "Not that it ever would happen, and like I said, this is a very standard waiver in the tourist trade. I wouldn't think too much about it."`
 			` 	She holds up the touchscreen for you to sign.`
 			choice
-				`	(Key your signature.)`
+				`	(Key my signature.)`
 					goto yolo
 				`	"I've changed my mind. I am going to pass on this excursion."`
 			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
@@ -2874,7 +2872,7 @@ mission "Home for Skadenga 1"
 			`	"I think-" Hjlod starts to say when a mountain of snow crashes into the Ice-Crawler with deafening force. All sense of travelling distance is lost as the snow blots out the windows and the crawler is dragged bumping and twisting over uneven terrain. You and Hjlod hold tight as you're tossed around until, eventually, the crawler grinds up against something reasonably solid and comes suddenly to a rest, partially on its side.`
 			`	A few moments later, the rumbling finishes passing you by.`
 			choice
-				`	(Unbuckle your seatbelt and get yourself up.)`
+				`	(Unbuckle the seatbelt and get up.)`
 			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
 			`	She tosses you an old, scruffy jacket with a tear along one of its arms. "Valking in cold, good for health. Maybe not as far as ve must go, but you laugh about later. Good story to tell back home."`
 			choice
@@ -2886,8 +2884,8 @@ mission "Home for Skadenga 1"
 				`	(Quickly shut the hatch behind her.)`
 			`	Alone, you have a decision to make. You can dismantle portions of the Ice-Crawler and use them to strengthen your personal comms to get a signal out to the <ship>. Or, you can try to repair the Ice-Crawler and get it running again - in which case you wouldn't be able to use its parts to boost your comm signal.`
 			choice
-				`	(Cannibalize the Ice-Crawler and contact your ship.)`
-				`	(Give up trying to contact your ship and fix the Ice-Crawler.)`
+				`	(Cannibalize the Ice-Crawler to communicate.)`
+				`	(Tyr to fix the Ice-Crawler.)`
 					goto fixme
 			`	You have much more faith in your ship than some antique vehicle. You spend hours ripping once-vital machinery out of the Ice-Crawler in order to make a signal booster for your comms, eventually cobbling together a functional booster and programming a repeating burst S.O.S. message into it.`
 			`You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting. In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
@@ -2909,7 +2907,7 @@ mission "Home for Skadenga 1"
 			label boom
 			` 	You're confident that this is the correct sequence of wires. You plug each one in and start the Ice-Crawler up. The vehicle hums to life.`
 			choice
-				`	(Pump your fist.)`
+				`	(Pump a fist into the air.)`
 				`	(Cheer.)`
 					goto cheer
 			` 	In a moment of levity, you pump your fist into the air.`
@@ -2929,7 +2927,7 @@ mission "Home for Skadenga 1"
 			choice
 				`	(Follow Hjlod's tracks.)`
 					goto followher
-				`	(Try and find your way to the spaceport.)`
+				`	(Try and find a way to the spaceport.)`
 			`	You've had enough of this expedition. Hjlod said she was fine, and you'll leave it at that. You turn the Ice-Crawler around and make your way back to the spaceport.`
 			`	It only takes a couple hours, and the controls on the Ice-Crawler are relatively easy. When you pull into the maintenance dock, the sales woman comes to meet you and is dismayed that Hjlod is not with you.`
 			`	She hasn't heard from Hjlod and fears the worst. You hope it all works out as you head back to your ship and as far away from this place as possible.`
@@ -2975,7 +2973,7 @@ mission "Home for Skadenga 1"
 			`	You feel righteous vindication as the hours pass and nothing bad happens; proof that Hjlod was just being bossy. She should have no say over what you are doing; it's her fault you're stuck out here stranded on some trash-planet in the blinding cold in the first place.`
 			`	At that thought you do some anger-stomping, really letting her know that you could care less about her worthless warnings. Which is, of course, when you hear a weird gurgling sizzle. You look down at your feet and see there is not packed snow beneath them, but that a gray-purple blob that has wrapped itself around your leg.`
 			choice
-				`	(Try and shake your leg free.)`
+				`	(Try and shake free.)`
 					goto free
 				`	(Call out to Hjlod for help.)`
 			`	Damn your pride. "Hjlod, help! Something's got my foot!" you cry.`
@@ -2985,7 +2983,7 @@ mission "Home for Skadenga 1"
 			`	"Please, Hjlod!" You cry as the last of your boot dissolves away and you feel the slimy slug on your exposed foot.`
 			`	"It is too late. Ice-Slug has you. Vhat you do now is die. Horribly." Hjlod turns and starts jogging away from you.`
 			choice
-				`	(Try and pull your leg free.)`
+				`	(Try and pull free.)`
 			label free
 			`	Despite using all your strength, your leg won't budge. The sizzling noise continues and you are overwhelmed with a sharp horrific burning sensation. Your eyes water and you scream out in pain for help and mercy.`
 			`	You keep pulling, trying to break free. The air thickens with the scent of your liquified foot, and something gives as you fall forward. You look down to see your leg missing from the knee down. You try to push it out of your mind as you desperately claw forward, trying to escape the gray-purple blob that is forming up behind you.`			
@@ -3063,7 +3061,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Onduris continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
 			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
 			choice
-				`	(Head to the Shuttle)`
+				`	(Head to the shuttle)`
 					goto shuttle
 				`	(Take a moment to investigate Goddess-Stone.)`
 			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
@@ -3239,7 +3237,7 @@ mission "Home for Skadenga 3"
 			`	The parts of the God-Stone that are exposed at this level are dull and lusterless. You search for a pattern but can make nothing out due to how little of the wall is visible. It's sectioned off, with every shop and restaurant having its own piece. As you stare at it you feel nothing, just an emptiness. You do notice a plaque by a large part of unobstructed wall.`
 			choice
 				`	(Read the plaque.)`
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto ship
 			`	The plaque labels the God-Stone as "Colonial Graffiti" and reads:`
 			``
@@ -3534,7 +3532,7 @@ mission "Skadenga Call 2"
 			choice
 				`	(Take off.)`
 					goto takeoff
-				`	(Power down your ship and open the hatch.)`
+				`	(Power down the ship and open the hatch.)`
 			`	You turn off your ship's ignition, pop open the hatch before Hjlod can react, and jump out. Carla Von Hausen, at least two civil service workers, and a squad of police officers arrive within seconds. Carla gives you a tight smile. "Decided to do the right thing in the end? We appreciate it."`
 			`	The police officers enter your ship and start restraining and removing the the Skadenga aboard it.`
 			`	"As always, we appreciate your help and value our continued working relationship. Expect a payment for your aid in the next couple days, after I've gotten it approved." Carla steps back to assess the Skadenga, most of which are sullen and reserved. One, however, is screaming, kicking, and biting.`
@@ -3905,7 +3903,7 @@ mission "Homecoming to Skadenga"
 			scene "scene/Seasunset"
 			`The familiar sight of <origin> brings up old memories. It's been more than a year since you helped the Skadenga settle <origin>, and you wonder if you should check in on them.`
 			choice
-				`	(Visit Hrithfjall).`
+				`	(Visit Hrithfjall.)`
 				`	(Don't visit Hrithfjall.)`
 					decline
 			`	It's a short journey to the outskirts of Hrithfjall. You are evidently spotted from afar, as someone is waiting for you.`
@@ -4084,7 +4082,7 @@ mission "Hjlod Remembers Nifel"
 			`Nifel is colder than you remember. The snow is deeper, and the ice harder. Despite this, the small recolonized settlement of Udainsakr appears to be thriving. Although it started with less than 50 Skadenga, thanks to the steady flow of pilgrims, the village population now numbers over a thousand.`
 			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
-			` 	She holds out the box. "This is true of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
+			` 	She holds out the box. "This is tear of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
 			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`	
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
