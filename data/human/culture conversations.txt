@@ -562,7 +562,7 @@ mission "Scientists at the Pub after a Conference"
 			`---`
 			`"Can you believe my computer crashed right before I had to present? Good thing I had backups. Two is one and one is none."`
 			`---`
-			`"Singh and Mattison are such arrogant jerks. Their work is okay, I guess, but not enough to justify their wannabe rockstar personalities!"`
+			`"Singh and Esterhazy are such arrogant jerks. Their work is okay, I guess, but not enough to justify their wannabe rockstar personalities!"`
 			`"Sure, but they aren't just arrogant jerks, they're charismatic arrogant jerks. Charisma attracts good grad students to their lab, who produce good papers, who they put their name on. It's a positive feedback loop."`
 			---
 			`"The Republic Medical Research Agency said my work is too theoretical, but the University of Chiron Department of Microbiology says it's too applied!"`
