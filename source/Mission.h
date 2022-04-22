@@ -61,6 +61,8 @@ public:
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
+	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
+	void NeverOffer();
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
