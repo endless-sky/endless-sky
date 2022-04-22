@@ -3843,7 +3843,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
-
+			
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
