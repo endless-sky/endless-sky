@@ -43,6 +43,7 @@ public:
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
+	void SetCallback(std::function<void(int)> fun);
 
 	// Draw this panel.
 	virtual void Draw() override;
