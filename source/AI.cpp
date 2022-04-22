@@ -659,7 +659,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				double health = .5 * it->Shields() + it->Hull();
 				double &threshold = appeasmentThreshold[it.get()];
-				if(1. - health > threshold)
+				// Get the list of hostile (enemy) in the system
+				const auto enemies = GetShipsList(*it, true);
+				// In addition to the checking for a significant loss of health,
+				// make sure there is someone around to appease
+				if(1. - health > threshold && enemies.size() > 0)
 				{
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
 					for(const auto &commodity : it->Cargo().Commodities())
