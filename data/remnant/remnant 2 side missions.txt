@@ -92,8 +92,8 @@ mission "Remnant: Shattered Light 3"
 				accept
 	on complete
 		conversation
-			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land with a view of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.'
-			'	"Ready for drop, Captain. Just get us within a hundred meters of the surface without too much forward velocity, we can handle the rest."`
+			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land with a view of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
+			`	"Ready for drop, Captain. Just get us within a hundred meters of the surface without too much forward velocity, we can handle the rest."`
 			`	Moments later your ship pings a spot on the landscape ahead indicating a clearing on a low hill. Nodding your assent, the <ship> swoops to a hover just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment settling to the ground on repulsor pallets while the Remnant drop to the ground on what appear to be repulsor jets. A final message appears on your console.`
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
