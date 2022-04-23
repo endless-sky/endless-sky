@@ -37,7 +37,7 @@ on:
 
 
 jobs:
-  build_ubuntu:
+  build_android:
     # TODO: only build if source changed. otherwise, d/l latest continuous
     runs-on: ubuntu-latest
     env:
@@ -64,15 +64,35 @@ jobs:
         scons --version
         python --version
         java -version
-    - name: Compile
+    - name: Unit Tests
       run: |
-        # scons -Qj $(nproc) opengl=gles mode=debug test;
+        scons -Qj $(nproc) opengl=gles mode=debug test;
+    - name: Compile Android
+      run: |
         cd android/app && sh ./download_build_dependencies.sh
         cd .. && ./gradlew --no-daemon assemble
-#    - name: Upload game binary
-#      uses: actions/upload-artifact@v2
-#      with:
-#        name: binary-${{ matrix.os }}-${{ matrix.opengl }}
-#        path: ${{ env.ARTIFACT }}
-
+    - name: Upload apks
+      uses: actions/upload-artifact@v2
+      with:
+        name: debug-arm64-v8a
+        path: android/app/build/outputs/apk/debug/app-debug.apk
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: ${{ github.run_number }}
+        prerelease: true
+        body: This is an auto-generated prerelease of the latest ci build. Dont expect it to work reliably.
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: android/app/build/outputs/apk/debug/app-debug.apk
+        asset_name: endless-mobile-debug-v${{ github.run_number }}.apk
+        asset_content_type: application/vnd.android.package-archive
   
