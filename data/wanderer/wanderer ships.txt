@@ -202,7 +202,7 @@ ship "Strong Wind"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Wanderer Military"
+			"Wanderer"
 		"cost" 16100000
 		"shields" 28500
 		"hull" 19600
@@ -776,7 +776,7 @@ ship "Deep River"
 	explode "large explosion" 30
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
+	description "The Deep River is a modular freighter, designed to carry cargo in detachable pods."
 
 ship "Deep River" "Deep River 0"
 	sprite "ship/deep river 0"

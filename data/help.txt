@@ -13,8 +13,8 @@ help "bank"
 	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
 
 help "bank advanced"
-	`When entering a credit value at the bank, you can put in an exact number, or uses suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
-	`Entering a number that is higher than what you or the bank have available depending if you are paying or applying for a loan will default to the maximum available value. For example, enterting "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
+	`When entering a credit value at the bank, you can put in an exact number, or use the suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
+	`Entering a number that is higher than what you or the bank have available depending if you are paying or applying for a loan will default to the maximum available value. For example, entering "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
 
 help "basics 1"
 	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
@@ -62,6 +62,7 @@ help "lost 5"
 help "lost 6"
 	`You slip deeper and deeper into the zenlike calm of outer space. The Tao which can be spoken is not the true Tao. The game that must be played is not the true game. You let go of all desire: your desire to press <Show main menu> and check the game's preferences to find out how to control your ship. The desire to view the other places you can travel to by pressing <View star map>. You release even the desire to press <Initiate hyperspace jump> and initiate a random hyperjump in whatever direction you are facing in. Enlightenment hovers on the edge of your consciousness, so close you can almost grasp it.`
 
+# Note to future proofreaders: "vasty nothingness" is a reference to Firefly, see http://signal.serenityfirefly.com/mmx/segment/view.php/2253
 help "lost 7"
 	`The void whispers its secret to your soul: outer space, it says, is not about lasers or explosions. It is not about fighting space pirates or saving the galaxy. No, the true message of the void is the utter loneliness you have found while drifting here: one tiny speck of warmth, insignificant compared to the vasty nothingness between the stars and the trillions upon trillions of souls of proud humans and inscrutable aliens whom you will never meet.`
 	`The inner voice urging you to do something, anything rather than just continuing to drift here, falls silent...`
@@ -82,7 +83,7 @@ help "map advanced shops"
 	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
 
 help "multiple ships"
-	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
 
 help "ship info"
 	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
@@ -106,7 +107,7 @@ help "outfitter"
 	`As in the trading panel, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 
 help "outfitter 2"
-	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by either checking the "show outfits in cargo" box at the bottom left, or Control+clicking on your selected ship to deselect it.`
+	`Sometimes you may want to buy some outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons. To accomplish this, you need to switch out of installation mode into 'purchase to cargo' mode. This can be achieved by Control+clicking on your selected ship to deselect it.`
 	`When you are in 'purchase to cargo' mode, your ship information on the right hand side will be replaced by information on how much cargo space you currently have available.`
 	`Outfits that are in your cargo hold can be (re)installed at any outfitter without cost.`
 
@@ -120,7 +121,7 @@ help "stranded"
 
 help "trading"
 	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
-	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by hold down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
+	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
 
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
