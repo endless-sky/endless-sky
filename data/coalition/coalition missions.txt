@@ -249,7 +249,7 @@ mission "Coalition Yottrite 1"
 					defer
 			`	When you approach them, the Arach explains that he is one of the people that oversee the mining operations on <planet> and that he would like to bring the yottrite there so that they can attempt to study it with their most advanced equipment.`
 			`	"Few entries on yottrite, my predecessors managed to catalog," he says. "Naturally occur in our territory, it does not. Few opportunities to study it, we've had."`
-			`	After discussing with his colleagues for a bit, he announces that he is willing to pay you 220,000 credits for the mineral sample.`
+			`	After discussing with his colleagues for a bit, he announces that he is willing to pay you 350,000 credits for the mineral sample.`
 			choice
 				`	"Sounds like a fair deal to me. Sold."`
 				`	"Sorry, but I think I'll hold on to it. It was very hard to get it in the first place."`
@@ -258,7 +258,7 @@ mission "Coalition Yottrite 1"
 				accept
 	on accept
 		outfit "Yottrite" -1
-		payment 220000
+		payment 350000
 
 
 
@@ -282,7 +282,7 @@ mission "Coalition Yottrite 2"
 			`	He tells you to land as usual. Once your ship is brought to the underground area, some workers help unload the yottrite, and ask you to follow them into a restricted section of the complex to get your payment. The guards at the entrance watch closely as your group passes by.`
 			`	You walk along extremely wide industrial catwalks overlooking endless smelters and forges of various sizes. Though the heat of the place may be influencing your perception, you're almost certain the largest smelters must be around the size of a light warship.`
 			`	After walking for too long in the uncomfortably hot and stuffy interiors of the underground compound, you and the several tons of yottrite are finally brought to a large area similar to a warehouse. Several workers are operating machinery and making sure ore pieces are brought to specific conveyor belts.`
-			`	As the workers leave you to bring the yottrite to a separate section of the facility, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 660,000 credits. "Much will be achieved, if significant progress with the samples we make."`
+			`	As the workers leave you to bring the yottrite to a separate section of the facility, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 1,050,000 credits. "Much will be achieved, if significant progress with the samples we make."`
 			choice
 				`	"What sort of progress?"`
 					goto progress
@@ -300,7 +300,7 @@ mission "Coalition Yottrite 2"
 				accept
 	on accept
 		outfit "Yottrite" -3
-		payment 660000
+		payment 1050000
 
 
 
@@ -322,7 +322,7 @@ mission "Coalition Yottrite 3"
 					defer
 				`	"Sure am. Have some people wait by the docking area to help me unload the samples."`
 			`	As the workers get the ore samples out of your ship, you realize that this time the Arach that asked for your help wasn't the one to contact you, nor was he waiting for you on the ground.`
-			`	The workers say they will bring the yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 1,540,000 credits, and ask for permission to load the crates onto your ship.`
+			`	The workers say they will bring the yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 2,450,000 credits, and ask for permission to load the crates onto your ship.`
 			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the overseer has," they say.`
 			choice
 				`	"What's in the crates?"`
@@ -339,7 +339,7 @@ mission "Coalition Yottrite 3"
 				accept
 	on accept
 		outfit "Yottrite" -7
-		payment 1540000
+		payment 2450000
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -490,7 +490,7 @@ mission "Coalition Yottrite 8"
 	on offer
 		conversation
 			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
-			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
+			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
 				`	"Sorry, but I'm not mining that any more."`
@@ -499,7 +499,7 @@ mission "Coalition Yottrite 8"
 				accept
 	on complete
 		outfit "Yottrite" -1
-		payment 220000
+		payment 400000
 		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
 
 

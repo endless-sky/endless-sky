@@ -107,6 +107,7 @@ ship "Argosy"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -25 91 0.6
@@ -211,7 +212,7 @@ ship "Auxiliary"
 			"hit force" 4200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -523,6 +524,7 @@ ship "Behemoth"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -34 143 0.8
@@ -743,16 +745,16 @@ ship "Bulk Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
+		"cost" 11100000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 6
-		"bunks" 18
+		"required crew" 12
+		"bunks" 21
 		"mass" 870
-		"drag" 15.8
-		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 600
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 900
+		"cargo space" 640
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -774,6 +776,7 @@ ship "Bulk Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -22 198
@@ -888,18 +891,18 @@ ship "Class C Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Warship"
-		"cost" 11400000
+		"cost" 13400000
 		"shields" 13500
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 810
-		"drag" 16.4
-		"heat dissipation" .5
-		"fuel capacity" 600
+		"mass" 880
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 900
 		"cargo space" 20
-		"outfit space" 400
-		"weapon capacity" 140
+		"outfit space" 410
+		"weapon capacity" 150
 		"engine capacity" 85
 		weapon
 			"blast radius" 200
@@ -907,24 +910,36 @@ ship "Class C Freighter"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"Heavy Laser Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Proton Turret"
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
 		
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Laser Rifle" 5
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor"
+		"Water Coolant System"
+		"Cooling Ducts"
+		"S-970 Regenerator"
+		"Laser Rifle" 18
+		"Brig"
+		"Interference Plating"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
 		"Scram Drive"
 		
 	engine -20 195.5
 	engine 20 195.5
-	turret -12 -155 "Heavy Laser Turret"
+	gun -20 -175 "Meteor Missile Launcher"
+	gun 20 -175 "Meteor Missile Launcher"
+	turret -12 -155 "Quad Blaster Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 0 5 "Proton Turret"
+	turret 30 175 "Quad Blaster Turret"
+	turret -30 175 "Anti-Missile Turret"
 	bay "Drone" -66 -115 left
 	bay "Drone" -66 -65 left
 	bay "Drone" -66 -15 left
@@ -945,7 +960,8 @@ ship "Class C Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has all been converted into drone bays, allowing it to carry a dozen combat drones.`
+	description `The Class C "Freighter" is a Q-ship, a stealth warship designed by the Syndicate for baiting pirates with the offer of what appears to be a helpless, ordinary bulk freighter.`
+	description `	Inside, a layer of interference plating hides its military-grade equipment and a dozen combat drones secreted away in its converted cargo holds, while its faux gearing conceals extra shield emitters.`
 
 
 
@@ -1044,16 +1060,16 @@ ship "Container Transport"
 	thumbnail "thumbnail/container transport"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
-		"shields" 4000
-		"hull" 7600
+		"cost" 9200000
+		"shields" 3500
+		"hull" 8000
 		"required crew" 6
 		"bunks" 18
-		"mass" 870
-		"drag" 15.8
-		"heat dissipation" .5
+		"mass" 880
+		"drag" 17.6
+		"heat dissipation" .6
 		"fuel capacity" 600
-		"cargo space" 600
+		"cargo space" 550
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -1075,6 +1091,7 @@ ship "Container Transport"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1593,11 +1610,13 @@ ship "Flivver"
 		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
+		"KP-6 Photovoltaic Panel" 3
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16 27
@@ -1638,12 +1657,13 @@ ship "Freighter"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		
-		"nGVF-EE Fuel Cell"
-		"LP036a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -7.5 92
@@ -1871,6 +1891,7 @@ ship "Hauler"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 122.5
@@ -1917,8 +1938,9 @@ ship "Hauler II"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1930,6 +1952,7 @@ ship "Hauler II"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -1976,8 +1999,9 @@ ship "Hauler III"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1989,6 +2013,7 @@ ship "Hauler III"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -2128,7 +2153,7 @@ ship "Heavy Shuttle"
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 130
-		"weapon capacity" 15
+		"weapon capacity" 16
 		"engine capacity" 65
 		weapon
 			"blast radius" 12
@@ -2621,7 +2646,7 @@ ship "Protector"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion large"
-	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than eight turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
 
 
 
@@ -2973,20 +2998,21 @@ ship "Skein"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 29
+		"Meteor Missile Box"
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
-		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
