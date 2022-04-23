@@ -82,11 +82,12 @@ mission "Remnant: Shattered Light 3"
 		personality uninterested waiting staying mute
 		system Lucina
 		ship "Dromedary Specter" "???"
-		dialog '"It is on a crash course for Far Monad!" exclaims Ruach. "Quick, land there!"'
+		dialog `It is on a crash course for Far Monad!" exclaims Ruach. "Quick, land there!`
 	on offer
 		conversation
 			`The group of people standing around a hologram over on one side of the cafeteria. Ruach gestures for you to join them, and introduces you to each of the people in the group. "I would just like to start by offering our thanks for your assistance, Captain <first>. You have sharp eyes to pick this up as early as you did. Other scouts reported it shortly thereafter, but you spotted it first." She gestures to the hologram of the ship floating in front of you.`
-			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the many mysteries here is what has happened to it, and what we should do about it." Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
+			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the many mysteries here is what has happened to it, and what we should do about it."`
+			`	Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
 			`	"As such, we are proposing that we use the same equipment we use for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
 			`	Ruach takes the lead again. "So, Captain, we will need you to bring us in close to the Shattered Light so we can give this a try. Our sentires have reported seeing it in the systems near Coluber, so it may take some searching."`
 				accept
@@ -148,7 +149,7 @@ mission "Remnant: Shattered Light 4"
 			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work; and as such we do not have the resources to spare for it. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho crater... But if you have the resources and interest, the opportunity is there... The shipyard will have more information for you." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"In the meantime, something that you might find useful." Behind her five androids emerge from one of the cargo hold, each one carrying a large trunk of equipment. "These are known as NDR-114 Androids, and were cutting edge innovations back when the exodus occurred. Don't expect too much of them: They are not self-aware, sentient, or even particularly advanced artificial intelligence. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. As we have plenty to study, we thought you might appreciate having a few."`
-			scene "images/outfit/android"
+			scene "outfit/android"
 			`	"Embers light your path, Captain <first>." With that, the crowd disperses.`
 		outfit "NDR-114 Android" 5
 
