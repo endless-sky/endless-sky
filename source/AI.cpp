@@ -663,15 +663,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				const auto enemies = GetShipsList(*it, true);
 				// Check if any of them are currently capable of firing
 				// on this ship, with a slight buffer
-				bool dangerousEnemy = false;
-				for(const auto &enemy : enemies)
-				{
-					if(!enemy->IsDisabled() && enemy->GetTargetShip() == it)
-					{
-						dangerousEnemy = true;
-						break;
-					}
-				}
+				bool isTargeted = enemies.end() != find_if(enemies.begin(), enemies.end(), [&it](const Ship *foe)
+						{ return !foe->IsDisabled() && foe->GetTargetShip() == it; });
 				// In addition to the checking for a significant loss of health,
 				// make sure someone is targeting you
 				if(1. - health > threshold && dangerousEnemy)
