@@ -16,11 +16,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../source/WeightedList.h"
 
 // ... and any system includes needed for the test file.
+#include <cstdint>
+#include <functional>
 #include <stdexcept>
 
 namespace { // test namespace
 
 // #region mock data
+constexpr int64_t CONSTANT = 10;
+
 // WeightedList contains objects with a Weight() function that returns an integer.
 class WeightedObject {
 public:
@@ -30,6 +34,11 @@ public:
 	// This object's weight.
 	int Weight() const { return weight; };
 	int weight;
+
+	// Some methods with a result that can be averaged.
+	constexpr static int64_t CONSTANT = 10;
+	int GetValue() const { return value; }
+	int64_t GetConstant() const { return CONSTANT; }
 };
 // #endregion mock data
 
@@ -127,6 +136,27 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 				THEN( "The list no longer has any weight." ) {
 					CHECK( list.TotalWeight() == 0 );
 				}
+			}
+		}
+	}
+	GIVEN( "A weighted list with content" ) {
+		auto list = WeightedList<WeightedObject>{};
+		list.emplace_back(10, 4);
+		list.emplace_back(20, 1);
+		REQUIRE( list.size() == 2 );
+
+		WHEN( "an average is computed over the same value" ) {
+			auto average = list.Average(std::mem_fn(&WeightedObject::GetConstant));
+			THEN( "the result is independent of choice weights" ) {
+				CHECK( average == CONSTANT );
+			}
+		}
+
+		WHEN( "an average is computed over different values" ) {
+			REQUIRE( CONSTANT != 12 );
+			auto average = list.Average(std::mem_fn(&WeightedObject::GetValue));
+			THEN( "the result is dependent on the choices' weights" ) {
+				CHECK( average == 12 );
 			}
 		}
 	}
