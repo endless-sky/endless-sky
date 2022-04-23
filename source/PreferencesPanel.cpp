@@ -111,7 +111,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		++selected;
 	else if(key == SDLK_UP && selected > 0)
 		--selected;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER)
+	else if(key == SDLK_RETURN)
 		editing = selected;
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
