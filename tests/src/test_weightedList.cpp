@@ -22,11 +22,17 @@ namespace { // test namespace
 
 // #region mock data
 // WeightedList contains objects with a Weight() function that returns an integer.
-class WeightedObject {
-public:
-	WeightedObject(int value, int weight) : value(value), weight(weight) {}
+class Object {
 	// Some data that the object holds.
 	int value;
+public:
+	Object(int value) : value(value) {}
+	int GetValue() const { return value; }
+	bool operator==(const Object &other) const { return this->value == other.value; }
+};
+class WeightedObject : public Object {
+public:
+	WeightedObject(int value, int weight) : Object(value), weight(weight) {}
 	// This object's weight.
 	int Weight() const { return weight; };
 	int weight;
@@ -36,64 +42,64 @@ public:
 
 
 // #region unit tests
-SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
-	auto list = WeightedList<WeightedObject>{};
-	GIVEN( "A new weighted list." ) {
-		THEN( "The list is empty." ) {
-			REQUIRE( list.empty() );
-			REQUIRE( list.size() == 0 );
-		}
-		THEN( "The list has no weight." ) {
-			REQUIRE( list.TotalWeight() == 0 );
+SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
+	GIVEN( "a weighted list" ) {
+		auto list = WeightedList<WeightedObject>{};
+
+		WHEN( "it has no content" ) {
+			THEN( "it has the correct attributes" ) {
+				CHECK( list.empty() );
+				CHECK( list.size() == 0 );
+				CHECK( list.TotalWeight() == 0 );
+				CHECK( std::begin(list) == std::end(list) );
+			}
 		}
 
-		WHEN( "One object is added to the list." ) {
-			list.emplace_back(1, 2);
-			THEN( "The list is no longer empty." ) {
-				REQUIRE_FALSE( list.empty() );
-				REQUIRE( list.size() == 1 );
-			}
-			THEN( "The list has a total weight of 2." ) {
-				REQUIRE( list.TotalWeight() == 2 );
-			}
-			THEN( "The list only returns the one object inserted into it." ) {
-				CHECK( list.Get().value == 1 );
-				CHECK( list.Get().Weight() == 2 );
-			}
-			THEN( "The list is unchanged after calling Get." ) {
+		WHEN( "an object is added" ) {
+			const int objWeight = 2;
+			const auto beforeSize = list.size();
+			const auto beforeWeight = list.TotalWeight();
+
+			const auto obj = WeightedObject(1, objWeight);
+			list.emplace_back(obj);
+
+			THEN( "the list size increases by 1" ) {
 				CHECK_FALSE( list.empty() );
-				CHECK( list.size() == 1 );
-				CHECK( list.TotalWeight() == 2 );
+				CHECK( list.size() == 1 + beforeSize );
+			}
+			THEN( "the list weight increases by the added weight" ) {
+				CHECK( list.TotalWeight() == beforeWeight + objWeight );
 			}
 
-			AND_WHEN( "A second object is added to the list." ) {
-				list.emplace_back(2, 3);
-				THEN( "The list has increased in size and weight." ) {
-					REQUIRE_FALSE( list.empty() );
-					REQUIRE( list.size() == 2 );
-					REQUIRE( list.TotalWeight() == 5 );
+			AND_WHEN( "a second object is added" ) {
+				const auto extraWeight = 3;
+				list.emplace_back(2, extraWeight);
+				THEN( "the list increases in size and weight" ) {
+					CHECK_FALSE( list.empty() );
+					CHECK( list.size() == 2 + beforeSize );
+					CHECK( list.TotalWeight() == beforeWeight + objWeight + extraWeight );
 				}
-				THEN( "The object at the back of the list is the most recently inserted." ) {
-					CHECK( list.back().value == 2 );
-					CHECK( list.back().Weight() == 3 );
+				THEN( "the object at the back of the list is the most recently inserted" ) {
+					CHECK( list.back().GetValue() == 2 );
+					CHECK( list.back().Weight() == extraWeight );
 				}
 
-				AND_WHEN( "A single element is erased." ) {
+				AND_WHEN( "a single element is erased" ) {
 					auto it = list.eraseAt(list.begin());
 
-					THEN( "The list has decreased in size and weight." ) {
+					THEN( "the list decreases in size and weight" ) {
 						CHECK_FALSE( list.empty() );
-						CHECK( list.size() == 1 );
-						CHECK( list.TotalWeight() == 3 );
+						CHECK( list.size() == 1 + beforeSize );
+						CHECK( list.TotalWeight() == beforeWeight + extraWeight );
 					}
-					THEN( "An iterator pointing to the next object in the list is returned." ) {
+					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->value == 2 );
-						CHECK( it->Weight() == 3 );
+						CHECK( it->GetValue() == 2 );
+						CHECK( it->Weight() == extraWeight );
 					}
 				}
 
-				AND_WHEN( "A range is erased from begin to end." ) {
+				AND_WHEN( "A range is erased from begin to end" ) {
 					list.erase(list.begin(), list.end());
 					THEN( "The list is empty." ) {
 						CHECK( list.empty() );
@@ -101,24 +107,35 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					}
 				}
 
-				AND_WHEN( "A range is erased from the middle." ) {
+				AND_WHEN( "a range is erased from the middle" ) {
 					// Add more objects to the list so that a range can be deleted.
 					list.emplace_back(3, 1);
 					list.emplace_back(4, 5);
 					list.emplace_back(5, 3);
 					REQUIRE( list.size() == 5 );
-					REQUIRE( list.TotalWeight() == 14 );
+					CHECK( list.TotalWeight() == 14 );
 
 					// Delete objects with values 1, 2, and 3.
 					auto it = list.erase(list.begin(), list.begin() + 3);
-					THEN( "The list shrinks by the size and weight of the erased range." ) {
+					THEN( "the list shrinks by the size and weight of the erased range" ) {
 						CHECK( list.size() == 2 );
 						CHECK( list.TotalWeight() == 8 );
 					}
-					THEN( "An iterator pointing to the next object in the list is returned." ) {
+					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->value == 4 );
+						CHECK( it->GetValue() == 4 );
 						CHECK( it->Weight() == 5 );
+					}
+				}
+
+				AND_WHEN( "the erase-remove idiom is used" ) {
+					auto removeIt = std::remove_if(list.begin(), list.end(), [](const Object &o) { return o.GetValue() == 1; });
+					REQUIRE( removeIt != list.begin() );
+					REQUIRE( removeIt != list.end() );
+					list.erase(removeIt, list.end());
+
+					THEN( "the total weight is correctly maintained" ) {
+						CHECK( list.TotalWeight() == extraWeight );
 					}
 				}
 			}
@@ -126,11 +143,11 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 			AND_WHEN( "The list is cleared." ) {
 				list.clear();
 				THEN( "The list is now empty." ) {
-					REQUIRE( list.empty() );
-					REQUIRE( list.size() == 0 );
+					CHECK( list.empty() );
+					CHECK( list.size() == 0 );
 				}
 				THEN( "The list no longer has any weight." ) {
-					REQUIRE( list.TotalWeight() == 0 );
+					CHECK( list.TotalWeight() == 0 );
 				}
 			}
 		}
@@ -138,17 +155,13 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
-	auto list = WeightedList<WeightedObject>{};
-	GIVEN( "A new weighed list." ) {
+	GIVEN( "A new weighted list." ) {
+		auto list = WeightedList<WeightedObject>{};
 		REQUIRE( list.empty() );
 		WHEN( "Attempting to get from an empty list." ) {
 			THEN( "A runtime error exception is thrown." ) {
-				try{
-					list.Get();
-					REQUIRE( false );
-				} catch(const std::runtime_error &e) {
-					REQUIRE( true );
-				}
+				CHECK_THROWS_AS( list.Get(), std::runtime_error );
+				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
 			}
 		}
 
@@ -160,9 +173,9 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 				} catch(const std::invalid_argument &e) {
 					REQUIRE( true );
 					AND_THEN( "The invalid object was not inserted into the list." ) {
-						REQUIRE( list.empty() );
-						REQUIRE( list.size() == 0 );
-						REQUIRE( list.TotalWeight() == 0 );
+						CHECK( list.empty() );
+						CHECK( list.size() == 0 );
+						CHECK( list.TotalWeight() == 0 );
 					}
 				}
 			}
