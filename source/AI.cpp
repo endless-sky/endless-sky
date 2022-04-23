@@ -664,20 +664,16 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// Check if any of them are currently capable of firing
 				// on this ship, with a slight buffer
 				bool dangerousEnemy = false;
-				int buffer = 500;
 				for(const auto &enemy : enemies)
 				{
-					double enemyMaxRange = 0.;
-					enemyMaxRange = GetMaxRange(enemy->Weapons());
-					double enemyDistance = enemy->Position().Distance(it->Position());
-					if((enemyMaxRange + buffer) >= enemyDistance && !enemy->IsDisabled())
+					if(!enemy->IsDisabled() && enemy->GetTargetShip() == it)
 					{
 						dangerousEnemy = true;
 						break;
 					}
 				}
 				// In addition to the checking for a significant loss of health,
-				// make sure there is someone around to appease
+				// make sure someone is targeting you
 				if(1. - health > threshold && dangerousEnemy)
 				{
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
