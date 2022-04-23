@@ -47,8 +47,6 @@ namespace {
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
 			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
 
-);
-
 		return cancelers;
 	}
 
@@ -3482,9 +3480,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				name = ship.GetTargetSystem()->Name();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
-				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system. Your fleet will jump when ready.");
+				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system. Your fleet will jump when ready.", Messages::Importance::High);
 			else
-				Messages::Add("Engaging autopilot to jump to the " + name + " system.");
+				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
 		}
 	}
 	else if(activeCommands.Has(Command::SCAN))
