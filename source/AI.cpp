@@ -358,7 +358,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
 		return;
-	
+
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.", Messages::Importance::High);
 
