@@ -67,7 +67,8 @@ jobs:
     - name: Compile
       run: |
         # scons -Qj $(nproc) opengl=gles mode=debug test;
-        cd android && ./gradlew --no-daemon assemble
+        cd android/app && sh ./download_build_dependencies.sh
+        cd .. && ./gradlew --no-daemon assemble
 #    - name: Upload game binary
 #      uses: actions/upload-artifact@v2
 #      with:
