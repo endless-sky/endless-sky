@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstddef>
 #include <numeric>
 #include <stdexcept>
+#include <type_traits>
 #include <vector>
 
 
@@ -29,12 +30,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // sum of the weights of all objects in the list.
 template <class Type>
 class WeightedList {
-public:
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
-
+public:
 	const Type &Get() const;
-	std::size_t TotalWeight() const { return total; }
+	std::size_t TotalWeight() const noexcept { return total; }
+
+	// Average the result of the given function by the choices' weights.
+	template <class Callable>
+	typename std::enable_if<
+		std::is_arithmetic<typename std::result_of<Callable&&(const Type&&)>::type>::value,
+		// The return type of WeightedList::Average, if the above test passes:
+		typename std::result_of<Callable&&(const Type&&)>::type
+	>::type Average(Callable c) const;
+	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }
 	const_iterator begin() const noexcept { return choices.begin(); }
@@ -76,6 +85,24 @@ const Type &WeightedList<Type>::Get() const
 		choice -= choices[index].Weight();
 
 	return choices[index];
+}
+
+
+
+template <class Type>
+template <class Callable>
+typename std::enable_if<
+	std::is_arithmetic<typename std::result_of<Callable&&(const Type&&)>::type>::value,
+	typename std::result_of<Callable&&(const Type&&)>::type
+>::type WeightedList<Type>::Average(Callable fn) const
+{
+	std::size_t tw = TotalWeight();
+	if (tw == 0) return 0;
+
+	auto sum = typename std::result_of<Callable(const Type &)>::type{};
+	for(auto &&item : choices)
+		sum += fn(item) * item.Weight();
+	return sum / tw;
 }
 
 

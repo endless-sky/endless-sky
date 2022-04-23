@@ -16,11 +16,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../source/WeightedList.h"
 
 // ... and any system includes needed for the test file.
+#include <cstdint>
+#include <functional>
 #include <stdexcept>
 
 namespace { // test namespace
 
 // #region mock data
+constexpr int64_t CONSTANT = 10;
+
 // WeightedList contains objects with a Weight() function that returns an integer.
 class Object {
 	// Some data that the object holds.
@@ -36,6 +40,9 @@ public:
 	// This object's weight.
 	int Weight() const { return weight; };
 	int weight;
+
+	// Some methods with a result that can be averaged.
+	int64_t GetConstant() const { return CONSTANT; }
 };
 // #endregion mock data
 
@@ -152,26 +159,116 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 			}
 		}
 	}
+	GIVEN( "A weighted list with content" ) {
+		auto list = WeightedList<WeightedObject>{};
+		list.emplace_back(10, 4);
+		list.emplace_back(20, 1);
+		REQUIRE( list.size() == 2 );
+
+		WHEN( "an average is computed over the same value" ) {
+			auto average = list.Average(std::mem_fn(&WeightedObject::GetConstant));
+			THEN( "the result is independent of choice weights" ) {
+				CHECK( average == CONSTANT );
+			}
+		}
+
+		WHEN( "an average is computed over different values" ) {
+			REQUIRE( CONSTANT != 12 );
+			auto average = list.Average(std::mem_fn(&WeightedObject::GetValue));
+			THEN( "the result is dependent on the choices' weights" ) {
+				CHECK( average == 12 );
+			}
+		}
+	}
+}
+
+SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
+	GIVEN( "a list with no content" ) {
+		const auto list = WeightedList<WeightedObject>{};
+		WHEN( "a random selection is performed" ) {
+			REQUIRE( list.empty() );
+			THEN( "an informative runtime exception is thrown." ) {
+				CHECK_THROWS_AS( list.Get(), std::runtime_error );
+				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
+			}
+		}
+	}
+
+	GIVEN( "a list with one item" ) {
+		auto list = WeightedList<WeightedObject>{};
+		const auto item = WeightedObject(0, 1);
+		list.emplace_back(item);
+		WHEN( "a random selection is performed") {
+			REQUIRE( list.size() == 1 );
+			THEN( "the result is always the item" ) {
+				CHECK( list.Get() == item );
+			}
+		}
+	}
+	GIVEN( "a list with multiple items" ) {
+		auto list = WeightedList<WeightedObject>{};
+		const int weights[] = {1, 10, 100};
+		const auto first = WeightedObject(0, weights[0]);
+		const auto second = WeightedObject(1, weights[1]);
+		const auto third = WeightedObject(2, weights[2]);
+		list.emplace_back(first);
+		list.emplace_back(second);
+		list.emplace_back(third);
+
+		WHEN( "a random selection is performed" ) {
+			auto getSampleSummary = [&list](std::size_t size){
+				auto l = std::map<int, unsigned>{};
+				for(unsigned i = 0; i < size; ++i)
+					++l[list.Get().GetValue()];
+				return l;
+			};
+			// To compare distributions, we use the chi-squared test.
+			auto computeChiStat = [&](std::size_t count) -> double {
+				const auto summary = getSampleSummary(count);
+				auto toExpected = [=](int weight) -> unsigned {
+					return static_cast<double>(weight) / list.TotalWeight() * count;
+				};
+				auto toTermValue = [](unsigned actual, unsigned expected) -> double {
+					double difference = static_cast<double>(std::max(actual, expected) - std::min(actual, expected));
+					return pow(difference, 2) / expected;
+				};
+				return toTermValue(summary.at(first.GetValue()), toExpected(weights[0]))
+					+ toTermValue(summary.at(second.GetValue()), toExpected(weights[1]))
+					+ toTermValue(summary.at(third.GetValue()), toExpected(weights[2]))
+				;
+			};
+			const unsigned totalPicks = 1 << 16;
+			THEN( "each item is selectable in accordance with its weight" ) {
+				// To provide reasonable assurance that we have implemented things properly, without also
+				// causing a large number of spurious failures, we perform a strong goodness-of-fit test
+				// first, and then, if it did not pass, compare a second sample against a lower threshold.
+				// Compare the observed distribution to the expected distribution using the chi-squared
+				// statistic with a two degrees of freedom and significance levels of 0.01 and 0.05.
+				// (Critical values available via NIST: https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm)
+				if (computeChiStat(totalPicks) > 9.210)
+				{
+					INFO("alpha = 0.05");
+					CHECK( computeChiStat(totalPicks) <= 5.991 );
+				} else {
+					SUCCEED( "null hypothesis is not rejected" );
+				}
+			}
+		}
+	}
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 	GIVEN( "A new weighted list." ) {
 		auto list = WeightedList<WeightedObject>{};
 		REQUIRE( list.empty() );
-		WHEN( "Attempting to get from an empty list." ) {
-			THEN( "A runtime error exception is thrown." ) {
-				CHECK_THROWS_AS( list.Get(), std::runtime_error );
-				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
-			}
-		}
 
 		WHEN( "Attempting to insert a negative weighted object." ) {
 			THEN( "An invalid argument exception is thrown." ) {
 				try{
 					list.emplace_back(1, -1);
-					REQUIRE( false );
+					FAIL( "should have thrown" );
 				} catch(const std::invalid_argument &e) {
-					REQUIRE( true );
+					SUCCEED( "threw when item weight was negative" );
 					AND_THEN( "The invalid object was not inserted into the list." ) {
 						CHECK( list.empty() );
 						CHECK( list.size() == 0 );
