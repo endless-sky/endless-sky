@@ -37,41 +37,36 @@ public:
 
 // #region unit tests
 SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
-	auto list = WeightedList<WeightedObject>{};
 	GIVEN( "A new weighted list." ) {
+		auto list = WeightedList<WeightedObject>{};
 		THEN( "The list is empty." ) {
-			REQUIRE( list.empty() );
-			REQUIRE( list.size() == 0 );
+			CHECK( list.empty() );
+			CHECK( list.size() == 0 );
 		}
 		THEN( "The list has no weight." ) {
-			REQUIRE( list.TotalWeight() == 0 );
+			CHECK( list.TotalWeight() == 0 );
 		}
 
 		WHEN( "One object is added to the list." ) {
 			list.emplace_back(1, 2);
 			THEN( "The list is no longer empty." ) {
-				REQUIRE_FALSE( list.empty() );
-				REQUIRE( list.size() == 1 );
+				CHECK_FALSE( list.empty() );
+				CHECK( list.size() == 1 );
 			}
 			THEN( "The list has a total weight of 2." ) {
-				REQUIRE( list.TotalWeight() == 2 );
+				CHECK( list.TotalWeight() == 2 );
 			}
 			THEN( "The list only returns the one object inserted into it." ) {
 				CHECK( list.Get().value == 1 );
 				CHECK( list.Get().Weight() == 2 );
 			}
-			THEN( "The list is unchanged after calling Get." ) {
-				CHECK_FALSE( list.empty() );
-				CHECK( list.size() == 1 );
-				CHECK( list.TotalWeight() == 2 );
-			}
 
 			AND_WHEN( "A second object is added to the list." ) {
 				list.emplace_back(2, 3);
 				THEN( "The list has increased in size and weight." ) {
-					REQUIRE_FALSE( list.empty() );
-					REQUIRE( list.size() == 2 );
-					REQUIRE( list.TotalWeight() == 5 );
+					CHECK_FALSE( list.empty() );
+					CHECK( list.size() == 2 );
+					CHECK( list.TotalWeight() == 5 );
 				}
 				THEN( "The object at the back of the list is the most recently inserted." ) {
 					CHECK( list.back().value == 2 );
@@ -106,8 +101,8 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 					list.emplace_back(3, 1);
 					list.emplace_back(4, 5);
 					list.emplace_back(5, 3);
-					REQUIRE( list.size() == 5 );
-					REQUIRE( list.TotalWeight() == 14 );
+					CHECK( list.size() == 5 );
+					CHECK( list.TotalWeight() == 14 );
 
 					// Delete objects with values 1, 2, and 3.
 					auto it = list.erase(list.begin(), list.begin() + 3);
@@ -126,11 +121,11 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 			AND_WHEN( "The list is cleared." ) {
 				list.clear();
 				THEN( "The list is now empty." ) {
-					REQUIRE( list.empty() );
-					REQUIRE( list.size() == 0 );
+					CHECK( list.empty() );
+					CHECK( list.size() == 0 );
 				}
 				THEN( "The list no longer has any weight." ) {
-					REQUIRE( list.TotalWeight() == 0 );
+					CHECK( list.TotalWeight() == 0 );
 				}
 			}
 		}
@@ -138,17 +133,13 @@ SCENARIO( "Test basic WeightedSet functionality." , "[WeightedList]" ) {
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
-	auto list = WeightedList<WeightedObject>{};
-	GIVEN( "A new weighed list." ) {
+	GIVEN( "A new weighted list." ) {
+		auto list = WeightedList<WeightedObject>{};
 		REQUIRE( list.empty() );
 		WHEN( "Attempting to get from an empty list." ) {
 			THEN( "A runtime error exception is thrown." ) {
-				try{
-					list.Get();
-					REQUIRE( false );
-				} catch(const std::runtime_error &e) {
-					REQUIRE( true );
-				}
+				CHECK_THROWS_AS( list.Get(), std::runtime_error );
+				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
 			}
 		}
 
@@ -160,9 +151,9 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 				} catch(const std::invalid_argument &e) {
 					REQUIRE( true );
 					AND_THEN( "The invalid object was not inserted into the list." ) {
-						REQUIRE( list.empty() );
-						REQUIRE( list.size() == 0 );
-						REQUIRE( list.TotalWeight() == 0 );
+						CHECK( list.empty() );
+						CHECK( list.size() == 0 );
+						CHECK( list.TotalWeight() == 0 );
 					}
 				}
 			}
