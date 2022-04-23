@@ -661,9 +661,24 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				double &threshold = appeasmentThreshold[it.get()];
 				// Get the list of hostile (enemy) in the system
 				const auto enemies = GetShipsList(*it, true);
+				// Check if any of them are currently capable of firing
+				// on this ship, with a slight buffer
+				bool dangerousEnemy = false;
+				int buffer = 500;
+				for(const auto &enemy : enemies)
+				{
+					double enemyMaxRange = 0.;
+					enemyMaxRange = GetMaxRange(enemy->Weapons());
+					double enemyDistance = enemy->Position().Distance(it->Position());
+					if((enemyMaxRange + buffer) >= enemyDistance && !enemy->IsDisabled())
+					{
+						dangerousEnemy = true;
+						break;
+					}
+				}
 				// In addition to the checking for a significant loss of health,
 				// make sure there is someone around to appease
-				if(1. - health > threshold && enemies.size() > 0)
+				if(1. - health > threshold && dangerousEnemy)
 				{
 					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
 					for(const auto &commodity : it->Cargo().Commodities())
@@ -3919,4 +3934,70 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
+}
+
+
+
+double AI::GetMaxRange(const std::vector<Hardpoint> &weapons) const
+{
+	double maxRange = 0;
+	for(const Hardpoint &weapon : weapons)
+	{
+		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		{
+			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+		}
+	}
+	return maxRange;
+}
+
+
+
+double AI::GetMaxRange(const std::vector<Hardpoint> &weapons, bool aimable) const
+{
+	double maxRange = 0;
+	for(const Hardpoint &weapon : weapons)
+	{
+		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		{
+			if((aimable && weapon.CanAim()) || (!aimable && !weapon.CanAim()))
+			{
+				maxRange = max(maxRange, weapon.GetOutfit()->Range());
+			}
+		}
+	}
+	return maxRange;
+}
+
+
+
+double AI::GetMinRange(const std::vector<Hardpoint> &weapons) const
+{
+	double minRange = std::numeric_limits<double>::infinity();
+	for(const Hardpoint &weapon : weapons)
+	{
+		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		{
+			minRange = min(minRange, weapon.GetOutfit()->Range());
+		}
+	}
+	return minRange;
+}
+
+
+
+double AI::GetMinRange(const std::vector<Hardpoint> &weapons, bool aimable) const
+{
+	double minRange = std::numeric_limits<double>::infinity();
+	for(const Hardpoint &weapon : weapons)
+	{
+		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		{
+			if((aimable && weapon.CanAim()) || (!aimable && !weapon.CanAim()))
+			{
+				minRange = min(minRange, weapon.GetOutfit()->Range());
+			}
+		}
+	}
+	return minRange;
 }

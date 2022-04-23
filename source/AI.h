@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "FireCommand.h"
 #include "Point.h"
+#include "Hardpoint.h"
 
 #include <cstdint>
 #include <list>
@@ -175,6 +176,15 @@ private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	// Get the max range of a list of weapons (usually a ship's weapons) excluding any AMs
+	double GetMaxRange(const std::vector<Hardpoint> &weapons) const;
+	// Overload and add the option to specificy forward facing guns or turrets only
+	double GetMaxRange(const std::vector<Hardpoint> &weapons, bool aimable) const;
+	// Get the min range of a list of weapons (usually a ship's weapons) excluding any AMs
+	double GetMinRange(const std::vector<Hardpoint> &weapons) const;
+	// Overload and add the option to specificy forward facing guns or turrets only
+	double GetMinRange(const std::vector<Hardpoint> &weapons, bool aimable) const;
+
 
 
 private:
