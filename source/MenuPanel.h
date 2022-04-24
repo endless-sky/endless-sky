@@ -42,13 +42,17 @@ protected:
 
 
 private:
+	void DrawCredits() const;
+
+
+private:
 	PlayerInfo &player;
 	UI &gamePanels;
 
 	const Interface *mainMenuUi;
 
 	std::vector<std::string> credits;
-	unsigned scroll;
+	unsigned scroll = 0U;
 	bool scrollingPaused = false;
 };
 

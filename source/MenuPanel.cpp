@@ -47,17 +47,25 @@ using namespace std;
 
 namespace {
 	const int scrollSpeed = 2;
+	bool showCreditsWarning = true;
 }
 
 
 
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), scroll(0)
+	: player(player), gamePanels(gamePanels), mainMenuUi(GameData::Interfaces().Get("main menu"))
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
 
-	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	if(mainMenuUi->GetBox("credits").Dimensions())
+		credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	else if(showCreditsWarning)
+	{
+		Files::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		showCreditsWarning = false;
+	}
+
 	if(gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
@@ -66,8 +74,6 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
-
-	mainMenuUi = GameData::Interfaces().Get("main menu");
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
@@ -91,7 +97,6 @@ void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	const Font &font = FontSet::Get(14);
 
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
@@ -128,24 +133,8 @@ void MenuPanel::Draw()
 	mainMenuUi->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
-	const auto creditsRect = mainMenuUi->GetBox("credits");
-	const int top = static_cast<int>(creditsRect.Top());
-	const int bottom = static_cast<int>(creditsRect.Bottom());
-	int y = bottom + 5 - scroll / scrollSpeed;
-	for(const string &line : credits)
-	{
-		float fade = 1.f;
-		if(y < top + 20)
-			fade = max(0.f, (y - top) / 20.f);
-		else if(y > bottom - 20)
-			fade = max(0.f, (bottom - y) / 20.f);
-		if(fade)
-		{
-			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
-			font.Draw(line, Point(creditsRect.Left(), y), color);
-		}
-		y += 20;
-	}
+	if(!credits.empty())
+		DrawCredits();
 }
 
 
@@ -190,4 +179,29 @@ bool MenuPanel::Click(int x, int y, int clicks)
 	}
 
 	return false;
+}
+
+
+
+void MenuPanel::DrawCredits() const
+{
+	const Font &font = FontSet::Get(14);
+	const auto creditsRect = mainMenuUi->GetBox("credits");
+	const int top = static_cast<int>(creditsRect.Top());
+	const int bottom = static_cast<int>(creditsRect.Bottom());
+	int y = bottom + 5 - scroll / scrollSpeed;
+	for(const string &line : credits)
+	{
+		float fade = 1.f;
+		if(y < top + 20)
+			fade = max(0.f, (y - top) / 20.f);
+		else if(y > bottom - 20)
+			fade = max(0.f, (bottom - y) / 20.f);
+		if(fade)
+		{
+			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
+			font.Draw(line, Point(creditsRect.Left(), y), color);
+		}
+		y += 20;
+	}
 }
