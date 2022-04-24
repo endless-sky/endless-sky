@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Planet.h"
 #include "Ship.h"
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "System.h"
@@ -44,7 +44,7 @@ void StartConditions::Load(const DataNode &node)
 	// amend it by using "add description"
 	bool clearDescription = !description.empty();
 
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(const DataNode &child : node)
 	{
 		// Check for the "add" or "remove" keyword.
@@ -150,7 +150,7 @@ void StartConditions::Load(const DataNode &node)
 // Finish loading the ship definitions.
 void StartConditions::FinishLoading()
 {
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(Ship &ship : ships)
 		sf.FinishLoading(ship, true);
 

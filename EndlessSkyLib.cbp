@@ -289,8 +289,8 @@
 		<Unit filename="source/ShipInfoDisplay.h" />
 		<Unit filename="source/ShipInfoPanel.cpp" />
 		<Unit filename="source/ShipInfoPanel.h" />
-		<Unit filename="source/ShipsFactory.cpp" />
-		<Unit filename="source/ShipsFactory.h" />
+		<Unit filename="source/ShipLoader.cpp" />
+		<Unit filename="source/ShipLoader.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
 		<Unit filename="source/ShipyardPanel.h" />
 		<Unit filename="source/ShopPanel.cpp" />

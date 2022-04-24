@@ -48,7 +48,7 @@ class Phrase;
 class Planet;
 class Politics;
 class Ship;
-class ShipsFactory;
+class ShipLoader;
 class Sprite;
 class StarField;
 class StartConditions;
@@ -158,7 +158,7 @@ public:
 	static const std::map<std::string, std::string> &PluginAboutText();
 
 	static MaskManager &GetMaskManager();
-	static const ShipsFactory &GetShipsFactory();
+	static const ShipLoader &GetShipLoader();
 
 	static const TextReplacements &GetTextReplacements();
 

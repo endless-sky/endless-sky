@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Ship.h"
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 #include "System.h"
 
 using namespace std;
@@ -25,7 +25,7 @@ using namespace std;
 
 void Person::Load(const DataNode &node)
 {
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
@@ -58,7 +58,7 @@ void Person::Load(const DataNode &node)
 // Finish loading all the ships in this person specification.
 void Person::FinishLoading()
 {
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(const shared_ptr<Ship> &ship : ships)
 		sf.FinishLoading(*(ship.get()), true);
 }

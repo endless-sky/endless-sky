@@ -55,7 +55,7 @@ class Visual;
 // limits of what the AI knows how to command them to do.
 class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
-	friend class ShipsFactory;
+	friend class ShipLoader;
 
 
 public:

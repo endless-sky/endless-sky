@@ -1,4 +1,4 @@
-/* ShipsFactory.h
+/* ShipLoader.h
 Copyright (c) 2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -18,10 +18,10 @@ class UniverseObjects;
 
 
 
-class ShipsFactory
+class ShipLoader
 {
 public:
-	ShipsFactory(UniverseObjects &universe);
+	ShipLoader(UniverseObjects &universe);
 
 	// Load a given ship from a DataNode.
 	void LoadShip(Ship &ship, const DataNode &node) const;

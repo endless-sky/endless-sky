@@ -1,4 +1,4 @@
-/* ShipsFactory.cpp
+/* ShipLoader.cpp
 Copyright (c) 2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 
 #include "DataNode.h"
 #include "Files.h"
@@ -36,7 +36,7 @@ namespace {
 
 
 
-ShipsFactory::ShipsFactory(UniverseObjects &universe): universe(universe)
+ShipLoader::ShipLoader(UniverseObjects &universe): universe(universe)
 {
 }
 
@@ -48,7 +48,7 @@ ShipsFactory::ShipsFactory(UniverseObjects &universe): universe(universe)
 // parameter by reference, but the ES code allows overwriting ship-
 // definitions by a new load, so we need to support overwriting existing
 // ship definitions here.
-void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
+void ShipLoader::LoadShip(Ship &ship, const DataNode &node) const
 {
 	if(node.Size() >= 2)
 	{
@@ -337,7 +337,7 @@ void ShipsFactory::LoadShip(Ship &ship, const DataNode &node) const
 
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
-void ShipsFactory::FinishLoading(Ship &ship, bool isNewInstance) const
+void ShipLoader::FinishLoading(Ship &ship, bool isNewInstance) const
 {
 	const Ship *model = nullptr;
 	if(GameData::Ships().Has(ship.ModelName()))

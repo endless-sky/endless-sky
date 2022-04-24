@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 #include "System.h"
 #include "UI.h"
 
@@ -84,7 +84,7 @@ void NPC::Load(const DataNode &node)
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "system")
@@ -595,7 +595,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		GameData::GetShipsFactory().FinishLoading(*(result.ships.back().get()), true);
+		GameData::GetShipLoader().FinishLoading(*(result.ships.back().get()), true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();

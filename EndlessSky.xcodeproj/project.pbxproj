@@ -22,7 +22,7 @@
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
-		6A944BEEA8D30C787EC50955 /* ShipsFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E9401FB9E115CED724F641 /* ShipsFactory.cpp */; };
+		6A944BEEA8D30C787EC50955 /* ShipLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E9401FB9E115CED724F641 /* ShipLoader.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
 		88A64339B56EBA1F7923E1C7 /* GameLoadingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7E640C7A366679B27CCADAC /* GameLoadingPanel.cpp */; };
@@ -212,7 +212,7 @@
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
 		19184B47B496B414EC9CE671 /* DamageProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamageProfile.h; path = source/DamageProfile.h; sourceTree = "<group>"; };
 		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
-		197C42369C88116F5FCFC041 /* ShipsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipsFactory.h; path = source/ShipsFactory.h; sourceTree = "<group>"; };
+		197C42369C88116F5FCFC041 /* ShipLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipLoader.h; path = source/ShipLoader.h; sourceTree = "<group>"; };
 		210C41C0BA33F71A694D5F98 /* Bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitset.h; path = source/Bitset.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
@@ -524,7 +524,7 @@
 		E8F645ACA30BA0E95F83803C /* FireCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FireCommand.cpp; path = source/FireCommand.cpp; sourceTree = "<group>"; };
 		EB4645F28765D37290EA6F78 /* FireCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FireCommand.h; path = source/FireCommand.h; sourceTree = "<group>"; };
 		EB634E95A88454ADDB8644B1 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opengl.h; path = source/opengl.h; sourceTree = "<group>"; };
-		F1E9401FB9E115CED724F641 /* ShipsFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipsFactory.cpp; path = source/ShipsFactory.cpp; sourceTree = "<group>"; };
+		F1E9401FB9E115CED724F641 /* ShipLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipLoader.cpp; path = source/ShipLoader.cpp; sourceTree = "<group>"; };
 		F434470BA8F3DE8B46D475C5 /* StartConditionsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartConditionsPanel.h; path = source/StartConditionsPanel.h; sourceTree = "<group>"; };
 		F8C14CFB89472482F77C051D /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weather.h; path = source/Weather.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -848,8 +848,8 @@
 				EB4645F28765D37290EA6F78 /* FireCommand.h */,
 				46B444A6B2A67F93BB272686 /* ByGivenOrder.h */,
 				DE844E2BBF82C39B568527CB /* ByName.h */,
-				F1E9401FB9E115CED724F641 /* ShipsFactory.cpp */,
-				197C42369C88116F5FCFC041 /* ShipsFactory.h */,
+				F1E9401FB9E115CED724F641 /* ShipLoader.cpp */,
+				197C42369C88116F5FCFC041 /* ShipLoader.h */,
 				C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */,
 				19184B47B496B414EC9CE671 /* DamageProfile.h */,
 				5CF247B48EEC7A3C366C1DFA /* DamageDealt.h */,
@@ -1206,7 +1206,7 @@
 				F78A44BAA8252F6D53B24B69 /* TextReplacements.cpp in Sources */,
 				A97C4460852BF852334C0CB1 /* Bitset.cpp in Sources */,
 				CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */,
-				6A944BEEA8D30C787EC50955 /* ShipsFactory.cpp in Sources */,
+				6A944BEEA8D30C787EC50955 /* ShipLoader.cpp in Sources */,
 				027A4E858B292CE9F0A06F89 /* FireCommand.cpp in Sources */,
 				E3D54794A1EEF51CD4859170 /* DamageProfile.cpp in Sources */,
 			);

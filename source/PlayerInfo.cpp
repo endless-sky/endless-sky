@@ -34,7 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -135,7 +135,7 @@ void PlayerInfo::Load(const string &path)
 	bool hasFullClearance = false;
 
 	DataFile file(path);
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(const DataNode &child : file)
 	{
 		// Basic player information and persistent UI settings:
@@ -2475,7 +2475,7 @@ void PlayerInfo::ApplyChanges()
 	GameData::CheckReferences();
 
 	// Now that all outfits have names, we can finish loading the player's ships.
-	const auto &sf = GameData::GetShipsFactory();
+	const auto &sf = GameData::GetShipLoader();
 	for(auto &&ship : ships)
 	{
 		// Government changes may have changed the player's ship swizzles.

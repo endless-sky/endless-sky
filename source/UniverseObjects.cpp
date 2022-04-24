@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
-#include "ShipsFactory.h"
+#include "ShipLoader.h"
 #include "Sprite.h"
 #include "SpriteQueue.h"
 #include "SpriteSet.h"
@@ -124,7 +124,7 @@ void UniverseObjects::FinishLoading()
 	UpdateSystems();
 
 	// And, update the ships with the outfits we've now finished loading.
-	const auto &sf = ShipsFactory(*this);
+	const auto &sf = ShipLoader(*this);
 	for(auto &&it : ships)
 		sf.FinishLoading(it.second, true);
 	for(auto &&it : persons)
@@ -293,7 +293,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	if(debugMode)
 		Files::LogError("Parsing: " + path);
 
-	const auto &sf = ShipsFactory(*this);
+	const auto &sf = ShipLoader(*this);
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
