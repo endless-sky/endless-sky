@@ -659,27 +659,27 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			{
 				double health = .5 * it->Shields() + it->Hull();
 				double &threshold = appeasmentThreshold[it.get()];
-				// Get the list of hostile (enemy) in the system
-				const auto enemies = GetShipsList(*it, true);
-				// Check if any of them are currently capable of firing
-				// on this ship, with a slight buffer
-				bool isTargeted = enemies.end() != find_if(enemies.begin(), enemies.end(), [&it](const Ship *foe)
-						{ return !foe->IsDisabled() && foe->GetTargetShip() == it; });
-				// In addition to the checking for a significant loss of health,
-				// make sure someone is targeting you
-				if(1. - health > threshold && dangerousEnemy)
+				if(1. - health > threshold)
 				{
-					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
-					for(const auto &commodity : it->Cargo().Commodities())
-						if(commodity.second && toDump > 0)
-						{
-							int dumped = min(commodity.second, toDump);
-							it->Jettison(commodity.first, dumped, true);
-							toDump -= dumped;
-						}
-					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
-						+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
-					threshold = (1. - health) + .1;
+					// In addition to checking for a significant loss of health,
+					// make sure someone is targeting you
+					const auto enemies = GetShipsList(*it, true);
+					bool isTargeted = enemies.end() != find_if(enemies.begin(), enemies.end(), [&it](const Ship *foe)
+							{ return !foe->IsDisabled() && foe->GetTargetShip() == it; });
+					if(isTargeted)
+					{
+						int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
+						for(const auto &commodity : it->Cargo().Commodities())
+							if(commodity.second && toDump > 0)
+							{
+								int dumped = min(commodity.second, toDump);
+								it->Jettison(commodity.first, dumped, true);
+								toDump -= dumped;
+							}
+						Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
+							+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
+						threshold = (1. - health) + .1;
+					}
 				}
 			}
 		}
@@ -3923,70 +3923,4 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
-}
-
-
-
-double AI::GetMaxRange(const std::vector<Hardpoint> &weapons) const
-{
-	double maxRange = 0;
-	for(const Hardpoint &weapon : weapons)
-	{
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
-		{
-			maxRange = max(maxRange, weapon.GetOutfit()->Range());
-		}
-	}
-	return maxRange;
-}
-
-
-
-double AI::GetMaxRange(const std::vector<Hardpoint> &weapons, bool aimable) const
-{
-	double maxRange = 0;
-	for(const Hardpoint &weapon : weapons)
-	{
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
-		{
-			if((aimable && weapon.CanAim()) || (!aimable && !weapon.CanAim()))
-			{
-				maxRange = max(maxRange, weapon.GetOutfit()->Range());
-			}
-		}
-	}
-	return maxRange;
-}
-
-
-
-double AI::GetMinRange(const std::vector<Hardpoint> &weapons) const
-{
-	double minRange = std::numeric_limits<double>::infinity();
-	for(const Hardpoint &weapon : weapons)
-	{
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
-		{
-			minRange = min(minRange, weapon.GetOutfit()->Range());
-		}
-	}
-	return minRange;
-}
-
-
-
-double AI::GetMinRange(const std::vector<Hardpoint> &weapons, bool aimable) const
-{
-	double minRange = std::numeric_limits<double>::infinity();
-	for(const Hardpoint &weapon : weapons)
-	{
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
-		{
-			if((aimable && weapon.CanAim()) || (!aimable && !weapon.CanAim()))
-			{
-				minRange = min(minRange, weapon.GetOutfit()->Range());
-			}
-		}
-	}
-	return minRange;
 }
