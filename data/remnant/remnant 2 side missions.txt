@@ -12,7 +12,7 @@
 
 mission "Remnant: Shattered Light 1"
 	name "Shattered Light - Contact"
-	# invisible
+	invisible
 	source
 		government "Remnant"
 	destination "Viminal"
@@ -68,8 +68,9 @@ mission "Remnant: Shattered Light 2"
 
 
 mission "Remnant: Shattered Light 3"
+	invisible
 	name "Ghost Touch"
-	description "Help the Remnant with their experiment."
+	description "Help the Remnant experiment on the Shattered Light."
 	blocked "As you approach the starport your commlink chimes with a message from Ruach requesting that you make space for 13 people as well as 19 cargo."
 	cargo "equipment" 19
 	passengers 13
@@ -98,8 +99,21 @@ mission "Remnant: Shattered Light 3"
 			`	Moments later your ship pings a spot on the landscape ahead indicating a clearing on a low hill. Nodding your assent, the <ship> swoops to a hover just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment settling to the ground on repulsor pallets while the Remnant drop to the ground on what appear to be repulsor jets. A final message appears on your console.`
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
-			
-			
+
+
+
+mission "Remnant: Shattered Light 3b"
+	name "Remnant: Ghost Touch"
+	description "Help the Remnant experiment on the Shattered Light."
+	source "Viminal"
+	destination "Viminal"
+	waypoint "Coluber"
+	to offer
+		has "Remnant: Shattered Light 2: done"
+	to complete
+		has "Remnant: Shattered Light 3: done"
+
+
 
 mission "Remnant: Shattered Light 4"
 	name "Shattered Light"
@@ -110,6 +124,7 @@ mission "Remnant: Shattered Light 4"
 	to offer
 		has "Remnant: Shattered Light 3: done"
 	on offer
+		fail "Remnant: Shattered Light 3b"
 		conversation
 			`Eventually you find a good vantage point several kilometers away where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse for the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air lance upwards, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
 			`	The dust and debris settles within a few minutes, and soon you and the <ship> are skimming over the trees. The approach gives you ample time to appreciate just how massive the Shattered Light is. Literally everything that one could need to lay the foundations for a new colony, packed into a single ship. You note large gashes in the hull, along with massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
@@ -128,6 +143,8 @@ mission "Remnant: Shattered Light 4"
 	on complete
 		payment 250000
 		event "remnant: shattered light"
+		clear "Remnant: Shattered Light 3b: failed"
+		set "Remnant: Shattered Light 3b: done"
 		conversation
 			`	The Shattered Light is so big that traffic control directs the two of you to a large valley next to the spaceport, where you discover that a section of chasm has been covered to create a semi-enclosed area. Judging from the equipment and stacks of freight, this area looks like it is predominantly used by bulk freight shipments and little else. Now, however, as the Shattered Light slowly moves in, a smattering of Pelicans scatter in front of it looking like nothing more than a flock of seagulls around a camel.`
 			`	Down on the ground, you see Ruach and her team exit an airlock on the side of the Shattered Light and jump down to the ground. They gather around, giving hugs. "<first>!" exclaims Ruach. "We have recovered a lost piece of Remnant history. Thank you for helping. I do not know what this will mean for us in the long term, but it will be a lot of careful examination for the next few weeks."`
@@ -153,4 +170,3 @@ mission "Remnant: Shattered Light 4"
 			scene "outfit/android"
 			`	"Embers light your path, Captain <first>." With that, the crowd disperses.`
 		outfit "NDR-114 Android" 5
-
