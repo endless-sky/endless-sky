@@ -381,18 +381,26 @@ ship "Bounder" "Bounder (Luxury)"
 
 ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 	outfits
-		"Quad Blaster Turret" 5
+		"Anti-Missile Turret"
+		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret" 3
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Fusion Reactor"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Water Coolant System"
+		"Cooling Ducts"
 		"Outfits Expansion" 2
-		"Laser Rifle"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
+		"Laser Rifle" 2
+		"Impala Plasma Thruster"
+		"A255 Atomic Steering"
 		"Scram Drive"
+	turret "Quad Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
+	turret "Anti-Missile Turret"
+	turret "Quad Blaster Turret"
 
 
 ship "Bulk Freighter" "Bulk Freighter (Hai)"
@@ -404,16 +412,16 @@ ship "Bulk Freighter" "Bulk Freighter (Hai)"
 		"RT-I Radiothermal"
 		"Hai Ravine Batteries"
 		"D23-QP Shield Generator"
-		"Pulse Rifle" 2
+		"Pulse Rifle" 4
 		"X3700 Ion Thruster"
 		`"Benga" Atomic Steering`
 		`"Basrem" Atomic Steering`
 		"Scram Drive"
 	turret "Pulse Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
 
 
 ship "Bulk Freighter" "Bulk Freighter (Heavy)"
@@ -425,33 +433,67 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 		"Meteor Missile" 60
 		"Fission Reactor"
 		"LP072a Battery Pack"
+		"KP-6 Photovoltaic Panel" 2
 		"D94-YV Shield Generator"
 		"Outfits Expansion"
-		"Laser Rifle" 3
+		"Laser Rifle" 5
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
-	turret "Laser Turret"
+	turret "Heavy Laser Turret"
 	turret "Laser Turret"
 	turret "Heavy Anti-Missile Turret"
+	turret "Laser Turret"
 	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
+
+
+ship "Bulk Freighter" "Bulk Freighter (Long Haul)"
+	outfits
+		"Laser Turret" 2
+		"Anti-Missile Turret" 2
+		"Quad Blaster Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Fission Reactor"
+		"KP-6 Photovoltaic Panel"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		"Ramscoop"
+		"Fuel Pod" 2
+		"Bunk Room"
+		"Laser Rifle" 6
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"X1200 Ion Steering"
+		"Scram Drive"
+	turret "Anti-Missile Turret"
+	turret "Laser Turret"
+	turret "Quad Blaster Turret"
+	turret "Laser Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Bulk Freighter" "Bulk Freighter (Proton)"
 	outfits
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Fission Reactor"
 		"LP072a Battery Pack"
+		"Water Coolant System"
 		"D94-YV Shield Generator"
 		"Outfits Expansion"
-		"Laser Rifle"
+		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Anti-Missile Turret"
 
 
 
@@ -587,20 +629,19 @@ ship "Container Transport" "Container Transport (Hai)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Pulse Turret" 2
-		"Chameleon Anti-Missile" 3
-		"RT-I Radiothermal"
+		"Pulse Turret" 3
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
 		"Hai Ravine Batteries"
 		"D23-QP Shield Generator"
 		"Pulse Rifle" 2
-		"X3700 Ion Thruster"
-		`"Benga" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
 		"Scram Drive"
+	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
 
 
@@ -613,6 +654,7 @@ ship "Container Transport" "Container Transport (Heavy)"
 		"Meteor Missile" 60
 		"Fission Reactor"
 		"LP072a Battery Pack"
+		"KP-6 Photovoltaic Panel" 2
 		"D94-YV Shield Generator"
 		"Outfits Expansion"
 		"Laser Rifle" 3
@@ -620,26 +662,55 @@ ship "Container Transport" "Container Transport (Heavy)"
 		"A375 Atomic Steering"
 		"Scram Drive"
 	turret "Laser Turret"
-	turret "Laser Turret"
+	turret "Heavy Laser Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
+	turret "Laser Turret"
 
 
 ship "Container Transport" "Container Transport (Proton)"
 	outfits
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Anti-Missile Turret"
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
 		"Fission Reactor"
 		"LP072a Battery Pack"
+		"KP-6 Photovoltaic Panel"
 		"D94-YV Shield Generator"
 		"Outfits Expansion"
 		"Laser Rifle"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Scram Drive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Proton Turret"
+	turret "Anti-Missile Turret"
+
+
+ship "Container Transport" "Container Transport (Short Haul)"
+	outfits
+		"Anti-Missile Turret" 2
+		"Blaster Turret" 3
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Bunk Room" 6
+		"Laser Rifle"
+		"A250 Atomic Thruster"
+		"Impala Plasma Steering"
+		"Scram Drive"
+	turret "Anti-Missile Turret"
+	turret "Blaster Turret"
+	turret "Blaster Turret"
+	turret "Blaster Turret"
+	turret "Anti-Missile Turret"
 
 
 
