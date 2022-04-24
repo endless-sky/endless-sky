@@ -271,23 +271,31 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 			plunder[selected].Take(count);
 	}
-	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
+	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP
+			|| key == SDLK_PAGEDOWN || key == SDLK_HOME || key == SDLK_END)
+			&& !isCapturing)
 	{
 		// Scrolling the list of plunder.
 		if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-			Drag(0, 200 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP)));
+			// With 220 px of content and 20 px height per line, there are 11 lines.
+			selected += 11 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+		else if(key == SDLK_HOME)
+			selected = 0;
+		else if(key == SDLK_END)
+			selected = static_cast<int>(plunder.size() - 1);
 		else
 		{
-			if(key == SDLK_UP && selected)
+			if(key == SDLK_UP)
 				--selected;
-			else if(key == SDLK_DOWN && selected < static_cast<int>(plunder.size() - 1))
+			else if(key == SDLK_DOWN)
 				++selected;
-
-			// Scroll down at least far enough to view the current item.
-			double minimumScroll = max(0., 20. * selected - 200.);
-			double maximumScroll = 20. * selected;
-			scroll = max(minimumScroll, min(maximumScroll, scroll));
 		}
+		selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+
+		// Scroll down at least far enough to view the current item.
+		double minimumScroll = max(0., 20. * selected - 200.);
+		double maximumScroll = 20. * selected;
+		scroll = max(minimumScroll, min(maximumScroll, scroll));
 	}
 	else if(key == 'c' && CanCapture())
 	{

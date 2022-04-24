@@ -660,6 +660,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == SDLK_HOME)
+		return DoScroll(max(maxInfobarScroll, maxSidebarScroll));
+	else if(key == SDLK_END)
+		return DoScroll(-max(maxInfobarScroll, maxSidebarScroll));
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
