@@ -896,7 +896,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	engine 10.5 63.5
 	engine -4.5 62.5 .5
 	engine 4.5 62.5 .5
-	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter at the expense of the former, and the central hull can only be recognized as a Raven because of the wings. A third engine bay, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
+	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility. This one appears to have been modified for even more of the latter at the expense of the former, and the central hull can only be recognized as a Raven because of the wings. Two more engine bays, more outfit space, additional shield emitters, and a turret make this already deadly warship appear even more frightening."
 
 
 ship "Marauder Raven" "Marauder Raven (Weapons)"
