@@ -43,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <future>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -124,6 +125,7 @@ private:
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
+	std::map<std::string, std::set<std::string>> disabled;
 
 	// A local cache of the menu background interface for thread-safe access.
 	mutable std::mutex menuBackgroundMutex;
