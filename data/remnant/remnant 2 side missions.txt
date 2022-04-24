@@ -131,7 +131,7 @@ mission "Remnant: Shattered Light 4"
 			`	As you slow to a hover alongside, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the primary weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
 				accept
 	npc accompany
-		government "Remnant"
+		government "Remnant (Research)"
 		personality launching timid escort
 		planet "Far Monad"
 		ship "Dromedary Wreck" "Shattered Light"

@@ -238,8 +238,8 @@ ship Dromedary
 	sprite ship/dromedary
 	thumbnail thumbnail/dromedary
 	attributes
-		#licenses
-		#	Remnant Capital
+		licenses
+			Remnant Capital
 		category "Transport"
 		"cost" 57600000
 		"shields" 15100
@@ -317,6 +317,8 @@ ship "Dromedary" "Dromedary Ghost"
 	"uncapturable"
 	"never disabled"
 	attributes
+		licenses
+			Remnant Capital
 		category "Transport"
 		"cost" 57600000
 		"shields" 5100
@@ -393,6 +395,8 @@ ship "Dromedary" "Dromedary Specter"
 	"uncapturable"
 	"never disabled"
 	attributes
+		licenses
+			Remnant Capital
 		category "Transport"
 		"cost" 57600000
 		"shields" 5100
@@ -466,6 +470,8 @@ ship "Dromedary" "Dromedary Wreck"
 	sprite "ship/dromedary wreck"
 	thumbnail "thumbnail/dromedary wreck"
 	attributes
+		licenses
+			Remnant Capital
 		category "Transport"
 		"cost" 17600000
 		"shields" 5100
