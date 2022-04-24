@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Messages.h"
-#include "Mission.h"
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
@@ -1002,41 +1001,16 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 
 
 
-int PlayerInfo::ReorderShips(const set<int> &fromIndices, int toIndex)
+void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
-	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
-		return -1;
-
-	// When shifting ships up in the list, move to the desired index. If
-	// moving down, move after the selected index.
-	int direction = (*fromIndices.begin() < toIndex) ? 1 : 0;
-
-	// Remove the ships from last to first, so that each removal leaves all the
-	// remaining indices in the set still valid.
-	vector<shared_ptr<Ship>> removed;
-	for(set<int>::const_iterator it = fromIndices.end(); it != fromIndices.begin(); )
+	// Check if the incoming vector contains the same elements
+	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
-		// The "it" pointer doesn't point to the beginning of the list, so it is
-		// safe to decrement it here.
-		--it;
-
-		// Bail out if any invalid indices are encountered.
-		if(static_cast<unsigned>(*it) >= ships.size())
-			return -1;
-
-		removed.insert(removed.begin(), ships[*it]);
-		ships.erase(ships.begin() + *it);
-		// If this index is before the insertion point, removing it causes the
-		// insertion point to shift back one space.
-		if(*it < toIndex)
-			--toIndex;
+		ships = newOrder;
+		flagship.reset();
 	}
-	// Make sure the insertion index is within the list.
-	toIndex = min<int>(toIndex + direction, ships.size());
-	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
-	flagship.reset();
-
-	return toIndex;
+	else
+		throw runtime_error("Cannot reorder ships because the new order does not contain the same ships");
 }
 
 
