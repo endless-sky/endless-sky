@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "FireCommand.h"
 #include "Point.h"
-#include "Hardpoint.h"
 
 #include <cstdint>
 #include <list>
@@ -108,6 +107,7 @@ private:
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
 	// Special personality behaviors.
+	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
@@ -178,7 +178,6 @@ private:
 	void UpdateOrders(const Ship &ship);
 
 
-
 private:
 	// Data from the game engine.
 	const List<Ship> &ships;
@@ -222,7 +221,7 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasmentThreshold;
+	std::map<const Ship *, double> appeasementThreshold;
 
 	std::map<const Ship *, int64_t> shipStrength;
 
