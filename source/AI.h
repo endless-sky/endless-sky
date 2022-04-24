@@ -110,6 +110,7 @@ private:
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
 	// Special personality behaviors.
+	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
@@ -228,7 +229,7 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasmentThreshold;
+	std::map<const Ship *, double> appeasementThreshold;
 
 	std::map<const Ship *, int64_t> shipStrength;
 

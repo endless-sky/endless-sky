@@ -132,8 +132,13 @@ interface "menu background"
 
 
 interface "main menu"
+	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
+	box "credits"
+		from -470 -165
+		to -250 115
+
 	sprite "_menu/side panel"
 		center 360 0
 	
