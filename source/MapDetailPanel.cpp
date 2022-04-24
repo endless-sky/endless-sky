@@ -105,6 +105,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 void MapDetailPanel::Step()
 {
 	MapPanel::Step();
+	GeneratePlanetCards(*selectedSystem);
 	if(!player.GetPlanet())
 		DoHelp("map");
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
@@ -133,10 +134,11 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 		&& point.Y() < Screen::Top() + displayedPlanetsAmount * mapInterface->GetValue("one planet display height"))
 	{
 		double scrollSpeed = mapInterface->GetValue("planet scroll speed");
+		double scroll = MapPlanetCard::getScroll();
 		if(dy > 0. && scroll > dy * scrollSpeed)
-			scroll -= dy * scrollSpeed;
+			MapPlanetCard::setScroll(scroll - dy * scrollSpeed);
 		else if(dy < 0. && scroll - dy * scrollSpeed < maxScroll)
-			scroll -= dy * scrollSpeed;
+			MapPlanetCard::setScroll(scroll - dy * scrollSpeed);
 
 		return true;
 	}
@@ -153,7 +155,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
-		scroll = 0.;
+		MapPlanetCard::setScroll(0.);
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
@@ -255,36 +257,11 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
-		else
+		else if(y < tradeY && y > governmentY)
 		{
-			int planetHeight = static_cast<int>(GameData::Interfaces().Get("map detail panel")->GetValue("one planet display height"));
-			// The player clicked within the region associated with this system's planets.
-			for(const auto &it : planetY)
-				if(y >= it.second && y < it.second + planetHeight)
-				{
-					selectedPlanet = it.first;
-					if(y >= it.second + 30 && y < it.second + planetHeight)
-					{
-						// Figure out what row of the planet info was clicked.
-						int row = (y - (it.second + 30)) / 20;
-						static const int SHOW[4] = {
-							SHOW_REPUTATION, SHOW_SHIPYARD, SHOW_OUTFITTER, SHOW_VISITED};
-						SetCommodity(SHOW[row]);
-
-						// Double-click the Shipyard or Outfitter line to open that map view.
-						if(clicks > 1 && SHOW[row] == SHOW_SHIPYARD)
-						{
-							GetUI()->Pop(this);
-							GetUI()->Push(new MapShipyardPanel(*this, true));
-						}
-						if(clicks > 1 && SHOW[row] == SHOW_OUTFITTER)
-						{
-							GetUI()->Pop(this);
-							GetUI()->Push(new MapOutfitterPanel(*this, true));
-						}
-					}
+			for(auto &card : planetCards)
+				if(card.Click(x, y, clicks))
 					return true;
-				}
 		}
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
@@ -318,8 +295,9 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	// If the system just changed, the planet scroll in the system needs to be reset.
 	if(selectedSystem != previous)
 	{
-		scroll = 0.;
+		MapPlanetCard::setScroll(0.);
 		displayedPlanetsAmount = 0;
+		GeneratePlanetCards(*selectedSystem);
 	}
 	return true;
 }
@@ -351,6 +329,26 @@ bool MapDetailPanel::RClick(int x, int y)
 	}
 
 	return true;
+}
+
+
+
+void MapDetailPanel::GeneratePlanetCards(const System &system)
+{
+	set<const Planet *> shown{};
+	planetCards.clear();
+	for(const StellarObject &object : system.Objects())
+		if(object.HasSprite() && object.HasValidPlanet())
+		{
+			// The same "planet" may appear multiple times in one system,
+			// providing multiple landing and departure points (e.g. ringworlds).
+			const Planet *planet = object.GetPlanet();
+			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
+				continue;
+
+			planetCards.emplace_back(*new MapPlanetCard(object, player.HasVisited(*planet)));
+			shown.insert(planet);
+		}
 }
 
 
@@ -481,7 +479,6 @@ void MapDetailPanel::DrawKey()
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
 {
-	const Color &faint = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 
@@ -530,90 +527,43 @@ void MapDetailPanel::DrawInfo()
 			10.f, 10.f, 0.f, medium);
 
 	uiPoint.Y() += 115.;
-	planetY.clear();
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
 		displayedPlanetsAmount = 0;
-		set<const Planet *> shown;
 		maxScroll = 0.;
-		int scrollInt = static_cast<int>(scroll);
+		int scrollInt = static_cast<int>(MapPlanetCard::getScroll());
 		int planetHeightInt = static_cast<int>(planetHeight);
 		
 		uiPoint.Y() -= scrollInt % planetHeightInt;
 		// For planets that go from being half shown to not shown (and are partially drawn).
 		if(scrollInt % planetHeightInt > planetHeightInt / 2 && scrollInt % planetHeightInt < planetHeightInt)
 			uiPoint.Y() += planetHeight;
-			
-		for(const StellarObject &object : selectedSystem->Objects())
-			if(object.HasSprite() && object.HasValidPlanet())
+		
+		double maxBottomY = mapInterface->GetValue("planet max bottom Y");
+		for(const auto &card : planetCards)
+		{
+			// Fit another planet, if we can.
+			if((MapPlanetCard::getScroll() - planetHeight / 2.) / planetHeight <= displayedPlanetsAmount &&	
+				uiPoint.Y() + scrollInt % planetHeightInt < 
+				Screen::Bottom() - maxBottomY + planetHeightInt / 2)
 			{
-				// The same "planet" may appear multiple times in one system,
-				// providing multiple landing and departure points (e.g. ringworlds).
-				const Planet *planet = object.GetPlanet();
-				if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
-					continue;
+				card.Draw();
 
-				// Fit another planet, if we can.
-				if((scroll - planetHeight / 2.) / planetHeight <= displayedPlanetsAmount &&	
-					uiPoint.Y() + scrollInt % planetHeightInt < 
-					Screen::Bottom() - mapInterface->GetValue("planet max bottom Y") + planetHeightInt / 2)
-				{
-					shown.insert(planet);
-
-					if(planet == selectedPlanet)
-						FillShader::Fill(Point(Screen::Left() + planetHeight - 20., uiPoint.Y()), Point(planetWidth, planetHeight), faint);
-
-					bool hasSpaceport = planet->HasSpaceport();
-
-					const Sprite *sprite = object.GetSprite();
-					int maxSize = static_cast<int>(mapInterface->GetValue("planet icon max size"));
-					double scale = min(.5f, min((maxSize) / sprite->Width(), (maxSize) / sprite->Height()));
-					SpriteShader::Draw(sprite, Point(Screen::Left() + maxSize / 2, uiPoint.Y()), scale);
-					planetY[planet] = uiPoint.Y() - planetHeight / 2.;
-
-					font.Draw({ object.Name(), alignLeft }, uiPoint + Point(0., -52.),
-						planet == selectedPlanet ? medium : dim);
-
-					string reputationLabel = !hasSpaceport ? "No Spaceport" :
-						GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
-						planet->GetGovernment()->IsEnemy() ? "Hostile" :
-						planet->CanLand() ? "Friendly" : "Restricted";
-					font.Draw(reputationLabel, uiPoint + Point(10., -32.), hasSpaceport ? medium : faint);
-					if(commodity == SHOW_REPUTATION)
-						PointerShader::Draw(uiPoint + Point(0. + 10., -25.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
-
-					font.Draw("Shipyard", uiPoint + Point(10., -12.), planet->HasShipyard() ? medium : faint);
-					if(commodity == SHOW_SHIPYARD)
-						PointerShader::Draw(uiPoint + Point(0. + 10., -5.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
-
-					font.Draw("Outfitter", uiPoint + Point(0. + 10., 8.), planet->HasOutfitter() ? medium : faint);
-					if(commodity == SHOW_OUTFITTER)
-						PointerShader::Draw(uiPoint + Point(0. + 10., 15.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
-
-					bool hasVisited = player.HasVisited(*planet);
-					font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)", uiPoint + Point(10., 28.), dim);
-					if(commodity == SHOW_VISITED)
-						PointerShader::Draw(uiPoint + Point(0. + 10., 35), Point(1., 0.), 10.f, 10.f, 0.f, medium);
-
-					uiPoint.Y() += planetHeight;
-				}
-				else
-					maxScroll += planetHeight;
-				++displayedPlanetsAmount;
+				uiPoint.Y() += planetHeight;
 			}
-		uiPoint.Y() += scrollInt % planetHeightInt;
+			else
+				maxScroll += planetHeight;
+			++displayedPlanetsAmount;
+		}
 	}
-
-	uiPoint.Y() += 50.;
-	tradeY = uiPoint.Y() - 95.;
 
 	// Trade sprite goes after the rest.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 
 	uiPoint.X() -= 90.;
-	uiPoint.Y() -= 97.;
+	tradeY = uiPoint.Y() = Screen::Bottom() - mapInterface->GetValue("trade Y from bottom");
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;

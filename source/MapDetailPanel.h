@@ -15,9 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapPanel.h"
 
+#include "MapPlanetCard.h"
 #include "Point.h"
 
 #include <map>
+#include <vector>
 
 class Planet;
 class PlayerInfo;
@@ -49,6 +51,7 @@ protected:
 
 
 private:
+	void GeneratePlanetCards(const System &system);
 	void DrawKey();
 	void DrawInfo();
 	void DrawOrbits();
@@ -63,15 +66,13 @@ private:
 
 	// The amount of planets that are shown on screen.
 	int displayedPlanetsAmount = 0;
-	double scroll = 0.;
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
 
-	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
-	std::map<const Planet *, int> planetY;
+	std::vector<MapPlanetCard> planetCards{};
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
 };

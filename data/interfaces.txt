@@ -120,6 +120,8 @@ interface "map detail panel"
 	value "one planet display height" 130
 	value "planet icon max size" 100
 
+	value "trade Y from bottom" 300
+
 
 
 interface "menu background"
