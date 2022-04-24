@@ -535,13 +535,11 @@ mission "Scientists at the Pub after a Conference"
 		random < 1
 	on offer
 		conversation
-			`After a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting. They stream in from the conference complex across the street. They vary in age, dress, and regional accent, but most have an identical badge dangling from a lanyard around their necks. You notice one that's been dropped on the floor.`
-			`The badge reads "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics".`
-			`The group takes their seats a long table near to where you are sitting.`
+			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading  "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics". The group takes their seats at a long table near to you.`
 			choice
-				`(Order a meal and a drink for yourself.)`
+				`	(Order a meal and listen in to their conversation.)`
 					goto "overheard scientists 1" 
-				`(Find somewhere quieter to spend your limited time planetside)`
+				`	(Find somewhere quieter to relax.)`
 					decline
 			label "overheard scientists 1"
 			`Fragments of conversation make their way to you through the din of the pub:` 
@@ -553,12 +551,12 @@ mission "Scientists at the Pub after a Conference"
 			`---`
 			`"I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
 			choice
-				`(Order another beverage and continue listening.)`
+				`	(Order another beverage and continue listening.)`
 					goto "overheard scientists 2"
-				`(Finish your meal and leave.)`
+				`	(Finish your meal and leave.)`
 					decline
 			label "overheard scientists 2"
-			`The group's conversation grows louder by virtue of both passion for the subject of conversation as well as the effects of a few drinks.`
+			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
 			`"Look, the analysis might be fine, but if they can't even be bothered to provide the version numbers for their analytical software, then it isn't reproducible and that's an automatic 'reject' from me."`
 			`---`
 			`"Can you believe my computer crashed right before I had to present? Good thing I had backups. Two is one and one is none."`
@@ -570,9 +568,9 @@ mission "Scientists at the Pub after a Conference"
 			`"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
 			`"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
 			choice
-				`(Finish up at your own pace.)`
+				`	(Finish up at your own pace.)`
 					goto "overheard scientists 3"
-				`(Settle your bill as quickly as possible and leave.)`
+				`	(Settle your bill as quickly as possible and leave.)`
 					decline
 			label "overheard scientists 3"
 			`"Got your slide deck ready for tomorrow?"`
@@ -583,6 +581,5 @@ mission "Scientists at the Pub after a Conference"
 			`---`
 			`"Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`"That's funny! Teaching undergrads is my one respite from grant-writing!"`
-			choice
-				`You leave after finishing your meal, reflecting on having overheard this slice of a life very different from your own.`
-					decline
+			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
+				decline
