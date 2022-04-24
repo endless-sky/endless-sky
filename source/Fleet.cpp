@@ -540,13 +540,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	if(variants.empty())
-		return 0;
-
-	int64_t sum = 0;
-	for(const auto &variant : variants)
-		sum += variant.Strength() * variant.Weight();
-	return sum / variants.TotalWeight();
+	return variants.Average(Variant::Strength);
 }
 
 
