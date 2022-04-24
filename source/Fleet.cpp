@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <iterator>
 
 using namespace std;
@@ -540,7 +541,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	return variants.Average(Variant::Strength);
+	return variants.Average(std::mem_fn(&Variant::Strength));
 }
 
 
