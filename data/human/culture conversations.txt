@@ -355,6 +355,7 @@ mission "Local Politics"
 
 
 mission "Military Response Test"
+	landing
 	minor
 	source
 		government "Free Worlds"

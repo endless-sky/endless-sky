@@ -2203,7 +2203,12 @@ void Ship::DoGeneration()
 
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
+	{
 		isOverheated = true;
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
