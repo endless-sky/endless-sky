@@ -12,7 +12,7 @@ ship Dromedary
 		"bunks" 300
 		"mass" 2140
 		"drag" 15.1
-		"heat dissipation" .6
+		"heat dissipation" .75
 		"fuel capacity" 900
 		"cargo space" 550
 		"outfit space" 740
@@ -29,8 +29,6 @@ ship Dromedary
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"EMP Torpedo Bay" 4
-		"EMP Torpedo" 39
 		"Thrasher Turret" 2
 		"Point Defense Turret" 2
 
@@ -85,12 +83,12 @@ ship "Dromedary" "Dromedary Ghost"
 	attributes
 		category "Transport"
 		"cost" 57600000
-		"shields" 15100
-		"hull" 9600
+		"shields" 5100
+		"hull" 5600
 		"required crew" 95
 		"bunks" 300
 		"mass" 2140
-		"drag" 15.1
+		"drag" 16.1
 		"heat dissipation" .6
 		"fuel capacity" 900
 		"cargo space" 550
@@ -161,12 +159,12 @@ ship "Dromedary" "Dromedary Specter"
 	attributes
 		category "Transport"
 		"cost" 57600000
-		"shields" 15100
-		"hull" 9600
+		"shields" 5100
+		"hull" 5600
 		"required crew" 95
 		"bunks" 300
 		"mass" 2140
-		"drag" 15.1
+		"drag" 16.1
 		"heat dissipation" .6
 		"fuel capacity" 900
 		"cargo space" 550
@@ -234,17 +232,18 @@ ship "Dromedary" "Dromedary Wreck"
 	attributes
 		category "Transport"
 		"cost" 17600000
-		"shields" 15100
-		"hull" 9600
+		"shields" 5100
+		"hull" 5600
 		"required crew" 95
-		"crew" 0
+		"crew" 13
 		"bunks" 300
 		"mass" 2140
-		"drag" 15.1
+		"drag" 16.1
 		"heat dissipation" .6
 		"fuel capacity" 900
 		"cargo space" 550
 		"outfit space" 740
+		"quantum keystone" 1
 		"weapon capacity" 270
 		"engine capacity" 195
 		"outfit scan power" 15
@@ -305,5 +304,5 @@ ship "Dromedary" "Dromedary Wreck"
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
 	description "The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for cityships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed 'dream cells' built to transport people in bulk."
-	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids heroically continuing their work manage to maintain any degree of functionality."
+	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistantly continuing their work manage to maintain any degree of functionality."
 

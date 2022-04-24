@@ -109,6 +109,12 @@ mission "Remnant: Shattered Light 4"
 	destination "Viminal"
 	to offer
 		has "Remnant: Shattered Light 3: done"
+	on offer
+		conversation
+			`Eventually you find a good vantage point several kilometers away where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse for the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air lance upwards, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
+			`	The dust and debris settles within a few minutes, and soon you and the <ship> are skimming over the trees. The approach gives you ample time to appreciate just how massive the Shattered Light is. Literally everything that one could need to lay the foundations for a new colony, packed into a single ship. You note large gashes in the hull, along with massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
+			`	As you slow to a hover alongside, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the primary weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
+				accept
 	npc accompany
 		government "Remnant"
 		personality launching timid escort
@@ -116,14 +122,9 @@ mission "Remnant: Shattered Light 4"
 		ship "Dromedary Wreck" "Shattered Light"
 	npc evade
 		government "Korath"
-		personality plunders harvests
+		personality entering plunders harvests
 		system Lucina
 		fleet "Korath Ember Waste Raid" 1
-	on offer
-		conversation
-			`Eventually you find a good vantage point several kilometers away where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse for the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air lance upwards, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
-			`	The dust and debris settles within a few minutes, and soon you and the <ship> are skimming over the trees. The approach gives you ample time to appreciate just how massive the Shattered Light is. Literally everything that one could need to lay the foundations for a new colony, packed into a single ship. You note large gashes in the hull, along with massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
-			`	As you slow to a hover alongside, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the primary weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
 	on complete
 		payment 250000
 		event "remnant: shattered light"
