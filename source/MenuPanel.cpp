@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MenuPanel.h"
 
+#include "Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
@@ -26,7 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
@@ -46,7 +46,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	float alpha = 1.f;
 	const int scrollSpeed = 2;
 }
 
@@ -67,13 +66,16 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 		gamePanels.StepAll();
 	}
+
+	if(player.GetPlanet())
+		Audio::PlayMusic(player.GetPlanet()->MusicName());
 }
 
 
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this) && alpha < 1.f)
+	if(GetUI()->IsTop(this))
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -124,21 +126,6 @@ void MenuPanel::Draw()
 	GameData::Interfaces().Get("main menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
-	// TODO: move this animation (e.g. to a non-fullscreen panel).
-	alpha -= .02f;
-	if(alpha > 0.f)
-	{
-		Angle da(6.);
-		Angle a(0.);
-		for(int i = 0; i < 60; ++i)
-		{
-			Color color(.5f * alpha, 0.f);
-			PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
-			a += da;
-		}
-	}
-	// END animation TODO
-
 	// TODO: allow pausing the credits scroll
 	int y = 120 - scroll / scrollSpeed;
 	for(const string &line : credits)
@@ -164,7 +151,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->Pop(this);
+		GetUI()->PopThrough(this);
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());

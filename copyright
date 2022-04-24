@@ -395,7 +395,6 @@ Files:
  images/outfit/nerve?gas*
  images/outfit/catalytic?ramscoop*
  images/outfit/plasma?repeater*
- images/outfit/afterburner*
  images/outfit/anti-missile*
  images/outfit/blaster?turret*
  images/outfit/blaster*
@@ -641,7 +640,6 @@ Files:
  images/land/station11*
  images/land/station13*
  images/land/station14*
- images/land/station15*
  images/land/station16*
  images/land/station17*
  images/land/station18*
@@ -653,8 +651,6 @@ Files:
  images/land/station24*
  images/land/station25*
  images/land/station26*
- images/land/station27*
- images/land/station28*
  images/land/station29*
  images/land/station30*
  images/land/station31*
@@ -706,27 +702,27 @@ License: public-domain
 
 Files:
  images/land/station8*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
+Copyright: MTA of the State of New York
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
 
 Files:
  images/land/station27*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51198503318/in/album-72157603760635197/ and cropped.
+Copyright: Sebastian Sinisterra
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
 
 Files:
  images/land/station28*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51731417282/in/album-72157603760635197/ and cropped.
+Copyright: mwewering
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
 
 Files:
  images/land/station15*
-CopyrightL Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51772186137/in/album-72157603760635197/ and cropped.
+Copyright: mikecook
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
 
 Files:
  images/land/station5.jpg
@@ -748,18 +744,6 @@ Files: sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
-
-Files:
- sounds/jump?drive?red.wav
- sounds/jump?in?red.wav
- sounds/jump?out?red.wav
-Copyright: Zachary Siple
-License: CC-BY-NC-3.0
-Comment: Derived from:
- https://freesound.org/people/tim.kahn/sounds/338969/
- https://freesound.org/people/SoundFX.studio/sounds/456272/
- https://freesound.org/people/Setuniman/sounds/155860/
- https://freesound.org/people/Tuben/sounds/161392/
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -923,14 +907,14 @@ Files:
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
- images/ship/osprey*
  images/ship/quicksilver*
+ images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
- images/thumbnail/osprey*
  images/thumbnail/quicksilver*
+ images/thumbnail/scout*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -1074,9 +1058,9 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/enforcer?confrontation?gear*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+Copyright: 1010Todd (1010todd3d@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Evan Fluharty (under the same license).
+Comment: Derived from works by Becca Tommaso (tommasobecca03@gmail.com) (under the same license) and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/hai?williwaw*
@@ -1339,6 +1323,8 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
+ images/outfit/asteroid?scanner*
+ images/outfit/afterburner*
  images/outfit/nuke*
  images/projectile/missile-0*
  images/projectile/missile-1*
