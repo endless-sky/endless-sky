@@ -551,10 +551,10 @@ mission "Scientists at the Pub after a Conference"
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
 			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
 			` `
-			`	Another scientist is rolling his eyes after a post-mortem of the days events.`
+			`	Another scientist is rolling his eyes after a post-mortem of the day's events.`
 			`	"Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
 			` `
-			`	An exasperated-looking academic is speaking quickly to her friend about what you infer to be a presentation they both heard earlier.`
+			`	An exasperated academic is speaking emphatically to her friend about what you infer to be a presentation they both heard earlier.`
 			`	"I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
 			choice
 				`	(Order another beverage and continue listening.)`
@@ -586,7 +586,7 @@ mission "Scientists at the Pub after a Conference"
 			`	"Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`	"That's funny! Teaching undergrads is my one respite from grant-writing!"`
 			` `
-			`	A sociable, but tired-looking man is sitting back in his chair.`
+			`	A sociable, but exhausted-looking man is sitting back in his chair.`
 			`	"These conferences only last three or four days, but it always feels like it ages you a year."`
 			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
 				decline
