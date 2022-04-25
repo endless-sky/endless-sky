@@ -117,6 +117,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
 		page = key;
+	else if(key == 'o' && page == 'p')
+		SDL_OpenURL(("file://" + Files::Config() + "plugins").c_str());
 	else
 		return false;
 
