@@ -165,17 +165,17 @@ void Fleet::Load(const DataNode &node)
 	{
 		// The "add" and "remove" keywords should never be alone on a line, and
 		// are only valid with "variant" or "personality" definitions.
-		bool adding = (child.Token(0) == "add");
-		bool removing = (child.Token(0) == "remove");
+		bool add = (child.Token(0) == "add");
+		bool remove = (child.Token(0) == "remove");
 		bool hasValue = (child.Size() >= 2);
-		if((adding || removing) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
+		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
 
 		// If this line is an add or remove, the key is the token at index 1.
-		const string &key = child.Token(adding || removing);
+		const string &key = child.Token(add || remove);
 
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -199,9 +199,9 @@ void Fleet::Load(const DataNode &node)
 		}
 		else if(key == "personality")
 			personality.Load(child);
-		else if(key == "variant" && !removing)
+		else if(key == "variant" && !remove)
 		{
-			if(resetVariants && !adding)
+			if(resetVariants && !add)
 			{
 				resetVariants = false;
 				variants.clear();
@@ -212,7 +212,7 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = remove(variants.begin(), variants.end(), toRemove);
+			auto removeIt = std::remove(variants.begin(), variants.end(), toRemove);
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
