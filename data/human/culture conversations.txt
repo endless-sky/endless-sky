@@ -550,10 +550,12 @@ mission "Scientists at the Pub after a Conference"
 			`	"Got your slide deck ready for tomorrow?"`
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
 			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
-			`---`
-			`"Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
-			`---`
-			`"I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
+			` `
+			`Another scientist is rolling his eyes after a post-mortem of the days events:`
+			`	"Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
+			` `
+			`An exasperated-looking academic is speaking quickly to her colleague about what you infer to be a presentation they both heard earlier:`
+			`	"I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
 			choice
 				`	(Order another beverage and continue listening.)`
 					goto "overheard scientists 2"
