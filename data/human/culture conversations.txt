@@ -581,7 +581,7 @@ mission "Scientists at the Pub after a Conference"
 				`	(Settle your bill as quickly as possible and leave.)`
 					decline
 			label "overheard scientists 3"
-			`---`
+			`	Two attendees compare gripes about job demands.`
 			`"Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`"That's funny! Teaching undergrads is my one respite from grant-writing!"`
 			`	A sociable, but tired-looking man is sitting back in his chair.`
