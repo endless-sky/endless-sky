@@ -120,11 +120,11 @@ mission "Pookie, Part 3"
 		has "Pookie, Part 2: done"
 	on offer
 		conversation
-			`The weather on <origin> is unusually rough today: the sky ripples with thunder while rain whips against locals brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
+			`The weather on <origin> is unusually rough today; the sky ripples with thunder while rain whips against locals brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
 			choice
 				`	(Check it out.)`
 				`	(Stay dry in your ship.)`
-					decline
+					defer
 			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
 			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while worming your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
 			`	As you reach the boundary of the track, a loud siren fills the air, causing the crowd to fall silent.`
@@ -135,11 +135,20 @@ mission "Pookie, Part 3"
 			`	When you try to open your mouth to speak, a hand shushes you, appearing as suddenly as it disappears.`
 			label quiet
 			`	The siren ends, and a greasy voice takes its place. "Welcome, one and all, to the grand biweekly hound race! Before we collect your wagers, let me introduce you to our fine racing stock for the night!"`
-			`	A stagehand hops over the fence and towards the cages while the announcer continues. "Bleedbug is a veteran of the racing track. He's only ever come in second and third before, but perhaps this will be his lucky day!" The stagehand removes the covering of the innermost cage as a cheer rings out. The dog inside begins ferociously barking upon seeing the cacophony around him, but you can't help but notice how withered Bleedbug's body looks.`
-			`	"Our second hound is one that you're all familiar with. He's an 18-time victor of the track," the voice pauses, "even if some of his wins were only by technicality." Already, a jeer rises in the audience. The announcer says, "It's the hound that you don't want to beat: Doom." The booing reaches a peak as the stagehand takes the cover off of the largest cage of the lineup, revealing a gargantuan hound. Doom's body is finely shaped, devoid of the malnutrition plaguing his competitor. As soon as he sets his eyes on Doom, Bleedbug stops yelping and retreats to the corner of his cage, whimpering. Pleased at his reputation, Doom lets out a thunderous bark.`
-			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
-			`	"Our final contestant for the day is a most... unorthodox option. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was inside the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
-			`	You are nudged in the back, and you turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 3,000 credits," she says unusually sweetly.`
+			`	A stagehand hops over the fence and towards the cages while the announcer continues. "Bleedbug is a veteran of the racing track. He's never taken the pole position, but perhaps this will be his lucky day!" The stagehand removes the covering of the innermost cage as a cheer rings out. The dog inside begins ferociously barking upon seeing the cacophony around him, but you can't help but notice how withered Bleedbug's body looks.`
+			`	"Our second hound is one that you're all familiar with. He's an 18-time victor of the track," the voice pauses, "even if some of his wins were only by technicality." Already, a jeer is rising in the audience. The announcer says, "It's the hound that you don't want to beat: Doom." The booing reaches a peak as the stagehand takes the cover off of the largest cage of the lineup, revealing a gargantuan hound. Doom's body is finely defined, devoid of his competitor's malnutrition. As soon as he sets his eyes on Doom, Bleedbug stops yelling and retreats to the corner of his cage to whimpering. Pleased at his reputation, Doom lets out a thunderous bark.`
+			choice
+				`	(Join in with the booing.)`
+				`	(Stay silent.)`
+					goto shush
+			`	You pump your fists into the air and join in on the jeering until you are interupted by the announcer speaking.`
+				goto second
+			label shush
+			`	You silently observe the crowd's boos die when the announcer continues speaking.`
+			label second
+			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs, calming observing her surroundings. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
+			`	"Our final contestant for the day is a most... unorthodox choice. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was in the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
+			`	You feel your back get nudged, and turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 3,000 credits," she says unusually sweetly.`
 			branch notpoor
 				"credits" >= 3000
 			choice
@@ -169,7 +178,7 @@ mission "Pookie, Part 3"
 			label next
 			`	After several minutes pass, the siren sounds again, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
 			`	A red light on the ceiling turns on, and the audience shouts, "Three!" A second one lights up. "Two!" A third light, this time yellow, turns on. "One!"`
-			`	A green light appears, and the crowd descends into chaos as the cages' doors begin to open.`
+			`	A green light appears, and the crowd descends into chaos as the cages' doors open.`
 			`	The first to move is Bleedbug, desperate to get as far away from Doom as possible. Doom himself has his eyes set on a different target. As soon as the doors open, he rushes over the lane lines towards Zinc and bares his teeth for a bite. Anticipating this, Zinc dodges beneath the attack, and lunges in with her mouth open. Doom responds to the threat by lowering his head and bashing into her, and the two animals are quickly locked into a brutal mess of teeth and blood. The crowd goes wild at the spectacle unfolding before them as the brawl approaches your section of the fence.`
 			choice
 				`	(Continue watching.)`
@@ -180,7 +189,7 @@ mission "Pookie, Part 3"
 				`	(Get up and run.)`
 					goto live
 				`	(Lie still.)`
-			`	As you lie still, Zinc is kicked on top of you, and Doom dashes in to continue the brawl. Within seconds, your skin is ripped to ribbons by a couple of animals too deep in bloodlust to notice that another body has joined the fray. Your body bleeds out on the floor as the crowd cheers at the slaughter of a fellow human.`
+			`	As you lie still, Zinc is kicked on top of you, and Doom dashes in to continue the brawl. Within seconds, your skin is ripped to ribbons by two animals too deep in bloodlust to notice that another body has joined the fray. Your body bleeds out on the floor as the crowd cheers at the slaughter of a fellow human.`
 				die
 			label live
 			`	You scramble to your feet, barely dodging Zinc as she's kicked back by Doom. As the two animals howl in pain, you push your way through the onlooking crowd, hoping to escape the danger. After getting some distance away, you turn back to see Zinc and Doom continuing to go at each other's throats.`
@@ -188,10 +197,11 @@ mission "Pookie, Part 3"
 			label leave
 			`	You turn and head away from the fence. Moments later, you hear two cries of pain accompanying the sound of wood splintering. Peeking back, you see that Zinc and Doom are fighting outside the track, with the crowd raving at the sight of violence.`
 			label next2
+			choice
 				`	(Stay and watch.)`
 				`	(Leave the building.)`
 					goto nope
-			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain quickly deminish into whimpers as blood spills readily on the complex's floor.`
+			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain deminish into whimpers as blood spills readily on the complex's floor.`
 			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over as the stagehand steps forward holding a shotgun. The crowd is left in silence for a moment, until they start to jeer and boo, angered by the unsatisfying end to the duel. The stagehand responds by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to the gladiator stadium, or a cockfighting ring. But this establishment will not support such degeneracy!" The crowd goes quiet, but out of the corner of your eye, you see some mean-faced figures reach into their pockets.`
 			choice
 				`	(Get out before it gets ugly.)`
@@ -205,7 +215,7 @@ mission "Pookie, Part 3"
 			label nope
 			`	You head towards the exit, pushing aside audience members completely captivated by the fight. Flinging the door open, you hear a gunshot from behind, and decide to run out.`
 			label outside
-			`	As you step outside, you are greeted by sheets of rain lashing you. The strength of the torrent almost causes you to fall backwards, but you manage to steady yourself and begin the trek back to your ship. Halfway there, you feel something touch your lower leg.`
+			`	As you step outside, you are greeted by sheets of rain lashing you. The strength of the torrent almost causes you to fall backwards, but you manage to steady yourself. You take a glance back at the racing complex to find that the guard in the black uniform is missing. You turn back to begin the trek back to your ship, but halfway there, you feel something touch your lower leg.`
 			choice
 				`	(Turn around.)`
 					goto turner
@@ -226,16 +236,18 @@ mission "Pookie, Part 3"
 					goto shoo
 			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
 			branch remember
-				not "bet on hound race"
+				not "bet on hound racing"
 			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 			label remember
+			``
 				accept
 			label shoo
 			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
 			branch rememberdecline
-				not "bet on hound race"
+				not "bet on hound racing"
 			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 			label rememberdecline
+			``
 				decline
 	to complete
 		never
@@ -249,13 +261,14 @@ mission "Pookie, Part 4"
 	landing
 	source
 		attributes "paradise"
+		not planet "Hestia"
 	to offer
 		has "Pookie, Part 3: active"
 	on offer
 		conversation
 			branch repeat
 				has "Pookie, Part 4: offered"
-			`When you land on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was meant to be transported to a vacation before being abducted. When you check back with the receptionist the next morning, she tells you that nobody has approached the offer.`
+			`When you land on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was traveling for a vacation when she was abducted. When you check back with the receptionist the next morning, she tells you that nobody has approached the offer.`
 				decline
 			label repeat
 			`You put a description of Puny on a planetwide notice board. By the time the next day arrives, you've received no offers in response.`
@@ -277,20 +290,20 @@ mission "Pookie, Part 5"
 			label repeat
 			`You approach a receptionist to put a description of Puny on a planetwide notice board.`
 			label next
-			`	The next day, you visit the receptionist. When she sees you, she tells you that she received one message in response, saying that the dog was theirs, and to meet at their house to return her. You copy the address provided and hail down a taxi to travel there.`
-			`	The address brings you to a stark white mansion upon a hill overlooking the ocean. A path snakes down the hill from the entrance of the mansion to a large, gold-plated gate. You bring Puny out from the taxi and ring the doorbell next to the gate. A minute later, a servant in a prim suit approaches. "Welcome to the Pemefrey estate. Please state your business."`
+			`	The next day, you visit the receptionist. When she sees you, she tells you that one message came in response, saying that the dog was theirs. You copy the address provided and hail down a taxi.`
+			`	The address brings you to a stark white mansion upon a cliff overlooking the ocean. A path snakes down from the entrance of the mansion to a large, gold-plated gate. You bring Puny out from the taxi and ring the doorbell next to the gate. A minute later, a servant in a prim suit approaches.`
 			choice
-				`	"I'm <first> <last>."`
-				`	"I'm here to return a dog."`
-					goto inside
+				`	"I'm <first>, and I'm here to return a missing pet."`
+				`	(Wait quietly.)`
+					goto inside	
 			`	The servant says, "Ah, you're the one with the dog. Come inside, mistress has been expecting you."`
 				goto enter
 			label inside
-			`	The servant says, "Ah, yes. Come inside, mistress has been expecting you."`
+			`	When he spots you, the servant says, "Welcome. Come inside, mistress has been expecting you."`
 			label enter
-			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, with an expression of nervous distrust on his face. His checking inspires you to look behind yourself, where you see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her skin is still pale, and her bones still protrude out.`
-			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. "Walters, who is this?" she says in a posh Paradise World accent upon seeing you.`
-			`	"It's the captain who put out a description of Pookie, madam Pemefrey," the servant replies.`
+			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, with an expression of nervous distrust on his face. His checking inspires you to look behind yourself, where you see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her muscles are still scrawny, and she walks with a slight limp.`
+			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. "Walters, who is this?" she says in a posh Paradise World accent.`
+			`	"It's the captain who put out a description of Pookie, Madam Pemefrey," the servant replies.`
 			`	When she hears this, Pemefrey's expression changes from annoyance to elation. "Really? Oh, I can't thank enough for this, dearie. How was it rescuing her? Did you have to barter with smugglers to track her down? Chase down kidnappers to free her? Battle with warlords for her safety?"`
 			choice
 				`	"It was an adventure and a half saving her."`
@@ -313,49 +326,37 @@ mission "Pookie, Part 5"
 			label sawwry
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
 			label explain
-			`	Pemefrey thrusts an accusing finger at Puny. "My dog would never be as scruffy, as ugly, as this mutt! You have tried to deceive me by picking some mongrel off of the street and claiming it as mine!"`
-			`	Walters walks up to her with his hands clasped, saying, "But madam, how could this captain provide such an accurate description of how Pookie was abducted if-"`
+			`	Pemefrey thrusts an accusing finger at Puny. "My dog would never be as scruffy, as ugly, as this mutt! You are trying to deceive me by picking some mongrel off of the street and claiming it as mine!"`
+			`	Walters walks up to his master, saying, "But Madam, how could this captain provide such an accurate description of how Pookie was abducted if-"`
 			`	Pemefrey snaps her head to look back at her servant. "Walters! I thought you were on my side!" She holds her hands on her chest. "It would be such a shame if you ruined our friendship like this. Why, I wouldn't be able to bear to keep you around if you betrayed me like that."`
 			`	Walters shoots a desperate glance at you while stepping back, but otherwise says nothing.`
 			`	"Now, where was I... oh, right. You. Out. Now." She claps twice, jumping Walters to attention, who beckons you and Puny back to the gate of the mansion.`
-			`	You slam the door of the taxi shut as Walters locks the gate. The return journey takes you through a far more humble region of <origin>. The grandiose manors built into impossible locations are far distant, replaced with a small suburban town that would not look out of place in the Dirt Belt were it not for the picturesque mountain ranges surrounding it.`
+			`	You slam the door of the taxi shut as Walters locks the gate. The return journey is somewhat somber, with even Puny wearing a frown. When you look back up from Puny, you find yourself in a far more humble region of <origin>. The grandiose manors built into impossible locations are far distant, replaced with a small suburban town that would not look out of place in the Dirt Belt were it not for the picturesque mountain ranges surrounding it.`
 			choice
-				`	(Take a stop in this town.)`
+				`	(Take a reststop in the town.)`
 				`	(Keep on traveling to the spaceport.)`
 					goto traveler
-			`	You tell the taxi driver to pull into the town, who obliges. You get off in the middle of the commercial district into a bustling crowd of people. As you try to find something to do, you eyes catch upon a storefront with a sign saying 'Antette and Co. Animal Adoption Agency.' You beckon Puny to follow and enter the adoption center.`
+			`	You tell the taxi driver to pull into the town, and get off in the middle of the commercial district into a bustling crowd of people. As you try to find something to do, you eyes catch upon a storefront with a sign saying 'Antette and Co. Animal Adoption Agency.' You beckon Puny to follow and enter the adoption center.`
 				goto within
 			label traveler
 			`	You lean back in your seat and shift your eyes over to the side window. While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says 'Antette and Co. Animal Adoption Agency.' You tell the taxi driver to stop the car and step into the adoption center, leading Puny behind you.`
 			label within
 			`	The inside of the store is decorated with pale blue wallpaper. To either side of you are rows of plastic chairs, and in front of you is a receptionist looking down at his nails. When he notices you, he lazily says, "Welcome, welcome. What can I do for you."`
 			`	You point down at Puny and say, "Could you find a home for this dog?"`
-			`	The receptionist leans over the counter to look. "Wow, that's a sorry-looking puppy. Where did you find it?"`
+			`	The receptionist leans over the counter to look. "Wow, that's a sorry-looking puppy. What's her name?"`
 			choice
-				`	(Tell the whole story.)`
-				`	"It's complicated."`
-					goto skip
-			`	You begin retelling the story of Puny. When you finish, the receptionist's disinterest has completely evaporated. "Woah. She's all the way from Freedom? Man, I... cannot express how cool that is. God, I wish I was a starship captain instead of working at a dead-end receptionist job."`
-			choice
-				`	"Sometimes, life is just like that."`
-				`	"The merchant life isn't all sunshine and rainbows."`
-			`	The receptionist sighs. "Yeah, I guess. By the way, what's the dog's name?"`
-				goto name
-			label skip
-			`	He stares at you with a slightly accusatory expression. "Sure. Now, we should be able to take care of the dog from here. By the way, what is her name?"`
-			label name
-			choice
-				`	"Puny."`
+				`	"It's Puny."`
 					goto unfortunate
-				`	"Pookie."`
+				`	"It's Pookie."`
 				`	"I don't know."`
 					goto figure
-			`	"That's a nice name." The receptionist steps forward to pick up the poodle before saying, "Thank you for taking her to us."`
+			`	"That's a nice name." The receptionist steps forward to pick up the poodle before saying, "We'll make sure Pookie gets plenty of care and love. Thank you for taking her to us."`
 				goto end
 			label unfortunate
-			`	The receptionist winces. "That's... I'm sure we can come up with something better." He steps forward to pick up the poodle before saying, "Thank you for taking her to us."`
+			`	The receptionist winces. "That's... I'm sure we can come up with something better." He steps forward to pick up the poodle before saying, "We'll make sure she gets plenty of care and love. Thank you for taking her to us."`
+				goto end
 			label figure
-			`	"Well, I'm sure we'll figure out a name for her eventually." The receptionist steps forward to pick up the poodle before saying, "Thank you for taking her to us."`
+			`	"Well, I'm sure we'll figure out a name for her eventually." The receptionist steps forward to pick up the poodle before saying, "We'll make sure she gets plenty of care and love. Thank you for taking her to us."`
 			label end
 			`	You exit the center and head back to your taxi for the rest of the trip back to the spaceport.`
 				decline
