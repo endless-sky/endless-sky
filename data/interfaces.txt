@@ -1240,6 +1240,12 @@ interface "main buttons" bottom right
 	button t "_Talk"
 		from -240 -40 to -170 -10
 
+	visible if "can cloak"
+	sprite "ui/dialog cancel"
+		from -330 -50 to -240 0
+	button c "_Cloak"
+		from -320 -40 to -250 -10
+
 	visible if "can scan"
 	sprite "ui/dialog cancel"
 		from -330 -50 to -240 0

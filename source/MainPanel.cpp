@@ -205,6 +205,10 @@ void MainPanel::Draw()
 					info.SetCondition("can attack");
 				}
 			}
+			else if (player.Flagship()->Attributes().Get("cloak"))
+			{
+				info.SetCondition("can cloak");
+			}
 		}
 
 		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
@@ -271,6 +275,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		show.Set(Command::HAIL);
 	else if(key == SDLK_a) // synthetic keypress via UI button, not keyboard
 		Command::Inject(Command::FIGHT);
+	else if(key == SDLK_c)
+		Command::Inject(Command::CLOAK);
 	else
 		return false;
 
