@@ -111,7 +111,6 @@ mission "Pookie, Part 2"
 
 
 mission "Pookie, Part 3"
-	minor
 	name "Stray Dog"
 	description `Find a home for a stray dog you picked up on <origin>. She might have been from one of the Paradise Worlds.`
 	source "Freedom"
@@ -251,8 +250,17 @@ mission "Pookie, Part 3"
 				decline
 	to complete
 		never
-	to fail
-		has "Pookie, Part 5: offered"
+
+
+
+mission "Pookie, Part 3a"
+	invisible
+	source "Freedom"
+	destination "Hestia"
+	to offer
+		has "Pookie, Part 2: done"
+	on complete
+		fail "Pookie, Part 3"
 
 
 
@@ -268,7 +276,8 @@ mission "Pookie, Part 4"
 		conversation
 			branch repeat
 				has "Pookie, Part 4: offered"
-			`When you land on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was traveling for a vacation when she was abducted. When you check back with the receptionist the next morning, she tells you that nobody has approached the offer.`
+			`After landing on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was traveling for a vacation when she was abducted.`
+			`	When you check back with the receptionist the next morning, she tells you that nobody has approached the offer.`
 				decline
 			label repeat
 			`You put a description of Puny on a planetwide notice board. By the time the next day arrives, you've received no offers in response.`
@@ -280,7 +289,7 @@ mission "Pookie, Part 5"
 	landing
 	source "Hestia"
 	to offer
-		has "Pookie, Part 3: active"
+		has "Pookie, Part 3a: done"
 	on offer
 		conversation
 			branch repeat
@@ -301,7 +310,7 @@ mission "Pookie, Part 5"
 			label inside
 			`	When he spots you, the servant says, "Welcome. Come inside, mistress has been expecting you."`
 			label enter
-			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, with an expression of nervous distrust on his face. His checking inspires you to look behind yourself, where you see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her muscles are still scrawny, and she walks with a slight limp.`
+			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, checking that you're still following. You decide to look behind yourself, and see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her body is still little more than skin and bone.`
 			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. "Walters, who is this?" she says in a posh Paradise World accent.`
 			`	"It's the captain who put out a description of Pookie, Madam Pemefrey," the servant replies.`
 			`	When she hears this, Pemefrey's expression changes from annoyance to elation. "Really? Oh, I can't thank enough for this, dearie. How was it rescuing her? Did you have to barter with smugglers to track her down? Chase down kidnappers to free her? Battle with warlords for her safety?"`
