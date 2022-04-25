@@ -8,7 +8,8 @@ If the test file will become cumbersome, a subdirectory structure is OK:
 ```
 tests/
   ...
-  src/ (this directory)
+  unit/ (this directory)
+    include/ (includes used in the tests)
     test_classA.cpp
     ClassToBeTested/
       test_classToBeTested-methodToBeTested.cpp

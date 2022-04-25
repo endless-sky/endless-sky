@@ -164,12 +164,13 @@ env.Default(sky)
 # The testing infrastructure ignores "mode" specification (i.e. we only test optimized output).
 # (If we add support for code coverage output, this will likely need to change.)
 testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
-env.VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
+env.VariantDir(testBuildDirectory, pathjoin("tests", "unit"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
-	 # Add Catch header & additional test includes to the existing search paths
-	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
+	# Add Catch header & additional test includes to the existing search paths.
+	# And make sure we can refer to ../../source type paths from unit-test dir.
+	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')] + [pathjoin('tests', 'unit')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.
