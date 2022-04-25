@@ -113,7 +113,7 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 interface "map detail panel"
 	value "planet max X" 220
-	value "planet start Y" 90
+	value "planet start Y" 95
 	value "planet max bottom Y" 360
 	value "planet display width" 230
 	value "planet scroll speed" 25

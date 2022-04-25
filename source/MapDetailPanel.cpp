@@ -89,6 +89,7 @@ namespace {
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
 {
+	GeneratePlanetCards(system ? *system : *player.GetSystem());
 }
 
 
@@ -98,6 +99,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = player.MapColoring();
+	GeneratePlanetCards(selectedSystem ? *selectedSystem : *player.GetSystem());
 }
 
 
@@ -105,7 +107,6 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 void MapDetailPanel::Step()
 {
 	MapPanel::Step();
-	GeneratePlanetCards(*selectedSystem);
 	if(!player.GetPlanet())
 		DoHelp("map");
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
@@ -131,7 +132,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	if(maxScroll && point.X() < Screen::Left() + mapInterface->GetValue("planet max X")
 		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet start Y")
-		&& point.Y() < Screen::Top() + displayedPlanetsAmount * mapInterface->GetValue("one planet display height"))
+		&& point.Y() < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"))
 	{
 		double scrollSpeed = mapInterface->GetValue("planet scroll speed");
 		double scroll = MapPlanetCard::getScroll();
@@ -260,8 +261,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y < tradeY && y > governmentY)
 		{
 			for(auto &card : planetCards)
-				if(card.Click(x, y, clicks))
-					return true;
+				card.Click(x, y, clicks);
+			return true;
 		}
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
@@ -296,7 +297,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	if(selectedSystem != previous)
 	{
 		MapPlanetCard::setScroll(0.);
-		displayedPlanetsAmount = 0;
 		GeneratePlanetCards(*selectedSystem);
 	}
 	return true;
@@ -336,7 +336,9 @@ bool MapDetailPanel::RClick(int x, int y)
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
 	set<const Planet *> shown{};
+	
 	planetCards.clear();
+	MapPlanetCard::clear();
 	for(const StellarObject &object : system.Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -492,7 +494,7 @@ void MapDetailPanel::DrawInfo()
 
 	// Draw the panel for the planets.
 	Point size(planetWidth, min((Screen::Height() - mapInterface->GetValue("planet max bottom Y")),
-		displayedPlanetsAmount * planetHeight + mapInterface->GetValue("planet start Y") - 20.));
+		planetCards.size() * planetHeight + mapInterface->GetValue("planet start Y")));
 	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
 	
 	// Edges:
@@ -526,11 +528,11 @@ void MapDetailPanel::DrawInfo()
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
 
+	// 90. + a 25. margin.
 	uiPoint.Y() += 115.;
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
-		displayedPlanetsAmount = 0;
 		maxScroll = 0.;
 		int scrollInt = static_cast<int>(MapPlanetCard::getScroll());
 		int planetHeightInt = static_cast<int>(planetHeight);
@@ -540,30 +542,23 @@ void MapDetailPanel::DrawInfo()
 		if(scrollInt % planetHeightInt > planetHeightInt / 2 && scrollInt % planetHeightInt < planetHeightInt)
 			uiPoint.Y() += planetHeight;
 		
-		double maxBottomY = mapInterface->GetValue("planet max bottom Y");
-		for(const auto &card : planetCards)
-		{
-			// Fit another planet, if we can.
-			if((MapPlanetCard::getScroll() - planetHeight / 2.) / planetHeight <= displayedPlanetsAmount &&	
-				uiPoint.Y() + scrollInt % planetHeightInt < 
-				Screen::Bottom() - maxBottomY + planetHeightInt / 2)
-			{
-				card.Draw();
-
-				uiPoint.Y() += planetHeight;
-			}
-			else
+		for(auto &card : planetCards)
+			// Fit another planet, if we can, otherwise give scrolling freedom to reach said planets.
+			if(!card.Draw(uiPoint))
 				maxScroll += planetHeight;
-			++displayedPlanetsAmount;
-		}
+
+		uiPoint.Y() += scrollInt % planetHeightInt;
 	}
+
+	uiPoint.Y() += 45.;
+	tradeY = uiPoint.Y() - 95.;
 
 	// Trade sprite goes after the rest.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 
 	uiPoint.X() -= 90.;
-	tradeY = uiPoint.Y() = Screen::Bottom() - mapInterface->GetValue("trade Y from bottom");
+	uiPoint.Y() -= 97.;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;

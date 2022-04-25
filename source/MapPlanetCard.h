@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
+class Point;
 class StellarObject;
 
 
@@ -32,26 +33,29 @@ public:
 	// Return if this one was clicked, whether or not we did something about it.
 	// Should it return the need to go to the outfitter/shipyard?
 	bool Click(int x, int y, int clicks);
-	// Draw this at the corresponding scoll; if it is not outside bounds.
-	void Draw() const;
+	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
+	// Also adjust the uiPoint.
+	bool Draw(Point &uiPoint);
 
 
 public:
 	static void setScroll(double newScroll);
 	static double getScroll();
+	static void clear();
 
 
 private:
-	void Highlight() const;
+	void Highlight(const Point &uiPoint) const;
 
 
 private:
 	unsigned number;
-	bool isSelected;
+	bool isSelected = false;
 	bool hasVisited;
 	bool hasSpaceport;
 	bool hasOutfitter;
 	bool hasShipyard;
+	double yCoordinate;
 	const Sprite *sprite;
 	std::string reputationLabel;
 	const std::string &planetName;
