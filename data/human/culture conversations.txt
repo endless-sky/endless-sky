@@ -546,7 +546,7 @@ mission "Scientists at the Pub after a Conference"
 			` `
 			`Two of the younger attendees are looking a bit nervous:`
 			`	"I'm so glad to have my presentation over with. I was so worried about having to present on the first day, but now I can finally just relax and actually listen to the other talks!"`
-			`	"Oh definitely! My talk isn't until the third day. I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
+			`	"Oh definitely! I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
 			`	"Got your slide deck ready for tomorrow?"`
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
 			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
