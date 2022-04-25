@@ -140,7 +140,7 @@ mission "Pookie, Part 3"
 				`	(Join in with the booing.)`
 				`	(Stay silent.)`
 					goto shush
-			`	You pump your fists into the air and join in on the jeering until you are interupted by the announcer speaking.`
+			`	You pump your fists into the air and join in on the jeering until you are interrupted by the announcer speaking.`
 				goto second
 			label shush
 			`	You silently observe the crowd's boos die when the announcer continues speaking.`
