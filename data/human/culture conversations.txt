@@ -549,7 +549,7 @@ mission "Scientists at the Pub after a Conference"
 			`	"Oh definitely! My talk isn't until the third day. I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
 			`	"Got your slide deck ready for tomorrow?"`
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
-			`	"Don't worry, you know about your particular area of expertise than they do. You'll be fine."`
+			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
 			`---`
 			`"Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
 			`---`
