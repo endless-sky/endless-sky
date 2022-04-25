@@ -181,11 +181,11 @@ void FormationPattern::Load(const DataNode &node)
 			}
 		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
 			rotatable = child.Value(1);
-		else if(child.Token(0) == "point" && child.Size() >= 3)
+		else if(child.Token(0) == "position" && child.Size() >= 3)
 		{
 			lines.emplace_back();
 			Line &line = lines.back();
-			// A point is a line with just 1 slot.
+			// A single position can be represented by a line with just 1 slot.
 			line.slots = 1;
 			// The specification of the coordinates is on the same line as the keyword.
 			line.start.AddLoad(child);
@@ -209,20 +209,27 @@ void FormationPattern::Load(const DataNode &node)
 					line.endOrAnchor.AddLoad(grand);
 				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
 					line.angle = grand.Value(1);
-				else if(grand.Token(0) == "slots" && grand.Size() >= 2)
+				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
+				{
 					line.slots = static_cast<int>(grand.Value(1) + 0.5);
-				else if(grand.Token(0) == "centered")
-					line.centered = true;
-				else if(grand.Token(0) == "skip")
-					for(int i = 1; i < grand.Size(); ++i)
+					for(const DataNode &grandGrand : grand)
 					{
-						if(grand.Token(i) == "first")
-							line.skipFirst = true;
-						else if(grand.Token(i) == "last")
-							line.skipLast = true;
+						if(grandGrand.Token(0) == "skip")
+							for(int i = 1; i < grandGrand.Size(); ++i)
+							{
+								if(grandGrand.Token(i) == "first")
+									line.skipFirst = true;
+								else if(grandGrand.Token(i) == "last")
+									line.skipLast = true;
+								else
+									grandGrand.PrintTrace("Skipping unrecognized attribute:");
+							}
 						else
 							grand.PrintTrace("Skipping unrecognized attribute:");
 					}
+				}
+				else if(grand.Token(0) == "centered")
+					line.centered = true;
 				else if(grand.Token(0) == "repeat")
 				{
 					line.repeats.emplace_back();
@@ -236,7 +243,7 @@ void FormationPattern::Load(const DataNode &node)
 							repeat.repeatEndOrAnchor.AddLoad(grandGrand);
 						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
 							repeat.repeatAngle = grandGrand.Value(1);
-						else if(grandGrand.Token(0) == "slots" && grandGrand.Size() >= 2)
+						else if(grandGrand.Token(0) == "positions delta" && grandGrand.Size() >= 2)
 							repeat.repeatSlots = static_cast<int>(grandGrand.Value(1) + 0.5);
 						else if(grandGrand.Token(0) == "alternating")
 							repeat.alternating = true;
