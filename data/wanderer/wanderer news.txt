@@ -9,7 +9,43 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+news "wanderer civilians, no dialog 1, pre language"
+	to show
+		not "language: Wanderer"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Alien"
+	message
+		word
+			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to an alien as they rapidly flap away from an automated watering system dousing them where they stood."
+			"Outside the spaceport, you see an alien performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
+			"An alien dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
+news "wanderer civilian's no dialog 2, pre language"
+	to show
+		not "language: Wanderer"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Group of Aliens"
+	message
+		word
+			"While walking through the spaceport, you see several aliens flying through the air, about to land. They do not notice you, and you duck to avoid them."
+			"A crowd of aliens has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
+			"As you walk by a group of aliens, they begin to coo and chitter at you. Evidently they have not seen something like you before."
+			"A group of smaller aliens appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
+			"On a booth near the spaceport, a group of aliens are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
+			"Two aliens are at a table. They appear to be playing some sort of board game using shell pieces."
+			"A crowd of smaller aliens follow a larger alien through the spaceport. The large alien talks to them as they follow, as the small aliens take notes."
+
 news "wanderer civilians, no dialog 1"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -23,6 +59,8 @@ news "wanderer civilians, no dialog 1"
 			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
 
 news "wanderer civilian's no dialog 2"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
