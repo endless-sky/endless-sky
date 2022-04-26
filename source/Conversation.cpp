@@ -299,7 +299,7 @@ void Conversation::Save(DataWriter &out) const
 				}
 				// Check what node the conversation goes to after this.
 				int index = it.next;
-				if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
+				if(index > 0 && !NodeIsValid(index))
 					index = Conversation::DECLINE;
 
 				// Write the node that we go to next after this.
@@ -370,7 +370,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 // Check if the given conversation node is a choice node.
 bool Conversation::IsChoice(int node) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return false;
 
 	return nodes[node].isChoice;
@@ -381,7 +381,7 @@ bool Conversation::IsChoice(int node) const
 // If the given node is a choice node, check how many choices it offers.
 int Conversation::Choices(int node) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return 0;
 
 	return nodes[node].isChoice ? nodes[node].data.size() : 0;
@@ -392,7 +392,7 @@ int Conversation::Choices(int node) const
 // Check if the given conversation node is a conditional branch.
 bool Conversation::IsBranch(int node) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return false;
 
 	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
@@ -403,7 +403,7 @@ bool Conversation::IsBranch(int node) const
 // Check if the given conversation node performs an action.
 bool Conversation::IsAction(int node) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return false;
 
 	return !nodes[node].actions.IsEmpty();
@@ -415,7 +415,7 @@ bool Conversation::IsAction(int node) const
 const ConditionSet &Conversation::Conditions(int node) const
 {
 	static ConditionSet empty;
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return empty;
 
 	return nodes[node].conditions;
@@ -427,7 +427,7 @@ const ConditionSet &Conversation::Conditions(int node) const
 const GameAction &Conversation::GetAction(int node) const
 {
 	static GameAction empty;
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return empty;
 
 	return nodes[node].actions;
@@ -440,8 +440,7 @@ const string &Conversation::Text(int node, int choice) const
 {
 	static const string empty;
 
-	if(static_cast<unsigned>(node) >= nodes.size()
-			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
+	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
 		return empty;
 
 	return nodes[node].data[choice].text;
@@ -452,7 +451,7 @@ const string &Conversation::Text(int node, int choice) const
 // Get the scene image, if any, associated with the given node.
 const Sprite *Conversation::Scene(int node) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size())
+	if(!NodeIsValid(node))
 		return nullptr;
 
 	return nodes[node].scene;
@@ -463,8 +462,7 @@ const Sprite *Conversation::Scene(int node) const
 // Find out where the conversation goes if the given option is chosen.
 int Conversation::NextNode(int node, int choice) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size()
-			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
+	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
 		return DECLINE;
 
 	return nodes[node].data[choice].next;
@@ -475,7 +473,7 @@ int Conversation::NextNode(int node, int choice) const
 // Return whether the text has failed conditions and should be skipped
 bool Conversation::ShouldSkipText(const map<string, int64_t> &vars, int node, int choice) const
 {
-	if(static_cast<unsigned>(node) >= nodes.size() || static_cast<unsigned>(choice) >= nodes[node].data.size())
+	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
 		return false;
 	const auto &data = nodes[node].data[choice];
 	if(data.conditions.IsEmpty())
@@ -597,4 +595,33 @@ void Conversation::AddNode()
 {
 	nodes.emplace_back();
 	nodes.back().data.emplace_back("", nodes.size());
+}
+
+
+
+// Returns true if the given node index is in the range of valid nodes for this
+// Conversation.
+bool Conversation::NodeIsValid(int node) const
+{
+	if(node < 0)
+		return false;
+	else
+		return static_cast<unsigned>(node) < nodes.size();
+}
+
+
+
+// Returns true if the given node index is in the range of valid nodes for this
+// Conversation *and* the given node has choices *and* the given choice index
+// is in the range of valid choices for the given node.
+bool Conversation::ChoiceIsValid(int node, int choice) const
+{
+	if(!NodeIsValid(node))
+		return false;
+	else if(choice < 0)
+		return false;
+	else if(!IsChoice(node))
+		return false;
+	else
+		return static_cast<unsigned>(choice) < nodes[node].data.size();
 }

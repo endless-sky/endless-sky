@@ -149,6 +149,15 @@ private:
 	// Add an "empty" node. It will contain one empty line of text, with its
 	// goto link set to fall through to the next node.
 	void AddNode();
+	// Returns true if the given node index is in the range of valid nodes for
+	// this Conversation.
+	// Note: The "outcomes" listed above do *not* refer to nodes *within* the
+	// Conversation, and are therefore considered invalid by this function!
+	bool NodeIsValid(int node) const;
+	// Returns true if the given node index is in the range of valid nodes for
+	// this Conversation *and* the given node has choices *and* the given
+	// choice index is in the range of valid choices for the given node.
+	bool ChoiceIsValid(int node, int choice) const;
 
 
 private:
