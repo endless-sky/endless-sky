@@ -135,12 +135,12 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
-				nodes.back().data.emplace_back(grand.Token(0), nodes.size());
-				nodes.back().data.back().text += '\n';
+				nodes.back().elements.emplace_back(grand.Token(0), nodes.size());
+				nodes.back().elements.back().text += '\n';
 
 				LoadGotos(grand);
 			}
-			if(nodes.back().data.empty())
+			if(nodes.back().elements.empty())
 			{
 				if(!foundErrors)
 					child.PrintTrace("Warning: Conversation contains an empty \"choice\" node:");
@@ -163,14 +163,14 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			for(int i = 1; i <= 2; ++i)
 			{
 				// If no link is provided, just go to the next node.
-				nodes.back().data.emplace_back("", nodes.size());
+				nodes.back().elements.emplace_back("", nodes.size());
 				if(child.Size() > i)
 				{
 					int index = TokenIndex(child.Token(i));
 					if(!index)
 						Goto(child.Token(i), nodes.size() - 1, i - 1);
 					else if(index < 0)
-						nodes.back().data.back().next = index;
+						nodes.back().elements.back().next = index;
 				}
 			}
 		}
@@ -195,7 +195,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 				AddNode();
 
 			// Always append a newline to the end of the text.
-			nodes.back().data.back().text += child.Token(0) + '\n';
+			nodes.back().elements.back().text += child.Token(0) + '\n';
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
@@ -249,7 +249,7 @@ void Conversation::Save(DataWriter &out) const
 				out.Write("scene", node.scene->Name());
 			if(IsBranch(i))
 			{
-				out.Write("branch", TokenName(node.data[0].next), TokenName(node.data[1].next));
+				out.Write("branch", TokenName(node.elements[0].next), TokenName(node.elements[1].next));
 				// Write the condition set as a child of this node.
 				out.BeginChild();
 				{
@@ -271,10 +271,10 @@ void Conversation::Save(DataWriter &out) const
 			}
 			if(node.isChoice)
 			{
-				out.Write(node.data.empty() ? "name" : "choice");
+				out.Write(node.elements.empty() ? "name" : "choice");
 				out.BeginChild();
 			}
-			for(const auto &it : node.data)
+			for(const auto &it : node.elements)
 			{
 				// Break the text up into paragraphs.
 				for(const string &line : Format::Split(it.text, "\n"))
@@ -326,7 +326,7 @@ bool Conversation::IsEmpty() const noexcept
 bool Conversation::IsValidIntro() const noexcept
 {
 	return any_of(nodes.begin(), nodes.end(), [](const Node &node) noexcept -> bool {
-		return node.isChoice && node.data.empty();
+		return node.isChoice && node.elements.empty();
 	});
 }
 
@@ -356,8 +356,8 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	Conversation result = *this;
 	for(Node &node : result.nodes)
 	{
-		for(Data &choice : node.data)
-			choice.text = Format::Replace(choice.text, subs);
+		for(Element &element : node.elements)
+			element.text = Format::Replace(element.text, subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}
@@ -384,7 +384,7 @@ int Conversation::Choices(int node) const
 	if(!NodeIsValid(node))
 		return 0;
 
-	return nodes[node].isChoice ? nodes[node].data.size() : 0;
+	return nodes[node].isChoice ? nodes[node].elements.size() : 0;
 }
 
 
@@ -395,7 +395,7 @@ bool Conversation::IsBranch(int node) const
 	if(!NodeIsValid(node))
 		return false;
 
-	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
+	return !nodes[node].conditions.IsEmpty() && nodes[node].elements.size() > 1;
 }
 
 
@@ -435,15 +435,15 @@ const GameAction &Conversation::GetAction(int node) const
 
 
 
-// Get the text of the given choice of the given node.
-const string &Conversation::Text(int node, int choice) const
+// Get the text of the given element of the given node.
+const string &Conversation::Text(int node, int element) const
 {
 	static const string empty;
 
-	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
+	if(!NodeIsValid(node) || !ElementIsValid(node, element))
 		return empty;
 
-	return nodes[node].data[choice].text;
+	return nodes[node].elements[element].text;
 }
 
 
@@ -460,22 +460,24 @@ const Sprite *Conversation::Scene(int node) const
 
 
 // Find out where the conversation goes if the given option is chosen.
-int Conversation::NextNode(int node, int choice) const
+int Conversation::NextNode(int node, int element) const
 {
-	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
+	if(!NodeIsValid(node) || !ElementIsValid(node, element))
 		return DECLINE;
 
-	return nodes[node].data[choice].next;
+	return nodes[node].elements[element].next;
 }
 
 
 
 // Returns whether the given node should be displayed.
-bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, int choice) const
+bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, int element) const
 {
-	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
+	if(!NodeIsValid(node))
 		return false;
-	const auto &data = nodes[node].data[choice];
+	else if(IsChoice(node) ? !ElementIsValid(node, element) : element != 0)
+		return false;
+	const auto &data = nodes[node].elements[element];
 	if(data.conditions.IsEmpty())
 		return true;
 	else
@@ -497,17 +499,16 @@ bool Conversation::NodeIsValid(int node) const
 
 
 // Returns true if the given node index is in the range of valid nodes for this
-// Conversation *and* the given choice index is in the range of valid choices
-// for the given node. (If a node is not a choice node, the only valid choice
-// is 0.)
-bool Conversation::ChoiceIsValid(int node, int choice) const
+// Conversation *and* the given element index is in the range of valid elements
+// for the given node.
+bool Conversation::ElementIsValid(int node, int element) const
 {
 	if(!NodeIsValid(node))
 		return false;
-	else if(choice < 0)
+	else if(element < 0)
 		return false;
 	else
-		return static_cast<unsigned>(choice) < nodes[node].data.size();
+		return static_cast<unsigned>(element) < nodes[node].elements.size();
 }
 
 
@@ -530,7 +531,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 				child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
 			else
 			{
-				Goto(child.Token(1), nodes.size() - 1, nodes.back().data.size() - 1);
+				Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
 				hasGoto = true;
 			}
 		}
@@ -541,7 +542,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
 			else
 			{
-				nodes.back().data.back().conditions.Load(child);
+				nodes.back().elements.back().conditions.Load(child);
 				hasCondition = true;
 			}
 		}
@@ -555,7 +556,7 @@ bool Conversation::LoadGotos(const DataNode &node)
 					child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
 				else
 				{
-					nodes.back().data.back().next = index;
+					nodes.back().elements.back().next = index;
 					hasGoto = true;
 				}
 			}
@@ -593,7 +594,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 	auto range = unresolved.equal_range(label);
 
 	for(auto it = range.first; it != range.second; ++it)
-		nodes[it->second.first].data[it->second.second].next = nodes.size();
+		nodes[it->second.first].elements[it->second.second].next = nodes.size();
 
 	unresolved.erase(range.first, range.second);
 
@@ -605,14 +606,14 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 
 // Set up a "goto". Depending on whether the named label has been seen yet
 // or not, it is either resolved immediately or added to the unresolved set.
-void Conversation::Goto(const string &label, int node, int choice)
+void Conversation::Goto(const string &label, int node, int element)
 {
 	auto it = labels.find(label);
 
 	if(it == labels.end())
-		unresolved.insert({label, {node, choice}});
+		unresolved.insert({label, {node, element}});
 	else
-		nodes[node].data[choice].next = it->second;
+		nodes[node].elements[element].next = it->second;
 }
 
 
@@ -622,5 +623,5 @@ void Conversation::Goto(const string &label, int node, int choice)
 void Conversation::AddNode()
 {
 	nodes.emplace_back();
-	nodes.back().data.emplace_back("", nodes.size());
+	nodes.back().elements.emplace_back("", nodes.size());
 }

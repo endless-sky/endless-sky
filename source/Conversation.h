@@ -75,38 +75,51 @@ public:
 	// the user to select; others just automatically continue to another node.
 	// Nodes may also display images or include conditional branches.
 	bool IsChoice(int node) const;
+	// If the given node is a choice node, check how many choices it offers.
 	int Choices(int node) const;
+	// Check if the given conversation node is a conditional branch.
 	bool IsBranch(int node) const;
+	// Check if the given conversation node performs an action.
 	bool IsAction(int node) const;
 	const ConditionSet &Conditions(int node) const;
 	const GameAction &GetAction(int node) const;
-	const std::string &Text(int node, int choice = 0) const;
+	const std::string &Text(int node, int element = 0) const;
 	const Sprite *Scene(int node) const;
-	int NextNode(int node, int choice = 0) const;
+	int NextNode(int node, int element = 0) const;
 	// Returns whether the given node should be displayed.
 	// Returns false if:
-	// - The node (or choice) is out of range
-	// - The node is not a choice node, and choice is non-zero
-	// - The node (or choice) has conditions and those conditions are not met
+	// - The node (or element) is out of range.
+	// - The node is not a choice node, and element is non-zero.
+	// - The node (or element) has conditions and those conditions are not met.
 	// and true otherwise.
-	bool ShouldShowText(const std::map<std::string, int64_t> &vars, int node, int choice = 0) const;
+	bool ShouldShowText(const std::map<std::string, int64_t> &vars, int node, int element = 0) const;
 	// Returns true if the given node index is in the range of valid nodes for
 	// this Conversation.
 	// Note: The "outcomes" listed above do *not* refer to nodes *within* the
 	// Conversation, and are therefore considered invalid by this function!
 	bool NodeIsValid(int node) const;
 	// Returns true if the given node index is in the range of valid nodes for
-	// this Conversation *and* the given choice index is in the range of valid
-	// choices for the given node. (If a node is not a choice node, the only
-	// valid choice is 0.)
-	bool ChoiceIsValid(int node, int choice) const;
+	// this Conversation *and* the given element index is in the range of valid
+	// elements for the given node.
+	bool ElementIsValid(int node, int element) const;
 
 
 private:
-	// This is the data describing a single choice in the conversation node.
-	class Data {
+	// This serves multiple purposes:
+	// - In a regular ole' text node, there's exactly one of these. It contains
+	//   the text data, the index of the next node to unconditionally visit,
+	//   and, optionally, a condition set which, if not met, prevents the text
+	//   from being displayed (without affecting which node is processed next).
+	// - In a choice node, there's one of these for each possible choices,
+	//   containing the text to display, the node the choice leads to, and,
+	//   optionally, the conditions under which to offer the choice.
+	// - In a branch node, there's two of these. The first one contains the
+	//   condition for the branch. If the condition is met, the "next" member
+	//   of the first element is followed. If it's not met, it's the second
+	//   element whose "next" member is followed.
+	class Element {
 	public:
-		explicit Data(std::string text, int next)
+		explicit Element(std::string text, int next)
 			: text(std::move(text)), next(next) {}
 		// The text to display:
 		std::string text;
@@ -131,13 +144,12 @@ private:
 		ConditionSet conditions;
 		// Tasks performed when this node is reached.
 		GameAction actions;
-		// The actual conversation text. If this node is not a choice, there
-		// will only be one entry in the vector. Each entry also stores the
-		// number of the node to go to next, and the conditions under which to
-		// display the text / offer the choice.
-		std::vector<Data> data;
-		// A "choice" node can have only one option, so rather than checking if
-		// data.size() != 1 we must explicitly store whether this is a choice:
+		// See Element's comment above for what this actually entails.
+		std::vector<Element> elements;
+		// This distinguishes "choice" nodes from "branch" or text nodes. If
+		// this value is false, a one-element node is considered text, and a
+		// node with more than one element is considered is considered a
+		// "branch".
 		bool isChoice;
 		// Keep track of whether it's possible to merge future nodes onto this.
 		bool canMergeOnto;
@@ -158,7 +170,7 @@ private:
 	void AddLabel(const std::string &label, const DataNode &node);
 	// Set up a "goto". Depending on whether the named label has been seen yet
 	// or not, it is either resolved immediately or added to the unresolved set.
-	void Goto(const std::string &label, int node, int choice = 0);
+	void Goto(const std::string &label, int node, int element = 0);
 	// Add an "empty" node. It will contain one empty line of text, with its
 	// goto link set to fall through to the next node.
 	void AddNode();
@@ -167,7 +179,7 @@ private:
 private:
 	// While parsing the conversation, keep track of what labels link to what
 	// nodes. If a name appears in a goto before that label appears, remember
-	// what node and what choice it appeared at in order to link it up later.
+	// what node and what element it appeared at in order to link it up later.
 	std::map<std::string, int> labels;
 	std::multimap<std::string, std::pair<int, int>> unresolved;
 	// The actual conversation data:
