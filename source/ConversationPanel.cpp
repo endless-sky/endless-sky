@@ -406,7 +406,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// It seems there was a `choice` node, but all of the available
 			// choices failed their conditions. Fall through to the next node.
 			++node;
-			if(!conversation.NodeInRange(node))
+			if(!conversation.NodeIsValid(node))
 				node = Conversation::DECLINE;
 		}
 		else

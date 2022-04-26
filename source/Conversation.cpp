@@ -484,6 +484,35 @@ bool Conversation::ShouldSkipText(const map<string, int64_t> &vars, int node, in
 
 
 
+// Returns true if the given node index is in the range of valid nodes for this
+// Conversation.
+bool Conversation::NodeIsValid(int node) const
+{
+	if(node < 0)
+		return false;
+	else
+		return static_cast<unsigned>(node) < nodes.size();
+}
+
+
+
+// Returns true if the given node index is in the range of valid nodes for this
+// Conversation *and* the given node has choices *and* the given choice index
+// is in the range of valid choices for the given node.
+bool Conversation::ChoiceIsValid(int node, int choice) const
+{
+	if(!NodeIsValid(node))
+		return false;
+	else if(choice < 0)
+		return false;
+	else if(!IsChoice(node))
+		return false;
+	else
+		return static_cast<unsigned>(choice) < nodes[node].data.size();
+}
+
+
+
 // Parse the children of the given node to see if then contain any "gotos," or
 // "to shows." If so, link them up properly. Return true if gotos or
 // conditions were found.
@@ -595,33 +624,4 @@ void Conversation::AddNode()
 {
 	nodes.emplace_back();
 	nodes.back().data.emplace_back("", nodes.size());
-}
-
-
-
-// Returns true if the given node index is in the range of valid nodes for this
-// Conversation.
-bool Conversation::NodeIsValid(int node) const
-{
-	if(node < 0)
-		return false;
-	else
-		return static_cast<unsigned>(node) < nodes.size();
-}
-
-
-
-// Returns true if the given node index is in the range of valid nodes for this
-// Conversation *and* the given node has choices *and* the given choice index
-// is in the range of valid choices for the given node.
-bool Conversation::ChoiceIsValid(int node, int choice) const
-{
-	if(!NodeIsValid(node))
-		return false;
-	else if(choice < 0)
-		return false;
-	else if(!IsChoice(node))
-		return false;
-	else
-		return static_cast<unsigned>(choice) < nodes[node].data.size();
 }
