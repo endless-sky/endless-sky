@@ -305,7 +305,9 @@ public:
 	void AddCrew(int count);
 	// Check if this is a ship that can be used as a flagship.
 	bool CanBeFlagship() const;
-	// Get and set the number of desired crew members when this is a flagship.
+	// Desired crew members for this ship. Having more than the minimum crew
+	// increases the odds when capturing and when defending from capture.
+	// (Currently only used for the players flagship.)
 	int DesiredCrew() const;
 	void SetDesiredCrew(int count);
 	

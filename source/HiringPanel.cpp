@@ -116,7 +116,14 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 	{
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
-		player.Flagship()->SetDesiredCrew(player.Flagship()->Crew());
+		// If the ship has more than the minimum required crew, then set the desired crew
+		// to the value the player requested. If the ship has the exact amount (or even
+		// less), then the planer apparently doesn't want to hire any extra crew (and
+		// thus we set the desired crew value to zero).
+		if(player.Flagship()->RequiredCrew() < player.Flagship()->Crew())
+			player.Flagship()->SetDesiredCrew(player.Flagship()->Crew());
+		else
+			player.Flagship()->SetDesiredCrew(0);
 		player.UpdateCargoCapacities();
 	}
 	

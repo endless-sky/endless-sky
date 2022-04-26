@@ -799,7 +799,7 @@ void Ship::Save(DataWriter &out) const
 		
 		cargo.Save(out);
 		out.Write("crew", crew);
-		if(Preferences::Has("Rehire extra crew when lost"))
+		if(desiredCrew > 0)
 			out.Write("desired crew", desiredCrew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
