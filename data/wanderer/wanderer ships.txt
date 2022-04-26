@@ -154,6 +154,7 @@ ship "Autumn Leaf"
 		"outfit space" 361
 		"weapon capacity" 103
 		"engine capacity" 117
+		"tactical scan power" 25
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -274,6 +275,7 @@ ship "Tempest"
 		"outfit space" 607
 		"weapon capacity" 271
 		"engine capacity" 122
+		"tactical scan power" 35
 		weapon
 			"blast radius" 280
 			"shield damage" 2800
@@ -373,6 +375,7 @@ ship "Derecho"
 		"outfit space" 796
 		"weapon capacity" 342
 		"engine capacity" 164
+		"tactical scan power" 35
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
@@ -474,6 +477,7 @@ ship "Hurricane"
 		"outfit space" 960
 		"weapon capacity" 428
 		"engine capacity" 140
+		"tactical scan power" 50
 		weapon
 			"blast radius" 400
 			"shield damage" 4000
@@ -641,6 +645,7 @@ ship "Winter Gale"
 		"outfit space" 478
 		"weapon capacity" 171
 		"engine capacity" 120
+		"tactical scan power" 25
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
