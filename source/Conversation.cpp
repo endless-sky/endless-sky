@@ -470,16 +470,18 @@ int Conversation::NextNode(int node, int choice) const
 
 
 
-// Return whether the text has failed conditions and should be skipped
-bool Conversation::ShouldSkipText(const map<string, int64_t> &vars, int node, int choice) const
+// Returns whether the given node should be displayed.
+bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, int choice) const
 {
-	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
+	if(!NodeIsValid(node))
+		return false;
+	else if(IsChoice(node) ? !ChoiceIsValid(node, choice) : choice != 0)
 		return false;
 	const auto &data = nodes[node].data[choice];
 	if(data.conditions.IsEmpty())
-		return false;
+		return true;
 	else
-		return !data.conditions.Test(vars);
+		return data.conditions.Test(vars);
 }
 
 

@@ -83,7 +83,13 @@ public:
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
-	bool ShouldSkipText(const std::map<std::string, int64_t> &vars, int node, int choice = 0) const;
+	// Returns whether the given node should be displayed.
+	// Returns false if:
+	// - The node (or choice) is out of range
+	// - The node is not a choice node, and choice is non-zero
+	// - The node (or choice) has conditions and those conditions are not met
+	// and true otherwise.
+	bool ShouldShowText(const std::map<std::string, int64_t> &vars, int node, int choice = 0) const;
 	// Returns true if the given node index is in the range of valid nodes for
 	// this Conversation.
 	// Note: The "outcomes" listed above do *not* refer to nodes *within* the

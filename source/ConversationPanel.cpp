@@ -373,7 +373,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			{
 				// This is an ordinary conversation node. Perform any necessary text
 				// replacement, then add the text to the display.
-				if(!conversation.ShouldSkipText(player.Conditions(), node))
+				if(conversation.ShouldShowText(player.Conditions(), node))
 				{
 					string altered = Format::Replace(conversation.Text(node), subs);
 					text.emplace_back(altered, conversation.Scene(node), text.empty());
@@ -393,7 +393,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		bool skippedAChoice = false;
 		for(int i = 0; i < conversation.Choices(node); ++i)
 		{
-			if(!conversation.ShouldSkipText(player.Conditions(), node, i))
+			if(conversation.ShouldShowText(player.Conditions(), node, i))
 			{
 				string altered = Format::Replace(conversation.Text(node, i), subs);
 				choices.emplace_back(Paragraph(altered), i);
