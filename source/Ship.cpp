@@ -1957,6 +1957,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 
 	// Boarding:
+	// TODO: fix boarding for fighters and drones
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
@@ -1994,7 +1995,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 
-			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
+			if(distance < 10. && speed < 1. && !turn)
 			{
 				if(cloak)
 				{
@@ -2217,7 +2218,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew()) || IsFighterOutOfEnergy();
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2361,7 +2362,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship."
-	if(CanBeCarried())
+	// TODO: Except when drone or fighter is boarding another drone or fighter.
+	if(CanBeCarried() && !victim.get()->CanBeCarried())
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -2376,13 +2378,16 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
-		victim->isDisabled = false;
+		if(!victim.get()->IsFighterOutOfEnergy())
+			victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
 		{
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
+		if(victim.get()->IsFighterOutOfEnergy() && !IsEnergyLow())
+			TransferEnergy(energy, victim.get());
 		if(helped)
 		{
 			pilotError = 120;
@@ -2620,7 +2625,60 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	bool outOfEnergy = IsFighterOutOfEnergy();
+	return hull < minimumHull || (!crew && needsCrew) || outOfEnergy;
+}
+
+
+
+// Out of energy fighters will be disabled if far away from the parent.  This is
+// so the parent can board the fighter however the fighter needs to not be
+// disabled in order to board the carrier.
+bool Ship::IsFighterOutOfEnergy() const
+{
+	bool closeToParent = true;
+	if(canBeCarried)
+	{
+		if(GetParent())
+		{
+			Point dp = GetParent().get()->Position() - position;
+			Point dv = GetParent().get()->Velocity() - velocity;
+			double distanceFromParent = dp.Length();
+			double speedRelativeToParent = dv.Length();
+			closeToParent = distanceFromParent < 50. && speedRelativeToParent < 1.;
+			// Clear the parent boarding target when fighter boards.
+			if(closeToParent && GetParent().get()->GetTargetShip().get() == this)
+				GetParent().get()->SetTargetShip(nullptr);
+		}
+		else
+			closeToParent = false;
+	}
+	// Return will always be false if not a fighter.
+	return !landingPlanet && !hasBoarded && !closeToParent
+			&& GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.
+			&& GetIdleEnergyPerFrame() < 1.;
+}
+
+
+
+// If a ship is nearly out of battery energy and is slow to charge or no charge,
+// then consider it low on energy.
+bool Ship::IsEnergyLow() const
+{
+	double frames = 60.;
+	double idleEnergy = frames * GetIdleEnergyPerFrame();
+	double maxEnergy = Attributes().Get("energy capacity");
+	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
+	double currentEnergy = GetCurrentEnergy();
+	if(totalConsumption < 0.)
+	{
+		double secondsToEmpty = currentEnergy / (-totalConsumption);
+		// how quickly can it charge under no energy load
+		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : 11.;
+		if(secondsToEmpty < 10. && secondsToFullCharge > 10.)
+			return true;
+	}
+	return false;
 }
 
 
@@ -2891,6 +2949,16 @@ double Ship::TransferFuel(double amount, Ship *to)
 		to->fuel += amount;
 	}
 	fuel -= amount;
+	return amount;
+}
+
+
+// TODO this is broken.  It steals energy from *to
+double Ship::TransferEnergy(double amount, Ship *to)
+{
+	amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+	to->energy += amount;
+	energy -= amount;
 	return amount;
 }
 
@@ -4102,6 +4170,24 @@ double Ship::GetRegenEnergyPerFrame() const
 double Ship::GetCurrentEnergy() const
 {
 	return attributes.Get("energy capacity") ? energy : (hull > 0.) ? 1. : 0.;
+}
+
+
+
+// Energy loss due to ion storms or ion damage.
+double Ship::GetPotentialIonEnergyLoss() const
+{
+	double ionDamageEnergyCost = 0.;
+	if(ionization)
+	{
+		double ionResistance = attributes.Get("ion resistance");
+		double ionEnergy = attributes.Get("ion resistance energy") ? attributes.Get("ion resistance energy") : 0.;
+		ionEnergy /= ionResistance;
+		ionResistance = .99 * ionization - max(0., .99 * ionization - ionResistance);
+		ionDamageEnergyCost = ionization + ionResistance * ionEnergy;
+	}
+	// Return 60 frames worth of ion energy losses so that fighters can act more quickly to return to carrier.
+	return 60. * ionDamageEnergyCost;
 }
 
 
