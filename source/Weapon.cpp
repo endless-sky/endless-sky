@@ -118,8 +118,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 				reload = max(1., value);
 			else if(key == "burst reload")
 				burstReload = max(1., value);
+			else if(key == "spinup reload")
+				spinupReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
+			else if(key == "spinup count")
+				spinupCount = max(1., value);
 			else if(key == "homing")
 				homing = value;
 			else if(key == "missile strength")
@@ -151,6 +155,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "inaccuracy")
 				inaccuracy = value;
+			else if(key == "spinup inaccuracy")
+				spinupInaccuracy = value;
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
@@ -276,6 +282,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	/* spinupReload and spinupInaccuracy could conceptually be larger and smaller than reload and inaccuracy, respectively.
+	if(spinupReload > reload)
+		spinupReload = reload;
+	if(spinupInaccuracy < inaccuracy)
+		spinupInaccuracy = inaccuracy;*/
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 

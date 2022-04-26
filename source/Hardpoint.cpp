@@ -171,6 +171,14 @@ int Hardpoint::BurstRemaining() const
 
 
 
+// Get the number of remaining shots until this hardpoint is at full spinup.
+int Hardpoint::SpinupRemaining() const
+{
+	return spinupCount;
+}
+
+
+
 // Perform one step (i.e. decrement the reload count).
 void Hardpoint::Step()
 {
@@ -189,6 +197,8 @@ void Hardpoint::Step()
 	// continuously if it is not fired this frame.
 	if(burstReload <= 0.)
 		isFiring = false;
+	if(outfit->SpinupCount() && (spinupCount < outfit->SpinupCount() && spinupCount > 0))
+		--spinupCount;
 }
 
 
@@ -335,12 +345,24 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {
 	// Since this is only called internally, it is safe to assume that the
 	// outfit pointer is not null.
-
+	
 	// Reset the reload count.
-	reload += outfit->Reload();
+	if(!outfit->SpinupReload())
+	{
+		reload += outfit->Reload();
+	}
+	else
+	{
+		double spinupPercent = max(0., 1. - (spinupCount / (double)outfit->SpinupCount()));
+		reload += spinupPercent * (double)outfit->SpinupReload() + (1 - spinupPercent) * (double)outfit->Reload();
+	}
 	burstReload += outfit->BurstReload();
 	--burstCount;
 	isFiring = true;
+	if(wasFiring)
+		spinupCount = max(0, --spinupCount);
+	else
+		spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
 
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
