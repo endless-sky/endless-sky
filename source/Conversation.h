@@ -96,8 +96,9 @@ public:
 	// Conversation, and are therefore considered invalid by this function!
 	bool NodeIsValid(int node) const;
 	// Returns true if the given node index is in the range of valid nodes for
-	// this Conversation *and* the given node has choices *and* the given
-	// choice index is in the range of valid choices for the given node.
+	// this Conversation *and* the given choice index is in the range of valid
+	// choices for the given node. (If a node is not a choice node, the only
+	// valid choice is 0.)
 	bool ChoiceIsValid(int node, int choice) const;
 
 

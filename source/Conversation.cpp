@@ -473,9 +473,7 @@ int Conversation::NextNode(int node, int choice) const
 // Returns whether the given node should be displayed.
 bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, int choice) const
 {
-	if(!NodeIsValid(node))
-		return false;
-	else if(IsChoice(node) ? !ChoiceIsValid(node, choice) : choice != 0)
+	if(!NodeIsValid(node) || !ChoiceIsValid(node, choice))
 		return false;
 	const auto &data = nodes[node].data[choice];
 	if(data.conditions.IsEmpty())
@@ -499,15 +497,14 @@ bool Conversation::NodeIsValid(int node) const
 
 
 // Returns true if the given node index is in the range of valid nodes for this
-// Conversation *and* the given node has choices *and* the given choice index
-// is in the range of valid choices for the given node.
+// Conversation *and* the given choice index is in the range of valid choices
+// for the given node. (If a node is not a choice node, the only valid choice
+// is 0.)
 bool Conversation::ChoiceIsValid(int node, int choice) const
 {
 	if(!NodeIsValid(node))
 		return false;
 	else if(choice < 0)
-		return false;
-	else if(!IsChoice(node))
 		return false;
 	else
 		return static_cast<unsigned>(choice) < nodes[node].data.size();
