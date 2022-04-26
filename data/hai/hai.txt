@@ -74,7 +74,7 @@ fleet "Small Hai"
 		"Lightning Bug" 2
 	variant 1
 		"Centipede" 2
-		"Lightning Bug" 
+		"Lightning Bug"
 	variant 1
 		"Grasshopper" 3
 	variant 1
@@ -83,14 +83,14 @@ fleet "Small Hai"
 	variant 1
 		"Grasshopper"
 		"Grasshopper (Tracker)"
-		"Centipede" 
+		"Centipede"
 	variant 1
 		"Lightning Bug" 2
 		"Grasshopper"
 		"Grasshopper (Tracker)"
 	variant 1
 		"Lightning Bug"
-		"Centipede (Pulse)" 
+		"Centipede (Pulse)"
 		"Grasshopper" 2
 
 fleet "Large Hai"
@@ -182,14 +182,14 @@ fleet "Large Hai"
 		"Grasshopper (Tracker)"
 	variant 1
 		"Geocoris"
-		"Shield Beetle (Pulse)" 
+		"Shield Beetle (Pulse)"
 		"Grasshopper"
 		"Grasshopper (Tracker)"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
 		"Aphid" 2
-		"Aphid (Armed)" 
+		"Aphid (Armed)"
 	variant 1
 		"Centipede"
 		"Geocoris (Tracker)"
@@ -419,6 +419,30 @@ outfitter "Hai Advanced"
 	"Cargo Scanner"
 	"Sand Cell"
 
+shipyard "Unfettered Basics"
+	"Lightning Bug"
+	"Water Bug"
+
+outfitter "Unfettered Basics"
+	"Pulse Cannon"
+	"Hai Tracker"
+	"Bullfrog Anti-Missile"
+	"Geode Reactor"
+	"Hai Williwaw Cooling"
+	"Hyperdrive"
+	"Hai Chasm Batteries"
+	"Hai Fissure Batteries"
+	"Supercapacitor"
+	"Cargo Expansion"
+	"Small Bunk Room"
+	"Fuel Pod"
+	"Hai Corundum Regenerator"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	"Local Map"
+	"Quantum Keystone"
+	"Pulse Rifle"
+
 phrase "hai"
 	word
 		"Du"
@@ -535,9 +559,9 @@ phrase "friendly hai"
 		"friendly intentions "
 		"empathy "
 		
-	word 
+	word
 		"and "
-	word 
+	word
 		"peace."
 		"an open heart."
 		"peacefulness."
@@ -566,13 +590,13 @@ phrase "friendly disabled hai"
 phrase "hostile hai"
 	word
 		"You "
-	word 
+	word
 		" came to "
 		" entered "
 	word
 		" Hai "
 		" our "
-	word	
+	word
 		"space"
 		"territory"
 		"worlds"
@@ -591,7 +615,7 @@ phrase "hostile hai"
 		"brutal"
 		"cruel"
 		"heartless"
-	word 
+	word
 		" "
 	word
 		"thoughts"
@@ -611,12 +635,12 @@ phrase "hostile hai"
 		"eject you"
 		"exclude you"
 		"remove you"
-	word 
+	word
 		" from "
 	word
 		"Hai "
 		"our "
-	word	
+	word
 		"space."
 		"territory."
 		"worlds."

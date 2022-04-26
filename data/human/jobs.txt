@@ -887,7 +887,7 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -933,7 +933,7 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 120000
 		dialog phrase "generic safe escort completion dialog"
@@ -980,7 +980,7 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"
@@ -1033,7 +1033,7 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		fleet
 			names "civilian"
 			variant
-				"Bulk Freighter"
+				"Container Transport"
 	on complete
 		payment 150000
 		dialog phrase "generic safe escort completion dialog"
@@ -2009,7 +2009,7 @@ mission "Family [0]"
 	passengers 2 4 .5
 	to offer
 		random < 60
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2030,7 +2030,7 @@ mission "Family [1]"
 	passengers 2 4 .5
 	to offer
 		random < 50
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2051,7 +2051,7 @@ mission "Family [2]"
 	passengers 2 4 .5
 	to offer
 		random < 40
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2072,7 +2072,7 @@ mission "Family [3]"
 	passengers 2 4 .5
 	to offer
 		random < 30
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2093,7 +2093,7 @@ mission "Strike Breakers [mining]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2115,7 +2115,7 @@ mission "Strike Breakers [textile]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2137,7 +2137,7 @@ mission "Strike Breakers [factory]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2182,7 +2182,7 @@ mission "Colonists [1]"
 	passengers 10 4 .1
 	to offer
 		random < 20
-		"passenger space" > 30
+		"passenger space" > 20
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2206,7 +2206,7 @@ mission "Stranded Field Trip"
 	cargo "educational supplies" 2 10 .6
 	to offer
 		random < 10
-		"passenger space" > 50
+		"passenger space" > 30
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2409,7 +2409,7 @@ mission "Large Bulk Delivery [0]"
 	cargo random 40 2 .02
 	to offer
 		random < 70
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2430,7 +2430,7 @@ mission "Large Bulk Delivery [1]"
 	cargo random 40 2 .02
 	to offer
 		random < 60
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2451,7 +2451,7 @@ mission "Large Bulk Delivery [2]"
 	cargo random 40 2 .02
 	to offer
 		random < 50
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2474,7 +2474,7 @@ mission "Large Rush Delivery [0]"
 	cargo random 20 6 .1
 	to offer
 		random < 90
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2496,7 +2496,7 @@ mission "Large Rush Delivery [1]"
 	cargo random 20 6 .1
 	to offer
 		random < 80
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2518,7 +2518,7 @@ mission "Large Rush Delivery [2]"
 	cargo random 20 6 .1
 	to offer
 		random < 70
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2541,7 +2541,7 @@ mission "Large Rush Delivery [3]"
 	cargo random 20 6 .1
 	to offer
 		random < 60
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2574,6 +2574,153 @@ mission "Recycle garbage"
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment
 		payment 20000
+
+mission "Bounty Hunting (Very Tiny)"
+	name "Wanted corsair near <system>"
+	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 50
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Wasp (Gatling)"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 20000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Tiny)"
+	name "Wanted outlaw near <system>"
+	description "A well armed pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 100
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 300
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Rocket)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Missile)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 40000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Very Small)"
+	name "Wanted criminal near <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 200
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 400
+		random < 40
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 80000
+		dialog phrase "generic bounty hunting payment dialog"
 
 
 
@@ -2698,45 +2845,6 @@ mission "Bounty Hunting (Big)"
 		payment 250000
 		dialog phrase "generic bounty hunting payment dialog"
 
-mission "Bounty Hunting (Small, Boarding, Entering)"
-	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
-	passengers 1
-	deadline 14
-	repeat
-	job
-	to offer
-		"combat rating" > 80
-		random < 15
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-		distance 2 6
-	npc board
-		government "Bounty"
-		personality timid fleeing uninterested entering target
-		fleet
-			names "civilian"
-			variant
-				"Flivver (Racing)"
-			variant
-				"Arrow"
-			variant
-				"Scout (Speedy)"
-			variant
-				"Clipper (Speedy)"
-		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
-	on visit
-		dialog phrase "generic bounty hunting boarding on visit"
-	on complete
-		payment 175000
-		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
-
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
 	description "A low-end pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
@@ -2858,6 +2966,45 @@ mission "Bounty Hunting (Big, Hidden)"
 		payment 450000
 		dialog phrase "generic bounty hunting payment dialog"
 
+mission "Bounty Hunting (Small, Boarding, Entering)"
+	name "Stolen ship near <system>"
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	passengers 1
+	deadline 14
+	repeat
+	job
+	to offer
+		"combat rating" > 80
+		random < 15
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		distance 2 6
+	npc board
+		government "Bounty"
+		personality timid fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Flivver (Racing)"
+			variant
+				"Arrow"
+			variant
+				"Scout (Speedy)"
+			variant
+				"Clipper (Speedy)"
+		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
+	on complete
+		payment 175000
+		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
+
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
 	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
@@ -2898,6 +3045,114 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
+
+mission "Bounty Hunting (Solo Marauder I)"
+	name "Marauder interceptor near <system>"
+	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 100
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" > 50
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder I"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 80000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder II)"
+	name "Small Marauder near <system>"
+	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 200
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" > 100
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder II"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 130000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder III)"
+	name "Marauder near <system>"
+	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		"combat rating" < 1550
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder III"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 180000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder IV)"
+	name "Large Marauder near <system>"
+	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2980
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder IV"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 280000
+		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
@@ -3163,6 +3418,50 @@ mission "Bounty Hunting (Marauder X)"
 	on complete
 		payment 750000
 		dialog phrase "generic fleet bounty hunting payment dialog"
+
+
+
+mission "Raid Warning"
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		"pirate attraction" >= 5
+	on offer
+		conversation
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
+			choice
+				`	"Excuse me?"`
+					goto advice
+				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
+				`	"I've been piloting for a while. I think I know what I'm doing."`
+					goto think
+			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
+				goto advice
+			
+			label think
+			`	The old man chuckles. "Well I don't think so after what I've seen.`
+			
+			label advice
+			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
+			choice
+				`	"Oh, so that's why I've been seeing pirates everywhere I go."`
+				`	"So what should I do about that?"`
+					goto solution
+				`	"Don't you think I know that already?"`
+					goto rebuff
+			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
+			label solution
+			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
+			choice
+				`	"Thanks for the advice."`
+				`	"I'll make sure to go do that. Thanks."`
+			`	"No problem. Just looking out for a fellow captain. No use in getting got because you didn't know any better. But now you do." The man gives you a firm pat on the back before walking off.`
+				decline
+			
+			label rebuff
+			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
+				decline
 
 
 

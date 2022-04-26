@@ -26,11 +26,18 @@ const string &Effect::Name() const
 
 
 
+void Effect::SetName(const string &name)
+{
+	this->name = name;
+}
+
+
+
 void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")

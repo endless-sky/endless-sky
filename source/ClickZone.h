@@ -29,11 +29,11 @@ public:
 	// Constructor. The "dimensions" are the full width and height of the zone.
 	explicit ClickZone(const Rectangle &rect, Type value = 0);
 	ClickZone(Point center, Point dimensions, Type value = 0);
-	
+
 	// Retrieve the value associated with this zone.
-	Type Value() const;
-	
-	
+	Type Value() const noexcept;
+
+
 private:
 	Type value;
 };
@@ -57,7 +57,7 @@ ClickZone<Type>::ClickZone(const Rectangle &rect, Type value)
 
 
 template <class Type>
-Type ClickZone<Type>::Value() const
+Type ClickZone<Type>::Value() const noexcept
 {
 	return value;
 }

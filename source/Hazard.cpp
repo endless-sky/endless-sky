@@ -1,5 +1,5 @@
 /* Hazard.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -20,12 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 
+
 void Hazard::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -42,7 +43,7 @@ void Hazard::Load(const DataNode &node)
 			minDuration = max(0, static_cast<int>(child.Value(1)));
 			maxDuration = max(minDuration, (child.Size() >= 3 ? static_cast<int>(child.Value(2)) : 0));
 		}
-		else if (key == "strength")
+		else if(key == "strength")
 		{
 			minStrength = max(0., child.Value(1));
 			maxStrength = max(minStrength, (child.Size() >= 3) ? child.Value(2) : 0.);
@@ -64,6 +65,15 @@ void Hazard::Load(const DataNode &node)
 
 
 
+// Whether this hazard has a valid definition.
+bool Hazard::IsValid() const
+{
+	return !name.empty();
+}
+
+
+
+// The name of the hazard in the data files.
 const string &Hazard::Name() const
 {
 	return name;

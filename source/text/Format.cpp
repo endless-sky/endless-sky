@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <cmath>
 #include <sstream>
@@ -29,14 +30,14 @@ namespace {
 			if(places && !(places % 3))
 				result += ',';
 			++places;
-			
+
 			result += static_cast<char>('0' + value % 10);
 			value /= 10;
 		} while(value);
-		
+
 		if(isNegative)
 			result += '-';
-		
+
 		reverse(result.begin(), result.end());
 	}
 }
@@ -50,7 +51,7 @@ string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
 	int64_t absolute = abs(value);
-	
+
 	// If the value is above one quadrillion, show it in scientific notation.
 	if(absolute > 1000000000000000ll)
 	{
@@ -59,11 +60,11 @@ string Format::Credits(int64_t value)
 		out << static_cast<double>(value);
 		return out.str();
 	}
-	
+
 	// Reserve enough space for something like "-123.456M".
 	string result;
 	result.reserve(8);
-	
+
 	// Handle numbers bigger than a million.
 	static const vector<char> SUFFIX = {'T', 'B', 'M'};
 	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
@@ -81,7 +82,7 @@ string Format::Credits(int64_t value)
 			absolute /= THRESHOLD[i];
 			break;
 		}
-	
+
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(absolute, isNegative, result);
 	return result;
@@ -89,32 +90,76 @@ string Format::Credits(int64_t value)
 
 
 
-// Convert the given number to a string, with at most one decimal place.
-// This is primarily for displaying ship and outfit attributes.
+// Convert a time in seconds to years/days/hours/minutes/seconds
+std::string Format::PlayTime(double timeVal)
+{
+	string result;
+	int timeValFormat = 0;
+	static const array<char, 5> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
+	static const array<int, 4> PERIOD = {60, 60, 24, 365};
+
+	timeValFormat = max(0., timeVal);
+	// Break time into larger and larger units until the largest one, or the value is empty
+	size_t i = 0;
+	do {
+		int period = (i < SUFFIX.size() - 1 ? timeValFormat % PERIOD[i] : timeValFormat);
+		result = (i == 0 ? result + SUFFIX[i] : result + ' ' + SUFFIX[i]);
+		do {
+			result += static_cast<char>('0' + period % 10);
+			period /= 10;
+		} while(period);
+		if(i < PERIOD.size())
+			timeValFormat /= PERIOD[i];
+		i++;
+	} while (timeValFormat && i < SUFFIX.size());
+
+	reverse(result.begin(), result.end());
+	return result;
+}
+
+
+
+// Convert the given number to a string, with a reasonable number of decimal
+// places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
 {
 	if(!value)
 		return "0";
-	
+
 	string result;
 	bool isNegative = (value < 0.);
 	value = fabs(value);
-	
-	// Check if this is a whole number.
+
+	// Only show decimal places for numbers between +/-10'000.
 	double decimal = modf(value, &value);
-	if(decimal)
+	if(decimal && value < 10000)
 	{
-		if(decimal >= .95)
+		double tenths = 0.;
+		// Account for floating-point representation error by adding EPS after multiplying.
+		constexpr double EPS = 0.0000000001;
+		int hundredths = static_cast<int>(EPS + 10. * modf(decimal * 10., &tenths));
+		if(hundredths > 9)
 		{
-			result += '0';
-			++value;
+			hundredths = 0;
+			++tenths;
 		}
-		else
-			result += static_cast<char>('0' + static_cast<int>(round(decimal * 10.)));
-		
-		result += '.';
+		if(tenths >= 10. - EPS)
+		{
+			++value;
+			tenths = hundredths = 0;
+		}
+
+		// Values up to 1000 may have two decimal places.
+		bool two = value < 1000 && hundredths;
+		if(two)
+			result += static_cast<char>('0' + hundredths);
+		if(two || tenths)
+		{
+			result += static_cast<char>('0' + tenths);
+			result += '.';
+		}
 	}
-	
+
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(value, isNegative, result);
 	return result;
@@ -128,7 +173,7 @@ string Format::Decimal(double value, int places)
 {
 	double integer;
 	double fraction = fabs(modf(value, &integer));
-	
+
 	string result = to_string(static_cast<int>(integer)) + ".";
 	while(places--)
 	{
@@ -142,20 +187,22 @@ string Format::Decimal(double value, int places)
 
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
+// It can also contain spaces or "," as separators like 1,000 or 1 000.
 double Format::Parse(const string &str)
 {
 	double place = 1.;
 	double value = 0.;
-	
+
 	string::const_iterator it = str.begin();
 	string::const_iterator end = str.end();
 	while(it != end && (*it < '0' || *it > '9') && *it != '.')
 		++it;
-	
+
 	for( ; it != end; ++it)
 	{
 		if(*it == '.')
 			place = .1;
+		else if(*it == ',' || *it == ' ') {}
 		else if(*it < '0' || *it > '9')
 			break;
 		else
@@ -173,7 +220,7 @@ double Format::Parse(const string &str)
 			}
 		}
 	}
-	
+
 	if(it != end)
 	{
 		if(*it == 'k' || *it == 'K')
@@ -185,17 +232,17 @@ double Format::Parse(const string &str)
 		else if(*it == 't' || *it == 'T')
 			value *= 1e12;
 	}
-	
+
 	return value;
 }
 
 
 
-string Format::Replace(const string &source, const map<string, string> keys)
+string Format::Replace(const string &source, const map<string, string> &keys)
 {
 	string result;
 	result.reserve(source.length());
-	
+
 	size_t start = 0;
 	size_t search = start;
 	while(search < source.length())
@@ -203,11 +250,11 @@ string Format::Replace(const string &source, const map<string, string> keys)
 		size_t left = source.find('<', search);
 		if(left == string::npos)
 			break;
-		
+
 		size_t right = source.find('>', left);
 		if(right == string::npos)
 			break;
-		
+
 		bool matched = false;
 		++right;
 		size_t length = right - left;
@@ -221,11 +268,11 @@ string Format::Replace(const string &source, const map<string, string> keys)
 				matched = true;
 				break;
 			}
-		
+
 		if(!matched)
 			search = left + 1;
 	}
-	
+
 	result.append(source, start, source.length() - start);
 	return result;
 }
@@ -237,10 +284,10 @@ void Format::ReplaceAll(string &text, const string &target, const string &replac
 	// If the searched string is an empty string, do nothing.
 	if(target.empty())
 		return;
-	
+
 	string newString;
 	newString.reserve(text.length());
-	
+
 	// Index at which to begin searching for the target string.
 	size_t start = 0;
 	size_t matchLength = target.length();
@@ -252,10 +299,10 @@ void Format::ReplaceAll(string &text, const string &target, const string &replac
 		newString += replacement;
 		start = findPos + matchLength;
 	}
-	
+
 	// Add the remaining text.
 	newString += text.substr(start);
-	
+
 	text.swap(newString);
 }
 
@@ -267,7 +314,7 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(!isalpha(c))
+		if(isspace(c))
 			first = true;
 		else
 		{

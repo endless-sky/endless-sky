@@ -26,6 +26,8 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Credits(int64_t value);
+	// Convert a time in seconds to years/days/hours/minutes/seconds
+	static std::string PlayTime(double timeVal);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
@@ -37,14 +39,14 @@ public:
 	static double Parse(const std::string &str);
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
-	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
-	// Replace all occurences of "target" with "replacement" in-place.
+	static std::string Replace(const std::string &source, const std::map<std::string, std::string> &keys);
+	// Replace all occurrences of "target" with "replacement" in-place.
 	static void ReplaceAll(std::string &text, const std::string &target, const std::string &replacement);
-	
+
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
-	
+
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
 };

@@ -22,22 +22,87 @@
   <url type="homepage">https://endless-sky.github.io/</url>
   <screenshots>
     <screenshot type="default">
+      <image>https://user-images.githubusercontent.com/20871346/118372384-fd937580-b576-11eb-889f-c51dc95eda61.png</image>
+      <caption>The game's "new pilot" scenario-picking screen</caption>
+    </screenshot>
+    <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/battle.jpg</image>
+      <caption>A chaotic battle between the Republic and the Free Worlds</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/screenshots/beams.jpg</image>
+      <caption>Diverse weaponry abounds in the Endless Sky universe</caption>
     </screenshot>
     <screenshot>
       <image>https://camo.githubusercontent.com/647979e73d2121a1a982a96b0561e0e435598fd4/68747470733a2f2f656e646c6573732d736b792e6769746875622e696f2f73637265656e73686f74732f736d616c6c382e6a7067</image>
+      <caption>Exotic space creatures</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/outfitter.jpg</image>
+      <caption>Customize items installed on your ship(s) at a planet's Outfitter</caption>
     </screenshot>
     <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/shipyard.jpg</image>
+      <caption>Buy and sell different kinds of ships at a planet's Shipyard</caption>
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.9.14" date="2021-07-11">
+      <description>
+        <p>This is a "stable" release, focusing on bug fixes and polishing the recent v0.9.13 release.</p>
+        <p>Changes include:</p>
+        <ul>
+          <li>Numerous typo fixes</li>
+          <li>Fixes to how several missions are offered to the player</li>
+          <li>Better suggestions of possibly incomplete conditions in some missions' "visit" dialogues</li>
+          <li>Differentiation between two Remnant engines' reversing capabilities</li>
+          <li>Certain Navy shipyards now stock the Dropship</li>
+          <li>Ships that have no specified "drag" attribute default to 100, rather than causing crashes</li>
+          <li>Weaponry that alters the ship's status conditions (e.g. ionization) now respects the required minimum value of 0</li>
+          <li>The "interrupt fast-forward" preference defaults to off</li>
+        </ul>
+        <p>Minor improvements were added to help support plugin authors and content creators:</p>
+        <ul>
+          <li>Quarg planets now have regional attributes to enable better targeting via missions</li>
+          <li>Missions that fail to be instantiated print more informative messages in the error file</li>
+          <li>Large numbers of missing image frames no longer pollute the error file</li>
+        </ul>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.14/changelog</url>
+    </release>
+    <release version="0.9.13" date="2021-04-17" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Breaking changes:</p>
+        <ul>
+          <li>Starting conditions no longer automatically override the game's default start. Plugins that use a "start" node will need to make changes to restore the previous behavior.</li>
+        </ul>
+        <p>Major new changes include the following:</p>
+        <ul>
+          <li>70+ new missions in human and alien space</li>
+          <li>Outfits can now be stored on planets, without needing to install them on a parked ship</li>
+          <li>An overhaul of almost all human outfit images</li>
+          <li>Players can now choose their starting scenario</li>
+          <li>Spaceport news messages no longer include portraits by default</li>
+          <li>Better handling for missing content definitions (e.g. from plugin removal)</li>
+        </ul>
+        <p>Several features have been added to the game engine, for use by plugins and other content creators.</p>
+        <p>These include:</p>
+        <ul>
+          <li>Dynamic stopover selection will consider planets without spaceports</li>
+          <li>A number of new outfit and weapon attributes, offering shield/hull multipliers, weapon aiming &amp; firing overrides, percentage-based damage, and additional damage mitigation</li>
+          <li>Arbitrary angles for hardpoints, engine flares, and fighter bays</li>
+          <li>NPCs' objectives can now include provocation or capture</li>
+          <li>Mission NPCs can be conditionally spawned or removed without needing to change the player's active missions</li>
+          <li>Missions can react differently when the player aborts a mission, and when the player fails a mission</li>
+          <li>Missions can give ships to the player</li>
+          <li>Systems may generate environmental hazards, control the range at which ships enter, and be hidden on the map</li>
+        </ul>
+        <p>In addition to the major changes above, there are lots of smaller changes, content additions, and (of course) countless bug and typo fixes.</p>
+        <p>Thanks to all of our contributors for their time and effort in making Endless Sky a community-driven project!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.9.13/changelog</url>
+    </release>
     <release version="0.9.12" date="2020-05-01">
       <description>
         <p>This is a stable release focusing on bug fixes and polishing the recent v0.9.11 release.</p>
@@ -130,6 +195,17 @@
     </release>
   </releases>
   <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
+    <content_attribute id="violence-slavery">moderate</content_attribute>
     <content_attribute id="drugs-alcohol">mild</content_attribute>
+    <content_attribute id="drugs-narcotics">moderate</content_attribute>
+    <content_attribute id="drugs-tobacco">mild</content_attribute>
+    <content_attribute id="sex-themes">mild</content_attribute>
+    <content_attribute id="sex-homosexuality">mild</content_attribute>
+    <content_attribute id="sex-prostitution">moderate</content_attribute>
+    <content_attribute id="language-profanity">mild</content_attribute>
+    <content_attribute id="language-humor">moderate</content_attribute>
+    <content_attribute id="language-discrimination">mild</content_attribute>
+    <content_attribute id="money-gambling">mild</content_attribute>
   </content_rating>
 </component>

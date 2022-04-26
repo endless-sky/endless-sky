@@ -30,29 +30,29 @@ public:
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0, double zoom = 1.);
 	void SetCenter(const Point &center);
-	
+
 	// Add an unswizzled object based on the Body class.
 	bool Add(const Body &body, float clip = 1.f);
 	bool AddVisual(const Body &visual);
-	
+
 	// Draw all the items in this list.
 	void Draw() const;
-	
-	
+
+
 private:
 	// Determine if the given body should be drawn at all.
 	bool Cull(const Body &body, const Point &position) const;
-	
+
 	// Add the given body at the given position.
 	bool Add(const Body &body, Point position, float clip);
-	
-	
+
+
 private:
 	int step = 0;
 	double zoom = 1.;
 	bool isHighDPI = false;
 	Point center;
-	
+
 	// Each sprite consists of six vertices (four vertices to form a quad and
 	// two dummy vertices to mark the break in between them). Each of those
 	// vertices has five attributes: (x, y) position in pixels, (s, t) texture

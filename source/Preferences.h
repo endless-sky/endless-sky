@@ -24,31 +24,31 @@ public:
 		on,
 		adaptive,
 	};
-	
-	
+
+
 public:
 	static void Load();
 	static void Save();
-	
+
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
-	
+
 	// Toggle the ammo usage preferences, cycling between "never," "frugally,"
 	// and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
-	
+
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
-	
+
 	// View zoom.
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
-	
+
 	// VSync setting, either "on", "off", or "adaptive".
-	static void ToggleVSync();
+	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
 };

@@ -308,6 +308,90 @@ effect "emp spark"
 
 
 
+outfit "Ember Tear"
+	category "Secondary Weapons"
+	licenses
+		"Remnant Capital"
+	cost 270000000
+	thumbnail "outfit/ember tear"
+	"mass" 250
+	"outfit space" -190
+	"weapon capacity" -200
+	"gun ports" -1
+	"spinal mount" -1
+	"unplunderable" 1
+	weapon
+		sprite "projectile/ember tear/ember tear"
+			"frame rate" 30
+		sound "ion"
+		"hit effect" "ember tear spark"
+		"hit effect" "ember tear impact"
+		"hit effect" "ember tear vortex" 
+		"fire effect" "ember tear fire"
+		"velocity" 800
+		"inaccuracy" 0
+		"safe"
+		"lifetime" 1
+		"reload" 1
+		"firing force" 1
+		"blast radius" 150
+		"firing energy" 230
+		"firing fuel" 10
+		"firing heat" 105
+		"shield damage" 250
+		"hull damage" 250
+		"slowing damage" 10
+		"fuel damage" 2.5
+	description "The Ember Wastes are an anomalous region subject to forces that defy conventional physics: Energy spontaneously pouring from the vacuum, material density far greater than one would expect to find in space - even around a nebula, a concentration of wormholes unheard of in the galaxy, and regions where the universe itself seems to be in flux. This region, more than any building or ship, is the Remnant laboratory where they study the deepest workings of the universe."
+	description "	When asked to clarify whether the name refers to either ripping or crying, the technician looks at you with a curious expression, and replies 'both.' They then go on to explain that a very simplistic explanation for this weapon is that it is making micro-tears in the fabric of space-time, then cauterizing them together again. Should not the Ember Wastes cry at the necessity of such weapons?"
+	description "	These massive weapons require special hardpoints, and are built in such few number that the Remnant distribute them directly on an as-needed basis. Due to the prodigious energy and fuel requirements, only the most massive of Remnant ships can support regular use of these weapons."
+
+effect "ember tear spark"
+	sprite "effect/ember tear/ember tear spark"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 10
+	"velocity scale" 0
+	"random angle" 360
+	"random velocity" 10
+	"random frame rate" 10
+
+effect "ember tear fire"
+	sprite "effect/ember tear/ember tear fire"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 3
+	"velocity scale" 1
+	"random angle" 360
+	"random velocity" 3
+	"random frame rate" 10
+
+effect "ember tear impact"
+	sprite "effect/ember tear/ember tear impact"
+		"start frame" 1
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 3
+	"velocity scale" 0
+	"random angle" 360
+	"random velocity" 10
+	"random frame rate" 10
+
+effect "ember tear vortex"
+	sprite "effect/ember tear/ember tear vortex"
+		"start frame" 0
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 100
+	"velocity scale" 0
+	"random angle" 360
+	"random velocity" 0
+	"random frame rate" 30
+
+
+
 # Systems:
 
 outfit "Crystal Capacitor"
@@ -416,7 +500,7 @@ outfit "Quantum Key Stone"
 	"mass" 1
 	"outfit space" -1
 	"quantum keystone" 1
-	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassible wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
+	description "This precious artifact attunes a ship's quantum oscillations in a way that allows it to travel through certain otherwise impassable wormholes in the Ember Waste. The stones are rare and valuable, because they can only be mined from one location in the Waste."
 
 outfit "Salvage Scanner"
 	category "Systems"
@@ -440,11 +524,12 @@ outfit "Bellows-Class Afterburner"
 	category "Engines"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
-	"mass" 13
-	"outfit space" -11
-	"engine capacity" -11
+	"mass" 8
+	"outfit space" -7
+	"engine capacity" -7
+	"slowing resistance" 0.01
 	"afterburner thrust" 153.0
-	"afterburner fuel" 2.0
+	"afterburner fuel" 0.5
 	"afterburner energy" 6.0
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
@@ -453,14 +538,8 @@ outfit "Bellows-Class Afterburner"
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
-		"no repeat"
-		"frame rate" 30
+		"frame rate" 10
 	sound "afterburner"
-	"lifetime" 0.1
-	"random angle" 0
-	"random spin" 0
-	"random velocity" 1.
-	"velocity scale" 0.1
 
 
 
@@ -476,12 +555,22 @@ outfit "Anvil-Class Engine"
 	"thrust" 13.5
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 336.0
+	"turn" 369.6
 	"turning energy" 1.05
 	"turning heat" 1.1
+	"reverse thrust" 10.1
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" 1.45
+	"slowing resistance" 0.02
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This tiny set of engines was designed specifically for craft so small that it combines both thrusters and steering into one unit."
 
 outfit "Crucible-Class Thruster"
@@ -493,12 +582,19 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 18.0
-	"thrusting energy" 2.65
-	"thrusting heat" 2.5
+	"thrust" 14.4
+	"thrusting energy" 2.1
+	"thrusting heat" 2.0
+	"reverse thrust" 10.8
+	"reverse thrusting energy" 1.6
+	"reverse thrusting heat" 1.5
+	"slowing resistance" 0.012
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "These small but powerful engines are driven by ionized gas propelled at a sizable fraction of the speed of light."
 
 outfit "Forge-Class Thruster"
@@ -510,12 +606,19 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 37.0
-	"thrusting energy" 5.15
-	"thrusting heat" 5.0
+	"thrust" 31.5
+	"thrusting energy" 4.4
+	"thrusting heat" 4.25
+	"reverse thrust" 23.6
+	"reverse thrusting energy" 3.3
+	"reverse thrusting heat" 3.2
+	"slowing resistance" 0.024
 	"flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"flare sound" "plasma small"
+	"reverse flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"reverse flare sound" "plasma small"
 	description "The Remnant have taken the basic ion thruster design that has been used by humanity since the dawn of spaceflight and made it significantly more powerful... but also more power-hungry."
 
 outfit "Smelter-Class Thruster"
@@ -527,12 +630,19 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 76.8
-	"thrusting energy" 10.10
-	"thrusting heat" 10.2
+	"thrust" 71.1
+	"thrusting energy" 9.5
+	"thrusting heat" 9.6
+	"reverse thrust" 53.3
+	"reverse thrusting energy" 7.1
+	"reverse thrusting heat" 7.2
+	"slowing resistance" 0.048
 	"flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"flare sound" "plasma medium"
+	"reverse flare sprite" "effect/remnant flare/medium"
+		"frame rate" 5
+	"reverse flare sound" "plasma medium"
 	description "It is not unheard of for a Remnant ship's engines to draw even more power than its weapon systems: an indication, perhaps, of their preference for avoiding battle when possible."
 
 outfit "Crucible-Class Steering"
@@ -544,9 +654,10 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 448.0
+	"turn" 456
 	"turning energy" 1.32
 	"turning heat" 1.4
+	"slowing resistance" 0.008
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -561,9 +672,10 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 952.0
+	"turn" 995
 	"turning energy" 2.64
 	"turning heat" 3.0
+	"slowing resistance" 0.016
 	"steering flare sprite" "effect/remnant flare/medium"
 		"frame rate" 4
 	"steering flare sound" "plasma small"
@@ -578,13 +690,18 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 1980.0
+	"turn" 2123
 	"turning energy" 5.21
 	"turning heat" 6.2
+	"slowing resistance" 0.032
 	"steering flare sprite" "effect/remnant flare/large"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+
+
+# Hand to Hand
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
@@ -596,6 +713,10 @@ outfit "Tuning Rifle"
 	"capture defense" 1.8
 	"unplunderable" 1
 	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
+
+
+
+# Special
 
 outfit "Void Rifle"
 	category "Special"
