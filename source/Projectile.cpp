@@ -49,7 +49,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ha
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
 	
-	double spinupPercent = 1. - (hardpoint->SpinupRemaining() / (double)weapon->SpinupCount());
+	double spinupPercent = hardpoint->SpinupProgress();
 	double inaccuracy = spinupPercent * (double)weapon->SpinupInaccuracy() + (1 - spinupPercent) * (double)weapon->Inaccuracy();
 	
 	if(inaccuracy)

@@ -171,10 +171,10 @@ int Hardpoint::BurstRemaining() const
 
 
 
-// Get the number of remaining shots until this hardpoint is at full spinup.
-int Hardpoint::SpinupRemaining() const
+// Get the current spinup progress
+double Hardpoint::SpinupProgress() const
 {
-	return spinupCount;
+	return  1. - (spinupCount / (double)outfit->SpinupCount());
 }
 
 
@@ -356,7 +356,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	}
 	else
 	{
-		double spinupPercent = 1. - (spinupCount / (double)outfit->SpinupCount());
+		double spinupPercent = SpinupProgress();
 		reload += spinupPercent * (double)outfit->SpinupReload() + (1 - spinupPercent) * (double)outfit->Reload();
 	}
 	burstReload += outfit->BurstReload();

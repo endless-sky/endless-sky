@@ -58,8 +58,8 @@ public:
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.
 	int BurstRemaining() const;
-	// If this is a spinup weapon, get the number of shots left until full spinup.
-	int SpinupRemaining() const;
+	// If this is a spinup weapon, get the current spinup progress
+	double SpinupProgress() const;
 	// Perform one step (i.e. decrement the reload count).
 	void Step();
 
