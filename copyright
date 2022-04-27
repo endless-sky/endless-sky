@@ -1317,7 +1317,13 @@ Files:
  images/star/neutron*
  images/outfit/asteroid?scanner*
  images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/dark?storm*
  images/outfit/nuke*
+ images/outfit/red?sun*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/hardpoint/nuke*
