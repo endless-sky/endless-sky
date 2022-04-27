@@ -35,7 +35,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Hardpoint *hardpoint, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -48,9 +48,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	//double spinupPercent = max(0., 1. - (spinupCount / (double)weapon->SpinupCount()));
-	//double inaccuracy = spinupPercent * (double)weapon->SpinupInaccuracy() + (1 - spinupPercent) * (double)weapon->Inaccuracy();
-	double inaccuracy = weapon->Inaccuracy();
+	
+	double spinupPercent = 1. - (hardpoint->SpinupRemaining() / (double)weapon->SpinupCount());
+	double inaccuracy = spinupPercent * (double)weapon->SpinupInaccuracy() + (1 - spinupPercent) * (double)weapon->Inaccuracy();
+	
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 

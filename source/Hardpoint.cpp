@@ -195,10 +195,12 @@ void Hardpoint::Step()
 		--burstReload;
 	// If the burst reload time has elapsed, this weapon will not count as firing
 	// continuously if it is not fired this frame.
-	if(burstReload <= 0.)
+	if(burstReload <= 0. && reload <= 0)
 		isFiring = false;
-	if(outfit->SpinupCount() && (spinupCount < outfit->SpinupCount() && spinupCount > 0))
-		--spinupCount;
+	if(wasFiring)
+		spinupCount = max(0, --spinupCount);
+	else
+		spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
 }
 
 
@@ -234,7 +236,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	start += aim.Rotate(outfit->HardpointOffset());
 
 	// Create a new projectile, originating from this hardpoint.
-	projectiles.emplace_back(ship, start, aim, outfit);
+	projectiles.emplace_back(ship, start, aim, this, outfit);
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
@@ -328,6 +330,7 @@ void Hardpoint::Reload()
 	reload = 0.;
 	burstReload = 0.;
 	burstCount = outfit ? outfit->BurstCount() : 0;
+	spinupCount = outfit ? outfit->SpinupCount() : 0;
 }
 
 
@@ -353,16 +356,12 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	}
 	else
 	{
-		double spinupPercent = max(0., 1. - (spinupCount / (double)outfit->SpinupCount()));
+		double spinupPercent = 1. - (spinupCount / (double)outfit->SpinupCount());
 		reload += spinupPercent * (double)outfit->SpinupReload() + (1 - spinupPercent) * (double)outfit->Reload();
 	}
 	burstReload += outfit->BurstReload();
 	--burstCount;
 	isFiring = true;
-	if(wasFiring)
-		spinupCount = max(0, --spinupCount);
-	else
-		spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
 
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.

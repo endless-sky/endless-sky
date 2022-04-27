@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Hardpoint.h"
 #include "Point.h"
 
 #include <memory>
@@ -47,7 +48,7 @@ public:
 	};
 
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
+	Projectile(const Ship &parent, Point position, Angle angle, const Hardpoint *hardpoint, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
