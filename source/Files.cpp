@@ -64,13 +64,16 @@ namespace {
 	void OpenFolder(const string &path)
 	{
 #if SDL_VERSION_ATLEAST(2, 0, 14)
-		SDL_OpenURL(("file://" + path).c_str());
+		if(SDL_OpenURL(("file://" + path).c_str()))
+			Files::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
 #elif defined(__linux__)
 		// Workaround for older Linux distributions that don't ship
 		// with SDL 2.0.14 yet.
-		static_cast<void>(!system(("xdg-open file://" + path).c_str()));
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+			Files::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
 #else
 #warning SDL 2.0.14 or higher is needed for opening folders!
+		Files::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
 }
