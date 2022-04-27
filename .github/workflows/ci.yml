@@ -296,7 +296,7 @@ jobs:
       run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: brew install libmad libpng jpeg-turbo
+      run: brew install libpng jpeg-turbo
     - name: Restore cached SDL2 framework
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2

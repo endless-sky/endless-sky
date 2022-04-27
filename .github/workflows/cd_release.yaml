@@ -46,7 +46,7 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libmad libpng jpeg-turbo
+        run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
         uses: actions/cache@v2
         with:
