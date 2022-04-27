@@ -1621,7 +1621,6 @@ mission "Remnant: Cognizance 38"
 
 
 mission "Remnant: Cognizance 39"
-	name "A breath of calm"
 	landing
 	invisible
 	source
