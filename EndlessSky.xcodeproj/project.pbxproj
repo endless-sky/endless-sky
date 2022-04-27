@@ -1094,10 +1094,10 @@
 			files = (
 			);
 			inputPaths = (
-				"$(TEMP_ROOT)/sdl2.dmg",
+				"$(SRCROOT)/utils/fetch_sdl2_framework.sh",
 			);
 			outputPaths = (
-				"$(TEMP_ROOT)/SDL2.framework",
+				"$(PROJECT_DIR)/build/SDL2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
