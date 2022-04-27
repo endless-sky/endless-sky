@@ -23,7 +23,7 @@ using namespace std;
 
 
 // Construct a DataNode and remember what its parent is.
-DataNode::DataNode(const DataNode *parent)
+DataNode::DataNode(const DataNode *parent) noexcept(false)
 	: parent(parent)
 {
 	// To avoid a lot of memory reallocation, have every node start out with
@@ -36,18 +36,38 @@ DataNode::DataNode(const DataNode *parent)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens)
+	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
 
 
 
-// Assignment operator.
+// Copy assignment operator.
 DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
+	lineNumber = other.lineNumber;
+	Reparent();
+	return *this;
+}
+
+
+
+DataNode::DataNode(DataNode &&other) noexcept
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+{
+	Reparent();
+}
+
+
+
+DataNode &DataNode::operator=(DataNode &&other) noexcept
+{
+	children.swap(other.children);
+	tokens.swap(other.tokens);
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -55,14 +75,23 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 // Get the number of tokens in this line of the data file.
-int DataNode::Size() const
+int DataNode::Size() const noexcept
 {
 	return tokens.size();
 }
 
 
 
+// Get all tokens.
+const vector<string> &DataNode::Tokens() const noexcept
+{
+	return tokens;
+}
+
+
+
 // Get the token with the given index. No bounds checking is done.
+// DataFile loading guarantees index 0 always exists.
 const string &DataNode::Token(int index) const
 {
 	return tokens[index];
@@ -75,28 +104,37 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-	{
-		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
-		return 0.;
-	}
-	
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+	else if(!IsNumber(tokens[index]))
+		PrintTrace("Error: Cannot convert value \"" + tokens[index] + "\" to a number:");
+	else
+		return Value(tokens[index]);
+
+	return 0.;
+}
+
+
+
+// Static helper function for any class which needs to parse string -> number.
+double DataNode::Value(const string &token)
+{
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
-	const char *it = tokens[index].c_str();
-	if(*it != '-' && *it != '.' && *it != '+' && !(*it >= '0' && *it <= '9'))
+	if(!IsNumber(token))
 	{
-		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
 		return 0.;
 	}
-	
+	const char *it = token.c_str();
+
 	// Check for leading sign.
 	double sign = (*it == '-') ? -1. : 1.;
 	it += (*it == '-' || *it == '+');
-	
+
 	// Digits before the decimal point.
 	int64_t value = 0;
 	while(*it >= '0' && *it <= '9')
 		value = (value * 10) + (*it++ - '0');
-	
+
 	// Digits after the decimal point (if any).
 	int64_t power = 0;
 	if(*it == '.')
@@ -108,21 +146,21 @@ double DataNode::Value(int index) const
 			--power;
 		}
 	}
-	
+
 	// Exponent.
 	if(*it == 'e' || *it == 'E')
 	{
 		++it;
 		int64_t sign = (*it == '-') ? -1 : 1;
 		it += (*it == '-' || *it == '+');
-		
+
 		int64_t exponent = 0;
 		while(*it >= '0' && *it <= '9')
 			exponent = (exponent * 10) + (*it++ - '0');
-		
+
 		power += sign * exponent;
 	}
-	
+
 	// Compose the return value.
 	return copysign(value * pow(10., power), sign);
 }
@@ -136,11 +174,18 @@ bool DataNode::IsNumber(int index) const
 	// Make sure this token exists and is not empty.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
 		return false;
-	
+
+	return IsNumber(tokens[index]);
+}
+
+
+
+bool DataNode::IsNumber(const string &token)
+{
 	bool hasDecimalPoint = false;
 	bool hasExponent = false;
 	bool isLeading = true;
-	for(const char *it = tokens[index].c_str(); *it; ++it)
+	for(const char *it = token.c_str(); *it; ++it)
 	{
 		// If this is the start of the number or the exponent, it is allowed to
 		// be a '-' or '+' sign.
@@ -174,7 +219,7 @@ bool DataNode::IsNumber(int index) const
 
 
 // Check if this node has any children.
-bool DataNode::HasChildren() const
+bool DataNode::HasChildren() const noexcept
 {
 	return !children.empty();
 }
@@ -182,7 +227,7 @@ bool DataNode::HasChildren() const
 
 
 // Iterator to the beginning of the list of children.
-list<DataNode>::const_iterator DataNode::begin() const
+list<DataNode>::const_iterator DataNode::begin() const noexcept
 {
 	return children.begin();
 }
@@ -190,7 +235,7 @@ list<DataNode>::const_iterator DataNode::begin() const
 
 
 // Iterator to the end of the list of children.
-list<DataNode>::const_iterator DataNode::end() const
+list<DataNode>::const_iterator DataNode::end() const noexcept
 {
 	return children.end();
 }
@@ -201,22 +246,19 @@ list<DataNode>::const_iterator DataNode::end() const
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-	{
-		// Put an empty line in the log between each error message.
-		Files::LogError("");
 		Files::LogError(message);
-	}
-	
+
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
-	int indent = 0;
+	size_t indent = 0;
 	if(parent)
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
-	
+
 	// Convert this node back to tokenized text, with quotes used as necessary.
-	string line(indent, ' ');
+	string line = !parent ? "" : "L" + to_string(lineNumber) + ": ";
+	line.append(string(indent, ' '));
 	for(const string &token : tokens)
 	{
 		if(&token != &tokens.front())
@@ -230,7 +272,11 @@ int DataNode::PrintTrace(const string &message) const
 			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
-	
+
+	// Put an empty line in the log between each error message.
+	if(!message.empty())
+		Files::LogError("");
+
 	// Tell the caller what indentation level we're at now.
 	return indent;
 }
@@ -238,7 +284,7 @@ int DataNode::PrintTrace(const string &message) const
 
 
 // Adjust the parent pointers when a copy is made of a DataNode.
-void DataNode::Reparent()
+void DataNode::Reparent() noexcept
 {
 	for(DataNode &child : children)
 	{

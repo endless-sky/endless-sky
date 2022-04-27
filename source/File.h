@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef FILE_H_
-#define FILE_H_
+#ifndef ES_FILE_H_
+#define ES_FILE_H_
 
 #include <cstdio>
 #include <string>
@@ -21,16 +21,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // RAII wrapper for FILE, to make sure it gets closed if an error occurs.
 class File {
 public:
+	File() noexcept = default;
 	explicit File(const std::string &path, bool write = false);
 	File(const File &) = delete;
-	File(File &&other);
-	~File();
-	
+	File(File &&other) noexcept;
+	~File() noexcept;
+
+	// Do not allow copying the FILE pointer.
 	File &operator=(const File &) = delete;
-	
+	// Move assignment is OK though.
+	File &operator=(File &&) noexcept;
+
 	operator bool() const;
 	operator FILE*() const;
-	
+
 private:
 	FILE *file = nullptr;
 };

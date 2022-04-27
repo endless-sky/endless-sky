@@ -39,8 +39,11 @@ Government::Government()
 	penaltyFor[ShipEvent::BOARD] = 0.3;
 	penaltyFor[ShipEvent::CAPTURE] = 1.;
 	penaltyFor[ShipEvent::DESTROY] = 1.;
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
+	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
+	penaltyFor[ShipEvent::PROVOKE] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
-	
+
 	id = nextID++;
 }
 
@@ -50,11 +53,17 @@ Government::Government()
 void Government::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
+	{
 		name = node.Token(1);
-	
+		if(displayName.empty())
+			displayName = name;
+	}
+
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "swizzle" && child.Size() >= 2)
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+			displayName = child.Token(1);
+		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
 			swizzle = child.Value(1);
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
@@ -93,6 +102,13 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
 					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
+					else if(grand.Token(0) == "scan")
+					{
+						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
+						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
+					}
+					else if(grand.Token(0) == "provoke")
+						penaltyFor[ShipEvent::PROVOKE] = grand.Value(1);
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
@@ -103,6 +119,10 @@ void Government::Load(const DataNode &node)
 			bribe = child.Value(1);
 		else if(child.Token(0) == "fine" && child.Size() >= 2)
 			fine = child.Value(1);
+		else if(child.Token(0) == "enforces" && child.HasChildren())
+			enforcementZones.emplace_back(child);
+		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
+			enforcementZones.clear();
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
@@ -117,10 +137,12 @@ void Government::Load(const DataNode &node)
 			language = child.Token(1);
 		else if(child.Token(0) == "raid" && child.Size() >= 2)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
+		else if(child.Token(0) == "provoked on scan")
+			provokedOnScan = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	// Default to the standard disabled hail messages.
 	if(!friendlyDisabledHail)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
@@ -130,8 +152,23 @@ void Government::Load(const DataNode &node)
 
 
 
-// Get the name of this government.
+// Get the display name of this government.
 const string &Government::GetName() const
+{
+	return displayName;
+}
+
+
+
+// Set / Get the name used for this government in the data files.
+void Government::SetName(const string &trueName)
+{
+	this->name = trueName;
+}
+
+
+
+const string &Government::GetTrueName() const
 {
 	return name;
 }
@@ -162,10 +199,10 @@ double Government::AttitudeToward(const Government *other) const
 		return 0.;
 	if(other == this)
 		return 1.;
-	
+
 	if(attitudeToward.size() <= other->id)
 		return 0.;
-	
+
 	return attitudeToward[other->id];
 }
 
@@ -206,6 +243,30 @@ double Government::GetFineFraction() const
 
 
 
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated system matches at least one enforcement zone.
+bool Government::CanEnforce(const System *system) const
+{
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(system))
+			return true;
+	return enforcementZones.empty();
+}
+
+
+
+// Returns true if this government has no enforcement restrictions, or if the
+// indicated planet matches at least one enforcement zone.
+bool Government::CanEnforce(const Planet *planet) const
+{
+	for(const LocationFilter &filter : enforcementZones)
+		if(filter.Matches(planet))
+			return true;
+	return enforcementZones.empty();
+}
+
+
+
 const Conversation *Government::DeathSentence() const
 {
 	return deathSentence;
@@ -218,12 +279,12 @@ const Conversation *Government::DeathSentence() const
 string Government::GetHail(bool isDisabled) const
 {
 	const Phrase *phrase = nullptr;
-	
+
 	if(IsEnemy())
 		phrase = isDisabled ? hostileDisabledHail : hostileHail;
 	else
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
-		
+
 	return phrase ? phrase->Get() : "";
 }
 
@@ -245,7 +306,7 @@ const Fleet *Government::RaidFleet() const
 }
 
 
-	
+
 // Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const
@@ -333,3 +394,9 @@ double Government::CrewDefense() const
 	return crewDefense;
 }
 
+
+
+bool Government::IsProvokedOnScan() const
+{
+	return provokedOnScan;
+}

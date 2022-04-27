@@ -1,0 +1,162 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Southbound Shipment [0]"
+	name "Shipment to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>, the home of Southbound Shipyards, the largest ship manufacturer in the region. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	to offer
+		random < 10
+	source
+		not government "Pirate"
+		near "Zubeneschamali" 2 10
+		attributes "rim" "south"
+	destination "Zug"
+	npc
+		government "Pirate"
+		personality heroic harvests plunders
+		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Southbound Shipment [1]"
+	name "Shipment to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>, the home of Southbound Shipyards, the largest ship manufacturer in the region. Payment is <payment>."
+	cargo "ship alloys" 5 2 .1
+	to offer
+		random < 10
+	source
+		not government "Pirate"
+		near "Zubeneschamali" 2 10
+		attributes "rim" "south"
+	destination "Zug"
+	npc
+		government "Pirate"
+		personality heroic harvests plunders
+		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Kraz Shipment"
+	name "Shipment to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>, the home of Kraz Cybernetics, the largest weapons manufacturer in the region. Payment is <payment>."
+	cargo "weapons parts" 5 2 .1
+	to offer
+		random < 10
+	source
+		not government "Pirate"
+		near "Kraz" 2 10
+		attributes "rim" "south"
+	destination "Rust"
+	npc
+		government "Pirate"
+		personality heroic harvests plunders
+		fleet "Small Southern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Han Sizer Month [0]"
+	name `Han Sizer celebration`
+	job
+	repeat
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	passengers 2 10 .9
+	to offer
+		random < 30
+		month == 8
+	source
+		attributes "rim"
+	stopover
+		distance 2 4
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 5 10
+		attributes "rim"
+		not attributes "station"
+	on complete
+		payment 10000 170
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
+
+
+mission "Han Sizer Month [1]"
+	name `Han Sizer celebration`
+	job
+	repeat
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	passengers 2 10 .8
+	to offer
+		random < 20
+		month == 8
+	source
+		attributes "rim"
+	stopover
+		distance 2 3
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 3 4
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 5 10
+		attributes "rim"
+		not attributes "station"
+	on complete
+		payment 15000 170
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
+
+
+mission "Han Sizer Month [2]"
+	name `Han Sizer celebration`
+	job
+	repeat
+	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
+	passengers 2 10 .7
+	to offer
+		random < 10
+		month == 8
+	source
+		attributes "rim"
+	stopover
+		distance 2 3
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 3 4
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 4 5
+		attributes "rim"
+		not attributes "station"
+	stopover
+		distance 5 10
+		attributes "rim"
+		not attributes "station"
+	on complete
+		payment 20000 170
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`

@@ -14,14 +14,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
+#include "CoreStartData.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -35,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
@@ -45,32 +50,32 @@ using namespace std;
 
 namespace {
 	constexpr int SIDE_WIDTH = 280;
-	
+
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
 	{
 		if(!system)
 			return false;
-		
+
 		if(mission.Destination()->IsInSystem(system))
 			return true;
-		
+
 		for(const System *waypoint : mission.Waypoints())
 			if(waypoint == system)
 				return true;
-		
+
 		for(const Planet *stopover : mission.Stopovers())
 			if(stopover->IsInSystem(system))
 				return true;
-		
+
 		return false;
 	}
-	
+
 	size_t MaxDisplayedMissions(bool onRight)
 	{
 		return static_cast<unsigned>(max(0, static_cast<int>(floor((Screen::Height() - (onRight ? 160. : 190.)) / 20.))));
 	}
-	
+
 	// Compute the required scroll amount for the given list of jobs/missions.
 	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, double &sideScroll, bool checkVisibility)
 	{
@@ -85,7 +90,7 @@ namespace {
 			const auto countBefore = static_cast<size_t>(checkVisibility
 					? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
 					: distance(missionList.begin(), it));
-			
+
 			const auto maximumScroll = (missionCount - maxViewable) * 20.;
 			const auto pageScroll = maxViewable * 20.;
 			const auto desiredScroll = countBefore * 20.;
@@ -116,11 +121,11 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 {
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
-	
+
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
-	
+	wrap.SetAlignment(Alignment::JUSTIFIED);
+
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
@@ -130,7 +135,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 			if(FindMissionForSystem(*it))
 				break;
 	}
-	
+
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
 	{
@@ -142,7 +147,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
-	
+
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, true);
 }
@@ -160,13 +165,13 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 {
 	// In this view, always color systems based on player reputation.
 	commodity = SHOW_REPUTATION;
-	
+
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
-	
+
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -186,6 +191,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+		DoHelp("map advanced");
 	DoHelp("jobs");
 }
 
@@ -194,24 +201,24 @@ void MissionPanel::Step()
 void MissionPanel::Draw()
 {
 	MapPanel::Draw();
-	
+
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
 	{
 		const System *next = distance.Route(system);
-		
+
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (system->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
-		
+
 		LineShader::Draw(from, to, 5.f, routeColor);
-		
+
 		system = next;
 	}
-	
+
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
@@ -221,19 +228,19 @@ void MissionPanel::Draw()
 		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
-	
+
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
 		available.size());
-	DrawList(available, pos);
-	
+	DrawList(available, pos, availableIt);
+
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
-	DrawList(accepted, pos);
-	
+	DrawList(accepted, pos, acceptedIt);
+
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
 	DrawSelectedSystem();
@@ -313,7 +320,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
-	
+
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
 	if(availableIt != available.end())
@@ -326,9 +333,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
-	if(selectedSystem)
-		CenterOnSystem(selectedSystem);
-	
+	CenterOnSystem(selectedSystem);
+
 	return true;
 }
 
@@ -337,10 +343,10 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 bool MissionPanel::Click(int x, int y, int clicks)
 {
 	dragSide = 0;
-	
+
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
 		return DoKey('p');
-	
+
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
@@ -376,13 +382,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 	}
-	
+
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
+		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(it.second) || &it.second == specialSystem))
 		{
 			system = &it.second;
 			break;
@@ -426,7 +432,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 				continue;
-			
+
 			if(availableIt != available.end() && Involves(*availableIt, system))
 				break;
 			if(acceptedIt != accepted.end() && Involves(*acceptedIt, system))
@@ -442,7 +448,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		else if(acceptedIt != accepted.end())
 			DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
-	
+
 	return true;
 }
 
@@ -464,7 +470,7 @@ bool MissionPanel::Drag(double dx, double dy)
 	}
 	else
 		MapPanel::Drag(dx, dy);
-	
+
 	return true;
 }
 
@@ -494,7 +500,7 @@ bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
 		return Drag(0., dy * Preferences::ScrollSpeed());
-	
+
 	return MapPanel::Scroll(dx, dy);
 }
 
@@ -504,10 +510,10 @@ void MissionPanel::DrawKey() const
 {
 	const Sprite *back = SpriteSet::Get("ui/mission key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-	
+
 	const Font &font = FontSet::Get(14);
 	Point angle = Point(1., 1.).Unit();
-	
+
 	const int ROWS = 5;
 	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
 	Point pointerOff(5., 5.);
@@ -535,7 +541,7 @@ void MissionPanel::DrawKey() const
 		selected = 0 + !CanAccept();
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		selected = 2 + !IsSatisfied(*acceptedIt);
-	
+
 	for(int i = 0; i < ROWS; ++i)
 	{
 		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
@@ -551,15 +557,13 @@ void MissionPanel::DrawSelectedSystem() const
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
 	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
-	
+
 	string text;
-	if(!selectedSystem)
-		text = "Selected system: none";
-	else if(!player.KnowsName(selectedSystem))
+	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
 		text = "Selected system: " + selectedSystem->Name();
-	
+
 	int jumps = 0;
 	const vector<const System *> &plan = player.TravelPlan();
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
@@ -567,15 +571,16 @@ void MissionPanel::DrawSelectedSystem() const
 		jumps = plan.end() - it;
 	else if(distance.HasRoute(selectedSystem))
 		jumps = distance.Days(selectedSystem);
-	
+
 	if(jumps == 1)
 		text += " (1 jump away)";
 	else if(jumps > 0)
 		text += " (" + to_string(jumps) + " jumps away)";
-	
+
 	const Font &font = FontSet::Get(14);
-	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+	Point pos(-175., Screen::Top() + .5 * (30. - font.Height()));
+	font.Draw({text, {350, Alignment::CENTER, Truncate::MIDDLE}},
+		pos, *GameData::Colors().Get("bright"));
 }
 
 
@@ -584,27 +589,32 @@ void MissionPanel::DrawSelectedSystem() const
 // waypoints) by drawing colored rings around them.
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
+	auto toVisit = set<const System *>{mission.Waypoints()};
+	for(const Planet *planet : mission.Stopovers())
+		toVisit.insert(planet->GetSystem());
+	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
+	for(const Planet *planet : mission.VisitedStopovers())
+		hasVisited.insert(planet->GetSystem());
+
 	const Color &waypoint = *GameData::Colors().Get("waypoint back");
 	const Color &visited = *GameData::Colors().Get("faint");
-	const float MISSION_OUTER = 22.f;
-	const float MISSION_INNER = 20.5f;
-	
+
 	double zoom = Zoom();
-	// Draw a colored ring around the destination system.
-	Point pos = zoom * (mission.Destination()->GetSystem()->Position() + center);
-	RingShader::Draw(pos, MISSION_OUTER, MISSION_INNER, color);
-	
-	// Draw bright rings around systems that still need to be visited.
-	for(const System *system : mission.Waypoints())
-		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
-	for(const Planet *planet : mission.Stopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, waypoint);
-	
-	// Draw faint rings around systems already visited for this mission.
-	for(const System *system : mission.VisitedWaypoints())
-		RingShader::Draw(zoom * (system->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
-	for(const Planet *planet : mission.VisitedStopovers())
-		RingShader::Draw(zoom * (planet->GetSystem()->Position() + center), MISSION_OUTER, MISSION_INNER, visited);
+	auto drawRing = [&](const System *system, const Color &drawColor)
+		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
+
+	RingShader::Bind();
+	{
+		// Draw a colored ring around the destination system.
+		drawRing(mission.Destination()->GetSystem(), color);
+		// Draw bright rings around systems that still need to be visited.
+		for(const System *system : toVisit)
+			drawRing(system, waypoint);
+		// Draw faint rings around systems already visited for this mission.
+		for(const System *system : hasVisited)
+			drawRing(system, visited);
+	}
+	RingShader::Unbind();
 }
 
 
@@ -615,17 +625,17 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
-	
+
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
 	FillShader::Fill(pos + .5 * size, size, back);
-	
+
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
 	Point bottomOff(0., .5 * bottom->Height());
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
-	
+
 	const Sprite *left = SpriteSet::Get("ui/left edge");
 	const Sprite *right = SpriteSet::Get("ui/right edge");
 	double dy = .5 * left->Height();
@@ -638,7 +648,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 		SpriteShader::Draw(right, edgePos + rightOff);
 		edgePos.Y() -= dy;
 	}
-	
+
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 	font.Draw(label, pos, selected);
@@ -647,39 +657,40 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 		Point(size.X() - 10., 1.),
 		unselected);
 	pos.Y() += 5.;
-	
+
 	return pos;
 }
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
+Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
+	const std::list<Mission>::const_iterator &selectIt) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("dim");
-	
+
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
 		if(!it->IsVisible())
 			continue;
-		
+
 		pos.Y() += 20.;
-		
-		bool isSelected = (it == availableIt || it == acceptedIt);
+
+		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
-		
-		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
-		font.Draw(it->Name(), pos,
-			(!canAccept ? dim : isSelected ? selected : unselected));
+
+		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
+			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
-	
+
 	return pos;
 }
 
@@ -688,22 +699,21 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 void MissionPanel::DrawMissionInfo()
 {
 	Information info;
-	
+
 	// The "accept / abort" button text and activation depends on what mission,
 	// if any, is selected, and whether missions are available.
 	if(CanAccept())
 		info.SetCondition("can accept");
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
-	
+
 	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
 	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
-	
+
 	info.SetString("today", player.GetDate().ToString());
-	
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	interface->Draw(info, this);
-	
+
+	GameData::Interfaces().Get("mission")->Draw(info, this);
+
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
 		wrap.Wrap(availableIt->Description());
@@ -720,8 +730,8 @@ bool MissionPanel::CanAccept() const
 {
 	if(availableIt == available.end())
 		return false;
-	
-	return availableIt->HasSpace(player);
+
+	return availableIt->CanAccept(player);
 }
 
 
@@ -750,12 +760,12 @@ void MissionPanel::Accept()
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
-	
+
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
-	
+
 	// Check if any other jobs are available with the same destination. Prefer
 	// jobs that also have the same destination planet.
 	if(toAccept.Destination())
@@ -779,24 +789,25 @@ void MissionPanel::MakeSpaceAndAccept()
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
 	int crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
-	
+
 	if(crewToFire > 0)
 		player.Flagship()->AddCrew(-crewToFire);
-	
+
 	for(const auto &it : player.Cargo().Commodities())
 	{
 		if(cargoToSell <= 0)
 			break;
-		
+
 		int toSell = min(cargoToSell, it.second);
 		int64_t price = player.GetSystem()->Trade(it.first);
-		
+
 		int64_t basis = player.GetBasis(it.first, toSell);
 		player.AdjustBasis(it.first, -basis);
 		player.Cargo().Remove(it.first, toSell);
 		player.Accounts().AddCredits(toSell * price);
+		cargoToSell -= toSell;
 	}
-	
+
 	player.UpdateCargoCapacities();
 	Accept();
 }
@@ -809,7 +820,7 @@ void MissionPanel::AbortMission()
 	{
 		const Mission &toAbort = *acceptedIt;
 		++acceptedIt;
-		player.RemoveMission(Mission::FAIL, toAbort, GetUI());
+		player.RemoveMission(Mission::ABORT, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
 		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
@@ -818,7 +829,7 @@ void MissionPanel::AbortMission()
 }
 
 
-	
+
 int MissionPanel::AcceptedVisible() const
 {
 	int count = 0;
