@@ -59,6 +59,20 @@ namespace {
 				c = '/';
 	}
 #endif
+
+	// Open the given folder in a separate window.
+	void OpenFolder(const string &path)
+	{
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+		SDL_OpenURL(("file://" + path).c_str());
+#elif defined(__linux__)
+		// Workaround for older Linux distributions that don't ship
+		// with SDL 2.0.14 yet.
+		system(("xdg-open file://" + path).c_str());
+#else
+#warning "SDL 2.0.14 or higher is needed for opening folders!"
+#endif
+	}
 }
 
 
@@ -539,6 +553,14 @@ void Files::Write(FILE *file, const string &data)
 		return;
 
 	fwrite(&data[0], 1, data.size(), file);
+}
+
+
+
+// Opens the plugins folder inside the configuration directory in a separate window.
+void Files::OpenGlobalPluginFolder()
+{
+	OpenFolder(Config() + "plugins");
 }
 
 

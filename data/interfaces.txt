@@ -383,7 +383,7 @@ interface "plugins"
 		dimensions 90 30
 		color bright
 	button o "_Open Plugins"
-		center 65 210
+		center -195 210
 		dimensions 120 30
 
 
