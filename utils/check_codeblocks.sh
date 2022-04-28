@@ -26,7 +26,7 @@ do
   fi
 done
 
-for FILE in $(find tests/unit/ -type f -name "*.h" -o -name "*.cpp" | grep -v -e "^tests/unit/include" | sed s,^tests/unit/src,, | sort)
+for FILE in $(find tests/unit/src -type f -name "*.h" -o -name "*.cpp" | sed s,^tests/unit/src,, | sort)
 do
   # Check if the file is already in the test Code::Blocks project.
   if ! fgrep -q "${FILE}" "${CBTPROJECT}"; then
