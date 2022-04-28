@@ -76,8 +76,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 		if(!parent.weapon->Acceleration())
 		{
 			// Move in this new direction at the same velocity.
-			double parentVelocity = parent.weapon->Velocity();
-			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
+			// To maintain the sign of the velocity, Point::Length can’t be used.
+			Point referenceVector = parent.angle.Unit();
+			double parentVelocity = referenceVector.Dot(parent.velocity);
+			velocity = this->angle.Unit() * parentVelocity;
 		}
 	}
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
