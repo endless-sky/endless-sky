@@ -126,7 +126,7 @@ fi
 # Determine paths to endless-sky executable and other relevant data
 ES_EXEC_PATH="$1"
 RESOURCES="$2"
-ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/config"
+ES_CONFIG_TEMPLATE_PATH="${RESOURCES}/tests/integration/config"
 
 echo "TAP version 13"
 echo "# ***********************************************"

@@ -140,7 +140,7 @@ jobs:
       if: matrix.os != 'ubuntu-18.04'
       env:
           PRINT_GLXINFO: true
-      run: steam-runtime/run.sh tests/run_tests_headless.sh
+      run: steam-runtime/run.sh tests/integration/run_tests_headless.sh
 
   deploy_linux:
     needs: test_linux

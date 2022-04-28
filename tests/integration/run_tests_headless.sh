@@ -16,8 +16,8 @@ HERE=$(cd `dirname $0` && pwd)
 cd "${HERE}"
 
 # Relative paths for linux headless testing relative to this script.
-EXECUTABLE="../endless-sky"
-RESOURCES="../"
+EXECUTABLE="../../endless-sky"
+RESOURCES="../../"
 
 if ! command -v xvfb-run > /dev/null 2>&1; then
   echo "You must install Xvfb to run headless tests"
