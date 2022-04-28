@@ -201,15 +201,21 @@ void Hardpoint::Step()
 	// before spending effort on math
 	if(outfit->IsSpinup())
 	{
-		if(wasFiring)
-		{
-			spinupCount--;
-			spinupCount = max(0, spinupCount);
-		}
+		// If this weapon is a burst weapon and if its burst has been expended
+		if((outfit->BurstCount() > 1 && burstCount == 0))
+			spinupCount = outfit->SpinupTime();
 		else
 		{
-			spinupCount += 2;
-			spinupCount = min(outfit->SpinupTime(), spinupCount);
+			if(wasFiring)
+			{
+				spinupCount--;
+				spinupCount = max(0, spinupCount);
+			}
+			else
+			{
+				spinupCount += 2;
+				spinupCount = min(outfit->SpinupTime(), spinupCount);
+			}
 		}
 	}
 }
