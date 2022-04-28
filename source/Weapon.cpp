@@ -122,6 +122,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstReload = max(1., value);
 			else if(key == "spinup reload")
 				spinupReload = max(1., value);
+			else if(key == "spinup burst reload")
+				spinupBurstReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
 			else if(key == "spinup time")
@@ -284,6 +286,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	/* spinupBurstReload could conceptually be larger than burstReload.
+	if(spinupBurstReload > burstReload)
+		spinupBurstReload = burstReload;*/
 	/* spinupReload and spinupInaccuracy could conceptually be larger and smaller than reload and inaccuracy, respectively.
 	if(spinupReload > reload)
 		spinupReload = reload;

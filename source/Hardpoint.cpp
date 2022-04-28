@@ -358,13 +358,14 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	if(!outfit->IsSpinup())
 	{
 		reload += outfit->Reload();
+		burstReload += outfit->BurstReload();
 	}
 	else
 	{
 		double spinupPercent = SpinupProgress();
-		reload += spinupPercent * static_cast<double>(outfit->SpinupReload()) + (1 - spinupPercent) * static_cast<double>(outfit->Reload());
+		reload += spinupPercent * static_cast<double>(outfit->SpinupReload()) + (1. - spinupPercent) * static_cast<double>(outfit->Reload());
+		burstReload += spinupPercent * static_cast<double>(outfit->SpinupBurstReload()) + (1. - spinupPercent) * static_cast<double>(outfit->BurstReload());
 	}
-	burstReload += outfit->BurstReload();
 	--burstCount;
 	isFiring = true;
 
