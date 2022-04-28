@@ -2,13 +2,11 @@
 
 This directory contains scripts that help the execution of the integration tests.
 
-The actual integration tests are located under [the data directory](../../data/tests)
+The actual integration tests are located under [the data directory](../../data/tests) and in the future there will also be [test-universes with embedded integration tests](universes) under the current directory (for testing features that are in the codebase, but not in the datafiles for the main game).
 
-# Writing Tests
+# Writing Integration Tests
 
 Look at the existing integration tests under the data directory to get started with writing an integration test.
-
-Also consider if the test you want to write can be written as an [unit-test](../unit) instead. Choose the best test-technology to get the best test-coverage. When the test-coverage would be equal, then writing an unit-test is preferred over writing an integration test, because unit-tests are generally more efficient and easier to debug.
 
 ## Limitations
 

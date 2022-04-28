@@ -133,7 +133,7 @@ jobs:
     - run: chmod +x endless-sky
     - run: steam-runtime/run.sh ./endless-sky -v
     - name: Execute data parsing test
-      run: steam-runtime/run.sh ./tests/test_parse.sh ./endless-sky
+      run: steam-runtime/run.sh ./utils/test_parse.sh ./endless-sky
     # NOTE: As with the non-Steam integration tests, on Ubuntu 18.04 the call to SDL_GL_CreateContext fails
     # with SDL error "Could not create GL Context: BadValue (integer parameter out of range for operation)"
     - name: Execute integration tests

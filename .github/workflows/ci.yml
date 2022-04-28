@@ -387,7 +387,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./endless-sky
+      run: ./utils/test_parse.sh ./endless-sky
 
 
   test_windows-parse:
@@ -415,7 +415,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
-      run: .\tests\test_parse.ps1 EndlessSky.exe
+      run: .\utils\test_parse.ps1 EndlessSky.exe
 
 
   test_macos-parse:
@@ -458,7 +458,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
+      run: ./utils/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
   test_memory-leaks-lite:
