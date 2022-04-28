@@ -1059,6 +1059,10 @@ event "remnant: cognizance salvage expansion"
 
 
 
+event "remnant: cognizance calm"
+
+
+
 event "remnant: shattered light"
 	shipyard "Remnant"
 		add "Dromedary"
