@@ -417,7 +417,7 @@ void Projectile::ApplyInaccuracy(const Hardpoint *hardpoint)
 	if (hardpoint->GetOutfit()->IsSpinup())
 	{
 		double spinupProgress = hardpoint->SpinupProgress();
-		inaccuracy = spinupProgress * (double)hardpoint->GetOutfit()->SpinupInaccuracy() + (1 - spinupProgress) * (double)hardpoint->GetOutfit()->Inaccuracy();
+		inaccuracy = spinupProgress * static_cast<double>(hardpoint->GetOutfit()->SpinupInaccuracy()) + (1 - spinupProgress) * static_cast<double>(hardpoint->GetOutfit()->Inaccuracy());
 	}
 	else
 	{
