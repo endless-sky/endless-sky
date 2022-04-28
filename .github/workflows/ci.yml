@@ -150,7 +150,7 @@ jobs:
     - name: Run tests
       run: scons -Qj $(nproc) test
     - name: Run benchmarks
-      run: ./tests/endless-sky-tests [!benchmark]
+      run: ./tests/unit/endless-sky-tests [!benchmark]
 
 
   build_windows:
@@ -235,7 +235,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
