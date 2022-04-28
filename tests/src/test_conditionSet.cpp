@@ -24,11 +24,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../source/ConditionsStore.h"
 
 // ... and any system includes needed for the test file.
+#include <cstdint>
 #include <map>
 #include <string>
 
 namespace { // test namespace
-
+using Conditions = std::map<std::string, int64_t>;
 // #region mock data
 
 int primarySize(const ConditionsStore &store)
@@ -129,7 +130,9 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionsStore{{"never", 1}};
+			const auto listWithNever = ConditionsStore{
+				{"never", 1},
+			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );
 			}
@@ -140,6 +143,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	auto store = ConditionsStore{};
 	REQUIRE( primarySize(store) == 0 );
+	REQUIRE( store.empty() );
 
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};

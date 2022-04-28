@@ -12,6 +12,7 @@ mission "First Contact: Hai"
 	landing
 	source
 		government "Hai"
+		not attributes "uninhabited"
 	on offer
 		conversation
 			branch unfettered
@@ -251,6 +252,7 @@ mission "Ask the Hai about the Unfettered"
 	landing
 	source
 		government "Hai"
+		not attributes "uninhabited"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
@@ -645,10 +647,11 @@ mission "Unwanted Cargo Trigger"
 event "hai in cargo"
 
 mission "Unwanted Cargo"
+	minor
 	landing
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not government "Hai" "Hai (Unfettered)"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
@@ -686,7 +689,7 @@ mission "Unwanted Cargo"
 			`	The child looks surprised when your translation device speaks to it in Hai. "Take me home!" it yells back at you. You attempt to find out where the child's home is, but it continues to cry for its mother without giving any important information.`
 			
 			label end
-			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on a human world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
+			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on this world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
 				accept
 			
 	on complete
@@ -1783,7 +1786,7 @@ mission "Nanachi 4"
 				`	"Can't you just postpone the festival until the pirates are taken care of?"`
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
-			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
+			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught, your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
@@ -1864,6 +1867,7 @@ mission "Strider Alt Start"
 	source
 		government "Hai"
 		not planet "Hai-home"
+		not attributes "uninhabited"
 	destination "Hai-home"
 	clearance
 	to offer

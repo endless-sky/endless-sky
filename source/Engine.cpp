@@ -192,6 +192,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -655,8 +656,13 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		// If the flagship has a large amount of fuel, display a solid bar.
+		// Otherwise, display a segment for every 100 fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", flagship->Fuel());
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
@@ -1816,7 +1822,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1838,6 +1844,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 
