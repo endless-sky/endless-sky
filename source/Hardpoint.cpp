@@ -202,9 +202,15 @@ void Hardpoint::Step()
 	if(outfit->IsSpinup())
 	{
 		if(wasFiring)
-			spinupCount = max(0, --spinupCount);
+		{
+			spinupCount--;
+			spinupCount = max(0, spinupCount);
+		}
 		else
-			spinupCount = min(outfit->SpinupTime(), spinupCount += 2);
+		{
+			spinupCount += 2;
+			spinupCount = min(outfit->SpinupTime(), spinupCount);
+		}
 	}
 }
 
