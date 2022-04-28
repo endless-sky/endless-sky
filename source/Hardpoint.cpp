@@ -247,7 +247,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	start += aim.Rotate(outfit->HardpointOffset());
 
 	// Create a new projectile, originating from this hardpoint.
-	projectiles.emplace_back(ship, start, aim, outfit, this->SpinupProgress());
+	projectiles.emplace_back(ship, start, aim, outfit, SpinupProgress());
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
