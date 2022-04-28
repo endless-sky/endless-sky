@@ -1957,7 +1957,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 
 	// Boarding:
-	// TODO: fix boarding for fighters and drones
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
@@ -2363,7 +2362,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 	// For a fighter or drone, "board" means "return to ship."
 	// TODO: Except when drone or fighter is boarding another drone or fighter.
-	if(CanBeCarried() && !victim.get()->CanBeCarried())
+	if(CanBeCarried() && !victim.get()->CanBeCarried() && victim == GetParent())
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -2935,25 +2934,22 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return CanBeCarried() ? fuel : (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
 
+// Transfer fuel to another ship.
 double Ship::TransferFuel(double amount, Ship *to)
 {
-	amount = max(fuel - attributes.Get("fuel capacity"), amount);
-	if(to)
-	{
-		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
-		to->fuel += amount;
-	}
+	amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+	to->fuel += amount;
 	fuel -= amount;
 	return amount;
 }
 
 
-// TODO this is broken.  It steals energy from *to
+// Transfer energy to another ship.
 double Ship::TransferEnergy(double amount, Ship *to)
 {
 	amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
