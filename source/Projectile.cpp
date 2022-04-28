@@ -50,12 +50,9 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 		targetGovernment = cachedTarget->GetGovernment();
 	
 	double inaccuracy = 0;
-	if (weapon->SpinupTime() > 1)
-	{
-		inaccuracy = spinupProgress * weapon->SpinupInaccuracy() + (1 - spinupProgress) * weapon->Inaccuracy();
-	}
-	else
-		inaccuracy = weapon->Inaccuracy();
+	inaccuracy = weapon->Inaccuracy();
+	if(spinupProgress)
+		inaccuracy += spinupProgress * weapon->SpinupInaccuracy();
 	
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
