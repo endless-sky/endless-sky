@@ -174,7 +174,8 @@ int Hardpoint::BurstRemaining() const
 // Get the current spinup progress
 double Hardpoint::SpinupProgress() const
 {
-	return  1. - (spinupCount / static_cast<double>(outfit->SpinupTime()));
+	double spinupTime = outfit->SpinupTime();
+	return spinupTime ? 1. - spinupCount / spinupTime  : 0.;
 }
 
 
