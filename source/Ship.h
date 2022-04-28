@@ -42,6 +42,7 @@ class Minable;
 class Phrase;
 class Planet;
 class Projectile;
+class ShipTemplate;
 class StellarObject;
 class System;
 class Visual;

@@ -10,12 +10,12 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
+#ifndef SHIP_LOADER_H_
+#define SHIP_LOADER_H_
+
 #include "Ship.h"
 
-
-
 class UniverseObjects;
-
 
 
 class ShipLoader
@@ -32,6 +32,10 @@ public:
 
 
 private:
-	// Reference to the universe in which this ship operates.
+	// Reference to the universe in which the ships being loaded operate.
 	UniverseObjects &universe;
 };
+
+
+
+#endif
