@@ -67,8 +67,8 @@ namespace {
 		if(SDL_OpenURL(("file://" + path).c_str()))
 			Files::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
 #elif defined(__linux__)
-		// Workaround for older Linux distributions that don't ship
-		// with SDL 2.0.14 yet.
+		// Some supported distributions do not have an up-to-date SDL.
+		cout.flush();
 		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
 			Files::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
 #else
