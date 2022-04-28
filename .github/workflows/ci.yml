@@ -118,7 +118,7 @@ jobs:
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        TEST_BINARY: tests/endless-sky-tests
+        TEST_BINARY: tests/unit/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -127,7 +127,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
     - name: Install dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -226,7 +226,7 @@ jobs:
         DIR_ESLIB: .\dev64
         CXX: sccache g++
         AR: gcc-ar
-        TEST_BINARY: .\tests\endless-sky-tests.exe
+        TEST_BINARY: .\tests\unit\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
