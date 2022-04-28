@@ -2682,6 +2682,24 @@ bool Ship::IsEnergyLow() const
 
 
 
+bool Ship::IsFuelLow() const
+{
+	return IsFuelLow(attributes.Get("fuel capacity"));
+}
+
+
+
+// Check if ship fuel is low or check destination ship fuel (compareTo) can refuel.
+bool Ship::IsFuelLow(double compareTo) const
+{
+	if(CanBeCarried())
+		return attributes.Get("fuel capacity") && Fuel() < .15;
+	else
+		return JumpFuel() < compareTo - fuel;
+}
+
+
+
 bool Ship::IsBoarding() const
 {
 	return isBoarding;
@@ -2934,7 +2952,7 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return CanBeCarried() ? fuel : (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return CanBeCarried() ? !IsFuelLow() : (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
@@ -2942,6 +2960,9 @@ bool Ship::CanRefuel(const Ship &other) const
 // Transfer fuel to another ship.
 double Ship::TransferFuel(double amount, Ship *to)
 {
+	if(fuel <= 0.)
+		return 0.;
+	amount = min(fuel, amount);
 	amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
 	to->fuel += amount;
 	fuel -= amount;

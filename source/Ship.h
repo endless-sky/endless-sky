@@ -429,6 +429,8 @@ public:
 	// Helper functions for information display and behavior calculations.
 	bool IsEnergyLow() const;
 	bool IsFighterOutOfEnergy() const;
+	bool IsFuelLow() const;
+	bool IsFuelLow(double compareTo) const;
 	double GetCurrentEnergy() const;
 	double GetEnergyConsumptionPerFrame() const;
 	double GetFiringEnergyPerFrame() const;
