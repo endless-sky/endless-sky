@@ -37,7 +37,7 @@ unit_tests:
  - 'tests/unit/**/*.cpp'
 
 integration_tests:
- - 'data/test_parse.*'
+ - 'utils/test_parse.*'
  - 'tests/integration/run_tests*'
  - 'data/tests/**'
  - 'tests/integration/universes/**'
