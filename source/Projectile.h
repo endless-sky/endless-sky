@@ -97,6 +97,8 @@ public:
 
 private:
 	void CheckLock(const Ship &target);
+	void ApplyInaccuracy(const Hardpoint *hardpoint);
+	void ApplyInaccuracy(const Weapon *weapon);
 
 
 private:

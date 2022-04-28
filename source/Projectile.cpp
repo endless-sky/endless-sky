@@ -48,12 +48,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ha
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	
-	double spinupPercent = hardpoint->SpinupProgress();
-	double inaccuracy = spinupPercent * (double)weapon->SpinupInaccuracy() + (1 - spinupPercent) * (double)weapon->Inaccuracy();
-	
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	ApplyInaccuracy(hardpoint);
 
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
@@ -413,4 +408,58 @@ void Projectile::CheckLock(const Ship &target)
 double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
+}
+
+
+void Projectile::ApplyInaccuracy(const Hardpoint *hardpoint)
+{
+	double inaccuracy = 0;
+	if (hardpoint->GetOutfit()->IsSpinup())
+	{
+		double spinupProgress = hardpoint->SpinupProgress();
+		inaccuracy = spinupProgress * (double)hardpoint->GetOutfit()->SpinupInaccuracy() + (1 - spinupProgress) * (double)hardpoint->GetOutfit()->Inaccuracy();
+	}
+	else
+	{
+		inaccuracy = hardpoint->GetOutfit()->Inaccuracy();
+	}
+	
+	if(inaccuracy)
+		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+		// TODO: add uniform inaccuracy toggle logic
+		// Remove previous line, uncomment below code,
+		// and add uniform inaccuracy and IsUniform to weapons
+		/*{
+			if(hardpoint->GetOutfit()->IsUniform())
+			{
+				this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
+			}
+			else
+			{
+				this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+			}
+		}*/
+}
+
+
+
+void Projectile::ApplyInaccuracy(const Weapon *weapon)
+{
+	double inaccuracy = weapon->Inaccuracy();
+	
+	if(inaccuracy)
+		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+		// TODO: add uniform inaccuracy toggle logic
+		// Remove previous line, uncomment below code,
+		// and add uniform inaccuracy to weapons
+		/*{
+			if(weapon->IsUniform())
+			{
+				this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
+			}
+			else
+			{
+				this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+			}
+		}*/
 }

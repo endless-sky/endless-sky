@@ -197,10 +197,15 @@ void Hardpoint::Step()
 	// continuously if it is not fired this frame.
 	if(burstReload <= 0. && reload <= 0)
 		isFiring = false;
-	if(wasFiring)
-		spinupCount = max(0, --spinupCount);
-	else
-		spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
+	// Make sure the weapon in this hardpoint uses spinup
+	// before spending effort on math
+	if(outfit->IsSpinup())
+	{
+		if(wasFiring)
+			spinupCount = max(0, --spinupCount);
+		else
+			spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
+	}
 }
 
 
@@ -349,8 +354,8 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Since this is only called internally, it is safe to assume that the
 	// outfit pointer is not null.
 	
-	// Reset the reload count.
-	if(!outfit->SpinupReload())
+	// Reset the reload count, using the simple method if possible
+	if(!outfit->IsSpinup())
 	{
 		reload += outfit->Reload();
 	}
