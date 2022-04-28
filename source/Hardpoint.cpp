@@ -199,7 +199,7 @@ void Hardpoint::Step()
 		isFiring = false;
 	// Make sure the weapon in this hardpoint uses spinup
 	// before spending effort on math
-	if(outfit->IsSpinup())
+	if(outfit->SpinupTime() > 1)
 	{
 		// If this weapon is a burst weapon and if its burst has been expended
 		if((outfit->BurstCount() > 1 && burstCount == 0))
@@ -361,16 +361,16 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// outfit pointer is not null.
 	
 	// Reset the reload count, using the simple method if possible
-	if(!outfit->IsSpinup())
+	if(outfit->SpinupTime() > 1)
 	{
-		reload += outfit->Reload();
-		burstReload += outfit->BurstReload();
+		double spinupPercent = SpinupProgress();
+		reload += spinupPercent * outfit->SpinupReload() + (1. - spinupPercent) * outfit->Reload();
+		burstReload += spinupPercent * outfit->SpinupBurstReload() + (1. - spinupPercent) * outfit->BurstReload();
 	}
 	else
 	{
-		double spinupPercent = SpinupProgress();
-		reload += spinupPercent * static_cast<double>(outfit->SpinupReload()) + (1. - spinupPercent) * static_cast<double>(outfit->Reload());
-		burstReload += spinupPercent * static_cast<double>(outfit->SpinupBurstReload()) + (1. - spinupPercent) * static_cast<double>(outfit->BurstReload());
+		reload += outfit->Reload();
+		burstReload += outfit->BurstReload();
 	}
 	--burstCount;
 	isFiring = true;
