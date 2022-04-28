@@ -66,8 +66,8 @@ public:
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
 
-	// Opens the plugins folder inside the configuration directory in a separate window.
-	static void OpenGlobalPluginFolder();
+	// Open this user's plugins directory in their native file explorer.
+	static void OpenUserPluginFolder();
 
 	static void LogError(const std::string &message);
 };

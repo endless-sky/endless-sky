@@ -560,8 +560,8 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-// Opens the plugins folder inside the configuration directory in a separate window.
-void Files::OpenGlobalPluginFolder()
+// Open this user's plugins directory in their native file explorer.
+void Files::OpenUserPluginFolder()
 {
 	OpenFolder(Config() + "plugins");
 }
