@@ -1,15 +1,14 @@
 # Unit Tests
 
-This directory contains files that link against a particular source code file used by the game. All test files should be prefixed with `test_`, while other test utilities should be named appropriately.
+The [src](./src) sub-directory contains files that link against a particular source code file used by the game. All test files should be prefixed with `test_`, while other test utilities should be named appropriately.
 
 Tests should be added in their own file, named "test_classToBeTested.cpp"  
 If the test file will become cumbersome, a subdirectory structure is OK:
 
 ```
-tests/
+tests/unit (this directory)
   ...
-  unit/ (this directory)
-    include/ (includes used in the tests)
+  src/
     test_classA.cpp
     ClassToBeTested/
       test_classToBeTested-methodToBeTested.cpp
@@ -19,7 +18,7 @@ tests/
 
 # Writing Tests
 
-To get started, copy the `test_template.txt` file to a new source file, e.g. `cp test_template.txt test_foo.cpp`.
+To get started, copy the `test_template.txt` file to a new source file, e.g. `cp src/test_template.txt src/test_foo.cpp`.
 
 1. We do not want tests, variables, classes, fixtures, etc. that are needed to test the class or method to be accessible to other files. Thus, all test code is to be wrapped in an anonymous namespace.
 2. Prefer scenario-driven language that uses the `SCENARIO`, `GIVEN`, `WHEN`, and `THEN` macros over the test-driven language of `TEST_CASE` and `SECTION` macros. (There will be situations where the latter is better-suited to the class / method under test.)
