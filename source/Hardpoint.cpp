@@ -174,7 +174,7 @@ int Hardpoint::BurstRemaining() const
 // Get the current spinup progress
 double Hardpoint::SpinupProgress() const
 {
-	return  1. - (spinupCount / (double)outfit->SpinupCount());
+	return  1. - (spinupCount / (double)outfit->SpinupTime());
 }
 
 
@@ -204,7 +204,7 @@ void Hardpoint::Step()
 		if(wasFiring)
 			spinupCount = max(0, --spinupCount);
 		else
-			spinupCount = min(outfit->SpinupCount(), spinupCount += 2);
+			spinupCount = min(outfit->SpinupTime(), spinupCount += 2);
 	}
 }
 
@@ -335,7 +335,7 @@ void Hardpoint::Reload()
 	reload = 0.;
 	burstReload = 0.;
 	burstCount = outfit ? outfit->BurstCount() : 0;
-	spinupCount = outfit ? outfit->SpinupCount() : 0;
+	spinupCount = outfit ? outfit->SpinupTime() : 0;
 }
 
 

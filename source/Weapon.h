@@ -78,7 +78,7 @@ public:
 	double BurstReload() const;
 	double SpinupReload() const;
 	int BurstCount() const;
-	int SpinupCount() const;
+	int SpinupTime() const;
 	int Homing() const;
 
 	int AmmoUsage() const;
@@ -240,7 +240,7 @@ private:
 	double burstReload = 1.;
 	double spinupReload = 0.;
 	int burstCount = 1;
-	int spinupCount = 0;
+	int spinupTime = 0;
 	int homing = 0;
 
 	int missileStrength = 0;
@@ -336,7 +336,7 @@ inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline double Weapon::SpinupReload() const {return spinupReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
-inline int Weapon::SpinupCount() const { return spinupCount; }
+inline int Weapon::SpinupTime() const { return spinupTime; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
