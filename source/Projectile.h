@@ -48,7 +48,7 @@ public:
 	};
 
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Hardpoint *hardpoint, const Weapon *weapon);
+	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon, double spinupProgress);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
@@ -97,8 +97,6 @@ public:
 
 private:
 	void CheckLock(const Ship &target);
-	void ApplyInaccuracy(const Hardpoint *hardpoint);
-	void ApplyInaccuracy(const Weapon *weapon);
 
 
 private:

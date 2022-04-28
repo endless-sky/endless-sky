@@ -35,7 +35,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Hardpoint *hardpoint, const Weapon *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon, double spinupProgress)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -48,7 +48,17 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ha
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	ApplyInaccuracy(hardpoint);
+	
+	double inaccuracy = 0;
+	if (weapon->SpinupTime() > 1)
+	{
+		inaccuracy = spinupProgress * weapon->SpinupInaccuracy() + (1 - spinupProgress) * weapon->Inaccuracy();
+	}
+	else
+		inaccuracy = weapon->Inaccuracy();
+	
+	if(inaccuracy)
+		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
@@ -408,58 +418,4 @@ void Projectile::CheckLock(const Ship &target)
 double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
-}
-
-
-void Projectile::ApplyInaccuracy(const Hardpoint *hardpoint)
-{
-	double inaccuracy = 0;
-	if (hardpoint->GetOutfit()->IsSpinup())
-	{
-		double spinupProgress = hardpoint->SpinupProgress();
-		inaccuracy = spinupProgress * static_cast<double>(hardpoint->GetOutfit()->SpinupInaccuracy()) + (1 - spinupProgress) * static_cast<double>(hardpoint->GetOutfit()->Inaccuracy());
-	}
-	else
-	{
-		inaccuracy = hardpoint->GetOutfit()->Inaccuracy();
-	}
-	
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		// TODO: add uniform inaccuracy toggle logic
-		// Remove previous line, uncomment below code,
-		// and add uniform inaccuracy and IsUniform to weapons
-		/*{
-			if(hardpoint->GetOutfit()->IsUniform())
-			{
-				this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
-			}
-			else
-			{
-				this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-			}
-		}*/
-}
-
-
-
-void Projectile::ApplyInaccuracy(const Weapon *weapon)
-{
-	double inaccuracy = weapon->Inaccuracy();
-	
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		// TODO: add uniform inaccuracy toggle logic
-		// Remove previous line, uncomment below code,
-		// and add uniform inaccuracy to weapons
-		/*{
-			if(weapon->IsUniform())
-			{
-				this->angle += Angle::Random(inaccuracy * 2) - Angle(inaccuracy);
-			}
-			else
-			{
-				this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-			}
-		}*/
 }
