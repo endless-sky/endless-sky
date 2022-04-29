@@ -198,21 +198,12 @@ void Hardpoint::Step()
 	// continuously if it is not fired this frame.
 	if(burstReload <= 0. && reload <= 0)
 		isFiring = false;
-	// Make sure the weapon in this hardpoint uses spinup
-	// before spending effort on math
-	if(outfit->SpinupTime() > 1)
-	{
-		// If this weapon is a burst weapon and if its burst has been expended
-		if((outfit->BurstCount() > 1 && burstCount == 0))
-			spinupCount = outfit->SpinupTime();
-		else
-		{
-			if(wasFiring)
-				spinupCount = max(0, spinupCount - 1);
-			else
-				spinupCount = min(outfit->SpinupTime(), spinupCount + 2);
-		}
-	}
+	if((outfit->BurstCount() > 1 && burstCount == 0))
+		spinupCount = outfit->SpinupTime();
+	else if(wasFiring && spinupCount > 0)
+		--spinupCount;
+	else if(!wasFiring && spinupCount < outfit->SpinupTime())
+		++spinupCount;
 }
 
 
