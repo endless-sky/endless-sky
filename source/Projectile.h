@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
-#include "Hardpoint.h"
 #include "Point.h"
 
 #include <memory>
