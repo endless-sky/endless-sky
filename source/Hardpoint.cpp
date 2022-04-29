@@ -360,10 +360,11 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {
 	// Since this is only called internally, it is safe to assume that the
 	// outfit pointer is not null.
-	
-	double spinupPercent = SpinupProgress();
-	reload += spinupPercent * outfit->SpinupReload() + (1. - spinupPercent) * outfit->Reload();
-	burstReload += spinupPercent * outfit->SpinupBurstReload() + (1. - spinupPercent) * outfit->BurstReload();
+
+	// Reset the reload count.
+	double spinupProgress = SpinupProgress();
+	reload += spinupProgress  * outfit->Reload() + (1. - spinupPercent) * outfit->SpinupReload();
+	burstReload += spinupProgress * outfit->BurstReload() + (1. - spinupProgress) * outfit->SpinupBurstReload();
 	--burstCount;
 	isFiring = true;
 
