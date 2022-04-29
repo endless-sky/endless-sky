@@ -2264,7 +2264,7 @@ void Ship::DoGeneration()
 		double heat_power = attributes.Get("radiating power") * heat * .001;
 
 		if(heat_power > 0. && heat_cap > 0.)
-			heat -= (heat_cap * heat_power) / (heat_cap + heat_power);
+			heat -= coolingEfficiency * heat_cap * heat_power / (heat_cap + heat_power);
 
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
