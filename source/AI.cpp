@@ -568,6 +568,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
+		else if(it->IsYours() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
+			AskForHelp(*it, isStranded, flagship);
+
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
 			continue;
@@ -658,7 +661,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
 					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
-					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining())
+					|| (!shipToAssist->IsDisabled() && !it->CanRefuel(*shipToAssist) && shipToAssist->JumpsRemaining())
 					|| it->IsEnergyLow())
 			{
 				shipToAssist.reset();
@@ -987,6 +990,11 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 		{
 			// Never ask yourself for help.
 			if(helper.get() == &ship)
+				continue;
+
+			// If ship is otherwise healthy it should not ask non-escorts for help.
+			// Healthy ships should only request help from fighters if any is required.
+			if(!ship.IsDisabled() && !isStranded && !helper->IsYours())
 				continue;
 
 			// If any able enemies of this ship are in its system, it cannot call for help.

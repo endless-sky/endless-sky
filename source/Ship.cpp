@@ -2379,11 +2379,14 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
 		if(!victim.get()->IsFighterOutOfEnergy())
 			victim->isDisabled = false;
-		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		// Transfer some fuel if needed.  If your escort is a fighter it should refuel the fleet to maximum.
+		if(!victim->JumpsRemaining() || (IsYours() && CanRefuel(*victim)))
 		{
 			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
+			if(victim->JumpFuelMissing())
+				TransferFuel(victim->JumpFuelMissing(), victim.get());
+			else
+				TransferFuel(fuel, victim.get());
 		}
 		if(victim.get()->IsFighterOutOfEnergy() && !IsEnergyLow())
 			TransferEnergy(energy, victim.get());
@@ -2734,7 +2737,7 @@ bool Ship::IsFuelLow(double compareTo) const
 	if(CanBeCarried())
 		return attributes.Get("fuel capacity") && Fuel() < .15;
 	else
-		return JumpFuel() < compareTo - fuel;
+		return (IsYours() && !HasBays()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
 }
 
 
@@ -2991,7 +2994,27 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return CanBeCarried() ? !IsFuelLow() : (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	if(CanBeCarried() && GetSystem())
+	{
+		// Ensure all escorts have minimum one jump of fuel before refueling all
+		// escorts to maximum.  Only perform "max refueling" from within your
+		// own fleet.
+		if(IsYours() && !other.JumpFuelMissing())
+		{
+			const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+			for(const weak_ptr<Ship> &ptr : myEscorts)
+			{
+				shared_ptr<const Ship> escort = ptr.lock();
+				if(escort && escort->JumpFuelMissing())
+					return false;
+			}
+		}
+		else if(!IsYours() && other.IsYours())
+			return false;
+		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
+		//return  !IsFuelLow(other.fuel);
+	}
+	return (!IsYours() || other.JumpFuelMissing()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
