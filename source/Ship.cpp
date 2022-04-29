@@ -2238,9 +2238,8 @@ void Ship::DoGeneration()
 		// close to the star. Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
-
+			double scale = GetSolarScale();
+			fuel += GetRamscoopRegenPerFrame();
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
 			heat += solarScaling * attributes.Get("solar heat");
@@ -2313,13 +2312,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(maxFuel)
 				{
 					double spareFuel = fuel - JumpFuel();
-					if(spareFuel > 0.)
+					if(spareFuel > 0. ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't launch.
-					if(bay.ship->fuel < .25 * maxFuel)
+					if(bay.ship->fuel < .25 * maxFuel ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
 					{
 						TransferFuel(bay.ship->fuel, this);
-						continue;
+						// Launch if fleet is full and fighter or drone is refilling carrier.
+						if(!IsEscortsFullOfFuel())
+							continue;
 					}
 				}
 			}
@@ -2689,6 +2690,27 @@ bool Ship::IsEnergyLow() const
 			return true;
 	}
 	return false;
+}
+
+
+
+// Check if escort fleet is full of fuel.  In this case, the fighters can help
+// replenish the Carrier fuel tanker.
+bool Ship::IsEscortsFullOfFuel() const
+{
+	if(!IsYours())
+		return false;
+	const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+	for(const weak_ptr<Ship> &ptr : myEscorts)
+	{
+		shared_ptr<const Ship> escort = ptr.lock();
+		// Skip fighters and drones.
+		if(escort->CanBeCarried())
+			continue;
+		if(escort->IsFuelLow())
+			return false;
+	}
+	return true;
 }
 
 
@@ -4238,6 +4260,16 @@ double Ship::GetHullEnergyPerFrame() const
 
 
 
+double Ship::GetRamscoopRegenPerFrame() const
+{
+	if(!currentSystem)
+		return 0.;
+	double scale = GetSolarScale();
+	return currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
+}
+
+
+
 double Ship::GetRegenEnergyPerFrame() const
 {
 	return GetHullEnergyPerFrame() + GetShieldEnergyPerFrame();
@@ -4275,4 +4307,11 @@ double Ship::GetPotentialIonEnergyLoss() const
 double Ship::GetEnergyConsumptionPerFrame() const
 {
 	return GetIdleEnergyPerFrame() - GetMovingEnergyPerFrame() - GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
+}
+
+
+
+double Ship::GetSolarScale() const
+{
+	return .2 + 1.8 / (.001 * position.Length() + 1);
 }

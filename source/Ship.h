@@ -426,22 +426,25 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
-	// Helper functions for information display and behavior calculations.
+	// Helper functions for information display and ship behavior calculations.
 	bool IsArmed() const;
 	bool IsEnemyInEscortSystem() const;
 	bool IsEnergyLow() const;
+	bool IsEscortsFullOfFuel() const;
 	bool IsFighterOutOfEnergy() const;
 	bool IsFuelLow() const;
 	bool IsFuelLow(double compareTo) const;
 	double GetCurrentEnergy() const;
 	double GetEnergyConsumptionPerFrame() const;
 	double GetFiringEnergyPerFrame() const;
+	double GetHullEnergyPerFrame() const;
 	double GetIdleEnergyPerFrame() const;
 	double GetMovingEnergyPerFrame() const;
-	double GetShieldEnergyPerFrame() const;
 	double GetPotentialIonEnergyLoss() const;
-	double GetHullEnergyPerFrame() const;
+	double GetRamscoopRegenPerFrame() const;
 	double GetRegenEnergyPerFrame() const;
+	double GetShieldEnergyPerFrame() const;
+	double GetSolarScale() const;
 
 
 private:
