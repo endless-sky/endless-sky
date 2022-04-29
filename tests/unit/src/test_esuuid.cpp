@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "output-capture.hpp"
 
 // Include only the tested class's header.
-#include "../../source/EsUuid.h"
+#include "../../../source/EsUuid.h"
 // Declare the existence of the class internals that will be tested.
 namespace es_uuid {
 namespace detail {

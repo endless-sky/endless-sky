@@ -169,8 +169,7 @@ test = env.Program(
 	target=pathjoin("tests", "unit", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
 	# Add Catch header & additional test includes to the existing search paths.
-	# And make sure we can refer to ../../source type paths from unit-test dir.
-	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')] + [pathjoin('tests', 'unit')]),
+	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.

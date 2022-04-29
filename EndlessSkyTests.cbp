@@ -51,7 +51,6 @@
 			<Add option="-Wold-style-cast" />
 			<Add option="-fno-rtti" />
 			<Add directory="tests/unit/include" />
-			<Add directory="tests/unit" />
 			<Add directory="C:/dev64/include" />
 		</Compiler>
 		<Linker>

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEST_HELPER_DATANODE_FACTORY_H_
 #define ES_TEST_HELPER_DATANODE_FACTORY_H_
 
-#include "../../source/DataNode.h"
+#include "../../../source/DataNode.h"
 
 #include <string>
 #include <vector>

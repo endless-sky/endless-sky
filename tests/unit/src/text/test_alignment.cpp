@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/text/alignment.hpp"
+#include "../../../../source/text/alignment.hpp"
 
 // ... and any system includes needed for the test file.
 #include <type_traits>

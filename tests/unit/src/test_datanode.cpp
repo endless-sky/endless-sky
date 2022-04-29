@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../source/DataNode.h"
+#include "../../../source/DataNode.h"
 
 // Include a helper for creating well-formed DataNodes.
 #include "datanode-factory.h"

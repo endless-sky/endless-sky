@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CATCH_CONFIG_RUNNER
 #include "es-test.hpp"
 
-#include "../../source/Random.h"
+#include "../../../source/Random.h"
 #include <ctime>
 
 int main(int argc, const char *const argv[])

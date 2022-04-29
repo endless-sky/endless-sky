@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/text/Format.h"
+#include "../../../../source/text/Format.h"
 
 // ... utility classes
-#include "../../../source/DataNode.h"
+#include "../../../../source/DataNode.h"
 
 // ... and any system includes needed for the test file.
 #include <string>

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../source/ConditionSet.h"
+#include "../../../source/ConditionSet.h"
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"

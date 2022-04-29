@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "datanode-factory.h"
 
-#include "../../../source/DataFile.h"
-#include "../../../source/DataNode.h"
+#include "../../../../source/DataFile.h"
+#include "../../../../source/DataNode.h"
 
 #include <sstream>
 #include <string>
