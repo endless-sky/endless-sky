@@ -166,6 +166,8 @@ protected:
 
 private:
 	bool DoScroll(double dy);
+	bool DoScrollTop();
+	bool DoScrollBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();
