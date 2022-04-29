@@ -1065,7 +1065,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 		return false;
 
 	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
-	if(!ship.IsDisabled() && needsFuel && !helper.CanRefuel(ship))
+	if(!ship.IsDisabled() && (needsFuel || (ship.IsYours() && helper.IsYours())) && !helper.CanRefuel(ship))
 		return false;
 
 	// Helper is not able to continue helping because they must return to carrier for battery recharge.
