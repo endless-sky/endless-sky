@@ -1731,10 +1731,10 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.  Also account for when fighter has ramscoop to
 	// prioritize returning over ramscoop regeneration.
-	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel() && !ship.IsEnemyInEscortSystem();
+	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel() && !ship.IsEnemyInEscortSystem() && parent.Fuel() < 1.;
 	bool hasDecentRamscoop = (ship.GetRamscoopRegenPerFrame() * 60 >= 1);
 	bool fighterHasRefueled = ship.Fuel() > .75 && ship.Fuel() < 1. && ship.GetSystem();
-	bool shouldReturnForFuel = (readyToRefuelCarrier && parent.Fuel() < 1.) ? hasDecentRamscoop && !fighterHasRefueled : ((hasDecentRamscoop && ship.Fuel() < .25) || ship.IsFuelLow()) && !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
+	bool shouldReturnForFuel = (readyToRefuelCarrier) ? hasDecentRamscoop && !fighterHasRefueled : ((hasDecentRamscoop && ship.Fuel() < .25) || ship.IsFuelLow()) && !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
 	if(shouldReturnForFuel ^ readyToRefuelCarrier)
 		return true;
 

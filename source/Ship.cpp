@@ -2312,10 +2312,10 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(maxFuel)
 				{
 					double spareFuel = fuel - JumpFuel();
-					if(spareFuel > 0. ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
+					if((spareFuel > 0.) ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't launch.
-					if(bay.ship->fuel < .25 * maxFuel ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
+					if((bay.ship->fuel < .25 * maxFuel) ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
 					{
 						TransferFuel(bay.ship->fuel, this);
 						// Launch if fleet is full and fighter or drone is refilling carrier.
