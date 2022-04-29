@@ -116,16 +116,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 				randomLifetime = max(0., value);
 			else if(key == "reload")
 				reload = max(1., value);
+			else if(key == "initial reload")
+				initialReload = max(1., value);
 			else if(key == "burst reload")
 				burstReload = max(1., value);
-			else if(key == "spinup reload")
-				spinupReload = max(1., value);
-			else if(key == "spinup burst reload")
-				spinupBurstReload = max(1., value);
+			else if(key == "burst initial reload")
+				burstInitialReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
 			else if(key == "spinup time")
 				spinupTime = max(1., value);
+			else if(key == "burst spinup time")
+				burstSpinupTime = max(1., value);
 			else if(key == "homing")
 				homing = value;
 			else if(key == "missile strength")

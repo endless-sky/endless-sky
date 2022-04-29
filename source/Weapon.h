@@ -75,11 +75,12 @@ public:
 	int Lifetime() const;
 	int RandomLifetime() const;
 	double Reload() const;
+	double InitialReload() const;
 	double BurstReload() const;
-	double SpinupReload() const;
-	double SpinupBurstReload() const;
+	double BurstInitialReload() const;
 	int BurstCount() const;
 	int SpinupTime() const;
+	int BurstSpinupTime() const;
 	int Homing() const;
 
 	int AmmoUsage() const;
@@ -234,11 +235,12 @@ private:
 	int lifetime = 0;
 	int randomLifetime = 0;
 	double reload = 1.;
+	double initialReload = 1.;
 	double burstReload = 1.;
-	double spinupReload = 1.;
-	double spinupBurstReload = 1.;
+	double burstInitialReload = 1.;
 	int burstCount = 1;
 	int spinupTime = 0;
+	int burstSpinupTime = 0;
 	int homing = 0;
 
 	int missileStrength = 0;
@@ -331,11 +333,12 @@ private:
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline double Weapon::Reload() const { return reload; }
+inline double Weapon::InitialReload() const { return initialReload; }
 inline double Weapon::BurstReload() const { return burstReload; }
-inline double Weapon::SpinupReload() const { return spinupReload; }
-inline double Weapon::SpinupBurstReload() const { return spinupBurstReload; }
+inline double Weapon::BurstInitialReload() const { return burstInitialReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::SpinupTime() const { return spinupTime; }
+inline int Weapon::BurstSpinupTime() const { return burstSpinupTime; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }

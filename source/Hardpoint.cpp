@@ -171,11 +171,20 @@ int Hardpoint::BurstRemaining() const
 
 
 
-// Get the current spinup progress
+// Get the current overall spinup progress
 double Hardpoint::SpinupProgress() const
 {
 	double spinupTime = outfit->SpinupTime();
-	return spinupTime ? 1. - spinupCount / spinupTime  : 0.;
+	return spinupTime ? 1. - spinupCount / spinupTime : 1.;
+}
+
+
+
+// Get the current burst-specific spinup progress
+double Hardpoint::BurstSpinupProgress() const
+{
+	double burstSpinupTime = outfit->BurstSpinupTime();
+	return burstSpinupTime ? 1. - burstSpinupCount / burstSpinupTime : 1.;
 }
 
 
@@ -198,12 +207,31 @@ void Hardpoint::Step()
 	// continuously if it is not fired this frame.
 	if(burstReload <= 0. && reload <= 0)
 		isFiring = false;
-	if((outfit->BurstCount() > 1 && burstCount == 0))
-		spinupCount = outfit->SpinupTime();
-	else if(wasFiring && spinupCount > 0)
-		--spinupCount;
-	else if(!wasFiring && spinupCount < outfit->SpinupTime())
-		++spinupCount;
+	if(outfit->BurstCount() > 1 && burstCount == 0)
+	{
+		burstSpinupCount = outfit->BurstSpinupTime();
+		if(wasFiring && spinupCount > 0)
+			--spinupCount;
+		else if(!wasFiring && spinupCount < outfit->SpinupTime())
+			++spinupCount;
+	}
+	else
+	{
+		if(wasFiring)
+		{
+			if(spinupCount > 0)
+				--spinupCount;
+			if(burstSpinupCount > 0)
+				--burstSpinupCount;
+		}
+		else
+		{
+			if(spinupCount < outfit->SpinupTime())
+				++spinupCount;
+			if(burstSpinupCount < outfit->BurstSpinupTime())
+				++burstSpinupCount;
+		}
+	}
 }
 
 
@@ -354,8 +382,11 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 	// Reset the reload count.
 	double spinupProgress = SpinupProgress();
-	reload += spinupProgress  * outfit->Reload() + (1. - spinupProgress) * outfit->SpinupReload();
-	burstReload += spinupProgress * outfit->BurstReload() + (1. - spinupProgress) * outfit->SpinupBurstReload();
+	reload += spinupProgress * outfit->Reload() + (1. - spinupProgress) * outfit->InitialReload();
+	
+	double burstSpinupProgress = BurstSpinupProgress();
+	burstReload += burstSpinupProgress * outfit->BurstReload() + (1. - burstSpinupProgress) * outfit->BurstInitialReload();
+	
 	--burstCount;
 	isFiring = true;
 
