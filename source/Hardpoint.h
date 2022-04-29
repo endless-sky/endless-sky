@@ -58,10 +58,6 @@ public:
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.
 	int BurstRemaining() const;
-	// If this is a spinup weapon, get the current overall spinup progress
-	double SpinupProgress() const;
-	// If this is a burst spinup weapon, get the current burst-specific spinup progress
-	double BurstSpinupProgress() const;
 	// Perform one step (i.e. decrement the reload count).
 	void Step();
 
@@ -87,6 +83,10 @@ public:
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+	// If this is a spinup weapon, get the current overall spinup progress
+	double SpinupProgress() const;
+	// If this is a burst spinup weapon, get the current burst-specific spinup progress
+	double BurstSpinupProgress() const;
 
 
 private:
