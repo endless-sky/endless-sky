@@ -2630,6 +2630,66 @@ bool Ship::IsDisabled() const
 
 
 
+// Determine if the ship has any usable weapons.
+bool Ship::IsArmed() const
+{
+	for(const Hardpoint &hardpoint : Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon && !hardpoint.IsAntiMissile())
+		{
+			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
+				continue;
+			return true;
+		}
+	}
+	return false;
+}
+
+// Check for enemies in the in the current system if ship is owned by player.
+bool Ship::IsEnemyInEscortSystem() const
+{
+	if(!IsYours())
+		return false;
+	const Government *gov = (CanBeCarried() && GetParent()) ? GetParent()->GetGovernment() : GetGovernment();
+	const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+	for(const weak_ptr<Ship> &escort : myEscorts)
+	{
+		shared_ptr<const Ship> escortTarget = escort.lock()->GetTargetShip();
+		if(escortTarget)
+		{
+			if(gov->IsEnemy(escortTarget->GetGovernment()))
+				return true;
+		}
+	}
+	return false;
+}
+
+
+
+// If a ship is nearly out of battery energy and is slow to charge or no charge,
+// then consider it low on energy.
+bool Ship::IsEnergyLow() const
+{
+	double frames = 60.;
+	double idleEnergy = frames * GetIdleEnergyPerFrame();
+	double maxEnergy = Attributes().Get("energy capacity");
+	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
+	double currentEnergy = (CanBeCarried() && GetSystem()) ? GetCurrentEnergy() : maxEnergy * .75;
+	//double currentEnergy = GetCurrentEnergy();
+	if(totalConsumption < 0.)
+	{
+		double secondsToEmpty = currentEnergy / (-totalConsumption);
+		// how quickly can it charge under no energy load
+		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : 11.;
+		if((secondsToEmpty < 10. && secondsToFullCharge > 10.) || (secondsToEmpty < 10. && idleEnergy <= 0.))
+			return true;
+	}
+	return false;
+}
+
+
+
 // Out of energy fighters will be disabled if far away from the parent.  This is
 // so the parent can board the fighter however the fighter needs to not be
 // disabled in order to board the carrier.
@@ -2660,28 +2720,7 @@ bool Ship::IsFighterOutOfEnergy() const
 
 
 
-// If a ship is nearly out of battery energy and is slow to charge or no charge,
-// then consider it low on energy.
-bool Ship::IsEnergyLow() const
-{
-	double frames = 60.;
-	double idleEnergy = frames * GetIdleEnergyPerFrame();
-	double maxEnergy = Attributes().Get("energy capacity");
-	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
-	double currentEnergy = GetCurrentEnergy();
-	if(totalConsumption < 0.)
-	{
-		double secondsToEmpty = currentEnergy / (-totalConsumption);
-		// how quickly can it charge under no energy load
-		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : 11.;
-		if(secondsToEmpty < 10. && secondsToFullCharge > 10.)
-			return true;
-	}
-	return false;
-}
-
-
-
+// Check if ship fuel is low or check destination ship fuel (compareTo) can refuel.
 bool Ship::IsFuelLow() const
 {
 	return IsFuelLow(attributes.Get("fuel capacity"));

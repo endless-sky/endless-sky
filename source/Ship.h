@@ -427,6 +427,8 @@ public:
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
 	// Helper functions for information display and behavior calculations.
+	bool IsArmed() const;
+	bool IsEnemyInEscortSystem() const;
 	bool IsEnergyLow() const;
 	bool IsFighterOutOfEnergy() const;
 	bool IsFuelLow() const;
