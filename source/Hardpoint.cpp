@@ -363,7 +363,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 	// Reset the reload count.
 	double spinupProgress = SpinupProgress();
-	reload += spinupProgress  * outfit->Reload() + (1. - spinupPercent) * outfit->SpinupReload();
+	reload += spinupProgress  * outfit->Reload() + (1. - spinupProgress) * outfit->SpinupReload();
 	burstReload += spinupProgress * outfit->BurstReload() + (1. - spinupProgress) * outfit->SpinupBurstReload();
 	--burstCount;
 	isFiring = true;
