@@ -286,14 +286,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
-	/* spinupBurstReload could conceptually be larger than burstReload.
-	if(spinupBurstReload > burstReload)
-		spinupBurstReload = burstReload;*/
-	/* spinupReload and spinupInaccuracy could conceptually be larger and smaller than reload and inaccuracy, respectively.
-	if(spinupReload > reload)
-		spinupReload = reload;
-	if(spinupInaccuracy < inaccuracy)
-		spinupInaccuracy = inaccuracy;*/
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 
