@@ -661,9 +661,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
 	else if(key == SDLK_HOME)
-		return DoScrollTop();
+		return SetScrollToTop();
 	else if(key == SDLK_END)
-		return DoScrollBottom();
+		return SetScrollToBottom();
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -968,7 +968,7 @@ bool ShopPanel::DoScroll(double dy)
 
 
 
-bool ShopPanel::DoScrollTop()
+bool ShopPanel::SetScrollToTop()
 {
 	if(activePane == ShopPane::Info)
 		infobarScroll = 0.;
@@ -982,7 +982,7 @@ bool ShopPanel::DoScrollTop()
 
 
 
-bool ShopPanel::DoScrollBottom()
+bool ShopPanel::SetScrollToBottom()
 {
 	if(activePane == ShopPane::Info)
 		infobarScroll = maxInfobarScroll;
