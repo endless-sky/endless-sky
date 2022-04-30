@@ -400,9 +400,9 @@ outfit "Crystal Capacitor"
 		Remnant
 	cost 113000
 	thumbnail "outfit/crystal capacitor"
-	"mass" 12
-	"outfit space" -12
-	"energy capacity" 3400
+	"mass" 6
+	"outfit space" -6
+	"energy capacity" 6800
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
