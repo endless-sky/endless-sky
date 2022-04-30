@@ -277,8 +277,12 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	{
 		// Scrolling the list of plunder.
 		if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-			// With 220 px of content and 20 px height per line, there are 11 lines.
-			selected += 11 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+			// With 220 px of content and 20 px height per line, there are 11
+			// lines. However, although some programs scroll a whole page
+			// (e.g. most KDE programs) it seems to be more common to scroll a
+			// bit less than a whole page (e.g. the most used browsers or
+			// common IDEs), so scroll only 10 lines.
+			selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
 		else if(key == SDLK_HOME)
 			selected = 0;
 		else if(key == SDLK_END)
