@@ -68,52 +68,6 @@ namespace {
 
 
 
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
-{
-	progress = 0.;
-
-	// We need to copy any variables used for loading to avoid a race condition.
-	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
-	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
-		{
-			vector<string> files;
-			for(const string &source : sources)
-			{
-				// Iterate through the paths starting with the last directory given. That
-				// is, things in folders near the start of the path have the ability to
-				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source + "data/");
-				files.reserve(files.size() + list.size());
-				files.insert(files.end(),
-						make_move_iterator(list.begin()),
-						make_move_iterator(list.end()));
-			}
-
-			const double step = 1. / (static_cast<int>(files.size()) + 1);
-			for(const auto &path : files)
-			{
-				LoadFile(path, debugMode);
-
-				// Increment the atomic progress by one step.
-				// We use acquire + release to prevent any reordering.
-				auto val = progress.load(memory_order_acquire);
-				progress.store(val + step, memory_order_release);
-			}
-			FinishLoading();
-			progress = 1.;
-		});
-}
-
-
-
-double UniverseObjects::GetProgress() const
-{
-	return progress.load(memory_order_acquire);
-}
-
-
-
 void UniverseObjects::FinishLoading()
 {
 	// Now that all data is loaded, update the neighbor lists and other
@@ -297,189 +251,147 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const string &path, bool debugMode)
+bool UniverseObjects::LoadNode(const DataNode &node, const string &path)
 {
-	// This is an ordinary file. Check to see if it is an image.
-	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
-		return;
-
-	DataFile data(path);
-	if(debugMode)
-		Files::LogError("Parsing: " + path);
-
-	for(const DataNode &node : data)
+	const string &key = node.Token(0);
+	if(key == "conversation" && node.Size() >= 2)
+		conversations.Get(node.Token(1))->Load(node);
+	else if(key == "effect" && node.Size() >= 2)
+		effects.Get(node.Token(1))->Load(node);
+	else if(key == "event" && node.Size() >= 2)
+		events.Get(node.Token(1))->Load(node);
+	else if(key == "fleet" && node.Size() >= 2)
+		fleets.Get(node.Token(1))->Load(node);
+	else if(key == "galaxy" && node.Size() >= 2)
+		galaxies.Get(node.Token(1))->Load(node);
+	else if(key == "government" && node.Size() >= 2)
+		governments.Get(node.Token(1))->Load(node);
+	else if(key == "hazard" && node.Size() >= 2)
+		hazards.Get(node.Token(1))->Load(node);
+	else if(key == "minable" && node.Size() >= 2)
+		minables.Get(node.Token(1))->Load(node);
+	else if(key == "mission" && node.Size() >= 2)
+		missions.Get(node.Token(1))->Load(node);
+	else if(key == "outfit" && node.Size() >= 2)
+		outfits.Get(node.Token(1))->Load(node);
+	else if(key == "outfitter" && node.Size() >= 2)
+		outfitSales.Get(node.Token(1))->Load(node, outfits);
+	else if(key == "person" && node.Size() >= 2)
+		persons.Get(node.Token(1))->Load(node);
+	else if(key == "phrase" && node.Size() >= 2)
+		phrases.Get(node.Token(1))->Load(node);
+	else if(key == "planet" && node.Size() >= 2)
+		planets.Get(node.Token(1))->Load(node);
+	else if(key == "ship" && node.Size() >= 2)
 	{
-		const string &key = node.Token(0);
-		if(key == "color" && node.Size() >= 6)
-			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
-		else if(key == "conversation" && node.Size() >= 2)
-			conversations.Get(node.Token(1))->Load(node);
-		else if(key == "effect" && node.Size() >= 2)
-			effects.Get(node.Token(1))->Load(node);
-		else if(key == "event" && node.Size() >= 2)
-			events.Get(node.Token(1))->Load(node);
-		else if(key == "fleet" && node.Size() >= 2)
-			fleets.Get(node.Token(1))->Load(node);
-		else if(key == "galaxy" && node.Size() >= 2)
-			galaxies.Get(node.Token(1))->Load(node);
-		else if(key == "government" && node.Size() >= 2)
-			governments.Get(node.Token(1))->Load(node);
-		else if(key == "hazard" && node.Size() >= 2)
-			hazards.Get(node.Token(1))->Load(node);
-		else if(key == "interface" && node.Size() >= 2)
+		// Allow multiple named variants of the same ship model.
+		const string &name = node.Token((node.Size() > 2) ? 2 : 1);
+		ships.Get(name)->Load(node);
+	}
+	else if(key == "shipyard" && node.Size() >= 2)
+		shipSales.Get(node.Token(1))->Load(node, ships);
+	else if(key == "start" && node.HasChildren())
+	{
+		// This node may either declare an immutable starting scenario, or one that is open to extension
+		// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
+		if(node.Size() == 1)
+			startConditions.emplace_back(node);
+		else
 		{
-			interfaces.Get(node.Token(1))->Load(node);
-
-			// If we modified the "menu background" interface, then
-			// we also update our cache of it.
-			if(node.Token(1) == "menu background")
-			{
-				lock_guard<mutex> lock(menuBackgroundMutex);
-				menuBackgroundCache.Load(node);
-			}
-		}
-		else if(key == "minable" && node.Size() >= 2)
-			minables.Get(node.Token(1))->Load(node);
-		else if(key == "mission" && node.Size() >= 2)
-			missions.Get(node.Token(1))->Load(node);
-		else if(key == "outfit" && node.Size() >= 2)
-			outfits.Get(node.Token(1))->Load(node);
-		else if(key == "outfitter" && node.Size() >= 2)
-			outfitSales.Get(node.Token(1))->Load(node, outfits);
-		else if(key == "person" && node.Size() >= 2)
-			persons.Get(node.Token(1))->Load(node);
-		else if(key == "phrase" && node.Size() >= 2)
-			phrases.Get(node.Token(1))->Load(node);
-		else if(key == "planet" && node.Size() >= 2)
-			planets.Get(node.Token(1))->Load(node);
-		else if(key == "ship" && node.Size() >= 2)
-		{
-			// Allow multiple named variants of the same ship model.
-			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node);
-		}
-		else if(key == "shipyard" && node.Size() >= 2)
-			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "start" && node.HasChildren())
-		{
-			// This node may either declare an immutable starting scenario, or one that is open to extension
-			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
-			if(node.Size() == 1)
+			const string &identifier = node.Token(1);
+			auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+				[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
+			if(existingStart != startConditions.end())
+				existingStart->Load(node);
+			else
 				startConditions.emplace_back(node);
+		}
+	}
+	else if(key == "system" && node.Size() >= 2)
+		systems.Get(node.Token(1))->Load(node, planets);
+	else if((key == "test") && node.Size() >= 2)
+		tests.Get(node.Token(1))->Load(node);
+	else if((key == "test-data") && node.Size() >= 2)
+		testDataSets.Get(node.Token(1))->Load(node, path);
+	else if(key == "trade")
+		trade.Load(node);
+	else if(key == "landing message" && node.Size() >= 2)
+	{
+		for(const DataNode &child : node)
+			landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+	}
+	else if(key == "star" && node.Size() >= 2)
+	{
+		const Sprite *sprite = SpriteSet::Get(node.Token(1));
+		for(const DataNode &child : node)
+		{
+			if(child.Token(0) == "power" && child.Size() >= 2)
+				solarPower[sprite] = child.Value(1);
+			else if(child.Token(0) == "wind" && child.Size() >= 2)
+				solarWind[sprite] = child.Value(1);
 			else
-			{
-				const string &identifier = node.Token(1);
-				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
-					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
-				if(existingStart != startConditions.end())
-					existingStart->Load(node);
-				else
-					startConditions.emplace_back(node);
-			}
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "system" && node.Size() >= 2)
-			systems.Get(node.Token(1))->Load(node, planets);
-		else if((key == "test") && node.Size() >= 2)
-			tests.Get(node.Token(1))->Load(node);
-		else if((key == "test-data") && node.Size() >= 2)
-			testDataSets.Get(node.Token(1))->Load(node, path);
-		else if(key == "trade")
-			trade.Load(node);
-		else if(key == "landing message" && node.Size() >= 2)
+	}
+	else if(key == "news" && node.Size() >= 2)
+		news.Get(node.Token(1))->Load(node);
+	else if(key == "rating" && node.Size() >= 2)
+	{
+		vector<string> &list = ratings[node.Token(1)];
+		list.clear();
+		for(const DataNode &child : node)
+			list.push_back(child.Token(0));
+	}
+	else if(key == "category" && node.Size() >= 2)
+	{
+		static const map<string, CategoryType> category = {
+			{"ship", CategoryType::SHIP},
+			{"bay type", CategoryType::BAY},
+			{"outfit", CategoryType::OUTFIT}
+		};
+		auto it = category.find(node.Token(1));
+		if(it == category.end())
 		{
-			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+			node.PrintTrace("Skipping unrecognized category type:");
+			return true;
 		}
-		else if(key == "star" && node.Size() >= 2)
-		{
-			const Sprite *sprite = SpriteSet::Get(node.Token(1));
-			for(const DataNode &child : node)
-			{
-				if(child.Token(0) == "power" && child.Size() >= 2)
-					solarPower[sprite] = child.Value(1);
-				else if(child.Token(0) == "wind" && child.Size() >= 2)
-					solarWind[sprite] = child.Value(1);
-				else
-					child.PrintTrace("Skipping unrecognized attribute:");
-			}
-		}
-		else if(key == "news" && node.Size() >= 2)
-			news.Get(node.Token(1))->Load(node);
-		else if(key == "rating" && node.Size() >= 2)
-		{
-			vector<string> &list = ratings[node.Token(1)];
-			list.clear();
-			for(const DataNode &child : node)
-				list.push_back(child.Token(0));
-		}
-		else if(key == "category" && node.Size() >= 2)
-		{
-			static const map<string, CategoryType> category = {
-				{"ship", CategoryType::SHIP},
-				{"bay type", CategoryType::BAY},
-				{"outfit", CategoryType::OUTFIT}
-			};
-			auto it = category.find(node.Token(1));
-			if(it == category.end())
-			{
-				node.PrintTrace("Skipping unrecognized category type:");
-				continue;
-			}
 
-			vector<string> &categoryList = categories[it->second];
-			for(const DataNode &child : node)
-			{
-				// If a given category already exists, it will be
-				// moved to the back of the list.
-				const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
-				if(it != categoryList.end())
-					categoryList.erase(it);
-				categoryList.push_back(child.Token(0));
-			}
-		}
-		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		vector<string> &categoryList = categories[it->second];
+		for(const DataNode &child : node)
 		{
-			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
-			text.clear();
-			for(const DataNode &child : node)
-			{
-				if(!text.empty())
-				{
-					text += '\n';
-					if(child.Token(0)[0] != '\t')
-						text += '\t';
-				}
-				text += child.Token(0);
-			}
+			// If a given category already exists, it will be
+			// moved to the back of the list.
+			const auto it = find(categoryList.begin(), categoryList.end(), child.Token(0));
+			if(it != categoryList.end())
+				categoryList.erase(it);
+			categoryList.push_back(child.Token(0));
 		}
-		else if(key == "substitutions" && node.HasChildren())
-			substitutions.Load(node);
-		else if(key == "disable" && node.Size() >= 2)
+	}
+
+	else if(key == "substitutions" && node.HasChildren())
+		substitutions.Load(node);
+	else if(key == "disable" && node.Size() >= 2)
+	{
+		static const set<string> canDisable = {"mission", "event", "person"};
+		const string &category = node.Token(1);
+		if(canDisable.count(category))
 		{
-			static const set<string> canDisable = {"mission", "event", "person"};
-			const string &category = node.Token(1);
-			if(canDisable.count(category))
-			{
-				if(node.HasChildren())
-					for(const DataNode &child : node)
-						disabled[category].emplace(child.Token(0));
-				if(node.Size() >= 3)
-					for(int index = 2; index < node.Size(); ++index)
-						disabled[category].emplace(node.Token(index));
-			}
-			else
-				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+			if(node.HasChildren())
+				for(const DataNode &child : node)
+					disabled[category].emplace(child.Token(0));
+			if(node.Size() >= 3)
+				for(int index = 2; index < node.Size(); ++index)
+					disabled[category].emplace(node.Token(index));
 		}
 		else
-			node.PrintTrace("Skipping unrecognized root object:");
+			node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 	}
+	else
+		return false;
+	
+	return true;
 }
 
 
 
-void UniverseObjects::DrawMenuBackground(Panel *panel) const
-{
-	lock_guard<mutex> lock(menuBackgroundMutex);
-	menuBackgroundCache.Draw(Information(), panel);
-}
+
