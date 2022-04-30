@@ -1,4 +1,4 @@
-/* ShipTemplate.h
+/* ShipModel.h
 Copyright (c) 2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -19,11 +19,13 @@ class DataWriter;
 
 
 
-// Class representing a template that describes all "static" properties of
-// a ship or set of ships, like the base-attributes that a ship has.
+// Class representing a model or a template of a ship that describes all
+// "static" properties and "default" properties of a ship or set of ships,
+// like the base-attributes that a ship has and the default Outfits with
+// which the ship would be installed.
 // Instances of this class don't contain runtime information like ship-
 // positions or actual ship-stat values.
-class ShipTemplate {
+class ShipModel {
 public:
 	// Get the name of this ship template / model / variant.
 	const std::string &Name() const;
@@ -32,7 +34,7 @@ public:
 	// are correctly loaded.
 	bool IsValid() const;
 
-	// Save the full template, as currently configured.
+	// Save the full model, as currently configured.
 	void Save(DataWriter &out) const;
 };
 

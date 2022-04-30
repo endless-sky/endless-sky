@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Depreciation.h"
 #include "GameEvent.h"
 #include "Mission.h"
+#include "ShipModel.h"
 
 #include <chrono>
 #include <list>
@@ -322,6 +323,10 @@ private:
 	Account accounts;
 
 	std::shared_ptr<Ship> flagship;
+	// Stores the shipModels that are not (or no longer) available in
+	// the regular datafiles, but that did get constructed during loading
+	// of the saved player-owned or NPC ships.
+	std::map<std::string, std::vector<ShipModel>> shipModels;
 	std::vector<std::shared_ptr<Ship>> ships;
 	std::vector<std::weak_ptr<Ship>> selectedShips;
 	std::map<const Ship *, int> groups;

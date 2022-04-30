@@ -154,6 +154,13 @@ void GameData::FinishLoading()
 
 
 
+UniverseObjects &Universe()
+{
+	return objects;
+}
+
+
+
 void GameData::CheckReferences()
 {
 	objects.CheckReferences();

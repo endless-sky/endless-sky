@@ -56,6 +56,7 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
+class UniverseObjects;
 
 
 
@@ -69,6 +70,9 @@ class GameData {
 public:
 	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode);
 	static void FinishLoading();
+	// Provide the universe directly to calers so that we don't always need to go
+	// through the static singleton that GameData is.
+	static UniverseObjects &Universe();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
 	static void LoadShaders(bool useShaderSwizzle);
