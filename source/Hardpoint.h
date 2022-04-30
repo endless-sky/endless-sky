@@ -83,6 +83,8 @@ public:
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+	// How much increased inaccuracy this weapon has as a result of sustained fire.
+	double Bloom() const;
 	// If this is a spinup weapon, get the current overall spinup progress
 	double SpinupProgress() const;
 	// If this is a burst spinup weapon, get the current burst-specific spinup progress
@@ -109,8 +111,10 @@ private:
 	double reload = 0.;
 	double burstReload = 0.;
 	int burstCount = 0;
-	int spinupCount = 0;
-	int burstSpinupCount = 0;
+	double spinupCount = 0.;
+	double burstSpinupCount = 0.;
+	double bloomCount = 0.;
+	double burstBloomCount = 0.;
 	bool isFiring = false;
 	bool wasFiring = false;
 };

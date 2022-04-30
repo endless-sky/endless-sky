@@ -171,24 +171,6 @@ int Hardpoint::BurstRemaining() const
 
 
 
-// Get the current overall spinup progress
-double Hardpoint::SpinupProgress() const
-{
-	double spinupTime = outfit->SpinupTime();
-	return spinupTime ? 1. - spinupCount / spinupTime : 1.;
-}
-
-
-
-// Get the current burst-specific spinup progress
-double Hardpoint::BurstSpinupProgress() const
-{
-	double burstSpinupTime = outfit->BurstSpinupTime();
-	return burstSpinupTime ? 1. - burstSpinupCount / burstSpinupTime : 1.;
-}
-
-
-
 // Perform one step (i.e. decrement the reload count).
 void Hardpoint::Step()
 {
@@ -197,39 +179,64 @@ void Hardpoint::Step()
 
 	wasFiring = isFiring;
 	if(reload > 0.)
-		--reload;
-	// If the full reload time is elapsed, reset the burst counter.
-	if(reload <= 0.)
-		burstCount = outfit->BurstCount();
-	if(burstReload > 0.)
-		--burstReload;
-	// If the burst reload time has elapsed, this weapon will not count as firing
-	// continuously if it is not fired this frame.
-	if(burstReload <= 0. && reload <= 0)
-		isFiring = false;
-	if(outfit->BurstCount() > 1 && burstCount == 0)
 	{
-		burstSpinupCount = outfit->BurstSpinupTime();
-		if(wasFiring && spinupCount > 0)
-			--spinupCount;
-		else if(!wasFiring && spinupCount < outfit->SpinupTime())
+		--reload;
+		// If the weapon recently fired then increment any sustained fire counters.
+		if(bloomCount < outfit->BloomTime())
+			++bloomCount;
+		if(spinupCount < outfit->SpinupTime())
 			++spinupCount;
 	}
-	else
+	if(reload <= 0.)
 	{
-		if(wasFiring)
+		// If the full reload time is elapsed, reset the burst counter.
+		burstCount = outfit->BurstCount();
+
+		// Only decrement sustained fire counters if this weapon could have fired
+		// but didn't.
+		if(!wasFiring)
 		{
-			if(spinupCount > 0)
+			if(bloomCount > 0.)
+				--bloomCount;
+			if(spinupCount > 0.)
 				--spinupCount;
-			if(burstSpinupCount > 0)
-				--burstSpinupCount;
+		}
+	}
+
+	if(burstReload > 0.)
+	{
+		--burstReload;
+
+		// If a burst has run out then reset the burst sustained fire counters.
+		if(burstCount == 0)
+		{
+			burstBloomCount = 0.;
+			burstSpinupCount = 0.;
 		}
 		else
 		{
-			if(spinupCount < outfit->SpinupTime())
-				++spinupCount;
+			// If the weapon recently fired a burst then increment any burst
+			// sustained fire counters.
+			if(burstBloomCount < outfit->BurstBloomTime())
+				++burstBloomCount;
 			if(burstSpinupCount < outfit->BurstSpinupTime())
 				++burstSpinupCount;
+		}
+	}
+	if(burstReload <= 0.)
+	{
+		// If the burst reload time has elapsed, this weapon will not count as firing
+		// continuously if it is not fired this frame.
+		isFiring = false;
+
+		// Only decrement burst sustained fire counters if this weapon could
+		// have fired but didn't.
+		if(!wasFiring)
+		{
+			if(burstBloomCount > 0.)
+				--burstBloomCount;
+			if(burstSpinupCount > 0.)
+				--burstSpinupCount;
 		}
 	}
 }
@@ -267,10 +274,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	start += aim.Rotate(outfit->HardpointOffset());
 
 	// Create a new projectile, originating from this hardpoint.
-	if(burstCount > 1)
-		projectiles.emplace_back(ship, start, aim, outfit, BurstSpinupProgress());
-	else
-		projectiles.emplace_back(ship, start, aim, outfit, SpinupProgress());
+	projectiles.emplace_back(ship, start, aim, outfit, Bloom());
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
@@ -364,7 +368,10 @@ void Hardpoint::Reload()
 	reload = 0.;
 	burstReload = 0.;
 	burstCount = outfit ? outfit->BurstCount() : 0;
-	spinupCount = outfit ? outfit->SpinupTime() : 0;
+	bloomCount = 0.;
+	burstBloomCount = 0.;
+	spinupCount = 0.;
+	burstSpinupCount = 0.;
 }
 
 
@@ -386,10 +393,10 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Reset the reload count.
 	double spinupProgress = SpinupProgress();
 	reload += spinupProgress * outfit->Reload() + (1. - spinupProgress) * outfit->InitialReload();
-	
+
 	double burstSpinupProgress = BurstSpinupProgress();
 	burstReload += burstSpinupProgress * outfit->BurstReload() + (1. - burstSpinupProgress) * outfit->BurstInitialReload();
-	
+
 	--burstCount;
 	isFiring = true;
 
@@ -405,4 +412,35 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
 	ship.ExpendAmmo(*outfit);
+}
+
+
+
+// How much increased inaccuracy this weapon has as a result of sustained fire.
+double Hardpoint::Bloom() const
+{
+	double bloom = 0.;
+	double time = outfit->BloomTime();
+	bloom += outfit->Bloom() * (time ? bloomCount / time : 1.);
+	time = outfit->BurstBloomTime();
+	bloom += outfit->BurstBloom() * (time ? burstBloomCount / time : 1.);
+	return bloom;
+}
+
+
+
+// Get the current overall spinup progress
+double Hardpoint::SpinupProgress() const
+{
+	double spinupTime = outfit->SpinupTime();
+	return spinupTime ? spinupCount / spinupTime : 1.;
+}
+
+
+
+// Get the current burst-specific spinup progress
+double Hardpoint::BurstSpinupProgress() const
+{
+	double burstSpinupTime = outfit->BurstSpinupTime();
+	return burstSpinupTime ? burstSpinupCount / burstSpinupTime : 1.;
 }

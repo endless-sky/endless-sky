@@ -118,16 +118,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 				reload = max(1., value);
 			else if(key == "initial reload")
 				initialReload = max(1., value);
+			else if(key == "spinup time")
+				spinupTime = max(0., value);
 			else if(key == "burst reload")
 				burstReload = max(1., value);
 			else if(key == "burst initial reload")
 				burstInitialReload = max(1., value);
+			else if(key == "burst spinup time")
+				burstSpinupTime = max(0., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
-			else if(key == "spinup time")
-				spinupTime = max(1., value);
-			else if(key == "burst spinup time")
-				burstSpinupTime = max(1., value);
 			else if(key == "homing")
 				homing = value;
 			else if(key == "missile strength")
@@ -159,8 +159,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "inaccuracy")
 				inaccuracy = value;
-			else if(key == "spinup inaccuracy")
-				spinupInaccuracy = value;
+			else if(key == "bloom")
+				bloom = value;
+			else if(key == "bloom time")
+				bloomTime = max(0., value);
+			else if(key == "burst bloom")
+				burstBloom = value;
+			else if(key == "burst bloom time")
+				burstBloomTime = max(0., value);
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")

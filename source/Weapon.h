@@ -76,11 +76,11 @@ public:
 	int RandomLifetime() const;
 	double Reload() const;
 	double InitialReload() const;
+	double SpinupTime() const;
 	double BurstReload() const;
 	double BurstInitialReload() const;
+	double BurstSpinupTime() const;
 	int BurstCount() const;
-	int SpinupTime() const;
-	int BurstSpinupTime() const;
 	int Homing() const;
 
 	int AmmoUsage() const;
@@ -102,7 +102,10 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
-	double SpinupInaccuracy() const;
+	double Bloom() const;
+	double BloomTime() const;
+	double BurstBloom() const;
+	double BurstBloomTime() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -236,11 +239,11 @@ private:
 	int randomLifetime = 0;
 	double reload = 1.;
 	double initialReload = 1.;
+	double spinupTime = 0.;
 	double burstReload = 1.;
 	double burstInitialReload = 1.;
+	double burstSpinupTime = 0.;
 	int burstCount = 1;
-	int spinupTime = 0;
-	int burstSpinupTime = 0;
 	int homing = 0;
 
 	int missileStrength = 0;
@@ -254,7 +257,10 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	double spinupInaccuracy = 0.;
+	double bloom = 0.;
+	double bloomTime = 0.;
+	double burstBloom = 0.;
+	double burstBloomTime = 0.;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -334,11 +340,11 @@ inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::InitialReload() const { return initialReload; }
+inline double Weapon::SpinupTime() const { return spinupTime; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline double Weapon::BurstInitialReload() const { return burstInitialReload; }
+inline double Weapon::BurstSpinupTime() const { return burstSpinupTime; }
 inline int Weapon::BurstCount() const { return burstCount; }
-inline int Weapon::SpinupTime() const { return spinupTime; }
-inline int Weapon::BurstSpinupTime() const { return burstSpinupTime; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
@@ -354,7 +360,10 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
-inline double Weapon::SpinupInaccuracy() const { return spinupInaccuracy; }
+inline double Weapon::Bloom() const { return bloom; }
+inline double Weapon::BloomTime() const { return bloomTime; }
+inline double Weapon::BurstBloom() const { return burstBloom; }
+inline double Weapon::BurstBloomTime() const { return burstBloomTime; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
