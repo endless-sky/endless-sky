@@ -112,6 +112,8 @@
 		<Unit filename="source/DataFile.h" />
 		<Unit filename="source/DataNode.cpp" />
 		<Unit filename="source/DataNode.h" />
+		<Unit filename="source/DataObjectsLoader.cpp" />
+		<Unit filename="source/DataObjectsLoader.h" />
 		<Unit filename="source/DataWriter.cpp" />
 		<Unit filename="source/DataWriter.h" />
 		<Unit filename="source/Date.cpp" />
@@ -182,6 +184,8 @@
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
 		<Unit filename="source/Interface.h" />
+		<Unit filename="source/InterfaceObjects.cpp" />
+		<Unit filename="source/InterfaceObjects.h" />
 		<Unit filename="source/ItemInfoDisplay.cpp" />
 		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/LineShader.cpp" />

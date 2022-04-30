@@ -27,9 +27,6 @@ DataObjectsLoader::DataObjectsLoader(UniverseObjects &universe, InterfaceObjects
 
 
 
-
-
-
 future<void> DataObjectsLoader::Load(const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;

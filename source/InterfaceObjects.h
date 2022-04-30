@@ -20,9 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <mutex>
 #include <string>
 
-
 class DataNode;
 class Panel;
+
 
 
 // This class contains the interface definitions for the game. Those should
