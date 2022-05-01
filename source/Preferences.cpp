@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "GameWindow.h"
 #include "Screen.h"
 
 #include <algorithm>
@@ -27,14 +28,18 @@ using namespace std;
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
-	
+
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
-	
+
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
-	const double VOLUME_SCALE = .25;
+	constexpr double VOLUME_SCALE = .25;
+
+	// Enable standard VSync by default.
+	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
+	int vsyncIndex = 1;
 }
 
 
@@ -50,16 +55,17 @@ void Preferences::Load()
 	settings["Damaged fighters retreat"] = true;
 	settings["Warning siren"] = true;
 	settings["Show escort systems on map"] = true;
+	settings["Show stored outfits on map"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
+	settings["Parallax background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
-	settings["Interrupt fast-forward"] = true;
-	
+
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
@@ -72,7 +78,9 @@ void Preferences::Load()
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "view zoom")
-			zoomIndex = node.Value(1);
+			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
+		else if(node.Token(0) == "vsync")
+			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -83,13 +91,14 @@ void Preferences::Load()
 void Preferences::Save()
 {
 	DataWriter out(Files::Config() + "preferences.txt");
-	
+
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
-	
+	out.Write("vsync", vsyncIndex);
+
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
 }
@@ -155,7 +164,7 @@ bool Preferences::ZoomViewIn()
 {
 	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
 		return false;
-	
+
 	++zoomIndex;
 	return true;
 }
@@ -166,7 +175,47 @@ bool Preferences::ZoomViewOut()
 {
 	if(zoomIndex == 0)
 		return false;
-	
+
 	--zoomIndex;
 	return true;
+}
+
+
+
+bool Preferences::ToggleVSync()
+{
+	int targetIndex = vsyncIndex + 1;
+	if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
+		targetIndex = 0;
+	if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
+	{
+		// Not all drivers support adaptive VSync. Increment desired VSync again.
+		++targetIndex;
+		if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
+			targetIndex = 0;
+		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
+		{
+			// Restore original saved setting.
+			Files::LogError("Unable to change VSync state");
+			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
+			return false;
+		}
+	}
+	vsyncIndex = targetIndex;
+	return true;
+}
+
+
+
+// Return the current VSync setting
+Preferences::VSync Preferences::VSyncState()
+{
+	return static_cast<VSync>(vsyncIndex);
+}
+
+
+
+const string &Preferences::VSyncSetting()
+{
+	return VSYNC_SETTINGS[vsyncIndex];
 }

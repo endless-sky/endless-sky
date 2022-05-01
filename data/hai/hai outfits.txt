@@ -107,58 +107,67 @@ effect "ion impact"
 
 outfit "Railgun Slug"
 	category "Ammunition"
-	cost 60
+	cost 13
 	thumbnail "outfit/railslug"
-	"mass" 0.02
+	"mass" 0.003
 	"railgun slug capacity" -1
-	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of hull damage even when the target's shields are functioning, and they can punch crippling holes in the hull of a ship whose shields are down."
+	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+
+outfit "Railgun Slug Rack"
+	category "Ammunition"
+	cost 15000
+	thumbnail "outfit/railslug rack"
+	"mass" 1
+	"outfit space" -3
+	"railgun slug capacity" 500
+	ammo "Railgun Slug"
+	description "The railgun slug rack is used to store and load extra railgun ammunition."
 
 outfit "Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
-	"mass" 4
-	"outfit space" -7
-	"weapon capacity" -7
+	"mass" 1
+	"outfit space" -4
+	"weapon capacity" -4
 	"gun ports" -1
-	"railgun slug capacity" 150
+	"railgun slug capacity" 1000
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30
 		ammo "Railgun Slug"
 		icon "icon/rail gun"
 		sound "ion impact"
-		"fire effect" "rail sparks" 2
-		"live effect" "rail sparks" 5
+		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"
 		"inaccuracy" 3
-		"velocity" 22
+		"velocity" 44
 		"lifetime" 1
-		"reload" 120
-		"firing energy" 92
-		"firing heat" 39
-		"hit force" 44
+		"range override" 2100
+		"reload" 12
+		"firing energy" 3.5
+		"firing heat" 7.2
+		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai created this compact weapon for their Flea drones, providing mobile long-range support for the close quarters Pond Strider carrier."
+	description "The Hai designed this weapon to best complement their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
 	weapon
-		"acceleration" .022
-		"drag" .001
-		"lifetime" 99
 		sprite "projectile/rail slug"
 			"frame rate" 30
-		"live effect" "rail sparks" 5
 		"hit effect" "bullet impact"
-		"shield damage" 65
-		"hull damage" 95
+		"lifetime" 49
+		"acceleration" 2.2
+		"drag" .05
+		"turn" .6
 		"homing" 1
 		"optical tracking" .4
-		"turn" .3
-		"hit force" 44
-		"missile strength" 14
-		"piercing" .1
+		"shield damage" 4.2
+		"hull damage" 8.4
+		"ion damage" .3
+		"hit force" 15
 
 effect "bullet impact"
 	sprite "effect/bullet impact"
@@ -442,25 +451,25 @@ outfit "Sand Cell"
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 1.55
-	"heat generation" 2.4
-	description "The Sand Cell is the smallest Hai generator. It was designed to fit their drones, and it clearly resembles human fuel cells."
+	"energy generation" 1.65
+	"heat generation" 2.45
+	description "The Sand Cell is the smallest Hai generator. It was designed for ships which don't need or are unable to carry a nuclear reactor, and it clearly resembles human fuel cells."
 
 
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
-	"cost" 240000
+	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
-	"mass" 24
-	"outfit space" -24
-	"engine capacity" -24
-	"turn" 250
-	"turning energy" .6
-	"turning heat" 1.3
-	"thrust" 10.1
-	"thrusting energy" 1.2
-	"thrusting heat" 2.4
+	"mass" 22
+	"outfit space" -22
+	"engine capacity" -22
+	"thrust" 7.3
+	"thrusting energy" .87
+	"thrusting heat" 1.7
+	"turn" 244
+	"turning energy" .64
+	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -476,9 +485,9 @@ outfit `"Basrem" Atomic Thruster`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 13.2
-	"thrusting energy" 1.5
-	"thrusting heat" 2.9
+	"thrust" 12.5
+	"thrusting energy" 1.4
+	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -491,9 +500,9 @@ outfit `"Benga" Atomic Thruster`
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 23.6
-	"thrusting energy" 2.6
-	"thrusting heat" 5.0
+	"thrust" 22.4
+	"thrusting energy" 2.5
+	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -506,13 +515,13 @@ outfit `"Biroo" Atomic Thruster`
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 41.5
-	"thrusting energy" 4.2
-	"thrusting heat" 8.6
+	"thrust" 39.4
+	"thrusting energy" 4
+	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
-	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
+	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them usable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
@@ -521,9 +530,9 @@ outfit `"Bondir" Atomic Thruster`
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 66.1
-	"thrusting energy" 6.4
-	"thrusting heat" 13.4
+	"thrust" 62.8
+	"thrusting energy" 6.1
+	"thrusting heat" 12.7
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -536,13 +545,14 @@ outfit `"Bufaer" Atomic Thruster`
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 120.1
-	"thrusting energy" 10.9
-	"thrusting heat" 23.8
+	"thrust" 114.1
+	"thrusting energy" 10.4
+	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
+
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
@@ -551,9 +561,9 @@ outfit `"Basrem" Atomic Steering`
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 309
+	"turn" 301
 	"turning energy" .7
-	"turning heat" 1.6
+	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
@@ -566,9 +576,9 @@ outfit `"Benga" Atomic Steering`
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 577
+	"turn" 563
 	"turning energy" 1.1
-	"turning heat" 2.8
+	"turning heat" 2.85
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
@@ -581,7 +591,7 @@ outfit `"Biroo" Atomic Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 1054
+	"turn" 1028
 	"turning energy" 2.0
 	"turning heat" 5.1
 	"steering flare sprite" "effect/atomic flare/small"
@@ -596,7 +606,7 @@ outfit `"Bondir" Atomic Steering`
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1758
+	"turn" 1714
 	"turning energy" 3.2
 	"turning heat" 8.2
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -611,13 +621,14 @@ outfit `"Bufaer" Atomic Steering`
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 3043
+	"turn" 2967
 	"turning energy" 5.2
 	"turning heat" 13.8
 	"steering flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"steering flare sound" "atomic large"
 	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."
+
 
 outfit "Pulse Rifle"
 	category "Hand to Hand"

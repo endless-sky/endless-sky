@@ -12,7 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapShipyardPanel.h"
 
-#include "Format.h"
+#include "CoreStartData.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -22,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <limits>
@@ -59,6 +61,20 @@ const Sprite *MapShipyardPanel::SelectedSprite() const
 const Sprite *MapShipyardPanel::CompareSprite() const
 {
 	return compare ? compare->Thumbnail() ? compare->Thumbnail() : compare->GetSprite() : nullptr;
+}
+
+
+
+int MapShipyardPanel::SelectedSpriteSwizzle() const
+{
+	return selected->CustomSwizzle();
+}
+
+
+
+int MapShipyardPanel::CompareSpriteSwizzle() const
+{
+	return compare->CustomSwizzle();
 }
 
 
@@ -118,13 +134,13 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(system) || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
-	
+
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &shipyard = object.GetPlanet()->Shipyard();
 			if(shipyard.Has(selected))
@@ -159,6 +175,8 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
@@ -166,24 +184,24 @@ void MapShipyardPanel::DrawItems()
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
-		
+
 		// Draw the header. If this category is collapsed, skip drawing the items.
 		if(DrawHeader(corner, category))
 			continue;
-		
+
 		for(const Ship *ship : it->second)
 		{
 			string price = Format::Credits(ship->Cost()) + " credits";
-			
+
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
-			
+
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -191,11 +209,12 @@ void MapShipyardPanel::DrawItems()
 			}
 			if(!isForSale && onlyShowSoldHere)
 				continue;
-			
+
 			const Sprite *sprite = ship->Thumbnail();
 			if(!sprite)
 				sprite = ship->GetSprite();
-			Draw(corner, sprite, isForSale, ship == selected, ship->ModelName(), price, info);
+			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
+					ship->ModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -209,14 +228,14 @@ void MapShipyardPanel::Init()
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
 				if(!seen.count(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
 				}
-	
+
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });

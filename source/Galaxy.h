@@ -26,12 +26,12 @@ class Sprite;
 class Galaxy {
 public:
 	void Load(const DataNode &node);
-	
+
 	const Point &Position() const;
 	const Sprite *GetSprite() const;
 	float Scale() const;
-	
-	
+
+
 private:
 	Point position;
 	const Sprite *sprite = nullptr;

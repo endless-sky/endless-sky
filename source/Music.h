@@ -31,28 +31,28 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Music {
 public:
 	static void Init(const std::vector<std::string> &sources);
-	
-	
+
+
 public:
 	Music();
 	~Music();
-	
+
 	void SetSource(const std::string &name = "");
 	const std::vector<int16_t> &NextChunk();
-	
-	
+
+
 private:
 	// This is the entry point for the decoding thread.
 	void Decode();
-	
-	
+
+
 private:
 	// Buffers for storing the decoded audio sample. The "silence" buffer holds
 	// a block of silence to be returned if nothing was read from the file.
 	std::vector<int16_t> silence;
 	std::vector<int16_t> next;
 	std::vector<int16_t> current;
-	
+
 	std::string previousPath;
 	// This pointer holds the file for as long as it is owned by the main
 	// thread. When the decode thread takes possession of it, it sets this
@@ -60,7 +60,7 @@ private:
 	FILE *nextFile = nullptr;
 	bool hasNewFile = false;
 	bool done = false;
-	
+
 	std::thread thread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;

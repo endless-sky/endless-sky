@@ -8,49 +8,72 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-
 # Word lists that are re-used for many different ship name phrases
 phrase "digit"
 	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
 
 phrase "letter"
 	word
-		A
-		B
-		C
-		D
-		E
-		F
-		G
-		H
-		I
-		J
-		K
-		L
-		M
-		N
-		O
-		P
-		Q
-		R
-		S
-		T
-		U
-		V
-		W
-		X
-		Y
-		Z
+		"A"
+		"B"
+		"C"
+		"D"
+		"E"
+		"F"
+		"G"
+		"H"
+		"I"
+		"J"
+		"K"
+		"L"
+		"M"
+		"N"
+		"O"
+		"P"
+		"Q"
+		"R"
+		"S"
+		"T"
+		"U"
+		"V"
+		"W"
+		"X"
+		"Y"
+		"Z"
+
+# Civilian names:
+
+# The sum of all weights of the final phrase that is used for generating names should
+# generally equal the total number of possible names, but each subphrase may weight
+# names differently if it fits (e.g. weighting male and female names equally regardless
+# of the number of male and female names).
+phrase "civilian"
+	phrase
+		"civilian subphrase 1" 50000    # [adjective] [name or noun] [sometimes a successor]
+		"civilian subphrase 2" 50000    # [adjective or noun] [noun]
+		"civilian subphrase 3" 50000    # [name or title]'s [noun]
+		"civilian subphrase 4" 44521    # [nouns] and [Nouns]
+		"civilian subphrase 5" 3080     # [quantity] of [nouns]
+		"civilian subphrase 6" 6000     # [male or gender-neutral title] [male name or thing you can be of]
+		"civilian subphrase 7" 6000     # [female or gender-neutral title] [female name or thing you can be of]
+		"civilian subphrase 8" 38052    # [name] the [adjective]
+		"civilian subphrase 9" 50000    # [noun or adjective] [title] [sometimes a successor]
+		"civilian subphrase 10" 50000   # [noun] [thing you can be of]
+		"civilian subphrase 11" 50000   # [noun] [noun or title] [sometimes a successor]
+		"civilian subphrase 12" 6080    # [adjective, noun, title, or female name] [sometimes a successor]
+		"civilian subphrase 13" 4900    # [made-up ship names] [sometimes a successor]
+		"civilian subphrase 14" 39200   # [Chinese name] [Chinese name] [Chinese name or sometimes a successor]
+		"civilian subphrase 15" 15620   # [noun] [noun] [sometimes a successor]
 
 phrase "adjectives"
 	word
@@ -63,11 +86,12 @@ phrase "adjectives"
 		"Lilac"
 		"Azure"
 		"Grey"
+		"Gray"
 		"Golden"
 		"Marigold"
 		"Lavender"
 		"Alabaster"
-		"Vermillion"
+		"Vermilion"
 		"Ivory"
 		"Shimmering"
 		"Rainbow"
@@ -510,28 +534,14 @@ phrase "plural nouns"
 		"Tides"
 		"Forms"
 		"Motes"
-		# Need to duplicate these because not all the words in the 'female titles' phrase could be pluralized by simply adding 's' to the end
-		"Ladies"
-		"Princesses"
-		"Queens"
-		"Empresses"
-		"Duchesses"
-		"Mistresses"
-		# Need to duplicate these here as well to prevent the male titles from showing up way too often relative to the female ones
-		"Lords"
-		"Princes"
-		"Kings"
-		"Emperors"
-		"Dukes"
-		"Barons"
-		"Masters"
-		# Need to duplicate gender-neutral titles as well
-		"Saints"
-		"Captains"
-		"Champions"
-		"Admirals"
-		"Sovereigns"
-		"Commodores"
+		"${female titles}%s"
+		"${male titles}s"
+		"${gender-neutral titles}s"
+	# Plural forms of some female titles are special cases.
+	replace
+		"ss%s" "sses"
+		"y%s" "ies"
+		"%" ""
 
 phrase "nouns of indeterminate quantity"
 	word
@@ -641,21 +651,17 @@ phrase "the-nouns"
 	word
 		"the "
 	phrase
-		"singular nouns"
-		"singular nouns"
-		"singular nouns"
-		"singular nouns"
-		"cardinal directions"
+		"singular nouns" 201
+		"cardinal directions" 4
 
 phrase "things you can be of"
 	word
 		"of "
 	phrase
-		"plural nouns"
-		"the-nouns"
-		"nouns of indeterminate quantity"
+		"plural nouns" 110
+		"the-nouns" 205
+		"nouns of indeterminate quantity" 101
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "male titles"
 	word
 		"Lord"
@@ -666,7 +672,6 @@ phrase "male titles"
 		"Baron"
 		"Master"
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "female titles"
 	word
 		"Lady"
@@ -676,7 +681,6 @@ phrase "female titles"
 		"Duchess"
 		"Mistress"
 
-# Make sure to add any additions to the "plural nouns" list in plural form
 phrase "gender-neutral titles"
 	word
 		"Saint"
@@ -688,12 +692,13 @@ phrase "gender-neutral titles"
 
 phrase "all titles"
 	phrase
-		"male titles"
-		"female titles"
-		"gender-neutral titles"
+		"male titles" 1
+		"female titles" 1
+		"gender-neutral titles" 1
 
 phrase "male names"
 	word
+		"Elcid"
 		"Henry"
 		"Nelson"
 		"Randall"
@@ -816,6 +821,7 @@ phrase "male names"
 		"Ravi"
 		"Sirhan"
 		"Zev"
+		"Joseph"
 
 phrase "female names"
 	word
@@ -949,6 +955,8 @@ phrase "female names"
 		"Sura"
 		"Zarifa"
 		"Grace"
+		"Andromeda"
+		"Cassiopeia"
 
 phrase "one to twelve"
 	word
@@ -998,31 +1006,35 @@ phrase "plural quantities"
 
 phrase "sometimes a successor"
 	word
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 20
 		" II"
 		" III"
+		" IV"
+		" V"
+		" VI"
+		" VII"
+		" VIII"
+		" IX"
+		" X"
 
 phrase "standalone civilian ship names"
 	word
+		"Wild Rover"
+		"Hieland Laddie"
+		"Ye Ladies of Mars"
+		"Shenandoah"
+		"Old Chariot"
+		"Old Maui"
+		"Gone to Hilo"
+		"Northumbria"
+		"Nelson's Blood"
+		"Nightingale"
+		"Hispaniola"
+		"Billy of Tea"
+		"Bonnie Ship the Diamond"
+		"Mary Ellen Carter"
+		"Shine in the Black"
+		"Alexander Smollett"
 		"Horizon"
 		"Enterprise"
 		"Rabbit"
@@ -1522,21 +1534,17 @@ phrase "standalone civilian ship names"
 # Poor Richard
 # Golden Mary
 # Infinite Mystery
-phrase "civilian"
+phrase "civilian subphrase 1"
 	phrase
 		"adjectives"
 	word
 		" "
 	phrase
-		"male names"
-		"female names"
-		# The following are doubled up so we have more nouns than names
-		"singular nouns"
-		"singular nouns"
-		"plural nouns"
-		"plural nouns"
-		"nouns of indeterminate quantity"
-		"nouns of indeterminate quantity"
+		"male names" 124
+		"female names" 132
+		"singular nouns" 201
+		"plural nouns" 110
+		"nouns of indeterminate quantity" 101
 	phrase
 		"sometimes a successor"
 
@@ -1544,57 +1552,59 @@ phrase "civilian"
 # Falcon Jewel
 # Pyramid Names
 # Cobalt Winds
-phrase "civilian"
+phrase "civilian subphrase 2"
 	phrase
-		"adjectives"
-		"singular nouns"
-		"nouns of indeterminate quantity"
+		"adjectives" 152
+		"singular nouns" 201
+		"nouns of indeterminate quantity" 101
 	word
 		" "
 	phrase
-		"singular nouns"
-		"plural nouns"
+		"singular nouns" 201
+		"plural nouns" 110
 
 # e.g.:
 # Xu's Flags
 # Katerina's Silhouette
 # Aletheia's Money Pit
 # Lord's Whispers
-phrase "civilian"
+phrase "civilian subphrase 3"
 	phrase
-		"male names"
-		"male names"
-		"male titles"
-		"female names"
-		"female names"
-		"female titles"
-		"gender-neutral titles"
+		"male names" 2
+		"male titles" 1
+		"female names" 2
+		"female titles" 1
+		"gender-neutral titles" 1
 	word
-		"'s "
+		"%'s "
 	phrase
-		"singular nouns"
-		"plural nouns"
-		"nouns of indeterminate quantity"
+		"singular nouns" 201
+		"plural nouns" 110
+		"nouns of indeterminate quantity" 101
+	# When making a word ending in "s" possessive, only add an apostrophe.
+	replace
+		"s%'s" "s'"
+		"%" ""
 
 # e.g.:
 # Words and Changes
 # Beauty and Legends
 # Tears and Sorrow
-phrase "civilian"
+phrase "civilian subphrase 4"
 	phrase
-		"plural nouns"
-		"nouns of indeterminate quantity"
+		"plural nouns" 110
+		"nouns of indeterminate quantity" 101
 	word
 		" and "
 	phrase
-		"plural nouns"
-		"nouns of indeterminate quantity"
+		"plural nouns" 110
+		"nouns of indeterminate quantity" 101
 
 # e.g.:
 # Four Clouds
 # Infinite Riches
 # Too Many Men
-phrase "civilian"
+phrase "civilian subphrase 5"
 	phrase
 		"plural quantities"
 	word
@@ -1605,36 +1615,36 @@ phrase "civilian"
 # e.g.:
 # King of the Mountain
 # Champion Ivan
-phrase "civilian"
+phrase "civilian subphrase 6"
 	phrase
-		"male titles"
-		"gender-neutral titles"
+		"male titles" 1
+		"gender-neutral titles" 1
 	word
 		" "
 	phrase
-		"male names"
-		"things you can be of"
+		"male names" 124
+		"things you can be of" 416
 
 # e.g.:
 # Queen of Thoughts
 # Lady Caroline
-phrase "civilian"
+phrase "civilian subphrase 7"
 	phrase
-		"female titles"
-		"gender-neutral titles"
+		"female titles" 1
+		"gender-neutral titles" 1
 	word
 		" "
 	phrase
-		"female names"
-		"things you can be of"
+		"female names" 132
+		"things you can be of" 416
 
 # e.g.:
 # Ivan the Bold
 # Wendy the White
-phrase "civilian"
+phrase "civilian subphrase 8"
 	phrase
-		"male names"
-		"female names"
+		"male names" 1
+		"female names" 1
 	word
 		" the "
 	phrase
@@ -1645,10 +1655,10 @@ phrase "civilian"
 # Dawn Empress
 # Lucky Princess
 # Green Admiral
-phrase "civilian"
+phrase "civilian subphrase 9"
 	phrase
-		"singular nouns"
-		"adjectives"
+		"singular nouns" 201
+		"adjectives" 152
 	word
 		" "
 	phrase
@@ -1661,10 +1671,10 @@ phrase "civilian"
 # Oceans of the West
 # Sword of Destiny
 # Moonlight of Bravery
-phrase "civilian"
+phrase "civilian subphrase 10"
 	phrase
-		"singular nouns"
-		"plural nouns"
+		"singular nouns" 201
+		"plural nouns" 110
 	word
 		" "
 	phrase
@@ -1674,48 +1684,35 @@ phrase "civilian"
 # Jade Leviathan
 # Olympus Legends
 # Fire Words
-phrase "civilian"
+phrase "civilian subphrase 11"
 	phrase
 		"nouns of indeterminate quantity"
 	word
 		" "
 	phrase
-		"singular nouns"
-		"plural nouns"
-		"all titles"
+		"singular nouns" 201
+		"plural nouns" 110
+		"all titles" 25
 	phrase
 		"sometimes a successor"
 
-phrase "civilian"
+phrase "civilian subphrase 12"
 	phrase
-		"adjectives"
-		"nouns of indeterminate quantity"
-		"singular nouns"
-		"all titles"
-		"female names"
+		"adjectives" 152
+		"nouns of indeterminate quantity" 101
+		"singular nouns" 201
+		"all titles" 25
+		"female names" 132
 	phrase
 		"sometimes a successor"
 
-# Tripled to get more of these
-phrase "civilian"
+phrase "civilian subphrase 13"
 	phrase
 		"standalone civilian ship names"
 	phrase
 		"sometimes a successor"
 
-phrase "civilian"
-	phrase
-		"standalone civilian ship names"
-	phrase
-		"sometimes a successor"
-
-phrase "civilian"
-	phrase
-		"standalone civilian ship names"
-	phrase
-		"sometimes a successor"
-
-phrase "civilian"
+phrase "civilian subphrase 14"
 	word
 		"Chan"
 		"Chang"
@@ -1820,40 +1817,17 @@ phrase "civilian"
 		"Zhou"
 		"Zhuang"
 	word
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		""
-		" II"
-		" III"
-		" Hu"
-		" Shan"
-		" Tang"
-		" Chuan"
-		" Shun"
-		" Gang"
+		" "
+	word
+		"${sometimes a successor}" 6
+		"Hu"
+		"Shan"
+		"Tang"
+		"Chuan"
+		"Shun"
+		"Gang"
 
-phrase "civilian"
+phrase "civilian subphrase 15"
 	# These should ideally all be single-syllable words
 	word
 		"Star"
@@ -1953,631 +1927,658 @@ phrase "civilian"
 	phrase
 		"sometimes a successor"
 
+
+
+# Law enforcement names:
+
 phrase "republic capital"
 	word
 		"R.N.S. "
+	phrase
+		"mountains"
+
+phrase "mountains"
 	word
-		"Everest"
-		"Kilimanjaro"
-		"Massif"
-		"McKinley"
 		"Aconcagua"
-		"Denali"
-		"Kenya"
-		"Logan"
-		"Cathkin"
-		"Elgon"
-		"Sinai"
-		"Erebus"
-		"Kirkpatrick"
-		"Markham"
-		"McClintock"
-		"McMaster"
-		"Annapurna"
-		"Kamet"
-		"Lhotse"
-		"Makalu"
-		"Shivling"
-		"Kangri"
-		"Laila"
-		"Mitre"
-		"Ultar"
-		"Jade"
-		"Fuji"
-		"Korbu"
-		"Victoria"
-		"Ararat"
-		"Hermon"
-		"Hebron"
-		"Breithorn"
-		"Eiger"
-		"Paradiso"
-		"Olympus"
-		"Matterhorn"
-		"Nordend"
-		"Weisshorn"
-		"Etna"
-		"Parnassus"
-		"Vesuvius"
-		"Telemark"
-		"Oppland"
-		"Snowdon"
-		"Scafell"
-		"Vancouver"
-		"Hubbard"
-		"Walsh"
-		"Augusta"
-		"Strickland"
-		"Cook"
-		"Columbia"
-		"Wood"
-		"Douglas"
-		"Hector"
-		"Razorback"
-		"Raleigh"
-		"Blackcomb"
-		"Thor"
-		"Sierra"
 		"Adams"
-		"Baker"
-		"Baxter"
-		"Clark"
-		"Cleveland"
-		"Evans"
-		"Foraker"
-		"Gannett"
-		"Greylock"
-		"Helen"
-		"Hood"
-		"Jackson"
-		"Monadnock"
-		"Rainier"
-		"Sacagawea"
-		"Tabor"
-		"Washington"
-		"Haleakala"
-		"Nanshan"
-		"Manaslu"
-		"Trivor"
-		"Rimo"
-		"Chongtar"
-		"Karjiang"
-		"Kibo"
-		"Guna"
-		"Sidley"
-		"Foster"
-		"Haddington"
-		"Brewster"
 		"Albaron"
-		"Sabinio"
-		"Koussi"
-		"Brandberg"
-		"Lengai"
-		"Elgon"
-		"Vinson"
-		"Tai"
-		"Wutai"
-		"Kangto"
-		"Toba"
-		"Jaya"
-		"Krakatoa"
-		"Ossa"
+		"Alvand"
+		"Alverstone"
+		"Andrus"
+		"Aneto"
+		"Annapurna"
+		"Antelao"
+		"Antero"
+		"Antisana"
+		"Aragats"
+		"Ararat"
+		"Augusta"
+		"Azufral"
+		"Baker"
+		"Banahaw"
+		"Baxter"
+		"Blackcomb"
 		"Blanc"
-		"Pelion"
-		"Toluca"
-		"Kilauea"
-		"Mondanock"
-		"Rushmore"
-		"Shasta"
-		"Taranaki"
+		"Brandberg"
+		"Breithorn"
+		"Brewster"
+		"Bross"
+		"Cathkin"
+		"Chongtar"
+		"Clark"
+		"Clemenceau"
+		"Cleveland"
+		"Colima"
+		"Columbia"
+		"Cook"
+		"Crillon"
+		"Delos"
+		"Denali"
+		"Diran"
+		"Douglas"
+		"Eiger"
+		"Elgon"
+		"Elgon"
+		"Erebus"
+		"Etna"
+		"Evans"
+		"Everest"
+		"Foraker"
+		"Forellen"
+		"Foster"
+		"Fuji"
+		"Galeras"
+		"Gannett"
+		"Garibaldi"
+		"Gerizim"
+		"Gistola"
+		"Greylock"
+		"Guna"
+		"Haddington"
+		"Haleakala"
+		"Hebron"
+		"Hector"
+		"Helen"
+		"Hermon"
+		"Hood"
+		"Hotaka"
 		"Huascaran"
+		"Hubbard"
+		"Jackson"
+		"Jade"
+		"Jaya"
+		"Kabru"
+		"Kailash"
+		"Kamet"
+		"Kamet"
+		"Kangri"
+		"Kangto"
+		"Karjiang"
+		"Kenya"
+		"Kerinci"
+		"Kibo"
+		"Kilauea"
+		"Kilimanjaro"
+		"Kinabalu"
+		"Kirkpatrick"
+		"Korbu"
+		"Koussi"
+		"Krakatoa"
+		"Lagginhorn"
+		"Laila"
+		"Latsga"
+		"Lengai"
+		"Lhotse"
+		"Logan"
+		"Lykaion"
+		"Mafadi"
+		"Makalu"
+		"Manaslu"
+		"Markham"
+		"Massif"
+		"Matterhorn"
+		"McClintock"
+		"McKinley"
+		"McMaster"
+		"Meron"
+		"Mitre"
+		"Monadnock"
+		"Mondanock"
+		"Muhabura"
+		"Naltar"
+		"Nanshan"
+		"Nordend"
+		"Olympus"
+		"Oppland"
+		"Ossa"
+		"Paradiso"
+		"Parnassus"
+		"Pelion"
+		"Pennell"
+		"Presanella"
+		"Pumori"
+		"Rainier"
+		"Raleigh"
+		"Razorback"
+		"Rimo"
+		"Rushmore"
+		"Sabinio"
+		"Sacagawea"
+		"Samsari"
 		"Sandia"
+		"Saramati"
+		"Scafell"
+		"Schilthorn"
+		"Sembrano"
+		"Semeru"
+		"Shasta"
+		"Shavano"
+		"Shivling"
+		"Sidley"
+		"Sierra"
+		"Silberhorn"
+		"Sinai"
+		"Snowdon"
+		"Steere"
+		"Strahlhorn"
+		"Strickland"
+		"Tabor"
+		"Tai"
+		"Tallac"
+		"Taranaki"
+		"Telemark"
+		"Thor"
+		"Timpanogos"
+		"Toba"
+		"Tochal"
+		"Toluca"
+		"Trivor"
+		"Tronador"
+		"Ubinas"
+		"Ultar"
+		"Vancouver"
+		"Vesuvius"
+		"Victoria"
+		"Vinson"
+		"Walsh"
+		"Washington"
+		"Weisshorn"
+		"Wood"
+		"Wutai"
 
 phrase "deep"
 	word
 		"D.S.S. "
+	phrase
+		"intellectuals"
+
+phrase "intellectuals"
 	word
-		Aristotle
-		Aristarchus
-		Archimedes
-		Avogadro
-		Abbe
-		Alcubierre
-		Abbott
-		Alvarez
-		Angstrom
-		Anderson
-		Bell
-		Becquerel
-		Bernoulli
-		Bohr
-		Brahe
-		Cherenkov
-		Coriolis
-		Coulomb
-		Curie
-		Dalton
-		Democritus
-		Dewar
-		Dirac
-		Doppler
-		Einstein
-		Englert
-		Euler
-		Edison
-		Fahrenheit
-		Faraday
-		Fermi
-		Feynman
-		Fourier
-		Franklin
-		Fresnel
-		Galvani
-		Geiger
-		Hall
-		Hawking
-		Heisenberg
-		Hertz
-		Higgs
-		Hooke
-		Hubble
-		Huygens
-		Joule
-		Kepler
-		Lagrange
-		Lebedev
-		Leibniz
-		Lyapunov
-		Mach
-		Marconi
-		Maxwell
-		Neumann
-		Newcomb
-		Newton
-		Ohm
-		Oppenheimer
-		Pascal
-		Penrose
-		Planck
-		Poincare
-		Poisson
-		Rayleigh
-		Richter
-		Roentgen
-		Sagan
-		Schroedinger
-		Schwarzschild
-		Tesla
-		Watson
-		Watt
-		Weber
+		"Aristotle"
+		"Aristarchus"
+		"Archimedes"
+		"Avogadro"
+		"Abbe"
+		"Alcubierre"
+		"Abbott"
+		"Alvarez"
+		"Angstrom"
+		"Anderson"
+		"Bell"
+		"Becquerel"
+		"Bernoulli"
+		"Bohr"
+		"Brahe"
+		"Cherenkov"
+		"Coriolis"
+		"Coulomb"
+		"Curie"
+		"Dalton"
+		"Democritus"
+		"Dewar"
+		"Dirac"
+		"Doppler"
+		"Einstein"
+		"Englert"
+		"Euler"
+		"Edison"
+		"Fahrenheit"
+		"Faraday"
+		"Fermi"
+		"Feynman"
+		"Fourier"
+		"Franklin"
+		"Fresnel"
+		"Galvani"
+		"Geiger"
+		"Hall"
+		"Hawking"
+		"Heisenberg"
+		"Hertz"
+		"Higgs"
+		"Hooke"
+		"Hubble"
+		"Huygens"
+		"Joule"
+		"Kepler"
+		"Lagrange"
+		"Lebedev"
+		"Leibniz"
+		"Lyapunov"
+		"Mach"
+		"Marconi"
+		"Maxwell"
+		"Neumann"
+		"Newcomb"
+		"Newton"
+		"Ohm"
+		"Oppenheimer"
+		"Pascal"
+		"Penrose"
+		"Planck"
+		"Poincare"
+		"Poisson"
+		"Rayleigh"
+		"Richter"
+		"Roentgen"
+		"Sagan"
+		"Schroedinger"
+		"Schwarzschild"
+		"Tesla"
+		"Watson"
+		"Watt"
+		"Weber"
 
 phrase "militia"
 	word
 		"I.M.S. "
-	word
-		"Terebinth"
-		"Tamarack"
-		"Juniper"
-		"Maple"
-		"Willow"
-		"Cedar"
-		"Ponderosa"
-		"Douglas"
-		"Elm"
-		"Cork"
-		"Hemlock"
-		"Larch"
-		"Sequoia"
-		"Redwood"
-		"Ginko"
-		"Dogwood"
-		"Bartlett"
-		"Magnolia"
-		"Baobab"
-		"Banyan"
-		"Cypress"
-		"Teak"
-		"Hawthorn"
-		"Hophorn"
-		"Poplar"
-		"Sycamore"
-		"Aspen"
-		"Holly"
-		"Ebony"
-		"Birch"
-		"Borage"
-		"Asphodel"
-		"Heath"
-		"Beech"
-		"Laurel"
-		"Myrtle"
-		"Buckthorn"
-		"Nightshade"
-		"Tamarisk"
-		"Pinyon"
-		"Eucalyptus"
-		"Joshua"
-		"Yucca"
-		"Torrey"
-		"Sumac"
-		"Aloe"
-		"Alder"
-		"Hazel"
-		"Ironwood"
-		"Elder"
-		"Mangrove"
-		"Persimmon"
-		"Crabwood"
-		"Tallow"
-		"Winterthorn"
-		"Senna"
-		"Carob"
-		"Redbud"
-		"Coral"
-		"Locust"
-		"Hickory"
-		"Lancewood"
-		"Sassafras"
-		"Primrose"
-		"Brisbane"
-		"Ash"
-		"Privet"
-		"Raywood"
-		"Quince"
-		"Medlar"
-		"Balsam"
-		"Traveler"
-		"Spurge"
-		"Linden"
-		"Cottonwood"
-		"Kapok"
-		"Mesquite"
-		"Spruce"
-		"Chestnut"
-		"Chinquapin"
-		"Walnut"
+	phrase
+		"trees"
 
 phrase "free worlds capital"
 	word
 		"F.S. "
+	phrase
+		"trees"
+
+phrase "trees"
 	word
-		"Terebinth"
-		"Tamarack"
-		"Juniper"
-		"Maple"
-		"Willow"
-		"Cedar"
-		"Ponderosa"
-		"Douglas"
-		"Elm"
-		"Cork"
-		"Hemlock"
-		"Larch"
-		"Sequoia"
-		"Redwood"
-		"Ginko"
-		"Dogwood"
-		"Bartlett"
-		"Magnolia"
-		"Baobab"
-		"Banyan"
-		"Cypress"
-		"Teak"
-		"Hawthorn"
-		"Hophorn"
-		"Poplar"
-		"Sycamore"
+		"Alder"
+		"Aloe"
+		"Ash"
 		"Aspen"
-		"Holly"
-		"Ebony"
+		"Asphodel"
+		"Balsam"
+		"Banyan"
+		"Baobab"
+		"Bartlett"
+		"Beech"
 		"Birch"
 		"Borage"
-		"Asphodel"
-		"Heath"
-		"Beech"
-		"Laurel"
-		"Myrtle"
-		"Buckthorn"
-		"Nightshade"
-		"Tamarisk"
-		"Pinyon"
-		"Eucalyptus"
-		"Joshua"
-		"Yucca"
-		"Torrey"
-		"Sumac"
-		"Aloe"
-		"Alder"
-		"Hazel"
-		"Ironwood"
-		"Elder"
-		"Mangrove"
-		"Persimmon"
-		"Crabwood"
-		"Tallow"
-		"Winterthorn"
-		"Senna"
-		"Carob"
-		"Redbud"
-		"Coral"
-		"Locust"
-		"Hickory"
-		"Lancewood"
-		"Sassafras"
-		"Primrose"
 		"Brisbane"
-		"Ash"
-		"Privet"
-		"Raywood"
-		"Quince"
-		"Medlar"
-		"Balsam"
-		"Traveler"
-		"Spurge"
-		"Linden"
-		"Cottonwood"
-		"Kapok"
-		"Mesquite"
-		"Spruce"
+		"Buckthorn"
+		"Carob"
+		"Cedar"
 		"Chestnut"
 		"Chinquapin"
+		"Coral"
+		"Cork"
+		"Cottonwood"
+		"Crabwood"
+		"Cypress"
+		"Dogwood"
+		"Douglas"
+		"Ebony"
+		"Elder"
+		"Elm"
+		"Eucalyptus"
+		"Ginko"
+		"Hawthorn"
+		"Hazel"
+		"Heath"
+		"Hemlock"
+		"Hickory"
+		"Holly"
+		"Hophorn"
+		"Ironwood"
+		"Joshua"
+		"Juniper"
+		"Kapok"
+		"Lancewood"
+		"Larch"
+		"Laurel"
+		"Linden"
+		"Locust"
+		"Magnolia"
+		"Mangrove"
+		"Maple"
+		"Medlar"
+		"Mesquite"
+		"Myrtle"
+		"Nightshade"
+		"Persimmon"
+		"Pinyon"
+		"Ponderosa"
+		"Poplar"
+		"Primrose"
+		"Privet"
+		"Quince"
+		"Raywood"
+		"Redbud"
+		"Redwood"
+		"Sassafras"
+		"Senna"
+		"Sequoia"
+		"Spruce"
+		"Spurge"
+		"Sumac"
+		"Sycamore"
+		"Tallow"
+		"Tamarack"
+		"Tamarisk"
+		"Teak"
+		"Terebinth"
+		"Torrey"
+		"Traveler"
 		"Walnut"
+		"Willow"
+		"Winterthorn"
+		"Yucca"
 
 phrase "syndicate capital"
 	word
 		"S.S. "
+	phrase
+		"greek and roman figures"
+
+phrase "greek and roman figures"
 	word
-		Africanus
-		Agrippa
-		Varus
-		Antonius
-		Diogenes
-		Aquila
-		Atticus
-		Augustus
-		Aurelius
-		Brutus
-		Caesar
-		Julius
-		Calpurnia
-		Cassius
-		Catilina
-		Cato
-		Catullus
-		Cicero
-		Cincinnatus
-		Claudius
-		Clemens
-		Commodus
-		Coriolanus
-		Metella
-		Crassus
-		Diocletian
-		Domitian
-		Fabius
-		Felix
-		Festus
-		Flaccus
-		Horace
-		Caligula
-		Gracchus
-		Hadrian
-		Lucretia
-		Lucretius
-		Licinius
-		Metellus
-		Milo
-		Nero
-		Nerva
-		Flavian
-		Ovid
-		Paullus
-		Petronius
-		Piso
-		Placidus
-		Plautus
-		Pliny
-		Trajan
-		Plutarch
-		Pompeius
-		Pompilius
-		Porcia
-		Porsenna
-		Remus
-		Romulus
-		Roscius
-		Rufus
-		Sabinus
-		Sallust
-		Octavian
-		Scaevola
-		Scipio
-		Severus
-		Suetonius
-		Sulla
-		Tacitus
-		Tarquin
-		Tiberius
-		Trajan
-		Valerian
-		Varus
-		Vespasian
-		Virgil
+		"Africanus"
+		"Agrippa"
+		"Antonius"
+		"Aquila"
+		"Atticus"
+		"Augustus"
+		"Aurelius"
+		"Brutus"
+		"Caesar"
+		"Caligula"
+		"Calpurnia"
+		"Cassius"
+		"Catilina"
+		"Cato"
+		"Catullus"
+		"Cicero"
+		"Cincinnatus"
+		"Claudius"
+		"Clemens"
+		"Commodus"
+		"Coriolanus"
+		"Crassus"
+		"Diocletian"
+		"Diogenes"
+		"Domitian"
+		"Fabius"
+		"Felix"
+		"Festus"
+		"Flaccus"
+		"Flavian"
+		"Gracchus"
+		"Hadrian"
+		"Horace"
+		"Julius"
+		"Licinius"
+		"Lucretia"
+		"Lucretius"
+		"Metella"
+		"Metellus"
+		"Milo"
+		"Nero"
+		"Nerva"
+		"Octavian"
+		"Ovid"
+		"Paullus"
+		"Petronius"
+		"Piso"
+		"Placidus"
+		"Plautus"
+		"Pliny"
+		"Plutarch"
+		"Pompeius"
+		"Pompilius"
+		"Porcia"
+		"Porsenna"
+		"Remus"
+		"Romulus"
+		"Roscius"
+		"Rufus"
+		"Sabinus"
+		"Sallust"
+		"Scaevola"
+		"Scipio"
+		"Severus"
+		"Suetonius"
+		"Sulla"
+		"Tacitus"
+		"Tarquin"
+		"Tiberius"
+		"Trajan"
+		"Valerian"
+		"Varus"
+		"Vespasian"
+		"Virgil"
 
 phrase "republic small"
 	word
 		"R.N.S. "
+	phrase
+		"rivers"
+
+phrase "rivers"
 	word
-		Nile
-		Amazon
-		Mississippi
-		Yangtze
-		Zaire
-		Mackenzie
-		Niger
-		Mekong
-		Volga
-		Madeira
-		Yukon
-		Rio
-		Indus
-		Danube
-		Euphrates
-		Darling
-		Zambezi
-		Murray
-		Nelson
-		Paraguay
-		Ural
-		Ganges
-		Oxus
-		Salween
-		Arkansas
-		Colorado
-		Dnieper
-		Allegheny
-		Irawaddy
-		Orange
-		Orinoco
-		Pilcomayo
-		Columbia
-		Don
-		Sungari
-		Saskatchewan
-		Peace
-		Tigris
-		Breede
-		Modder
-		Ohlanga
-		Palala
-		Alph
-		Onyx
-		Amur
-		Angara
-		Dongjiang
-		Pearl
-		Daly
-		Flinders
-		Cooper
-		Barwon
-		Lachlan
-		Macquarie
-		Waikato
-		Tauranga
-		Yarra
-		Avon
-		Boyne
-		Clwyd
-		Hayle
-		Lagan
-		Mersey
-		Narva
-		Rhine
-		Severn
-		Thames
-		Tyne
-		Hiwassee
-		Loup
-		Platte
-		Potomac
-		Schuylkill
-		Susquehanna
-		Wabash
-		Sangamon
-		Tsilma
-		Vistula
-		Tagus
-		Loire
-		Rhone
-		Seine
-		Tiber
-		Devi
-		Godavari
-		Pitt
-		Mohawk
-		Athabasca
-		Skagit
-		Squamish
-		Sanginaw
-		Catatumbo
-		Magdalena
-		Jordan
-		Liao
-		Congo
-		Senegal
+		"Allegheny"
+		"Alph"
+		"Amazon"
+		"Amur"
+		"Angara"
+		"Arkansas"
+		"Athabasca"
+		"Atrato"
+		"Avon"
+		"Barito"
+		"Barwon"
+		"Belaya"
+		"Boyne"
+		"Branco"
+		"Breede"
+		"Catatumbo"
+		"Chambeshi"
+		"Clwyd"
+		"Colorado"
+		"Columbia"
+		"Congo"
+		"Cooper"
+		"Daly"
+		"Danube"
+		"Darling"
+		"Daugava"
+		"Devi"
+		"Dnieper"
+		"Don"
+		"Dongjiang"
+		"Elbe"
+		"Euphrates"
+		"Flinders"
+		"Fraser"
+		"Gandaki"
+		"Ganges"
+		"Godavari"
+		"Hayle"
+		"Helmand"
+		"Hiwassee"
+		"Indus"
+		"Irawaddy"
+		"Irtysh"
+		"Ishim"
+		"Javari"
+		"Jordan"
+		"Kaladan"
+		"Kama"
+		"Kasai"
+		"Kolyma"
+		"Lachlan"
+		"Lagan"
+		"Lena"
+		"Liao"
+		"Loire"
+		"Loup"
+		"Mackenzie"
+		"Macquarie"
+		"Madeira"
+		"Magdalena"
+		"Mahanadi"
+		"Mekong"
+		"Mersey"
+		"Mississippi"
+		"Modder"
+		"Mohawk"
+		"Murray"
+		"Narva"
+		"Naryn"
+		"Nelson"
+		"Neva"
+		"Niger"
+		"Nile"
+		"Ohlanga"
+		"Onyx"
+		"Orange"
+		"Orinoco"
+		"Oxus"
+		"Palala"
+		"Paraguay"
+		"Pastaza"
+		"Peace"
+		"Pearl"
+		"Pechora"
+		"Pilcomayo"
+		"Pitt"
+		"Platte"
+		"Potomac"
+		"Rhine"
+		"Rhone"
+		"Rio"
+		"Rubicon"
+		"Salado"
+		"Salween"
+		"Sangamon"
+		"Sanginaw"
+		"Saskatchewan"
+		"Schuylkill"
+		"Seine"
+		"Senegal"
+		"Sepik"
+		"Severn"
+		"Skagit"
+		"Squamish"
+		"Sungari"
+		"Susquehanna"
+		"Tagus"
+		"Tambo"
+		"Tauranga"
+		"Thames"
+		"Tiber"
+		"Tigris"
+		"Tocantins"
+		"Tsilma"
+		"Tyne"
+		"Ural"
+		"Vistula"
+		"Volga"
+		"Voltra"
+		"Wabash"
+		"Waikato"
+		"Yangtze"
+		"Yarra"
+		"Yenisei"
+		"Yukon"
+		"Zaire"
+		"Zambezi"
 
 phrase "free worlds small"
 	word
 		"F.S. "
+	phrase
+		"flowers"
+
+phrase "flowers"
 	word
-		Lily
-		Thistle
-		Amaryllis
-		Daisy
-		Bell
-		Bergamot
-		Buttercup
-		Chrysanthemum
-		Banksia
-		Carnation
-		Aster
-		Columbine
-		Orchid
-		Daffodil
-		Primrose
-		Cherry
-		Foxglove
-		Foxtail
-		Gentian
-		Ginger
-		Gillyflower
-		Amaranth
-		Goldenrod
-		Viburnum
-		Hyacinth
-		Larkspur
-		Lavender
-		Lilac
-		Loosestrife
-		Marigold
-		Mimosa
-		Mum
-		Peony
-		Rose
-		Safflower
-		Scarlet
-		Slipper
-		Snapdragon
-		Berry
-		Snowdrop
-		Spurge
-		Sedum
-		Stonecrop
-		Sunflower
-		Tulip
-		Yarrow
-		Ambrosia
-		Bittersweet
-		Brier
-		Clover
-		Nettle
-		Holly
-		Ivy
-		Morel
-		Nightshade
-		Poke
-		Rye
-		Saffron
-		Sorrel
-		Sage
-		Rosemary
-		Thyme
-		Trillium
-		Violet
-		Purslane
-		Vetch
-		Burdock
+		"Amaranth"
+		"Amaryllis"
+		"Ambrosia"
+		"Aster"
+		"Banksia"
+		"Bell"
+		"Bergamot"
+		"Berry"
+		"Bittersweet"
+		"Brier"
+		"Burdock"
+		"Buttercup"
+		"Carnation"
+		"Cherry"
+		"Chrysanthemum"
+		"Clover"
+		"Columbine"
+		"Daffodil"
+		"Daisy"
+		"Foxglove"
+		"Foxtail"
+		"Gentian"
+		"Gillyflower"
+		"Ginger"
+		"Goldenrod"
+		"Holly"
+		"Hyacinth"
+		"Ivy"
+		"Larkspur"
+		"Lavender"
+		"Lilac"
+		"Lily"
+		"Loosestrife"
+		"Marigold"
+		"Mimosa"
+		"Morel"
+		"Mum"
+		"Nettle"
+		"Nightshade"
+		"Orchid"
+		"Peony"
+		"Poke"
+		"Primrose"
+		"Purslane"
+		"Rose"
+		"Rosemary"
+		"Rye"
+		"Safflower"
+		"Saffron"
+		"Sage"
+		"Scarlet"
+		"Sedum"
+		"Slipper"
+		"Snapdragon"
+		"Snowdrop"
+		"Sorrel"
+		"Spurge"
+		"Stonecrop"
+		"Sunflower"
+		"Thistle"
+		"Thyme"
+		"Trillium"
+		"Tulip"
+		"Vetch"
+		"Viburnum"
+		"Violet"
+		"Yarrow"
 
 phrase "syndicate small"
 	word
@@ -2591,63 +2592,75 @@ phrase "syndicate small"
 	phrase
 		"digit"
 
+
+
+# Fighter names:
+
 phrase "republic fighter"
 	word
-		"Red "
-		"Orange "
-		"Yellow "
-		"Alpha "
-		"Beta "
-		"Gamma "
-		"Delta "
-		"Epsilon "
+		"Red"
+		"Orange"
+		"Yellow"
+		"Alpha"
+		"Beta"
+		"Gamma"
+		"Delta"
+		"Epsilon"
+	word
+		" "
 	phrase
 		"one to twelve"
 
 phrase "deep fighter"
 	word
-		"Alpha "
-		"Beta "
-		"Gamma "
-		"Delta "
-		"Epsilon "
+		"Alpha"
+		"Beta"
+		"Gamma"
+		"Delta"
+		"Epsilon"
+	word
+		" "
 	phrase
 		"one to twelve"
 
 phrase "free worlds fighter"
 	word
-		"Wolf "
-		"Hound "
-		"Fox "
+		"Wolf"
+		"Hound"
+		"Fox"
+	word
+		" "
 	phrase
 		"one to twelve"
 
 phrase "free worlds fighters"
 	word
-		"Bravo "
-		"Charlie "
-		"Echo "
-		"Foxtrot "
-		"Golf "
-		"Hotel "
-		"India "
-		"Juliet "
-		"Kilo "
-		"Lima "
-		"Mike "
-		"November "
-		"Oscar "
-		"Papa "
-		"Quebec "
-		"Romeo "
-		"Sierra "
-		"Tango "
-		"Uniform "
-		"Victor "
-		"Whiskey "
-		"X-Ray "
-		"Yankee "
-		"Zulu "
+		"Bravo"
+		"Charlie"
+		"Echo"
+		"Foxtrot"
+		"Golf"
+		"Hotel"
+		"India"
+		"Juliet"
+		"Kilo"
+		"Lima"
+		"Mike"
+		"November"
+		"Oscar"
+		"Papa"
+		"Quebec"
+		"Romeo"
+		"Sierra"
+		"Tango"
+		"Uniform"
+		"Victor"
+		"Whiskey"
+		"X-Ray"
+		"Yankee"
+		"Zulu"
+	word
+		" "
 	phrase
 		"digit"
 	word
@@ -2665,7 +2678,27 @@ phrase "syndicate fighter"
 	phrase
 		"digit"
 
-# Pirate stuff
+
+
+# Pirate names:
+
+phrase "pirate"
+	phrase
+		"pirate subphrase 1" 265    # standalone pirate ship names
+		"pirate subphrase 2" 2000   # [adjective] [noun or bad outcome]
+		"pirate subphrase 3" 2000   # [adjective] [sinister name or bad outcome]
+		"pirate subphrase 4" 1500   # [sinister name]'s [noun or bad outcome]
+		"pirate subphrase 5" 2500   # [sinister name] the [adjective]
+		"pirate subphrase 6" 2000   # [noun] of [bad outcome]
+		"pirate subphrase 7" 3000   # [bad outcome or adjective] [noun]
+		"pirate subphrase 8" 184    # [noun or bad outcome]
+		"pirate subphrase 9" 3168   # [noun or bad condition][noun]
+		"pirate subphrase 10" 725   # [bad condition] [positive noun or good condition]
+
+phrase "bounty hunter"
+	phrase
+		"bounty hunter subphrase 1" 897   # [adjective] [noun]
+		"bounty hunter subphrase 2" 729   # [noun] of [noun or condition]
 
 # All of these should sound good when preceded by the word "of" or when "'s" is added onto the end
 phrase "sinister names"
@@ -2740,14 +2773,29 @@ phrase "sinister names"
 		"Urgok"
 		"Bruja"
 		"Dante"
+		"Cetus"
+		"Seren"
+		"Zenda"
+		"Bartram"
+		"Zell"
+		"Nictis"
+		"Ragnor"
+		"Maggard"
 
 # e.g. Simon the Brutal, Vexan the Cannibal, Vlad the Impaler
 phrase "pirate adjectives that work as titles"
 	word
+		"Churlish"
+		"Mendacious"
+		"Unpleasant"
+		"Wretched"
+		"Drunken"
+		"Petty"
 		"Bad"
 		"Red"
 		"Crimson"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Dead"
@@ -2774,6 +2822,7 @@ phrase "pirate adjectives that work as titles"
 		"Rusty"
 		"Painful"
 		"Murderous"
+		"Sadist"
 		"Sadistic"
 		"Flayed"
 		"Greedy"
@@ -2788,12 +2837,19 @@ phrase "pirate adjectives that work as titles"
 		"Salty"
 		"Greasy"
 		"Nasty"
+		"Cruel"
 		"Impaler"
 		"Grotesque"
 		"Hateful"
 		"Grim"
 		"Fat"
 		"Portly"
+		"Mad"
+		"Crazy"
+		"Penetrating"
+		"Miserable"
+		"Infectious"
+		"Hulking"
 
 phrase "pirate adjectives that don't work as titles"
 	word
@@ -2842,6 +2898,7 @@ phrase "pirate adjectives that don't work as titles"
 		"Naked"
 		"Hobbled"
 		"Chained"
+		"Bound"
 		"Haunted"
 		"Piercing"
 		"Thunderous"
@@ -2884,6 +2941,8 @@ phrase "pirate adjectives that don't work before singular nouns"
 
 phrase "pirate nouns"
 	word
+		"Scalliwag"
+		"Razzia"
 		"Star"
 		"Spectre"
 		"Queen"
@@ -2948,7 +3007,7 @@ phrase "pirate nouns"
 		"Ghost"
 		"Rum"
 		"Snakes"
-		"Abbatoir"
+		"Abattoir"
 		"Asylum"
 		"Sausage"
 		"Striker"
@@ -2991,8 +3050,8 @@ phrase "pirate nouns"
 		"Heart"
 		"Slayer"
 		"Vulture"
+		"Anthrax"
 
-# Many of these also appear "pirate nouns", but only some of those words work after "bad outcomes", which is why it's a separate list
 phrase "pirate nouns that work after bad outcomes"
 	word
 		"Ship"
@@ -3020,8 +3079,8 @@ phrase "pirate nouns that work after bad outcomes"
 		"Devil"
 		"God"
 		"Hydra"
-		"Blade"
 		"Army"
+		"Ark"
 
 phrase "bad outcomes"
 	word
@@ -3075,8 +3134,11 @@ phrase "bad outcomes"
 		"Immolation"
 		"Wrath"
 		"Blackness"
+		"Ennui"
+		"Itchiness"
+		"Poverty"
 
-phrase "pirate"
+phrase "pirate subphrase 1"
 	word
 		"Indian Queen"
 		"Happy Return"
@@ -3167,6 +3229,7 @@ phrase "pirate"
 		"In Tatters"
 		"Davy Jones' Locker"
 		"Cement Shoes"
+		"Concrete Shoes"
 		"Chained to an Oar"
 		"Bloody Mary"
 		"Cat o' Nine Tails"
@@ -3209,40 +3272,179 @@ phrase "pirate"
 		"Keelhauled"
 		"Danegeld"
 		"Terror"
+		"Blackbeard"
+		"Edward Teach"
+		"Israel Hands"
+		"Elcid Barrett"
+		"William Kidd"
+		"Long Ben"
+		"Henry Morgan"
+		"Francois l'Olonnais"
+		"Francis Drake"
+		"Cheung Po Tsai"
+		"Bartholomew Roberts"
+		"Benjamin Hornigold"
+		"Calico Jack"
+		"Emanuel Wynn"
+		"Christopher Moody"
+		"Stede Bonnet"
+		"Paulsgrave Williams"
+		"Dragut"
+		"Thomas Tew"
+		"Henry Every"
+		"Philip Lyne"
+		"Kanhoji Angre"
+		"Lady Killigrew"
+		"Ching Shih"
+		"Anne Bonny"
+		"Mary Read"
+		"Charlotte Badger"
+		"Catherine Hagerty"
+		"Sadie the Goat"
+		"Rachel Wall"
+		"Maria Lindsey"
+		"Sayyida al Hurra"
+		"Lo Hon-cho"
+		"Jeanne de Clisson"
+		"Grace O'Malley"
+		"Teuta of Illyria"
+		"Jeanne de Clisson"
+		"Christina Anna Skytte"
+		"Anne Dieu-le-Veut"
+		"Queen Anne's Revenge"
+		"Whydah"
+		"Wyndham Galley"
+		"Revenge"
+		"Adventure Galley"
+		"Quedagh Merchant"
+		"Adventure Prize"
+		"Golden Fleece"
+		"Black Prince"
+		"Rising Sun"
+		"The William"
+		"La Nouvelle Trompeuse"
+		"Sea Nymph"
+		"Bachelor's Delight"
+		"Rose Pink"
+		"Scowerer"
+		"Sultana"
+		"Ranger"
+		"Lark"
+		"Postillion"
+		"Good Fortune"
+		"Royal Fortune"
+		"Marianne"
+		"Amity"
+		"Pembroke"
+		"Margaret"
+		"Flying Dutchman"
+		"Caleuche"
+		"Lady Lovibond"
+		"Princess Augusta"
+		"Eliza Battle"
+		"Iron Mountain"
+		"Eurydice"
+		"Valencia"
+		"Octavius"
+		"Ourang Medan"
+		"Sea Bird"
+		"Resolute"
+		"Mary Celeste"
+		"Resolven"
+		"Twenty One Friends"
+		"Zebrina"
+		"Deering"
+		"Baychimo"
+		"Governor Parr"
+		"Joyita"
+		"Teignmouth Electron"
+		"Black Corsair"
+		"Captain Flint"
+		"Long John Silver"
+		"Billy Bones"
+		"The Master of Ballantrae"
+		"One-Eyed Willy"
+		"Captain Hook"
+		"Jesamiah Acorne"
+		"Captain Anton"
+		"Dread Pirate Roberts"
+		"Guybrush Threepwood"
+		"LeChuck"
+		"Jack Sparrow"
+		"Hector Barbarossa"
+		"Edward Teague"
+		"The Pirate King"
+		"Jack Shandy"
+		"Helen Tavrel"
+		"Valeria of the Red Brotherhood"
+		"Red Sonja"
+		"Missee Lee"
+		"Pirate Jenny"
+		"Charlotte de Berry"
+		"Elizabeth Hurwood"
+		"Fanny Campbell"
+		"Jacquotte Delahaye"
+		"Elizabeth Swann"
+		"Elaine Marley"
+		"Jolly Roger"
+		"Black Freighter"
+		"Sea Witch"
+		"Thunder"
+		"The Walrus"
+		"Tigress"
+		"Wild Cat"
+		"Three Skeleton Key"
+		"Ampoliros"
+		"Demeter"
+		"Antonia Graza"
+		"Mortzestus"
+		"Interfector"
+		"Red Gauntlet"
+		"Whirlwind"
+		"Wolf's Claw"
+		"Virulence"
+		"Septimus Severus"
+		"Benighted"
+		"Hispaniola"
+		"Staggers and Jags"
 
-phrase "pirate"
+phrase "pirate subphrase 2"
 	phrase
-		"pirate adjectives that don't work as titles"
-		"pirate adjectives that work as titles"
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 110
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 53
 
-phrase "pirate"
+phrase "pirate subphrase 3"
 	phrase
-		"pirate adjectives that don't work before singular nouns"
-		"pirate adjectives that don't work as titles"
-		"pirate adjectives that work as titles"
+		"pirate adjectives that don't work before singular nouns" 15
+		"pirate adjectives that don't work as titles" 67
+		"pirate adjectives that work as titles" 65
 	word
 		" "
 	phrase
-		"sinister names"
-		"bad outcomes"
+		"sinister names" 78
+		"bad outcomes" 53
 
-phrase "pirate"
+phrase "pirate subphrase 4"
 	phrase
 		"sinister names"
 	word
-		"'s "
+		"%'s "
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 110
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 53
+	# When making a word ending in "s" possessive, only add an apostrophe.
+	replace
+		"s%'s" "s'"
+		"%" ""
 
-phrase "pirate"
+phrase "pirate subphrase 5"
 	phrase
 		"sinister names"
 	word
@@ -3250,32 +3452,32 @@ phrase "pirate"
 	phrase
 		"pirate adjectives that work as titles"
 
-phrase "pirate"
+phrase "pirate subphrase 6"
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
+		"pirate nouns" 110
+		"pirate nouns that work after bad outcomes" 27
 	word
 		" of "
 	phrase
 		"bad outcomes"
 
-phrase "pirate"
+phrase "pirate subphrase 7"
 	phrase
-		"bad outcomes"
-		"pirate adjectives that work as titles"
-		"pirate adjectives that don't work as titles"
+		"bad outcomes" 53
+		"pirate adjectives that work as titles" 65
+		"pirate adjectives that don't work as titles" 67
 	word
 		" "
 	phrase
 		"pirate nouns that work after bad outcomes"
 
-phrase "pirate"
+phrase "pirate subphrase 8"
 	phrase
-		"pirate nouns"
-		"pirate nouns that work after bad outcomes"
-		"bad outcomes"
+		"pirate nouns" 110
+		"pirate nouns that work after bad outcomes" 27
+		"bad outcomes" 53
 
-phrase "pirate"
+phrase "pirate subphrase 9"
 	word
 		"Blood"
 		"Night"
@@ -3313,6 +3515,7 @@ phrase "pirate"
 		"Hard"
 		"Hell"
 		"Filth"
+		"Star"
 	word
 		"oath"
 		"fire"
@@ -3399,8 +3602,11 @@ phrase "pirate"
 		"star"
 		"fink"
 		"spot"
+		"butcher"
+		"prison"
+		"stone"
 
-phrase "pirate"
+phrase "pirate subphrase 10"
 	word
 		"No"
 		"No More"
@@ -3426,6 +3632,8 @@ phrase "pirate"
 		"Broken"
 		"Vanquished"
 		"Drowned"
+		"Spoiled"
+		"Ruined"
 	word
 		" "
 	word
@@ -3456,170 +3664,18 @@ phrase "pirate"
 		"Time"
 		"Fate"
 		"Boys"
+		"Embrace"
+		"Caress"
+		"Fortune"
 
-# Historical male pirates
-phrase "pirate"
-	word
-		"Blackbeard"
-		"Edward Teach"
-		"William Kidd"
-		"Long Ben"
-		"Henry Morgan"
-		"Francois l'Olonnais"
-		"Francis Drake"
-		"Cheung Po Tsai"
-		"Bartholomew Roberts"
-		"Benjamin Hornigold"
-		"Calico Jack"
-		"Emanuel Wynn"
-		"Christopher Moody"
-		"Stede Bonnet"
-		"Paulsgrave Williams"
-		"Dragut"
-		"Thomas Tew"
-		"Henry Every"
-		"Philip Lyne"
-		"Kanhoji Angre"
-
-# Historical female pirates
-phrase "pirate"
-	word
-		"Lady Killigrew"
-		"Ching Shih"
-		"Anne Bonny"
-		"Mary Read"
-		"Charlotte Badger"
-		"Catherine Hagerty"
-		"Sadie the Goat"
-		"Rachel Wall"
-		"Maria Lindsey"
-		"Sayyida al Hurra"
-		"Lo Hon-cho"
-		"Jeanne de Clisson"
-		"Grace O'Malley"
-		"Teuta of Illyria"
-		"Jeanne de Clisson"
-		"Christina Anna Skytte"
-		"Anne Dieu-le-Veut"
-
-# Historical pirate ships
-phrase "pirate"
-	word
-		"Queen Anne's Revenge"
-		"Whydah"
-		"Wyndham Galley"
-		"Revenge"
-		"Adventure Galley"
-		"Quedagh Merchant"
-		"Adventure Prize"
-		"Golden Fleece"
-		"Black Prince"
-		"Rising Sun"
-		"The William"
-		"La Nouvelle Trompeuse"
-		"Sea Nymph"
-		"Bachelor's Delight"
-		"Rose Pink"
-		"Scowerer"
-		"Sultana"
-		"Ranger"
-		"Lark"
-		"Postillion"
-		"Good Fortune"
-		"Royal Fortune"
-		"Marianne"
-		"Amity"
-		"Pembroke"
-		"Margaret"
-
-# Historical ghost ships
-phrase "pirate"
-	word
-		"Flying Dutchman"
-		"Caleuche"
-		"Lady Lovibond"
-		"Princess Augusta"
-		"Eliza Battle"
-		"Iron Mountain"
-		"Eurydice"
-		"Valencia"
-		"Octavius"
-		"Ourang Medan"
-		"Sea Bird"
-		"Resolute"
-		"Mary Celeste"
-		"Resolven"
-		"Twenty One Friends"
-		"Zebrina"
-		"Deering"
-		"Baychimo"
-		"Governor Parr"
-		"Joyita"
-		"Teignmouth Electron"
-
-# Fictional male pirates
-phrase "pirate"
-	word
-		"Black Corsair"
-		"Captain Flint"
-		"Long John Silver"
-		"Billy Bones"
-		"The Master of Ballantrae"
-		"One-Eyed Willy"
-		"Captain Hook"
-		"Jesamiah Acorne"
-		"Captain Anton"
-		"Dread Pirate Roberts"
-		"Guybrush Threepwood"
-		"LeChuck"
-		"Jack Sparrow"
-		"Hector Barbarossa"
-		"Edward Teague"
-		"The Pirate King"
-		"Jack Shandy"
-
-# Fictional female pirates
-phrase "pirate"
-	word
-		"Helen Tavrel"
-		"Valeria of the Red Brotherhood"
-		"Red Sonja"
-		"Missee Lee"
-		"Pirate Jenny"
-		"Charlotte de Berry"
-		"Elizabeth Hurwood"
-		"Fanny Campbell"
-		"Jacquotte Delahaye"
-		"Elizabeth Swann"
-		"Elaine Marley"
-
-# Fictional pirate ships
-phrase "pirate"
-	word
-		"Jolly Roger"
-		"Black Freighter"
-		"Sea Witch"
-		"Thunder"
-		"The Walrus"
-		"Tigress"
-		"Wild Cat"
-
-# Fictional ghost ships
-phrase "pirate"
-	word
-		"Three Skeleton Key"
-		"Ampoliros"
-		"Demeter"
-		"Antonia Graza"
-		"Mortzestus"
-
-phrase "bounty hunter"
+phrase "bounty hunter subphrase 1"
 	word
 		"Iron"
 		"Brass"
 		"Sharpened"
 		"Green"
 		"Grey"
+		"Gray"
 		"Black"
 		"Dark"
 		"Obsidian"
@@ -3684,7 +3740,7 @@ phrase "bounty hunter"
 		"Fury"
 		"Rivets"
 
-phrase "bounty hunter"
+phrase "bounty hunter subphrase 2"
 	word
 		"Bars"
 		"Chains"

@@ -21,26 +21,40 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 
 using namespace std;
 
 namespace {
 	const double EPS = 0.0000000001;
-	
+
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
+		{"cooling energy", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
+		{"hull threshold", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
+		{"ion resistance energy", 0.},
+		{"ion resistance fuel", 0.},
+		{"ion resistance heat", 0.},
+		{"slowing resistance energy", 0.},
+		{"slowing resistance fuel", 0.},
+		{"slowing resistance heat", 0.},
+		{"crew equivalent", 0.},
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"disruption protection", -0.99},
+		{"energy protection", -0.99},
 		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},
@@ -49,7 +63,7 @@ namespace {
 		{"piercing protection", -0.99},
 		{"shield protection", -0.99},
 		{"slowing protection", -0.99},
-		
+
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
@@ -60,7 +74,7 @@ namespace {
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.}
 	};
-	
+
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -69,13 +83,13 @@ namespace {
 				return it.first.GetSprite() == flare.first.GetSprite();
 			}
 		);
-		
+
 		if(oit == thisFlares.end())
 			thisFlares.emplace_back(it.first, count * it.second);
 		else
 			oit->second += count * it.second;
 	}
-	
+
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
 	template <class T>
@@ -90,18 +104,6 @@ namespace {
 	}
 }
 
-const vector<string> Outfit::CATEGORIES = {
-	"Guns",
-	"Turrets",
-	"Secondary Weapons",
-	"Ammunition",
-	"Systems",
-	"Power",
-	"Engines",
-	"Hand to Hand",
-	"Special"
-};
-
 
 
 void Outfit::Load(const DataNode &node)
@@ -111,7 +113,8 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 		pluralName = name + 's';
 	}
-	
+	isDefined = true;
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
@@ -177,17 +180,40 @@ void Outfit::Load(const DataNode &node)
 			cost = child.Value(1);
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
-		else if(child.Token(0) == "licenses")
+		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
 		{
+			auto isNewLicense = [](const vector<string> &c, const string &val) noexcept -> bool {
+				return find(c.begin(), c.end(), val) == c.end();
+			};
+			// Add any new licenses that were specified "inline".
+			if(child.Size() >= 2)
+			{
+				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+					if(isNewLicense(licenses, *it))
+						licenses.push_back(*it);
+			}
+			// Add any new licenses that were specified as an indented list.
 			for(const DataNode &grand : child)
-				licenses.push_back(grand.Token(0));
+				if(isNewLicense(licenses, grand.Token(0)))
+					licenses.push_back(grand.Token(0));
+		}
+		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		{
+			// Jump range must be positive.
+			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
+	// Only outfits with the jump drive and jump range attributes can
+	// use the jump range, so only keep track of the jump range on
+	// viable outfits.
+	if(attributes.Get("jump drive") && attributes.Get("jump range"))
+		GameData::AddJumpRange(attributes.Get("jump range"));
+
 	// Legacy support for turrets that don't specify a turn rate:
 	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
 	{
@@ -205,7 +231,7 @@ void Outfit::Load(const DataNode &node)
 			attributes[label] = 0.;
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
-			
+
 			// A scan value of 300 is equivalent to a scan power of 9.
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
@@ -220,9 +246,26 @@ void Outfit::Load(const DataNode &node)
 
 
 
+// Check if this outfit has been defined via Outfit::Load (vs. only being referred to).
+bool Outfit::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
+// When writing to the player's save, the reference name is used even if this
+// outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+void Outfit::SetName(const string &name)
+{
+	this->name = name;
 }
 
 
@@ -304,12 +347,17 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 			if(!minimum)
 				continue;
 		}
+
+		// Only automatons may have a "required crew" of 0.
+		if(!strcmp(at.first, "required crew"))
+			minimum = !attributes.Get("automaton");
+
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)
 			count = (value - minimum) / -at.second + EPS;
 	}
-	
+
 	return count;
 }
 
@@ -327,7 +375,7 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
-	
+
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
 	for(const auto &it : other.reverseFlareSprites)
@@ -356,7 +404,7 @@ void Outfit::Set(const char *attribute, double value)
 }
 
 
-	
+
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Body, int>> &Outfit::FlareSprites() const
 {
@@ -408,7 +456,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 
-// Get this oufit's jump effects and sounds, if any.
+// Get this outfit's jump effects and sounds, if any.
 const map<const Effect *, int> &Outfit::JumpEffects() const
 {
 	return jumpEffects;

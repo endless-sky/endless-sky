@@ -68,6 +68,8 @@ fleet "Small Southern Merchants"
 	variant 7
 		"Hauler"
 		"Berserker"
+	variant 1
+		"Scout"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -153,6 +155,9 @@ fleet "Large Southern Merchants"
 	variant 6
 		"Hauler III"
 		"Berserker" 2
+	variant 1
+		"Bulk Freighter (Long Haul)"
+		"Berserker (Strike)" 4
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -215,6 +220,10 @@ fleet "Small Core Merchants"
 		"Flivver (Luxury)"
 	variant 1
 		"Flivver (Racing)"
+	variant 2
+		"Scout"
+	variant 1
+		"Scout (Speedy)"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -231,48 +240,48 @@ fleet "Large Core Merchants"
 	variant 10
 		"Freighter (Proton)" 2
 		"Quicksilver" 2
-	variant 50
-		"Bulk Freighter"
+	variant 40
+		"Container Transport (Short Haul)"
 		"Wasp (Proton)" 2
-	variant 50
-		"Bulk Freighter"
+	variant 40
+		"Container Transport"
 		"Wasp"
 		"Wasp (Meteor)"
-	variant 20
-		"Bulk Freighter (Blaster)"
+	variant 15
+		"Container Transport (Blaster)"
 		"Wasp" 2
-	variant 10
-		"Bulk Freighter (Heavy)"
+	variant 8
+		"Container Transport (Heavy)"
 		"Wasp (Proton)" 2
-	variant 10
-		"Bulk Freighter (Proton)"
+	variant 8
+		"Container Transport (Proton)"
 		"Wasp (Proton)" 2
-	variant 10
-		"Bulk Freighter (Proton)"
+	variant 8
+		"Container Transport (Proton)"
 		"Wasp"
 		"Wasp (Meteor)"
-	variant 20
-		"Bulk Freighter"
-	variant 10
-		"Bulk Freighter (Blaster)"
-	variant 5
-		"Bulk Freighter (Heavy)"
-	variant 5
-		"Bulk Freighter (Proton)"
+	variant 15
+		"Container Transport"
+	variant 8
+		"Container Transport (Blaster)"
+	variant 4
+		"Container Transport (Heavy)"
+	variant 4
+		"Container Transport (Proton)"
 	variant 20
 		"Star Barge (Armed)" 3
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Quicksilver" 1
 		"Splinter" 1
-	variant 4
-		"Bulk Freighter (Blaster)"
-		"Bulk Freighter (Heavy)"
+	variant 3
+		"Container Transport (Blaster)"
+		"Container Transport (Heavy)"
 		"Quicksilver" 1
 		"Splinter (Laser)" 1
-	variant 4
-		"Bulk Freighter (Blaster)"
-		"Bulk Freighter (Proton)"
+	variant 3
+		"Container Transport (Blaster)"
+		"Container Transport (Proton)"
 		"Quicksilver" 1
 		"Splinter (Proton)" 1
 	variant 10
@@ -296,27 +305,27 @@ fleet "Large Core Merchants"
 	variant 2
 		"Freighter" 4
 		"Protector (Proton)" 1
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Protector" 1
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Wasp" 3
 		"Wasp (Meteor)" 2
-	variant 10
-		"Bulk Freighter" 2
+	variant 8
+		"Container Transport" 2
 		"Vanguard" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Protector (Laser)" 1
 	variant 1
-		"Bulk Freighter (Proton)" 2
+		"Container Transport (Proton)" 2
 		"Protector (Proton)" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Vanguard (Particle)" 1
 	variant 1
-		"Bulk Freighter (Heavy)" 2
+		"Container Transport (Heavy)" 2
 		"Vanguard (Missile)" 1
 	variant 20
 		"Bounder"
@@ -332,6 +341,58 @@ fleet "Large Core Merchants"
 		"Wasp (Proton)" 2
 	variant 2
 		"Arrow"
+	variant 10
+		"Bulk Freighter"
+		"Wasp (Proton)" 2
+	variant 10
+		"Bulk Freighter"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Wasp" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Wasp (Proton)" 2
+	variant 2
+		"Bulk Freighter (Proton)"
+		"Wasp (Proton)" 2
+	variant 2
+		"Bulk Freighter (Proton)"
+		"Wasp"
+		"Wasp (Meteor)"
+	variant 5
+		"Bulk Freighter"
+	variant 2
+		"Bulk Freighter (Blaster)"
+	variant 1
+		"Bulk Freighter (Heavy)"
+	variant 1
+		"Bulk Freighter (Proton)"
+	variant 2
+		"Bulk Freighter" 2
+		"Quicksilver" 1
+		"Splinter" 1
+	variant 1
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Heavy)"
+		"Quicksilver" 1
+		"Splinter (Laser)" 1
+	variant 1
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Proton)"
+		"Quicksilver" 1
+		"Splinter (Proton)" 1
+	variant 2
+		"Bulk Freighter" 2
+		"Protector" 1
+	variant 2
+		"Bulk Freighter" 2
+		"Wasp" 3
+		"Wasp (Meteor)" 2
+	variant 2
+		"Bulk Freighter" 2
+		"Vanguard" 1
 
 fleet "Paradise Merchants"
 	government "Merchant"
@@ -392,7 +453,10 @@ fleet "Paradise Merchants"
 	variant 3
 		"Blackbird"
 		"Berserker" 2
-
+	variant 5
+		"Scout (Speedy)"
+	variant 1
+		"Container Transport (Short Haul)"
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -458,6 +522,10 @@ fleet "Small Northern Merchants"
 	variant 2
 		"Hauler II"
 		"Hauler"
+	variant 10
+		"Scout"
+	variant 5
+		"Scout (Speedy)"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -554,27 +622,30 @@ fleet "Large Northern Merchants"
 	variant 4
 		"Blackbird"
 		"Sparrow" 3
-	variant 4
+	variant 2
 		"Bulk Freighter"
 		"Headhunter" 2
-	variant 2
+	variant 1
 		"Bulk Freighter"
 		"Headhunter (Particle)" 2
-	variant 10
+	variant 5
 		"Bulk Freighter"
 		"Sparrow" 2
-	variant 4
+	variant 2
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Heavy)"
 		"Berserker" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Heavy)"
 		"Berserker (Afterburner)" 2
-	variant 4
+	variant 2
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
+	variant 1
+		"Bulk Freighter (Long Haul)"
+		"Scout" 4
 	variant 10
 		"Behemoth" 2
 		"Firebird" 1
@@ -638,6 +709,31 @@ fleet "Large Northern Merchants"
 		"Hauler III"
 		"Hauler II"
 		"Headhunter" 3
+	variant 1
+		"Scout" 3
+	variant 1
+		"Scout (Speedy)" 3
+	variant 2
+		"Container Transport"
+		"Headhunter" 2
+	variant 1
+		"Container Transport"
+		"Headhunter (Particle)" 2
+	variant 5
+		"Container Transport"
+		"Sparrow" 2
+	variant 2
+		"Container Transport (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker (Afterburner)" 2
+	variant 2
+		"Container Transport (Blaster)"
+		"Sparrow" 2
 
 fleet "Small Human Merchants (Hai)"
 	government "Merchant"
@@ -697,6 +793,8 @@ fleet "Small Human Merchants (Hai)"
 	variant 1
 		"Star Barge"
 		"Aphid"
+	variant 10
+		"Scout (Speedy)" 1
 
 fleet "Large Human Merchants (Hai)"
 	government "Merchant"
@@ -765,25 +863,25 @@ fleet "Large Human Merchants (Hai)"
 	variant 2
 		"Behemoth"
 		"Headhunter (Hai)" 2
-	variant 4
+	variant 3
 		"Bulk Freighter (Hai)"
 		"Headhunter" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Headhunter (Hai)" 2
-	variant 10
-		"Bulk Freighter"
-		"Sparrow" 2
-	variant 4
+	variant 8
+		"Bulk Freighter (Long Haul)"
+		"Scout" 4
+	variant 3
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Berserker" 2
-	variant 2
+	variant 1
 		"Bulk Freighter (Hai)"
 		"Berserker (Afterburner)" 2
-	variant 4
+	variant 3
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
 	variant 10
@@ -854,6 +952,29 @@ fleet "Large Human Merchants (Hai)"
 		"Water Bug" 2
 	variant 1
 		"Shield Beetle"
+	variant 1
+		"Scout (Speedy)" 3
+	variant 1
+		"Container Transport (Hai)"
+		"Headhunter" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Headhunter (Hai)" 2
+	variant 2
+		"Container Transport"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Berserker" 2
+	variant 1
+		"Container Transport (Hai)"
+		"Berserker (Afterburner)" 2
+	variant 1
+		"Container Transport (Blaster)"
+		"Sparrow" 2
 
 fleet "Human Miners"
 	government "Merchant"
@@ -1297,8 +1418,7 @@ fleet "Navy Surveillance"
 
 fleet "Small Deep Merchants"
 	government "Merchant"
-	names "deep"
-	fighters "deep fighter"
+	names "civilian"
 	cargo 0
 	personality
 		heroic
@@ -1327,11 +1447,12 @@ fleet "Small Deep Merchants"
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
+	variant 1
+		"Scout"
 
 fleet "Large Deep Merchants"
 	government "Merchant"
-	names "deep"
-	fighters "deep fighter"
+	names "civilian"
 	cargo 0
 	personality
 		heroic
@@ -1642,7 +1763,7 @@ fleet "Small Southern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		disables plunders harvests
 		confusion 20
 	variant 8
 		"Sparrow"
@@ -1675,7 +1796,7 @@ fleet "Small Southern Pirates"
 	variant 1
 		"Fury" 3
 	variant 1
-		"Fury (Missile)" 3
+		"Fury (Missile)" 2
 	variant 1
 		"Fury (Heavy)" 2
 	variant 1
@@ -1822,7 +1943,7 @@ fleet "Small Independent"
 	names "pirate"
 	cargo 1
 	personality
-		plunders
+		disables plunders
 		confusion 20
 	variant 8
 		"Sparrow"
@@ -1940,7 +2061,7 @@ fleet "Small Core Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		disables plunders harvests
 		confusion 20
 	variant 3
 		"Quicksilver"
@@ -2055,7 +2176,7 @@ fleet "Small Northern Pirates"
 	names "pirate"
 	cargo 1
 	personality
-		plunders harvests
+		disables plunders harvests
 		confusion 20
 	variant 5
 		"Sparrow"
@@ -2106,6 +2227,10 @@ fleet "Small Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Corvette (Speedy)"
+	variant 1
+		"Scout"
+	variant 4
+		"Scout (Speedy)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -2342,6 +2467,8 @@ fleet "pirate raid"
 		"Berserker (Afterburner)" 3
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 3
+		"Scout (Speedy)" 3
 
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
@@ -2427,6 +2554,88 @@ fleet "Bounty Hunters"
 	variant 1
 		"Splinter"
 		"Fury (Heavy)"
+
+fleet "Marauder I"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Arrow"
+	variant 1
+		"Marauder Arrow (Weapons)"
+	variant 1
+		"Marauder Arrow (Engines)"
+	variant 3
+		"Marauder Bounder"
+	variant 1
+		"Marauder Bounder (Weapons)"
+	variant 1
+		"Marauder Bounder (Engines)"
+
+fleet "Marauder II"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Quicksilver"
+	variant 1
+		"Marauder Quicksilver (Weapons)"
+	variant 1
+		"Marauder Quicksilver (Engines)"
+	variant 3
+		"Marauder Raven"
+	variant 1
+		"Marauder Raven (Weapons)"
+	variant 1
+		"Marauder Raven (Engines)"
+
+fleet "Marauder III"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Firebird"
+	variant 1
+		"Marauder Firebird (Weapons)"
+	variant 1
+		"Marauder Firebird (Engines)"
+	variant 3
+		"Marauder Manta"
+	variant 1
+		"Marauder Manta (Weapons)"
+	variant 1
+		"Marauder Manta (Engines)"
+	variant 3
+		"Marauder Splinter"
+	variant 1
+		"Marauder Splinter (Weapons)"
+	variant 1
+		"Marauder Splinter (Engines)"
+
+fleet "Marauder IV"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 3
+		"Marauder Falcon"
+	variant 1
+		"Marauder Falcon (Weapons)"
+	variant 1
+		"Marauder Falcon (Engines)"
+	variant 3
+		"Marauder Leviathan"
+	variant 1
+		"Marauder Leviathan (Weapons)"
+	variant 1
+		"Marauder Leviathan (Engines)"
 
 fleet "Marauder fleet I"
 	government "Pirate"

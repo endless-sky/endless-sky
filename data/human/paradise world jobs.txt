@@ -171,7 +171,7 @@ mission "Transport partiers [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
-		dialog "You're not sorry to say goodbye to the rowdy and uncouth troublemakers you've been transporting. Their parents send you your payment of <payment> with not a word of acknowledgement."
+		dialog "You're not sorry to say goodbye to the rowdy and uncouth troublemakers you've been transporting. Their parents send you your payment of <payment> with not a word of acknowledgment."
 
 
 mission "Transport partiers [2]"
@@ -327,7 +327,7 @@ mission "Paradise Jobs: Contract Laborers"
 	name "Contract laborers to <planet>"
 	job
 	repeat
-	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the paradise worlds. Payment is <payment>."
+	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the Paradise Worlds. Payment is <payment>."
 	passengers 13 30
 	to offer
 		random < 10
@@ -426,11 +426,11 @@ mission "Paradise Job: Parolees"
 	name "Parolees to <planet>"
 	job
 	repeat
-	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the paradise world of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences that better use their skills in return for serving their time on the Paradise World of <destination>. Transport them to their new home to carry out their service. The payment is <payment>.`
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -454,7 +454,7 @@ mission "Paradise Job: Debtors"
 	passengers 20 4 .1
 	to offer
 		random < 15
-		"passenger space" > 50
+		"passenger space" > 40
 	on offer
 		require "Brig"
 	source
@@ -479,8 +479,8 @@ mission "Paradise Job: Retirees"
 	cargo "treasured possessions" 7 12 .2
 	to offer
 		random < 10
-		"passenger space" > 30
-		"cargo space" > 120
+		"passenger space" > 15
+		"cargo space" > 40
 	on offer
 		require "Luxury Accommodations"
 	source
@@ -503,7 +503,7 @@ mission "Paradise Job: Wilderness Retreat"
 	passengers 10 4 .1
 	to offer
 		random < 10
-		"passenger space" > 30
+		"passenger space" > 25
 	on offer
 		require "Luxury Accommodations"
 	source
