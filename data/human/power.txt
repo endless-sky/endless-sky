@@ -10,7 +10,7 @@
 
 outfit "Supercapacitor"
 	category "Power"
-	cost 25000
+	cost 12500
 	thumbnail "outfit/supercapacitor"
 	"mass" 1
 	"outfit space" -1
@@ -19,7 +19,7 @@ outfit "Supercapacitor"
 
 outfit "LP036a Battery Pack"
 	category "Power"
-	cost 12000
+	cost 6000
 	thumbnail "outfit/tiny battery"
 	"mass" 5
 	"outfit space" -5
@@ -28,7 +28,7 @@ outfit "LP036a Battery Pack"
 
 outfit "LP072a Battery Pack"
 	category "Power"
-	cost 30000
+	cost 15000
 	thumbnail "outfit/small battery"
 	"mass" 10
 	"outfit space" -10
@@ -37,7 +37,7 @@ outfit "LP072a Battery Pack"
 
 outfit "LP144a Battery Pack"
 	category "Power"
-	cost 67000
+	cost 33500
 	thumbnail "outfit/medium battery"
 	"mass" 20
 	"outfit space" -20
@@ -46,7 +46,7 @@ outfit "LP144a Battery Pack"
 
 outfit "LP288a Battery Pack"
 	category "Power"
-	cost 150000
+	cost 75000
 	thumbnail "outfit/large battery"
 	"mass" 40
 	"outfit space" -40
@@ -55,7 +55,7 @@ outfit "LP288a Battery Pack"
 
 outfit "LP576a Battery Pack"
 	category "Power"
-	cost 380000
+	cost 190000
 	thumbnail "outfit/huge battery"
 	"mass" 80
 	"outfit space" -80

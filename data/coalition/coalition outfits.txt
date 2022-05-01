@@ -85,7 +85,7 @@ outfit "Small Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 44000
+	cost 22000
 	thumbnail "outfit/small battery module"
 	"mass" 2
 	"outfit space" -2
@@ -96,7 +96,7 @@ outfit "Large Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 340000
+	cost 170000
 	thumbnail "outfit/large battery module"
 	"mass" 9
 	"outfit space" -9
