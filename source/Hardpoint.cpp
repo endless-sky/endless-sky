@@ -391,12 +391,23 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// outfit pointer is not null.
 
 	// Reset the reload count.
-	double spinupProgress = SpinupProgress();
-	reload += spinupProgress * outfit->Reload() + (1. - spinupProgress) * outfit->InitialReload();
-
-	double burstSpinupProgress = BurstSpinupProgress();
-	burstReload += burstSpinupProgress * outfit->BurstReload() + (1. - burstSpinupProgress) * outfit->BurstInitialReload();
-
+	if(outfit->BurstCount() > 1)
+	{
+		double burstReloadIncrement = CurrentBurstReload();
+		if(outfit->ReloadRatio())
+			reload += burstReloadIncrement * outfit->ReloadRatio();
+		else
+			reload += CurrentReload();
+		burstReload += burstReloadIncrement;
+	}
+	else
+	{
+		reload += CurrentReload();
+		// This burst-related assignment may or may not be necessary since we know
+		// this weapon is not a burst type.
+		burstReload += CurrentBurstReload();
+	}
+	
 	--burstCount;
 	isFiring = true;
 
@@ -434,6 +445,20 @@ double Hardpoint::Bloom() const
 		bloom += outfit->BurstBloom() * (time ? pow(burstBloomCount / time, outfit->BurstBloomStyle()) : 1.);
 	}
 	return bloom;
+}
+
+
+
+double Hardpoint::CurrentReload() const {
+	double spinupProgress = SpinupProgress();
+	return spinupProgress * outfit->Reload() + (1. - spinupProgress) * outfit->InitialReload();
+}
+
+
+
+double Hardpoint::CurrentBurstReload() const {
+	double burstSpinupProgress = BurstSpinupProgress();
+	return burstSpinupProgress * outfit->BurstReload() + (1. - burstSpinupProgress) * outfit->BurstInitialReload();
 }
 
 

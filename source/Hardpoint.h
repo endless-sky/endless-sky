@@ -85,6 +85,10 @@ private:
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
 	// How much increased inaccuracy this weapon has as a result of sustained fire.
 	double Bloom() const;
+	// The current reload incurred by firing a projectile
+	double CurrentReload() const;
+	// The current burst reload by firing a projectile
+	double CurrentBurstReload() const;
 	// If this is a spinup weapon, get the current overall spinup progress
 	double SpinupProgress() const;
 	// If this is a burst spinup weapon, get the current burst-specific spinup progress

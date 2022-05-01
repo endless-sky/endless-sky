@@ -126,6 +126,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstInitialReload = max(1., value);
 			else if(key == "burst spinup time")
 				burstSpinupTime = max(0., value);
+			else if(key == "reload ratio")
+				reloadRatio = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
 			else if(key == "homing")

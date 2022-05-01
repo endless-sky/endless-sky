@@ -82,6 +82,7 @@ public:
 	double BurstInitialReload() const;
 	double BurstSpinupTime() const;
 	double BurstSpinupStyle() const;
+	double ReloadRatio() const;
 	int BurstCount() const;
 	int Homing() const;
 
@@ -249,6 +250,7 @@ private:
 	double burstInitialReload = 1.;
 	double burstSpinupTime = 0.;
 	double burstSpinupStyle = 1.;
+	double reloadRatio = 0.;
 	int burstCount = 1;
 	int homing = 0;
 
@@ -354,6 +356,7 @@ inline double Weapon::BurstReload() const { return burstReload; }
 inline double Weapon::BurstInitialReload() const { return burstInitialReload; }
 inline double Weapon::BurstSpinupTime() const { return burstSpinupTime; }
 inline double Weapon::BurstSpinupStyle() const { return burstSpinupStyle; }
+inline double Weapon::ReloadRatio() const { return reloadRatio; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
 
