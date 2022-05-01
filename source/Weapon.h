@@ -375,7 +375,7 @@ inline double Weapon::BloomTime() const { return bloomTime; }
 inline double Weapon::BloomStyle() const { return bloomStyle; }
 inline double Weapon::BurstBloom() const { return burstBloom; }
 inline double Weapon::BurstBloomTime() const { return burstBloomTime; }
-inline double Weapon::BloomStyle() const { return bloomStyle; }
+inline double Weapon::BurstBloomStyle() const { return bloomStyle; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
