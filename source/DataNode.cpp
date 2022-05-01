@@ -246,11 +246,7 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-	{
-		// Put an empty line in the log between each error message.
-		Files::LogError("");
 		Files::LogError(message);
-	}
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
@@ -276,6 +272,10 @@ int DataNode::PrintTrace(const string &message) const
 			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
+
+	// Put an empty line in the log between each error message.
+	if(!message.empty())
+		Files::LogError("");
 
 	// Tell the caller what indentation level we're at now.
 	return indent;

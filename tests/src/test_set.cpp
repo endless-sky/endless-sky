@@ -34,12 +34,14 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 	GIVEN( "data for the key does not exist" ) {
 		const auto s = Set<T>{};
 		REQUIRE( s.size() == 0 );
+		REQUIRE( s.empty() );
 		REQUIRE_FALSE( s.Has(key) );
 
 		WHEN( "Get(key) is called" ) {
 			const auto &dataPtr = s.Get(key);
 			THEN( "the Set increases in size" ) {
 				CHECK( s.size() == 1 );
+				CHECK_FALSE( s.empty() );
 			}
 			THEN( "a valid pointer is returned" ) {
 				CHECK( dataPtr != nullptr );
@@ -54,9 +56,21 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 			const auto &dataPtr = s.Find(key);
 			THEN( "the Set does not increase in size" ) {
 				CHECK( s.size() == 0 );
+				CHECK( s.empty() );
 			}
 			THEN( "nullptr is returned" ) {
 				CHECK( dataPtr == nullptr );
+			}
+		}
+		
+		WHEN( "find(key) is called" ) {
+			const auto cIt = s.find(key);
+			THEN( "the Set does not increase in size" ) {
+				CHECK( s.size() == 0 );
+				CHECK( s.empty() );
+			}
+			THEN( "the returned iterator equals end" ) {
+				CHECK( cIt == s.end() );
 			}
 		}
 	}
@@ -83,6 +97,18 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 			}
 			THEN( "the same, valid pointer is returned" ) {
 				CHECK( secondPtr == firstPtr );
+			}
+		}
+
+		WHEN( "find(key) is called" ) {
+			const auto cIt = s.find(key);
+			REQUIRE( cIt != s.end() );
+			THEN( "the Set does not increase in size" ) {
+				CHECK( s.size() == 1 );
+			}
+			THEN( "the iterator points to the correct element" ) {
+				CHECK( cIt->first == key );
+				CHECK( cIt->second.a == 1 );
 			}
 		}
 	}

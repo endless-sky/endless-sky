@@ -21,11 +21,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "output-capture.hpp"
 
 // ... and any system includes needed for the test file.
+#include <cstdint>
 #include <map>
 #include <string>
 
 namespace { // test namespace
-
+using Conditions = std::map<std::string, int64_t>;
 // #region mock data
 // #endregion mock data
 
@@ -58,7 +59,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "\nError: An expression must either perform a comparison or assign a value:\n";
+	const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "an empty ConditionSet" ) {
@@ -77,7 +78,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			set.Add(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' );
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
@@ -94,13 +95,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE( emptySet.IsEmpty() );
 
 		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = ConditionSet::Conditions{};
+			const auto emptyConditionList = Conditions{};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(emptyConditionList) );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionSet::Conditions{
+			const auto conditionList = Conditions{
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -113,7 +114,9 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionSet::Conditions{{"never", 1}};
+			const auto listWithNever = Conditions{
+				{"never", 1},
+			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );
 			}
@@ -122,7 +125,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 }
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto mutableList = ConditionSet::Conditions{};
+	auto mutableList = Conditions{};
 	REQUIRE( mutableList.empty() );
 
 	GIVEN( "an empty ConditionSet" ) {

@@ -89,6 +89,7 @@ shipyard "Syndicate Basics"
 
 shipyard "Syndicate Advanced"
 	"Bulk Freighter"
+	"Container Transport"
 	"Protector"
 	"Vanguard"
 	"Arrow"
@@ -216,6 +217,9 @@ outfitter "Ammo South"
 	"Javelin"
 	"Heavy Rocket"
 	"Local Map"
+
+outfitter "Northern Explorers"
+	"Ramscoop"
 
 outfitter "Deep Sky Basics"
 	"Ramscoop"

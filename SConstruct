@@ -1,6 +1,7 @@
 import os
 import platform
 from SCons.Node.FS import Dir
+from SCons.Errors import SConsEnvironmentError
 
 def pathjoin(*args):
 	return os.path.join(*args)
@@ -9,13 +10,12 @@ def pathjoin(*args):
 # If we are compiling on Windows, then we need to change the toolset to MinGW.
 is_windows_host = platform.system().startswith('Windows')
 scons_toolset = ['mingw' if is_windows_host else 'default']
-env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ)
+env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ, COMPILATIONDB_USE_ABSPATH=True)
 # If manually building within the Steam Runtime (scout), SCons will need to be invoked directly
 # with `python3.5`. Most other runtimes / build hosts will default to a newer version of python.
 env.EnsurePythonVersion(3, 5)
 # Make sure the current SCons version is at least v3.1.0; newer versions are allowed.
 env.EnsureSConsVersion(3, 1, 0)
-
 
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
@@ -143,6 +143,13 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches += env.Glob(pathjoin(str(dir_name), pattern))
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
+
+try:
+    env.Tool('compilation_db')
+    env.Default(env.CompilationDatabase())
+# scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
+except SConsEnvironmentError:
+    pass
 
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))

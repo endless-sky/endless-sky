@@ -9,8 +9,18 @@ Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
-
-#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_RUNNER
 #include "es-test.hpp"
 
+#include "../../source/Random.h"
+#include <ctime>
+
+int main(int argc, const char *const argv[])
+{
+	// Seed the random number generator.
+	Random::Seed(time(nullptr));
+
+	// Run the tests.
+	return Catch::Session().run(argc, argv);
+}
 // Add nothing else to this file (unless you like long recompilation times)!

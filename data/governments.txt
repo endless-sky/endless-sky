@@ -121,6 +121,7 @@ government "Free Worlds"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Alpha" -.4
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -225,6 +226,9 @@ government "Indigenous Lifeform"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
+	
+	"attitude toward"
+		"Ember Waste" 1
 	"penalty for"
 		assist 0
 		disable 0
@@ -278,6 +282,21 @@ government "Ka'het (Infighting)"
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
+government "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 1
 	"friendly hail" "friendly ka'het"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"
@@ -398,8 +417,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Kor Sestor" -.1
-		"Kor Mereti" -.1
+		"Kor Sestor" -.01
+		"Kor Mereti" -.01
 		"Navy Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
@@ -435,6 +454,25 @@ government "Pirate"
 		"Merchant" -.1
 		"Syndicate" -.01
 	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+	raid "pirate raid"
+
+government "Pirate (Rival)"
+	"display name" "Pirate"
+	swizzle 6
+	color .78 0 0
+	
+	"player reputation" -10
+	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Syndicate" -.01
+	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"

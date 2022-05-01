@@ -114,7 +114,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	}
 
 	if(message.empty())
-		message = ship->GetHail(player);
+		message = ship->GetHail(player.GetSubstitutions());
 }
 
 

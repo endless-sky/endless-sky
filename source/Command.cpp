@@ -55,22 +55,23 @@ const Command Command::BOARD(1uL << 9, "Board selected ship");
 const Command Command::HAIL(1uL << 10, "Talk to selected ship");
 const Command Command::SCAN(1uL << 11, "Scan selected ship");
 const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::TARGET(1uL << 13, "Select next ship");
-const Command Command::NEAREST(1uL << 14, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 15, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 16, "Fire afterburner");
-const Command Command::CLOAK(1uL << 17, "Toggle cloaking device");
-const Command Command::MAP(1uL << 18, "View star map");
-const Command Command::INFO(1uL << 19, "View player info");
-const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 21, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 22, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 23, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 24, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 25, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 26, "");
-const Command Command::STOP(1ul << 27, "");
-const Command Command::SHIFT(1uL << 28, "");
+const Command Command::FLEET_JUMP(1uL << 13, "");
+const Command Command::TARGET(1uL << 14, "Select next ship");
+const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
+const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
+const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
+const Command Command::MAP(1uL << 19, "View star map");
+const Command Command::INFO(1uL << 20, "View player info");
+const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
+const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
+const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
+const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
+const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
+const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
+const Command Command::WAIT(1uL << 27, "");
+const Command Command::STOP(1ul << 28, "");
+const Command Command::SHIFT(1uL << 29, "");
 
 
 
@@ -243,6 +244,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
 			{"deploy", Command::DEPLOY},
@@ -335,58 +337,6 @@ double Command::Turn() const
 
 
 
-// Check if this command includes a command to fire the given weapon.
-bool Command::HasFire(int index) const
-{
-	if(index < 0 || index >= 32)
-		return false;
-
-	return state & ((1ull << 32) << index);
-}
-
-
-
-// Add to this set of commands a command to fire the given weapon.
-void Command::SetFire(int index)
-{
-	if(index < 0 || index >= 32)
-		return;
-
-	state |= ((1ull << 32) << index);
-}
-
-
-
-// Check if any weapons are firing.
-bool Command::IsFiring() const
-{
-	return (state & 0xFFFFFFFF00000000ull);
-}
-
-
-
-// Set the turn rate of the turret with the given weapon index. A value of
-// -1 or 1 means to turn at the full speed the turret is capable of.
-double Command::Aim(int index) const
-{
-	if(index < 0 || index >= 32)
-		return 0;
-
-	return aim[index] / 127.;
-}
-
-
-
-void Command::SetAim(int index, double amount)
-{
-	if(index < 0 || index >= 32)
-		return;
-
-	aim[index] = round(127. * max(-1., min(1., amount)));
-}
-
-
-
 // Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
@@ -434,7 +384,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint64_t state)
+Command::Command(uint32_t state)
 	: state(state)
 {
 }
@@ -443,7 +393,7 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
+Command::Command(uint32_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

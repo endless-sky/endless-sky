@@ -43,3 +43,11 @@ integration_tests:
 
 codespell:
  - .codespell.exclude
+
+xcode_files:
+ - 'EndlessSky.xcodeproj/**'
+ - 'tests/check_xcode.sh'
+
+codeblocks_files:
+ - '*.cbp'
+ - 'tests/check_codeblocks.sh'

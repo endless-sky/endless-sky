@@ -36,10 +36,12 @@ public:
 
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
+	typename std::map<std::string, Type>::const_iterator find(const std::string &key) const { return data.find(key); }
 	typename std::map<std::string, Type>::iterator end() { return data.end(); }
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
 
 	int size() const { return data.size(); }
+	bool empty() const { return data.empty(); }
 	// Remove any objects in this set that are not in the given set, and for
 	// those that are in the given set, revert to their contents.
 	void Revert(const Set<Type> &other);
