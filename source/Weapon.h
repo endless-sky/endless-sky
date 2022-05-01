@@ -77,9 +77,11 @@ public:
 	double Reload() const;
 	double InitialReload() const;
 	double SpinupTime() const;
+	double SpinupStyle() const;
 	double BurstReload() const;
 	double BurstInitialReload() const;
 	double BurstSpinupTime() const;
+	double BurstSpinupStyle() const;
 	int BurstCount() const;
 	int Homing() const;
 
@@ -104,7 +106,9 @@ public:
 	double Inaccuracy() const;
 	double Bloom() const;
 	double BloomTime() const;
+	double BloomStyle() const;
 	double BurstBloom() const;
+	double BurstBloomStyle() const;
 	double BurstBloomTime() const;
 	double TurretTurn() const;
 
@@ -240,9 +244,11 @@ private:
 	double reload = 1.;
 	double initialReload = 1.;
 	double spinupTime = 0.;
+	double spinupStyle = 1.;
 	double burstReload = 1.;
 	double burstInitialReload = 1.;
 	double burstSpinupTime = 0.;
+	double burstSpinupStyle = 1.;
 	int burstCount = 1;
 	int homing = 0;
 
@@ -259,8 +265,10 @@ private:
 	double inaccuracy = 0.;
 	double bloom = 0.;
 	double bloomTime = 0.;
+	double bloomStyle = 1.;
 	double burstBloom = 0.;
 	double burstBloomTime = 0.;
+	double burstBloomStyle = 1.;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -341,9 +349,11 @@ inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::InitialReload() const { return initialReload; }
 inline double Weapon::SpinupTime() const { return spinupTime; }
+inline double Weapon::SpinupStyle() const {return spinupStyle; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline double Weapon::BurstInitialReload() const { return burstInitialReload; }
 inline double Weapon::BurstSpinupTime() const { return burstSpinupTime; }
+inline double Weapon::BurstSpinupStyle() const { return burstSpinupStyle; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
 
@@ -362,8 +372,10 @@ inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::Bloom() const { return bloom; }
 inline double Weapon::BloomTime() const { return bloomTime; }
+inline double Weapon::BloomStyle() const { return bloomStyle; }
 inline double Weapon::BurstBloom() const { return burstBloom; }
 inline double Weapon::BurstBloomTime() const { return burstBloomTime; }
+inline double Weapon::BloomStyle() const { return bloomStyle; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

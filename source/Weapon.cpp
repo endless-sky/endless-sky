@@ -167,6 +167,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstBloom = value;
 			else if(key == "burst bloom time")
 				burstBloomTime = max(0., value);
+			else if(key == "bloom style")
+				bloomStyle = max(0., value);
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")

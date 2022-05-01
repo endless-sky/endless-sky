@@ -421,9 +421,18 @@ double Hardpoint::Bloom() const
 {
 	double bloom = 0.;
 	double time = outfit->BloomTime();
-	bloom += outfit->Bloom() * (time ? bloomCount / time : 1.);
-	time = outfit->BurstBloomTime();
-	bloom += outfit->BurstBloom() * (time ? burstBloomCount / time : 1.);
+	if(outfit->BloomStyle() == 1)
+	{
+		bloom += outfit->Bloom() * (time ? bloomCount / time : 1.);
+		time = outfit->BurstBloomTime();
+		bloom += outfit->BurstBloom() * (time ? burstBloomCount / time : 1.);
+	}
+	else
+	{
+		bloom += outfit->Bloom() * (time ? pow(bloomCount / time, outfit->BloomStyle()) : 1.);
+		time = outfit->BurstBloomTime();
+		bloom += outfit->BurstBloom() * (time ? pow(burstBloomCount / time, outfit->BurstBloomStyle()) : 1.);
+	}
 	return bloom;
 }
 
@@ -433,7 +442,10 @@ double Hardpoint::Bloom() const
 double Hardpoint::SpinupProgress() const
 {
 	double spinupTime = outfit->SpinupTime();
-	return spinupTime ? spinupCount / spinupTime : 1.;
+	if(outfit->SpinupStyle() == 1)
+		return spinupTime ? spinupCount / spinupTime : 1.;
+	else
+		return spinupTime ? pow(spinupCount / spinupTime, outfit->SpinupStyle()) : 1.;
 }
 
 
@@ -442,5 +454,8 @@ double Hardpoint::SpinupProgress() const
 double Hardpoint::BurstSpinupProgress() const
 {
 	double burstSpinupTime = outfit->BurstSpinupTime();
-	return burstSpinupTime ? burstSpinupCount / burstSpinupTime : 1.;
+	if(outfit->BurstSpinupStyle() == 1)
+		return burstSpinupTime ? burstSpinupCount / burstSpinupTime : 1.;
+	else
+		return burstSpinupTime ? pow(burstSpinupCount / burstSpinupTime, outfit->BurstSpinupStyle()) : 1.;
 }
