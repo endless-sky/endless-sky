@@ -25,7 +25,8 @@ mission "Remnant: Celebration 1"
 		"day" = 7
 	on offer
 		conversation
-			``
+			`You stop by the starport just in time to see a large group of Remnant heading off together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
+			`	"Well met, <first>.`
 	on stopover
 		conversation
 			branch science
