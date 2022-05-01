@@ -12,9 +12,9 @@ outfit "Supercapacitor"
 	category "Power"
 	cost 25000
 	thumbnail "outfit/supercapacitor"
-	"mass" 2
-	"outfit space" -2
-	"energy capacity" 600
+	"mass" 1
+	"outfit space" -1
+	"energy capacity" 300
 	description "With a powerful enough generator, many ships do not need batteries at all. The one exception is projectile weapons, which usually require a burst of energy far exceeding what the generator produces. Supercapacitors provide just enough energy storage for those weapons, without requiring you to install a bulky battery pack."
 
 outfit "LP036a Battery Pack"
@@ -68,7 +68,7 @@ outfit "KP-6 Photovoltaic Panel"
 	cost 7000
 	thumbnail "outfit/tiny photovoltaic"
 	"mass" 3
-	"outfit space" -2
+	"outfit space" -1
 	"solar collection" .1
 	description "This early commercial photovoltaic system was the driving force behind humanity's first interplanetary trade network. Rugged and modular, it can be bolted to the hull of any ship and has seen even the most remote parts of human space."
 
