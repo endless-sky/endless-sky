@@ -1060,4 +1060,3 @@ event "remnant: cognizance salvage expansion"
 
 
 event "remnant: cognizance calm"
-
