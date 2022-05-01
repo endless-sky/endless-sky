@@ -271,9 +271,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 			plunder[selected].Take(count);
 	}
-	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP
-			|| key == SDLK_PAGEDOWN || key == SDLK_HOME || key == SDLK_END)
-			&& !isCapturing)
+	else if(!isCapturing &&
+			(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP
+			|| key == SDLK_PAGEDOWN || key == SDLK_HOME || key == SDLK_END))
 		DoKeyboardNavigation(key);
 	else if(key == 'c' && CanCapture())
 	{
@@ -493,31 +493,27 @@ bool BoardingPanel::CanAttack() const
 // Handle the keyboard scrolling and selection in the panel list.
 void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 {
-		// Scrolling the list of plunder.
-		if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-			// With 220 px of content and 20 px height per line, there are 11
-			// lines. However, although some programs scroll a whole page
-			// (e.g. most KDE programs) it seems to be more common to scroll a
-			// bit less than a whole page (e.g. the most used browsers or
-			// common IDEs), so scroll only 10 lines.
-			selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));//TODO scroll richtig aendern
-		else if(key == SDLK_HOME)
-			selected = 0;
-		else if(key == SDLK_END)
-			selected = static_cast<int>(plunder.size() - 1);
-		else
-		{
-			if(key == SDLK_UP)
-				--selected;
-			else if(key == SDLK_DOWN)
-				++selected;
-		}
-		selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+	// Scrolling the list of plunder.
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		// Keep one of the previous items onscreen while paging through.
+		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+	else if(key == SDLK_HOME)
+		selected = 0;
+	else if(key == SDLK_END)
+		selected = static_cast<int>(plunder.size() - 1);
+	else
+	{
+		if(key == SDLK_UP)
+			--selected;
+		else if(key == SDLK_DOWN)
+			++selected;
+	}
+	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
 
-		// Scroll down at least far enough to view the current item.
-		double minimumScroll = max(0., 20. * selected - 200.);
-		double maximumScroll = 20. * selected;
-		scroll = max(minimumScroll, min(maximumScroll, scroll));
+	// Scroll down at least far enough to view the current item.
+	double minimumScroll = max(0., 20. * selected - 200.);
+	double maximumScroll = 20. * selected;
+	scroll = max(minimumScroll, min(maximumScroll, scroll));
 }
 
 
