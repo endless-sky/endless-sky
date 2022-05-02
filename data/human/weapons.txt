@@ -8,6 +8,34 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+outfit "Drone Bay"
+	category "Guns"
+	cost 60000
+	thumbnail "outfit/unknown"
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	"required crew" 1
+	"unplunderable" 1
+	weapon
+		"Drone Bay"
+	description "A Drone Bay providing space for a mining companion or attack drone.  This outfit does nothing if installed on a Fighter or Drone."
+
+outfit "Fighter Bay"
+	category "Turrets"
+	cost 320000
+	thumbnail "outfit/unknown"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	"required crew" 1
+	"unplunderable" 1
+	weapon
+		"Fighter Bay"
+	description "A Fighter Bay providing space for one Fighter to assist with mining or to launch into combat.  This outfit does nothing if installed on a Fighter or Drone."
+
 outfit "Energy Blaster"
 	category "Guns"
 	cost 16000

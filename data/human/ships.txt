@@ -8,6 +8,37 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Mining Drone"
+	sprite "ship/surveillance drone"
+	thumbnail "thumbnail/surveillance drone"
+	attributes
+		category "Drone"
+		"cost" 1000
+		"hull" 100
+		"automaton" 1
+		"mass" 10
+		"drag" .53
+		"heat dissipation" .9
+		"cargo space" 5
+		"outfit space" 56
+		"weapon capacity" 8
+		"engine capacity" 28
+		weapon
+			"blast radius" 3
+			"shield damage" 50
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"Beam Laser" 1
+		"LP072a Battery Pack"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+	engine -5 29
+	engine 5 29
+	gun 0 -29 "Beam Laser"
+	explode "tiny explosion" 15
+	description "The Mining Drone uses only battery power.  These drones were first used in frontier worlds during the early days of the Republic.  This companion helped miners gather materials from asteroids.  Due to their lightweight design the Navy repurposed these drones for surveillance adding armor to their hull and installing an energy generator for long-term mission independence."
+
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
