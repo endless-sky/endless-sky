@@ -80,6 +80,8 @@ namespace {
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
 		{"overheat damage rate", 0},
+		{"radiating capacity", 0,},
+		{"radiating power", 0,},
 		{"reverse thrusting shields", 0},
 		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
