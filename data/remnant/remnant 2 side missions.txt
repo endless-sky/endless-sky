@@ -42,6 +42,8 @@ mission "Remnant: Celebration 1"
 				`	"Yes, I do."`
 				`	"No thanks."`
 					goto celebrationdeclined
+			label celebrationattendance
+			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary
 	on complete
 		conversation
 			``
