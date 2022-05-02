@@ -657,10 +657,10 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
-		double jumpCost = flagship->JumpFuel(flagship->GetTargetSystem())
+		double jumpCost = flagship->JumpFuel(flagship->GetTargetSystem());
 		// If the flagship has a large amount of fuel, display a solid bar.
 		// Otherwise, display a segment for every jump of fuel.
-		if(fuelCap <= MAX_FUEL_DISPLAY * jumpCost)
+		if(fuelCap <= (MAX_FUEL_DISPLAY * jumpCost))
 			info.SetBar("fuel", flagship->Fuel(), fuelCap / jumpCost);
 		else
 			info.SetBar("fuel", flagship->Fuel());
