@@ -310,6 +310,10 @@ public:
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Get the net heat at some heat level (for finding the idle heat).
+	double NetIdleHeatAt(double heatLevel) const;
+	// Get the maximum allowable heat generation in heat per frame.
+	double MaxHeatGeneration() const;
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
