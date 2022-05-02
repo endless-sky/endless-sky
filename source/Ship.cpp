@@ -3238,13 +3238,14 @@ double Ship::IdleHeat() const
 double Ship::NetIdleHeatAt(double heatLevel) const
 {
 	// Combine heat generation and cooling.
+	double coolingEfficiency = CoolingEfficiency();
 	double generation = attributes.Get("heat generation")
 					  + attributes.Get("solar heat")
 					  + attributes.Get("fuel heat")
-					  - attributes.Get("cooling");
+					  - attributes.Get("cooling") * coolingEfficiency;
 
 	// These cooling types scale with stored heat.
-	double dissipation = HeatDissipation() + attributes.Get("active cooling") / MaximumHeat();
+	double dissipation = HeatDissipation() + attributes.Get("active cooling") * coolingEfficiency / MaximumHeat();
 
 	// The radiators behave differently.
 	double radiator = 0.;
@@ -3252,7 +3253,7 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 	{
 		double power = .001 * heatLevel * attributes.Get("radiating power");
 		double capacity = attributes.Get("radiating capacity");
-		radiator = power * capacity / (power + capacity);
+		radiator = coolingEfficiency * power * capacity / (power + capacity);
 	}
 	return generation - heatLevel * dissipation - radiator;
 }
