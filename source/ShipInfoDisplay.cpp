@@ -344,7 +344,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 	attributesHeight += 20;
 	const double maxEnergy = attributes.Get("energy capacity");
-	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaximumHeat();
+	const double maxHeat = 60. * ship.MaxHeatGeneration();
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(maxEnergy));
 	heatTable.push_back(Format::Number(maxHeat));
