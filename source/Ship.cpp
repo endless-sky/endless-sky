@@ -3269,7 +3269,8 @@ double Ship::MaxHeatGeneration() const
 	{
 		double power = .001 * MaximumHeat() * attributes.Get("radiating power");
 		double capacity = attributes.Get("radiating capacity");
-		radiator = power * capacity / (power + capacity);
+		// Do not bother defining a double for cooling efficiency, since we use it only once here.
+		radiator = CoolingEfficiency() * power * capacity / (power + capacity);
 	}
 	return MaximumHeat() * HeatDissipation() + radiator;
 }
