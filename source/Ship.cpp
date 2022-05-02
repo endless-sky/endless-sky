@@ -49,8 +49,8 @@ using namespace std;
 namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const vector<string> BAY_SIDE = {"inside", "over", "under"};
-	const vector<string> BAY_FACING = {"forward", "left", "right", "back"};
-	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.)};
+	const vector<string> BAY_FACING = {"forward", "left", "right", "back", "forward_left", "forward_right"};
+	const vector<Angle> BAY_ANGLE = {Angle(0.), Angle(-90.), Angle(90.), Angle(180.), Angle(-45.), Angle(45.)};
 
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
@@ -686,6 +686,9 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 
+	// TODO: add bays based on outfits
+	UpdateBaysFromOutfits();
+
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
@@ -759,6 +762,171 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
+}
+
+
+
+// Add or remove drone bays from outfits.
+void Ship::UpdateBaysFromOutfits()
+{
+	// Carried drones/fighters are not allowed to carry other drones or
+	// fighters.  Do not add a bay to the ship.
+	if(CanBeCarried())
+		return;
+	const vector<Hardpoint> &hardpoints = Weapons();
+	// When loading or reloading bay indexes are not persisted.  Scrub all bays
+	// associated with weapons so that they can be reconfigured.
+	ScrubWeaponBays();
+	for(unsigned i = 0; i < hardpoints.size(); i++)
+	{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && weapon->IsBay())
+			AddBay(hardpoints[i], i);
+		else
+			RemoveBay(hardpoints[i], i);
+	}
+}
+
+
+
+// Upon loading bays may have duplicates.  This wipes out all weapon bays
+// associated with weapon hardpoints before configuring them.
+void Ship::ScrubWeaponBays()
+{
+	const vector<Hardpoint> &hardpoints = Weapons();
+	Point p;
+	// It is possible to start with no bays so clear vector.
+	if(!HasBays())
+		bays.clear();
+	for(unsigned i = 0; i < hardpoints.size(); i++)
+	{
+		p = hardpoints[i].GetPoint();
+		for(auto it = bays.begin(); it != bays.end(); )
+		{
+			Bay &bay = *it;
+			if(bay.point.X() != p.X() || bay.point.Y() != p.Y())
+			{
+				++it;
+				continue;
+			}
+			it = bays.erase(it);
+		}
+	}
+	// It is possible to end with no bays so clear vector.
+	if(!HasBays())
+		bays.clear();
+}
+
+
+
+void Ship::SwapBay(int first, int second)
+{
+	Hardpoint hardpoint = Weapons()[first];
+	Hardpoint secondHardpoint = Weapons()[second];
+	Hardpoint newHardpoint = hardpoint;
+	const Weapon *weapon = hardpoint.GetOutfit();
+	const Weapon *secondWeapon = secondHardpoint.GetOutfit();
+	// No swap needs to happen if both are drone bays.
+	if(weapon && secondWeapon && weapon->IsBay() && secondWeapon->IsBay())
+		return;
+	// No swap needs to happen if there's no drone bay involved.
+	if(!(weapon && weapon->IsBay()) && !(secondWeapon && weapon->IsBay()))
+		return;
+	Point newPoint;
+	long unsigned int newIndex;
+	long unsigned int oldIndex;
+	if(weapon && weapon->IsBay())
+	{
+		newIndex = first;
+		oldIndex = second;
+	}
+	else
+	{
+		newHardpoint = secondHardpoint;
+		newIndex = second;
+		oldIndex = first;
+	}
+	for(unsigned int i = 0; i < bays.size(); i++)
+	{
+		if(bays[i].bayIndex == oldIndex)
+		{
+			UpdateBay(bays[i], newHardpoint, newIndex);
+			break;
+		}
+	}
+}
+
+
+
+// Add a drone or fighter bay to the ship (comes from bay outfit).
+// TODO: fix orientation
+void Ship::AddBay(Hardpoint hardpoint, long unsigned int bayIndex)
+{
+	const Weapon *weapon = hardpoint.GetOutfit();
+	// Only add a drone bay if the outfit is for drone bays.
+	if(!weapon || !weapon->IsBay())
+		return;
+	string category = "Drone";
+	if(hardpoint.IsTurret())
+		category = "Fighter";
+	// Only update drone bays for drones or fighter bays for fighters
+	if((category == "Drone" && !weapon->IsDroneBay()) || (category == "Fighter" && !weapon->IsFighterBay()))
+		return;
+	if(HasBays())
+	{
+		// Skip adding bay because it already exists.
+		for(unsigned int i = 0; i < bays.size(); i++)
+		{
+			// If bay exists for this index, then skip adding anything.
+			if(bays[i].bayIndex == bayIndex)
+				return;
+		}
+	}
+	bays.emplace_back(0., 0., category);
+	Bay &bay = bays.back();
+	UpdateBay(bay, hardpoint, bayIndex);
+}
+
+
+
+// Update a drone or fighter bay which was installed by an outfit to set orientation.
+void Ship::UpdateBay(Bay &bay, Hardpoint hardpoint, long unsigned int bayIndex)
+{
+	bay.bayIndex = bayIndex;
+	bay.point = Point(0., 0.) + hardpoint.GetPoint();
+	bay.side = (hardpoint.IsTurret()) ? Bay::OVER : Bay::UNDER;
+	if(hardpoint.IsTurret() && bay.point.X() < 0)
+		bay.facing = BAY_ANGLE[4];
+	else if(hardpoint.IsTurret() && bay.point.X() > 0)
+		bay.facing = BAY_ANGLE[5];
+	else
+		bay.facing = BAY_ANGLE[0];
+}
+
+
+
+// Remove drone bay from ship (comes from drone bay outfit).
+void Ship::RemoveBay(Hardpoint hardpoint, long unsigned int bayIndex)
+{
+	if(!HasBays())
+		return;
+	for(auto it = bays.begin(); it != bays.end(); )
+	{
+		Bay &bay = *it;
+		// Not a bay associated with outfits (unique to bayIndex being set)
+		// If the bay matches a valid bay then skip.
+		if(bay.point.X() != hardpoint.GetPoint().X() || bay.point.Y() != hardpoint.GetPoint().Y())
+		{
+			++it;
+			continue;
+		}
+		if(bay.bayIndex == bayIndex)
+			it = bays.erase(it);
+		else
+			++it;
+	}
+	if(!HasBays())
+		bays.clear();
 }
 
 
@@ -1190,6 +1358,10 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+
+	// TODO: Update where bays are placed on the ship in case player reorganized outfits.
+	//if(isDeparting)
+	//	UpdateBaysFromOutfits();
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
@@ -3665,6 +3837,9 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// and cache this ship's jump range.
 		if(outfit->Get("jump drive"))
 			jumpRange = JumpRange(false);
+
+		// If any drone bay modifications were made then update ship drone bays.
+		UpdateBaysFromOutfits();
 	}
 }
 

@@ -80,6 +80,8 @@ public:
 
 		// The launch effect(s) to be simultaneously played when the bay's ship launches.
 		std::vector<const Effect *> launchEffects;
+
+		long unsigned int bayIndex = -1;
 	};
 
 	class EnginePoint : public Point {
@@ -126,6 +128,13 @@ public:
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
+	// Support adding and removing drone/fighter bays
+	void AddBay(Hardpoint hardpoint, long unsigned int bayIndex);
+	void RemoveBay(Hardpoint hardpoint, long unsigned int bayIndex);
+	void ScrubWeaponBays();
+	void SwapBay(int first, int second);
+	void UpdateBay(Bay &bay, Hardpoint hardpoint, long unsigned int bayIndex);
+	void UpdateBaysFromOutfits();
 	// Check that this ship model and all its outfits have been loaded.
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.

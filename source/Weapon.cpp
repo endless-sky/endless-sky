@@ -52,6 +52,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "Drone Bay")
+			isDroneBay = true;
+		else if(key == "Fighter Bay")
+			isFighterBay = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -306,6 +310,27 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+}
+
+
+
+bool Weapon::IsDroneBay() const
+{
+	return isDroneBay;
+}
+
+
+
+bool Weapon::IsFighterBay() const
+{
+	return isFighterBay;
+}
+
+
+
+bool Weapon::IsBay() const
+{
+	return isFighterBay || isDroneBay;
 }
 
 

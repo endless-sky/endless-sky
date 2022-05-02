@@ -215,7 +215,7 @@ void Outfit::Load(const DataNode &node)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile())
+	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn() && !AntiMissile() && !IsBay())
 	{
 		SetTurretTurn(4.);
 		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");

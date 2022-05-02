@@ -362,9 +362,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 	}
 
-	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
-	attributesHeight += 20;
+	if(outfit.Range() > 0)
+	{
+		attributeLabels.emplace_back("range:");
+		attributeValues.emplace_back(Format::Number(outfit.Range()));
+		attributesHeight += 20;
+	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
@@ -455,12 +458,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 
 	bool isContinuous = (reload <= 1);
-	attributeLabels.emplace_back("shots / second:");
-	if(isContinuous)
-		attributeValues.emplace_back("continuous");
-	else
-		attributeValues.emplace_back(Format::Number(60. / reload));
-	attributesHeight += 20;
+	// Don't show anything if continuous range is 0.
+	if(outfit.Range() > 0 || !isContinuous)
+	{
+		attributeLabels.emplace_back("shots / second:");
+		if(isContinuous)
+			attributeValues.emplace_back("continuous");
+		else
+			attributeValues.emplace_back(Format::Number(60. / reload));
+		attributesHeight += 20;
+	}
 
 	double turretTurn = outfit.TurretTurn() * 60.;
 	if(turretTurn)
@@ -545,4 +552,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.emplace_back(Format::Number(otherValues[i]));
 			attributesHeight += 20;
 		}
+
+	if(outfit.IsBay())
+	{
+		string bayLabel = (outfit.IsDroneBay()) ? "Drone bay:" : "Fighter bay:";
+		attributeLabels.emplace_back(bayLabel);
+		attributeValues.emplace_back(Format::Number(1));
+		attributesHeight += 20;
+	}
 }

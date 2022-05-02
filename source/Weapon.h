@@ -143,6 +143,9 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
+	bool IsDroneBay() const;
+	bool IsFighterBay() const;
+	bool IsBay() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -225,6 +228,8 @@ private:
 	// to true, then this convergence will not be used and the weapon will
 	// be aimed directly in the gunport angle/direction.
 	bool isParallel = false;
+	bool isDroneBay = false;
+	bool isFighterBay = false;
 
 	// Attributes.
 	int lifetime = 0;

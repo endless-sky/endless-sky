@@ -164,7 +164,8 @@ void Armament::Swap(int first, int second)
 
 	// Swap the weapons in the two hardpoints.
 	const Outfit *outfit = hardpoints[first].GetOutfit();
-	hardpoints[first].Install(hardpoints[second].GetOutfit());
+	const Outfit *secondOutfit = hardpoints[second].GetOutfit();
+	hardpoints[first].Install(secondOutfit);
 	hardpoints[second].Install(outfit);
 }
 
