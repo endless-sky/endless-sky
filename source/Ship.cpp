@@ -3180,6 +3180,7 @@ double Ship::JumpFuelMissing() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
+	/*
 	// This ship's cooling ability:
 	double coolingEfficiency = CoolingEfficiency();
 	double cooling = coolingEfficiency * attributes.Get("cooling");
@@ -3193,6 +3194,83 @@ double Ship::IdleHeat() const
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
+	*/
+
+	// Set up a C++ loop with a sanity check in case this iteration takes a long time.
+	int attempts = 10;
+	double firstGuess = 0.;
+	double firstOutput = NetIdleHeatAt(firstGuess);
+
+	double secondGuess = MaximumHeat();
+	double secondOutput = NetIdleHeatAt(secondGuess);
+
+	double middlingGuess = 0.;
+	double middlingOutput = 0.;
+
+	// Break out of the loop if the next iteration would not provide any visual change,
+	// with some generous extra leeway. This approach very rapidly approaches a solution
+	// if it exists, usually adding two or more correct digits to the approximation with
+	// every step. Ten steps should be enough.
+	while((attempts > 0) || ( firstOutput - secondOutput > .001))
+	{
+		middlingGuess = firstGuess - firstOutput * (secondGuess - firstGuess) / (secondOutput - firstOutput);
+		middlingOutput = NetIdleHeatAt(middlingGuess);
+		// To expedite the process, pick the worse previous guess and replace it, rather than
+		// swap out every other guess.
+		if(fabs(firstOutput) > fabs(secondOutput))
+		{
+			firstGuess = middlingGuess;
+			firstOutput = middlingOutput;
+		} else {
+			secondGuess = middlingGuess;
+			secondOutput = middlingOutput;
+		}
+		--attempts;
+	}
+	// Get the most out of what we have, now, average the guesses and return.
+	return (firstGuess + secondGuess + middlingGuess * 2.) * .25;
+}
+
+
+
+// Get the net heat production at a certain number of heat units (not temperature).
+// This function may be temporary.
+double Ship::NetIdleHeatAt(double heatLevel) const
+{
+	// Combine heat generation and cooling.
+	double generation = attributes.Get("heat generation")
+					  + attributes.Get("solar heat")
+					  + attributes.Get("fuel heat")
+					  - attributes.Get("cooling");
+
+	// These cooling types scale with stored heat.
+	double dissipation = HeatDissipation() + attributes.Get("active cooling") / MaximumHeat();
+
+	// The radiators behave differently.
+	double radiator = 0.;
+	if(0. <= (attributes.Get("radiating power") * attributes.Get("radiating capacity")))
+	{
+		double power = .001 * heatLevel * attributes.Get("radiating power");
+		double capacity = attributes.Get("radiating capacity");
+		radiator = power * capacity / (power + capacity);
+	}
+	return generation - heatLevel * dissipation - radiator;
+}
+
+
+
+// The same function as above, slightly modified
+double Ship::MaxHeatGeneration() const
+{
+
+	double radiator = 0.;
+	if(0. < (attributes.Get("radiating power") * attributes.Get("radiating capacity")))
+	{
+		double power = .001 * MaximumHeat() * attributes.Get("radiating power");
+		double capacity = attributes.Get("radiating capacity");
+		radiator = power * capacity / (power + capacity);
+	}
+	return MaximumHeat() * HeatDissipation() + radiator;
 }
 
 
