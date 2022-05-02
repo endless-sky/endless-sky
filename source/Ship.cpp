@@ -3227,7 +3227,7 @@ double Ship::IdleHeat() const
 		--attempts;
 	}
 	// Return the most up-to-date guess
-	return secondGuess
+	return secondGuess;
 }
 
 
