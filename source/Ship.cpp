@@ -3207,34 +3207,32 @@ double Ship::IdleHeat() const
 	double middlingGuess = 0.;
 	double middlingOutput = 0.;
 
+	// Guard clause, to catch weird cases.
+	if(firstGuess == secondGuess || firstOutput <= secondOutput)
+		return secondOutput > 0. ? numeric_limits<double>::max() : 0;
+
 	// Break out of the loop if the next iteration would not provide any visual change,
 	// with some generous extra leeway. This approach very rapidly approaches a solution
 	// if it exists, usually adding two or more correct digits to the approximation with
 	// every step. Ten steps should be enough.
-	while((attempts > 0) || ( firstOutput - secondOutput > .001))
+	while((attempts > 0) && (fabs(firstGuess - secondGuess) > .001))
 	{
-		middlingGuess = firstGuess - firstOutput * (secondGuess - firstGuess) / (secondOutput - firstOutput);
+		// Do not allow a negative-heat guess.
+		middlingGuess = max(0., firstGuess - firstOutput * (secondGuess - firstGuess) / (secondOutput - firstOutput));
 		middlingOutput = NetIdleHeatAt(middlingGuess);
-		// To expedite the process, pick the worse previous guess and replace it, rather than
-		// swap out every other guess.
-		if(fabs(firstOutput) > fabs(secondOutput))
-		{
-			firstGuess = middlingGuess;
-			firstOutput = middlingOutput;
-		} else {
-			secondGuess = middlingGuess;
-			secondOutput = middlingOutput;
-		}
+		firstGuess = secondGuess;
+		firstOutput = secondOutput;
+		secondGuess = middlingGuess;
+		secondOutput = middlingOutput;
 		--attempts;
 	}
-	// Get the most out of what we have, now, average the guesses and return.
-	return (firstGuess + secondGuess + middlingGuess * 2.) * .25;
+	// Return the most up-to-date guess
+	return secondGuess
 }
 
 
 
 // Get the net heat production at a certain number of heat units (not temperature).
-// This function may be temporary.
 double Ship::NetIdleHeatAt(double heatLevel) const
 {
 	// Combine heat generation and cooling.
@@ -3249,7 +3247,7 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 
 	// The radiators behave differently.
 	double radiator = 0.;
-	if(0. <= (attributes.Get("radiating power") * attributes.Get("radiating capacity")))
+	if(attributes.Get("radiating power") && attributes.Get("radiating capacity"))
 	{
 		double power = .001 * heatLevel * attributes.Get("radiating power");
 		double capacity = attributes.Get("radiating capacity");
@@ -3263,7 +3261,6 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 // The same function as above, slightly modified
 double Ship::MaxHeatGeneration() const
 {
-
 	double radiator = 0.;
 	if(0. < (attributes.Get("radiating power") * attributes.Get("radiating capacity")))
 	{
