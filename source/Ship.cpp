@@ -3834,7 +3834,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			jumpRange = JumpRange(false);
 
 		// If any drone bay modifications were made then update ship drone bays.
-		UpdateBaysFromOutfits();
+		if(outfit->IsWeapon() && outfit->IsBay())
+			UpdateBaysFromOutfits();
 	}
 }
 
