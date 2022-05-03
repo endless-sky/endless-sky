@@ -55,6 +55,10 @@ public:
 			m_env->ExceptionClear();
 			return ret;
 		}
+		if (file_list == nullptr)
+		{
+			return ret;
+		}
 		size_t length = m_env->GetArrayLength(file_list);
 		for (size_t i = 0; i < length; ++i)
 		{
@@ -82,6 +86,34 @@ public:
 		{
 			m_env->ExceptionClear();
 			return false;
+		}
+		size_t length = m_env->GetArrayLength(file_list);
+		if (length == 0)
+		{
+			// The android asset api says that if the directory you are accessing
+			// doesn't exist, then it should throw an exception. It also says that
+			// the returned list can be null, although it doesn't indicate what
+			// conditions would do that. In practice, I've observed it returning
+			// an empty list for basically garbage input.
+			// If we hit this point, then we don't know if the path is an empty
+			// directory, or if the path doesn't exist.
+
+			// Cheat #1... if the path doesn't begin with /endless-sky-data, then
+			// its not an asset.
+			const char ESD[] = "/endless-sky-data";
+			if (dir_name.substr(0, sizeof(ESD)-1) != ESD)
+			{
+				return false;
+			}
+
+			// Cheat #2... If it has a file extension, it isn't a directory
+			if (dir_name.size() > 5 && (dir_name[dir_name.size() - 4] == '.' ||
+			                            dir_name[dir_name.size() - 5] == '.' ))
+			{
+				return false;
+			}
+
+			// At this point, assume it really exists. :(
 		}
 		return true;
 	}
