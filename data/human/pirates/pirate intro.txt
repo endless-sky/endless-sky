@@ -208,7 +208,7 @@ conversation "I Want To Be A Pirate Conclusion"
 		goto tributeskip
 	#label ring
 	#`	The Capo extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
-	#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artifical jaws can be these days.`
+	#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artificial jaws can be these days.`
 	label tributeskip
 	branch boardingskip
 		not "Pirate Intro: Boarding: done"
