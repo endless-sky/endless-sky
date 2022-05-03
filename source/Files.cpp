@@ -660,7 +660,7 @@ void Files::LogError(const string &message)
 	// On android, this can be read with logcat | grep SDL. We don't want to do
 	// it for other operating systems though, cause we can read errors.txt
 	// directly
-   SDL_Log("%s", message.c_str());
+	SDL_Log("%s", message.c_str());
 #endif
 
 	SDL_RWwrite(errorLog, (message + '\n').c_str(), 1, message.size() + 1);
