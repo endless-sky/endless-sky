@@ -686,7 +686,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(isNewInstance)
 		Recharge(true);
 
-	// TODO: add bays based on outfits
+	// Add bays based on installed Drone Bay or Fighter Bay outfits.
 	UpdateBaysFromOutfits();
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
@@ -859,7 +859,6 @@ void Ship::SwapBay(int first, int second)
 
 
 // Add a drone or fighter bay to the ship (comes from bay outfit).
-// TODO: fix orientation
 void Ship::AddBay(Hardpoint hardpoint, long unsigned int bayIndex)
 {
 	const Weapon *weapon = hardpoint.GetOutfit();
@@ -1358,10 +1357,6 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-
-	// TODO: Update where bays are placed on the ship in case player reorganized outfits.
-	//if(isDeparting)
-	//	UpdateBaysFromOutfits();
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
