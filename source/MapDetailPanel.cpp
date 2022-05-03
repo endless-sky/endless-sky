@@ -130,13 +130,14 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	if(maxScroll && point.X() < Screen::Left() + mapInterface->GetValue("planet max X")
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	if(maxScroll && point.X() < Screen::Left() + planetCardInterface->GetValue("width")
 		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet start Y")
 		&& point.Y() < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"))
 	{
 		double scrollSpeed = mapInterface->GetValue("planet scroll speed");
 		double scroll = MapPlanetCard::getScroll();
-		if(dy > 0. && scroll > dy * scrollSpeed)
+		if(dy > 0.)
 			MapPlanetCard::setScroll(scroll - dy * scrollSpeed);
 		else if(dy < 0. && scroll - dy * scrollSpeed < maxScroll)
 			MapPlanetCard::setScroll(scroll - dy * scrollSpeed);
@@ -210,6 +211,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		{
 			plan.insert(plan.begin(), next);
 			Select(next);
+			GeneratePlanetCards(*selectedSystem);
 		}
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && player.HasTravelPlan())
@@ -217,6 +219,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		vector<const System *> &plan = player.TravelPlan();
 		plan.erase(plan.begin());
 		Select(plan.empty() ? player.GetSystem() : plan.front());
+		GeneratePlanetCards(*selectedSystem);
 	}
 	else if(key == SDLK_DOWN)
 	{
@@ -486,12 +489,11 @@ void MapDetailPanel::DrawInfo()
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double planetHeight = mapInterface->GetValue("one planet display height");
-	// It cannot be 0 because we use it in divisions. It has to be an error so use the standard size instead.
-	planetHeight = planetHeight ? planetHeight : 130.;
-	double planetWidth = mapInterface->GetValue("planet display width");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	double planetHeight = planetCardInterface->GetValue("height");
+	double planetWidth = planetCardInterface->GetValue("width");
 
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	// Draw the panel for the planets.
 	Point size(planetWidth, min((Screen::Height() - mapInterface->GetValue("planet max bottom Y")),
 		planetCards.size() * planetHeight + mapInterface->GetValue("planet start Y")));
@@ -528,26 +530,23 @@ void MapDetailPanel::DrawInfo()
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
 
-	// 90. + a 25. margin.
+	// 90. taken by the government display + a 25. margin.
 	uiPoint.Y() += 115.;
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
+		uiPoint.Y() -= planetHeight / 2.;
 		maxScroll = 0.;
-		int scrollInt = static_cast<int>(MapPlanetCard::getScroll());
-		int planetHeightInt = static_cast<int>(planetHeight);
-		
-		uiPoint.Y() -= scrollInt % planetHeightInt;
-		// For planets that go from being half shown to not shown (and are partially drawn).
-		if(scrollInt % planetHeightInt > planetHeightInt / 2 && scrollInt % planetHeightInt < planetHeightInt)
-			uiPoint.Y() += planetHeight;
-		
-		for(auto &card : planetCards)
-			// Fit another planet, if we can, otherwise give scrolling freedom to reach said planets.
-			if(!card.Draw(uiPoint))
-				maxScroll += planetHeight;
 
-		uiPoint.Y() += scrollInt % planetHeightInt;
+		for(auto &card : planetCards)
+		{
+			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
+			if(card.DrawIfFits(uiPoint))
+				uiPoint.Y() += card.AvailableSpace();
+			// Call it all of the time so we can scroll if an element is partially shown.
+			maxScroll += (planetHeight - card.AvailableSpace());
+		}
+		uiPoint.Y() += planetHeight / 2.;
 	}
 
 	uiPoint.Y() += 45.;

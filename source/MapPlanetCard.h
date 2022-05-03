@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MAP_PLANET_CARD_H_
 #define MAP_PLANET_CARD_H_
 
-#include "Panel.h"
 #include "Sprite.h"
 
 #include <vector>
@@ -34,8 +33,10 @@ public:
 	// Should it return the need to go to the outfitter/shipyard?
 	bool Click(int x, int y, int clicks);
 	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
-	// Also adjust the uiPoint.
-	bool Draw(Point &uiPoint);
+	bool DrawIfFits(const Point &uiPoint);
+	// If this object is currently being shown.
+	bool Shown() const;
+	double AvailableSpace() const;
 
 
 public:
@@ -44,19 +45,29 @@ public:
 	static void clear();
 
 
-private:
-	void Highlight(const Point &uiPoint) const;
+protected:
+	// Highlight this card; to be called when it is selected.
+	void Highlight(double availableSpace) const;
+	double AvailableBottomSpace() const;
+	double AvailableTopSpace() const;
 
 
 private:
 	unsigned number;
 	bool isSelected = false;
+
 	bool hasVisited;
 	bool hasSpaceport;
 	bool hasOutfitter;
 	bool hasShipyard;
+
+	// The current starting y position.
 	double yCoordinate;
+	bool isShown = false;
+	
 	const Sprite *sprite;
+	float spriteScale;
+
 	std::string reputationLabel;
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
@@ -65,7 +76,7 @@ private:
 
 private:
 	static double scroll;
-	// Used to make managing selection an internal affair.
+	// Used so we can give the right number to the planet cards in an internal way.
 	static std::vector<MapPlanetCard *> cards;
 };
 

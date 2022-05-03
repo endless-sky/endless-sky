@@ -118,15 +118,19 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 interface "map detail panel"
-	value "planet max X" 220
-	value "planet start Y" 95
+	value "planet start Y" 115
 	value "planet max bottom Y" 360
-	value "planet display width" 230
 	value "planet scroll speed" 25
-	value "one planet display height" 130
-	value "planet icon max size" 100
 
-	value "trade Y from bottom" 300
+
+
+interface "map planet card"
+	value "text start" 13
+	value "category size" 20
+	value "height" 130
+	value "width" 230
+	value "planet icon max size" 100
+	value "categories" 5
 
 
 
