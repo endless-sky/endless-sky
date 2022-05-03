@@ -935,6 +935,9 @@ tip "reverse only?"
 tip "battery only?"
 	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
 
+tip "low battery?"
+	`This ship does not have enough energy generation or battery storage to provide sustained flight.`
+
 tip "limited thrust?"
 	`This ship's energy supply is not sufficient to run the thrusters at full power. Its top speed and acceleration will be diminished.`
 

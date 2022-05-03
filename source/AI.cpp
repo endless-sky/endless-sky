@@ -107,7 +107,7 @@ namespace {
 					&& (!bay.ship->IsYours() || bay.ship->HasDeployOrder())
 					&& (bay.ship->IsArmed() || (!bay.ship->IsArmed() && !bay.ship->IsEnemyInEscortSystem())))
 			{
-				// TODO: refuse to deploy on low energy
+				// Refuse to deploy on low energy
 				if(bay.ship->IsEnergyLow())
 					Messages::Add(bay.ship->Attributes().Category() + " " + bay.ship->Name() + " refuses to deploy due insufficient energy.", Messages::Importance::High);
 				else
@@ -1021,6 +1021,9 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			// Your escorts should not help each other if already under orders.
 			if(helper->IsYours() && ship.IsYours() && orders.count(helper.get()))
 				continue;
+			// Battery powered ships should only get help if they're disabled.
+			if(ship.CanBeCarried() && !ship.IsDisabled() && ship.IsEnergyLow())
+				continue;
 
 			// Check if this ship is physically able to help.
 			if(!CanHelp(ship, *helper, isStranded))
@@ -1731,10 +1734,12 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.  Also account for when fighter has ramscoop to
 	// prioritize returning over ramscoop regeneration.
-	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel() && !ship.IsEnemyInEscortSystem() && parent.Fuel() < 1.;
-	bool hasDecentRamscoop = (ship.GetRamscoopRegenPerFrame() * 60 >= 1);
-	bool fighterHasRefueled = ship.Fuel() > .75 && ship.Fuel() < 1. && ship.GetSystem();
-	bool shouldReturnForFuel = (readyToRefuelCarrier) ? hasDecentRamscoop && !fighterHasRefueled : ((hasDecentRamscoop && ship.Fuel() < .25) || ship.IsFuelLow()) && !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
+	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel() && !ship.IsEnemyInEscortSystem() && parent.Fuel() < 1. && ship.IsRefueledByRamscoop();
+	bool fighterHasRefueled = ship.Fuel() > .75 && ship.GetSystem();
+	bool shipIsLowFuel = ((ship.IsRefueledByRamscoop() && ship.Fuel() < .25) || ship.IsFuelLow());
+	bool parentCanRefuelShip = !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
+	// Only return to ship if low fuel or if the fighter has ramscoop and is refueling the carrier.
+	bool shouldReturnForFuel = (readyToRefuelCarrier) ?  !fighterHasRefueled && !shipIsLowFuel : shipIsLowFuel && parentCanRefuelShip;
 	if(shouldReturnForFuel ^ readyToRefuelCarrier)
 		return true;
 

@@ -1120,8 +1120,10 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !consuming)
+		if(!generation && !solar && !consuming && !canBeCarried)
 			checks.emplace_back("battery only?");
+		if(canBeCarried && IsEnergyLow())
+			checks.emplace_back("low battery?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
 		if(energy < turnEnergy)
@@ -2312,14 +2314,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				if(maxFuel)
 				{
 					double spareFuel = fuel - JumpFuel();
-					if((spareFuel > 0.) ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
+					bool canRefuelCarrier = IsEscortsFullOfFuel() && !IsEnemyInEscortSystem() && bay.ship->IsRefueledByRamscoop();
+					if((spareFuel > 100.) ^ canRefuelCarrier)
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't launch.
-					if((bay.ship->fuel < .25 * maxFuel) ^ (IsEscortsFullOfFuel() && !IsEnemyInEscortSystem()))
+					if((bay.ship->fuel < .25 * maxFuel) ^ canRefuelCarrier)
 					{
 						TransferFuel(bay.ship->fuel, this);
 						// Launch if fleet is full and fighter or drone is refilling carrier.
-						if(!IsEscortsFullOfFuel())
+						if(!IsEscortsFullOfFuel() && !bay.ship->IsRefueledByRamscoop())
 							continue;
 					}
 				}
@@ -2362,7 +2365,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship."
-	// TODO: Except when drone or fighter is boarding another drone or fighter.
+	// Except when drone or fighter is boarding another drone or fighter.
 	if(CanBeCarried() && !victim.get()->CanBeCarried() && victim == GetParent())
 	{
 		SetTargetShip(shared_ptr<Ship>());
@@ -2679,7 +2682,7 @@ bool Ship::IsEnergyLow() const
 	double idleEnergy = frames * GetIdleEnergyPerFrame();
 	double maxEnergy = Attributes().Get("energy capacity");
 	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
-	double currentEnergy = (CanBeCarried() && GetSystem()) ? GetCurrentEnergy() : maxEnergy * .75;
+	double currentEnergy = (CanBeCarried() && GetSystem() && !landingPlanet) ? GetCurrentEnergy() : maxEnergy * .75;
 	//double currentEnergy = GetCurrentEnergy();
 	if(totalConsumption < 0.)
 	{
@@ -2753,13 +2756,23 @@ bool Ship::IsFuelLow() const
 
 
 
-// Check if ship fuel is low or check destination ship fuel (compareTo) can refuel.
+// Check if ship fuel is low or check destination ship fuel (compareTo) can
+// refuel.  If the ship has no fuel then it can't be low.
 bool Ship::IsFuelLow(double compareTo) const
 {
+	bool lowFuel = attributes.Get("fuel capacity") > 0.;
 	if(CanBeCarried())
-		return attributes.Get("fuel capacity") && Fuel() < .15;
+		lowFuel &= attributes.Get("fuel capacity") && Fuel() < .15;
 	else
-		return (IsYours() && !HasBays()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
+		lowFuel &= (IsYours() && !HasBays()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
+	return lowFuel;
+}
+
+
+
+bool Ship::IsRefueledByRamscoop() const
+{
+	return (GetRamscoopRegenPerFrame() * 60 >= 1) || attributes.Get("ramscoop") >= 1;
 }
 
 
@@ -3016,6 +3029,9 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
+	// Can't refuel if current ship has zero fuel capacity.
+	if(attributes.Get("fuel capacity") < 1)
+		return false;
 	if(CanBeCarried() && GetSystem())
 	{
 		// Ensure all escorts have minimum one jump of fuel before refueling all

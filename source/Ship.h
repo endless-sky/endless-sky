@@ -434,6 +434,7 @@ public:
 	bool IsFighterOutOfEnergy() const;
 	bool IsFuelLow() const;
 	bool IsFuelLow(double compareTo) const;
+	bool IsRefueledByRamscoop() const;
 	double GetCurrentEnergy() const;
 	double GetEnergyConsumptionPerFrame() const;
 	double GetFiringEnergyPerFrame() const;
