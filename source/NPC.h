@@ -50,28 +50,28 @@ public:
 	NPC(NPC &&) noexcept = default;
 	NPC &operator=(NPC &&) noexcept = default;
 	~NPC() noexcept = default;
-	
+
 	// Construct and Load() at the same time.
 	NPC(const DataNode &node);
-	
+
 	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
-	
+
 	// Determine if this NPC or NPC template uses well-defined data.
 	// Returns the reason the NPC is not valid, or an empty string if valid.
 	std::string Validate(bool asTemplate = false) const;
-	
+
 	const EsUuid &UUID() const noexcept;
-	
+
 	// Update or check spawning and despawning for this NPC.
 	void UpdateSpawning(const PlayerInfo &player);
 	bool ShouldSpawn() const;
-	
+
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;
-	
+
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
@@ -82,34 +82,34 @@ public:
 	// Determine if the NPC is in a failed state. A failed state is irrecoverable, except for
 	// NPCs which would despawn upon the player's next landing.
 	bool HasFailed() const;
-	
+
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
 	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
-	
-	
+
+
 private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
 	Personality personality;
-	
+
 	EsUuid uuid;
-	
+
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
 	bool isAtDestination = false;
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
-	
+
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
 	const Phrase *stockDialogPhrase = nullptr;
 	Phrase dialogPhrase;
-	
+
 	Conversation conversation;
 	const Conversation *stockConversation = nullptr;
-	
+
 	// Conditions that must be met in order for this NPC to be placed or despawned:
 	ConditionSet toSpawn;
 	ConditionSet toDespawn;
@@ -122,7 +122,7 @@ private:
 	// Whether we have actually checked spawning conditions yet. (This
 	// will generally be true, except when reloading a save.)
 	bool checkedSpawnConditions = false;
-	
+
 	// The ships may be listed individually or referred to as a fleet, and may
 	// be customized or just refer to stock objects:
 	std::list<std::shared_ptr<Ship>> ships;
@@ -130,7 +130,7 @@ private:
 	std::list<std::string> shipNames;
 	std::list<Fleet> fleets;
 	std::list<const Fleet *> stockFleets;
-	
+
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;
 	int failIf = 0;

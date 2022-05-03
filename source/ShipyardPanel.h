@@ -33,8 +33,8 @@ class Ship;
 class ShipyardPanel : public ShopPanel {
 public:
 	explicit ShipyardPanel(PlayerInfo &player);
-	
-	
+
+
 protected:
 	virtual int TileSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
@@ -49,16 +49,16 @@ protected:
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
-	
-	
+
+
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
-	
-	
+
+
 private:
 	int modifier;
-	
+
 	Sale<Ship> shipyard;
 };
 

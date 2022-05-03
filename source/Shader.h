@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHADER_H_
 #define SHADER_H_
 
-#include "gl_header.h"
+#include "opengl.h"
 
 
 
@@ -25,16 +25,16 @@ class Shader {
 public:
 	Shader() noexcept = default;
 	Shader(const char *vertex, const char *fragment);
-	
+
 	GLuint Object() const noexcept;
 	GLint Attrib(const char *name) const;
 	GLint Uniform(const char *name) const;
-	
-	
+
+
 private:
 	GLuint Compile(const char *str, GLenum type);
-	
-	
+
+
 private:
 	GLuint program;
 };

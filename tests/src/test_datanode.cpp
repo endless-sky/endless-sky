@@ -117,7 +117,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 				REQUIRE( child.HasChildren() );
 				const DataNode &grand = *child.begin();
 				CHECK_FALSE( grand.HasChildren() );
-				
+
 				AND_THEN( "The copied children have the correct tokens" ) {
 					REQUIRE( partner.Size() == 1 );
 					CHECK( partner.Token(0) == "parent" );
@@ -126,7 +126,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 					REQUIRE( grand.Size() == 1 );
 					CHECK( grand.Token(0) == "grand" );
 				}
-				
+
 				AND_THEN( "The copied children print correct traces" ) {
 					CHECK( partner.PrintTrace() == 0 );
 					CHECK( traces.Flush() == "parent\n" );
@@ -146,7 +146,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 				REQUIRE( child.HasChildren() );
 				const DataNode &grand = *child.begin();
 				CHECK_FALSE( grand.HasChildren() );
-				
+
 				AND_THEN( "The copied children have the correct tokens" ) {
 					REQUIRE( partner.Size() == 1 );
 					CHECK( partner.Token(0) == "parent" );
@@ -155,7 +155,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 					REQUIRE( grand.Size() == 1 );
 					CHECK( grand.Token(0) == "grand" );
 				}
-				
+
 				AND_THEN( "The copied children print correct traces" ) {
 					CHECK( partner.PrintTrace() == 0 );
 					CHECK( traces.Flush() == "parent\n" );
@@ -176,7 +176,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 				REQUIRE( child.HasChildren() );
 				const DataNode &grand = *child.begin();
 				CHECK_FALSE( grand.HasChildren() );
-				
+
 				AND_THEN( "The moved children have the correct tokens" ) {
 					REQUIRE( moved.Size() == 1 );
 					CHECK( moved.Token(0) == "parent" );
@@ -185,7 +185,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 					REQUIRE( grand.Size() == 1 );
 					CHECK( grand.Token(0) == "grand" );
 				}
-				
+
 				AND_THEN( "The moved children print correct traces" ) {
 					CHECK( moved.PrintTrace() == 0 );
 					CHECK( traces.Flush() == "parent\n" );
@@ -205,7 +205,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 				REQUIRE( child.HasChildren() );
 				const DataNode &grand = *child.begin();
 				CHECK_FALSE( grand.HasChildren() );
-				
+
 				AND_THEN( "The moved children have the correct tokens" ) {
 					REQUIRE( moved.Size() == 1 );
 					CHECK( moved.Token(0) == "parent" );
@@ -214,7 +214,7 @@ SCENARIO( "Creating a DataNode", "[DataNode]") {
 					REQUIRE( grand.Size() == 1 );
 					CHECK( grand.Token(0) == "grand" );
 				}
-				
+
 				AND_THEN( "The moved children print correct traces" ) {
 					CHECK( moved.PrintTrace() == 0 );
 					CHECK( traces.Flush() == "parent\n" );

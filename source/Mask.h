@@ -31,42 +31,42 @@ class Mask {
 public:
 	// Construct a mask from the alpha channel of an RGBA-formatted image.
 	void Create(const ImageBuffer &image, int frame = 0);
-	
+
 	// Check whether a mask was successfully generated from the image.
 	bool IsLoaded() const;
-	
+
 	// Check if this mask intersects the given line segment (from sA to vA). If
 	// it does, return the fraction of the way along the segment where the
 	// intersection occurs. The sA should be relative to this object's center.
 	// If this object contains the given point, the return value is 0. If there
 	// is no collision, the return value is 1.
 	double Collide(Point sA, Point vA, Angle facing) const;
-	
+
 	// Check whether the mask contains the given point.
 	bool Contains(Point point, Angle facing) const;
-	
+
 	// Find out whether this object (rotated and scaled as represented by the given
 	// unit vector) is touching a ring defined by the given inner and outer ranges.
 	bool WithinRing(Point point, Angle facing, double inner, double outer) const;
-	
+
 	// Find out how close the given point is to the mask.
 	double Range(Point point, Angle facing) const;
 	// Get the maximum distance from the center of this mask.
 	double Radius() const;
-	
+
 	// Get the individual outlines that comprise this mask.
 	const std::vector<std::vector<Point>> &Outlines() const;
-	
+
 	// Scale all the points in the mask.
 	Mask operator*(double scale) const;
 	friend Mask operator*(double scale, const Mask &mask);
-	
-	
+
+
 private:
 	double Intersection(Point sA, Point vA) const;
 	bool Contains(Point point) const;
-	
-	
+
+
 private:
 	std::vector<std::vector<Point>> outlines;
 	double radius = 0.;

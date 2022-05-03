@@ -41,8 +41,9 @@ Government::Government()
 	penaltyFor[ShipEvent::DESTROY] = 1.;
 	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
 	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
+	penaltyFor[ShipEvent::PROVOKE] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
-	
+
 	id = nextID++;
 }
 
@@ -57,7 +58,7 @@ void Government::Load(const DataNode &node)
 		if(displayName.empty())
 			displayName = name;
 	}
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
@@ -106,6 +107,8 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::SCAN_OUTFITS] = grand.Value(1);
 						penaltyFor[ShipEvent::SCAN_CARGO] = grand.Value(1);
 					}
+					else if(grand.Token(0) == "provoke")
+						penaltyFor[ShipEvent::PROVOKE] = grand.Value(1);
 					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 					else
@@ -139,7 +142,7 @@ void Government::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	// Default to the standard disabled hail messages.
 	if(!friendlyDisabledHail)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
@@ -196,10 +199,10 @@ double Government::AttitudeToward(const Government *other) const
 		return 0.;
 	if(other == this)
 		return 1.;
-	
+
 	if(attitudeToward.size() <= other->id)
 		return 0.;
-	
+
 	return attitudeToward[other->id];
 }
 
@@ -276,12 +279,12 @@ const Conversation *Government::DeathSentence() const
 string Government::GetHail(bool isDisabled) const
 {
 	const Phrase *phrase = nullptr;
-	
+
 	if(IsEnemy())
 		phrase = isDisabled ? hostileDisabledHail : hostileHail;
 	else
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
-		
+
 	return phrase ? phrase->Get() : "";
 }
 
@@ -303,7 +306,7 @@ const Fleet *Government::RaidFleet() const
 }
 
 
-	
+
 // Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const

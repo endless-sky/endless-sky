@@ -21,11 +21,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "output-capture.hpp"
 
 // ... and any system includes needed for the test file.
+#include <cstdint>
 #include <map>
 #include <string>
 
 namespace { // test namespace
-
+using Conditions = std::map<std::string, int64_t>;
 // #region mock data
 // #endregion mock data
 
@@ -42,7 +43,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	GIVEN( "a node with no children" ) {
 		auto childlessNode = AsDataNode("never");
 		const auto set = ConditionSet{childlessNode};
-		
+
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
 		}
@@ -50,7 +51,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	GIVEN( "a node with valid children" ) {
 		auto nodeWithChildren = AsDataNode("and\n\tnever");
 		const auto set = ConditionSet{nodeWithChildren};
-		
+
 		THEN( "a non-empty ConditionSet is created" ) {
 			REQUIRE_FALSE( set.IsEmpty() );
 		}
@@ -58,13 +59,13 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "\nAn expression must either perform a comparison or assign a value:\n";
+	const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
 	OutputSink warnings(std::cerr);
-	
+
 	GIVEN( "an empty ConditionSet" ) {
 		auto set = ConditionSet{};
 		REQUIRE( set.IsEmpty() );
-		
+
 		THEN( "no expressions are added from empty nodes" ) {
 			set.Add(DataNode{});
 			REQUIRE( set.IsEmpty() );
@@ -77,7 +78,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			set.Add(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' );
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
@@ -92,15 +93,15 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
-		
+
 		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyConditionList = ConditionSet::Conditions{};
+			const auto emptyConditionList = Conditions{};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(emptyConditionList) );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionSet::Conditions{
+			const auto conditionList = Conditions{
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -111,9 +112,11 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	GIVEN( "a set containing 'never'" ) {
 		const auto neverSet = ConditionSet{AsDataNode("and\n\tnever")};
 		REQUIRE_FALSE( neverSet.IsEmpty() );
-		
+
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionSet::Conditions{{"never", 1}};
+			const auto listWithNever = Conditions{
+				{"never", 1},
+			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );
 			}
@@ -122,17 +125,17 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 }
 
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto mutableList = ConditionSet::Conditions{};
+	auto mutableList = Conditions{};
 	REQUIRE( mutableList.empty() );
-	
+
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};
 		REQUIRE( emptySet.IsEmpty() );
-		
+
 		THEN( "no conditions are added via Apply" ) {
 			emptySet.Apply(mutableList);
 			REQUIRE( mutableList.empty() );
-			
+
 			mutableList.emplace("event: war begins", 1);
 			REQUIRE( mutableList.size() == 1 );
 			emptySet.Apply(mutableList);
@@ -146,11 +149,11 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 			"\tc >= random\n";
 		const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
 		REQUIRE_FALSE( compareSet.IsEmpty() );
-		
+
 		THEN( "no conditions are added via Apply" ) {
 			compareSet.Apply(mutableList);
 			REQUIRE( mutableList.empty() );
-			
+
 			mutableList.emplace("event: war begins", 1);
 			REQUIRE( mutableList.size() == 1 );
 			compareSet.Apply(mutableList);
@@ -160,11 +163,11 @@ SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	GIVEN( "a ConditionSet with an assignable expression" ) {
 		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
 		REQUIRE_FALSE( applySet.IsEmpty() );
-		
+
 		THEN( "the condition list is updated via Apply" ) {
 			applySet.Apply(mutableList);
 			REQUIRE_FALSE( mutableList.empty() );
-			
+
 			const auto &inserted = mutableList.find("year");
 			REQUIRE( inserted != mutableList.end() );
 			CHECK( inserted->second == 3013 );

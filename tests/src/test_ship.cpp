@@ -35,7 +35,7 @@ namespace { // test namespace
 SCENARIO( "Creating a Ship::Bay instance", "[ship][bay]" ) {
 	// No default constructor.
 	REQUIRE_FALSE( std::is_default_constructible<Ship::Bay>::value );
-	
+
 	GIVEN( "a reference position" ) {
 		auto bay = Ship::Bay(20., 40., "Fighter");
 		THEN( "the position is scaled by 50%" ) {

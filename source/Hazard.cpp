@@ -1,5 +1,5 @@
 /* Hazard.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -19,12 +19,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+
+
 void Hazard::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);

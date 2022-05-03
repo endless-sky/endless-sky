@@ -34,16 +34,16 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Skipping unnamed test data:");
+		node.PrintTrace("Error: Unnamed test data:");
 		return;
 	}
 	if(node.Token(0) != "test-data")
 	{
-		node.PrintTrace("Skipping unsupported root node:");
+		node.PrintTrace("Error: Unsupported root node:");
 		return;
 	}
 	dataSetName = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
@@ -79,7 +79,7 @@ bool TestData::InjectSavegame() const
 	// Check if we have the required data to write out the savegame.
 	if(dataSetName.empty() || sourceDataFile.empty())
 		return false;
-	
+
 	// Open the source-file and scan until we find the test-data
 	// Then scan for the contents keyword
 	// Then write out the complete contents to the target file
@@ -97,15 +97,15 @@ bool TestData::InjectSavegame() const
 					DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
 					for(const DataNode &child : dataNode)
 						dataWriter.Write(child);
-					
+
 					// Data was found and written. We are done successfully.
 					return true;
 				}
-			
+
 			// Content section was not found. (Should we just create an empty file here?)
 			return false;
 		}
-	
+
 	// Data-section was no longer found.
 	return false;
 }

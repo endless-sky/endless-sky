@@ -48,11 +48,11 @@ public:
 	// in space), or the flagship might also explode.
 	static const int DIE = -7;
 	static const int EXPLODE = -8;
-	
+
 	// Check whether the given conversation outcome is one that forces the
 	// player to immediately depart.
 	static bool RequiresLaunch(int outcome);
-	
+
 public:
 	// Read or write to files.
 	void Load(const DataNode &node, const std::string &missionName = "");
@@ -63,11 +63,11 @@ public:
 	bool IsValidIntro() const noexcept;
 	// Check if the actions in this conversation are valid.
 	std::string Validate() const;
-	
+
 	// Generate a new conversation from this template, filling in any text
 	// substitutions and instantiating any actions.
 	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
-	
+
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
 	// Nodes may also display images or include conditional branches.
@@ -80,8 +80,8 @@ public:
 	const std::string &Text(int node, int choice = 0) const;
 	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
-	
-	
+
+
 private:
 	// The conversation is a network of "nodes" that you travel between by
 	// making choices (or by automatic branches that depend on the condition
@@ -91,7 +91,7 @@ private:
 		// Construct a new node. Each paragraph of conversation that involves no
 		// choice can be merged into what came before it, to simplify things.
 		explicit Node(bool isChoice = false) noexcept : isChoice(isChoice), canMergeOnto(!isChoice) {}
-		
+
 		// The condition expressions that determine the next node to load.
 		ConditionSet branch;
 		// Tasks performed when this node is reached.
@@ -105,12 +105,12 @@ private:
 		bool isChoice;
 		// Keep track of whether it's possible to merge future nodes onto this.
 		bool canMergeOnto;
-		
+
 		// Image that should be shown along with this text.
 		const Sprite *scene = nullptr;
 	};
-	
-	
+
+
 private:
 	// Parse the children of the given node to see if they contain any "gotos."
 	// If so, link them up properly. Return true if gotos were found.
@@ -123,8 +123,8 @@ private:
 	// Add an "empty" node. It will contain one empty line of text, with its
 	// goto link set to fall through to the next node.
 	void AddNode();
-	
-	
+
+
 private:
 	// While parsing the conversation, keep track of what labels link to what
 	// nodes. If a name appears in a goto before that label appears, remember

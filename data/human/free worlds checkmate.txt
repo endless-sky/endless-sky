@@ -772,10 +772,10 @@ mission "FWC Checkmate 1"
 		log "Defended Tundra against a major Navy counter-offensive. From here, the only recourse available to the Free Worlds seems to be to push deep into Republic territory and capture the Sol system, forcing the Navy to surrender. Nuclear weapons are now for sale on Solace to aid in the final assault."
 		event "fwc defended cebalrai"
 		event "fwc solace has nukes"
-		"salary: Free Worlds" = 6000
+		"salary: Free Worlds" = 17000
 		conversation
 			`Tomek and Alondo meet you when you land. Tomek says, "Good work aiding in the defense. Now we need to move before the Navy has time to regroup. And the Senate has decided that you will be in charge of the fleet that makes our counterattack."`
-			`	Alondo says, "They have also approved a salary increase for you, to six thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
+			`	Alondo says, "They have also approved a salary increase for you, to 17 thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
 			`	"One other thing," says Tomek. "I don't know how you'll feel about this, but I received word from Solace that they have nukes for sale if you want any. I'd advise against it, but it's up to you. Also, since you will be the flagship of our assault, you should make any improvements you feel are necessary to your ship. Then meet us back here, in the spaceport. Of course, if you're ready to go immediately that's fine, too."`
 
 
@@ -1027,9 +1027,9 @@ mission "FWC Pug 1"
 				goto end
 			
 			label reinforcements
-			`	"Yes," he says, "and a second after they arrived in system, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
+			`	"Yes," he says, "and a second after they arrived, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
 			label end
-			`	You and hurry to your ship and fire it up for a hasty launch...`
+			`	You hurry to your ship and fire it up for a hasty launch...`
 				launch
 	on visit
 		dialog `You've landed on <planet>, but there are still alien ships circling overhead. You should take off and help finish them off.`
@@ -1396,7 +1396,7 @@ mission "FWC Pug 3"
 					goto links
 			
 			label navy
-			`	Alondo says, "If they believe your story about an alien invasion, that might work. After all, if humanity is threatened by aliens, surely that take precedence over fighting us. Only trouble is, most of the Republic seems to think that when those systems disappeared, it was some new weapon the Free Worlds had discovered. They're blaming us for it. They just captured Cebalrai and Menkent back from us, and captured Freya in the process."`
+			`	Alondo says, "If they believe your story about an alien invasion, that might work. After all, if humanity is threatened by aliens, surely that takes precedence over fighting us. Only trouble is, most of the Republic seems to think that when those systems disappeared, it was some new weapon the Free Worlds had discovered. They're blaming us for it. They just captured Cebalrai and Menkent back from us, and captured Freya in the process."`
 			`	"Freya?" asks Katya. "How did they manage to capture her?"`
 			`	"She was on <planet>," he says, "setting up something she called a 'graviton detector' to analyze the collapsed hyperspace link. When the Navy arrived, we told her to get out of there, but she had just had a breakthrough in her research, and all she said was, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
 				goto next
@@ -1465,7 +1465,7 @@ mission "FWC Pug 3A"
 			`	"She's a Questioner, <first>," says Katya, quietly. "One of the ones who interrogated me when I was their prisoner. Just take her hands, and tell her nothing but the truth."`
 			label hands
 			`	Reluctantly, you take her hands, and she begins asking you questions about the aliens. You answer as truthfully as you can. Holding hands with a total stranger while she stares unblinkingly into your eyes and questions you is an uncomfortably invasive and intimate experience, heightened by your suspicion that if you tell a lie, she will somehow know. By the time she is done questioning you, you are soaked in sweat and your hands are shaking. Raven turns to Danforth and says, "They're telling the truth."`
-			`	You and Katya both breath a sign of relief, and Danforth says, "Very well. Let's take them to see Miss Winters."`
+			`	You and Katya both breathe a sigh of relief, and Danforth says, "Very well. Let's take them to see Miss Winters."`
 			`	He leads you back out of his ship and to a warehouse where people in overalls and lab coats are busy working on one of the strangest machines you have ever seen. Freya is one of them. "Katya!" she says. "<first>! Glad you could join us."`
 			choice
 				`	"Are you working for the Navy now?"`
@@ -1587,7 +1587,7 @@ mission "FWC Pug 3C"
 				`	"Okay, let's give it a try!"`
 					accept
 				`	"Do you actually have any idea what you're doing?"`
-			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for nought. But let's give it a try, okay?"`
+			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for naught. But let's give it a try, okay?"`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya and the graviton reflector hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -2340,13 +2340,12 @@ mission "FWC End"
 	destination Earth
 	to offer
 		has "FWC Pug 6: done"
+	passengers 1
+	blocked "You need at least one bunk free for Freya in order to continue this mission."
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Parliament has agreed to a peace treaty, because the threat of alien invasion now seems much more pressing than the civil war with the Free Worlds. Whatever the true intention of the Pug was, the result of their interference is that humanity is at peace once more. There has been great loss of life, but nothing compared to what would have happened if the Free Worlds had tried to conquer Earth."
-		log "It may be a while before members of the Free Worlds manage to re-earn the trust of the rest of humanity, however."
-		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds culminating in a series of military confrontations, that ended when the Pug invaded human space. After humanity united to drive out the Pug invaders, the Republic officially granted the Free Worlds autonomy.`
 		"reputation: Republic" += 20
 		conversation
 			`You find Admiral Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`
@@ -2365,8 +2364,12 @@ mission "FWC End"
 				accept
 	
 	on complete
+		log "Parliament has agreed to a peace treaty, because the threat of alien invasion now seems much more pressing than the civil war with the Free Worlds. Whatever the true intention of the Pug was, the result of their interference is that humanity is at peace once more. There has been great loss of life, but nothing compared to what would have happened if the Free Worlds had tried to conquer Earth."
+		log "It may be a while before members of the Free Worlds manage to re-earn the trust of the rest of humanity, however."
+		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds culminating in a series of military confrontations, that ended when the Pug invaded human space. After humanity united to drive out the Pug invaders, the Republic officially granted the Free Worlds autonomy.`
 		event "deep sky tech available"
 		event "syndicate tech available"
+		"salary: Free Worlds" = 8900
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds checkmate"
@@ -2378,7 +2381,7 @@ mission "FWC End"
 			choice
 				`	"That's very generous of them."`
 				`	"I wonder if that's their way of buying our support and keeping us quiet about the supposed defector."`
-			`	"Maybe so," says Alondo. "Now, Captain, your salary will continue to be paid in gratitude for your service, but you are free to return to civilian life. What do you think you will do next?"`
+			`	"Maybe so," says Alondo. "In other news, now that the war has ended, and the Pug have been defeated, the Senate has voted to dissolve the Council, leaving us free to return to civilian life. However, they've also agreed to pay you, <first>, a reduced salary in honor of your service. So, what do you think you will do next?"`
 			choice
 				`	"Build a merchant fleet and live a safe, quiet life."`
 				`	"See if folks in the fringe worlds need any help against the pirates."`

@@ -30,17 +30,17 @@ namespace {
 	{
 		if(path.length() < 7)
 			return false;
-		
+
 		size_t pos = path.length() - 7;
 		return (path[pos] == '@' && path[pos + 1] == '2' && path[pos + 2] == 'x');
 	}
-	
+
 	// Check if the given character is a valid blending mode.
 	bool IsBlend(char c)
 	{
 		return (c == '-' || c == '~' || c == '+' || c == '=');
 	}
-	
+
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
 	bool IsMasked(const string &path)
@@ -49,10 +49,10 @@ namespace {
 			return true;
 		if(path.length() >= 9 && path.compare(0, 9, "asteroid/") == 0)
 			return true;
-		
+
 		return false;
 	}
-	
+
 	// Get the character index where the sprite name in the given path ends.
 	size_t NameEnd(const string &path)
 	{
@@ -62,39 +62,39 @@ namespace {
 		// This should never happen, but just in case:
 		if(!end)
 			return 0;
-		
+
 		// Skip any numbers at the end of the name.
 		size_t pos = end;
 		while(--pos)
 			if(path[pos] < '0' || path[pos] > '9')
 				break;
-		
+
 		// If there is not a blending mode specifier before the numbers, they
 		// are part of the sprite name, not a frame index.
 		return (IsBlend(path[pos]) ? pos : end);
 	}
-	
+
 	// Get the frame index from the given path.
 	size_t FrameIndex(const string &path)
 	{
 		// Get the character index where the "name" portion of the path ends.
 		// A path's format is always: <name>(<blend><frame>)(@2x).(png|jpg)
 		size_t i = NameEnd(path);
-		
+
 		// If the name contains a frame index, it must be separated from the name
 		// by a character indicating the additive blending mode.
 		if(!IsBlend(path[i]))
 			return 0;
-		
+
 		size_t frame = 0;
 		// The path ends in an extension, so there's no need to check for going off
 		// the end of the string in this loop; we're guaranteed to hit a non-digit.
 		for(++i; path[i] >= '0' && path[i] <= '9'; ++i)
 			frame = (frame * 10) + (path[i] - '0');
-		
+
 		return frame;
 	}
-	
+
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
 	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x) noexcept(false)
 	{
@@ -107,7 +107,7 @@ namespace {
 					+ " (" + to_string(frameData.size()) + " ignored in total). Animations must start at frame 0.");
 			return;
 		}
-		
+
 		// Find the first frame that is not a single increment over the previous frame.
 		auto it = frameData.begin();
 		auto next = it;
@@ -118,7 +118,7 @@ namespace {
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
 		transform(frameData.begin(), next, sequence.begin(), [](const pair<size_t, string> &p) -> string { return p.second; });
-		
+
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
 		{
@@ -136,7 +136,7 @@ bool ImageSet::IsImage(const string &path)
 {
 	if(path.length() < 4)
 		return false;
-	
+
 	string ext = path.substr(path.length() - 4);
 	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG");
 }
@@ -158,7 +158,7 @@ bool ImageSet::IsDeferred(const string &path)
 {
 	if(path.length() >= 5 && !path.compare(0, 5, "land/"))
 		return true;
-	
+
 	return false;
 }
 
@@ -200,7 +200,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	AddValid(framePaths[1], paths[1], prefix, true);
 	framePaths[0].clear();
 	framePaths[1].clear();
-	
+
 	// Drop any @2x paths that will not be used.
 	if(paths[1].size() > paths[0].size())
 	{
@@ -217,19 +217,19 @@ void ImageSet::ValidateFrames() noexcept(false)
 void ImageSet::Load() noexcept(false)
 {
 	assert(framePaths[0].empty() && "should call ValidateFrames before calling Load");
-	
+
 	// Determine how many frames there will be, total. The image buffers will
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
 	buffer[0].Clear(frames);
 	buffer[1].Clear(frames);
-	
+
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
 	if(makeMasks)
 		masks.resize(frames);
-	
+
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < frames; ++i)
@@ -252,7 +252,7 @@ void ImageSet::Load() noexcept(false)
 			buffer[1].Clear();
 			break;
 		}
-	
+
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
 	if(willBlur && (

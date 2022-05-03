@@ -179,9 +179,9 @@ mission "FW Prisoner Parole"
 	npc accompany save
 		government "Free Worlds"
 		personality timid escort
-		ship "Falcon (Heavy)" "F.S. Starry Warrior"
-		ship "Blackbird" "Flight of Fancy"
-		ship "Blackbird" "Southern Luxury"
+		ship "Falcon (Prisoner Transport)" "F.S. Starry Warrior"
+		ship "Blackbird (Prisoner Transport)" "Flight of Fancy"
+		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -219,9 +219,9 @@ mission "FW Prisoner Parole 2"
 	npc accompany save
 		government "Free Worlds"
 		personality timid escort
-		ship "Falcon (Heavy)" "F.S. Starry Warrior"
-		ship "Blackbird" "Flight of Fancy"
-		ship "Blackbird" "Southern Luxury"
+		ship "Falcon (Prisoner Transport)" "F.S. Starry Warrior"
+		ship "Blackbird (Prisoner Transport)" "Flight of Fancy"
+		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -781,7 +781,7 @@ mission "FW Plasma Testing 1B"
 		log "Assisted a Kraz Cybernetics engineer known as Barmy Edward with a test of a new and extremely powerful plasma cannon turret."
 		conversation
 			scene "scene/loc7"
-			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
+			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers is looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
 			choice
 				`	"Very impressive. I want a few of those on my own ship."`
 					goto impressive
@@ -868,7 +868,7 @@ mission "FW Supply Convoy 1"
 					accept
 			
 			label cattle
-			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a head count when you arrive in each system."`
+			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a headcount when you arrive in each system."`
 			choice
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept
@@ -926,11 +926,11 @@ mission "FW Pirates 1"
 			
 			label agree
 			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
-			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 800 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
+			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
 	on accept
-		"salary: Free Worlds" = 800
+		"salary: Free Worlds" = 2100
 	
 	on visit
 		dialog phrase "generic waypoint on visit"

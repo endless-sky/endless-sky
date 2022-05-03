@@ -33,12 +33,12 @@ void News::Load(const DataNode &node)
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
-		
+
 		// Get the key and value (if any).
 		const string &tag = child.Token((add || remove) ? 1 : 0);
 		const int valueIndex = (add || remove) ? 2 : 1;
 		const bool hasValue = child.Size() > valueIndex;
-		
+
 		if(tag == "location")
 		{
 			if(remove)
@@ -63,7 +63,7 @@ void News::Load(const DataNode &node)
 				auto toRemove = set<const Sprite *>{};
 				for(int i = valueIndex; i < child.Size(); ++i)
 					toRemove.emplace(SpriteSet::Get(child.Token(i)));
-				
+
 				// Erase them in unison.
 				portraits.erase(remove_if(portraits.begin(), portraits.end(),
 						[&toRemove](const Sprite *sprite) { return toRemove.find(sprite) != toRemove.end(); }),
@@ -84,20 +84,15 @@ void News::Load(const DataNode &node)
 			else
 				messages.Load(child);
 		}
-		else if(tag == "to" && hasValue)
+		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
-			if(child.Token(valueIndex) == "show")
-			{
-				if(remove)
-					toShow = ConditionSet{};
-				else
-					toShow.Load(child);
-			}
+			if(remove)
+				toShow = ConditionSet{};
 			else
-				child.PrintTrace("Unrecognized news attribute:");
+				toShow.Load(child);
 		}
 		else
-			child.PrintTrace("Unrecognized news attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
