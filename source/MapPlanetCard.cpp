@@ -151,7 +151,12 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// If some categories do not fit above we need to draw the last ones at the place where the first ones where.
 		double textStartingPosition = textStart - (categories - categoriesFit) * categorySize;
 
-		if(availableTopSpace >= height / 2. + spriteScale * sprite->Height() / 2. && 
+		// We have more leasure at the top if the government sprite is drawn over this element.
+		static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+		static const double governmentY = mapInterface->GetValue("government top Y");
+		static const double planetStartingY = mapInterface->GetValue("planet starting Y");
+		static const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
+		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. && 
 				availableBottomSpace >= height / 2. + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., uiPoint.Y() + (textStartingPosition - textStart) + height / 2.), spriteScale);
 		
@@ -164,7 +169,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		if(FitsCategory(5.))
 			font.Draw({ planetName, alignLeft }, uiPoint + Point(0., textStartingPosition), isSelected ? medium : dim);
 
-		static const double margin = 10.;
+		static const double margin = mapInterface->GetValue("text margin");
 		if(FitsCategory(4.))
 			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
@@ -248,12 +253,10 @@ void MapPlanetCard::Highlight(double availableSpace) const
 
 double MapPlanetCard::AvailableTopSpace() const
 {
-	static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	static const double planetStartY = mapInterface->GetValue("planet start Y");
 	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	static const double height = planetCardInterface->GetValue("height");
 
-	return min(height, max(0., planetStartY + number * height - getScroll()));
+	return min(height, max(0., (number + 1) * height - getScroll()));
 }
 
 

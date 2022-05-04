@@ -132,7 +132,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	if(maxScroll && point.X() < Screen::Left() + planetCardInterface->GetValue("width")
-		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet start Y")
+		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet starting Y")
 		&& point.Y() < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"))
 	{
 		double scrollSpeed = mapInterface->GetValue("planet scroll speed");
@@ -503,58 +503,42 @@ void MapDetailPanel::DrawKey()
 // details, trade prices, and details about the selected object.
 void MapDetailPanel::DrawInfo()
 {
-	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &medium = *GameData::Colors().Get("medium");
+	static const Color &dim = *GameData::Colors().Get("dim");
+	static const Color &medium = *GameData::Colors().Get("medium");
 
-	const Color &back = *GameData::Colors().Get("map side panel background");
+	static const Color &back = *GameData::Colors().Get("map side panel background");
 
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double planetHeight = planetCardInterface->GetValue("height");
-	double planetWidth = planetCardInterface->GetValue("width");
-
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	static double planetHeight = planetCardInterface->GetValue("height");
+	static double planetWidth = planetCardInterface->GetValue("width");
+	static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	static double startingY = mapInterface->GetValue("planet starting Y");
+	static double bottomY = mapInterface->GetValue("planet max bottom Y");	
+	
 	// Draw the panel for the planets.
-	Point size(planetWidth, min((Screen::Height() - mapInterface->GetValue("planet max bottom Y")),
-		planetCards.size() * planetHeight + mapInterface->GetValue("planet start Y")));
-	FillShader::Fill(Point(Screen::Left() + size.X() / 2., Screen::Top() + size.Y() / 2.), size, back);
+	Point size(planetWidth, min((Screen::Height() - bottomY - startingY),
+		planetCards.size() * planetHeight));
+	// This needs to fill from the start of the screen.
+	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2. + startingY / 2.), 
+		size + Point(0., startingY), back);
 	
 	// Edges:
-	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-	Point pos(Screen::TopLeft());
+	Point pos(Screen::Left(), Screen::Top() + startingY);
+	static const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
 	Point bottomOff(-30., .5 * bottom->Height());
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
 
-	const Sprite *right = SpriteSet::Get("ui/right edge");
+	static const Sprite *right = SpriteSet::Get("ui/right edge");
 	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
 	SpriteShader::Draw(right, edgePos + rightOff);
 
-	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
+	static const double startingX = mapInterface->GetValue("starting X");
+	Point uiPoint(Screen::Left() + startingX, Screen::Top() + startingY);
 
-	// System sprite goes from 0 to 90.
-	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
-	SpriteShader::Draw(systemSprite, uiPoint);
-
-	const Font &font = FontSet::Get(14);
-	string systemName = player.KnowsName(*selectedSystem) ?
-		selectedSystem->Name() : "Unexplored System";
-	const auto alignLeft = Layout(140, Truncate::BACK);
-	font.Draw({systemName, alignLeft}, uiPoint + Point(-90., -7.), medium);
-
-	governmentY = uiPoint.Y() + 10.;
-	string gov = player.HasVisited(*selectedSystem) ?
-		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw({gov, alignLeft}, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
-	if(commodity == SHOW_GOVERNMENT)
-		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
-			10.f, 10.f, 0.f, medium);
-
-	// 90. taken by the government display + a 25. margin.
-	uiPoint.Y() += 115.;
 	// Draw the basic information for visitable planets in this system.
 	if(player.HasVisited(*selectedSystem))
 	{
-		uiPoint.Y() -= planetHeight / 2.;
 		maxScroll = 0.;
 
 		for(auto &card : planetCards)
@@ -565,18 +549,42 @@ void MapDetailPanel::DrawInfo()
 			// Call it all of the time so we can scroll if an element is partially shown.
 			maxScroll += (planetHeight - card.AvailableSpace());
 		}
-		uiPoint.Y() += planetHeight / 2.;
 	}
 
-	uiPoint.Y() += 45.;
-	tradeY = uiPoint.Y() - 95.;
+	static const double startingGovernmentY = mapInterface->GetValue("government top Y");
+	static const double textMargin = mapInterface->GetValue("text margin");
+	uiPoint = Point(Screen::Left() + textMargin, Screen::Top() + startingGovernmentY);
+
+	// Draw the information for the government of this system at the top.
+	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
+	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
+
+	const Font &font = FontSet::Get(14);
+	string systemName = player.KnowsName(*selectedSystem) ?
+		selectedSystem->Name() : "Unexplored System";
+	const auto alignLeft = Layout(140, Truncate::BACK);
+	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
+
+	governmentY = uiPoint.Y() + textMargin;
+	string gov = player.HasVisited(*selectedSystem) ?
+		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
+	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
+	if(commodity == SHOW_GOVERNMENT)
+		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
+			10.f, 10.f, 0.f, medium);
+
+	static const double relativeTradeY = mapInterface->GetValue("relative trade Y after planet");
+	uiPoint = Point(Screen::Left() + startingX, edgePos.Y() + relativeTradeY);
+	static const double tradeHeight = mapInterface->GetValue("trade height");
+	tradeY = uiPoint.Y() - tradeHeight / 2.;
 
 	// Trade sprite goes after the rest.
-	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
+	static const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 
-	uiPoint.X() -= 90.;
-	uiPoint.Y() -= 97.;
+	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
+	uiPoint.X() -= (tradeSprite->Width() / 2. - textMargin);
+	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
