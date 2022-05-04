@@ -105,6 +105,9 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 
+	// The change in velocity of all stages of this projectile
+	// relative to the firing ship.
+	Point dV;
 	double clip = 1.;
 	int lifetime = 0;
 	double distanceTraveled = 0;
