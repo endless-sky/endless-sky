@@ -894,12 +894,19 @@ void Ship::UpdateBay(Bay &bay, Hardpoint hardpoint, long unsigned int bayIndex)
 	bay.bayIndex = bayIndex;
 	bay.point = hardpoint.GetPoint();
 	bay.side = (hardpoint.IsTurret()) ? Bay::OVER : Bay::UNDER;
+	// Turrets mounted above the ship get specific angles depending on where the
+	// turret is located on the ship oriented with the ship moving forward.  The
+	// fighter is always forward-facing with a 45 degree angle if on the sides
+	// of a ship.
 	if(hardpoint.IsTurret() && bay.point.X() < 0)
 		bay.facing = BAY_ANGLE[4];
 	else if(hardpoint.IsTurret() && bay.point.X() > 0)
 		bay.facing = BAY_ANGLE[5];
-	else
+	else if(hardpoint.IsTurret() && bay.point.X() == 0)
 		bay.facing = BAY_ANGLE[0];
+	else
+		// Guns should respect their angle property for drone bays.
+		bay.facing = hardpoint.GetAngle();
 }
 
 
