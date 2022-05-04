@@ -2263,7 +2263,7 @@ void Ship::DoGeneration()
 		double heat_cap = attributes.Get("radiating capacity");
 		double heat_power = attributes.Get("radiating power") * heat * .001;
 
-		if(heat_power > 0. && heat_cap > 0.)
+		if(heat_power && heat_cap)
 			heat -= coolingEfficiency * heat_cap * heat_power / (heat_cap + heat_power);
 
 		// Apply active cooling. The fraction of full cooling to apply equals
@@ -3262,7 +3262,7 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 double Ship::MaxHeatGeneration() const
 {
 	double radiator = 0.;
-	if(0. < (attributes.Get("radiating power") * attributes.Get("radiating capacity")))
+	if(attributes.Get("radiating power") && attributes.Get("radiating capacity"))
 	{
 		double power = .001 * MaximumHeat() * attributes.Get("radiating power");
 		double capacity = attributes.Get("radiating capacity");
