@@ -35,7 +35,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, Angle projectileInaccuracy, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -48,9 +48,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+
+	this->angle += projectileInaccuracy;
 
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
@@ -61,7 +60,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 
-Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
+Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, Angle &projectileInaccuracy, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
@@ -69,10 +68,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	targetGovernment = parent.targetGovernment;
 
 	cachedTarget = TargetPtr().get();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
+	
+	this->angle += projectileInaccuracy;
+	if(weapon->Inaccuracy())
 	{
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 		if(!parent.weapon->Acceleration())
 		{
 			// Move in this new direction at the same velocity.
@@ -115,7 +114,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing, it.weapon);
+				{
+					double outfitInaccuracy = it.weapon->Inaccuracy();
+					Angle projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
+					projectiles.emplace_back(*this, it.offset, it.facing, projectileInaccuracy, it.weapon);
+				}
 		}
 		MarkForRemoval();
 		return;

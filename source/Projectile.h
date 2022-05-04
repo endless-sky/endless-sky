@@ -47,8 +47,8 @@ public:
 	};
 
 public:
-	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
-	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
+	Projectile(const Ship &parent, Point position, Angle angle, Angle projectileInaccuracy, const Weapon *weapon);
+	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, Angle &projectileInaccuracy, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
 

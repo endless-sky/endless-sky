@@ -223,11 +223,15 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	aim += angle;
 	start += aim.Rotate(outfit->HardpointOffset());
 
+	// Determine the inaccuracy to add to a new projectile
+	double outfitInaccuracy = outfit->Inaccuracy();
+	Angle projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
+	
 	// Create a new projectile, originating from this hardpoint.
-	projectiles.emplace_back(ship, start, aim, outfit);
+	projectiles.emplace_back(ship, start, aim, projectileInaccuracy, outfit);
 
 	// Create any effects this weapon creates when it is fired.
-	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
+	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim + projectileInaccuracy, visuals);
 
 	// Update the reload and burst counters, and expend ammunition if applicable.
 	Fire(ship, start, aim);
