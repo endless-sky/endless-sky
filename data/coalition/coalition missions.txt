@@ -2402,10 +2402,10 @@ mission "Coalition: Hunger for Knowledge"
 			`    "No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
 			`    "Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
 			choice
-				`	"Fine i will do it."`
-				`	"Sorry but i have no time for something like that."`
+				`	"Fine I will do it."`
+				`	"Sorry but I have no time for something like that."`
 					decline
-			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+			`   He hands you a small device. "Attach this to your ships scanners I will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
 			    accept
 	on complete
 		conversation
@@ -2416,7 +2416,7 @@ mission "Coalition: Hunger for Knowledge"
 				`   "Well see you."`
 		"coalition jobs" += 1
 		payment 200000
-		event "coalation: wormhole evaluated" 17
+		event "coalition: wormhole evaluated" 17
 
 event "coalition: wormhole evaluated"
 
@@ -2426,11 +2426,11 @@ mission "Coalition: Last Info"
 	description ""
 	to offer
 		random < 80
-		has "event: coalation: wormhole evaluated"
+		has "event: coalition: wormhole evaluated"
 	source
 		planet "Ring of Wisdom"
 	on offer
 		conversation
 			`When you enter the spaceport you see the Kimek from the science stuff taking to another Kimek. As he recognizes you he walks towards you.`
-			`    "Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you. If we ever need help again i will contact you."`
+			`    "Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you. If we ever need help again I will contact you."`
 				decline
