@@ -250,7 +250,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	}
 
 	position += velocity;
-	distanceTraveled += velocity.Length();
+	// Only measure the distance that this projectile traveled under its own
+	// power, as opposed to including any velocity that came from the firing
+	// ship.
+	distanceTraveled += dV.Length();
 
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
