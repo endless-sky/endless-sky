@@ -2341,7 +2341,7 @@ mission "Coalition: Interesting Connections"
 	name "Interesting Connection"
 	description "A team of Heliarch scientists want to know more about the connection between humans and Hai. Bring them some historic data from Hai Home."
 	to offer
-		"coalition knows hai"
+		has "coalition knows hai"
 	source
 		planet "Ring of Wisdom"
 	stopover Hai-home
@@ -2358,7 +2358,7 @@ mission "Coalition: Interesting Connections"
 			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
 			choice
 				`	"I will do everything for science."`
-				`	"Sorry but thats a too long way for me."`
+				`	"Sorry but that's a too long way for me."`
 					decline
 			`	"Ah thanks to you." He wishes you best luck and goes away.`
 				accept
@@ -2399,13 +2399,13 @@ mission "Coalition: Hunger for Knowledge"
 			`	"Very well take this small device it will do the scans." `
 				accept
 			label purpose
-			`    "No wormholes we have in our region of space. Thats why we would like to increase our knowledge about them. Furthermore we hope we get more informations about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
+			`    "No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
 			`    "Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
 			choice
 				`	"Fine i will do it."`
 				`	"Sorry but i have no time for something like that."`
 					decline
-			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satelite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
 			    accept
 	on complete
 		conversation
