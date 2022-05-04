@@ -105,7 +105,7 @@ namespace {
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.ship && (includingDamaged || bay.ship->Health() > .75) && bay.ship->Energy() > .75
 					&& (!bay.ship->IsYours() || bay.ship->HasDeployOrder())
-					&& (bay.ship->IsArmed() || (!bay.ship->IsArmed() && !bay.ship->IsEnemyInEscortSystem())))
+					&& (bay.ship->IsArmed(true) || (!bay.ship->IsArmed() && !bay.ship->IsEnemyInEscortSystem())))
 			{
 				// Refuse to deploy on low energy
 				if(bay.ship->IsEnergyLow())
@@ -1021,8 +1021,12 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			// Your escorts should not help each other if already under orders.
 			if(helper->IsYours() && ship.IsYours() && orders.count(helper.get()))
 				continue;
+
 			// Battery powered ships should only get help if they're disabled.
 			if(ship.CanBeCarried() && !ship.IsDisabled() && ship.IsEnergyLow())
+				continue;
+			// Escorts do not request help with enemies in the system unless disabled.
+			if(ship.IsYours() && hasEnemy && !ship.IsDisabled())
 				continue;
 
 			// Check if this ship is physically able to help.
@@ -1728,7 +1732,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 		return true;
 
 	// Reboard/retreat if harmless and enemy nearby; for example boxwings.
-	if(!ship.IsArmed() && ship.IsEnemyInEscortSystem())
+	if(!ship.IsArmed(true) && ship.IsEnemyInEscortSystem())
 		return true;
 
 	// If a carried ship has fuel capacity but is very low, it should return if
@@ -3829,7 +3833,11 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if(it.get() != player.Flagship() && !it->IsParked())
-				ships.push_back(it.get());
+			{
+				bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF) && it->CanBeCarried() && !it->IsArmed() && it->IsArmed(true);
+				if(!antiMissileDefender)
+					ships.push_back(it.get());
+			}
 		who = ships.size() > 1 ? "Your fleet is " : "Your escort is ";
 	}
 	else
@@ -3837,7 +3845,8 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship)
+			bool antiMissileDefender = (newOrders.type == Orders::ATTACK || newOrders.type == Orders::FINISH_OFF) && ship && ship->CanBeCarried() && !ship->IsArmed() && ship->IsArmed(true);
+			if(ship && !antiMissileDefender)
 				ships.push_back(ship.get());
 		}
 		who = ships.size() > 1 ? "The selected escorts are " : "The selected escort is ";

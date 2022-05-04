@@ -428,6 +428,7 @@ public:
 
 	// Helper functions for information display and ship behavior calculations.
 	bool IsArmed() const;
+	bool IsArmed(bool includingAntiMissile) const;
 	bool IsEnemyInEscortSystem() const;
 	bool IsEnergyLow() const;
 	bool IsEscortsFullOfFuel() const;

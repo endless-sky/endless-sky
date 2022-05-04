@@ -2321,8 +2321,10 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 					if((bay.ship->fuel < .25 * maxFuel) ^ canRefuelCarrier)
 					{
 						TransferFuel(bay.ship->fuel, this);
+						// Forget about waiting for fuel to launch if the fighter is needed for defense.
+						bool isNotNeededForDefense = !bay.ship->IsArmed(true) || (bay.ship->IsArmed(true) && IsEnemyInEscortSystem());
 						// Launch if fleet is full and fighter or drone is refilling carrier.
-						if(!IsEscortsFullOfFuel() && !bay.ship->IsRefueledByRamscoop())
+						if(!IsEscortsFullOfFuel() && !bay.ship->IsRefueledByRamscoop() && isNotNeededForDefense)
 							continue;
 					}
 				}
@@ -2640,10 +2642,18 @@ bool Ship::IsDisabled() const
 // Determine if the ship has any usable weapons.
 bool Ship::IsArmed() const
 {
+	return IsArmed(false);
+}
+
+
+
+// Determine if the ship has any usable weapons against enemies.
+bool Ship::IsArmed(bool includingAntiMissile) const
+{
 	for(const Hardpoint &hardpoint : Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && (!hardpoint.IsAntiMissile() || includingAntiMissile))
 		{
 			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
 				continue;
@@ -3345,6 +3355,9 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 
 double Ship::JumpFuelMissing() const
 {
+	// Carried ships do not jump so do not need jump fuel.
+	if(CanBeCarried())
+		return 0.;
 	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
 	double jumpFuel = JumpFuel(targetSystem);
