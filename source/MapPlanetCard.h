@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MAP_PLANET_CARD_H_
 #define MAP_PLANET_CARD_H_
 
+#include "MapPanel.h"
 #include "Sprite.h"
 
 #include <vector>
@@ -26,16 +27,29 @@ class StellarObject;
 // Used to manage the display of a single planet in the MapDetailPanel.
 class MapPlanetCard {
 public:
-	// The object HAS to be a planet.
+	enum class ClickAction : int {
+		SHOW_REPUTATION = MapPanel::SHOW_REPUTATION,
+		SHOW_SHIPYARD = MapPanel::SHOW_SHIPYARD,
+		SHOW_OUTFITTER = MapPanel::SHOW_OUTFITTER,
+		SHOW_VISITED = MapPanel::SHOW_VISITED,
+		GOTO_SHIPYARD = 3,
+		GOTO_OUTFITTER = 2,
+		SELECTED = 1,
+		NONE = 0
+	};
+
+
+public:
+	// The object HAS to be a planet. (but we need its object for the sprite)
 	explicit MapPlanetCard(const StellarObject &object, bool hasVisited);
 	~MapPlanetCard();
 	// Return if this one was clicked, whether or not we did something about it.
-	// Should it return the need to go to the outfitter/shipyard?
-	bool Click(int x, int y, int clicks);
+	ClickAction Click(int x, int y, int clicks);
 	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
 	bool DrawIfFits(const Point &uiPoint);
 	// If this object is currently being shown.
 	bool Shown() const;
+	// Return the space available for this planet card on its current position.
 	double AvailableSpace() const;
 
 

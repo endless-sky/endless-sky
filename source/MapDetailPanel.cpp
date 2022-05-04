@@ -264,7 +264,23 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y < tradeY && y > governmentY)
 		{
 			for(auto &card : planetCards)
-				card.Click(x, y, clicks);
+			{
+				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
+				if(clickAction == MapPlanetCard::ClickAction::SELECTED)
+					continue;
+				else if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
+				{
+					GetUI()->Pop(this);
+					GetUI()->Push(new MapShipyardPanel(*this, true));
+				}
+				else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
+				{
+					GetUI()->Pop(this);
+					GetUI()->Push(new MapOutfitterPanel(*this, true));
+				}
+				else if(clickAction != MapPlanetCard::ClickAction::NONE)
+					SetCommodity(static_cast<int>(clickAction));
+			}
 			return true;
 		}
 	}

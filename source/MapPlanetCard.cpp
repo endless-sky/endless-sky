@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "Point.h"
 #include "PointerShader.h"
 #include "Politics.h"
@@ -51,8 +53,8 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited) : has
 	
 	sprite = object.GetSprite();
 
-	const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
-	float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
+	static const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
+	static const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
 	spriteScale = min(.5f, min((planetIconMaxSize) / sprite->Width(), (planetIconMaxSize) / sprite->Height()));
 }
 
@@ -80,14 +82,15 @@ MapPlanetCard::~MapPlanetCard()
 
 
 
-bool MapPlanetCard::Click(int x, int y, int clicks)
+MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 {
+	ClickAction clickAction = ClickAction::NONE;
 	// The isShown variable should have already updated by the drawing of this item.
 	if(isShown) {
-		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-		double textStart = planetCardInterface->GetValue("text start");
-		double categorySize = planetCardInterface->GetValue("category size");
-		double categories = planetCardInterface->GetValue("categories");
+		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+		static const double textStart = planetCardInterface->GetValue("text start");
+		static const double categorySize = planetCardInterface->GetValue("category size");
+		static const double categories = planetCardInterface->GetValue("categories");
 
 		// The yCoordinate refers to the center of this object.
 		double relativeY = y - yCoordinate;
@@ -98,13 +101,24 @@ bool MapPlanetCard::Click(int x, int y, int clicks)
 			// The first category is the planet name and is not selectable.
 			if(relativeY > textStart + categorySize && relativeY < textStart + categorySize * categories)
 				selectedCategory = (relativeY - textStart - categorySize) / categorySize;
+			else
+				clickAction = ClickAction::SELECTED;
+
+			static const int SHOW[4] = {MapPanel::SHOW_REPUTATION, MapPanel::SHOW_SHIPYARD,
+									MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_GOVERNMENT};
+			// Even if we did not just select that category, it should be the one shown on the map.
+			clickAction = static_cast<ClickAction>(SHOW[selectedCategory]);
+			if(clickAction == ClickAction::SHOW_SHIPYARD && clicks > 1)
+				clickAction = ClickAction::GOTO_SHIPYARD;
+			else if(clickAction == ClickAction::SHOW_OUTFITTER && clicks > 1)
+				clickAction = ClickAction::GOTO_OUTFITTER;
 		}
 		else
 			isSelected = false;
 	}
 	else
 		isSelected = false;
-	return isSelected;
+	return clickAction;
 }
 
 
@@ -116,21 +130,21 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 	isShown = Shown();
 	if(isShown)
 	{
-		const Font &font = FontSet::Get(14);
-		const Color &faint = *GameData::Colors().Get("faint");
-		const Color &dim = *GameData::Colors().Get("dim");
-		const Color &medium = *GameData::Colors().Get("medium");
-		const auto alignLeft = Layout(140, Truncate::BACK);
+		static const Font &font = FontSet::Get(14);
+		static const Color &faint = *GameData::Colors().Get("faint");
+		static const Color &dim = *GameData::Colors().Get("dim");
+		static const Color &medium = *GameData::Colors().Get("medium");
+		static const auto alignLeft = Layout(140, Truncate::BACK);
 
-		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-		double height = planetCardInterface->GetValue("height");
-		double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
-		double textStart = planetCardInterface->GetValue("text start");
+		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+		const double height = planetCardInterface->GetValue("height");
+		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
+		const double textStart = planetCardInterface->GetValue("text start");
 
 		double availableTopSpace = AvailableTopSpace();
 		double availableBottomSpace = AvailableBottomSpace();
-		double categorySize = planetCardInterface->GetValue("category size");
-		double categories = planetCardInterface->GetValue("categories");
+		const double categorySize = planetCardInterface->GetValue("category size");
+		const double categories = planetCardInterface->GetValue("categories");
 		double categoriesFit = (availableTopSpace - textStart * 2.) / categorySize;
 
 		// If some categories do not fit above we need to draw the last ones at the place where the first ones where.
@@ -140,7 +154,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 				availableBottomSpace >= height / 2. + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., uiPoint.Y() + (textStartingPosition - textStart) + height / 2.), spriteScale);
 		
-		auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height](double number)
+		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height](double number)
 		{
 			return availableTopSpace >= textStart + categorySize * number &&
 				availableBottomSpace >= height - (textStart + categorySize * number);
@@ -149,7 +163,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		if(FitsCategory(5.))
 			font.Draw({ planetName, alignLeft }, uiPoint + Point(0., textStartingPosition), isSelected ? medium : dim);
 
-		double margin = 10.;
+		static const double margin = 10.;
 		if(FitsCategory(4.))
 			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
@@ -175,9 +189,9 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 bool MapPlanetCard::Shown() const
 {
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double textStart = planetCardInterface->GetValue("text start");
-	double categorySize = planetCardInterface->GetValue("category size");
+	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	static const double textStart = planetCardInterface->GetValue("text start");
+	static const double categorySize = planetCardInterface->GetValue("category size");
 
 	// Check if we can at least show one category.
 	return AvailableSpace() >= textStart + categorySize;
@@ -215,8 +229,8 @@ void MapPlanetCard::clear()
 
 void MapPlanetCard::Highlight(double availableSpace) const
 {
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double width = planetCardInterface->GetValue("width");
+	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	static const double width = planetCardInterface->GetValue("width");
 
 	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
 		Point(width, availableSpace), *GameData::Colors().Get("faint"));
@@ -226,10 +240,10 @@ void MapPlanetCard::Highlight(double availableSpace) const
 
 double MapPlanetCard::AvailableTopSpace() const
 {
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double planetStartY = mapInterface->GetValue("planet start Y");
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	double height = planetCardInterface->GetValue("height");
+	static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	static const double planetStartY = mapInterface->GetValue("planet start Y");
+	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	static const double height = planetCardInterface->GetValue("height");
 
 	return min(height, max(0., planetStartY + number * height - getScroll()));
 }
