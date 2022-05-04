@@ -228,7 +228,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	Angle projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
 	
 	// Create a new projectile, originating from this hardpoint.
-	projectiles.emplace_back(ship, start, aim, projectileInaccuracy, outfit);
+	projectiles.emplace_back(ship, start, aim + projectileInaccuracy, outfit);
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim + projectileInaccuracy, visuals);

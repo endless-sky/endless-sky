@@ -35,7 +35,7 @@ namespace {
 
 
 
-Projectile::Projectile(const Ship &parent, Point position, Angle angle, Angle projectileInaccuracy, const Weapon *weapon)
+Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
@@ -49,8 +49,6 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, Angle pr
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
 
-	this->angle += projectileInaccuracy;
-
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 
 	// If a random lifetime is specified, add a random amount up to that amount.
@@ -60,7 +58,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, Angle pr
 
 
 
-Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, Angle &projectileInaccuracy, const Weapon *weapon)
+Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
@@ -69,7 +67,6 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 
 	cachedTarget = TargetPtr().get();
 	
-	this->angle += projectileInaccuracy;
 	if(weapon->Inaccuracy())
 	{
 		if(!parent.weapon->Acceleration())
@@ -117,7 +114,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				{
 					double outfitInaccuracy = it.weapon->Inaccuracy();
 					Angle projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
-					projectiles.emplace_back(*this, it.offset, it.facing, projectileInaccuracy, it.weapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + projectileInaccuracy, it.weapon);
 				}
 		}
 		MarkForRemoval();
