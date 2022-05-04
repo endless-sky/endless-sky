@@ -2263,7 +2263,7 @@ void Ship::DoGeneration()
 		double heat_cap = attributes.Get("radiating capacity");
 		double heat_power = attributes.Get("radiating power") * heat * .001;
 
-		if(heat_power && heat_cap)
+		if(heat_power > 0. && heat_cap > 0.)
 			heat -= coolingEfficiency * heat_cap * heat_power / (heat_cap + heat_power);
 
 		// Apply active cooling. The fraction of full cooling to apply equals
@@ -3238,21 +3238,20 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 	// Combine heat generation and cooling.
 	double coolingEfficiency = CoolingEfficiency();
 	double generation = attributes.Get("heat generation")
-					  + attributes.Get("solar heat")
-					  + attributes.Get("fuel heat")
-					  - attributes.Get("cooling") * coolingEfficiency;
+			  + attributes.Get("solar heat")
+			  + attributes.Get("fuel heat")
+			  - attributes.Get("cooling") * coolingEfficiency;
 
 	// These cooling types scale with stored heat.
 	double dissipation = HeatDissipation() + attributes.Get("active cooling") * coolingEfficiency / MaximumHeat();
 
 	// The radiators behave differently.
 	double radiator = 0.;
-	if(attributes.Get("radiating power") && attributes.Get("radiating capacity"))
-	{
-		double power = .001 * heatLevel * attributes.Get("radiating power");
-		double capacity = attributes.Get("radiating capacity");
+	double power = .001 * heatLevel * attributes.Get("radiating power");
+	double capacity = attributes.Get("radiating capacity");
+	if(power > 0. && capacity > 0.)
 		radiator = coolingEfficiency * power * capacity / (power + capacity);
-	}
+
 	return generation - heatLevel * dissipation - radiator;
 }
 
@@ -3262,13 +3261,12 @@ double Ship::NetIdleHeatAt(double heatLevel) const
 double Ship::MaxHeatGeneration() const
 {
 	double radiator = 0.;
-	if(attributes.Get("radiating power") && attributes.Get("radiating capacity"))
-	{
-		double power = .001 * MaximumHeat() * attributes.Get("radiating power");
-		double capacity = attributes.Get("radiating capacity");
-		// Do not bother defining a double for cooling efficiency, since we use it only once here.
+	double power = .001 * MaximumHeat() * attributes.Get("radiating power");
+	double capacity = attributes.Get("radiating capacity");
+	if(power > 0. && capacity > 0.)
 		radiator = CoolingEfficiency() * power * capacity / (power + capacity);
-	}
+	// Do not bother defining a double for cooling efficiency, since we use it only once here.
+
 	return MaximumHeat() * HeatDissipation() + radiator;
 }
 
