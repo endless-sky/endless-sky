@@ -2342,19 +2342,16 @@ mission "Coalition: Interesting Connections"
 	description "A team of Heliarch scientists want to know more about the connection between humans and Hai. Bring them some historic data from Hai Home."
 	to offer
 		has "coalition knows hai"
-	source
-		planet "Ring of Wisdom"
+	source "Ring of Wisdom"
 	stopover Hai-home
-	destination
-		planet "Ring of Wisdom"
 	on offer
 		conversation
-			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help i need from you. Of course i will pay you. Will you accept? `
+			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help I need from you. Of course I will pay you. Will you accept? `
 			choice
-				`	"I need to know what i have to do before i can accept this job."`
+				`	"I need to know what i have to do before I can accept this job."`
 				`	"I'm not looking for work right now"`
 					decline
-			`	"Oh, of course. I will tell you. From an team of Heliarch scientists i am. From a connection between humans and another species we heard. Because this connection another break in the quargs limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
+			`	"Oh, of course. I will tell you. From an team of Heliarch scientists I am. From a connection between humans and another species we heard. Because this connection another break in the Quarg's limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
 			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
 			choice
 				`	"I will do everything for science."`
@@ -2362,23 +2359,24 @@ mission "Coalition: Interesting Connections"
 					decline
 			`	"Ah thanks to you." He wishes you best luck and goes away.`
 				accept
-	on stopover Hai-home
+	on stopover
 		conversation
 			`When you landed on Hai Home you ask some people around for an historic library where you could find the info the Kimek is searching for. To your pleasure it is not taking long for gathering some data and you are ready to get back again.`
 	on complete
 		conversation
-			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope i can count on your help then." After he said that he is going away.`
+			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope I can count on your help then." After he said that he is going away.`
 
 		"coalition jobs" += 1
 		payment 100000
 		event "coalition: interest raises" 12
+
+event "coalition: interest raises"
 
 mission "Coalition: Hunger for Knowledge"
 	landing
 	name "Hunger for Knowledge"
 	description "A Heliarch Scientists team wants to know more about the Wormhole connecting Human and Hai-Space"
 	to offer
-		has "Coalition: Interesting Connections: done"
 		has "event: coalition: interest raises"
 	source
 		planet "Ring of Wisdom"
@@ -2388,10 +2386,10 @@ mission "Coalition: Hunger for Knowledge"
 		planet "Ring of Wisdom"
 	on offer
 		conversation
-			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you i have."`
+			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you I have."`
 			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
 			choice
-				`	"Yeah i got some time."`
+				`	"Yeah I got some time."`
 				`   "What do you think you will find?"`
 					goto purpose
 				`	"I'm not looking for work right now"`
