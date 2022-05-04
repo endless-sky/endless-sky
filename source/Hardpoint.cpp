@@ -234,7 +234,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim + projectileInaccuracy, visuals);
 
 	// Update the reload and burst counters, and expend ammunition if applicable.
-	Fire(ship, start, aim);
+	Fire(ship, start, aim + projectileInaccuracy);
 }
 
 
