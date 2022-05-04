@@ -892,7 +892,7 @@ void Ship::AddBay(Hardpoint hardpoint, long unsigned int bayIndex)
 void Ship::UpdateBay(Bay &bay, Hardpoint hardpoint, long unsigned int bayIndex)
 {
 	bay.bayIndex = bayIndex;
-	bay.point = Point(0., 0.) + hardpoint.GetPoint();
+	bay.point = hardpoint.GetPoint();
 	bay.side = (hardpoint.IsTurret()) ? Bay::OVER : Bay::UNDER;
 	if(hardpoint.IsTurret() && bay.point.X() < 0)
 		bay.facing = BAY_ANGLE[4];
