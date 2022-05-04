@@ -34,6 +34,15 @@ namespace {
 }
 
 
+Angle Projectile::Inaccuracy(double value) {
+	Angle projectileInaccuracy;
+	if(value)
+		projectileInaccuracy = Angle::Random(value) - Angle::Random(value);
+	return projectileInaccuracy;
+}
+
+
+
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
@@ -111,13 +120,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-				{
-					Angle projectileInaccuracy;
-					double outfitInaccuracy = it.weapon->Inaccuracy();
-					if(outfitInaccuracy)
-						projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
-					projectiles.emplace_back(*this, it.offset, it.facing + projectileInaccuracy, it.weapon);
-				}
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
 		}
 		MarkForRemoval();
 		return;
