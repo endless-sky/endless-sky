@@ -179,6 +179,11 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
 	}
+	else if(key == SDLK_HOME || key == SDLK_END)
+	{
+		double direction = (key == SDLK_HOME) - (key == SDLK_END);
+		Drag(0., maxScroll * direction);
+	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
 		// Find the index of the currently selected line.

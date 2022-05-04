@@ -1296,7 +1296,7 @@ mission "Pirate Troubles [1]: Farpoint"
 	on offer
 		conversation
 			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
-			`	You return to your ships and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
+			`	You return to your ship and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
 				decline
 
 
