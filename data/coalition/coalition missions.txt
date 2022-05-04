@@ -2418,13 +2418,14 @@ mission "Coalition: Hunger for Knowledge"
 		payment 200000
 		event "coalation: wormhole evaluated" 17
 
+event "coalition: wormhole evaluated"
+
 mission "Coalition: Last Info"
 	landing
 	name "Last Info"
 	description ""
 	to offer
 		random < 80
-		has "Coalition: Hunger for Knowledge: done"
 		has "event: coalation: wormhole evaluated"
 	source
 		planet "Ring of Wisdom"
