@@ -2367,7 +2367,8 @@ mission "Coalition: Interesting Connections"
 			`When you landed on Hai Home you ask some people around for an historic library where you could find the info the Kimek is searching for. To your pleasure it is not taking long for gathering some data and you are ready to get back again.`
 	on complete
 		conversation
-			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human new horizons for us opened, maybe for you help i will ask another time."`
+			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope i can count on your help then." After he said that he is going away.`
+
 		"coalition jobs" += 1
 		payment 100000
 		event "coalition: interest raises" 12
@@ -2387,8 +2388,8 @@ mission "Coalition: Hunger for Knowledge"
 		planet "Ring of Wisdom"
 	on offer
 		conversation
-			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you i have.`
-			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan for me?"`
+			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you i have."`
+			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
 			choice
 				`	"Yeah i got some time."`
 				`   "What do you think you will find?"`
@@ -2396,20 +2397,23 @@ mission "Coalition: Hunger for Knowledge"
 				`	"I'm not looking for work right now"`
 					decline
 			`	"Very well take this small device it will do the scans." `
-			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
 				accept
 			label purpose
-			`    "No wormholes we have in our region of space. Thats why we would like to increase our knowledge about them."`
+			`    "No wormholes we have in our region of space. Thats why we would like to increase our knowledge about them. Furthermore we hope we get more informations about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
+			`    "Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
 			choice
 				`	"Fine i will do it."`
 				`	"Sorry but i have no time for something like that."`
 					decline
-			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." You leave.`
+			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satelite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
 			    accept
 	on complete
 		conversation
-			`With the data of the scanners you go to the Kimek. When you find him you hand the data over.`
+			`With the data of the scanners you go to the Kimek. When you find him you hand the data over to him.`
 			`    He takes the data device and thanks you. "It will take some time to evaluate the data but when i got something i will tell you."`
+			choice
+				`	"I am looking forward hearing the results"`
+				`   "Well see you."`
 		"coalition jobs" += 1
 		payment 200000
 		event "coalation: wormhole evaluated" 17
@@ -2427,5 +2431,5 @@ mission "Coalition: Last Info"
 	on offer
 		conversation
 			`When you enter the spaceport you see the Kimek from the science stuff taking to another Kimek. As he recognizes you he walks towards you.`
-			`    "Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you."`
+			`    "Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you. If we ever need help again i will contact you."`
 				decline
