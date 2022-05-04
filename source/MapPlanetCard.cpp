@@ -41,7 +41,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited) : has
 {
 	number = cards.size();
 	cards.emplace_back(this);
-	const Planet *planet = object.GetPlanet();
+	planet = object.GetPlanet();
 	hasSpaceport = planet->HasSpaceport();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
@@ -91,6 +91,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 		static const double textStart = planetCardInterface->GetValue("text start");
 		static const double categorySize = planetCardInterface->GetValue("category size");
 		static const double categories = planetCardInterface->GetValue("categories");
+		static const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 
 		// The yCoordinate refers to the center of this object.
 		double relativeY = y - yCoordinate;
@@ -99,25 +100,25 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 			isSelected = true;
 
 			// The first category is the planet name and is not selectable.
-			if(relativeY > textStart + categorySize && relativeY < textStart + categorySize * categories)
+			if(x > Screen::Left() + planetIconMaxSize && 
+					relativeY > textStart + categorySize && relativeY < textStart + categorySize * categories)
 				selectedCategory = (relativeY - textStart - categorySize) / categorySize;
 			else
 				clickAction = ClickAction::SELECTED;
 
 			static const int SHOW[4] = {MapPanel::SHOW_REPUTATION, MapPanel::SHOW_SHIPYARD,
-									MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_GOVERNMENT};
-			// Even if we did not just select that category, it should be the one shown on the map.
-			clickAction = static_cast<ClickAction>(SHOW[selectedCategory]);
-			if(clickAction == ClickAction::SHOW_SHIPYARD && clicks > 1)
-				clickAction = ClickAction::GOTO_SHIPYARD;
-			else if(clickAction == ClickAction::SHOW_OUTFITTER && clicks > 1)
-				clickAction = ClickAction::GOTO_OUTFITTER;
+										MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_GOVERNMENT};
+			if(clickAction != ClickAction::SELECTED)
+			{
+				clickAction = static_cast<ClickAction>(SHOW[selectedCategory]);
+				if(clickAction == ClickAction::SHOW_SHIPYARD && clicks > 1)
+					clickAction = ClickAction::GOTO_SHIPYARD;
+				else if(clickAction == ClickAction::SHOW_OUTFITTER && clicks > 1)
+					clickAction = ClickAction::GOTO_OUTFITTER;
+			}
 		}
-		else
-			isSelected = false;
 	}
-	else
-		isSelected = false;
+	isSelected = clickAction != ClickAction::NONE;
 	return clickAction;
 }
 
@@ -223,6 +224,13 @@ double MapPlanetCard::getScroll()
 void MapPlanetCard::clear()
 {
 	cards.clear();
+}
+
+
+
+const Planet *MapPlanetCard::getPlanet() const
+{
+	return planet;
 }
 
 

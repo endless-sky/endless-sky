@@ -266,9 +266,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			for(auto &card : planetCards)
 			{
 				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
-				if(clickAction == MapPlanetCard::ClickAction::SELECTED)
-					continue;
-				else if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
+				if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 				{
 					GetUI()->Pop(this);
 					GetUI()->Push(new MapShipyardPanel(*this, true));
@@ -278,8 +276,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					GetUI()->Pop(this);
 					GetUI()->Push(new MapOutfitterPanel(*this, true));
 				}
+				// Then this is the planet selected.
 				else if(clickAction != MapPlanetCard::ClickAction::NONE)
-					SetCommodity(static_cast<int>(clickAction));
+				{
+					selectedPlanet = card.getPlanet();
+					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
+						SetCommodity(static_cast<int>(clickAction));
+				}
 			}
 			return true;
 		}

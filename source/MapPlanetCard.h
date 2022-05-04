@@ -40,7 +40,7 @@ public:
 
 
 public:
-	// The object HAS to be a planet. (but we need its object for the sprite)
+	// For the orbit selection to work properly this has to be a planet.
 	explicit MapPlanetCard(const StellarObject &object, bool hasVisited);
 	~MapPlanetCard();
 	// Return if this one was clicked, whether or not we did something about it.
@@ -51,6 +51,8 @@ public:
 	bool Shown() const;
 	// Return the space available for this planet card on its current position.
 	double AvailableSpace() const;
+
+	const Planet *getPlanet() const;
 
 
 public:
@@ -67,6 +69,8 @@ protected:
 
 
 private:
+	const Planet *planet;
+
 	unsigned number;
 	bool isSelected = false;
 
