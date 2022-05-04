@@ -112,7 +112,6 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
 				{
-					// Determine the inaccuracy to add to a new projectile
 					Angle projectileInaccuracy;
 					double outfitInaccuracy = weapon->Inaccuracy();
 					if(outfitInaccuracy)

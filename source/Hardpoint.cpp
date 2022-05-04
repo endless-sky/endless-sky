@@ -223,7 +223,6 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	aim += angle;
 	start += aim.Rotate(outfit->HardpointOffset());
 
-	// Determine the inaccuracy to add to a new projectile
 	double outfitInaccuracy = outfit->Inaccuracy();
 	if(outfitInaccuracy)
 		aim += Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
