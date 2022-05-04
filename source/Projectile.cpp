@@ -113,7 +113,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					Angle projectileInaccuracy;
-					double outfitInaccuracy = weapon->Inaccuracy();
+					double outfitInaccuracy = it.weapon->Inaccuracy();
 					if(outfitInaccuracy)
 						projectileInaccuracy = Angle::Random(outfitInaccuracy) - Angle::Random(outfitInaccuracy);
 					projectiles.emplace_back(*this, it.offset, it.facing + projectileInaccuracy, it.weapon);
