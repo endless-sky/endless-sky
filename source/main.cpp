@@ -197,6 +197,13 @@ int main(int argc, char *argv[])
 	Audio::Quit();
 	GameWindow::Quit();
 
+#ifdef __ANDROID__
+	// just returning isn't enough. If the activity resumes, main() will get
+	// called a second time, and this game is entirely dependent on static and
+	// global variables that still retain old state.
+	exit(0);
+#endif
+
 	return 0;
 }
 

@@ -133,20 +133,15 @@ void Files::Init(const char * const *argv)
 	dataPath = resources + "data/";
 	imagePath = resources + "images/";
 	soundPath = resources + "sounds/";
-
 	if(config.empty())
 	{
 		// Find the path to the directory for saved games (and create it if it does
 		// not already exist). This can also be overridden in the command line.
-#if not defined __ANDROID__
       char *str = SDL_GetPrefPath("endless-sky", "saves");
 		if(!str)
 			throw runtime_error("Unable to get path to saves directory!");
 		savePath = str;
 		SDL_free(str);
-#else
-      savePath = SDL_AndroidGetInternalStoragePath();
-#endif
 #if defined _WIN32
 		FixWindowsSlashes(savePath);
 #endif
