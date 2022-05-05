@@ -2342,36 +2342,35 @@ mission "Coalition: Interesting Connections"
 	description "A team of Heliarch scientists want to know more about the connection between humans and Hai. Bring them some historic data from Hai Home."
 	to offer
 		has "coalition knows hai"
-	source
-		planet "Ring of Wisdom"
+	source "Ring of Wisdom"
 	stopover Hai-home
-	destination
-		planet "Ring of Wisdom"
 	on offer
 		conversation
-			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help i need from you. Of course i will pay you. Will you accept? `
+			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help I need from you. Of course I will pay you. Will you accept? `
 			choice
-				`	"I need to know what i have to do before i can accept this job."`
+				`	"I need to know what i have to do before I can accept this job."`
 				`	"I'm not looking for work right now"`
 					decline
-			`	"Oh, of course. I will tell you. From an team of Heliarch scientists i am. From a connection between humans and another species we heard. Because this connection another break in the quargs limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
-			`	This would mean to travel to Hai territory. As there is no data in human space that is public.`
+			`	"Oh, of course. I will tell you. From an team of Heliarch scientists I am. From a connection between humans and another species we heard. Because this connection another break in the Quarg's limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
+			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
 			choice
 				`	"I will do everything for science."`
 				`	"Sorry but that's a too long way for me."`
 					decline
 			`	"Ah thanks to you." He wishes you best luck and goes away.`
 				accept
-	on stopover Hai-home
+	on stopover
 		conversation
 			`When you landed on Hai Home you ask some people around for an historic library where you could find the info the Kimek is searching for. To your pleasure it is not taking long for gathering some data and you are ready to get back again.`
 	on complete
 		conversation
-			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope i can count on your help then." After he said that he is going away.`
+			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope I can count on your help then." After he said that he is going away.`
 
 		"coalition jobs" += 1
 		payment 100000
 		event "coalition: interest raises" 12
+
+event "coalition: interest raises"
 
 mission "Coalition: Hunger for Knowledge"
 	landing
@@ -2387,11 +2386,11 @@ mission "Coalition: Hunger for Knowledge"
 		planet "Ring of Wisdom"
 	on offer
 		conversation
-			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you i have."`
+			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you I have."`
 			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
 			choice
-				`	"Yeah i got some time."`
-				`	"What do you think you will find?"`
+				`	"Yeah I got some time."`
+				`   "What do you think you will find?"`
 					goto purpose
 				`	"I'm not looking for work right now"`
 					decline
@@ -2401,11 +2400,11 @@ mission "Coalition: Hunger for Knowledge"
 			`	"No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
 			`	"Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
 			choice
-				`	"Fine i will do it."`
-				`	"Sorry but i have no time for something like that."`
+				`	"Fine I will do it."`
+				`	"Sorry but I have no time for something like that."`
 					decline
-			`	He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
-				accept
+			`   He hands you a small device. "Attach this to your ships scanners I will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+			    accept
 	on complete
 		conversation
 			`With the data of the scanners you go to the Kimek. When you find him you hand the data over to him.`
@@ -2415,14 +2414,17 @@ mission "Coalition: Hunger for Knowledge"
 				`	"Well see you."`
 		"coalition jobs" += 1
 		payment 200000
-		event "coalation: wormhole evaluated" 17
+		event "coalition: wormhole evaluated" 17
+
+event "coalition: wormhole evaluated"
 
 mission "Coalition: Supernova Explorers: Intro"
 	landing
 	name "Supernova research I"
 	description ""
 	to offer
-		has "event: coalation: wormhole evaluated"
+		random < 80
+		has "event: coalition: wormhole evaluated"
 	source
 		planet "Ring of Wisdom"
 	destination
