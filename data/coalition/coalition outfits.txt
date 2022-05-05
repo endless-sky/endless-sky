@@ -103,6 +103,18 @@ outfit "Large Battery Module"
 	"energy capacity" 4500
 	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
+outfit "Heat Shield"
+	category "Systems"
+	licenses
+		Coalition
+	cost 1250000
+	thumbnail "outfit/Heat Shield"
+	"mass" 81
+	"outfit space" -81
+
+	"active cooling" 100000
+	"cooling energy" 1.4
+	description "The Heat Shield is a prototype developed by a group of Heliarch Scientists. Its main purpose is to enable flights near stars a short time before they get to a supernova. Allthough it has an immense cooling effect the time being able to be next to the star is not very long."
 
 outfit "Small Shield Module"
 	category "Systems"

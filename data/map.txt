@@ -20048,6 +20048,18 @@ system Quaru
 		period 361.516
 		offset 237
 
+system Questions
+	pos -1210.05 673.394
+	government Uninhabited
+	habitable 0
+	object
+		sprite star/wr1
+		period 10
+	object
+		sprite star/k5-old
+		period 10
+
+
 system Queri
 	pos 69 518
 	government Uninhabited

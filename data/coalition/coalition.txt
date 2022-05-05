@@ -319,7 +319,6 @@ outfitter "Heliarch"
 	"Ion Rain Gun"
 	"Local Map"
 
-
 shipyard "Arach"
 	"Arach Courier"
 	"Arach Freighter"

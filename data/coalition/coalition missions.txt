@@ -2355,7 +2355,7 @@ mission "Coalition: Interesting Connections"
 				`	"I'm not looking for work right now"`
 					decline
 			`	"Oh, of course. I will tell you. From an team of Heliarch scientists i am. From a connection between humans and another species we heard. Because this connection another break in the quargs limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
-			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
+			`	This would mean to travel to Hai territory. As there is no data in human space that is public.`
 			choice
 				`	"I will do everything for science."`
 				`	"Sorry but that's a too long way for me."`
@@ -2378,7 +2378,6 @@ mission "Coalition: Hunger for Knowledge"
 	name "Hunger for Knowledge"
 	description "A Heliarch Scientists team wants to know more about the Wormhole connecting Human and Hai-Space"
 	to offer
-		has "Coalition: Interesting Connections: done"
 		has "event: coalition: interest raises"
 	source
 		planet "Ring of Wisdom"
@@ -2392,44 +2391,51 @@ mission "Coalition: Hunger for Knowledge"
 			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
 			choice
 				`	"Yeah i got some time."`
-				`   "What do you think you will find?"`
+				`	"What do you think you will find?"`
 					goto purpose
 				`	"I'm not looking for work right now"`
 					decline
 			`	"Very well take this small device it will do the scans." `
 				accept
 			label purpose
-			`    "No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
-			`    "Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
+			`	"No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
+			`	"Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
 			choice
 				`	"Fine i will do it."`
 				`	"Sorry but i have no time for something like that."`
 					decline
-			`   He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
-			    accept
+			`	He hands you a small device. "Attach this to your ships scanners i will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+				accept
 	on complete
 		conversation
 			`With the data of the scanners you go to the Kimek. When you find him you hand the data over to him.`
-			`    He takes the data device and thanks you. "It will take some time to evaluate the data but when i got something i will tell you."`
+			`	He takes the data device and thanks you. "It will take some time to evaluate the data but when i got something i will tell you."`
 			choice
 				`	"I am looking forward hearing the results"`
-				`   "Well see you."`
+				`	"Well see you."`
 		"coalition jobs" += 1
 		payment 200000
 		event "coalation: wormhole evaluated" 17
 
-mission "Coalition: Last Info"
+mission "Coalition: Supernova Explorers: Intro"
 	landing
-	name "Last Info"
+	name "Supernova research I"
 	description ""
 	to offer
-		random < 80
-		has "Coalition: Hunger for Knowledge: done"
 		has "event: coalation: wormhole evaluated"
 	source
+		planet "Ring of Wisdom"
+	destination
 		planet "Ring of Wisdom"
 	on offer
 		conversation
 			`When you enter the spaceport you see the Kimek from the science stuff taking to another Kimek. As he recognizes you he walks towards you.`
-			`    "Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you. If we ever need help again i will contact you."`
-				decline
+			`	"Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you."`
+			`	"But we need your help again in another matter. You know what a supernova is?" Of course you know so you nod. "Good so i dont have to explain. In the north of our territory an old red star is going to get to a supernova. Unfortunately ther is no hyperspace link to this system. But we think if we give you the exact coordinates you can jump to this system."`
+			`	You look at him suspiciously. "Isnt it dangerous to get near to a supernova?" He nods "Yes normaly you would not be able to survive their. But this star is short before a supernova thats why the heat is very high but we were able to design a special heat shield for that. We will give it to you for the time you do this mission for us. Will you do it?"`
+			choice
+				`	"That sounds good, count on me."`
+				`	"Ah, this is too dangerous for me sorry."`
+					decline
+			`	"Very well, we will meet at Bright Echo in the Ancient Hope System.`
+				accept
