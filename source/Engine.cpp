@@ -2033,15 +2033,28 @@ void Engine::HandleMouseClicks()
 		}
 	}
 
-	// Treat an "empty" click as a request to clear targets.
+	// Handle "Empty" clicks
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
 	{
-		flagship->SetTargetShip(nullptr);
 		// If this is a touch event, treat an "empty" click as a request to move
 		// the flagship in that direction.
 		if (isFingerDown)
 		{
-			moveTowardActive = true;
+			// if the touch is on the flagship, treat it as a request to clear the
+			// target
+			if (flagship->GetMask().Range(clickPoint, flagship->Facing()) < clickRange)
+			{
+				flagship->SetTargetShip(nullptr);
+			}
+			else
+			{
+				moveTowardActive = true;
+			}
+		}
+		else
+		{
+			// Empty Mouse clicks should clear the target
+			flagship->SetTargetShip(nullptr);
 		}
 	}
 }

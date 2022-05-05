@@ -378,14 +378,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	if(activeCommands.Has(Command::SELECT))
 		player.SelectNext();
 
-	// The commands below here only apply if you have escorts or fighters.
-	if(player.Ships().size() < 2)
-		return;
-
-	// Toggle the "deploy" command for the fleet or selected ships.
-	if(activeCommands.Has(Command::DEPLOY))
-		IssueDeploy(player);
-
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	Orders newOrders;
 	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours())
@@ -394,6 +386,15 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = target;
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
+
+	// The commands below here only apply if you have escorts or fighters.
+	if(player.Ships().size() < 2)
+		return;
+
+	// Toggle the "deploy" command for the fleet or selected ships.
+	if(activeCommands.Has(Command::DEPLOY))
+		IssueDeploy(player);
+
 	if(activeCommands.Has(Command::HOLD))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
@@ -3865,7 +3866,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
-			
+
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
