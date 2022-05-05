@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -160,7 +161,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")
-				inaccuracy = value;
+				inaccuracy = fabs(value);
 			else if(key == "bloom")
 				bloom = value;
 			else if(key == "bloom time")
