@@ -34,13 +34,14 @@ namespace {
 }
 
 
-Angle Projectile::Inaccuracy(double value) {
-	Angle projectileInaccuracy;
-	if(value)
-		projectileInaccuracy = Angle::Random(value) - Angle::Random(value);
-	return projectileInaccuracy;
-}
 
+Angle Projectile::Inaccuracy(double value)
+{
+	Angle inaccuracy;
+	if(value)
+		inaccuracy = Angle::Random(value) - Angle::Random(value);
+	return inaccuracy;
+}
 
 
 
@@ -271,7 +272,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
-	distanceTraveled += velocity.Length() * intersection;
+	distanceTraveled += dV.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
