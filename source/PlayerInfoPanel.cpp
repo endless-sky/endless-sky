@@ -274,6 +274,10 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
 		Scroll((LINES_PER_PAGE - 2) * direction);
 	}
+	else if(key == SDLK_HOME)
+		Scroll(-player.Ships().size());
+	else if(key == SDLK_END)
+		Scroll(player.Ships().size());
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
 		if(panelState.AllSelected().empty())
