@@ -2455,6 +2455,7 @@ event "Questions found"
 
 mission "Coalition: Supernova Explorers: First Jump"
 	landing
+	deadline 5
 	name "Supernova research II"
 	description "Jump into the Questions system"
 	to offer
@@ -2477,9 +2478,14 @@ mission "Coalition: Supernova Explorers: First Jump"
 		outfit "Heat Shield"
 	on waypoint
 		dialog "As you enter the system you can immeadiatly see your ships temperature rising. You better get out of here as soon as possible."
+	on fail
+		outfit "Heat Shield" -1
+	on complete
+		outfit "Heat Shield" -1
 
 mission "Coalition: Supernova Explorers: Deploy probe"
 	landing
+	deadline 5
 	name "Supernova research III"
 	description "Jump into the Questions system and deploy a probe"
 	to offer
@@ -2502,11 +2508,17 @@ mission "Coalition: Supernova Explorers: Deploy probe"
 					decline
 			`	"Good we will install the probe on your ship. All you have to do is to get to this system again and deploy it there."`
 				accept
+		outfit "Heat Shield"
 	on waypoint
 		dialog "After you entered the system you deploy the probe."
+	on fail
+		outfit "Heat Shield" -1
+	on complete
+		outfit "Heat Shield" -1
 
 mission "Coalition: Supernova Explorers: Fixing Problems"
 	landing
+	deadline 5
 	name "Supernova research IV"
 	description "Jump into the Questions system and deploy another probe"
 	to offer
@@ -2527,8 +2539,13 @@ mission "Coalition: Supernova Explorers: Fixing Problems"
 			`	"Good we have a second one ready in ten minutes. Please wait so long."`
 			`	Ten minutes later the probe is installed you go for another trip to the supernova.`
 				accept
+		outfit "Heat Shield"
 	on waypoint
 		dialog "After you entered the system you deploy the probe. Hopefully it will work this time."
+	on fail
+		outfit "Heat Shield" -1
+	on complete
+		outfit "Heat Shield" -1
 
 event "Questions novad"
 	system Questions
