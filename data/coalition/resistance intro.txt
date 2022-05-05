@@ -408,7 +408,11 @@ mission "House Bebliss 1-B"
 			choice
 				`	"My request? What are you talking about?"`
 				`	"You've got the wrong person. I don't know either of you."`
-			`	"To our employee, what you said, it is," they answer. "To 'come in person next time' you requested." They 'invite' you to follow you into what looks like an expensive restaurant, serving typical Arach cuisine. The bulky Arachi don't give you much of a choice, barring you from going elsewhere, only letting up when you are seated. The two Arachi businessmen say they will pay for your meal, though you can't quite find much in the menu appealing to the human palate.`
+				`	"House Bebliss, right? Thank you for finally finding the time."`
+					goto remember
+			`	"To our employee, what you said, it is," they answer. "To 'come in person next time' you requested."`
+			label remember
+			`	They 'invite' you to follow you into what looks like an expensive restaurant, serving typical Arach cuisine. The bulky Arachi don't give you much of a choice, barring you from going elsewhere, only letting up when you are seated. The two Arachi businessmen say they will pay for your meal, though you can't quite find much in the menu appealing to the human palate.`
 			`	"Usually more... respectful about such requests from our House, people are, but hasty of us to approach a human Captain like we would an Arach one, it may have been," one of them says, going through the menu. "Still interested, the House is, so to entertain your request, we came."`
 			`	"Interested in your assistance, that is," the other continues, as he signals for one of the bodyguards to get a waiter. "An important job for you, we have."`
 			choice
@@ -524,7 +528,7 @@ mission "House Bebliss 3-FW"
 			choice
 				`	"So you're fine with letting them study the Pug artifacts with you?"`
 				`	"I can go back and tell them you've agreed then?"`
-			`	"Have you told the others about this?" She asks, and you tell her you haven't. "Alondo, Katya... they need to know about this 'Coalition,' even if they've no intention of invading us. I'll send word to them that you'll be heading to <planet> - you can tell them all the details there, answer their questions. When you're done, you can go pick up these Arachis and bring them here. It'll give me some more time to look at what they've sent me," she says, grabbing some sort of schematic from the suitcase.`
+			`	"Have you told the others about this?" She asks, and you tell her you haven't. "Alondo, Katya... they need to know about this 'Coalition,' even if they've no intention of invading us. I'll send word to them that you'll be heading to <planet> - you can tell them all the details there, answer their questions. When you're done, you can go pick up these Arachi and bring them here. It'll give me some more time to look at what they've sent me," she says, grabbing some sort of schematic from the suitcase.`
 			`	You say your goodbyes, and you head back to your ship.`
 				accept
 
