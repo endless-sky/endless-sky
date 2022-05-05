@@ -2387,10 +2387,10 @@ mission "Coalition: Hunger for Knowledge"
 	on offer
 		conversation
 			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you I have."`
-			`    You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
+			`	You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
 			choice
 				`	"Yeah I got some time."`
-				`   "What do you think you will find?"`
+				`	"What do you think you will find?"`
 					goto purpose
 				`	"I'm not looking for work right now"`
 					decline
@@ -2403,8 +2403,8 @@ mission "Coalition: Hunger for Knowledge"
 				`	"Fine I will do it."`
 				`	"Sorry but I have no time for something like that."`
 					decline
-			`   He hands you a small device. "Attach this to your ships scanners I will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
-			    accept
+			`	He hands you a small device. "Attach this to your ships scanners I will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+				accept
 	on complete
 		conversation
 			`With the data of the scanners you go to the Kimek. When you find him you hand the data over to him.`
@@ -2423,12 +2423,11 @@ mission "Coalition: Supernova Explorers: Intro"
 	name "Supernova research I"
 	description ""
 	to offer
-		random < 80
 		has "event: coalition: wormhole evaluated"
 	source
 		planet "Ring of Wisdom"
 	destination
-		planet "Ring of Wisdom"
+		planet "Bright Echo"
 	on offer
 		conversation
 			`When you enter the spaceport you see the Kimek from the science stuff taking to another Kimek. As he recognizes you he walks towards you.`
@@ -2441,3 +2440,129 @@ mission "Coalition: Supernova Explorers: Intro"
 					decline
 			`	"Very well, we will meet at Bright Echo in the Ancient Hope System.`
 				accept
+
+event "Questions found"
+	system Questions
+		pos -1210.05 673.394
+		government Uninhabited
+		hazard "Pre Supernova" 1
+		object "S1"
+			sprite star/wr1
+			period 12.6101
+		object "S2"
+			sprite star/k5-old
+			period 12.6101
+
+mission "Coalition: Supernova Explorers: First Jump"
+	landing
+	name "Supernova research II"
+	description "Jump into the Questions system"
+	to offer
+		has "Coalition: Supernova Explorers: Intro: done"
+	source
+		planet "Bright Echo"
+	destination
+		planet "Bright Echo"
+	waypoint Questions
+	on offer
+		conversation
+			`After you landed on the planet you are directly approached by the Kimek. "Welcome Captain, nice to see you here. We have a small base here so we can coordinate everything next to the supernova system. If you do not mind we will directly install the Heat shield."`
+			choice
+				`	"Ok, go on."`
+				`	"Sorry but now i dont think thats a good idea."`
+					decline
+			`	"Good your mission will be to jump into the system and directly get back, we will just test the device."`
+				accept
+		event "Questions found" 0
+		outfit "Heat Shield"
+	on waypoint
+		dialog "As you enter the system you can immeadiatly see your ships temperature rising. You better get out of here as soon as possible."
+
+mission "Coalition: Supernova Explorers: Deploy probe"
+	landing
+	name "Supernova research III"
+	description "Jump into the Questions system and deploy a probe"
+	to offer
+		has "Coalition: Supernova Explorers: First Jump: done"
+	source
+		planet "Bright Echo"
+	destination
+		planet "Bright Echo"
+	waypoint Questions
+	on offer
+		conversation
+			`When you landed you head for the scientists lab. There you see the Kikek. As he recognizes you he comes towards you. "Hello Captain, I see the Heat Shield worked?"`
+			choice
+				`	"Its cooling is impressive."`
+				`	"The heat is still a problem but yes."`
+			`	"I am happy to hear that. Now that you can visit the system we can deploy the probe there that we build. Are you ready for that?"`
+			choice
+				`	"Of course"`
+				`	"Sorry but i would like to stop this here."`
+					decline
+			`	"Good we will install the probe on your ship. All you have to do is to get to this system again and deploy it there."`
+				accept
+	on waypoint
+		dialog "After you entered the system you deploy the probe."
+
+mission "Coalition: Supernova Explorers: Fixing Problems"
+	landing
+	name "Supernova research IV"
+	description "Jump into the Questions system and deploy another probe"
+	to offer
+		has "Coalition: Supernova Explorers: Deploy probe: done"
+	source
+		planet "Bright Echo"
+	destination
+		planet "Bright Echo"
+	waypoint Questions
+	on offer
+		conversation
+			`Directly after your landing you head for the lab. There you meet the Kimek. "Ah, welcome again. We are right now getting first dta from the probe."`
+			`	Suddenly an alarm starts. You look around all the scientists are in panic. "What is it?" The Kimek answers "We lost connection to the drone there had to be some issue in the heat shielding now we have to hurry and bring another one there before the supernova starts.Will you do this last job for us?"`
+			choice
+				`	"I started it, now i will bring it to an end."`
+				`	"This is getting to dangerous for me, sorry."`
+					decline
+			`	"Good we have a second one ready in ten minutes. Please wait so long."`
+			`	Ten minutes later the probe is installed you go for another trip to the supernova.`
+				accept
+	on waypoint
+		dialog "After you entered the system you deploy the probe. Hopefully it will work this time."
+
+event "Questions novad"
+	system Questions
+		pos -1210.05 673.394
+		government Uninhabited
+		hazard "Pre Supernova" 1
+		remove object "S1"
+			sprite star/wr1
+			period 12.6101
+		remove object "S2"
+			sprite star/k5-old
+			period 12.6101
+		add object
+			sprite star/nova
+			period 1000
+		add object
+			sprite star/nova-core
+			period 1000
+
+
+mission "Coalition: Supernova Explorers: Conclusion"
+	landing
+	name "Supernova research V"
+	description ""
+	to offer
+		has "Coalition: Supernova Explorers: Fixing Problems: done"
+	source
+		planet "Bright Echo"
+	on offer
+		conversation
+			`When you got to the Lab the Kimek is shouting to you. "Come here we are getting first pictures of the nova."`
+			scene scene/supernova
+			`	All of you are looking at the impressive pictures for some while. After the Nova ended the Kimek is talking to you again. "It was ice to work with you. I hope we will meet again in the future."`
+				decline
+		payment 1250000
+		event "Questions novad"
+

@@ -109,10 +109,10 @@ outfit "Heat Shield"
 		Coalition
 	cost 1250000
 	thumbnail "outfit/Heat Shield"
-	"mass" 81
-	"outfit space" -81
+	"mass" 0
+	"outfit space" -0
 
-	"active cooling" 100000
+	"cooling" 4900
 	"cooling energy" 1.4
 	description "The Heat Shield is a prototype developed by a group of Heliarch Scientists. Its main purpose is to enable flights near stars a short time before they get to a supernova. Allthough it has an immense cooling effect the time being able to be next to the star is not very long."
 
