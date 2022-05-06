@@ -37,7 +37,8 @@ double MapPlanetCard::scroll = 0.;
 
 
 
-MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited) : hasVisited(hasVisited), planetName(object.Name())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited)
+	: hasVisited(hasVisited), planetName(object.Name())
 {
 	number = cards.size();
 	cards.emplace_back(this);
@@ -158,9 +159,11 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		static const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
 		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. && 
 				availableBottomSpace >= height / 2. + spriteScale * sprite->Height() / 2.)
-			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., uiPoint.Y() + (textStartingPosition - textStart) + height / 2.), spriteScale);
+			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., 
+				uiPoint.Y() + (textStartingPosition - textStart) + height / 2.), spriteScale);
 		
-		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height](double number)
+		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height]
+			(double number)
 		{
 			return availableTopSpace >= textStart + categorySize * number &&
 				availableBottomSpace >= height - (textStart + categorySize * number);
@@ -171,16 +174,21 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		static const double margin = mapInterface->GetValue("text margin");
 		if(FitsCategory(4.))
-			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), hasSpaceport ? medium : faint);
+			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), 
+				hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
-			font.Draw("Shipyard", uiPoint + Point(margin, textStartingPosition + categorySize * 2.), hasShipyard ? medium : faint);
+			font.Draw("Shipyard", uiPoint + Point(margin, textStartingPosition + categorySize * 2.), 
+				hasShipyard ? medium : faint);
 		if(FitsCategory(2.))
-			font.Draw("Outfitter", uiPoint + Point(margin, textStartingPosition + categorySize * 3.), hasOutfitter ? medium : faint);
+			font.Draw("Outfitter", uiPoint + Point(margin, textStartingPosition + categorySize * 3.), 
+				hasOutfitter ? medium : faint);
 		if(FitsCategory(1.))
-			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)", uiPoint + Point(margin, textStartingPosition + categorySize * 4.), dim);
+			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)", 
+				uiPoint + Point(margin, textStartingPosition + categorySize * 4.), dim);
 
 		if(FitsCategory(categories - (selectedCategory + 1.)))
-			PointerShader::Draw(uiPoint + Point(margin, textStartingPosition + 8. + (selectedCategory + 1) * categorySize), Point(1., 0.), 10.f, 10.f, 0.f, medium);
+			PointerShader::Draw(uiPoint + Point(margin, textStartingPosition + 8. + (selectedCategory + 1) * categorySize), 
+				Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		if(isSelected)
 			Highlight(min(availableBottomSpace, availableTopSpace));
