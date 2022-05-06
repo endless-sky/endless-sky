@@ -1216,6 +1216,7 @@ ship "Heliarch Pursuer"
 	explode "small explosion" 10
 	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
 	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1272,6 +1273,7 @@ ship "Heliarch Rover"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1327,6 +1329,7 @@ ship "Heliarch Stalker"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits
