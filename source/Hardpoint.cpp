@@ -276,7 +276,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// Create a new projectile, originating from this hardpoint.
 	// In order to get projectiles to start at the right position they are drawn
 	// at an offset of (.5 * velocity). See BatchDrawList.cpp for more details.
-	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit, Bloom());
+	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit);
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
