@@ -56,6 +56,9 @@ private:
 	// Check if you are in the midst of hand to hand combat.
 	bool CanAttack() const;
 
+	// Handle the keyboard scrolling and selection in the panel list.
+	void DoKeyboardNavigation(const SDL_Keycode key);
+
 
 private:
 	// This class represents one item in the list of outfits you can plunder.
