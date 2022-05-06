@@ -85,7 +85,7 @@
 	"planet/wormhole"
 	"planet/wormhole-red"
 
-"landing message" "You cannot land on a black hole."
+"landing message" "You cannot land on a black hole!"
 	"star/black-hole"
 	"star/black-hole-core"
 
