@@ -14,43 +14,43 @@ outfit "Supercapacitor"
 	thumbnail "outfit/supercapacitor"
 	"mass" 1
 	"outfit space" -1
-	"energy capacity" 300
+	"energy capacity" 350
 	description "With a powerful enough generator, many ships do not need batteries at all. The one exception is projectile weapons, which usually require a burst of energy far exceeding what the generator produces. Supercapacitors provide just enough energy storage for those weapons, without requiring you to install a bulky battery pack."
 
 outfit "LP036a Battery Pack"
 	category "Power"
 	cost 6000
 	thumbnail "outfit/tiny battery"
-	"mass" 5
-	"outfit space" -5
-	"energy capacity" 2000
+	"mass" 10
+	"outfit space" -10
+	"energy capacity" 4000
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
 outfit "LP072a Battery Pack"
 	category "Power"
 	cost 15000
 	thumbnail "outfit/small battery"
-	"mass" 10
-	"outfit space" -10
-	"energy capacity" 4400
+	"mass" 20
+	"outfit space" -20
+	"energy capacity" 8800
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
 outfit "LP144a Battery Pack"
 	category "Power"
 	cost 33500
 	thumbnail "outfit/medium battery"
-	"mass" 20
-	"outfit space" -20
-	"energy capacity" 9600
+	"mass" 40
+	"outfit space" -40
+	"energy capacity" 19200
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
 outfit "LP288a Battery Pack"
 	category "Power"
 	cost 75000
 	thumbnail "outfit/large battery"
-	"mass" 40
-	"outfit space" -40
-	"energy capacity" 20800
+	"mass" 60
+	"outfit space" -60
+	"energy capacity" 31200
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
 outfit "LP576a Battery Pack"
