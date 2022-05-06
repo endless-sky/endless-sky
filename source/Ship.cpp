@@ -2219,7 +2219,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew()) || IsFighterOutOfEnergy();
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew()) || IsOutOfEnergy();
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2383,7 +2383,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
 		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
-		if(!victim.get()->IsFighterOutOfEnergy())
+		if(!victim.get()->IsOutOfEnergy())
 			victim->isDisabled = false;
 		// Transfer some fuel if needed.  If your escort is a fighter it should refuel the fleet to maximum.
 		if(!victim->JumpsRemaining() || (IsYours() && CanRefuel(*victim)))
@@ -2394,8 +2394,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 			else
 				TransferFuel(fuel, victim.get());
 		}
-		if(victim.get()->IsFighterOutOfEnergy() && !IsEnergyLow())
-			TransferEnergy(energy, victim.get());
+		if(victim.get()->IsOutOfEnergy() && !IsEnergyLow())
+			TransferEnergy(GetSpareEnergy(), victim.get());
 		if(helped)
 		{
 			pilotError = 120;
@@ -2633,7 +2633,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	bool outOfEnergy = IsFighterOutOfEnergy();
+	bool outOfEnergy = IsOutOfEnergy();
 	return hull < minimumHull || (!crew && needsCrew) || outOfEnergy;
 }
 
@@ -2662,6 +2662,8 @@ bool Ship::IsArmed(bool includingAntiMissile) const
 	}
 	return false;
 }
+
+
 
 // Check for enemies in the in the current system if ship is owned by player.
 bool Ship::IsEnemyInEscortSystem() const
@@ -2698,8 +2700,8 @@ bool Ship::IsEnergyLow() const
 	{
 		double secondsToEmpty = currentEnergy / (-totalConsumption);
 		// how quickly can it charge under no energy load
-		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : 11.;
-		if((secondsToEmpty < 10. && secondsToFullCharge > 10.) || (secondsToEmpty < 10. && idleEnergy <= 0.))
+		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : minimumOperatingTime + 1.;
+		if((secondsToEmpty < minimumOperatingTime && secondsToFullCharge > minimumOperatingTime) || (secondsToEmpty < minimumOperatingTime && idleEnergy <= 0.))
 			return true;
 	}
 	return false;
@@ -2728,15 +2730,16 @@ bool Ship::IsEscortsFullOfFuel() const
 
 
 
-// Out of energy fighters will be disabled if far away from the parent.  This is
-// so the parent can board the fighter however the fighter needs to not be
-// disabled in order to board the carrier.
-bool Ship::IsFighterOutOfEnergy() const
+// Out of energy ships will be disabled.  Out of energy fighters will be
+// disabled if far away from the parent.  This is so the parent can board the
+// fighter however the fighter needs to not be disabled in order to board the
+// carrier.
+bool Ship::IsOutOfEnergy() const
 {
-	bool closeToParent = true;
+	bool closeToParent = false;
 	if(canBeCarried)
 	{
-		if(GetParent())
+		if(GetParent() && GetParent()->CanCarry(*this))
 		{
 			Point dp = GetParent().get()->Position() - position;
 			Point dv = GetParent().get()->Velocity() - velocity;
@@ -4343,4 +4346,21 @@ double Ship::GetEnergyConsumptionPerFrame() const
 double Ship::GetSolarScale() const
 {
 	return .2 + 1.8 / (.001 * position.Length() + 1);
+}
+
+
+
+// Enough energy for 11 seconds of sustained flight is considered minimum
+// energy.  Actual energy minus this value is considered spare energy.
+double Ship::GetSpareEnergy() const
+{
+	double maxEnergy = min(energy, Attributes().Get("energy capacity"));
+	double totalConsumption = 60 * GetEnergyConsumptionPerFrame();
+	double minimumOperationEnergy = 0.;
+	// All energy is available for sharing if there's any energy generation.
+	if(GetIdleEnergyPerFrame() <= 0.)
+	{
+		minimumOperationEnergy = minimumOperatingTime * (-totalConsumption);
+	}
+	return maxEnergy - minimumOperationEnergy;
 }

@@ -432,7 +432,7 @@ public:
 	bool IsEnemyInEscortSystem() const;
 	bool IsEnergyLow() const;
 	bool IsEscortsFullOfFuel() const;
-	bool IsFighterOutOfEnergy() const;
+	bool IsOutOfEnergy() const;
 	bool IsFuelLow() const;
 	bool IsFuelLow(double compareTo) const;
 	bool IsRefueledByRamscoop() const;
@@ -447,6 +447,7 @@ public:
 	double GetRegenEnergyPerFrame() const;
 	double GetShieldEnergyPerFrame() const;
 	double GetSolarScale() const;
+	double GetSpareEnergy() const;
 
 
 private:
@@ -517,6 +518,9 @@ private:
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+	// Number of seconds a battery powered ship or fighter should be able to
+	// operate minimally.
+	double minimumOperatingTime = 10.;
 
 	Command commands;
 	FireCommand firingCommands;
