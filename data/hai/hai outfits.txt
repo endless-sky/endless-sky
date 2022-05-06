@@ -371,7 +371,7 @@ outfit "Hai Chasm Batteries"
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 1964
+	"energy capacity" 2100
 	description "Hai power storage technology is thousands of years old, but remarkably simple and robust. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
