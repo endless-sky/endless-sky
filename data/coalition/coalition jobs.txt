@@ -1380,7 +1380,7 @@ mission "Evacuate Resistance Fail"
 		government "Coalition"
 		distance 3 5
 	on stopover
-		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive, instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
+		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive. Instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
 		fail
 
 
