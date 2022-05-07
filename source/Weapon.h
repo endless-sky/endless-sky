@@ -100,7 +100,6 @@ public:
 	double Turn() const;
 	double Inaccuracy() const;
 	double InaccuracySmoothness() const;
-	std::normal_distribution<double> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -346,7 +345,6 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::InaccuracySmoothness() const { return inaccuracySmoothness; }
-inline std::normal_distribution<double> Weapon::InaccuracyDistribution() const { return inaccuracyDistribution; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

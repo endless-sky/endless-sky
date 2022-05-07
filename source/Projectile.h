@@ -49,7 +49,7 @@ public:
 
 
 public:
-	static Angle Inaccuracy(double value, double smoothness, std::normal_distribution<double> distribution);
+	static Angle Inaccuracy(double value, double smoothness);
 
 
 public:

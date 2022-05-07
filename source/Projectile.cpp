@@ -35,22 +35,21 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(double effectiveInaccuracy, double smoothness, std::normal_distribution<double> distribution)
+Angle Projectile::Inaccuracy(double value, double smoothness)
 {
 	Angle inaccuracy;
-	if(effectiveInaccuracy)
+	if(value)
 	{
 		if(!smoothness)
-			inaccuracy = Angle::Random(2 * effectiveInaccuracy) - Angle(effectiveInaccuracy);
+			inaccuracy = Angle::Random(2 * value) - Angle(value);
 		else
 		{
-			std::random_device rd{};
-			std::mt19937 gen{rd()};
-			double randomFactor = distribution(gen);
+			double randomFactor = Random::Normal();
 			// Invert smoothness so that higher stat values are associated with greater realized smoothness.
 			// Do it here so that the true value of the stat is retained for any other calculations.
-			// Multiplying smoothness by 0.4351 mimics legacy behavior with default smoothness.
-			smoothness = 1. / (smoothness * 0.4351);
+			smoothness = 1. / smoothness;
+			// Multiplying smoothness by 2.318 mimics legacy behavior with a smoothness stat of 1 (default).
+			smoothness *= 2.317;
 			// Compress values above and below the mean into [0, 1]
 			// where the range pulled is determined by smoothness.
 			randomFactor = (randomFactor + smoothness) / (2 * smoothness);
@@ -62,7 +61,7 @@ Angle Projectile::Inaccuracy(double effectiveInaccuracy, double smoothness, std:
 			if(randomFactor < 0)
 				randomFactor++;
 
-			inaccuracy = Angle(2 * effectiveInaccuracy * randomFactor)  - Angle(effectiveInaccuracy);
+			inaccuracy = Angle(2 * value * randomFactor)  - Angle(value);
 		}
 	}
 	return inaccuracy;
@@ -143,7 +142,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					Weapon const *subWeapon = it.weapon;
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy(),  subWeapon->InaccuracySmoothness(), subWeapon->InaccuracyDistribution()), subWeapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy(),  subWeapon->InaccuracySmoothness()), subWeapon);
 				}
 		}
 		MarkForRemoval();
