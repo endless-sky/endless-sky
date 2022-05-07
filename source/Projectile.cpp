@@ -48,6 +48,8 @@ Angle Projectile::Inaccuracy(double value, double smoothness, std::normal_distri
 			std::mt19937 gen{rd()};
 			double integralPart;
 			double randomFactor = modf((distribution(gen) + smoothness) / (2 * smoothness), &integralPart);
+			if(randomFactor < 0)
+				randomFactor++;
 			double effectiveInaccuracy = randomFactor * value;
 			inaccuracy = Angle(2 * effectiveInaccuracy)  - Angle(value);
 		}
