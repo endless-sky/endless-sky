@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstddef>
 #include <map>
+#include <random>
 #include <utility>
 #include <vector>
 
@@ -98,6 +99,8 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
+	double InaccuracySmoothness() const;
+	std::normal_distribution<double> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -245,6 +248,8 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
+	double inaccuracySmoothness = 1.;
+	std::normal_distribution<double> inaccuracyDistribution;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -340,6 +345,8 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
+inline double Weapon::InaccuracySmoothness() const { return inaccuracySmoothness; }
+inline std::normal_distribution<double> Weapon::InaccuracyDistribution() const { return inaccuracyDistribution; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

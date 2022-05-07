@@ -151,7 +151,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "inaccuracy")
 				inaccuracy = value;
-			else if(key == "turret turn")
+			else if(key == "inaccuracy smoothness")
+				inaccuracySmoothness = value;
+		   else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
@@ -306,6 +308,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+
+	inaccuracyDistribution = std::normal_distribution<double>(0., 1.);
 }
 
 
