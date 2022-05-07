@@ -38,12 +38,15 @@ public:
 
 	// Return the amount of value that the given input can output
 	// given the maximum possible output and its cost.
-	double FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double max) const;
+	// This only checks hull, shield, energy, heat, and fuel costs.
+	double FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const;
 
-	// Apply damage * scale to the input.
+	// Apply damage * scale to the input as damage. Hull, shields, energy, and fuel
+	// are subtracted from input while all other levels are added to input.
 	void Damage(EnergyLevels &input, const EnergyLevels &damage, double scale = 1.) const;
 
 	// Return true if the given input has the energy to expend on the cost.
+	// This only checks hull, shield, energy, heat, and fuel costs.
 	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
 
 
