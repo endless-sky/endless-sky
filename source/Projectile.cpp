@@ -48,7 +48,7 @@ Angle Projectile::Inaccuracy(double value, double smoothness)
 			// Invert smoothness so that higher stat values are associated with greater realized smoothness.
 			// Do it here so that the true value of the stat is retained for any other calculations.
 			smoothness = 1. / smoothness;
-			// Multiplying smoothness by 2.318 mimics legacy behavior with a smoothness stat of 1 (default).
+			// Multiplying smoothness by 2.317 mimics legacy behavior with a smoothness stat of 1 (default).
 			smoothness *= 2.317;
 			// Compress values above and below the mean into [0, 1]
 			// where the range pulled is determined by smoothness.
