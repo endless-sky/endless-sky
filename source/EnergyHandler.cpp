@@ -351,11 +351,11 @@ void EnergyHandler::Afterburner(const Outfit &attributes)
 {
 	afterburnerLevels.wildcard = attributes.Get("afterburner thrust");
 
-	afterburnerLevels.shields = attributes.Get("afterburner shields");
 	afterburnerLevels.hull = attributes.Get("afterburner hull");
+	afterburnerLevels.shields = attributes.Get("afterburner shields");
 	afterburnerLevels.energy = attributes.Get("afterburner energy");
+	afterburnerLevels.heat = attributes.Get("afterburner heat");
 	afterburnerLevels.fuel = attributes.Get("afterburner fuel");
-	afterburnerLevels.heat = -attributes.Get("afterburner heat");
 
 	afterburnerLevels.corrosion = attributes.Get("afterburner corrosion");
 	afterburnerLevels.discharge = attributes.Get("afterburner discharge");
