@@ -35,23 +35,34 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(double value, double smoothness, std::normal_distribution<double> distribution)
+Angle Projectile::Inaccuracy(double effectiveInaccuracy, double smoothness, std::normal_distribution<double> distribution)
 {
 	Angle inaccuracy;
-	if(value)
+	if(effectiveInaccuracy)
 	{
 		if(!smoothness)
-			inaccuracy = Angle::Random(2 * value) - Angle(value);
+			inaccuracy = Angle::Random(2 * effectiveInaccuracy) - Angle(effectiveInaccuracy);
 		else
 		{
 			std::random_device rd{};
 			std::mt19937 gen{rd()};
-			double integralPart;
-			double randomFactor = modf((distribution(gen) + smoothness) / (2 * smoothness), &integralPart);
+			double randomFactor = distribution(gen);
+			// Invert smoothness so that higher stat values are associated with greater realized smoothness.
+			// Do it here so that the true value of the stat is retained for any other calculations.
+			// Multiplying smoothness by 0.4351 mimics legacy behavior with default smoothness.
+			smoothness = 1. / (smoothness * 0.4351);
+			// Compress values above and below the mean into [0, 1]
+			// where the range pulled is determined by smoothness.
+			randomFactor = (randomFactor + smoothness) / (2 * smoothness);
+			// Retain only the fractional information.  This facilitates realized smoothness
+			// as fractional information is often redundant if not fully compressed.
+			// Might be possible to get away with int32_t here, not sure.
+			randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
+			// Push negative values into the usable range.
 			if(randomFactor < 0)
 				randomFactor++;
-			double effectiveInaccuracy = randomFactor * value;
-			inaccuracy = Angle(2 * effectiveInaccuracy)  - Angle(value);
+
+			inaccuracy = Angle(2 * effectiveInaccuracy * randomFactor)  - Angle(effectiveInaccuracy);
 		}
 	}
 	return inaccuracy;

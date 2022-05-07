@@ -308,8 +308,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
-
-	inaccuracyDistribution = std::normal_distribution<double>(0., 1.);
 }
 
 
