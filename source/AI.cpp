@@ -3498,7 +3498,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::BOARD)
-			&& (!target || target->GetGovernment()->IsEnemy()))
+			&& (!target || target->GetGovernment()->IsEnemy() || activeCommands.Has(Command::FIGHT)))
 		AutoFire(ship, firingCommands, false);
 	if(activeCommands)
 	{
