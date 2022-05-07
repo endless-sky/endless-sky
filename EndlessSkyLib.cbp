@@ -128,6 +128,9 @@
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
 		<Unit filename="source/Effect.h" />
+		<Unit filename="source/EnergyHandler.cpp" />
+		<Unit filename="source/EnergyHandler.h" />
+		<Unit filename="source/EnergyLevels.h" />
 		<Unit filename="source/Engine.cpp" />
 		<Unit filename="source/Engine.h" />
 		<Unit filename="source/EscortDisplay.cpp" />

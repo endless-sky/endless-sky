@@ -123,38 +123,38 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		double piercing = max(0., min(1., weapon.Piercing() / (1. + attributes.Get("piercing protection")) - attributes.Get("piercing resistance")));
 		shieldFraction = (1. - piercing) / (1. + ship.DisruptionLevel() * .01);
 
-		damage.shieldDamage = (weapon.ShieldDamage()
+		damage.levels.shields = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
 			* ScaleType(0., attributes.Get("shield protection"));
-		if(damage.shieldDamage > shields)
-			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
+		if(damage.levels.shields > shields)
+			shieldFraction = min(shieldFraction, shields / damage.levels.shields);
 	}
 
 	// Instantaneous damage types.
 	// Energy, heat, and fuel damage are blocked 50% by shields.
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
-	damage.shieldDamage *= shieldFraction;
-	damage.hullDamage = (weapon.HullDamage()
+	damage.levels.shields *= shieldFraction;
+	damage.levels.hull = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
 		* ScaleType(1., attributes.Get("hull protection"));
 	double hull = ship.HullUntilDisabled();
-	if(damage.hullDamage > hull)
+	if(damage.levels.hull > hull)
 	{
-		double hullFraction = hull / damage.hullDamage;
-		damage.hullDamage *= hullFraction;
-		damage.hullDamage += (weapon.DisabledDamage()
+		double hullFraction = hull / damage.levels.hull;
+		damage.levels.hull *= hullFraction;
+		damage.levels.hull += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
 			* ScaleType(1., attributes.Get("hull protection"))
 			* (1. - hullFraction);
 	}
-	damage.energyDamage = (weapon.EnergyDamage()
+	damage.levels.energy = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
 		* ScaleType(.5, attributes.Get("energy protection"));
-	damage.heatDamage = (weapon.HeatDamage()
+	damage.levels.heat = (weapon.HeatDamage()
 		+ weapon.RelativeHeatDamage() * ship.MaximumHeat())
 		* ScaleType(.5, attributes.Get("heat protection"));
-	damage.fuelDamage = (weapon.FuelDamage()
+	damage.levels.fuel = (weapon.FuelDamage()
 		+ weapon.RelativeFuelDamage() * attributes.Get("fuel capacity"))
 		* ScaleType(.5, attributes.Get("fuel protection"));
 
@@ -162,16 +162,16 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 0%.
-	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., attributes.Get("discharge protection"));
-	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., attributes.Get("corrosion protection"));
-	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, attributes.Get("ion protection"));
-	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, attributes.Get("burn protection"));
-	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., attributes.Get("leak protection"));
+	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., attributes.Get("discharge protection"));
+	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., attributes.Get("corrosion protection"));
+	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, attributes.Get("ion protection"));
+	damage.levels.burn = weapon.BurnDamage() * ScaleType(.5, attributes.Get("burn protection"));
+	damage.levels.leakage = weapon.LeakDamage() * ScaleType(1., attributes.Get("leak protection"));
 
 	// Unique special damage types.
 	// Disruption and slowing are blocked 50% by shields.
-	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(.5, attributes.Get("disruption protection"));
-	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, attributes.Get("slowing protection"));
+	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(.5, attributes.Get("disruption protection"));
+	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, attributes.Get("slowing protection"));
 
 	// Hit force is blocked 0% by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., attributes.Get("force protection"));
