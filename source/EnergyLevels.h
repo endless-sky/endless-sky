@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // A class representing the the magnitude of various "energy levels"
 // that a ship has, including a ship's HP, energy, heat, fuel, and
-// the amounts of various DoT applied to the ship. EnergyLevels can 
+// the amounts of various DoT applied to the ship. EnergyLevels can
 // represent these such levels on a ship, or represent changes to be
 // applied to a ship, such as an amount of damage to be taken or the
 // resources required for thrusting or turning.
