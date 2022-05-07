@@ -22,13 +22,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Sound {
 public:
 	bool Load(const std::string &path, const std::string &name);
-	
+
 	const std::string &Name() const;
-	
+
 	unsigned Buffer() const;
 	bool IsLooping() const;
-	
-	
+
+
 private:
 	std::string name;
 	unsigned buffer = 0;

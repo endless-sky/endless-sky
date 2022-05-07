@@ -40,16 +40,16 @@ public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
 	MissionAction(const DataNode &node, const std::string &missionName);
-	
+
 	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
-	
+
 	const std::string &DialogText() const;
-	
+
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
@@ -57,27 +57,27 @@ public:
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr, const bool isUnique = true) const;
-	
+
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
-	
-	
+
+
 private:
 	std::string trigger;
 	std::string system;
 	LocationFilter systemFilter;
-	
+
 	std::string dialogText;
 	const Phrase *stockDialogPhrase = nullptr;
 	Phrase dialogPhrase;
-	
+
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
-	
+
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;
-	
+
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;
 };

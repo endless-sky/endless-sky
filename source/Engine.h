@@ -60,12 +60,12 @@ class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
 	~Engine();
-	
+
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
 	// Place NPCs spawned by a mission that offers when the player is not landed.
 	void Place(const std::list<NPC> &npcs, std::shared_ptr<Ship> flagship = nullptr);
-	
+
 	// Wait for the previous calculations (if any) to be done.
 	void Wait();
 	// Perform all the work that can only be done while the calculation thread
@@ -73,57 +73,57 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
-	
+
 	// Get any special events that happened in this step.
 	// MainPanel::Step will clear this list.
 	std::list<ShipEvent> &Events();
-	
+
 	// Draw a frame.
 	void Draw() const;
-	
+
 	// Set the given TestContext in the next step of the Engine.
 	void SetTestContext(TestContext &newTestContext);
-	
+
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift);
 	void RClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
-	
+
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
-	
-	
+
+
 private:
 	void EnterSystem();
-	
+
 	void ThreadEntryPoint();
 	void CalculateStep();
-	
+
 	void MoveShip(const std::shared_ptr<Ship> &ship);
-	
+
 	void SpawnFleets();
 	void SpawnPersons();
 	void GenerateWeather();
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
-	
+
 	void FillCollisionSets();
-	
+
 	void DoCollisions(Projectile &projectile);
 	void DoWeather(Weather &weather);
 	void DoCollection(Flotsam &flotsam);
 	void DoScanning(const std::shared_ptr<Ship> &ship);
-	
+
 	void FillRadar();
-	
+
 	void AddSprites(const Ship &ship);
-	
+
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
-	
-	
+
+
 private:
 	class Target {
 	public:
@@ -133,11 +133,11 @@ private:
 		int type;
 		int count;
 	};
-	
+
 	class Status {
 	public:
 		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
-		
+
 		Point position;
 		double outer;
 		double inner;
@@ -146,33 +146,33 @@ private:
 		int type;
 		double angle;
 	};
-	
-	
+
+
 private:
 	PlayerInfo &player;
-	
+
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
 	std::vector<Weather> activeWeather;
 	std::list<std::shared_ptr<Flotsam>> flotsam;
 	std::vector<Visual> visuals;
 	AsteroidField asteroids;
-	
+
 	// New objects created within the latest step:
 	std::list<std::shared_ptr<Ship>> newShips;
 	std::vector<Projectile> newProjectiles;
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::vector<Visual> newVisuals;
-	
+
 	// Track which ships currently have anti-missiles ready to fire.
 	std::vector<Ship *> hasAntiMissile;
-	
+
 	AI ai;
-	
+
 	std::thread calcThread;
 	std::condition_variable condition;
 	std::mutex swapMutex;
-	
+
 	bool calcTickTock = false;
 	bool drawTickTock = false;
 	bool terminate = false;
@@ -198,23 +198,23 @@ private:
 	const Sprite *highlightSprite = nullptr;
 	Point highlightUnit;
 	float highlightFrame = 0.f;
-	
+
 	int step = 0;
-	
+
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	int grudgeTime = 0;
-	
+
 	CollisionSet shipCollisions;
-	
+
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
-	
+
 	// Commands that are currently active (and not yet handled). This is a combination
 	// of keyboard and mouse commands (and any other available input device).
 	Command activeCommands;
@@ -222,7 +222,7 @@ private:
 	Command keyHeld;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
 	int landKeyInterval = 0;
-	
+
 	// Inputs received from a mouse or other pointer device.
 	bool doClickNextStep = false;
 	bool doClick = false;
@@ -233,12 +233,12 @@ private:
 	Point clickPoint;
 	Rectangle clickBox;
 	int groupSelect = -1;
-	
+
 	// Input, Output and State handling for automated tests.
 	TestContext *testContext = nullptr;
-	
+
 	double zoom = 1.;
-	
+
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;

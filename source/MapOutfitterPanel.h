@@ -32,8 +32,8 @@ class MapOutfitterPanel : public MapSalesPanel {
 public:
 	explicit MapOutfitterPanel(PlayerInfo &player);
 	explicit MapOutfitterPanel(const MapPanel &panel, bool onlyHere = false);
-	
-	
+
+
 protected:
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
@@ -45,24 +45,24 @@ protected:
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
-	
+
 	virtual void DrawItems() override;
-	
-	
+
+
 private:
 	void Init();
-	
-	
+
+
 private:
 	// Maps category names to list of outfits in that category, sorted
 	// alphabetically by name.
 	std::map<std::string, std::vector<const Outfit *>> catalog;
 	// Flat list of all outfits shown.
 	std::vector<const Outfit *> list;
-	
+
 	const Outfit *selected = nullptr;
 	const Outfit *compare = nullptr;
-	
+
 	OutfitInfoDisplay selectedInfo;
 	OutfitInfoDisplay compareInfo;
 };

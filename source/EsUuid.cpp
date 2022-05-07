@@ -42,7 +42,7 @@ EsUuid::UuidType MakeUuid()
 		Files::LogError("Created locally unique UUID only");
 	else if(status == RPC_S_UUID_NO_ADDRESS)
 		throw std::runtime_error("Failed to create UUID");
-	
+
 	return value;
 }
 
@@ -55,7 +55,7 @@ EsUuid::UuidType ParseUuid(const std::string &str)
 		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(status != RPC_S_OK)
 		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
-	
+
 	return value;
 }
 
@@ -69,13 +69,13 @@ std::string Serialize(const UUID &id)
 {
 	wchar_t *buf = nullptr;
 	RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
-	
+
 	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
 	if(result.empty())
 		Files::LogError("Failed to serialize UUID!");
 	else
 		RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
-	
+
 	return result;
 }
 
@@ -104,7 +104,7 @@ EsUuid::UuidType ParseUuid(const std::string &str)
 		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(result != 0)
 		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
-	
+
 	return value;
 }
 
@@ -193,6 +193,6 @@ const EsUuid::UuidType &EsUuid::Value() const
 {
 	if(IsNil(value.id))
 		value = MakeUuid();
-	
+
 	return value;
 }

@@ -55,14 +55,14 @@ void FrameTimer::Wait()
 		// the sleep time is never longer than one frame.
 		if(now + step + maxLag < next)
 			next = now + step;
-		
+
 		this_thread::sleep_until(next);
 		now = chrono::steady_clock::now();
 	}
 	// If the lag is too high, don't try to do catch-up.
 	if(now - next > maxLag)
 		next = now;
-	
+
 	Step();
 }
 

@@ -172,7 +172,10 @@ star "star/nova"
 star "star/nova-old"
 	power 0.3
 	wind 6
-star "star/wr"
+star "star/wr0"
+	power 0.4
+	wind 4
+star "star/wr1"
 	power 0.4
 	wind 4
 star "star/neutron"

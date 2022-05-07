@@ -32,12 +32,12 @@ class Rectangle;
 class Table {
 public:
 	Table();
-	
+
 	// Set the column positions. If no columns are set, the Table will draw a
 	// list (one column of text, left aligned).
 	void Clear();
 	void AddColumn(int x, Layout layout = {});
-	
+
 	// Set the font size. Default is 14 pixels.
 	void SetFontSize(int size);
 	// Set the row height. Default is 20 pixels.
@@ -48,18 +48,18 @@ public:
 	// Set the X range of the underline. If the highlight has not been set, this
 	// will also set the width of the highlight.
 	void SetUnderline(int startX, int endX) noexcept;
-	
+
 	// Begin drawing at the given position. Each time text is drawn, it fills a
 	// new column until all columns have been filled. Then, the Y position is
 	// increased based on the row height, and a new row begins.
 	void DrawAt(const Point &point) const;
-	
+
 	// Set the color for drawing text and underlines.
 	void SetColor(const Color &color) const;
-	
+
 	// Advance to the next field without drawing anything.
 	void Advance(int fields = 1) const;
-	
+
 	// Draw a single text field, and move on to the next one.
 	void Draw(const char *text) const;
 	void Draw(const std::string &text) const;
@@ -72,35 +72,35 @@ public:
 	// Use the width & alignment associated with the text (instead of the column's).
 	void DrawCustom(const DisplayText &text) const;
 	void DrawCustom(const DisplayText &text, const Color &color) const;
-	
+
 	// Draw two columns as a pair with opposite alignments. If needed, truncate the given
 	// column based on the width of the non-truncated column's value.
 	void DrawTruncatedPair(const std::string &left, const Color &leftColor, const std::string &right,
 		const Color &rightColor, Truncate strategy, bool truncateRightColumn) const;
-	
+
 	// Draw an underline under the text for the current row.
 	void DrawUnderline() const;
 	void DrawUnderline(const Color &color) const;
-	
+
 	// Highlight the current row.
 	void DrawHighlight() const;
 	void DrawHighlight(const Color &color) const;
-	
+
 	// Shift the draw position down by the given amount. This usually should not
 	// be called in the middle of a row, or the fields will not line up.
 	void DrawGap(int y) const;
-	
+
 	// Get the point that should be passed to DrawAt() to start the next row at
 	// the given location.
 	Point GetPoint() const;
-	
+
 	// Get the center and size of the current row. This can be used to define
 	// what screen region constitutes a mouse click on this particular row.
 	Point GetCenterPoint() const;
 	Point GetRowSize() const;
 	Rectangle GetRowBounds() const;
-	
-	
+
+
 private:
 	// Starting position for drawing a column is:
 	// point + Point(offset + align * font.Width(text), 0.)
@@ -108,16 +108,16 @@ private:
 	class Column {
 	public:
 		Column(double offset, Layout layout) noexcept;
-		
+
 		double offset = 0.;
 		Layout layout;
 	};
-	
-	
+
+
 private:
 	void Draw(const std::string &text, const Layout *special, const Color &color) const;
-	
-	
+
+
 private:
 	// The current draw position.
 	mutable Point point;
@@ -125,13 +125,13 @@ private:
 	mutable std::vector<Column>::const_iterator it;
 	// The color to use on the next draw call.
 	mutable Color color;
-	
+
 	const Font *font = nullptr;
 	Point rowSize;
 	Point center;
 	Point lineSize;
 	Point lineOff;
-	
+
 	std::vector<Column> columns;
 };
 

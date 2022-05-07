@@ -34,9 +34,11 @@ namespace {
 		make_pair(100., ""),
 		make_pair(1. / 60., "")
 	};
-	
+
 	const map<string, int> SCALE = {
 		{"active cooling", 0},
+		{"afterburner shields", 0},
+		{"afterburner hull", 0},
 		{"afterburner energy", 0},
 		{"afterburner fuel", 0},
 		{"afterburner heat", 0},
@@ -77,7 +79,11 @@ namespace {
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
+		{"overheat damage rate", 0},
+		{"reverse thrusting shields", 0},
+		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
+		{"reverse thrusting fuel", 0},
 		{"reverse thrusting heat", 0},
 		{"scram drive", 0},
 		{"shield generation", 0},
@@ -89,16 +95,54 @@ namespace {
 		{"slowing resistance heat", 0},
 		{"solar collection", 0},
 		{"solar heat", 0},
+		{"thrusting shields", 0},
+		{"thrusting hull", 0},
 		{"thrusting energy", 0},
+		{"thrusting fuel", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
+		{"turning shields", 0},
+		{"turning hull", 0},
 		{"turning energy", 0},
+		{"turning fuel", 0},
 		{"turning heat", 0},
-		
+
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
-		
+
+		{"afterburner discharge", 2},
+		{"afterburner corrosion", 2},
+		{"afterburner ion", 2},
+		{"afterburner leakage", 2},
+		{"afterburner burn", 2},
+		{"afterburner slowing", 2},
+		{"afterburner disruption", 2},
+
+		{"reverse thrusting discharge", 2},
+		{"reverse thrusting corrosion", 2},
+		{"reverse thrusting ion", 2},
+		{"reverse thrusting leakage", 2},
+		{"reverse thrusting burn", 2},
+		{"reverse thrusting slowing", 2},
+		{"reverse thrusting disruption", 2},
+
+		{"thrusting discharge", 2},
+		{"thrusting corrosion", 2},
+		{"thrusting ion", 2},
+		{"thrusting leakage", 2},
+		{"thrusting burn", 2},
+		{"thrusting slowing", 2},
+		{"thrusting disruption", 2},
+
+		{"turning discharge", 2},
+		{"turning corrosion", 2},
+		{"turning ion", 2},
+		{"turning leakage", 2},
+		{"turning burn", 2},
+		{"turning slowing", 2},
+		{"turning disruption", 2},
+
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
@@ -106,7 +150,7 @@ namespace {
 		{"corrosion resistance", 2},
 		{"leak resistance", 2},
 		{"burn resistance", 2},
-		
+
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -117,7 +161,8 @@ namespace {
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
-		
+		{"overheat damage threshold", 3},
+
 		{"burn protection", 4},
 		{"corrosion protection", 4},
 		{"discharge protection", 4},
@@ -132,18 +177,19 @@ namespace {
 		{"piercing protection", 4},
 		{"shield protection", 4},
 		{"slowing protection", 4},
-		
+
 		{"repair delay", 5},
 		{"disabled repair delay", 5},
 		{"shield delay", 5},
 		{"depleted shield delay", 5}
 	};
-	
+
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
+		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
 }
@@ -163,7 +209,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, b
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
-	
+
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }
 
@@ -188,12 +234,12 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
-	
+
 	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-	
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
@@ -204,7 +250,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	}
 	requirementValues.push_back(Format::Credits(buyValue));
 	requirementsHeight += 20;
-	
+
 	if(canSell && sellValue != buyValue)
 	{
 		if(sellValue == cost)
@@ -218,14 +264,14 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementValues.push_back(Format::Credits(sellValue));
 		requirementsHeight += 20;
 	}
-	
+
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
 		requirementValues.emplace_back(Format::Number(outfit.Mass()));
 		requirementsHeight += 20;
 	}
-	
+
 	bool hasContent = true;
 	static const vector<string> NAMES = {
 		"", "",
@@ -262,7 +308,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 20;
-	
+
 	bool hasNormalAttributes = false;
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
@@ -271,11 +317,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		};
 		if(SKIP.count(it.first))
 			continue;
-		
+
 		auto sit = SCALE.find(it.first);
 		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
 		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
-		
+
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
@@ -291,10 +337,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		hasNormalAttributes = true;
 	}
-	
+
 	if(!outfit.IsWeapon())
 		return;
-	
+
 	// Insert padding if any normal attributes were listed above.
 	if(hasNormalAttributes)
 	{
@@ -302,7 +348,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back();
 		attributesHeight += 10;
 	}
-	
+
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
@@ -315,11 +361,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributesHeight += 20;
 		}
 	}
-	
+
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
-	
+
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
@@ -356,7 +402,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"% firing hull", "%"},
 		{"% firing shields", "%"}
 	};
-	
+
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
@@ -393,7 +439,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.RelativeFiringHull() * 100.,
 		outfit.RelativeFiringShields() * 100.
 	};
-	
+
 	// Add any per-second values to the table.
 	double reload = outfit.Reload();
 	if(reload)
@@ -407,7 +453,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributesHeight += 20;
 			}
 	}
-	
+
 	bool isContinuous = (reload <= 1);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
@@ -415,7 +461,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
-	
+
 	double turretTurn = outfit.TurretTurn() * 60.;
 	if(turretTurn)
 	{
@@ -459,12 +505,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
-	
+
 	// Pad the table.
 	attributeLabels.emplace_back();
 	attributeValues.emplace_back();
 	attributesHeight += 10;
-	
+
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
 	if(!isContinuous)
@@ -478,7 +524,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributesHeight += 20;
 			}
 	}
-	
+
 	static const vector<string> OTHER_NAMES = {
 		"inaccuracy:",
 		"blast radius:",
@@ -491,7 +537,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
-	
+
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)
 		if(otherValues[i])
 		{

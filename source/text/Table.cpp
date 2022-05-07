@@ -37,13 +37,13 @@ Table::Table()
 void Table::Clear()
 {
 	columns.clear();
-	
+
 	font = &FontSet::Get(14);
 	rowSize = Point(0., 20.);
 	center = Point(0., font->Height() / 2);
 	lineSize = Point(0., 1.);
 	lineOff = Point(0., font->Height() + 1);
-	
+
 	point = Point();
 	it = columns.begin();
 	color = Color(1.f, 0.f);
@@ -54,7 +54,7 @@ void Table::Clear()
 void Table::AddColumn(int x, Layout layout)
 {
 	columns.emplace_back(x, layout);
-	
+
 	// This may invalidate iterators, so:
 	it = columns.begin();
 }
@@ -85,7 +85,7 @@ void Table::SetHighlight(int startX, int endX) noexcept
 {
 	rowSize.X() = endX - startX;
 	center.X() = (endX + startX) / 2;
-	
+
 	if(!lineSize.X())
 	{
 		lineSize.X() = rowSize.X();
@@ -101,7 +101,7 @@ void Table::SetUnderline(int startX, int endX) noexcept
 {
 	lineSize.X() = endX - startX;
 	lineOff.X() = (endX + startX) / 2;
-	
+
 	if(!rowSize.X())
 	{
 		rowSize.X() = lineSize.X();
@@ -212,7 +212,7 @@ void Table::DrawTruncatedPair(const string &left, const Color &leftColor, const 
 	const auto textWidth = font->FormattedWidth({truncateRightColumn ? left : right, {colWidth}});
 	constexpr auto PAD = 5;
 	const auto remainder = max(colWidth - PAD - textWidth, 0);
-	
+
 	auto lhs = Layout(truncateRightColumn ? colWidth : remainder, Alignment::LEFT, strategy);
 	auto rhs = Layout(truncateRightColumn ? remainder : colWidth, Alignment::RIGHT, strategy);
 	if(truncateRightColumn)
@@ -263,7 +263,7 @@ void Table::DrawGap(int y) const
 }
 
 
-	
+
 // Get the point that should be passed to DrawAt() to start the next row at
 // the given location.
 Point Table::GetPoint() const
@@ -313,6 +313,6 @@ void Table::Draw(const string &text, const Layout *special, const Color &color) 
 		auto pos = point + Point(it->offset + alignmentOffset * (layout.width >= 0 ? layout.width : font->Width(text)), 0.);
 		font->Draw({text, layout}, pos, color);
 	}
-	
+
 	Advance();
 }
