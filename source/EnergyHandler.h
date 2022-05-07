@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Outfit;
 
 
+
 // A class which handles various aspects of a ship's energy levels,
 // including taking damage, doing repairs, and calculating fractional
 // thrust or turn values.
@@ -48,8 +49,8 @@ public:
 
 private:
 	// Update the stored EnergyLevels for each action a ship can take.
-	void ShieldRegen(const Outfit &attributes);
 	void HullRepair(const Outfit &attributes);
+	void ShieldRegen(const Outfit &attributes);
 
 	void CorrosionResist(const Outfit &attributes);
 	void DischargeResist(const Outfit &attributes);
@@ -69,8 +70,8 @@ private:
 	// A ship can freely access the EnergyLevels of its own handler.
 	friend class Ship;
 
-	EnergyLevels shieldRegenLevels;
 	EnergyLevels hullRepairLevels;
+	EnergyLevels shieldRegenLevels;
 
 	EnergyLevels corrosionResist;
 	EnergyLevels dischargeResist;

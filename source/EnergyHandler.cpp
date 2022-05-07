@@ -24,8 +24,8 @@ using namespace std;
 // ship can take (e.g. regenerating shields, thrusting).
 void EnergyHandler::Update(const Outfit &attributes)
 {
-	ShieldRegen(attributes);
 	HullRepair(attributes);
+	ShieldRegen(attributes);
 
 	CorrosionResist(attributes);
 	DischargeResist(attributes);
@@ -53,10 +53,10 @@ void EnergyHandler::DoRepair(double &stat, double &available, double maximum, En
 
 	if(cost.energy > 0.)
 		available = min(available, input.energy / cost.energy);
-	if(cost.fuel > 0.)
-		available = min(available, input.fuel / cost.fuel);
 	if(cost.heat < 0.)
 		available = min(available, input.heat / -cost.heat);
+	if(cost.fuel > 0.)
+		available = min(available, input.fuel / cost.fuel);
 
 	double transfer = min(available, maximum - stat);
 	if(transfer > 0.)
@@ -64,8 +64,8 @@ void EnergyHandler::DoRepair(double &stat, double &available, double maximum, En
 		stat += transfer;
 		available -= transfer;
 		input.energy -= transfer * cost.energy;
-		input.fuel -= transfer * cost.fuel;
 		input.heat += transfer * cost.heat;
+		input.fuel -= transfer * cost.fuel;
 	}
 }
 
@@ -74,11 +74,11 @@ void EnergyHandler::DoRepair(double &stat, double &available, double maximum, En
 // Apply status effects and DoT resistances to the input.
 void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 {
-	input.shields -= input.discharge;
 	input.hull -= input.corrosion;
+	input.shields -= input.discharge;
 	input.energy -= input.ionization;
-	input.fuel -= input.leakage;
 	input.heat += input.burn;
+	input.fuel -= input.leakage;
 
 	auto DoResistance = [&input](bool disabled, double &stat, const EnergyLevels &cost)
 	{
@@ -98,17 +98,17 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 		// Limit the resistance by the available resources.
 		if(cost.energy > 0.)
 			resistance = min(resistance, input.energy / cost.energy);
-		if(cost.fuel > 0.)
-			resistance = min(resistance, input.fuel / cost.fuel);
 		if(cost.heat < 0.)
 			resistance = min(resistance, input.heat / -cost.heat);
+		if(cost.fuel > 0.)
+			resistance = min(resistance, input.fuel / cost.fuel);
 
 		if(resistance > 0.)
 		{
 			stat = max(0., .99 * stat - resistance);
 			input.energy -= resistance * cost.energy;
-			input.fuel -= resistance * cost.fuel;
 			input.heat += resistance * cost.heat;
+			input.fuel -= resistance * cost.fuel;
 		}
 		else
 			stat = max(0., .99 * stat);
@@ -160,7 +160,6 @@ void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, doub
 	input.ionization += scale * damage.ionization;
 	input.burn += scale * damage.burn;
 	input.leakage += scale * damage.leakage;
-
 	input.disruption += scale * damage.disruption;
 	input.slowness += scale * damage.slowness;
 }
@@ -184,102 +183,102 @@ bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cos
 
 
 
-// Update the stored EnergyLevels for each action a ship can take.
-void EnergyHandler::ShieldRegen(const Outfit &attributes)
+void EnergyHandler::HullRepair(const Outfit &attributes)
 {
-	// Save shield regen costs as per unit of shield regen.
-	shieldRegenLevels.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenLevels.energy = attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) / shieldRegenLevels.wildcard;
-	shieldRegenLevels.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier")) / shieldRegenLevels.wildcard;
-	shieldRegenLevels.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")) / shieldRegenLevels.wildcard;
+	hullRepairLevels.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
+	// Save hull repair costs as per unit of hull repair.
+	hullRepairLevels.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) / hullRepairLevels.wildcard;
+	hullRepairLevels.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")) / hullRepairLevels.wildcard;
+	hullRepairLevels.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier")) / hullRepairLevels.wildcard;
 }
 
 
 
-void EnergyHandler::HullRepair(const Outfit &attributes)
+// Update the stored EnergyLevels for each action a ship can take.
+void EnergyHandler::ShieldRegen(const Outfit &attributes)
 {
-	// Save hull repair costs as per unit of hull repair.
-	hullRepairLevels.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
-	hullRepairLevels.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) / hullRepairLevels.wildcard;
-	hullRepairLevels.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier")) / hullRepairLevels.wildcard;
-	hullRepairLevels.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")) / hullRepairLevels.wildcard;
+	shieldRegenLevels.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
+	// Save shield regen costs as per unit of shield regen.
+	shieldRegenLevels.energy = attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) / shieldRegenLevels.wildcard;
+	shieldRegenLevels.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")) / shieldRegenLevels.wildcard;
+	shieldRegenLevels.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier")) / shieldRegenLevels.wildcard;
 }
 
 
 
 void EnergyHandler::CorrosionResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	corrosionResist.wildcard = attributes.Get("corrosion resistance");
+	// Save resistance costs as per unit of resistance.
 	corrosionResist.energy = attributes.Get("corrosion resistance energy") / corrosionResist.wildcard;
-	corrosionResist.fuel = attributes.Get("corrosion resistance fuel") / corrosionResist.wildcard;
 	corrosionResist.heat = attributes.Get("corrosion resistance heat") / corrosionResist.wildcard;
+	corrosionResist.fuel = attributes.Get("corrosion resistance fuel") / corrosionResist.wildcard;
 }
 
 
 
 void EnergyHandler::DischargeResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	dischargeResist.wildcard = attributes.Get("discharge resistance");
+	// Save resistance costs as per unit of resistance.
 	dischargeResist.energy = attributes.Get("discharge resistance energy") / dischargeResist.wildcard;
-	dischargeResist.fuel = attributes.Get("discharge resistance fuel") / dischargeResist.wildcard;
 	dischargeResist.heat = attributes.Get("discharge resistance heat") / dischargeResist.wildcard;
+	dischargeResist.fuel = attributes.Get("discharge resistance fuel") / dischargeResist.wildcard;
 }
 
 
 
 void EnergyHandler::IonizationResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	ionizationResist.wildcard = attributes.Get("ion resistance");
+	// Save resistance costs as per unit of resistance.
 	ionizationResist.energy = attributes.Get("ion resistance energy") / ionizationResist.wildcard;
-	ionizationResist.fuel = attributes.Get("ion resistance fuel") / ionizationResist.wildcard;
 	ionizationResist.heat = attributes.Get("ion resistance heat") / ionizationResist.wildcard;
+	ionizationResist.fuel = attributes.Get("ion resistance fuel") / ionizationResist.wildcard;
 }
 
 
 
 void EnergyHandler::BurnResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	burnResist.wildcard = attributes.Get("burn resistance");
+	// Save resistance costs as per unit of resistance.
 	burnResist.energy = attributes.Get("burn resistance energy") / burnResist.wildcard;
-	burnResist.fuel = attributes.Get("burn resistance fuel") / burnResist.wildcard;
 	burnResist.heat = attributes.Get("burn resistance heat") / burnResist.wildcard;
+	burnResist.fuel = attributes.Get("burn resistance fuel") / burnResist.wildcard;
 }
 
 
 
 void EnergyHandler::LeakageResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	leakageResist.wildcard = attributes.Get("leak resistance");
+	// Save resistance costs as per unit of resistance.
 	leakageResist.energy = attributes.Get("leak resistance energy") / leakageResist.wildcard;
-	leakageResist.fuel = attributes.Get("leak resistance fuel") / leakageResist.wildcard;
 	leakageResist.heat = attributes.Get("leak resistance heat") / leakageResist.wildcard;
+	leakageResist.fuel = attributes.Get("leak resistance fuel") / leakageResist.wildcard;
 }
 
 
 
 void EnergyHandler::DisruptionResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	disruptionResist.wildcard = attributes.Get("disruption resistance");
+	// Save resistance costs as per unit of resistance.
 	disruptionResist.energy = attributes.Get("disruption resistance energy") / disruptionResist.wildcard;
-	disruptionResist.fuel = attributes.Get("disruption resistance fuel") / disruptionResist.wildcard;
 	disruptionResist.heat = attributes.Get("disruption resistance heat") / disruptionResist.wildcard;
+	disruptionResist.fuel = attributes.Get("disruption resistance fuel") / disruptionResist.wildcard;
 }
 
 
 
 void EnergyHandler::SlownessResist(const Outfit &attributes)
 {
-	// Save resistance costs as per unit of resistance.
 	slownessResist.wildcard = attributes.Get("slowing resistance");
+	// Save resistance costs as per unit of resistance.
 	slownessResist.energy = attributes.Get("slowing resistance energy") / slownessResist.wildcard;
-	slownessResist.fuel = attributes.Get("slowing resistance fuel") / slownessResist.wildcard;
 	slownessResist.heat = attributes.Get("slowing resistance heat") / slownessResist.wildcard;
+	slownessResist.fuel = attributes.Get("slowing resistance fuel") / slownessResist.wildcard;
 }
 
 
