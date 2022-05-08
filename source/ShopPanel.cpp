@@ -576,6 +576,13 @@ void ShopPanel::ToggleForSale()
 
 
 
+void ShopPanel::ToggleInstalled()
+{
+    sameSelectedTopY = true;
+}
+
+
+
 void ShopPanel::ToggleStorage()
 {
 	sameSelectedTopY = true;

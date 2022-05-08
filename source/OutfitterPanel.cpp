@@ -95,7 +95,7 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::VisiblityCheckboxesSize() const
 {
-	return 60;
+	return 40;
 }
 
 
@@ -113,7 +113,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
+	if(showForSale && (outfitter.Has(outfit)))
 		return true;
 
 	if(showCargo && player.Cargo().Get(outfit))
@@ -122,9 +122,8 @@ bool OutfitterPanel::HasItem(const string &name) const
 	if(showStorage && player.Storage() && player.Storage()->Get(outfit))
 		return true;
 
-	for(const Ship *ship : playerShips)
-		if(ship->OutfitCount(outfit))
-			return true;
+	if(showInstalled && ((playerShip && playerShip->OutfitCount(outfit)) || (!playerShip && player.Stock(outfit))))
+		return true;
 
 	if(showForSale && HasLicense(name))
 		return true;
@@ -777,14 +776,20 @@ void OutfitterPanel::DrawKey()
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 
 	pos.Y() += 20.;
-	SpriteShader::Draw(box[showCargo], pos);
-	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
-
-	pos.Y() += 20.;
 	SpriteShader::Draw(box[showStorage], pos);
 	font.Draw("Show outfits in storage", pos + off, color[showStorage]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleStorage(); });
+
+	pos.Y() -= 20.;
+	pos.X() += 180.;
+	SpriteShader::Draw(box[showInstalled], pos);
+	font.Draw("Show installed outfits", pos + off, color[showInstalled]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleInstalled(); });
+
+	pos.Y() += 20.;
+	SpriteShader::Draw(box[showCargo], pos);
+	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
 }
 
 
@@ -799,6 +804,20 @@ void OutfitterPanel::ToggleForSale()
 	}
 
 	ShopPanel::ToggleForSale();
+}
+
+
+
+void OutfitterPanel::ToggleInstalled()
+{
+    showInstalled = !showInstalled;
+
+    if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	{
+		selectedOutfit = nullptr;
+	}
+
+	ShopPanel::ToggleInstalled();
 }
 
 
@@ -824,18 +843,6 @@ void OutfitterPanel::ToggleCargo()
 	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
-	}
-
-	if(playerShip)
-	{
-		playerShip = nullptr;
-		playerShips.clear();
-	}
-	else
-	{
-		playerShip = player.Flagship();
-		if(playerShip)
-			playerShips.insert(playerShip);
 	}
 
 	ShopPanel::ToggleCargo();

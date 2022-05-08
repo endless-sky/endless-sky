@@ -69,6 +69,7 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
+	virtual void ToggleInstalled();
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
 

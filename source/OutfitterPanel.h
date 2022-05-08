@@ -61,6 +61,7 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
+	virtual void ToggleInstalled() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
 
@@ -89,6 +90,8 @@ private:
 	bool showStorage = true;
 	// Allow toggling whether outfits in cargo are shown.
 	bool showCargo = true;
+    // Allow toggling whether installed outfits are shown.
+    bool showInstalled = true;
 
 	Sale<Outfit> outfitter;
 
