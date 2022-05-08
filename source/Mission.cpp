@@ -412,6 +412,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 
+void Mission::NeverOffer()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	toOffer.Add("has", "'");
+}
+
+
+
 // Basic mission information.
 const EsUuid &Mission::UUID() const noexcept
 {
@@ -669,16 +677,17 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test(player.Conditions()))
+	const auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
 	if(repeat)
 	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
+		auto cit = playerConditions.find(name + ": offered");
+		if(cit != playerConditions.end() && cit->second >= repeat)
 			return false;
 	}
 

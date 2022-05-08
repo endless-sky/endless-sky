@@ -899,14 +899,14 @@ Files:
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
- images/ship/osprey*
  images/ship/quicksilver*
+ images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
- images/thumbnail/osprey*
  images/thumbnail/quicksilver*
+ images/thumbnail/scout*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -1050,9 +1050,9 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/enforcer?confrontation?gear*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+Copyright: 1010Todd (1010todd3d@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Evan Fluharty (under the same license).
+Comment: Derived from works by Becca Tommaso (tommasobecca03@gmail.com) (under the same license) and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/hai?williwaw*
@@ -1315,8 +1315,19 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
+ images/outfit/asteroid?scanner*
  images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/dark?storm*
  images/outfit/nuke*
+ images/outfit/red?sun*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/hardpoint/nuke*

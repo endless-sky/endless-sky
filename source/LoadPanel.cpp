@@ -423,7 +423,7 @@ void LoadPanel::UpdateLists()
 		sort(it.second.begin(), it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
-				return a.second > b.second;
+				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
 		);
 

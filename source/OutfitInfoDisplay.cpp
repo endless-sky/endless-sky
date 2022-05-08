@@ -79,6 +79,7 @@ namespace {
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
+		{"overheat damage rate", 0},
 		{"reverse thrusting shields", 0},
 		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
@@ -160,6 +161,7 @@ namespace {
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
+		{"overheat damage threshold", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
