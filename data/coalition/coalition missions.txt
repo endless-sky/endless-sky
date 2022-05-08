@@ -2432,8 +2432,8 @@ mission "Coalition: Supernova Explorers: Intro"
 		conversation
 			`When you enter the spaceport you see the Kimek from the science stuff taking to another Kimek. As he recognizes you he walks towards you.`
 			`	"Hello Captain thanks again for the help. Our horizon of knowledge was increased by you. That said we are far away from knowing all about them but we can make further studies based on that data. In the name of our Group I thank you."`
-			`	"But we need your help again in another matter. You know what a supernova is?" Of course you know so you nod. "Good so i dont have to explain. In the north of our territory an old red star is going to get to a supernova. Unfortunately ther is no hyperspace link to this system. But we think if we give you the exact coordinates you can jump to this system."`
-			`	You look at him suspiciously. "Isnt it dangerous to get near to a supernova?" He nods "Yes normaly you would not be able to survive their. But this star is short before a supernova thats why the heat is very high but we were able to design a special heat shield for that. We will give it to you for the time you do this mission for us. Will you do it?"`
+			`	"But we need your help again in another matter. You know what a supernova is?" Of course you know so you nod. "Good so i dont have to explain. In the north of our territory an old red star is going to get to a supernova. Unfortunately there is no hyperspace link to this system. But we think if we give you the exact coordinates you can jump to this system."`
+			`	You look at him suspiciously. "Isn't it dangerous to get near to a supernova?" He nods "Yes normally you would not be able to survive their. But this star is short before a supernova that's why the heat is very high but we were able to design a special heat shield for that. We will give it to you for the time you do this mission for us. Will you do it?"`
 			choice
 				`	"That sounds good, count on me."`
 				`	"Ah, this is too dangerous for me sorry."`
@@ -2470,7 +2470,7 @@ mission "Coalition: Supernova Explorers: First Jump"
 			`After you landed on the planet you are directly approached by the Kimek. "Welcome Captain, nice to see you here. We have a small base here so we can coordinate everything next to the supernova system. If you do not mind we will directly install the Heat shield."`
 			choice
 				`	"Ok, go on."`
-				`	"Sorry but now i dont think thats a good idea."`
+				`	"Sorry but now i dont think that's a good idea."`
 					decline
 			`	"Good your mission will be to jump into the system and directly get back, we will just test the device."`
 				accept

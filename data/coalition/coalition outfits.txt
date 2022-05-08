@@ -114,7 +114,7 @@ outfit "Heat Shield"
 
 	"cooling" 4900
 	"cooling energy" 1.4
-	description "The Heat Shield is a prototype developed by a group of Heliarch Scientists. Its main purpose is to enable flights near stars a short time before they get to a supernova. Allthough it has an immense cooling effect the time being able to be next to the star is not very long."
+	description "The Heat Shield is a prototype developed by a group of Heliarch Scientists. Its main purpose is to enable flights near stars a short time before they get to a supernova. Although it has an immense cooling effect the time being able to be next to the star is not very long."
 
 outfit "Small Shield Module"
 	category "Systems"
