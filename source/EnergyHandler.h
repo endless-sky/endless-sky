@@ -36,18 +36,16 @@ public:
 	// Apply status effects and DoT resistances to the input.
 	void DoStatusEffects(EnergyLevels &input, bool disabled) const;
 
+	// Return true if the given input has the energy to expend on the cost.
+	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
+
 	// Return the amount of value that the given input can output
 	// given the maximum possible output and its cost.
-	// This only checks hull, shield, energy, heat, and fuel costs.
 	double FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const;
 
-	// Apply damage * scale to the input as damage. Hull, shields, energy, and fuel
+	// Apply damage * scale to the input. Hull, shields, energy, and fuel
 	// are subtracted from input while all other levels are added to input.
 	void Damage(EnergyLevels &input, const EnergyLevels &damage, double scale = 1.) const;
-
-	// Return true if the given input has the energy to expend on the cost.
-	// This only checks hull, shield, energy, heat, and fuel costs.
-	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
 
 
 private:

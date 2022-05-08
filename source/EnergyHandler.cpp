@@ -80,7 +80,7 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 	input.heat += input.burn;
 	input.fuel -= input.leakage;
 
-	auto DoResistance = [&input](bool disabled, double &stat, const EnergyLevels &cost)
+	auto DoResistance = [&input, &disabled](double &stat, const EnergyLevels &cost)
 	{
 		if(!stat)
 			return;
@@ -114,13 +114,45 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 			stat = max(0., .99 * stat);
 	};
 
-	DoResistance(disabled, input.corrosion, corrosionResist);
-	DoResistance(disabled, input.discharge, dischargeResist);
-	DoResistance(disabled, input.ionization, ionizationResist);
-	DoResistance(disabled, input.burn, burnResist);
-	DoResistance(disabled, input.leakage, leakageResist);
-	DoResistance(disabled, input.disruption, disruptionResist);
-	DoResistance(disabled, input.slowness, slownessResist);
+	DoResistance(input.corrosion, corrosionResist);
+	DoResistance(input.discharge, dischargeResist);
+	DoResistance(input.ionization, ionizationResist);
+	DoResistance(input.burn, burnResist);
+	DoResistance(input.leakage, leakageResist);
+	DoResistance(input.disruption, disruptionResist);
+	DoResistance(input.slowness, slownessResist);
+}
+
+
+
+// Return true if the given input has the energy to expend on the cost.
+bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const
+{
+	if(input.hull < cost.hull)
+		return false;
+	if(input.shields < cost.shields)
+		return false;
+	if(input.energy < cost.energy)
+		return false;
+	if(input.heat < -cost.heat)
+		return false;
+	if(input.fuel < cost.fuel)
+		return false;
+	if(input.corrosion < -cost.corrosion)
+		return false;
+	if(input.discharge < -cost.discharge)
+		return false;
+	if(input.ionization < -cost.ionization)
+		return false;
+	if(input.burn < -cost.burn)
+		return false;
+	if(input.leakage < -cost.leakage)
+		return false;
+	if(input.disruption < -cost.disruption)
+		return false;
+	if(input.slowness < -cost.slowness)
+		return false;
+	return true;
 }
 
 
@@ -130,23 +162,31 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 double EnergyHandler::FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const
 {
 	double scale = 1.;
-	if(input.hull < cost.hull * scale)
-		scale *= input.hull / (cost.hull * scale);
-	if(input.shields < cost.shields * scale)
-		scale *= input.shields / (cost.shields * scale);
-	if(input.energy < cost.energy * scale)
-		scale *= input.energy / (cost.energy * scale);
-	if(input.heat < -cost.heat * scale)
-		scale *= input.heat / (-cost.heat * scale);
-	if(input.fuel < cost.fuel * scale)
-		scale *= input.fuel / (cost.fuel * scale);
+	auto ScaleOutput = [&scale](double input, double cost)
+	{
+		if(input < cost * scale)
+			scale = input / cost;
+	};
+	ScaleOutput(input.hull, cost.hull);
+	ScaleOutput(input.shields, cost.shields);
+	ScaleOutput(input.energy, cost.energy);
+	ScaleOutput(input.heat, -cost.heat);
+	ScaleOutput(input.fuel, cost.fuel);
+	ScaleOutput(input.corrosion, -cost.corrosion);
+	ScaleOutput(input.discharge, -cost.discharge);
+	ScaleOutput(input.ionization, -cost.ionization);
+	ScaleOutput(input.burn, -cost.burn);
+	ScaleOutput(input.leakage, -cost.leakage);
+	ScaleOutput(input.disruption, -cost.disruption);
+	ScaleOutput(input.slowness, -cost.slowness);
 
 	return scale * output;
 }
 
 
 
-// Apply damage to the input.
+// Apply damage * scale to the input. Hull, shields, energy, and fuel
+// are subtracted from input while all other levels are added to input.
 void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, double scale) const
 {
 	input.hull -= scale * damage.hull;
@@ -166,23 +206,7 @@ void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, doub
 
 
 
-bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const
-{
-	if(input.hull < cost.hull)
-		return false;
-	if(input.shields < cost.shields)
-		return false;
-	if(input.energy < cost.energy)
-		return false;
-	if(input.heat < -cost.heat)
-		return false;
-	if(input.fuel < cost.fuel)
-		return false;
-	return true;
-}
-
-
-
+// Update the stored EnergyLevels for each action a ship can take.
 void EnergyHandler::HullRepair(const Outfit &attributes)
 {
 	hullRepairLevels.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
@@ -194,7 +218,6 @@ void EnergyHandler::HullRepair(const Outfit &attributes)
 
 
 
-// Update the stored EnergyLevels for each action a ship can take.
 void EnergyHandler::ShieldRegen(const Outfit &attributes)
 {
 	shieldRegenLevels.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
