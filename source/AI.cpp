@@ -3297,13 +3297,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			bool foundAnything = false;
 			bool distancePriority = Preferences::Has("Board target");
 
-			auto strategy = [&](const AI &ai) -> function<double(const shared_ptr<Ship> &other)> {
+			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &other)> {
 				Point current = ship.Position();
 				if (!distancePriority)
 				{
 					double agility = ship.Acceleration() * ship.TurnRate();
-					return [agility, &ai, &ship, current](const shared_ptr<Ship> &other) -> double {
-						double cost = ai.Has(ship, other, ShipEvent::SCAN_OUTFITS) ? 
+					return [agility, this, &ship, current](const shared_ptr<Ship> &other) -> double {
+						double cost = this->Has(ship, other, ShipEvent::SCAN_OUTFITS) ? 
 							other.get()->Cost() : (other.get()->ChassisCost() * 2.);
 						return -agility * 2. * (cost * cost) / current.DistanceSquared(other.get()->Position());
 					};
@@ -3312,7 +3312,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				return [current](const shared_ptr<Ship> &other) -> double {
 					return current.DistanceSquared(other.get()->Position());
 				};
-			}(*this);
+			};
 
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
@@ -3321,7 +3321,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						continue;
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-					double b = strategy(other);
+					double b = strategy()(other);
 					
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
