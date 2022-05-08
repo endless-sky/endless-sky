@@ -1593,7 +1593,24 @@ mission "Resistance: Quarg Interview"
 				goto questions
 			label task
 			`	Tummug goes around the table, handing copies of some document of sorts to the other leaders before answering. "One of the center points of Heliarch propaganda, the fear of the Quarg is. Served to justify their budget, and their obsession with hoarding the military, for millennia it has. Thought up a way to mitigate the effect that has on the populace, Oobat has."`
-			`	As if given her cue, Oobat goes further into the plan. "Seen in the Coalition in over six thousand years, no Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and jump drive, thought we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, about how worded they are. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she finishes as she says the last part looking at you.`
+			`	As if given her cue, Oobat goes further into the plan. "Seen in the Coalition in over six thousand years, no Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and jump drive, thought we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, about how worded they are. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she says the last part looking at you. "Met with the Quarg before, have you, Captain?"`
+			branch metquarg
+				has "First Contact: Quarg: offered"
+			choice
+				`	"No, sorry. I never had the time to visit one of their worlds or rings."`
+				`	"I've only seen them in pictures and videos."`
+			`	"Ah, a shame that is. Well, I suppose a first time for the both of us, this trip will be."`
+				goto accept
+			label metquarg
+			choice
+				`	"Yes. They can be a bit odd, but they've always treated me well."`
+				`	"Yes, sadly. They're obnoxious and condescending."`
+					goto quargbad
+			`	"Good to hear, that is. Hope I do that willing extend that treatment to me, they are."`
+				goto accept
+			label quargbad
+			`	The table puts the documents away in unison, looking at you after your answer. "I see... well, at least cooperate for the interview, we can hope they will."`
+			label accept
 			`	The Lunarium leaders spend an hour or so going over the questions proposed for the interview, deciding to ditch some, and add a few new ones. All the while, Elirom asks in a worried manner if Oobat is sure of this idea. "Forgive me if sounding like a Heliarch, I am, but dangerous to leave, it is. How the Quarg would react to seeing someone from the Coalition in their territory, we do not know."`
 			`	"Understand that, I do, but fine I will be. Unlike the Quarg it is, to attack unprovoked," she answers. "And, if worse comes to worse, trust I do in Captain <last>'s abilities to ensure we escape." The leaders go over the interview questions a while longer, until they've reached a consensus as to its completeness. They wish you and Oobat good luck, and you two are escorted back out of the complex to your ship. There, Oobat asks you for the best place for such an interview in human space, and you point to <destination>, where they are constructing their ringworld. "Then head there, we must. In your care I will be, Captain." You show her to her bunk, and plot a course to <planet>.`
 				accept
