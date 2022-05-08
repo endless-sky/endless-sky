@@ -3297,7 +3297,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			bool foundAnything = false;
 			bool distancePriority = Preferences::Has("Board target");
 
-			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &other)> {
+			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &)> {
 				Point current = ship.Position();
 				if (!distancePriority)
 				{
