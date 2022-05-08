@@ -39,6 +39,35 @@ void EnergyHandler::Update(const Outfit &attributes)
 	ReverseThrust(attributes);
 	Turn(attributes);
 	Afterburner(attributes);
+
+	Cloak(attributes);
+}
+
+
+
+// Clear all levels of input and set hull to -1.
+void EnergyHandler::Kill(EnergyLevels &input) const
+{
+	input.hull = -1.;
+	input.shields = 0.;
+	input.energy = 0.;
+	input.heat = 0.;
+	input.fuel = 0.;
+	ClearDoT(input);
+}
+
+
+
+// Clear the damage over time levels of the input.
+void EnergyHandler::ClearDoT(EnergyLevels &input) const
+{
+	input.discharge = 0.;
+	input.corrosion = 0.;
+	input.ionization = 0.;
+	input.leakage = 0.;
+	input.burn = 0.;
+	input.disruption = 0.;
+	input.slowness = 0.;
 }
 
 
@@ -386,4 +415,15 @@ void EnergyHandler::Afterburner(const Outfit &attributes)
 	afterburnerLevels.leakage = attributes.Get("afterburner leakage");
 	afterburnerLevels.disruption = attributes.Get("afterburner disruption");
 	afterburnerLevels.slowness = attributes.Get("afterburner slowing");
+}
+
+
+
+void EnergyHandler::Cloak(const Outfit &attributes)
+{
+	cloakLevels.wildcard = attributes.Get("cloak");
+
+	cloakLevels.energy = attributes.Get("cloaking energy");
+	cloakLevels.heat = attributes.Get("cloaking heat");
+	cloakLevels.fuel = attributes.Get("cloaking fuel");
 }

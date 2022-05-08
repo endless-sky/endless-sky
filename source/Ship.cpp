@@ -1114,13 +1114,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 		zoom = 1.;
 	// Make sure various special status values are reset.
 	levels.heat = IdleHeat();
-	levels.ionization = 0.;
-	levels.disruption = 0.;
-	levels.slowness = 0.;
-	levels.discharge = 0.;
-	levels.corrosion = 0.;
-	levels.leakage = 0.;
-	levels.burn = 0.;
+	handler.ClearDoT(levels);
 	shieldDelay = 0;
 	hullDelay = 0;
 	isInvisible = !HasSprite();
@@ -1363,16 +1357,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(!cloak)
 			cloakDisruption = max(0., cloakDisruption - 1.);
 
-		double cloakingSpeed = attributes.Get("cloak");
+		EnergyLevels &cloakCost = handler.cloakLevels;
+		double cloakingSpeed = cloakCost.wildcard;
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-			&& levels.fuel >= attributes.Get("cloaking fuel")
-			&& levels.energy >= attributes.Get("cloaking energy"));
+			&& handler.CanExpend(levels, cloakCost));
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
 			cloak = min(1., cloak + cloakingSpeed);
-			levels.fuel -= attributes.Get("cloaking fuel");
-			levels.energy -= attributes.Get("cloaking energy");
-			levels.heat += attributes.Get("cloaking heat");
+			handler.Damage(levels, cloakCost);
 		}
 		else if(cloakingSpeed)
 		{
@@ -1438,16 +1430,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(bay.ship)
 						bay.ship->Destroy();
 			}
-			levels.energy = 0.;
-			levels.heat = 0.;
-			levels.ionization = 0.;
-			levels.disruption = 0.;
-			levels.slowness = 0.;
-			levels.discharge = 0.;
-			levels.corrosion = 0.;
-			levels.leakage = 0.;
-			levels.burn = 0.;
-			levels.fuel = 0.;
+			handler.Kill(levels);
 			velocity = Point();
 			MarkForRemoval();
 			return;
@@ -2635,13 +2618,7 @@ void Ship::Recharge(bool atSpaceport)
 		levels.fuel = attributes.Get("fuel capacity");
 
 	levels.heat = IdleHeat();
-	levels.ionization = 0.;
-	levels.disruption = 0.;
-	levels.slowness = 0.;
-	levels.discharge = 0.;
-	levels.corrosion = 0.;
-	levels.leakage = 0.;
-	levels.burn = 0.;
+	handler.ClearDoT(levels);
 	shieldDelay = 0;
 	hullDelay = 0;
 }

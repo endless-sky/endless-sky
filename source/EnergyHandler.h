@@ -28,6 +28,12 @@ public:
 	// ship can take (e.g. regenerating shields, thrusting).
 	void Update(const Outfit &attributes);
 
+	// Clear all levels of input and set hull to -1.
+	void Kill(EnergyLevels &input) const;
+
+	// Clear the damage over time levels of the input.
+	void ClearDoT(EnergyLevels &input) const;
+
 	// Repair the given stat up to the maximum given the energy input and cost.
 	// Updates the available variable with the remaining amount of repairs that
 	// can be done.
@@ -66,6 +72,8 @@ private:
 	void Turn(const Outfit &attributes);
 	void Afterburner(const Outfit &attributes);
 
+	void Cloak(const Outfit &attributes);
+
 
 private:
 	// A ship can freely access the EnergyLevels of its own handler.
@@ -86,6 +94,8 @@ private:
 	EnergyLevels reverseThrustLevels;
 	EnergyLevels turnLevels;
 	EnergyLevels afterburnerLevels;
+
+	EnergyLevels cloakLevels;
 };
 
 #endif
