@@ -1721,7 +1721,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
-			EnergyLevels turnCost = handler.turnLevels;
+			EnergyLevels &turnCost = handler.turnLevels;
 			commands.SetTurn(handler.FractionalUsage(levels, turnCost, commands.Turn()));
 			if(commands.Turn())
 			{
@@ -1739,7 +1739,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			EnergyLevels thrustCost = (thrustCommand > 0.) ? handler.thrustLevels : handler.reverseThrustLevels;
+			EnergyLevels &thrustCost = (thrustCommand > 0.) ? handler.thrustLevels : handler.reverseThrustLevels;
 			thrustCommand = handler.FractionalUsage(levels, thrustCost, thrustCommand);
 			if(thrustCommand)
 			{
@@ -1759,7 +1759,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			EnergyLevels afterburnerCost = handler.afterburnerLevels;
+			EnergyLevels &afterburnerCost = handler.afterburnerLevels;
 			thrust = afterburnerCost.wildcard;
 			if(thrust && handler.CanExpend(levels, afterburnerCost))
 			{
