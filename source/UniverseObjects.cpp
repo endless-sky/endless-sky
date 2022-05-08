@@ -116,8 +116,6 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
-	for(auto &&it : wormholes)
-		planets.Get(it.first)->AssignWormhole(&it.second);
 	for(auto &&it : planets)
 		it.second.FinishLoading(wormholes);
 	
@@ -172,7 +170,7 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
-		planets.Get(node.Token(1))->Load(node);
+		planets.Get(node.Token(1))->Load(node, wormholes);
 	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
 		wormholes.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
@@ -204,6 +202,8 @@ void UniverseObjects::UpdateSystems()
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
 
+		// If there were changes to a system there might have been a change to a legacy
+		// wormhole which we must handle.
 		for(const auto &object : it.second.Objects())
 			if(object.GetPlanet())
 				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
@@ -306,7 +306,7 @@ void UniverseObjects::CheckReferences()
 			Warn("hazard", it.first);
 	// Wormholes are never serialized.
 	for(const auto &it : wormholes)
-		if(!it.second.IsValid())
+		if(it.second.Name().empty())
 			Warn("wormhole", it.first);
 }
 
@@ -367,7 +367,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "phrase" && node.Size() >= 2)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
-			planets.Get(node.Token(1))->Load(node);
+			planets.Get(node.Token(1))->Load(node, wormholes);
 		else if(key == "wormhole" && node.Size() >= 2)
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)

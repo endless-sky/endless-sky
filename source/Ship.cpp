@@ -1698,7 +1698,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// instantly transported.
 				if(landingPlanet->IsWormhole())
 				{
-					currentSystem = landingPlanet->GetWormhole()->WormholeDestination(currentSystem);
+					currentSystem = &landingPlanet->GetWormhole()->WormholeDestination(*currentSystem);
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();

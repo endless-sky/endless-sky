@@ -223,8 +223,8 @@ void DistanceMap::Init(const Ship *ship)
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = source ?
-						*object.GetPlanet()->GetWormhole()->WormholeSource(top.next) :
-						*object.GetPlanet()->GetWormhole()->WormholeDestination(top.next);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
 					if(HasBetter(link, top))
 						continue;
 

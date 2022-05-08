@@ -40,7 +40,9 @@ class Wormhole;
 class Planet {
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	// Legacy wormhole do not have an associated Wormhole object so
+	// we must auto generate one if we detect such legacy wormhole.
 	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
@@ -111,13 +113,11 @@ public:
 	// must be done when game events rearrange the planets in a system.
 	void RemoveSystem(const System *system);
 	// Every system this planet is in. If this list has more than one entry, it's a wormhole.
-	const std::vector<const System *> Systems() const;
+	const std::vector<const System *> &Systems() const;
 
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
 	const Wormhole *GetWormhole() const;
-	// Assigns a wormhole to this planet.
-	void AssignWormhole(Wormhole *wormhole);
 
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.

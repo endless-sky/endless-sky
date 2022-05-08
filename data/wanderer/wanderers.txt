@@ -877,8 +877,10 @@ event "wanderers: more systems lost"
 
 planet "The Eye"
 	spaceport ""
+	wormhole "The Eye"
+
 wormhole "The Eye"
-	linked
+	mappable
 	link Sabriset Sko'karak
 	link Sko'karak Sabriset
 

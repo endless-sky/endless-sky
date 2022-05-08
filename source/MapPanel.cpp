@@ -955,9 +955,9 @@ void MapPanel::DrawTravelPlan()
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->GetWormhole()->IsLinked()
+				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& object.GetPlanet()->GetWormhole()->WormholeDestination(previous) == next);
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
 
 		if(!isHyper && !isJump && !isWormhole)
 			break;
@@ -1044,12 +1044,16 @@ void MapPanel::DrawWormholes()
 	// share a link vector.
 	for(auto &&it : GameData::Wormholes())
 	{
-		const Planet *p = it.second.GetPlanet();
-		if(!p->IsValid() || !player.HasVisited(*p) || !it.second.IsLinked())
+		if(!it.second.IsValid())
+			continue;
+
+		const Planet &p = *it.second.GetPlanet();
+		if(!p.IsValid() || !player.HasVisited(p) || !it.second.IsMappable())
 			continue;
 		
 		for(auto &&link : it.second.Links())
-			if(player.HasVisited(*link.first) && player.HasVisited(*link.second))
+			if(p.IsInSystem(link.first)
+					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))
 				arrowsToDraw.emplace(link.first, link.second);
 	}
 
