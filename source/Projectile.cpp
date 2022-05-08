@@ -61,6 +61,15 @@ Angle Projectile::Inaccuracy(double value, double smoothness)
 			if(randomFactor < 0)
 				randomFactor++;
 
+			// Use negative smoothness to achieve a spread that concentrates at the endpoints rather than the center.
+			if(smoothness < 0)
+			{
+				if(randomFactor < 0.5)
+					randomFactor += 0.5;
+				else
+					randomFactor -= 0.5;
+			}
+
 			inaccuracy = Angle(2 * value * randomFactor)  - Angle(value);
 		}
 	}
