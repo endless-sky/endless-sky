@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EnergyHandler.h"
 
 #include "Outfit.h"
+#include "Ship.h"
+#include "Weapon.h"
 
 #include <cmath>
 
@@ -186,6 +188,39 @@ bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cos
 
 
 
+// Return true if the given input has the energy to expend on the firing cost.
+// This ignores any shield costs, allowing ships to fire a weapon even with
+// no shields. This also prevents a ship from disabling itself as a result
+// of any firing hull cost.
+bool EnergyHandler::CanFire(const EnergyLevels &input, const EnergyLevels &cost, double minHull) const
+{
+	if(input.hull - minHull < cost.hull)
+		return false;
+	if(input.energy < cost.energy)
+		return false;
+	if(input.heat < -cost.heat)
+		return false;
+	if(input.fuel < cost.fuel)
+		return false;
+	if(input.corrosion < -cost.corrosion)
+		return false;
+	if(input.discharge < -cost.discharge)
+		return false;
+	if(input.ionization < -cost.ionization)
+		return false;
+	if(input.burn < -cost.burn)
+		return false;
+	if(input.leakage < -cost.leakage)
+		return false;
+	if(input.disruption < -cost.disruption)
+		return false;
+	if(input.slowness < -cost.slowness)
+		return false;
+	return true;
+}
+
+
+
 // Return the amount of value that the given input can output
 // given the maximum possible output and its cost.
 double EnergyHandler::FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const
@@ -231,6 +266,37 @@ void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, doub
 	input.leakage += scale * damage.leakage;
 	input.disruption += scale * damage.disruption;
 	input.slowness += scale * damage.slowness;
+}
+
+
+
+// Construct an EnergyLevels object for the firing cost of the given weapon
+// when fired from the given ship.
+EnergyLevels EnergyHandler::FiringCost(const Weapon &weapon, const Ship &ship) const
+{
+	EnergyLevels cost;
+	const Outfit &attributes = ship.Attributes();
+	double maxHeat = weapon.RelativeFiringHeat() ? ship.MaximumHeat() : 0.;
+
+	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * attributes.Get("hull");
+	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * attributes.Get("shields");
+	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
+	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * maxHeat;
+	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
+
+	cost.corrosion = weapon.FiringCorrosion();
+	cost.discharge = weapon.FiringDischarge();
+	cost.ionization = weapon.FiringIon();
+	cost.burn = weapon.FiringBurn();
+	cost.leakage = weapon.FiringLeak();
+	cost.disruption = weapon.FiringDisruption();
+	cost.slowness = weapon.FiringSlowing();
+
+	// Ships aren't allowed to have negative shields, so clamp the firing shield
+	// cost to the ship's shield level.
+	cost.shields = min(cost.shields, ship.ShieldLevel());
+
+	return cost;
 }
 
 

@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EnergyLevels.h"
 
 class Outfit;
+class Ship;
+class Weapon;
 
 
 
@@ -42,8 +44,14 @@ public:
 	// Apply status effects and DoT resistances to the input.
 	void DoStatusEffects(EnergyLevels &input, bool disabled) const;
 
-	// Return true if the given input has the energy to expend on the cost.
+	// Return true if the given input has the energy to expend on the entire cost.
 	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
+
+	// Return true if the given input has the energy to expend on the firing cost.
+	// This ignores any shield costs, allowing ships to fire a weapon even with
+	// no shields. This also prevents a ship from disabling itself as a result
+	// of any firing hull cost.
+	bool CanFire(const EnergyLevels &input, const EnergyLevels &cost, double minHull) const;
 
 	// Return the amount of value that the given input can output
 	// given the maximum possible output and its cost.
@@ -52,6 +60,10 @@ public:
 	// Apply damage * scale to the input. Hull, shields, energy, and fuel
 	// are subtracted from input while all other levels are added to input.
 	void Damage(EnergyLevels &input, const EnergyLevels &damage, double scale = 1.) const;
+
+	// Construct an EnergyLevels object for the firing cost of the given weapon
+	// when fired from the given ship.
+	EnergyLevels FiringCost(const Weapon &weapon, const Ship &ship) const;
 
 
 private:

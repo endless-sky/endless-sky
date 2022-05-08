@@ -3436,29 +3436,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 
-	if(levels.energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return false;
-	if(levels.fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return false;
-	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(levels.hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
-		return false;
-
-	// If a weapon requires heat to fire, (rather than generating heat), we must
-	// have enough heat to spare.
-	if(levels.heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
-			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return false;
-	// Repeat this for various effects which shouldn't drop below 0.
-	if(levels.ionization < -weapon->FiringIon())
-		return false;
-	if(levels.disruption < -weapon->FiringDisruption())
-		return false;
-	if(levels.slowness < -weapon->FiringSlowing())
-		return false;
-
-	return true;
+	return handler.CanFire(levels, handler.FiringCost(*weapon, *this), MinimumHull());
 }
 
 
@@ -3468,13 +3446,9 @@ bool Ship::CanFire(const Weapon *weapon) const
 // is true.
 void Ship::ExpendAmmo(const Weapon &weapon)
 {
-	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
+	// Compute the firing cost before removing ammo, in case the consumption of the ammunition outfit(s)
 	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
-	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
-	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
-	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
-	const double relativeHullChange = weapon.RelativeFiringHull() * attributes.Get("hull");
-	const double relativeShieldChange = weapon.RelativeFiringShields() * attributes.Get("shields");
+	EnergyLevels firingCost = handler.FiringCost(weapon, *this);
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
@@ -3484,20 +3458,8 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		AddOutfit(ammo, -weapon.AmmoUsage());
 	}
 
-	levels.energy -= weapon.FiringEnergy() + relativeEnergyChange;
-	levels.fuel -= weapon.FiringFuel() + relativeFuelChange;
-	levels.heat += weapon.FiringHeat() + relativeHeatChange;
-	levels.shields -= weapon.FiringShields() + relativeShieldChange;
-
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
-	levels.hull -= weapon.FiringHull() + relativeHullChange;
-	levels.ionization += weapon.FiringIon();
-	levels.disruption += weapon.FiringDisruption();
-	levels.slowness += weapon.FiringSlowing();
-	levels.discharge += weapon.FiringDischarge();
-	levels.corrosion += weapon.FiringCorrosion();
-	levels.leakage += weapon.FiringLeak();
-	levels.burn += weapon.FiringBurn();
+	handler.Damage(levels, firingCost);
 }
 
 
