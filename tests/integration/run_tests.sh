@@ -118,7 +118,7 @@ function run_test () {
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "You must supply a path to the binary as an argument,"
   echo "and you must supply a path to the ES resources (data-files), e.g."
-  echo "~$ ./tests/run_tests.sh ./endless-sky ./"
+  echo "~$ ./tests/integration/run_tests.sh ./endless-sky ./"
   exit 1
 fi
 
