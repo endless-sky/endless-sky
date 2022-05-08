@@ -2346,12 +2346,12 @@ mission "Coalition: Interesting Connections"
 	stopover Hai-home
 	on offer
 		conversation
-			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help I need from you. Of course I will pay you. Will you accept? `
+			`After you entered the Spaceport a Kimek is suddenly approaching you. "You, human you are? ... Idiotic question that is, it's obvious. Scientific help I need from you. Of course payment i will give you. Accept you will? `
 			choice
 				`	"I need to know what i have to do before I can accept this job."`
 				`	"I'm not looking for work right now"`
 					decline
-			`	"Oh, of course. I will tell you. From an team of Heliarch scientists I am. From a connection between humans and another species we heard. Because this connection another break in the Quarg's limitations is, we would like to know more about it. Getting some historic data is all you have to do."`
+			`	"Oh, of course. I will tell you. From an team of Heliarch scientists I am. From a connection between humans and another species we heard. Because this connection another break in the Quarg's limitations is, know more about it, we want. Getting some historic data is all you have to do."`
 			`   This would mean to travel to Hai territory. As there is no data in human space that is public.`
 			choice
 				`	"I will do everything for science."`
@@ -2364,7 +2364,7 @@ mission "Coalition: Interesting Connections"
 			`When you landed on Hai Home you ask some people around for an historic library where you could find the info the Kimek is searching for. To your pleasure it is not taking long for gathering some data and you are ready to get back again.`
 	on complete
 		conversation
-			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully we will scan each detail of this info. Maybe we will need some more another time. Hope I can count on your help then." After he said that he is going away.`
+			`After your landing you directly go to the Kimek and give hime the data device. Happy that he got what he was searching for he says "Thanks to you human. I really appretiate your help. Carefully scan each detail of this info, we will. Maybe need some more help another time, we will. Hope counting on your help, i will be able to then." After he said that he is going away.`
 
 		"coalition jobs" += 1
 		payment 100000
@@ -2387,23 +2387,23 @@ mission "Coalition: Hunger for Knowledge"
 	on offer
 		conversation
 			`Directly after your landing the same Kimek from the last time is approaching you. "Hey Captain, another job for you I have."`
-			`	You turn around "What is it this time?" He responds "Both sides of the wormhole you could scan them for me?"`
+			`	You turn around "What is it this time?" He responds "Both sides of the wormhole scan them for me, you could?"`
 			choice
 				`	"Yeah I got some time."`
 				`	"What do you think you will find?"`
 					goto purpose
 				`	"I'm not looking for work right now"`
 					decline
-			`	"Very well take this small device it will do the scans." `
+			`	"Very well this small device, you take, the scans, it will do." `
 				accept
 			label purpose
-			`	"No wormholes we have in our region of space. That's why we would like to increase our knowledge about them. Furthermore we hope we get more information about the structure of space itself and it brings us nearer to creatng jump drives we hope." You respond: "I would be curoius for that."`
-			`	"Taking time this will but sometime in the future we will get out of this cages and see the whole galaxy. So will you do it or not?"`
+			`	"No wormholes in our region of space, we have. That's why our knowledge about them, we would like to increase . Furthermore more information about the structure of space itself, we hope we will get and nearer to creatng jump drives we hope, it brings us." You respond: "I would be curoius for that."`
+			`	"Taking time this will but sometime in the future of this cages and see the whole galaxy, it brings us. So will you do it or not?"`
 			choice
 				`	"Fine I will do it."`
 				`	"Sorry but I have no time for something like that."`
 					decline
-			`	He hands you a small device. "Attach this to your ships scanners I will wait for your results." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
+			`	He hands you a small device. "To your ships scanners, attach this, for your results, i will wait." As you look at it closer it looks like somekind of inverted satellite dish and you have no idea what it could be used for. But not asking further question you go to your ship.`
 				accept
 	on complete
 		conversation
@@ -2435,10 +2435,10 @@ mission "Coalition: Supernova Explorers: Intro"
 			`	"But we need your help again in another matter. You know what a supernova is?" Of course you know so you nod. "Good so i dont have to explain. In the north of our territory an old red star is going to get to a supernova. Unfortunately there is no hyperspace link to this system. But we think if we give you the exact coordinates you can jump to this system."`
 			`	You look at him suspiciously. "Isn't it dangerous to get near to a supernova?" He nods "Yes normally you would not be able to survive their. But this star is short before a supernova that's why the heat is very high but we were able to design a special heat shield for that. We will give it to you for the time you do this mission for us. Will you do it?"`
 			choice
-				`	"That sounds good, count on me."`
+				`	"I will accept if you tell me what you think you will find out."`
 				`	"Ah, this is too dangerous for me sorry."`
 					decline
-			`	"Very well, we will meet at Bright Echo in the Ancient Hope System.`
+			`	"Ah, no problem that is. About Yottrite you heard? An important material it is. Near old supernovas it is forming. Finding some info about how it is forming we hope. Very well after you heard this, at Bright Echo in the Ancient Hope System, we will meet."`
 				accept
 
 event "Questions found"
@@ -2467,7 +2467,7 @@ mission "Coalition: Supernova Explorers: First Jump"
 	waypoint Questions
 	on offer
 		conversation
-			`After you landed on the planet you are directly approached by the Kimek. "Welcome Captain, nice to see you here. We have a small base here so we can coordinate everything next to the supernova system. If you do not mind we will directly install the Heat shield."`
+			`After you landed on the planet you are directly approached by the Kimek. "Welcome Captain, to see you here, nice it is. A small base here, we have, so everything next to the supernova system, we can coordinate. If you do not mind we will directly install the Heat shield."`
 			choice
 				`	"Ok, go on."`
 				`	"Sorry but now i dont think that's a good idea."`
@@ -2497,7 +2497,7 @@ mission "Coalition: Supernova Explorers: Deploy probe"
 	waypoint Questions
 	on offer
 		conversation
-			`When you landed you head for the scientists lab. There you see the Kikek. As he recognizes you he comes towards you. "Hello Captain, I see the Heat Shield worked?"`
+			`When you landed you head for the scientists lab. There you see the Kimek. As he recognizes you he comes towards you. "Hello Captain, I see the Heat Shield worked?"`
 			choice
 				`	"Its cooling is impressive."`
 				`	"The heat is still a problem but yes."`
