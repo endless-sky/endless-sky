@@ -3312,7 +3312,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				return [current](const shared_ptr<Ship> &other) -> double {
 					return current.DistanceSquared(other.get()->Position());
 				};
-			};
+			}();
 
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
@@ -3321,7 +3321,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						continue;
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-					double b = strategy()(other);
+					double b = strategy(other);
 					
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
