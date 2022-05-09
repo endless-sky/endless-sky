@@ -97,7 +97,7 @@ public:
 	const Point &HardpointOffset() const;
 
 	double Turn() const;
-	double Inaccuracy() const;
+	std::pair<double, double> Inaccuracy() const;
 	double InaccuracySmoothness() const;
 	double TurretTurn() const;
 
@@ -245,8 +245,7 @@ private:
 	Point hardpointOffset = {0., 0.};
 
 	double turn = 0.;
-	double inaccuracy = 0.;
-	double inaccuracySmoothness = 1.;
+	std::pair<double, double> inaccuracy = {0., 1.};
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -341,8 +340,7 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline double Weapon::Inaccuracy() const { return inaccuracy; }
-inline double Weapon::InaccuracySmoothness() const { return inaccuracySmoothness; }
+inline std::pair<double, double> Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

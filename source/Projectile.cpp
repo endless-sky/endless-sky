@@ -35,15 +35,15 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(double value, double smoothness)
+Angle Projectile::Inaccuracy(std::pair<double, double> values)
 {
 	Angle inaccuracy;
-	if(value)
+	if(values.first)
 	{
-		if(!smoothness)
-			inaccuracy = Angle::Random(2 * value) - Angle(value);
+		if(!values.second)
+			inaccuracy = Angle::Random(2 * values.first) - Angle(values.first);
 		else
-			inaccuracy = Angle(2 * value * Random::CompressedNormal(smoothness))  - Angle(value);
+			inaccuracy = Angle(2 * values.first * Random::CompressedNormal(values.second))  - Angle(values.first);
 	}
 	return inaccuracy;
 }
@@ -123,7 +123,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					const Weapon *const subWeapon = it.weapon;
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy(),  subWeapon->InaccuracySmoothness()), subWeapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy()), subWeapon);
 				}
 		}
 		MarkForRemoval();

@@ -48,7 +48,7 @@ public:
 
 
 public:
-	static Angle Inaccuracy(double value, double smoothness);
+	static Angle Inaccuracy(std::pair<double, double> values);
 
 
 public:

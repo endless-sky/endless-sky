@@ -150,9 +150,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")
-				inaccuracy = value;
-			else if(key == "inaccuracy smoothness")
-				inaccuracySmoothness = value;
+			{
+				inaccuracy.first = value;
+				if(child.Size() >= 3)
+					inaccuracy.second = child.Value(2);
+			}
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
@@ -311,7 +313,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 	// Invert to make values with larger magnitude correspond to smoother behavior
 	// Multiply by 2.317 so that a stat value of 1 mimics legacy behavior
-	inaccuracySmoothness = (1. / inaccuracySmoothness) * 2.317;
+	inaccuracy.second = (1. / inaccuracy.second) * 2.317;
 }
 
 
