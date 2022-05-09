@@ -43,7 +43,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 					decline
 			label investigate
 			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
-			`	You walk up to the Wanderer they were all shouting at.  He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He hold up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and either exploring or getting killed and no one is [avaialable, willing] to do transport work."`
+			`	You walk up to the Wanderer they were all shouting at.  He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He hold up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and either exploring or getting killed and no one is [available, willing] to do transport work."`
 			choice
 				`	"Tell me what you need and I'll handle it."`
 					goto handle
@@ -227,7 +227,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3c"
 		dialog "You've arrived at <planet> but the escort with the repair technicians hasn't landed. You realize you need to depart and make sure they arrive safely."
 
 	on complete
-		dialog "The repair techs check that their tools are intact and then walk over to the warehouse. It looks like they will be working oustide until the new repair hangars are built."
+		dialog "The repair techs check that their tools are intact and then walk over to the warehouse. It looks like they will be working outside until the new repair hangars are built."
 		payment 300000 9
 
 
@@ -249,7 +249,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 			`You watch the work crews unload the cargo by uncrating the repulsor lifts in the hold and then using them to move the crates of shelving and supplies into the prefabricated shell that stands on what was formerly an empty field. The spaceport tent has been moved and you can see a new line of stakes where the spaceport building itself will be.`
 			`	Clearly other supplies are coming in as well since you can see three Deep Rivers being unloaded and containers of equipment and construction materials being stacked in a massive yard near the outfitter building.`
 			`	The construction supervisor is shouting into some kind of bull horn to one of the work crews, trying to be heard over the heavy equipment. When he notices you, he stops and flutter-walks over to you.`
-			`Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everthing we need to open at least a minimal outfitter."`
+			`Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everything we need to open at least a minimal outfitter."`
 			
 			choice
 				`	"I'd be glad to."`
@@ -276,7 +276,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 				"Deep River"
 	
 	on complete
-		dialog "Once the Thunderhead missiles start unloading, you see a flurry of Wanderers as captains and crews fly over and beseige the outfitter staff, wanting to know when they can place an order. The construction supervisior comes over and moves his head in a way you've come to associate with humor as he watches the commotion at the other landing pad. He hands you a credit chip for <payment>."
+		dialog "Once the Thunderhead missiles start unloading, you see a flurry of Wanderers as captains and crews fly over and besiege the outfitter staff, wanting to know when they can place an order. The construction supervisior comes over and moves his head in a way you've come to associate with humor as he watches the commotion at the other landing pad. He hands you a credit chip for <payment>."
 		payment 3000000
 		event "wanderers: spera anatrusk outfitter basic"
 
