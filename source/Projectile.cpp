@@ -150,7 +150,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
 				{
-					Weapon const *subWeapon = it.weapon;
+					const Weapon *const subWeapon = it.weapon;
 					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy(),  subWeapon->InaccuracySmoothness()), subWeapon);
 				}
 		}
