@@ -20,6 +20,319 @@ mission "Wanderers: Pre-Colony"
 			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
 				decline
 
+
+mission "Wanderers: Spera Anatrusk Outfitter 1"
+	landing
+	name "Establish outfitter on Spera Anatrusk"
+	description "Return to the Wanderer capital on <destination>."
+	source "Spera Anatrusk"
+	destination "Vara K'chrai"
+
+	to offer
+		has "event: wanderers: the eye opens"
+
+	on offer
+		log `The Wanderers are establishing a colony on <planet> in Korath space, but they need help getting the most basic infastructure established.`
+		conversation
+			`The landing pads at the settlement are packed earth and gravel, mostly created by the ships themselves. There is a large tent for the workers to meet and rest and a battered Strong Wind acting as a command center. You can see a small crew of Wanderers hammering forms together with a concrete mixer running nearby. It's a far cry from the clean and elegant spaceports the Wanderers are used to, but not far off some of the Dirt Belt and anarchist worlds you've known.`
+			`	Something of an argument is taking place in front of a tent at the edge of landing area. There are lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
+			choice
+				`	(Go over and investigate.)`
+					goto investigate
+				`	(Leave and explore this part of space.)`
+					decline
+			label investigate
+			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
+			`	You walk up to the Wanderer they were all shouting at.  He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He hold up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and either exploring or getting killed and no one is [avaialable, willing] to do transport work."`
+			choice
+				`	"Tell me what you need and I'll handle it."`
+					goto handle
+				`	"I guess I'll just leave, then."`
+					decline
+			label handle
+			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data crystal and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials and workers and I can't even request them directly since communications don't work through the wormhole.`
+			`	You turn to go as group of Wanderers with surveying equipment walk up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to disucss with the surveyors. As you walk off, the translator just picks up. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
+				accept
+
+	on complete
+		conversation
+			`As you land at the spaceport, you're sure you see a few of the ships you saw on <planet> with various outfits stacked for installation. It's hard to find anyone who speaks Hai, but you find your way to the main spaceport office and hand over the chip. The person at the desk chitters excitedly and calls someone over. They quickly enter information into their systems and then hand the chip back to you. After a few moments of confusion where you end up making your Hai ear gesture, they call up an app and speak into it. Your translator picks up "Job board. Job board." Hopefully everything has been booked for you.`
+
+mission "Wanderers: Spera Anatrusk Outfitter 2a"
+	landing
+	name "Construction workers to <planet>"
+	description "Now that the harvest is over, bring workers from <stopovers> to <destination> to build the new outfitter. Payment is <payment>."
+	blocked "The building supervisor at <destination> has [requisitioned, hired] more workers than you can carry. You will need <capacity> to transport these workers."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Vara Rakak"
+	passengers 75
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 1: offered"
+
+	on stopover
+		dialog "The construction workers board your ship chattering excitedly about their chance to pass through the Eye to new worlds."
+
+	on visit
+		dialog "You've arrived at <planet> but the escort with the construction workers hasn't landed. You realize you need to depart and wait for them to arrive."
+
+	on complete
+		dialog "The construction supervisor greets the <ship> as you land at the spaceport site. He hands you a credit chip for <payment> and immediately begins assigning work to the teams."
+		payment 750000
+
+mission "Wanderers: Spera Anatrusk Outfitter 2b"
+	landing
+	name "Building materials to <planet>"
+	description "Bring <cargo> from <stopovers> to <destination> to build a new outfitter. Payment is <payment>."
+	blocked "The building supervisor at <destination> has [requisitioned, purchased] more building materials than you can carry. You will need <capacity> to transport it."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Varu Ek'lak'lai"
+	cargo "prefabricated building materials" 500
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 1: offered"
+	
+	on stopover
+		dialog "The dockworkers are talking excitedly as they load the building materials. When you ask, the dock foreman tells you they are exited to be helping establish the first settlement in the new worlds."
+
+	on visit
+		dialog "You've arrived at <planet> but the escort carrying the <cargo> hasn't landed. You realize you need to depart and wait for it."
+
+	on complete
+		dialog "A team of workers unload the <cargo> while the foreman checks the manifest before handing you a credit chip for <payment>."
+		payment 200000 2
+
+mission "Wanderers: Spera Anatrusk Outfitter 2c"
+	landing
+	name "Heavy machinery to <planet>"
+	description "Bring <cargo> from <stopovers> to <destination> to build a new outfitter. Payment is <payment>."
+	blocked "The building supervisor at <destination> has [ordered, requisitioned] more equipment than you can carry. You will need <capacity> to transport it."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Varu Tek'kai"
+	cargo "heavy machinery" 300
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 1: offered"
+
+	on stopover
+		dialog "You notice that each crate of machinery has been signed by the dock team that loaded it."
+
+	on visit
+		dialog "You've arrived at <planet> but the escort carrying the <cargo> hasn't landed. You realize you need to depart and wait for it."
+
+	on complete
+		dialog "The construction supervisor drops by as the workers are unloading. He gives you a credit chip for <payment> and asks you to meet him in the tent that serves as the spaceport when all the deliveries are done."
+		payment 250000 3
+
+
+mission "Wanderers: Spera Anatrusk Outfitter 3"
+	landing
+	name "Warehouse equipment to <planet>"
+	description "Deliver warehouse equipment and staff for the outfitter on <destination>."
+	source "Spera Anatrusk"
+	destination "Vara K'chrai"
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 2a: done"
+		has "Wanderers: Spera Anatrusk Outfitter 2b: done"
+		has "Wanderers: Spera Anatrusk Outfitter 2c: done"
+
+	on offer
+		conversation 
+			`This time you land on a concrete pad and you see the familiar hexagonal layout of a Wanderer spaceport. There are tents instead of buildings but you can see stakes outlining the shapes to come. You pass a group of Wanderer captains who appear to be holding a swap meet looking for spare ammunition and equipment so they can avoid the trip back across the Eye.`
+			`	The construction supervisor bobs his head enthusiastically when he sees you and eventually remembers to switch to Hai. "Thank you, Captian <last>," he says. "We would be waiting weeks to get started building without your help. We now need to get the warehouse equipment and [personnel, staff] in to organize the outfitter and [technicians, fixers] do do the [maintenance, repairs]. Would you be able to do this for us as well?`
+			choice
+				`	"Of course. I need an outfitter here as much as anybody."`
+					goto willdo
+				`	"You'll need to find someone else for the next part."`
+					decline
+			label willdo 
+			`	"That is [optimal, excellent]," he says as he hands you a data chip. If you will take this to <destination>, they will make all the arrangements.`
+				accept
+	
+	on complete
+		conversation
+			`Things go much smoother this time. The Wanderer in the office takes the chip and after a few moments loads their own translation application and says, "[Complete, Done]. On job [board, list] soon. Spaceport if no see."`
+			`	You thank them and wonder how strange your translator makes you sound to the Wanderers.`
+
+
+mission "Wanderers: Spera Anatrusk Outfitter 3a"
+	landing
+	name "Warehouse equipment to <planet>"
+	description "Bring <cargo> from <stopovers> to <destination>. Payment is <payment>."
+	blocked "You need <capacity> additional cargo space to transport this [storeroom, warehouse] equipment."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Varu Tev'kei"
+	cargo "warehouse equpment" 300
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
+
+	on stopover
+		dialog `Each crate has a message of some sort on the side. It translates to "[Wonderful, Auspicious] hope for the Fortunate Ones on our new worlds."`
+		
+	on visit
+		dialog "You've arrived at <planet> but the escort carrying the <cargo> hasn't landed. You realize you need to depart and wait for it."
+
+	on complete
+		dialog "A team of workers unload the <cargo> while the foreman checks the manifest before handing you a credit chip for <payment>. He tells you to [attend, meet] the construction supervisor once all the jobs are complete."
+		payment 200000 2
+
+mission "Wanderers: Spera Anatrusk Outfitter 3b"
+	landing
+	name "Outfitter staff to <planet>"
+	description "Bring outfitter staff from <stopovers> to <destination>. Payment is <payment>."
+	blocked "You need <capacity> [surplus, additional] to transport these workers."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Varu K'prai"
+	passengers 50
+	cargo "luggage" 5
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
+
+	on stopover
+		dialog "One of the outfitter staff has been learning some Hai and asks you endless questions about the Hai and the worlds beyone the Eye. You look at all the travel bags and boxes and wonder if anyone warned them about how primitive their new home is."
+
+	on visit
+		dialog "You've arrived at <planet> but the escort carrying the outfitter staff hasn't landed. You realize you need to depart and wait for them to arrive."
+
+	on complete
+		dialog "The new staff walk off your ship with their heads swivelling around to take in the new landscape. You can see the shell of the new warehouse to shelter the equipment in the outfitter, but it looks like the Wanderers will be staying in tents."
+		payment 500000 6
+
+mission "Wanderers: Spera Anatrusk Outfitter 3c"
+	landing
+	name "Technicans to <planet>"
+	description "Bring repair technicians from <stopovers> to <destination>. Payment is <payment>."
+	blocked "You are [lacking, missing] <capacity> to transport these repair technicians."
+	source "Vara K'chrai"
+	destination "Spera Anatrusk"
+	stopover "Var' Kayi"
+	passengers 30
+	cargo "tools" 200
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
+
+	on stopover
+		dialog "The repair techs seem more concerned about making sure that their tools are securely stored than about speculating about the Eye, though you do have to chase a few out of the engineering section as they poke around to see how the <ship> is outfitted."
+
+	on visit
+		dialog "You've arrived at <planet> but the escort with the repair technicians hasn't landed. You realize you need to depart and make sure they arrive safely."
+
+	on complete
+		dialog "The repair techs check that their tools are intact and then walk over to the warehouse. It looks like they will be working oustide until the new repair hangars are built."
+		payment 300000 9
+
+
+mission "Wanderers: Spera Anatrusk Outfitter 4"
+	landing
+	name "Escort outfitter convoy"
+	description "Escort outfitter convoy to <destination>."
+	source "Spera Anatrusk"
+	destination "Spera Anatrusk"
+	stopover "Vara K'chrai"
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 3a: done"
+		has "Wanderers: Spera Anatrusk Outfitter 3b: done"
+		has "Wanderers: Spera Anatrusk Outfitter 3c: done"
+
+	on offer
+		conversation
+			`You watch the work crews unload the cargo by uncrating the repulsor lifts in the hold and then using them to move the crates of shelving and supplies into the prefabricated shell that stands on what was formerly an empty field. The spaceport tent has been moved and you can see a new line of stakes where the spaceport building itself will be.`
+			`	Clearly other supplies are coming in as well since you can see three Deep Rivers being unloaded and containers of equipment and construction materials being stacked in a massive yard near the outfitter building.`
+			`	The construction supervisor is shouting into some kind of bull horn to one of the work crews, trying to be heard over the heavy equipment. When he notices you, he stops and flutter-walks over to you.`
+			`Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everthing we need to open at least a minimal outfitter."`
+			
+			choice
+				`	"I'd be glad to."`
+					accept
+				`	"I'm not willing to risk the Mereti ships for the freighters."`
+					decline
+			`	The supervisor nods his head and then turns back to the construction site. He lifts his bull horn and starts shouting at the workers. He get two sentences out before he remembers to stop speaking Hai.`
+
+	on stopover
+		dialog "The dock workers seem eager to load the massive freighters. They are excited to be part of the Migration. They stand together and salute the flight crew when they board for departure."
+	
+	on visit
+		dialog "You've arrived at <planet> but not all the freighters have landed. You realize you need to depart and make sure they arrive safely."
+
+	npc accompany
+		planet "Vara K'chrai"
+		fleet 
+			names "wanderer"
+			cargo 5
+			outfitters "Wanderer Basics"
+			variant
+				"Deep River"
+				"Deep River"
+				"Deep River"
+	
+	on complete
+		dialog "Once the Thunderhead missiles start unloading, you see a flurry of Wanderers as captains and crews fly over and beseige the outfitter staff, wanting to know when they can place an order. The construction supervisior comes over and moves his head in a way you've come to associate with humor as he watches the commotion at the other landing pad. He hands you a credit chip for <payment>."
+		payment 3000000
+		event "wanderers: spera anatrusk outfitter basic"
+
+
+mission "Wanderers: Spera Anatrusk Outfitter 5"
+	landing
+	name "Escort outfitter convoy"
+	description "Escort outfitter convoy to <destination>."
+	blocked "You are [lacking, missing] <capacity> to transport these Wanderer leaders."
+	source "Spera Anatrusk"
+	destination "Spera Anatrusk"
+	stopover "Vara K'chrai"
+	passengers 30
+
+	to offer
+		has "Wanderers: Spera Anatrusk Outfitter 4: done"
+		
+	on offer
+		conversation
+			`The spaceport building is taking shape, with all the foundations set and the walls of the main hall in place. It probably helps that the Wanderers are able to fly about all levels of the structure without needing to traverse ladders, but it's more their teamwork and dedication at work. It's like a human barn raising but on a larger scale.`
+			`	The manager you brought over a few weeks ago to open the outfitter flaps down and lands beside you. You both watch the construction for a moment and then she says, "The [Leader, Director] of Spaceports has said that we must have a full outfitter here to support the [Trek, Migration]. We are sending another convoy to pick up the more advanced outfits and some dignitaries to officially [inaugurate, open] the outfitter. They said it would be [appropriate, fitting] for you to escort them.`
+			
+			choice
+				`	"I'd be honored."`
+					accept
+				`	"It's too dangerous to transport Wanderer dignitaries here."`
+					decline
+			`	"You are much like us," she says. "You carry seeds from place to place and some take root and grow and over thousands of years transform worlds.`
+			`	You're not really sure how to respond to that so you just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to to <stopovers>.`
+
+	on stopover
+		dialog "You watch the speeches and news coverage as the Wanderer leaders officially start the Migration through the Eye from the comfort of your cockpit. You think about Rek and wonder how his treatment is going."
+
+	on visit
+		dialog "You've arrived at <planet> but not all the freighters have landed. You realize you need to depart and make sure they arrive safely."
+
+	npc accompany
+		planet "Vara K'chrai"
+		fleet 
+			names "wanderer"
+			cargo 5
+			outfitters "Wanderer Advanced"
+			variant
+				"Deep River"
+				"Deep River"
+				"Deep River"
+	
+	on complete
+		conversation
+			`You heave a sigh of relief when all the freighters are safely on the ground. Deep Rivers may have impressive armor and shielding but they are still slow and the Mereti slicers will destroy any hull given enough time.`
+			`	There are more cameras and speeches and you are not allowed to escape this time: they insist that you sit on the platform throughout the ceremony. Once it's all over, the Director of Spaceports hands you a credit chip for <payment> and says, "Thank you, Captain <last>. You have helped us begin our new [mission, aventure] in this [hostile, dangerous] space. Soon we will be able to begin our proper work. We have many things to do and we've not even begun to explore the worlds we need to [rehabilitate, repair]. We are glad that you have chosen to [wander, toil] with us.`
+		payment 3000000
+		event "wanderers: spera anatrusk outfitter advanced"
+
+
+
 mission "Wanderers: Surveying 1"
 	landing
 	name "Wanderer Surveying"
