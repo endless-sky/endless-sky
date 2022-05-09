@@ -113,3 +113,29 @@ double Random::Normal()
 #endif
 	return normal(gen);
 }
+
+
+
+// Return a number from [0,1] derived from a normal curve,
+// compressed according to smoothness.
+double Random::CompressedNormal(double smoothness)
+{
+	double randomFactor = Normal();
+	// Compress values above and below the mean into [0, 1].
+	randomFactor = (randomFactor + smoothness) / (2 * smoothness);
+	// Retain only the fractional information, creating redundancy.
+	// Might be possible to get away with int32_t here, not sure.
+	randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
+	// Push negative values into the usable range.
+	if(randomFactor < 0)
+		randomFactor++;
+
+	// Negative smoothness concentrates output toward 0 and 1.
+	if(smoothness < 0)
+	{
+		randomFactor += 0.5;
+		randomFactor = randomFactor - static_cast<int32_t>(randomFactor);
+	}
+	
+	return randomFactor;
+}

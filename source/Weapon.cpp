@@ -308,6 +308,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+
+	// Invert to make values with larger magnitude correspond to smoother behavior
+	// Multiply by 2.317 so that a stat value of 1 mimics legacy behavior
+	inaccuracySmoothness = (1. / inaccuracySmoothness) * 2.317;
 }
 
 

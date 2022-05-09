@@ -43,35 +43,7 @@ Angle Projectile::Inaccuracy(double value, double smoothness)
 		if(!smoothness)
 			inaccuracy = Angle::Random(2 * value) - Angle(value);
 		else
-		{
-			double randomFactor = Random::Normal();
-			// Invert smoothness so that higher stat values are associated with greater realized smoothness.
-			// Do it here so that the true value of the stat is retained for any other calculations.
-			smoothness = 1. / smoothness;
-			// Multiplying smoothness by 2.317 mimics legacy behavior with a smoothness stat of 1 (default).
-			smoothness *= 2.317;
-			// Compress values above and below the mean into [0, 1]
-			// where the range pulled is determined by smoothness.
-			randomFactor = (randomFactor + smoothness) / (2 * smoothness);
-			// Retain only the fractional information.  This facilitates realized smoothness
-			// as fractional information is often redundant if not fully compressed.
-			// Might be possible to get away with int32_t here, not sure.
-			randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
-			// Push negative values into the usable range.
-			if(randomFactor < 0)
-				randomFactor++;
-
-			// Use negative smoothness to achieve a spread that concentrates at the endpoints rather than the center.
-			if(smoothness < 0)
-			{
-				if(randomFactor < 0.5)
-					randomFactor += 0.5;
-				else
-					randomFactor -= 0.5;
-			}
-
-			inaccuracy = Angle(2 * value * randomFactor)  - Angle(value);
-		}
+			inaccuracy = Angle(2 * value * Random::CompressedNormal(smoothness))  - Angle(value);
 	}
 	return inaccuracy;
 }

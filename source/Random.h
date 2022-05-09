@@ -41,6 +41,9 @@ public:
 	static uint32_t Binomial(uint32_t t, double p = .5);
 	// Get a normally distributed number (mean = 0, sigma= 1).
 	static double Normal();
+	// Return a number from [0,1] derived from a normal curve,
+	// compressed according to smoothness.
+	static double CompressedNormal(double smoothness);
 };
 
 
