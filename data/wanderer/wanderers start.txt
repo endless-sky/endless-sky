@@ -2855,7 +2855,7 @@ mission "Wanderers Ap'arak 3"
 			`	"Maybe they have grown stronger, too," says Tele'ek. "In any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
 				goto end
 			label eye
-			`	Tele'ek's crest droops a little bit. "I suppose they did not make any [promises, predictions] about that," he says. "But in any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."
+			`	Tele'ek's crest droops a little bit. "I suppose they did not make any [promises, predictions] about that," he says. "But in any case, we are [safe, secure] here now, so we do not need your [help, protection]. Perhaps you should return to our capital and see if they need you there."`
 			label end
 			choice
 				`	"Very well, I'll go check if they need me on <planet>."`
