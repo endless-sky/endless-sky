@@ -321,6 +321,7 @@ news "coalition civilian expeditions past"
 			`"Heard, I have, that come back from the outside, that Heliarch girl did. If you ask me, a lie that she ever left, it is."`
 			`"Seen the news, have you? Returned from the outside, a Saryd Heliarch has! Wonder how bad it was out there, I do."`
 			`"The one that helped that Heliarch inspector in her expedition, you are. A very strong ship, you must have, if made it back, you two did."`
+			`"Helped that Heliarch inspector come back from the outside, you have. Always thought that impossible, I did."`
 
 news "heliarch expeditions past"
 	to show
@@ -332,6 +333,8 @@ news "heliarch expeditions past"
 			"Heliarch agent"
 	message
 		word
-			`"Promoted to the rank of arbiter, that Saryd inspector was. Very impressed by her findings on the outside, the consuls must have been."`
-			`"Promoted to the rank of arbiter, that Saryd girl was, but what proof of her actually leaving do we have? Stupid enough to have tried that, nobody is."`
-
+			`"Promoted to the rank of arbiter after her expedition, that Saryd inspector was. Very impressed by her findings on the outside, the consuls must have been."`
+			`"Promoted to the rank of arbiter after her 'expedition,' that Saryd girl was, but what proof of her actually leaving do we have? Stupid enough to have tried that, nobody is."`
+			`"Though a success, that Saryd inspector's expedition was, turned many of the consuls furious at one another, her return has. Expected her to make it back, many of them had not."`
+			`"Our thanks for helping inspector Sedlitaris, you have. Finally found their way back, the last expedition's reports have."`
+			`"The one who helped inspector Sedlitaris on her expedition you are, correct? Read her report on it, I have. Disconcerting, the fate of the last expedition is, but at least recovered their findings, we now have."`
