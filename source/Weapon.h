@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstddef>
 #include <map>
-#include <random>
 #include <utility>
 #include <vector>
 
@@ -248,7 +247,6 @@ private:
 	double turn = 0.;
 	double inaccuracy = 0.;
 	double inaccuracySmoothness = 1.;
-	std::normal_distribution<double> inaccuracyDistribution;
 	double turretTurn = 0.;
 
 	double tracking = 0.;

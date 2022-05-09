@@ -153,7 +153,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				inaccuracy = value;
 			else if(key == "inaccuracy smoothness")
 				inaccuracySmoothness = value;
-		   else if(key == "turret turn")
+			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
