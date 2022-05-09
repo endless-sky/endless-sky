@@ -297,6 +297,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// Sanity checks:
 	if(burstReload > reload)
 		burstReload = reload;
+	if(burstInitialReload > initialReload)
+		burstInitialReload = initialReload;
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 
