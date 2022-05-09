@@ -2777,7 +2777,7 @@ bool Ship::IsFuelLow(double compareTo) const
 	if(CanBeCarried())
 		lowFuel &= attributes.Get("fuel capacity") && Fuel() < .15;
 	else
-		lowFuel &= (IsYours() && !HasBays()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
+		lowFuel &= (IsYours()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
 	return lowFuel;
 }
 
