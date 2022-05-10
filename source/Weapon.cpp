@@ -497,3 +497,10 @@ double Weapon::TotalDamage(int index) const
 	}
 	return damage[index];
 }
+
+
+
+std::tuple<double, Weapon::InaccuracyModes, double> Weapon::InaccuracyBundle() const
+{
+	return std::make_tuple(inaccuracy, inaccuracyMode, inaccuracyNormalSmoothness);
+}

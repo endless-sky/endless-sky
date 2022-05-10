@@ -348,7 +348,6 @@ inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
-inline std::tuple<double, Weapon::InaccuracyModes, double> Weapon::InaccuracyBundle() const { return std::make_tuple(inaccuracy, inaccuracyMode, inaccuracyNormalSmoothness); }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }
