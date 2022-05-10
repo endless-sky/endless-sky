@@ -2961,7 +2961,7 @@ double Ship::CoolingEfficiency() const
 	// that create "cooling inefficiency", and as that value increases the
 	// efficiency stays high for a while, then drops off, then approaches 0.
 	double x = attributes.Get("cooling inefficiency");
-	return 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.));
+	return (x != 0) ? 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.)) : 1.;
 }
 
 
