@@ -41,12 +41,18 @@ Angle Projectile::Inaccuracy(std::tuple<double, Weapon::InaccuracyModes, double>
 	// Check if there is any inaccuracy to apply
 	if(std::get<0>(values))
 	{
-		if(std::get<1>(values) == Weapon::InaccuracyModes::Triangular)
-			inaccuracy = Angle::Random(std::get<0>(values)) - Angle::Random(std::get<0>(values));
-		else if(std::get<1>(values) == Weapon::InaccuracyModes::Uniform)
-			inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
-		else if(std::get<1>(values) == Weapon::InaccuracyModes::Normal)
-			inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
+		switch(std::get<1>(values))
+		{
+			case Weapon::InaccuracyModes::Triangular:
+				inaccuracy = Angle::Random(std::get<0>(values)) - Angle::Random(std::get<0>(values));
+				break;
+			case Weapon::InaccuracyModes::Uniform:
+				inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
+				break;
+			case Weapon::InaccuracyModes::Normal:
+				inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
+				break;
+		}
 	}
 	return inaccuracy;
 }
