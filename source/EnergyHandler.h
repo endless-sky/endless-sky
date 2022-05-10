@@ -96,8 +96,8 @@ private:
 
 	EnergyLevels capacity;
 
-	EnergyLevels hullRepairLevels;
-	EnergyLevels shieldRegenLevels;
+	EnergyLevels hullRepair;
+	EnergyLevels shieldRegen;
 
 	EnergyLevels corrosionResist;
 	EnergyLevels dischargeResist;
@@ -107,12 +107,12 @@ private:
 	EnergyLevels disruptionResist;
 	EnergyLevels slownessResist;
 
-	EnergyLevels thrustLevels;
-	EnergyLevels reverseThrustLevels;
-	EnergyLevels turnLevels;
-	EnergyLevels afterburnerLevels;
+	EnergyLevels thrust;
+	EnergyLevels turn;
+	EnergyLevels reverseThrust;
+	EnergyLevels afterburnerThrust;
 
-	EnergyLevels cloakLevels;
+	EnergyLevels cloak;
 };
 
 #endif

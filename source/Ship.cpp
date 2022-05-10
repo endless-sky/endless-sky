@@ -1357,7 +1357,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(!cloak)
 			cloakDisruption = max(0., cloakDisruption - 1.);
 
-		EnergyLevels &cloakCost = handler.cloakLevels;
+		EnergyLevels &cloakCost = handler.cloak;
 		double cloakingSpeed = cloakCost.wildcard;
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& handler.CanExpend(levels, cloakCost));
@@ -1704,7 +1704,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
-			EnergyLevels &turnCost = handler.turnLevels;
+			EnergyLevels &turnCost = handler.turn;
 			commands.SetTurn(handler.FractionalUsage(levels, turnCost, commands.Turn()));
 			if(commands.Turn())
 			{
@@ -1722,7 +1722,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			EnergyLevels &thrustCost = (thrustCommand > 0.) ? handler.thrustLevels : handler.reverseThrustLevels;
+			EnergyLevels &thrustCost = (thrustCommand > 0.) ? handler.thrust : handler.reverseThrust;
 			thrustCommand = handler.FractionalUsage(levels, thrustCost, thrustCommand);
 			if(thrustCommand)
 			{
@@ -1742,7 +1742,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				&& !CannotAct();
 		if(applyAfterburner)
 		{
-			EnergyLevels &afterburnerCost = handler.afterburnerLevels;
+			EnergyLevels &afterburnerCost = handler.afterburnerThrust;
 			thrust = afterburnerCost.wildcard;
 			if(thrust && handler.CanExpend(levels, afterburnerCost))
 			{
@@ -1892,13 +1892,13 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		double hullRemaining = handler.hullRepairLevels.wildcard;
+		double hullRemaining = handler.hullRepair.wildcard;
 		if(!hullDelay)
-			handler.DoRepair(levels.hull, hullRemaining, handler.capacity.hull, levels, handler.hullRepairLevels);
+			handler.DoRepair(levels.hull, hullRemaining, handler.capacity.hull, levels, handler.hullRepair);
 
-		double shieldsRemaining = handler.shieldRegenLevels.wildcard;
+		double shieldsRemaining = handler.shieldRegen.wildcard;
 		if(!shieldDelay)
-			handler.DoRepair(levels.shields, shieldsRemaining, handler.capacity.shields, levels, handler.shieldRegenLevels);
+			handler.DoRepair(levels.shields, shieldsRemaining, handler.capacity.shields, levels, handler.shieldRegen);
 
 		if(!bays.empty())
 		{
@@ -1922,9 +1922,9 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					handler.DoRepair(ship.levels.hull, hullRemaining, ship.handler.capacity.hull, levels, handler.hullRepairLevels);
+					handler.DoRepair(ship.levels.hull, hullRemaining, ship.handler.capacity.hull, levels, handler.hullRepair);
 				if(!shieldDelay)
-					handler.DoRepair(ship.levels.shields, shieldsRemaining, ship.handler.capacity.shields, levels, handler.shieldRegenLevels);
+					handler.DoRepair(ship.levels.shields, shieldsRemaining, ship.handler.capacity.shields, levels, handler.shieldRegen);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
@@ -3015,15 +3015,15 @@ double Ship::Mass() const
 
 double Ship::TurnRate() const
 {
-	return handler.turnLevels.wildcard / Mass();
+	return handler.turn.wildcard / Mass();
 }
 
 
 
 double Ship::Acceleration() const
 {
-	double thrust = handler.thrustLevels.wildcard;
-	return (thrust ? thrust : handler.afterburnerLevels.wildcard / Mass();
+	double thrust = handler.thrust.wildcard;
+	return (thrust ? thrust : handler.afterburnerThrust.wildcard) / Mass();
 }
 
 
@@ -3033,15 +3033,15 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = handler.thrustLevels.wildcard;
-	return (thrust ? thrust : handler.afterburnerLevels.wildcard) / attributes.Get("drag");
+	double thrust = handler.thrust.wildcard;
+	return (thrust ? thrust : handler.afterburnerThrust.wildcard) / attributes.Get("drag");
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return handler.reverseThrustLevels.wildcard / attributes.Get("drag");
+	return handler.reverseThrust.wildcard / attributes.Get("drag");
 }
 
 

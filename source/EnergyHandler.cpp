@@ -334,22 +334,22 @@ void EnergyHandler::Capacity(const Outfit &attributes)
 // Update the stored EnergyLevels for each action a ship can take.
 void EnergyHandler::HullRepair(const Outfit &attributes)
 {
-	hullRepairLevels.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
+	hullRepair.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
 	// Save hull repair costs as per unit of hull repair.
-	hullRepairLevels.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) / hullRepairLevels.wildcard;
-	hullRepairLevels.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")) / hullRepairLevels.wildcard;
-	hullRepairLevels.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier")) / hullRepairLevels.wildcard;
+	hullRepair.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier")) / hullRepair.wildcard;
+	hullRepair.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")) / hullRepair.wildcard;
+	hullRepair.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier")) / hullRepair.wildcard;
 }
 
 
 
 void EnergyHandler::ShieldRegen(const Outfit &attributes)
 {
-	shieldRegenLevels.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
+	shieldRegen.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
 	// Save shield regen costs as per unit of shield regen.
-	shieldRegenLevels.energy = attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) / shieldRegenLevels.wildcard;
-	shieldRegenLevels.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")) / shieldRegenLevels.wildcard;
-	shieldRegenLevels.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier")) / shieldRegenLevels.wildcard;
+	shieldRegen.energy = attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier")) / shieldRegen.wildcard;
+	shieldRegen.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")) / shieldRegen.wildcard;
+	shieldRegen.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier")) / shieldRegen.wildcard;
 }
 
 
@@ -433,93 +433,93 @@ void EnergyHandler::SlownessResist(const Outfit &attributes)
 
 void EnergyHandler::Thrust(const Outfit &attributes)
 {
-	thrustLevels.wildcard = attributes.Get("thrust");
+	thrust.wildcard = attributes.Get("thrust");
 
-	thrustLevels.hull = attributes.Get("thrusting hull");
-	thrustLevels.shields = attributes.Get("thrusting shields");
-	thrustLevels.energy = attributes.Get("thrusting energy");
-	thrustLevels.heat = attributes.Get("thrusting heat");
-	thrustLevels.fuel = attributes.Get("thrusting fuel");
+	thrust.hull = attributes.Get("thrusting hull");
+	thrust.shields = attributes.Get("thrusting shields");
+	thrust.energy = attributes.Get("thrusting energy");
+	thrust.heat = attributes.Get("thrusting heat");
+	thrust.fuel = attributes.Get("thrusting fuel");
 
-	thrustLevels.corrosion = attributes.Get("thrusting corrosion");
-	thrustLevels.discharge = attributes.Get("thrusting discharge");
-	thrustLevels.ionization = attributes.Get("thrusting ion");
-	thrustLevels.burn = attributes.Get("thrusting burn");
-	thrustLevels.leakage = attributes.Get("thrusting leakage");
-	thrustLevels.disruption = attributes.Get("thrusting disruption");
-	thrustLevels.slowness = attributes.Get("thrusting slowing");
-}
-
-
-
-void EnergyHandler::ReverseThrust(const Outfit &attributes)
-{
-	reverseThrustLevels.wildcard = attributes.Get("reverse thrust");
-
-	reverseThrustLevels.hull = attributes.Get("reverse thrusting hull");
-	reverseThrustLevels.shields = attributes.Get("reverse thrusting shields");
-	reverseThrustLevels.energy = attributes.Get("reverse thrusting energy");
-	reverseThrustLevels.heat = attributes.Get("reverse thrusting heat");
-	reverseThrustLevels.fuel = attributes.Get("reverse thrusting fuel");
-
-	reverseThrustLevels.corrosion = attributes.Get("reverse thrusting corrosion");
-	reverseThrustLevels.discharge = attributes.Get("reverse thrusting discharge");
-	reverseThrustLevels.ionization = attributes.Get("reverse thrusting ion");
-	reverseThrustLevels.burn = attributes.Get("reverse thrusting burn");
-	reverseThrustLevels.leakage = attributes.Get("reverse thrusting leakage");
-	reverseThrustLevels.disruption = attributes.Get("reverse thrusting disruption");
-	reverseThrustLevels.slowness = attributes.Get("reverse thrusting slowing");
+	thrust.corrosion = attributes.Get("thrusting corrosion");
+	thrust.discharge = attributes.Get("thrusting discharge");
+	thrust.ionization = attributes.Get("thrusting ion");
+	thrust.burn = attributes.Get("thrusting burn");
+	thrust.leakage = attributes.Get("thrusting leakage");
+	thrust.disruption = attributes.Get("thrusting disruption");
+	thrust.slowness = attributes.Get("thrusting slowing");
 }
 
 
 
 void EnergyHandler::Turn(const Outfit &attributes)
 {
-	turnLevels.wildcard = attributes.Get("turn");
+	turn.wildcard = attributes.Get("turn");
 
-	turnLevels.hull = attributes.Get("turning hull");
-	turnLevels.shields = attributes.Get("turning shields");
-	turnLevels.energy = attributes.Get("turning energy");
-	turnLevels.heat = attributes.Get("turning heat");
-	turnLevels.fuel = attributes.Get("turning fuel");
+	turn.hull = attributes.Get("turning hull");
+	turn.shields = attributes.Get("turning shields");
+	turn.energy = attributes.Get("turning energy");
+	turn.heat = attributes.Get("turning heat");
+	turn.fuel = attributes.Get("turning fuel");
 
-	turnLevels.corrosion = attributes.Get("turning corrosion");
-	turnLevels.discharge = attributes.Get("turning discharge");
-	turnLevels.ionization = attributes.Get("turning ion");
-	turnLevels.burn = attributes.Get("turning burn");
-	turnLevels.leakage = attributes.Get("turning leakage");
-	turnLevels.disruption = attributes.Get("turning disruption");
-	turnLevels.slowness = attributes.Get("turning slowing");
+	turn.corrosion = attributes.Get("turning corrosion");
+	turn.discharge = attributes.Get("turning discharge");
+	turn.ionization = attributes.Get("turning ion");
+	turn.burn = attributes.Get("turning burn");
+	turn.leakage = attributes.Get("turning leakage");
+	turn.disruption = attributes.Get("turning disruption");
+	turn.slowness = attributes.Get("turning slowing");
+}
+
+
+
+void EnergyHandler::ReverseThrust(const Outfit &attributes)
+{
+	reverseThrust.wildcard = attributes.Get("reverse thrust");
+
+	reverseThrust.hull = attributes.Get("reverse thrusting hull");
+	reverseThrust.shields = attributes.Get("reverse thrusting shields");
+	reverseThrust.energy = attributes.Get("reverse thrusting energy");
+	reverseThrust.heat = attributes.Get("reverse thrusting heat");
+	reverseThrust.fuel = attributes.Get("reverse thrusting fuel");
+
+	reverseThrust.corrosion = attributes.Get("reverse thrusting corrosion");
+	reverseThrust.discharge = attributes.Get("reverse thrusting discharge");
+	reverseThrust.ionization = attributes.Get("reverse thrusting ion");
+	reverseThrust.burn = attributes.Get("reverse thrusting burn");
+	reverseThrust.leakage = attributes.Get("reverse thrusting leakage");
+	reverseThrust.disruption = attributes.Get("reverse thrusting disruption");
+	reverseThrust.slowness = attributes.Get("reverse thrusting slowing");
 }
 
 
 
 void EnergyHandler::Afterburner(const Outfit &attributes)
 {
-	afterburnerLevels.wildcard = attributes.Get("afterburner thrust");
+	afterburnerThrust.wildcard = attributes.Get("afterburner thrust");
 
-	afterburnerLevels.hull = attributes.Get("afterburner hull");
-	afterburnerLevels.shields = attributes.Get("afterburner shields");
-	afterburnerLevels.energy = attributes.Get("afterburner energy");
-	afterburnerLevels.heat = attributes.Get("afterburner heat");
-	afterburnerLevels.fuel = attributes.Get("afterburner fuel");
+	afterburnerThrust.hull = attributes.Get("afterburner hull");
+	afterburnerThrust.shields = attributes.Get("afterburner shields");
+	afterburnerThrust.energy = attributes.Get("afterburner energy");
+	afterburnerThrust.heat = attributes.Get("afterburner heat");
+	afterburnerThrust.fuel = attributes.Get("afterburner fuel");
 
-	afterburnerLevels.corrosion = attributes.Get("afterburner corrosion");
-	afterburnerLevels.discharge = attributes.Get("afterburner discharge");
-	afterburnerLevels.ionization = attributes.Get("afterburner ion");
-	afterburnerLevels.burn = attributes.Get("afterburner burn");
-	afterburnerLevels.leakage = attributes.Get("afterburner leakage");
-	afterburnerLevels.disruption = attributes.Get("afterburner disruption");
-	afterburnerLevels.slowness = attributes.Get("afterburner slowing");
+	afterburnerThrust.corrosion = attributes.Get("afterburner corrosion");
+	afterburnerThrust.discharge = attributes.Get("afterburner discharge");
+	afterburnerThrust.ionization = attributes.Get("afterburner ion");
+	afterburnerThrust.burn = attributes.Get("afterburner burn");
+	afterburnerThrust.leakage = attributes.Get("afterburner leakage");
+	afterburnerThrust.disruption = attributes.Get("afterburner disruption");
+	afterburnerThrust.slowness = attributes.Get("afterburner slowing");
 }
 
 
 
 void EnergyHandler::Cloak(const Outfit &attributes)
 {
-	cloakLevels.wildcard = attributes.Get("cloak");
+	cloak.wildcard = attributes.Get("cloak");
 
-	cloakLevels.energy = attributes.Get("cloaking energy");
-	cloakLevels.heat = attributes.Get("cloaking heat");
-	cloakLevels.fuel = attributes.Get("cloaking fuel");
+	cloak.energy = attributes.Get("cloaking energy");
+	cloak.heat = attributes.Get("cloaking heat");
+	cloak.fuel = attributes.Get("cloaking fuel");
 }
