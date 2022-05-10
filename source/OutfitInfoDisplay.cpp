@@ -532,7 +532,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"anti-missile:"
 	};
 	vector<double> otherValues = {
-		outfit.Inaccuracy().first,
+		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())

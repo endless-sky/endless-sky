@@ -221,7 +221,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 
 	// Apply the weapon's inaccuracy to the aim. This allows firing effects
 	// to share the same inaccuracy as the projectile.
-	aim += Projectile::Inaccuracy(outfit->Inaccuracy());
+	aim += Projectile::Inaccuracy(outfit->InaccuracyBundle());
 
 	// Create a new projectile, originating from this hardpoint.
 	// In order to get projectiles to start at the right position they are drawn

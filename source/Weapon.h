@@ -50,6 +50,11 @@ public:
 		Point offset;
 	};
 
+	enum class InaccuracyModes{
+		Triangular,
+		Uniform,
+		Normal
+	};
 
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
@@ -97,8 +102,8 @@ public:
 	const Point &HardpointOffset() const;
 
 	double Turn() const;
-	std::pair<double, double> Inaccuracy() const;
-	double InaccuracySmoothness() const;
+	double Inaccuracy() const;
+	std::tuple<double, InaccuracyModes, double> InaccuracyBundle() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -245,7 +250,9 @@ private:
 	Point hardpointOffset = {0., 0.};
 
 	double turn = 0.;
-	std::pair<double, double> inaccuracy = {0., 1.};
+	double inaccuracy = 0.;
+	InaccuracyModes inaccuracyMode = InaccuracyModes::Triangular;
+	double inaccuracyNormalSmoothness = 1.;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -340,7 +347,8 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline std::pair<double, double> Weapon::Inaccuracy() const { return inaccuracy; }
+inline double Weapon::Inaccuracy() const { return inaccuracy; }
+inline std::tuple<double, Weapon::InaccuracyModes, double> Weapon::InaccuracyBundle() const { return std::make_tuple(inaccuracy, inaccuracyMode, inaccuracyNormalSmoothness); }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

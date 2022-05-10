@@ -150,10 +150,25 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "turn")
 				turn = value;
 			else if(key == "inaccuracy")
+				inaccuracy = value;
+			else if(key == "inaccuracy mode")
 			{
-				inaccuracy.first = value;
-				if(child.Size() >= 3)
-					inaccuracy.second = child.Value(2);
+				if(value == 0)
+					inaccuracyMode = InaccuracyModes::Triangular;
+				else if(value == 1)
+				{
+					inaccuracyMode = InaccuracyModes::Uniform;
+				}
+				else if(value == 2)
+				{
+					inaccuracyMode = InaccuracyModes::Normal;
+					if(child.Size() >= 3)
+						inaccuracyNormalSmoothness = child.Value(2);
+				}
+				else
+				{
+					child.PrintTrace("Skipping unknown or incomplete inaccuracy mode attribute:");
+				}
 			}
 			else if(key == "turret turn")
 				turretTurn = value;
@@ -313,7 +328,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 	// Invert to make values with larger magnitude correspond to smoother behavior
 	// Multiply by 2.317 so that a stat value of 1 mimics legacy behavior
-	inaccuracy.second = (1. / inaccuracy.second) * 2.317;
+	inaccuracyNormalSmoothness = (1. / inaccuracyNormalSmoothness) * 2.317;
 }
 
 

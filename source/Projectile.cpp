@@ -35,15 +35,18 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(std::pair<double, double> values)
+Angle Projectile::Inaccuracy(std::tuple<double, Weapon::InaccuracyModes, double> values)
 {
 	Angle inaccuracy;
-	if(values.first)
+	// Check if there is any inaccuracy to apply
+	if(std::get<0>(values))
 	{
-		if(!values.second)
-			inaccuracy = Angle::Random(2 * values.first) - Angle(values.first);
-		else
-			inaccuracy = Angle(2 * values.first * Random::CompressedNormal(values.second))  - Angle(values.first);
+		if(std::get<1>(values) == Weapon::InaccuracyModes::Triangular)
+			inaccuracy = Angle::Random(std::get<0>(values)) - Angle::Random(std::get<0>(values));
+		else if(std::get<1>(values) == Weapon::InaccuracyModes::Uniform)
+			inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
+		else if(std::get<1>(values) == Weapon::InaccuracyModes::Normal)
+			inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
 	}
 	return inaccuracy;
 }
@@ -123,7 +126,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					const Weapon *const subWeapon = it.weapon;
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->Inaccuracy()), subWeapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->InaccuracyBundle()), subWeapon);
 				}
 		}
 		MarkForRemoval();
