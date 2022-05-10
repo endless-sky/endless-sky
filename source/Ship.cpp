@@ -3068,7 +3068,6 @@ bool Ship::CanRefuel(const Ship &other) const
 		else if(!IsYours() && other.IsYours())
 			return false;
 		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
-		//return  !IsFuelLow(other.fuel);
 	}
 	return (!IsYours() || other.JumpFuelMissing()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
