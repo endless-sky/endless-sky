@@ -405,9 +405,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		IssueOrders(player, newOrders, "focusing fire on \"" + target->Name() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && targetAsteroid)
-	{
 		IssueAsteroidTarget(player, targetAsteroid);
-	}
 	if(activeCommands.Has(Command::HOLD))
 	{
 		newOrders.type = Orders::HOLD_POSITION;
