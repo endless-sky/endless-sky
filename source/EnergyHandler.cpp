@@ -26,6 +26,8 @@ using namespace std;
 // ship can take (e.g. regenerating shields, thrusting).
 void EnergyHandler::Update(const Outfit &attributes)
 {
+	Capacity(attributes);
+
 	HullRepair(attributes);
 	ShieldRegen(attributes);
 
@@ -297,6 +299,34 @@ EnergyLevels EnergyHandler::FiringCost(const Weapon &weapon, const Ship &ship) c
 	cost.shields = min(cost.shields, ship.ShieldLevel());
 
 	return cost;
+}
+
+
+
+// Update the stored capacity for various EnergyLevels on a ship.
+void EnergyHandler::Capacity(const Outfit &attributes)
+{
+	capacity.hull = attributes.Get("hull");
+	capacity.shields = attributes.Get("shields");
+	capacity.energy = attributes.Get("energy capacity");
+	// Heat capacity is dictated by factors other than attributes
+	// and therefore isn't saved here.
+	capacity.fuel = attributes.Get("fuel capacity");
+
+	// DoT counters do not have capacities.
+
+	// Cache a ship's minimum hull in the capacity wildcard.
+	double absoluteThreshold = attributes.Get("absolute threshold");
+	if(absoluteThreshold > 0.)
+		capacity.wildcard = absoluteThreshold;
+	else
+	{
+		double thresholdPercent = attributes.Get("threshold percentage");
+		double transition = 1 / (1 + 0.0005 * capacity.hull);
+		double minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
+
+		capacity.wildcard = max(0., floor(minimumHull + attributes.Get("hull threshold")));
+	}
 }
 
 

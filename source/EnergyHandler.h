@@ -67,6 +67,9 @@ public:
 
 
 private:
+	// Update the stored capacity for various EnergyLevels on a ship.
+	void Capacity(const Outfit &attributes);
+
 	// Update the stored EnergyLevels for each action a ship can take.
 	void HullRepair(const Outfit &attributes);
 	void ShieldRegen(const Outfit &attributes);
@@ -90,6 +93,8 @@ private:
 private:
 	// A ship can freely access the EnergyLevels of its own handler.
 	friend class Ship;
+
+	EnergyLevels capacity;
 
 	EnergyLevels hullRepairLevels;
 	EnergyLevels shieldRegenLevels;

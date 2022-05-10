@@ -1642,7 +1642,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 		// Only refuel if this planet has a spaceport.
-		else if(levels.fuel >= attributes.Get("fuel capacity")
+		else if(levels.fuel >= handler.capacity.fuel
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1.f, zoom + .02f);
@@ -1650,7 +1650,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			landingPlanet = nullptr;
 		}
 		else
-			levels.fuel = min(levels.fuel + 1., attributes.Get("fuel capacity"));
+			levels.fuel = min(levels.fuel + 1., handler.capacity.fuel);
 
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
@@ -1894,11 +1894,11 @@ void Ship::DoGeneration()
 
 		double hullRemaining = handler.hullRepairLevels.wildcard;
 		if(!hullDelay)
-			handler.DoRepair(levels.hull, hullRemaining, attributes.Get("hull"), levels, handler.hullRepairLevels);
+			handler.DoRepair(levels.hull, hullRemaining, handler.capacity.hull, levels, handler.hullRepairLevels);
 
 		double shieldsRemaining = handler.shieldRegenLevels.wildcard;
 		if(!shieldDelay)
-			handler.DoRepair(levels.shields, shieldsRemaining, attributes.Get("shields"), levels, handler.shieldRegenLevels);
+			handler.DoRepair(levels.shields, shieldsRemaining, handler.capacity.shields, levels, handler.shieldRegenLevels);
 
 		if(!bays.empty())
 		{
@@ -1922,22 +1922,22 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					handler.DoRepair(ship.levels.hull, hullRemaining, ship.attributes.Get("hull"), levels, handler.hullRepairLevels);
+					handler.DoRepair(ship.levels.hull, hullRemaining, ship.handler.capacity.hull, levels, handler.hullRepairLevels);
 				if(!shieldDelay)
-					handler.DoRepair(ship.levels.shields, shieldsRemaining, ship.attributes.Get("shields"), levels, handler.shieldRegenLevels);
+					handler.DoRepair(ship.levels.shields, shieldsRemaining, ship.handler.capacity.shields, levels, handler.shieldRegenLevels);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = levels.energy - attributes.Get("energy capacity");
-			double fuelRemaining = levels.fuel - attributes.Get("fuel capacity");
+			double energyRemaining = levels.energy - handler.capacity.energy;
+			double fuelRemaining = levels.fuel - handler.capacity.fuel;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
 				if(energyRemaining > 0.)
-					Transfer(ship.levels.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+					Transfer(ship.levels.energy, energyRemaining, ship.handler.capacity.energy);
 				if(fuelRemaining > 0.)
-					Transfer(ship.levels.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+					Transfer(ship.levels.fuel, fuelRemaining, ship.handler.capacity.fuel);
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -1954,8 +1954,8 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	levels.energy = min(levels.energy, attributes.Get("energy capacity"));
-	levels.fuel = min(levels.fuel, attributes.Get("fuel capacity"));
+	levels.energy = min(levels.energy, handler.capacity.energy);
+	levels.fuel = min(levels.fuel, handler.capacity.fuel);
 
 	levels.heat -= levels.heat * HeatDissipation();
 	if(levels.heat > MaximumHeat())
@@ -1968,10 +1968,8 @@ void Ship::DoGeneration()
 	else if(levels.heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double maxShields = attributes.Get("shields");
-	levels.shields = min(levels.shields, maxShields);
-	double maxHull = attributes.Get("hull");
-	levels.hull = min(levels.hull, maxHull);
+	levels.shields = min(levels.shields, handler.capacity.shields);
+	levels.hull = min(levels.hull, handler.capacity.hull);
 
 	isDisabled = isOverheated || levels.hull < MinimumHull() || (!crew && RequiredCrew());
 
@@ -2065,7 +2063,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
-				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				double maxFuel = bay.ship->handler.capacity.fuel;
 				if(maxFuel)
 				{
 					double spareFuel = levels.fuel - JumpFuel();
@@ -2131,7 +2129,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->levels.hull = min(max(victim->levels.hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+		victim->levels.hull = min(max(victim->levels.hull, victim->MinimumHull() * 1.5), victim->handler.capacity.hull);
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
@@ -2634,10 +2632,10 @@ bool Ship::CanRefuel(const Ship &other) const
 
 double Ship::TransferFuel(double amount, Ship *to)
 {
-	amount = max(levels.fuel - attributes.Get("fuel capacity"), amount);
+	amount = max(levels.fuel - handler.capacity.fuel, amount);
 	if(to)
 	{
-		amount = min(to->attributes.Get("fuel capacity") - to->levels.fuel, amount);
+		amount = min(to->handler.capacity.fuel - to->levels.fuel, amount);
 		to->levels.fuel += amount;
 	}
 	levels.fuel -= amount;
@@ -2651,7 +2649,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	levels.hull = min(max(levels.hull, MinimumHull() * 1.5), attributes.Get("hull"));
+	levels.hull = min(max(levels.hull, MinimumHull() * 1.5), handler.capacity.hull);
 	isDisabled = false;
 
 	// Set the new government.
@@ -2708,7 +2706,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {
-	double maximum = attributes.Get("shields");
+	double maximum = handler.capacity.shields;
 	return maximum ? min(1., levels.shields / maximum) : 0.;
 }
 
@@ -2716,7 +2714,7 @@ double Ship::Shields() const
 
 double Ship::Hull() const
 {
-	double maximum = attributes.Get("hull");
+	double maximum = handler.capacity.hull;
 	return maximum ? min(1., levels.hull / maximum) : 1.;
 }
 
@@ -2724,7 +2722,7 @@ double Ship::Hull() const
 
 double Ship::Fuel() const
 {
-	double maximum = attributes.Get("fuel capacity");
+	double maximum = handler.capacity.fuel;
 	return maximum ? min(1., levels.fuel / maximum) : 0.;
 }
 
@@ -2732,7 +2730,7 @@ double Ship::Fuel() const
 
 double Ship::Energy() const
 {
-	double maximum = attributes.Get("energy capacity");
+	double maximum = handler.capacity.energy;
 	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
 }
 
@@ -2752,8 +2750,8 @@ double Ship::Heat() const
 double Ship::Health() const
 {
 	double minimumHull = MinimumHull();
-	double hullDivisor = attributes.Get("hull") - minimumHull;
-	double divisor = attributes.Get("shields") + hullDivisor;
+	double hullDivisor = handler.capacity.hull - minimumHull;
+	double divisor = handler.capacity.shields + hullDivisor;
 	// This should not happen, but just in case.
 	if(divisor <= 0. || hullDivisor <= 0.)
 		return 0.;
@@ -2768,10 +2766,9 @@ double Ship::Health() const
 // Get the hull fraction at which this ship is disabled.
 double Ship::DisabledHull() const
 {
-	double hull = attributes.Get("hull");
-	double minimumHull = MinimumHull();
+	double hull = handler.capacity.hull;
 
-	return (hull > 0. ? minimumHull / hull : 0.);
+	return (hull > 0. ? MinimumHull() / hull : 0.);
 }
 
 
@@ -2913,7 +2910,7 @@ double Ship::JumpFuelMissing() const
 	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
 	double jumpFuel = JumpFuel(targetSystem);
-	if(!jumpFuel || levels.fuel > jumpFuel || jumpFuel > attributes.Get("fuel capacity"))
+	if(!jumpFuel || levels.fuel > jumpFuel || jumpFuel > handler.capacity.fuel)
 		return 0.;
 
 	return jumpFuel - levels.fuel;
@@ -3071,8 +3068,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
-	levels.hull = min(levels.hull, attributes.Get("hull"));
-	levels.shields = min(levels.shields, attributes.Get("shields"));
+	levels.hull = min(levels.hull, handler.capacity.hull);
+	levels.shields = min(levels.shields, handler.capacity.shields);
 	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
 	// will clamp it to a maximum value at the beginning of the next frame.
 	levels.energy = max(0., levels.energy);
@@ -3615,16 +3612,7 @@ double Ship::MinimumHull() const
 	if(neverDisabled)
 		return 0.;
 
-	double maximumHull = attributes.Get("hull");
-	double absoluteThreshold = attributes.Get("absolute threshold");
-	if(absoluteThreshold > 0.)
-		return absoluteThreshold;
-
-	double thresholdPercent = attributes.Get("threshold percentage");
-	double transition = 1 / (1 + 0.0005 * maximumHull);
-	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
-
-	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
+	return handler.capacity.wildcard;
 }
 
 
