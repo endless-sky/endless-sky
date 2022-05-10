@@ -107,6 +107,33 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
+		else if(key == "inaccuracy")
+		{
+			inaccuracy = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() >= 2)
+				{
+					if(grand.Token(0) == "mode")
+					{
+						if(grand.Token(1) == "traingular")
+							inaccuracyMode = InaccuracyModes::Triangular;
+						else if(grand.Token(1) == "uniform")
+							inaccuracyMode = InaccuracyModes::Uniform;
+						else if(grand.Token(1) == "normal")
+							inaccuracyMode = InaccuracyModes::Normal;
+						else
+							child.PrintTrace("Skipping unknown or incomplete inaccuracy mode attribute:");
+					}
+					else if(grand.Token(0) == "smoothness")
+						inaccuracyNormalSmoothness = grand.Value(1);
+					else
+						child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
+				}
+				else
+				child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
+			}
+		}
 		else
 		{
 			double value = child.Value(1);
@@ -149,27 +176,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 			}
 			else if(key == "turn")
 				turn = value;
-			else if(key == "inaccuracy")
-				inaccuracy = value;
-			else if(key == "inaccuracy mode")
-			{
-				if(value == 0)
-					inaccuracyMode = InaccuracyModes::Triangular;
-				else if(value == 1)
-				{
-					inaccuracyMode = InaccuracyModes::Uniform;
-				}
-				else if(value == 2)
-				{
-					inaccuracyMode = InaccuracyModes::Normal;
-					if(child.Size() >= 3)
-						inaccuracyNormalSmoothness = child.Value(2);
-				}
-				else
-				{
-					child.PrintTrace("Skipping unknown or incomplete inaccuracy mode attribute:");
-				}
-			}
 			else if(key == "turret turn")
 				turretTurn = value;
 			else if(key == "tracking")
