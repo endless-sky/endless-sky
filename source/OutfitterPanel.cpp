@@ -113,7 +113,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(showForSale && (outfitter.Has(outfit)))
+	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
 		return true;
 
 	if(showCargo && player.Cargo().Get(outfit))
@@ -122,7 +122,7 @@ bool OutfitterPanel::HasItem(const string &name) const
 	if(showStorage && player.Storage() && player.Storage()->Get(outfit))
 		return true;
 
-	if(showInstalled && ((playerShip && playerShip->OutfitCount(outfit)) || (!playerShip && player.Stock(outfit))))
+	if(showInstalled && playerShip && playerShip->OutfitCount(outfit))
 		return true;
 
 	if(showForSale && HasLicense(name))
