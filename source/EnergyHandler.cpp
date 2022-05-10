@@ -40,9 +40,9 @@ void EnergyHandler::Update(const Outfit &attributes)
 	SlownessResist(attributes);
 
 	Thrust(attributes);
-	ReverseThrust(attributes);
 	Turn(attributes);
-	Afterburner(attributes);
+	ReverseThrust(attributes);
+	AfterburnerThrust(attributes);
 
 	Cloak(attributes);
 }
@@ -494,7 +494,7 @@ void EnergyHandler::ReverseThrust(const Outfit &attributes)
 
 
 
-void EnergyHandler::Afterburner(const Outfit &attributes)
+void EnergyHandler::AfterburnerThrust(const Outfit &attributes)
 {
 	afterburnerThrust.wildcard = attributes.Get("afterburner thrust");
 

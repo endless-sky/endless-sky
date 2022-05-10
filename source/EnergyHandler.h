@@ -83,9 +83,9 @@ private:
 	void SlownessResist(const Outfit &attributes);
 
 	void Thrust(const Outfit &attributes);
-	void ReverseThrust(const Outfit &attributes);
 	void Turn(const Outfit &attributes);
-	void Afterburner(const Outfit &attributes);
+	void ReverseThrust(const Outfit &attributes);
+	void AfterburnerThrust(const Outfit &attributes);
 
 	void Cloak(const Outfit &attributes);
 
