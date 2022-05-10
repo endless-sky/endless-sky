@@ -479,7 +479,7 @@ void AI::Clean()
 	miningAngle.clear();
 	miningRadius.clear();
 	miningTime.clear();
-	appeasmentThreshold.clear();
+	appeasementThreshold.clear();
 	shipStrength.clear();
 	enemyStrength.clear();
 	allyStrength.clear();
@@ -571,7 +571,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				if(personality.IsAppeasing())
 				{
 					double health = .5 * it->Shields() + it->Hull();
-					double &threshold = appeasmentThreshold[it.get()];
+					double &threshold = appeasementThreshold[it.get()];
 					threshold = max((1. - health) + .1, threshold);
 				}
 				continue;
@@ -656,24 +656,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 			// Appeasing ships jettison cargo to distract their pursuers.
 			if(personality.IsAppeasing() && it->Cargo().Used())
-			{
-				double health = .5 * it->Shields() + it->Hull();
-				double &threshold = appeasmentThreshold[it.get()];
-				if(1. - health > threshold)
-				{
-					int toDump = 11 + (1. - health) * .5 * it->Cargo().Size();
-					for(const auto &commodity : it->Cargo().Commodities())
-						if(commodity.second && toDump > 0)
-						{
-							int dumped = min(commodity.second, toDump);
-							it->Jettison(commodity.first, dumped, true);
-							toDump -= dumped;
-						}
-					Messages::Add(gov->GetName() + " " + it->Noun() + " \"" + it->Name()
-						+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::High);
-					threshold = (1. - health) + .1;
-				}
-			}
+				DoAppeasing(it, &appeasementThreshold[it.get()]);
 		}
 
 		// If recruited to assist a ship, follow through on the commitment
@@ -1258,7 +1241,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// Player ships never stop targeting hostiles, while hostile mission NPCs will
 	// do so only if they are allowed to leave.
 	if(!isYours && target && target->GetGovernment()->IsEnemy(gov) && !isDisabled
-			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward()) 
+			&& (person.IsFleeing() || (ship.Health() < (RETREAT_HEALTH + .25 * person.IsCoward())
 			&& !person.IsHeroic() && !person.IsStaying() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
@@ -2224,6 +2207,35 @@ bool AI::ShouldUseAfterburner(Ship &ship)
 		return true;
 
 	return false;
+}
+
+
+
+// "Appeasing" ships will dump cargo after being injured, if they are being targeted.
+void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
+{
+	double health = .5 * ship->Shields() + ship->Hull();
+	if(1. - health <= *threshold)
+		return;
+
+	const auto enemies = GetShipsList(*ship, true);
+	if(none_of(enemies.begin(), enemies.end(), [&ship](const Ship *foe) noexcept -> bool
+			{ return !foe->IsDisabled() && foe->GetTargetShip() == ship; }))
+		return;
+
+	int toDump = 11 + (1. - health) * .5 * ship->Cargo().Size();
+	for(auto &&commodity : ship->Cargo().Commodities())
+		if(commodity.second && toDump > 0)
+		{
+			int dumped = min(commodity.second, toDump);
+			ship->Jettison(commodity.first, dumped, true);
+			toDump -= dumped;
+		}
+
+	Messages::Add(ship->GetGovernment()->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+		+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
+
+	*threshold = (1. - health) + .1;
 }
 
 
@@ -3849,7 +3861,7 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
-			
+
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION

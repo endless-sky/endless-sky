@@ -352,6 +352,19 @@ ship "Berserker" "Berserker (Strike)"
 		"Hyperdrive"
 
 
+ship "Blackbird" "Blackbird (Prisoner Transport)"
+	outfits
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
+		"Brig"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
 
 ship "Bounder" "Bounder (Hai)"
 	outfits
@@ -917,6 +930,24 @@ ship "Falcon" "Falcon (Heavy)"
 	gun "Meteor Missile Launcher"
 	gun "Meteor Missile Launcher"
 
+
+ship "Falcon" "Falcon (Prisoner Transport)"
+	outfits
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 15
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		"Brig"
 
 ship "Falcon" "Falcon (Laser)"
 	outfits
