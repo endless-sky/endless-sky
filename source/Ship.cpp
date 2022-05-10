@@ -3015,15 +3015,15 @@ double Ship::Mass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / Mass();
+	return handler.turnLevels.wildcard / Mass();
 }
 
 
 
 double Ship::Acceleration() const
 {
-	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / Mass();
+	double thrust = handler.thrustLevels.wildcard;
+	return (thrust ? thrust : handler.afterburnerLevels.wildcard / Mass();
 }
 
 
@@ -3033,15 +3033,15 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / attributes.Get("drag");
+	double thrust = handler.thrustLevels.wildcard;
+	return (thrust ? thrust : handler.afterburnerLevels.wildcard) / attributes.Get("drag");
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return attributes.Get("reverse thrust") / attributes.Get("drag");
+	return handler.reverseThrustLevels.wildcard / attributes.Get("drag");
 }
 
 
