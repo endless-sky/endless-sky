@@ -157,16 +157,17 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		static const double governmentY = mapInterface->GetValue("government top Y");
 		static const double planetStartingY = mapInterface->GetValue("planet starting Y");
 		static const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
+		double planetLowestY = (textStartingPosition - textStart) + height / 2.;
 		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. && 
-				availableBottomSpace >= height / 2. + spriteScale * sprite->Height() / 2.)
+				availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., 
-				uiPoint.Y() + (textStartingPosition - textStart) + height / 2.), spriteScale);
+				uiPoint.Y() + planetLowestY), spriteScale);
 		
 		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height]
 			(double number)
 		{
 			return availableTopSpace >= textStart + categorySize * number &&
-				availableBottomSpace >= height - (textStart + categorySize * number);
+				availableBottomSpace >= height - (categorySize * number);
 		};
 
 		if(FitsCategory(5.))
@@ -203,12 +204,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 bool MapPlanetCard::Shown() const
 {
-	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	static const double textStart = planetCardInterface->GetValue("text start");
-	static const double categorySize = planetCardInterface->GetValue("category size");
-
-	// Check if we can at least show one category.
-	return AvailableSpace() >= textStart + categorySize;
+	return AvailableSpace() >= 0.;
 }
 
 
