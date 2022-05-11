@@ -53,9 +53,8 @@ public:
 	// of any firing hull cost.
 	bool CanFire(const EnergyLevels &input, const EnergyLevels &cost, double minHull) const;
 
-	// Return the amount of value that the given input can output
-	// given the maximum possible output and its cost.
-	double FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost, double output) const;
+	// Return the fraction of 100% output that the input can manage given the cost.
+	double FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost) const;
 
 	// Apply damage * scale to the input. Hull, shields, energy, and fuel
 	// are subtracted from input while all other levels are added to input.

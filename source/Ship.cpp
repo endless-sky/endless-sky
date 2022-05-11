@@ -1705,7 +1705,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Check if we are able to turn.
 			EnergyLevels &turnCost = handler.turn;
-			commands.SetTurn(handler.FractionalUsage(levels, turnCost, commands.Turn()));
+			commands.SetTurn(commands.Turn() * handler.FractionalUsage(levels, turnCost));
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -1723,7 +1723,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		{
 			// Check if we are able to apply this thrust.
 			EnergyLevels &thrustCost = (thrustCommand > 0.) ? handler.thrust : handler.reverseThrust;
-			thrustCommand = handler.FractionalUsage(levels, thrustCost, thrustCommand);
+			thrustCommand *= handler.FractionalUsage(levels, thrustCost);
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not

@@ -234,9 +234,8 @@ bool EnergyHandler::CanFire(const EnergyLevels &input, const EnergyLevels &cost,
 
 
 
-// Return the amount of value that the given input can output
-// given the maximum possible output and its cost.
-double EnergyHandler::FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost, double output) const
+// Return the fraction of 100% output that the input can manage given the cost.
+double EnergyHandler::FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost) const
 {
 	double scale = 1.;
 	auto ScaleOutput = [&scale](double input, double cost)
@@ -257,7 +256,7 @@ double EnergyHandler::FractionalUsage(const EnergyLevels &input, const EnergyLev
 	ScaleOutput(input.disruption, -cost.disruption);
 	ScaleOutput(input.slowness, -cost.slowness);
 
-	return scale * output;
+	return scale;
 }
 
 
