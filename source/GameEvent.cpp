@@ -125,6 +125,9 @@ void GameEvent::Load(const DataNode &node)
 
 void GameEvent::Save(DataWriter &out) const
 {
+	if(isDisabled)
+		return;
+	
 	out.Write("event");
 	out.BeginChild();
 	{
@@ -146,6 +149,15 @@ void GameEvent::Save(DataWriter &out) const
 			out.Write(change);
 	}
 	out.EndChild();
+}
+
+
+
+// Prevent this GameEvent from being applied or written into a player's save.
+// (Events read from a save are not associated with the managed Set of GameData::Events.)
+void GameEvent::Disable()
+{
+	isDisabled = true;
 }
 
 
@@ -205,6 +217,9 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
+	if(isDisabled)
+		return;
+	
 	// Serialize the current reputation with other governments.
 	player.SetReputationConditions();
 
