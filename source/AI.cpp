@@ -568,7 +568,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		else if(it->IsYours() && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
+		else if(it && flagship && it->IsYours() && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
 			AskForHelp(*it, isStranded, flagship);
 
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
