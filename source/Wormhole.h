@@ -29,7 +29,7 @@ public:
 	// Load a wormhole's description from a file.
 	void Load(const DataNode &node);
 	// Load a wormhole from a given planet.
-	void LoadFromPlanet(const Planet *planet);
+	void LoadFromPlanet(const Planet &planet);
 	// Check if this wormhole has been defined.
 	bool IsValid() const;
 
