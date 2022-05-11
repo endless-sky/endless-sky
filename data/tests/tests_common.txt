@@ -601,3 +601,66 @@ test "Sell first ship"
 		input
 			key "l"
 
+
+test "Sell first outfit"
+	status partial
+	description "Test procedure that handles selling of the first outfit in the list."
+	sequence
+		# Goto outfitter
+		input
+			key "o"
+		# Select the first item
+		input
+			key "Down"
+		# Sell the first item
+		input
+			key "s"
+		input
+			key "Return"
+		# Go back to the planet menu.
+		input
+			key "l"
+
+
+test "FailBuy first outfit"
+	status partial
+	description "Try to buy the first outfit, but fail."
+	sequence
+		# Goto outfitter
+		input
+			key "o"
+		# Select the first item
+		input
+			key "Down"
+		# Buy the first item
+		input
+			key "b"
+		# Skip the error Messages
+		input
+			key "Enter"
+		input
+			key "Return"
+		# Go back to the planet menu.
+		input
+			key "l"
+
+
+test "Buy first outfit"
+	status partial
+	description "Try to buy the first outfit, but fail."
+	sequence
+		# Goto outfitter
+		input
+			key "o"
+		# Select the first item
+		input
+			key "Down"
+		# Buy the first item
+		input
+			key "b"
+		input
+			key "Return"
+		# Go back to the planet menu.
+		input
+			key "l"
+

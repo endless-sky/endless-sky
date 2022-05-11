@@ -123,7 +123,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			const Outfit *outfit = nullptr;
 			auto parseValueOrOffset = [&isAdd, &outfit](double &amount, const DataNode &line) {
 				if(isAdd)
-					amount += line.Size() > 1 ? line.Value(2) : 1.;
+					amount += line.Size() > 2 ? line.Value(2) : 1.;
 				else
 					amount = line.Size() > 1 ? line.Value(1) : 1;
 				// If there is a third element it means a relative % and not a raw value is specified.
@@ -147,8 +147,8 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 			// Default behavior assumes value.
 			else if(child.Size() >= 1)
 			{
-				const Outfit *outfit = outfits.Get(child.Token(0));
 				isAdd = (child.Token(0) == "add");
+				outfit = outfits.Get(child.Token(isAdd));
 				parseValueOrOffset(relativeOutfitPrices[outfit], child);
 			}
 			else
