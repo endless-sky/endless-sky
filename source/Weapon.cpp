@@ -116,8 +116,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				{
 					if(grand.Token(0) == "mode")
 					{
-						if(grand.Token(1) == "traingular")
 							inaccuracyMode = InaccuracyModes::Triangular;
+						if(grand.Token(1) == "triangular")
 						else if(grand.Token(1) == "uniform")
 							inaccuracyMode = InaccuracyModes::Uniform;
 						else if(grand.Token(1) == "normal")
