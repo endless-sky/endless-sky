@@ -1,5 +1,5 @@
-/* test_main.cpp
-Copyright (c) 2020 by Benjamin Hauch
+/* MenuAnimationPanel.h
+Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -9,18 +9,28 @@ Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
-#define CATCH_CONFIG_RUNNER
-#include "es-test.hpp"
 
-#include "../../source/Random.h"
-#include <ctime>
+#ifndef MENU_ANIMATION_PANEL_H_
+#define MENU_ANIMATION_PANEL_H_
 
-int main(int argc, const char *const argv[])
-{
-	// Seed the random number generator.
-	Random::Seed(time(nullptr));
+#include "Panel.h"
 
-	// Run the tests.
-	return Catch::Session().run(argc, argv);
-}
-// Add nothing else to this file (unless you like long recompilation times)!
+
+
+// Class representing the menu animation including sound effects and music
+// that appears when the game is started and everything is loaded.
+class MenuAnimationPanel final : public Panel {
+public:
+	MenuAnimationPanel();
+
+	void Step() final;
+	void Draw() final;
+
+
+private:
+	float alpha = 1.f;
+};
+
+
+
+#endif

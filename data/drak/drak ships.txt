@@ -39,6 +39,12 @@ ship "Archon"
 		"ion protection" 3
 		"ion resistance" 1
 		"ramscoop" 100
+		"thrust" 80
+		"thrusting energy" 20
+		"thrusting heat" 10
+		"turn" 1600
+		"turning energy" 10
+		"turning heat" 5
 		weapon
 			"blast radius" 200
 			"shield damage" 20000
@@ -54,8 +60,6 @@ ship "Archon"
 		"Drak Distancer" 2
 		"Drak Turret" 3
 		"Drak Turret (Augmented)" 3
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
 		"Hyperdrive"
 		"Jump Drive"
 	

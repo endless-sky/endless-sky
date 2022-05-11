@@ -1822,7 +1822,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1844,6 +1844,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 

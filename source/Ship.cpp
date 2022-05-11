@@ -2203,7 +2203,12 @@ void Ship::DoGeneration()
 
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
+	{
 		isOverheated = true;
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
@@ -2275,6 +2280,7 @@ void Ship::DoGeneration()
 	}
 
 	// Don't allow any levels to drop below zero.
+	shields = max(0., shields);
 	energy = max(0., energy);
 	fuel = max(0., fuel);
 	heat = max(0., heat);
@@ -3036,6 +3042,19 @@ double Ship::DisruptionLevel() const
 
 
 
+// Get the (absolute) amount of hull that needs to be damaged until the
+// ship becomes disabled. Returns 0 if the ships hull is already below the
+// disabled threshold.
+double Ship::HullUntilDisabled() const
+{
+	// Ships become disabled when they surpass their minimum hull threshold,
+	// not when they are directly on it, so account for this by adding a small amount
+	// of hull above the current hull level.
+	return max(0., hull + 0.25 - MinimumHull());
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3183,7 +3202,7 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass());
+	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 
