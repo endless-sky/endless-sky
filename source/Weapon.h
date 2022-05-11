@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Body.h"
+#include "Distributions.h"
 #include "Point.h"
 
 #include <cstddef>
@@ -50,11 +51,6 @@ public:
 		Point offset;
 	};
 
-	enum class InaccuracyModes{
-		Triangular,
-		Uniform,
-		Normal
-	};
 
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
@@ -103,7 +99,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
-	std::tuple<double, InaccuracyModes, double> InaccuracyBundle() const;
+	std::tuple<double, Distributions, double> InaccuracyBundle() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -251,7 +247,7 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	InaccuracyModes inaccuracyMode = InaccuracyModes::Triangular;
+	Distributions inaccuracyMode = Distributions::Triangular;
 	double inaccuracyNormalSmoothness = 1.;
 	double turretTurn = 0.;
 

@@ -116,12 +116,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 				{
 					if(grand.Token(0) == "mode")
 					{
-							inaccuracyMode = InaccuracyModes::Triangular;
 						if(grand.Token(1) == "triangular")
+							inaccuracyMode = Distributions::Triangular;
 						else if(grand.Token(1) == "uniform")
-							inaccuracyMode = InaccuracyModes::Uniform;
+							inaccuracyMode = Distributions::Uniform;
 						else if(grand.Token(1) == "normal")
-							inaccuracyMode = InaccuracyModes::Normal;
+							inaccuracyMode = Distributions::Normal;
 						else
 							child.PrintTrace("Skipping unknown or incomplete inaccuracy mode attribute:");
 					}
@@ -506,7 +506,7 @@ double Weapon::TotalDamage(int index) const
 
 
 
-std::tuple<double, Weapon::InaccuracyModes, double> Weapon::InaccuracyBundle() const
+std::tuple<double, Distributions, double> Weapon::InaccuracyBundle() const
 {
 	return std::make_tuple(inaccuracy, inaccuracyMode, inaccuracyNormalSmoothness);
 }

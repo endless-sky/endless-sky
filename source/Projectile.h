@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Distributions.h"
 #include "Point.h"
 #include "Weapon.h"
 
@@ -49,7 +50,7 @@ public:
 
 
 public:
-	static Angle Inaccuracy(std::tuple<double, Weapon::InaccuracyModes, double> values);
+	static Angle Inaccuracy(std::tuple<double, Distributions, double> values);
 
 
 public:

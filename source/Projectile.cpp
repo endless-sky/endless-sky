@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "Distributions.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -35,7 +36,7 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(std::tuple<double, Weapon::InaccuracyModes, double> values)
+Angle Projectile::Inaccuracy(std::tuple<double, Distributions, double> values)
 {
 	Angle inaccuracy;
 	// Check if there is any inaccuracy to apply
@@ -43,13 +44,13 @@ Angle Projectile::Inaccuracy(std::tuple<double, Weapon::InaccuracyModes, double>
 	{
 		switch(std::get<1>(values))
 		{
-			case Weapon::InaccuracyModes::Triangular:
+			case Distributions::Triangular:
 				inaccuracy = Angle::Random(std::get<0>(values)) - Angle::Random(std::get<0>(values));
 				break;
-			case Weapon::InaccuracyModes::Uniform:
+			case Distributions::Uniform:
 				inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
 				break;
-			case Weapon::InaccuracyModes::Normal:
+			case Distributions::Normal:
 				inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
 				break;
 		}
