@@ -45,10 +45,10 @@ namespace {
 		}
 		else
 		{
-			auto toSell = giftShip.SatisfyingShips(player, model);
-			if(toSell.size() == 1)
+			auto toTake = giftShip.SatisfyingShips(player, model);
+			if(toTake.size() == 1)
 				shipName = giftShip.Name();
-			for(const auto &ship : toSell)
+			for(const auto &ship : toTake)
 				player.TakeShip(ship.get(), giftShip.WithOutfits() ? model : nullptr);
 		}
 		Messages::Add((abs(count) == 1 ? "The " + model->VariantName() + " \"" + shipName + "\" was " : 
