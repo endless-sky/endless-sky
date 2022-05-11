@@ -32,7 +32,6 @@ public:
 
 	// Clear all levels of input and set hull to -1.
 	void Kill(EnergyLevels &input) const;
-
 	// Clear the damage over time levels of the input.
 	void ClearDoT(EnergyLevels &input) const;
 
@@ -40,13 +39,14 @@ public:
 	// Updates the available variable with the remaining amount of repairs that
 	// can be done.
 	void DoRepair(double &stat, double &available, double maximum, EnergyLevels &input, const EnergyLevels &cost) const;
-
 	// Apply status effects and DoT resistances to the input.
 	void DoStatusEffects(EnergyLevels &input, bool disabled) const;
 
+	// Return true if the given input has the energy to expend on the cost. Does
+	// not check DoT levels.
+	bool CanExpendSimple(const EnergyLevels &input, const EnergyLevels &cost) const;
 	// Return true if the given input has the energy to expend on the entire cost.
 	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
-
 	// Return true if the given input has the energy to expend on the firing cost.
 	// This ignores any shield costs, allowing ships to fire a weapon even with
 	// no shields. This also prevents a ship from disabling itself as a result
@@ -55,7 +55,7 @@ public:
 
 	// Return the amount of value that the given input can output
 	// given the maximum possible output and its cost.
-	double FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const;
+	double FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost, double output) const;
 
 	// Apply damage * scale to the input. Hull, shields, energy, and fuel
 	// are subtracted from input while all other levels are added to input.

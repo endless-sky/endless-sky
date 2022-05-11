@@ -158,8 +158,9 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 
 
 
-// Return true if the given input has the energy to expend on the cost.
-bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const
+// Return true if the given input has the energy to expend on the cost. Does
+// not check DoT levels.
+bool EnergyHandler::CanExpendSimple(const EnergyLevels &input, const EnergyLevels &cost) const
 {
 	if(input.hull < cost.hull)
 		return false;
@@ -170,6 +171,16 @@ bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cos
 	if(input.heat < -cost.heat)
 		return false;
 	if(input.fuel < cost.fuel)
+		return false;
+	return true;
+}
+
+
+
+// Return true if the given input has the energy to expend on the entire cost.
+bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const
+{
+	if(!CanExpendSimple(input, cost))
 		return false;
 	if(input.corrosion < -cost.corrosion)
 		return false;
@@ -225,7 +236,7 @@ bool EnergyHandler::CanFire(const EnergyLevels &input, const EnergyLevels &cost,
 
 // Return the amount of value that the given input can output
 // given the maximum possible output and its cost.
-double EnergyHandler::FractionalUsage(EnergyLevels &input, const EnergyLevels &cost, double output) const
+double EnergyHandler::FractionalUsage(const EnergyLevels &input, const EnergyLevels &cost, double output) const
 {
 	double scale = 1.;
 	auto ScaleOutput = [&scale](double input, double cost)

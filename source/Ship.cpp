@@ -1360,7 +1360,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		EnergyLevels &cloakCost = handler.cloak;
 		double cloakingSpeed = cloakCost.wildcard;
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-			&& handler.CanExpend(levels, cloakCost));
+			&& handler.CanExpendSimple(levels, cloakCost));
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
 			cloak = min(1., cloak + cloakingSpeed);
