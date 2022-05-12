@@ -568,7 +568,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		else if(it && flagship && it->IsYours() && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
+		else if(it && flagship && (it->IsYours() || it->GetPersonality().IsEscort()) && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
 			AskForHelp(*it, isStranded, flagship);
 
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
@@ -1016,7 +1016,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(!helper.get()->IsYours() && (helper->GetTargetAsteroid() || helper->GetTargetFlotsam()))
 				continue;
 			// Your escorts only help other escorts, and your flagship never helps.
-			if((helper->IsYours() && !ship.IsYours()) || helper.get() == flagship)
+			if((helper->IsYours() && !(ship.IsYours() || ship.GetPersonality().IsEscort())) || helper.get() == flagship)
 				continue;
 			// Your escorts should not help each other if already under orders.
 			if(helper->IsYours() && ship.IsYours() && orders.count(helper.get()))
@@ -1072,7 +1072,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 		return false;
 
 	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
-	if(!ship.IsDisabled() && (needsFuel || (ship.IsYours() && helper.IsYours())) && !helper.CanRefuel(ship))
+	if(!ship.IsDisabled() && (needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours())) && !helper.CanRefuel(ship) && !helper.IsEnergyLow())
 		return false;
 
 	// Helper is not able to continue helping because they must return to carrier for battery recharge.
@@ -1738,12 +1738,13 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.  Also account for when fighter has ramscoop to
 	// prioritize returning over ramscoop regeneration.
-	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel() && !ship.IsEnemyInEscortSystem() && parent.Fuel() < 1. && ship.IsRefueledByRamscoop();
-	bool fighterHasRefueled = ship.Fuel() > .75 && ship.GetSystem();
+	bool readyToRefuelCarrier = ship.CanRefuel(parent) && ship.IsEscortsFullOfFuel() && ship.IsRefueledByRamscoop();
+	bool fighterHasRefueled = !ship.IsFuelLow() || ship.Fuel() > .5;
 	bool shipIsLowFuel = ((ship.IsRefueledByRamscoop() && ship.Fuel() < .25) || ship.IsFuelLow());
-	bool parentCanRefuelShip = !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
+	//bool parentCanRefuelShip = !parent.IsFuelLow(ship.Attributes().Get("fuel capacity"));
+	bool parentCanRefuelShip = parent.CanRefuel(ship);
 	// Only return to ship if low fuel or if the fighter has ramscoop and is refueling the carrier.
-	bool shouldReturnForFuel = (readyToRefuelCarrier) ?  !fighterHasRefueled && !shipIsLowFuel : shipIsLowFuel && parentCanRefuelShip;
+	bool shouldReturnForFuel = (readyToRefuelCarrier || ship.IsEscortsFullOfFuel()) ?  !fighterHasRefueled : shipIsLowFuel && parentCanRefuelShip;
 	if(shouldReturnForFuel ^ readyToRefuelCarrier)
 		return true;
 

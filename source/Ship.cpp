@@ -2671,11 +2671,11 @@ bool Ship::IsEnemyInEscortSystem() const
 	if(!IsYours())
 		return false;
 	const Government *gov = (CanBeCarried() && GetParent()) ? GetParent()->GetGovernment() : GetGovernment();
-	const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-	for(const weak_ptr<Ship> &ptr : myEscorts)
+	const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
-		shared_ptr<const Ship> escort = ptr.lock();
-		if(!escort || (escort->GetSystem() != GetSystem()))
+		shared_ptr<Ship> escort = ptr.lock();
+		if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
 			continue;
 		shared_ptr<const Ship> escortTarget = escort->GetTargetShip();
 		if(escortTarget)
@@ -2718,11 +2718,11 @@ bool Ship::IsEscortsFullOfFuel() const
 {
 	if(!IsYours())
 		return false;
-	const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-	for(const weak_ptr<Ship> &ptr : myEscorts)
+	const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
-		shared_ptr<const Ship> escort = ptr.lock();
-		if(!escort || (escort->GetSystem() != GetSystem()))
+		shared_ptr<Ship> escort = ptr.lock();
+		if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
 			continue;
 		// Skip fighters and drones.
 		if(escort->CanBeCarried())
@@ -2780,11 +2780,13 @@ bool Ship::IsFuelLow() const
 // refuel.  If the ship has no fuel then it can't be low.
 bool Ship::IsFuelLow(double compareTo) const
 {
-	bool lowFuel = attributes.Get("fuel capacity") > 0.;
+	bool lowFuel = attributes.Get("fuel capacity");
 	if(CanBeCarried())
-		lowFuel &= attributes.Get("fuel capacity") && Fuel() < .15;
+		lowFuel &= fuel < 100.;
+	else if((GetParent() && IsYours()) || (!IsYours() && GetPersonality().IsEscort()))
+		lowFuel &= fuel < attributes.Get("fuel capacity");
 	else
-		lowFuel &= (IsYours()) ? fuel < attributes.Get("fuel capacity") : JumpFuel() < compareTo - fuel;
+		lowFuel &= JumpFuel() < compareTo - fuel;
 	return lowFuel;
 }
 
@@ -3050,28 +3052,37 @@ void Ship::Recharge(bool atSpaceport)
 bool Ship::CanRefuel(const Ship &other) const
 {
 	// Can't refuel if current ship has zero fuel capacity.
-	if(attributes.Get("fuel capacity") < 1)
+	if(attributes.Get("fuel capacity") < 1 || GetSystem() != other.GetSystem() || IsEnemyInEscortSystem())
 		return false;
-	if(CanBeCarried() && GetSystem())
+	if(CanBeCarried())
 	{
 		// Ensure all escorts have minimum one jump of fuel before refueling all
 		// escorts to maximum.  Only perform "max refueling" from within your
 		// own fleet.
 		if(IsYours() && !other.JumpFuelMissing())
 		{
-			const std::vector<std::weak_ptr<Ship>> myEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-			for(const weak_ptr<Ship> &ptr : myEscorts)
+			const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
+			bool escortsNeedFuel = false;
+			for(const weak_ptr<Ship> &ptr : allEscorts)
 			{
-				shared_ptr<const Ship> escort = ptr.lock();
-				if(escort && escort->JumpFuelMissing())
+				shared_ptr<Ship> escort = ptr.lock();
+				if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+					continue;
+				// Both mission 
+				if(escort->JumpFuelMissing())
 					return false;
+				if(escort->IsYours() && escort->IsFuelLow())
+					escortsNeedFuel = true;
 			}
+			// Prioritize refueling escorts before mission NPCs
+			if(escortsNeedFuel && !other.IsYours() && other.GetPersonality().IsEscort())
+				return false;
 		}
 		else if(!IsYours() && other.IsYours())
 			return false;
 		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
 	}
-	return (!IsYours() || other.JumpFuelMissing()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
