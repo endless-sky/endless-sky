@@ -3068,10 +3068,10 @@ bool Ship::CanRefuel(const Ship &other) const
 				shared_ptr<Ship> escort = ptr.lock();
 				if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
 					continue;
-				// Both mission 
+				// Both mission NPC escorts and player-owned escorts should be refueled first.
 				if(escort->JumpFuelMissing())
 					return false;
-				if(escort->IsYours() && escort->IsFuelLow())
+				if(escort->IsYours() && escort->IsFuelLow() && !escort->CanBeCarried())
 					escortsNeedFuel = true;
 			}
 			// Prioritize refueling escorts before mission NPCs
@@ -3080,7 +3080,10 @@ bool Ship::CanRefuel(const Ship &other) const
 		}
 		else if(!IsYours() && other.IsYours())
 			return false;
-		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
+		if(GetParent() == other.shared_from_this())
+			return IsRefueledByRamscoop() && fuel > 25.;
+		else
+			return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
 	}
 	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
