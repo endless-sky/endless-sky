@@ -20,8 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "text/layout.hpp"
 
-#include <map>
-#include <memory>
 #include <set>
 #include <vector>
 
@@ -67,7 +65,7 @@ private:
 	// Try to scroll to the given position. Return true if position changed.
 	bool ScrollAbsolute(int scroll);
 
-	void SortShips(InfoPanelState::ShipComparator &shipComparator);
+	void SortShips(InfoPanelState::ShipComparator *shipComparator);
 
 	class SortableColumn {
 	public:
@@ -88,7 +86,7 @@ private:
 	InfoPanelState panelState;
 
 	// Column headers that sort ships when clicked.
-	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
+	std::vector<ClickZone<InfoPanelState::ShipComparator *>> menuZones;
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
