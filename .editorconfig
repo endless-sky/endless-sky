@@ -30,3 +30,8 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+# Ignore assets
+[{images,sounds}/**]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
