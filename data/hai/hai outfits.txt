@@ -367,11 +367,11 @@ outfit "Quantum Keystone"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
-	cost 9000
+	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 2100
+	"energy capacity" 2164
 	description "Hai power storage technology is thousands of years old, but remarkably simple and robust. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
@@ -387,7 +387,7 @@ outfit "Hai Fissure Batteries"
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
-	cost 27500
+	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
 	"outfit space" -30
@@ -397,7 +397,7 @@ outfit "Hai Gorge Batteries"
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
-	cost 62000
+	cost 47000
 	thumbnail "outfit/large battery hai"
 	"mass" 50
 	"outfit space" -50
@@ -407,7 +407,7 @@ outfit "Hai Ravine Batteries"
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
-	cost 150000
+	cost 74000
 	thumbnail "outfit/huge battery hai"
 	"mass" 70
 	"outfit space" -70
