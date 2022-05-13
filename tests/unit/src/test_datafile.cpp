@@ -179,9 +179,9 @@ system foo
 
 	GIVEN( "Only spaces") {
 		std::istringstream stream(
-"system foo"
-" description bar"
-"  no error"
+"system foo\n"
+" description bar\n"
+"  no error\n"
 );
 		const DataFile root(stream);
 
@@ -194,11 +194,11 @@ system foo
 
 	GIVEN( "Tabs and later spaces" ) {
 		std::istringstream stream(
-"system foo"
-"	something"
+"system foo\n"
+"	something\n"
 
-"now with"
-" spaces"
+"now with\n"
+" spaces\n"
 );
 		const DataFile root(stream);
 
@@ -214,11 +214,11 @@ system foo
 
 	GIVEN( "Spaces and later tabs" ) {
 		std::istringstream stream(
-"system foo"
-" something"
+"system foo\n"
+" something\n"
 
-"now with"
-"	tabs"
+"now with\n"
+"	tabs\n"
 );
 		const DataFile root(stream);
 
@@ -234,8 +234,8 @@ system foo
 
 	GIVEN( "Spaces and tabs on the same line" ) {
 		std::istringstream stream(
-"system test"
-"	 foo"
+"system test\n"
+"	 foo\n"
 );
 		const DataFile root(stream);
 
@@ -251,11 +251,11 @@ system foo
 
 	GIVEN( "Tabs and later spaces for comments" ) {
 		std::istringstream stream(
-"system foo"
-"	# something"
+"system foo\n"
+"	# something\n"
 
-"now with"
-" # spaces"
+"now with\n"
+" # spaces\n"
 );
 		const DataFile root(stream);
 
@@ -263,17 +263,17 @@ system foo
 			const auto warnings = Split(sink.Flush());
 
 			REQUIRE( warnings.size() == 1 );
-			CHECK( warnings[0] == mixedCommentWarning + " 6" );
+			CHECK( warnings[0] == mixedCommentWarning + " 4" );
 		}
 	}
 
 	GIVEN( "Spaces and later tabs for comments" ) {
 		std::istringstream stream(
-"system foo"
-" # something"
+"system foo\n"
+" # something\n"
 
-"now with"
-"	# tabs"
+"now with\n"
+"	# tabs\n"
 );
 		const DataFile root(stream);
 
@@ -281,7 +281,7 @@ system foo
 			const auto warnings = Split(sink.Flush());
 
 			REQUIRE( warnings.size() == 1 );
-			CHECK( warnings[0] == mixedCommentWarning + " 6" );
+			CHECK( warnings[0] == mixedCommentWarning + " 4" );
 		}
 	}
 }
