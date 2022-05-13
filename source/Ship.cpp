@@ -2298,7 +2298,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
 	// of 5% when it is at 100% energy.
 	double scale = Energy() * 220.;
-	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+	double jamChance = levels.ionization > .1 ? min(0.5, scale ? levels.ionization / scale : 1.) : 0.;
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2329,7 +2329,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 		return false;
 
 	double scale = Energy() * 220.;
-	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+	double jamChance = levels.ionization > .1 ? min(0.5, scale ? levels.ionization / scale : 1.) : 0.;
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
