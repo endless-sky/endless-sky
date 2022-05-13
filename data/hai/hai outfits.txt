@@ -367,51 +367,51 @@ outfit "Quantum Keystone"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
-	cost 18000
+	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 491
+	"energy capacity" 2164
 	description "Hai power storage technology is thousands of years old, but remarkably simple and robust. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
 	category "Power"
-	cost 22000
+	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
 	"outfit space" -15
-	"energy capacity" 1709
+	"energy capacity" 6836
 	description "This battery pack has more than three times the energy capacity of the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
-	cost 55000
+	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
 	"outfit space" -30
-	"energy capacity" 3761
+	"energy capacity" 15044
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
-	cost 124000
+	cost 47000
 	thumbnail "outfit/large battery hai"
-	"mass" 60
-	"outfit space" -60
-	"energy capacity" 8205
+	"mass" 50
+	"outfit space" -50
+	"energy capacity" 27350
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
-	cost 300000
+	cost 74000
 	thumbnail "outfit/huge battery hai"
-	"mass" 120
-	"outfit space" -120
-	"energy capacity" 17777
+	"mass" 70
+	"outfit space" -70
+	"energy capacity" 42222
 	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and allowing them to survive longer in a fight against opponents carrying Ion Cannons."
 
 
