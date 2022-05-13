@@ -1040,11 +1040,13 @@ interface "info panel"
 	sprite "ui/three info buttons"
 		center 0 305
 	
+	#The two sections of the player info panel.
 	box "player"
 		from -500 -290 to -250 280
 	box "fleet"
 		from -250 -290 to 500 280
 	
+	#The four sections of the ship info panel.
 	box "stats"
 		from -500 -290 to -250 280
 	box "outfits"
@@ -1054,6 +1056,7 @@ interface "info panel"
 	box "cargo"
 		from 250 -290 to 500 280
 	
+	#The rename button and top bar of the ship info tab.
 	visible if "ship tab"
 	button R
 		center -375 -270
@@ -1068,7 +1071,13 @@ interface "info panel"
 	button i
 		center -420 -305
 		dimensions 120 30
+	sprite "ui/wide button"
+		center -295 305
+	button w "Weapons"
+		center -295 305
+		dimensions 90 30
 	
+	#The top bar of the player info tab.
 	visible if "player tab"
 	sprite "ui/player tab"
 		center 0 -310

@@ -12,6 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WeaponConfigPanel.h"
 
+#include "Command.h"
+#include "GameData.h"
+#include "InfoPanelState.h"
+#include "Information.h"
+#include "LogbookPanel.h"
+#include "Interface.h"
+#include "MissionPanel.h"
+#include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
+#include "Ship.h"
+#include "UI.h"
+
 WeaponConfigPanel::WeaponConfigPanel(PlayerInfo &player)
 	: WeaponConfigPanel(player, InfoPanelState(player))
 {
@@ -80,9 +92,6 @@ void WeaponConfigPanel::Draw()
 	if(shipIt == player.Ships().end())
 		return;
 	DrawWeapons(weaponConfigPanelUi->GetBox("weapons"));
-
-	// If the player hovers their mouse over a ship attribute, show its tooltip.
-	info.DrawTooltips();
 }
 
 
@@ -149,7 +158,7 @@ bool WeaponConfigPanel::Click(int x, int y, int /* clicks */)
 bool WeaponConfigPanel::Hover(int x, int y)
 {
 	Point point(x, y);
-	info.Hover(point);
+	//info.Hover(point);
 	return Hover(point);
 }
 
@@ -184,10 +193,6 @@ void WeaponConfigPanel::UpdateInfo()
 	const Ship &ship = **shipIt;
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
-
-	outfits.clear();
-	for(const auto &it : ship.Outfits())
-		outfits[it.first->Category()].push_back(it.first);
 }
 
 
@@ -195,5 +200,11 @@ void WeaponConfigPanel::UpdateInfo()
 void WeaponConfigPanel::ClearZones()
 {
 	zones.clear();
+}
+
+
+
+void WeaponConfigPanel::DrawWeapons(const Rectangle &bounds) {
+
 }
 

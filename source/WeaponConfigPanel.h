@@ -16,13 +16,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "InfoPanelState.h"
 #include "Point.h"
 #include "text/layout.hpp"
 
+#include <vector>
+
+class Color;
+class PlayerInfo;
+
 class WeaponConfigPanel : public Panel {
 public:
-    explicit ShipInfoPanel(PlayerInfo &player);
-	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+    explicit WeaponConfigPanel(PlayerInfo &player);
+	explicit WeaponConfigPanel(PlayerInfo &player, InfoPanelState state);
 
 	virtual void Step() override;
 	virtual void Draw() override;
