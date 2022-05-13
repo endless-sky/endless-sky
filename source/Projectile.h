@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Distributions.h"
 #include "Point.h"
-#include "Weapon.h"
 
 #include <memory>
 #include <vector>
