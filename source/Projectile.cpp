@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 
 #include "Effect.h"
-#include "Distributions.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
