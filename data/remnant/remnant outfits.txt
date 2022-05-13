@@ -398,11 +398,11 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 113000
+	cost 57000
 	thumbnail "outfit/crystal capacitor"
 	"mass" 12
 	"outfit space" -12
-	"energy capacity" 3400
+	"energy capacity" 13600
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
