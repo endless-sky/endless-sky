@@ -1149,7 +1149,7 @@ interface "info panel"
 	visible if "show save order"
 	sprite "ui/wide button"
 		center -195 305
-	button v "Save Order"
+	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
 
