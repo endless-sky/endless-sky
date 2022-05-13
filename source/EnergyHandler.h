@@ -44,7 +44,7 @@ public:
 
 	// Return true if the given input has the energy to expend on the cost. Does
 	// not check DoT levels.
-	bool CanExpendSimple(const EnergyLevels &input, const EnergyLevels &cost) const;
+	bool CanExpendBasic(const EnergyLevels &input, const EnergyLevels &cost) const;
 	// Return true if the given input has the energy to expend on the entire cost.
 	bool CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const;
 	// Return true if the given input has the energy to expend on the firing cost.
@@ -58,6 +58,9 @@ public:
 
 	// Apply damage * scale to the input. Hull, shields, energy, and fuel
 	// are subtracted from input while all other levels are added to input.
+	// Does not apply damage to DoT levels.
+	void DamageBasic(EnergyLevels &input, const EnergyLevels &damage, double scale = 1.) const;
+	// Applies damage to all levels.
 	void Damage(EnergyLevels &input, const EnergyLevels &damage, double scale = 1.) const;
 
 	// Construct an EnergyLevels object for the firing cost of the given weapon

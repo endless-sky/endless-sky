@@ -160,7 +160,7 @@ void EnergyHandler::DoStatusEffects(EnergyLevels &input, bool disabled) const
 
 // Return true if the given input has the energy to expend on the cost. Does
 // not check DoT levels.
-bool EnergyHandler::CanExpendSimple(const EnergyLevels &input, const EnergyLevels &cost) const
+bool EnergyHandler::CanExpendBasic(const EnergyLevels &input, const EnergyLevels &cost) const
 {
 	if(input.hull < cost.hull)
 		return false;
@@ -180,7 +180,7 @@ bool EnergyHandler::CanExpendSimple(const EnergyLevels &input, const EnergyLevel
 // Return true if the given input has the energy to expend on the entire cost.
 bool EnergyHandler::CanExpend(const EnergyLevels &input, const EnergyLevels &cost) const
 {
-	if(!CanExpendSimple(input, cost))
+	if(!CanExpendBasic(input, cost))
 		return false;
 	if(input.corrosion < -cost.corrosion)
 		return false;
@@ -263,13 +263,22 @@ double EnergyHandler::FractionalUsage(const EnergyLevels &input, const EnergyLev
 
 // Apply damage * scale to the input. Hull, shields, energy, and fuel
 // are subtracted from input while all other levels are added to input.
-void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, double scale) const
+// Does not apply damage to DoT levels.
+void EnergyHandler::DamageBasic(EnergyLevels &input, const EnergyLevels &damage, double scale) const
 {
 	input.hull -= scale * damage.hull;
 	input.shields -= scale * damage.shields;
 	input.energy -= scale * damage.energy;
 	input.heat += scale * damage.heat;
 	input.fuel -= scale * damage.fuel;
+}
+
+
+
+// Applies damage to all levels.
+void EnergyHandler::Damage(EnergyLevels &input, const EnergyLevels &damage, double scale) const
+{
+	DamageBasic(input, damage, scale);
 
 	input.corrosion += scale * damage.corrosion;
 	input.discharge += scale * damage.discharge;
