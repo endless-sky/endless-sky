@@ -1851,11 +1851,14 @@ mission "Nanachi Meeting"
 		has "event: Nanachi: Update"
 		random > 30
 	on offer
+		outfit "Shield Beetle Pendant" 
 		conversation
 			`After you leave your ship and start making your way through the docking area, you notice a Hai running towards you and waving. As they get closer, you realize that it's Nanachi, the Hai pilot who you helped out years ago.`
 			`	"I was just about to go back to my crew when I saw you coming out of your ship. I know a nice snack bar here, let's go there!" Before you can even say hello, she's dragged you to the bar, and ordered some drinks for the two of you. She tells you about her last few years as a captain. She has long since sold her old ship, and now pilots a Geocoris, transporting large amounts of cargo across Hai space. You also tell her about how your life has been ever since you last met, of your adventures and how far you've come. You keep swapping stories for hours, until the bar is ready to close.`
 			`	You thank her for the drinks, and get ready to say your goodbyes.`
-			`	"Oh wait, before you go Captain, let me give you something," she says, right as you're about to head to your ship. She grabs a small pendant from her pocket. "Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make this for you in case I saw you again." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "It's just a good-luck charm I thought you'd like. Thanks again Captain!" You two part ways, and head back to your ships.`
+			`	"Oh wait, before you go Captain, let me give you something," she says, right as you're about to head to your ship. She grabs a small pendant from her pocket.`
+			scene `outfit/crystal pendant`
+			`	"Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make one for you, in case I ever saw you again. I made it from the same stones we use as good luck charms on our ships." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "I wanted it to be something to make your travels easier, the way you helped with starting mine. Thanks again, Captain!" You two part ways, and head back to your ships.`
 				decline
 
 
