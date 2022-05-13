@@ -727,7 +727,6 @@ mission "Ka'het: Patir Mystery 5"
 			apply
 				set "ka'het: attacked ka'sei"
 			`You disembark from your ship with Dusk, who is visible angry that you destroyed one of the Ka'sei. "I told you not to attack them! I told you of their importance!" he signs harshly while pacing back and forth. "Oh my, oh my, we can only hope that this does not close any doors for us. Perhaps we can attempt to communicate with them? Tell them it was an accident?" He looks to you as if searching for some reassurance, but you have none to give. "Forget it. I will study what we have gathered, but I am afraid that it will be all that we will ever gather from that system." Dusk storms off without saying goodbye, typing away on his touchpad as he goes.`
-	
 
 event "pacified ka'sei"
 	"reputation: Ka'sei" = 1
