@@ -124,6 +124,7 @@ contributed to Endless Sky:
   10010101001
   7even
   abenkovskii
+  AdamKauffman
   akien-mga
   AlbertNewton
   AlexBassett
@@ -151,6 +152,7 @@ contributed to Endless Sky:
   bojidar-bg
   Brick63
   ChamEV
+  colbygallup
   comnom
   corecontingency
   Corraban2
@@ -173,6 +175,7 @@ contributed to Endless Sky:
   dufferzafar
   dzhu
   eflyon
+  EjoThims
   elgeonmb
   Eloraam
   Elyssaen
@@ -203,6 +206,7 @@ contributed to Endless Sky:
   Janaszar
   JanErikAhrens
   janisozaur
+  jarekchr
   jerith
   jjhankins
   jmathes
@@ -238,6 +242,7 @@ contributed to Endless Sky:
   MCOfficer
   MessyMix
   michel-slm
+  MillerNerd
   mimirzero
   mootootwo
   naehc
@@ -331,6 +336,7 @@ contributed to Endless Sky:
   vitalchip
   W1zrad
   Waffleship
+  Waladil
   warp-core
   waterhouse
   Wedge009
@@ -341,6 +347,7 @@ contributed to Endless Sky:
   wjp
   Wrzlprnft
   YellowApple
+  yobbo2020
   yjhn
   ZBok
   Zitchas
