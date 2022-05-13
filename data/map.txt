@@ -76,7 +76,7 @@ system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
 	attributes "kimek"
-	arrival 1262.00
+	arrival 745
 	habitable 745
 	belt 1112
 	link "3 Axis"
@@ -155,7 +155,7 @@ system "10 Pole"
 	pos -1356.63 19.2137
 	government Coalition
 	attributes "kimek"
-	arrival 1915.00
+	arrival 500
 	habitable 490
 	belt 1765
 	haze _menu/haze-67
@@ -228,7 +228,7 @@ system "11 Autumn Above"
 	pos -1278.63 148.214
 	government Coalition
 	attributes "kimek"
-	arrival 1720.00
+	arrival 1570
 	habitable 1570
 	belt 1099
 	haze _menu/haze-133
@@ -311,7 +311,7 @@ system "11 Spring Below"
 	pos -1272.63 380.214
 	government Coalition
 	attributes "kimek"
-	arrival 2082.00
+	arrival 915
 	habitable 915
 	belt 1932
 	link "3 Axis"
@@ -392,7 +392,7 @@ system "12 Autumn Above"
 	pos -1276.63 -19.7863
 	government Coalition
 	attributes "kimek"
-	arrival 1433.00
+	arrival 1050
 	habitable 1050
 	belt 1283
 	link "14 Pole"
@@ -485,7 +485,7 @@ system "14 Pole"
 	pos -1343.63 -119.786
 	government Coalition
 	attributes "kimek"
-	arrival 2031.00
+	arrival 625
 	habitable 625
 	belt 1881
 	haze _menu/haze-67
@@ -547,7 +547,7 @@ system "14 Summer Above"
 	pos -1436.63 182.214
 	government Coalition
 	attributes "kimek"
-	arrival 1550.00
+	arrival 1400
 	habitable 1400
 	belt 1093
 	haze _menu/haze-67
@@ -614,7 +614,7 @@ system "14 Winter Below"
 	pos -1143.63 341.214
 	government Coalition
 	attributes "kimek"
-	arrival 1323.00
+	arrival 1115
 	habitable 1115
 	belt 1173
 	link "4 Axis"
@@ -691,7 +691,7 @@ system "16 Autumn Rising"
 	pos -1305.63 74.2137
 	government Coalition
 	attributes "kimek"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1424
 	link "10 Pole"
@@ -762,7 +762,7 @@ system "3 Axis"
 	pos -1235.63 299.214
 	government Coalition
 	attributes "kimek"
-	arrival 2710.00
+	arrival 2560
 	habitable 2560
 	belt 1202
 	link "1 Axis"
@@ -831,7 +831,7 @@ system "3 Pole"
 	pos -1344.63 162.214
 	government Coalition
 	attributes "kimek"
-	arrival 1767.00
+	arrival 625
 	habitable 625
 	belt 1617
 	link "14 Summer Above"
@@ -892,7 +892,7 @@ system "3 Spring Rising"
 	pos -1414.63 356.214
 	government Coalition
 	attributes "kimek"
-	arrival 1763.00
+	arrival 1080
 	habitable 1080
 	belt 1613
 	haze _menu/haze-33
@@ -966,7 +966,7 @@ system "4 Axis"
 	pos -1169.63 365.214
 	government Coalition
 	attributes "kimek"
-	arrival 1988.00
+	arrival 500
 	habitable 425
 	belt 1838
 	link "14 Winter Below"
@@ -1030,7 +1030,7 @@ system "4 Spring Rising"
 	pos -1309.63 321.214
 	government Coalition
 	attributes "kimek"
-	arrival 1951.00
+	arrival 500
 	habitable 320
 	belt 1801
 	link "1 Axis"
@@ -1096,7 +1096,7 @@ system "4 Summer Rising"
 	pos -1377.63 207.214
 	government Coalition
 	attributes "kimek"
-	arrival 2010.00
+	arrival 500
 	habitable 320
 	belt 1860
 	link "14 Summer Above"
@@ -1157,7 +1157,7 @@ system "4 Winter Rising"
 	pos -1259.63 248.214
 	government Coalition
 	attributes "kimek"
-	arrival 1495.00
+	arrival 500
 	habitable 135
 	belt 1345
 	link "1 Axis"
@@ -1233,7 +1233,7 @@ system "5 Axis"
 	pos -1142.63 394.214
 	government Coalition
 	attributes "kimek"
-	arrival 1925.00
+	arrival 500
 	habitable 230
 	belt 1775
 	link "4 Axis"
@@ -1307,7 +1307,7 @@ system "5 Spring Below"
 	pos -1213.63 415.214
 	government Coalition
 	attributes "kimek"
-	arrival 2470.00
+	arrival 2320
 	habitable 2320
 	belt 1104
 	link "11 Spring Below"
@@ -1380,7 +1380,7 @@ system "5 Summer Above"
 	pos -1387.63 118.214
 	government Coalition
 	attributes "kimek"
-	arrival 1283.00
+	arrival 500
 	habitable 425
 	belt 1133
 	haze _menu/haze-133
@@ -1448,7 +1448,7 @@ system "5 Winter Above"
 	pos -1216.63 208.214
 	government Coalition
 	attributes "kimek"
-	arrival 1564.00
+	arrival 500
 	habitable 320
 	belt 1414
 	link "4 Winter Rising"
@@ -1513,7 +1513,7 @@ system "7 Autumn Rising"
 	pos -1235.63 177.214
 	government Coalition
 	attributes "kimek"
-	arrival 1439.00
+	arrival 500
 	habitable 425
 	belt 1289
 	link "11 Autumn Above"
@@ -1580,7 +1580,7 @@ system "8 Winter Below"
 	pos -1179.63 284.214
 	government Coalition
 	attributes "kimek"
-	arrival 1435.00
+	arrival 500
 	habitable 490
 	belt 1285
 	link "14 Winter Below"
@@ -1646,7 +1646,7 @@ system "9 Spring Above"
 	pos -1377.63 281.214
 	government Coalition
 	attributes "kimek"
-	arrival 1547.00
+	arrival 1050
 	habitable 1050
 	belt 1397
 	haze _menu/haze-67
@@ -1722,7 +1722,7 @@ system Ablodab
 	pos -854.587 592.051
 	government Coalition
 	attributes "arachi"
-	arrival 1518.00
+	arrival 500
 	habitable 425
 	belt 1368
 	link Debrugt
@@ -1798,7 +1798,7 @@ system Ablub
 	pos -581.587 637.051
 	government Coalition
 	attributes "arachi"
-	arrival 1791.00
+	arrival 500
 	habitable 230
 	belt 1641
 	haze _menu/haze-133
@@ -1853,7 +1853,7 @@ system Acamar
 	pos -284 -3
 	government Syndicate
 	attributes "core"
-	arrival 1230.00
+	arrival 1080
 	habitable 1080
 	belt 1013
 	link Aldebaran
@@ -1913,7 +1913,7 @@ system Achernar
 	pos -93 154
 	government Syndicate
 	attributes "core"
-	arrival 2113.00
+	arrival 625
 	habitable 625
 	belt 1963
 	haze _menu/haze-133
@@ -1986,7 +1986,7 @@ system Acrux
 	pos -808 192
 	government Republic
 	attributes "rim"
-	arrival 1557.00
+	arrival 585
 	habitable 585
 	belt 1407
 	haze _menu/haze-67
@@ -2067,7 +2067,7 @@ system Adhara
 	pos -669 -200
 	government Republic
 	attributes "deep"
-	arrival 1164.00
+	arrival 680
 	habitable 680
 	belt 1014
 	link "Epsilon Leonis"
@@ -2133,7 +2133,7 @@ system Aescolanus
 	pos -15 340
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 1473.00
+	arrival 500
 	habitable 230
 	belt 1323
 	haze _menu/haze-red
@@ -2177,7 +2177,7 @@ system Aki'il
 	pos -83 722
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1655.00
+	arrival 1505
 	habitable 1505
 	belt 1500
 	asteroids "large metal" 47 5
@@ -2230,7 +2230,7 @@ system "Al Dhanab"
 	pos -177 207
 	government Syndicate
 	attributes "core"
-	arrival 1582.00
+	arrival 1080
 	habitable 1080
 	belt 1432
 	haze _menu/haze-133
@@ -2301,7 +2301,7 @@ system Albaldah
 	pos -350 484
 	government Republic
 	attributes "south"
-	arrival 1772.00
+	arrival 560
 	habitable 560
 	belt 1622
 	haze _menu/haze-133
@@ -2377,7 +2377,7 @@ system Albireo
 	pos -270 503
 	government Republic
 	attributes "south"
-	arrival 1180.00
+	arrival 760
 	habitable 760
 	belt 1030
 	link Albaldah
@@ -2436,7 +2436,7 @@ system Alcyone
 	pos -80 -144
 	government Pirate
 	attributes "core"
-	arrival 1588.00
+	arrival 500
 	habitable 295
 	belt 1438
 	haze _menu/haze-133
@@ -2504,7 +2504,7 @@ system Aldebaran
 	pos -356 -26
 	government Republic
 	attributes "paradise"
-	arrival 1446.00
+	arrival 625
 	habitable 625
 	belt 1296
 	link Acamar
@@ -2551,7 +2551,7 @@ system Alderamin
 	pos -272 258
 	government Syndicate
 	attributes "core"
-	arrival 2058.00
+	arrival 1705
 	habitable 1705
 	belt 1908
 	haze _menu/haze-133
@@ -2617,7 +2617,7 @@ system Aldhibain
 	pos -659 451
 	government Republic
 	attributes "south"
-	arrival 1990.00
+	arrival 500
 	habitable 450
 	belt 1840
 	link Alniyat
@@ -2678,7 +2678,7 @@ system Algenib
 	pos -118 341
 	government Pirate
 	attributes "core"
-	arrival 1480.00
+	arrival 500
 	habitable 490
 	belt 1330
 	link Gienah
@@ -2736,7 +2736,7 @@ system Algieba
 	pos -691 -52
 	government Republic
 	attributes "deep"
-	arrival 2870.00
+	arrival 2720
 	habitable 2720
 	belt 1070
 	link Alphard
@@ -2807,7 +2807,7 @@ system Algol
 	pos -210 17
 	government Syndicate
 	attributes "core"
-	arrival 3640.00
+	arrival 3490
 	habitable 3490
 	belt 1839
 	haze _menu/haze-133
@@ -2870,7 +2870,7 @@ system Algorel
 	pos -631 145
 	government Republic
 	attributes "dirt belt"
-	arrival 2143.00
+	arrival 500
 	habitable 370
 	belt 1993
 	haze _menu/haze-67
@@ -2936,7 +2936,7 @@ system Alheka
 	pos -350 -271
 	government Republic
 	attributes "north"
-	arrival 1530.00
+	arrival 1080
 	habitable 1080
 	belt 1380
 	haze _menu/haze-67
@@ -2996,7 +2996,7 @@ system Alhena
 	pos -430 -80
 	government Republic
 	attributes "paradise"
-	arrival 1228.00
+	arrival 995
 	habitable 995
 	belt 1078
 	haze _menu/haze-67
@@ -3067,7 +3067,7 @@ system Alioth
 	pos -620 315
 	government Republic
 	attributes "dirt belt"
-	arrival 2039.00
+	arrival 500
 	habitable 450
 	belt 1889
 	link Alphecca
@@ -3121,7 +3121,7 @@ system Alkaid
 	pos -825 318
 	government Republic
 	attributes "rim"
-	arrival 1292.00
+	arrival 1080
 	habitable 1080
 	belt 1142
 	haze _menu/haze-67
@@ -3190,7 +3190,7 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	arrival 5480.00
+	arrival 5000
 	habitable 6950
 	belt 2873
 	haze _menu/haze-33
@@ -3238,7 +3238,7 @@ system Almach
 	pos -7 232
 	government Pirate
 	attributes "core"
-	arrival 2064.00
+	arrival 500
 	habitable 370
 	belt 1914
 	haze _menu/haze-133
@@ -3302,7 +3302,7 @@ system Alnair
 	pos -272 314
 	government Syndicate
 	attributes "core"
-	arrival 2119.00
+	arrival 500
 	habitable 135
 	belt 1969
 	haze _menu/haze-133
@@ -3372,7 +3372,7 @@ system Alnasl
 	pos -553 380
 	government Republic
 	attributes "dirt belt"
-	arrival 2062.00
+	arrival 1375
 	habitable 1375
 	belt 1912
 	haze _menu/haze-133
@@ -3436,7 +3436,7 @@ system Alnilam
 	pos -487 -513
 	government Pirate
 	attributes "north"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1099
 	haze _menu/haze-33
@@ -3515,7 +3515,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
-	arrival 2057.00
+	arrival 1310
 	habitable 1310
 	belt 1907
 	haze _menu/haze-67
@@ -3567,7 +3567,7 @@ system Alniyat
 	pos -691 501
 	government Republic
 	attributes "south"
-	arrival 1910.00
+	arrival 560
 	habitable 560
 	belt 1760
 	link Aldhibain
@@ -3641,7 +3641,7 @@ system "Alpha Arae"
 	pos -481 394
 	government Republic
 	attributes "dirt belt"
-	arrival 1555.00
+	arrival 995
 	habitable 995
 	belt 1405
 	link "Delta Sagittarii"
@@ -3713,7 +3713,7 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	attributes "near earth"
-	arrival 1340.00
+	arrival 1190
 	habitable 1190
 	belt 1116
 	haze _menu/haze-67
@@ -3777,7 +3777,7 @@ system "Alpha Hydri"
 	pos -97 98
 	government Syndicate
 	attributes "core"
-	arrival 1989.00
+	arrival 1450
 	habitable 1450
 	belt 1839
 	haze _menu/haze-133
@@ -3832,7 +3832,7 @@ system Alphard
 	pos -588 -47
 	government Republic
 	attributes "paradise"
-	arrival 1265.00
+	arrival 1115
 	habitable 1115
 	belt 1101
 	link Algieba
@@ -3900,7 +3900,7 @@ system Alphecca
 	pos -546 308
 	government Republic
 	attributes "dirt belt"
-	arrival 1600.00
+	arrival 1450
 	habitable 1450
 	belt 1101
 	link Alioth
@@ -3951,7 +3951,7 @@ system Alpheratz
 	pos -176 125
 	government Syndicate
 	attributes "core"
-	arrival 1795.00
+	arrival 1115
 	habitable 1115
 	belt 1645
 	haze _menu/haze-133
@@ -4020,7 +4020,7 @@ system Altair
 	pos -357 161
 	government Republic
 	attributes "near earth"
-	arrival 1980.00
+	arrival 995
 	habitable 995
 	belt 1830
 	link "Delta Capricorni"
@@ -4084,7 +4084,7 @@ system Aludra
 	pos -606 -374
 	government Republic
 	attributes "deep"
-	arrival 1661.00
+	arrival 500
 	habitable 450
 	belt 1511
 	haze _menu/haze-33
@@ -4149,7 +4149,7 @@ system "Ancient Hope"
 	pos -1159.59 702.051
 	government Coalition
 	attributes "saryd"
-	arrival 1589.00
+	arrival 500
 	habitable 455
 	belt 1439
 	haze _menu/haze-67
@@ -4220,7 +4220,7 @@ system Ankaa
 	pos -230 100
 	government Syndicate
 	attributes "core"
-	arrival 1153.00
+	arrival 625
 	habitable 625
 	belt 1003
 	haze _menu/haze-133
@@ -4276,7 +4276,7 @@ system Answer
 	pos -1086.59 631.051
 	government Coalition
 	attributes "saryd"
-	arrival 1786.00
+	arrival 500
 	habitable 425
 	belt 1636
 	haze _menu/haze-none
@@ -4342,7 +4342,7 @@ system Antares
 	pos -711 541
 	government Pirate
 	attributes "south"
-	arrival 1928.00
+	arrival 500
 	habitable 450
 	belt 1778
 	haze _menu/haze-67
@@ -4405,7 +4405,7 @@ system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 2144.00
+	arrival 625
 	habitable 625
 	belt 1994
 	haze _menu/haze-red
@@ -4474,7 +4474,7 @@ system Antevorta
 system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
-	arrival 1535.00
+	arrival 1080
 	habitable 1080
 	belt 1385
 	haze _menu/haze-none
@@ -4531,7 +4531,7 @@ system Arcturus
 	pos -589 226
 	government Republic
 	attributes "dirt belt"
-	arrival 1572.00
+	arrival 500
 	habitable 370
 	belt 1422
 	link Holeb
@@ -4596,7 +4596,7 @@ system Arculus
 	pos 308.87 393.242
 	government Remnant
 	attributes "ember waste"
-	arrival 1686.00
+	arrival 625
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -4670,7 +4670,7 @@ system Arneb
 	pos -523 -580
 	government Pirate
 	attributes "north"
-	arrival 2097.00
+	arrival 1715
 	habitable 1715
 	belt 1947
 	haze _menu/haze-none
@@ -4720,7 +4720,7 @@ system Ascella
 	pos -376 328
 	government Republic
 	attributes "dirt belt"
-	arrival 2121.00
+	arrival 740
 	habitable 740
 	belt 1971
 	haze _menu/haze-133
@@ -4787,7 +4787,7 @@ system Asikafarnut
 	pos 253.431 -584.812
 	government "Kor Sestor"
 	attributes "korath"
-	arrival 1492.00
+	arrival 500
 	habitable 320
 	belt 1342
 	link Celeborim
@@ -4853,7 +4853,7 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
-	arrival 2535.00
+	arrival 5000
 	habitable 24000
 	belt 2385
 	link Avior
@@ -4911,7 +4911,7 @@ system Atria
 	pos -551 532
 	government Republic
 	attributes "south"
-	arrival 1490.00
+	arrival 500
 	habitable 230
 	belt 1340
 	link Dschubba
@@ -4978,7 +4978,7 @@ system Avior
 	pos -658 -317
 	government Republic
 	attributes "deep"
-	arrival 1365.00
+	arrival 1215
 	habitable 1215
 	belt 1097
 	link Aspidiske
@@ -5048,7 +5048,7 @@ system Avior
 system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
-	arrival 1736.00
+	arrival 500
 	habitable 490
 	belt 1586
 	haze _menu/haze-67
@@ -5109,7 +5109,7 @@ system Beginning
 	pos -912.587 694.051
 	government Coalition
 	attributes "saryd"
-	arrival 1983.00
+	arrival 500
 	habitable 425
 	belt 1833
 	link Belonging
@@ -5173,7 +5173,7 @@ system Bellatrix
 	pos -225 -82
 	government Syndicate
 	attributes "core"
-	arrival 1714.00
+	arrival 680
 	habitable 680
 	belt 1564
 	link Menkar
@@ -5234,7 +5234,7 @@ system Belonging
 	pos -1007.59 658.051
 	government Coalition
 	attributes "saryd"
-	arrival 1557.00
+	arrival 625
 	habitable 625
 	belt 1407
 	link Beginning
@@ -5295,7 +5295,7 @@ system Belug
 	pos -1024.59 388.051
 	government Coalition
 	attributes "arachi"
-	arrival 1320.00
+	arrival 500
 	habitable 490
 	belt 1170
 	link Ekuarik
@@ -5366,7 +5366,7 @@ system Belugt
 	pos -838.587 668.051
 	government Coalition
 	attributes "arachi"
-	arrival 1667.00
+	arrival 500
 	habitable 490
 	belt 1517
 	link Gupta
@@ -5442,7 +5442,7 @@ system "Beta Lupi"
 	pos -851 417
 	government Republic
 	attributes "south"
-	arrival 1411.00
+	arrival 625
 	habitable 625
 	belt 1261
 	haze _menu/haze-33
@@ -5502,7 +5502,7 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	arrival 4231.00
+	arrival 4600
 	habitable 4600
 	belt 2141
 	haze _menu/haze-67
@@ -5582,7 +5582,7 @@ system Bloptab
 	pos -813.587 727.051
 	government Coalition
 	attributes "arachi"
-	arrival 1230.00
+	arrival 1080
 	habitable 1080
 	belt 1061
 	link Blugtad
@@ -5644,7 +5644,7 @@ system Blubipad
 	pos -650.587 594.051
 	government Coalition
 	attributes "arachi"
-	arrival 1717.00
+	arrival 1080
 	habitable 1080
 	belt 1567
 	haze _menu/haze-133
@@ -5702,7 +5702,7 @@ system Blugtad
 	pos -771.587 680.051
 	government Coalition
 	attributes "arachi"
-	arrival 1991.00
+	arrival 625
 	habitable 625
 	belt 1841
 	haze _menu/haze-133
@@ -5776,7 +5776,7 @@ system Boral
 	pos -502 331
 	government Republic
 	attributes "dirt belt"
-	arrival 2017.00
+	arrival 500
 	habitable 230
 	belt 1867
 	link Alphecca
@@ -5841,7 +5841,7 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
-	arrival 1973.00
+	arrival 625
 	habitable 625
 	belt 1823
 	link "Bote Asu"
@@ -5901,7 +5901,7 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	arrival 3330.00
+	arrival 3180
 	habitable 3180
 	belt 1753
 	link "Bore Fah"
@@ -5997,7 +5997,7 @@ system "Bright Void"
 	pos -1059.59 605.051
 	government Coalition
 	attributes "saryd"
-	arrival 2945.00
+	arrival 2795
 	habitable 2795
 	belt 1385
 	haze _menu/haze-67
@@ -6079,7 +6079,7 @@ system "Broken Bowl"
 	pos -956.587 566.051
 	government Coalition
 	attributes "saryd"
-	arrival 1798.00
+	arrival 1080
 	habitable 1080
 	belt 1648
 	haze _menu/haze-67
@@ -6140,7 +6140,7 @@ system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 1947.00
+	arrival 625
 	habitable 625
 	belt 1797
 	haze _menu/haze-red
@@ -6165,7 +6165,7 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
-	fleet "Embershades" 12000
+	fleet Embershades 12000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -6212,7 +6212,7 @@ system Canopus
 	pos -421 -225
 	government Republic
 	attributes "north"
-	arrival 1680.00
+	arrival 500
 	habitable 230
 	belt 1530
 	haze _menu/haze-67
@@ -6260,7 +6260,7 @@ system Capella
 	pos -378 -13
 	government Republic
 	attributes "paradise"
-	arrival 1872.00
+	arrival 500
 	habitable 450
 	belt 1722
 	haze _menu/haze-67
@@ -6332,7 +6332,7 @@ system Caph
 	pos -295 77
 	government Syndicate
 	attributes "near earth"
-	arrival 1323.00
+	arrival 700
 	habitable 700
 	belt 1173
 	link Diphda
@@ -6397,7 +6397,7 @@ system Cardax
 	pos -211 -215
 	government Republic
 	attributes "north"
-	arrival 1855.00
+	arrival 1705
 	habitable 1705
 	belt 1228
 	link Moktar
@@ -6461,7 +6461,7 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 1925.00
+	arrival 1375
 	habitable 1375
 	belt 1775
 	haze _menu/haze-red
@@ -6529,7 +6529,7 @@ system Castor
 	pos -452 -17
 	government Republic
 	attributes "paradise"
-	arrival 1825.00
+	arrival 1570
 	habitable 1570
 	belt 1675
 	haze _menu/haze-67
@@ -6615,7 +6615,7 @@ system Cebalrai
 	pos -461 282
 	government Republic
 	attributes "dirt belt"
-	arrival 2105.00
+	arrival 625
 	habitable 625
 	belt 1955
 	link Hintar
@@ -6677,7 +6677,7 @@ system Celeborim
 	pos 181.431 -633.812
 	government "Kor Sestor"
 	attributes "korath"
-	arrival 1446.00
+	arrival 500
 	habitable 320
 	belt 1296
 	link Asikafarnut
@@ -6737,7 +6737,7 @@ system Chikatip
 	pos -77.5695 -307.812
 	government Uninhabited
 	attributes "korath"
-	arrival 2079.00
+	arrival 500
 	habitable 425
 	belt 1929
 	link Furmeliki
@@ -6794,7 +6794,7 @@ system Chimitarp
 	pos 150.431 -287.812
 	government "Kor Mereti"
 	attributes "korath"
-	arrival 2082.00
+	arrival 915
 	habitable 915
 	belt 1932
 	haze _menu/haze-133
@@ -6867,7 +6867,7 @@ system Chimitarp
 system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
-	arrival 1575.00
+	arrival 500
 	habitable 490
 	belt 1425
 	haze _menu/haze-33
@@ -6918,7 +6918,7 @@ system Chornifath
 	pos 40.4305 -214.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1584.00
+	arrival 500
 	habitable 490
 	belt 1434
 	haze _menu/haze-133
@@ -6979,7 +6979,7 @@ system Chornifath
 system Chy'chra
 	pos 85.5308 -829.667
 	government Wanderer
-	arrival 1270.00
+	arrival 625
 	habitable 625
 	belt 1120
 	haze _menu/haze-33
@@ -7045,7 +7045,7 @@ system Cinxia
 	pos 265.87 415.242
 	government Remnant
 	attributes "ember waste"
-	arrival 1938.00
+	arrival 500
 	habitable 490
 	belt 1788
 	haze _menu/haze-red
@@ -7102,7 +7102,7 @@ system Coluber
 	pos 149.504 197.389
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 1740.00
+	arrival 1110
 	habitable 1110
 	belt 1590
 	haze _menu/haze-red
@@ -7165,7 +7165,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
-	arrival 1936.00
+	arrival 500
 	habitable 425
 	belt 1786
 	haze _menu/haze-133
@@ -7224,7 +7224,7 @@ system Convector
 	pos -14.1297 379.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 7420.00
+	arrival 5000
 	habitable 7270
 	belt 2111
 	haze _menu/haze-red
@@ -7289,7 +7289,7 @@ system "Cor Caroli"
 	pos -682 201
 	government Republic
 	attributes "dirt belt"
-	arrival 1624.00
+	arrival 1080
 	habitable 1080
 	belt 1474
 	link Algorel
@@ -7348,7 +7348,7 @@ system "Cor Caroli"
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
-	arrival 1311.00
+	arrival 500
 	habitable 230
 	belt 1161
 	link "Ya Hai"
@@ -7417,7 +7417,7 @@ system "Da Ent"
 system "Da Lest"
 	pos -23.2239 -413.536
 	government Hai
-	arrival 1258.00
+	arrival 500
 	habitable 320
 	belt 1108
 	link "Lom Tahr"
@@ -7477,7 +7477,7 @@ system Dabih
 	pos -253 427
 	government Republic
 	attributes "dirt belt"
-	arrival 1238.00
+	arrival 680
 	habitable 680
 	belt 1088
 	haze _menu/haze-133
@@ -7538,7 +7538,7 @@ system Danoa
 	pos -239 -321
 	government Republic
 	attributes "north"
-	arrival 1839.00
+	arrival 500
 	habitable 135
 	belt 1689
 	haze _menu/haze-67
@@ -7608,7 +7608,7 @@ system "Dark Hills"
 	pos -926.587 619.051
 	government Coalition
 	attributes "saryd"
-	arrival 1517.00
+	arrival 1080
 	habitable 1080
 	belt 1367
 	link Beginning
@@ -7676,7 +7676,7 @@ system Debrugt
 	pos -869.587 513.051
 	government Coalition
 	attributes "arachi"
-	arrival 1374.00
+	arrival 640
 	habitable 640
 	belt 1224
 	link Ablodab
@@ -7747,7 +7747,7 @@ system Delia
 	pos -41 757
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 500
 	habitable 490
 	belt 1500
 	haze _menu/haze-red
@@ -7827,7 +7827,7 @@ system "Delta Capricorni"
 	pos -285 202
 	government Syndicate
 	attributes "core"
-	arrival 1479.00
+	arrival 855
 	habitable 855
 	belt 1329
 	haze _menu/haze-133
@@ -7891,7 +7891,7 @@ system "Delta Sagittarii"
 	pos -414 416
 	government Republic
 	attributes "dirt belt"
-	arrival 1564.00
+	arrival 500
 	habitable 370
 	belt 1414
 	haze _menu/haze-133
@@ -7959,7 +7959,7 @@ system "Delta Velorum"
 	pos -740 90
 	government Republic
 	attributes "dirt belt"
-	arrival 1371.00
+	arrival 1080
 	habitable 1080
 	belt 1221
 	haze _menu/haze-67
@@ -8018,7 +8018,7 @@ system "Delta Velorum"
 system Deneb
 	pos -348 225
 	government Pug
-	arrival 2040.00
+	arrival 625
 	habitable 625
 	belt 1890
 	haze _menu/haze-133
@@ -8075,7 +8075,7 @@ system Denebola
 	pos -478 70
 	government Republic
 	attributes "near earth"
-	arrival 1200.00
+	arrival 560
 	habitable 560
 	belt 1050
 	haze _menu/haze-67
@@ -8142,7 +8142,7 @@ system Diespiter
 	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	arrival 1650.00
+	arrival 950
 	habitable 950
 	belt 1500
 	haze _menu/haze-red
@@ -8182,7 +8182,7 @@ system Diphda
 	pos -262 61
 	government Syndicate
 	attributes "near earth"
-	arrival 1709.00
+	arrival 585
 	habitable 585
 	belt 1559
 	haze _menu/haze-133
@@ -8241,7 +8241,7 @@ system Dixere
 	pos 33 708
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -8314,7 +8314,7 @@ system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
 	attributes "korath" "ringworld"
-	arrival 2085.00
+	arrival 700
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
@@ -8420,7 +8420,7 @@ system Dschubba
 	pos -598 501
 	government Republic
 	attributes "south"
-	arrival 1579.00
+	arrival 505
 	habitable 505
 	belt 1429
 	link Aldhibain
@@ -8495,7 +8495,7 @@ system Dubhe
 	pos -577 -103
 	government Republic
 	attributes "deep"
-	arrival 1270.00
+	arrival 500
 	habitable 320
 	belt 1120
 	link Zosma
@@ -8552,7 +8552,7 @@ system Dubhe
 system "Due Yoot"
 	pos -167.547 -426.683
 	government Hai
-	arrival 2004.00
+	arrival 500
 	habitable 230
 	belt 1854
 	link "Heia Due"
@@ -8618,7 +8618,7 @@ system Durax
 	pos -59 -90
 	government Pirate
 	attributes "core"
-	arrival 2310.00
+	arrival 2160
 	habitable 2160
 	belt 1287
 	haze _menu/haze-133
@@ -8684,7 +8684,7 @@ system Eber
 	pos -532 406
 	government Republic
 	attributes "dirt belt"
-	arrival 1500.00
+	arrival 950
 	habitable 950
 	belt 1350
 	link Alnasl
@@ -8749,7 +8749,7 @@ system Eblumab
 	pos -767.587 703.051
 	government Coalition
 	attributes "arachi"
-	arrival 1954.00
+	arrival 500
 	habitable 425
 	belt 1804
 	haze _menu/haze-133
@@ -8816,7 +8816,7 @@ system Edusa
 	pos 273.87 347.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 4470.00
+	arrival 4320
 	habitable 4320
 	belt 1167
 	haze _menu/haze-red
@@ -8870,7 +8870,7 @@ system Egeria
 	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	arrival 2180.00
+	arrival 2030
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -8910,7 +8910,7 @@ system Egeria
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
-	arrival 1244.00
+	arrival 500
 	habitable 490
 	belt 1094
 	link "Wah Yoot"
@@ -8978,7 +8978,7 @@ system "Ehma Ti"
 system Ek'kek'ru
 	pos -287.517 -727.738
 	government Wanderer
-	arrival 1667.00
+	arrival 500
 	habitable 320
 	belt 1517
 	haze _menu/haze-none
@@ -9039,7 +9039,7 @@ system Ekuarik
 	pos -1029.63 426.214
 	government Heliarch
 	attributes "ringworld"
-	arrival 1861.00
+	arrival 700
 	habitable 700
 	belt 1711
 	link Belug
@@ -9223,7 +9223,7 @@ system Elnath
 	pos -288 -77
 	government Republic
 	attributes "north"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1462
 	link Acamar
@@ -9289,7 +9289,7 @@ system Eltanin
 	pos -328 433
 	government Republic
 	attributes "dirt belt"
-	arrival 2009.00
+	arrival 500
 	habitable 450
 	belt 1859
 	haze _menu/haze-133
@@ -9350,7 +9350,7 @@ system Eneremprukt
 	pos 311.431 -448.812
 	government "Kor Sestor"
 	attributes "korath"
-	arrival 1571.00
+	arrival 500
 	habitable 490
 	belt 1421
 	link Ferukistek
@@ -9407,7 +9407,7 @@ system Enif
 	pos -177 498
 	government Quarg
 	attributes "ringworld" "south"
-	arrival 2124.00
+	arrival 700
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -9497,7 +9497,7 @@ system "Epsilon Leonis"
 	pos -619 -229
 	government Republic
 	attributes "deep"
-	arrival 1677.00
+	arrival 1450
 	habitable 1450
 	belt 1527
 	link Adhara
@@ -9572,7 +9572,7 @@ system "Epsilon Leonis"
 system Es'sprak'ai
 	pos -469.044 -733.375
 	government Wanderer
-	arrival 2078.00
+	arrival 500
 	habitable 490
 	belt 1928
 	haze _menu/haze-none
@@ -9634,7 +9634,7 @@ system Eshkoshtar
 	pos 156.431 -381.812
 	government "Kor Mereti"
 	attributes "korath"
-	arrival 1255.00
+	arrival 810
 	habitable 810
 	belt 1105
 	link Mekislepti
@@ -9708,7 +9708,7 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	arrival 8790.00
+	arrival 5000
 	habitable 8640
 	belt 1500
 	haze _menu/haze-red
@@ -9770,7 +9770,7 @@ system Eteron
 	pos -330 33
 	government Republic
 	attributes "near earth"
-	arrival 1629.00
+	arrival 500
 	habitable 135
 	belt 1479
 	link Caph
@@ -9835,7 +9835,7 @@ system Eteron
 system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
-	arrival 1207.00
+	arrival 500
 	habitable 490
 	belt 1057
 	haze _menu/haze-67
@@ -9904,7 +9904,7 @@ system "Fah Root"
 system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
-	arrival 1335.00
+	arrival 500
 	habitable 425
 	belt 1185
 	haze _menu/haze-67
@@ -9970,7 +9970,7 @@ system Fala
 	pos -690 64
 	government Republic
 	attributes "dirt belt"
-	arrival 1414.00
+	arrival 1250
 	habitable 1250
 	belt 1264
 	link "Delta Velorum"
@@ -10032,7 +10032,7 @@ system "Fallen Leaf"
 	pos -903.587 717.051
 	government Coalition
 	attributes "saryd"
-	arrival 1477.00
+	arrival 500
 	habitable 320
 	belt 1327
 	link Beginning
@@ -10086,7 +10086,7 @@ system "Far Horizon"
 	pos -1108.59 726.051
 	government Coalition
 	attributes "saryd"
-	arrival 1392.00
+	arrival 500
 	habitable 320
 	belt 1242
 	haze _menu/haze-67
@@ -10143,7 +10143,7 @@ system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1325.00
+	arrival 625
 	habitable 625
 	belt 1175
 	haze _menu/haze-133
@@ -10219,7 +10219,7 @@ system Farinus
 	pos 202.87 440.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 1420.00
+	arrival 1270
 	habitable 1270
 	belt 1225
 	haze _menu/haze-red
@@ -10293,7 +10293,7 @@ system Faronektu
 	pos 292.431 -309.812
 	government "Kor Mereti"
 	attributes "korath"
-	arrival 1780.00
+	arrival 1080
 	habitable 1080
 	belt 1630
 	haze _menu/haze-133
@@ -10361,7 +10361,7 @@ system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	arrival 1820.00
+	arrival 500
 	habitable 100
 	belt 1670
 	haze _menu/haze-blackbody
@@ -10411,7 +10411,7 @@ system Fearis
 	pos -16 643
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	arrival 1650.00
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -10475,7 +10475,7 @@ system "Fell Omen"
 	pos -1156.59 475.051
 	government Coalition
 	attributes "saryd"
-	arrival 1390.00
+	arrival 500
 	habitable 425
 	belt 1240
 	link "Last Word"
@@ -10551,7 +10551,7 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 500
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -10597,7 +10597,7 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 3795.00
+	arrival 3645
 	habitable 3645
 	belt 1500
 	haze _menu/haze-red
@@ -10655,7 +10655,7 @@ system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
 	attributes "korath"
-	arrival 5575.00
+	arrival 5000
 	habitable 5425
 	belt 1419
 	haze _menu/haze-blackbody
@@ -10740,7 +10740,7 @@ system Ferukistek
 	pos 307.431 -515.812
 	government "Kor Sestor"
 	attributes "korath"
-	arrival 1670.00
+	arrival 500
 	habitable 490
 	belt 1520
 	link Eneremprukt
@@ -10795,7 +10795,7 @@ system Fingol
 	pos -482 113
 	government Republic
 	attributes "near earth"
-	arrival 2126.00
+	arrival 500
 	habitable 135
 	belt 1976
 	haze _menu/haze-none
@@ -10854,7 +10854,7 @@ system Flugbu
 	pos -903.587 534.051
 	government Coalition
 	attributes "arachi"
-	arrival 1993.00
+	arrival 500
 	habitable 425
 	belt 1843
 	link Debrugt
@@ -10920,7 +10920,7 @@ system Fomalhaut
 	pos -314 124
 	government Syndicate
 	attributes "near earth"
-	arrival 2004.00
+	arrival 500
 	habitable 450
 	belt 1854
 	link Altair
@@ -10984,7 +10984,7 @@ system Fornarep
 	pos 79.4305 -309.812
 	government Uninhabited
 	attributes "korath"
-	arrival 2072.00
+	arrival 500
 	habitable 320
 	belt 1922
 	haze _menu/haze-133
@@ -11049,7 +11049,7 @@ system "Four Pillars"
 	pos -1210.59 772.051
 	government Coalition
 	attributes "saryd"
-	arrival 1211.00
+	arrival 500
 	habitable 490
 	belt 1061
 	link "Far Horizon"
@@ -11112,7 +11112,7 @@ system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1727.00
+	arrival 500
 	habitable 490
 	belt 1577
 	link Chikatip
@@ -11175,7 +11175,7 @@ system Gacrux
 	pos -713 184
 	government Republic
 	attributes "dirt belt"
-	arrival 1338.00
+	arrival 530
 	habitable 530
 	belt 1188
 	link "Cor Caroli"
@@ -11244,7 +11244,7 @@ system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
 	attributes "core"
-	arrival 1929.00
+	arrival 5000
 	habitable 11500
 	belt 1779
 	haze _menu/haze-133
@@ -11304,7 +11304,7 @@ system "Gamma Corvi"
 	pos -906 64
 	government Republic
 	attributes "rim"
-	arrival 1706.00
+	arrival 1530
 	habitable 1530
 	belt 1556
 	haze _menu/haze-none
@@ -11371,7 +11371,7 @@ system Gerenus
 	pos 197 514
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 3150.00
+	arrival 3000
 	habitable 3000
 	belt 1500
 	haze _menu/haze-red
@@ -11432,7 +11432,7 @@ system Gienah
 	pos -176 354
 	government Pirate
 	attributes "core"
-	arrival 2115.00
+	arrival 600
 	habitable 600
 	belt 1965
 	link Algenib
@@ -11497,7 +11497,7 @@ system Giribea
 	pos -6 674
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1950.00
+	arrival 1800
 	habitable 1800
 	belt 1500
 	haze _menu/haze-red
@@ -11571,7 +11571,7 @@ system Girtab
 	pos -430 481
 	government Republic
 	attributes "south"
-	arrival 1537.00
+	arrival 1080
 	habitable 1080
 	belt 1387
 	link Albaldah
@@ -11637,7 +11637,7 @@ system Glubatub
 	pos -650.587 693.051
 	government Coalition
 	attributes "arachi"
-	arrival 1243.00
+	arrival 500
 	habitable 230
 	belt 1093
 	link Miblulub
@@ -11716,7 +11716,7 @@ system Gomeisa
 	pos -600 -161
 	government Republic
 	attributes "deep"
-	arrival 1766.00
+	arrival 980
 	habitable 980
 	belt 1616
 	link Adhara
@@ -11787,7 +11787,7 @@ system "Good Omen"
 	pos -941.587 746.051
 	government Coalition
 	attributes "saryd"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1598
 	haze _menu/haze-67
@@ -11850,7 +11850,7 @@ system Gorvi
 	pos -250 -483
 	government Republic
 	attributes "north"
-	arrival 1495.00
+	arrival 625
 	habitable 625
 	belt 1345
 	haze _menu/haze-133
@@ -11909,7 +11909,7 @@ system Graffias
 	pos -784 517
 	government Republic
 	attributes "south"
-	arrival 2127.00
+	arrival 980
 	habitable 980
 	belt 1977
 	link Alniyat
@@ -11974,7 +11974,7 @@ system Gupta
 	pos -808.587 625.051
 	government Coalition
 	attributes "arachi"
-	arrival 1921.00
+	arrival 915
 	habitable 915
 	belt 1771
 	link Ablodab
@@ -12036,7 +12036,7 @@ system Hadar
 	pos -788 283
 	government Republic
 	attributes "rim"
-	arrival 1670.00
+	arrival 500
 	habitable 450
 	belt 1520
 	link Alkaid
@@ -12097,7 +12097,7 @@ system Hamal
 	pos -129 24
 	government Syndicate
 	attributes "core"
-	arrival 1391.00
+	arrival 1080
 	habitable 1080
 	belt 1241
 	haze _menu/haze-133
@@ -12153,7 +12153,7 @@ system Han
 	pos -610 561
 	government Republic
 	attributes "south"
-	arrival 1667.00
+	arrival 1115
 	habitable 1115
 	belt 1517
 	link Alniyat
@@ -12213,7 +12213,7 @@ system Hassaleh
 	pos -291 -287
 	government Republic
 	attributes "north"
-	arrival 2074.00
+	arrival 680
 	habitable 680
 	belt 1924
 	haze _menu/haze-67
@@ -12275,7 +12275,7 @@ system Hatysa
 	pos -474 -542
 	government Pirate
 	attributes "north"
-	arrival 1313.00
+	arrival 525
 	habitable 525
 	belt 1163
 	haze _menu/haze-33
@@ -12336,7 +12336,7 @@ system Hatysa
 system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
-	arrival 1365.00
+	arrival 1215
 	habitable 1215
 	belt 1079
 	haze _menu/haze-67
@@ -12413,7 +12413,7 @@ system Hesselpost
 	pos -30.5695 -187.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1477.00
+	arrival 500
 	habitable 490
 	belt 1327
 	haze _menu/haze-133
@@ -12485,7 +12485,7 @@ system "Hevru Hai"
 	pos -189 -310
 	government Quarg
 	attributes "ringworld"
-	arrival 1395.00
+	arrival 700
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -12600,7 +12600,7 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
-	arrival 1805.00
+	arrival 625
 	habitable 625
 	belt 1655
 	link "Wah Yoot"
@@ -12656,7 +12656,7 @@ system Hintar
 	pos -422 311
 	government Republic
 	attributes "dirt belt"
-	arrival 1875.00
+	arrival 625
 	habitable 625
 	belt 1725
 	haze _menu/haze-133
@@ -12717,7 +12717,7 @@ system Holeb
 	pos -590 287
 	government Republic
 	attributes "dirt belt"
-	arrival 3580.00
+	arrival 3430
 	habitable 3430
 	belt 1181
 	link Alioth
@@ -12766,7 +12766,7 @@ system Homeward
 	pos -1045.59 477.051
 	government Coalition
 	attributes "saryd"
-	arrival 1649.00
+	arrival 500
 	habitable 425
 	belt 1499
 	link Quaru
@@ -12832,7 +12832,7 @@ system Homeward
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
-	arrival 1819.00
+	arrival 500
 	habitable 490
 	belt 1669
 	asteroids "large metal" 1 0.732
@@ -12882,7 +12882,7 @@ system Hunter
 	pos -968.587 590.051
 	government Coalition
 	attributes "saryd"
-	arrival 1648.00
+	arrival 500
 	habitable 425
 	belt 1498
 	link "Bright Void"
@@ -12944,7 +12944,7 @@ system Hunter
 system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
-	arrival 1647.00
+	arrival 625
 	habitable 625
 	belt 1497
 	haze _menu/haze-none
@@ -13007,7 +13007,7 @@ system Ildaria
 	pos -702 317
 	government Republic
 	attributes "rim" "wolf-rayet"
-	arrival 1282.00
+	arrival 625
 	habitable 625
 	belt 1132
 	haze _menu/haze-133
@@ -13061,7 +13061,7 @@ system Ildaria
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1416
 	haze _menu/haze-67
@@ -13130,7 +13130,7 @@ system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 1320.00
+	arrival 550
 	habitable 550
 	belt 1170
 	haze _menu/haze-red
@@ -13185,7 +13185,7 @@ system Insitor
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
-	arrival 1702.00
+	arrival 500
 	habitable 135
 	belt 1552
 	haze _menu/haze-67
@@ -13251,7 +13251,7 @@ system "Io Lowe"
 system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
-	arrival 1282.00
+	arrival 980
 	habitable 980
 	belt 1132
 	haze _menu/haze-67
@@ -13330,7 +13330,7 @@ system Ipsing
 	pos -549 160
 	government Republic
 	attributes "dirt belt"
-	arrival 2735.00
+	arrival 2585
 	habitable 2585
 	belt 1107
 	haze _menu/haze-67
@@ -13397,7 +13397,7 @@ system Ipsing
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
-	arrival 1763.00
+	arrival 500
 	habitable 320
 	belt 1613
 	haze _menu/haze-33
@@ -13452,7 +13452,7 @@ system Izar
 	pos -784 231
 	government Republic
 	attributes "rim"
-	arrival 1599.00
+	arrival 1400
 	habitable 1400
 	belt 1449
 	haze _menu/haze-67
@@ -13517,7 +13517,7 @@ system Izar
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
-	arrival 1895.00
+	arrival 500
 	habitable 425
 	belt 1745
 	haze _menu/haze-none
@@ -13575,7 +13575,7 @@ system Ka'ch'chrai
 system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
-	arrival 1958.00
+	arrival 1505
 	habitable 1505
 	belt 1808
 	haze _menu/haze-33
@@ -13647,7 +13647,7 @@ system Kaliptari
 	pos 85.4305 -402.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1239.00
+	arrival 500
 	habitable 320
 	belt 1089
 	link Fornarep
@@ -13723,7 +13723,7 @@ system "Kappa Centauri"
 	pos -867 480
 	government Republic
 	attributes "south"
-	arrival 1658.00
+	arrival 1215
 	habitable 1215
 	belt 1508
 	link "Beta Lupi"
@@ -13785,7 +13785,7 @@ system Kashikt
 	pos -73.5695 -219.812
 	government "Kor Efret"
 	attributes "korath"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1013
 	link Dokdobaru
@@ -13854,7 +13854,7 @@ system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	arrival 1689.00
+	arrival 500
 	habitable 100
 	belt 1539
 	haze _menu/haze-blackbody
@@ -13899,7 +13899,7 @@ system "Kaus Australis"
 	pos -284 395
 	government Republic
 	attributes "dirt belt"
-	arrival 1431.00
+	arrival 500
 	habitable 370
 	belt 1281
 	haze _menu/haze-133
@@ -13952,7 +13952,7 @@ system "Kaus Borealis"
 	pos -456 350
 	government Republic
 	attributes "dirt belt"
-	arrival 1224.00
+	arrival 585
 	habitable 585
 	belt 1074
 	haze _menu/haze-133
@@ -14016,7 +14016,7 @@ system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
 	attributes "ringworld"
-	arrival 1927.00
+	arrival 700
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
@@ -14235,7 +14235,7 @@ system "Ki War Ek"
 system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
-	arrival 1458.00
+	arrival 1115
 	habitable 1115
 	belt 1308
 	haze _menu/haze-none
@@ -14312,7 +14312,7 @@ system Kiro'ku
 system Kiru'kichi
 	pos -195.063 -662.343
 	government Wanderer
-	arrival 2945.00
+	arrival 2795
 	habitable 2795
 	belt 1465
 	haze _menu/haze-33
@@ -14373,7 +14373,7 @@ system Kochab
 	pos -731 279
 	government Republic
 	attributes "rim"
-	arrival 2062.00
+	arrival 500
 	habitable 370
 	belt 1912
 	haze _menu/haze-67
@@ -14418,7 +14418,7 @@ system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
 	attributes "korath" "wolf-rayet"
-	arrival 1756.00
+	arrival 625
 	habitable 625
 	belt 1606
 	haze _menu/haze-full
@@ -14473,7 +14473,7 @@ system "Kor En'lakfar"
 	pos -31 -33
 	government Korath
 	attributes "korath"
-	arrival 1265.00
+	arrival 1080
 	habitable 1080
 	belt 1115
 	haze _menu/haze-133
@@ -14536,7 +14536,7 @@ system "Kor Fel'tar"
 	pos 29 -66
 	government Korath
 	attributes "korath"
-	arrival 1594.00
+	arrival 500
 	habitable 450
 	belt 1444
 	haze _menu/haze-blackbody
@@ -14603,7 +14603,7 @@ system "Kor Men"
 	pos 6 -5
 	government Korath
 	attributes "korath"
-	arrival 2490.00
+	arrival 2340
 	habitable 2340
 	belt 1260
 	haze _menu/haze-blackbody
@@ -14667,7 +14667,7 @@ system "Kor Nor'peli"
 	pos 52 160
 	government Korath
 	attributes "korath"
-	arrival 1363.00
+	arrival 585
 	habitable 585
 	belt 1213
 	haze _menu/haze-blackbody
@@ -14733,7 +14733,7 @@ system "Kor Tar'bei"
 	pos 57 106
 	government Korath
 	attributes "korath"
-	arrival 1764.00
+	arrival 500
 	habitable 230
 	belt 1614
 	haze _menu/haze-blackbody
@@ -14791,7 +14791,7 @@ system "Kor Zena'i"
 	pos -2 83
 	government Korath
 	attributes "korath"
-	arrival 2016.00
+	arrival 1385
 	habitable 1385
 	belt 1866
 	haze _menu/haze-blackbody
@@ -14845,7 +14845,7 @@ system Kornephoros
 	pos -612 424
 	government Republic
 	attributes "south"
-	arrival 1318.00
+	arrival 980
 	habitable 980
 	belt 1168
 	link Aldhibain
@@ -14927,7 +14927,7 @@ system Korsmanath
 	pos 97.4305 -185.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1925.00
+	arrival 500
 	habitable 490
 	belt 1775
 	link Farbutero
@@ -14988,7 +14988,7 @@ system Kraz
 	pos -876 204
 	government Republic
 	attributes "rim"
-	arrival 1230.00
+	arrival 1080
 	habitable 1080
 	belt 1056
 	haze _menu/haze-67
@@ -15056,7 +15056,7 @@ system Kugel
 	pos -230 -26
 	government Syndicate
 	attributes "core"
-	arrival 1201.00
+	arrival 625
 	habitable 625
 	belt 1051
 	link Acamar
@@ -15126,7 +15126,7 @@ system Kursa
 	pos -366 -105
 	government Republic
 	attributes "paradise"
-	arrival 1774.00
+	arrival 505
 	habitable 505
 	belt 1624
 	haze _menu/haze-67
@@ -15180,7 +15180,7 @@ system Kursa
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
-	arrival 1911.00
+	arrival 625
 	habitable 625
 	belt 1761
 	link "Fell Omen"
@@ -15245,7 +15245,7 @@ system Lesath
 	pos -516 485
 	government Republic
 	attributes "south"
-	arrival 2015.00
+	arrival 1715
 	habitable 1715
 	belt 1865
 	link Atria
@@ -15311,7 +15311,7 @@ system Levana
 	pos 203.504 247.389
 	government Uninhabited
 	attributes "ember waste"
-	arrival 3509.00
+	arrival 5000
 	habitable 12425
 	belt 1202
 	haze _menu/haze-red
@@ -15382,7 +15382,7 @@ system Limen
 	pos -791.99 -12.2491
 	government Republic
 	attributes "dirt belt"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1463
 	haze _menu/haze-33
@@ -15436,7 +15436,7 @@ system Lire
 	pos -59 676
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 1080
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -15501,7 +15501,7 @@ system Lolami
 	pos -628 -10
 	government Republic
 	attributes "dirt belt"
-	arrival 1365.00
+	arrival 1215
 	habitable 1215
 	belt 1072
 	link "Tania Australis"
@@ -15565,7 +15565,7 @@ system Lolami
 system "Lom Tahr"
 	pos -94.0437 -446.586
 	government Hai
-	arrival 2710.00
+	arrival 2560
 	habitable 2560
 	belt 1445
 	link "Da Lest"
@@ -15637,7 +15637,7 @@ system "Lone Cloud"
 	pos -1239.59 747.051
 	government Coalition
 	attributes "saryd"
-	arrival 1880.00
+	arrival 500
 	habitable 230
 	belt 1730
 	link "Four Pillars"
@@ -15689,7 +15689,7 @@ system Lucina
 	pos 175.504 176.389
 	government Uninhabited
 	attributes "ember waste"
-	arrival 1616.00
+	arrival 500
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -15748,7 +15748,7 @@ system Lurata
 	pos -279 463
 	government Republic
 	attributes "south"
-	arrival 1301.00
+	arrival 500
 	habitable 450
 	belt 1151
 	haze _menu/haze-133
@@ -15812,7 +15812,7 @@ system Makferuti
 	pos 288.431 -628.812
 	government "Kor Sestor"
 	attributes "korath"
-	arrival 1932.00
+	arrival 525
 	habitable 525
 	belt 1782
 	link Asikafarnut
@@ -15889,7 +15889,7 @@ system Markab
 	pos -241 168
 	government Syndicate
 	attributes "core"
-	arrival 1561.00
+	arrival 625
 	habitable 625
 	belt 1411
 	haze _menu/haze-133
@@ -15973,7 +15973,7 @@ system Markeb
 	pos -602 -305
 	government Republic
 	attributes "deep"
-	arrival 1706.00
+	arrival 500
 	habitable 450
 	belt 1556
 	haze _menu/haze-33
@@ -16039,7 +16039,7 @@ system Matar
 	pos -218 272
 	government Syndicate
 	attributes "core"
-	arrival 1458.00
+	arrival 500
 	habitable 450
 	belt 1308
 	haze _menu/haze-133
@@ -16098,7 +16098,7 @@ system Mebla
 	pos -814.587 555.051
 	government Coalition
 	attributes "arachi"
-	arrival 1264.00
+	arrival 500
 	habitable 490
 	belt 1114
 	link Ablodab
@@ -16157,7 +16157,7 @@ system Meblumem
 	pos -722.587 616.051
 	government Coalition
 	attributes "arachi"
-	arrival 2355.00
+	arrival 2205
 	habitable 2205
 	belt 1794
 	link Gupta
@@ -16223,7 +16223,7 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
-	arrival 6305.00
+	arrival 5000
 	habitable 8675
 	belt 2340
 	haze _menu/haze-33
@@ -16299,7 +16299,7 @@ system Meftarkata
 	pos 52.4305 -276.812
 	government Uninhabited
 	attributes "korath"
-	arrival 2355.00
+	arrival 2205
 	habitable 2205
 	belt 1232
 	haze _menu/haze-133
@@ -16361,7 +16361,7 @@ system Meftarkata
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
-	arrival 1225.00
+	arrival 500
 	habitable 425
 	belt 1075
 	haze _menu/haze-67
@@ -16428,7 +16428,7 @@ system Mekislepti
 	pos 137.431 -335.812
 	government "Kor Mereti"
 	attributes "korath"
-	arrival 1855.00
+	arrival 1705
 	habitable 1705
 	belt 1673
 	haze _menu/haze-133
@@ -16493,7 +16493,7 @@ system Men
 	pos -888 361
 	government Pirate
 	attributes "south"
-	arrival 1730.00
+	arrival 500
 	habitable 370
 	belt 1580
 	haze _menu/haze-33
@@ -16560,7 +16560,7 @@ system Menkalinan
 	pos -400 -61
 	government Republic
 	attributes "paradise"
-	arrival 2080.00
+	arrival 5000
 	habitable 5145
 	belt 1424
 	haze _menu/haze-67
@@ -16629,7 +16629,7 @@ system Menkar
 	pos -183 -52
 	government Syndicate
 	attributes "core"
-	arrival 1784.00
+	arrival 500
 	habitable 450
 	belt 1634
 	haze _menu/haze-133
@@ -16693,7 +16693,7 @@ system Menkent
 	pos -495 218
 	government Republic
 	attributes "dirt belt"
-	arrival 2490.00
+	arrival 2340
 	habitable 2340
 	belt 1728
 	link Cebalrai
@@ -16765,7 +16765,7 @@ system Merak
 	pos -553 60
 	government Republic
 	attributes "near earth"
-	arrival 1919.00
+	arrival 1115
 	habitable 1115
 	belt 1769
 	haze _menu/haze-67
@@ -16831,7 +16831,7 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	attributes "korath"
-	arrival 1365.00
+	arrival 950
 	habitable 950
 	belt 1215
 	link Eneremprukt
@@ -16899,7 +16899,7 @@ system Miaplacidus
 	pos -524 -69
 	government Republic
 	attributes "paradise"
-	arrival 1386.00
+	arrival 500
 	habitable 450
 	belt 1236
 	link Alphard
@@ -16975,7 +16975,7 @@ system Miblulub
 	pos -630.587 670.051
 	government Coalition
 	attributes "arachi"
-	arrival 1907.00
+	arrival 1080
 	habitable 1080
 	belt 1757
 	haze _menu/haze-133
@@ -17058,7 +17058,7 @@ system Mimosa
 	pos -895 168
 	government Republic
 	attributes "rim"
-	arrival 1634.00
+	arrival 500
 	habitable 370
 	belt 1484
 	haze _menu/haze-67
@@ -17110,7 +17110,7 @@ system Minkar
 	pos -823 138
 	government Republic
 	attributes "rim"
-	arrival 1504.00
+	arrival 1300
 	habitable 1300
 	belt 1354
 	haze _menu/haze-67
@@ -17177,7 +17177,7 @@ system Mintaka
 	pos -304 -462
 	government Republic
 	attributes "north"
-	arrival 1903.00
+	arrival 860
 	habitable 860
 	belt 1753
 	haze _menu/haze-67
@@ -17242,7 +17242,7 @@ system Mirach
 	pos -166 250
 	government Syndicate
 	attributes "core"
-	arrival 2130.00
+	arrival 500
 	habitable 260
 	belt 1980
 	haze _menu/haze-133
@@ -17312,7 +17312,7 @@ system Mirfak
 	pos -187 -128
 	government Syndicate
 	attributes "core"
-	arrival 2037.00
+	arrival 500
 	habitable 370
 	belt 1887
 	link Bellatrix
@@ -17369,7 +17369,7 @@ system Mirzam
 	pos -498 -301
 	government Republic
 	attributes "north"
-	arrival 1230.00
+	arrival 1080
 	habitable 1080
 	belt 1025
 	haze _menu/haze-67
@@ -17432,7 +17432,7 @@ system Mizar
 	pos -579 184
 	government Republic
 	attributes "dirt belt"
-	arrival 2026.00
+	arrival 1080
 	habitable 1080
 	belt 1876
 	haze _menu/haze-67
@@ -17486,7 +17486,7 @@ system Moktar
 	pos -169 -170
 	government Syndicate
 	attributes "core"
-	arrival 2038.00
+	arrival 530
 	habitable 530
 	belt 1888
 	link Cardax
@@ -17555,7 +17555,7 @@ system Mora
 	pos -755 23
 	government Republic
 	attributes "dirt belt"
-	arrival 1326.00
+	arrival 500
 	habitable 425
 	belt 1176
 	haze _menu/haze-67
@@ -17617,7 +17617,7 @@ system Muhlifain
 	pos -702 242
 	government Republic
 	attributes "dirt belt"
-	arrival 1415.00
+	arrival 500
 	habitable 450
 	belt 1265
 	haze _menu/haze-67
@@ -17665,7 +17665,7 @@ system Muphrid
 	pos -495 152
 	government Republic
 	attributes "near earth"
-	arrival 1909.00
+	arrival 1570
 	habitable 1570
 	belt 1759
 	link Menkent
@@ -17724,7 +17724,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
-	arrival 1460.00
+	arrival 1310
 	habitable 1310
 	belt 1045
 	haze _menu/haze-67
@@ -17799,7 +17799,7 @@ system Naper
 	pos -416 369
 	government Republic
 	attributes "dirt belt"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1445
 	link Ascella
@@ -17862,7 +17862,7 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
-	arrival 3550.00
+	arrival 4680
 	habitable 4680
 	belt 1393
 	haze _menu/haze-red
@@ -17942,7 +17942,7 @@ system Nihal
 	pos -262 -121
 	government Republic
 	attributes "north"
-	arrival 1479.00
+	arrival 530
 	habitable 530
 	belt 1329
 	link Elnath
@@ -18016,7 +18016,7 @@ system Nocte
 	pos -467 172
 	government Republic
 	attributes "near earth"
-	arrival 1454.00
+	arrival 500
 	habitable 135
 	belt 1304
 	link Vega
@@ -18084,7 +18084,7 @@ system Nona
 	pos 166 558
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 1080
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -18140,7 +18140,7 @@ system Nunki
 	pos -393 537
 	government Pirate
 	attributes "south"
-	arrival 2080.00
+	arrival 500
 	habitable 230
 	belt 1930
 	link Albaldah
@@ -18211,7 +18211,7 @@ system Oblate
 	pos -124 -119
 	government Pirate
 	attributes "core"
-	arrival 2450.00
+	arrival 2300
 	habitable 2300
 	belt 1954
 	haze _menu/haze-133
@@ -18271,7 +18271,7 @@ system Orbona
 	pos -735.99 -97.2491
 	government Republic
 	attributes "dirt belt"
-	arrival 2450.00
+	arrival 5000
 	habitable 23490
 	belt 1507
 	haze _menu/haze-67
@@ -18344,7 +18344,7 @@ system Orvala
 	pos -334 303
 	government Republic
 	attributes "dirt belt"
-	arrival 1581.00
+	arrival 520
 	habitable 520
 	belt 1431
 	link "Zeta Aquilae"
@@ -18410,7 +18410,7 @@ system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 3740.00
+	arrival 3590
 	habitable 3590
 	belt 1803
 	haze _menu/haze-red
@@ -18479,7 +18479,7 @@ system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
 	attributes "pleiades"
-	arrival 2045.00
+	arrival 1895
 	habitable 1895
 	belt 1500
 	haze _menu/haze-blackbody
@@ -18514,7 +18514,7 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	arrival 1650.00
+	arrival 500
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -18562,7 +18562,7 @@ system Pantica
 	pos 303.87 445.242
 	government Remnant
 	attributes "ember waste"
-	arrival 1403.00
+	arrival 500
 	habitable 450
 	belt 1253
 	haze _menu/haze-red
@@ -18620,7 +18620,7 @@ system Parca
 	pos 150.504 151.389
 	government Uninhabited
 	attributes "ember waste"
-	arrival 1535.00
+	arrival 1385
 	habitable 1385
 	belt 1315
 	haze _menu/haze-red
@@ -18697,9 +18697,9 @@ system Patir
 	pos -38 553
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 500
 	habitable 100
 	belt 1500
-	arrival 100
 	haze _menu/haze-red
 	asteroids "large metal" 5 2
 	asteroids "large rock" 4 3
@@ -18746,7 +18746,7 @@ system Peacock
 	pos -307 350
 	government Republic
 	attributes "dirt belt"
-	arrival 2020.00
+	arrival 500
 	habitable 230
 	belt 1870
 	haze _menu/haze-133
@@ -18822,7 +18822,7 @@ system Pelubta
 	pos -757.587 575.051
 	government Coalition
 	attributes "arachi"
-	arrival 2750.00
+	arrival 5000
 	habitable 10750
 	belt 1709
 	link Ablodab
@@ -18901,7 +18901,7 @@ system Peragenor
 	pos 86.8703 356.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 2310.00
+	arrival 2160
 	habitable 2160
 	belt 1920
 	haze _menu/haze-red
@@ -18924,7 +18924,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Embershades" 8000
+	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -18967,7 +18967,7 @@ system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	arrival 1215.00
+	arrival 500
 	habitable 100
 	belt 1065
 	haze _menu/haze-blackbody
@@ -19015,7 +19015,7 @@ system Perfica
 	pos 185.87 419.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 1310.00
+	arrival 500
 	habitable 10
 	belt 1160
 	haze _menu/haze-red
@@ -19062,7 +19062,7 @@ system Persian
 	pos -203 331
 	government Syndicate
 	attributes "core"
-	arrival 4070.00
+	arrival 3920
 	habitable 3920
 	belt 1308
 	haze _menu/haze-133
@@ -19131,7 +19131,7 @@ system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
 	attributes "korath" "nova"
-	arrival 2098.00
+	arrival 500
 	habitable 100
 	belt 1948
 	haze _menu/haze-blackbody
@@ -19173,7 +19173,7 @@ system Phact
 	pos -375 -191
 	government Republic
 	attributes "north"
-	arrival 1854.00
+	arrival 1115
 	habitable 1115
 	belt 1704
 	haze _menu/haze-67
@@ -19247,7 +19247,7 @@ system Phecda
 	pos -607 88
 	government Republic
 	attributes "dirt belt"
-	arrival 1525.00
+	arrival 500
 	habitable 370
 	belt 1375
 	link Algorel
@@ -19306,7 +19306,7 @@ system Pherkad
 	pos -798 451
 	government Republic
 	attributes "south"
-	arrival 2074.00
+	arrival 500
 	habitable 135
 	belt 1924
 	haze _menu/haze-67
@@ -19363,7 +19363,7 @@ system Phurad
 	pos -494 -153
 	government Republic
 	attributes "paradise"
-	arrival 2031.00
+	arrival 1080
 	habitable 1080
 	belt 1881
 	link Canopus
@@ -19423,7 +19423,7 @@ system Phurad
 system Pik'ro'iyak
 	pos -378.845 -677.001
 	government Wanderer
-	arrival 1429.00
+	arrival 500
 	habitable 230
 	belt 1279
 	haze _menu/haze-none
@@ -19473,7 +19473,7 @@ system Plort
 	pos -708.587 723.051
 	government Coalition
 	attributes "arachi"
-	arrival 1640.00
+	arrival 500
 	habitable 320
 	belt 1490
 	link "Sol Arach"
@@ -19533,7 +19533,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
-	arrival 2056.00
+	arrival 1715
 	habitable 1715
 	belt 1906
 	haze _menu/haze-133
@@ -19588,7 +19588,7 @@ system Polerius
 	pos 88 482
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 2180.00
+	arrival 2030
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -19657,7 +19657,7 @@ system Pollux
 	pos -465 4
 	government Republic
 	attributes "paradise"
-	arrival 1311.00
+	arrival 1080
 	habitable 1080
 	belt 1161
 	haze _menu/haze-67
@@ -19713,7 +19713,7 @@ system Porrima
 	pos -556 123
 	government Republic
 	attributes "near earth"
-	arrival 1786.00
+	arrival 760
 	habitable 760
 	belt 1636
 	haze _menu/haze-67
@@ -19783,7 +19783,7 @@ system Postverta
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	arrival 1650.00
+	arrival 500
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -19820,7 +19820,7 @@ system Postverta
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
-	arrival 2180.00
+	arrival 2030
 	habitable 2030
 	belt 1660
 	haze _menu/haze-33
@@ -19900,7 +19900,7 @@ system Procyon
 	pos -411 23
 	government Republic
 	attributes "near earth"
-	arrival 1913.00
+	arrival 500
 	habitable 450
 	belt 1763
 	haze _menu/haze-67
@@ -19959,7 +19959,7 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	arrival 1950.00
+	arrival 5000
 	habitable 40960
 	belt 1500
 	haze _menu/haze-red
@@ -20004,7 +20004,7 @@ system Prosa
 system "Pug Iyik"
 	pos -361.149 -883.233
 	government "Pug (Wanderer)"
-	arrival 1436.00
+	arrival 625
 	habitable 625
 	belt 1286
 	haze _menu/haze-blackbody
@@ -20063,7 +20063,7 @@ system Quaru
 	pos -1080.63 448.214
 	government Heliarch
 	attributes "ringworld"
-	arrival 1590.00
+	arrival 700
 	habitable 700
 	belt 1440
 	haze _menu/haze-133
@@ -20356,7 +20356,7 @@ system Queri
 	pos 69 518
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 1650.00
+	arrival 700
 	habitable 700
 	belt 1500
 	haze _menu/haze-red
@@ -20384,7 +20384,7 @@ system Rajak
 	pos -270 -236
 	government Republic
 	attributes "north"
-	arrival 1560.00
+	arrival 500
 	habitable 135
 	belt 1410
 	haze _menu/haze-67
@@ -20453,7 +20453,7 @@ system Rasalhague
 	pos -413 246
 	government Republic
 	attributes "dirt belt"
-	arrival 1432.00
+	arrival 500
 	habitable 450
 	belt 1282
 	haze _menu/haze-133
@@ -20515,7 +20515,7 @@ system Rastaban
 	pos -463 446
 	government Republic
 	attributes "south"
-	arrival 1230.00
+	arrival 1080
 	habitable 1080
 	belt 1041
 	haze _menu/haze-133
@@ -20576,7 +20576,7 @@ system Rastaban
 system "Rati Cal"
 	pos -116.765 -391.123
 	government Hai
-	arrival 1688.00
+	arrival 500
 	habitable 425
 	belt 1538
 	link "Due Yoot"
@@ -20635,7 +20635,7 @@ system Regor
 	pos -702 -335
 	government Republic
 	attributes "deep"
-	arrival 1455.00
+	arrival 500
 	habitable 450
 	belt 1305
 	haze _menu/haze-67
@@ -20699,7 +20699,7 @@ system Regulus
 	pos -544 25
 	government Republic
 	attributes "near earth"
-	arrival 2850.00
+	arrival 5000
 	habitable 11500
 	belt 1605
 	haze _menu/haze-67
@@ -20771,7 +20771,7 @@ system Relifer
 	pos 19 603
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	arrival 1650.00
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -20850,7 +20850,7 @@ system Remembrance
 	pos -884.587 641.051
 	government Coalition
 	attributes "saryd"
-	arrival 1686.00
+	arrival 500
 	habitable 490
 	belt 1536
 	link Beginning
@@ -20908,7 +20908,7 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
-	arrival 3450.00
+	arrival 5000
 	habitable 46000
 	belt 1882
 	link Alnitak
@@ -20986,7 +20986,7 @@ system Ritilas
 	pos 11 523
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	arrival 1650.00
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -21060,7 +21060,7 @@ system Ruchbah
 	pos -174 69
 	government Syndicate
 	attributes "core"
-	arrival 2710.00
+	arrival 2560
 	habitable 2560
 	belt 1598
 	haze _menu/haze-133
@@ -21133,7 +21133,7 @@ system Rutilicus
 	pos -535 273
 	government Republic
 	attributes "dirt belt"
-	arrival 1921.00
+	arrival 625
 	habitable 625
 	belt 1771
 	link Arcturus
@@ -21203,7 +21203,7 @@ system Sabik
 	pos -675 379
 	government Republic
 	attributes "rim"
-	arrival 1759.00
+	arrival 625
 	habitable 625
 	belt 1609
 	link Aldhibain
@@ -21256,7 +21256,7 @@ system Sabriset
 	pos 151.724 -426.518
 	government Uninhabited
 	attributes "korath"
-	arrival 1720.00
+	arrival 1570
 	habitable 1570
 	belt 1025
 	link Kaliptari
@@ -21310,7 +21310,7 @@ system Sadalmelik
 	pos -145 472
 	government Quarg
 	attributes "south"
-	arrival 1865.00
+	arrival 1715
 	habitable 1715
 	belt 1273
 	link Enif
@@ -21367,7 +21367,7 @@ system Sadalsuud
 	pos -134 508
 	government Quarg
 	attributes "south"
-	arrival 2009.00
+	arrival 1450
 	habitable 1450
 	belt 1859
 	link Enif
@@ -21430,7 +21430,7 @@ system Sadr
 	pos -287 543
 	government Republic
 	attributes "south"
-	arrival 4025.00
+	arrival 3875
 	habitable 3875
 	belt 1388
 	link Albireo
@@ -21495,7 +21495,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	arrival 5000.00
+	arrival 5000
 	habitable 10000
 	belt 1500
 	haze _menu/haze-full
@@ -21513,8 +21513,8 @@ system Saiph
 	pos -375 -390
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 370
-	arrival 1840.00
 	belt 1690
 	haze _menu/haze-33
 	link Alnitak
@@ -21568,8 +21568,8 @@ system Salipastart
 	pos 250.431 -370.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 500
 	habitable 490
-	arrival 1206.00
 	belt 1056
 	haze _menu/haze-133
 	link Faronektu
@@ -21636,8 +21636,8 @@ system Saquergen
 	pos -482 561
 	government Uninhabited
 	attributes "nova"
+	arrival 500
 	habitable 100
-	arrival 1585.00
 	belt 1435
 	asteroids "small rock" 3 3.9105
 	asteroids "medium rock" 1 4.3255
@@ -21669,8 +21669,8 @@ system Sargas
 	pos -542 445
 	government Republic
 	attributes "south"
+	arrival 980
 	habitable 980
-	arrival 1792.00
 	belt 1642
 	link Kornephoros
 	link Lesath
@@ -21721,8 +21721,8 @@ system Sarin
 	pos -670 293
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
-	arrival 1902.00
 	belt 1752
 	link Vindemiatrix
 	asteroids "large metal" 1 1.74
@@ -21772,8 +21772,8 @@ system Sayaiban
 	pos 250.431 -274.812
 	government Drak
 	attributes "archon" "korath"
+	arrival 3750
 	habitable 3750
-	arrival 2040.00
 	belt 1803
 	asteroids "small rock" 13 2.106
 	asteroids "medium rock" 61 1.836
@@ -21829,8 +21829,8 @@ system Scheat
 	pos -205 233
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
-	arrival 1686.00
 	belt 1536
 	haze _menu/haze-133
 	link "Al Dhanab"
@@ -21888,8 +21888,8 @@ system Schedar
 	pos -93 229
 	government Syndicate
 	attributes "core"
+	arrival 1080
 	habitable 1080
-	arrival 2053.00
 	belt 1903
 	haze _menu/haze-133
 	link Achernar
@@ -21958,8 +21958,8 @@ system Segesta
 	pos 111.87 294.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 950
 	habitable 950
-	arrival 1270.00
 	belt 1120
 	haze _menu/haze-red
 	link Stercutus
@@ -21984,7 +21984,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Embershades" 15000
+	fleet Embershades 15000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -22028,8 +22028,8 @@ system Seginus
 	pos -557 356
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 135
-	arrival 2056.00
 	belt 1906
 	link Alnasl
 	link Alphecca
@@ -22095,8 +22095,8 @@ system Seketra
 	pos -24.5695 -356.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 425
-	arrival 1615.00
 	belt 1465
 	link Chikatip
 	link Skeruto
@@ -22148,8 +22148,8 @@ system Sepetrosk
 	pos 192.431 -243.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 500
 	habitable 490
-	arrival 1436.00
 	belt 1286
 	link Chimitarp
 	link Feroteri
@@ -22210,8 +22210,8 @@ system Sepriaptu
 	pos 139.431 -448.812
 	government Uninhabited
 	attributes "korath"
+	arrival 2035
 	habitable 2035
-	arrival 2185.00
 	belt 1120
 	link Kaliptari
 	link Sabriset
@@ -22263,8 +22263,8 @@ system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
 	attributes "korath"
+	arrival 500
 	habitable 320
-	arrival 1913.00
 	belt 1763
 	haze _menu/haze-67
 	link Kashikt
@@ -22315,8 +22315,8 @@ system Shaula
 	pos -460 527
 	government Pirate
 	attributes "south"
+	arrival 625
 	habitable 625
-	arrival 1964.00
 	belt 1814
 	link Lesath
 	asteroids "small rock" 1 3.2016
@@ -22384,8 +22384,8 @@ system Sheratan
 	pos -40 45
 	government Syndicate
 	attributes "core"
+	arrival 2085
 	habitable 2085
-	arrival 2235.00
 	belt 1183
 	haze _menu/haze-133
 	link Ruchbah
@@ -22444,8 +22444,8 @@ system Sheratan
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
+	arrival 1310
 	habitable 1310
-	arrival 2135.00
 	belt 1985
 	haze _menu/haze-none
 	link Ek'kek'ru
@@ -22525,8 +22525,8 @@ system Si'yak'ku
 system Sich'ka'ara
 	pos -97.1237 -831.921
 	government Wanderer
+	arrival 1715
 	habitable 1715
-	arrival 1894.00
 	belt 1744
 	haze _menu/haze-none
 	link Ap'arak
@@ -22578,8 +22578,8 @@ system Silikatakfar
 	pos 248.431 -481.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 425
-	arrival 1791.00
 	belt 1641
 	link Asikafarnut
 	link Eneremprukt
@@ -22630,8 +22630,8 @@ system "Silver Bell"
 	pos -1045.59 541.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
-	arrival 1556.00
 	belt 1406
 	link "Bright Void"
 	link "Broken Bowl"
@@ -22699,8 +22699,8 @@ system "Silver String"
 	pos -1022.59 517.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
-	arrival 2136.00
 	belt 1986
 	link "Silver Bell"
 	asteroids "small rock" 4 1.209
@@ -22765,8 +22765,8 @@ system Similisti
 	pos 210.431 -313.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 1080
 	habitable 1080
-	arrival 1499.00
 	belt 1349
 	haze _menu/haze-133
 	link Chimitarp
@@ -22834,8 +22834,8 @@ system Sirius
 	pos -378 44
 	government Republic
 	attributes "near earth"
+	arrival 1850
 	habitable 1850
-	arrival 2000.00
 	belt 1407
 	link Eteron
 	link Procyon
@@ -22899,8 +22899,8 @@ system Skeruto
 	pos 28.4305 -339.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
-	arrival 1348.00
 	belt 1198
 	link Fornarep
 	link Furmeliki
@@ -22950,8 +22950,8 @@ system Skeruto
 system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
+	arrival 500
 	habitable 320
-	arrival 1955.00
 	belt 1805
 	haze _menu/haze-none
 	link Ka'ch'chrai
@@ -23004,8 +23004,8 @@ system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 3355
 	habitable 3355
-	arrival 3505.00
 	belt 1314
 	link Asikafarnut
 	asteroids "large metal" 1 3.705
@@ -23067,8 +23067,8 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
+	arrival 1080
 	habitable 1080
-	arrival 1679.00
 	belt 1529
 	haze _menu/haze-67
 	link "Alpha Centauri"
@@ -23180,8 +23180,8 @@ system "Sol Arach"
 	pos -711.587 649.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 490
-	arrival 1297.00
 	belt 1147
 	haze _menu/haze-133
 	link Blubipad
@@ -23253,8 +23253,8 @@ system "Sol Kimek"
 	pos -1310.63 227.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 425
-	arrival 1640.00
 	belt 1490
 	link "1 Axis"
 	link "11 Autumn Above"
@@ -23327,8 +23327,8 @@ system "Sol Saryd"
 	pos -1037.59 675.051
 	government Coalition
 	attributes "saryd"
+	arrival 1310
 	habitable 1310
-	arrival 1870.00
 	belt 1720
 	link "Ancient Hope"
 	link Belonging
@@ -23411,8 +23411,8 @@ system Solifar
 	pos 47.4305 -435.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
-	arrival 1667.00
 	belt 1517
 	haze _menu/haze-67
 	link Kaliptari
@@ -23468,8 +23468,8 @@ system Sospi
 	pos -317 -161
 	government Republic
 	attributes "north"
+	arrival 625
 	habitable 625
-	arrival 1865.00
 	belt 1715
 	haze _menu/haze-133
 	link Nihal
@@ -23535,8 +23535,8 @@ system Speloog
 	pos -967.587 445.051
 	government Coalition
 	attributes "arachi"
+	arrival 625
 	habitable 625
-	arrival 1309.00
 	belt 1159
 	link Belug
 	link Ekuarik
@@ -23603,8 +23603,8 @@ system Spica
 	pos -906 120
 	government Republic
 	attributes "rim"
+	arrival 625
 	habitable 625
-	arrival 2090.00
 	belt 1940
 	haze _menu/haze-33
 	link "Gamma Corvi"
@@ -23665,8 +23665,8 @@ system Statina
 	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
+	arrival 500
 	habitable 135
-	arrival 1650.00
 	belt 1500
 	haze _menu/haze-red
 	link Diespiter
@@ -23712,8 +23712,8 @@ system "Steep Roof"
 	pos -1113.59 570.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
-	arrival 1250.00
 	belt 1100
 	haze _menu/haze-67
 	link "Bright Void"
@@ -23786,8 +23786,8 @@ system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 1570
 	habitable 1570
-	arrival 1720.00
 	belt 1492
 	haze _menu/haze-red
 	link Caeculus
@@ -23808,7 +23808,7 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
-	fleet "Embershades" 8000
+	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -23853,8 +23853,8 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
+	arrival 3000
 	habitable 3000
-	arrival 3150.00
 	belt 2715
 	haze _menu/haze-33
 	link Regor
@@ -23915,8 +23915,8 @@ system Sumar
 	pos -236 -273
 	government Republic
 	attributes "north"
+	arrival 2560
 	habitable 2560
-	arrival 2710.00
 	belt 1778
 	link Cardax
 	link Danoa
@@ -23976,8 +23976,8 @@ system Sumprast
 	pos -101.569 -262.812
 	government "Kor Efret"
 	attributes "korath"
+	arrival 500
 	habitable 490
-	arrival 2108.00
 	belt 1958
 	haze _menu/haze-67
 	link Kashikt
@@ -24043,8 +24043,8 @@ system Tais
 	pos -346 381
 	government Republic
 	attributes "dirt belt"
+	arrival 3645
 	habitable 3645
-	arrival 3795.00
 	belt 1379
 	haze _menu/haze-133
 	link Ascella
@@ -24102,8 +24102,8 @@ system Talita
 	pos -519 -26
 	government Republic
 	attributes "paradise"
+	arrival 1705
 	habitable 1705
-	arrival 1855.00
 	belt 1403
 	link Alphard
 	link Castor
@@ -24169,8 +24169,8 @@ system "Tania Australis"
 	pos -671 7
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
-	arrival 1888.00
 	belt 1738
 	link Algieba
 	link Fala
@@ -24243,8 +24243,8 @@ system Tarazed
 	pos -194 448
 	government Republic
 	attributes "south"
+	arrival 1215
 	habitable 1215
-	arrival 1365.00
 	belt 1169
 	link Albireo
 	link Dabih
@@ -24307,8 +24307,8 @@ system Tebuteb
 	pos -615.587 710.051
 	government Coalition
 	attributes "arachi"
+	arrival 550
 	habitable 550
-	arrival 2005.00
 	belt 1855
 	link Glubatub
 	link Miblulub
@@ -24370,8 +24370,8 @@ system Tejat
 	pos -489 -107
 	government Republic
 	attributes "paradise"
+	arrival 1215
 	habitable 1215
-	arrival 1597.00
 	belt 1447
 	link Miaplacidus
 	link Phurad
@@ -24449,8 +24449,8 @@ system Terminus
 	pos -727.99 -23.2491
 	government Republic
 	attributes "dirt belt" "wormhole"
+	arrival 950
 	habitable 950
-	arrival 1371.00
 	belt 1221
 	haze _menu/haze-67
 	link Limen
@@ -24504,8 +24504,8 @@ system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
 	attributes "pleiades"
+	arrival 500
 	habitable 450
-	arrival 1650.00
 	belt 1500
 	haze _menu/haze-blackbody
 	link "Over the Rainbow"
@@ -24551,8 +24551,8 @@ system Torbab
 	pos -949.587 490.051
 	government Coalition
 	attributes "arachi"
+	arrival 2030
 	habitable 2030
-	arrival 2180.00
 	belt 1727
 	link Debrugt
 	link Flugbu
@@ -24629,8 +24629,8 @@ system Tortor
 	pos -255 -424
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 450
-	arrival 1393.00
 	belt 1243
 	haze _menu/haze-67
 	link Gorvi
@@ -24697,8 +24697,8 @@ system Turais
 	pos -691 134
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 135
-	arrival 1621.00
 	belt 1471
 	link Algorel
 	link "Delta Velorum"
@@ -24754,8 +24754,8 @@ system Turais
 system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
+	arrival 640
 	habitable 640
-	arrival 1724.00
 	belt 1574
 	link "Bote Asu"
 	link "Io Lowe"
@@ -24834,8 +24834,8 @@ system "Ultima Thule"
 	pos -336 -211
 	government Republic
 	attributes "north" "wormhole"
+	arrival 2560
 	habitable 2560
-	arrival 2710.00
 	belt 1635
 	haze _menu/haze-67
 	link Rajak
@@ -24889,8 +24889,8 @@ system Umbral
 	pos -164 406
 	government Republic
 	attributes "south"
+	arrival 1300
 	habitable 1300
-	arrival 1525.00
 	belt 1375
 	link Tarazed
 	asteroids "small rock" 4 7.1925
@@ -24968,8 +24968,8 @@ system Unagi
 	pos -306 -578
 	government Pirate
 	attributes "north"
+	arrival 500
 	habitable 320
-	arrival 2110.00
 	belt 1960
 	haze _menu/haze-33
 	link Almaaz
@@ -25023,8 +25023,8 @@ system Unukalhai
 	pos -710 405
 	government Republic
 	attributes "rim"
+	arrival 625
 	habitable 625
-	arrival 2118.00
 	belt 1968
 	haze _menu/haze-67
 	link Sabik
@@ -25084,8 +25084,8 @@ system Unukalhai
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
+	arrival 500
 	habitable 320
-	arrival 2063.00
 	belt 1913
 	link "Ya Hai"
 	asteroids "small rock" 26 3.9349
@@ -25148,8 +25148,8 @@ system Vaticanus
 	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 500
 	habitable 320
-	arrival 1650.00
 	belt 1500
 	haze _menu/haze-red
 	link Egeria
@@ -25200,8 +25200,8 @@ system Vega
 	pos -402 182
 	government Republic
 	attributes "near earth"
+	arrival 1450
 	habitable 1450
-	arrival 1894.00
 	belt 1744
 	link Altair
 	link Menkent
@@ -25265,8 +25265,8 @@ system Vindemiatrix
 	pos -635 257
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
-	arrival 2107.00
 	belt 1957
 	link Alioth
 	link "Cor Caroli"
@@ -25319,8 +25319,8 @@ system Volax
 	pos -256 -179
 	government Republic
 	attributes "north"
+	arrival 1715
 	habitable 1715
-	arrival 1865.00
 	belt 1424
 	haze _menu/haze-67
 	link Cardax
@@ -25374,8 +25374,8 @@ system Volax
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
+	arrival 500
 	habitable 425
-	arrival 1735.00
 	belt 1585
 	link "Bore Fah"
 	link "Bote Asu"
@@ -25443,8 +25443,8 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
+	arrival 5000
 	habitable 5000
-	arrival 4171.00
 	belt 1194
 	haze _menu/haze-67
 	link "Due Yoot"
@@ -25526,8 +25526,8 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
+	arrival 1080
 	habitable 1080
-	arrival 1372.00
 	belt 1222
 	link "Ehma Ti"
 	link "Hi Yahr"
@@ -25592,8 +25592,8 @@ system Waypoint
 	pos -184 -515
 	government Hai
 	attributes "wormhole"
+	arrival 500
 	habitable 135
-	arrival 1760.00
 	belt 1610
 	haze _menu/haze-67
 	link "Heia Due"
@@ -25651,8 +25651,8 @@ system Wazn
 	pos -385 -131
 	government Republic
 	attributes "paradise"
+	arrival 530
 	habitable 530
-	arrival 1564.00
 	belt 1414
 	haze _menu/haze-67
 	link Alhena
@@ -25718,8 +25718,8 @@ system Wei
 	pos -598 369
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
-	arrival 2077.00
 	belt 1927
 	link Alioth
 	link Alnasl
@@ -25777,8 +25777,8 @@ system Wezen
 	pos -664 -433
 	government Republic
 	attributes "deep"
+	arrival 2710
 	habitable 2710
-	arrival 2860.00
 	belt 1913
 	link Naos
 	asteroids "small rock" 6 2.6418
@@ -25860,8 +25860,8 @@ system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
 	attributes "pleiades"
+	arrival 700
 	habitable 700
-	arrival 1650.00
 	belt 1500
 	haze _menu/haze-blackbody
 	object
@@ -25920,8 +25920,8 @@ system "World's End"
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
+	arrival 500
 	habitable 425
-	arrival 1270.00
 	belt 1120
 	link "Bote Asu"
 	link "Da Ent"
@@ -25996,8 +25996,8 @@ system "Yed Prior"
 	pos -810 374
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 450
-	arrival 1987.00
 	belt 1837
 	link Pherkad
 	asteroids "small rock" 12 5.0784
@@ -26054,8 +26054,8 @@ system Zaurak
 	pos -109 -34
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
-	arrival 1280.00
 	belt 1130
 	haze _menu/haze-133
 	link Alcyone
@@ -26113,8 +26113,8 @@ system "Zeta Aquilae"
 	pos -369 276
 	government Republic
 	attributes "dirt belt"
+	arrival 1450
 	habitable 1450
-	arrival 1979.00
 	belt 1829
 	haze _menu/haze-133
 	link Ascella
@@ -26189,8 +26189,8 @@ system "Zeta Centauri"
 	pos -835 257
 	government Republic
 	attributes "rim"
+	arrival 500
 	habitable 450
-	arrival 1638.00
 	belt 1488
 	haze _menu/haze-67
 	link Acrux
@@ -26246,8 +26246,8 @@ system Zosma
 	pos -640 -123
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 450
-	arrival 1586.00
 	belt 1436
 	link Algieba
 	link Alphard
@@ -26312,8 +26312,8 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
+	arrival 500
 	habitable 425
-	arrival 2061.00
 	belt 1911
 	haze _menu/haze-67
 	link "Imo Dep"
@@ -26383,8 +26383,8 @@ system Zubenelgenubi
 	pos -710 353
 	government Republic
 	attributes "rim"
+	arrival 995
 	habitable 995
-	arrival 1625.00
 	belt 1475
 	link Sabik
 	link Unukalhai
@@ -26450,8 +26450,8 @@ system Zubenelhakrabi
 	hidden
 	pos -755 365
 	government Uninhabited
+	arrival 500
 	habitable 490
-	arrival 1819.00
 	belt 1669
 	asteroids "medium rock" 7 1.5946
 	asteroids "large rock" 1 1.5946
@@ -26526,8 +26526,8 @@ system Zubeneschamali
 	pos -759 338
 	government Republic
 	attributes "rim"
+	arrival 1250
 	habitable 1250
-	arrival 1693.00
 	belt 1543
 	haze _menu/haze-67
 	link Hadar
