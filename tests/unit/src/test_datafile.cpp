@@ -178,11 +178,11 @@ system foo
 	}
 
 	GIVEN( "Only spaces") {
-		std::istringstream stream(R"(
-system foo
- description bar
-  no error
-)");
+		std::istringstream stream(
+"system foo"
+" description bar"
+"  no error"
+);
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
@@ -193,13 +193,13 @@ system foo
 	}
 
 	GIVEN( "Tabs and later spaces" ) {
-		std::istringstream stream(R"(
-system foo
-	something
+		std::istringstream stream(
+"system foo"
+"	something"
 
-now with
- spaces
-)");
+"now with"
+" spaces"
+);
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -213,13 +213,13 @@ now with
 	}
 
 	GIVEN( "Spaces and later tabs" ) {
-		std::istringstream stream(R"(
-system foo
- something
+		std::istringstream stream(
+"system foo"
+" something"
 
-now with
-	tabs
-)");
+"now with"
+"	tabs"
+);
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -233,10 +233,10 @@ now with
 	}
 
 	GIVEN( "Spaces and tabs on the same line" ) {
-		std::istringstream stream(R"(
-system test
-	 foo
-)");
+		std::istringstream stream(
+"system test"
+"	 foo"
+);
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -250,13 +250,13 @@ system test
 	}
 
 	GIVEN( "Tabs and later spaces for comments" ) {
-		std::istringstream stream(R"(
-system foo
-	# something
+		std::istringstream stream(
+"system foo"
+"	# something"
 
-now with
- # spaces
-)");
+"now with"
+" # spaces"
+);
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -268,13 +268,13 @@ now with
 	}
 
 	GIVEN( "Spaces and later tabs for comments" ) {
-		std::istringstream stream(R"(
-system foo
- # something
+		std::istringstream stream(
+"system foo"
+" # something"
 
-now with
-	# tabs
-)");
+"now with"
+"	# tabs"
+);
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
