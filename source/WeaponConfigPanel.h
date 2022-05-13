@@ -50,7 +50,7 @@ private:
 	void UpdateInfo();
 	void ClearZones();
 
-	void DrawWeapons(const Rectangle &bounds);
+	void DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds);
 
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;

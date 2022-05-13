@@ -1056,6 +1056,16 @@ interface "info panel"
 	box "cargo"
 		from 250 -290 to 500 280
 	
+	#The three sections of the weapon configuration panel.
+	box "silhouette"
+		from -500 -290 to -250 280
+	box "weaponsList"
+		from -250 -290 to 0 280
+	box "weaponsConfigTable"
+		from 0 -290 to 500 280
+	box "weaponsTable"
+		from -250 -290 to 500 280
+	
 	#The rename button and top bar of the ship info tab.
 	visible if "ship tab"
 	button R
@@ -1171,7 +1181,7 @@ interface "hail panel"
 		align left
 		width 330
 		truncate back
-
+ 
 	button d "_Done"
 		center 250 115
 		dimensions 80 30
