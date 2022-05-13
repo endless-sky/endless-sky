@@ -18,11 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LogbookPanel.h"
 #include "Interface.h"
+#include "LineShader.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Ship.h"
 #include "UI.h"
+
+#include <vector>
 
 WeaponConfigPanel::WeaponConfigPanel(PlayerInfo &player)
 	: WeaponConfigPanel(player, InfoPanelState(player))
@@ -164,6 +167,20 @@ bool WeaponConfigPanel::Hover(int x, int y)
 
 
 
+bool WeaponConfigPanel::RClick(int x, int y)
+{
+	return false;
+}
+
+
+
+bool WeaponConfigPanel::Scroll(double dx, double dy)
+{
+	return false;
+}
+
+
+
 bool WeaponConfigPanel::Drag(double dx, double dy)
 {
 	return Hover(hoverPoint + Point(dx, dy));
@@ -206,5 +223,47 @@ void WeaponConfigPanel::ClearZones()
 
 void WeaponConfigPanel::DrawWeapons(const Rectangle &bounds) {
 
+}
+
+
+
+void WeaponConfigPanel::DrawLine(const Point &from, const Point &to, const Color &color) const
+{
+	Color black(0.f, 1.f);
+	Point mid(to.X(), from.Y());
+
+	LineShader::Draw(from, mid, 3.5f, black);
+	LineShader::Draw(mid, to, 3.5f, black);
+	LineShader::Draw(from, mid, 1.5f, color);
+	LineShader::Draw(mid, to, 1.5f, color);
+}
+
+
+
+/*bool WeaponConfigPanel::Hover(const Point &point)
+{
+	if(shipIt == panelState.Ships().end())
+		return true;
+
+	hoverPoint = point;
+
+	hoverIndex = -1;
+	const vector<Hardpoint> &weapons = (**shipIt).Weapons();
+	bool dragIsTurret = (draggingIndex >= 0 && weapons[draggingIndex].IsTurret());
+	for(const auto &zone : zones)
+	{
+		bool isTurret = weapons[zone.Value()].IsTurret();
+		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
+			hoverIndex = zone.Value();
+	}
+
+	return true;
+}*/
+
+
+
+bool WeaponConfigPanel::Hover(const Point &point)
+{
+	return false;
 }
 
