@@ -640,6 +640,6 @@ outfit "Pulse Rifle"
 
 outfit "Shield Beetle Pendant"
 	category "Special"
-	thumbnail "outfit/crystalpendant"
+	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
