@@ -1005,7 +1005,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
 			);
 			mainGroup = A9CC52601950C9F6004E4E22;
