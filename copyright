@@ -1209,7 +1209,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: images/planet/*-hot*
-Copyright: Tommaso Becca
+Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
@@ -1225,7 +1225,7 @@ Files:
  images/outfit/ka'het?vareti?engine*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Becca Tommaso.
 
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
@@ -1456,32 +1456,34 @@ Files:
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
 
-Files: images/scene/citydark
-images/scene/buildings
-images/scene/busysteet
-images/scene/iceplains
-images/scene/iceplains2
-images/scene/iceplains3
-images/scene/lonelyrock
-images/scene/redrocks
-images/scene/seasidecliffs
-images/scene/Seasunset
-images/scene/smeer
-images/scene/snowfield
-images/scene/snowvillage
-images/scene/sunet
-images/scene/tower
-images/scene/icepicture
-images/scene/snowplains
+Files:
+ images/scene/citydark*
+ images/scene/buildings*
+ images/scene/busysteet*
+ images/scene/iceplains*
+ images/scene/iceplains2*
+ images/scene/iceplains3*
+ images/scene/lonelyrock*
+ images/scene/redrocks*
+ images/scene/seasidecliffs*
+ images/scene/Seasunset*
+ images/scene/smeer*
+ images/scene/snowfield*
+ images/scene/snowvillage*
+ images/scene/sunet*
+ images/scene/tower*
+ images/scene/icepicture*
+ images/scene/snowplains*
 Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
-Files: images/outfits/skadetear
-images/scenes/hroar
+Files:
+ images/outfits/skadetear*
+ images/scenes/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0
+Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
