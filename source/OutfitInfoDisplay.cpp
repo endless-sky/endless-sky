@@ -248,7 +248,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
