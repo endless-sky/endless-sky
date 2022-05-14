@@ -1149,6 +1149,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Large Thrust Module" 4
 		"Small Thrust Module"
 		"Large Steering Module" 2
+		"Hyperdrive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits

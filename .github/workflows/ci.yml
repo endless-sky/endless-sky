@@ -118,7 +118,7 @@ jobs:
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        TEST_BINARY: tests/endless-sky-tests
+        TEST_BINARY: tests/unit/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -127,7 +127,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
     - name: Install dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -150,7 +150,7 @@ jobs:
     - name: Run tests
       run: scons -Qj $(nproc) test
     - name: Run benchmarks
-      run: ./tests/endless-sky-tests [!benchmark]
+      run: ./tests/unit/endless-sky-tests [!benchmark]
 
 
   build_windows:
@@ -226,7 +226,7 @@ jobs:
         DIR_ESLIB: .\dev64
         CXX: sccache g++
         AR: gcc-ar
-        TEST_BINARY: .\tests\endless-sky-tests.exe
+        TEST_BINARY: .\tests\unit\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -235,7 +235,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -358,7 +358,7 @@ jobs:
     - name: Run Integration tests
       env:
         PRINT_GLXINFO: true
-      run: ./tests/run_tests_headless.sh
+      run: ./tests/integration/run_tests_headless.sh
 
 
   test_ubuntu-parse:
@@ -387,7 +387,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./endless-sky
+      run: ./utils/test_parse.sh ./endless-sky
 
 
   test_windows-parse:
@@ -415,7 +415,7 @@ jobs:
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
-      run: .\tests\test_parse.ps1 EndlessSky.exe
+      run: .\utils\test_parse.ps1 EndlessSky.exe
 
 
   test_macos-parse:
@@ -458,7 +458,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
+      run: ./utils/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
   test_memory-leaks-lite:
