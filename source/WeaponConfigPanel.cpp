@@ -32,8 +32,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
+#include "text/Table.h"
 
 #include <algorithm>
+#include <map>
+#include <queue>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -239,6 +243,7 @@ void WeaponConfigPanel::ClearZones()
 
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
+	static const double LINE_HEIGHT = 20.;
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
@@ -290,15 +295,37 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
 
+	// Table attributes.
+	Table table;
+	table.AddColumn(0, {150, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(250, {50, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(325, {50, Alignment::CENTER, Truncate::BACK});
+	table.AddColumn(400, {50, Alignment::RIGHT, Truncate::BACK});
+	table.SetUnderline(0, 730);
+
 	double gunY = weaponsBounds.Top() + .5 * (weaponsBounds.Height() - height);
 	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
 	double nextY[2] = {gunY + 20. * (gunRows - count[0]), turretY + 20. * (turretRows - count[1])};
+
+	table.DrawAt(Point(10. + weaponsBounds.Right(), gunY + LINE_HEIGHT));
+
+	// Header row.
+	table.DrawUnderline(dim);
+	table.SetColor(bright);
+	table.Draw("range");
+	table.Draw("ammo?");
+	table.Draw("defensive");
+	table.Draw("opportunistic");
+
+	priority_queue<double> gunYs;
+	priority_queue<double> turretYs;
+	unordered_map<double, Hardpoint> hardpointsByY;
 
 	int index = 0;
 	//const double centerX = bounds.Center().X();
 	//const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
 	//const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
-	static const double LINE_HEIGHT = 20.;
+
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
 	Point topFrom;
@@ -323,6 +350,16 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		Point zoneCenter(weaponsBounds.Center().X(), y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
+		if(isTurret)
+		{
+			turretYs.push(y);
+		}
+		else
+		{
+			gunYs.push(y);
+		}
+		hardpointsByY.insert(pair<double, Hardpoint>(y, hardpoint));
+
 		// Determine what color to use for the line.
 		float high = (index == hoverIndex ? .8f : .5f);
 		Color color(high, .75f * high, 0.f, 1.f);
@@ -343,6 +380,38 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 
 		y += LINE_HEIGHT;
 		++index;
+	}
+	double value;
+	while(!gunYs.empty())
+	{
+		value = gunYs.top();
+		gunYs.pop();
+		const Hardpoint &hardpoint = hardpointsByY.at(value);
+		if(!hardpoint.GetOutfit())
+		{
+			table.DrawGap(1);
+			continue;
+		}
+		table.Draw(hardpoint.GetOutfit()->Range());
+		table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No");
+		table.Draw(hardpoint.IsDefensive());
+		table.Draw(hardpoint.IsOpportunistic());
+	}
+	table.DrawGap(1);
+	while(!turretYs.empty())
+	{
+		value = turretYs.top();
+		turretYs.pop();
+		const Hardpoint &hardpoint = hardpointsByY.at(value);
+		if(!hardpoint.GetOutfit())
+		{
+			table.DrawGap(1);
+			continue;
+		}
+		table.Draw(hardpoint.GetOutfit()->Range());
+		table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No");
+		table.Draw(hardpoint.IsDefensive());
+		table.Draw(hardpoint.IsOpportunistic());
 	}
 	// Make sure the line for whatever hardpoint we're hovering is always on top.
 	if(hasTop)
