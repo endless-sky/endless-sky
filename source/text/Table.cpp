@@ -255,6 +255,28 @@ void Table::DrawHighlight(const Color &color) const
 
 
 
+void Table::DrawHighlightCell() const
+{
+	DrawHighlightCell(color);
+}
+
+
+
+void Table::DrawHighlightCell(const Color &color) const
+{
+	Point center;
+	Layout currentLayout = it->layout;
+	if(currentLayout.align == Alignment::LEFT)
+		center = point + Point(currentLayout.width / 2., 0);
+	else if(currentLayout.align == Alignment::RIGHT)
+		center = point - Point(currentLayout.width / 2., 0);
+	else
+		center = point;
+	FillShader::Fill(center, Point(currentLayout.width, rowSize.Y()), color);
+}
+
+
+
 // Shift the draw position down by the given amount. This usually should not
 // be called in the middle of a row, or the fields will not line up.
 void Table::DrawGap(int y) const

@@ -56,11 +56,24 @@ private:
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
 
+	class Column {
+	public:
+		Column(double start, Layout layout);
+
+		double GetLeft();
+		double GetRight();
+
+		double start;
+		Layout layout;
+		};
+
 
 private:
 	PlayerInfo &player;
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
+
+	static const Column columns[];
 
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
@@ -74,6 +87,7 @@ private:
 
 	// Track the current mouse location.
 	Point hoverPoint;
+
 };
 
 #endif

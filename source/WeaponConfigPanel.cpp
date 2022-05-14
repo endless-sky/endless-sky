@@ -42,10 +42,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	//constexpr double WIDTH = 250.;
-	//constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
-}
+const WeaponConfigPanel::Column WeaponConfigPanel::columns[5] = {
+	Column(300, {50, Alignment::RIGHT, Truncate::BACK}), // ange
+	Column(310, {50, Alignment::LEFT, Truncate::BACK}), // ammo?
+	Column(370, {80, Alignment::LEFT, Truncate::BACK}), // defensive?
+	Column(550, {100, Alignment::RIGHT, Truncate::BACK}), // turn rate
+	Column(560, {100, Alignment::LEFT, Truncate::BACK}) // opportunistic?
+};
+
+
 
 WeaponConfigPanel::WeaponConfigPanel(PlayerInfo &player)
 	: WeaponConfigPanel(player, InfoPanelState(player))
@@ -103,11 +108,11 @@ void WeaponConfigPanel::Draw()
 	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
-	//DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
+	DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
 
-	Rectangle &silhouetteBounds = weaponConfigPanelUi->GetBox("silhouette");
-	Rectangle &weaponsBounds = weaponConfigPanelUi->GetBox("weaponsList");
-	Rectangle &tableBounds = weaponConfigPanelUi->GetBox("weaponsConfigTable");
+	//Rectangle silhouetteBounds = weaponConfigPanelUi->GetBox("silhouette");
+	//Rectangle weaponsBounds = weaponConfigPanelUi->GetBox("weaponsList");
+	//Rectangle tableBounds = weaponConfigPanelUi->GetBox("weaponsConfigTable");
 
 
 
@@ -248,15 +253,17 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	static const double WIDTH = silhouetteBounds.Width();
 	static const double LINE_HEIGHT = 20.;
 	static const double GUN_TURRET_GAP = 10.;
-	static const double LABEL_PAD = 5.;
+	static const double LABEL_PAD = 5;
 	static const double LABEL_WIDTH = weaponsBounds.Width() - 20.;
 	static const double HEADER_PAD = 5.;
 
+	Column weaponColumn(static_cast<int>(LABEL_PAD), {static_cast<int>(weaponsBounds.Width() - LABEL_PAD), Alignment::LEFT, Truncate::BACK}); // name
+
 	// Colors to draw with.
 
-	Color dimmer = *GameData::Colors().Get("dimmer");
-
-	Color dim = *GameData::Colors().Get("medium");
+	//Color dimmer = *GameData::Colors().Get("dimmer");
+	//Color dim = *GameData::Colors().Get("dim");
+	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
@@ -290,24 +297,24 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	// Table attributes.
 	Table table;
 	Table turretTable;
-	table.AddColumn(50, {50, Alignment::RIGHT, Truncate::BACK}); // Range
-	turretTable.AddColumn(50, {50, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(60, {50, Alignment::LEFT, Truncate::BACK}); // Ammo?
-	turretTable.AddColumn(60, {50, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(120, {80, Alignment::LEFT, Truncate::BACK}); // Defensive?
-	turretTable.AddColumn(120, {80, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(300, {100, Alignment::RIGHT, Truncate::BACK}); // Turn rate
-	turretTable.AddColumn(300, {100, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(310, {100, Alignment::LEFT, Truncate::BACK}); // Opportunistic?
-	turretTable.AddColumn(310, {100, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(weaponColumn.start, weaponColumn.layout);
+	turretTable.AddColumn(weaponColumn.start, weaponColumn.layout);
+
+	for(Column column : columns)
+	{
+		table.AddColumn(column.start, column.layout);
+		turretTable.AddColumn(column.start, column.layout);
+	}
+
 	//table.SetUnderline(weaponsBounds.Right(), 500.);
 
-	table.DrawAt(Point(weaponsBounds.Right(), gunY - LINE_HEIGHT - HEADER_PAD));
-	turretTable.DrawAt(Point(+ weaponsBounds.Right(), turretY));
+	table.DrawAt(Point(weaponsBounds.Left(), gunY - LINE_HEIGHT - HEADER_PAD));
+	turretTable.DrawAt(Point(+ weaponsBounds.Left(), turretY));
 
 	// Header row.
-	table.DrawUnderline(dim);
+	table.DrawUnderline(medium);
 	table.SetColor(bright);
+	table.Draw("name");
 	table.Draw("range");
 	table.Draw("ammo?");
 	table.Draw("defensive");
@@ -336,7 +343,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		double x = weaponsBounds.Left() + LABEL_PAD;
 		bool isHover = (index == hoverIndex);
 		layout.align = Alignment::LEFT;
-		Color textColor = isHover ? bright : dim;
+		Color textColor = isHover ? bright : medium;
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), textColor);
 		Point zoneCenter(weaponsBounds.Center().X(), y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
@@ -453,6 +460,37 @@ bool WeaponConfigPanel::Hover(const Point &point)
 
 	return true;
 }
+
+
+
+WeaponConfigPanel::Column::Column(double start, Layout layout)
+: start(start), layout(layout)
+{
+}
+
+
+
+double WeaponConfigPanel::Column::GetLeft()
+{
+	if(layout.align == Alignment::LEFT)
+		return start;
+	if(layout.align == Alignment::RIGHT)
+		return start - layout.width;
+	return start - (.5 * layout.width);
+}
+
+
+
+double WeaponConfigPanel::Column::GetRight()
+{
+	if(layout.align == Alignment::LEFT)
+		return start + layout.width;
+	if(layout.align == Alignment::RIGHT)
+		return start;
+	return start + (.5 * layout.width);
+}
+
+
 
 
 
