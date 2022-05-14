@@ -291,8 +291,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	// Skip a spacer and the table header.
 	attributesHeight += 30;
 
-	// idle heat, scaled from 0.0 to 1.0
-	double idleHeat = min(1., ship.IdleHeat() / ship.MaximumHeat());
+	// idle heat, scaled from 0 to 1. Active cooling cannot work harder than
+	// 100%, and idle heat will never be below 0, so guard those edges.
+	double idleHeat = max(0., min(1., ship.IdleHeat() / ship.MaximumHeat()));
 
 	const double idleEnergyPerFrame = attributes.Get("energy generation")
 		+ attributes.Get("solar collection")
