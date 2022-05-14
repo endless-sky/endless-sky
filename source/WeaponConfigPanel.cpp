@@ -44,7 +44,7 @@ using namespace std;
 
 namespace {
 	//constexpr double WIDTH = 250.;
-	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
+	//constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 }
 
 WeaponConfigPanel::WeaponConfigPanel(PlayerInfo &player)
@@ -103,7 +103,6 @@ void WeaponConfigPanel::Draw()
 	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
-	DrawSilhouette(weaponConfigPanelUi->GetBox("silhouette"));
 	DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
 }
 
@@ -231,25 +230,10 @@ void WeaponConfigPanel::ClearZones()
 
 
 
-void WeaponConfigPanel::DrawSilhouette(const Rectangle &silhouetteBounds)
-{
-	static const double WIDTH = silhouetteBounds.Width();
-	// Figure out how much to scale the sprite by.
-	const Sprite *sprite = ship.GetSprite();
-	double scale = 0.;
-	if(sprite)
-		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
-	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, silhouetteBounds.Center(), scale, 28);
-	OutlineShader::Draw(sprite, silhouetteBounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
-
-}
-
-
-
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
-	// Constants for arranging text.
+	// Constants for arranging stuff.
+	static const double WIDTH = silhouetteBounds.Width();
 	static const double LINE_HEIGHT = 20.;
 	static const double GUN_TURRET_GAP = 10.;
 	static const double LABEL_PAD = 5.;
@@ -260,6 +244,15 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
+
+	// Figure out how much to scale the sprite by.
+	const Sprite *sprite = ship.GetSprite();
+	double scale = 0.;
+	if(sprite)
+		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
+	// Draw the ship, using the black silhouette swizzle.
+	SpriteShader::Draw(sprite, silhouetteBounds.Center(), scale, 28);
+	OutlineShader::Draw(sprite, silhouetteBounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 
 	// Figure out how many weapons of each type there are.
 	int count[2] = {0, 0};

@@ -50,7 +50,6 @@ private:
 	void UpdateInfo();
 	void ClearZones();
 
-	void DrawSilhouette(const Rectangle &silhouetteBounds);
 	void DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds);
 
 	// Helper functions.
