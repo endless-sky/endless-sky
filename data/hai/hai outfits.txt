@@ -638,3 +638,10 @@ outfit "Pulse Rifle"
 	"capture defense" 1.0
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
+
+
+outfit "Shield Beetle Pendant"
+	category "Special"
+	thumbnail "outfit/crystal pendant"
+	"quantum keystone" 1
+	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
