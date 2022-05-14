@@ -291,15 +291,18 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 	// Skip a spacer and the table header.
 	attributesHeight += 30;
 
+	// idle heat, scaled from 0.0 to 1.0
+	double idleHeat = min(1., ship.IdleHeat() / ship.MaximumHeat());
+
 	const double idleEnergyPerFrame = attributes.Get("energy generation")
 		+ attributes.Get("solar collection")
 		+ attributes.Get("fuel energy")
 		- attributes.Get("energy consumption")
-		- attributes.Get("cooling energy");
+		- attributes.Get("cooling energy") * idleHeat;
 	const double idleHeatPerFrame = attributes.Get("heat generation")
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
-		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
+		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling") * idleHeat);
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
 	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
