@@ -1851,7 +1851,7 @@ mission "Nanachi Meeting"
 		has "event: Nanachi: Update"
 		random > 30
 	on offer
-		outfit "Shield Beetle Pendant" 
+		outfit "Shield Beetle Pendant"
 		conversation
 			`After you leave your ship and start making your way through the docking area, you notice a Hai running towards you and waving. As they get closer, you realize that it's Nanachi, the Hai pilot who you helped out years ago.`
 			`	"I was just about to go back to my crew when I saw you coming out of your ship. I know a nice snack bar here, let's go there!" Before you can even say hello, she's dragged you to the bar, and ordered some drinks for the two of you. She tells you about her last few years as a captain. She has long since sold her old ship, and now pilots a Geocoris, transporting large amounts of cargo across Hai space. You also tell her about how your life has been ever since you last met, of your adventures and how far you've come. You keep swapping stories for hours, until the bar is ready to close.`
