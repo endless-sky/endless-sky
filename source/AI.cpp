@@ -1736,17 +1736,17 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 		return true;
 
 	// If a carried ship has fuel capacity but is very low, it should return if
-	// the parent can refuel it.  Also account for when fighter has ramscoop to
-	// prioritize returning over ramscoop regeneration.
+	// the parent can refuel it.
 	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel();
-	// Fuel is at least 50% or 100 jump fuel; whichever is lower.
 	bool fighterHasRefueled = ship.CanRefuel(parent);
 	bool parentIsNotFullOfFuel = parent.Fuel() < 1.;
-	//bool shipIsLowFuel = ship.IsFuelLow();
 	// Only return to ship if low fuel or if the fighter has ramscoop and is refueling the carrier.
 	bool shouldReturnForFuel = (readyToRefuelCarrier) ? !(fighterHasRefueled && parentIsNotFullOfFuel) : ship.IsFuelLow() && parent.CanRefuel(ship);
-	// TODO: only dock for fuel if no orders
-	if((shouldReturnForFuel ^ readyToRefuelCarrier) && (!ship.IsYours() || (!orders.count(&ship) && ship.CanRefuel(parent))))
+	bool refuelingIsAllowed = !ship.IsYours() || (!orders.count(&ship) && fighterHasRefueled);
+	// XOR (^) is intentional because it toggles refueling behavior.  Take fuel
+	// from parent to refuel fleet or deposit fuel to parent because it is being
+	// refueled by a ramscoop equipped fighter.
+	if((shouldReturnForFuel ^ readyToRefuelCarrier) && refuelingIsAllowed)
 		return true;
 
 	// If an out-of-combat NPC carried ship is carrying a significant cargo

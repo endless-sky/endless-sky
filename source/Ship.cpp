@@ -145,6 +145,13 @@ namespace {
 		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
 		Files::LogError(shipID + std::move(warning));
 	}
+
+	// Check if the ship is escorted by the escort.
+	bool IsEscortedBy(shared_ptr<const Ship> ship, shared_ptr<Ship> escort) {
+		if(!escort || escort->IsParked() || escort->IsDestroyed() || ship->GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+			return false;
+		return true;
+	}
 }
 
 
@@ -2315,6 +2322,9 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				{
 					double spareFuel = fuel - JumpFuel();
 					bool canRefuelCarrier = IsEscortsFullOfFuel() && !IsEnemyInEscortSystem() && bay.ship->IsRefueledByRamscoop();
+					// XOR is intentional because a ship may take fuel to refuel
+					// the fleet or deposit fuel to refill parent if fleet is
+					// full.
 					if((spareFuel > 100.) ^ canRefuelCarrier)
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't launch.
@@ -2675,7 +2685,7 @@ bool Ship::IsEnemyInEscortSystem() const
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
-		if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+		if(!IsEscortedBy(this->shared_from_this(), escort))
 			continue;
 		shared_ptr<const Ship> escortTarget = escort->GetTargetShip();
 		if(escortTarget)
@@ -2722,7 +2732,7 @@ bool Ship::IsEscortsFullOfFuel() const
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
-		if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+		if(!IsEscortedBy(this->shared_from_this(), escort))
 			continue;
 		// Skip fighters and drones.
 		if(escort->CanBeCarried())
@@ -3066,7 +3076,7 @@ bool Ship::CanRefuel(const Ship &other) const
 			for(const weak_ptr<Ship> &ptr : allEscorts)
 			{
 				shared_ptr<Ship> escort = ptr.lock();
-				if(!escort || escort->IsParked() || escort->IsDestroyed() || GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+				if(!IsEscortedBy(this->shared_from_this(), escort))
 					continue;
 				// Both mission NPC escorts and player-owned escorts should be refueled first.
 				if(escort->JumpFuelMissing())
@@ -3096,8 +3106,11 @@ double Ship::TransferFuel(double amount, Ship *to)
 	if(fuel <= 0.)
 		return 0.;
 	amount = min(fuel, amount);
-	amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
-	to->fuel += amount;
+	if(to)
+	{
+		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+		to->fuel += amount;
+	}
 	fuel -= amount;
 	return amount;
 }
@@ -4370,7 +4383,7 @@ double Ship::GetSolarScale() const
 
 
 
-// Enough energy for 11 seconds of sustained flight is considered minimum
+// Enough energy for 10 seconds of sustained flight is considered minimum
 // energy.  Actual energy minus this value is considered spare energy.
 double Ship::GetSpareEnergy() const
 {
