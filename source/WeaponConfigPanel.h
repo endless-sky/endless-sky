@@ -36,13 +36,13 @@ public:
 
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
-	virtual bool Click(int x, int y, int clicks);
-	virtual bool RClick(int x, int y);
-	virtual bool Hover(int x, int y);
-	virtual bool Drag(double dx, double dy);
-	virtual bool Release(int x, int y);
-	virtual bool Scroll(double dx, double dy);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool RClick(int x, int y) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Release(int x, int y) override;
+	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
@@ -64,10 +64,11 @@ private:
 
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
-	// Keep track of which item the mouse is hovering over and which item is
-	// currently being dragged.
+	// Keep track of which item the mouse is hovering over, which item is
+	// currently being dragged and which item is selected.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
+	int selectedIndex = -1;
 
 	InfoPanelState panelState;
 
