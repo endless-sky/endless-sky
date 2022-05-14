@@ -2578,7 +2578,7 @@ mission "Coalition: Supernova Explorers: Conclusion"
 		conversation
 			`When you got to the Lab the Kimek is shouting to you. "Come here we are getting first pictures of the nova."`
 			scene scene/supernova
-			`	All of you are looking at the impressive pictures for some while. After the Nova ended the Kimek is talking to you again. "It was ice to work with you. I hope we will meet again in the future."`
+			`	All of you are looking at the impressive pictures for some while. After the Nova started to subside the Kimek is talking to you again. Nice it was to work with you. We will meet again in the future, I hope."`
 				decline
 		payment 1250000
 		event "Questions novad"
