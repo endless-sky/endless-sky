@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define RANDOM_H_
 
 #include <cstdint>
+#include <limits>
 
 
 
@@ -39,11 +40,16 @@ public:
 	static uint32_t Polya(uint32_t k, double p = .5);
 	// Get a number from a binomial distribution (i.e. integer bell curve).
 	static uint32_t Binomial(uint32_t t, double p = .5);
-	// Get a normally distributed number (mean = 0, sigma= 1).
-	static double Normal();
-	// Return a number from [0,1] derived from a normal curve,
-	// compressed according to smoothness.
-	static double CompressedNormal(double smoothness);
+	// Get a normally distributed number (mean = 0, sigma= 1) using std::normal_distribution.
+	static double StdNormal();
+	// Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
+	static double BMNormal(double mean, double sigma);
+	// Return a number from [0,1] derived from a normal curve according
+	// to std::normal distribution, compressed according to smoothness.
+	static double CompressedStdNormal(double smoothness);
+	// Return a number from [0,1] derived from a normal curve according
+	// to the Box-Muller transform, compressed according to smoothness.
+	static double CompressedBMNormal(double smoothness);
 };
 
 

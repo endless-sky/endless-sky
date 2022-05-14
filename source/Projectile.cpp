@@ -47,7 +47,7 @@ Angle Projectile::Inaccuracy(std::tuple<double, Distributions, double> values)
 				inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
 				break;
 			case Distributions::Normal:
-				inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
+				inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedBMNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
 				break;
 			case Distributions::Triangular:
 			default:
