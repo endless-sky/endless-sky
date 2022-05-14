@@ -22,7 +22,8 @@
 		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
 		62A405BA1D47DA4D0054F6A0 /* FogShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62A405B81D47DA4D0054F6A0 /* FogShader.cpp */; };
 		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
-		6664AD00282B473400A3E10C /* Distributions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6664ACFF282B473400A3E10C /* Distributions.h */; };
+		6664AD00282B473400A3E10C /* Distribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 6664ACFF282B473400A3E10C /* Distribution.h */; };
+		6664AD02282C8C1C00A3E10C /* Distribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6664AD01282C8C1C00A3E10C /* Distribution.cpp */; };
 		6A5716331E25BE6F00585EB2 /* CollisionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */; };
 		6EC347E6A79BA5602BA4D1EA /* StartConditionsPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */; };
 		87D6407E8B579EB502BFBCE5 /* GameAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F4096A9008E2D8F3304BB /* GameAction.cpp */; };
@@ -238,7 +239,8 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
-		6664ACFF282B473400A3E10C /* Distributions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distributions.h; path = source/Distributions.h; sourceTree = "<group>"; };
+		6664ACFF282B473400A3E10C /* Distribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Distribution.h; path = source/Distribution.h; sourceTree = "<group>"; };
+		6664AD01282C8C1C00A3E10C /* Distribution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Distribution.cpp; path = source/Distribution.cpp; sourceTree = "<group>"; };
 		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
@@ -613,6 +615,8 @@
 				B590162021ED4A0F00799178 /* DisplayText.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
 				A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */,
+				6664AD01282C8C1C00A3E10C /* Distribution.cpp */,
+				6664ACFF282B473400A3E10C /* Distribution.h */,
 				A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */,
 				A96862FF1AE6FD0B004FE1FE /* DrawList.h */,
 				A96863001AE6FD0B004FE1FE /* Effect.cpp */,
@@ -659,12 +663,12 @@
 				A96863201AE6FD0B004FE1FE /* HiringPanel.h */,
 				A96863211AE6FD0B004FE1FE /* ImageBuffer.cpp */,
 				A96863221AE6FD0B004FE1FE /* ImageBuffer.h */,
+				DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */,
+				DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */,
 				A96863251AE6FD0B004FE1FE /* Information.cpp */,
 				A96863261AE6FD0B004FE1FE /* Information.h */,
 				A96863271AE6FD0B004FE1FE /* Interface.cpp */,
 				A96863281AE6FD0B004FE1FE /* Interface.h */,
-				DFAAE2A81FD4A27B0072C0A8 /* ImageSet.cpp */,
-				DFAAE2A91FD4A27B0072C0A8 /* ImageSet.h */,
 				A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */,
 				A9B99D011C616AD000BE7C2E /* ItemInfoDisplay.h */,
 				A96863291AE6FD0B004FE1FE /* LineShader.cpp */,
@@ -858,7 +862,6 @@
 				C62B4D15899E5F47443D0ED6 /* DamageProfile.cpp */,
 				19184B47B496B414EC9CE671 /* DamageProfile.h */,
 				5CF247B48EEC7A3C366C1DFA /* DamageDealt.h */,
-				6664ACFF282B473400A3E10C /* Distributions.h */,
 				D0FA4800BE72C1B5A7D567B9 /* MenuAnimationPanel.cpp */,
 				8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */,
 			);
@@ -940,7 +943,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6664AD00282B473400A3E10C /* Distributions.h in Headers */,
+				6664AD00282B473400A3E10C /* Distribution.h in Headers */,
 				AFF742E3BAA4AD9A5D001460 /* alignment.hpp in Headers */,
 				F55745BDBC50E15DCEB2ED5B /* layout.hpp in Headers */,
 				16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */,
@@ -1005,6 +1008,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				Base,
 			);
 			mainGroup = A9CC52601950C9F6004E4E22;
@@ -1181,6 +1185,7 @@
 				A96863C51AE6FD0E004FE1FE /* GameEvent.cpp in Sources */,
 				A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */,
 				A96863BD1AE6FD0E004FE1FE /* FillShader.cpp in Sources */,
+				6664AD02282C8C1C00A3E10C /* Distribution.cpp in Sources */,
 				A96863FF1AE6FD0E004FE1FE /* StellarObject.cpp in Sources */,
 				A96863A51AE6FD0E004FE1FE /* AsteroidField.cpp in Sources */,
 				A96863FD1AE6FD0E004FE1FE /* StarField.cpp in Sources */,

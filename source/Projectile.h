@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Body.h"
 
 #include "Angle.h"
-#include "Distributions.h"
+#include "Distribution.h"
 #include "Point.h"
 
 #include <memory>
@@ -46,10 +46,6 @@ public:
 		Point position;
 		double distanceTraveled;
 	};
-
-
-public:
-	static Angle Inaccuracy(std::tuple<double, Distributions, double> values);
 
 
 public:

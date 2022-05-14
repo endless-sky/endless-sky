@@ -44,12 +44,6 @@ public:
 	static double StdNormal();
 	// Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
 	static double BMNormal(double mean, double sigma);
-	// Return a number from [0,1] derived from a normal curve according
-	// to std::normal distribution, compressed according to smoothness.
-	static double CompressedStdNormal(double smoothness);
-	// Return a number from [0,1] derived from a normal curve according
-	// to the Box-Muller transform, compressed according to smoothness.
-	static double CompressedBMNormal(double smoothness);
 };
 
 

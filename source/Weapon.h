@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Body.h"
-#include "Distributions.h"
+#include "Distribution.h"
 #include "Point.h"
 
 #include <cstddef>
@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Effect;
+class Distribution;
 class Outfit;
 class Sound;
 class Sprite;
@@ -99,7 +100,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
-	std::tuple<double, Distributions, double> InaccuracyBundle() const;
+	std::pair<Distribution::Type, bool> Distribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;
@@ -247,8 +248,8 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	Distributions inaccuracyMode = Distributions::Triangular;
-	double inaccuracyNormalSmoothness = 1.;
+	Distribution::Type inaccuracyType = Distribution::Type::Triangular;
+	bool inaccuracyInversion = false;
 	double turretTurn = 0.;
 
 	double tracking = 0.;
@@ -343,7 +344,6 @@ inline double Weapon::Drag() const { return drag; }
 inline const Point &Weapon::HardpointOffset() const { return hardpointOffset; }
 
 inline double Weapon::Turn() const { return turn; }
-inline double Weapon::Inaccuracy() const { return inaccuracy; }
 inline double Weapon::TurretTurn() const { return turretTurn; }
 
 inline double Weapon::Tracking() const { return tracking; }

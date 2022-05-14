@@ -35,31 +35,6 @@ namespace {
 
 
 
-Angle Projectile::Inaccuracy(std::tuple<double, Distributions, double> values)
-{
-	Angle inaccuracy;
-	// Check if there is any inaccuracy to apply
-	if(std::get<0>(values))
-	{
-		switch(std::get<1>(values))
-		{
-			case Distributions::Uniform:
-				inaccuracy = Angle::Random(2 * std::get<0>(values)) - Angle(std::get<0>(values));
-				break;
-			case Distributions::Normal:
-				inaccuracy = Angle(2 * std::get<0>(values) * Random::CompressedBMNormal(std::get<2>(values)))  - Angle(std::get<0>(values));
-				break;
-			case Distributions::Triangular:
-			default:
-				inaccuracy = Angle::Random(std::get<0>(values)) - Angle::Random(std::get<0>(values));
-				break;
-		}
-	}
-	return inaccuracy;
-}
-
-
-
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
@@ -133,7 +108,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					const Weapon *const subWeapon = it.weapon;
-					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(subWeapon->InaccuracyBundle()), subWeapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + (Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(), subWeapon->Distribution())), subWeapon);
 				}
 		}
 		MarkForRemoval();

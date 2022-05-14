@@ -131,7 +131,7 @@ double Random::BMNormal(double mean, double sigma)
 	{
 		constexpr double epsilon = std::numeric_limits<double>::epsilon();
 		constexpr double two_pi = 2.0 * M_PI;
-		
+
 		double u1, u2;
 		do
 		{
@@ -145,56 +145,4 @@ double Random::BMNormal(double mean, double sigma)
 		cachedBMNormal  = mag * cos(two_pi * u2) + mean;
 		return mag * sin(two_pi * u2) + mean;
 	}
-}
-
-
-
-// Return a number from [0,1] derived from a normal curve,
-// compressed according to smoothness.
-double Random::CompressedStdNormal(double smoothness)
-{
-	double randomFactor = StdNormal();
-	// Compress values above and below the mean into [0, 1].
-	randomFactor = (randomFactor + smoothness) / (2 * smoothness);
-	// Retain only the fractional information, creating redundancy.
-	// Might be possible to get away with int32_t here, not sure.
-	randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
-	// Push negative values into the usable range.
-	if(randomFactor < 0)
-		randomFactor++;
-
-	// Negative smoothness concentrates output toward 0 and 1.
-	if(smoothness < 0)
-	{
-		randomFactor += 0.5;
-		randomFactor = randomFactor - static_cast<int32_t>(randomFactor);
-	}
-	
-	return randomFactor;
-}
-
-
-
-// Return a number from [0,1] derived from a normal curve,
-// compressed according to smoothness.
-double Random::CompressedBMNormal(double smoothness)
-{
-	double randomFactor = BMNormal(0, 1);
-	// Compress values above and below the mean into [0, 1].
-	randomFactor = (randomFactor + smoothness) / (2 * smoothness);
-	// Retain only the fractional information, creating redundancy.
-	// Might be possible to get away with int32_t here, not sure.
-	randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
-	// Push negative values into the usable range.
-	if(randomFactor < 0)
-		randomFactor++;
-
-	// Negative smoothness concentrates output toward 0 and 1.
-	if(smoothness < 0)
-	{
-		randomFactor += 0.5;
-		randomFactor = randomFactor - static_cast<int32_t>(randomFactor);
-	}
-	
-	return randomFactor;
 }

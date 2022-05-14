@@ -117,21 +117,25 @@ void Weapon::LoadWeapon(const DataNode &node)
 					if(grand.Token(0) == "mode")
 					{
 						if(grand.Token(1) == "triangular")
-							inaccuracyMode = Distributions::Triangular;
+							inaccuracyType = Distribution::Type::Triangular;
 						else if(grand.Token(1) == "uniform")
-							inaccuracyMode = Distributions::Uniform;
-						else if(grand.Token(1) == "normal")
-							inaccuracyMode = Distributions::Normal;
+							inaccuracyType = Distribution::Type::Uniform;
+						else if(grand.Token(1) == "tight")
+							inaccuracyType = Distribution::Type::Tight;
+						else if(grand.Token(1) == "middling")
+							inaccuracyType = Distribution::Type::Middling;
+						else if(grand.Token(1) == "wide")
+							inaccuracyType = Distribution::Type::Wide;
 						else
-							child.PrintTrace("Skipping unknown or incomplete inaccuracy mode attribute:");
+							child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
 					}
-					else if(grand.Token(0) == "smoothness")
-						inaccuracyNormalSmoothness = grand.Value(1);
 					else
 						child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
 				}
+				else if(grand.Token(0) == "invert")
+					inaccuracyInversion = true;
 				else
-				child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
+					child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
 			}
 		}
 		else
@@ -331,10 +335,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
-
-	// Invert to make values with larger magnitude correspond to smoother behavior
-	// Multiply by 2.317 so that a stat value of 1 mimics legacy behavior
-	inaccuracyNormalSmoothness = (1. / inaccuracyNormalSmoothness) * 2.317;
 }
 
 
@@ -506,7 +506,14 @@ double Weapon::TotalDamage(int index) const
 
 
 
-std::tuple<double, Distributions, double> Weapon::InaccuracyBundle() const
+std::pair<Distribution::Type, bool> Weapon::Distribution() const
 {
-	return std::make_tuple(inaccuracy, inaccuracyMode, inaccuracyNormalSmoothness);
+	return std::make_pair(inaccuracyType, inaccuracyInversion);
+}
+
+
+
+double Weapon::Inaccuracy() const
+{
+	return inaccuracy;
 }
