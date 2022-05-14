@@ -906,7 +906,7 @@ mission "Unfettered: Nemo Me Impune Lacessit"
 	landing
 	minor
 	source
-		near Sol distance 100
+		near "Ya Hai" 100
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
 		not "sold bars"
@@ -926,7 +926,7 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 	landing
 	minor
 	source
-		near Sol distance 100
+		near Sol 100
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
 		not "sold bars"
