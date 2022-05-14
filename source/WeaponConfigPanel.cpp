@@ -243,7 +243,12 @@ void WeaponConfigPanel::ClearZones()
 
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
+	// Constants for arranging text.
 	static const double LINE_HEIGHT = 20.;
+	static const double GUN_TURRET_GAP = 10.;
+	static const double LABEL_PAD = 5.;
+	static const double LABEL_WIDTH = 220.;
+
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
@@ -256,52 +261,31 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	if(sprite)
 		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
 
-	// Figure out the left- and right-most hardpoints on the ship. If they are
-	// too far apart, the scale may need to be reduced.
-	// Also figure out how many weapons of each type are on each side.
+	// Figure out how many weapons of each type are on each side.
 	int count[2] = {0, 0};
 	for (const Hardpoint &hardpoint : ship.Weapons())
 	{
 		++count[hardpoint.IsTurret()];
 	}
-	static const double LABEL_PAD = 5.;
-	static const double LABEL_WIDTH = 220.;
-	/*double maxX = 0.;
-	int count[2][2] = {{0, 0}, {0, 0}};
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		// Multiply hardpoint X by 2 to convert to sprite pixels.
-		maxX = max(maxX, fabs(2. * hardpoint.GetPoint().X()));
-		++count[hardpoint.GetPoint().X() >= 0.][hardpoint.IsTurret()];
-	}
-	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
-	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
-	static const double LABEL_WIDTH = 150.;
-	static const double LABEL_DX = 95.;
-	static const double LABEL_PAD = 5.;
-	if(maxX > (LABEL_DX - LABEL_PAD))
-		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 
-	*/
 	// Draw the ship, using the black silhouette swizzle.
 	SpriteShader::Draw(sprite, silhouetteBounds.Center(), scale, 28);
 	OutlineShader::Draw(sprite, silhouetteBounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 
 	// Figure out how tall each part of the weapon listing will be.
-	//int gunRows = max(count[0][0], count[1][0]);
-	//int turretRows = max(count[0][1], count[1][1]);
 	int gunRows = count[0];
 	int turretRows = count[1];
-	// If there are both guns and turrets, add a gap of ten pixels.
-	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
+	// If there are both guns and turrets, add a gap of GUN_TURRET_GAP pixels.
+	double height = 20. * (gunRows + turretRows) + GUN_TURRET_GAP * (gunRows && turretRows);
 
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {150, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(250, {50, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(325, {50, Alignment::CENTER, Truncate::BACK});
-	table.AddColumn(400, {50, Alignment::RIGHT, Truncate::BACK});
-	table.SetUnderline(0, 730);
+	table.AddColumn(0, {75, Alignment::RIGHT, Truncate::BACK}); // Range
+	table.AddColumn(100, {50, Alignment::LEFT, Truncate::BACK}); // Ammo?
+	table.AddColumn(175, {100, Alignment::CENTER, Truncate::BACK}); // Defensive?
+	table.AddColumn(300, (50, Alignment::RIGHT, Truncate::BACK)); // Turn rate
+	table.AddColumn(375, {100, Alignment::CENTER, Truncate::BACK}); // Opportunistic?
+	table.SetUnderline(0, 480);
 
 	double gunY = weaponsBounds.Top() + .5 * (weaponsBounds.Height() - height);
 	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
@@ -315,11 +299,15 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	table.Draw("range");
 	table.Draw("ammo?");
 	table.Draw("defensive");
+	//table.Draw("ammo use");
+	table.Draw("turn speed");
 	table.Draw("opportunistic");
 
-	priority_queue<double> gunYs;
+	/*priority_queue<double> gunYs;
 	priority_queue<double> turretYs;
-	unordered_map<double, Hardpoint> hardpointsByY;
+	unordered_map<double, Hardpoint> hardpointsByY;*/
+	queue<int> gunIndices;
+	queue<int> turretIndices;
 
 	int index = 0;
 	//const double centerX = bounds.Center().X();
@@ -350,21 +338,37 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		Point zoneCenter(weaponsBounds.Center().X(), y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
-		if(isTurret)
+		/*if(isTurret)
 		{
-			turretYs.push(y);
+			turretIndices.push(index);
 		}
 		else
 		{
-			gunYs.push(y);
-		}
-		hardpointsByY.insert(pair<double, Hardpoint>(y, hardpoint));
+			gunIndices.push(index);
+		}*/
+		//hardpointsByY.insert(pair<double, Hardpoint>(y, hardpoint));
 
 		// Determine what color to use for the line.
 		float high = (index == hoverIndex ? .8f : .5f);
 		Color color(high, .75f * high, 0.f, 1.f);
 		if(isTurret)
+		{
 			color = Color(0.f, .75f * high, high, 1.f);
+			turretIndices.push(index);
+		}
+		else
+		{
+			if(!hardpoint.GetOutfit())
+			{
+				table.Advance(5);
+				continue;
+			}
+			table.Draw(hardpoint.GetOutfit()->Range());
+			table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No");
+			table.Draw(hardpoint.IsDefensive() ? "On" : "Off");
+			table.Draw("");
+			table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off");
+		}
 
 		// Draw the line.
 		Point from(weaponsBounds.Left(), zoneCenter.Y());
@@ -381,37 +385,53 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		y += LINE_HEIGHT;
 		++index;
 	}
-	double value;
-	while(!gunYs.empty())
+	//while(!gunYs.empty())
+	/*while(!gunIndices.empty())
 	{
-		value = gunYs.top();
-		gunYs.pop();
+		//value = gunYs.top();
+		//gunYs.pop();
+		tableIndex = gunIndices.front();
+		gunIndices.pop();
 		const Hardpoint &hardpoint = hardpointsByY.at(value);
 		if(!hardpoint.GetOutfit())
 		{
-			table.DrawGap(1);
+			table.Advance(5);
 			continue;
 		}
 		table.Draw(hardpoint.GetOutfit()->Range());
 		table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No");
-		table.Draw(hardpoint.IsDefensive());
-		table.Draw(hardpoint.IsOpportunistic());
-	}
-	table.DrawGap(1);
-	while(!turretYs.empty())
+		table.Draw(hardpoint.IsDefensive() ? "On" : "Off");
+		table.Draw("");
+		table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off");
+	}*/
+	// If there are turret and gun hardpoints, draw a gap before starting the turrets.
+	if(count[0] && count[1])
+		table.DrawGap(GUN_TURRET_GAP);
+	//while(!turretYs.empty())
+	while(!turretIndices.empty())
 	{
-		value = turretYs.top();
-		turretYs.pop();
-		const Hardpoint &hardpoint = hardpointsByY.at(value);
+		//value = turretYs.top();
+		int value = turretIndices.front();
+		//turretYs.pop();
+		turretIndices.pop();
+		//const Hardpoint &hardpoint = hardpointsByY.at(value);
+		const Hardpoint &hardpoint = ship.Weapons().at(value);
 		if(!hardpoint.GetOutfit())
 		{
-			table.DrawGap(1);
+			table.Advance(5);
+			continue;
+		}
+		if(hardpoint.GetOutfit()->AntiMissile())
+		{
+			table.Draw(hardpoint.GetOutfit()->Range());
+			table.Advance(4);
 			continue;
 		}
 		table.Draw(hardpoint.GetOutfit()->Range());
 		table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No");
-		table.Draw(hardpoint.IsDefensive());
-		table.Draw(hardpoint.IsOpportunistic());
+		table.Draw(hardpoint.IsDefensive() ? "On" : "Off");
+		table.Draw(hardpoint.GetOutfit()->TurretTurn());
+		table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off");
 	}
 	// Make sure the line for whatever hardpoint we're hovering is always on top.
 	if(hasTop)
