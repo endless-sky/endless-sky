@@ -871,22 +871,76 @@ mission "Unfettered: Jump Drive Retrieval"
 
 
 
+fleet "Marauders"
+	government "Mercenaries"
+	names "pirate"
+	personality
+		disables plunders harvests
+	variant 2
+		"Marauder Firebird (Engines)"
+	variant 3
+		"Marauder Firebird"
+	variant 3
+		"Marauder Arrow (Weapons)"
+		"Marauder Bounder"
+	variant 3
+		"Marauder Falcon"
+	variant 3
+		"Marauder Raven (Weapons)"
+	variant 1
+		"Marauder Raven"
+		"Marauder Quicksilver (Weapons)" 2
+	variant 3
+		"Marauder Splinter (Weapons)"
+	variant 2
+		"Marauder Manta" 2
+	variant 1
+		"Marauder Leviathan (Engines)"
+	variant 1
+		"Marauder Raven" 2
+		
+
 mission "Unfettered: Nemo Me Impune Lacessit"
 	invisible
 	repeat
 	landing
+	minor
+	source
+		near Sol distance 100
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
-		random < 5
+		not "sold bars"
+		random < 3
 	on offer
 		require "Gold Bars"
-	npc kill
+	npc disable
 		government "Mercenaries"
 		system
 			distance 2 5
-		fleet "Large Northern Pirates"
-		fleet "Small Northern Pirates" 4
-		dialog `After killing of the last of the pirate ships, you wonder what could have motivated such an attack. Maybe you possess something valuable to them? When they entered the system they only sent one message: "nemo me impune lacessit". Whatever it is they were up against, probably best to store it on a planet (using U) or get rid of it.`
+		fleet "Marauders" 3
+		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Maybe you possess something valuable to them? When they entered the system they only sent one message: "nemo me impune lacessit". Whatever it is they were up against, it is probably best to store it on a planet (using U) or get rid of it.`
+
+mission "Unfettered: Nemo Me Impune Lacessit 2"
+	invisible
+	repeat
+	landing
+	minor
+	source
+		near Sol distance 100
+	to offer
+		has "Unfettered: Jump Drive Retrieval: done"
+		not "sold bars"
+		random < 1
+	on offer
+		require "Gold Bars"
+	npc disable
+		government "Mercenaries"
+		system
+			distance 2 5
+		fleet "Marauders" 5
+		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Maybe you possess something valuable to them? When they entered the system they only sent one message: "nemo me impune lacessit". Whatever it is they were up against, it is probably best to store it on a planet (using U) or get rid of it.`
+
+
 
 mission "Unfettered: I Shall Go Unpunished"
 	landing
@@ -2489,7 +2543,10 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 		Torpedo 102
 		"Torpedo Launcher" 4
 		"Torpedo Storage Rack" 6
-		"Mystery Cube"
+	cargo
+		outfits
+			"Gold Bars" 15
+			"Mystery Cube"
 
 mission "Unfettered: Special Cargo"
 	name `Mystery item`
@@ -2529,7 +2586,7 @@ mission "Unfettered: Special Cargo"
 					decline
 	
 	on waypoint
-		dialog `It seems that the Degenerate is in this system indeed, but judging from the marks on his hull it has just been in a battle and it will probably land soon. You may be able to get the item without too much risks that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it.`
+		dialog `It seems that the Degenerate is in this system indeed, but judging from the marks on his hull it has just been in a battle and it will probably land soon. You may be able to get the item without too much risks that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. Heck, you could even sabotage the ship to make your job easier, or take some more valuables with you.`
 	
 	npc board
 		personality staying target
@@ -2598,10 +2655,17 @@ mission "Unfettered: Special Cargo 1B"
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. You better choose what to take with you, and fast!`
+			`	There are a lot of exotic things here with the cargo, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discretely, but you can drop them of the ship and then go take them once you are out, hoping nobody will notice. Looking trough a porthole you do not see anyone around at the moment, there even convenientely is some sand here, so the bars should go under it and be hidden.`
+			branch knowsbars
+				has "Unfettered: I Shall Go Unpunished: offered"
+			`It may not be what you are looking for, but these bars are probably worth a little fortune, and you reckon you could get away with 30 tons of them. They have special markings on them and are probably worth more than their worth in gold! You can always take out the pirate lord's ship afterwards, and claim the item as your own.`
 				goto fake
+			label knowsbars
+			`You recognize the same bars that earned you betrayal from a member of your crew. They have a huge value, be it by selling them back to those interested, or keeping them, there has to be something special about them given the values some attribute them. Knowing how people react to them, they would probably not touch them, even if they did notice, given they could be killed to retrieve them. This is a pirate world after all.`
+				goto fake
+			
 			label engine
-			`	Now these are some fine last generation atomic engines, a beauty. But that does not help you find the item at all. Why would there be anything near the engines?`
+			`	Now these are some fine last generation atomic engines, a true beauty. But that does not help you find the item at all. Why would there be anything near the engines?`
 				goto caught
 			
 			label fake
@@ -2609,9 +2673,18 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Take a heavily modified alien looking pistol.)`
 				`	(Take a strong personal shield.)`
 				`	(Take what looks like a bomb.)`
+				`	(Drop some bars on the ground to take them later.)`
+					goto takebars
 			label wrongitem
-			`	You take the item hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship you notice that the Degenerate just launched, right before you. They most have noticed the item was missing.`
+			`	You take the item, hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship you notice that the Degenerate just launched, right before you. They must have noticed the item was missing.`
 				flee
+			label takebars
+			`You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discretely with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
+			action
+				outfit "Gold Bars" 15
+			``
+				flee
+			
 			label caught
 			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
 				die
@@ -2630,7 +2703,7 @@ mission "Unfettered: Special Cargo 1B"
 				goto caught
 
 			label bargain
-			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are referring to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits."`
+			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are referring to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
 			choice
 				`	"That low? Well here you go mate."`
 				`	"I do not have that kind of money, perhaps we could negotiate?"`
