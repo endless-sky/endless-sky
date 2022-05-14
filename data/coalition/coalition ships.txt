@@ -846,6 +846,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Small Reactor Module"
 		"Large Battery Module"
 		"Overcharged Shield Module"
+		"Small Shield Module"
 		"Overclocked Repair Module" 3
 		"Cooling Module" 3
 		"Scanning Module"
@@ -856,7 +857,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Large Thrust Module"
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module"
+		"Small Steering Module" 2
 		"Scram Drive"
 
 
@@ -965,7 +966,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 	outfits
 		"Bombardment Cannon" 4
 		
-		"Small Reactor Module" 2
+		"Large Reactor Module"
 		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
@@ -1113,7 +1114,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Small Battery Module" 3
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 2
-		"Cooling Module" 3
+		"Cooling Module" 4
 		"Scanning Module" 4
 		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 85
