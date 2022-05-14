@@ -34,7 +34,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Format.h"
 
 #include <algorithm>
-
 #include <vector>
 
 using namespace std;
@@ -323,7 +322,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(weaponsBounds.Center().X(), y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
-re
+
 		// Determine what color to use for the line.
 		float high = (index == hoverIndex ? .8f : .5f);
 		Color color(high, .75f * high, 0.f, 1.f);
@@ -375,7 +374,7 @@ void WeaponConfigPanel::DrawLine(const Point &from, const Point &to, const Color
 
 
 
-/*bool WeaponConfigPanel::Hover(const Point &point)
+bool WeaponConfigPanel::Hover(const Point &point)
 {
 	if(shipIt == panelState.Ships().end())
 		return true;
@@ -393,12 +392,7 @@ void WeaponConfigPanel::DrawLine(const Point &from, const Point &to, const Color
 	}
 
 	return true;
-}*/
-
-
-
-bool WeaponConfigPanel::Hover(const Point &point)
-{
-	return false;
 }
+
+
 
