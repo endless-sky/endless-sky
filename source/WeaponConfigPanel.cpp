@@ -43,7 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	constexpr double WIDTH = 250.;
+	//constexpr double WIDTH = 250.;
 	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 }
 
@@ -89,18 +89,7 @@ void WeaponConfigPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("weapon config panel");
-	/*if(panelState.CanEdit() && (shipIt != player.Ships().end())
-			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
-	{
-		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
-		interfaceInfo.SetCondition("show disown");
-	}
-	else if(!panelState.CanEdit())
-	{
-		interfaceInfo.SetCondition("show dump");
-		if(CanDump())
-			interfaceInfo.SetCondition("enable dump");
-	}*/
+
 	if(player.Ships().size() > 1)
 		interfaceInfo.SetCondition("five buttons");
 	else
@@ -114,6 +103,7 @@ void WeaponConfigPanel::Draw()
 	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
+	DrawSilhouette(weaponConfigPanelUi->GetBox("silhouette"));
 	DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
 }
 
@@ -241,13 +231,29 @@ void WeaponConfigPanel::ClearZones()
 
 
 
+void WeaponConfigPanel::DrawSilhouette(const Rectangle &silhouetteBounds)
+{
+	static const double WIDTH = silhouetteBounds.Width();
+	// Figure out how much to scale the sprite by.
+	const Sprite *sprite = ship.GetSprite();
+	double scale = 0.;
+	if(sprite)
+		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
+	// Draw the ship, using the black silhouette swizzle.
+	SpriteShader::Draw(sprite, silhouetteBounds.Center(), scale, 28);
+	OutlineShader::Draw(sprite, silhouetteBounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
+
+}
+
+
+
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
 	// Constants for arranging text.
 	static const double LINE_HEIGHT = 20.;
 	static const double GUN_TURRET_GAP = 10.;
 	static const double LABEL_PAD = 5.;
-	static const double LABEL_WIDTH = 220.;
+	static const double LABEL_WIDTH = weaponsBounds.Width() - 20.;
 
 	// Colors to draw with.
 	Color dim = *GameData::Colors().Get("medium");
@@ -255,43 +261,33 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
 
-	// Figure out how much to scale the sprite by.
-	const Sprite *sprite = ship.GetSprite();
-	double scale = 0.;
-	if(sprite)
-		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
-
-	// Figure out how many weapons of each type are on each side.
+	// Figure out how many weapons of each type there are.
 	int count[2] = {0, 0};
 	for (const Hardpoint &hardpoint : ship.Weapons())
 	{
 		++count[hardpoint.IsTurret()];
 	}
 
-	// Draw the ship, using the black silhouette swizzle.
-	SpriteShader::Draw(sprite, silhouetteBounds.Center(), scale, 28);
-	OutlineShader::Draw(sprite, silhouetteBounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
-
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = count[0];
 	int turretRows = count[1];
 	// If there are both guns and turrets, add a gap of GUN_TURRET_GAP pixels.
-	double height = 20. * (gunRows + turretRows) + GUN_TURRET_GAP * (gunRows && turretRows);
+	double height = LINE_HEIGHT * (gunRows + turretRows) + GUN_TURRET_GAP * (gunRows && turretRows);
 
 	// Table attributes.
 	Table table;
-	table.AddColumn(0, {75, Alignment::RIGHT, Truncate::BACK}); // Range
+	table.AddColumn(75, {75, Alignment::RIGHT, Truncate::BACK}); // Range
 	table.AddColumn(100, {50, Alignment::LEFT, Truncate::BACK}); // Ammo?
-	table.AddColumn(175, {100, Alignment::CENTER, Truncate::BACK}); // Defensive?
-	table.AddColumn(300, (50, Alignment::RIGHT, Truncate::BACK)); // Turn rate
-	table.AddColumn(375, {100, Alignment::CENTER, Truncate::BACK}); // Opportunistic?
-	table.SetUnderline(0, 480);
+	table.AddColumn(175, {100, Alignment::LEFT, Truncate::BACK}); // Defensive?
+	table.AddColumn(350, {50, Alignment::RIGHT, Truncate::BACK}); // Turn rate
+	table.AddColumn(375, {100, Alignment::LEFT, Truncate::BACK}); // Opportunistic?
+	table.SetUnderline(weaponsBounds.Right() + 10., 480);
 
 	double gunY = weaponsBounds.Top() + .5 * (weaponsBounds.Height() - height);
-	double turretY = gunY + 20. * gunRows + 10. * (gunRows != 0);
-	double nextY[2] = {gunY + 20. * (gunRows - count[0]), turretY + 20. * (turretRows - count[1])};
+	double turretY = gunY + LINE_HEIGHT * gunRows + GUN_TURRET_GAP * (gunRows != 0);
+	double nextY[2] = {gunY + LINE_HEIGHT * (gunRows - count[0]), turretY + LINE_HEIGHT * (turretRows - count[1])};
 
-	table.DrawAt(Point(10. + weaponsBounds.Right(), gunY + LINE_HEIGHT));
+	table.DrawAt(Point(10. + weaponsBounds.Right(), gunY - LINE_HEIGHT));
 
 	// Header row.
 	table.DrawUnderline(dim);
