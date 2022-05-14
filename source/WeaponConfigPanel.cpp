@@ -103,7 +103,14 @@ void WeaponConfigPanel::Draw()
 	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
-	DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
+	//DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
+
+	Rectangle &silhouetteBounds = weaponConfigPanelUi->GetBox("silhouette");
+	Rectangle &weaponsBounds = weaponConfigPanelUi->GetBox("weaponsList");
+	Rectangle &tableBounds = weaponConfigPanelUi->GetBox("weaponsConfigTable");
+
+
+
 }
 
 
@@ -232,14 +239,23 @@ void WeaponConfigPanel::ClearZones()
 
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
+	double y1 = silhouetteBounds.Top();
+	double y2 = silhouetteBounds.Bottom();
+	for(int x = silhouetteBounds.Left(); x != -1*silhouetteBounds.Left(); x+=50)
+		DrawLine(Point(x, y1), Point(x, y2), *GameData::Colors().Get("bright"));
+
 	// Constants for arranging stuff.
 	static const double WIDTH = silhouetteBounds.Width();
 	static const double LINE_HEIGHT = 20.;
 	static const double GUN_TURRET_GAP = 10.;
 	static const double LABEL_PAD = 5.;
 	static const double LABEL_WIDTH = weaponsBounds.Width() - 20.;
+	static const double HEADER_PAD = 5.;
 
 	// Colors to draw with.
+
+	Color dimmer = *GameData::Colors().Get("dimmer");
+
 	Color dim = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
@@ -278,18 +294,16 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	turretTable.AddColumn(50, {50, Alignment::RIGHT, Truncate::BACK});
 	table.AddColumn(60, {50, Alignment::LEFT, Truncate::BACK}); // Ammo?
 	turretTable.AddColumn(60, {50, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(120, {100, Alignment::LEFT, Truncate::BACK}); // Defensive?
-	turretTable.AddColumn(120, {100, Alignment::LEFT, Truncate::BACK});
-	table.AddColumn(320, {100, Alignment::RIGHT, Truncate::BACK}); // Turn rate
-	turretTable.AddColumn(320, {100, Alignment::RIGHT, Truncate::BACK});
-	table.AddColumn(330, {100, Alignment::LEFT, Truncate::BACK}); // Opportunistic?
-	turretTable.AddColumn(330, {100, Alignment::LEFT, Truncate::BACK});
-	table.SetUnderline(weaponsBounds.Right() + 10., 480);
+	table.AddColumn(120, {80, Alignment::LEFT, Truncate::BACK}); // Defensive?
+	turretTable.AddColumn(120, {80, Alignment::LEFT, Truncate::BACK});
+	table.AddColumn(300, {100, Alignment::RIGHT, Truncate::BACK}); // Turn rate
+	turretTable.AddColumn(300, {100, Alignment::RIGHT, Truncate::BACK});
+	table.AddColumn(310, {100, Alignment::LEFT, Truncate::BACK}); // Opportunistic?
+	turretTable.AddColumn(310, {100, Alignment::LEFT, Truncate::BACK});
+	//table.SetUnderline(weaponsBounds.Right(), 500.);
 
-
-
-	table.DrawAt(Point(10. + weaponsBounds.Right(), gunY - LINE_HEIGHT));
-	turretTable.DrawAt(Point(10. + weaponsBounds.Right(), turretY));
+	table.DrawAt(Point(weaponsBounds.Right(), gunY - LINE_HEIGHT - HEADER_PAD));
+	turretTable.DrawAt(Point(+ weaponsBounds.Right(), turretY));
 
 	// Header row.
 	table.DrawUnderline(dim);
@@ -300,8 +314,6 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	//table.Draw("ammo use");
 	table.Draw("turn speed");
 	table.Draw("opportunistic");
-
-	//queue<int> turretIndices;
 
 	int index = 0;
 
