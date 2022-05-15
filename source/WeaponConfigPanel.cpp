@@ -412,12 +412,12 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 			}
 			table.Draw(hardpoint.GetOutfit()->Range(), textColor);
 			table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
-				if(isHover && defensiveZone.Contains(hoverPoint))
-					table.DrawHighlightCell(dim);
+			if(isHover && defensiveZone.Contains(hoverPoint))
+				table.DrawHighlightCell(dim);
 			table.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
 			table.Advance();
-				if(isHover && opportunisticZone.Contains(hoverPoint))
-					table.DrawHighlightCell(dim);
+			if(isHover && opportunisticZone.Contains(hoverPoint))
+				table.DrawHighlightCell(dim);
 			table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off", textColor);
 		}
 
