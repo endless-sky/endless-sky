@@ -60,8 +60,9 @@ private:
 	public:
 		Column(double start, Layout layout);
 
-		double GetLeft();
-		double GetRight();
+		double GetLeft() const;
+		double GetRight() const;
+		double GetCenter() const;
 
 		double start;
 		Layout layout;
@@ -77,6 +78,8 @@ private:
 
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
+	Rectangle defensiveZone;
+	Rectangle opportunisticZone;
 	// Keep track of which item the mouse is hovering over, which item is
 	// currently being dragged and which item is selected.
 	int hoverIndex = -1;

@@ -108,6 +108,7 @@ void WeaponConfigPanel::Draw()
 	ClearZones();
 	if(shipIt == player.Ships().end())
 		return;
+
 	DrawWeapons(weaponConfigPanelUi->GetBox("silhouette"), weaponConfigPanelUi->GetBox("weaponsList"));
 
 	//Rectangle silhouetteBounds = weaponConfigPanelUi->GetBox("silhouette");
@@ -262,7 +263,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	// Colors to draw with.
 
 	Color dimmer = *GameData::Colors().Get("dimmer");
-	//Color dim = *GameData::Colors().Get("dim");
+	Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
@@ -290,6 +291,13 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	// If there are both guns and turrets, add a gap of GUN_TURRET_GAP pixels.
 	double height = LINE_HEIGHT * (gunRows + turretRows) + GUN_TURRET_GAP * (gunRows && turretRows);
 
+	double defensiveColumnCenter = columns[2].GetCenter();
+	double defensiveColumnWidth = columns[2].layout.width;
+	double opportunisticColumnCenter = columns[4].GetCenter();
+	double opportunisticColumnWidth = columns[4].layout.width;
+	defensiveZone = Rectangle(Point(defensiveColumnCenter, 0), Point(defensiveColumnWidth, height));
+	opportunisticZone = Rectangle(Point(opportunisticColumnCenter, 0), Point(opportunisticColumnWidth, height));
+
 	double gunY = weaponsBounds.Top() + .5 * (weaponsBounds.Height() - height);
 	double turretY = gunY + LINE_HEIGHT * gunRows + GUN_TURRET_GAP * (gunRows != 0);
 	double nextY[2] = {gunY + LINE_HEIGHT * (gunRows - count[0]), turretY + LINE_HEIGHT * (turretRows - count[1])};
@@ -306,7 +314,8 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		turretTable.AddColumn(column.start, column.layout);
 	}
 
-	//table.SetUnderline(weaponsBounds.Right(), 500.);
+	table.SetUnderline(0, 750.);
+	turretTable.SetHighlight(0, 750.);
 
 	table.DrawAt(Point(weaponsBounds.Left(), gunY - LINE_HEIGHT - HEADER_PAD));
 	turretTable.DrawAt(Point(+ weaponsBounds.Left(), turretY));
@@ -321,6 +330,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	//table.Draw("ammo use");
 	table.Draw("turn speed");
 	table.Draw("opportunistic");
+	table.DrawGap(HEADER_PAD);
 
 	int index = 0;
 
@@ -343,16 +353,11 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		double x = weaponsBounds.Left() + LABEL_PAD;
 		bool isHover = (index == hoverIndex);
 		//layout.align = Alignment::LEFT;
-		Color textColor = medium;
-		if(isHover)
-		{
-			textColor = bright;
-			table.DrawHighlight(dimmer);
-		}
+		Color textColor = isHover ? bright : medium;
 		//font.Draw({name, layout}, Point(x, y + TEXT_OFF), textColor);
 
 		Point zoneCenter(table.GetCenterPoint().X(), y + .5 * LINE_HEIGHT);
-		zones.emplace_back(zoneCenter, table.GetRowSize(), index);
+		zones.emplace_back(zoneCenter, Point(table.GetRowSize().X(), LINE_HEIGHT), index);
 
 		DrawLine(Point(x, y), Point(x + 750, y), bright);
 
@@ -362,6 +367,10 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		if(isTurret)
 		{
 			color = Color(0.f, .75f * high, high, 1.f);
+			if(isHover)
+			{
+				turretTable.DrawHighlight(dimmer);
+			}
 			turretTable.Draw(name, textColor);
 			//turretIndices.push(index);
 			//int value = turretIndices.front();
@@ -380,13 +389,21 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 			{
 				turretTable.Draw(hardpoint.GetOutfit()->Range(), textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
+				if(isHover && defensiveZone.Contains(hoverPoint))
+					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn(), textColor);
+				if(isHover && opportunisticZone.Contains(hoverPoint))
+					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsOpportunistic() ? "On" : "Off", textColor);
 			}
 		}
 		else
 		{
+			if(isHover)
+			{
+				table.DrawHighlight(dimmer);
+			}
 			table.Draw(name, textColor);
 			if(!hardpoint.GetOutfit())
 			{
@@ -395,8 +412,12 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 			}
 			table.Draw(hardpoint.GetOutfit()->Range(), textColor);
 			table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
+				if(isHover && defensiveZone.Contains(hoverPoint))
+					table.DrawHighlightCell(dim);
 			table.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
 			table.Advance();
+				if(isHover && opportunisticZone.Contains(hoverPoint))
+					table.DrawHighlightCell(dim);
 			table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off", textColor);
 		}
 
@@ -478,7 +499,7 @@ WeaponConfigPanel::Column::Column(double start, Layout layout)
 
 
 
-double WeaponConfigPanel::Column::GetLeft()
+double WeaponConfigPanel::Column::GetLeft() const
 {
 	if(layout.align == Alignment::LEFT)
 		return start;
@@ -489,13 +510,24 @@ double WeaponConfigPanel::Column::GetLeft()
 
 
 
-double WeaponConfigPanel::Column::GetRight()
+double WeaponConfigPanel::Column::GetRight() const
 {
 	if(layout.align == Alignment::LEFT)
 		return start + layout.width;
 	if(layout.align == Alignment::RIGHT)
 		return start;
 	return start + (.5 * layout.width);
+}
+
+
+
+double WeaponConfigPanel::Column::GetCenter() const
+{
+	if(layout.align == Alignment::LEFT)
+		return start + layout.width / 2;
+	if(layout.align == Alignment::RIGHT)
+		return start - (.5 * layout.width);
+	return start;
 }
 
 
