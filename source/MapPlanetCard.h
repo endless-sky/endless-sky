@@ -52,7 +52,7 @@ public:
 	// Return the space available for this planet card on its current position.
 	double AvailableSpace() const;
 
-	const Planet *getPlanet() const;
+	const Planet *GetPlanet() const;
 
 
 public:

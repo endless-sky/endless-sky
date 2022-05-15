@@ -263,7 +263,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			SetCommodity(SHOW_GOVERNMENT);
 		else if(y < tradeY && y > governmentY)
 		{
-			for(auto &card : planetCards)
+			for(const auto &card : planetCards)
 			{
 				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
 				if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
@@ -357,7 +357,7 @@ bool MapDetailPanel::RClick(int x, int y)
 
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
-	set<const Planet *> shown{};
+	set<const Planet *> shown;
 	
 	planetCards.clear();
 	MapPlanetCard::clear();
@@ -370,7 +370,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.count(planet))
 				continue;
 
-			planetCards.emplace_back(*new MapPlanetCard(object, player.HasVisited(*planet)));
+			planetCards.emplace_back(object, player.HasVisited(*planet));
 			shown.insert(planet);
 		}
 }

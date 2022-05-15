@@ -163,7 +163,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., 
 				uiPoint.Y() + planetLowestY), spriteScale);
 		
-		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categories, categorySize, height]
+		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categorySize, height]
 			(double number)
 		{
 			return availableTopSpace >= textStart + categorySize * number &&
