@@ -53,7 +53,7 @@ mission "Musical Entertainment Expo"
 			choice
 				`	"Your music comes off a production line?"`
 					goto production
-				`	"Do you not have musicians trying to make it on their own?"` 
+				`	"Do you not have musicians trying to make it on their own?"`
 			`	"Oh for sure, but mostly just to get picked up by one of these companies."`
 			label production
 			`	The bartender chuckles. "We've been doing pop music for longer than your people have had fire. It's about the experience of being a fan of a group as it rises to fame and stardom. A dedicated Hai can go back and find a song for almost any possible life experience in almost any possible genre. It's the journey, and the personalities, that are what it's all about."`
@@ -244,7 +244,7 @@ mission "Academy Motto"
 			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
 			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
-			choice	
+			choice
 				`	(Ask them about it.)`
 					goto question
 				`	(Keep your thoughts to yourself.)`
