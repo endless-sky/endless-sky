@@ -36,8 +36,8 @@ namespace {
 #endif
 }
 
-bool normalBMCached = false;
-double cachedBMNormal = std::numeric_limits<double>::infinity();
+static bool normalBMCached = false;
+static double cachedBMNormal = std::numeric_limits<double>::infinity();
 
 
 
