@@ -319,6 +319,7 @@ outfit "EMP Torpedo II Bay"
 		"shield damage" 750
 		"hull damage" 125
 		"ion damage" 55
+		"energy damage" 500
 		"hit force" 90
 		"missile strength" 90
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
@@ -368,6 +369,7 @@ outfit "EMP Torpedo II Pod"
 		"shield damage" 750
 		"hull damage" 125
 		"ion damage" 55
+		"energy damage" 500
 		"hit force" 90
 		"missile strength" 90
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor class vessels."

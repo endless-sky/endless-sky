@@ -714,6 +714,28 @@ ship "Merganser"
 	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
 
 
+ship "Merganser" "Merganser II"
+	outfits
+		"Inhibitor Cannon" 2
+		"EMP Torpedo II Pod"
+		"EMP Torpedo" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Anvil-Class Engine"
+		"Bellows-Class Afterburner"
+		"Scram Drive"
+		
+	gun 0 -48.5 "EMP Torpedo II Pod"
+	gun -6 -41 "Inhibitor Cannon"
+	gun 6 -41 "Inhibitor Cannon"
+	turret 0 0
+
+
 
 ship "Pelican"
 	sprite "ship/pelican"

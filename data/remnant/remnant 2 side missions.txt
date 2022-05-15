@@ -42,7 +42,14 @@ mission "Remnant: EMP II Deployment"
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
-		fleet "Large Remnant"
+		fleet
+			names "remnant"
+			variant
+				"Merganser II" 3
+	npc
+		government "Remnant"
+		personality staying uninterested disables plunders
+		fleet "Small Remnant"
 	npc evade
 		government "Korath"
 		personality heroic plunders harvests target
