@@ -56,6 +56,10 @@ public:
 
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
+	void ToggleDefensive(int index);
+	void SetDefensive(int index, bool defensive);
+	void ToggleOpportunistic(int index);
+	void SetOpportunistic(int index, bool opportunistic);
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;

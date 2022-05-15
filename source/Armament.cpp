@@ -182,6 +182,42 @@ void Armament::Swap(int first, int second)
 
 
 
+void Armament::ToggleDefensive(int index)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].ToggleDefensive();
+}
+
+
+
+void Armament::SetDefensive(int index, bool defensive)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].SetDefensive(defensive);
+}
+
+
+
+void Armament::ToggleOpportunistic(int index)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].ToggleOpportunistic();
+}
+
+
+
+void Armament::SetOpportunistic(int index, bool opportunistic)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].SetOpportunistic(opportunistic);
+}
+
+
+
 // Access the array of weapon hardpoints.
 const vector<Hardpoint> &Armament::Get() const
 {

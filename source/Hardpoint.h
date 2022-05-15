@@ -51,7 +51,7 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
-	
+
 	bool IsDefensive() const;
 	bool IsOpportunistic() const;
 
@@ -83,7 +83,7 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
-	
+
 	// Set the defensive value of this hardpoint.
 	void SetDefensive(bool defensive);
 	// Toggle the defensive value of this hardpoint.
@@ -112,7 +112,7 @@ private:
 	bool isParallel = false;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
-	
+
 	// Indicates whether the hardpoint is set to defensive mode.
 	bool isDefensive = false;
 	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.

@@ -173,6 +173,17 @@ bool WeaponConfigPanel::Click(int x, int y, int /* clicks */)
 		return true;
 
 	draggingIndex = -1;
+	Point clickPoint(x, y);
+	if(defensiveZone.Contains(clickPoint))
+	{
+		(**shipIt).GetArmament().ToggleDefensive(hoverIndex);
+		return true;
+	}
+	else if(opportunisticZone.Contains(clickPoint))
+	{
+		(**shipIt).GetArmament().ToggleOpportunistic(hoverIndex);
+		return true;
+	}
 	if(panelState.CanEdit() && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 		draggingIndex = hoverIndex;
 
@@ -329,10 +340,10 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	table.Draw("name");
 	table.Draw("range");
 	table.Draw("ammo?");
-	table.Draw("defensive");
+	table.Draw("offensive");
 	//table.Draw("ammo use");
 	table.Draw("turn speed");
-	table.Draw("opportunistic");
+	table.Draw("targeting mode");
 	table.DrawGap(HEADER_PAD);
 
 	int index = 0;
@@ -395,11 +406,11 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 				cout << isHover << "\n";
 				if(isHover && defensiveZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
-				turretTable.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
+				turretTable.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn(), textColor);
 				if(isHover && opportunisticZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
-				turretTable.Draw(hardpoint.IsOpportunistic() ? "On" : "Off", textColor);
+				turretTable.Draw(hardpoint.IsOpportunistic() ? "Opportunistic" : "Focused", textColor);
 			}
 		}
 		else
@@ -418,11 +429,11 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 			table.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
 			if(isHover && defensiveZone.Contains(hoverPoint))
 				table.DrawHighlightCell(dim);
-			table.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
+			table.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);
 			table.Advance();
 			if(isHover && opportunisticZone.Contains(hoverPoint))
 				table.DrawHighlightCell(dim);
-			table.Draw(hardpoint.IsOpportunistic() ? "On" : "Off", textColor);
+			table.Draw(hardpoint.IsOpportunistic() ? "Opportunistic" : "Focused", textColor);
 		}
 
 		// Draw the line.
