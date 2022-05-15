@@ -266,17 +266,17 @@ void Table::DrawHighlightCell() const
 void Table::DrawHighlightCell(const Color &color) const
 {
 	cout << "Drawing cell highlight.\n";
-	Point center;
 	Layout currentLayout = it->layout;
-	if(currentLayout.align == Alignment::LEFT)
-		center = point + Point(currentLayout.width / 2., 0);
-	else if(currentLayout.align == Alignment::RIGHT)
-		center = point - Point(currentLayout.width / 2., 0);
-	else
-		center = point;
+	Point absoluteCenter = point + Point(it->offset, 0);
+	if(currentLayout.align == Alignment::RIGHT)
+		absoluteCenter -= Point(currentLayout.width / 2., 0);
+	else if(currentLayout.align == Alignment::LEFT)
+		absoluteCenter += Point(currentLayout.width / 2., 0);
+
 	Point dimensions = Point(currentLayout.width, rowSize.Y());
+	absoluteCenter = Point(absoluteCenter.X(), GetCenterPoint().Y());
 	cout << center.X() << " " << center.Y() << " " << dimensions.X() << " " << dimensions.Y() << "\n";
-	FillShader::Fill(center, dimensions, color);
+	FillShader::Fill(absoluteCenter, dimensions, color);
 }
 
 

@@ -246,10 +246,10 @@ void WeaponConfigPanel::ClearZones()
 
 void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds)
 {
-	double y1 = silhouetteBounds.Top();
-	double y2 = silhouetteBounds.Bottom();
-	for(int x = silhouetteBounds.Left(); x != -1*silhouetteBounds.Left(); x+=50)
-		DrawLine(Point(x, y1), Point(x, y2), *GameData::Colors().Get("bright"));
+	//double y1 = silhouetteBounds.Top();
+	//double y2 = silhouetteBounds.Bottom();
+	//for(int x = silhouetteBounds.Left(); x != -1*silhouetteBounds.Left(); x+=50)
+		//DrawLine(Point(x, y1), Point(x, y2), *GameData::Colors().Get("bright"));
 
 	// Constants for arranging stuff.
 	static const double WIDTH = silhouetteBounds.Width();
@@ -292,12 +292,14 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 	// If there are both guns and turrets, add a gap of GUN_TURRET_GAP pixels.
 	double height = LINE_HEIGHT * (gunRows + turretRows) + GUN_TURRET_GAP * (gunRows && turretRows);
 
-	double defensiveColumnCenter = columns[2].GetCenter();
+	double defensiveColumnCenter = columns[2].GetCenter() + weaponsBounds.Left();
 	double defensiveColumnWidth = columns[2].layout.width;
-	double opportunisticColumnCenter = columns[4].GetCenter();
+	double opportunisticColumnCenter = columns[4].GetCenter() + weaponsBounds.Left();
 	double opportunisticColumnWidth = columns[4].layout.width;
+	cout << defensiveColumnCenter << " " << defensiveColumnWidth << " : " << opportunisticColumnCenter << " " << opportunisticColumnWidth << " : ";
 	defensiveZone = Rectangle(Point(defensiveColumnCenter, 0), Point(defensiveColumnWidth, height));
 	opportunisticZone = Rectangle(Point(opportunisticColumnCenter, 0), Point(opportunisticColumnWidth, height));
+	cout << defensiveZone.Top() << " " << defensiveZone.Bottom() << " " << defensiveZone.Left() << " " << defensiveZone.Right() << " : " << opportunisticZone.Top() << " " << opportunisticZone.Bottom() << " " << opportunisticZone.Left() << " " << opportunisticZone.Right() << "\n";
 
 	double gunY = weaponsBounds.Top() + .5 * (weaponsBounds.Height() - height);
 	double turretY = gunY + LINE_HEIGHT * gunRows + GUN_TURRET_GAP * (gunRows != 0);
@@ -351,7 +353,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		bool isTurret = hardpoint.IsTurret();
 
 		double &y = nextY[isTurret];
-		double x = weaponsBounds.Left() + LABEL_PAD;
+		//double x = weaponsBounds.Left() + LABEL_PAD;
 		bool isHover = (index == hoverIndex);
 		//layout.align = Alignment::LEFT;
 		Color textColor = isHover ? bright : medium;
@@ -360,7 +362,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		Point zoneCenter(table.GetCenterPoint().X(), y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, Point(table.GetRowSize().X(), LINE_HEIGHT), index);
 
-		DrawLine(Point(x, y), Point(x + 750, y), bright);
+		//DrawLine(Point(x, y), Point(x + 750, y), bright);
 
 		// Determine what color to use for the line.
 		float high = (isHover ? .8f : .5f);
@@ -390,13 +392,9 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 			{
 				turretTable.Draw(hardpoint.GetOutfit()->Range(), textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
+				cout << isHover << "\n";
 				if(isHover && defensiveZone.Contains(hoverPoint))
-				{
-					cout << "Drawing defensive cell highlight.\n";
 					turretTable.DrawHighlightCell(dim);
-				}
-				else
-					cout << defensiveZone.Top() << " " << defensiveZone.Bottom() << " " << defensiveZone.Left() << " " << defensiveZone.Right() << "\n";
 				turretTable.Draw(hardpoint.IsDefensive() ? "On" : "Off", textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn(), textColor);
 				if(isHover && opportunisticZone.Contains(hoverPoint))
