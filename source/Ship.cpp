@@ -2535,6 +2535,17 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
+	// Ships which are ionized have a chance for their weapons to jam,
+	// delaying their firing for another reload cycle. The less energy
+	// a ship has relative to its max and the more ionized the ship is,
+	// the higher the chance that a weapon will jam. The jam chance is
+	// capped at 50%. Very small amounts of ionization are ignored.
+	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
+	// of 5% when it is at 100% energy.
+	double scale = Energy() * 220.;
+	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
@@ -2544,7 +2555,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
-				armament.Fire(i, *this, projectiles, visuals);
+				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 		}
 	}
 
@@ -2563,12 +2574,15 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
+	double scale = Energy() * 220.;
+	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon && CanFire(weapon))
-			if(armament.FireAntiMissile(i, *this, projectile, visuals))
+			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
 

@@ -2826,7 +2826,7 @@ mission "Home for Skadenga 1"
 			`	With your signature in hand, the woman's eyes sparkle, and there is a skip in her step as she leads you to the Ice-Crawler. She pulls a lever on the outside of the vehicle that opens a door and releases a ramshackle ramp for you to climb. She indicates that you should walk up the feeble looking ramp. "Hjlod will be your driver and tour-guide for the duration of your excursion. She is waiting for you within. On behalf of Intrepid Ice Adventures Limited, I would like to wish you a happy and safe expedition!"`
 			choice
 				`	(Board the Ice-Crawler.)`
-			`	The Ice-Crawler, 'Brunhilda,' smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat and strap in.` 
+			`	The Ice-Crawler, 'Brunhilda,' smells of oil, atmosphere, and perspiration. The confines are tight, with a padded bench area and threadbare seat-belts. There are wires and hard angles everywhere. You're careful not to get tangled in the green, white and blue wires running overhead and into the cockpit. You take a seat and strap in.`
 			`	It is only a little warmer here than it was in the maintenance dock. To your left and right are wide, scratched, and frost-rimmed windows.`
 			`	"Velcome. I am called Hjlod." The thickly accented woman looks back from the driver's seat. She has short blonde hair, and her face and arms are covered in long weaving blue tattoos. "I am from here. I have spent whole life traversing this tundra. I know like back of hand." She gives you a lopsided grin and then pats the steering console. "And Brunhilda here, she never let you down."`
 			`	Hjlod turns away from you and starts pulling some levers. "Now," she says, "let's begin."`
@@ -2963,7 +2963,7 @@ mission "Home for Skadenga 1"
 			label jacket
 			apply
 				set "put on jacket"
-			`	You throw on the jacket and stuff a few rags in your coat for good measure.` 
+			`	You throw on the jacket and stuff a few rags in your coat for good measure.`
 			`	Hjlod nods at you and opens the hatch. "It is only meter to surface."`
 			` 	She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking, you are relieved when you quickly rise above it into the icy clear air above.`
 			`	"Stay close," she says as she begins to trek through the snow. "Any path but mine is dangerous."`
@@ -3072,11 +3072,11 @@ mission "Home for Skadenga 1"
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
 			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exoctic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
 			choice
-				`	(Head to the shuttle.)` 
+				`	(Head to the shuttle.)`
 			label shuttle
 			branch "threefingers"
 				has "put on jacket"
-			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.` 
+			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.`
 			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
 				goto lopsided
 			label threefingers
@@ -3110,7 +3110,7 @@ mission "Home for Skadenga 2"
 	on offer
 		conversation
 			`In the high-atmosphere of <origin>, your ship's sensors pick up traces of the exotic Setstokkr matter. They pinpoint the material to the southern rim of a sparsely-populated island-continent, in the small coastal settlement of Hrithfjall.`
-			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The buildings themselves are well-crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.` 
+			`	Your ship lands just outside the settlement, and you leave with your handheld tracker keyed to the Setstokkr material. The trail goes cold once you enter the settlement. The hamlet Hrithfjall is little more than a few dozen wooden structures along a single overgrown road. The buildings themselves are well-crafted and finely designed, but many of them appear to be abandoned. There are no townsfolk about, but you notice recent footprints headed toward the shore, which you follow.`
 			scene "scene/seascape"
 			`	The great seas of Windblain churn beneath the chalk-white cliffs and blue-green sky. As you scan the horizon, your eyes catch the glare of reflected light beyond a distant precipice. You head in that direction and find a figure seated at the precipice's edge. An aged man sits cross-legged, looking out into the sea and at a gleaming metal wall towering over the gray waves about a mile out from shore.`
 			`	The old man speaks without turning and says in a raspy voice, "Hail Stranger, have you come to pay your respects?"`
@@ -3171,7 +3171,7 @@ mission "Home for Skadenga 2"
 				`	"If you were watching me, that means you knew about the Ice-Crawler accident and did nothing?"`
 			`	"Of course I knew." Jakob answers. "It is my business to know. The only people who live here anymore are employees of my firm and those hill-witches. Holding up both hands in a placating gesture, he adds, "And I really am sorry we could not extract you from that avalanche. But we did a cost-benefit analysis, and it just didn't make sense. You run a ship, a business, you understand. How often do you let crew die in boarding action to make a profit?"`
 			`	Jakob puts his hands down. "Anyways, we hardly have the infrastructure to support rescue missions. Our financial team ran the numbers a few generations back, and we realized we could significantly increase our profit margins if we downsized our research division workforce to nothing, and instead focused on managing our existing patents.`
-			`	"Since then we've been shutting things down, laying people off, and sending the rest offworld. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down rather than try and keep managing it. That's why it will be completely uninhabited within 50 years."` 
+			`	"Since then we've been shutting things down, laying people off, and sending the rest offworld. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down rather than try and keep managing it. That's why it will be completely uninhabited within 50 years."`
 			choice
 				`	"You're abandoning an entire planet to make a profit?"`
 			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 500,000 in the hope that we discover new pharmaceutical products, we instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalog of patented medicine, and everyone wins.`
@@ -3228,7 +3228,7 @@ mission "Home for Skadenga 3"
 					goto stars
 				`	"My home is among the stars."`
 					goto stars
-			`	A frown flickers across Carla's face for a brief second before her professional smile reasserts itself. "Trust me, why rent when you can own? Why move a large family to an empty world with poor restaurant selections when you could move them here?".` 
+			`	A frown flickers across Carla's face for a brief second before her professional smile reasserts itself. "Trust me, why rent when you can own? Why move a large family to an empty world with poor restaurant selections when you could move them here?".`
 			`	She stands and smooths her suit jacket. "When you change your mind, I'll be here." With that, she's gone, and you are free to turn your attention back to the God-Stone.`
 					goto elfstone
 			label stars
@@ -3355,7 +3355,7 @@ mission "Home for Skadenga 5"
 				set "Asgard2"
 			scene "scene/citydark"
 			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Security forces, Transport Union, and other semi-governmental fleets are all serviced here.`
-			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.` 
+			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.`
 			`	"When the ships return covered in hay, feces, and other low-tech trash, it'll take us weeks to get them in a usable state again," he mutters before promptly turning and leaving.`
 
 
@@ -3465,7 +3465,7 @@ mission "Skadenga Call 1"
 	destination "Asgard"
 	to offer
 		has "Home for Skadenga 7: done"
-		has "event: skadenga death" 
+		has "event: skadenga death"
 	on offer
 		dialog
 			`There is a new message in your inbox from Hjlod, one of the Skadenga you helped relocate to <planet>.`
@@ -3506,13 +3506,13 @@ mission "Skadenga Call 2"
 				`	"I will help you."`
 					goto help
 				`	"I need to think about it."`
-			`	Hjlod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`	
+			`	Hjlod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`
 			`	Alone, you have a decision to make. You can return to help them escape this world. Or you can find Clara Von Hausen, the Census and Culture Bureau undercover agent, and report to her what is going on. She would probably pay you well for the information.`
 			choice
 				`	(Return to Hjlod and help the Skadenga.)`
 					goto Hjlod
 				`	(Find Carla.)`
-			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" She says with believable cheerfulness.`	
+			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as a alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" She says with believable cheerfulness.`
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
 			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
@@ -3711,7 +3711,7 @@ mission "Home for Skadenga 9"
 			choice
 				`	"I'm in. Deal."`
 					goto deal
-				`	"I'm out. No deal."`	
+				`	"I'm out. No deal."`
 			apply
 				set "refusedhroar"
 			`	Hroar smirks. "Alright. You're out. Get outta my booth, and good luck on your little charity adventure." Hroar goes back to drinking his whiskey as the saloon's swinging door hits you on your way out."`
@@ -3827,7 +3827,7 @@ mission "Home for Skadenga 12"
 		ship "Bounder" "HHH Rustborn"
 	on visit
 		dialog
-			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
+			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 	on complete
 		event "skadenga life" 367
 		conversation "land at windblain"
@@ -3852,7 +3852,7 @@ mission "Home for Skadenga Captain"
 				accept
 	on visit
 		dialog
-			`You have reached <planet>, but your ships have not all arrived yet. You should take off and wait for them to catch up with you.`	
+			`You have reached <planet>, but your ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 		
 	on complete
 		event "skadenga life" 367
@@ -3881,7 +3881,7 @@ mission "Home for Skadenga 13"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
-			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.` 
+			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
 					goto honor
@@ -3911,7 +3911,7 @@ mission "Home for Skadenga 13"
 			label done
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
-			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your jacket.` 
+			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your jacket.`
 			`	You wonder if you're forgetting anything - if you should find Hroar, or Hjlod, and speak with them. But they are nowhere in sight, and you realize there will be time to see them again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
 				decline
 
@@ -4073,14 +4073,14 @@ mission "Hjlod Remembers Windblain"
 	source
 		government "Republic"
 	destination "Windblain"
-	to offer 
+	to offer
 		has "Homecoming to Skadenga: done"
 		has "event: hjlod waits"
 		has "Hjlodsaved"
 	on offer
 		dialog
 			`	Your inbox hums with a new message from <planet>.`
-			`	Dear <first>,` 
+			`	Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod`
 	on complete
@@ -4101,7 +4101,7 @@ mission "Hjlod Remembers Nifel"
 	source
 		government "Republic"
 	destination "Nifel"
-	to offer 
+	to offer
 		has "Skadenga Call 4: done"
 		has "event: hjlod waits again"
 		has "Hjlodsaved"
@@ -4120,7 +4120,7 @@ mission "Hjlod Remembers Nifel"
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
 			` 	She holds out the box. "This is true of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
-			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`	
+			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
 			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
 
