@@ -100,7 +100,7 @@ public:
 
 	double Turn() const;
 	double Inaccuracy() const;
-	std::pair<Distribution::Type, bool> Distribution() const;
+	std::pair<Distribution::Type, bool> InaccuracyDistribution() const;
 	double TurretTurn() const;
 
 	double Tracking() const;

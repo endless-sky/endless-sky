@@ -108,7 +108,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				for(size_t i = 0; i < it.count; ++i)
 				{
 					const Weapon *const subWeapon = it.weapon;
-					projectiles.emplace_back(*this, it.offset, it.facing + (Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(), subWeapon->Distribution())), subWeapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + (Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(), subWeapon->InaccuracyDistribution())), subWeapon);
 				}
 		}
 		MarkForRemoval();

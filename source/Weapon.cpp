@@ -506,7 +506,7 @@ double Weapon::TotalDamage(int index) const
 
 
 
-std::pair<Distribution::Type, bool> Weapon::Distribution() const
+std::pair<Distribution::Type, bool> Weapon::InaccuracyDistribution() const
 {
 	return std::make_pair(inaccuracyType, inaccuracyInversion);
 }
