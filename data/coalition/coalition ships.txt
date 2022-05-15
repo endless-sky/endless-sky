@@ -1089,8 +1089,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Ion Rain Gun" 6
 
 		"Large Reactor Module" 2
+		"Small Reactor Module"
 		"Large Battery Module"
-		"Small Battery Module"
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 3
 		"Cooling Module" 5
