@@ -50,11 +50,10 @@ private:
 	void UpdateInfo();
 	void ClearZones();
 
-	void DrawWeapons(const Rectangle &silhouetteBounds, const Rectangle &weaponsBounds);
-
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
+	void SetControlColumnZones(double height, double tableLeft);
 
 	class Column {
 	public:
@@ -66,7 +65,7 @@ private:
 
 		double start;
 		Layout layout;
-		};
+	};
 
 
 private:
