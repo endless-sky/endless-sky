@@ -35,7 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Table.h"
 
 #include <algorithm>
-#include <iostream>
 #include <map>
 #include <queue>
 #include <unordered_map>
@@ -233,7 +232,6 @@ void WeaponConfigPanel::Draw()
 			{
 				turretTable.Draw(hardpoint.GetOutfit()->Range(), textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->Ammo() ? "Yes" : "No", textColor);
-				cout << isHover << "\n";
 				if(isHover && defensiveZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);

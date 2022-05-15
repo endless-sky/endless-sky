@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../Rectangle.h"
 
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -265,17 +264,14 @@ void Table::DrawHighlightCell() const
 
 void Table::DrawHighlightCell(const Color &color) const
 {
-	cout << "Drawing cell highlight.\n";
 	Layout currentLayout = it->layout;
 	Point absoluteCenter = point + Point(it->offset, 0);
 	if(currentLayout.align == Alignment::RIGHT)
 		absoluteCenter -= Point(currentLayout.width / 2., 0);
 	else if(currentLayout.align == Alignment::LEFT)
 		absoluteCenter += Point(currentLayout.width / 2., 0);
-
 	Point dimensions = Point(currentLayout.width, rowSize.Y());
 	absoluteCenter = Point(absoluteCenter.X(), GetCenterPoint().Y());
-	cout << center.X() << " " << center.Y() << " " << dimensions.X() << " " << dimensions.Y() << "\n";
 	FillShader::Fill(absoluteCenter, dimensions, color);
 }
 
