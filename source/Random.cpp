@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #ifndef __linux__
 #include <mutex>
+#include <math.h>
 #endif
 
 using namespace std;
