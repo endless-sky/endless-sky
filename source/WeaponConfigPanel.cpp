@@ -261,7 +261,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 
 	// Colors to draw with.
 
-	//Color dimmer = *GameData::Colors().Get("dimmer");
+	Color dimmer = *GameData::Colors().Get("dimmer");
 	//Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
@@ -324,13 +324,13 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 
 	int index = 0;
 
-	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
+	//static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
 	Point topFrom;
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
+	//auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -342,11 +342,17 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		double &y = nextY[isTurret];
 		double x = weaponsBounds.Left() + LABEL_PAD;
 		bool isHover = (index == hoverIndex);
-		layout.align = Alignment::LEFT;
-		Color textColor = isHover ? bright : medium;
-		font.Draw({name, layout}, Point(x, y + TEXT_OFF), textColor);
-		Point zoneCenter(weaponsBounds.Center().X(), y + .5 * LINE_HEIGHT);
-		zones.emplace_back(zoneCenter, LINE_SIZE, index);
+		//layout.align = Alignment::LEFT;
+		Color textColor = medium;
+		if(isHover)
+		{
+			textColor = bright;
+			table.DrawHighlight(dimmer);
+		}
+		//font.Draw({name, layout}, Point(x, y + TEXT_OFF), textColor);
+
+		Point zoneCenter(table.GetCenterPoint().X(), y + .5 * LINE_HEIGHT);
+		zones.emplace_back(zoneCenter, table.GetRowSize(), index);
 
 		DrawLine(Point(x, y), Point(x + 750, y), bright);
 
@@ -356,6 +362,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		if(isTurret)
 		{
 			color = Color(0.f, .75f * high, high, 1.f);
+			turretTable.Draw(name, textColor);
 			//turretIndices.push(index);
 			//int value = turretIndices.front();
 			//turretIndices.pop();
@@ -380,6 +387,7 @@ void WeaponConfigPanel::DrawWeapons(const Rectangle &silhouetteBounds, const Rec
 		}
 		else
 		{
+			table.Draw(name, textColor);
 			if(!hardpoint.GetOutfit())
 			{
 				table.Advance(5);
