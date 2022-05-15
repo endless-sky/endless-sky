@@ -564,6 +564,12 @@ int CargoHold::IllegalCargoFine() const
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
+		// The code for adding and removing outfits does not clear the entry in the
+		// map if its value becomes zero, so we need to check if the outfit is
+		// actually inside the cargo hold.
+		if(!it.second)
+			continue;
+
 		int fine = it.first->Get("illegal");
 		if(it.first->Get("atrocity") > 0.)
 			return -1;
