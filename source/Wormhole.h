@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 class DataNode;
 class Planet;
