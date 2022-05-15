@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #ifndef __linux__
 #define _USE_MATH_DEFINES
-#include <cmath>
+#include <math.h>
 #include <mutex>
 #endif
 
