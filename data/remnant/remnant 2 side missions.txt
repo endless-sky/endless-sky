@@ -62,7 +62,7 @@ mission "Remnant: Shattered Light 2"
 	on complete
 		payment 50000
 		conversation
-			`The <ship> has not even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple spots down to stare up at the gills of an Albatross. A few moments later, Taely drops down to the ground beside her. As you approach you can see Ruach has a holo of the spectral ship floating in the air between them. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach says as you approach.`
+			`The <ship> has not even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple spots down to stare up at the gills of an Albatross. A few moments later, Taely drops down to the ground beside her. As you approach you can see Ruach has a hologram of the spectral ship floating in the air between them. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach says as you approach.`
 			`	"Sorry for leaving you behind, this is just such an exciting discovery. This ship you have found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions here! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
 			
 
@@ -90,7 +90,15 @@ mission "Remnant: Shattered Light 3"
 			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the many mysteries here is what has happened to it, and what we should do about it."`
 			`	Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
 			`	"As such, we are proposing that we use the same equipment we use for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
-			`	Ruach takes the lead again. "So, Captain, we will need you to bring us in close to the Shattered Light so we can give this a try. Our sentires have reported seeing it in the systems near Coluber, so it may take some searching."`
+			`	Ruach takes the lead again. "So, Captain, we will need you to bring us in close to the Shattered Light so we can give this a try. Our sentries have reported seeing it in the systems near Coluber, so it may take some searching."`
+			choice
+				`	"Looks good. Start loading the <ship>!"`
+					accept
+				`	"Wait, 'Maudrakoi'?"`
+			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." They look around the room, then gesture and their hologram shifts to show a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
+			`	"We do not have time for an in-depth presentation; but the short version is this: The Maudrakoi are the primary civilization that live on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
+			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
+			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should be able to work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
 	on complete
 		conversation
