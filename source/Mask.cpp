@@ -74,8 +74,8 @@ namespace {
 			};
 			// Convert from a direction index to the desired pixel.
 			const int off[] = {
-				-width, -width + 1, +1, +width + 1,
-				+width, +width - 1, -1, -width - 1,
+				-width, -width + 1,  1,  width + 1,
+				 width,  width - 1, -1, -width - 1,
 			};
 
 			// Loop until we come back to the start, recording the directions

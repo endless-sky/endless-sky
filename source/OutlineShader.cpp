@@ -134,9 +134,9 @@ void OutlineShader::Init()
 
 	GLfloat vertexData[] = {
 		-.5f, -.5f, 0.f, 0.f,
-		+.5f, -.5f, 1.f, 0.f,
-		-.5f, +.5f, 0.f, 1.f,
-		+.5f, +.5f, 1.f, 1.f
+		 .5f, -.5f, 1.f, 0.f,
+		-.5f,  .5f, 0.f, 1.f,
+		 .5f,  .5f, 1.f, 1.f
 	};
 	constexpr auto stride = 4 * sizeof(GLfloat);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);

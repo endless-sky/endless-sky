@@ -9,15 +9,22 @@ trim_trailing_whitespace = true
 [data/**.txt]
 trim_trailing_whitespace = false
 indent_style = tab
-[.codespell.exclude]
-trim_trailing_whitespace = false
 
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
 # Except any third-party libraries
 [catch.hpp]
-indent_style = space
+indent_style = unset
+# And files that are special
+[test_datafile.cpp]
+indent_style = unset
+[source/*Shader.cpp]
+indent_style = unset
+[source/text/Font.cpp]
+indent_style = unset
+[source/Mask.cpp]
+indent_style = unset
 
 # Markdown
 [*.md]

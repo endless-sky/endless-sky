@@ -72,9 +72,9 @@ void FillShader::Init()
 
 	GLfloat vertexData[] = {
 		-.5f, -.5f,
-		.5f, -.5f,
+		 .5f, -.5f,
 		-.5f,  .5f,
-		.5f,  .5f
+		 .5f,  .5f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 

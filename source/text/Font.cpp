@@ -347,9 +347,9 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	GLfloat vertices[] = {
-		0.f, 0.f, 0.f, 0.f,
-		0.f, glyphH, 0.f, 1.f,
-		glyphW, 0.f, 1.f, 0.f,
+		   0.f,    0.f, 0.f, 0.f,
+		   0.f, glyphH, 0.f, 1.f,
+		glyphW,    0.f, 1.f, 0.f,
 		glyphW, glyphH, 1.f, 1.f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);

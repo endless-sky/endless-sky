@@ -104,9 +104,9 @@ void RingShader::Init()
 
 	GLfloat vertexData[] = {
 		-1.f, -1.f,
-		-1.f, +1.f,
-		+1.f, -1.f,
-		+1.f, +1.f
+		-1.f,  1.f,
+		 1.f, -1.f,
+		 1.f,  1.f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 

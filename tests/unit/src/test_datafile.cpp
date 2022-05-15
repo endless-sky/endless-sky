@@ -178,11 +178,11 @@ system foo
 	}
 
 	GIVEN( "Only spaces") {
-		std::istringstream stream(
-"system foo\n"
-" description bar\n"
-"  no error\n"
-);
+		std::istringstream stream(R"(
+system foo
+ description bar
+  no error
+)");
 		const DataFile root(stream);
 
 		THEN( "No warnings are issued" ) {
@@ -193,13 +193,13 @@ system foo
 	}
 
 	GIVEN( "Tabs and later spaces" ) {
-		std::istringstream stream(
-"system foo\n"
-"	something\n"
+		std::istringstream stream(R"(
+system foo
+	something
 
-"now with\n"
-" spaces\n"
-);
+now with
+ spaces
+)");
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -213,13 +213,13 @@ system foo
 	}
 
 	GIVEN( "Spaces and later tabs" ) {
-		std::istringstream stream(
-"system foo\n"
-" something\n"
+		std::istringstream stream(R"(
+system foo
+ something
 
-"now with\n"
-"	tabs\n"
-);
+now with
+	tabs
+)");
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -233,10 +233,10 @@ system foo
 	}
 
 	GIVEN( "Spaces and tabs on the same line" ) {
-		std::istringstream stream(
-"system test\n"
-"	 foo\n"
-);
+		std::istringstream stream(R"(
+system test
+	 foo
+)");
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
@@ -250,38 +250,38 @@ system foo
 	}
 
 	GIVEN( "Tabs and later spaces for comments" ) {
-		std::istringstream stream(
-"system foo\n"
-"	# something\n"
+		std::istringstream stream(R"(
+system foo
+	# something
 
-"now with\n"
-" # spaces\n"
-);
+now with
+ # spaces
+)");
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
 			const auto warnings = Split(sink.Flush());
 
 			REQUIRE( warnings.size() == 1 );
-			CHECK( warnings[0] == mixedCommentWarning + " 4" );
+			CHECK( warnings[0] == mixedCommentWarning + " 6" );
 		}
 	}
 
 	GIVEN( "Spaces and later tabs for comments" ) {
-		std::istringstream stream(
-"system foo\n"
-" # something\n"
+		std::istringstream stream(R"(
+system foo
+ # something
 
-"now with\n"
-"	# tabs\n"
-);
+now with
+	# tabs
+)");
 		const DataFile root(stream);
 
 		THEN( "A warning is issued" ) {
 			const auto warnings = Split(sink.Flush());
 
 			REQUIRE( warnings.size() == 1 );
-			CHECK( warnings[0] == mixedCommentWarning + " 4" );
+			CHECK( warnings[0] == mixedCommentWarning + " 6" );
 		}
 	}
 }
