@@ -42,6 +42,10 @@ public:
 	virtual bool Scroll(double dx, double dy) override;
 
 
+public:
+	static double GetScroll();
+
+
 protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
@@ -58,6 +62,8 @@ private:
 
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
+	// Set the scroll, and make sure it does not become a negative value.
+	void SetScroll(double newScroll);
 
 
 private:
@@ -66,11 +72,15 @@ private:
 
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;
+	static double scroll;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
 
-	std::vector<MapPlanetCard> planetCards{};
+	// The system currently displayed, it should be the same as the system selected at all times.
+	const System *shownSystem = nullptr;
+
+	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
 };

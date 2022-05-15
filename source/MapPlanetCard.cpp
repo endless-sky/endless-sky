@@ -18,8 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
-#include "MapOutfitterPanel.h"
-#include "MapShipyardPanel.h"
+#include "MapDetailPanel.h"
 #include "Point.h"
 #include "PointerShader.h"
 #include "Politics.h"
@@ -32,16 +31,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-vector<MapPlanetCard *> MapPlanetCard::cards{};
-double MapPlanetCard::scroll = 0.;
 
 
-
-MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited)
-	: hasVisited(hasVisited), planetName(object.Name())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
+	: number(number), hasVisited(hasVisited), planetName(object.Name())
 {
-	number = cards.size();
-	cards.emplace_back(this);
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasSpaceport();
 	hasShipyard = planet->HasShipyard();
@@ -55,30 +49,8 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, bool hasVisited)
 	sprite = object.GetSprite();
 
 	static const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
-	static const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
+	const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
 	spriteScale = min(.5f, min((planetIconMaxSize) / sprite->Width(), (planetIconMaxSize) / sprite->Height()));
-}
-
-
-
-MapPlanetCard::~MapPlanetCard()
-{
-	auto begin = cards.begin();
-	bool found = false;
-	unsigned i = 0;
-	for(auto &it : cards)
-	{
-		// The ones after the one we deleted need their number adjusted.
-		if(found)
-			--it->number;
-		else if(it == this)
-			found = true;
-		else
-			++i;
-	}
-	// We should be in it, but just to be sure.
-	if(found)
-		cards.erase(begin + i);
 }
 
 
@@ -89,10 +61,10 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 	// The isShown variable should have already updated by the drawing of this item.
 	if(isShown) {
 		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-		static const double textStart = planetCardInterface->GetValue("text start");
-		static const double categorySize = planetCardInterface->GetValue("category size");
-		static const double categories = planetCardInterface->GetValue("categories");
-		static const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
+		const double textStart = planetCardInterface->GetValue("text start");
+		const double categorySize = planetCardInterface->GetValue("category size");
+		const double categories = planetCardInterface->GetValue("categories");
+		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 
 		// The yCoordinate refers to the center of this object.
 		double relativeY = y - yCoordinate;
@@ -132,32 +104,32 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 	isShown = Shown();
 	if(isShown)
 	{
-		static const Font &font = FontSet::Get(14);
-		static const Color &faint = *GameData::Colors().Get("faint");
-		static const Color &dim = *GameData::Colors().Get("dim");
-		static const Color &medium = *GameData::Colors().Get("medium");
-		static const auto alignLeft = Layout(140, Truncate::BACK);
+		const Font &font = FontSet::Get(14);
+		const Color &faint = *GameData::Colors().Get("faint");
+		const Color &dim = *GameData::Colors().Get("dim");
+		const Color &medium = *GameData::Colors().Get("medium");
+		const auto alignLeft = Layout(140, Truncate::BACK);
 
 		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		const double height = planetCardInterface->GetValue("height");
 		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 		const double textStart = planetCardInterface->GetValue("text start");
 
-		double availableTopSpace = AvailableTopSpace();
-		double availableBottomSpace = AvailableBottomSpace();
+		const double availableTopSpace = AvailableTopSpace();
+		const double availableBottomSpace = AvailableBottomSpace();
 		const double categorySize = planetCardInterface->GetValue("category size");
 		const double categories = planetCardInterface->GetValue("categories");
-		double categoriesFit = (availableTopSpace - textStart * 2.) / categorySize;
+		const double categoriesFit = (availableTopSpace - textStart * 2.) / categorySize;
 
 		// If some categories do not fit above we need to draw the last ones at the place where the first ones where.
 		double textStartingPosition = textStart - (categories - categoriesFit) * categorySize;
 
 		// We have more leasure at the top if the government sprite is drawn over this element.
 		static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-		static const double governmentY = mapInterface->GetValue("government top Y");
-		static const double planetStartingY = mapInterface->GetValue("planet starting Y");
-		static const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
-		double planetLowestY = (textStartingPosition - textStart) + height / 2.;
+		const double governmentY = mapInterface->GetValue("government top Y");
+		const double planetStartingY = mapInterface->GetValue("planet starting Y");
+		const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
+		const double planetLowestY = (textStartingPosition - textStart) + height / 2.;
 		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. && 
 				availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., 
@@ -173,7 +145,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		if(FitsCategory(5.))
 			font.Draw({ planetName, alignLeft }, uiPoint + Point(0., textStartingPosition), isSelected ? medium : dim);
 
-		static const double margin = mapInterface->GetValue("text margin");
+		const double margin = mapInterface->GetValue("text margin");
 		if(FitsCategory(4.))
 			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), 
 				hasSpaceport ? medium : faint);
@@ -216,28 +188,7 @@ double MapPlanetCard::AvailableSpace() const
 
 
 
-void MapPlanetCard::setScroll(double newScroll)
-{
-	MapPlanetCard::scroll = max(0., newScroll);
-}
-
-
-
-double MapPlanetCard::getScroll()
-{
-	return MapPlanetCard::scroll;
-}
-
-
-
-void MapPlanetCard::clear()
-{
-	cards.clear();
-}
-
-
-
-const Planet *MapPlanetCard::getPlanet() const
+const Planet *MapPlanetCard::GetPlanet() const
 {
 	return planet;
 }
@@ -247,7 +198,7 @@ const Planet *MapPlanetCard::getPlanet() const
 void MapPlanetCard::Highlight(double availableSpace) const
 {
 	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	static const double width = planetCardInterface->GetValue("width");
+	const double width = planetCardInterface->GetValue("width");
 
 	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
 		Point(width, availableSpace), *GameData::Colors().Get("faint"));
@@ -258,9 +209,9 @@ void MapPlanetCard::Highlight(double availableSpace) const
 double MapPlanetCard::AvailableTopSpace() const
 {
 	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	static const double height = planetCardInterface->GetValue("height");
+	const double height = planetCardInterface->GetValue("height");
 
-	return min(height, max(0., (number + 1) * height - getScroll()));
+	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
 }
 
 

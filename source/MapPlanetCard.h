@@ -41,8 +41,7 @@ public:
 
 public:
 	// For the orbit selection to work properly this has to be a planet.
-	explicit MapPlanetCard(const StellarObject &object, bool hasVisited);
-	~MapPlanetCard();
+	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited);
 	// Return if this one was clicked, whether or not we did something about it.
 	ClickAction Click(int x, int y, int clicks);
 	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
@@ -53,12 +52,6 @@ public:
 	double AvailableSpace() const;
 
 	const Planet *GetPlanet() const;
-
-
-public:
-	static void setScroll(double newScroll);
-	static double getScroll();
-	static void clear();
 
 
 protected:
@@ -90,12 +83,6 @@ private:
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
 	unsigned selectedCategory = 0;
-
-
-private:
-	static double scroll;
-	// Used so we can give the right number to the planet cards in an internal way.
-	static std::vector<MapPlanetCard *> cards;
 };
 
 
