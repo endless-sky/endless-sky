@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Personality.h"
 #include "Sale.h"
+#include "UnionItem.h"
 #include "Variant.h"
 #include "WeightedList.h"
-#include "UnionItem.h"
 
 #include <cstdint>
 #include <list>
