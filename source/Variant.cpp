@@ -116,7 +116,7 @@ void Variant::Load(const DataNode &node)
 				}
 
 				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
-					n = max<int>(1, child.Value(index));
+					n = child.Value(index);
 
 				// If this variant is named, then look for it in GameData.
 				// Otherwise this is a new variant definition only for this variant.
@@ -132,7 +132,7 @@ void Variant::Load(const DataNode &node)
 			else
 			{
 				if(child.Size() >= index + 1 && child.Value(index) >= 1.)
-					n = max<int>(1, child.Value(index));
+					n = child.Value(index);
 				ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(index - 1)));
 			}
 		}
