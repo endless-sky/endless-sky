@@ -116,27 +116,26 @@ void CargoHold::Save(DataWriter &out) const
 	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-		if(it.second)
+	{
+		// It is possible this cargo hold contained no commodities, meaning
+		// we must print the opening tag now.
+		if(first)
 		{
-			// It is possible this cargo hold contained no commodities, meaning
-			// we must print the opening tag now.
-			if(first)
-			{
-				out.Write("cargo");
-				out.BeginChild();
-			}
-			first = false;
-
-			// If this is the first outfit to be written, print the opening tag.
-			if(firstOutfit)
-			{
-				out.Write("outfits");
-				out.BeginChild();
-			}
-			firstOutfit = false;
-
-			out.Write(it.first->Name(), it.second);
+			out.Write("cargo");
+			out.BeginChild();
 		}
+		first = false;
+
+		// If this is the first outfit to be written, print the opening tag.
+		if(firstOutfit)
+		{
+			out.Write("outfits");
+			out.BeginChild();
+		}
+		firstOutfit = false;
+
+		out.Write(it.first->Name(), it.second);
+	}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
 	if(!firstOutfit)
@@ -209,13 +208,7 @@ int CargoHold::OutfitsSize() const
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
 {
-	// The code for adding and removing outfits does not clear the entry in the
-	// map if its value becomes zero, so we need to check all the entries:
-	for(const auto &it : outfits)
-		if(it.second)
-			return true;
-
-	return false;
+	return !outfits.empty();
 }
 
 
@@ -243,9 +236,7 @@ bool CargoHold::HasMissionCargo() const
 // Check if there is anything in this cargo hold (including passengers).
 bool CargoHold::IsEmpty() const
 {
-	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -374,7 +365,9 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 	// remainder back to this cargo hold, even if there is not space for it.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
-	outfits[outfit] += removed - added;
+	int remainder = removed - added;
+	if(remainder)
+		outfits[outfit] += remainder;
 
 	return added;
 }
@@ -510,6 +503,10 @@ int CargoHold::Remove(const Outfit *outfit, int amount)
 
 	amount = min(amount, outfits[outfit]);
 	outfits[outfit] -= amount;
+
+	// Remove the entry if there is no instance of this outfit in this cargo hold.
+	if(!outfits[outfit])
+		outfits.erase(outfit);
 	return amount;
 }
 
@@ -564,12 +561,6 @@ int CargoHold::IllegalCargoFine() const
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
-		// The code for adding and removing outfits does not clear the entry in the
-		// map if its value becomes zero, so we need to check if the outfit is
-		// actually inside the cargo hold.
-		if(!it.second)
-			continue;
-
 		int fine = it.first->Get("illegal");
 		if(it.first->Get("atrocity") > 0.)
 			return -1;
