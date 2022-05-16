@@ -58,6 +58,17 @@ using namespace std;
 namespace {
 	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
+	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
+	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+
+	// Struct to track per system how many pointers are drawn and still
+	// need to be drawn.
+	struct PointerDrawCount {
+		// Amount of systems already drawn.
+		unsigned drawn = 0;
+		unsigned available = 0;
+		unsigned unavailable = 0;
+	};
 
 	// Log how many player ships are in a given system, tracking whether
 	// they are parked or in-flight.
@@ -109,7 +120,7 @@ namespace {
 	bool HasMultipleLandablePlanets(const System &system)
 	{
 		const Planet *firstPlanet = nullptr;
-		for(auto &stellarObject : system.Objects())
+		for(auto &&stellarObject : system.Objects())
 			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
 			{
 				// We can return true once we found 2 different landable planets.
@@ -316,9 +327,12 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
-		Angle angle;
+		unsigned missionCounter = 0;
 		for(const Mission &mission : player.Missions())
 		{
+			if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+				break;
+
 			if(!mission.IsVisible())
 				continue;
 
@@ -334,16 +348,26 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				if(!blink)
 				{
 					bool isSatisfied = IsSatisfied(player, mission);
-					DrawPointer(from, angle, isSatisfied ? currentColor : blockedColor, false);
+					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
 				}
+				else
+					++missionCounter;
 			}
 
 			for(const System *waypoint : mission.Waypoints())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
 				if(waypoint == &system)
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
 			for(const Planet *stopover : mission.Stopovers())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
 				if(stopover->IsInSystem(&system))
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
 		}
 	}
 
@@ -1139,7 +1163,7 @@ void MapPanel::DrawNames()
 void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
-	map<const System *, Angle> angle;
+	map<const System *, PointerDrawCount> missionCount;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1148,10 +1172,24 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
+	if(specialSystem)
+	{
+		// The special system pointer is larger than the others.
+		++missionCount[specialSystem].drawn;
+		Angle a = Angle(MISSION_POINTERS_ANGLE_DELTA * missionCount[specialSystem].drawn);
+		Point pos = Zoom() * (specialSystem->Position() + center);
+		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
+		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+	}
+	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.CanAccept(player) ? availableColor : unavailableColor);
+		auto &it = missionCount[system];
+		if(mission.CanAccept(player))
+			++it.available;
+		else
+			++it.unavailable;
 	}
 	for(const Mission &mission : player.Missions())
 	{
@@ -1159,6 +1197,13 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+
+		// Reserve a maximum of half of the slots for available missions.
+		auto &&it = missionCount[system];
+		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
+		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
+			continue;
+
 		bool blink = false;
 		if(mission.Deadline())
 		{
@@ -1167,20 +1212,22 @@ void MapPanel::DrawMissions()
 				blink = (fmod(step, 1000. / 6. * days) > 1000. / 12. * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		DrawPointer(system, it.drawn, blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, angle[waypoint], waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
+			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
 	}
-	if(specialSystem)
+	// Draw the available and unavailable jobs.
+	for(auto &&it : missionCount)
 	{
-		// The special system pointer is larger than the others.
-		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = Zoom() * (specialSystem->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
-		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+		const auto &system = it.first;
+		auto &&counters = it.second;
+		for(unsigned i = 0; i < counters.available; ++i)
+			DrawPointer(system, counters.drawn, availableColor);
+		for(unsigned i = 0; i < counters.unavailable; ++i)
+			DrawPointer(system, counters.drawn, unavailableColor);
 	}
 }
 
@@ -1219,13 +1266,13 @@ void MapPanel::DrawTooltips()
 				tooltip += "\n";
 
 			unsigned sum = 0;
-			for(const auto& it : t.outfits)
+			for(const auto &it : t.outfits)
 				sum += it.second;
 
 			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
 
 			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
-				for(const auto& it : t.outfits)
+				for(const auto &it : t.outfits)
 					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
 
@@ -1250,16 +1297,18 @@ void MapPanel::DrawTooltips()
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
+	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
+void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
 {
-	angle += Angle(30.);
+	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
+		return;
+	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);

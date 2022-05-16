@@ -97,6 +97,10 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
 	}
+	else if(key == SDLK_HOME)
+		scroll = 0;
+	else if(key == SDLK_END)
+		scroll = -maxScroll;
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
 		selected += (key == SDLK_DOWN) - (key == SDLK_UP);

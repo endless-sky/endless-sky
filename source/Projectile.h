@@ -47,6 +47,11 @@ public:
 		double distanceTraveled;
 	};
 
+
+public:
+	static Angle Inaccuracy(double value);
+
+
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
@@ -106,6 +111,9 @@ private:
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
 
+	// The change in velocity of all stages of this projectile
+	// relative to the firing ship.
+	Point dV;
 	double clip = 1.;
 	int lifetime = 0;
 	double distanceTraveled = 0;

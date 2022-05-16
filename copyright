@@ -899,14 +899,14 @@ Files:
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
- images/ship/osprey*
  images/ship/quicksilver*
+ images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
- images/thumbnail/osprey*
  images/thumbnail/quicksilver*
+ images/thumbnail/scout*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -1050,9 +1050,9 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/enforcer?confrontation?gear*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+Copyright: 1010Todd (1010todd3d@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Evan Fluharty (under the same license).
+Comment: Derived from works by Becca Tommaso (tommasobecca03@gmail.com) (under the same license) and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/hai?williwaw*
@@ -1209,7 +1209,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: images/planet/*-hot*
-Copyright: Tommaso Becca
+Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
@@ -1225,7 +1225,7 @@ Files:
  images/outfit/ka'het?vareti?engine*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Becca Tommaso.
 
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
@@ -1315,8 +1315,19 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/star/neutron*
+ images/outfit/asteroid?scanner*
  images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/dark?storm*
  images/outfit/nuke*
+ images/outfit/red?sun*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/hardpoint/nuke*
@@ -1445,32 +1456,34 @@ Files:
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
 
-Files: images/scene/citydark
-images/scene/buildings
-images/scene/busysteet
-images/scene/iceplains
-images/scene/iceplains2
-images/scene/iceplains3
-images/scene/lonelyrock
-images/scene/redrocks
-images/scene/seasidecliffs
-images/scene/Seasunset
-images/scene/smeer
-images/scene/snowfield
-images/scene/snowvillage
-images/scene/sunet
-images/scene/tower
-images/scene/icepicture
-images/scene/snowplains
+Files:
+ images/scene/citydark*
+ images/scene/buildings*
+ images/scene/busysteet*
+ images/scene/iceplains*
+ images/scene/iceplains2*
+ images/scene/iceplains3*
+ images/scene/lonelyrock*
+ images/scene/redrocks*
+ images/scene/seasidecliffs*
+ images/scene/Seasunset*
+ images/scene/smeer*
+ images/scene/snowfield*
+ images/scene/snowvillage*
+ images/scene/sunet*
+ images/scene/tower*
+ images/scene/icepicture*
+ images/scene/snowplains*
 Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
-Files: images/outfits/skadetear
-images/scenes/hroar
+Files:
+ images/outfits/skadetear*
+ images/scenes/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0
+Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
