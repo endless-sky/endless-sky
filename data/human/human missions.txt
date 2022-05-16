@@ -482,11 +482,16 @@ mission "There Might Be Riots 1"
 	
 	on offer
 		conversation
-			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" You nod. "Are you available for a transport job?" she asks.`
+			choice
+				`	"What is it?"`
+				`	"Not right now."`
+					defer
+			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm not headed in that direction right now."`
-					defer
+					decline
 			`	"Great," she says, "I'll tell the boys to start loading their gear into your ship." About a half an hour later the road crew begins carting instruments and amplifiers into your cargo hold. Soon after that, you hear the roar of a crowd in the distance and another group of men comes running into your ship. "We're with the band," they say. "Quick, shut the hatch." Half a minute later, a mob of people has surrounded your ship and a few of them are even climbing on top of it. It takes you a second to realize they're not angry or bent on destruction - they're just a group of crazy fans.`
 			`	"Happens everywhere we go," says one of the musicians, calmly, as he watches a video feed of the mob on one of your monitors. He tells you that he's Ulrich, the lead singer. Then he introduces the rest of the singers and musicians.`
 			choice
@@ -612,7 +617,7 @@ mission "There Might Be Riots part 3A"
 					defer
 			`	They're very happy to see you. "You always seem to have amazing timing," says Ulrich. "We were just wondering who could transport us to a... gig of sorts... up north, and then you come along. Any chance you could take us to <destination>?"`
 			`	You've heard of that planet. "The weapons testing world for Lovelace Labs?" you ask. "I'm surprised you'd be able to find a big audience there."`
-			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
+			`	"Oh, we'll have an audience, all right," he says. "We've just put out a new album called 'Songs for the End of Civilization.' A war protest album. We want to film ourselves playing a concert right in the middle of the missile testing range. Of course, we'll probably end up running out of there with Republic Intelligence nipping at our heels. What do you say?"`
 			choice
 				`	"Sorry, that's further than I'm willing to go for you guys."`
 					goto no
@@ -641,7 +646,7 @@ mission "There Might Be Riots part 3A"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
-			`	"Excellent," he says. "We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
+			`	"Excellent," he says. "We go thumb our noses at the military-industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
 			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
 				accept
 	on visit
@@ -663,7 +668,7 @@ mission "There Might Be Riots part 3B"
 	on offer
 		conversation
 			`You bring your ship to a gingerly landing in a section of the testing range that doesn't look too pockmarked with craters, and the band begins setting up their equipment and video cameras. "This is great," says Ulrich. "We'll be broadcasting live over the Net. It's time people started asking why the government thinks it needs all these weapons of war."`
-			`	The band plays through about a third of their set without any evidence that the locals even know you are here, which is surprising for such a tightly secured planet. Then, right in the middle of a particularly crunchy anti-war song, your long range radar picks up something: a large number of ships approaching from a hundred kilometers away.`
+			`	The band plays through about a third of their set without any evidence that the locals even know you are here, which is surprising for such a tightly secured planet. Then, right in the middle of a particularly crunchy anti-war song, your long-range radar picks up something: a large number of ships approaching from a hundred kilometers away.`
 			choice
 				`	"Guys, I think we should get out of here."`
 				`	"We've got ships incoming. Could be trouble."`
@@ -725,7 +730,7 @@ mission "There Might Be Riots part 3B"
 
 mission "Drug Running 1"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -741,7 +746,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -760,7 +765,7 @@ mission "Drug Running 1"
 
 mission "Drug Running 2"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -790,7 +795,7 @@ mission "Drug Running 2"
 
 mission "Drug Running 3"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -806,7 +811,7 @@ mission "Drug Running 3"
 		has "Drug Running 2: done"
 	
 	on offer
-		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
+		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet> for <payment>.`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -899,7 +904,7 @@ mission "Hallucination"
 
 mission "Shady passenger transport 1"
 	name "Shady passenger transport"
-	description "Discreetly transport a passenger to <destination>. If you are caught with him, you may be fined."
+	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
 	source
@@ -935,7 +940,7 @@ mission "Shady passenger transport 1"
 
 mission "Shady passenger transport 2"
 	name "Shady passenger transport"
-	description "Discreetly transport two passengers to <destination>. If you are caught with them, you may be fined."
+	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
 	source
@@ -981,7 +986,7 @@ mission "Shady passenger transport 2"
 
 mission "Shady passenger transport 3"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
 	source
@@ -1038,7 +1043,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1225,7 +1230,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1316,7 +1321,7 @@ mission "Courier 3"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>, and you will be paid <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1867,7 +1872,7 @@ mission "Terraforming 10"
 			`Amy, Nolan, and the other two scientists tell you the known history of Tundra's climate. Millions of years ago, an asteroid impact or large volcanic eruption altered the planet's atmosphere. Now, the planet no longer retains enough heat from its host star in order to stay warm.`
 			`	"Tundra's snow covered surface only exacerbates the problem, reflecting most of the star's light back into space," Nolan explains. "This means that we need to both alter the atmosphere in order for it to retain more heat and alter the surface in order for it to reflect less heat."`
 			`	Amy rolls out a map of the entire planet onto the table. Different regions of the surface are color coded, and a large red spot in the planet's southern hemisphere sticks out to you.`
-			`	"Tundra has very low volcanic activity, but seismic mapping has lead us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
+			`	"Tundra has very low volcanic activity, but seismic mapping has led us to this area." Amy circles the red spot with her finger. "Magma from the planet's mantle is building up under this area of the crust, which lucky for us is unusually thin. Still, it could be another ten thousand years before the magma builds up enough pressure under the surface to cause a supereruption, melting the snow around it and releasing greenhouse gases into the atmosphere that over time will raise the global temperatures."`
 			choice
 				`	"So are we going to wait ten thousand years for it to erupt?"`
 				`	"How does this help our situation?"`
@@ -2002,7 +2007,7 @@ mission "Terraforming Follow-up"
 		conversation
 			`When you land, you receive a message from Amy, the girl you helped to terraform Rand and Tundra.`
 			`	"I hope everything is going well, Captain. I just wanted to give you an update on what has occurred in the past year.`
-			`	"Tundra's climate has drastically improved. Areas around the equator are starting to become completely snow free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out.`
+			`	"Tundra's climate has drastically improved. Areas around the equator are starting to become completely snow-free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out.`
 			`	"Speaking of Rand, last month I got to catch up with Eric and Alaric when I visited the planet. They've told me that Rand is becoming a far better place to live on now. It's even becoming a popular tourist destination. They wanted me to relay their gratitude to you for making their dream come true.`
 			`	"That's all I have to say. Thanks again for all the help. I don't know where I would be without it."`
 				decline
@@ -2108,15 +2113,15 @@ mission "Terminus exploration"
 			branch skip
 				not "First Contact: Hai: offered"
 			action
-				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear striking resemblance to the wormhole that leads to the Hai.`
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear a striking resemblance to the wormhole that leads to the Hai.`
 			`	"You mean the wormhole to the Hai?" you ask.`
-			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblance to it in some of our readings, although it is very different in others."`
+			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bears a striking resemblance to it in some of our readings, although it is very different in others."`
 				goto end
 			label skip
 			action
 				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, there is a wormhole "just beyond the Republic's borders" that the Republic doesn't like people sharing information on.`
 			label end
-			`	He looks around again and stands up straight. He then raises his voice, almost projecting it for anyone around you to hear. "But of course the Deep never figured out how to make wormholes big enough for anything useful, otherwise we wouldn't even need hyperdrives," he says with a wink. "Anyway, thank you again for helping me. Hopefully we meet again in the future."`
+			`	He looks around again and stands up straight. He then raises his voice, almost projecting it for anyone around you to hear. "But of course, the Deep never figured out how to make wormholes big enough for anything useful, otherwise we wouldn't even need hyperdrives," he says with a wink. "Anyway, thank you again for helping me. Hopefully we meet again in the future."`
 
 ship "Science Drone"
 	sprite "ship/science drone"
@@ -2142,7 +2147,7 @@ mission "Lost Boy 1"
 	
 	on offer
 		conversation
-			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic-tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty looking woman crying with her head down in one of the booths.`
+			`Wandering around the spaceport to see what it has to offer, you make your way into one of the dimly lit restaurants to avoid the crowded streets and metallic-tasting air outside. The restaurant is mostly empty. One of its only inhabitants is a dirty-looking woman crying with her head down in one of the booths.`
 			choice
 				`	(Approach the woman and ask why she is crying.)`
 				`	(Ignore her and leave the restaurant.)`
@@ -2385,7 +2390,7 @@ mission "Paradise Fortune 3"
 				`	(Launch immediately.)`
 					launch
 			
-			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to their mouth.`
+			`	"Look outside," Diana says with a ghastly look on her face. You check your ship's external cameras, and roaming around your ship is a group of men in Navy uniforms. One of them raises a megaphone to his mouth.`
 			`	"Hand over the girl and her credits and we can all walk away from this peacefully, Captain."`
 			choice
 				`	"Why do you need her?"`
@@ -2416,6 +2421,7 @@ mission "Paradise Fortune 3"
 				launch
 			
 	on accept
+		"stored reputation: Republic" = "reputation: Republic"
 		"reputation: Republic" <?= -10
 	
 	on decline
@@ -2509,7 +2515,7 @@ mission "Paradise Fortune 4"
 				decline
 	
 	on accept
-		"reputation: Republic" >?= 10
+		"reputation: Republic" >?= "stored reputation: Republic"
 	on decline
 		payment 525894400
 		"reputation: Republic" <?= -1000
@@ -2736,7 +2742,7 @@ mission "Pirate Blockade"
 			
 			label need
 			`	"It isn't what I want, it's what I need," she whispers, putting heavy emphasis on the word "need."`
-			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere.`
+			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate-filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere.`
 			`	"I assassinated a pirate warlord a couple of days ago, and I have been sheltering his slaves ever since. What I need from you is to transport the <bunks> people in my care to <destination>. Another member of my group should be there to pay you <payment> and take the people somewhere far away from here." She cocks her head to the right. "Will you fight for justice and transport these people, Captain?" The look in her eyes suggests that she won't take no for an answer.`
 			choice
 				`	"Anything for the freedom of the innocent."`
@@ -2768,7 +2774,7 @@ mission "Pirate Blockade"
 		fleet "Large Core Pirates"
 	
 	on visit
-		dialog `You land on <planet> and begin looking around for the man you are suppose to meet, but then you realize that not all of the escaped slaves are here. Better depart and wait for your escorts holding the rest to arrive.`
+		dialog `You land on <planet> and begin looking around for the man you are supposed to meet, but then you realize that not all of the escaped slaves are here. Better depart and wait for your escorts holding the rest to arrive.`
 	on complete
 		payment
 		payment 1000
@@ -2912,6 +2918,8 @@ mission "Hauler VI cargo prototype 1"
 	source
 		planet "Deep"
 	destination "Skymoot"
+	to offer
+		"armament deterrence" > 0
 	npc accompany
 		government "Merchant"
 		personality escort timid
@@ -3036,12 +3044,12 @@ mission "Antibiotics To South"
 	
 	on offer
 		conversation
-			`As you wander around the spaceport, you spot a well dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
+			`As you wander around the spaceport, you spot a well-dressed man who seems to be eyeing your ship. When you approach him, he turns to you and asks, "Is this your ship? I'm looking for someone in charge of a heavily armed fleet."`
 			choice
 				`	"It is. Why?"`
 				`	"Sorry, I think you're mistaken."`
 					decline
-			`	The man begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
+			`	The man begins to explain himself. "I'm arranging a shipment from a pharmaceutical plant here on <origin> to <destination>. Specifically, <cargo>. I'm sure you're aware of the fact that they're in very high demand in the south, so we have a trade deal with that planet. Unfortunately, <commodity> are in even higher demand in pirate territory, so the last two merchants I've sent down there have been attacked by pirate ships. My company won't give the budget for an escort, so anyone I send down there has to be alone. Fortunately, I do have the budget for a high-risk contract, so if you can take one of these shipments to <destination>, I can arrange a payment of <payment>. Does this sound fair so far?"`
 			choice
 				`	"Sure, but do you know anything about these pirates?"`
 				`	"No thanks, that sounds too risky for me."`
@@ -3116,7 +3124,7 @@ mission "Pirate Duel"
 				`	"What sort of vessel is the Esca?"`
 					goto vessel
 				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
-			`	The man hesitates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
+			`	The man hesitates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate-infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
 				goto end
 			label vessel
 			`	The man hesitates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
@@ -3644,7 +3652,7 @@ mission "Street Swindle"
 					decline
 			label firstgamewatch
 			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
-			`	"The next buy-in is a larger prize!" the announcer calls after her before turing to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
+			`	"The next buy-in is a larger prize!" the announcer calls after her before turning to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.`
 			choice
 				`	"I'll do it!" (Bet 6000 credits).`
 					goto secondgameplay
@@ -3766,86 +3774,64 @@ mission "Thrall Emigration"
 
 
 
-mission "Repulsor failure"
+mission "Spaceport Reminder Setter"
 	landing
-	# Don't require the player to pay credits again if the player was already allowed to land when this mission triggered.
-	clearance
-	source
-		not attributes "station"
-		not attributes "gas giant"
-		not attributes "uninhabited"
-		not attributes "korath"
+	invisible
+	on offer
+		"spaceport reminder year" = "year"
+		"spaceport reminder month" = "month"
+		fail
+
+# Use of "00" at the start of the mission name is to make it offer only if no other missions have.
+mission "00 Spaceport Reminder Resetter"
+	minor
+	invisible
+	repeat
 	to offer
-		random < 8
-		credits >= 2000000
+		not "chosen sides"
+		not "Spaceport Reminder: offered"
+	on offer
+		"spaceport reminder year" = "year"
+		"spaceport reminder month" = "month"
+		fail
+
+mission "Spaceport Reminder"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "uninhabited"
+	to offer
+		not "chosen sides"
+		"spaceport reminder year" + "spaceport reminder month" != 0
+		"spaceport reminder year" * 12 + "spaceport reminder month" < "year" * 12 + "month" - 3
 	on offer
 		conversation
-			`When you start de-orbiting, you see a warning that one of the repulsors on your ship is not working.`
+			`As soon as you touch down on <origin>, you step off your ship and head directly for the job board and trade hub, brushing past several locals on the way. The constant routine of interstellar commerce has been firmly drilled into your brain; you near unconsciously peruse the boards, trying to suss out the most profitable route.`
+			`	You're caught off guard when you hear a voice behind you. "Hey, what's with all the rush, Captain?" You turn and see a dark-haired man in a faded green longcoat approaching you. "You seem awfully focused on getting off-world as soon as possible. Why not take a moment to look around? Admire the sights, try the local cuisine, maybe even talk to some of the people."`
 			choice
-				`(Return to orbit to fix the issue in space.)`
-					launch
-				`(Attempt to land anyway.)`
-			`Orbital entry is a bit more steep than normal, and your ship is starting to lean a bit.`
+				`	"Why should I do that?"`
+				`	"I'm a spaceship captain; I don't have time to waste."`
+			`	He tilts his head to the side. "You know, I'm a captain too. I know how quickly the luster of the galaxy can fade into the weekly grind if you wait for opportunity to come knocking. So why keep waiting? I'm sure you'll find something new to do in the spaceport."`
 			choice
-				`(Try to return to orbit to fix the issue in space.)`
-					goto reorbit
-				`(Continue the attempt to land.)`
-			`You're reaching the point where your ship will not be able to re-orbit on its own power. The cockpit is filled with warnings about the descent angle and attitude control.`
+				`	"I'll be sure to check more spaceports in the future."`
+					goto thanks
+				`	"Nothing interesting happened the last time I checked a spaceport."`
+				`	"Why should I listen to you? I can handle myself, thank you very much."`
+					goto rebuff
+			`	The captain sighs. "Yeah, it can feel a little pointless running up against the same loud-mouthed people all the time. But just because a spaceport doesn't have anything to offer one day doesn't mean that it'll never have anything worthwhile. Wait a while, and there might be something new."`
 			choice
-				`(Attempt to re-orbit and hope that the ship still makes it.)`
-					goto reorbit
-				`(Proceed with landing, crashing, or dying - whichever one it's gonna be.)`
-			`Your decent is still far more steep than normal, and the ship is starting to roll. It is no longer possible to correct both your descend angle and maintain attitude control.`
+				`	"Alright, I'll try to check more spaceports."`
+					goto thanks
+				`	"And why should I believe you over my own experiences?"`
+			label rebuff
+			`	He raises his hand and holds it open on his chest. "I know that it's only my word against yours, but I promise that you won't regret checking the spaceport every time you're in town."`
 			choice
-				`(Prioritize roll stabilization.)`
-					goto rolling
-				`(Prioritize lowering the descent angle.)`
-				`(Switch to full auto-pilot control.)`
-			`Your ship begins to roll faster and faster, but the autopilot somehow manages to soften the descent angle.`
-			choice
-				`(Prioritize roll stabilization now.)`
-					goto rolling
-				`(Continue prioritizing lowering the descent angle.)`
-				`(Let the autopilot handle the landing.)`
-			branch miracle
-				random < 80
-			`It's not enough! The ship starts rolling even faster, your vision blurs, and consciousness starts to slip from you. The last thing you remember is your ship falling apart...`
-			`	By the time your ship fully disintegrates, you've already died.`
-				die
-			label rolling
-			`Your ships roll stabilizes, but your descent vector is now almost perpendicular to the surface, and the acceleration straight towards the surface pushes you firmly into your chair.`
-			choice
-				`(Pray for a miracle.)`
-				`(Scream your lungs out.)`
-				`(Silently accept the situation as it is.)`
-			branch miracle
-				random < 70
-			`There is nothing more you can do to save your ship or yourself. The <ship> crashes straight into the ground. Whoever will have to clean this mess up will have a hard time finding your remains.`
-				die
-			label miracle
-			`Suddenly, all repulsors come back online at full strength! You feel the seatbelt dig into your skin over the sudden deceleration.`
-			choice
-				`(Let the autopilot handle the landing.)`
-				`(Attempt to perform a manual landing.)`
-				`(Try to return to orbit to fix the issue in space.)`
-					goto reorbit
-			branch miraclelanding
-				random < 98
-			`Your ship's trajectory and attitude stabilize, but it was too late. All warning lights in the cockpit are lit and sirens are blaring, but the view out your window of the fast approaching planet surface makes the impending crash more clear than any light or siren does. You experience a few seconds of fear, after which you life ends in a short, big flash.`
-				die
-			label miraclelanding
-			`Your ship's trajectory and attitude stabilize, and somehow the ship crash-lands on the surface.`
-			`	You aren't sure what is more miraculous: that you landed near the spaceport or that you're still alive.`
-			`	The authorities are not very impressed and fine you 200,000 credits for reckless flying.`
-			`	Your ship took extensive damage, you pay 86,100 credits for repairs.`
+				`	"Fine, I'll follow your advice."`
+					goto thanks
+				`	"I don't need your help."`
+			`	A frown creeps onto the captain's face as he earnestly says, "Well, I'm sorry that my advice wasn't helpful. Good luck, Captain." He walks off, leaving you alone at the job board.`
 				decline
-			label reorbit
-			`The climb back into orbit is turbulent, slow, and difficult, but you make it there safely.`
-				launch
-	on enter
-		dialog
-			`You manage to fix the repulsor while in orbit. After a few quick tests, you confirm that it will work fine on next landing.`
-	on decline
-		fine 200000
-		payment -86100
+			label thanks
+			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
+				decline
 

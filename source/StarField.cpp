@@ -200,6 +200,9 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 	else
 		transparency = 0.;
 
+	// Set zoom to a higher level than stars to avoid premature culling.
+	zoom = min(.25, zoom / 1.4);
+
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
 	Point size = Point(1., 1.) * haze[0].front().Radius();

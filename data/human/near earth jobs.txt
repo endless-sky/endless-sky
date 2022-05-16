@@ -50,8 +50,7 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 	to fail
-		month == 4
-		day == 22
+		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -84,8 +83,7 @@ mission "To Earth Day celebration [1]"
 				month == 4
 				day < 22
 	to fail
-		month == 4
-		day == 22
+		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
