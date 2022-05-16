@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define EFFECT_H_
 
 #include "Body.h"
+#include "Point.h"
 
 #include <string>
 
@@ -57,8 +58,9 @@ private:
 	double randomAngle = 0.;
 	double randomSpin = 0.;
 	double randomFrameRate = 0.;
-	bool absoluteAngle = false;
-	bool absoluteVelocity = false;
+	// Absolute means it does not depend from the angle of the projectile before, and can be specified.
+	double absoluteAngle = 0.;
+	Point *absoluteVelocity = nullptr;
 	
 	int lifetime = 0;
 	int randomLifetime = 0;

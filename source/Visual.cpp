@@ -22,7 +22,8 @@ using namespace std;
 
 // Generate a visual based on the given Effect.
 Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity)
-	: Body(effect, pos, effect.absoluteVelocity ? Point() : vel, effect.absoluteAngle ? Angle() : facing), lifetime(effect.lifetime)
+	: Body(effect, pos, effect.absoluteVelocity ? *effect.absoluteVelocity : vel, 
+	effect.absoluteAngle ? effect.absoluteAngle : facing), lifetime(effect.lifetime)
 {
 	if(effect.randomLifetime > 0)
 		lifetime += Random::Int(effect.randomLifetime + 1);
