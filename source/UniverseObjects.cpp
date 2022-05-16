@@ -392,11 +392,16 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			testDataSets.Get(node.Token(1))->Load(node, path);
 		else if(key == "trade")
 			trade.Load(node);
-		// Variant names cannot be numbers, as Fleets and Variants
-		// need to be able to distinguish between a given Variant's
-		// name or weight, which is a number.
-		else if(key == "variant" && node.Size() >= 2 && !node.IsNumber(1))
-			variants.Get(node.Token(1))->Load(node);
+		else if(key == "variant" && node.Size() >= 2)
+		{
+			// Variant names cannot be numbers, as Variants need
+			// to be able to distinguish between a given Variant's
+			// name or weight, which is a number.
+			if(!node.IsNumber(1))
+				variants.Get(node.Token(1))->Load(node);
+			else
+				child.PrintTrace("Skipping variant with a purely numerical identifier:");
+		}
 		else if(key == "landing message" && node.Size() >= 2)
 		{
 			for(const DataNode &child : node)
