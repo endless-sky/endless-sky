@@ -1,5 +1,5 @@
 /* Variant.h
-Copyright (c) 2019 by Amazinite
+Copyright (c) 2022 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef VARIANT_H_
 #define VARIANT_H_
 
-#include "WeightedList.h"
 #include "WeightedUnionItem.h"
 
 #include <cstdint>
@@ -69,7 +68,7 @@ private:
 private:
 	std::string name;
 	std::vector<const Ship *> ships;
-	WeightedList<WeightedUnionItem<Variant>> variants;
+	std::vector<WeightedUnionItem<Variant>> variants;
 };
 
 

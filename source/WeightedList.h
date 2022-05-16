@@ -59,9 +59,6 @@ public:
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
 
-	void insert(iterator position, const Type &val);
-	void insert(iterator position, std::size_t n, const Type &val);
-
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
 
@@ -125,25 +122,6 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 	total += choice.Weight();
 	return choice;
 }
-
-
-
-template <class Type>
-void WeightedList<Type>::insert(typename std::vector<Type>::iterator position, const Type &val)
-{
-	total += val.Weight();
-	choices.insert(position, val);
-}
-
-
-
-template <class Type>
-void WeightedList<Type>::insert(typename std::vector<Type>::iterator position, std::size_t n, const Type &val)
-{
-	total += val.Weight() * n;
-	choices.insert(position, n, val);
-}
-
 
 
 

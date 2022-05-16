@@ -1,5 +1,5 @@
 /* Variant.cpp
-Copyright (c) 2019 by Amazinite
+Copyright (c) 2022 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -151,7 +151,7 @@ void Variant::Load(const DataNode &node)
 		{
 			if(it->GetItem().NestedInSelf(name))
 			{
-				it = variants.eraseAt(it);
+				it = variants.erase(it);
 				Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
 			}
 			else
@@ -186,8 +186,7 @@ vector<const Ship *> Variant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
 	for(const auto &it : variants)
-		for(int i = 0; i < it.Weight(); ++i)
-			chosenShips.push_back(it.GetItem().NestedChooseShip());
+		chosenShips.push_back(it.GetItem().NestedChooseShip());
 	return chosenShips;
 }
 
@@ -201,7 +200,7 @@ int64_t Variant::Strength() const
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.GetItem().NestedStrength() * variant.Weight();
+		sum += variant.GetItem().NestedStrength();
 	return sum;
 }
 
@@ -276,11 +275,9 @@ bool Variant::NestedIsValid() const
 // of ships and variants.
 const Ship *Variant::NestedChooseShip() const
 {
-	unsigned variantTotal = variants.TotalWeight();
-	unsigned total = ships.size() + variants.TotalWeight();
 	// Randomly choose between the ships and the variants.
-	if(Random::Int(total) < variantTotal)
-		return variants.Get().GetItem().NestedChooseShip();
+	if(Random::Int(ships.size() + variants.size()) < variants.size())
+		return variants[Random::Int(variants.size())].GetItem().NestedChooseShip();
 
 	return ships[Random::Int(ships.size())];
 }
@@ -291,5 +288,5 @@ const Ship *Variant::NestedChooseShip() const
 // the total weight of its contents.
 int64_t Variant::NestedStrength() const
 {
-	return Strength() / (ships.size() + variants.TotalWeight());
+	return Strength() / (ships.size() + variants.size());
 }
