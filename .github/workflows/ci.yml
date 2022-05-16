@@ -73,7 +73,7 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-${{ matrix.opengl }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-${{ matrix.opengl }}-artifact-${{ hashFiles('source/**', 'SConstruct', '.github/workflows/ci.yml') }}
     - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -127,7 +127,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/**', 'SConstruct', '.github/workflows/ci.yml') }}
     - name: Install dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -175,7 +175,7 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -235,7 +235,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/src/**', 'tests/unit/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -290,7 +290,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Update Homebrew
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: brew update
