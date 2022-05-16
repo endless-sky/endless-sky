@@ -72,9 +72,7 @@ void Variant::Load(const DataNode &node)
 			if(variant)
 			{
 				// If given a full definition of one of this variant's variant members, remove the variant.
-				Variant toRemove(child);
-				auto removeIt = remove_if(variants.begin(), variants.end(),
-					[&toRemove](const UnionItem<Variant> &v) noexcept -> bool { return v.GetItem() == toRemove; });
+				auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<Variant>(child));
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -84,8 +82,7 @@ void Variant::Load(const DataNode &node)
 			{
 				// If given the name of a ship, remove all ships by that name from this variant.
 				string shipName = child.Token(1);
-				auto removeIt = remove_if(ships.begin(), ships.end(),
-					[&shipName](const Ship *s) noexcept -> bool { return s->VariantName() == shipName; });
+				auto removeIt = std::remove(ships.begin(), ships.end(), GameData::Ships().Get(child.Token(1)));
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
 				else
@@ -130,7 +127,7 @@ void Variant::Load(const DataNode &node)
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.insert(variants.end(), n, UnionItem<Variant>(Variant(child)));
+					variants.insert(variants.end(), n, UnionItem<Variant>(child));
 			}
 			else
 			{
