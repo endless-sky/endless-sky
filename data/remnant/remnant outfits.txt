@@ -326,7 +326,7 @@ outfit "Ember Tear"
 		sound "ion"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
-		"hit effect" "ember tear vortex" 
+		"hit effect" "ember tear vortex"
 		"fire effect" "ember tear fire"
 		"velocity" 800
 		"inaccuracy" 0
