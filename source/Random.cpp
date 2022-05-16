@@ -121,6 +121,18 @@ double Random::StdNormal()
 
 
 
+// Get a normally distributed number (mean = 0, sigma= 1) using std::normal_distribution.
+double Random::StdNormal(double mean, double sigma)
+{
+	normal_distribution<double> normal{mean, sigma};
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return normal(gen);
+}
+
+
+
 // Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
 // Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BMNormal(double mean, double sigma)

@@ -42,6 +42,8 @@ public:
 	static uint32_t Binomial(uint32_t t, double p = .5);
 	// Get a normally distributed number (mean = 0, sigma = 1) using std::normal_distribution.
 	static double StdNormal();
+	// Get a normally distributed number with specified mean and stddev using std::normal_distribution.
+	static double StdNormal(double mean, double sigma);
 	// Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
 	// Also caches the unused variable without transforming it.
 	static double BMNormal(double mean, double sigma);
