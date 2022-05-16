@@ -1618,3 +1618,14 @@ mission "Remnant: Cognizance 38"
 			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
 			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured Chasers. It is not much, but it may give you a little more ease of outfitting the <ship>.`
 
+
+
+mission "Remnant: Cognizance 39"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 38: done"
+	on offer
+		event "remnant: cognizance calm" 5
