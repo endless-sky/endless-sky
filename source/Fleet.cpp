@@ -206,31 +206,15 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-
-			int weight = 1;
-			int index = 1 + add;
-			string variantName;
-			if(child.Size() >= index + 1 && !child.IsNumber(index))
-				variantName = child.Token(index++);
-			if(child.Size() >= index + 1)
-				weight = child.Value(index);
-
-			if(!variantName.empty())
-			{
-				variants.emplace_back(GameData::Variants().Get(variantName), weight);
-				if(child.HasChildren())
-					child.PrintTrace("Warning: Skipping children of named variant in fleet definition:");
-			}
-			else
-				variants.emplace_back(child, weight);
+			variants.emplace_back(child, child.Size() >= add + 2 ? child.Value(add + 1) : 1);
 		}
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
+			auto VariantToRemove = [&toRemove](const WeightedUnionItem<Variant> &v) noexcept -> bool
 			{
-				return v.Get() == toRemove;
+				return v.GetItem() == toRemove;
 			};
 
 			auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
@@ -263,7 +247,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().IsValid(); }))
+			[](const WeightedUnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().IsValid(); }))
 		return false;
 
 	return true;
@@ -273,17 +257,17 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const WeightedVariant &v) noexcept -> bool
+	auto IsInvalidVariant = [](const WeightedUnionItem<Variant> &v) noexcept -> bool
 	{
-		return !v.Get().IsValid();
+		return !v.GetItem().IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
 		return;
 
 	// Ensure the class invariant can be maintained.
-	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int total = variants.TotalWeight();
+	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());
 	variants.erase(removeIt, variants.end());
 
@@ -308,7 +292,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 
 	// Pick a fleet variant to instantiate.
-	vector<const Ship *> variantShips = variants.Get().Get().ChooseShips();
+	vector<const Ship *> variantShips = variants.Get().GetItem().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -477,7 +461,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 
 	// Pick a fleet variant to instantiate.
-	vector<const Ship *> variantShips = variants.Get().Get().ChooseShips();
+	vector<const Ship *> variantShips = variants.Get().GetItem().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -567,7 +551,7 @@ int64_t Fleet::Strength() const
 
 	int64_t sum = 0;
 	for(const auto &variant : variants)
-		sum += variant.Get().Strength() * variant.Weight();
+		sum += variant.GetItem().Strength() * variant.Weight();
 	return sum / variants.TotalWeight();
 }
 
@@ -589,7 +573,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 
 
 
-vector<shared_ptr<Ship>> Fleet::Instantiate(vector<const Ship *> &ships) const
+vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) const
 {
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *model : ships)

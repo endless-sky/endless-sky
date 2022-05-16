@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Random.h"
 #include "Ship.h"
-#include "WeightedVariant.h"
 
 #include <algorithm>
 #include <iterator>
@@ -74,12 +73,9 @@ void Variant::Load(const DataNode &node)
 			{
 				// If given a full definition of one of this variant's variant members, remove the variant.
 				Variant toRemove(child);
-				auto VariantToRemove = [&](const WeightedVariant &v) noexcept -> bool
-				{
-					return v.Get() == toRemove;
-				};
-
-				auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
+				auto removeIt = remove_if(variants.begin(), variants.end(),
+					[&toRemove](const WeightedUnionItem<Variant> &v) noexcept -> bool
+						{ return v.GetItem() == toRemove; });
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -89,12 +85,9 @@ void Variant::Load(const DataNode &node)
 			{
 				// If given the name of a ship, remove all ships by that name from this variant.
 				string shipName = child.Token(1);
-				auto ShipToRemove = [&](const Ship *s) noexcept -> bool
-				{
-					return s->VariantName() == shipName;
-				};
-
-				auto removeIt = remove_if(ships.begin(), ships.end(), ShipToRemove);
+				auto removeIt = remove_if(ships.begin(), ships.end(),
+					[&shipName](const Ship *s) noexcept -> bool
+						{ return s->VariantName() == shipName; });
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
 				else
@@ -134,12 +127,12 @@ void Variant::Load(const DataNode &node)
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
 				{
-					variants.emplace_back(GameData::Variants().Get(variantName), n);
+					variants.insert(variants.end(), n, WeightedUnionItem<Variant>(GameData::Variants().Get(variantName), 1));
 					if(child.HasChildren())
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.emplace_back(child, n);
+					variants.insert(variants.end(), n, WeightedUnionItem<Variant>(Variant(child), 1));
 			}
 			else
 			{
@@ -149,26 +142,21 @@ void Variant::Load(const DataNode &node)
 			}
 		}
 	}
-}
 
-
-
-void Variant::FinishLoading()
-{
-	if(name.empty())
-		return;
-	
-	// Prevent a named variant from containing itself.
-	for(auto it = variants.begin(); it != variants.end(); )
-	{
-		if(it->Get().NestedInSelf(name))
+	// Prevent a named variant from containing itself. Even if the nested variants
+	// of this variant aren't loaded yet, eventually the loop will be found after
+	// the last variant loads.
+	if(!name.empty())
+		for(auto it = variants.begin(); it != variants.end(); )
 		{
-			it = variants.eraseAt(it);
-			Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
+			if(it->GetItem().NestedInSelf(name))
+			{
+				it = variants.eraseAt(it);
+				Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
+			}
+			else
+				++it;
 		}
-		else
-			++it;
-	}
 }
 
 
@@ -183,7 +171,7 @@ bool Variant::IsValid() const
 
 	// At least one nested variant is enough to make the variant valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return v.Get().NestedIsValid(); }))
+			[](const WeightedUnionItem<Variant> &v) noexcept -> bool { return v.GetItem().NestedIsValid(); }))
 		return true;
 
 	return false;
@@ -199,7 +187,7 @@ vector<const Ship *> Variant::ChooseShips() const
 	vector<const Ship *> chosenShips = ships;
 	for(const auto &it : variants)
 		for(int i = 0; i < it.Weight(); ++i)
-			chosenShips.push_back(it.Get().NestedChooseShip());
+			chosenShips.push_back(it.GetItem().NestedChooseShip());
 	return chosenShips;
 }
 
@@ -213,7 +201,7 @@ int64_t Variant::Strength() const
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.Get().NestedStrength() * variant.Weight();
+		sum += variant.GetItem().NestedStrength() * variant.Weight();
 	return sum;
 }
 
@@ -256,7 +244,7 @@ bool Variant::NestedInSelf(const string &check) const
 		return true;
 
 	for(const auto &it : variants)
-		if(it.Get().NestedInSelf(check))
+		if(it.GetItem().NestedInSelf(check))
 			return true;
 
 	return false;
@@ -275,7 +263,7 @@ bool Variant::NestedIsValid() const
 
 	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedVariant &v) noexcept -> bool { return !v.Get().NestedIsValid(); }))
+			[](const WeightedUnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().NestedIsValid(); }))
 		return false;
 
 	return true;
@@ -288,10 +276,11 @@ bool Variant::NestedIsValid() const
 // of ships and variants.
 const Ship *Variant::NestedChooseShip() const
 {
-	int total = ships.size() + variants.TotalWeight();
+	unsigned variantTotal = variants.TotalWeight();
+	unsigned total = ships.size() + variants.TotalWeight();
 	// Randomly choose between the ships and the variants.
-	if(static_cast<int>(Random::Int(total)) < static_cast<int>(variants.TotalWeight()))
-		return variants.Get().Get().NestedChooseShip();
+	if(Random::Int(total) < variantTotal)
+		return variants.Get().GetItem().NestedChooseShip();
 
 	return ships[Random::Int(ships.size())];
 }

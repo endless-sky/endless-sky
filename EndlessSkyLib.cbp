@@ -344,8 +344,7 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/WeightedVariant.cpp" />
-		<Unit filename="source/WeightedVariant.h" />
+		<Unit filename="source/WeightedUnionItem.h" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />

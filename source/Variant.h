@@ -14,13 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define VARIANT_H_
 
 #include "WeightedList.h"
+#include "WeightedUnionItem.h"
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
 class DataNode;
 class Ship;
-class WeightedVariant;
 
 
 
@@ -33,7 +34,6 @@ public:
 	Variant(const DataNode &node);
 
 	void Load(const DataNode &node);
-	void FinishLoading();
 
 	// Determine if this variant template uses well-defined data.
 	bool IsValid() const;
@@ -69,7 +69,7 @@ private:
 private:
 	std::string name;
 	std::vector<const Ship *> ships;
-	WeightedList<WeightedVariant> variants;
+	WeightedList<WeightedUnionItem<Variant>> variants;
 };
 
 

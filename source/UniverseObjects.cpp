@@ -128,10 +128,6 @@ void UniverseObjects::FinishLoading()
 	for(auto &&it : persons)
 		it.second.FinishLoading();
 
-	// Allow each named variant to prevent it from containing itself.
-	for(auto &&it : variants)
-		it.second.FinishLoading();
-
 	for(auto &&it : startConditions)
 		it.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.

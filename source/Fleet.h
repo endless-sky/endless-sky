@@ -15,9 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Personality.h"
 #include "Sale.h"
+#include "Variant.h"
 #include "WeightedList.h"
-#include "WeightedVariant.h"
+#include "WeightedUnionItem.h"
 
+#include <cstdint>
 #include <list>
 #include <memory>
 #include <set>
@@ -73,7 +75,7 @@ public:
 
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
-	std::vector<std::shared_ptr<Ship>> Instantiate(std::vector<const Ship *> &ships) const;
+	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;
 	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
 	void SetCargo(Ship *ship) const;
 
@@ -83,7 +85,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	WeightedList<WeightedVariant> variants;
+	WeightedList<WeightedUnionItem<Variant>> variants;
 
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
