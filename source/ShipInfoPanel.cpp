@@ -217,7 +217,10 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'l' && player.HasLogs())
 		GetUI()->Push(new LogbookPanel(player));
 	else if(key == 'w')
+	{
+		GetUI()->Pop(this);
 		GetUI()->Push(new WeaponConfigPanel(player, std::move(panelState)));
+	}
 	else
 		return false;
 

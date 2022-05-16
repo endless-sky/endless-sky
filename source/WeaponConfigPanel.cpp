@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Ship.h"
+#include "ShipInfoPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -303,7 +304,10 @@ bool WeaponConfigPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
+	{
 		GetUI()->Pop(this);
+		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+	}
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == panelState.Ships().begin())
