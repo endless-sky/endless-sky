@@ -348,7 +348,9 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 	// remainder back to this cargo hold, even if there is not space for it.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
-	commodities[commodity] += removed - added;
+	int remainder = removed - added;
+	if(remainder)
+		commodities[commodity] += remainder;
 
 	return added;
 }
@@ -491,6 +493,10 @@ int CargoHold::Remove(const string &commodity, int amount)
 
 	amount = min(amount, commodities[commodity]);
 	commodities[commodity] -= amount;
+
+	// Remove this commodity if it isn't in this cargo hold anymore.
+	if(!commodities[commodity])
+		commodities.erase(commodity);
 	return amount;
 }
 
