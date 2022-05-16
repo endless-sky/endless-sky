@@ -100,6 +100,10 @@ void WeaponConfigPanel::Draw()
 		interfaceInfo.SetCondition("five buttons");
 	else
 		interfaceInfo.SetCondition("three buttons");
+	interfaceInfo.SetCondition("show turn rate bar");
+	interfaceInfo.SetBar("turnratethreshold", 0.5);
+
+
 
 	// Draw the interface.
 	const Interface *weaponConfigPanelUi = GameData::Interfaces().Get("info panel");
@@ -236,7 +240,7 @@ void WeaponConfigPanel::Draw()
 				if(isHover && defensiveZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);
-				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn(), textColor);
+				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn() * 60., textColor);
 				if(isHover && opportunisticZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsOpportunistic() ? "Opportunistic" : "Focused", textColor);

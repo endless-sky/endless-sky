@@ -1100,6 +1100,20 @@ interface "info panel"
 		center -300 -305
 		dimensions 120 30
 	
+	#The turn rate threshold bar for automatically setting tracking mode
+	visible if "show turn rate bar"
+	bar "turnratethreshold"
+		from 100 -250
+		dimensions 360 0
+		color "energy"
+		size 5
+	sprite "ui/wide button"
+		center 550 -250
+	active if "apply turn rate threshold"
+	button a "_Apply"
+		center 550 -250
+		dimensions 90 30
+	
 	visible
 	button d "_Done"
 		center 455 305
