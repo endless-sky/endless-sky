@@ -17,7 +17,7 @@ outfit "Small Collector Module"
 	"mass" 8
 	"outfit space" -6
 	"solar collection" .8
-	"heat generation" .4
+	"solar heat" .4
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
 
 outfit "Large Collector Module"
@@ -29,7 +29,7 @@ outfit "Large Collector Module"
 	"mass" 28
 	"outfit space" -21
 	"solar collection" 3.3
-	"heat generation" 1.5
+	"solar heat" 1.5
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
 
 outfit "Small Reactor Module"
@@ -85,22 +85,22 @@ outfit "Small Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 44000
+	cost 22000
 	thumbnail "outfit/small battery module"
 	"mass" 4
 	"outfit space" -4
-	"energy capacity" 900
+	"energy capacity" 3600
 	description "Because Coalition ships rely on solar power, they must also be able to store a substantial amount of energy. This small battery pack is much more efficient than comparable human technology."
 
 outfit "Large Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 340000
+	cost 170000
 	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
-	"energy capacity" 4500
+	"energy capacity" 18000
 	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
@@ -207,7 +207,7 @@ outfit "Fuel Module"
 	"fuel capacity" 400
 	"fuel protection" .25
 	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
-	description "	Nowadays, nearly every system on the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
+	description "	Nowadays, nearly every system in the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Scanning Module"
 	category "Systems"
@@ -285,7 +285,7 @@ outfit "Large Steering Module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 711.9
+	"turn" 747
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
