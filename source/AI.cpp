@@ -2768,8 +2768,9 @@ bool AI::HasOpportunisticWeapons(const Ship &ship)
 
 
 
-void AI::AimIdleOpportunisticTurret(int index, const Ship &ship, FireCommand &command, const Hardpoint &hardpoint)
+void AI::AimIdleOpportunisticTurret(const Hardpoint *weaponsStart, const Ship &ship, FireCommand &command, const Hardpoint &hardpoint) const
 {
+	int index = &hardpoint - weaponsStart;
 	// First, check if this turret is currently in motion. If not,
 	// it only has a small chance of beginning to move.
 	double previous = ship.FiringCommands().Aim(index);
@@ -2784,8 +2785,9 @@ void AI::AimIdleOpportunisticTurret(int index, const Ship &ship, FireCommand &co
 
 
 
-void AI::AimIdleFocusedTurret(int index, FireCommand &command, const Hardpoint &hardpoint)
+void AI::AimIdleFocusedTurret(const Hardpoint *weaponsStart, FireCommand &command, const Hardpoint &hardpoint) const
 {
+	int index = &hardpoint - weaponsStart;
 	double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
 	command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 }
@@ -2838,34 +2840,32 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	// If there are no targets to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
-	if(focusedTargets.empty() && targets.empty() && !opportunistic)
+	const Hardpoint *weaponsStart = &ship.Weapons().front();
+	if(targets.empty() && opportunistic)
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
+			if(hardpoint.CanAim())
+				AimIdleOpportunisticTurret(weaponsStart, ship, command, hardpoint);
+		}
+		return;
+	}
+	if(targets.empty() && !opportunistic)
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
 			if(hardpoint.CanAim())
 			{
-				// Get the index of this weapon.
-				int index = &hardpoint - &ship.Weapons().front();
 				// 'opportunistic' can be false but individual hardpoints on a ship may still be set to opportunistic.
 				if(hardpoint.IsOpportunistic())
 				{
-					AimIdleOpportunisticTurret(index, ship, command, hardpoint);
+
+					AimIdleOpportunisticTurret(weaponsStart, ship, command, hardpoint);
 					continue;
 				}
-				AimIdleFocusedTurret(index, command, hardpoint);
+				AimIdleFocusedTurret(weaponsStart, command, hardpoint);
 			}
 		}
-		return;
-	}
-	if(targets.empty())
-	{
-		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.CanAim())
-			{
-				// Get the index of this weapon.
-				int index = &hardpoint - &ship.Weapons().front();
-				AimIdleOpportunisticTurret(index, ship, command, hardpoint);
-			}
 		return;
 	}
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
