@@ -400,7 +400,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			if(!node.IsNumber(1))
 				variants.Get(node.Token(1))->Load(node);
 			else
-				child.PrintTrace("Skipping variant with a purely numerical identifier:");
+				node.PrintTrace("Skipping variant with a purely numerical identifier:");
 		}
 		else if(key == "landing message" && node.Size() >= 2)
 		{
