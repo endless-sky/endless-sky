@@ -122,12 +122,13 @@ double Random::StdNormal()
 
 
 // Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
+// Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BMNormal(double mean, double sigma)
 {
 	if(normalBMCached)
 	{
 		normalBMCached = false;
-		return cachedBMNormal;
+		return sigma * cachedBMNormal + mean;
 	}
 	else
 	{
@@ -143,8 +144,9 @@ double Random::BMNormal(double mean, double sigma)
 		u2 = Random::Real();
 
 		// Store z0 and return z1
-		auto mag = sigma * sqrt(-2.0 * log(u1));
-		cachedBMNormal  = mag * cos(two_pi * u2) + mean;
-		return mag * sin(two_pi * u2) + mean;
+		auto mag = sqrt(-2.0 * log(u1));
+		cachedBMNormal = mag * cos(two_pi * u2);
+		normalBMCached = true;
+		return sigma * mag * sin(two_pi * u2) + mean;
 	}
 }
