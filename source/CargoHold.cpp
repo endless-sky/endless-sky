@@ -116,26 +116,27 @@ void CargoHold::Save(DataWriter &out) const
 	// Save all outfits, even ones which have only been referred to.
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-	{
-		// It is possible this cargo hold contained no commodities, meaning
-		// we must print the opening tag now.
-		if(first)
+		if(it.second)
 		{
-			out.Write("cargo");
-			out.BeginChild();
-		}
-		first = false;
+			// It is possible this cargo hold contained no commodities, meaning
+			// we must print the opening tag now.
+			if(first)
+			{
+				out.Write("cargo");
+				out.BeginChild();
+			}
+			first = false;
 
-		// If this is the first outfit to be written, print the opening tag.
-		if(firstOutfit)
-		{
-			out.Write("outfits");
-			out.BeginChild();
-		}
-		firstOutfit = false;
+			// If this is the first outfit to be written, print the opening tag.
+			if(firstOutfit)
+			{
+				out.Write("outfits");
+				out.BeginChild();
+			}
+			firstOutfit = false;
 
-		out.Write(it.first->Name(), it.second);
-	}
+			out.Write(it.first->Name(), it.second);
+		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
 	if(!firstOutfit)
