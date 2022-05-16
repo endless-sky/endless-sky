@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef VARIANT_H_
 #define VARIANT_H_
 
-#include "WeightedUnionItem.h"
+#include "UnionItem.h"
 
 #include <cstdint>
 #include <string>
@@ -68,7 +68,7 @@ private:
 private:
 	std::string name;
 	std::vector<const Ship *> ships;
-	std::vector<WeightedUnionItem<Variant>> variants;
+	std::vector<UnionItem<Variant>> variants;
 };
 
 

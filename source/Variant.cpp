@@ -74,8 +74,7 @@ void Variant::Load(const DataNode &node)
 				// If given a full definition of one of this variant's variant members, remove the variant.
 				Variant toRemove(child);
 				auto removeIt = remove_if(variants.begin(), variants.end(),
-					[&toRemove](const WeightedUnionItem<Variant> &v) noexcept -> bool
-						{ return v.GetItem() == toRemove; });
+					[&toRemove](const UnionItem<Variant> &v) noexcept -> bool { return v.GetItem() == toRemove; });
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -86,8 +85,7 @@ void Variant::Load(const DataNode &node)
 				// If given the name of a ship, remove all ships by that name from this variant.
 				string shipName = child.Token(1);
 				auto removeIt = remove_if(ships.begin(), ships.end(),
-					[&shipName](const Ship *s) noexcept -> bool
-						{ return s->VariantName() == shipName; });
+					[&shipName](const Ship *s) noexcept -> bool { return s->VariantName() == shipName; });
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
 				else
@@ -127,12 +125,12 @@ void Variant::Load(const DataNode &node)
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
 				{
-					variants.insert(variants.end(), n, WeightedUnionItem<Variant>(GameData::Variants().Get(variantName), 1));
+					variants.insert(variants.end(), n, UnionItem<Variant>(GameData::Variants().Get(variantName)));
 					if(child.HasChildren())
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.insert(variants.end(), n, WeightedUnionItem<Variant>(Variant(child), 1));
+					variants.insert(variants.end(), n, UnionItem<Variant>(Variant(child)));
 			}
 			else
 			{
@@ -171,7 +169,7 @@ bool Variant::IsValid() const
 
 	// At least one nested variant is enough to make the variant valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedUnionItem<Variant> &v) noexcept -> bool { return v.GetItem().NestedIsValid(); }))
+			[](const UnionItem<Variant> &v) noexcept -> bool { return v.GetItem().NestedIsValid(); }))
 		return true;
 
 	return false;
@@ -262,7 +260,7 @@ bool Variant::NestedIsValid() const
 
 	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const WeightedUnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().NestedIsValid(); }))
+			[](const UnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().NestedIsValid(); }))
 		return false;
 
 	return true;

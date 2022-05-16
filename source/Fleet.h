@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sale.h"
 #include "Variant.h"
 #include "WeightedList.h"
-#include "WeightedUnionItem.h"
+#include "UnionItem.h"
 
 #include <cstdint>
 #include <list>
@@ -85,7 +85,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	WeightedList<WeightedUnionItem<Variant>> variants;
+	WeightedList<UnionItem<Variant>> variants;
 
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
