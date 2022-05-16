@@ -23,7 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "Variant.h"
 
 #include <algorithm>
 #include <cmath>
@@ -212,12 +211,9 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto VariantToRemove = [&toRemove](const WeightedUnionItem<Variant> &v) noexcept -> bool
-			{
-				return v.GetItem() == toRemove;
-			};
-
-			auto removeIt = remove_if(variants.begin(), variants.end(), VariantToRemove);
+			auto removeIt = remove_if(variants.begin(), variants.end(),
+				[&toRemove](const WeightedUnionItem<Variant> &v) noexcept -> bool
+					{ return v.GetItem() == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
@@ -292,7 +288,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 
 	// Pick a fleet variant to instantiate.
-	vector<const Ship *> variantShips = variants.Get().GetItem().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().GetItem().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -461,7 +457,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 
 	// Pick a fleet variant to instantiate.
-	vector<const Ship *> variantShips = variants.Get().GetItem().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().GetItem().ChooseShips();
 	if(variantShips.empty())
 		return;
 
