@@ -38,6 +38,8 @@ namespace {
 
 static bool normalBMCached = false;
 static double cachedBMNormal = std::numeric_limits<double>::infinity();
+static constexpr double epsilon = std::numeric_limits<double>::epsilon();
+static constexpr double two_pi = 2.0 * 3.1415926535;
 
 
 
@@ -144,9 +146,6 @@ double Random::BMNormal(double mean, double sigma)
 	}
 	else
 	{
-		constexpr double epsilon = std::numeric_limits<double>::epsilon();
-		constexpr double two_pi = 2.0 * M_PI;
-
 		double u1, u2;
 		do
 		{
