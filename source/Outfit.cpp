@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 
 using namespace std;
 
@@ -346,6 +347,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 			if(!minimum)
 				continue;
 		}
+
+		// Only automatons may have a "required crew" of 0.
+		if(!strcmp(at.first, "required crew"))
+			minimum = !attributes.Get("automaton");
+
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)

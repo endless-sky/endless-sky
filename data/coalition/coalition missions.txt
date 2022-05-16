@@ -229,9 +229,10 @@ mission "Coalition: Lost: Offer"
 
 
 mission "Coalition Yottrite 1"
+	minor
+	landing
 	name "More Yottrite"
 	description "You were offered great payment for bringing three more samples of the rare mineral yottrite to <destination>."
-	landing
 	to offer
 		has "Coalition: Contributor: done"
 	to complete
@@ -248,7 +249,7 @@ mission "Coalition Yottrite 1"
 					defer
 			`	When you approach them, the Arach explains that he is one of the people that oversee the mining operations on <planet> and that he would like to bring the yottrite there so that they can attempt to study it with their most advanced equipment.`
 			`	"Few entries on yottrite, my predecessors managed to catalog," he says. "Naturally occur in our territory, it does not. Few opportunities to study it, we've had."`
-			`	After discussing with his colleagues for a bit, he announces that he is willing to pay you 220,000 credits for the mineral sample.`
+			`	After discussing with his colleagues for a bit, he announces that he is willing to pay you 350,000 credits for the mineral sample.`
 			choice
 				`	"Sounds like a fair deal to me. Sold."`
 				`	"Sorry, but I think I'll hold on to it. It was very hard to get it in the first place."`
@@ -257,7 +258,7 @@ mission "Coalition Yottrite 1"
 				accept
 	on accept
 		outfit "Yottrite" -1
-		payment 220000
+		payment 350000
 
 
 
@@ -281,7 +282,7 @@ mission "Coalition Yottrite 2"
 			`	He tells you to land as usual. Once your ship is brought to the underground area, some workers help unload the yottrite, and ask you to follow them into a restricted section of the complex to get your payment. The guards at the entrance watch closely as your group passes by.`
 			`	You walk along extremely wide industrial catwalks overlooking endless smelters and forges of various sizes. Though the heat of the place may be influencing your perception, you're almost certain the largest smelters must be around the size of a light warship.`
 			`	After walking for too long in the uncomfortably hot and stuffy interiors of the underground compound, you and the several tons of yottrite are finally brought to a large area similar to a warehouse. Several workers are operating machinery and making sure ore pieces are brought to specific conveyor belts.`
-			`	As the workers leave you to bring the yottrite to a separate section of the facility, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 660,000 credits. "Much will be achieved, if significant progress with the samples we make."`
+			`	As the workers leave you to bring the yottrite to a separate section of the facility, you're greeted by the Arach who contacted you. "In your debt, we are, Captain <last>," he says, handing you 1,050,000 credits. "Much will be achieved, if significant progress with the samples we make."`
 			choice
 				`	"What sort of progress?"`
 					goto progress
@@ -299,7 +300,7 @@ mission "Coalition Yottrite 2"
 				accept
 	on accept
 		outfit "Yottrite" -3
-		payment 660000
+		payment 1050000
 
 
 
@@ -321,7 +322,7 @@ mission "Coalition Yottrite 3"
 					defer
 				`	"Sure am. Have some people wait by the docking area to help me unload the samples."`
 			`	As the workers get the ore samples out of your ship, you realize that this time the Arach that asked for your help wasn't the one to contact you, nor was he waiting for you on the ground.`
-			`	The workers say they will bring the yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 1,540,000 credits, and ask for permission to load the crates onto your ship.`
+			`	The workers say they will bring the yottrite to the warehouse on their own, and you're told to wait. When they return, they're accompanied by other workers with different crates. They hand you 2,450,000 credits, and ask for permission to load the crates onto your ship.`
 			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the overseer has," they say.`
 			choice
 				`	"What's in the crates?"`
@@ -338,7 +339,7 @@ mission "Coalition Yottrite 3"
 				accept
 	on accept
 		outfit "Yottrite" -7
-		payment 1540000
+		payment 2450000
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
@@ -489,7 +490,7 @@ mission "Coalition Yottrite 8"
 	on offer
 		conversation
 			`When you land, you receive a message from Lugglop, the Arach to whom you brought several Yottrite samples.`
-			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you?"`
+			`	"Captain, some major findings, we have. Preparing a presentation about our research, to present in Ring of Wisdom, we are," he says. "Only, run out of pure samples, we have. Bring us one once more, would you? Willing to pay slightly more for the inconvenience, we are. <payment>."`
 			choice
 				`	"Okay, I'll bring you a piece of yottrite once again."`
 				`	"Sorry, but I'm not mining that any more."`
@@ -498,7 +499,7 @@ mission "Coalition Yottrite 8"
 				accept
 	on complete
 		outfit "Yottrite" -1
-		payment 220000
+		payment 400000
 		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
 
 
@@ -1248,6 +1249,7 @@ mission "Longcow Antibiotics 1"
 		random < 35
 	source
 		attributes arach
+		not attributes "coalition station"
 	stopover "New Finding"
 	destination "Corral of Meblumem"
 	on offer
@@ -1310,6 +1312,7 @@ mission "Arachi Orphans"
 		random < 45
 	source
 		attributes arach
+		not attributes "coalition station"
 	destination "Chosen Nexus"
 	on offer
 		conversation
@@ -1480,7 +1483,7 @@ mission "Saryd University Lecture"
 		conversation
 			`As you exit a restaurant in the spaceport, you notice a rumpled-looking Saryd staring at you. Attention from others is not new for you in Coalition space, as you are quite an unusual sight here. You don't pay him much mind until he begins to gallop towards you, hailing you down.`
 			`	"Captain! Excited to finally meet you, I am. Heard of the human in our space, I have, but to see you myself, special it is."`
-			`	"A scientist, I am, and invitied to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
+			`	"A scientist, I am, and invited to speak at a university seminar, I have been. Be there by <date>, I must. The honor of transporting me to <planet>, will you give me?"`
 			choice
 				`	"What is the seminar about?"`
 					goto xeno
@@ -1531,7 +1534,7 @@ mission "Saryd University Lecture"
 				`	"Sorry, I don't have time."`
 					decline
 			label explanation
-			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knoweldge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
+			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knowledge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1584,11 +1587,12 @@ mission "Saryd University Lecture"
 			label know
 			branch coalitionknow
 				has "coalition knows hai"
+			action
+				set "coalition knows hai"
 			`	"Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
-			action
-				set "coalition knows hai"
+				goto nextquestion
 			label coalitionknow
 			`	Several members of the audience are delighted. "Ah, the Hai, we have heard of," says the Heliarch. "That you have made contact with them despite the Quarg, good news it is."`
 			`	"Tell us more of them, could you?" asks another scientist.`
@@ -1944,3 +1948,390 @@ mission "Coalition: Pilgrimage 6"
 		conversation
 			`Once she leaves your ship, Vellorae gives you your payment of <payment>, and takes your hands in hers. "Deeply grateful I am, for having accompanied me in this journey, Captain <last>. Sure that grateful for your help, Adfices also is."`
 			`	She lets go of your hands, wishes you the best in your travels, and then turns and leaves for her home.`
+
+
+
+mission "Coalition: Council of Ahr"
+	minor
+	name "Council of Ahr"
+	description "Bring the representatives of houses Ablomab, Bebliss, and Chamgar to <destination> by <date>, so that they may participate in the Council of Ahr."
+	deadline 30
+	to offer
+		has "Coalition: Contributor: done"
+		random < 50
+		"month" < 3
+	source
+		near "Sol Arach" 0 1
+	stopover "Delve of Bloptab"
+	stopover "Hammer of Debrugt"
+	stopover "Stronghold of Flugbu"
+	destination "Ahr"
+	on offer
+		conversation
+			`Shortly after you enter the spaceport, an Arach in a sturdy, red uniform, with golden "pauldrons" on each of his legs' joints, approaches you. "Greetings, Captain <last>," he says. "Interested in taking up some transport jobs, are you? Very well paid, you would be."`
+			choice
+				`	"What are the jobs about?"`
+				`	"Paid how well, exactly?"`
+				`	"Sorry, I'm not looking for that type of job right now."`
+					decline
+			`	"Happening soon, the Council of Ahr is. Gather on the capital, all Arach houses do. Discuss matters related to Arach space, they will, alongside my lieges of the royal family. Paid <payment>, you would be, if to <destination> by <date>, the remaining representatives of the houses, you brought."`
+			choice
+				`	"Sounds simple enough. Who are these representatives?"`
+					goto representatives
+				`	"Can you tell me more about the Council?"`
+				`	"That sounds like it might take a while, and I'm rather busy, so I'll pass."`
+					decline
+			`	"Of course. A few centuries after leaving our home planet, entangled in petty wars, the more prominent houses were. Fearing for the fate of their subjects, called for the first Council, the royal family at the time did. A more civil way to solve disputes, it became, and though war still, many of the houses did, far less frequent, the conflicts were. Now that at peace we are, merely a traditional meeting, it is, taking place every few years, so that discuss how to improve the conditions of Arach space, the houses may."`
+			label representatives
+			scene "scene/councilofahr1"
+			`	He shows you a data pad, pointing to three symbols on the screen as he names the houses from left to right. "Issues with her other transport, the representative of House Bebliss had, so waiting on Stronghold of Flugbu, she still is. Word that House Chamgar is ready for the Council, I just received, and on Hammer of Debrugt, their member is. Spare some time for the Council, House Ablomab finally can, and waiting for you on Delve of Bloptab, their envoy is.`
+			`	"Receive your payment, you will, once on <planet>, the three representatives are. I shall inform the houses that expect you, they should. Thankful for your assistance, the royal family is."`
+			`	He briefly bows his head while stretching his legs in some sort of salute, then disappears into the spaceport. Once you're at your ship, you place markers on <stopovers>, where the representatives are waiting.`
+				accept
+	to complete
+		has "Coalition: Council of Ahr: Ablomab: done"
+		has "Coalition: Council of Ahr: Bebliss: done"
+		has "Coalition: Council of Ahr: Chamgar: done"
+	on abort
+		fail "Coalition: Council of Ahr: Ablomab"
+		fail "Coalition: Council of Ahr: Bebliss"
+		fail "Coalition: Council of Ahr: Chamgar"
+		fail "Coalition: Council of Ahr: Drama"
+	on complete
+		"coalition jobs" += 5
+		payment 4500000
+
+mission "Coalition: Council of Ahr: Ablomab"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Delve of Bloptab"
+	destination "Ahr"
+	on offer
+		conversation
+			`You land on <source> to find that House Ablomab's representative had to oversee an "emergency meltdown drill" on the neighboring planet, Bloptab's Furnace. His interplanetary shuttle still hasn't arrived, so you're left to wait for him on the spaceport.`
+			`	He finally arrives some hours after sunset, dragging along a heavy suitcase and barely holding on to what must be the Arach equivalent of coffee. As you help him with the heavy luggage, he introduces himself as Dubug. "Sorry about the wait, I am. Replace a coworker on the meltdown drill, I had to. A routine task, it is, but also routine, the Council is, so care much for the delay, the house did not. Show me to my room, could you?"`
+			`	While you're both walking to your ship, he finishes his drink, but it doesn't seem to help him keep his eyes open; you have to help him avoid bumping into either the other Arachi here or the spaceport decorations. Although he doesn't seem very talkative, it might help his focus to get a conversation going.`
+			choice
+				`	"So, what can you tell me about house Ablomab?"`
+					goto house
+				`	"Is it difficult having to deal with all the other houses in the Council?"`
+					goto council
+				`	"This Council is hosted by a royal family, right? What can you tell me about them?"`
+			`	"The ninth house? Not much to say, there is. Agreed as the 'royals' they were, in ancient times. Never much power, they had, merely a figure of stability, made to assure peace on Ahr. Host the Council, they do, but a tradition it is. Otherwise, mostly to themselves, they keep."`
+				goto end
+			label house
+			`	He grunts lightly. "The deepest mines and biggest smelters in all the Coalition, we have. Overseeing construction, assuring ore purity, testing the quality of alloys, our most common responsibilities are. In order, everything must be, so that met, the quotas for house Mallob's and the Heliarchs' ships are."`
+				goto end
+			label council
+			`	"Started out as noble families from Ahr, most of the houses did. When first mapped out, Arach space was, carved their own portions, the houses did, and naturally for more systems, many fought. Now at ease with each other, the houses are, and ceased, the territorial disputes have." He sighs. "For the most part."`
+			label end
+			`	Dubug makes it to your ship still awake, but doesn't care to answer when you ask if he needs help unpacking his luggage. Instead, he lays on the bed and asks that you wake him up once you arrive on <planet>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Dubug hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			`Having rested during the trip here, Dubug stretches his legs once he steps off your ship. "All the reports from my house, I've brought, so prepared for the Council, I am," he says, checking his suitcase one more time. "Well then, go I must. Goodbye, Captain <last>. Thankful for the calm trip, I am. A good break from routine, it was."`
+
+mission "Coalition: Council of Ahr: Bebliss"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Stronghold of Flugbu"
+	destination "Ahr"
+	on offer
+		conversation
+			`Once your ship has landed, you receive a message from House Bebliss, directing you to a large hotel in the spaceport city. The security guards don't let you in, so you wait for the representative to come out. About half an hour of waiting later, an elevator nearby opens and many Arachi come out, most of them in formal uniforms and carrying various bags of luggage. An older Arach stands out from the rest on account of being even more formally dressed.`
+			`	"My transport to the Council you are, correct?" She asks, and you confirm. "Splendid. Lady Plubat, I am, Captain. Pleased that transport the will of House Bebliss, such an exquisite captain shall. Finally right, those arranging the transport to the Council have gotten it."`
+			`	She asks you to lead the way to your ship as the other uniformed Arachi follow the two of you, carrying her luggage. "Told, I was, about which representatives tasked with transporting, you were. Bebliss excepted, not the most... intriguing company, they are, so grateful that you're transporting at least one proper guest, you should be."`
+			choice
+				`	"Looks like you hold your house in very high regards."`
+					goto house
+				`	"You don't seem very excited for the Council. Is there something wrong with the other houses?"`
+					goto council
+				`	"Is there anything I should know about the hosts of the Council? I heard they were royalty."`
+			`	"The Oberegts? Well, for one, one of the few houses to honor their noble lineage, they are. Elected as a figurehead, in ancient times they were. Never more than that, they have been, lacking real power and focusing only on Ahr, though contributed much to our understanding of medicine, they have. A figurehead, they are, but a good one, and as such some degree of respect, I must grant them."`
+				goto end
+			label house
+			`	"Keep the Coalition together, House Bebliss does. What makes communication from one system to another possible, our efforts are. Other than the obvious importance of our work, one of the few houses that kept their noble bloodline pure, and who kept their original emblems, we are. Prejudice against those the other houses mixed with, I have not, but greatly value tradition, we do, and broken tradition, they have, in marrying commoners or... those of other species."`
+				goto end
+			label council
+			`	"Drifted away from our old ways, most of them have. Take Mallob and Garbarag: barely houses anymore, they are. Fully transitioned into corporations, they have. Claim noble heritage, Debdo does, but in fact a splinter group of our own house, they are, the traitorous offshoots. The worst of them all, however, House Chamgar is. Lunatics clinging on to an ancient rivalry, they are, liars and revisionists who to tarnish our image, wish. Declare war on us, they would, if subjected to the Heliarch government, our houses were not."`
+			label end
+			`	Once you make it to your ship, she has the Arach butlers tidy up her room, then dismisses them. She tells you she will call for you should she need anything then closes the door to her room.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Lady Plubat hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			branch drama
+				has "Coalition: Council of Ahr: Drama: offered"
+			`You land to find a group of Arachi in uniform waiting nearby, ready to carry Plubat's baggage from your ship. "A delightful flight it was, Captain. Hope that you are picked again to transport me in the future, I do," she says, bidding you farewell and leaving for a nearby transport shuttle.`
+				accept
+			label drama
+			`Lady Plubat rushes out of your ship to meet a group of Arachi in uniform, some of which carry her baggage from your ship, while others surround her as if expecting House Chamgar's Plubat to try and stir up a discussion. Once all her bags are out, they escort her to a nearby transport shuttle.`
+
+mission "Coalition: Council of Ahr: Chamgar"
+	invisible
+	landing
+	passengers 1
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Council of Ahr: active"
+	source "Hammer of Debrugt"
+	destination "Ahr"
+	on offer
+		conversation
+			`You can barely step off your ship before House Chamgar's representative greets you. "Honored that transporting me, such an esteemed pilot is, Captain <last>. Certain, I am, that honored you also are. An important task it is, to transport one from the great House Chamgar. Plubat, my name is, and as time we still have, show you our installations I must."`
+			`	He drags you around the eccentric spaceport, bringing you to odd exhibits where some pieces of technology are being constructed or repaired, going on about House Chamgar's advances. The tour goes on for some hours as you pretend to be impressed by what he calls "the newest prototypes" (most of which look like standard Coalition technology). Only after he drags you around again, stopping at a nearby hotel where he picks up his luggage, do you finally get him to follow you to your ship.`
+			`	It doesn't take long for him to get started again. "Now, Captain <last>, time for a full tour of our spaceport facilities, today we don't have; to the Council, we must go, but happy to answer your many questions about our great house, I am. Wondering how we invented our repair modules, are you? Or maybe by our special alloys, intrigued you are?"`
+			choice
+				`	"Well, why don't you tell me a bit about your house?"`
+					goto house
+				`	"How about you tell me about the other houses that are going to the Council?"`
+					goto council
+				`	"Actually, I'm curious about the hosts of the Council."`
+			`	He stops dead in his tracks. "The royals? Well, not much to say, there is. Chosen as such on a primitive Ahr, only symbolic, their role is. Never held any ambition, they have, remaining the weakest house since formed. Assured stability on the capital, they have, and in good relations with us, they are, for recognize our value, they do, so bad, they are not, only uninteresting."`
+				goto end
+			label house
+			`	You can barely finish your question, as he begins what is undoubtedly a rehearsed speech. "The greatest Arach warriors of old, we were, and always at the forefront of scientific progress and creative inventions. For the brilliant breakthrough that were our repair modules, persecuted by the Quarg, we were, but here, in this system, on this planet, held a chokepoint, we did. Guarded Arach space from them, for centuries we had to, until banished with the help of our Saryd and Kimek friends, they were."`
+				goto end
+			label council
+			`	"Alright, most of them are. Amicable relations with nearly all houses, we maintain. Except with the scum from Bebliss, lying, treacherous snakes they are. Conspiring against the government, helping rebels they are! 'Their' world, Stronghold of Flugbu is not, stolen from us, it was. Heed my warning, Captain: trust them, you should not, preferable to trust a Quarg, it is."`
+			label end
+			`	He seems ready to have you ask another question, but as you reach your ship, he picks up a call on a communication device and signals for you to show him to his room. He then says that he must handle some business, and that he'll talk to you again later.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Plubat hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			branch drama
+				has "Coalition: Council of Ahr: Drama: offered"
+			`"Captain <last>! A pleasurable experience for the both of us, this has been, but sadly short, the trip from my home to <planet> is, so part ways, we must," Plubat says as he prepares to leave your ship. "To finish the tour of our facilities, I'm sure you want, so once over, the Council is, ask for me there, and guide you again, I shall."`
+				accept
+			label drama
+			`House Chamgar's representative, Plubat, stays close to you while firmly clinging to his luggage, as his colleague from house Bebliss, Lady Plubat, has her bags brought out of your ship by some nearby Arachi in uniform. "Telling you I am, Captain, trusted, she should not be. Checked your ship, have you? All in place, your belongings are? Careful with her types, you must be," he says. After the Bebliss butlers are done, Plubat scoffs something at Lady Plubat one last time, then leaves your ship.`
+
+mission "Coalition: Council of Ahr: Drama"
+	invisible
+	landing
+	to offer
+		or
+			has "Coalition: Council of Ahr: Bebliss: active"
+			has "Coalition: Council of Ahr: Chamgar: active"
+		has "Coalition: Council of Ahr: active"
+		not "Coalition: Council of Ahr: Bebliss: done"
+		not "Coalition: Council of Ahr: Chamgar: done"
+	source
+		planet "Hammer of Debrugt" "Stronghold of Flugbu"
+	destination "Ahr"
+	on enter
+		conversation
+			`After departing from <origin>, you start hearing some shouting from outside your cockpit, so you leave to check up on your passengers. Plubat, from House Chamgar, is banging one leg against the door to the room of Plubat, from House Bebliss. "Captain! Good thing that here, you are," he says. "Sent an envoy to mock me, that damned house Bebliss has! Copying my name, she is!"`
+			`	Plubat, from House Bebliss, opens the door to her room to respond. "Nonsense that is, Captain. Look at us, several decades older, I am, so copying you, how could I be? The offending party here, house Chamgar is."`
+			`	"Changed your name for this mockery, you could have. Know of your house's grudge against us, I do," he replies.`
+			`	"Absurd, childish, that is. The one to start mocking me, you were," she says. "Captain <last>, urge you to make haste for Ahr, I must. Put up with this buffoon for much longer, I cannot."`
+			`	Lady Plubat closes the door to her room again, and you convince house Chamgar's representative to also go back to his room. You return to your cockpit, hoping that's the last of that.`
+	on enter "Sol Arach"
+		dialog `In spite of your best attempts to keep them away from each other, Plubat and Plubat have been brief on their breaks from insulting one another. However, once you enter this system, they head back to their rooms on their own without you needing to leave the cockpit to interfere. Being so close to their destination, you hope they won't give you any more headaches.`
+
+mission "Coalition: Council of Ahr: On Complete"
+	invisible
+	landing
+	to offer
+		has "Coalition: Council of Ahr: done"
+	source "Ahr"
+	on offer
+		conversation
+			`A few minutes after the final representative leaves your ship, you receive your payment of 4,500,000 credits. It comes with a message from the royal family, with the symbols of all Arach houses on it. You recognize most from advertisements or offices on some planets, but it's your first time seeing the center one. You imagine it's the emblem of the royal family.`
+			scene "scene/councilofahr2"
+			`	"Greetings, Captain <last>. As the hosts of the Council of Ahr, thank you for your assistance we do. Although certain we are that, to you, appear mundane such kinds of jobs can, difficult, at times it is, to arrange for appropriate transportation for our compatriots from all great houses, so know that deeply grateful for your cooperation, House Oberegt is."`
+
+
+
+mission "Coalition: Submarines 1"
+	minor
+	name "Underwater Delivery"
+	description "Bring Apri'ie to <destination>, where five new deep-sea submarines are waiting to be brought to Second Cerulean."
+	passengers 1
+	to offer
+		has "Coalition: First Contact: done"
+		random < 25
+	source
+		government "Coalition"
+		near "5 Axis" 1 3
+	destination "Market of Gupta"
+	on offer
+		conversation
+			`You notice a Kimek anxiously glancing at the docks from the front of an office building. Once he notices you, he scurries closer. "Say, Captain, willing to do me a service, are you? Transport off-world, I need."`
+			choice
+				`	"Where do you want to go?"`
+				`	"I'm not looking for transport jobs right now, sorry."`
+					decline
+			`	"A prestigious research group from Second Cerulean, I represent, and looking to expand our deep-sea expeditions, we are. For that, just settled the acquisition of five new submarines, my superiors have," he says. "To pick them up from <planet>, I was selected, so transported there, I must be. Permitted to pay you <payment> for the service, I am."`
+			choice
+				`	"Alright, I'll show you to my ship."`
+					goto accept
+				`	"Why weren't they built on Second Cerulean in the first place?"`
+				`	"Sorry, I'm not headed that way."`
+					decline
+			`	"No facilities for such construction, Second Cerulean has," he explains. "Remain mostly untouched, the planet must. Build more than simple research stations on it, we cannot. But in need of sturdier subs, we are, so held a competition to determine what company was to build them, my group did. In my opinion, honestly, not needed such a process was. Obvious that House Mallob would win, it was. Unrivaled in hull integrity, they are."`
+			choice
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
+					goto accept
+				`	"What's so special about this planet that you can't do it there? One shipyard shouldn't be too invasive."`
+				`	"Well, I wish you luck, but I'm not headed that way, sorry."`
+					decline
+			`	He thinks for a while, formulating a response. "Centuries ago, when built there, our outpost was, being worried that trouble the delicate, unique food chains there, further expansion would, prohibited all from settling, and us from constructing any more than the necessary structures, the government did. Enough data, we've gathered, that managed to convince them to allow us some extra exploration vessels, we have. More invasive, the studies with them will be, but enough about the fauna and flora, we now know, that avoid any major complications, we can."`
+			choice
+				`	"Seems like a lot of bureaucracy just for some research. Anyway, I'd be glad to help, let's head to my ship."`
+					goto accept
+				`	"If the planet's native life is all underwater, how would a shipyard pose any risk? It's not like you'd build it underwater."`
+				`	"That sounds overly complicated. I wish you luck in getting it all set, but I'm not headed there, so I can't help you."`
+					decline
+			`	Like a bush in the wind, his body shivers wildly at what you said. "No, built underwater, nothing would be. Obvious that is. But, still, make the rules, I do not, Captain. Simply following them, I am."`
+			choice
+				`	"I see. Well, I'd love to help you. Let me show you to my ship."`
+				`	"Well, I'm not really interested in this, sorry."`
+					decline
+			label accept
+			`	"Very good. Thank you, Captain. Called Apri'ie, and a member of the Pale Waters research center, I am. A wonderful trip, may we have." You bring him to your ship and help him settle what little luggage he has in his room.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 90000
+		conversation
+			`Apri'ie has you land by one of House Mallob's offices, which looks like a mix of a skyscraper and a warehouse, and hands you <payment>.`
+			`	"Thank you for the assistance, Captain <last>. Meet with House Mallob's executives, I must, but if to continue helping, you wish, meet you in the spaceport, I will. The proper transportation of the submarines, the next step is, so if interested, you are, free up space for them, you must." He pauses, as if counting the total weight. "About 60 tons, they should take up. At any rate, talk more in detail in the spaceport, we may." He picks up his belongings and heads for the office, disappearing into the building.`
+
+mission "Coalition: Submarines 2"
+	name "Pressurized Stress Test"
+	description "Bring Apri'ie and the <cargo> to <destination>, where the submarines will be subjected to some final high-pressure stress tests."
+	passengers 1
+	cargo "unmanned submarines" 60
+	blocked "You need <capacity> to help Apri'ie move the submarines. Return here when you have the required space free."
+	to offer
+		has "Coalition: Submarines 1: done"
+	source "Market of Gupta"
+	destination "Inmost Blue"
+	on offer
+		conversation
+			`After spending some time in the spaceport, you begin to ask around for Apri'ie and are directed to a small office of House Mallob. There, a manager briefly looks into their systems and informs you that Apri'ie hasn't left his meeting yet, and so you take a seat in the spaceport, occasionally getting up to check back at the entrance of the office he entered. After some hours, you finally see him exit, accompanied by a Saryd speaking on a communication device as they glance at a data pad.`
+			`	"Captain <last>! Glad that you are interested in assisting us further, I am. Prepared to have the submarines loaded into your cargo hold, are you?" Apri'ie asks. "Ready to conduct some final stress tests, colleagues of mine on <planet> are."`
+			choice
+				`	"Sure thing, I've set aside the space for them."`
+					goto end
+				`	"What sort of testing are you going to do?"`
+			`	"Capable of enduring rapid shifts in pressure, the subs must be, so take quick, deep dives in the oceans of <planet>, and then resurface just as quickly, they will," he says. "Performed their own tests, House Mallob has, so most assuredly ready to go, the vessels are, but just as a formality, perform these tests, we must."`
+			choice
+				`	"I see. Well, I'm ready to go, so you can have the submarines brought to my ship."`
+					goto end
+				`	"Why not just do those tests on Second Cerulean right away?"`
+			`	"Upsetting or startling the local fauna, as well as any structural damage, we wish to avoid, so wait until after the tests, we will, before deploying them in that planet's waters."`
+			choice
+				`	"Let's get on with it then. My ship is ready to carry the subs."`
+					goto end
+				`	"Structural damage?"`
+			`	He stares at you blankly for a moment. "Delicately arranged, the glaciers there are. Resting on them, some of our monitoring equipment is. Avoid any damage to them caused by an unforeseen malfunction, we must."`
+			label end
+			`	The Saryd issues a command on the data pad and turns off the communication device and accompanies you and Apri'ie to your ship as the cargo is loaded.`
+			`	There are five submarines in total, strapped to large, sturdy sleds, which are slowly pushed up the ramp to your cargo hold. The subs themselves are somewhat oval in shape but flat on the top and bottom, with retractable mechanical arms on their sides. After the last sub is safely in your cargo hold, Apri'ie heads into your ship and you set a route for <destination>.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 210000
+		conversation
+			`As the workers unload the submarines from your cargo, Apri'ie approaches you, handing you <payment>. "Oversee the stress test I must, so meet you in the spaceport again, I will. If interested in seeing the test you are, however, come with me, you may."`
+			choice
+				`	"Sure, why not? Probably beats waiting around and checking shops over and over."`
+				`	"Thanks for the invitation, but I'm not really interested."`
+					goto refuse
+			`	After all the submarines are out of your cargo hold, they're placed atop trucks with heavy tracks instead of wheels. You and Apri'ie board one of the trucks and begin a trip down to the shore below, reaching a small commercial port with a large set of docks. Once there, Apri'ie introduces you to some of his colleagues who are already waiting to begin the tests. The subs are activated before they are off the trucks, and some of the Kimek begin to test basic functions.`
+			`	Once they're all in the water, everyone boards a sturdy barge which follows the submarines several kilometers off the coast until you can no longer see the shore. At this point they stop, and one of the submarines submerges, resurfacing in about twenty minutes. The Kimek make sure the sub suffered no damage, and proceed to test the other ones. After each one has made the trip to the bottom and back several times, the submarines and the barge head back to the docks.`
+			`	The subs are once again put on the trucks, and you begin the trip back to the spaceport city. Once you've arrived, Apri'ie's colleagues ask him to come with them to discuss something in private, and he tells you he will meet you back on the spaceport.`
+				accept
+			label refuse
+			`	"Then in the spaceport, meet you I will," he says. After all the submarines are out of your cargo hold, they're placed atop large truck-like vehicles, but with the wheels in a system of continuous tracks. Apri'ie boards one of the trucks, and they start making their way down to the shore below. From there, they follow the water out of the fjord to someplace where the submarines can dive deeper.`
+
+mission "Coalition: Submarines 3"
+	name "Tectonic Stress Test"
+	description "Bring Apri'ie and the <cargo> to <destination>, where the submarines will be subjected to more stress tests to assess their repair functions."
+	passengers 1
+	cargo "unmanned submarines" 60
+	blocked "You need <capacity> to take the next mission. Return here when you have the required space free."
+	to offer
+		has "Coalition: Submarines 2: done"
+	source "Inmost Blue"
+	destination "Dusk Companion"
+	on offer
+		conversation
+			`Apri'ie comes to the spaceport followed by one of his colleagues. "Have to perform one more test, we will, Captain. To assess the subs' repair abilities in hazardous environments, Pale Waters wants, so a quick stop at <destination>, we must make."`
+			choice
+				`	"Alright, we'll head there next then."`
+					goto end
+				`	"Assess their 'repair' abilities? What do you mean?"`
+			`	"Equipped with welders, the arms of the submarines are, so that if greatly damaged deep underwater, one of them is, repaired by the others, it can be," he explains. "Unstable tectonics, <planet> has, so a test repair during one of the nightly tremors, we will conduct. That way, assess their abilities without bothering Second Cerulean's fauna, we can."`
+			choice
+				`	"Sounds like you thought of everything for these subs. Let's head there next then."`
+					goto end
+				`	"Why do you need to test under such conditions? Does Second Cerulean have trouble with tectonics too?"`
+			`	"No, no. But, preparing for any eventuality, we are," he answers. "Should the planet's plates grow unstable, or some other troubling factor come up, prepared for it, the subs must be."`
+			label end
+			`	His colleague speaks up. "Headed to <planet>, another team from the research center has. Return to Second Cerulean with the data we have collected, I and the others will. Prepared the subs for your cargo, we already have."`
+			`	You follow him back to your ship and see that the submarines are ready on the giant sleds again. After they're brought into your hold, Apri'ie's colleagues say goodbye to him, and he enters your ship once more.`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" ++
+		payment 130000
+
+mission "Coalition: Submarines 4"
+	landing
+	name "Deliver the Submarines"
+	description "Head to <destination> with Apri'ie and the <cargo>, where the Pale Waters research center will use the new subs to conduct deep-sea expeditions."
+	passengers 1
+	cargo "unmanned submarines" 60
+	to offer
+		has "Coalition: Submarines 3: done"
+	source "Dusk Companion"
+	destination "Second Cerulean"
+	on offer
+		conversation
+			`Apri'ie instructs you to head to some hangars at a large port, where a team is waiting for the repair test. He hands you 130,000 credits when you land, and goes to check with the workers unloading the submarines.`
+			`	They are all taken from your cargo and swiftly put in the water as the team of Kimek boards a large ship that you guess is an old tanker. This ship prepares to follow the subs to the testing area, along with another smaller, newer ship with a thick crane on the front. Apri'ie approaches you before he boards the tanker, asking, "Come with us for the test, would you like, Captain? Take a while, it might. Not expected until after nightfall, the next tremors are."`
+			choice
+				`	"If it's alright, yeah. Could be interesting."`
+				`	"I'll pass. I need some time to rest after the trip here."`
+					goto refuse
+			`	You head up the ramp to the ship, and after a few minutes it sets off, following the submarines controlled remotely by the Kimek team. Exploring the tanker, you find an odd pile of what looks like broken up ship parts, secured as cargo on the back. The pieces are welded together into a shape similar to the cockpit of one of the smaller Heliarch ships, though it has several dents, as if hit by some explosives. Apri'ie notices you looking at it and comes to explain that it's the "prop" on which they'll test the repair functions.`
+			`	Once the tanker comes to a stop, the smaller ship's crane grabs the prop and slowly maneuvers it away from the tanker before lowering it into the water and letting it sink. The submarines follow the prop as it goes down, until it comes to a stop after a few minutes.`
+			`	The Kimek operators then proceed to take shifts at their computers as everyone waits for a tremor to begin. After the moon is high in the sky, you notice odd shifts on the waves and trembling on the boats, with which the Kimek start their repair work. Once they're done, and after the tremors stop, the subs slowly bring the prop back up, where the crane places it on the tanker again.`
+			`	"Let's see..." Apri'ie heads to the prop to check on the welded parts. "Yes, very good. Performed well, the welder arms have. Good for deployment, they should be." The submarines go ahead once again, lighting the way back to the port as the ships follow them until docking.`
+				goto end
+			label refuse
+			`	He heads to the tanker, and the ships set off, following the submarines. You walk for a while by the spaceport, stopping at a restaurant to have a Saryd pastry dish. You return to the port at sunset and wait until you finally spot the submarines' lights on the horizon heading towards the shore.`
+			`	"Worked perfectly, the welders have. Ready for deployment, the subs should be," Apri'ie tells you as he steps off of the tanker.`
+			label end
+			`	The subs are once again placed atop the sleds and brought into your ship. Apri'ie thanks the Kimek team for handling the subs and heads back into your ship, saying, "Time for their final trip, it is. Bring the vessels and I to <destination>, you may."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"coalition jobs" += 2
+		payment 510000
+		conversation
+			`The local workers carefully unload the submarines off your ship one at a time, bringing them to the icy waters nearby, where they will dive to perform deep sea explorations on the local fauna.`
+			`	Once they're done, Apri'ie invites you to enter the research facility, just a few kilometers away from the spaceport tower, with hangars of its own for your ship. There you're met by a committee of sorts; a handful of the local scientists greet the two of you, and thank you for helping with transporting the subs. "Having trouble reaching deeper sections of the ocean, our older probes were, so able to analyze a multitude of new species, with these new subs we hope to be," one of them tells you.`
+			`	When they're done, they hand you <payment>, and Apri'ie follows you to your ship. "Thankful for you putting up with all the last-minute detours I am, Captain. Safe travels, may you have." He does a short gesture as a form of goodbye: you put your forearm on the ground, and he places one of his legs over it. Once you're done, he heads back to the research center.`

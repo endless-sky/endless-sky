@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
-#include "Command.h"
 #include "Files.h"
+#include "FireCommand.h"
 #include "Outfit.h"
 #include "Ship.h"
 
@@ -198,7 +198,7 @@ int Armament::TurretCount() const
 
 
 // Adjust the aim of the turrets.
-void Armament::Aim(const Command &command)
+void Armament::Aim(const FireCommand &command)
 {
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 		hardpoints[i].Aim(command.Aim(i));
@@ -208,7 +208,7 @@ void Armament::Aim(const Command &command)
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return;
@@ -224,15 +224,24 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
-	hardpoints[index].Fire(ship, projectiles, visuals);
+	if(jammed)
+		hardpoints[index].Jam();
+	else
+		hardpoints[index].Fire(ship, projectiles, visuals);
 }
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
+
+	if(jammed)
+	{
+		hardpoints[index].Jam();
+		return false;
+	}
 
 	return hardpoints[index].FireAntiMissile(ship, projectile, visuals);
 }

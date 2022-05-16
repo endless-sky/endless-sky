@@ -32,14 +32,23 @@ linux:
  - *build
 
 unit_tests:
- - 'tests/**/*.h'
- - 'tests/**/*.hpp'
- - 'tests/**/*.cpp'
+ - 'tests/unit/**/*.h'
+ - 'tests/unit/**/*.hpp'
+ - 'tests/unit/**/*.cpp'
 
 integration_tests:
- - 'tests/test_parse.*'
- - 'tests/run_tests*'
+ - 'utils/test_parse.*'
+ - 'tests/integration/run_tests*'
  - 'data/tests/**'
+ - 'tests/integration/universes/**'
 
 codespell:
  - .codespell.exclude
+
+xcode_files:
+ - 'EndlessSky.xcodeproj/**'
+ - 'utils/check_xcode.sh'
+
+codeblocks_files:
+ - '*.cbp'
+ - 'utils/check_codeblocks.sh'

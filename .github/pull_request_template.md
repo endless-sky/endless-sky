@@ -11,9 +11,9 @@ NOTICE: Delete the sections that do not apply to your PR, and fill out the secti
 This save file can be used to play through the new mission content:
 {{attach a save file that allows people to easily test your added mission content or see your new in-game art}}
 
-## PR Checklist
+## Artwork Checklist
  - [ ] I updated the copyright attributions, or decline to claim copyright of any assets produced or modified
- - [ ] I uploaded the necessary image, blend, and texture assets here: {{insert link to assets}}
+ - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/EndlessSkyCommunity/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
  - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
 
 

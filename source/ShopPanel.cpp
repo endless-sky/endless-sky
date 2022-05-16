@@ -483,7 +483,7 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + 40.);
+	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + VisiblityCheckboxesSize());
 
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
@@ -562,7 +562,21 @@ void ShopPanel::DrawKey()
 
 
 
+int ShopPanel::VisiblityCheckboxesSize() const
+{
+	return 0;
+}
+
+
+
 void ShopPanel::ToggleForSale()
+{
+	sameSelectedTopY = true;
+}
+
+
+
+void ShopPanel::ToggleStorage()
 {
 	sameSelectedTopY = true;
 }
@@ -646,6 +660,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == SDLK_HOME)
+		return SetScrollToTop();
+	else if(key == SDLK_END)
+		return SetScrollToBottom();
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -945,6 +963,34 @@ bool ShopPanel::DoScroll(double dy)
 
 	*scroll = max(0., min(maximum, *scroll - dy));
 
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToTop()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = 0.;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = 0.;
+	else
+		mainScroll = 0.;
+
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToBottom()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = maxInfobarScroll;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = maxSidebarScroll;
+	else
+		mainScroll = maxMainScroll;
+	
 	return true;
 }
 
