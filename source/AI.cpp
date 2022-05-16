@@ -2859,7 +2859,6 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// 'opportunistic' can be false but individual hardpoints on a ship may still be set to opportunistic.
 				if(hardpoint.IsOpportunistic())
 				{
-
 					AimIdleOpportunisticTurret(weaponsStart, ship, command, hardpoint);
 					continue;
 				}
@@ -2886,7 +2885,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			// to aim at it and for a projectile to hit it.
 			double bestScore = numeric_limits<double>::infinity();
 			double bestAngle = 0.;
-			for(const Body *target : ((opportunistic || hardpoint.IsOpportunistic()) ? targets : focusedTargets))
+			for(const Body *target : ((opportunistic || hardpoint.IsOpportunistic()) ? targets : (focusedTargets.empty() ? targets : focusedTargets)))
 			{
 				Point p = target->Position() - start;
 				Point v = target->Velocity();
