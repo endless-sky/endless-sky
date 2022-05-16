@@ -15,10 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <random>
 
 #ifndef __linux__
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include <mutex>
 #endif
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 using namespace std;
 
