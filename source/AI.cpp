@@ -2712,7 +2712,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 
 
 // Get a vector giving the direction this ship should aim in in order to do
-// maximum damaged to a target at the given position with its non-turret,
+// maximum damage to a target at the given position with its non-turret,
 // non-homing weapons. If the ship has no non-homing weapons, this just
 // returns the direction to the target.
 Point AI::TargetAim(const Ship &ship)
@@ -2768,6 +2768,30 @@ bool AI::HasOpportunisticWeapons(const Ship &ship)
 
 
 
+void AI::AimIdleOpportunisticTurret(int index, const Ship &ship, FireCommand &command, const Hardpoint &hardpoint)
+{
+	// First, check if this turret is currently in motion. If not,
+	// it only has a small chance of beginning to move.
+	double previous = ship.FiringCommands().Aim(index);
+	if(!previous && (Random::Int(60)))
+		return;
+
+	Angle centerAngle = Angle(hardpoint.GetPoint());
+	double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+	double acceleration = Random::Real() - Random::Real() + bias;
+	command.SetAim(index, previous + .1 * acceleration);
+}
+
+
+
+void AI::AimIdleFocusedTurret(int index, FireCommand &command, const Hardpoint &hardpoint)
+{
+	double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+	command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+}
+
+
+
 // Aim the given ship's turrets.
 void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) const
 {
@@ -2801,7 +2825,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				&& find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
 			targets.push_back(currentTarget);
 	}
-	else
+	if(currentTarget)
 		focusedTargets.push_back(currentTarget);
 	// If this ship is mining, consider aiming at its target asteroid.
 	if(ship.GetTargetAsteroid())
@@ -2825,20 +2849,10 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// 'opportunistic' can be false but individual hardpoints on a ship may still be set to opportunistic.
 				if(hardpoint.IsOpportunistic())
 				{
-					// First, check if this turret is currently in motion. If not,
-					// it only has a small chance of beginning to move.
-					double previous = ship.FiringCommands().Aim(index);
-					if(!previous && (Random::Int(60)))
-						continue;
-
-					Angle centerAngle = Angle(hardpoint.GetPoint());
-					double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
-					double acceleration = Random::Real() - Random::Real() + bias;
-					command.SetAim(index, previous + .1 * acceleration);
+					AimIdleOpportunisticTurret(index, ship, command, hardpoint);
 					continue;
 				}
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
-				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+				AimIdleFocusedTurret(index, command, hardpoint);
 			}
 		}
 		return;
@@ -2850,16 +2864,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				// First, check if this turret is currently in motion. If not,
-				// it only has a small chance of beginning to move.
-				double previous = ship.FiringCommands().Aim(index);
-				if(!previous && (Random::Int(60)))
-					continue;
-
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
-				double acceleration = Random::Real() - Random::Real() + bias;
-				command.SetAim(index, previous + .1 * acceleration);
+				AimIdleOpportunisticTurret(index, ship, command, hardpoint);
 			}
 		return;
 	}
@@ -3681,7 +3686,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))

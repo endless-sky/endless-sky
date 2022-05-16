@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "FireCommand.h"
+#include "Hardpoint.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -124,6 +125,8 @@ private:
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
 	static bool HasOpportunisticWeapons(const Ship &ship);
+	static void AimIdleOpportunisticTurret(int index, const Ship &ship, FireCommand &command, const Hardpoint &hardpoint);
+	static void AimIdleFocusedTurret(int index, FireCommand &command, const Hardpoint &hardpoint);
 	// Aim the given ship's turrets.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
