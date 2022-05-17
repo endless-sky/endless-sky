@@ -209,13 +209,7 @@ int CargoHold::OutfitsSize() const
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
 {
-	// The code for adding and removing outfits does not clear the entry in the
-	// map if its value becomes zero, so we need to check all the entries:
-	for(const auto &it : outfits)
-		if(it.second)
-			return true;
-
-	return false;
+	return !outfits.empty();
 }
 
 
@@ -243,9 +237,7 @@ bool CargoHold::HasMissionCargo() const
 // Check if there is anything in this cargo hold (including passengers).
 bool CargoHold::IsEmpty() const
 {
-	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -374,7 +366,9 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 	// remainder back to this cargo hold, even if there is not space for it.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
-	outfits[outfit] += removed - added;
+	int remainder = removed - added;
+	if(remainder)
+		outfits[outfit] += remainder;
 
 	return added;
 }
@@ -510,6 +504,10 @@ int CargoHold::Remove(const Outfit *outfit, int amount)
 
 	amount = min(amount, outfits[outfit]);
 	outfits[outfit] -= amount;
+
+	// Remove the entry if there is no instance of this outfit in this cargo hold.
+	if(!outfits[outfit])
+		outfits.erase(outfit);
 	return amount;
 }
 
