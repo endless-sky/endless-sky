@@ -579,6 +579,6 @@ mission "Scientists at the Pub after a Conference"
 			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`	"That's funny! Teaching undergrads is my one respite from grant-writing!"`
 			` `
-			`	A sociable, but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
+			`	A sociable but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
 			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
 				decline
