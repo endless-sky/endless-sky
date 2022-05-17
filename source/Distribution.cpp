@@ -54,25 +54,22 @@ namespace {
 
 Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Type, bool> distribution)
 {
-	Angle inaccuracy;
 	// Check if there is any inaccuracy to apply
 	if(value)
 	{
 		switch(distribution.first)
 		{
 			case Distribution::Type::Uniform:
-				inaccuracy = Angle::Random(2 * value) - Angle(value);
-				break;
+				return Angle::Random(2 * value) - Angle(value);
 			case Distribution::Type::Tight:
 			case Distribution::Type::Middling:
 			case Distribution::Type::Wide:
-				inaccuracy = Angle(value * ManipulateNormal(static_cast<double>(distribution.first), distribution.second));
-				break;
+				return Angle(value * ManipulateNormal(static_cast<double>(distribution.first), distribution.second));
 			case Distribution::Type::Triangular:
 			default:
-				inaccuracy = Angle::Random(value) - Angle::Random(value);
-				break;
+				return Angle::Random(value) - Angle::Random(value);
 		}
 	}
-	return inaccuracy;
+	else
+		return Angle();
 }
