@@ -60,7 +60,7 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Typ
 		switch(distribution.first)
 		{
 			case Distribution::Type::Uniform:
-				return Angle::Random(2 * value) - Angle(value);
+				return Angle(2 * (Random::Real() - 0.5) * value);
 			case Distribution::Type::Tight:
 			case Distribution::Type::Middling:
 			case Distribution::Type::Wide:
