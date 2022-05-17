@@ -81,7 +81,7 @@ const Type &WeightedList<Type>::Get() const
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 
 	unsigned index = 0;
-	for(unsigned choice = Random::Int(total); choice >= choices[index].second; ++index)
+	for(int choice = Random::Int(total); choice >= choices[index].second; ++index)
 		choice -= choices[index].second;
 
 	return choices[index].first;
