@@ -80,8 +80,7 @@ void Variant::Load(const DataNode &node)
 			}
 			else
 			{
-				// If given the name of a ship, remove all ships by that name from this variant.
-				string shipName = child.Token(1);
+				// If given the name of a ship, remove all instances of that ship from this variant.
 				auto removeIt = std::remove(ships.begin(), ships.end(), GameData::Ships().Get(child.Token(1)));
 				if(removeIt != ships.end())
 					ships.erase(removeIt, ships.end());
