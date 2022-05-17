@@ -53,8 +53,8 @@ public:
 	void clear() noexcept { choices.clear(); total = 0; }
 	std::size_t size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
-	Type &back() noexcept { return choices.back(); }
-	const Type &back() const noexcept { return choices.back(); }
+	std::pair<Type, std::size_t> &back() noexcept { return choices.back(); }
+	const std::pair<Type, std::size_t> &back() const noexcept { return choices.back(); }
 
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
