@@ -67,7 +67,7 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Typ
 				return Angle(value * ManipulateNormal(static_cast<double>(distribution.first), distribution.second));
 			case Distribution::Type::Triangular:
 			default:
-				return Angle::Random(value) - Angle::Random(value);
+				return Angle((Random::Real() - Random::Real()) * value);;
 		}
 	}
 	else
