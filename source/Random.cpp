@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Random.h"
 
+#include "pi.h"
+
 #include <random>
 
 #ifndef __linux__
@@ -36,8 +38,8 @@ namespace {
 
 static bool normalBMCached = false;
 static double cachedBMNormal = std::numeric_limits<double>::infinity();
-static constexpr double epsilon = std::numeric_limits<double>::epsilon();
-static constexpr double two_pi = 2.0 * 3.1415926535;
+static const double epsilon = std::numeric_limits<double>::epsilon();
+static const double two_pi = 2.0 * PI;
 
 
 
