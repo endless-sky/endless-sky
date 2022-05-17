@@ -62,28 +62,28 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	}
 	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom)));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
-	
+
 	if(!system)
 		return;
-	
+
 	// Figure out how big the label has to be.
 	double width = max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.;
 	for(int d = 0; d < 4; ++d)
 	{
 		bool overlaps = false;
-		
+
 		Point start = object.Position() +
 			(radius + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[d]).Unit();
 		Point unit(LINE_ANGLE[d] > 180. ? -1. : 1., 0.);
 		Point end = start + unit * width;
-		
+
 		for(const StellarObject &other : system->Objects())
 		{
 			if(&other == &object)
 				continue;
-			
+
 			double minDistance = other.Radius() + MIN_DISTANCE;
-			
+
 			double startDistance = other.Position().Distance(start);
 			double endDistance = other.Position().Distance(end);
 			overlaps |= (startDistance < minDistance || endDistance < minDistance);
@@ -111,7 +111,7 @@ void PlanetLabel::Draw() const
 	// Draw any active planet labels.
 	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);
-	
+
 	// The angle of the outer ring should be reduced by just enough that the
 	// circumference is reduced by 6 pixels.
 	double innerAngle = LINE_ANGLE[direction];
@@ -119,16 +119,16 @@ void PlanetLabel::Draw() const
 	Point unit = Angle(innerAngle).Unit();
 	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
 	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
-	
+
 	if(!name.empty())
 	{
 		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
 		Point to = from + LINE_LENGTH * unit;
 		LineShader::Draw(from, to, 1.3f, color);
-		
+
 		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
 		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
-		
+
 		double governmentX = to.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
 		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., color);
 	}

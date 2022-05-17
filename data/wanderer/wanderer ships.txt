@@ -81,6 +81,7 @@ ship "Flycatcher"
 	explode "tiny explosion" 30
 	explode "small explosion" 20
 	description "Flycatcher drones are used by the Wanderers to keep their star systems safe. Rather than carrying weapons of its own, a stock Flycatcher just carries an anti-missile turret for defending other ships."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
@@ -202,7 +203,7 @@ ship "Strong Wind"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Wanderer Military"
+			"Wanderer"
 		"cost" 16100000
 		"shields" 28500
 		"hull" 19600

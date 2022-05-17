@@ -29,17 +29,17 @@ class Phrase {
 public:
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
-	
+
 	bool IsEmpty() const;
-	
+
 	const std::string &Name() const;
 	std::string Get() const;
-	
-	
+
+
 private:
 	bool ReferencesPhrase(const Phrase *phrase) const;
-	
-	
+
+
 private:
 	// A Choice represents one entry in a Phrase definition's "word" or "phrase" child
 	// node. If from a "word" node, a Choice may be pure text or contain embedded phrase
@@ -48,7 +48,7 @@ private:
 	public:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
-		
+
 		// The likelihood that this choice will be picked by its part.
 		int Weight() const { return weight; };
 		int weight;
@@ -57,8 +57,8 @@ private:
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;
 		using std::vector<std::pair<std::string, const Phrase *>>::end;
 	};
-	
-	
+
+
 	// A Part represents a the content contained by a "word", "phrase", or "replace" child node.
 	class Part {
 	public:
@@ -68,21 +68,21 @@ private:
 		// would transform "Hello hello" into "Hey hey"
 		std::vector<std::pair<std::string, std::string>> replacements;
 	};
-	
-	
+
+
 	// An individual definition associated with a Phrase name.
 	class Sentence : private std::vector<Part> {
 	public:
 		Sentence(const DataNode &node, const Phrase *parent);
 		void Load(const DataNode &node, const Phrase *parent);
-		
+
 		// Enable empty checks and iteration:
 		using std::vector<Part>::empty;
 		using std::vector<Part>::begin;
 		using std::vector<Part>::end;
 	};
-	
-	
+
+
 private:
 	std::string name;
 	// Each time this phrase is defined, a new sentence is created.

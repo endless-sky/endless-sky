@@ -65,19 +65,19 @@ public:
 		// This ship just jumped into a different system.
 		JUMP = (1 << 9)
 	};
-	
-	
+
+
 public:
 	ShipEvent(const Government *actor, const std::shared_ptr<Ship> &target, int type);
 	ShipEvent(const std::shared_ptr<Ship> &actor, const std::shared_ptr<Ship> &target, int type);
-	
+
 	const std::shared_ptr<Ship> &Actor() const;
 	const Government *ActorGovernment() const;
 	const std::shared_ptr<Ship> &Target() const;
 	const Government *TargetGovernment() const;
 	int Type() const;
-	
-	
+
+
 private:
 	std::shared_ptr<Ship> actor;
 	const Government *actorGovernment = nullptr;

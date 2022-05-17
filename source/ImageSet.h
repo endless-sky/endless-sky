@@ -38,13 +38,13 @@ public:
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
 	static bool IsDeferred(const std::string &path);
-	
-	
+
+
 public:
 	// ImageSets should be created with a name, as some image paths (e.g. plugin icons)
 	// do not contain the associated image name.
 	ImageSet(std::string name);
-	
+
 	// Get the name of the sprite for this image set.
 	const std::string &Name() const;
 	// Add a single image to this set. Assume the name of the image has already
@@ -59,8 +59,8 @@ public:
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.
 	void Upload(Sprite *sprite);
-	
-	
+
+
 private:
 	// Name of the sprite that will be initialized with these images.
 	std::string name;

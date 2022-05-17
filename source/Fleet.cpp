@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <iterator>
 
 using namespace std;
@@ -41,7 +42,7 @@ namespace {
 		// interest on average, do not apply the sqrt(rand) correction.
 		return (Random::Real() + minimumOffset) * 400. + 2. * center.second;
 	}
-	
+
 	// Construct a list of all outfits for sale in this system and its linked neighbors.
 	Sale<Outfit> GetOutfitsForSale(const System *here)
 	{
@@ -57,7 +58,7 @@ namespace {
 		}
 		return outfits;
 	}
-	
+
 	// Construct a list of varying numbers of outfits that were either specified for
 	// this fleet directly, or are sold in this system or its linked neighbors.
 	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
@@ -76,7 +77,7 @@ namespace {
 			else
 				for(const auto outfitter : outfitters)
 					choices.Add(*outfitter);
-			
+
 			if(!choices.empty())
 			{
 				for(const auto outfit : choices)
@@ -93,7 +94,7 @@ namespace {
 								|| attributes.Get("cargo space") > 0.
 								|| attributes.Get("bunks"))
 							continue;
-						
+
 						outfits.push_back(outfit);
 					}
 				}
@@ -105,7 +106,7 @@ namespace {
 			{ return a->Mass() < b->Mass(); });
 		return outfits;
 	}
-	
+
 	// Add a random commodity from the list to the ship's cargo.
 	void AddRandomCommodity(Ship &ship, int freeSpace, const vector<string> &commodities)
 	{
@@ -122,12 +123,12 @@ namespace {
 					break;
 				}
 		}
-		
+
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(freeSpace) + 1;
 		ship.Cargo().Add(commodity.name, amount);
 	}
-	
+
 	// Add a random outfit from the list to the ship's cargo.
 	void AddRandomOutfit(Ship &ship, int freeSpace, const vector<const Outfit *> &outfits)
 	{
@@ -155,11 +156,11 @@ void Fleet::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
-	
+
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
 	bool resetVariants = !variants.empty();
-	
+
 	for(const DataNode &child : node)
 	{
 		// The "add" and "remove" keywords should never be alone on a line, and
@@ -169,13 +170,13 @@ void Fleet::Load(const DataNode &node)
 		bool hasValue = (child.Size() >= 2);
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
-			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
+			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
-		
+
 		// If this line is an add or remove, the key is the token at index 1.
 		const string &key = child.Token(add || remove);
-		
+
 		if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
@@ -204,33 +205,23 @@ void Fleet::Load(const DataNode &node)
 			{
 				resetVariants = false;
 				variants.clear();
-				total = 0;
 			}
 			variants.emplace_back(child);
-			total += variants.back().weight;
 		}
 		else if(key == "variant")
 		{
-			// If given a full ship definition of one of this fleet's variant members, remove the variant.
-			bool didRemove = false;
+			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			for(auto it = variants.begin(); it != variants.end(); ++it)
-				if(toRemove.ships.size() == it->ships.size() &&
-					is_permutation(it->ships.begin(), it->ships.end(), toRemove.ships.begin()))
-				{
-					total -= it->weight;
-					variants.erase(it);
-					didRemove = true;
-					break;
-				}
-			
-			if(!didRemove)
-				child.PrintTrace("Did not find matching variant for specified operation:");
+			auto removeIt = std::remove(variants.begin(), variants.end(), toRemove);
+			if(removeIt != variants.end())
+				variants.erase(removeIt, variants.end());
+			else
+				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	if(variants.empty())
 		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
@@ -242,19 +233,18 @@ bool Fleet::IsValid(bool requireGovernment) const
 	// Generally, a government is required for a fleet to be valid.
 	if(requireGovernment && !government)
 		return false;
-	
+
 	if(names && names->IsEmpty())
 		return false;
-	
+
 	if(fighterNames && fighterNames->IsEmpty())
 		return false;
-	
-	// A fleet's variants should reference at least one valid ship.
-	for(auto &&v : variants)
-		if(none_of(v.ships.begin(), v.ships.end(),
-				[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
-			return false;
-	
+
+	// Any variant a fleet could choose should be valid.
+	if(any_of(variants.begin(), variants.end(),
+			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
+		return false;
+
 	return true;
 }
 
@@ -264,28 +254,21 @@ void Fleet::RemoveInvalidVariants()
 {
 	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
 	{
-		return v.ships.empty() || none_of(v.ships.begin(), v.ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); });
+		return !v.IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
 		return;
-	
+
 	// Ensure the class invariant can be maintained.
-	// (This must be done first as we cannot do anything but `erase` elements filtered by `remove_if`.)
-	int removedWeight = 0;
-	for(auto it = firstInvalid; it != variants.end(); ++it)
-		if(IsInvalidVariant(*it))
-			removedWeight += it->weight;
-	
+	int total = variants.TotalWeight();
 	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());
+	variants.erase(removeIt, variants.end());
+	
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(removedWeight) + " of " + to_string(total) + " weight)");
-	
-	total -= removedWeight;
-	variants.erase(removeIt, variants.end());
+		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
 
 
@@ -300,21 +283,21 @@ const Government *Fleet::GetGovernment() const
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
-	if(!total || variants.empty() || personality.IsDerelict())
+	if(variants.empty() || personality.IsDerelict())
 		return;
-	
+
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = ChooseVariant();
-	if(variant.ships.empty())
+	const vector<const Ship *> &variantShips = variants.Get().Ships();
+	if(variantShips.empty())
 		return;
-	
+
 	// Figure out what system the fleet is starting in, where it is going, and
 	// what position it should start from in the system.
 	const System *source = &system;
 	const System *target = &system;
 	Point position;
 	double radius = 1000.;
-	
+
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -328,7 +311,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		bool hasJump = false;
 		bool hasHyper = false;
 		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
-		for(const Ship *ship : variant.ships)
+		for(const Ship *ship : variantShips)
 		{
 			if(ship->Attributes().Get("jump drive"))
 			{
@@ -355,7 +338,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 					linkVector.insert(linkVector.end(), 8, neighbor);
 			}
 		}
-	
+
 		// Find all the inhabited planets this fleet could take off from.
 		vector<const Planet *> planetVector;
 		if(!personality.IsSurveillance())
@@ -363,7 +346,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
-	
+
 		// If there is nowhere for this fleet to come from, don't create it.
 		size_t options = linkVector.size() + planetVector.size();
 		if(!options)
@@ -377,10 +360,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(!options)
 				return;
 		}
-		
+
 		// Choose a random planet or star system to come from.
 		size_t choice = Random::Int(options);
-	
+
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
@@ -392,13 +375,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		else
 			source = linkVector[choice];
 	}
-	
-	auto placed = Instantiate(variant);
+
+	auto placed = Instantiate(variantShips);
 	// Carry all ships that can be carried, as they don't need to be positioned
 	// or checked to see if they can access a particular planet.
 	for(auto &ship : placed)
 		PlaceFighter(ship, placed);
-	
+
 	// Find the stellar object for this planet, and place the ships there.
 	if(planet)
 	{
@@ -428,7 +411,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			planet = nullptr;
 		}
 	}
-	
+
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
 	for(shared_ptr<Ship> &ship : placed)
@@ -436,10 +419,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If this is a carried fighter, no need to position it.
 		if(ship->GetParent())
 			continue;
-		
+
 		Angle angle = Angle::Random(360.);
 		Point pos = position + angle.Unit() * (Random::Real() * radius);
-		
+
 		ships.push_front(ship);
 		ship->SetSystem(source);
 		ship->SetPlanet(planet);
@@ -453,12 +436,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 		if(target != source)
 			ship->SetTargetSystem(target);
-		
+
 		if(flagship)
 			ship->SetParent(flagship);
 		else
 			flagship = ship;
-		
+
 		SetCargo(&*ship);
 	}
 }
@@ -469,26 +452,26 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
 void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
 {
-	if(!total || variants.empty())
+	if(variants.empty())
 		return;
-	
+
 	// Pick a fleet variant to instantiate.
-	const Variant &variant = ChooseVariant();
-	if(variant.ships.empty())
+	const vector<const Ship *> &variantShips = variants.Get().Ships();
+	if(variantShips.empty())
 		return;
-	
+
 	// Determine where the fleet is going to or coming from.
 	auto center = ChooseCenter(system);
-	
+
 	// Place all the ships in the chosen fleet variant.
 	shared_ptr<Ship> flagship;
-	vector<shared_ptr<Ship>> placed = Instantiate(variant);
+	vector<shared_ptr<Ship>> placed = Instantiate(variantShips);
 	for(shared_ptr<Ship> &ship : placed)
 	{
 		// If this is a fighter and someone can carry it, no need to position it.
 		if(carried && PlaceFighter(ship, placed))
 			continue;
-		
+
 		Angle angle = Angle::Random();
 		Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
 		double velocity = 0;
@@ -496,16 +479,16 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 			velocity = Random::Real() * ship->MaxVelocity();
 		else
 			ship->Disable();
-		
+
 		ships.push_front(ship);
 		ship->SetSystem(&system);
 		ship->Place(pos, velocity * angle.Unit(), angle);
-		
+
 		if(flagship)
 			ship->SetParent(flagship);
 		else
 			flagship = ship;
-		
+
 		SetCargo(&*ship);
 	}
 }
@@ -520,7 +503,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		Place(system, ship);
 		return &system;
 	}
-	
+
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
@@ -528,14 +511,14 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		advance(it, Random::Int(system.Links().size()));
 		source = *it;
 	}
-	
+
 	Angle angle = Angle::Random();
 	Point pos = angle.Unit() * Random::Real() * 1000.;
-	
+
 	ship.Place(pos, angle.Unit(), angle);
 	ship.SetSystem(source);
 	ship.SetTargetSystem(&system);
-	
+
 	return source;
 }
 
@@ -546,9 +529,9 @@ void Fleet::Place(const System &system, Ship &ship)
 	// Choose a random inhabited object in the system to spawn around.
 	auto center = ChooseCenter(system);
 	Point pos = center.first + Angle::Random().Unit() * OffsetFrom(center);
-	
+
 	double velocity = ship.IsDisabled() ? 0. : Random::Real() * ship.MaxVelocity();
-	
+
 	ship.SetSystem(&system);
 	Angle angle = Angle::Random();
 	ship.Place(pos, velocity * angle.Unit(), angle);
@@ -558,49 +541,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	if(!total || variants.empty())
-		return 0;
-	
-	int64_t sum = 0;
-	for(const Variant &variant : variants)
-	{
-		int64_t thisSum = 0;
-		for(const Ship *ship : variant.ships)
-			thisSum += ship->Cost();
-		sum += thisSum * variant.weight;
-	}
-	return sum / total;
-}
-
-
-
-Fleet::Variant::Variant(const DataNode &node)
-{
-	weight = 1;
-	if(node.Token(0) == "variant" && node.Size() >= 2)
-		weight = node.Value(1);
-	else if(node.Token(0) == "add" && node.Size() >= 3)
-		weight = node.Value(2);
-	
-	for(const DataNode &child : node)
-	{
-		int n = 1;
-		if(child.Size() >= 2 && child.Value(1) >= 1.)
-			n = child.Value(1);
-		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
-	}
-}
-
-
-
-const Fleet::Variant &Fleet::ChooseVariant() const
-{
-	// Pick a random variant based on the weights.
-	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
-		choice -= variants[index].weight;
-	
-	return variants[index];
+	return variants.Average(std::mem_fn(&Variant::Strength));
 }
 
 
@@ -613,7 +554,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 	for(const StellarObject &object : system.Objects())
 		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
 			centers.emplace_back(object.Position(), object.Radius());
-	
+
 	if(centers.empty())
 		return {Point(), 0.};
 	return centers[Random::Int(centers.size())];
@@ -621,27 +562,27 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 
 
 
-vector<shared_ptr<Ship>> Fleet::Instantiate(const Variant &variant) const
+vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) const
 {
 	vector<shared_ptr<Ship>> placed;
-	for(const Ship *model : variant.ships)
+	for(const Ship *model : ships)
 	{
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Files::LogError("Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Files::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
-		
+
 		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
-		
+
 		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
-		
+
 		placed.push_back(ship);
 	}
 	return placed;
@@ -653,11 +594,11 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 {
 	if(!fighter->CanBeCarried())
 		return false;
-	
+
 	for(const shared_ptr<Ship> &parent : placed)
 		if(parent->Carry(fighter))
 			return true;
-	
+
 	return false;
 }
 
@@ -674,7 +615,7 @@ void Fleet::SetCargo(Ship *ship) const
 	// Populate the possible outfits that may be chosen.
 	int free = ship->Cargo().Free();
 	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
-	
+
 	// Choose random outfits or commodities to transport.
 	for(int i = 0; i < cargo; ++i)
 	{
@@ -685,7 +626,7 @@ void Fleet::SetCargo(Ship *ship) const
 			outfits.erase(remove_if(outfits.begin(), outfits.end(),
 					[&free](const Outfit *a) { return a->Mass() > free; }),
 				outfits.end());
-		
+
 		if(canChooseCommodities && canChooseOutfits)
 		{
 			if(Random::Real() < .8)
@@ -697,7 +638,7 @@ void Fleet::SetCargo(Ship *ship) const
 			AddRandomCommodity(*ship, free, commodities);
 		else
 			AddRandomOutfit(*ship, free, outfits);
-		
+
 		free = ship->Cargo().Free();
 	}
 	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();

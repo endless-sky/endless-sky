@@ -40,13 +40,13 @@ class Outfit : public Weapon {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
-	
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
 	bool IsDefined() const;
-	
+
 	const std::string &Name() const;
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
@@ -58,11 +58,11 @@ public:
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
-	
+
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
-	
+
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
 	// not, return the maximum number that can be added.
@@ -73,7 +73,7 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
-	
+
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
 	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
@@ -93,8 +93,8 @@ public:
 	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
-	
-	
+
+
 private:
 	bool isDefined = false;
 	std::string name;
@@ -106,9 +106,9 @@ private:
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
-	
+
 	Dictionary attributes;
-	
+
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
 	std::vector<std::pair<Body, int>> flareSprites;

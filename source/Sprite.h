@@ -29,36 +29,36 @@ class ImageBuffer;
 class Sprite {
 public:
 	explicit Sprite(const std::string &name = "");
-	
+
 	const std::string &Name() const;
-	
+
 	// Upload the given frames. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
-	
+
 	// Image dimensions, in pixels.
 	float Width() const;
 	float Height() const;
 	// Number of frames in the animation. If high DPI frames exist, the code has
 	// ensured that they have the same number of frames.
 	int Frames() const;
-	
+
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
 	Point Center() const;
-	
+
 	// Get the texture index, either looking it up based on the Screen's HighDPI
 	// setting or specifying it manually.
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
-	
-	
+
+
 private:
 	std::string name;
-	
+
 	uint32_t texture[2] = {0, 0};
-	
+
 	float width = 0.f;
 	float height = 0.f;
 	int frames = 0;

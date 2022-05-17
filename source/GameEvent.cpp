@@ -43,7 +43,7 @@ namespace {
 map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &changes)
 {
 	auto definitions = map<string, set<string>> {};
-	
+
 	for(auto &&node : changes)
 		if(node.Size() >= 2 && node.HasChildren() && DEFINITION_NODES.count(node.Token(0)))
 		{
@@ -64,7 +64,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 			else
 				definitions[key].emplace(name);
 		}
-	
+
 	return definitions;
 }
 
@@ -88,7 +88,7 @@ void GameEvent::Load(const DataNode &node)
 		conditionsToApply.Add("set", "event: " + name);
 	}
 	isDefined = true;
-	
+
 	static const auto allowedChanges = []() -> set<string>
 		{
 			auto allowed = DEFINITION_NODES;
@@ -99,7 +99,7 @@ void GameEvent::Load(const DataNode &node)
 			});
 			return allowed;
 		}();
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -124,27 +124,39 @@ void GameEvent::Load(const DataNode &node)
 
 void GameEvent::Save(DataWriter &out) const
 {
+	if(isDisabled)
+		return;
+	
 	out.Write("event");
 	out.BeginChild();
 	{
 		if(date)
 			out.Write("date", date.Day(), date.Month(), date.Year());
 		conditionsToApply.Save(out);
-		
+
 		for(auto &&system : systemsToUnvisit)
 			out.Write("unvisit", system->Name());
 		for(auto &&planet : planetsToUnvisit)
 			out.Write("unvisit planet", planet->TrueName());
-		
+
 		for(auto &&system : systemsToVisit)
 			out.Write("visit", system->Name());
 		for(auto &&planet : planetsToVisit)
 			out.Write("visit planet", planet->TrueName());
-		
+
 		for(auto &&change : changes)
 			out.Write(change);
 	}
 	out.EndChild();
+}
+
+
+
+// Prevent this GameEvent from being applied or written into a player's save.
+// (Events read from a save are not associated with the managed Set of GameData::Events.)
+void GameEvent::Disable()
+{
+	isDisabled = true;
 }
 
 
@@ -180,7 +192,7 @@ bool GameEvent::IsValid() const
 	// the player's knowledge of the universe. Thus, to determine if a system or
 	// planet is invalid, we must first peek at what `changes` will do.
 	auto deferred = DeferredDefinitions(changes);
-	
+
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
 			if(!system->IsValid() && !deferred["system"].count(system->Name()))
@@ -189,7 +201,7 @@ bool GameEvent::IsValid() const
 		for(auto &&planet : planets)
 			if(!planet->IsValid() && !deferred["planet"].count(planet->TrueName()))
 				return false;
-	
+
 	return isDefined;
 }
 
@@ -204,24 +216,27 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
+	if(isDisabled)
+		return;
+	
 	// Serialize the current reputation with other governments.
 	player.SetReputationConditions();
-	
+
 	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
 	// Apply (and store a record of applying) this event's other general
 	// changes (e.g. updating an outfitter's inventory).
 	player.AddChanges(changes);
-	
+
 	// Update the current reputation with other governments (e.g. this
 	// event's ConditionSet may have altered some reputations).
 	player.CheckReputationConditions();
-	
+
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);
 	for(const Planet *planet : planetsToUnvisit)
 		player.Unvisit(*planet);
-	
+
 	// Perform visits after unvisits, as "unvisit <system>"
 	// will unvisit any planets in that system.
 	for(const System *system : systemsToVisit)

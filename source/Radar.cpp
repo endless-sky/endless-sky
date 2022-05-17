@@ -71,7 +71,7 @@ void Radar::AddViewportBoundary(const Point &vertex)
 {
 	Point start(vertex.X() - copysign(200., vertex.X()), vertex.Y());
 	Point end(vertex.X(), vertex.Y() - copysign(200., vertex.Y()));
-	
+
 	// Add the horizontal leg, pointing from start to vertex.
 	lines.emplace_back(GetColor(VIEWPORT), start, vertex - start);
 	// Add the vertical leg, pointing from end to vertex.
@@ -88,7 +88,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 	{
 		Point start = line.base * scale;
 		Point v = line.vector * scale;
-		
+
 		// At least one endpoint must be within the radar display.
 		double startExcess = start.Length() - radius;
 		double endExcess = (start + v).Length() - radius;
@@ -103,10 +103,10 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 		}
 		else if(endExcess > 0)
 			v -= endExcess * v.Unit();
-		
+
 		LineShader::Draw(start + center, start + v + center, 1.f, line.color);
 	}
-	
+
 	// Draw StellarObjects and ships.
 	RingShader::Bind();
 	for(const Object &object : objects)
@@ -116,11 +116,11 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 		if(length > radius)
 			position *= radius / length;
 		position += center;
-		
+
 		RingShader::Add(position, object.outer, object.inner, object.color);
 	}
 	RingShader::Unbind();
-	
+
 	// Draw neighboring system indicators.
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)
@@ -143,10 +143,10 @@ const Color &Radar::GetColor(int type)
 		*GameData::Colors().Get("radar blink"),
 		*GameData::Colors().Get("radar viewport")
 	};
-	
+
 	if(static_cast<size_t>(type) >= color.size())
 		type = INACTIVE;
-	
+
 	return color[type];
 }
 
