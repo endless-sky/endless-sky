@@ -198,7 +198,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 		}
 	}
 	GIVEN( "a list with multiple items" ) {
-		auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<Object>{};
 		const int weights[] = {1, 10, 100};
 		const auto first = Object(0);
 		const auto second = Object(1);
