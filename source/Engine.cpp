@@ -1324,6 +1324,7 @@ void Engine::ThreadEntryPoint()
 
 		// Do all the calculations.
 		CalculateStep();
+
 		{
 			unique_lock<mutex> lock(swapMutex);
 			hasFinishedCalculating = true;
