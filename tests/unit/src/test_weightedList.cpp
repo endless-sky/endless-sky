@@ -25,7 +25,6 @@ namespace { // test namespace
 // #region mock data
 constexpr int64_t CONSTANT = 10;
 
-// WeightedList contains objects with a Weight() function that returns an integer.
 class Object {
 	// Some data that the object holds.
 	int value;
@@ -33,15 +32,6 @@ public:
 	Object(int value) : value(value) {}
 	int GetValue() const { return value; }
 	bool operator==(const Object &other) const { return this->value == other.value; }
-};
-class WeightedObject : public Object {
-public:
-	WeightedObject(int value, int weight) : Object(value), weight(weight) {}
-	// This object's weight.
-	int Weight() const { return weight; };
-	int weight;
-
-	// Some methods with a result that can be averaged.
 	int64_t GetConstant() const { return CONSTANT; }
 };
 // #endregion mock data
@@ -51,7 +41,7 @@ public:
 // #region unit tests
 SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 	GIVEN( "a weighted list" ) {
-		auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<Object>{};
 
 		WHEN( "it has no content" ) {
 			THEN( "it has the correct attributes" ) {
@@ -67,8 +57,8 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 			const auto beforeSize = list.size();
 			const auto beforeWeight = list.TotalWeight();
 
-			const auto obj = WeightedObject(1, objWeight);
-			list.emplace_back(obj);
+			const auto obj = Object(1);
+			list.emplace_back(obj, objWeight);
 
 			THEN( "the list size increases by 1" ) {
 				CHECK_FALSE( list.empty() );
@@ -87,8 +77,8 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					CHECK( list.TotalWeight() == beforeWeight + objWeight + extraWeight );
 				}
 				THEN( "the object at the back of the list is the most recently inserted" ) {
-					CHECK( list.back().GetValue() == 2 );
-					CHECK( list.back().Weight() == extraWeight );
+					CHECK( list.back().first.GetValue() == 2 );
+					CHECK( list.back().second == extraWeight );
 				}
 
 				AND_WHEN( "a single element is erased" ) {
@@ -101,8 +91,8 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->GetValue() == 2 );
-						CHECK( it->Weight() == extraWeight );
+						CHECK( it->first.GetValue() == 2 );
+						CHECK( it->second == extraWeight );
 					}
 				}
 
@@ -130,13 +120,14 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->GetValue() == 4 );
-						CHECK( it->Weight() == 5 );
+						CHECK( it->first.GetValue() == 4 );
+						CHECK( it->second == 5 );
 					}
 				}
 
 				AND_WHEN( "the erase-remove idiom is used" ) {
-					auto removeIt = std::remove_if(list.begin(), list.end(), [](const Object &o) { return o.GetValue() == 1; });
+					auto removeIt = std::remove_if(list.begin(), list.end(),
+						[](const std::pair<Object, std::size_t> &o) { return o.first.GetValue() == 1; });
 					REQUIRE( removeIt != list.begin() );
 					REQUIRE( removeIt != list.end() );
 					list.erase(removeIt, list.end());
@@ -160,13 +151,13 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 		}
 	}
 	GIVEN( "A weighted list with content" ) {
-		auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<Object>{};
 		list.emplace_back(10, 4);
 		list.emplace_back(20, 1);
 		REQUIRE( list.size() == 2 );
 
 		WHEN( "an average is computed over the same value" ) {
-			auto average = list.Average(std::mem_fn(&WeightedObject::GetConstant));
+			auto average = list.Average(std::mem_fn(&Object::GetConstant));
 			THEN( "the result is independent of choice weights" ) {
 				CHECK( average == CONSTANT );
 			}
@@ -174,7 +165,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 		WHEN( "an average is computed over different values" ) {
 			REQUIRE( CONSTANT != 12 );
-			auto average = list.Average(std::mem_fn(&WeightedObject::GetValue));
+			auto average = list.Average(std::mem_fn(&Object::GetValue));
 			THEN( "the result is dependent on the choices' weights" ) {
 				CHECK( average == 12 );
 			}
@@ -184,7 +175,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 	GIVEN( "a list with no content" ) {
-		const auto list = WeightedList<WeightedObject>{};
+		const auto list = WeightedList<Object>{};
 		WHEN( "a random selection is performed" ) {
 			REQUIRE( list.empty() );
 			THEN( "an informative runtime exception is thrown." ) {
@@ -195,9 +186,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 	}
 
 	GIVEN( "a list with one item" ) {
-		auto list = WeightedList<WeightedObject>{};
-		const auto item = WeightedObject(0, 1);
-		list.emplace_back(item);
+		auto list = WeightedList<Object>{};
+		const auto item = Object(0);
+		list.emplace_back(item, 1);
 		WHEN( "a random selection is performed") {
 			REQUIRE( list.size() == 1 );
 			THEN( "the result is always the item" ) {
@@ -206,14 +197,14 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 		}
 	}
 	GIVEN( "a list with multiple items" ) {
-		auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<Object>{};
 		const int weights[] = {1, 10, 100};
-		const auto first = WeightedObject(0, weights[0]);
-		const auto second = WeightedObject(1, weights[1]);
-		const auto third = WeightedObject(2, weights[2]);
-		list.emplace_back(first);
-		list.emplace_back(second);
-		list.emplace_back(third);
+		const auto first = Object(0);
+		const auto second = Object(1);
+		const auto third = Object(2);
+		list.emplace_back(first, weights[0]);
+		list.emplace_back(second, weights[1]);
+		list.emplace_back(third, weights[2]);
 
 		WHEN( "a random selection is performed" ) {
 			auto getSampleSummary = [&list](std::size_t size){
@@ -259,7 +250,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 	GIVEN( "A new weighted list." ) {
-		auto list = WeightedList<WeightedObject>{};
+		auto list = WeightedList<Object>{};
 		REQUIRE( list.empty() );
 
 		WHEN( "Attempting to insert a negative weighted object." ) {

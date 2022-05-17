@@ -206,13 +206,14 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-			variants.emplace_back(child);
+			variants.emplace_back(child, child.Size() >= add + 2 ? max<int>(1, child.Value(add + 1)) : 1);
 		}
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = std::remove(variants.begin(), variants.end(), toRemove);
+			auto removeIt = remove_if(variants.begin(), variants.end(),
+				[&toRemove](const pair<Variant, size_t> &v) noexcept -> bool { return v.first == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
@@ -242,7 +243,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
+			[](const pair<Variant, size_t> &v) noexcept -> bool { return !v.first.IsValid(); }))
 		return false;
 
 	return true;
@@ -252,9 +253,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
+	auto IsInvalidVariant = [](const pair<Variant, size_t> &v) noexcept -> bool
 	{
-		return !v.IsValid();
+		return !v.first.IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
@@ -265,7 +266,7 @@ void Fleet::RemoveInvalidVariants()
 	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());
 	variants.erase(removeIt, variants.end());
-	
+
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
 		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
