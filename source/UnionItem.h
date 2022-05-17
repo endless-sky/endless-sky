@@ -15,16 +15,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// A UnionItem is a weighted object stored as either a pointer or a stock
+// A UnionItem is an object stored as either a pointer or a stock
 // object, but not both.
 template <class Type>
 class UnionItem {
 public:
 	UnionItem() = default;
-	UnionItem(Type &&item, int weight = 1) : item(item), weight(weight) {}
-	UnionItem(const Type *item, int weight = 1) : stockItem(item), weight(weight) {}
+	UnionItem(Type &&item) : item(item) {}
+	UnionItem(const Type *item) : stockItem(item) {}
 	const Type &GetItem() const noexcept { return stockItem ? *stockItem : item; }
-	int Weight() const noexcept { return weight; }
 	bool operator==(UnionItem<Type> other) const { return GetItem() == other.GetItem(); }
 	bool operator!=(UnionItem<Type> other) const { return !(*this == other); }
 
@@ -32,7 +31,6 @@ public:
 private:
 	Type item;
 	const Type *stockItem = nullptr;
-	int weight = 1;
 };
 
 

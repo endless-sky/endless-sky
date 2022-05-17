@@ -85,7 +85,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	WeightedList<UnionItem<Variant>> variants;
+	WeightedList<Variant> variants;
 
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;

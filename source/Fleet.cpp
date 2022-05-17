@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <iterator>
 
 using namespace std;
@@ -210,7 +211,9 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
-			auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<Variant>(child));
+			Variant toRemove(child);
+			auto removeIt = remove_if(variants.begin(), variants.end(),
+				[&toRemove](const pair<Variant, size_t> &v) noexcept -> bool { return v.first == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
@@ -240,7 +243,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().IsValid(); }))
+			[](const pair<Variant, size_t> &v) noexcept -> bool { return !v.first.IsValid(); }))
 		return false;
 
 	return true;
@@ -250,9 +253,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const UnionItem<Variant> &v) noexcept -> bool
+	auto IsInvalidVariant = [](const pair<Variant, size_t> &v) noexcept -> bool
 	{
-		return !v.GetItem().IsValid();
+		return !v.first.IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
@@ -285,7 +288,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().GetItem().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -454,7 +457,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().GetItem().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -539,13 +542,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	if(variants.empty())
-		return 0;
-
-	int64_t sum = 0;
-	for(const auto &variant : variants)
-		sum += variant.GetItem().Strength() * variant.Weight();
-	return sum / variants.TotalWeight();
+	return variants.Average(std::mem_fn(&Variant::Strength));
 }
 
 
