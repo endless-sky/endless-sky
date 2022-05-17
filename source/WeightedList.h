@@ -30,11 +30,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // the weight of the object over the sum of the weights of all objects in the list.
 template <class Type>
 class WeightedList {
-	using iterator = typename std::vector<std::pair<Type, std::size_t>>::iterator;
-	using const_iterator = typename std::vector<std::pair<Type, std::size_t>>::const_iterator;
+	using iterator = typename std::vector<std::pair<Type, int>>::iterator;
+	using const_iterator = typename std::vector<std::pair<Type, int>>::const_iterator;
 public:
 	const Type &Get() const;
-	std::size_t TotalWeight() const noexcept { return total; }
+	int TotalWeight() const noexcept { return total; }
 
 	// Average the result of the given function by the choices' weights.
 	template <class Callable>
@@ -51,10 +51,10 @@ public:
 	const_iterator end() const noexcept { return choices.end(); }
 
 	void clear() noexcept { choices.clear(); total = 0; }
-	std::size_t size() const noexcept { return choices.size(); }
+	int size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
-	std::pair<Type, std::size_t> &back() noexcept { return choices.back(); }
-	const std::pair<Type, std::size_t> &back() const noexcept { return choices.back(); }
+	std::pair<Type, int> &back() noexcept { return choices.back(); }
+	const std::pair<Type, int> &back() const noexcept { return choices.back(); }
 
 	template <class ...Args>
 	Type &emplace_back(Args&&... args);
@@ -68,8 +68,8 @@ private:
 
 
 private:
-	std::vector<std::pair<Type, std::size_t>> choices;
-	std::size_t total = 0;
+	std::vector<std::pair<Type, int>> choices;
+	int total = 0;
 };
 
 
@@ -96,7 +96,7 @@ typename std::enable_if<
 	typename std::result_of<Callable&&(const Type&&)>::type
 >::type WeightedList<Type>::Average(Callable fn) const
 {
-	std::size_t tw = TotalWeight();
+	int tw = TotalWeight();
 	if (tw == 0) return 0;
 
 	auto sum = typename std::result_of<Callable(const Type &)>::type{};
@@ -111,9 +111,9 @@ template <class Type>
 template <class ...Args>
 Type &WeightedList<Type>::emplace_back(Args&&... args)
 {
-	// Type is responsible for all weights being >= 1.
+	// All weights must be >= 1.
 	choices.emplace_back(args...);
-	std::pair<Type, std::size_t> &choice = choices.back();
+	std::pair<Type, int> &choice = choices.back();
 	if(choice.second < 1)
 	{
 		choices.pop_back();
@@ -126,7 +126,7 @@ Type &WeightedList<Type>::emplace_back(Args&&... args)
 
 
 template <class Type>
-typename std::vector<std::pair<Type, std::size_t>>::iterator WeightedList<Type>::eraseAt(typename std::vector<std::pair<Type, std::size_t>>::iterator position) noexcept
+typename std::vector<std::pair<Type, int>>::iterator WeightedList<Type>::eraseAt(typename std::vector<std::pair<Type, int>>::iterator position) noexcept
 {
 	total -= position->second;
 	return choices.erase(position);
@@ -135,7 +135,7 @@ typename std::vector<std::pair<Type, std::size_t>>::iterator WeightedList<Type>:
 
 
 template <class Type>
-typename std::vector<std::pair<Type, std::size_t>>::iterator WeightedList<Type>::erase(typename std::vector<std::pair<Type, std::size_t>>::iterator first, typename std::vector<std::pair<Type, std::size_t>>::iterator last) noexcept
+typename std::vector<std::pair<Type, int>>::iterator WeightedList<Type>::erase(typename std::vector<std::pair<Type, int>>::iterator first, typename std::vector<std::pair<Type, int>>::iterator last) noexcept
 {
 	auto it = choices.erase(first, last);
 	RecalculateWeight();
@@ -148,7 +148,7 @@ template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
 	total = std::accumulate(choices.begin(), choices.end(), 0,
-		[](std::size_t x, const std::pair<Type, std::size_t> &t) -> std::size_t { return x + t.second; });
+		[](int x, const std::pair<Type, int> &t) -> int { return x + t.second; });
 }
 
 
