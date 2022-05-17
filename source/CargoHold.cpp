@@ -244,8 +244,8 @@ bool CargoHold::HasMissionCargo() const
 bool CargoHold::IsEmpty() const
 {
 	// The outfits map's entries are not erased if they are equal to zero, so
-	// it's not enough to just test outfits.empty().
-	return commodities.empty() && !HasOutfits() && missionCargo.empty() && passengers.empty();
+	// it's not enough to just test outfits.empty(). Same goes for commodities.
+	return !CommoditiesSize() && !HasOutfits() && missionCargo.empty() && passengers.empty();
 }
 
 
