@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool defensive = false, bool opportunistic = false, bool locked = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -52,6 +52,7 @@ public:
 	bool IsAntiMissile() const;
 	bool CanAim() const;
 
+	bool IsLocked() const;
 	bool IsDefensive() const;
 	bool IsOpportunistic() const;
 
@@ -84,6 +85,8 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 
+	void SetLocked(bool locked);
+	void ToggleLocked();
 	// Set the defensive value of this hardpoint.
 	void SetDefensive(bool defensive);
 	// Toggle the defensive value of this hardpoint.
@@ -113,6 +116,9 @@ private:
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
 
+	// Indicates whether fire control attributes on this hardpoint should be editable,
+	// including by uninstallation.
+	bool isLocked = false;
 	// Indicates whether the hardpoint is set to defensive mode.
 	bool isDefensive = false;
 	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.

@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool defensive, bool opportunistic, bool locked)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isLocked(locked), isDefensive(defensive), isOpportunistic(opportunistic)
 {
 }
 
@@ -142,6 +142,13 @@ bool Hardpoint::IsAntiMissile() const
 bool Hardpoint::CanAim() const
 {
 	return outfit && outfit->TurretTurn();
+}
+
+
+
+bool Hardpoint::IsLocked() const
+{
+	return isLocked;
 }
 
 
@@ -355,8 +362,25 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
-	isDefensive = false;
-	isOpportunistic = false;
+	if(!isLocked)
+	{
+		isDefensive = false;
+		isOpportunistic = false;
+	}
+}
+
+
+
+void Hardpoint::SetLocked(bool locked)
+{
+	isLocked = locked;
+}
+
+
+
+void Hardpoint::ToggleLocked()
+{
+	isLocked = !isLocked;
 }
 
 
