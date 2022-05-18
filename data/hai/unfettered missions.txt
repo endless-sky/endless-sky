@@ -3302,7 +3302,7 @@ mission "Unfettered: Start Of The War"
 		"salary: Unfettered" = 5000
 		set "license: True Unfettered"
 		event "joined the unfettered"
-		"reputation: Wanderer" <?= -1000
+		#"reputation: Wanderer" <?= -1000
 		conversation
 			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the wanderers though so be careful."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
