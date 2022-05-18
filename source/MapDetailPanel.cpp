@@ -132,8 +132,8 @@ void MapDetailPanel::Draw()
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	Point point = UI::GetMouse();
-	static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	if(maxScroll && point.X() < Screen::Left() + planetCardInterface->GetValue("width")
 		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet starting Y")
 		&& point.Y() < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"))
@@ -321,7 +321,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
-
 	return true;
 }
 
@@ -512,10 +511,10 @@ void MapDetailPanel::DrawInfo()
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
-	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
-	static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	double startingY = mapInterface->GetValue("planet starting Y");
 	double bottomY = mapInterface->GetValue("planet max bottom Y");	
 	
@@ -528,12 +527,12 @@ void MapDetailPanel::DrawInfo()
 	
 	// Edges:
 	Point pos(Screen::Left(), Screen::Top() + startingY);
-	static const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
 	Point bottomOff(-30., .5 * bottom->Height());
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
 
-	static const Sprite *right = SpriteSet::Get("ui/right edge");
+	const Sprite *right = SpriteSet::Get("ui/right edge");
 	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
 	SpriteShader::Draw(right, edgePos + rightOff);
 
@@ -584,7 +583,7 @@ void MapDetailPanel::DrawInfo()
 	tradeY = uiPoint.Y() - tradeHeight / 2.;
 
 	// Trade sprite goes after the rest.
-	static const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
+	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 
 	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
@@ -638,8 +637,8 @@ void MapDetailPanel::DrawInfo()
 	if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
-		const int X_OFFSET = 240;
-		const int WIDTH = 500;
+		static const int X_OFFSET = 240;
+		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());

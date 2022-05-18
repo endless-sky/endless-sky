@@ -59,7 +59,8 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 {
 	ClickAction clickAction = ClickAction::NONE;
 	// The isShown variable should have already updated by the drawing of this item.
-	if(isShown) {
+	if(isShown)
+	{
 		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		const double textStart = planetCardInterface->GetValue("text start");
 		const double categorySize = planetCardInterface->GetValue("category size");
