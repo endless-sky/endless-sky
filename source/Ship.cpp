@@ -451,7 +451,6 @@ void Ship::Load(const DataNode &node)
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
 					{
-						cout << "Uninstalling all!\n";
 						armament.UninstallAll();
 						break;
 					}
