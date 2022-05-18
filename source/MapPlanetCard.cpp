@@ -48,7 +48,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	
 	sprite = object.GetSprite();
 
-	static const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
 	spriteScale = min(.5f, min((planetIconMaxSize) / sprite->Width(), (planetIconMaxSize) / sprite->Height()));
 }
@@ -61,7 +61,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 	// The isShown variable should have already updated by the drawing of this item.
 	if(isShown)
 	{
-		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		const double textStart = planetCardInterface->GetValue("text start");
 		const double categorySize = planetCardInterface->GetValue("category size");
 		const double categories = planetCardInterface->GetValue("categories");
@@ -111,7 +111,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const Color &medium = *GameData::Colors().Get("medium");
 		const auto alignLeft = Layout(140, Truncate::BACK);
 
-		static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		const double height = planetCardInterface->GetValue("height");
 		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 		const double textStart = planetCardInterface->GetValue("text start");
@@ -126,7 +126,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		double textStartingPosition = textStart - (categories - categoriesFit) * categorySize;
 
 		// We have more leasure at the top if the government sprite is drawn over this element.
-		static const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 		const double governmentY = mapInterface->GetValue("government top Y");
 		const double planetStartingY = mapInterface->GetValue("planet starting Y");
 		const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
@@ -198,7 +198,7 @@ const Planet *MapPlanetCard::GetPlanet() const
 
 void MapPlanetCard::Highlight(double availableSpace) const
 {
-	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
 	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
@@ -209,7 +209,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 
 double MapPlanetCard::AvailableTopSpace() const
 {
-	static const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double height = planetCardInterface->GetValue("height");
 
 	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
