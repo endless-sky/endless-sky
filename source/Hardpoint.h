@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isEnabled = true, bool isFrugal = false, bool hasIndividualFrugality = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -51,6 +51,9 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
+	bool HasIndividualFrugality() const;
+	bool IsEnabled() const;
+	bool IsFrugal() const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -80,6 +83,14 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
+	// Set whether the hardpoint has its own frugality setting.
+	void SetIndividualFrugality(bool input);
+	// Set whether the hardpoint is enabled or disabled.
+	void SetIsEnabled(bool input);
+	void ToggleIsEnabled();
+	// Set whether the hardpoint is always frugal.
+	void SetIsFrugal(bool input);
+	void ToggleIsFrugal();
 
 
 private:
@@ -100,6 +111,12 @@ private:
 	bool isParallel = false;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
+	// Indicates whether the hardpoint is allowed to fire.
+	bool isEnabled = true;
+	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.
+	bool isFrugal = false;
+	// Indicates whether the hardpoint has its own frugality setting.
+	bool hasIndividualFrugality = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;

@@ -278,6 +278,9 @@ void Ship::Load(const DataNode &node)
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
 			bool drawUnder = (key == "gun");
+			bool hasIndividualFrugality = false;
+			bool isEnabled = true;
+			bool isFrugal = false;
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
@@ -290,14 +293,29 @@ void Ship::Load(const DataNode &node)
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
 						drawUnder = false;
+					else if(grand.Token(0) == "enabled")
+					{
+						hasIndividualFrugality = true;
+						isEnabled = true;
+					}
+					else if(grand.Token(0) == "disabled")
+					{
+						hasIndividualFrugality = true;
+						isEnabled = false;
+					}
+					else if(grand.Token(0) == "frugal")
+					{
+						hasIndividualFrugality = true;
+						isFrugal = true;
+					}
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
 			else
-				armament.AddTurret(hardpoint, drawUnder, outfit);
+				armament.AddTurret(hardpoint, drawUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -541,19 +559,51 @@ void Ship::FinishLoading(bool isNewInstance)
 				{
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
-					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit);
-					if(nextGun != end)
+					const Outfit *outfit;
+					bool hasIndividualFrugality = false;
+					bool isEnabled = true;
+					bool isFrugal = false;
+					if(nextGun == end)
+					{
+						outfit = nullptr;
+					}
+					else
+					{
+						outfit = nextGun->GetOutfit();
+						if(nextGun->HasIndividualFrugality())
+						{
+							hasIndividualFrugality = true;
+							isEnabled = nextGun->IsEnabled();
+							isFrugal = nextGun->IsFrugal();
+						}
 						++nextGun;
+					}
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
 				}
 				else
 				{
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
-					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit);
-					if(nextTurret != end)
+					const Outfit *outfit;
+					bool hasIndividualFrugality = false;
+					bool isEnabled = true;
+					bool isFrugal = false;
+					if(nextTurret == end)
+					{
+						outfit = nullptr;
+					}
+					else
+					{
+						outfit = nextTurret->GetOutfit();
+						if(nextTurret->HasIndividualFrugality())
+						{
+							hasIndividualFrugality = true;
+							isEnabled = nextTurret->IsEnabled();
+							isFrugal = nextTurret->IsFrugal();
+						}
 						++nextTurret;
+					}
+					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
 				}
 			}
 			armament = merged;

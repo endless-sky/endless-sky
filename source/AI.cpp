@@ -2884,8 +2884,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	if(person.IsPacifist() || ship.CannotAct())
 		return;
 
-	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
-	if(person.IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	bool checkFrugality = false;
+	for(const Hardpoint &hardpoint : ship.Weapons())
+	{
+		if(hardpoint.HasIndividualFrugality())
+		{
+			checkFrugality = true;
+			break;
+		}
+	}
+	bool beFrugal = (ship.IsYours() && !escortsUseAmmo) && !checkFrugality;
+	if(person.IsFrugal() || checkFrugality || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
 		// Frugal ships only expend ammunition if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -2961,6 +2970,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		// Don't fire secondary weapons if told not to.
 		if(!secondary && weapon->Icon())
 			continue;
+		// We might need to check the individual hardpoint frugality settings.
+		if(checkFrugality)
+		{
+			// Don't fire if this hardpoint isn't enabled.
+			if(!hardpoint.IsEnabled())
+				continue;
+			// If the hardpoint is set to 'frugal' and the conditions for firin
+			// when frugal haven't been met, don't fire.
+			if(hardpoint.IsFrugal() && beFrugal)
+				continue;
+		}
 		// Don't expend ammo if trying to be frugal.
 		if(beFrugal && weapon->Ammo())
 			continue;
@@ -3630,7 +3650,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))

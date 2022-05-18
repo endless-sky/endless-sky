@@ -26,17 +26,29 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit);
+	if(outfit == nullptr)
+	{
+		hasIndividualFrugality = false;
+		isEnabled = true;
+		isFrugal = false;
+	}
+	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
 }
 
 
 
 // Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
+void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
 {
-	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit);
+	if(outfit == nullptr)
+	{
+		hasIndividualFrugality = false;
+		isEnabled = true;
+		isFrugal = false;
+	}
+	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
 }
 
 

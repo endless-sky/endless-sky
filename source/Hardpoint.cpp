@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isEnabled(isEnabled), isFrugal(isFrugal), hasIndividualFrugality(hasIndividualFrugality)
 {
 }
 
@@ -142,6 +142,27 @@ bool Hardpoint::IsAntiMissile() const
 bool Hardpoint::CanAim() const
 {
 	return outfit && outfit->TurretTurn();
+}
+
+
+
+bool Hardpoint::HasIndividualFrugality() const
+{
+	return hasIndividualFrugality;
+}
+
+
+
+bool Hardpoint::IsEnabled() const
+{
+	return isEnabled;
+}
+
+
+
+bool Hardpoint::IsFrugal() const
+{
+	return isFrugal;
 }
 
 
@@ -341,6 +362,44 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+}
+
+
+
+// Set whether the hardpoint has its own frugality setting.
+void Hardpoint::SetIndividualFrugality(bool input)
+{
+	hasIndividualFrugality = input;
+}
+
+
+
+// Set whether the hardpoint is enabled or disabled.
+void Hardpoint::SetIsEnabled(bool input)
+{
+	isEnabled = input;
+}
+
+
+
+void Hardpoint::ToggleIsEnabled()
+{
+	isEnabled = !isEnabled;
+}
+
+
+
+// Set whether the hardpoint is always frugal.
+void Hardpoint::SetIsFrugal(bool input)
+{
+	isFrugal = input;
+}
+
+
+
+void Hardpoint::ToggleIsFrugal()
+{
+	isFrugal = !isFrugal;
 }
 
 
