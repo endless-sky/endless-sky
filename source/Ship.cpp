@@ -977,11 +977,11 @@ void Ship::Save(DataWriter &out) const
 				if(hardpoint.HasIndividualFrugality())
 				{
 					if(hardpoint.IsEnabled())
-						Out.Write("enabled");
+						out.Write("enabled");
 					else
-						Out.Write("disabled");
+						out.Write("disabled");
 					if(hardpoint.IsFrugal())
-						Out.Write("frugal");
+						out.Write("frugal");
 				}
 			}
 			out.EndChild();
