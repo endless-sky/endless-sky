@@ -28,7 +28,7 @@ namespace {
 
 		// Shift negative values into [0, 1] to create redundancy at the endpoints
 		if(randomFactor < 0.)
-			randomFactor++;
+			++randomFactor;
 
 		// Invert probabilities so that endpoints are most probable.
 		if(inverted)
@@ -41,7 +41,7 @@ namespace {
 
 		// Transform from [0, 1] to [-1, 1] so that the return value can be simply used.
 		randomFactor *= 2;
-		randomFactor--;
+		--randomFactor;
 
 		return randomFactor;
 	}

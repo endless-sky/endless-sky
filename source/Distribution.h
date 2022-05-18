@@ -19,9 +19,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-class Distribution{
+class Distribution {
 public:
-	enum class Type{
+	enum class Type {
 		Tight = 0,
 		Middling = 1,
 		Wide = 2,
