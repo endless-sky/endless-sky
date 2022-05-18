@@ -209,7 +209,13 @@ int CargoHold::OutfitsSize() const
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
 {
-	return !outfits.empty();
+	// The code for adding and removing outfits does not clear the entry in the
+	// map if its value becomes zero, so we need to check all the entries:
+	for(const auto &it : outfits)
+		if(it.second)
+			return true;
+
+	return false;
 }
 
 
@@ -237,7 +243,9 @@ bool CargoHold::HasMissionCargo() const
 // Check if there is anything in this cargo hold (including passengers).
 bool CargoHold::IsEmpty() const
 {
-	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();
+	// The outfits map's entries are not erased if they are equal to zero, so
+	// it's not enough to just test outfits.empty(). Same goes for commodities.
+	return !CommoditiesSize() && !HasOutfits() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -346,6 +354,7 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
 	commodities[commodity] += removed - added;
@@ -364,11 +373,10 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
 	// remainder back to this cargo hold, even if there is not space for it.
+	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
-	int remainder = removed - added;
-	if(remainder)
-		outfits[outfit] += remainder;
+	outfits[outfit] += removed - added;
 
 	return added;
 }
@@ -504,10 +512,6 @@ int CargoHold::Remove(const Outfit *outfit, int amount)
 
 	amount = min(amount, outfits[outfit]);
 	outfits[outfit] -= amount;
-
-	// Remove the entry if there is no instance of this outfit in this cargo hold.
-	if(!outfits[outfit])
-		outfits.erase(outfit);
 	return amount;
 }
 
@@ -562,6 +566,12 @@ int CargoHold::IllegalCargoFine() const
 	// Only the worst illegal outfit is fined.
 	for(const auto &it : outfits)
 	{
+		// The code for adding and removing outfits does not clear the entry in the
+		// map if its value becomes zero, so we need to check if the outfit is
+		// actually inside the cargo hold.
+		if(!it.second)
+			continue;
+
 		int fine = it.first->Get("illegal");
 		if(it.first->Get("atrocity") > 0.)
 			return -1;
