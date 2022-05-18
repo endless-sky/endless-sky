@@ -1975,6 +1975,8 @@ mission "Unfettered: The Word Has Spread"
 	stopover "Greenbloom"
 	stopover "Greenwater"
 	stopover "Stonebreak"
+	stopover "Mahoganybox"
+	stopover "Greymoon"
 	on stopover
 		dialog `You have gathered all the Hai that had been assigned to you, time to bring them to <destination>.`
 	
@@ -2513,9 +2515,9 @@ mission "Unfettered: Shield Beetles Available"
 	to offer
 		has "event: Unfettered: shield beetle mass production"
 	on offer
-		log "people" "Hi Ye" `An Unfettered warlord that likes to be direct and to call humans monkey apparently. He has some great managing capabilities though.`
+		log "people" "He Yi" `An Unfettered warlord that likes to be direct and to call humans monkey apparently. He has some great managing capabilities though.`
 		conversation
-			`You receive a message from the Unfettered warlord, who finally gives you his name : "Hi Ye", "Thanks to you the Shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
+			`You receive a message from the Unfettered warlord, who finally gives you his name : "He Yi", "Thanks to you the Shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However in order to buy them you will require a license. Continue helping me and you will have it in no time! In the mean time you can enjoy the additional outfits we can produce there."`
 				decline
 
 
@@ -2836,7 +2838,7 @@ mission "Unfettered: Close Quarter"
 				`	(Of course.)`
 				`	(Not now.)`
 					defer
-			`	You see where all the Unfettered were going. They are all here fighting in a huge organized field. The whole thing seems to be some sort of mass training exercising in hand to hand combat, in the form of circles of various sizes and colors that never touch. You do not understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. Hi Ye is standing in the bigger one of them.`
+			`	You see where all the Unfettered were going. They are all here fighting in a huge organized field. The whole thing seems to be some sort of mass training exercising in hand to hand combat, in the form of circles of various sizes and colors that never touch. You do not understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He Yi is standing in the bigger one of them.`
 			choice
 				`	(Go closer to see what is going on.)`
 				`	(Leave. This does not seem interesting.)`
@@ -2846,7 +2848,7 @@ mission "Unfettered: Close Quarter"
 				`	(Join the fight!)`
 					goto fight
 				`	(Keep looking.)`
-			`	You keep looking around and are eventually attracted towards the bigger fight, the one Hi Ye is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
+			`	You keep looking around and are eventually attracted towards the bigger fight, the one He Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
 			choice
 				`	(Challenge him.)`
 					goto challenge
@@ -2895,7 +2897,7 @@ mission "Unfettered: Close Quarter"
 			`	You try to shoot him but he is too fast and you too inexperienced. By moving you have made yourself an easy target for him, though; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
 			
 			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including Hi Ye. He comes to speak to you, "That was a nice fight, especially considering this must be your first!"`
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He Yi. He comes to speak to you, "That was a nice fight, especially considering this must be your first!"`
 			choice
 				`	"Can I help you with something?"`
 					goto speak
@@ -2918,7 +2920,7 @@ mission "Unfettered: Close Quarter"
 			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however and he comes to speak to you.`
 				goto speak
 			label nope
-			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is Hi Ye, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
+			`	You look at them battling for so long you do not see the time pass, then you realize you are being watched. It is He Yi, he looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			
 			label speak
 			`	"As you may have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too enthusiastic... They shoot one too many times to make sure to hit. We have experienced with some less powerful versions of our rifles but those do not reflect war at all anymore, they become just a joke, one meant for the weak ones. Do you happen to know any weapons that would not have such weakness, that would be non lethal but still not meant for child's play? I expect said weapons to be even stronger that ours, which are not very effective to be honest, they often let the target able to shoot still after the first shot."`
@@ -2949,7 +2951,7 @@ mission "Unfettered: Close Quarter"
 		clear "Unfettered: offered close quarter"
 		log `Brought very strong stunning weapons to the Unfettered so they can do their training without risk, or at least that is what they said, apparently there may be more to it.`
 		conversation
-			`You go see Hi Ye with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
+			`You go see He Yi with the non lethal rifles to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
 			choice
 				`	"How can a few better trained troops make a difference?"`
 				`	"Glad I could make a difference then."`
@@ -2975,7 +2977,7 @@ mission "Bring Pug Staffs"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Pug Peacekeeping Staff" 10
-		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? Hi Ye says they can give you <payment> for it.`
+		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
 		payment 2500000
 		outfit "Pug Peacekeeping Staff" -10
@@ -2989,9 +2991,9 @@ mission "Bring Coalition Weapons"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Enforcer Riot Staff" 10
-		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? Hi Ye says they can give you <payment> for it.`
+		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
-		payment 2000000
+		payment 3000000
 		outfit "Enforcer Riot Staff" -10
 		dialog `The Unfettered thank you for bringing these 10 staffs to them. They give you <payment>.`
 
@@ -3003,7 +3005,7 @@ mission "Bring Void Rifle"
 	on offer
 		require "Void Rifle" 1
 		conversation
-			`Hi Ye seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do, this is the perfect weapon for training."`
+			`He Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do, this is the perfect weapon for training."`
 			choice
 				`	"Sorry, this is one of a kind."`
 			`	"Oh, if you want I can cancel the exchange then, if it is precious to your eyes."`
@@ -3031,7 +3033,7 @@ event "looking for a gun"
 
 mission "Unfettered: Non Lethal Weapons Hint"
 	name `Learn more about pugs.`
-	description `Go to <destination> to see if you can ask your old friend from the pug war and learn more about what kind of weapons they are using, which may be interesting to Hi Ye.`
+	description `Go to <destination> to see if you can ask your old friend from the pug war and learn more about what kind of weapons they are using, which may be interesting to He Yi.`
 	minor
 	source
 		attributes "unfettered"
@@ -3041,7 +3043,7 @@ mission "Unfettered: Non Lethal Weapons Hint"
 		has "Unfettered: Close Quarter: active"
 	on offer
 		conversation
-			`As you land on this Unfettered planet you think back of the peculiar request Hi Ye made to you: bring back non deadly guns. After thinking a while about it, you remember tales about the pugs having special weapons, that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers, they may be able to tell you more about this... Also there could be other weapons, as any highly advanced civilization with a police would want to have this kind of non deadly weapon.`
+			`As you land on this Unfettered planet you think back of the peculiar request He Yi made to you: bring back non deadly guns. After thinking a while about it, you remember tales about the pugs having special weapons, that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers, they may be able to tell you more about this... Also there could be other weapons, as any highly advanced civilization with a police would want to have this kind of non deadly weapon.`
 				accept
 	to fail
 		has "Unfettered: Close Quarter: done"
@@ -3059,7 +3061,7 @@ mission "Unfettered: Know Your Enemy"
 	source "Firelode"
 	stopover "Warfeed"
 	to offer
-		has "Unfettered: The Word Has Spread: done"
+		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 	on offer
 		conversation
 			`Going in the spaceport, you notice buildings are not as ravaged as before. Maybe this is due to a newly found interest for the Unfettered to restore their past. It could also be because many Hai came and brought with them technique, materials, and they themselves require housing too. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
