@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 namespace {
-	double ManipulateNormal(double smoothness, bool invert)
+	double ManipulateNormal(double smoothness, bool inverted)
 	{
 		// Center values within [0, 1] so that fractional retention begins to accumulate
 		// at the endpoints (rather than at the center) of the distribution.
@@ -31,7 +31,7 @@ namespace {
 			randomFactor++;
 
 		// Invert probabilities so that endpoints are most probable.
-		if(invert)
+		if(inverted)
 		{
 			if(randomFactor > 0.5)
 				randomFactor -= 0.5;
@@ -52,7 +52,7 @@ namespace {
 
 
 
-Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Type, bool> distribution)
+Angle Distribution::GenerateInaccuracy(double value, std::pair<Type, bool> distribution)
 {
 	// Check if there is any inaccuracy to apply
 	if(value)
@@ -61,11 +61,11 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Typ
 		{
 			case Distribution::Type::Uniform:
 				return Angle(2 * (Random::Real() - 0.5) * value);
-			case Distribution::Type::Tight:
-			case Distribution::Type::Middling:
-			case Distribution::Type::Wide:
+			case Type::Tight:
+			case Type::Middling:
+			case Type::Wide:
 			return Angle(value * ManipulateNormal(SMOOTHNESS_TABLE[static_cast<int>(distribution.first)], distribution.second));
-			case Distribution::Type::Triangular:
+			case Type::Triangular:
 			default:
 				return Angle((Random::Real() - Random::Real()) * value);;
 		}

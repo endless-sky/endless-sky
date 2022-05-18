@@ -33,7 +33,7 @@ public:
 public:
 	// Generate an angle that gets projectile heading
 	// when combined with hardpoint aim.
-	static Angle GenerateInaccuracy(double value, std::pair<Distribution::Type, bool>);
+	static Angle GenerateInaccuracy(double value, std::pair<Type, bool>);
 };
 
 
