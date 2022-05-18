@@ -210,7 +210,7 @@ mission "Curious Waiter"
 	minor
 	source
 		government "Syndicate"
-		attributes "fatory"
+		attributes "factory"
 		not attributes "station"
 	to offer
 		random < 1
