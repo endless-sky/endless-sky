@@ -22,11 +22,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Distribution{
 public:
 	enum class Type{
-		Triangular = 0,
-		Tight = 1,
-		Middling = 2,
-		Wide = 3,
-		Uniform = 4
+		Tight = 0,
+		Middling = 1,
+		Wide = 2,
+		Uniform = 3,
+		Triangular = 4
 	};
 
 

@@ -14,14 +14,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Random.h"
 
+#include <vector>
 
 namespace {
 	double ManipulateNormal(double smoothness, bool invert)
 	{
-		// The incoming value is always guaranteed to be an int, casted from a Distribution::Type.
-		// The 4.634 manipulation causes the Middling value to result in a standard spread and
-		// the 2 is to account for the initial range of the distribution ([0, 1] instead of [-1, 1]).
-		smoothness /= 4.634 * 2;
 		// Center values within [0, 1] so that fractional retention begins to accumulate
 		// at the endpoints (rather than at the center) of the distribution.
 		double randomFactor = Random::BMNormal(0.5, smoothness);
@@ -48,6 +45,9 @@ namespace {
 
 		return randomFactor;
 	}
+
+	// These values are paired with Distribution::Types; any change in one should be made in the other.
+	const std::vector<double> SMOOTHNESS_TABLE = { 0.13, 0.234, 0.314 };
 }
 
 
@@ -64,7 +64,7 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Distribution::Typ
 			case Distribution::Type::Tight:
 			case Distribution::Type::Middling:
 			case Distribution::Type::Wide:
-				return Angle(value * ManipulateNormal(static_cast<double>(distribution.first), distribution.second));
+			return Angle(value * ManipulateNormal(SMOOTHNESS_TABLE[static_cast<int>(distribution.first)], distribution.second));
 			case Distribution::Type::Triangular:
 			default:
 				return Angle((Random::Real() - Random::Real()) * value);;
