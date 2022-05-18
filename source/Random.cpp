@@ -34,12 +34,11 @@ namespace {
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
 #endif
-}
 
 static bool normalBMCached = false;
 static double cachedBMNormal = std::numeric_limits<double>::infinity();
 static const double epsilon = std::numeric_limits<double>::epsilon();
-
+}
 
 
 // Seed the generator (e.g. to make it produce exactly the same random
