@@ -80,7 +80,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
 		// Check if the player is in need of fuel to jump away.
-		if(!flagship->JumpsRemaining() && flagship->JumpFuel() && flagship->Attributes().Get("fuel capacity"))
+		if(!flagship->JumpsRemaining() && flagship->JumpFuelMissing())
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship);
