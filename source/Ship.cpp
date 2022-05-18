@@ -566,15 +566,20 @@ void Ship::FinishLoading(bool isNewInstance)
 				{
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
-					const Outfit *outfit = nullptr;
-					bool hasIndividualFrugality = nextGun->HasIndividualFrugality();
-					bool isEnabled = nextGun->IsEnabled();
-					bool isFrugal = nextGun->IsFrugal();
+					const Outfit *outfit;
+					bool hasIndividualFrugality = false;
+					bool isEnabled = true;
+					bool isFrugal = false;
 					if(nextGun != end)
 					{
 						outfit = nextGun->GetOutfit();
+						hasIndividualFrugality = nextGun->HasIndividualFrugality();
+						isEnabled = nextGun->IsEnabled();
+						isFrugal = nextGun->IsFrugal();
 						++nextGun;
 					}
+					else
+						outfit = nullptr;
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
 				}
 				else
@@ -582,14 +587,19 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit;
-					bool hasIndividualFrugality = nextTurret->HasIndividualFrugality();
-					bool isEnabled = nextTurret->IsEnabled();
-					bool isFrugal = nextTurret->IsFrugal();
+					bool hasIndividualFrugality = false;
+					bool isEnabled = true;
+					bool isFrugal = false;
 					if(nextTurret != end)
 					{
 						outfit = nextTurret->GetOutfit();
+						hasIndividualFrugality = nextTurret->HasIndividualFrugality();
+						isEnabled = nextTurret->IsEnabled();
+						isFrugal = nextTurret->IsFrugal();
 						++nextTurret;
 					}
+					else
+						outfit = nullptr;
 					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
 				}
 			}
