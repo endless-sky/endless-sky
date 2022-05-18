@@ -132,7 +132,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 					else
 						child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
 				}
-				else if(grand.Token(0) == "invert")
+				else if(grand.Token(0) == "inverted")
 					inaccuracyDistribution.second = true;
 				else
 					child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
