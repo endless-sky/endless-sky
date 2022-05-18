@@ -47,7 +47,7 @@ namespace {
 	}
 
 	// These values are paired with Distribution::Types; any change in one should be made in the other.
-	const std::vector<double> SMOOTHNESS_TABLE = { 0.13, 0.234, 0.314 };
+	const double SMOOTHNESS_TABLE[] = {.13, .234, .314};
 }
 
 
