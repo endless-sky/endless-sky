@@ -213,7 +213,7 @@ void Fleet::Load(const DataNode &node)
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
 			auto removeIt = remove_if(variants.begin(), variants.end(),
-				[&toRemove](const pair<Variant, size_t> &v) noexcept -> bool { return v.first == toRemove; });
+				[&toRemove](const pair<Variant, int> &v) noexcept -> bool { return v.first == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
@@ -243,7 +243,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const pair<Variant, size_t> &v) noexcept -> bool { return !v.first.IsValid(); }))
+			[](const pair<Variant, int> &v) noexcept -> bool { return !v.first.IsValid(); }))
 		return false;
 
 	return true;
@@ -253,7 +253,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const pair<Variant, size_t> &v) noexcept -> bool
+	auto IsInvalidVariant = [](const pair<Variant, int> &v) noexcept -> bool
 	{
 		return !v.first.IsValid();
 	};
