@@ -501,7 +501,7 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label action
-			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a decadent state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
+			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a deprecated state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
 			choice
 				`	"I will get to it right away then."`
 					accept
@@ -518,7 +518,7 @@ mission "Unfettered: Bring Hai"
 		clear "Unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
-		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back onto the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem to require anything at all, other than to be here.`
+		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem not to require anything at all, other than to be here.`
 
 
 
@@ -547,7 +547,7 @@ mission "Unfettered: Bring Medical Supplies"
 	on offer
 		conversation
 			`As you land, you receive a distress message, originating from one of the hospitals nearby. Staff are asking all who can to immediately bring back medical supplies from <stopovers>.`
-			`	When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, launching small ships to bring the wounded to the hospitals as quickly as possible. The hospital itself looks different than the rest of Unfettered structures, it seems more organized, proper, it is probably the one structure that has the best appearance, because it is the most useful to them, with the shipyards. But one part of it looks like it has been grafted onto the rest, and not by a well trained physician to say the least... You figure they must really be needing more space for the sicks.`
+			`	When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, launching small ships to bring the wounded to the hospitals as quickly as possible. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure, or at least has that appearance, because it is the most useful to them, alongside the shipyards. But one part of it looks to have been grafted onto the rest, and not by a well trained physician, to say the least... You figure they must really be needing more space for their sick.`
 			`	Considering all of this, the Unfettered may not take no for an answer... Plenty of ships are already taking off to try and get those much needed medicals.`
 			choice
 				`	(Signal them I am going to get the supplies.)`
@@ -592,7 +592,7 @@ outfit "Gold Bars"
 	cost 64000
 	thumbnail "outfit/gold bars"
 	mass 2.1
-	description "It shines, you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them, you wonder what that could mean... Surely nothing to worry about. Most outfitters are not real 'connaisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
+	description "It shines, you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
 
 ship "Sea Scorpion" "Sari'Sea Scorpion (Pulse)"
 	outfits
@@ -2485,7 +2485,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Whatever the distance to cross, I will do it."`
 				`	"I do not want to do long distance cargo mission, screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <destination> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
+			`	"Good, then go to <stopover> and take the materials there, on this exact location. Do not stay too long and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. The place is a shipyard with major extracting operations, so we can easily arrange for you to get said supplies from there without you even having to see anyone."`
 			choice
 				`	"Time to go then."`
 					accept	
@@ -2500,7 +2500,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		log `I helped the Unfettered upgrade their shipyards and received a brand new ship! It appears to be a prototype, quite an unstable one at that. However, shield beetles will have to wait.`
 		give ship "Shield Beetle Prototype" "Basilisk"
 		event "Unfettered: shield beetle mass production" 30
-		dialog `After unloading all the cargo you go check for the warlord in the shipyard, and you find a Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship, "We have a very special reward for you, captain: a brand new ship, produced just for you. It is equipped with plenty of prototypes and has some particularities which I am sure you will like, including a reinforced shield matrix!" You guess that Taer-Fi left you the message.`
+		dialog `After unloading all the cargo you go check for the warlord in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship, "We have a very special reward for you, captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particularities which I am sure you will like, including a reinforced shield matrix!" You guess that Taer-Fi left you the message.`
 
 event "Unfettered: shield beetle mass production"
 	planet "Darkcloak"
@@ -2820,7 +2820,7 @@ mission "Unfettered: Special Cargo 2"
 
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
-	description `Hi Ye wants you to bring 10 non lethal weapons, stronger than the pulse rifle, for him to train with the other Unfettered without any danger, on <destination>.`
+	description `Hi Ye wants you to bring 10 non lethal weapons stronger than the pulse rifle, for him to train with the other Unfettered without any danger. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
@@ -3140,10 +3140,10 @@ mission "Unfettered: Bring Detainer"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`You go find He Yi in his war room, he does not seem too surprised to see you. "I expected you to come here. You most want one of us to act as 'diplomat' with the aliens from the North."`
+			`You go find He Yi in his war room, he does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens from the North."`
 			`	You nod.`
-			`	"Well that is not our way, we do not ask, we take. Things need to be earned, in battle or otherwise, else they have no value. I  have obtained a translator, that is able to translate your backwards language to the one of the Hai. Because these birds speak Hai, you will be able to communicate with them later. I was not sure you were unable to speak Hai, or that the birds would not understand you, they seem to have grasped Hai very quickly, trough methods I prefer not to imagine."`
-			`	"If you want this translator, you will have to earn it. There is something I want, I have heard tales of a weapon that would neutralize one's engines. Such weapon would be a very nice addition to my collection... Well I would obviously use it in battle when the time is right, too. Bring me one of these weapons and you will have earned this translator."`
+			`	"Well that is not our way, we do not ask, we take. Things need to be earned, in battle or otherwise, else they have no value. I  have obtained a translator, that is able to translate your backwards language to the one of the Hai. Because these birds speak Hai, you will be able to communicate with them later. I was not sure before that you were still unable to speak Hai, or that the birds would not understand your language, as they seem to have grasped Hai very quickly, through methods I prefer not to imagine."`
+			`	"If you want this translator, you will have to earn it. There is something I want; I have heard tales of a weapon that would neutralize one's engines. Such weapon would be a very nice addition to my collection... Well I would obviously use it in battle when the time is right, too. Bring me one of these weapons and you will have earned this translator."`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
@@ -3304,7 +3304,7 @@ mission "Unfettered: Start Of The War"
 		event "joined the unfettered"
 		"reputation: Wanderer" <?= -1000
 		conversation
-			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the wanderers though so be carreful."`
+			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the wanderers though so be careful."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
 			action
 				"Unfettered: questions" = -1
@@ -3345,7 +3345,7 @@ mission "Unfettered: Start Of The War"
 			label helped
 			`	"Well as you know you brought the detainer to me in exchange for the translation device."`
 			label otherweapons
-			`	"For the other weapons, it was loot collected during the Korath raids that we preciously kept until now, for special occasions. The Sunbeams are the most recent addition to the ship, we got them from looting ships North. And then of course our anti missiles systems are the best for what is needed here: cheap and most importantly efficient countering of a lot of missiles. I do not have unlimited energy to spare... Then for the rest I do not need to introduce you to flamethrowers, they may be very crude but they are effective at overheating ships."`
+			`	"For the other weapons, it was loot collected during the Korath raids that we have held on to for use in for special occasions. The Sunbeams are the most recent addition to the ship, we got them from looting ships North. And then of course our anti missiles systems are the best for what is needed here: cheap and most importantly efficient countering of a lot of missiles. I do not have unlimited energy to spare... Then for the rest I do not need to introduce you to flamethrowers, they may be very crude but they are effective at overheating ships."`
 				goto questions
 			
 			label enough
