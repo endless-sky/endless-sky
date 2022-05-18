@@ -2814,7 +2814,7 @@ mission "Unfettered: Special Cargo 2"
 	on complete
 		log `Placed a mysterious cube in a clearing on Everhope. It should give intel on Hai ship movements to the Unfettered.`
 		payment 5000000
-		dialog `He Yi is more than happy to see you in his trone room, and gives you a generous payment of <payment>.`
+		dialog `He Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
 
 
 
