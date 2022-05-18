@@ -504,7 +504,7 @@ void Engine::Step(bool isActive)
 	wasActive = isActive;
 	Audio::Update(center);
 
-	// Update the zoom value to the new one.
+	// Now that the calculation thread it is safe to update to the new zoom value.
 	if(nextZoom)
 	{
 		zoom = nextZoom;
@@ -1345,8 +1345,9 @@ void Engine::CalculateStep()
 {
 	FrameTimer loadTimer;
 
-	// The zoom for this step is either the next or if it
-	// didn't change the current one.
+	// If there is a pending zoom update then use it
+	// because the zoom will get updated in the main thread
+	// as soon as the calculation thread is finished.
 	const double zoom = nextZoom ? nextZoom : this->zoom;
 
 	// Clear the list of objects to draw.
