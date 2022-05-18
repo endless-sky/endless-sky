@@ -974,6 +974,15 @@ void Ship::Save(DataWriter &out) const
 					out.Write("under");
 				else
 					out.Write("over");
+				if(hardpoint.HasIndividualFrugality())
+				{
+					if(hardpoint.IsEnabled())
+						Out.Write("enabled");
+					else
+						Out.Write("disabled");
+					if(hardpoint.IsFrugal())
+						Out.Write("frugal");
+				}
 			}
 			out.EndChild();
 		}

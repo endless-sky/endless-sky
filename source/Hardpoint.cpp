@@ -362,6 +362,9 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+	isEnabled = true;
+	isFrugal = false;
+	hasIndividualFrugality = false;
 }
 
 
