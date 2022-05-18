@@ -39,7 +39,6 @@ namespace {
 static bool normalBMCached = false;
 static double cachedBMNormal = std::numeric_limits<double>::infinity();
 static const double epsilon = std::numeric_limits<double>::epsilon();
-static const double two_pi = 2.0 * PI;
 
 
 
@@ -156,8 +155,8 @@ double Random::BMNormal(double mean, double sigma)
 
 		// Store z0 and return z1
 		auto mag = sqrt(-2.0 * log(u1));
-		cachedBMNormal = mag * cos(two_pi * u2);
+		cachedBMNormal = mag * cos(PI_2 * u2);
 		normalBMCached = true;
-		return sigma * mag * sin(two_pi * u2) + mean;
+		return sigma * mag * sin(PI_2 * u2) + mean;
 	}
 }
