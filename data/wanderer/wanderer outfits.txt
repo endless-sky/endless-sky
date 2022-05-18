@@ -303,7 +303,7 @@ outfit "Small Biochemical Cell"
 	"outfit space" -17
 	"energy generation" 1.6
 	"heat generation" 1.4
-	"energy capacity" 300
+	"energy capacity" 3000
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
@@ -316,7 +316,7 @@ outfit "Large Biochemical Cell"
 	"outfit space" -63
 	"energy generation" 6.2
 	"heat generation" 4.9
-	"energy capacity" 700
+	"energy capacity" 7000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
@@ -329,7 +329,7 @@ outfit "Red Sun Reactor"
 	"outfit space" -47
 	"energy generation" 8.3
 	"heat generation" 13
-	"energy capacity" 1100
+	"energy capacity" 2200
 	description "The Wanderers have recently begun producing this tiny reactor as a way to squeeze a bit more energy production into their warships."
 
 outfit "Yellow Sun Reactor"
@@ -342,7 +342,7 @@ outfit "Yellow Sun Reactor"
 	"outfit space" -82
 	"energy generation" 15.2
 	"heat generation" 21
-	"energy capacity" 2600
+	"energy capacity" 5200
 	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
 
 outfit "White Sun Reactor"
@@ -355,7 +355,7 @@ outfit "White Sun Reactor"
 	"outfit space" -127
 	"energy generation" 24.85
 	"heat generation" 32
-	"energy capacity" 6700
+	"energy capacity" 13400
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."
 
 outfit "Blue Sun Reactor"
@@ -368,7 +368,7 @@ outfit "Blue Sun Reactor"
 	"outfit space" -152
 	"energy generation" 31.3
 	"heat generation" 39
-	"energy capacity" 8900
+	"energy capacity" 17800
 	description "As the Wanderers have begun producing heavy warships, a need has arisen for larger and larger reactor cores to power them."
 
 

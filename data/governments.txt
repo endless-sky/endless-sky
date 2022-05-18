@@ -138,9 +138,12 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
-	"bribe" .02
+	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
@@ -155,6 +158,28 @@ government "Hai (Wormhole Access)"
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant (Sympathizers)" .95
+		"Hai Merchant (Human)" .95
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
@@ -162,6 +187,42 @@ government "Hai (Wormhole Access)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Sympathizers)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Human)" .95
+		"Hai (Unfettered)" .01
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Human)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Sympathizers)" .95
+		"Hai (Unfettered)" -.2
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 
 government "Hai (Unfettered)"
 	swizzle 4
@@ -171,6 +232,9 @@ government "Hai (Unfettered)"
 	"attitude toward"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" 0.01
+		"Hai Merchant (Human)" -.01
 		"Wanderer" -.01
 		"Pug" -.01
 		"Pug (Wanderer)" -.01
@@ -694,4 +758,7 @@ government "Wormhole Alpha"
 	"fine" 0
 	"attitude toward"
 		"Hai" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" -.01
+		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
