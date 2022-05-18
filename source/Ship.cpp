@@ -312,6 +312,12 @@ void Ship::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
+			if(outfit == nullptr)
+			{
+				hasIndividualFrugality = false;
+				isEnabled = true;
+				isFrugal = false;
+			}
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
 			else
@@ -437,13 +443,15 @@ void Ship::Load(const DataNode &node)
 			}
 
 			// Verify we have at least as many installed outfits as were identified as "equipped."
-			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
+			// If not (e.g. overriding a previously loaded ship definition),
+			// ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
 				for(const auto &pair : GetEquipped(Weapons()))
 				{
 					auto it = outfits.find(pair.first);
 					if(it == outfits.end() || it->second < pair.second)
 					{
+						cout << "Uninstalling all!\n";
 						armament.UninstallAll();
 						break;
 					}
@@ -559,23 +567,13 @@ void Ship::FinishLoading(bool isNewInstance)
 				{
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
-					const Outfit *outfit;
-					bool hasIndividualFrugality = false;
-					bool isEnabled = true;
-					bool isFrugal = false;
-					if(nextGun == end)
-					{
-						outfit = nullptr;
-					}
-					else
+					const Outfit *outfit = nullptr;
+					bool hasIndividualFrugality = nextGun->HasIndividualFrugality();
+					bool isEnabled = nextGun->IsEnabled();
+					bool isFrugal = nextGun->IsFrugal();
+					if(nextGun != end)
 					{
 						outfit = nextGun->GetOutfit();
-						if(nextGun->HasIndividualFrugality())
-						{
-							hasIndividualFrugality = true;
-							isEnabled = nextGun->IsEnabled();
-							isFrugal = nextGun->IsFrugal();
-						}
 						++nextGun;
 					}
 					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
@@ -585,22 +583,12 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit;
-					bool hasIndividualFrugality = false;
-					bool isEnabled = true;
-					bool isFrugal = false;
-					if(nextTurret == end)
-					{
-						outfit = nullptr;
-					}
-					else
+					bool hasIndividualFrugality = nextTurret->HasIndividualFrugality();
+					bool isEnabled = nextTurret->IsEnabled();
+					bool isFrugal = nextTurret->IsFrugal();
+					if(nextTurret != end)
 					{
 						outfit = nextTurret->GetOutfit();
-						if(nextTurret->HasIndividualFrugality())
-						{
-							hasIndividualFrugality = true;
-							isEnabled = nextTurret->IsEnabled();
-							isFrugal = nextTurret->IsFrugal();
-						}
 						++nextTurret;
 					}
 					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, isEnabled, isFrugal, hasIndividualFrugality);
