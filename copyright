@@ -1479,7 +1479,6 @@ Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
 Files:
- images/outfits/skadetear*
  images/scenes/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
@@ -1488,6 +1487,10 @@ Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
+
+Files: images/outfits/skadetear*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
