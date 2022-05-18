@@ -117,15 +117,15 @@ void Weapon::LoadWeapon(const DataNode &node)
 					if(grand.Token(0) == "mode")
 					{
 						if(grand.Token(1) == "triangular")
-							inaccuracyType = Distribution::Type::Triangular;
+							inaccuracyDistribution.first = Distribution::Type::Triangular;
 						else if(grand.Token(1) == "uniform")
-							inaccuracyType = Distribution::Type::Uniform;
+							inaccuracyDistribution.first = Distribution::Type::Uniform;
 						else if(grand.Token(1) == "tight")
-							inaccuracyType = Distribution::Type::Tight;
+							inaccuracyDistribution.first = Distribution::Type::Tight;
 						else if(grand.Token(1) == "middling")
-							inaccuracyType = Distribution::Type::Middling;
+							inaccuracyDistribution.first = Distribution::Type::Middling;
 						else if(grand.Token(1) == "wide")
-							inaccuracyType = Distribution::Type::Wide;
+							inaccuracyDistribution.first = Distribution::Type::Wide;
 						else
 							child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
 					}
@@ -133,7 +133,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 						child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
 				}
 				else if(grand.Token(0) == "invert")
-					inaccuracyInversion = true;
+					inaccuracyDistribution.second = true;
 				else
 					child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
 			}
@@ -508,7 +508,7 @@ double Weapon::TotalDamage(int index) const
 
 std::pair<Distribution::Type, bool> Weapon::InaccuracyDistribution() const
 {
-	return std::make_pair(inaccuracyType, inaccuracyInversion);
+	return inaccuracyDistribution;
 }
 
 
