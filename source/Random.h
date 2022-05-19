@@ -39,8 +39,6 @@ public:
 	static uint32_t Polya(uint32_t k, double p = .5);
 	// Get a number from a binomial distribution (i.e. integer bell curve).
 	static uint32_t Binomial(uint32_t t, double p = .5);
-	// Get a number from a normal distribution with default or specified mean and stddev using std::normal_distribution.
-	static double StdNormal(double mean = 0, double sigma = 1);
 	// Get a number from a normal distribution with default or specified mean and stddev using the Box-Muller transform.
 	// Also caches the unused variable without transforming it.
 	static double BMNormal(double mean = 0, double sigma = 1);
