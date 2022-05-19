@@ -14,11 +14,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Audio.h"
+#include "Conversation.h"
+#include "ConversationPanel.h"
 #include "GameData.h"
-#include "Interface.h"
 #include "Information.h"
-#include "MenuPanel.h"
+#include "Interface.h"
 #include "MaskManager.h"
+#include "MenuAnimationPanel.h"
+#include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -32,8 +35,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading)
-	: player(player), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading)
+	: player(player), conversation(conversation), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
 }
@@ -58,15 +61,25 @@ void GameLoadingPanel::Step()
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 
-		// Load the last loaded save file. If there is none then play the default landing sound.
-		// (If a save file is loaded then the same sound is played when loading it).
-		// TODO: Revert this change when implementing sounds & music
-		//       in the loading phase / animation panel.
-		if(!player.LoadRecent())
-			Audio::Play(Audio::Get("landing"));
+		player.LoadRecent();
 
 		GetUI()->Pop(this);
-		GetUI()->Push(new MenuPanel(player, gamePanels));
+		if(conversation.IsEmpty())
+		{
+			GetUI()->Push(new MenuPanel(player, gamePanels));
+			GetUI()->Push(new MenuAnimationPanel());
+		}
+		else
+		{
+			GetUI()->Push(new MenuAnimationPanel());
+
+			auto *talk = new ConversationPanel(player, conversation);
+
+			UI *ui = GetUI();
+			talk->SetCallback([ui](int response) { ui->Quit(); });
+			GetUI()->Push(talk);
+		}
+
 		finishedLoading = true;
 	}
 }
