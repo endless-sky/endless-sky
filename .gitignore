@@ -66,3 +66,5 @@ ipch/
 CMakeLists.txt
 compile_commands.json
 /.gitmodules
+cscope.out
+EndlessSky.cscope_file_list

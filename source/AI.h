@@ -111,7 +111,7 @@ private:
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
-	bool DoHarvesting(Ship &ship, Command &command);
+	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
@@ -157,6 +157,7 @@ private:
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
 		static const int MOVE_TO = 0x002;
+		static const int COLLECT = 0x010;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;

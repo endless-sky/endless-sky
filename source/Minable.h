@@ -63,6 +63,8 @@ public:
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
 
+	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
+	double Hull() const;
 
 private:
 	std::string name;
@@ -88,6 +90,9 @@ private:
 
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
+
+	// Starting hull value.
+	double maxhull = 1000.;
 	// Material released when this object is destroyed. Each payload item only
 	// has a 25% chance of surviving, meaning that usually the yield is much
 	// lower than the defined limit but occasionally you get quite lucky.

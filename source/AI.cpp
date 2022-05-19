@@ -404,6 +404,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
+	if(activeCommands.Has(Command::COLLECT))
+	{
+		newOrders.type = Orders::COLLECT;
+		newOrders.target = player.FlagshipPtr();
+		IssueOrders(player, newOrders, "set to collect resources.");
+	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
@@ -1348,6 +1354,17 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
+	else if(type == Orders::COLLECT){
+		if(DoHarvesting(ship, command))
+		{
+			ship.SetCommands(command);
+			ship.SetCommands(firingCommands);
+			return true;
+		} else {
+			// there are no harvestables to collect
+			CircleAround(ship, command, *target);
+		}
+	}
 	else if(!target)
 	{
 		// Note: in AI::UpdateKeys() we already made sure that if a set of orders
@@ -1945,7 +1962,6 @@ void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 }
 
 
-
 void AI::Swarm(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
@@ -2463,7 +2479,7 @@ void AI::DoMining(Ship &ship, Command &command)
 
 
 
-bool AI::DoHarvesting(Ship &ship, Command &command)
+bool AI::DoHarvesting(Ship &ship, Command &command) const
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
@@ -3629,7 +3645,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))
