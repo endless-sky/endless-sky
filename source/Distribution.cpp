@@ -61,8 +61,8 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Type, bool> distr
 		{
 			case Distribution::Type::Uniform:
 				return Angle(2 * (Random::Real() - .5) * value);
-			case Type::Tight:
-			case Type::Middling:
+			case Type::Narrow:
+			case Type::Medium:
 			case Type::Wide:
 			return Angle(value * ManipulateNormal(SMOOTHNESS_TABLE[static_cast<int>(distribution.first)], distribution.second));
 			case Type::Triangular:

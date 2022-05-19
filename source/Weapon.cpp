@@ -123,10 +123,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 						inaccuracyDistribution.first = Distribution::Type::Triangular;
 					else if(grand.Token(1) == "uniform")
 						inaccuracyDistribution.first = Distribution::Type::Uniform;
-					else if(grand.Token(1) == "tight")
-						inaccuracyDistribution.first = Distribution::Type::Tight;
-					else if(grand.Token(1) == "middling")
-						inaccuracyDistribution.first = Distribution::Type::Middling;
+					else if(grand.Token(1) == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(grand.Token(1) == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
 					else if(grand.Token(1) == "wide")
 						inaccuracyDistribution.first = Distribution::Type::Wide;
 					else
@@ -138,10 +138,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 						inaccuracyDistribution.first = Distribution::Type::Triangular;
 					else if(grand.Token(0) == "uniform")
 						inaccuracyDistribution.first = Distribution::Type::Uniform;
-					else if(grand.Token(0) == "tight")
-						inaccuracyDistribution.first = Distribution::Type::Tight;
-					else if(grand.Token(0) == "middling")
-						inaccuracyDistribution.first = Distribution::Type::Middling;
+					else if(grand.Token(0) == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(grand.Token(0) == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
 					else if(grand.Token(0) == "wide")
 						inaccuracyDistribution.first = Distribution::Type::Wide;
 					else

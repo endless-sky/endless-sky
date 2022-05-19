@@ -22,8 +22,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Distribution {
 public:
 	enum class Type {
-		Tight = 0,
-		Middling = 1,
+		Narrow = 0,
+		Medium = 1,
 		Wide = 2,
 		Uniform = 3,
 		Triangular = 4
