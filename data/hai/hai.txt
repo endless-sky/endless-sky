@@ -134,7 +134,6 @@ shipyard "Unfettered Basics"
 	"Lightning Bug"
 	"Water Bug"
 	"Sea Scorpion"
-	"Enhanced Shield Beetle (Pulse)"
 
 shipyard "Unfettered"
 	"Shield Beetle"
