@@ -29,14 +29,16 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
+	bool normalBMCached = false;
+	double cachedBMNormal = std::numeric_limits<double>::infinity();
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
+	thread_local bool normalBMCached = false;
+	thread_local double cachedBMNormal = std::numeric_limits<double>::infinity();
 #endif
 
-static bool normalBMCached = false;
-static double cachedBMNormal = std::numeric_limits<double>::infinity();
 static const double epsilon = std::numeric_limits<double>::epsilon();
 }
 
@@ -137,6 +139,9 @@ double Random::StdNormal(double mean, double sigma)
 // Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BMNormal(double mean, double sigma)
 {
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
 	if(normalBMCached)
 	{
 		normalBMCached = false;
