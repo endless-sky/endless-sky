@@ -21,7 +21,7 @@ namespace {
 	{
 		// Center values within [0, 1] so that fractional retention begins to accumulate
 		// at the endpoints (rather than at the center) of the distribution.
-		double randomFactor = Random::BMNormal(0.5, smoothness);
+		double randomFactor = Random::BMNormal(.5, smoothness);
 		// Retain only the fractional information, to keep all absolute values within [0, 1].
 		// Might be possible to get away with int32_t here, not sure.
 		randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
@@ -33,10 +33,10 @@ namespace {
 		// Invert probabilities so that endpoints are most probable.
 		if(inverted)
 		{
-			if(randomFactor > 0.5)
-				randomFactor -= 0.5;
-			else if(randomFactor < 0.5)
-				randomFactor += 0.5;
+			if(randomFactor > .5)
+				randomFactor -= .5;
+			else if(randomFactor < .5)
+				randomFactor += .5;
 		}
 
 		// Transform from [0, 1] to [-1, 1] so that the return value can be simply used.
@@ -60,7 +60,7 @@ Angle Distribution::GenerateInaccuracy(double value, std::pair<Type, bool> distr
 		switch(distribution.first)
 		{
 			case Distribution::Type::Uniform:
-				return Angle(2 * (Random::Real() - 0.5) * value);
+				return Angle(2 * (Random::Real() - .5) * value);
 			case Type::Tight:
 			case Type::Middling:
 			case Type::Wide:
