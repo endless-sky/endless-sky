@@ -111,19 +111,7 @@ uint32_t Random::Binomial(uint32_t t, double p)
 
 
 
-// Get a normally distributed number (mean = 0, sigma= 1) using std::normal_distribution.
-double Random::StdNormal()
-{
-	normal_distribution<double> normal;
-#ifndef __linux__
-	lock_guard<mutex> lock(workaroundMutex);
-#endif
-	return normal(gen);
-}
-
-
-
-// Get a normally distributed number (mean = 0, sigma= 1) using std::normal_distribution.
+// Get a normally distributed number with default or specified mean and stddev using std::normal_distribution.
 double Random::StdNormal(double mean, double sigma)
 {
 	normal_distribution<double> normal{mean, sigma};
@@ -135,7 +123,7 @@ double Random::StdNormal(double mean, double sigma)
 
 
 
-// Get a normally distributed number (mean = 0, sigma = 1) using the Box-Muller transform.
+// Get a normally distributed number with default or specified mean and stddev using the Box-Muller transform.
 // Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BMNormal(double mean, double sigma)
 {
