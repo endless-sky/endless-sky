@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 #define CATCH_CONFIG_RUNNER
-#include "es-test.hpp"
+#include "../include/es-test.hpp"
 
 #include "../../../source/Random.h"
 #include <ctime>

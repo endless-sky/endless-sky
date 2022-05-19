@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "datanode-factory.h"
+#include "../../include/datanode-factory.h"
 
 #include "../../../../source/DataFile.h"
 #include "../../../../source/DataNode.h"
