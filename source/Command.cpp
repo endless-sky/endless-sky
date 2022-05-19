@@ -72,7 +72,7 @@ const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
 const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
-const Command Command::COLLECT(1uL << 30, "Fleet: Toggle collecting resources");
+const Command Command::COLLECT(1uL << 30, "Fleet: Collect resources");
 
 
 
