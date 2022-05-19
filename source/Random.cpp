@@ -139,11 +139,11 @@ double Random::StdNormal(double mean, double sigma)
 // Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BMNormal(double mean, double sigma)
 {
-#ifndef __linux__
-	lock_guard<mutex> lock(workaroundMutex);
-#endif
 	if(normalBMCached)
 	{
+		#ifndef __linux__
+			lock_guard<mutex> lock(workaroundMutex);
+		#endif
 		normalBMCached = false;
 		return sigma * cachedBMNormal + mean;
 	}
@@ -159,6 +159,9 @@ double Random::BMNormal(double mean, double sigma)
 
 		// Store z0 and return z1
 		auto mag = sqrt(-2.0 * log(u1));
+		#ifndef __linux__
+			lock_guard<mutex> lock(workaroundMutex);
+		#endif
 		cachedBMNormal = mag * cos(PI_2 * u2);
 		normalBMCached = true;
 		return sigma * mag * sin(PI_2 * u2) + mean;
