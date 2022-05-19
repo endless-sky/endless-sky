@@ -374,8 +374,8 @@ string PlayerInfo::Identifier() const
 
 
 
-// Apply the given set of changes to the game data.
-void PlayerInfo::AddChanges(list<DataNode> &changes)
+// Apply changes from an event to the game data objects but don't add them to datatChanges here.
+void PlayerInfo::ApplyChanges(list<DataNode> &changes)
 {
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
@@ -398,10 +398,42 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 					seen.insert(neighbor);
 		}
 	}
+}
 
+
+
+// Apply the given set of changes to the game data.
+void PlayerInfo::AddChanges(list<DataNode> &changes, bool addToSave)
+{
+	ApplyChanges(changes);
+
+	if(!addToSave)
+		return;
 	// Only move the changes into my list if they are not already there.
 	if(&changes != &dataChanges)
 		dataChanges.splice(dataChanges.end(), changes);
+}
+
+
+
+void PlayerInfo::AddRemovableChanges(GameEvent &removable)
+{
+	appliedRemovableChanges.insert(pair<int, GameEvent>(dataChanges.size(),removable));
+}
+
+
+
+void PlayerInfo::UndoRemovableChanges()
+{
+	for(map<int, GameEvent>::iterator it = appliedRemovableChanges.begin(); it != appliedRemovableChanges.end(); it++)
+	{
+		GameEvent &event = it->second;
+		if(event.ToRemove().Test(conditions))
+		{
+			event.Remove(*this);
+			appliedRemovableChanges.erase(it);
+		}
+	}
 }
 
 
@@ -2412,7 +2444,24 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
-	AddChanges(dataChanges);
+	if(appliedRemovableChanges.empty())
+		AddChanges(dataChanges);
+	else
+	{
+		list<DataNode>::iterator dataChangesIt = dataChanges.begin();
+		for(map<int, GameEvent>::iterator it = appliedRemovableChanges.begin(); it != appliedRemovableChanges.end(); it++)
+		{
+			auto newIt = next(dataChangesIt, it->first);
+			list<DataNode> subList(dataChangesIt, newIt);
+			//ApplyChanges(list<DataNode>(dataChangesIt, newIt));
+			ApplyChanges(subList);
+			dataChangesIt = newIt;
+			GameEvent &event = it->second;
+			event.Apply(*this, false);
+
+		}
+	}
+
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 

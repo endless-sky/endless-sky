@@ -63,9 +63,17 @@ public:
 	const Date &GetDate() const;
 	void SetDate(const Date &date);
 
-	void Apply(PlayerInfo &player);
+	void Apply(PlayerInfo &player, bool save = true);
+	void Remove(PlayerInfo &player);
+
+	bool Removable() const;
+	ConditionSet ToRemove() const;
 
 	const std::list<DataNode> &Changes() const;
+
+
+private:
+	GameEvent(const DataNode &node, bool internal);
 
 
 private:
@@ -73,9 +81,12 @@ private:
 	std::string name;
 	bool isDisabled = false;
 	bool isDefined = false;
+	bool isRemover = false;
 
 	ConditionSet conditionsToApply;
+	ConditionSet toRemove;
 	std::list<DataNode> changes;
+	GameEvent *onRemove;
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit;

@@ -78,14 +78,25 @@ GameEvent::GameEvent(const DataNode &node)
 
 
 
+GameEvent::GameEvent(const DataNode &node, bool remover)
+{
+	isRemover = remover;
+	Load(node);
+}
+
+
+
 void GameEvent::Load(const DataNode &node)
 {
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
 	if(node.Size() >= 2)
 	{
-		name = node.Token(1);
-		conditionsToApply.Add("set", "event: " + name);
+		if(!isRemover)
+		{
+			name = node.Token(1);
+			conditionsToApply.Add("set", "event: " + name);
+		}
 	}
 	isDefined = true;
 
@@ -115,6 +126,15 @@ void GameEvent::Load(const DataNode &node)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(allowedChanges.count(key))
 			changes.push_back(child);
+		else if(child.HasChildren() && child.Token(0) == "to" && child.Token(1) == "remove")
+		{
+			toRemove.Load(child);
+		}
+		else if(child.HasChildren() && child.Token(0) == "on" && child.Token(1) == "remove")
+		{
+			*onRemove = GameEvent(child, true);
+		}
+
 		else
 			conditionsToApply.Add(child);
 	}
@@ -126,8 +146,11 @@ void GameEvent::Save(DataWriter &out) const
 {
 	if(isDisabled)
 		return;
-	
-	out.Write("event");
+
+	if(isRemover)
+		out.Write("on remove");
+	else
+		out.Write("event");
 	out.BeginChild();
 	{
 		if(date)
@@ -146,6 +169,15 @@ void GameEvent::Save(DataWriter &out) const
 
 		for(auto &&change : changes)
 			out.Write(change);
+
+		if(!toRemove.IsEmpty())
+		{
+			out.BeginChild();
+			toRemove.Save(out);
+			out.EndChild();
+		}
+		if(onRemove != nullptr)
+			onRemove->Save(out);
 	}
 	out.EndChild();
 }
@@ -214,11 +246,11 @@ void GameEvent::SetDate(const Date &date)
 
 
 
-void GameEvent::Apply(PlayerInfo &player)
+void GameEvent::Apply(PlayerInfo &player, bool save)
 {
 	if(isDisabled)
 		return;
-	
+
 	// Serialize the current reputation with other governments.
 	player.SetReputationConditions();
 
@@ -226,7 +258,15 @@ void GameEvent::Apply(PlayerInfo &player)
 	conditionsToApply.Apply(player.Conditions());
 	// Apply (and store a record of applying) this event's other general
 	// changes (e.g. updating an outfitter's inventory).
-	player.AddChanges(changes);
+	if(Removable())
+	{
+		player.AddRemovableChanges(*this);
+		player.AddChanges(changes, false);
+	}
+	else if(!save)
+		player.AddChanges(changes, false);
+	else
+		player.AddChanges(changes);
 
 	// Update the current reputation with other governments (e.g. this
 	// event's ConditionSet may have altered some reputations).
@@ -243,6 +283,18 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Visit(*system);
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(*planet);
+}
+
+
+
+void GameEvent::Remove(PlayerInfo &player)
+{
+	if(onRemove == nullptr)
+		return;
+	ConditionSet setRemoval;
+	setRemoval.Add("set", "removed event: " + name);
+	setRemoval.Apply(player.Conditions());
+	onRemove->Apply(player, false);
 }
 
 

@@ -83,8 +83,14 @@ public:
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
 
-	// Apply the given changes and store them in the player's saved game file.
-	void AddChanges(std::list<DataNode> &changes);
+	// Apply the given changes and (usually) store them in the player's saved game file.
+	void AddChanges(std::list<DataNode> &changes, bool addToSave = true);
+
+	// Apply the changes in the given removable event.
+	void AddRemovableChanges(GameEvent &removable);
+
+	void UndoRemovableChanges();
+
 	// Add an event that will happen at the given date.
 	void AddEvent(const GameEvent &event, const Date &date);
 
@@ -285,6 +291,7 @@ public:
 private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
+	void ApplyChanges(std::list<DataNode> &changes);
 	// After loading & applying changes, make sure the player & ship locations are sensible.
 	void ValidateLoad();
 
@@ -367,6 +374,7 @@ private:
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
 	std::list<DataNode> dataChanges;
+	std::map<int, GameEvent> appliedRemovableChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
