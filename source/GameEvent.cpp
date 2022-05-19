@@ -128,6 +128,7 @@ void GameEvent::Load(const DataNode &node)
 			changes.push_back(child);
 		else if(child.HasChildren() && child.Token(0) == "to" && child.Token(1) == "remove")
 		{
+			isRemovable = true;
 			toRemove.Load(child);
 		}
 		else if(child.HasChildren() && child.Token(0) == "on" && child.Token(1) == "remove")
@@ -295,6 +296,20 @@ void GameEvent::Remove(PlayerInfo &player)
 	setRemoval.Add("set", "removed event: " + name);
 	setRemoval.Apply(player.Conditions());
 	onRemove->Apply(player, false);
+}
+
+
+
+bool GameEvent::Removable() const
+{
+	return isRemovable;
+}
+
+
+
+ConditionSet GameEvent::ToRemove() const
+{
+	return toRemove;
 }
 
 

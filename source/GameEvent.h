@@ -73,7 +73,7 @@ public:
 
 
 private:
-	GameEvent(const DataNode &node, bool internal);
+	GameEvent(const DataNode &node, bool remover);
 
 
 private:
@@ -81,6 +81,7 @@ private:
 	std::string name;
 	bool isDisabled = false;
 	bool isDefined = false;
+	bool isRemovable = false;
 	bool isRemover = false;
 
 	ConditionSet conditionsToApply;
