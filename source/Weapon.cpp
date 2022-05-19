@@ -114,28 +114,39 @@ void Weapon::LoadWeapon(const DataNode &node)
 			{
 				if(grand.Size() >= 2)
 				{
-					if(grand.Token(0) == "mode")
-					{
-						if(grand.Token(1) == "triangular")
-							inaccuracyDistribution.first = Distribution::Type::Triangular;
-						else if(grand.Token(1) == "uniform")
-							inaccuracyDistribution.first = Distribution::Type::Uniform;
-						else if(grand.Token(1) == "tight")
-							inaccuracyDistribution.first = Distribution::Type::Tight;
-						else if(grand.Token(1) == "middling")
-							inaccuracyDistribution.first = Distribution::Type::Middling;
-						else if(grand.Token(1) == "wide")
-							inaccuracyDistribution.first = Distribution::Type::Wide;
-						else
-							child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
-					}
+					if(grand.Token(0) == "inverted")
+						inaccuracyDistribution.second = true;
 					else
-						child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
+						child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
+
+					if(grand.Token(1) == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(grand.Token(1) == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(grand.Token(1) == "tight")
+						inaccuracyDistribution.first = Distribution::Type::Tight;
+					else if(grand.Token(1) == "middling")
+						inaccuracyDistribution.first = Distribution::Type::Middling;
+					else if(grand.Token(1) == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
 				}
-				else if(grand.Token(0) == "inverted")
-					inaccuracyDistribution.second = true;
 				else
-					child.PrintTrace("Skipping unknown or incomplete inaccuracy attribute:");
+				{
+					if(grand.Token(0) == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(grand.Token(0) == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(grand.Token(0) == "tight")
+						inaccuracyDistribution.first = Distribution::Type::Tight;
+					else if(grand.Token(0) == "middling")
+						inaccuracyDistribution.first = Distribution::Type::Middling;
+					else if(grand.Token(0) == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						child.PrintTrace("Skipping unknown or incomplete inaccuracy distribution attribute:");
+				}
 			}
 		}
 		else
