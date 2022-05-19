@@ -113,7 +113,7 @@ uint32_t Random::Binomial(uint32_t t, double p)
 
 // Get a normally distributed number with default or specified mean and stddev using the Box-Muller transform.
 // Cache the unused value without transforming it so that it can be transformed when it's used.
-double Random::BMNormal(double mean, double sigma)
+double Random::BoxMullerSample(double mean, double sigma)
 {
 	if(normalBMCached)
 	{

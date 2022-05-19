@@ -21,7 +21,7 @@ namespace {
 	{
 		// Center values within [0, 1] so that fractional retention begins to accumulate
 		// at the endpoints (rather than at the center) of the distribution.
-		double randomFactor = Random::BMNormal(.5, smoothness);
+		double randomFactor = Random::BoxMullerSample(.5, smoothness);
 		// Retain only the fractional information, to keep all absolute values within [0, 1].
 		// Might be possible to get away with int32_t here, not sure.
 		randomFactor = randomFactor - static_cast<int64_t>(randomFactor);
