@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Include whichever header is used for OpenGL on this operating system.
 #ifdef __APPLE__
+#define GL_SILENCE_DEPRECATION
 #include <OpenGL/GL3.h>
 #else
 #ifdef ES_GLES
