@@ -56,6 +56,28 @@ outfit "Pulse Turret"
 		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
+outfit "TriPulse Shredder"
+	category "Guns"
+	cost 130000
+	thumbnail "outfit/tripulse shredder"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"gun ports" -1
+	weapon
+		sprite "projectile/pulse"
+		sound "pulse"
+		"hit effect" "pulse impact"
+		"inaccuracy" 2
+		"velocity" 15
+		"lifetime" 30
+		"reload" 6.6
+		"firing energy" 25
+		"firing heat" 60
+		"shield damage" 45
+		"hull damage" 34
+	description "An early stage in development of better and faster weaponry to rival that of the Wanderers, the TriPulse Shredder is still essentially just three Pulse Cannons in one single larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power, but the quicker firing speed still generates much more total heat in the same time. Additionally, the single shared housing results in a much less stable firing pattern."
+
 effect "pulse impact"
 	sprite "effect/pulse impact"
 		"no repeat"
@@ -113,7 +135,7 @@ outfit "True Unfettered License"
 	"quantum keystone" 1
 	description "This sword may be bit of a strange license, but it inspires pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, thanks to the special properties of the keystone it is crafted from. It has some useful features, and legends say it allows the user to phase through matter for a short period of time."
 
-outfit "Ionic Blaster"
+outfit "Ionic Blaster Prototype"
 	category "Guns"
 	cost 530000
 	thumbnail "outfit/hai ionic blaster"
@@ -139,7 +161,7 @@ outfit "Ionic Blaster"
 		"ion damage" 2
 	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
-outfit "Ionic Turret"
+outfit "Ionic Turret Prototype"
 	category "Turrets"
 	cost 1260000
 	thumbnail "outfit/hai ionic turret"
@@ -167,7 +189,7 @@ outfit "Ionic Turret"
 		"shield damage" 155
 		"hull damage" 45
 		"ion damage" 2
-	description "This is a dual turret version of the Ionic Blaster, the first weapon that the Unfetttered developed completely on their own."
+	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own."
 
 
 outfit "Railgun Slug"

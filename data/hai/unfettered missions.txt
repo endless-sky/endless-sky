@@ -469,7 +469,7 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label whyme
-			`	"The Hai make it difficult for us to go anywhere; as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here, because of the obvious risks involved, like getting killed in all that cross fire. Yet you somehow made your way here, probably also under fire from our own people, but now that we are allied, you hopefully should not have any issues getting out of here. So, are you willing to help us?"`
+			`	"Well normally they would be able to pay to come here, but the price is pretty high; too high. The Hai make it difficult for us to go anywhere; as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here, or at least they ask for a big fee, because of the obvious risks involved, like getting killed in all that cross fire. Yet you somehow made your way here, probably also under fire from our own people, but now that we are allied, you hopefully should not have any issues getting out of here. So, are you willing to help us?"`
 			choice
 				`	"Of course, what do you need me to do?"`
 					goto action
@@ -906,7 +906,7 @@ mission "Unfettered: Nemo Me Impune Lacessit"
 	landing
 	minor
 	source
-		near "Ya Hai" 100
+		near "Ya Hai" 10
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
 		not "sold bars"
@@ -2253,7 +2253,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	(Just roll with it, you do not need extra money and the more detailed scans were not asked for.)`
 					goto noboughtship
 			action
-				payment 5000000
+				payment 10000000
 			`	"You had to pay a ship? That is actually quite a smart way to remove suspicion from you, or just to corrupt the local guy." He asks you to show him the loan you had to take, which you do. "Seeing this, he probably suspected something and would have arrested you if you did not give him this good reason to let you be: approximately 1 extra million credits! Worry not I will give you an extra of <payment> to compensate, the scans you brought me are indeed much more detailed that what I even asked for, this is perfect! You are free to keep it if you want to though, you can always sell it and you will not have lost any money, quite the opposite indeed. Do not forget to pay the loan though."`
 			label noboughtship
 			choice	
@@ -2283,7 +2283,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
 	on offer
 		conversation
-			`You land and ask the Hai for tribute, which they then prepare. They probably do not suspect anything. While they load up your ship, you pretend to go to the shipyard to consider buying a new ship, and a big one at that. 'Unfortunately', you get lost and start looking at the place where they build the Geocoris, but also the Shield Beetles. There is only so much you can learn by looking, so you start discretely scanning the place. A Hai engineer seems to notice you and comes your way, "Hi, how may I help you," he asks. Maybe he did not notice anything.`
+			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They probably do not suspect anything. While they load up your ship, you pretend to go to the shipyard to consider buying a new ship, and a big one at that. 'Unfortunately', you get lost and start looking at the place where they build the Geocoris, but also the Shield Beetles. There is only so much you can learn by looking, so you start discretely scanning the place. A Hai engineer seems to notice you and comes your way, "Hi, how may I help you," he asks. Maybe he did not notice anything.`
 			choice
 				`	"Do not mind me, I am just admiring the shipyard, it is so well... optimized, compared to human standards. (Pretend to move on and go scan another area.)"`
 				`	"Actually I am here to buy a ship."`
@@ -2822,7 +2822,7 @@ mission "Unfettered: Special Cargo 2"
 
 mission "Unfettered: Close Quarter"
 	name `Close Quarter Fighting`
-	description `Hi Ye wants you to bring 10 non lethal weapons stronger than the pulse rifle, for him to train with the other Unfettered without any danger. Deliver them to <destination>.`
+	description `Hi Ye wants you to bring 50 non lethal weapons stronger than the pulse rifle, for him to train with the other Unfettered without any danger. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
@@ -2976,12 +2976,12 @@ mission "Bring Pug Staffs"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Pug Peacekeeping Staff" 10
-		dialog `Do you want to sell 10 Pug Peacekeeping Staff to the Unfettered? He Yi says they can give you <payment> for it.`
+		require "Pug Peacekeeping Staff" 50
+		dialog `Do you want to sell 50 Pug Peacekeeping Staff to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
 		payment 2500000
-		outfit "Pug Peacekeeping Staff" -10
-		dialog `The Unfettered thank you for bringing these 10 staffs to them. They give you <payment>.`
+		outfit "Pug Peacekeeping Staff" -50
+		dialog `The Unfettered thank you for bringing these 50 staffs to them. They give you <payment>.`
 
 mission "Bring Coalition Weapons"
 	invisible
@@ -2990,12 +2990,51 @@ mission "Bring Coalition Weapons"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 	on offer
-		require "Enforcer Riot Staff" 10
-		dialog `Do you want to sell 10 Enforcer Riot Staffs to the Unfettered? He Yi says they can give you <payment> for it.`
+		require "Enforcer Riot Staff" 50
+		dialog `Do you want to sell 50 Enforcer Riot Staffs to the Unfettered? He Yi says they can give you <payment> for it.`
 	on accept
-		payment 3000000
-		outfit "Enforcer Riot Staff" -10
-		dialog `The Unfettered thank you for bringing these 10 staffs to them. They give you <payment>.`
+		payment 4000000
+		outfit "Enforcer Riot Staff" -50
+		dialog `The Unfettered thank you for bringing these 50 staffs to them. They give you <payment>.`
+
+conversation "more staffs"
+	`As you wonder in the space port you see He Yi's herald. He seems interested to know your progress in acquiring weapons.`
+	choice
+		`	"Could you look at what I have here to tell me if it's right?"`
+		`	"It's going fine, thank you for asking."`
+			goto fine
+	`	You bring him to your ship and he sees a weapon that appears of interest. "This... <staff> staff seems to be adequate for what my master wants. We would only require more of these."`
+	label fine
+	`	He wishes you good luck and hopes you can find the staffs. He reminds you a large amount of them is requested; 50 to be precise.`
+		decline
+
+mission "Bring More Enforcer Staffs"
+	minor # so both don't pop up at the same time
+	invisible
+	source "Warfeed"
+	substitutions
+			<staff> "enforcer"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staffs: offered"
+	on offer
+		require "Enforcer Riot Staff"
+		conversation "more staffs"
+
+
+mission "Bring More Pug Staffs"
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "pug peacekeeping"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staffs: offered"
+	on offer
+		require "Pug Peacekeeping Staff"
+		conversation "more staffs"
 
 mission "Bring Void Rifle"
 	invisible
@@ -3211,6 +3250,24 @@ mission "Unfettered: Cloaking Interest"
 
 
 
+ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
+	add attributes
+		"outfit space" 2
+		"weapon capacity" 3
+	outfits
+		"TriPulse Shredder" 8
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator" 2
+		"Hai Williwaw Cooling" 3
+		"Outfits Expansion"
+		"Pulse Rifle" 40
+		"Dual Pulse Pistols"
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+
 ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
 	thumbnail "thumbnail/hai marauder shield beetle"
@@ -3223,7 +3280,7 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"cloaking heat" 10
 		"engine capacity" 5
 		"outfit space" 2
-		"weapon space" -1
+		"weapon capacity" -1
 	outfits
 		"Sunbeam" 4
 		"Flamethrower" 2
@@ -3242,7 +3299,7 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"White Sun Reactor"
 		"Generator (Furnace Class)"
 		"Korath Repeater Rifle" 20
-		"Pulse Rifle" 50
+		"Pulse Rifle" 60
 		"Dual Pulse Pistols" 10
 	gun 0 -7 "Korath Detainer"
 	gun -22 -102 "Sunbeam"
@@ -3289,7 +3346,7 @@ mission "Unfettered: Start Of The War"
 	
 	npc save disable
 		government "Hai (Unfettered Challenge)"
-		ship "Shield Beetle (Pulse)" "Intrepid II"
+		ship "Enhanced Shield Beetle (Pulse)" "Intrepid II"
 		ship "Shield Beetle Prototype (Black)" "Tejolis"
 		conversation
 			action

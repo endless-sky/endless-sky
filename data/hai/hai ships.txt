@@ -834,10 +834,10 @@ ship "Shield Beetle Prototype"
 			"hull damage" 2200
 			"hit force" 3600
 	outfits
-		"Ionic Blaster" 4
+		"Ionic Blaster Prototype" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Ionic Turret" 2
+		"Ionic Turret Prototype" 2
 		"Chameleon Anti-Missile"
 		"Boulder Reactor" 2
 		"Hai Gorge Batteries"
