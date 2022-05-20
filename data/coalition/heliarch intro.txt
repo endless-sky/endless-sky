@@ -23,7 +23,7 @@ mission "Heliarch Investigation 1"
 	destination "Ring of Friendship"
 	on offer
 		conversation
-			`A group of Heliarch agents rapidly approach you as you step onto the spaceport, looking rather hasty as they stand in front of you.`
+			`A group of Heliarch agents rapidly approach you as you step onto the spaceport, looking rather agitated as they stand in front of you.`
 			`	"Looking for work, the human visitor is?" The Saryd asks.`
 			`	"To the <destination>, a means of transport we need," the Kimek follows.`
 			`	"<payment>, we can offer," the Arach finishes the proposal.`
@@ -31,7 +31,7 @@ mission "Heliarch Investigation 1"
 				`	"Of course, I'll show you to my ship."`
 				`	"Sorry, I'm not looking for any work currently."`
 					decline
-			`	They thank you for agreeing to deliver them to the <planet>, and introduce themselves: the Saryd is called Iplora, the Kimek is Kirrie, and lastly the Arach is known as Tugroob. You help them settle in their bunks, wondering why they seemed so rushed.`
+			`	They thank you for agreeing to deliver them to the <planet>, and introduce themselves; the Saryd is called Iplora, the Kimek is Kirrie, and lastly the Arach is known as Tugroob. You help them settle in their bunks, wondering why they seemed so rushed.`
 				accept
 	on complete
 		"coalition jobs" ++
