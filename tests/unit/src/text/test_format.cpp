@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "es-test.hpp"
+#include "../../include/es-test.hpp"
 
 // Include only the tested class's header.
 #include "../../../../source/text/Format.h"
