@@ -37,7 +37,7 @@ mission "Heliarch Investigation 1"
 		"coalition jobs" ++
 		payment 90000
 		conversation
-			`The three Heliarchs leave your ship, heading for some section of the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should."`
+			`The three Heliarchs disembark, heading immediately across the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should."`
 
 mission "Heliarch Investigation 2"
 	name "Heliarch Investigation"

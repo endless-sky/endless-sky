@@ -1346,7 +1346,7 @@ mission "Heliarch Contain True"
 	on complete
 		payment
 		payment 70000
-		dialog `You and the other agents head to the marked area and trade a few shots with the criminals. They surrender shortly after, and you call for a Heliarch ship to pick them up. You bid your Heliarch colleagues farewell as you leave, and see <payment> has been transferred to your account when you return to your ship.`
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship where you are happy to see that <payment> has already been transferred to your account.`
 
 mission "Heliarch Contain Fail"
 	job
@@ -1368,7 +1368,7 @@ mission "Heliarch Contain Fail"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog `You and the other agents head to the marked area, but when you arrive, it becomes evident that whoever occupied the place had managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
+		dialog `You and the other agents head to the marked area but when you arrive it becomes evident that whoever occupied the place has managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
 
 mission "Heliarch Contain Fake"
 	job
@@ -1392,7 +1392,7 @@ mission "Heliarch Contain Fake"
 	on complete
 		payment
 		payment 55000
-		dialog `You and the other agents head to the marked area, and catch the targets seemingly by surprise, as they offer no resistance. They surrender quickly in their confusion, and you call for a Heliarch ship to pick them up. You bid your Heliarch colleagues farewell as you leave, and see <payment> has been transferred to your account when you return to your ship.`
+		dialog `Your team pounces and catch the targets entirely by surprise. They offer no resistance, relinquishing their weapons immediately. You call for a Heliarch ship to pick them up and then bid the other agents farewell as you leave. An extra <payment> is already waiting in your account when you return to your ship.`
 
 
 mission "Heliarch Prisoner Transport"
@@ -1416,7 +1416,7 @@ mission "Heliarch Prisoner Transport"
 	on complete
 		payment
 		payment 45000
-		dialog `When you land on <destination>, Heliarch agents help you move the prisoners out of your ship. Once the last prisoner leaves, you're handed <payment>.`
+		dialog `When you land on <destination>, Heliarch agents help you move the prisoners out of your ship. Once the last prisoner leaves you're handed <payment>.`
 
 
 mission "Heliarch Investigate"
