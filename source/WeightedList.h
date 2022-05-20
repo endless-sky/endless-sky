@@ -53,11 +53,11 @@ public:
 	void clear() noexcept { choices.clear(); total = 0; }
 	int size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
-	std::pair<Type, int> &back() noexcept { return choices.back(); }
-	const std::pair<Type, int> &back() const noexcept { return choices.back(); }
+	Type &back() noexcept { return choices.back().first; }
+	const Type &back() const noexcept { return choices.back().first; }
 
 	template <class ...Args>
-	Type &emplace_back(Args&&... args);
+	Type &emplace_back(int weight, Args&&... args);
 
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
@@ -109,18 +109,15 @@ typename std::enable_if<
 
 template <class Type>
 template <class ...Args>
-Type &WeightedList<Type>::emplace_back(Args&&... args)
+Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 {
 	// All weights must be >= 1.
-	choices.emplace_back(args...);
-	std::pair<Type, int> &choice = choices.back();
-	if(choice.second < 1)
-	{
-		choices.pop_back();
+	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
-	}
-	total += choice.second;
-	return choice.first;
+
+	choices.emplace_back(args...);
+	total += weight;
+	return choices.back().first;
 }
 
 

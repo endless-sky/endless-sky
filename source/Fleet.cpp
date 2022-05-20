@@ -206,7 +206,8 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-			variants.emplace_back(child, child.Size() >= add + 2 ? max<int>(1, child.Value(add + 1)) : 1);
+			int weight = (child.Size() >= add + 2) ? max<int>(1, child.Value(add + 1)) : 1;
+			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")
 		{

@@ -58,7 +58,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 			const auto beforeWeight = list.TotalWeight();
 
 			const auto obj = Object(1);
-			list.emplace_back(obj, objWeight);
+			list.emplace_back(objWeight, obj);
 
 			THEN( "the list size increases by 1" ) {
 				CHECK_FALSE( list.empty() );
@@ -70,15 +70,14 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 			AND_WHEN( "a second object is added" ) {
 				const auto extraWeight = 3;
-				list.emplace_back(2, extraWeight);
+				list.emplace_back(extraWeight, 2);
 				THEN( "the list increases in size and weight" ) {
 					CHECK_FALSE( list.empty() );
 					CHECK( list.size() == 2 + beforeSize );
 					CHECK( list.TotalWeight() == beforeWeight + objWeight + extraWeight );
 				}
 				THEN( "the object at the back of the list is the most recently inserted" ) {
-					CHECK( list.back().first.GetValue() == 2 );
-					CHECK( list.back().second == extraWeight );
+					CHECK( list.back().GetValue() == 2 );
 				}
 
 				AND_WHEN( "a single element is erased" ) {
@@ -91,8 +90,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 2 );
-						CHECK( it->second == extraWeight );
+						CHECK( it->GetValue() == 2 );
 					}
 				}
 
@@ -106,9 +104,9 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 				AND_WHEN( "a range is erased from the middle" ) {
 					// Add more objects to the list so that a range can be deleted.
-					list.emplace_back(3, 1);
-					list.emplace_back(4, 5);
-					list.emplace_back(5, 3);
+					list.emplace_back(1, 3);
+					list.emplace_back(5, 4);
+					list.emplace_back(3, 5);
 					REQUIRE( list.size() == 5 );
 					CHECK( list.TotalWeight() == 14 );
 
@@ -120,14 +118,13 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 4 );
-						CHECK( it->second == 5 );
+						CHECK( it->GetValue() == 4 );
 					}
 				}
 
 				AND_WHEN( "the erase-remove idiom is used" ) {
 					auto removeIt = std::remove_if(list.begin(), list.end(),
-						[](const std::pair<Object, std::size_t> &o) { return o.first.GetValue() == 1; });
+						[](const std::pair<Object, int> &o) { return o.first.GetValue() == 1; });
 					REQUIRE( removeIt != list.begin() );
 					REQUIRE( removeIt != list.end() );
 					list.erase(removeIt, list.end());
@@ -152,8 +149,8 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 	}
 	GIVEN( "A weighted list with content" ) {
 		auto list = WeightedList<Object>{};
-		list.emplace_back(10, 4);
-		list.emplace_back(20, 1);
+		list.emplace_back(4, 10);
+		list.emplace_back(1, 20);
 		REQUIRE( list.size() == 2 );
 
 		WHEN( "an average is computed over the same value" ) {
@@ -188,7 +185,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 	GIVEN( "a list with one item" ) {
 		auto list = WeightedList<Object>{};
 		const auto item = Object(0);
-		list.emplace_back(item, 1);
+		list.emplace_back(1, item);
 		WHEN( "a random selection is performed") {
 			REQUIRE( list.size() == 1 );
 			THEN( "the result is always the item" ) {
@@ -202,9 +199,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 		const auto first = Object(0);
 		const auto second = Object(1);
 		const auto third = Object(2);
-		list.emplace_back(first, weights[0]);
-		list.emplace_back(second, weights[1]);
-		list.emplace_back(third, weights[2]);
+		list.emplace_back(weights[0], first);
+		list.emplace_back(weights[1], second);
+		list.emplace_back(weights[2], third);
 
 		WHEN( "a random selection is performed" ) {
 			auto getSampleSummary = [&list](std::size_t size){
@@ -256,7 +253,7 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 		WHEN( "Attempting to insert a negative weighted object." ) {
 			THEN( "An invalid argument exception is thrown." ) {
 				try{
-					list.emplace_back(1, -1);
+					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
 				} catch(const std::invalid_argument &e) {
 					SUCCEED( "threw when item weight was negative" );

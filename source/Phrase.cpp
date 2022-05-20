@@ -174,10 +174,10 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(Choice(grand), (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand);
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(Choice(grand, true), (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
 				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
