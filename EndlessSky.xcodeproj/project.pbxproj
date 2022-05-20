@@ -444,7 +444,7 @@
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		66F06B43283708E300531F63 /* EndlessSkyTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSkyTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		66F06B44283708E300531F63 /* EndlessSky copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EndlessSky copy-Info.plist"; path = "/Volumes/a.MBP15[Data]/Files/GitHub Repos/Endless Sky/DeBlister/endless-sky/EndlessSky copy-Info.plist"; sourceTree = "<absolute>"; };
+		66F06B44283708E300531F63 /* EndlessSkyTests-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EndlessSkyTests-info.plist"; path = "/Volumes/a.MBP15[Data]/Files/GitHub Repos/Endless Sky/DeBlister/endless-sky/EndlessSkyTests-Info.plist"; sourceTree = "<absolute>"; };
 		66F06B612837092E00531F63 /* tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tests; sourceTree = "<group>"; };
 		66F06B7C283709FC00531F63 /* test_template.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = test_template.txt; path = tests/unit/src/test_template.txt; sourceTree = "<group>"; };
 		66F06B7D283709FC00531F63 /* test_angle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test_angle.cpp; path = tests/unit/src/test_angle.cpp; sourceTree = "<group>"; };
@@ -1134,7 +1134,7 @@
 				A9CC52721950C9F6004E4E22 /* XCode */,
 				A9CC526B1950C9F6004E4E22 /* Frameworks */,
 				A9CC526A1950C9F6004E4E22 /* Products */,
-				66F06B44283708E300531F63 /* EndlessSky copy-Info.plist */,
+				66F06B44283708E300531F63 /* EndlessSkytests-info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1790,7 +1790,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "EndlessSky copy-Info.plist";
+				INFOPLIST_FILE = "EndlessSkyTests-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1819,7 +1819,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "EndlessSky copy-Info.plist";
+				INFOPLIST_FILE = "EndlessSkyTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
