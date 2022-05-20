@@ -444,7 +444,7 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
-		66F06B43283708E300531F63 /* EndlessSky Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EndlessSky Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F06B43283708E300531F63 /* EndlessSkyTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSkyTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F06B44283708E300531F63 /* EndlessSky copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EndlessSky copy-Info.plist"; path = "/Volumes/a.MBP15[Data]/Files/GitHub Repos/Endless Sky/DeBlister/endless-sky/EndlessSky copy-Info.plist"; sourceTree = "<absolute>"; };
 		66F06B612837092E00531F63 /* tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tests; sourceTree = "<group>"; };
 		66F06B7C283709FC00531F63 /* test_template.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = test_template.txt; path = tests/unit/src/test_template.txt; sourceTree = "<group>"; };
@@ -950,7 +950,6 @@
 				A96863451AE6FD0C004FE1FE /* NPC.h */,
 				A96863461AE6FD0C004FE1FE /* Outfit.cpp */,
 				A96863471AE6FD0C004FE1FE /* Outfit.h */,
-				66F06B612837092E00531F63 /* tests */,
 				A96863481AE6FD0C004FE1FE /* OutfitInfoDisplay.cpp */,
 				A96863491AE6FD0C004FE1FE /* OutfitInfoDisplay.h */,
 				A968634A1AE6FD0C004FE1FE /* OutfitterPanel.cpp */,
@@ -1132,6 +1131,7 @@
 				A9A5297319996C9F002D7C35 /* sounds */,
 				A99F7B32195DF45E002C30B8 /* data */,
 				A99F7B33195DF45E002C30B8 /* images */,
+				66F06B612837092E00531F63 /* tests */,
 				A9CC52721950C9F6004E4E22 /* XCode */,
 				A9CC526B1950C9F6004E4E22 /* Frameworks */,
 				A9CC526A1950C9F6004E4E22 /* Products */,
@@ -1144,7 +1144,7 @@
 			children = (
 				A9CC52691950C9F6004E4E22 /* Endless Sky.app */,
 				072599BE26A8C67D007EC229 /* SDL2.dylib */,
-				66F06B43283708E300531F63 /* EndlessSky Tests.app */,
+				66F06B43283708E300531F63 /* EndlessSkyTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1232,9 +1232,9 @@
 			productReference = 072599BE26A8C67D007EC229 /* SDL2.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		66F06A8E283708E300531F63 /* EndlessSky Tests */ = {
+		66F06A8E283708E300531F63 /* EndlessSkyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSky Tests" */;
+			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyTests" */;
 			buildPhases = (
 				66F06A91283708E300531F63 /* CopyFiles */,
 				66F06A96283708E300531F63 /* ShellScript */,
@@ -1248,9 +1248,9 @@
 			dependencies = (
 				66F06A8F283708E300531F63 /* PBXTargetDependency */,
 			);
-			name = "EndlessSky Tests";
+			name = EndlessSkyTests;
 			productName = EndlessSky;
-			productReference = 66F06B43283708E300531F63 /* EndlessSky Tests.app */;
+			productReference = 66F06B43283708E300531F63 /* EndlessSkyTests.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A9CC52681950C9F6004E4E22 /* EndlessSky */ = {
@@ -1302,8 +1302,8 @@
 			projectRoot = "";
 			targets = (
 				A9CC52681950C9F6004E4E22 /* EndlessSky */,
+				66F06A8E283708E300531F63 /* EndlessSkyTests */,
 				072599BD26A8C67D007EC229 /* SDL2 */,
-				66F06A8E283708E300531F63 /* EndlessSky Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2002,7 +2002,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSky Tests" */ = {
+		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66F06B41283708E300531F63 /* Debug */,
