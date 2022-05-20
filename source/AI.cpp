@@ -2825,11 +2825,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	}
 	// Even if the ship's current target ship is beyond maxRange,
 	// or is already disabled, consider aiming at it.
-	if((opportunistic || hasOpportunisticWeapons) && currentTarget && currentTarget->IsTargetable()
-			&& find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
-		targets.push_back(currentTarget);
-	if(currentTarget)
+	if(currentTarget && currentTarget->IsTargetable())
+	{
 		focusedTargets.push_back(currentTarget);
+		if(find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
+			targets.push_back(currentTarget);
+	}
 	// If this ship is mining, consider aiming at its target asteroid.
 	if(ship.GetTargetAsteroid())
 	{
