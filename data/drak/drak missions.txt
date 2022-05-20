@@ -11,28 +11,38 @@
 mission "Drak guarding Korath space"
 	invisible
 	landing
-	npc kill
+	repeat
+	to offer
+		not "Drak guarding Korath space: active"
+	to complete
+		never
+	npc save
 		government Drak
-		personality heroic vindictive staying frugal forbearing
+		personality heroic vindictive staying
 		system Fasitopfar
 		ship "Archon" "Kasiliri's Folly"
-	npc kill
+	npc save
 		government Drak
-		personality heroic vindictive staying frugal forbearing
+		personality heroic vindictive staying
 		system Kasikfar
 		ship "Archon B" "Sword of Eden"
-	npc kill
+	npc save
 		government Drak
-		personality heroic vindictive staying frugal forbearing
+		personality heroic vindictive staying
 		system Peresedersi
 		ship "Archon C" "Snows of Far Door Nai"
 
 mission "Drak guarding Sayaiban"
 	invisible
 	landing
-	npc kill
+	repeat
+	to offer
+		not "Drak guarding Sayaiban: active"
+	to complete
+		never
+	npc save
 		government Drak
-		personality heroic vindictive staying frugal forbearing
+		personality heroic vindictive staying
 		system Sayaiban
 		ship "Archon" "Watchful Gravetender"
 	on enter Sayaiban
@@ -82,8 +92,13 @@ mission "Drak guarding Sayaiban"
 mission "Drak guarding Void Sprites"
 	invisible
 	landing
-	npc kill
+	repeat
+	to offer
+		not "Drak guarding Void Sprites: active"
+	to complete
+		never
+	npc save
 		government Drak
-		personality heroic vindictive staying frugal
+		personality heroic vindictive staying
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
