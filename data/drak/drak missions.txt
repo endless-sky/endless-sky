@@ -45,6 +45,14 @@ mission "Drak guarding Sayaiban"
 		personality heroic vindictive staying frugal forbearing
 		system Sayaiban
 		ship "Archon" "Watchful Gravetender"
+	
+mission "Conversation on Sayaiban"
+	invisible
+	landing
+	to offer
+		not "Conversation on Sayaiban: active"
+	to complete
+		never
 	on enter Sayaiban
 		log "Factions" "Archons" `Archons consider it to be their job to enforce peace and to prevent extinction. If they are unable to prevent a species from driving itself extinct, they will still try to preserve some of what that species created as a memorial to them.`
 			`They are capable of communicating telepathically.`
