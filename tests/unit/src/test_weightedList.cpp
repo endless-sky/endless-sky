@@ -90,7 +90,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->GetValue() == 2 );
+						CHECK( it->first.GetValue() == 2 );
 					}
 				}
 
@@ -118,7 +118,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->GetValue() == 4 );
+						CHECK( it->first.GetValue() == 4 );
 					}
 				}
 
