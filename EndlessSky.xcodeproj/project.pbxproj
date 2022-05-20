@@ -190,7 +190,6 @@
 		66F06B3D283708E300531F63 /* alignment.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 13B643F6BEC24349F9BC9F42 /* alignment.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		66F06B3E283708E300531F63 /* layout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF4321AF819E944EC02FB9 /* layout.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		66F06B3F283708E300531F63 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
-		66F06B8B28370A0000531F63 /* test_template.txt in Sources */ = {isa = PBXBuildFile; fileRef = 66F06B7C283709FC00531F63 /* test_template.txt */; };
 		66F06B8C28370A0000531F63 /* test_angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F06B7D283709FC00531F63 /* test_angle.cpp */; };
 		66F06B8D28370A0000531F63 /* test_random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F06B7E283709FC00531F63 /* test_random.cpp */; };
 		66F06B8E28370A0000531F63 /* test_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F06B7F283709FD00531F63 /* test_set.cpp */; };
@@ -1404,7 +1403,6 @@
 				66F06AA1283708E300531F63 /* Color.cpp in Sources */,
 				66F06AA2283708E300531F63 /* TradingPanel.cpp in Sources */,
 				66F06AA3283708E300531F63 /* HiringPanel.cpp in Sources */,
-				66F06B8B28370A0000531F63 /* test_template.txt in Sources */,
 				66F06B8C28370A0000531F63 /* test_angle.cpp in Sources */,
 				66F06B8D28370A0000531F63 /* test_random.cpp in Sources */,
 				66F06B8E28370A0000531F63 /* test_set.cpp in Sources */,
