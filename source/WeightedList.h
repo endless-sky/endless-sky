@@ -16,10 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 
 #include <cstddef>
+#include <iterator>
 #include <numeric>
 #include <stdexcept>
 #include <type_traits>
-#include <utility>
 #include <vector>
 
 
@@ -30,9 +30,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // the weight of the object over the sum of the weights of all objects in the list.
 template <class Type>
 class WeightedList {
-	using iterator = typename std::vector<std::pair<Type, int>>::iterator;
-	using const_iterator = typename std::vector<std::pair<Type, int>>::const_iterator;
+	using iterator = typename std::vector<Type>::iterator;
+	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
+	template <class T, class UnaryPredicate>
+	friend typename std::vector<T>::iterator remove_if(WeightedList<T> &list, typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, UnaryPredicate pred);
+
 	const Type &Get() const;
 	int TotalWeight() const noexcept { return total; }
 
@@ -53,8 +56,8 @@ public:
 	void clear() noexcept { choices.clear(); total = 0; }
 	int size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
-	Type &back() noexcept { return choices.back().first; }
-	const Type &back() const noexcept { return choices.back().first; }
+	Type &back() noexcept { return choices.back(); }
+	const Type &back() const noexcept { return choices.back(); }
 
 	template <class ...Args>
 	Type &emplace_back(int weight, Args&&... args);
@@ -68,7 +71,8 @@ private:
 
 
 private:
-	std::vector<std::pair<Type, int>> choices;
+	std::vector<Type> choices;
+	std::vector<int> weights;
 	int total = 0;
 };
 
@@ -81,10 +85,10 @@ const Type &WeightedList<Type>::Get() const
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= choices[index].second; ++index)
-		choice -= choices[index].second;
+	for(int choice = Random::Int(total); choice >= weights[index]; ++index)
+		choice -= weights[index];
 
-	return choices[index].first;
+	return choices[index];
 }
 
 
@@ -100,8 +104,8 @@ typename std::enable_if<
 	if (tw == 0) return 0;
 
 	auto sum = typename std::result_of<Callable(const Type &)>::type{};
-	for(auto &&item : choices)
-		sum += fn(item.first) * item.second;
+	for(unsigned index = 0; index < choices.size(); ++index)
+		sum += fn(choices[index]) * weights[index];
 	return sum / tw;
 }
 
@@ -115,31 +119,33 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
 
-	// PR NOTE: I don't like constructing args to Type here, but it doesn't
-	// yell at me with red text when I do this. This will not be necessary
-	// if we make WeightedLists two-vector.
-	choices.emplace_back(Type(args...), weight);
+	choices.emplace_back(args...);
+	weights.emplace_back(weight);
 	total += weight;
-	return choices.back().first;
+	return choices.back();
 }
 
 
 
 template <class Type>
-typename std::vector<std::pair<Type, int>>::iterator WeightedList<Type>::eraseAt(typename std::vector<std::pair<Type, int>>::iterator position) noexcept
+typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::vector<Type>::iterator position) noexcept
 {
-	total -= position->second;
+	int index = std::distance(choices.begin(), position);
+	total -= weights[index];
+	weights.erase(std::next(weights.begin(), index));
 	return choices.erase(position);
 }
 
 
 
 template <class Type>
-typename std::vector<std::pair<Type, int>>::iterator WeightedList<Type>::erase(typename std::vector<std::pair<Type, int>>::iterator first, typename std::vector<std::pair<Type, int>>::iterator last) noexcept
+typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
 {
-	auto it = choices.erase(first, last);
+	auto firstWeight = std::next(weights.begin(), std::distance(choices.begin(), first));
+	auto lastWeight = std::next(weights.begin(), std::distance(choices.begin(), last));
+	weights.erase(firstWeight, lastWeight);
 	RecalculateWeight();
-	return it;
+	return choices.erase(first, last);
 }
 
 
@@ -147,8 +153,33 @@ typename std::vector<std::pair<Type, int>>::iterator WeightedList<Type>::erase(t
 template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
-	total = std::accumulate(choices.begin(), choices.end(), 0,
-		[](int x, const std::pair<Type, int> &t) -> int { return x + t.second; });
+	total = std::accumulate(weights.begin(), weights.end(), 0,
+		[](int x, const int &t) -> int { return x + t; });
+}
+
+
+
+template <class T, class UnaryPredicate>
+typename std::vector<T>::iterator remove_if(WeightedList<T> &list, typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, UnaryPredicate pred)
+{
+	auto firstWeight = std::next(list.weights.begin(), std::distance(list.choices.begin(), first));
+
+	auto result = first;
+	auto resultWeight = firstWeight;
+	while(first!=last) {
+		if(!pred(*first)) {
+			if(result!=first)
+			{
+				*result = std::move(*first);
+				*resultWeight = std::move(*firstWeight);
+			}
+			++result;
+			++resultWeight;
+		}
+		++first;
+		++firstWeight;
+	}
+	return result;
 }
 
 

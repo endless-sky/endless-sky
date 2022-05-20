@@ -213,8 +213,8 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = remove_if(variants.begin(), variants.end(),
-				[&toRemove](const pair<Variant, int> &v) noexcept -> bool { return v.first == toRemove; });
+			auto removeIt = remove_if(variants, variants.begin(), variants.end(),
+				[&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
 			if(removeIt != variants.end())
 				variants.erase(removeIt, variants.end());
 			else
@@ -244,7 +244,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const pair<Variant, int> &v) noexcept -> bool { return !v.first.IsValid(); }))
+			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
 		return false;
 
 	return true;
@@ -254,9 +254,9 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const pair<Variant, int> &v) noexcept -> bool
+	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
 	{
-		return !v.first.IsValid();
+		return !v.IsValid();
 	};
 	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
 	if(firstInvalid == variants.end())
@@ -264,7 +264,7 @@ void Fleet::RemoveInvalidVariants()
 
 	// Ensure the class invariant can be maintained.
 	int total = variants.TotalWeight();
-	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
+	auto removeIt = remove_if(variants, firstInvalid, variants.end(), IsInvalidVariant);
 	int count = distance(removeIt, variants.end());
 	variants.erase(removeIt, variants.end());
 

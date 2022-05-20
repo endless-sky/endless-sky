@@ -256,7 +256,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			if(remove)
 			{
 				for(auto it = belts.begin(); it != belts.end(); ++it)
-					if(it->first == radius)
+					if(*it == radius)
 					{
 						belts.eraseAt(it);
 						break;

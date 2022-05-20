@@ -90,7 +90,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 2 );
+						CHECK( it->GetValue() == 2 );
 					}
 				}
 
@@ -118,13 +118,13 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 4 );
+						CHECK( it->GetValue() == 4 );
 					}
 				}
 
 				AND_WHEN( "the erase-remove idiom is used" ) {
-					auto removeIt = std::remove_if(list.begin(), list.end(),
-						[](const std::pair<Object, int> &o) { return o.first.GetValue() == 1; });
+					// Use the remove_if friend function of WeightedList.
+					auto removeIt = remove_if(list, list.begin(), list.end(), [](const Object &o) { return o.GetValue() == 1; });
 					REQUIRE( removeIt != list.begin() );
 					REQUIRE( removeIt != list.end() );
 					list.erase(removeIt, list.end());
