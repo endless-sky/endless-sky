@@ -2801,7 +2801,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	auto targets = vector<const Body *>();
 	const Ship *currentTarget = ship.GetTargetShip().get();
 	auto focusedTargets = vector<const Body *>();
-	if(opportunistic || !currentTarget || !currentTarget->IsTargetable() || HasOpportunisticWeapons(ship))
+	bool hasOpportunisticWeapons = HasOpportunisticWeapons(ship);
+	if(opportunistic || !currentTarget || !currentTarget->IsTargetable() || hasOpportunisticWeapons)
 	{
 		// Find the maximum range of any of this ship's turrets.
 		double maxRange = 0.;
@@ -2821,14 +2822,15 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 		for(auto &&foe : enemies)
 			if(!foe->IsDisabled())
 				targets.emplace_back(foe);
-		// Even if the ship's current target ship is beyond maxRange,
-		// or is already disabled, consider aiming at it.
-		if(currentTarget && currentTarget->IsTargetable()
-				&& find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
+	}
+	// Even if the ship's current target ship is beyond maxRange,
+	// or is already disabled, consider aiming at it.
+	if(currentTarget && currentTarget->IsTargetable())
+	{
+		focusedTargets.push_back(currentTarget);
+		if(find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
 			targets.push_back(currentTarget);
 	}
-	if(currentTarget)
-		focusedTargets.push_back(currentTarget);
 	// If this ship is mining, consider aiming at its target asteroid.
 	if(ship.GetTargetAsteroid())
 	{

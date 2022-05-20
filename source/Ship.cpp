@@ -573,7 +573,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					const Outfit *outfit;
 					bool defensive;
 					bool opportunistic;
-					if (nextTurret == end)
+					if(nextTurret == end)
 					{
 						outfit = nullptr;
 						defensive = false;
