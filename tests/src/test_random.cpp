@@ -59,6 +59,23 @@ TEST_CASE( "Benchmark Random::Real", "[!benchmark][random]" ) {
 		return Random::Real();
 	};
 }
+TEST_CASE( "Benchmark Random::BoxMullerSample", "[!benchmark][random]" ) {
+	BENCHMARK( "Random::BoxMullerSample()" ) {
+		return Random::BoxMullerSample();
+	};
+	BENCHMARK( "Random::BoxMullerSample(0, 1)" ) {
+		return Random::BoxMullerSample(0, 1);
+	};
+	BENCHMARK( "Random::BoxMullerSample(1000, 1)" ) {
+		return Random::BoxMullerSample(1000, 1);
+	};
+	BENCHMARK( "Random::BoxMullerSample(0, -1)" ) {
+		return Random::BoxMullerSample(0, -1);
+	};
+	BENCHMARK( "Random::BoxMullerSample(1000, -1)" ) {
+		return Random::BoxMullerSample(1000, -1);
+	};
+}
 #endif
 // #endregion benchmarks
 
