@@ -1258,7 +1258,7 @@
 			children = (
 				A9CC52691950C9F6004E4E22 /* Endless Sky.app */,
 				072599BE26A8C67D007EC229 /* SDL2.dylib */,
-				66F06B43283708E300531F63 /* EndlessSkyTests.app */,
+				66F06B43283708E300531F63 /* EndlessSkyUnitTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1350,9 +1350,9 @@
 			productReference = 072599BE26A8C67D007EC229 /* SDL2.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		66F06A8E283708E300531F63 /* EndlessSkyTests */ = {
+		66F06A8E283708E300531F63 /* EndlessSkyUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyTests" */;
+			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyUnitTests" */;
 			buildPhases = (
 				66F06A91283708E300531F63 /* CopyFiles */,
 				66F06A96283708E300531F63 /* ShellScript */,
@@ -1366,9 +1366,9 @@
 			dependencies = (
 				66F06A8F283708E300531F63 /* PBXTargetDependency */,
 			);
-			name = EndlessSkyTests;
+			name = EndlessSkyUnitTests;
 			productName = EndlessSky;
-			productReference = 66F06B43283708E300531F63 /* EndlessSkyTests.app */;
+			productReference = 66F06B43283708E300531F63 /* EndlessSkyUnitTests.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A9CC52681950C9F6004E4E22 /* EndlessSky */ = {
@@ -1420,7 +1420,7 @@
 			projectRoot = "";
 			targets = (
 				A9CC52681950C9F6004E4E22 /* EndlessSky */,
-				66F06A8E283708E300531F63 /* EndlessSkyTests */,
+				66F06A8E283708E300531F63 /* EndlessSkyUnitTests */,
 				072599BD26A8C67D007EC229 /* SDL2 */,
 			);
 		};
@@ -1916,7 +1916,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/EndlessSkyTests-Info.plist";
+				INFOPLIST_FILE = "Xcode/EndlessSkyUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1945,7 +1945,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/EndlessSkyTests-Info.plist";
+				INFOPLIST_FILE = "Xcode/EndlessSkyUnitTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2126,7 +2126,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyTests" */ = {
+		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "EndlessSkyUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66F06B41283708E300531F63 /* Debug */,
