@@ -115,7 +115,10 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
 
-	choices.emplace_back(args...);
+	// PR NOTE: I don't like constructing args to Type here, but it doesn't
+	// yell at me with red text when I do this. This will not be necessary
+	// if we make WeightedLists two-vector.
+	choices.emplace_back(Type(args...), weight);
 	total += weight;
 	return choices.back().first;
 }
