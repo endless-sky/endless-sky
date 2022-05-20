@@ -46,10 +46,10 @@ ship "Archon"
 		"turning energy" 10
 		"turning heat" 5
 		weapon
-			"blast radius" 200
-			"shield damage" 20000
-			"hull damage" 10000
-			"hit force" 30000
+			"blast radius" 500
+			"shield damage" 10000
+			"hull damage" 5000
+			"hit force" -10000
 	outfits
 		"Drak Antimatter Cannon"
 		"Drak Antimatter Cannon (Augmented)"
