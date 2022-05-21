@@ -171,8 +171,6 @@ void UniverseObjects::Change(const DataNode &node)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
 		planets.Get(node.Token(1))->Load(node, wormholes);
-	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
-		wormholes.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
@@ -185,6 +183,8 @@ void UniverseObjects::Change(const DataNode &node)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "substitutions" && node.HasChildren())
 		substitutions.Load(node);
+	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
+		wormholes.Get(node.Token(1))->Load(node);
 	else
 		node.PrintTrace("Error: Invalid \"event\" data:");
 }
@@ -368,8 +368,6 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, wormholes);
-		else if(key == "wormhole" && node.Size() >= 2)
-			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && node.Size() >= 2)
 		{
 			// Allow multiple named variants of the same ship model.
@@ -472,6 +470,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
+		else if(key == "wormhole" && node.Size() >= 2)
+			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "disable" && node.Size() >= 2)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};

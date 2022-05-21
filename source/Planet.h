@@ -115,7 +115,7 @@ public:
 	// Every system this planet is in. If this list has more than one entry, it's a wormhole.
 	const std::vector<const System *> &Systems() const;
 
-	// Check if this is a wormhole (that is, it appears in multiple systems).
+	// Check if planet is part of a wormhole (that is, landing on it will take you to a new system).
 	bool IsWormhole() const;
 	const Wormhole *GetWormhole() const;
 
