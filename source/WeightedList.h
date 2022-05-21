@@ -153,8 +153,7 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
-	total = std::accumulate(weights.begin(), weights.end(), 0,
-		[](int x, const int &t) -> int { return x + t; });
+	total = std::accumulate(weights.begin(), weights.end(), 0, std::plus<int>());
 }
 
 
