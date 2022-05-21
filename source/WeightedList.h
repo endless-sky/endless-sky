@@ -162,7 +162,7 @@ void WeightedList<Type>::RecalculateWeight()
 template <class T, class UnaryPredicate>
 std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 {
-	std::size_t initial = list.choices.size();
+	std::size_t erased = 0;
 	auto it = list.choices.begin();
 	auto wit = list.weights.begin();
 	while(it != list.choices.end())
@@ -172,6 +172,7 @@ std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 			list.total -= *wit;
 			wit = list.weights.erase(wit);
 			it = list.choices.erase(it);
+			++erased;
 		}
 		else
 		{
@@ -180,7 +181,7 @@ std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 		}
 	}
 
-	return initial - list.choices.size();
+	return erased;
 }
 
 
