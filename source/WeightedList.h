@@ -38,7 +38,7 @@ public:
 	friend std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred);
 
 	const Type &Get() const;
-	int TotalWeight() const noexcept { return total; }
+	std::size_t TotalWeight() const noexcept { return total; }
 
 	// Average the result of the given function by the choices' weights.
 	template <class Callable>
@@ -55,7 +55,7 @@ public:
 	const_iterator end() const noexcept { return choices.end(); }
 
 	void clear() noexcept { choices.clear(); total = 0; }
-	int size() const noexcept { return choices.size(); }
+	std::size_t size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }
 	Type &back() noexcept { return choices.back(); }
 	const Type &back() const noexcept { return choices.back(); }
@@ -73,8 +73,8 @@ private:
 
 private:
 	std::vector<Type> choices;
-	std::vector<int> weights;
-	int total = 0;
+	std::vector<std::size_t> weights;
+	std::size_t total = 0;
 };
 
 
@@ -86,7 +86,7 @@ const Type &WeightedList<Type>::Get() const
 		throw std::runtime_error("Attempted to call Get on an empty weighted list.");
 
 	unsigned index = 0;
-	for(int choice = Random::Int(total); choice >= weights[index]; ++index)
+	for(unsigned choice = Random::Int(total); choice >= weights[index]; ++index)
 		choice -= weights[index];
 
 	return choices[index];
@@ -101,7 +101,7 @@ typename std::enable_if<
 	typename std::result_of<Callable&&(const Type&&)>::type
 >::type WeightedList<Type>::Average(Callable fn) const
 {
-	int tw = TotalWeight();
+	std::size_t tw = TotalWeight();
 	if (tw == 0) return 0;
 
 	auto sum = typename std::result_of<Callable(const Type &)>::type{};
@@ -122,7 +122,7 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 
 	choices.emplace_back(std::forward<Args>(args)...);
 	weights.emplace_back(weight);
-	total += weight;
+	total += weights.back();
 	return choices.back();
 }
 
@@ -131,7 +131,7 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 template <class Type>
 typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::vector<Type>::iterator position) noexcept
 {
-	int index = std::distance(choices.begin(), position);
+	unsigned index = std::distance(choices.begin(), position);
 	total -= weights[index];
 	weights.erase(std::next(weights.begin(), index));
 	return choices.erase(position);
@@ -154,14 +154,15 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
-	total = std::accumulate(weights.begin(), weights.end(), 0, std::plus<int>());
+	total = std::accumulate(weights.begin(), weights.end(), 0);
 }
 
 
 
 template <class T, class UnaryPredicate>
-typename std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
+std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 {
+	std::size_t initial = list.choices.size();
 	auto it = list.choices.begin();
 	auto wit = list.weights.begin();
 	while(it != list.choices.end())
@@ -179,7 +180,7 @@ typename std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 		}
 	}
 
-	return list.size();
+	return initial - list.choices.size();
 }
 
 
