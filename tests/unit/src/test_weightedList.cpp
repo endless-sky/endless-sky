@@ -122,12 +122,10 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 				}
 
-				AND_WHEN( "the erase-remove idiom is used" ) {
-					// Use the remove_if friend function of WeightedList.
-					auto removeIt = remove_if(list, list.begin(), list.end(), [](const Object &o) { return o.GetValue() == 1; });
-					REQUIRE( removeIt != list.begin() );
-					REQUIRE( removeIt != list.end() );
-					list.erase(removeIt, list.end());
+				AND_WHEN( "the erase-if friend function is used" ) {
+					int before = list.size();
+					int after = erase_if(list, [](const Object &o) { return o.GetValue() == 1; });
+					REQUIRE( before != after );
 
 					THEN( "the total weight is correctly maintained" ) {
 						CHECK( list.TotalWeight() == extraWeight );

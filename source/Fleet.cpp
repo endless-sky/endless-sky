@@ -213,11 +213,9 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = remove_if(variants, variants.begin(), variants.end(),
-				[&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
-			if(removeIt != variants.end())
-				variants.erase(removeIt, variants.end());
-			else
+			int before = variants.size();
+			int after = erase_if(variants, [&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
+			if(before == after)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -254,19 +252,13 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
-	{
-		return !v.IsValid();
-	};
-	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
-	if(firstInvalid == variants.end())
-		return;
-
 	// Ensure the class invariant can be maintained.
 	int total = variants.TotalWeight();
-	auto removeIt = remove_if(variants, firstInvalid, variants.end(), IsInvalidVariant);
-	int count = distance(removeIt, variants.end());
-	variants.erase(removeIt, variants.end());
+	int before = variants.size();
+	int after = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
+	int count = before - after;
+	if(!count)
+		return;
 
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")

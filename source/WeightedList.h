@@ -34,7 +34,7 @@ class WeightedList {
 	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
 	template <class T, class UnaryPredicate>
-	friend typename std::vector<T>::iterator remove_if(WeightedList<T> &list, typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, UnaryPredicate pred);
+	friend std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred);
 
 	const Type &Get() const;
 	int TotalWeight() const noexcept { return total; }
@@ -159,26 +159,26 @@ void WeightedList<Type>::RecalculateWeight()
 
 
 template <class T, class UnaryPredicate>
-typename std::vector<T>::iterator remove_if(WeightedList<T> &list, typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, UnaryPredicate pred)
+typename std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 {
-	auto firstWeight = std::next(list.weights.begin(), std::distance(list.choices.begin(), first));
-
-	auto result = first;
-	auto resultWeight = firstWeight;
-	while(first!=last) {
-		if(!pred(*first)) {
-			if(result!=first)
-			{
-				*result = std::move(*first);
-				*resultWeight = std::move(*firstWeight);
-			}
-			++result;
-			++resultWeight;
+	auto it = list.choices.begin();
+	auto wit = list.weights.begin();
+	while(it != list.choices.end())
+	{
+		if(pred(*it))
+		{
+			list.total -= *wit;
+			wit = list.weights.erase(wit);
+			it = list.choices.erase(it);
 		}
-		++first;
-		++firstWeight;
+		else
+		{
+			++it;
+			++wit;
+		}
 	}
-	return result;
+
+	return list.size();
 }
 
 
