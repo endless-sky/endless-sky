@@ -115,16 +115,19 @@ uint32_t Random::Binomial(uint32_t t, double p)
 // Cache the unused value without transforming it so that it can be transformed when it's used.
 double Random::BoxMullerSample(double mean, double sigma)
 {
+	#ifndef __linux__
+		lock_guard<mutex> lock(workaroundMutex);
+	#endif
 	if(normalBMCached)
 	{
-		#ifndef __linux__
-			lock_guard<mutex> lock(workaroundMutex);
-		#endif
 		normalBMCached = false;
 		return sigma * cachedBMNormal + mean;
 	}
 	else
 	{
+		#ifndef __linux__
+			workaroundMutex.unlock();
+		#endif
 		double u1, u2;
 		do
 			u1 = Random::Real();
@@ -134,10 +137,13 @@ double Random::BoxMullerSample(double mean, double sigma)
 		// Store z0 and return z1
 		auto mag = sqrt(-2.0 * log(u1));
 		#ifndef __linux__
-			lock_guard<mutex> lock(workaroundMutex);
+			workaroundMutex.lock();
 		#endif
 		cachedBMNormal = mag * cos(PI_2 * u2);
 		normalBMCached = true;
+		#ifndef __linux__
+			workaroundMutex.unlock();
+		#endif
 		return sigma * mag * sin(PI_2 * u2) + mean;
 	}
 }
