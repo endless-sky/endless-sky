@@ -588,7 +588,7 @@ void Ship::FinishLoading(bool isNewInstance)
 						++nextTurret;
 					const Outfit *outfit;
 					bool hasIndividualAFMode = false;
-					bool isAutoFireOne = true;
+					bool isAutoFireOn = true;
 					bool frugalAutoFire = false;
 					if(nextTurret != end)
 					{
