@@ -213,9 +213,8 @@ void Fleet::Load(const DataNode &node)
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			int before = variants.size();
-			int after = erase_if(variants, [&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
-			if(before == after)
+			int count = erase_if(variants, [&toRemove](const Variant &v) noexcept -> bool { return v == toRemove; });
+			if(!count)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -254,9 +253,7 @@ void Fleet::RemoveInvalidVariants()
 {
 	// Ensure the class invariant can be maintained.
 	int total = variants.TotalWeight();
-	int before = variants.size();
-	int after = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
-	int count = before - after;
+	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
 	if(!count)
 		return;
 
