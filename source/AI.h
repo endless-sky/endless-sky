@@ -141,7 +141,7 @@ private:
 	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
 	// True if found asteroid.
-	bool TargetAsteroid(Ship &ship) const;
+	bool TargetMinable(Ship &ship) const;
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.

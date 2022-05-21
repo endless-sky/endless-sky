@@ -429,12 +429,12 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 			shared_ptr<Minable> asteroid = it->second.targetAsteroid.lock();
 			// Check if the target ship itself is targetable.
 			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
+			// Alternately, if an asteroid is targeted, then not an invalid target.
+			invalidTarget &= !asteroid;
 			// Check if the target ship is in a system where we can target.
 			// This check only checks for undocked ships (that have a current system).
 			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
 					&& ship->GetSystem() != flagship->GetSystem());
-			// Alternately, if an asteroid is targeted, then not an invalid target.
-			invalidTarget &= !asteroid;
 			// Asteroids are never out of reach since they're in the same system as flagship.
 			targetOutOfReach &= !asteroid;
 
@@ -3222,7 +3222,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 // Searches every asteroid within the ship scan limit and returns the asteroid
 // closest to the ship.
-bool AI::TargetAsteroid(Ship &ship) const
+bool AI::TargetMinable(Ship &ship) const
 {
 	double scanLimit = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
 	if(!scanLimit)
@@ -3238,7 +3238,7 @@ bool AI::TargetAsteroid(Ship &ship) const
 			scanLimit = range;
 		}
 	}
-	return ship.GetTargetAsteroid().get();
+	return static_cast<bool>(ship.GetTargetAsteroid());
 }
 
 
@@ -3369,7 +3369,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			}
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
-			TargetAsteroid(ship);
+			TargetMinable(ship);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -3590,7 +3590,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		command |= Command::SCAN;
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
 	{
-		TargetAsteroid(ship);
+		TargetMinable(ship);
 		Orders newOrders;
 		newOrders.type = Orders::HARVEST;
 		newOrders.targetAsteroid = ship.GetTargetAsteroid();
