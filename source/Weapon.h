@@ -247,7 +247,7 @@ private:
 
 	double turn = 0.;
 	double inaccuracy = 0.;
-	std::pair<Distribution::Type, bool> inaccuracyDistribution{Distribution::Type::Triangular, false};
+	std::pair<Distribution::Type, bool> inaccuracyDistribution = {Distribution::Type::Triangular, false};
 	double turretTurn = 0.;
 
 	double tracking = 0.;
