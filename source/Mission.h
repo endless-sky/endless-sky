@@ -195,6 +195,10 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
+	bool requiresWormholes = false;
+	bool requiresJumpDrive = false;
+	bool canWormhole = false;
+	bool canJumpDrive = false;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

@@ -144,15 +144,32 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
-			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "deadline")
 		{
-			if(child.Size() == 1)
-				deadlineMultiplier += 2;
-			if(child.Size() >= 2)
-				deadlineBase += child.Value(1);
-			if(child.Size() >= 3)
-				deadlineMultiplier += child.Value(2);
+			if(child.Size() >= 4)
+				deadline = Date(child.Value(1), child.Value(2), child.Value(3));
+			else
+			{
+				if(child.Size() == 1)
+					deadlineMultiplier += 2;
+				if(child.Size() >= 2)
+					deadlineBase += child.Value(1);
+				if(child.Size() >= 3)
+					deadlineMultiplier += child.Value(2);
+			}
+			if(child.HasChildren())
+			{
+				for(const DataNode &grand : child)
+				{
+					if(grand.Token(0) == "requireswormhole")
+						requiresWormholes = true;
+					else if(grand.Token(0) == "requiresjumpdrive")
+						requiresJumpDrive = true;
+					else if(grand.Token(0) == "canwormhole")
+						canWormhole = true;
+					else if(grand.Token(0) == "canjumpdrive")
+						canJumpDrive = true;
+				}
+			}
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
@@ -1248,15 +1265,45 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path);
+		DistanceMap distance(path, requiresWormholes, requiresJumpDrive);
+		DistanceMap secondaryDistance(path, canWormhole, canJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
+		int bestDays = distance.Days(*bestIt);
+		if(bestDays < 0)
+		{
+			bestDays = secondaryDistance.Days(*bestIt);
+			if(bestDays < 0)
+				bestDays = INT_MAX;
+		}
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+		{
+			int days = distance.Days(*it);
+			if(days < 0)
+			{
+				days = secondaryDistance.Days(*it);
+				if(days < 0)
+					days = INT_MAX;
+			}
+			if(days < bestDays)
+			{
 				bestIt = it;
+				bestDays = days;
+			}
+		}
 
 		path = *bestIt;
-		jumps += distance.Days(*bestIt);
+		int days = distance.Days(*bestIt);
+		// If bestIt still points to a system that is not reachable from here,
+		// the route can't be completed given the rules so this mission should
+		// not be offered.
+		if(days < 0)
+		{
+			days = secondaryDistance.Days(*bestIt);
+			if(days < 0)
+				return result;
+		}
+		jumps += days;
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(path);

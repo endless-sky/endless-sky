@@ -25,9 +25,23 @@ using namespace std;
 // Find paths to the given system. If the given maximum count is above zero,
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
-DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
+/*DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
+	: center(center), maxCount(maxCount), maxDistance(maxDistance)
 {
+	Init();
+}*/
+DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
+{
+	*this = DistanceMap(center, false, false, maxCount, maxDistance);
+}
+
+
+
+DistanceMap::DistanceMap(const System *center, bool useWormholes, bool useJumpDrive, int maxCount, int maxDistance)
+	: center(center), useWormholes(useWormholes), maxCount(maxCount), maxDistance(maxDistance)
+{
+	if(useJumpDrive)
+		jumpFuel = 200;
 	Init();
 }
 
