@@ -254,14 +254,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			double radius = child.Value(valueIndex);
 			if(remove)
-			{
-				for(auto it = belts.begin(); it != belts.end(); ++it)
-					if(*it == radius)
-					{
-						belts.eraseAt(it);
-						break;
-					}
-			}
+				erase(belts, radius);
 			else
 			{
 				int weight = (child.Size() >= valueIndex + 2) ? max<int>(1, child.Value(valueIndex + 1)) : 1;
