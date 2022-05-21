@@ -3224,18 +3224,17 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 // closest to the ship.
 bool AI::TargetMinable(Ship &ship) const
 {
-	double scanLimit = 100. * sqrt(ship.Attributes().Get("asteroid scan power"));
-	if(!scanLimit)
-	{
+	double baseline = 10000. * ship.Attributes().Get("asteroid scan power");
+	if(!baseline)
 		return false;
-	}
-	for(const shared_ptr<Minable> &asteroid : minables)
+
+	for(auto &&asteroid : minables)
 	{
-		double range = ship.Position().Distance(asteroid->Position());
-		if(range < scanLimit)
+		double metric = ship.Position().DistanceSquared(asteroid->Position());
+		if(metric < baseline)
 		{
 			ship.SetTargetAsteroid(asteroid);
-			scanLimit = range;
+			baseline = metric;
 		}
 	}
 	return static_cast<bool>(ship.GetTargetAsteroid());
