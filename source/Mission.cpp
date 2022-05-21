@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
+#include <limits>
 #include <sstream>
 
 using namespace std;
@@ -1274,7 +1275,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{
 			bestDays = secondaryDistance.Days(*bestIt);
 			if(bestDays < 0)
-				bestDays = INT_MAX;
+				bestDays = numeric_limits<int>::max();
 		}
 		for(++it; it != destinations.end(); ++it)
 		{
@@ -1283,7 +1284,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			{
 				days = secondaryDistance.Days(*it);
 				if(days < 0)
-					days = INT_MAX;
+					days = numeric_limits<int>::max();
 			}
 			if(days < bestDays)
 			{
