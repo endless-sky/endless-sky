@@ -383,7 +383,7 @@ outfit "Ka'het Reserve Accumulator"
 	thumbnail "outfit/ka'het reserve accumulator"
 	"mass" 2
 	"outfit space" -3
-	"energy capacity" 600
+	"energy capacity" 2400
 	description "This tiny battery was developed for use by the Ka'mar drones as an emergency energy storage, in case their generators can't quite suffice for the high power demand of most Builder systems."
 
 # Engines:
