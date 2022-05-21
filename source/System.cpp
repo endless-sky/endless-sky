@@ -745,7 +745,7 @@ void System::StepEconomy()
 	{
 		it.second.exports = EXPORT * it.second.supply;
 		it.second.supply *= KEEP;
-		it.second.supply += Random::BoxMullerSample() * VOLUME;
+		it.second.supply += Random::Normal() * VOLUME;
 		it.second.Update();
 	}
 }

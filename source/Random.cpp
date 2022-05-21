@@ -12,8 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Random.h"
 
-#include "pi.h"
-
 #include <random>
 
 #ifndef __linux__
@@ -29,17 +27,13 @@ namespace {
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
 	uniform_real_distribution<double> real;
-	bool normalBMCached = false;
-	double cachedBMNormal = std::numeric_limits<double>::infinity();
+	normal_distribution<double> normal;
 #else
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
 	thread_local uniform_real_distribution<double> real;
-	thread_local bool normalBMCached = false;
-	thread_local double cachedBMNormal = std::numeric_limits<double>::infinity();
+	thread_local normal_distribution<double> normal;
 #endif
-
-static const double epsilon = std::numeric_limits<double>::epsilon();
 }
 
 
@@ -111,39 +105,11 @@ uint32_t Random::Binomial(uint32_t t, double p)
 
 
 
-// Get a normally distributed number with default or specified mean and stddev using the Box-Muller transform.
-// Cache the unused value without transforming it so that it can be transformed when it's used.
-double Random::BoxMullerSample(double mean, double sigma)
+// Get a normally distributed number with standard or specified mean and stddev.
+double Random::Normal(double mean, double sigma)
 {
-	#ifndef __linux__
-		lock_guard<mutex> lock(workaroundMutex);
-	#endif
-	if(normalBMCached)
-	{
-		normalBMCached = false;
-		return sigma * cachedBMNormal + mean;
-	}
-	else
-	{
-		#ifndef __linux__
-			workaroundMutex.unlock();
-		#endif
-		double u1, u2;
-		do
-			u1 = Random::Real();
-		while (u1 <= epsilon);
-		u2 = Random::Real();
-
-		// Store z0 and return z1
-		auto mag = sqrt(-2.0 * log(u1));
-		#ifndef __linux__
-			workaroundMutex.lock();
-		#endif
-		cachedBMNormal = mag * cos(PI_2 * u2);
-		normalBMCached = true;
-		#ifndef __linux__
-			workaroundMutex.unlock();
-		#endif
-		return sigma * mag * sin(PI_2 * u2) + mean;
-	}
+#ifndef __linux__
+	lock_guard<mutex> lock(workaroundMutex);
+#endif
+	return sigma * normal(gen) + mean;
 }
