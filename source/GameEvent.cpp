@@ -126,7 +126,7 @@ void GameEvent::Save(DataWriter &out) const
 {
 	if(isDisabled)
 		return;
-	
+
 	out.Write("event");
 	out.BeginChild();
 	{
@@ -218,7 +218,7 @@ void GameEvent::Apply(PlayerInfo &player)
 {
 	if(isDisabled)
 		return;
-	
+
 	// Serialize the current reputation with other governments.
 	player.SetReputationConditions();
 

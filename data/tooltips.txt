@@ -681,7 +681,7 @@ tip "energy damage / second:"
 	`When hitting a target this weapon reduces the target's energy by this amount per second, or half this amount if the target's shields are up.`
 
 tip "ion damage / second:"
-	`Reduces the target's energy. Ionization slowly wears off over time.`
+	`Reduces the target's energy and causes weapon failures. Ionization slowly wears off over time.`
 
 tip "slowing damage / second:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
@@ -810,7 +810,7 @@ tip "energy damage / shot:"
 	`Each shot reduces the target ship's energy by this amount, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and slowly wears off over time.`
+	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy and causes weapon failures. Ionization slowly wears off over time.`
 
 tip "slowing damage / shot:"
 	`Reduces the target's turn rate, acceleration, and top speed. Slowing wears off over time.`
