@@ -40,6 +40,19 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 
 	if(effect.randomFrameRate)
 		AddFrameRate(effect.randomFrameRate * Random::Real());
+
+	positionOffset = position;
+}
+
+
+
+Visual::Visual(const Effect &effect, Point pos, const Body &follow, Point velocityOffset, Angle facingOffset)
+	: Visual(effect, follow.Position() + follow.Velocity() + follow.Facing().Rotate(pos), velocityOffset, follow.Facing())
+{
+	this->follow = &follow;
+	positionOffset = pos;
+	this->velocityOffset = velocityOffset;
+	this->facingOffset = facingOffset;
 }
 
 
@@ -47,11 +60,23 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 // Step the effect forward.
 void Visual::Move()
 {
-	if(lifetime-- <= 0)
+	if(lifetime-- <= 0 || (follow && follow->ShouldBeRemoved()))
 		MarkForRemoval();
 	else
 	{
-		position += velocity;
-		angle += spin;
+		if(follow)
+		{
+			// Match the position + facing of the body that this visual is centered on.
+			position = follow->Position() + follow->Facing().Rotate(positionOffset) + velocityOffset;
+			angle = follow->Facing() + facingOffset;
+
+			velocityOffset += velocity;
+			facingOffset += spin;
+		}
+		else
+		{
+			position += velocity;
+			angle += spin;
+		}
 	}
 }

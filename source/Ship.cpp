@@ -1533,9 +1533,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Leaks always "flicker" every other frame.
 				if(Random::Int(2))
 					visuals.emplace_back(*leak.effect,
-						angle.Rotate(leak.location) + position,
-						velocity,
-						leak.angle + angle);
+						leak.location,
+						*this,
+						Point(),
+						leak.angle);
 
 				if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
 					leak.effect = nullptr;
@@ -1768,7 +1769,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
 	double mass = Mass();
-	bool isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
@@ -1920,7 +1920,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				acceleration += angle.Unit() * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
-				isUsingAfterburner = !forget;
+				if(!forget && !Attributes().AfterburnerEffects().empty())
+					for(const EnginePoint &point : enginePoints)
+					{
+						// Stream the afterburner effects outward in the direction the engines are facing.
+						Point effectVelocity = -6. * angle.Unit();
+						for(auto &&it : Attributes().AfterburnerEffects())
+							for(int i = 0; i < it.second; ++i)
+								visuals.emplace_back(*it.first, point * Zoom(), *this, effectVelocity);
+					}
 			}
 		}
 	}
@@ -2027,18 +2035,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
 
-	// Finally, move the ship and create any movement visuals.
+	// Finally, move the ship.
 	position += velocity;
-	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
-		for(const EnginePoint &point : enginePoints)
-		{
-			Point pos = angle.Rotate(point) * Zoom() + position;
-			// Stream the afterburner effects outward in the direction the engines are facing.
-			Point effectVelocity = velocity - 6. * angle.Unit();
-			for(auto &&it : Attributes().AfterburnerEffects())
-				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, angle);
-		}
 }
 
 
@@ -2329,9 +2327,9 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
-			Point exitPoint = position + angle.Rotate(bay.point);
+			Point exitPoint = angle.Rotate(bay.point);
 			// When ejected, ships depart haphazardly.
-			Angle launchAngle = ejecting ? Angle(exitPoint - position) : angle + bay.facing;
+			Angle launchAngle = ejecting ? Angle(exitPoint) : angle + bay.facing;
 			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
 			bay.ship->Place(exitPoint, v, launchAngle, false);
 			bay.ship->SetSystem(currentSystem);
@@ -2341,7 +2339,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			carriedMass -= bay.ship->Mass();
 			// Create the desired launch effects.
 			for(const Effect *effect : bay.launchEffects)
-				visuals.emplace_back(*effect, exitPoint, velocity, launchAngle);
+				visuals.emplace_back(*effect, bay.point, *this, Point(), ejecting ? Angle(exitPoint) : bay.facing);
 
 			bay.ship.reset();
 		}
@@ -4012,13 +4010,13 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 				if(type < 0)
 					break;
 			}
-			Point effectVelocity = velocity;
+			Point effectVelocity;
 			if(spread)
 			{
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			visuals.emplace_back(*it->first, angle.Rotate(point) + position, std::move(effectVelocity), angle);
+			visuals.emplace_back(*it->first, point, *this, std::move(effectVelocity));
 			++explosionCount;
 			return;
 		}
@@ -4054,6 +4052,6 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		Point point((Random::Real() - .5) * Width(),
 			(Random::Real() - .5) * Height());
 		if(GetMask().Contains(point, Angle()))
-			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+			visuals.emplace_back(*effect, point, *this);
 	}
 }

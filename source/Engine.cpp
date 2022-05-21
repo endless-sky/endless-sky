@@ -1395,7 +1395,6 @@ void Engine::CalculateStep()
 		player.SetSystem(*playerSystem);
 		EnterSystem();
 	}
-	Prune(ships);
 
 	// Move the asteroids. This must be done before collision detection. Minables
 	// may create visuals or flotsam.
@@ -1421,6 +1420,11 @@ void Engine::CalculateStep()
 	for(Visual &visual : visuals)
 		visual.Move();
 	Prune(visuals);
+
+	// Visuals can depend on Ships for visuals centered on them. As such it is only
+	// safe to prune the ship list after the visuals can observe any ships that
+	// are going to be pruned.
+	Prune(ships);
 
 	// Perform various minor actions.
 	SpawnFleets();

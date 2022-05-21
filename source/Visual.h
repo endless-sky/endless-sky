@@ -28,6 +28,8 @@ class Visual : public Body {
 public:
 	Visual() = default;
 	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point());
+	Visual(const Effect &effect, Point pos, const Body &follow, Point velocityOffset = Point(), Angle facingOffset = Angle());
+
 
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
@@ -45,6 +47,13 @@ public:
 private:
 	Angle spin;
 	int lifetime = 0;
+
+	// The body this visual is centered on. Every frame this visual will update its
+	// position to match its center body.
+	const Body *follow = nullptr;
+	Point positionOffset;
+	Point velocityOffset;
+	Angle facingOffset;
 };
 
 
