@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isAutoFireOn = true, bool FrugalAutoFire = false, bool hasIndividualAFMode = false);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -114,7 +114,7 @@ private:
 	// Indicates whether the hardpoint is allowed to fire.
 	bool isAutoFireOn = true;
 	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.
-	bool FrugalAutoFire = false;
+	bool frugalAutoFire = false;
 	// Indicates whether the hardpoint has its own frugality setting.
 	bool hasIndividualAFMode = false;
 

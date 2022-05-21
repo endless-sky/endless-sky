@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isAutoFireOn, bool FrugalAutoFire, bool hasIndividualAFMode)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isAutoFireOn(isAutoFireOn), FrugalAutoFire(FrugalAutoFire), hasIndividualAFMode(hasIndividualAFMode)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isAutoFireOn(isAutoFireOn), frugalAutoFire(frugalAutoFire), hasIndividualAFMode(hasIndividualAFMode)
 {
 }
 
@@ -162,7 +162,7 @@ bool Hardpoint::IsAutoFireOn() const
 
 bool Hardpoint::FrugalAutoFire() const
 {
-	return FrugalAutoFire;
+	return frugalAutoFire;
 }
 
 
@@ -363,7 +363,7 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 	isAutoFireOn = true;
-	FrugalAutoFire = false;
+	frugalAutoFire = false;
 	hasIndividualAFMode = false;
 }
 
@@ -395,14 +395,14 @@ void Hardpoint::ToggleIsEnabled()
 // Set whether the hardpoint is always frugal.
 void Hardpoint::SetIsFrugal(bool input)
 {
-	FrugalAutoFire = input;
+	frugalAutoFire = input;
 }
 
 
 
 void Hardpoint::ToggleIsFrugal()
 {
-	FrugalAutoFire = !FrugalAutoFire;
+	frugalAutoFire = !frugalAutoFire;
 }
 
 
