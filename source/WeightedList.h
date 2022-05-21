@@ -67,6 +67,10 @@ public:
 
 
 private:
+	void RecalculateWeight();
+
+
+private:
 	std::vector<Type> choices;
 	std::vector<int> weights;
 	int total = 0;
@@ -139,9 +143,17 @@ typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vec
 {
 	auto firstWeight = std::next(weights.begin(), std::distance(choices.begin(), first));
 	auto lastWeight = std::next(weights.begin(), std::distance(choices.begin(), last));
-	total -= std::accumulate(firstWeight, lastWeight, 0, std::plus<int>());
 	weights.erase(firstWeight, lastWeight);
+	RecalculateWeight();
 	return choices.erase(first, last);
+}
+
+
+
+template <class Type>
+void WeightedList<Type>::RecalculateWeight()
+{
+	total = std::accumulate(weights.begin(), weights.end(), 0, std::plus<int>());
 }
 
 
