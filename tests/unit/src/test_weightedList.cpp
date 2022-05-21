@@ -123,9 +123,8 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 				}
 
 				AND_WHEN( "the erase-if friend function is used" ) {
-					int before = list.size();
-					int after = erase_if(list, [](const Object &o) { return o.GetValue() == 1; });
-					REQUIRE( before != after );
+					std::size_t count = erase_if(list, [](const Object &o) { return o.GetValue() == 1; });
+					REQUIRE( count > 0 );
 
 					THEN( "the total weight is correctly maintained" ) {
 						CHECK( list.TotalWeight() == extraWeight );
