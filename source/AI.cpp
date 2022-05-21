@@ -2884,17 +2884,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 	if(person.IsPacifist() || ship.CannotAct())
 		return;
 
-	bool checkFrugality = false;
+	bool checkAutoFireMode = false;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		if(hardpoint.HasIndividualFrugality())
+		if(hardpoint.HasIndividualAFMode())
 		{
-			checkFrugality = true;
+			checkAutoFireMode = true;
 			break;
 		}
 	}
-	bool beFrugal = (ship.IsYours() && !escortsUseAmmo) && !checkFrugality;
-	if(person.IsFrugal() || checkFrugality || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
+	bool beFrugal = (ship.IsYours() && !escortsUseAmmo) && !checkAutoFireMode;
+	if(person.IsFrugal() || checkAutoFireMode || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
 		// Frugal ships only expend ammunition if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -2971,14 +2971,14 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 		if(!secondary && weapon->Icon())
 			continue;
 		// We might need to check the individual hardpoint frugality settings.
-		if(checkFrugality)
+		if(checkAutoFireMode)
 		{
 			// Don't fire if this hardpoint isn't enabled.
-			if(!hardpoint.IsEnabled())
+			if(!hardpoint.IsAutoFireOn())
 				continue;
 			// If the hardpoint is set to 'frugal' and the conditions for firin
 			// when frugal haven't been met, don't fire.
-			if(hardpoint.IsFrugal() && beFrugal)
+			if(hardpoint.FrugalAutoFire() && beFrugal)
 				continue;
 		}
 		// Don't expend ammo if trying to be frugal.

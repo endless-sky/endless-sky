@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isEnabled = true, bool isFrugal = false, bool hasIndividualFrugality = false);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isAutoFireOn = true, bool FrugalAutoFire = false, bool hasIndividualAFMode = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -51,9 +51,9 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
-	bool HasIndividualFrugality() const;
-	bool IsEnabled() const;
-	bool IsFrugal() const;
+	bool HasIndividualAFMode() const;
+	bool IsAutoFireOn() const;
+	bool FrugalAutoFire() const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -112,11 +112,11 @@ private:
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
 	// Indicates whether the hardpoint is allowed to fire.
-	bool isEnabled = true;
+	bool isAutoFireOn = true;
 	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.
-	bool isFrugal = false;
+	bool FrugalAutoFire = false;
 	// Indicates whether the hardpoint has its own frugality setting.
-	bool hasIndividualFrugality = false;
+	bool hasIndividualAFMode = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;

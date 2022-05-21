@@ -39,8 +39,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isEnabled(isEnabled), isFrugal(isFrugal), hasIndividualFrugality(hasIndividualFrugality)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isAutoFireOn, bool FrugalAutoFire, bool hasIndividualAFMode)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isAutoFireOn(isAutoFireOn), FrugalAutoFire(FrugalAutoFire), hasIndividualAFMode(hasIndividualAFMode)
 {
 }
 
@@ -146,23 +146,23 @@ bool Hardpoint::CanAim() const
 
 
 
-bool Hardpoint::HasIndividualFrugality() const
+bool Hardpoint::HasIndividualAFMode() const
 {
-	return hasIndividualFrugality;
+	return hasIndividualAFMode;
 }
 
 
 
-bool Hardpoint::IsEnabled() const
+bool Hardpoint::IsAutoFireOn() const
 {
-	return isEnabled;
+	return isAutoFireOn;
 }
 
 
 
-bool Hardpoint::IsFrugal() const
+bool Hardpoint::FrugalAutoFire() const
 {
-	return isFrugal;
+	return FrugalAutoFire;
 }
 
 
@@ -362,9 +362,9 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
-	isEnabled = true;
-	isFrugal = false;
-	hasIndividualFrugality = false;
+	isAutoFireOn = true;
+	FrugalAutoFire = false;
+	hasIndividualAFMode = false;
 }
 
 
@@ -372,7 +372,7 @@ void Hardpoint::Uninstall()
 // Set whether the hardpoint has its own frugality setting.
 void Hardpoint::SetIndividualFrugality(bool input)
 {
-	hasIndividualFrugality = input;
+	hasIndividualAFMode = input;
 }
 
 
@@ -380,14 +380,14 @@ void Hardpoint::SetIndividualFrugality(bool input)
 // Set whether the hardpoint is enabled or disabled.
 void Hardpoint::SetIsEnabled(bool input)
 {
-	isEnabled = input;
+	isAutoFireOn = input;
 }
 
 
 
 void Hardpoint::ToggleIsEnabled()
 {
-	isEnabled = !isEnabled;
+	isAutoFireOn = !isAutoFireOn;
 }
 
 
@@ -395,14 +395,14 @@ void Hardpoint::ToggleIsEnabled()
 // Set whether the hardpoint is always frugal.
 void Hardpoint::SetIsFrugal(bool input)
 {
-	isFrugal = input;
+	FrugalAutoFire = input;
 }
 
 
 
 void Hardpoint::ToggleIsFrugal()
 {
-	isFrugal = !isFrugal;
+	FrugalAutoFire = !FrugalAutoFire;
 }
 
 

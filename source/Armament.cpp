@@ -26,9 +26,9 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
+void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
+	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 }
 
 
