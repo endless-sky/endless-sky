@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <numeric>
 #include <stdexcept>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 
@@ -119,7 +120,7 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
 
-	choices.emplace_back(args...);
+	choices.emplace_back(std::forward<Args>(args)...);
 	weights.emplace_back(weight);
 	total += weight;
 	return choices.back();
