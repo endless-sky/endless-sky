@@ -3188,6 +3188,7 @@ double Ship::JumpFuelMissing() const
 // Get the heat level at idle.
 double Ship::IdleHeat() const
 {
+	/*
 	// This ship's cooling ability:
 	double coolingEfficiency = CoolingEfficiency();
 	double cooling = coolingEfficiency * attributes.Get("cooling");
@@ -3201,6 +3202,64 @@ double Ship::IdleHeat() const
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
+	*/
+
+	// Newton's method is a robust approximation, approaching the zero of a
+	// quadratic quickly and cheaply. It does not provide infinite accuracy,
+	// but in exchange it is trivial to add more functionality to
+	// the curve it is approximating a zero of.
+	// To do so- implement your heat change in ship::DoGeneration()
+	// and then add the same change to Ship::NetIdleHeatAt().
+
+	int attempts = 10;
+	double firstGuess = 0.;
+	double firstOutput = NetIdleHeatAt(firstGuess);
+
+	double secondGuess = MaximumHeat();
+	double secondOutput = NetIdleHeatAt(secondGuess);
+
+	double middlingGuess = 0.;
+	double middlingOutput = 0.;
+
+	// Guard clause, to catch weird cases.
+	if(firstGuess == secondGuess || firstOutput <= secondOutput)
+		return secondOutput > 0. ? numeric_limits<double>::max() : 0;
+
+	// Magic number: an arbitrary, imperceptibly-small error margin - epsilon.
+	while((attempts > 0) && (fabs(firstGuess - secondGuess) > .001))
+	{
+		// Do not allow a negative-heat guess.
+		middlingGuess = max(0., firstGuess - firstOutput * (secondGuess - firstGuess) / (secondOutput - firstOutput));
+		middlingOutput = NetIdleHeatAt(middlingGuess);
+		firstGuess = secondGuess;
+		firstOutput = secondOutput;
+		secondGuess = middlingGuess;
+		secondOutput = middlingOutput;
+		--attempts;
+	}
+	// Return the most up-to-date guess.
+	return secondGuess;
+}
+
+
+
+// Get the net heat production at a certain number of heat units (not temperature).
+// If you have a % of maximum heat, multiply that by Ship::MaximumHeat() first.
+double Ship::NetIdleHeatAt(double heatLevel) const
+{
+	// Combine heat generation and cooling.
+	double coolingEfficiency = CoolingEfficiency();
+	double generation = attributes.Get("heat generation")
+			  + attributes.Get("solar heat")
+			  + attributes.Get("fuel heat")
+			  - attributes.Get("cooling") * coolingEfficiency;
+
+	// These cooling types scale with stored heat.
+	double dissipation = HeatDissipation() + coolingEfficiency * attributes.Get("active cooling") / MaximumHeat();
+
+	// Add other cooling types here, dependent on how they respond to heat level.
+
+	return generation - heatLevel * dissipation;
 }
 
 
