@@ -713,7 +713,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			: dim
 		);
 
-    // Indent the ship name if it is a fighter or drone.
+		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
 		table.Draw(ship.ModelName());
 
