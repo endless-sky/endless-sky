@@ -94,9 +94,9 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 				}
 
-				AND_WHEN( "A range is erased from begin to end" ) {
+				AND_WHEN( "a range is erased from begin to end" ) {
 					list.erase(list.begin(), list.end());
-					THEN( "The list is empty." ) {
+					THEN( "the list is empty" ) {
 						CHECK( list.empty() );
 						CHECK( list.TotalWeight() == 0 );
 					}
@@ -132,19 +132,19 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 				}
 			}
 
-			AND_WHEN( "The list is cleared." ) {
+			AND_WHEN( "the list is cleared" ) {
 				list.clear();
-				THEN( "The list is now empty." ) {
+				THEN( "the list is now empty" ) {
 					CHECK( list.empty() );
 					CHECK( list.size() == 0 );
 				}
-				THEN( "The list no longer has any weight." ) {
+				THEN( "the list no longer has any weight" ) {
 					CHECK( list.TotalWeight() == 0 );
 				}
 			}
 		}
 	}
-	GIVEN( "A weighted list with content" ) {
+	GIVEN( "a weighted list with content" ) {
 		auto list = WeightedList<Object>{};
 		list.emplace_back(4, 10);
 		list.emplace_back(1, 20);
@@ -172,7 +172,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 		const auto list = WeightedList<Object>{};
 		WHEN( "a random selection is performed" ) {
 			REQUIRE( list.empty() );
-			THEN( "an informative runtime exception is thrown." ) {
+			THEN( "an informative runtime exception is thrown" ) {
 				CHECK_THROWS_AS( list.Get(), std::runtime_error );
 				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
 			}
@@ -243,18 +243,18 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
-	GIVEN( "A new weighted list." ) {
+	GIVEN( "a new weighted list" ) {
 		auto list = WeightedList<Object>{};
 		REQUIRE( list.empty() );
 
-		WHEN( "Attempting to insert a negative weighted object." ) {
-			THEN( "An invalid argument exception is thrown." ) {
+		WHEN( "attempting to insert a negative weighted object" ) {
+			THEN( "an invalid argument exception is thrown" ) {
 				try{
 					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
 				} catch(const std::invalid_argument &e) {
 					SUCCEED( "threw when item weight was negative" );
-					AND_THEN( "The invalid object was not inserted into the list." ) {
+					AND_THEN( "the invalid object was not inserted into the list" ) {
 						CHECK( list.empty() );
 						CHECK( list.size() == 0 );
 						CHECK( list.TotalWeight() == 0 );
