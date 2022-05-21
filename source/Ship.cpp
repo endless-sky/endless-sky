@@ -2343,6 +2343,10 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			else if(bay.ship->Health() < Random::Real())
 				bay.ship->SelfDestruct();
 
+			// If a ship is not armed do not deploy when enemies are around.
+			if(!bay.ship->IsArmed(true) && IsEnemyInEscortSystem())
+				continue;
+
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity() * (1 + bay.ship->IsDestroyed());
 			Point exitPoint = position + angle.Rotate(bay.point);
