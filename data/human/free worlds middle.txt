@@ -595,11 +595,11 @@ mission "FW Southern Prisoners - Release"
 	npc accompany save
 		government "Escort"
 		personality timid escort
-		ship "Blackbird" "F.S. Charity"
-		ship "Blackbird" "F.S. Good Hope"
-		ship "Blackbird" "F.S. Stoutheart"
-		ship "Blackbird" "F.S. Nightingale"
-		ship "Blackbird" "F.S. Turtledove"
+		ship "Blackbird (Prisoner Transport)" "F.S. Charity"
+		ship "Blackbird (Prisoner Transport)" "F.S. Good Hope"
+		ship "Blackbird (Prisoner Transport)" "F.S. Stoutheart"
+		ship "Blackbird (Prisoner Transport)" "F.S. Nightingale"
+		ship "Blackbird (Prisoner Transport)" "F.S. Turtledove"
 	npc
 		government Republic
 		personality staying uninterested
