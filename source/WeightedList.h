@@ -34,6 +34,8 @@ class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
+	template <class T>
+	friend std::size_t erase(WeightedList<T> &list, const T &item);
 	template <class T, class UnaryPredicate>
 	friend std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred);
 
@@ -76,6 +78,60 @@ private:
 	std::vector<std::size_t> weights;
 	std::size_t total = 0;
 };
+
+
+
+template <class T>
+std::size_t erase(WeightedList<T> &list, const T &item)
+{
+	std::size_t erased = 0;
+	auto it = list.choices.begin();
+	auto wit = list.weights.begin();
+	while(it != list.choices.end())
+	{
+		if(item == *it)
+		{
+			list.total -= *wit;
+			wit = list.weights.erase(wit);
+			it = list.choices.erase(it);
+			++erased;
+		}
+		else
+		{
+			++it;
+			++wit;
+		}
+	}
+
+	return erased;
+}
+
+
+
+template <class T, class UnaryPredicate>
+std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
+{
+	std::size_t erased = 0;
+	auto it = list.choices.begin();
+	auto wit = list.weights.begin();
+	while(it != list.choices.end())
+	{
+		if(pred(*it))
+		{
+			list.total -= *wit;
+			wit = list.weights.erase(wit);
+			it = list.choices.erase(it);
+			++erased;
+		}
+		else
+		{
+			++it;
+			++wit;
+		}
+	}
+
+	return erased;
+}
 
 
 
@@ -155,33 +211,6 @@ template <class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
 	total = std::accumulate(weights.begin(), weights.end(), 0);
-}
-
-
-
-template <class T, class UnaryPredicate>
-std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
-{
-	std::size_t erased = 0;
-	auto it = list.choices.begin();
-	auto wit = list.weights.begin();
-	while(it != list.choices.end())
-	{
-		if(pred(*it))
-		{
-			list.total -= *wit;
-			wit = list.weights.erase(wit);
-			it = list.choices.erase(it);
-			++erased;
-		}
-		else
-		{
-			++it;
-			++wit;
-		}
-	}
-
-	return erased;
 }
 
 
