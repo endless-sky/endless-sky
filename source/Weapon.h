@@ -84,6 +84,7 @@ public:
 	int MissileStrength() const;
 	int AntiMissile() const;
 	int Penetration() const;
+	bool UnlimitedPenetration() const;
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
@@ -332,6 +333,7 @@ inline int Weapon::Homing() const { return homing; }
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
 inline int Weapon::Penetration() const { return penetration; }
+inline bool Weapon::UnlimitedPenetration() const { return penetration < 0; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }

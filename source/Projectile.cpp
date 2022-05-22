@@ -279,7 +279,7 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
-	if(--penetrations < 0)
+	if(!weapon->UnlimitedPenetration() && --penetrations < 0)
 	{
 		clip = intersection;
 		lifetime = -100;
