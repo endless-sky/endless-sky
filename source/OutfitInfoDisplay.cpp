@@ -369,7 +369,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
-		{"asteroid damage", ""}
+		{"asteroid damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
