@@ -641,38 +641,29 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Pick a target and automatically fire weapons.
 		shared_ptr<Ship> target = it->GetTargetShip();
-		// Find a targeted asteroid but only if the ship is player-owned.
-		shared_ptr<Minable> targetAsteroid = FindTargetAsteroid(*it);
-		if(isPresent && !personality.IsSwarming())
+		shared_ptr<Minable> targetAsteroid = it->GetTargetAsteroid();
+		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
+		if(isPresent && it->IsYours() && targetFlotsam)
+		{
+			FollowOrders(*it, command);
+			continue;
+		}
+		if(isPresent && !personality.IsSwarming() && !targetAsteroid)
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step && targetAsteroid)
-				it->SetTargetAsteroid(targetAsteroid);
-			else if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
 					&& personality.Disables()) || !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it));
 		}
 		if(isPresent)
 		{
-			// Player-owned ships should harvest asteroids when they are destroyed.
-			if(HarvestAfterAsteroidMining(*it) && DoHarvesting(*it, command))
-			{
-				it->SetCommands(command);
-				it->SetCommands(firingCommands);
-				continue;
-			}
+			AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
+			if(targetAsteroid)
+				AutoFire(*it, firingCommands, *targetAsteroid);
 			else
-			{
-				// Player-owned ships should attack their targeted asteroid; otherwise it falls back to default
-				// behavior.
-				AimTurrets(*it, firingCommands, it->IsYours() ? opportunisticEscorts : personality.IsOpportunistic());
-				if(targetAsteroid)
-					AutoFire(*it, firingCommands, *targetAsteroid);
-				else
-					AutoFire(*it, firingCommands);
-			}
+				AutoFire(*it, firingCommands);
 		}
 
 		// If this ship is hyperspacing, or in the act of
@@ -1130,32 +1121,6 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 
 
-// Pick an asteroid target for escort
-shared_ptr<Minable> AI::FindTargetAsteroid(const Ship &ship) const
-{
-	if(ship.IsYours())
-	{
-		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.type == Orders::MINING))
-			return it->second.targetAsteroid.lock();
-	}
-	return nullptr;
-}
-
-
-
-bool AI::HarvestAfterAsteroidMining(const Ship &ship) const
-{
-	if(ship.IsYours())
-	{
-		auto it = orders.find(&ship);
-		return it != orders.end() && it->second.type == Orders::HARVEST;
-	}
-	return false;
-}
-
-
-
 // Pick a new target for the given ship.
 shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 {
@@ -1395,8 +1360,9 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 			return false;
 	}
 
+
 	shared_ptr<Ship> target = it->second.target.lock();
-	shared_ptr<const Minable> targetAsteroid = it->second.targetAsteroid.lock();
+	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
@@ -1421,8 +1387,19 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	else if(type == Orders::MINING && targetAsteroid)
 	{
+		ship.SetTargetAsteroid(targetAsteroid);
 		// escorts should chase the player-targeted asteroid
 		MoveToAttack(ship, command, *targetAsteroid);
+	}
+	else if(type == Orders::HARVEST)
+	{
+		if(DoHarvesting(ship, command))
+		{
+			ship.SetCommands(command);
+			ship.SetCommands(firingCommands);
+		}
+		else
+			return false;
 	}
 	else if(!target)
 	{
@@ -2543,7 +2520,7 @@ void AI::DoMining(Ship &ship, Command &command)
 
 
 
-bool AI::DoHarvesting(Ship &ship, Command &command)
+bool AI::DoHarvesting(Ship &ship, Command &command) const
 {
 	// If the ship has no target to pick up, do nothing.
 	shared_ptr<Flotsam> target = ship.GetTargetFlotsam();
