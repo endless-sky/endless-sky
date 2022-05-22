@@ -1772,18 +1772,18 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 			parent.Attributes().Get("fuel capacity") - maxFuel)
 		return true;
 
-	// If an out-of-combat carried ship is carrying a significant cargo
-	// load and can transfer some of it to the parent, it should do so.
-	bool hasEnemy = ship.GetTargetShip() && ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment());
 	// NPC ships should always transfer cargo.  Player ships should only
 	// transfer cargo if they set the AI preference.
 	const bool shouldTransferCargo = !ship.IsYours() || Preferences::Has("Fighters transfer cargo");
-	if(!hasEnemy && shouldTransferCargo)
+	if(shouldTransferCargo)
 	{
+		// If an out-of-combat carried ship is carrying a significant cargo
+		// load and can transfer some of it to the parent, it should do so.
+		bool hasEnemy = ship.GetTargetShip() && ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment());
 		const CargoHold &cargo = ship.Cargo();
 		// Mining ships only mine while they have 5 or more free space. While mining, carried ships
 		// do not consider docking unless their parent is far from a targetable asteroid.
-		if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
+		if(!hasEnemy && parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
 			return true;
 	}
 
