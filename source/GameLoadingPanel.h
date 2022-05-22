@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Conversation;
 class PlayerInfo;
 class UI;
 
@@ -27,7 +28,7 @@ class UI;
 // (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
-	GameLoadingPanel(PlayerInfo &player, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -35,6 +36,7 @@ public:
 
 private:
 	PlayerInfo &player;
+	const Conversation &conversation;
 	UI &gamePanels;
 	bool &finishedLoading;
 

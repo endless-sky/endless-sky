@@ -2,13 +2,23 @@ name: Validate Project files
 
 on:
   push:
+    branches:
+      - master
+      - v[0-9]+.[0-9]+.[0-9]+
     paths:
       - '.github/workflows/projects_check.yml'
       - 'EndlessSky.xcodeproj/**'
-      - 'EndlessSkyLib.cbp'
-      - 'EndlessSkyTests.cbp'
+      - '*.cbp'
       - 'source/**'
-      - 'tests/check_*.sh'
+      - 'utils/check_*.sh'
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/projects_check.yml'
+      - 'EndlessSky.xcodeproj/**'
+      - '*.cbp'
+      - 'source/**'
+      - 'utils/check_*.sh'
 
 jobs:
   changed:
@@ -25,7 +35,7 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install --user docopt openstep_parser pbxproj
     - name: Validate XCode .pbxproj file
-      run: ./tests/check_xcode.sh
+      run: ./utils/check_xcode.sh
     - name: Upload XCode patch
       if: failure()
       uses: actions/upload-artifact@v2
@@ -42,4 +52,4 @@ jobs:
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
-      run: ./tests/check_codeblocks.sh
+      run: ./utils/check_codeblocks.sh
