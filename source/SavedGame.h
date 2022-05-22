@@ -28,35 +28,35 @@ class SavedGame {
 public:
 	SavedGame() = default;
 	explicit SavedGame(const std::string &path);
-	
+
 	void Load(const std::string &path);
 	const std::string &Path() const;
 	bool IsLoaded() const;
 	void Clear();
-	
+
 	const std::string &Name() const;
 	const std::string &Credits() const;
 	const std::string &GetDate() const;
-	
+
 	const std::string &GetSystem() const;
 	const std::string &GetPlanet() const;
 	const std::string &GetPlayTime() const;
-	
+
 	const Sprite *ShipSprite() const;
 	const std::string &ShipName() const;
-	
-	
+
+
 private:
 	std::string path;
-	
+
 	std::string name;
 	std::string credits;
 	std::string date;
-	
+
 	std::string system;
 	std::string planet;
 	std::string playTime;
-	
+
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;
 };

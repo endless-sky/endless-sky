@@ -76,7 +76,7 @@ const System &CoreStartData::GetSystem() const
 	if(system)
 		return *system;
 	const System *planetSystem = GetPlanet().GetSystem();
-	
+
 	return planetSystem ? *planetSystem : *GameData::Systems().Get("Rutilicus");
 }
 
@@ -102,7 +102,7 @@ bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 	int valueIndex = (isAdd || isRemove) ? 2 : 1;
 	bool hasValue = (child.Size() > valueIndex);
 	const string &value = child.Token(hasValue ? valueIndex : 0);
-	
+
 	if(child.Token(0) == "date" && child.Size() >= 4)
 		date = Date(child.Value(1), child.Value(2), child.Value(3));
 	else if(key == "system" && hasValue)
@@ -113,6 +113,6 @@ bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
 		accounts.Load(child, !isAdd);
 	else
 		return false;
-	
+
 	return true;
 }

@@ -118,7 +118,7 @@ test-data "Ember Wastes Navigation"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
-		date 16 12 3012
+		date 16 12 3013
 		system "Tania Australis"
 		planet Ingot
 		clearance
@@ -355,13 +355,13 @@ test "Tests - Ember Wastes Navigation"
 		# (until PR https://github.com/endless-sky/endless-sky/pull/5244 removes
 		# this need to serialize the date conditions completely).
 		#assert
-		#	year == 3012
+		#	year == 3013
 		#	month == 12
 		#	day == 16
 		call "Depart"
 		# Give jump command.
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 17
 		input
@@ -371,7 +371,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notMora1
 			not "flagship system: Mora"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 18
 		watchdog 12000
@@ -379,7 +379,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notLimen1
 			not "flagship system: Limen"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 19
 		watchdog 12000
@@ -387,7 +387,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notTerminus1
 			not "flagship system: Terminus"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 20
 		watchdog 12000
@@ -395,7 +395,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notCardea1
 			not "flagship system: Cardea"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 21
 		watchdog 12000
@@ -403,7 +403,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notInsitor1
 			not "flagship system: Insitor"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 22
 		watchdog 12000
@@ -411,7 +411,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notSegesta
 			not "flagship system: Segesta"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 23
 		watchdog 12000
@@ -419,7 +419,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notStercutus1
 			not "flagship system: Stercutus"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 24
 		watchdog 12000
@@ -427,7 +427,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notPeragenor1
 			not "flagship system: Peragenor"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 25
 		watchdog 12000
@@ -435,7 +435,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notEdusa1
 			not "flagship system: Edusa"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 26
 		watchdog 12000
@@ -443,7 +443,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notArculus
 			not "flagship system: Arculus"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 27
 		watchdog 12000
@@ -451,7 +451,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notEdusa2
 			not "flagship system: Edusa"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 28
 		watchdog 12000
@@ -459,7 +459,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notPeragenor2
 			not "flagship system: Peragenor"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 29
 		watchdog 12000
@@ -467,7 +467,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notStercutus2
 			not "flagship system: Stercutus"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 30
 		watchdog 12000
@@ -475,7 +475,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notSegesta2
 			not "flagship system: Segesta"
 		assert
-			year == 3012
+			year == 3013
 			month == 12
 			day == 31
 		watchdog 12000
@@ -483,7 +483,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notAescolanus
 			not "flagship system: Aescolanus"
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 1
 		watchdog 12000
@@ -491,7 +491,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notCardea2
 			not "flagship system: Cardea"
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 2
 		watchdog 12000
@@ -499,7 +499,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notTerminus2
 			not "flagship system: Terminus"
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 3
 		watchdog 12000
@@ -507,7 +507,7 @@ test "Tests - Ember Wastes Navigation"
 		branch notLimen2
 			not "flagship system: Limen"
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 4
 		watchdog 12000
@@ -516,13 +516,13 @@ test "Tests - Ember Wastes Navigation"
 			not "flagship system: Mora"
 		watchdog 12000
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 5
 		label notTaniaAustralis
 		branch notTaniaAustralis
 			not "flagship system: Tania Australis"
 		assert
-			year == 3013
+			year == 3014
 			month == 1
 			day == 6

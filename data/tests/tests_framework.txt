@@ -100,7 +100,7 @@ test "Test-Framework - UI Keyboard controls"
 			key d
 
 
-test "Test-Framework - Load and depart"
+test "Test-Framework - Load Depart Land"
 	status active
 	description "Test with only a departure. Mostly tests the testframework itself."
 	sequence
@@ -114,6 +114,20 @@ test "Test-Framework - Load and depart"
 		# Re-check startup conditions.
 		assert
 			"ships: Light Freighter" == 3
+		watchdog 90000
+		input
+			command land
+		label landing
+		branch landing
+			and
+				"flagship planet: Earth" < 1
+				"flagship planet: Mars" < 1
+				"flagship planet: Luna" < 1
+		assert
+			or
+				"flagship planet: Earth" > 0
+				"flagship planet: Mars" > 0
+				"flagship planet: Luna" > 0
 
 
 test "Test-Framework - Recursive Calling"

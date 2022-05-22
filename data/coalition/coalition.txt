@@ -1106,7 +1106,7 @@ phrase "hostile disabled heliarch"
 		" "
 	word
 		", you are"
-		"at the mercy of, I can not believe I am"
+		"at the mercy of, I cannot believe I am"
 	word
 		"."
 		"!"

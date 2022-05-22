@@ -43,27 +43,27 @@ public:
 	const Point &Velocity() const;
 	const Angle &Facing() const;
 	Point Unit() const; */
-	
+
 	// Load a definition of a minable object.
 	void Load(const DataNode &node);
 	const std::string &Name() const;
-	
+
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
 	void Place(double energy, double beltRadius);
-	
+
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	
+
 	// Damage this object (because a projectile collided with it).
 	void TakeDamage(const Projectile &projectile);
-	
+
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
-	
-	
+
+
 private:
 	std::string name;
 	// Current angular position relative to the focus of the elliptical orbit,
@@ -81,11 +81,11 @@ private:
 	double rotation;
 	// Rate of spin of the object.
 	Angle spin;
-	
+
 	// Cache the current orbital radius. It can be calculated from theta and the
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
-	
+
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
 	// Material released when this object is destroyed. Each payload item only
