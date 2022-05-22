@@ -82,11 +82,8 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
 		REQUIRE( emptyFormation.Name() == "Empty");
-		double diameterToPx = 0.;
-		double widthToPx = 0.;
-		double heightToPx = 0.;
 		WHEN( "positions are requested") {
-			auto it = emptyFormation.begin(diameterToPx, widthToPx, heightToPx);
+			auto it = emptyFormation.begin();
 			THEN ( "all returned positions are near Point(0,0)" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
@@ -103,11 +100,8 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern tailFormation;
 		tailFormation.Load(tailNode);
 		REQUIRE( tailFormation.Name() == "Tail (px point)");
-		double diameterToPx = 0.;
-		double widthToPx = 0.;
-		double heightToPx = 0.;
 		WHEN( "positions are requested") {
-			auto it = tailFormation.begin(diameterToPx, widthToPx, heightToPx);
+			auto it = tailFormation.begin();
 			THEN ( "all returned positions are as expected" ) {
 				CHECK( Near(*it, Point(-100, 0)) );
 				++it;
@@ -132,14 +126,11 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		FormationPattern delta_px;
 		delta_px.Load(delta_pxNode);
 		REQUIRE( delta_px.Name() == "Delta Tail (px)" );
-		double diameterToPx = 0.;
-		double widthToPx = 0.;
-		double heightToPx = 0.;
 		WHEN( "positions are requested") {
 			THEN ( "the correct positions are calculated" ) {
 				// No exact comparisons due to doubles, but we check if
 				// the given points are very close to what they should be.
-				auto it = delta_px.begin(diameterToPx, widthToPx, heightToPx);
+				auto it = delta_px.begin();
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				++it;
 				REQUIRE( Near(*it, Point(100, 200)) );
