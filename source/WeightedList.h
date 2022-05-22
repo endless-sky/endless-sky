@@ -93,23 +93,22 @@ template <class T, class UnaryPredicate>
 std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 {
 	std::size_t erased = 0;
-	auto it = list.choices.begin();
-	auto wit = list.weights.begin();
-	while(it != list.choices.end())
-	{
-		if(pred(*it))
+	unsigned available = list.choices.size() - 1;
+	for(unsigned index = 0; index < list.choices.size() - erased; )
+		if(pred(list.choices[index]))
 		{
-			list.total -= *wit;
-			wit = list.weights.erase(wit);
-			it = list.choices.erase(it);
+			total -= list.weights[index];
+			list.choices[index] = std::move(list.choices[available]);
+			list.weights[index] = std::move(list.weights[available]);
+			--available;
 			++erased;
 		}
 		else
-		{
-			++it;
-			++wit;
-		}
-	}
+			++index;
+
+	++available;
+	list.choices.erase(std::next(list.choices.begin(), available), list.choices.end());
+	list.weights.erase(std::next(list.weights.begin(), available), list.weights.end());
 
 	return erased;
 }

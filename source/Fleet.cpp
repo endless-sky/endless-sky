@@ -251,7 +251,6 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	// Ensure the class invariant can be maintained.
 	int total = variants.TotalWeight();
 	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
 	if(!count)
