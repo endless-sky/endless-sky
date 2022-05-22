@@ -3746,7 +3746,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 
 
 mission "Remnant: Logistics 1"
-	name "Rush delivery to Viminal"
+	name "Rush delivery to <planet>"
 	description `Deliver <cargo> to <destination> by <date>.`
 	source "Caelian"
 	destination "Viminal"
@@ -3755,7 +3755,6 @@ mission "Remnant: Logistics 1"
 	to offer
 		has "remnant: blood test pure"
 		has "Remnant: Defense 1: done"
-		has "cargo space" >= 30
 	on offer
 		conversation
 			`You step out of the <ship> and look again at the strange sight of the <origin> spaceport. You still aren't used to a structure that looks as much like it grew from the landing pads as it was built next to them. The dock side entrance is busy; when your commlink vibrates, you have to find a place where the traffic eddies and you can step aside and learn that you need to check in with the information desk.`			
@@ -3763,12 +3762,11 @@ mission "Remnant: Logistics 1"
 			`	You are getting used to being gawked at, so you take it in good humor and respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
 			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry 30 tons of cargo to <planet>. Is the <ship> available immediately?"`
 			choice
-				`	(Accept the job.)`
+				`	"Certainly!"`
 					goto willdo
-				`	(Decline the job.)`
+				`	"Sorry, it is not."`
 					goto notinterested
 			label willdo
-			`	"Certainly," you respond. The job board has been stubbornly empty when you've checked, so a rush job appearing intrigues you.`
 			`	"Excellent," she responds in a full alto, "I will let the project manager know the cargo will arrive promptly." She signs what you think is a farewell and turns to address someone else who has stepped up.`
 			`	You manage to chant and point your way through the cafeteria line, and you are aware of the flurry of signs around you. There doesn't seem to be a way to pay, so you find a table and sit alone until your commlink chimes to let you know that the <ship> has been refueled and the mystery cargo loaded.`
 				accept
@@ -3778,36 +3776,30 @@ mission "Remnant: Logistics 1"
 	on complete
 		payment
 		conversation
-			`You step off the <ship> in <planet> to see a man wandering around your ship taking video with a datapad and softly dictating some running commentary. He dodges around the dock workers unloading and refueling, seemingly intent on recording every aspect of your ship.`
-			`	"Cousin!" he sings with excitement, when you walk up to him. "It is good to meet you and to see your wonderful ship. I've only seen such designs in our historical entertainments." He holds up the datapad facing you and says, I am making a video for my companion. He will not believe me unless I have proof, and maybe not even then!" he laughs. You wave awkwardly at the camera and are relieved when he stops recording.`  
-			`	"I hope I have not offended you. I get carried away looking at ships."`
-			`	You worry briefly that he is going to interrogate you about the <ship> when he continues, "I am named Eon. Would you have time to talk about logistics support?"`
+			`You step off the <ship> on <planet> to see a man wandering around your ship taking video with a datapad and softly dictating some running commentary. He dodges around the dock workers unloading and refueling, seemingly intent on recording every aspect of your ship.`
+			`	"Cousin!" he sings with excitement when you walk up to him. "It is good to meet you and to see your wonderful ship. I've only seen such designs in our historical entertainments." He holds up the datapad facing you and says, "I am making a video for my companion. He will not believe me unless I have proof, and maybe not even then!" he laughs. You wave awkwardly at the camera and are relieved when he stops recording.`  
+			`	"I hope I have not offended you. I get carried away looking at ships." You briefly worry that he is going to interrogate you about the <ship> when he continues, "I am named Eon. Would you have time to talk about logistics support?"`
 			choice
 				`	"Yes, I've been looking for more work with the Remnant."`
-					goto opportunities
-			label opportunities
-			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a table overlooking the docks which is a little quieter. You try your drink. It's strongly flavored but a bit odd. It's probably someone's memory of what coffee should taste like, reconstituted from local foods.`
+				`	"Yes, there haven't been many opportunities so far."`
+			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a quiet table overlooking the docks. You try your drink. It's strongly flavored but a bit odd, like someone's memory of what coffee should taste like, reconstituted from local foods.`
 			`	Eon leaves his untouched as he launches into conversation. "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the reactors your brought for the housing project."` 
 			choice
-				`	"You put reactors in your houses?"`
-					goto houses
-				`	(Nod to continue.)`
+				`	(Nod)`
 					goto delivery
-			label houses
-			`	"You do not?" he responds playfully. "We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`
+				`	"You put reactors in your houses?"`
+			`	"You do not?" he responds playfully. "Well, 'reactors in each neighbourhood' would be more accurate. We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`
 				goto delivery
 			label delivery
-			`	You nod to agree and he continues, "Those reactors were originally scheduled for delivery 30 days from now, but they were ready earlier and the project is able the install them now. So, by bringing them over, you have enabled us to move the project forward and free up delivery capacity next month."`
+			`	He continues. "Those reactors were originally scheduled for delivery 30 days from now, but they were ready earlier and the project is able the install them now. So, by bringing them over, you have enabled us to move the project forward and free up delivery capacity next month."`
 			`	"So, why did you offer this work to me?" you ask, trying to mimic the gestures you've seen that you think refer to one's self.`
 			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the reactors being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no...what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
 			choice
-				`	"Will your pilots be upset at the competition?"`
-					goto competition
 				`	"Thanks for the opportunity."`
 					goto thanks
-			label competition
-			`	Eon smiles at the question. "You should talk to the other pilots and see, but I think the ancestral approach is different. We work more like a military: the ships are owned by the Remnant, but each captain is responsible for the ship, the crew, and the transport work that needs to be done. I think they will be happy to see new homes being built for   families, and," -he winks at you- "spending more time with their own."`
+				`	"Will your pilots be upset at the competition?"`
+			`	Eon smiles at the question. "You should talk to the other pilots and see, but I think the ancestral approach is different. We work more like a military: the ships are owned by the Remnant, but each captain is responsible for the ship, the crew, and the transport work that needs to be done. I think they will be happy to see new homes being built, and freeing up more time to spend with the community."`
 				goto thanks
 			label thanks
 			`	Before you can ask more about transport jobs, Eon takes out his commlink and taps on it for a few minutes. "You now have access to the logistics job board. You should be able to see our current job list for each system when you check."`
-			`	You chat with Eon about how you've outfitted the <ship> as you finish your...coffee. Then, his commlink chirps. As he stands, he signs what you think means "goodbye" as he says he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> have been added to your account.`
+			`	You continue to chat with Eon as you sip your drink. When you finish, his commlink chirps. As he stands, he signs what you think means "goodbye" as he says he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> have been added to your account.`

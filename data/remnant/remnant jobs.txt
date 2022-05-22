@@ -237,6 +237,7 @@ mission "Remnant: Logistics Civil Engineering"
 		random < 51
 	source
 		government "Remnant"
+		not planet "Ssil Vida"
 	destination
 		government "Remnant"
 		not distance 0
