@@ -61,22 +61,23 @@ Visual::Visual(const Effect &effect, Point pos, const Body &follow, Point veloci
 void Visual::Move()
 {
 	if(lifetime-- <= 0 || (follow && follow->ShouldBeRemoved()))
+	{
 		MarkForRemoval();
+		return;
+	}
+
+	if(follow)
+	{
+		// Match the position + facing of the body that this visual is centered on.
+		position = follow->Position() + follow->Facing().Rotate(positionOffset) + velocityOffset;
+		angle = follow->Facing() + facingOffset;
+
+		velocityOffset += velocity;
+		facingOffset += spin;
+	}
 	else
 	{
-		if(follow)
-		{
-			// Match the position + facing of the body that this visual is centered on.
-			position = follow->Position() + follow->Facing().Rotate(positionOffset) + velocityOffset;
-			angle = follow->Facing() + facingOffset;
-
-			velocityOffset += velocity;
-			facingOffset += spin;
-		}
-		else
-		{
-			position += velocity;
-			angle += spin;
-		}
+		position += velocity;
+		angle += spin;
 	}
 }
