@@ -98,14 +98,14 @@ std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 		if(pred(list.choices[index]))
 		{
 			list.total -= list.weights[index];
+			while(index != available && pred(list.choices[available]))
+			{
+				list.total -= list.weights[index];
+				--available;
+				++erased;
+			}
 			if(index != available)
 			{
-				while(index != available && pred(list.choices[available]))
-				{
-					list.total -= list.weights[index];
-					--available;
-					++erased;
-				}
 				list.choices[index] = std::move(list.choices[available]);
 				list.weights[index] = std::move(list.weights[available]);
 				--available;
