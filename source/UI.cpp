@@ -99,9 +99,6 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
-
-	// Handle any queud panels added by another panel.
-	PushOrPop();
 }
 
 
@@ -148,6 +145,19 @@ void UI::Push(const shared_ptr<Panel> &panel)
 void UI::Pop(const Panel *panel)
 {
 	toPop.push_back(panel);
+}
+
+
+
+// Remove the given panel and every panel that is higher in the stack.
+void UI::PopThrough(const Panel *panel)
+{
+	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	{
+		toPop.push_back(it->get());
+		if(it->get() == panel)
+			break;
+	}
 }
 
 

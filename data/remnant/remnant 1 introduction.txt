@@ -3811,4 +3811,3 @@ mission "Remnant: Logistics 1"
 			label thanks
 			`	Before you can ask more about transport jobs, Eon takes out his commlink and taps on it for a few minutes. "You now have access to the logistics job board. You should be able to see our current job list for each system when you check."`
 			`	You chat with Eon about how you've outfitted the <ship> as you finish your...coffee. Then, his commlink chirps. As he stands, he signs what you think means "goodbye" as he says he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> have been added to your account.`
-

@@ -292,7 +292,7 @@ ship "Heliarch Breacher"
 		"Finisher Torpedo" 40
 		
 		"Small Reactor Module" 2
-		"Small Battery Module" 2
+		"Small Battery Module"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -300,8 +300,7 @@ ship "Heliarch Breacher"
 		"Enforcer Riot Staff" 8
 		"Enforcer Confrontation Gear" 6
 		
-		"Large Thrust Module"
-		"Small Thrust Module" 3
+		"Large Thrust Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
 	
@@ -344,7 +343,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Finisher Torpedo" 160
 		
 		"Small Reactor Module"
-		"Small Battery Module" 2
+		"Small Battery Module"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
@@ -352,8 +351,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 7
 		
-		"Large Thrust Module"
-		"Small Thrust Module" 3
+		"Large Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -364,7 +362,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Bombardment Turret"
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -374,8 +372,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
-		"Large Steering Module"
-		"Small Steering Module" 2
+		"Large Steering Module" 2
 		"Hyperdrive"
 
 
@@ -412,7 +409,7 @@ ship "Heliarch Hunter"
 		"Heliarch Attractor"
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -423,7 +420,7 @@ ship "Heliarch Hunter"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module"
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Scram Drive"
 	
 	engine -5.5 103 .1
@@ -571,7 +568,7 @@ ship "Heliarch Interdictor"
 		"Heliarch Repulsor"
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 4
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -581,6 +578,7 @@ ship "Heliarch Interdictor"
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
+		"Small Steering Module"
 		"Hyperdrive"
 	
 	engine -30 163 .5
@@ -601,14 +599,15 @@ ship "Heliarch Interdictor"
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
 		"Finisher Pod" 2
-		"Finisher Torpedo" 80
+		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 120
 		"Bombardment Turret" 2
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
-		"Cooling Module"
+		"Cooling Module" 2
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
@@ -626,8 +625,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module"
-		"Small Battery Module"
+		"Small Battery Module" 4
 		"Overcharged Shield Module" 2
 		"Overclocked Repair Module" 2
 		"Cooling Module" 3
@@ -638,6 +636,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
+		"Small Steering Module"
 		"Hyperdrive"
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
@@ -667,9 +666,11 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Battery Module"
 		"Overcharged Shield Module"
+		"Small Shield Module"
 		"Overclocked Repair Module" 2
+		"Small Repair Module"
 		"Cooling Module" 3
 		"Scanning Module" 5
 		"Outfits Expansion" 2
@@ -711,13 +712,12 @@ ship "Heliarch Judicator"
 			"hit force" 3800
 	outfits
 		"Finisher Pod" 2
-		"Finisher Torpedo" 120
-		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 140
+		"Finisher Storage Tube" 3
 		"Ion Hail Turret"
 		
 		"Large Reactor Module"
-		"Small Battery Module"
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 2
 		"Cooling Module" 2
@@ -844,8 +844,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Battery Module"
 		"Overcharged Shield Module"
+		"Small Shield Module"
 		"Overclocked Repair Module" 3
 		"Cooling Module" 3
 		"Scanning Module"
@@ -856,7 +857,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Large Thrust Module"
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module"
+		"Small Steering Module" 2
 		"Scram Drive"
 
 
@@ -890,10 +891,10 @@ ship "Heliarch Neutralizer"
 		"Ion Rain Gun" 4
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
-		"Cooling Module"
+		"Cooling Module" 2
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 11
@@ -947,9 +948,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Ion Rain Gun" 4
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
-		"Large Repair Module"
+		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 10
@@ -965,8 +966,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 	outfits
 		"Bombardment Cannon" 4
 		
-		"Small Reactor Module" 2
-		"Small Battery Module"
+		"Large Reactor Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -975,7 +976,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
-		"Small Thrust Module"
+		"Small Thrust Module" 2
 		"Large Steering Module" 2
 		"Hyperdrive"
 
@@ -1024,7 +1025,7 @@ ship "Heliarch Punisher"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Hyperdrive"
 	
 	engine -24 184 .6
@@ -1057,7 +1058,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Bombardment Turret"
 		
 		"Large Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module" 2
 		"Overclocked Repair Module" 2
 		"Cooling Module" 4
@@ -1066,7 +1067,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 2
+		"Small Thrust Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1089,8 +1090,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 
 		"Large Reactor Module" 2
 		"Small Reactor Module"
-		"Large Battery Module" 2
-		"Small Battery Module"
+		"Large Battery Module"
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 3
 		"Cooling Module" 5
@@ -1099,10 +1099,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Enforcer Riot Staff" 96
 		"Enforcer Confrontation Gear" 48
 
-		"Large Thrust Module" 2
-		"Small Thrust Module" 2
+		"Large Thrust Module" 3
 		"Large Steering Module" 2
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Hyperdrive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
@@ -1111,13 +1110,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Finisher Torpedo" 240
 		"Heliarch Repulsor"
 		
-		"Large Reactor Module"
-		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Reactor Module" 2
+		"Small Battery Module" 3
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 2
-		"Cooling Module" 3
+		"Cooling Module" 4
 		"Scanning Module" 4
+		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 85
 		"Enforcer Confrontation Gear" 40
 		
@@ -1149,6 +1148,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Large Thrust Module" 4
 		"Small Thrust Module"
 		"Large Steering Module" 2
+		"Hyperdrive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits
@@ -1200,8 +1200,8 @@ ship "Heliarch Pursuer"
 		"Ion Rain Gun"
 		
 		"Large Collector Module"
-		"Small Collector Module"
-		"Small Battery Module" 3
+		"Small Collector Module" 2
+		"Small Battery Module"
 		"Small Shield Module"
 		"Small Repair Module"
 		
@@ -1216,6 +1216,7 @@ ship "Heliarch Pursuer"
 	explode "small explosion" 10
 	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
 	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1258,7 +1259,8 @@ ship "Heliarch Rover"
 		"Bombardment Cannon" 2
 		
 		"Large Collector Module"
-		"Large Battery Module"
+		"Small Battery Module" 2
+		"Small Cogeneration Module"
 		"Small Shield Module"
 		"Small Repair Module" 3
 		
@@ -1272,6 +1274,7 @@ ship "Heliarch Rover"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1327,6 +1330,7 @@ ship "Heliarch Stalker"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits

@@ -76,169 +76,170 @@ phrase "deep mystery cube dropoff station payment"
 		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 
 mission "Mystery Cube Delivery Job [0]"
-	name "Mystery delivery to <planet>"
 	job
 	repeat
+	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 25
-		"combat rating" > 35
 	source
 		attributes "deep"
 	destination
 		distance 7 16
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 25
+		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
 
 
 mission "Mystery Cube Delivery Job [1]"
-	name "Mystery delivery to <planet>"
 	job
 	repeat
+	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 10
-		"combat rating" > 35
 	source
 		attributes "deep"
 	destination
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 10
+		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
 
 
 mission "Mystery Cube Delivery Job [2]"
-	name "Mystery delivery to <planet>"
 	job
 	repeat
+	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 10
-		"combat rating" > 35
 	source
 		attributes "deep"
 	destination
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 10
+		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
 
 
 mission "Mystery Cube Delivery Job [3]"
-	name "Mystery delivery to <planet>"
 	job
 	repeat
+	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 10
-		"combat rating" > 35
 	source
 		attributes "deep"
 	destination
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 10
+		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
 
 
 mission "Mystery Cube Delivery Job Station"
-	name "Mystery delivery to <planet>"
 	job
 	repeat
+	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 7
-		"combat rating" > 35
 	source
 		attributes "deep"
 	destination
 		distance 9 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 7
+		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff station payment"
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 6 9
 		fleet "Bounty Hunters"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff station payment"
 
 
 mission "Mystery Cube Retrieval Job"
-	name "Mystery retrieval"
 	job
 	repeat
+	name "Mystery retrieval"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
-	cargo "mystery package" 1
-	to offer
-		random < 10
-		"combat rating" > 35
 	source
 		attributes "deep"
 	stopover
@@ -246,35 +247,39 @@ mission "Mystery Cube Retrieval Job"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		attributes "spaceport"
 		not attributes "station"
-	on stopover
-		dialog phrase "deep mystery cube pickup"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on complete
-		"mystery cube" ++
-		payment 5000 1000
-		dialog phrase "deep mystery cube dropoff payment"
+	cargo "mystery package" 1
+	to offer
+		random < 10
+		"combat rating" > 35
 	npc
 		government "Bounty Hunter"
 		personality nemesis disables waiting plunders
 		system
 			distance 10 17
 		fleet "Bounty Hunters"
+	on stopover
+		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		"reputation: Deep Security" += 2
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
 
 
 mission "Transport scientists"
-	name "Transport scientists"
-	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
 	job
 	repeat
-	to offer
-		random < 15
-	passengers 5 16
+	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
 	source
 		attributes "deep"
 	stopover
 		attributes "research"
 		distance 2 50
+	passengers 5 16
+	to offer
+		random < 15
 	on stopover
 		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on visit
@@ -286,17 +291,17 @@ mission "Transport scientists"
 
 
 mission "Escort science vessel"
-	description "The crew of the science vessel <npc> requests an escort to <stopovers> where they plan to study some unusual phenomena. Escort them there and then return them to <planet> for <payment>."
 	job
 	repeat
-	to offer
-		random < 15
-		"combat rating" > 50
+	description "The crew of the science vessel <npc> requests an escort to <stopovers> where they plan to study some unusual phenomena. Escort them there and then return them to <planet> for <payment>."
 	source
 		attributes "research"
 	stopover
 		attributes "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
 		distance 6 50
+	to offer
+		random < 15
+		"combat rating" > 50
 	npc
 		government "Pirate"
 		personality nemesis waiting plunders
@@ -340,14 +345,14 @@ mission "Record academic conference"
 	job
 	repeat
 	description "Record an academic conference on <destination> for professors who cannot attend. Credentials and recording equipment will be provided. Payment is <payment>."
-	cargo "recording equipment" 1
-	to offer
-		random < 15
 	source
 		attributes "deep"
 	destination
 		attributes "research" "quarg" "rich" "paradise"
 		distance 4 10
+	cargo "recording equipment" 1
+	to offer
+		random < 15
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -395,159 +400,169 @@ phrase "secure package dropoff payment"
 
 
 mission "Secure Transport Job (Secret) [0]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 25
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
 	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
+		payment 3000 750
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [1]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
 	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
+		payment 3000 750
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [2]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
 	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
+		payment 3000 750
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [3]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
 	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
+		payment 3000 750
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Secure Transport Job (Secret) [4]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 20
 		not "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
 	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
+		payment 3000 750
+		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 
 mission "Deep Security Package Reveal"
@@ -555,10 +570,10 @@ mission "Deep Security Package Reveal"
 	invisible
 	source
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	to offer
-		"reputation: Deep Security" >= 100
-		"secure deep package" >= 30
+		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 		"mystery cube" >= 5
 		not "deep security reveal"
 		or
@@ -616,147 +631,161 @@ mission "Deep Security Package Reveal"
 				set "deep security reveal"
 			`	Agent Wayde appears to flick a subtle salute your direction, or perhaps merely tips an imaginary cap. "Good day, captain. I look forward to working with you in the future."`
 			`	With a quick motion he flicks his hair back out his eyes and jogs away, sending one last wave your direction just before he turns a corner and disappears.`
+				decline
 
 
 mission "Secure Transport Job (Basic) [0]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 50
 		has "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
-	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
 	on abort
-		"reputation: Deep Security" -= 5
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
+	on complete
+		payment 3000 750
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Basic) [1]"
-	name "Secure delivery to <planet>"
 	job
 	repeat
+	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "secure package" 1
 	to offer
 		random < 50
 		has "deep security reveal"
-		"reputation: Deep Security" >= -50
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 0
+		"reputation: Deep Security" >= "secure deep package" * -3
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
-	on complete
-		payment 50000 10000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
 	on abort
-		"reputation: Deep Security" -= 5
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 3
+	on complete
+		payment 3000 750
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Deep Security) [0]"
-	name "Deep Security delivery to <planet>"
 	job
 	repeat
+	name "Deep Security delivery to <planet>"
 	description "Deliver a Deep Security package to <destination>. Payment is <payment>."
 	cargo "deep security package" 1
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	source
 		attributes "deep"
-		not attributes "station" "moon"
+		not attributes "station"
 	destination
+		distance 2 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
-	on complete
-		payment 80000 15000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
 	on abort
-		"reputation: Deep Security" -= 5
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 5
+	on complete
+		payment 5000 1000
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
 
 mission "Secure Transport Job (Deep Security) [1]"
-	name "Deep Security delivery to <planet>"
 	job
 	repeat
+	name "Deep Security delivery to <planet>"
 	description "Deliver a Deep Security package to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		not planet "Valhalla"
+		not attributes "station"
 	cargo "deep security package" 1
 	to offer
 		random < 20
 		has "deep security reveal"
-		"reputation: Deep Security" >= 100
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		not planet "Valhalla"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	on accept
 		dialog phrase "secure package pickup"
 	on visit
 		dialog phrase "generic cargo on visit"
-	on complete
-		payment 80000 15000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
 	on abort
-		"reputation: Deep Security" -= 5
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 5
+	on complete
+		payment 5000 1000
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "secure package dropoff payment"
 
 
 mission "Deep Consultants"
 	minor
+	name "Transport consultants to <planet>"
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
 	source
 		attributes "deep"
 		attributes "urban"
 		not attributes "station" "moon"
 		not planet "Valhalla"
 	destination "Valhalla"
+	deadline 2 1
+	passengers 2
 	to offer
-		"reputation: Deep Security" >= 100
+		"reputation: Deep Security" >= 60
 		"secure deep package" >= 30
-		"mystery cube" >= 5
 		has "deep security reveal"
 		or
 			not "chosen sides"
 			has "main plot completed"
-	passengers 2
-	deadline 2 1
 	on offer
 		conversation
 			`Strolling through the spaceport, you are suddenly accosted by a young and breathless woman. "Please, Captain," she wheezes, "I'm so glad I caught you."`
@@ -799,10 +828,10 @@ phrase "stranded consultant pickup"
 	word
 		` `
 	word
-		`meet the consultants at their hotel accommodation`
-		`collect the consultants from the security station`
-		`fish the consultants out of a seedy bar`
-		`rescue the consultants from some overbearing companions`
+		`meet the <passengers> at their hotel accommodation`
+		`collect the <passengers> from the security station`
+		`fish the <passengers> out of a seedy bar`
+		`rescue the <passengers> from some overbearing companions`
 	word
 		` `
 	word
@@ -820,9 +849,9 @@ phrase "stranded consultant dropoff payment"
 	word
 		` `
 	word
-		`You find out only afterward that they left behind a soiled pair of boots.`
-		`Afterward, you find a tie left hanging on a door handle.`
-		`Later, you find some crumpled documents left behind and wisely tip them into the ship's incinerator without looking at them.`
+		`You find out only afterward that they left behind a soiled pair of boots in one of your cabins.`
+		`Afterward, you find a tie left hanging on one of your ship's door handles.`
+		`Later, you find some crumpled documents left onboard and wisely tip them into the ship's incinerator without looking at them.`
 	word
 		` `
 	word
@@ -830,146 +859,165 @@ phrase "stranded consultant dropoff payment"
 
 
 mission "Transport Consultants (Deep Security) [0]"
-	name "Transport Deep Security consultants to <planet>"
 	job
 	repeat
-	description "Transport consultants whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	name "Transport Deep Security consultants"
+	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		attributes "urban"
+		not attributes "station"
 	passengers 1 8
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		attributes "urban"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	on accept
 		dialog phrase "stranded consultant pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
-	on complete
-		payment 200000 35000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
 	on abort
-		"reputation: Deep Security" -= 10
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 7
+	on complete
+		payment 10000 300
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "stranded consultant dropoff payment"
 
 mission "Transport Consultants (Deep Security) [1]"
-	name "Transport Deep Security consultants to <planet>"
 	job
 	repeat
-	description "Transport consultants whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	name "Transport Deep Security consultants"
+	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+		not attributes "station"
+	destination
+		distance 2 7
+		attributes "deep"
+		attributes "urban"
+		not attributes "station"
 	passengers 1 8
 	to offer
 		random < 20
 		has "deep security consultants"
-		"reputation: Deep Security" >= 100
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination
-		attributes "deep"
-		attributes "urban"
-		not attributes "station" "moon"
+		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	on accept
 		dialog phrase "stranded consultant pickup"
 	on visit
 		dialog phrase "generic passenger on visit"
-	on complete
-		payment 250000 40000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
 	on abort
-		"reputation: Deep Security" -= 10
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 7
+	on complete
+		payment 10000 300
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "stranded consultant dropoff payment"
 
 
 mission "Urgent Deep Sec Package"
-	name "Rush Deep Security Delivery to <planet>"
-	repeat
-	deadline 1 1
-	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
 	minor
-	cargo "deep security package" 1
-	to offer
-		random < 2
+	repeat
+	name "Rush Deep Security Delivery"
+	description "Deliver a Deep Security package to <destination> by <date>. Payment is <payment>."
 	source
 		attributes "deep"
-		not attributes "station" "moon"
 	destination
+		distance 6 7
 		attributes "deep"
 		not planet "Valhalla"
-		not attributes "station" "moon"
+		not attributes "station"
+	deadline 1 1
+	cargo "deep security package" 1
+	to offer
+		random < 3
+		has "deep security reveal"
+		"reputation: Deep Security" >= 40
+		"secure deep package" >= 20
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> as soon as possible."`
+		dialog `As you are walking through the spaceport, a man approaches you and flashes a Deep Security ID. "Greetings Captain <last>. We need someone to deliver this to <destination> by <date>, taking the most direct route possible."`
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 7
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 200000 30000
-		"reputation: Deep Security" += 0.5
+		payment 30000 1000
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
 		dialog phrase "secure package dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 2
-	on abort
-		"reputation: Deep Security" -= 5
 
 mission "Urgent Deep Sec Consultants [0]"
-	name "Rush Deep Security Consultants to <planet>"
-	repeat
-	deadline 1 1
-	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
 	minor
-	passengers 2 6
-	to offer
-		random < 5
+	repeat
+	name "Rush Deep Security Consultants"
+	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
 	source
 		attributes "deep"
-		not attributes "station" "moon"
-	destination 
+	destination
+		distance 6 7
 		attributes "deep"
 		attributes "urban"
-		not attributes "station" "moon"
-	on offer
-		dialog `As you are walking through the spaceport, a harried man approaches you. He is a consultant for Deep Security in need of urgent transport.`
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		payment 300000 60000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
-	on abort
-		"reputation: Deep Security" -= 10
-
-mission "Urgent Deep Sec Consultants [1]"
-	name "Rush Deep Security Consultants to <planet>"
-	repeat
+		not attributes "station"
 	deadline 1 1
-	description "Deliver <passengers> to <destination> by <date>. Payment is <payment>."
-	minor
 	passengers 2 6
 	to offer
-		random < 5
-	source
-		attributes "deep"
-		not attributes "station" "moon"
-	destination "Valhalla"
+		random < 1
+		has "deep security consultants"
+		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
 	on offer
-		dialog `As you are walking through the spaceport, a harried man approaches you. He is a consultant for Deep Security in need of urgent transport.`
+		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
 	on visit
 		dialog phrase "generic passenger on visit"
-	on complete
-		payment 300000 60000
-		"reputation: Deep Security" += 0.5
-		dialog phrase "stranded consultant dropoff payment"
-	on fail
-		"reputation: Deep Security" -= 4
 	on abort
-		"reputation: Deep Security" -= 10
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 9
+	on complete
+		payment 60000 300
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "stranded consultant dropoff payment"
+
+mission "Urgent Deep Sec Consultants [1]"
+	repeat
+	minor
+	name "Rush Deep Security Consultants"
+	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
+	source
+		near "Epsilon Leonis" 3 4
+		attributes "deep"
+		not attributes "station"
+	destination "Valhalla"
+	deadline 1 1
+	passengers 2 6
+	to offer
+		random < 3
+		has "deep security consultants"
+		"reputation: Deep Security" >= 60
+		"secure deep package" >= 30
+	on offer
+		dialog `As you are walking through the spaceport, a harried man approaches you, informing you that <bunks> Deep Security consultants, including himself, are in need of urgent transport to <destination> by <date>, leaving no time for stopovers.`
+	on visit
+		dialog phrase "generic passenger on visit"
+	on abort
+		# No penalty for aborting.
+	on fail
+		"secure deep package" -= 9
+	on complete
+		payment 60000 300
+		"reputation: Deep Security" += 1
+		"secure deep package" ++
+		dialog phrase "stranded consultant dropoff payment"

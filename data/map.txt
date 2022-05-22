@@ -76,6 +76,7 @@ system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
 	attributes "kimek"
+	arrival 745
 	habitable 745
 	belt 1112
 	link "3 Axis"
@@ -154,6 +155,7 @@ system "10 Pole"
 	pos -1356.63 19.2137
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 490
 	belt 1765
 	haze _menu/haze-67
@@ -226,6 +228,7 @@ system "11 Autumn Above"
 	pos -1278.63 148.214
 	government Coalition
 	attributes "kimek"
+	arrival 1570
 	habitable 1570
 	belt 1099
 	haze _menu/haze-133
@@ -308,6 +311,7 @@ system "11 Spring Below"
 	pos -1272.63 380.214
 	government Coalition
 	attributes "kimek"
+	arrival 915
 	habitable 915
 	belt 1932
 	link "3 Axis"
@@ -388,6 +392,7 @@ system "12 Autumn Above"
 	pos -1276.63 -19.7863
 	government Coalition
 	attributes "kimek"
+	arrival 1050
 	habitable 1050
 	belt 1283
 	link "14 Pole"
@@ -480,6 +485,7 @@ system "14 Pole"
 	pos -1343.63 -119.786
 	government Coalition
 	attributes "kimek"
+	arrival 625
 	habitable 625
 	belt 1881
 	haze _menu/haze-67
@@ -541,6 +547,7 @@ system "14 Summer Above"
 	pos -1436.63 182.214
 	government Coalition
 	attributes "kimek"
+	arrival 1400
 	habitable 1400
 	belt 1093
 	haze _menu/haze-67
@@ -607,6 +614,7 @@ system "14 Winter Below"
 	pos -1143.63 341.214
 	government Coalition
 	attributes "kimek"
+	arrival 1115
 	habitable 1115
 	belt 1173
 	link "4 Axis"
@@ -683,6 +691,7 @@ system "16 Autumn Rising"
 	pos -1305.63 74.2137
 	government Coalition
 	attributes "kimek"
+	arrival 1715
 	habitable 1715
 	belt 1424
 	link "10 Pole"
@@ -753,6 +762,7 @@ system "3 Axis"
 	pos -1235.63 299.214
 	government Coalition
 	attributes "kimek"
+	arrival 2560
 	habitable 2560
 	belt 1202
 	link "1 Axis"
@@ -821,6 +831,7 @@ system "3 Pole"
 	pos -1344.63 162.214
 	government Coalition
 	attributes "kimek"
+	arrival 625
 	habitable 625
 	belt 1617
 	link "14 Summer Above"
@@ -881,6 +892,7 @@ system "3 Spring Rising"
 	pos -1414.63 356.214
 	government Coalition
 	attributes "kimek"
+	arrival 1080
 	habitable 1080
 	belt 1613
 	haze _menu/haze-33
@@ -954,6 +966,7 @@ system "4 Axis"
 	pos -1169.63 365.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 425
 	belt 1838
 	link "14 Winter Below"
@@ -1017,6 +1030,7 @@ system "4 Spring Rising"
 	pos -1309.63 321.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 320
 	belt 1801
 	link "1 Axis"
@@ -1082,6 +1096,7 @@ system "4 Summer Rising"
 	pos -1377.63 207.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 320
 	belt 1860
 	link "14 Summer Above"
@@ -1142,6 +1157,7 @@ system "4 Winter Rising"
 	pos -1259.63 248.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 135
 	belt 1345
 	link "1 Axis"
@@ -1217,6 +1233,7 @@ system "5 Axis"
 	pos -1142.63 394.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 230
 	belt 1775
 	link "4 Axis"
@@ -1290,6 +1307,7 @@ system "5 Spring Below"
 	pos -1213.63 415.214
 	government Coalition
 	attributes "kimek"
+	arrival 2320
 	habitable 2320
 	belt 1104
 	link "11 Spring Below"
@@ -1362,6 +1380,7 @@ system "5 Summer Above"
 	pos -1387.63 118.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 425
 	belt 1133
 	haze _menu/haze-133
@@ -1429,6 +1448,7 @@ system "5 Winter Above"
 	pos -1216.63 208.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 320
 	belt 1414
 	link "4 Winter Rising"
@@ -1493,6 +1513,7 @@ system "7 Autumn Rising"
 	pos -1235.63 177.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 425
 	belt 1289
 	link "11 Autumn Above"
@@ -1559,6 +1580,7 @@ system "8 Winter Below"
 	pos -1179.63 284.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 490
 	belt 1285
 	link "14 Winter Below"
@@ -1624,6 +1646,7 @@ system "9 Spring Above"
 	pos -1377.63 281.214
 	government Coalition
 	attributes "kimek"
+	arrival 1050
 	habitable 1050
 	belt 1397
 	haze _menu/haze-67
@@ -1699,6 +1722,7 @@ system Ablodab
 	pos -854.587 592.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 425
 	belt 1368
 	link Debrugt
@@ -1774,6 +1798,7 @@ system Ablub
 	pos -581.587 637.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 230
 	belt 1641
 	haze _menu/haze-133
@@ -1828,6 +1853,7 @@ system Acamar
 	pos -284 -3
 	government Syndicate
 	attributes "core"
+	arrival 1080
 	habitable 1080
 	belt 1013
 	link Aldebaran
@@ -1887,6 +1913,7 @@ system Achernar
 	pos -93 154
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1963
 	haze _menu/haze-133
@@ -1959,6 +1986,7 @@ system Acrux
 	pos -808 192
 	government Republic
 	attributes "rim"
+	arrival 585
 	habitable 585
 	belt 1407
 	haze _menu/haze-67
@@ -2039,6 +2067,7 @@ system Adhara
 	pos -669 -200
 	government Republic
 	attributes "deep"
+	arrival 680
 	habitable 680
 	belt 1014
 	link "Epsilon Leonis"
@@ -2104,6 +2133,7 @@ system Aescolanus
 	pos -15 340
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 500
 	habitable 230
 	belt 1323
 	haze _menu/haze-red
@@ -2147,6 +2177,7 @@ system Aki'il
 	pos -83 722
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 1505
 	habitable 1505
 	belt 1500
 	asteroids "large metal" 47 5
@@ -2199,6 +2230,7 @@ system "Al Dhanab"
 	pos -177 207
 	government Syndicate
 	attributes "core"
+	arrival 1080
 	habitable 1080
 	belt 1432
 	haze _menu/haze-133
@@ -2269,6 +2301,7 @@ system Albaldah
 	pos -350 484
 	government Republic
 	attributes "south"
+	arrival 560
 	habitable 560
 	belt 1622
 	haze _menu/haze-133
@@ -2344,6 +2377,7 @@ system Albireo
 	pos -270 503
 	government Republic
 	attributes "south"
+	arrival 760
 	habitable 760
 	belt 1030
 	link Albaldah
@@ -2402,6 +2436,7 @@ system Alcyone
 	pos -80 -144
 	government Pirate
 	attributes "core"
+	arrival 500
 	habitable 295
 	belt 1438
 	haze _menu/haze-133
@@ -2469,6 +2504,7 @@ system Aldebaran
 	pos -356 -26
 	government Republic
 	attributes "paradise"
+	arrival 625
 	habitable 625
 	belt 1296
 	link Acamar
@@ -2515,6 +2551,7 @@ system Alderamin
 	pos -272 258
 	government Syndicate
 	attributes "core"
+	arrival 1705
 	habitable 1705
 	belt 1908
 	haze _menu/haze-133
@@ -2580,6 +2617,7 @@ system Aldhibain
 	pos -659 451
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 450
 	belt 1840
 	link Alniyat
@@ -2640,6 +2678,7 @@ system Algenib
 	pos -118 341
 	government Pirate
 	attributes "core"
+	arrival 500
 	habitable 490
 	belt 1330
 	link Gienah
@@ -2697,6 +2736,7 @@ system Algieba
 	pos -691 -52
 	government Republic
 	attributes "deep"
+	arrival 2720
 	habitable 2720
 	belt 1070
 	link Alphard
@@ -2767,6 +2807,7 @@ system Algol
 	pos -210 17
 	government Syndicate
 	attributes "core"
+	arrival 3490
 	habitable 3490
 	belt 1839
 	haze _menu/haze-133
@@ -2829,6 +2870,7 @@ system Algorel
 	pos -631 145
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 370
 	belt 1993
 	haze _menu/haze-67
@@ -2894,6 +2936,7 @@ system Alheka
 	pos -350 -271
 	government Republic
 	attributes "north"
+	arrival 1080
 	habitable 1080
 	belt 1380
 	haze _menu/haze-67
@@ -2953,6 +2996,7 @@ system Alhena
 	pos -430 -80
 	government Republic
 	attributes "paradise"
+	arrival 995
 	habitable 995
 	belt 1078
 	haze _menu/haze-67
@@ -3023,6 +3067,7 @@ system Alioth
 	pos -620 315
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
 	belt 1889
 	link Alphecca
@@ -3076,6 +3121,7 @@ system Alkaid
 	pos -825 318
 	government Republic
 	attributes "rim"
+	arrival 1080
 	habitable 1080
 	belt 1142
 	haze _menu/haze-67
@@ -3144,6 +3190,7 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
+	arrival 5000
 	habitable 6950
 	belt 2873
 	haze _menu/haze-33
@@ -3191,6 +3238,7 @@ system Almach
 	pos -7 232
 	government Pirate
 	attributes "core"
+	arrival 500
 	habitable 370
 	belt 1914
 	haze _menu/haze-133
@@ -3254,6 +3302,7 @@ system Alnair
 	pos -272 314
 	government Syndicate
 	attributes "core"
+	arrival 500
 	habitable 135
 	belt 1969
 	haze _menu/haze-133
@@ -3323,6 +3372,7 @@ system Alnasl
 	pos -553 380
 	government Republic
 	attributes "dirt belt"
+	arrival 1375
 	habitable 1375
 	belt 1912
 	haze _menu/haze-133
@@ -3386,6 +3436,7 @@ system Alnilam
 	pos -487 -513
 	government Pirate
 	attributes "north"
+	arrival 1715
 	habitable 1715
 	belt 1099
 	haze _menu/haze-33
@@ -3464,6 +3515,7 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
+	arrival 1310
 	habitable 1310
 	belt 1907
 	haze _menu/haze-67
@@ -3515,6 +3567,7 @@ system Alniyat
 	pos -691 501
 	government Republic
 	attributes "south"
+	arrival 560
 	habitable 560
 	belt 1760
 	link Aldhibain
@@ -3588,6 +3641,7 @@ system "Alpha Arae"
 	pos -481 394
 	government Republic
 	attributes "dirt belt"
+	arrival 995
 	habitable 995
 	belt 1405
 	link "Delta Sagittarii"
@@ -3659,6 +3713,7 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	attributes "near earth"
+	arrival 1190
 	habitable 1190
 	belt 1116
 	haze _menu/haze-67
@@ -3722,6 +3777,7 @@ system "Alpha Hydri"
 	pos -97 98
 	government Syndicate
 	attributes "core"
+	arrival 1450
 	habitable 1450
 	belt 1839
 	haze _menu/haze-133
@@ -3776,6 +3832,7 @@ system Alphard
 	pos -588 -47
 	government Republic
 	attributes "paradise"
+	arrival 1115
 	habitable 1115
 	belt 1101
 	link Algieba
@@ -3843,6 +3900,7 @@ system Alphecca
 	pos -546 308
 	government Republic
 	attributes "dirt belt"
+	arrival 1450
 	habitable 1450
 	belt 1101
 	link Alioth
@@ -3893,6 +3951,7 @@ system Alpheratz
 	pos -176 125
 	government Syndicate
 	attributes "core"
+	arrival 1115
 	habitable 1115
 	belt 1645
 	haze _menu/haze-133
@@ -3961,6 +4020,7 @@ system Altair
 	pos -357 161
 	government Republic
 	attributes "near earth"
+	arrival 995
 	habitable 995
 	belt 1830
 	link "Delta Capricorni"
@@ -4024,6 +4084,7 @@ system Aludra
 	pos -606 -374
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 450
 	belt 1511
 	haze _menu/haze-33
@@ -4088,6 +4149,7 @@ system "Ancient Hope"
 	pos -1159.59 702.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 455
 	belt 1439
 	haze _menu/haze-67
@@ -4158,6 +4220,7 @@ system Ankaa
 	pos -230 100
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1003
 	haze _menu/haze-133
@@ -4213,6 +4276,7 @@ system Answer
 	pos -1086.59 631.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 425
 	belt 1636
 	haze _menu/haze-none
@@ -4278,6 +4342,7 @@ system Antares
 	pos -711 541
 	government Pirate
 	attributes "south"
+	arrival 500
 	habitable 450
 	belt 1778
 	haze _menu/haze-67
@@ -4340,6 +4405,7 @@ system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 625
 	habitable 625
 	belt 1994
 	haze _menu/haze-red
@@ -4408,6 +4474,7 @@ system Antevorta
 system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
+	arrival 1080
 	habitable 1080
 	belt 1385
 	haze _menu/haze-none
@@ -4464,6 +4531,7 @@ system Arcturus
 	pos -589 226
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 370
 	belt 1422
 	link Holeb
@@ -4528,6 +4596,7 @@ system Arculus
 	pos 308.87 393.242
 	government Remnant
 	attributes "ember waste"
+	arrival 625
 	habitable 625
 	belt 1536
 	haze _menu/haze-red
@@ -4601,6 +4670,7 @@ system Arneb
 	pos -523 -580
 	government Pirate
 	attributes "north"
+	arrival 1715
 	habitable 1715
 	belt 1947
 	haze _menu/haze-none
@@ -4650,6 +4720,7 @@ system Ascella
 	pos -376 328
 	government Republic
 	attributes "dirt belt"
+	arrival 740
 	habitable 740
 	belt 1971
 	haze _menu/haze-133
@@ -4716,6 +4787,7 @@ system Asikafarnut
 	pos 253.431 -584.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1342
 	link Celeborim
@@ -4781,6 +4853,7 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
+	arrival 5000
 	habitable 24000
 	belt 2385
 	link Avior
@@ -4838,6 +4911,7 @@ system Atria
 	pos -551 532
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 230
 	belt 1340
 	link Dschubba
@@ -4904,6 +4978,7 @@ system Avior
 	pos -658 -317
 	government Republic
 	attributes "deep"
+	arrival 1215
 	habitable 1215
 	belt 1097
 	link Aspidiske
@@ -4973,6 +5048,7 @@ system Avior
 system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
+	arrival 500
 	habitable 490
 	belt 1586
 	haze _menu/haze-67
@@ -5033,6 +5109,7 @@ system Beginning
 	pos -912.587 694.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 425
 	belt 1833
 	link Belonging
@@ -5096,6 +5173,7 @@ system Bellatrix
 	pos -225 -82
 	government Syndicate
 	attributes "core"
+	arrival 680
 	habitable 680
 	belt 1564
 	link Menkar
@@ -5156,6 +5234,7 @@ system Belonging
 	pos -1007.59 658.051
 	government Coalition
 	attributes "saryd"
+	arrival 625
 	habitable 625
 	belt 1407
 	link Beginning
@@ -5216,6 +5295,7 @@ system Belug
 	pos -1024.59 388.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 490
 	belt 1170
 	link Ekuarik
@@ -5286,6 +5366,7 @@ system Belugt
 	pos -838.587 668.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 490
 	belt 1517
 	link Gupta
@@ -5361,6 +5442,7 @@ system "Beta Lupi"
 	pos -851 417
 	government Republic
 	attributes "south"
+	arrival 625
 	habitable 625
 	belt 1261
 	haze _menu/haze-33
@@ -5420,6 +5502,7 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
+	arrival 4600
 	habitable 4600
 	belt 2141
 	haze _menu/haze-67
@@ -5499,6 +5582,7 @@ system Bloptab
 	pos -813.587 727.051
 	government Coalition
 	attributes "arachi"
+	arrival 1080
 	habitable 1080
 	belt 1061
 	link Blugtad
@@ -5560,6 +5644,7 @@ system Blubipad
 	pos -650.587 594.051
 	government Coalition
 	attributes "arachi"
+	arrival 1080
 	habitable 1080
 	belt 1567
 	haze _menu/haze-133
@@ -5617,6 +5702,7 @@ system Blugtad
 	pos -771.587 680.051
 	government Coalition
 	attributes "arachi"
+	arrival 625
 	habitable 625
 	belt 1841
 	haze _menu/haze-133
@@ -5690,6 +5776,7 @@ system Boral
 	pos -502 331
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 230
 	belt 1867
 	link Alphecca
@@ -5754,6 +5841,7 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
+	arrival 625
 	habitable 625
 	belt 1823
 	link "Bote Asu"
@@ -5777,8 +5865,14 @@ system "Bore Fah"
 	trade Medical 725
 	trade Metal 358
 	trade Plastic 322
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 1000
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 2000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 1000
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 4000
+	fleet "Small Hai Merchant (Human)" 6000
+	fleet "Large Hai Merchant (Human)" 9000
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
@@ -5813,6 +5907,7 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
+	arrival 3180
 	habitable 3180
 	belt 1753
 	link "Bore Fah"
@@ -5837,8 +5932,14 @@ system "Bote Asu"
 	trade Medical 765
 	trade Metal 408
 	trade Plastic 362
-	fleet "Small Hai" 900
-	fleet "Large Hai" 600
+	fleet "Small Hai" 1800
+	fleet "Large Hai" 1200
+	fleet "Small Hai Merchant" 900
+	fleet "Large Hai Merchant" 600
+	fleet "Small Hai Merchant (Sympathizers)" 3600
+	fleet "Large Hai Merchant (Sympathizers)" 3600
+	fleet "Small Hai Merchant (Human)" 4000
+	fleet "Large Hai Merchant (Human)" 6000
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 12000
 	fleet "Hai Surveillance" 3000
@@ -5908,6 +6009,7 @@ system "Bright Void"
 	pos -1059.59 605.051
 	government Coalition
 	attributes "saryd"
+	arrival 2795
 	habitable 2795
 	belt 1385
 	haze _menu/haze-67
@@ -5989,6 +6091,7 @@ system "Broken Bowl"
 	pos -956.587 566.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
 	belt 1648
 	haze _menu/haze-67
@@ -6049,6 +6152,7 @@ system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 625
 	habitable 625
 	belt 1797
 	haze _menu/haze-red
@@ -6073,7 +6177,7 @@ system Caeculus
 	fleet "Korath Ember Waste Raid" 20000
 	fleet "Small Remnant" 30000
 	fleet "Large Remnant" 30000
-	fleet "Embershades" 12000
+	fleet Embershades 12000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -6120,6 +6224,7 @@ system Canopus
 	pos -421 -225
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 230
 	belt 1530
 	haze _menu/haze-67
@@ -6167,6 +6272,7 @@ system Capella
 	pos -378 -13
 	government Republic
 	attributes "paradise"
+	arrival 500
 	habitable 450
 	belt 1722
 	haze _menu/haze-67
@@ -6238,6 +6344,7 @@ system Caph
 	pos -295 77
 	government Syndicate
 	attributes "near earth"
+	arrival 700
 	habitable 700
 	belt 1173
 	link Diphda
@@ -6302,6 +6409,7 @@ system Cardax
 	pos -211 -215
 	government Republic
 	attributes "north"
+	arrival 1705
 	habitable 1705
 	belt 1228
 	link Moktar
@@ -6365,6 +6473,7 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 1375
 	habitable 1375
 	belt 1775
 	haze _menu/haze-red
@@ -6432,6 +6541,7 @@ system Castor
 	pos -452 -17
 	government Republic
 	attributes "paradise"
+	arrival 1570
 	habitable 1570
 	belt 1675
 	haze _menu/haze-67
@@ -6517,6 +6627,7 @@ system Cebalrai
 	pos -461 282
 	government Republic
 	attributes "dirt belt"
+	arrival 625
 	habitable 625
 	belt 1955
 	link Hintar
@@ -6578,6 +6689,7 @@ system Celeborim
 	pos 181.431 -633.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1296
 	link Asikafarnut
@@ -6637,6 +6749,7 @@ system Chikatip
 	pos -77.5695 -307.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 425
 	belt 1929
 	link Furmeliki
@@ -6693,6 +6806,7 @@ system Chimitarp
 	pos 150.431 -287.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 915
 	habitable 915
 	belt 1932
 	haze _menu/haze-133
@@ -6765,6 +6879,7 @@ system Chimitarp
 system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
+	arrival 500
 	habitable 490
 	belt 1425
 	haze _menu/haze-33
@@ -6815,6 +6930,7 @@ system Chornifath
 	pos 40.4305 -214.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1434
 	haze _menu/haze-133
@@ -6875,6 +6991,7 @@ system Chornifath
 system Chy'chra
 	pos 85.5308 -829.667
 	government Wanderer
+	arrival 625
 	habitable 625
 	belt 1120
 	haze _menu/haze-33
@@ -6940,6 +7057,7 @@ system Cinxia
 	pos 265.87 415.242
 	government Remnant
 	attributes "ember waste"
+	arrival 500
 	habitable 490
 	belt 1788
 	haze _menu/haze-red
@@ -6996,6 +7114,7 @@ system Coluber
 	pos 149.504 197.389
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 1110
 	habitable 1110
 	belt 1590
 	haze _menu/haze-red
@@ -7058,6 +7177,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
+	arrival 500
 	habitable 425
 	belt 1786
 	haze _menu/haze-133
@@ -7116,6 +7236,7 @@ system Convector
 	pos -14.1297 379.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 5000
 	habitable 7270
 	belt 2111
 	haze _menu/haze-red
@@ -7180,6 +7301,7 @@ system "Cor Caroli"
 	pos -682 201
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1474
 	link Algorel
@@ -7238,6 +7360,7 @@ system "Cor Caroli"
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
+	arrival 500
 	habitable 230
 	belt 1161
 	link "Ya Hai"
@@ -7258,8 +7381,14 @@ system "Da Ent"
 	trade Medical 695
 	trade Metal 408
 	trade Plastic 532
-	fleet "Small Hai" 500
-	fleet "Large Hai" 1200
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 2400
+	fleet "Small Hai Merchant" 500
+	fleet "Large Hai Merchant" 1200
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 4800
+	fleet "Small Hai Merchant (Human)" 4500
+	fleet "Large Hai Merchant (Human)" 5000
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
@@ -7306,6 +7435,7 @@ system "Da Ent"
 system "Da Lest"
 	pos -23.2239 -413.536
 	government Hai
+	arrival 500
 	habitable 320
 	belt 1108
 	link "Lom Tahr"
@@ -7328,8 +7458,14 @@ system "Da Lest"
 	trade Medical 595
 	trade Metal 368
 	trade Plastic 452
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1400
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2800
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1400
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 5600
+	fleet "Small Hai Merchant (Human)" 3500
+	fleet "Large Hai Merchant (Human)" 4000
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
 	fleet "Hai Surveillance" 5000
@@ -7365,6 +7501,7 @@ system Dabih
 	pos -253 427
 	government Republic
 	attributes "dirt belt"
+	arrival 680
 	habitable 680
 	belt 1088
 	haze _menu/haze-133
@@ -7425,6 +7562,7 @@ system Danoa
 	pos -239 -321
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 135
 	belt 1689
 	haze _menu/haze-67
@@ -7494,6 +7632,7 @@ system "Dark Hills"
 	pos -926.587 619.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
 	belt 1367
 	link Beginning
@@ -7561,6 +7700,7 @@ system Debrugt
 	pos -869.587 513.051
 	government Coalition
 	attributes "arachi"
+	arrival 640
 	habitable 640
 	belt 1224
 	link Ablodab
@@ -7631,6 +7771,7 @@ system Delia
 	pos -41 757
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 500
 	habitable 490
 	belt 1500
 	haze _menu/haze-red
@@ -7710,6 +7851,7 @@ system "Delta Capricorni"
 	pos -285 202
 	government Syndicate
 	attributes "core"
+	arrival 855
 	habitable 855
 	belt 1329
 	haze _menu/haze-133
@@ -7773,6 +7915,7 @@ system "Delta Sagittarii"
 	pos -414 416
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 370
 	belt 1414
 	haze _menu/haze-133
@@ -7840,6 +7983,7 @@ system "Delta Velorum"
 	pos -740 90
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1221
 	haze _menu/haze-67
@@ -7898,6 +8042,7 @@ system "Delta Velorum"
 system Deneb
 	pos -348 225
 	government Pug
+	arrival 625
 	habitable 625
 	belt 1890
 	haze _menu/haze-133
@@ -7954,6 +8099,7 @@ system Denebola
 	pos -478 70
 	government Republic
 	attributes "near earth"
+	arrival 560
 	habitable 560
 	belt 1050
 	haze _menu/haze-67
@@ -8020,6 +8166,7 @@ system Diespiter
 	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 950
 	habitable 950
 	belt 1500
 	haze _menu/haze-red
@@ -8059,6 +8206,7 @@ system Diphda
 	pos -262 61
 	government Syndicate
 	attributes "near earth"
+	arrival 585
 	habitable 585
 	belt 1559
 	haze _menu/haze-133
@@ -8117,6 +8265,7 @@ system Dixere
 	pos 33 708
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -8189,6 +8338,7 @@ system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
 	attributes "korath" "ringworld"
+	arrival 700
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
@@ -8294,6 +8444,7 @@ system Dschubba
 	pos -598 501
 	government Republic
 	attributes "south"
+	arrival 505
 	habitable 505
 	belt 1429
 	link Aldhibain
@@ -8368,6 +8519,7 @@ system Dubhe
 	pos -577 -103
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 320
 	belt 1120
 	link Zosma
@@ -8424,6 +8576,7 @@ system Dubhe
 system "Due Yoot"
 	pos -167.547 -426.683
 	government Hai
+	arrival 500
 	habitable 230
 	belt 1854
 	link "Heia Due"
@@ -8447,8 +8600,14 @@ system "Due Yoot"
 	trade Medical 595
 	trade Metal 538
 	trade Plastic 472
-	fleet "Small Hai" 700
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 1500
+	fleet "Large Hai Merchant (Human)" 3000
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 5000
@@ -8489,6 +8648,7 @@ system Durax
 	pos -59 -90
 	government Pirate
 	attributes "core"
+	arrival 2160
 	habitable 2160
 	belt 1287
 	haze _menu/haze-133
@@ -8554,6 +8714,7 @@ system Eber
 	pos -532 406
 	government Republic
 	attributes "dirt belt"
+	arrival 950
 	habitable 950
 	belt 1350
 	link Alnasl
@@ -8618,6 +8779,7 @@ system Eblumab
 	pos -767.587 703.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 425
 	belt 1804
 	haze _menu/haze-133
@@ -8684,6 +8846,7 @@ system Edusa
 	pos 273.87 347.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 4320
 	habitable 4320
 	belt 1167
 	haze _menu/haze-red
@@ -8737,6 +8900,7 @@ system Egeria
 	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 2030
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -8776,6 +8940,7 @@ system Egeria
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
+	arrival 500
 	habitable 490
 	belt 1094
 	link "Wah Yoot"
@@ -8843,6 +9008,7 @@ system "Ehma Ti"
 system Ek'kek'ru
 	pos -287.517 -727.738
 	government Wanderer
+	arrival 500
 	habitable 320
 	belt 1517
 	haze _menu/haze-none
@@ -8903,6 +9069,7 @@ system Ekuarik
 	pos -1029.63 426.214
 	government Heliarch
 	attributes "ringworld"
+	arrival 700
 	habitable 700
 	belt 1711
 	link Belug
@@ -9086,6 +9253,7 @@ system Elnath
 	pos -288 -77
 	government Republic
 	attributes "north"
+	arrival 1715
 	habitable 1715
 	belt 1462
 	link Acamar
@@ -9151,6 +9319,7 @@ system Eltanin
 	pos -328 433
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
 	belt 1859
 	haze _menu/haze-133
@@ -9211,6 +9380,7 @@ system Eneremprukt
 	pos 311.431 -448.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1421
 	link Ferukistek
@@ -9267,6 +9437,7 @@ system Enif
 	pos -177 498
 	government Quarg
 	attributes "ringworld" "south"
+	arrival 700
 	habitable 700
 	belt 1974
 	link Sadalmelik
@@ -9356,6 +9527,7 @@ system "Epsilon Leonis"
 	pos -619 -229
 	government Republic
 	attributes "deep"
+	arrival 1450
 	habitable 1450
 	belt 1527
 	link Adhara
@@ -9430,6 +9602,7 @@ system "Epsilon Leonis"
 system Es'sprak'ai
 	pos -469.044 -733.375
 	government Wanderer
+	arrival 500
 	habitable 490
 	belt 1928
 	haze _menu/haze-none
@@ -9491,6 +9664,7 @@ system Eshkoshtar
 	pos 156.431 -381.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 810
 	habitable 810
 	belt 1105
 	link Mekislepti
@@ -9564,6 +9738,7 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	arrival 5000
 	habitable 8640
 	belt 1500
 	haze _menu/haze-red
@@ -9625,6 +9800,7 @@ system Eteron
 	pos -330 33
 	government Republic
 	attributes "near earth"
+	arrival 500
 	habitable 135
 	belt 1479
 	link Caph
@@ -9689,6 +9865,7 @@ system Eteron
 system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
+	arrival 500
 	habitable 490
 	belt 1057
 	haze _menu/haze-67
@@ -9712,8 +9889,14 @@ system "Fah Root"
 	trade Medical 435
 	trade Metal 538
 	trade Plastic 332
-	fleet "Small Hai" 2000
-	fleet "Large Hai" 4000
+	fleet "Small Hai" 4000
+	fleet "Large Hai" 8000
+	fleet "Small Hai Merchant" 2000
+	fleet "Large Hai Merchant" 4000
+	fleet "Small Hai Merchant (Sympathizers)" 8000
+	fleet "Large Hai Merchant (Sympathizers)" 16000
+	fleet "Small Hai Merchant (Human)" 7500
+	fleet "Large Hai Merchant (Human)" 12500
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
 	fleet "Hai Surveillance" 3000
@@ -9757,6 +9940,7 @@ system "Fah Root"
 system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1185
 	haze _menu/haze-67
@@ -9780,8 +9964,14 @@ system "Fah Soom"
 	trade Medical 615
 	trade Metal 368
 	trade Plastic 532
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1600
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 3200
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1600
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 6400
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 4000
@@ -9822,6 +10012,7 @@ system Fala
 	pos -690 64
 	government Republic
 	attributes "dirt belt"
+	arrival 1250
 	habitable 1250
 	belt 1264
 	link "Delta Velorum"
@@ -9883,6 +10074,7 @@ system "Fallen Leaf"
 	pos -903.587 717.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 320
 	belt 1327
 	link Beginning
@@ -9936,6 +10128,7 @@ system "Far Horizon"
 	pos -1108.59 726.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 320
 	belt 1242
 	haze _menu/haze-67
@@ -9992,6 +10185,7 @@ system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
 	attributes "korath"
+	arrival 625
 	habitable 625
 	belt 1175
 	haze _menu/haze-133
@@ -10067,6 +10261,7 @@ system Farinus
 	pos 202.87 440.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 1270
 	habitable 1270
 	belt 1225
 	haze _menu/haze-red
@@ -10140,6 +10335,7 @@ system Faronektu
 	pos 292.431 -309.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 1080
 	habitable 1080
 	belt 1630
 	haze _menu/haze-133
@@ -10207,6 +10403,7 @@ system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
+	arrival 500
 	habitable 100
 	belt 1670
 	haze _menu/haze-blackbody
@@ -10256,6 +10453,7 @@ system Fearis
 	pos -16 643
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -10319,6 +10517,7 @@ system "Fell Omen"
 	pos -1156.59 475.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 425
 	belt 1240
 	link "Last Word"
@@ -10394,6 +10593,7 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 500
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -10439,6 +10639,7 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 3645
 	habitable 3645
 	belt 1500
 	haze _menu/haze-red
@@ -10496,6 +10697,7 @@ system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
 	attributes "korath"
+	arrival 5000
 	habitable 5425
 	belt 1419
 	haze _menu/haze-blackbody
@@ -10580,6 +10782,7 @@ system Ferukistek
 	pos 307.431 -515.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1520
 	link Eneremprukt
@@ -10634,6 +10837,7 @@ system Fingol
 	pos -482 113
 	government Republic
 	attributes "near earth"
+	arrival 500
 	habitable 135
 	belt 1976
 	haze _menu/haze-none
@@ -10692,6 +10896,7 @@ system Flugbu
 	pos -903.587 534.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 425
 	belt 1843
 	link Debrugt
@@ -10757,6 +10962,7 @@ system Fomalhaut
 	pos -314 124
 	government Syndicate
 	attributes "near earth"
+	arrival 500
 	habitable 450
 	belt 1854
 	link Altair
@@ -10820,6 +11026,7 @@ system Fornarep
 	pos 79.4305 -309.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1922
 	haze _menu/haze-133
@@ -10884,6 +11091,7 @@ system "Four Pillars"
 	pos -1210.59 772.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 490
 	belt 1061
 	link "Far Horizon"
@@ -10946,6 +11154,7 @@ system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1577
 	link Chikatip
@@ -11008,6 +11217,7 @@ system Gacrux
 	pos -713 184
 	government Republic
 	attributes "dirt belt"
+	arrival 530
 	habitable 530
 	belt 1188
 	link "Cor Caroli"
@@ -11076,6 +11286,7 @@ system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
 	attributes "core"
+	arrival 5000
 	habitable 11500
 	belt 1779
 	haze _menu/haze-133
@@ -11135,6 +11346,7 @@ system "Gamma Corvi"
 	pos -906 64
 	government Republic
 	attributes "rim"
+	arrival 1530
 	habitable 1530
 	belt 1556
 	haze _menu/haze-none
@@ -11201,6 +11413,7 @@ system Gerenus
 	pos 197 514
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 3000
 	habitable 3000
 	belt 1500
 	haze _menu/haze-red
@@ -11261,6 +11474,7 @@ system Gienah
 	pos -176 354
 	government Pirate
 	attributes "core"
+	arrival 600
 	habitable 600
 	belt 1965
 	link Algenib
@@ -11325,6 +11539,7 @@ system Giribea
 	pos -6 674
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 1800
 	habitable 1800
 	belt 1500
 	haze _menu/haze-red
@@ -11398,6 +11613,7 @@ system Girtab
 	pos -430 481
 	government Republic
 	attributes "south"
+	arrival 1080
 	habitable 1080
 	belt 1387
 	link Albaldah
@@ -11463,6 +11679,7 @@ system Glubatub
 	pos -650.587 693.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 230
 	belt 1093
 	link Miblulub
@@ -11541,6 +11758,7 @@ system Gomeisa
 	pos -600 -161
 	government Republic
 	attributes "deep"
+	arrival 980
 	habitable 980
 	belt 1616
 	link Adhara
@@ -11611,6 +11829,7 @@ system "Good Omen"
 	pos -941.587 746.051
 	government Coalition
 	attributes "saryd"
+	arrival 1715
 	habitable 1715
 	belt 1598
 	haze _menu/haze-67
@@ -11673,6 +11892,7 @@ system Gorvi
 	pos -250 -483
 	government Republic
 	attributes "north"
+	arrival 625
 	habitable 625
 	belt 1345
 	haze _menu/haze-133
@@ -11731,6 +11951,7 @@ system Graffias
 	pos -784 517
 	government Republic
 	attributes "south"
+	arrival 980
 	habitable 980
 	belt 1977
 	link Alniyat
@@ -11795,6 +12016,7 @@ system Gupta
 	pos -808.587 625.051
 	government Coalition
 	attributes "arachi"
+	arrival 915
 	habitable 915
 	belt 1771
 	link Ablodab
@@ -11856,6 +12078,7 @@ system Hadar
 	pos -788 283
 	government Republic
 	attributes "rim"
+	arrival 500
 	habitable 450
 	belt 1520
 	link Alkaid
@@ -11916,6 +12139,7 @@ system Hamal
 	pos -129 24
 	government Syndicate
 	attributes "core"
+	arrival 1080
 	habitable 1080
 	belt 1241
 	haze _menu/haze-133
@@ -11971,6 +12195,7 @@ system Han
 	pos -610 561
 	government Republic
 	attributes "south"
+	arrival 1115
 	habitable 1115
 	belt 1517
 	link Alniyat
@@ -12030,6 +12255,7 @@ system Hassaleh
 	pos -291 -287
 	government Republic
 	attributes "north"
+	arrival 680
 	habitable 680
 	belt 1924
 	haze _menu/haze-67
@@ -12091,6 +12317,7 @@ system Hatysa
 	pos -474 -542
 	government Pirate
 	attributes "north"
+	arrival 525
 	habitable 525
 	belt 1163
 	haze _menu/haze-33
@@ -12151,6 +12378,7 @@ system Hatysa
 system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
+	arrival 1215
 	habitable 1215
 	belt 1079
 	haze _menu/haze-67
@@ -12176,8 +12404,14 @@ system "Heia Due"
 	trade Medical 675
 	trade Metal 518
 	trade Plastic 362
-	fleet "Small Hai" 600
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 1000
+	fleet "Large Hai Merchant (Human)" 2500
 	fleet "Small Human Merchants (Hai)" 2000
 	fleet "Large Human Merchants (Hai)" 5000
 	fleet "Hai Surveillance" 2000
@@ -12227,6 +12461,7 @@ system Hesselpost
 	pos -30.5695 -187.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1327
 	haze _menu/haze-133
@@ -12298,6 +12533,7 @@ system "Hevru Hai"
 	pos -189 -310
 	government Quarg
 	attributes "ringworld"
+	arrival 700
 	habitable 700
 	belt 1245
 	link "Fah Soom"
@@ -12311,8 +12547,14 @@ system "Hevru Hai"
 	trade Medical 509
 	trade Metal 457
 	trade Plastic 503
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 2500
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 5000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 2500
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 10000
+	fleet "Small Hai Merchant (Human)" 4500
+	fleet "Large Hai Merchant (Human)" 7500
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
@@ -12412,6 +12654,7 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
+	arrival 625
 	habitable 625
 	belt 1655
 	link "Wah Yoot"
@@ -12467,6 +12710,7 @@ system Hintar
 	pos -422 311
 	government Republic
 	attributes "dirt belt"
+	arrival 625
 	habitable 625
 	belt 1725
 	haze _menu/haze-133
@@ -12527,6 +12771,7 @@ system Holeb
 	pos -590 287
 	government Republic
 	attributes "dirt belt"
+	arrival 3430
 	habitable 3430
 	belt 1181
 	link Alioth
@@ -12575,6 +12820,7 @@ system Homeward
 	pos -1045.59 477.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 425
 	belt 1499
 	link Quaru
@@ -12640,6 +12886,7 @@ system Homeward
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
+	arrival 500
 	habitable 490
 	belt 1669
 	asteroids "large metal" 1 0.732
@@ -12689,6 +12936,7 @@ system Hunter
 	pos -968.587 590.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 425
 	belt 1498
 	link "Bright Void"
@@ -12750,6 +12998,7 @@ system Hunter
 system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
+	arrival 625
 	habitable 625
 	belt 1497
 	haze _menu/haze-none
@@ -12812,6 +13061,7 @@ system Ildaria
 	pos -702 317
 	government Republic
 	attributes "rim" "wolf-rayet"
+	arrival 625
 	habitable 625
 	belt 1132
 	haze _menu/haze-133
@@ -12865,6 +13115,7 @@ system Ildaria
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
+	arrival 1715
 	habitable 1715
 	belt 1416
 	haze _menu/haze-67
@@ -12888,8 +13139,14 @@ system "Imo Dep"
 	trade Medical 865
 	trade Metal 198
 	trade Plastic 532
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 5000
+	fleet "Large Hai Merchant (Human)" 7000
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
 	fleet "Hai Surveillance" 3000
@@ -12933,6 +13190,7 @@ system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 550
 	habitable 550
 	belt 1170
 	haze _menu/haze-red
@@ -12987,6 +13245,7 @@ system Insitor
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
+	arrival 500
 	habitable 135
 	belt 1552
 	haze _menu/haze-67
@@ -13012,8 +13271,14 @@ system "Io Lowe"
 	trade Medical 765
 	trade Metal 438
 	trade Plastic 262
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1200
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2400
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1200
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4800
+	fleet "Small Hai Merchant (Human)" 2000
+	fleet "Large Hai Merchant (Human)" 3500
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
 	fleet "Hai Surveillance" 5000
@@ -13052,6 +13317,7 @@ system "Io Lowe"
 system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
+	arrival 980
 	habitable 980
 	belt 1132
 	haze _menu/haze-67
@@ -13075,8 +13341,14 @@ system "Io Mann"
 	trade Medical 615
 	trade Metal 588
 	trade Plastic 532
-	fleet "Small Hai" 700
-	fleet "Large Hai" 1800
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 3600
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 1800
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 7200
+	fleet "Small Hai Merchant (Human)" 1500
+	fleet "Large Hai Merchant (Human)" 3000
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 3000
@@ -13130,6 +13402,7 @@ system Ipsing
 	pos -549 160
 	government Republic
 	attributes "dirt belt"
+	arrival 2585
 	habitable 2585
 	belt 1107
 	haze _menu/haze-67
@@ -13196,6 +13469,7 @@ system Ipsing
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
+	arrival 500
 	habitable 320
 	belt 1613
 	haze _menu/haze-33
@@ -13250,6 +13524,7 @@ system Izar
 	pos -784 231
 	government Republic
 	attributes "rim"
+	arrival 1400
 	habitable 1400
 	belt 1449
 	haze _menu/haze-67
@@ -13314,6 +13589,7 @@ system Izar
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
+	arrival 500
 	habitable 425
 	belt 1745
 	haze _menu/haze-none
@@ -13371,6 +13647,7 @@ system Ka'ch'chrai
 system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
+	arrival 1505
 	habitable 1505
 	belt 1808
 	haze _menu/haze-33
@@ -13442,6 +13719,7 @@ system Kaliptari
 	pos 85.4305 -402.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1089
 	link Fornarep
@@ -13517,6 +13795,7 @@ system "Kappa Centauri"
 	pos -867 480
 	government Republic
 	attributes "south"
+	arrival 1215
 	habitable 1215
 	belt 1508
 	link "Beta Lupi"
@@ -13578,6 +13857,7 @@ system Kashikt
 	pos -73.5695 -219.812
 	government "Kor Efret"
 	attributes "korath"
+	arrival 1715
 	habitable 1715
 	belt 1013
 	link Dokdobaru
@@ -13646,6 +13926,7 @@ system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
+	arrival 500
 	habitable 100
 	belt 1539
 	haze _menu/haze-blackbody
@@ -13690,6 +13971,7 @@ system "Kaus Australis"
 	pos -284 395
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 370
 	belt 1281
 	haze _menu/haze-133
@@ -13742,6 +14024,7 @@ system "Kaus Borealis"
 	pos -456 350
 	government Republic
 	attributes "dirt belt"
+	arrival 585
 	habitable 585
 	belt 1074
 	haze _menu/haze-133
@@ -13805,6 +14088,7 @@ system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
 	attributes "ringworld"
+	arrival 700
 	habitable 700
 	belt 1777
 	haze _menu/haze-133
@@ -14023,6 +14307,7 @@ system "Ki War Ek"
 system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
+	arrival 1115
 	habitable 1115
 	belt 1308
 	haze _menu/haze-none
@@ -14099,6 +14384,7 @@ system Kiro'ku
 system Kiru'kichi
 	pos -195.063 -662.343
 	government Wanderer
+	arrival 2795
 	habitable 2795
 	belt 1465
 	haze _menu/haze-33
@@ -14159,6 +14445,7 @@ system Kochab
 	pos -731 279
 	government Republic
 	attributes "rim"
+	arrival 500
 	habitable 370
 	belt 1912
 	haze _menu/haze-67
@@ -14203,6 +14490,7 @@ system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
 	attributes "korath" "wolf-rayet"
+	arrival 625
 	habitable 625
 	belt 1606
 	haze _menu/haze-full
@@ -14257,6 +14545,7 @@ system "Kor En'lakfar"
 	pos -31 -33
 	government Korath
 	attributes "korath"
+	arrival 1080
 	habitable 1080
 	belt 1115
 	haze _menu/haze-133
@@ -14319,6 +14608,7 @@ system "Kor Fel'tar"
 	pos 29 -66
 	government Korath
 	attributes "korath"
+	arrival 500
 	habitable 450
 	belt 1444
 	haze _menu/haze-blackbody
@@ -14385,6 +14675,7 @@ system "Kor Men"
 	pos 6 -5
 	government Korath
 	attributes "korath"
+	arrival 2340
 	habitable 2340
 	belt 1260
 	haze _menu/haze-blackbody
@@ -14448,6 +14739,7 @@ system "Kor Nor'peli"
 	pos 52 160
 	government Korath
 	attributes "korath"
+	arrival 585
 	habitable 585
 	belt 1213
 	haze _menu/haze-blackbody
@@ -14513,6 +14805,7 @@ system "Kor Tar'bei"
 	pos 57 106
 	government Korath
 	attributes "korath"
+	arrival 500
 	habitable 230
 	belt 1614
 	haze _menu/haze-blackbody
@@ -14570,6 +14863,7 @@ system "Kor Zena'i"
 	pos -2 83
 	government Korath
 	attributes "korath"
+	arrival 1385
 	habitable 1385
 	belt 1866
 	haze _menu/haze-blackbody
@@ -14623,6 +14917,7 @@ system Kornephoros
 	pos -612 424
 	government Republic
 	attributes "south"
+	arrival 980
 	habitable 980
 	belt 1168
 	link Aldhibain
@@ -14704,6 +14999,7 @@ system Korsmanath
 	pos 97.4305 -185.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1775
 	link Farbutero
@@ -14764,6 +15060,7 @@ system Kraz
 	pos -876 204
 	government Republic
 	attributes "rim"
+	arrival 1080
 	habitable 1080
 	belt 1056
 	haze _menu/haze-67
@@ -14831,6 +15128,7 @@ system Kugel
 	pos -230 -26
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1051
 	link Acamar
@@ -14900,6 +15198,7 @@ system Kursa
 	pos -366 -105
 	government Republic
 	attributes "paradise"
+	arrival 505
 	habitable 505
 	belt 1624
 	haze _menu/haze-67
@@ -14953,6 +15252,7 @@ system Kursa
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
+	arrival 625
 	habitable 625
 	belt 1761
 	link "Fell Omen"
@@ -15017,6 +15317,7 @@ system Lesath
 	pos -516 485
 	government Republic
 	attributes "south"
+	arrival 1715
 	habitable 1715
 	belt 1865
 	link Atria
@@ -15082,6 +15383,7 @@ system Levana
 	pos 203.504 247.389
 	government Uninhabited
 	attributes "ember waste"
+	arrival 5000
 	habitable 12425
 	belt 1202
 	haze _menu/haze-red
@@ -15152,6 +15454,7 @@ system Limen
 	pos -791.99 -12.2491
 	government Republic
 	attributes "dirt belt"
+	arrival 1715
 	habitable 1715
 	belt 1463
 	haze _menu/haze-33
@@ -15205,6 +15508,7 @@ system Lire
 	pos -59 676
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 1080
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -15269,6 +15573,7 @@ system Lolami
 	pos -628 -10
 	government Republic
 	attributes "dirt belt"
+	arrival 1215
 	habitable 1215
 	belt 1072
 	link "Tania Australis"
@@ -15332,6 +15637,7 @@ system Lolami
 system "Lom Tahr"
 	pos -94.0437 -446.586
 	government Hai
+	arrival 2560
 	habitable 2560
 	belt 1445
 	link "Da Lest"
@@ -15357,8 +15663,14 @@ system "Lom Tahr"
 	trade Medical 695
 	trade Metal 458
 	trade Plastic 372
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1600
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 3200
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1600
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 6400
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
@@ -15403,6 +15715,7 @@ system "Lone Cloud"
 	pos -1239.59 747.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 230
 	belt 1730
 	link "Four Pillars"
@@ -15454,6 +15767,7 @@ system Lucina
 	pos 175.504 176.389
 	government Uninhabited
 	attributes "ember waste"
+	arrival 500
 	habitable 320
 	belt 1466
 	haze _menu/haze-red
@@ -15512,6 +15826,7 @@ system Lurata
 	pos -279 463
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 450
 	belt 1151
 	haze _menu/haze-133
@@ -15575,6 +15890,7 @@ system Makferuti
 	pos 288.431 -628.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 525
 	habitable 525
 	belt 1782
 	link Asikafarnut
@@ -15651,6 +15967,7 @@ system Markab
 	pos -241 168
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1411
 	haze _menu/haze-133
@@ -15734,6 +16051,7 @@ system Markeb
 	pos -602 -305
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 450
 	belt 1556
 	haze _menu/haze-33
@@ -15799,6 +16117,7 @@ system Matar
 	pos -218 272
 	government Syndicate
 	attributes "core"
+	arrival 500
 	habitable 450
 	belt 1308
 	haze _menu/haze-133
@@ -15857,6 +16176,7 @@ system Mebla
 	pos -814.587 555.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 490
 	belt 1114
 	link Ablodab
@@ -15915,6 +16235,7 @@ system Meblumem
 	pos -722.587 616.051
 	government Coalition
 	attributes "arachi"
+	arrival 2205
 	habitable 2205
 	belt 1794
 	link Gupta
@@ -15980,6 +16301,7 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
+	arrival 5000
 	habitable 8675
 	belt 2340
 	haze _menu/haze-33
@@ -16055,6 +16377,7 @@ system Meftarkata
 	pos 52.4305 -276.812
 	government Uninhabited
 	attributes "korath"
+	arrival 2205
 	habitable 2205
 	belt 1232
 	haze _menu/haze-133
@@ -16116,6 +16439,7 @@ system Meftarkata
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1075
 	haze _menu/haze-67
@@ -16137,8 +16461,14 @@ system "Mei Yohn"
 	trade Medical 865
 	trade Metal 348
 	trade Plastic 362
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1000
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2000
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1000
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4000
+	fleet "Small Hai Merchant (Human)" 3500
+	fleet "Large Hai Merchant (Human)" 5000
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 5000
@@ -16182,6 +16512,7 @@ system Mekislepti
 	pos 137.431 -335.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 1705
 	habitable 1705
 	belt 1673
 	haze _menu/haze-133
@@ -16246,6 +16577,7 @@ system Men
 	pos -888 361
 	government Pirate
 	attributes "south"
+	arrival 500
 	habitable 370
 	belt 1580
 	haze _menu/haze-33
@@ -16312,6 +16644,7 @@ system Menkalinan
 	pos -400 -61
 	government Republic
 	attributes "paradise"
+	arrival 5000
 	habitable 5145
 	belt 1424
 	haze _menu/haze-67
@@ -16380,6 +16713,7 @@ system Menkar
 	pos -183 -52
 	government Syndicate
 	attributes "core"
+	arrival 500
 	habitable 450
 	belt 1634
 	haze _menu/haze-133
@@ -16443,6 +16777,7 @@ system Menkent
 	pos -495 218
 	government Republic
 	attributes "dirt belt"
+	arrival 2340
 	habitable 2340
 	belt 1728
 	link Cebalrai
@@ -16514,6 +16849,7 @@ system Merak
 	pos -553 60
 	government Republic
 	attributes "near earth"
+	arrival 1115
 	habitable 1115
 	belt 1769
 	haze _menu/haze-67
@@ -16579,6 +16915,7 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	attributes "korath"
+	arrival 950
 	habitable 950
 	belt 1215
 	link Eneremprukt
@@ -16646,6 +16983,7 @@ system Miaplacidus
 	pos -524 -69
 	government Republic
 	attributes "paradise"
+	arrival 500
 	habitable 450
 	belt 1236
 	link Alphard
@@ -16721,6 +17059,7 @@ system Miblulub
 	pos -630.587 670.051
 	government Coalition
 	attributes "arachi"
+	arrival 1080
 	habitable 1080
 	belt 1757
 	haze _menu/haze-133
@@ -16803,6 +17142,7 @@ system Mimosa
 	pos -895 168
 	government Republic
 	attributes "rim"
+	arrival 500
 	habitable 370
 	belt 1484
 	haze _menu/haze-67
@@ -16854,6 +17194,7 @@ system Minkar
 	pos -823 138
 	government Republic
 	attributes "rim"
+	arrival 1300
 	habitable 1300
 	belt 1354
 	haze _menu/haze-67
@@ -16920,6 +17261,7 @@ system Mintaka
 	pos -304 -462
 	government Republic
 	attributes "north"
+	arrival 860
 	habitable 860
 	belt 1753
 	haze _menu/haze-67
@@ -16984,6 +17326,7 @@ system Mirach
 	pos -166 250
 	government Syndicate
 	attributes "core"
+	arrival 500
 	habitable 260
 	belt 1980
 	haze _menu/haze-133
@@ -17053,6 +17396,7 @@ system Mirfak
 	pos -187 -128
 	government Syndicate
 	attributes "core"
+	arrival 500
 	habitable 370
 	belt 1887
 	link Bellatrix
@@ -17109,6 +17453,7 @@ system Mirzam
 	pos -498 -301
 	government Republic
 	attributes "north"
+	arrival 1080
 	habitable 1080
 	belt 1025
 	haze _menu/haze-67
@@ -17171,6 +17516,7 @@ system Mizar
 	pos -579 184
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1876
 	haze _menu/haze-67
@@ -17224,6 +17570,7 @@ system Moktar
 	pos -169 -170
 	government Syndicate
 	attributes "core"
+	arrival 530
 	habitable 530
 	belt 1888
 	link Cardax
@@ -17292,6 +17639,7 @@ system Mora
 	pos -755 23
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 425
 	belt 1176
 	haze _menu/haze-67
@@ -17353,6 +17701,7 @@ system Muhlifain
 	pos -702 242
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
 	belt 1265
 	haze _menu/haze-67
@@ -17400,6 +17749,7 @@ system Muphrid
 	pos -495 152
 	government Republic
 	attributes "near earth"
+	arrival 1570
 	habitable 1570
 	belt 1759
 	link Menkent
@@ -17458,6 +17808,7 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
+	arrival 1310
 	habitable 1310
 	belt 1045
 	haze _menu/haze-67
@@ -17532,6 +17883,7 @@ system Naper
 	pos -416 369
 	government Republic
 	attributes "dirt belt"
+	arrival 1715
 	habitable 1715
 	belt 1445
 	link Ascella
@@ -17594,6 +17946,7 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
+	arrival 4680
 	habitable 4680
 	belt 1393
 	haze _menu/haze-red
@@ -17673,6 +18026,7 @@ system Nihal
 	pos -262 -121
 	government Republic
 	attributes "north"
+	arrival 530
 	habitable 530
 	belt 1329
 	link Elnath
@@ -17746,6 +18100,7 @@ system Nocte
 	pos -467 172
 	government Republic
 	attributes "near earth"
+	arrival 500
 	habitable 135
 	belt 1304
 	link Vega
@@ -17813,6 +18168,7 @@ system Nona
 	pos 166 558
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 1080
 	habitable 1080
 	belt 1500
 	haze _menu/haze-red
@@ -17868,6 +18224,7 @@ system Nunki
 	pos -393 537
 	government Pirate
 	attributes "south"
+	arrival 500
 	habitable 230
 	belt 1930
 	link Albaldah
@@ -17938,6 +18295,7 @@ system Oblate
 	pos -124 -119
 	government Pirate
 	attributes "core"
+	arrival 2300
 	habitable 2300
 	belt 1954
 	haze _menu/haze-133
@@ -17997,6 +18355,7 @@ system Orbona
 	pos -735.99 -97.2491
 	government Republic
 	attributes "dirt belt"
+	arrival 5000
 	habitable 23490
 	belt 1507
 	haze _menu/haze-67
@@ -18069,6 +18428,7 @@ system Orvala
 	pos -334 303
 	government Republic
 	attributes "dirt belt"
+	arrival 520
 	habitable 520
 	belt 1431
 	link "Zeta Aquilae"
@@ -18134,6 +18494,7 @@ system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 3590
 	habitable 3590
 	belt 1803
 	haze _menu/haze-red
@@ -18202,6 +18563,7 @@ system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
 	attributes "pleiades"
+	arrival 1895
 	habitable 1895
 	belt 1500
 	haze _menu/haze-blackbody
@@ -18236,6 +18598,7 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	arrival 500
 	habitable 10
 	belt 1500
 	haze _menu/haze-red
@@ -18283,6 +18646,7 @@ system Pantica
 	pos 303.87 445.242
 	government Remnant
 	attributes "ember waste"
+	arrival 500
 	habitable 450
 	belt 1253
 	haze _menu/haze-red
@@ -18340,6 +18704,7 @@ system Parca
 	pos 150.504 151.389
 	government Uninhabited
 	attributes "ember waste"
+	arrival 1385
 	habitable 1385
 	belt 1315
 	haze _menu/haze-red
@@ -18411,10 +18776,61 @@ system Parca
 			distance 545
 			period 35.9174
 
+system Patir
+	hidden
+	pos -38 553
+	government Uninhabited
+	attributes "ember waste" "graveyard"
+	arrival 500
+	habitable 100
+	belt 1500
+	haze _menu/haze-red
+	asteroids "large metal" 5 2
+	asteroids "large rock" 4 3
+	asteroids "medium rock" 7 4
+	asteroids "small rock" 21 2
+	minables lead 151 15
+	minables iron 83 6
+	minables titanium 74 10
+	minables aluminum 68 13
+	minables copper 39 8
+	trade Clothing 294
+	trade Electronics 821
+	trade Equipment 651
+	trade Food 519
+	trade "Heavy Metals" 782
+	trade Industrial 612
+	trade "Luxury Goods" 1251
+	trade Medical 759
+	trade Metal 354
+	trade Plastic 426
+	fleet Ka'sei 300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
+	object
+		sprite star/nova
+		period 1
+	object
+		sprite star/neutron-core
+		period 1
+	object "Builder Settlement"
+		sprite "planet/asteroid base"
+		distance 1496.85
+		period 327.598
+	object
+		sprite planet/gas2-b
+		distance 2866.29
+		period 868.070
+		object
+			sprite planet/rock17-b
+			distance 203
+			period 17.525
+
 system Peacock
 	pos -307 350
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 230
 	belt 1870
 	haze _menu/haze-133
@@ -18490,6 +18906,7 @@ system Pelubta
 	pos -757.587 575.051
 	government Coalition
 	attributes "arachi"
+	arrival 5000
 	habitable 10750
 	belt 1709
 	link Ablodab
@@ -18568,6 +18985,7 @@ system Peragenor
 	pos 86.8703 356.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 2160
 	habitable 2160
 	belt 1920
 	haze _menu/haze-red
@@ -18590,7 +19008,7 @@ system Peragenor
 	fleet "Small Remnant" 7000
 	fleet "Remnant Transport" 7000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Embershades" 8000
+	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -18633,6 +19051,7 @@ system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
+	arrival 500
 	habitable 100
 	belt 1065
 	haze _menu/haze-blackbody
@@ -18680,6 +19099,7 @@ system Perfica
 	pos 185.87 419.242
 	government Uninhabited
 	attributes "ember waste"
+	arrival 500
 	habitable 10
 	belt 1160
 	haze _menu/haze-red
@@ -18726,6 +19146,7 @@ system Persian
 	pos -203 331
 	government Syndicate
 	attributes "core"
+	arrival 3920
 	habitable 3920
 	belt 1308
 	haze _menu/haze-133
@@ -18794,6 +19215,7 @@ system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
 	attributes "korath" "nova"
+	arrival 500
 	habitable 100
 	belt 1948
 	haze _menu/haze-blackbody
@@ -18835,6 +19257,7 @@ system Phact
 	pos -375 -191
 	government Republic
 	attributes "north"
+	arrival 1115
 	habitable 1115
 	belt 1704
 	haze _menu/haze-67
@@ -18908,6 +19331,7 @@ system Phecda
 	pos -607 88
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 370
 	belt 1375
 	link Algorel
@@ -18966,6 +19390,7 @@ system Pherkad
 	pos -798 451
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 135
 	belt 1924
 	haze _menu/haze-67
@@ -19022,6 +19447,7 @@ system Phurad
 	pos -494 -153
 	government Republic
 	attributes "paradise"
+	arrival 1080
 	habitable 1080
 	belt 1881
 	link Canopus
@@ -19081,6 +19507,7 @@ system Phurad
 system Pik'ro'iyak
 	pos -378.845 -677.001
 	government Wanderer
+	arrival 500
 	habitable 230
 	belt 1279
 	haze _menu/haze-none
@@ -19130,6 +19557,7 @@ system Plort
 	pos -708.587 723.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 320
 	belt 1490
 	link "Sol Arach"
@@ -19189,6 +19617,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
+	arrival 1715
 	habitable 1715
 	belt 1906
 	haze _menu/haze-133
@@ -19243,6 +19672,7 @@ system Polerius
 	pos 88 482
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 2030
 	habitable 2030
 	belt 1500
 	haze _menu/haze-red
@@ -19311,6 +19741,7 @@ system Pollux
 	pos -465 4
 	government Republic
 	attributes "paradise"
+	arrival 1080
 	habitable 1080
 	belt 1161
 	haze _menu/haze-67
@@ -19366,6 +19797,7 @@ system Porrima
 	pos -556 123
 	government Republic
 	attributes "near earth"
+	arrival 760
 	habitable 760
 	belt 1636
 	haze _menu/haze-67
@@ -19435,6 +19867,7 @@ system Postverta
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 500
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -19471,6 +19904,7 @@ system Postverta
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
+	arrival 2030
 	habitable 2030
 	belt 1660
 	haze _menu/haze-33
@@ -19550,6 +19984,7 @@ system Procyon
 	pos -411 23
 	government Republic
 	attributes "near earth"
+	arrival 500
 	habitable 450
 	belt 1763
 	haze _menu/haze-67
@@ -19608,6 +20043,7 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 5000
 	habitable 40960
 	belt 1500
 	haze _menu/haze-red
@@ -19652,6 +20088,7 @@ system Prosa
 system "Pug Iyik"
 	pos -361.149 -883.233
 	government "Pug (Wanderer)"
+	arrival 625
 	habitable 625
 	belt 1286
 	haze _menu/haze-blackbody
@@ -19710,6 +20147,7 @@ system Quaru
 	pos -1080.63 448.214
 	government Heliarch
 	attributes "ringworld"
+	arrival 700
 	habitable 700
 	belt 1440
 	haze _menu/haze-133
@@ -20002,6 +20440,7 @@ system Queri
 	pos 69 518
 	government Uninhabited
 	attributes "ember waste" "graveyard"
+	arrival 700
 	habitable 700
 	belt 1500
 	haze _menu/haze-red
@@ -20029,6 +20468,7 @@ system Rajak
 	pos -270 -236
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 135
 	belt 1410
 	haze _menu/haze-67
@@ -20097,6 +20537,7 @@ system Rasalhague
 	pos -413 246
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
 	belt 1282
 	haze _menu/haze-133
@@ -20158,6 +20599,7 @@ system Rastaban
 	pos -463 446
 	government Republic
 	attributes "south"
+	arrival 1080
 	habitable 1080
 	belt 1041
 	haze _menu/haze-133
@@ -20218,6 +20660,7 @@ system Rastaban
 system "Rati Cal"
 	pos -116.765 -391.123
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1538
 	link "Due Yoot"
@@ -20239,8 +20682,14 @@ system "Rati Cal"
 	trade Medical 665
 	trade Metal 448
 	trade Plastic 392
-	fleet "Small Hai" 900
-	fleet "Large Hai" 1700
+	fleet "Small Hai" 1800
+	fleet "Large Hai" 3400
+	fleet "Small Hai Merchant" 900
+	fleet "Large Hai Merchant" 1700
+	fleet "Small Hai Merchant (Sympathizers)" 3600
+	fleet "Large Hai Merchant (Sympathizers)" 6800
+	fleet "Small Hai Merchant (Human)" 4000
+	fleet "Large Hai Merchant (Human)" 5500
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 11000
 	fleet "Hai Surveillance" 5000
@@ -20276,6 +20725,7 @@ system Regor
 	pos -702 -335
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 450
 	belt 1305
 	haze _menu/haze-67
@@ -20339,6 +20789,7 @@ system Regulus
 	pos -544 25
 	government Republic
 	attributes "near earth"
+	arrival 5000
 	habitable 11500
 	belt 1605
 	haze _menu/haze-67
@@ -20410,6 +20861,7 @@ system Relifer
 	pos 19 603
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -20488,6 +20940,7 @@ system Remembrance
 	pos -884.587 641.051
 	government Coalition
 	attributes "saryd"
+	arrival 500
 	habitable 490
 	belt 1536
 	link Beginning
@@ -20545,6 +20998,7 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
+	arrival 5000
 	habitable 46000
 	belt 1882
 	link Alnitak
@@ -20622,6 +21076,7 @@ system Ritilas
 	pos 11 523
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
+	arrival 980
 	habitable 980
 	belt 1500
 	haze _menu/haze-red
@@ -20695,6 +21150,7 @@ system Ruchbah
 	pos -174 69
 	government Syndicate
 	attributes "core"
+	arrival 2560
 	habitable 2560
 	belt 1598
 	haze _menu/haze-133
@@ -20767,6 +21223,7 @@ system Rutilicus
 	pos -535 273
 	government Republic
 	attributes "dirt belt"
+	arrival 625
 	habitable 625
 	belt 1771
 	link Arcturus
@@ -20836,6 +21293,7 @@ system Sabik
 	pos -675 379
 	government Republic
 	attributes "rim"
+	arrival 625
 	habitable 625
 	belt 1609
 	link Aldhibain
@@ -20888,6 +21346,7 @@ system Sabriset
 	pos 151.724 -426.518
 	government Uninhabited
 	attributes "korath"
+	arrival 1570
 	habitable 1570
 	belt 1025
 	link Kaliptari
@@ -20941,6 +21400,7 @@ system Sadalmelik
 	pos -145 472
 	government Quarg
 	attributes "south"
+	arrival 1715
 	habitable 1715
 	belt 1273
 	link Enif
@@ -20997,6 +21457,7 @@ system Sadalsuud
 	pos -134 508
 	government Quarg
 	attributes "south"
+	arrival 1450
 	habitable 1450
 	belt 1859
 	link Enif
@@ -21059,6 +21520,7 @@ system Sadr
 	pos -287 543
 	government Republic
 	attributes "south"
+	arrival 3875
 	habitable 3875
 	belt 1388
 	link Albireo
@@ -21123,9 +21585,9 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
+	arrival 5000
 	habitable 10000
 	belt 1500
-	arrival 2000
 	haze _menu/haze-full
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
@@ -21141,6 +21603,7 @@ system Saiph
 	pos -375 -390
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 370
 	belt 1690
 	haze _menu/haze-33
@@ -21195,6 +21658,7 @@ system Salipastart
 	pos 250.431 -370.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1056
 	haze _menu/haze-133
@@ -21262,6 +21726,7 @@ system Saquergen
 	pos -482 561
 	government Uninhabited
 	attributes "nova"
+	arrival 500
 	habitable 100
 	belt 1435
 	asteroids "small rock" 3 3.9105
@@ -21294,6 +21759,7 @@ system Sargas
 	pos -542 445
 	government Republic
 	attributes "south"
+	arrival 980
 	habitable 980
 	belt 1642
 	link Kornephoros
@@ -21345,6 +21811,7 @@ system Sarin
 	pos -670 293
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1752
 	link Vindemiatrix
@@ -21395,6 +21862,7 @@ system Sayaiban
 	pos 250.431 -274.812
 	government Drak
 	attributes "archon" "korath"
+	arrival 3750
 	habitable 3750
 	belt 1803
 	asteroids "small rock" 13 2.106
@@ -21451,6 +21919,7 @@ system Scheat
 	pos -205 233
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1536
 	haze _menu/haze-133
@@ -21509,6 +21978,7 @@ system Schedar
 	pos -93 229
 	government Syndicate
 	attributes "core"
+	arrival 1080
 	habitable 1080
 	belt 1903
 	haze _menu/haze-133
@@ -21578,6 +22048,7 @@ system Segesta
 	pos 111.87 294.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 950
 	habitable 950
 	belt 1120
 	haze _menu/haze-red
@@ -21603,7 +22074,7 @@ system Segesta
 	fleet "Small Remnant" 40000
 	fleet "Large Remnant" 40000
 	fleet "Korath Ember Waste Raid" 40000
-	fleet "Embershades" 15000
+	fleet Embershades 15000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -21647,6 +22118,7 @@ system Seginus
 	pos -557 356
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 135
 	belt 1906
 	link Alnasl
@@ -21713,6 +22185,7 @@ system Seketra
 	pos -24.5695 -356.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 425
 	belt 1465
 	link Chikatip
@@ -21765,6 +22238,7 @@ system Sepetrosk
 	pos 192.431 -243.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1286
 	link Chimitarp
@@ -21826,6 +22300,7 @@ system Sepriaptu
 	pos 139.431 -448.812
 	government Uninhabited
 	attributes "korath"
+	arrival 2035
 	habitable 2035
 	belt 1120
 	link Kaliptari
@@ -21878,6 +22353,7 @@ system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1763
 	haze _menu/haze-67
@@ -21929,6 +22405,7 @@ system Shaula
 	pos -460 527
 	government Pirate
 	attributes "south"
+	arrival 625
 	habitable 625
 	belt 1814
 	link Lesath
@@ -21997,6 +22474,7 @@ system Sheratan
 	pos -40 45
 	government Syndicate
 	attributes "core"
+	arrival 2085
 	habitable 2085
 	belt 1183
 	haze _menu/haze-133
@@ -22056,6 +22534,7 @@ system Sheratan
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
+	arrival 1310
 	habitable 1310
 	belt 1985
 	haze _menu/haze-none
@@ -22136,6 +22615,7 @@ system Si'yak'ku
 system Sich'ka'ara
 	pos -97.1237 -831.921
 	government Wanderer
+	arrival 1715
 	habitable 1715
 	belt 1744
 	haze _menu/haze-none
@@ -22188,6 +22668,7 @@ system Silikatakfar
 	pos 248.431 -481.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 500
 	habitable 425
 	belt 1641
 	link Asikafarnut
@@ -22239,6 +22720,7 @@ system "Silver Bell"
 	pos -1045.59 541.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
 	belt 1406
 	link "Bright Void"
@@ -22307,6 +22789,7 @@ system "Silver String"
 	pos -1022.59 517.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
 	belt 1986
 	link "Silver Bell"
@@ -22372,6 +22855,7 @@ system Similisti
 	pos 210.431 -313.812
 	government "Kor Mereti"
 	attributes "korath"
+	arrival 1080
 	habitable 1080
 	belt 1349
 	haze _menu/haze-133
@@ -22440,6 +22924,7 @@ system Sirius
 	pos -378 44
 	government Republic
 	attributes "near earth"
+	arrival 1850
 	habitable 1850
 	belt 1407
 	link Eteron
@@ -22504,6 +22989,7 @@ system Skeruto
 	pos 28.4305 -339.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1198
 	link Fornarep
@@ -22554,6 +23040,7 @@ system Skeruto
 system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
+	arrival 500
 	habitable 320
 	belt 1805
 	haze _menu/haze-none
@@ -22607,6 +23094,7 @@ system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
 	attributes "korath"
+	arrival 3355
 	habitable 3355
 	belt 1314
 	link Asikafarnut
@@ -22669,6 +23157,7 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
+	arrival 1080
 	habitable 1080
 	belt 1529
 	haze _menu/haze-67
@@ -22781,6 +23270,7 @@ system "Sol Arach"
 	pos -711.587 649.051
 	government Coalition
 	attributes "arachi"
+	arrival 500
 	habitable 490
 	belt 1147
 	haze _menu/haze-133
@@ -22853,6 +23343,7 @@ system "Sol Kimek"
 	pos -1310.63 227.214
 	government Coalition
 	attributes "kimek"
+	arrival 500
 	habitable 425
 	belt 1490
 	link "1 Axis"
@@ -22926,6 +23417,7 @@ system "Sol Saryd"
 	pos -1037.59 675.051
 	government Coalition
 	attributes "saryd"
+	arrival 1310
 	habitable 1310
 	belt 1720
 	link "Ancient Hope"
@@ -23009,6 +23501,7 @@ system Solifar
 	pos 47.4305 -435.812
 	government Uninhabited
 	attributes "korath"
+	arrival 500
 	habitable 320
 	belt 1517
 	haze _menu/haze-67
@@ -23065,6 +23558,7 @@ system Sospi
 	pos -317 -161
 	government Republic
 	attributes "north"
+	arrival 625
 	habitable 625
 	belt 1715
 	haze _menu/haze-133
@@ -23131,6 +23625,7 @@ system Speloog
 	pos -967.587 445.051
 	government Coalition
 	attributes "arachi"
+	arrival 625
 	habitable 625
 	belt 1159
 	link Belug
@@ -23198,6 +23693,7 @@ system Spica
 	pos -906 120
 	government Republic
 	attributes "rim"
+	arrival 625
 	habitable 625
 	belt 1940
 	haze _menu/haze-33
@@ -23259,6 +23755,7 @@ system Statina
 	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
+	arrival 500
 	habitable 135
 	belt 1500
 	haze _menu/haze-red
@@ -23305,6 +23802,7 @@ system "Steep Roof"
 	pos -1113.59 570.051
 	government Coalition
 	attributes "saryd"
+	arrival 1080
 	habitable 1080
 	belt 1100
 	haze _menu/haze-67
@@ -23378,6 +23876,7 @@ system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
+	arrival 1570
 	habitable 1570
 	belt 1492
 	haze _menu/haze-red
@@ -23399,7 +23898,7 @@ system Stercutus
 	fleet "Small Remnant" 20000
 	fleet "Large Remnant" 20000
 	fleet "Remnant Transport" 40000
-	fleet "Embershades" 8000
+	fleet Embershades 8000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -23444,6 +23943,7 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
+	arrival 3000
 	habitable 3000
 	belt 2715
 	haze _menu/haze-33
@@ -23505,6 +24005,7 @@ system Sumar
 	pos -236 -273
 	government Republic
 	attributes "north"
+	arrival 2560
 	habitable 2560
 	belt 1778
 	link Cardax
@@ -23565,6 +24066,7 @@ system Sumprast
 	pos -101.569 -262.812
 	government "Kor Efret"
 	attributes "korath"
+	arrival 500
 	habitable 490
 	belt 1958
 	haze _menu/haze-67
@@ -23631,6 +24133,7 @@ system Tais
 	pos -346 381
 	government Republic
 	attributes "dirt belt"
+	arrival 3645
 	habitable 3645
 	belt 1379
 	haze _menu/haze-133
@@ -23689,6 +24192,7 @@ system Talita
 	pos -519 -26
 	government Republic
 	attributes "paradise"
+	arrival 1705
 	habitable 1705
 	belt 1403
 	link Alphard
@@ -23755,6 +24259,7 @@ system "Tania Australis"
 	pos -671 7
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1738
 	link Algieba
@@ -23828,6 +24333,7 @@ system Tarazed
 	pos -194 448
 	government Republic
 	attributes "south"
+	arrival 1215
 	habitable 1215
 	belt 1169
 	link Albireo
@@ -23891,6 +24397,7 @@ system Tebuteb
 	pos -615.587 710.051
 	government Coalition
 	attributes "arachi"
+	arrival 550
 	habitable 550
 	belt 1855
 	link Glubatub
@@ -23953,6 +24460,7 @@ system Tejat
 	pos -489 -107
 	government Republic
 	attributes "paradise"
+	arrival 1215
 	habitable 1215
 	belt 1447
 	link Miaplacidus
@@ -24031,6 +24539,7 @@ system Terminus
 	pos -727.99 -23.2491
 	government Republic
 	attributes "dirt belt" "wormhole"
+	arrival 950
 	habitable 950
 	belt 1221
 	haze _menu/haze-67
@@ -24085,6 +24594,7 @@ system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
 	attributes "pleiades"
+	arrival 500
 	habitable 450
 	belt 1500
 	haze _menu/haze-blackbody
@@ -24131,6 +24641,7 @@ system Torbab
 	pos -949.587 490.051
 	government Coalition
 	attributes "arachi"
+	arrival 2030
 	habitable 2030
 	belt 1727
 	link Debrugt
@@ -24208,6 +24719,7 @@ system Tortor
 	pos -255 -424
 	government Republic
 	attributes "north"
+	arrival 500
 	habitable 450
 	belt 1243
 	haze _menu/haze-67
@@ -24275,6 +24787,7 @@ system Turais
 	pos -691 134
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 135
 	belt 1471
 	link Algorel
@@ -24331,6 +24844,7 @@ system Turais
 system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
+	arrival 640
 	habitable 640
 	belt 1574
 	link "Bote Asu"
@@ -24355,8 +24869,14 @@ system "Ula Mon"
 	trade Medical 855
 	trade Metal 378
 	trade Plastic 372
-	fleet "Small Hai" 400
-	fleet "Large Hai" 900
+	fleet "Small Hai" 800
+	fleet "Large Hai" 1800
+	fleet "Small Hai Merchant" 400
+	fleet "Large Hai Merchant" 900
+	fleet "Small Hai Merchant (Sympathizers)" 1600
+	fleet "Large Hai Merchant (Sympathizers)" 3600
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
@@ -24410,6 +24930,7 @@ system "Ultima Thule"
 	pos -336 -211
 	government Republic
 	attributes "north" "wormhole"
+	arrival 2560
 	habitable 2560
 	belt 1635
 	haze _menu/haze-67
@@ -24464,6 +24985,7 @@ system Umbral
 	pos -164 406
 	government Republic
 	attributes "south"
+	arrival 1300
 	habitable 1300
 	belt 1375
 	link Tarazed
@@ -24542,6 +25064,7 @@ system Unagi
 	pos -306 -578
 	government Pirate
 	attributes "north"
+	arrival 500
 	habitable 320
 	belt 1960
 	haze _menu/haze-33
@@ -24596,6 +25119,7 @@ system Unukalhai
 	pos -710 405
 	government Republic
 	attributes "rim"
+	arrival 625
 	habitable 625
 	belt 1968
 	haze _menu/haze-67
@@ -24656,6 +25180,7 @@ system Unukalhai
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
+	arrival 500
 	habitable 320
 	belt 1913
 	link "Ya Hai"
@@ -24678,8 +25203,14 @@ system "Uwa Fahn"
 	trade Medical 895
 	trade Metal 398
 	trade Plastic 372
-	fleet "Small Hai" 700
-	fleet "Large Hai" 700
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 1400
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 700
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 2800
+	fleet "Small Hai Merchant (Human)" 5500
+	fleet "Large Hai Merchant (Human)" 8000
 	fleet "Small Human Merchants (Hai)" 11000
 	fleet "Large Human Merchants (Hai)" 16000
 	fleet "Hai Surveillance" 3000
@@ -24719,6 +25250,7 @@ system Vaticanus
 	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
+	arrival 500
 	habitable 320
 	belt 1500
 	haze _menu/haze-red
@@ -24770,6 +25302,7 @@ system Vega
 	pos -402 182
 	government Republic
 	attributes "near earth"
+	arrival 1450
 	habitable 1450
 	belt 1744
 	link Altair
@@ -24834,6 +25367,7 @@ system Vindemiatrix
 	pos -635 257
 	government Republic
 	attributes "dirt belt"
+	arrival 1080
 	habitable 1080
 	belt 1957
 	link Alioth
@@ -24887,6 +25421,7 @@ system Volax
 	pos -256 -179
 	government Republic
 	attributes "north"
+	arrival 1715
 	habitable 1715
 	belt 1424
 	haze _menu/haze-67
@@ -24941,6 +25476,7 @@ system Volax
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1585
 	link "Bore Fah"
@@ -24968,6 +25504,12 @@ system "Wah Ki"
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
 	fleet "Large Unfettered" 800
+	fleet "Small Hai Merchant" 4800
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 1200
+	fleet "Large Hai Merchant (Sympathizers)" 500
+	fleet "Small Hai Merchant (Human)" 9000
+	fleet "Large Hai Merchant (Human)" 14000
 	fleet "Small Human Merchants (Hai)" 18000
 	fleet "Large Human Merchants (Hai)" 28000
 	object
@@ -25009,6 +25551,7 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
+	arrival 5000
 	habitable 5000
 	belt 1194
 	haze _menu/haze-67
@@ -25035,8 +25578,14 @@ system "Wah Oh"
 	trade Medical 525
 	trade Metal 478
 	trade Plastic 432
-	fleet "Small Hai" 500
-	fleet "Large Hai" 1500
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 3000
+	fleet "Small Hai Merchant" 500
+	fleet "Large Hai Merchant" 1500
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 6000
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
@@ -25091,6 +25640,7 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
+	arrival 1080
 	habitable 1080
 	belt 1222
 	link "Ehma Ti"
@@ -25156,6 +25706,7 @@ system Waypoint
 	pos -184 -515
 	government Hai
 	attributes "wormhole"
+	arrival 500
 	habitable 135
 	belt 1610
 	haze _menu/haze-67
@@ -25214,6 +25765,7 @@ system Wazn
 	pos -385 -131
 	government Republic
 	attributes "paradise"
+	arrival 530
 	habitable 530
 	belt 1414
 	haze _menu/haze-67
@@ -25280,6 +25832,7 @@ system Wei
 	pos -598 369
 	government Republic
 	attributes "dirt belt"
+	arrival 500
 	habitable 450
 	belt 1927
 	link Alioth
@@ -25338,6 +25891,7 @@ system Wezen
 	pos -664 -433
 	government Republic
 	attributes "deep"
+	arrival 2710
 	habitable 2710
 	belt 1913
 	link Naos
@@ -25420,6 +25974,7 @@ system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
 	attributes "pleiades"
+	arrival 700
 	habitable 700
 	belt 1500
 	haze _menu/haze-blackbody
@@ -25479,6 +26034,7 @@ system "World's End"
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1120
 	link "Bote Asu"
@@ -25504,8 +26060,14 @@ system "Ya Hai"
 	trade Medical 795
 	trade Metal 488
 	trade Plastic 472
-	fleet "Small Hai" 400
-	fleet "Large Hai" 500
+	fleet "Small Hai" 800
+	fleet "Large Hai" 1000
+	fleet "Small Hai Merchant" 400
+	fleet "Large Hai Merchant" 500
+	fleet "Small Hai Merchant (Sympathizers)" 1600
+	fleet "Large Hai Merchant (Sympathizers)" 2000
+	fleet "Small Hai Merchant (Human)" 6000
+	fleet "Large Hai Merchant (Human)" 8500
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 17000
 	fleet "Hai Surveillance" 3000
@@ -25554,6 +26116,7 @@ system "Yed Prior"
 	pos -810 374
 	government Republic
 	attributes "south"
+	arrival 500
 	habitable 450
 	belt 1837
 	link Pherkad
@@ -25611,6 +26174,7 @@ system Zaurak
 	pos -109 -34
 	government Syndicate
 	attributes "core"
+	arrival 625
 	habitable 625
 	belt 1130
 	haze _menu/haze-133
@@ -25669,6 +26233,7 @@ system "Zeta Aquilae"
 	pos -369 276
 	government Republic
 	attributes "dirt belt"
+	arrival 1450
 	habitable 1450
 	belt 1829
 	haze _menu/haze-133
@@ -25744,6 +26309,7 @@ system "Zeta Centauri"
 	pos -835 257
 	government Republic
 	attributes "rim"
+	arrival 500
 	habitable 450
 	belt 1488
 	haze _menu/haze-67
@@ -25800,6 +26366,7 @@ system Zosma
 	pos -640 -123
 	government Republic
 	attributes "deep"
+	arrival 500
 	habitable 450
 	belt 1436
 	link Algieba
@@ -25865,6 +26432,7 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
+	arrival 500
 	habitable 425
 	belt 1911
 	haze _menu/haze-67
@@ -25886,8 +26454,14 @@ system "Zuba Zub"
 	trade Medical 925
 	trade Metal 238
 	trade Plastic 452
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 800
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 1600
+	fleet "Small Hai Merchant" 1600
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 1600
+	fleet "Small Hai Merchant (Human)" 5000
+	fleet "Large Hai Merchant (Human)" 9000
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
@@ -25935,6 +26509,7 @@ system Zubenelgenubi
 	pos -710 353
 	government Republic
 	attributes "rim"
+	arrival 995
 	habitable 995
 	belt 1475
 	link Sabik
@@ -26001,6 +26576,7 @@ system Zubenelhakrabi
 	hidden
 	pos -755 365
 	government Uninhabited
+	arrival 500
 	habitable 490
 	belt 1669
 	asteroids "medium rock" 7 1.5946
@@ -26076,6 +26652,7 @@ system Zubeneschamali
 	pos -759 338
 	government Republic
 	attributes "rim"
+	arrival 1250
 	habitable 1250
 	belt 1543
 	haze _menu/haze-67
@@ -26243,7 +26820,7 @@ planet Alix
 	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While the settlements have been destroyed to the extent that all that remains is debris scattered across the terrain, some automated facilities are still functioning and see a constant traffic of cargo drones, passing here to gather raw materials and bringing them to the reserves of the nearby station in a short time.`
 
 planet Allhome
-	attributes hai farming urban "human tourism"
+	attributes farming hai "human tourism" urban
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
@@ -26315,7 +26892,7 @@ planet "Aresepru Nat"
 planet Asgard
 	attributes deep factory rich urban
 	landscape land/city13-sfiera
-	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and cement so commonly used elsewhere.`
+	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
 	spaceport `As with many of the worlds here in the Deep, walking around this spaceport feels like making a visit to the future. Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. It feels like this building is an organic thing, rather than the work of human hands.`
 	spaceport `	The locals hurry by, seemingly oblivious to your presence; the only people who meet your gaze are your fellow wide-eyed visitors.`
@@ -26346,7 +26923,7 @@ planet Avalon
 	security 0
 
 planet Aventine
-	attributes remnant "has shipyard"
+	attributes "has shipyard" remnant
 	landscape land/mountain17-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
@@ -26543,6 +27120,11 @@ planet "Buccaneer Bay"
 		threshold 3000
 		fleet "Large Core Pirates" 9
 
+planet "Builder Settlement"
+	attributes ka'het "requires: ka'sei" uninhabited
+	landscape land/asteroid0
+	description `This asteroid has seen hundreds of thousands of years of excavation made by swarms of Ka'sei drones. Although its size rivals that of a small moon, a large section has been hollowed out by the Builders to be filled with iridium, presumably as a long term storage facility. Due to its very low gravity, the asteroid is permanently covered in clouds of dust that hover only a few meters above the surface.`
+
 planet Burthen
 	attributes core mining
 	landscape land/fields9
@@ -26556,7 +27138,7 @@ planet Burthen
 		fleet "Small Syndicate" 7
 
 planet Caelian
-	attributes remnant "has shipyard"
+	attributes "has shipyard" remnant
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
@@ -26818,7 +27400,7 @@ planet Darkcloak
 planet Darkmetal
 	attributes hai "hai tourism" mining
 	landscape land/canyon02
-	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
+	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a concrete-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
 	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
 	security 0.2
 
@@ -26843,6 +27425,7 @@ planet Darkstone
 		fleet "Small Militia" 18
 
 planet Darkwaste
+	attributes uninhabited
 	landscape land/canyon10-harro
 	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
 
@@ -26866,7 +27449,7 @@ planet Deep
 	landscape land/sea3
 	description `Deep is a sparsely populated world of small island archipelagos surrounded by vast expanses of empty ocean. There is not enough land for any large cities or serious industry to emerge, so most of the inhabitants live in small fishing villages. The climate is temperate and Earth-like, but the sunlight is somewhat dimmer than you are used to.`
 	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, no trace of the original colony was found.`
-	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, which also built and maintains the spaceport. Steep winding roads and sturdy concrete homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 	security 0.1
 	tribute 500
 		threshold 3000
@@ -27250,7 +27833,7 @@ planet Flood
 	description `The scenic fjords and rugged mountains make Flood a popular tourist destination. Nearly all the land in the planet's temperate zone is covered in mountains, making traditional agriculture difficult.`
 	description `	The locals subsist mainly on sheep and goats, plus a few native species, and grow fruit and vegetables in small terrace gardens tended by hand rather than by tractor. Most of the population is employed in the tourist industry, running inns for the visitors to their quaint mountainside villages, or making handcrafts for sale as gifts.`
 	spaceport `You have never seen this many shops in a single spaceport. Hand-glazed pottery, wooden furniture, dolls, sweaters, scarves, paintings - the variety is overwhelming. Crowds of tourists bustle around from shop to shop, making it very difficult for you to get through.`
-	spaceport `	This mountainside spaceport is designed to look like a village, except that in place of terrace gardens are landing pads (placed haphazardly to look more natural), and the buildings are much larger than you imagine huts in the villages are. The cement tiles covering the roofs have been molded and colored to look like wood shingles, and although some of the larger buildings must have steel structures underneath, they have been made to look as if they are held up only by wooden beams.`
+	spaceport `	This mountainside spaceport is designed to look like a village, except that in place of terrace gardens are landing pads (placed haphazardly to look more natural), and the buildings are much larger than you imagine huts in the villages are. The concrete tiles covering the roofs have been molded and colored to look like wood shingles, and although some of the larger buildings must have steel structures underneath, they have been made to look as if they are held up only by wooden beams.`
 	security 0.2
 	tribute 700
 		threshold 3000
@@ -27340,7 +27923,7 @@ planet Freedom
 		fleet "Small Northern Pirates" 15
 
 planet Frostmark
-	attributes hai urban "hai tourism"
+	attributes hai "hai tourism" urban
 	landscape land/dmottl5
 	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
@@ -27388,7 +27971,7 @@ planet Gemstone
 	landscape land/lava7-sfiera
 	description `Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making ground transport very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined for use in jewelry and certain electronic components.`
 	description `	Mining a tectonically active world is an insane project. Earthquakes cause frequent cave-ins, but the potential for riches draws miners here despite high mortality rates. Most miners are dirt poor as a result of being paid on commission for their finds, but they are full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
-	spaceport `The spaceport is perched on top of a peak in an older and more stable mountain range. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low cement buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
+	spaceport `The spaceport is perched on top of a peak in an older and more stable mountain range. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low concrete buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
 	security 0.2
 	tribute 500
 		threshold 2500
@@ -27406,8 +27989,8 @@ planet Geyser
 	landscape land/bwerner8
 	description `Terraforming can change many things, but it cannot fix low gravity. Geyser was settled in the very first wave of space colonization, before refueling depots were available anywhere but Earth itself, so the only systems that could maintain trade with Earth were those that were only a few jumps away. Today, most of the industry centers around oil drilling and manufacturing, and the remaining workers are those who are too poor to leave.`
 	description `	In recent years, Geyser's economy has not been able to support repairs to the centuries-old terraforming equipment, and as a result the climate has become increasingly arid, and it is difficult to grow food crops here.`
-	spaceport `This spaceport was built seven or eight centuries ago, and its once-grand architecture has now fallen into decay. A ring of hangars with arched cement ceilings surrounds a central complex of warehouse towers, whose upper stories once held food courts and luxury hotel rooms.`
-	spaceport `	By now many of the hangars have collapsed, and the ones that remain have rugged plastic netting bolted to the ceilings to protect ships from falling fragments of cement. Only one of the food courts remains active, and although a few of the hotel rooms are still used, the marble fixtures and tile floors that were once so polished and clean are now chipped and cracked and worn down.`
+	spaceport `This spaceport was built seven or eight centuries ago, and its once-grand architecture has now fallen into decay. A ring of hangars with arched concrete ceilings surrounds a central complex of warehouse towers, whose upper stories once held food courts and luxury hotel rooms.`
+	spaceport `	By now many of the hangars have collapsed, and the ones that remain have rugged plastic netting bolted to the ceilings to protect ships from falling fragments of concrete. Only one of the food courts remains active, and although a few of the hotel rooms are still used, the marble fixtures and tile floors that were once so polished and clean are now chipped and cracked and worn down.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Syndicate Basics"
@@ -27696,7 +28279,7 @@ planet Hestia
 	description `In the distant past, Hestia was a nearly lifeless ice world. It is now a sub-tropical paradise, one of the great victories from the heyday of planetary engineering back when the galactic economy had more money to spare for terraforming.`
 	description `	Today it is mostly a retirement community for those who can afford it, although most of the population consists of young service workers in rented housing who take care of the retirees.`
 	description `	On Hestia, the poor live in cities; the rich live in country estates. Aside from the urban centers, most of this world is covered in rolling green hills and oceans.`
-	spaceport `Hestia has two separate spaceports. The port where rich residents and their visitors arrive and depart is private, owned by a local company. Here in the public spaceport, no attempt has been made at impressive architecture: everything is spare and utilitarian, with floors of bare cement. There are a few trucks and forklifts carrying cargo, but the streets that connect the landing pads are mostly full of people on foot, walking toward the customs building.`
+	spaceport `Hestia has two separate spaceports. The port where rich residents and their visitors arrive and depart is private, owned by a local company. Here in the public spaceport, no attempt has been made at impressive architecture: everything is spare and utilitarian, with floors of bare concrete. There are a few trucks and forklifts carrying cargo, but the streets that connect the landing pads are mostly full of people on foot, walking toward the customs building.`
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
@@ -27783,14 +28366,14 @@ planet Icefall
 	description `Icefall is far from its sun, with an axial tilt of roughly 38 degrees. This means that the climate is cold, the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. Nevertheless, most of the inhabitants are farmers, with the exception of the oil drilling industry at the equator. There are only a few major towns, and no major metropolitan centers. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable.`
 	description `	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres.`
 	spaceport `The spaceport is located near the equator, in this world's industrial zone. Along the horizon are fields of pumpjacks and oil derricks.`
-	spaceport `	The port consists of rows of hangars, plus two large square towers that house the marketplace and storage space for cargo. A constant howling wind sweeps in between the buildings, but thankfully they are well constructed out of sturdy cement.`
+	spaceport `	The port consists of rows of hangars, plus two large square towers that house the marketplace and storage space for cargo. A constant howling wind sweeps in between the buildings, but thankfully they are well constructed out of sturdy concrete.`
 	security 0.2
 	tribute 700
 		threshold 3000
 		fleet "Small Syndicate" 8
 
 planet Icelake
-	attributes hai urban factory "human tourism"
+	attributes factory hai "human tourism" urban
 	landscape land/sky4
 	description `Icelake is the second most populous Hai planet. Since its oil and natural gas reserves have long since been depleted, the large cities and factories here rely heavily on geothermal and wind energy. One fortunate side effect of that is that the air here is almost as pristine as on a non-industrial world.`
 	spaceport `The largest hangars in the spaceport are built of metal beams more than a meter wide, with thick glass panels between them to let in the sunlight. Even the smaller and newer warehouses on the outskirts of the port seem as solid and permanent as the mountains themselves. Thousands of Hai are walking back and forth between the buildings, and many of them regard you with curiosity; there are very few human visitors here.`
@@ -28113,9 +28696,8 @@ planet Maker
 		fleet "Large Syndicate" 10
 
 planet Makerplace
-	attributes hai urban manufacturing "hai tourism" 
+	attributes hai "hai tourism" manufacturing urban
 	landscape land/lava12
-
 	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
 	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
 	shipyard "Hai Intermediate"
@@ -28255,7 +28837,7 @@ planet Millrace
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare cement walls are lighter and have accumulated less soot and grime.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
 	spaceport `	Most of the restaurants are of the greasy spoon variety.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -28553,7 +29135,7 @@ planet "New Washington"
 		fleet "Large Militia" 3
 
 planet Newhome
-	attributes hai urban textiles
+	attributes hai textiles urban
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
@@ -28955,7 +29537,7 @@ planet Ruin
 	landscape land/hills3
 	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-gray moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
 	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`
-	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not cement or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
+	spaceport `Perhaps the oddest thing about this planet is this spaceport: a ring of landing pads surrounding a collection of fuel tanks. The landing pads are not concrete or any other material humans customarily use, but monolithic slabs of basalt. One of the fuel tanks has a human-style connector on it, but there are a dozen other connectors branching off from it as well.`
 	spaceport `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
@@ -29243,7 +29825,7 @@ planet Shroud
 	landscape land/mountain1
 	description `Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories.`
 	description `	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction.`
-	spaceport `The spaceport here is a shopping mall. You landed on a plain cement slab near the "cargo entrance," where raw goods are bought and sold. But the other end of the building holds hangars for luxury ships and glass-windowed storefronts where mannequins are dressed in outlandish and horribly impractical outfits. There is a sparse cafeteria for dock workers near your entrance, and fancy steakhouses and seafood places for the more wealthy visitors.`
+	spaceport `The spaceport here is a shopping mall. You landed on a plain concrete slab near the "cargo entrance," where raw goods are bought and sold. But the other end of the building holds hangars for luxury ships and glass-windowed storefronts where mannequins are dressed in outlandish and horribly impractical outfits. There is a sparse cafeteria for dock workers near your entrance, and fancy steakhouses and seafood places for the more wealthy visitors.`
 	shipyard "Luxury Ships"
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
@@ -29406,7 +29988,7 @@ planet Starcross
 	landscape land/sea18
 	description `Starcross is a stormy, ocean-dappled planet that was not settled until the planets farther out on this arm of the galaxy grew prosperous enough to create a need for a stop-over point for cargo. Structures must be built strong and on high enough ground to avoid the frequent floods.`
 	description `	A few enterprising settlers have taken up farming of some native plants that are edible for humans, including one plant similar to cranberries that has come to be considered a rare delicacy by many.`
-	spaceport `The spaceport is rudimentary: just a couple of landing pads, each with thick cement walls around it to protect your ship from being buffeted by any storms that strike. The central building is a squat, windowless cement fortress.`
+	spaceport `The spaceport is rudimentary: just a couple of landing pads, each with thick concrete walls around it to protect your ship from being buffeted by any storms that strike. The central building is a squat, windowless concrete fortress.`
 	spaceport `	Inside, however, it is completely different: the ceilings are high, with sun-lamps that provide some sense of warmth and cheer, and native wood paneling or stucco on most of the walls to soften them.`
 	outfitter "Ammo South"
 	security 0.05
@@ -29433,7 +30015,7 @@ planet "Station Cian"
 	"required reputation" 15
 
 planet Stonebreak
-	attributes hai urban manufacturing
+	attributes hai manufacturing urban
 	landscape land/hills7-harro
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular gray color. The corners of each building are slightly beveled instead of meeting at right angles.`
@@ -29922,7 +30504,7 @@ planet "Vibrant Water"
 	"required reputation" 15
 
 planet Viminal
-	attributes remnant "has shipyard"
+	attributes "has shipyard" remnant
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
@@ -30083,7 +30665,7 @@ planet Zenith
 	attributes frontier north "north pirate" pirate
 	landscape land/water4
 	description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
-	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
+	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
 	bribe 0.04
