@@ -3499,11 +3499,9 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
-	// NPC ships should always transfer cargo.
-	bool shouldTransferCargo = true;
-	// Player ships should only transfer cargo if they set the AI preference.
-	if(IsYours())
-		shouldTransferCargo = Preferences::Has("Fighters transfer cargo");
+	// NPC ships should always transfer cargo.  Player ships should only
+	// transfer cargo if they set the AI preference.
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
 
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
