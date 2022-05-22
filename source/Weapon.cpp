@@ -33,6 +33,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool disabledDamageSet = false;
+	bool asteroidDamageSet = false;
 	bool relativeDisabledDamageSet = false;
 
 	for(const DataNode &child : node)
