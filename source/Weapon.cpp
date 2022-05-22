@@ -279,7 +279,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
 	// Asteroid damage defaults to hull damage instead of 0.
 	if(!asteroidDamageSet)
-		damage[ASTEROID_DAMAGE] = damage[HULL_DAMAGE]
+		damage[ASTEROID_DAMAGE] = damage[HULL_DAMAGE];
 
 	// Sanity checks:
 	if(burstReload > reload)
