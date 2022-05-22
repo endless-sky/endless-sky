@@ -161,7 +161,7 @@ void Mission::Load(const DataNode &node)
 			{
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "requireswormhole")
+					if(grand.Token(0) == "requires wormhole")
 						requiresWormholes = true;
 					else if(grand.Token(0) == "requiresjumpdrive")
 						requiresJumpDrive = true;
