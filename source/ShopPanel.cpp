@@ -990,7 +990,7 @@ bool ShopPanel::SetScrollToBottom()
 		sidebarScroll = maxSidebarScroll;
 	else
 		mainScroll = maxMainScroll;
-	
+
 	return true;
 }
 
