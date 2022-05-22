@@ -422,7 +422,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 		// this weapon is not a burst type.
 		burstReload += CurrentBurstReload();
 	}
-	
+
 	--burstCount;
 	isFiring = true;
 
