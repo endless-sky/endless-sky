@@ -192,6 +192,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -430,8 +431,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 void Engine::Wait()
 {
 	unique_lock<mutex> lock(swapMutex);
-	while(calcTickTock != drawTickTock)
-		condition.wait(lock);
+	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	drawTickTock = calcTickTock;
 }
 
 
@@ -655,8 +656,13 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		// If the flagship has a large amount of fuel, display a solid bar.
+		// Otherwise, display a segment for every 100 fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", flagship->Fuel());
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
@@ -880,7 +886,8 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		drawTickTock = !drawTickTock;
+		calcTickTock = !calcTickTock;
+		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
 }
@@ -1309,8 +1316,7 @@ void Engine::ThreadEntryPoint()
 	{
 		{
 			unique_lock<mutex> lock(swapMutex);
-			while(calcTickTock == drawTickTock && !terminate)
-				condition.wait(lock);
+			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
 
 			if(terminate)
 				break;
@@ -1321,7 +1327,7 @@ void Engine::ThreadEntryPoint()
 
 		{
 			unique_lock<mutex> lock(swapMutex);
-			calcTickTock = drawTickTock;
+			hasFinishedCalculating = true;
 		}
 		condition.notify_one();
 	}
@@ -1816,7 +1822,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1838,6 +1844,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 
@@ -2052,17 +2061,20 @@ void Engine::DoCollisions(Projectile &projectile)
 			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
-				if(isSafe && projectile.Target() != ship && !gov->IsEnemy(ship->GetGovernment()))
+				bool targeted = (projectile.Target() == ship);
+				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
 					continue;
 
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()), projectile.GetGovernment());
+				// Only directly targeted ships get provoked by blast weapons.
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
+					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), projectile.GetGovernment());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov);
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}

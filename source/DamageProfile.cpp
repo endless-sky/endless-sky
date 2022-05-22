@@ -46,7 +46,7 @@ DamageProfile::DamageProfile(Weather::ImpactInfo info)
 DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) const
 {
 	bool blast = (isBlast && !ignoreBlast);
-	DamageDealt damage(weapon, Scale(inputScaling, ship, blast), blast);
+	DamageDealt damage(weapon, Scale(inputScaling, ship, blast));
 	PopulateDamage(damage, ship);
 
 	return damage;
@@ -138,6 +138,16 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
 		* ScaleType(1., attributes.Get("hull protection"));
+	double hull = ship.HullUntilDisabled();
+	if(damage.hullDamage > hull)
+	{
+		double hullFraction = hull / damage.hullDamage;
+		damage.hullDamage *= hullFraction;
+		damage.hullDamage += (weapon.DisabledDamage()
+			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
+			* ScaleType(1., attributes.Get("hull protection"))
+			* (1. - hullFraction);
+	}
 	damage.energyDamage = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
 		* ScaleType(.5, attributes.Get("energy protection"));

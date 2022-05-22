@@ -14,19 +14,19 @@ event "ember waste label"
 
 
 
-event "remnant change hail"
+event "remnant: change hail"
 	government "Remnant"
 		"friendly hail" "friendly remnant"
 		"hostile hail" "hostile remnant"
 
 
 
-event "lost in ember waste"
+event "remnant: lost in ember waste"
 
 
 
-event "remnant defense timer"
-	clear "Remnant defense delay"
+event "remnant: defense timer"
+	clear "remnant: defense delay"
 
 
 
@@ -272,7 +272,7 @@ event "remnant: ssil vida area unvisted"
 
 
 event "remnant: ssil vida activation"
-	set "Remnant: Ssil Vida Active"
+	set "remnant: ssil vida active"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
@@ -729,7 +729,7 @@ event "remnant: ssil vida activation"
 
 
 event "remnant: ssil vida deactivation"
-	clear "Remnant: Ssil Vida Active"
+	clear "remnant: ssil vida active"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
@@ -1038,6 +1038,9 @@ event "remnant: ssil vida deactivation"
 event "remnant: ssil vida outfitter"
 	planet "Ssil Vida"
 		add outfitter "Remnant Core"
+
+
+
 event "remnant: cognizance salvage expansion"
 	outfitter "Remnant Salvage"
 		add "Systems Core (Medium)"
@@ -1053,3 +1056,7 @@ event "remnant: cognizance salvage expansion"
 		add shipyard "Remnant Salvage Ships"
 	planet "Caelian"
 		add shipyard "Remnant Salvage Ships"
+
+
+
+event "remnant: cognizance calm"

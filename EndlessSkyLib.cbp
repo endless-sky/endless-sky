@@ -176,6 +176,8 @@
 		<Unit filename="source/ImageBuffer.h" />
 		<Unit filename="source/ImageSet.cpp" />
 		<Unit filename="source/ImageSet.h" />
+		<Unit filename="source/InfoPanelState.cpp" />
+		<Unit filename="source/InfoPanelState.h" />
 		<Unit filename="source/Information.cpp" />
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
@@ -206,6 +208,8 @@
 		<Unit filename="source/Mask.h" />
 		<Unit filename="source/MaskManager.cpp" />
 		<Unit filename="source/MaskManager.h" />
+		<Unit filename="source/MenuAnimationPanel.cpp" />
+		<Unit filename="source/MenuAnimationPanel.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
@@ -268,6 +272,7 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/RandomEvent.h" />
 		<Unit filename="source/Rectangle.cpp" />
 		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
@@ -330,6 +335,8 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/UniverseObjects.cpp" />
 		<Unit filename="source/UniverseObjects.h" />
+		<Unit filename="source/Variant.cpp" />
+		<Unit filename="source/Variant.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
