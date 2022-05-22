@@ -279,7 +279,10 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
-	if(!weapon->UnlimitedPenetration() && --penetrations < 0)
+	// Projectiles that start with negative penetration values are allowed
+	// to penetrate infinitely. Otherwise, the projectile dies if it was at
+	// 0 penetrations when it exploded.
+	if(penetrations-- == 0)
 	{
 		clip = intersection;
 		lifetime = -100;
