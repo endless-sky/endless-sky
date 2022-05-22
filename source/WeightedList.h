@@ -84,26 +84,7 @@ private:
 template <class T>
 std::size_t erase(WeightedList<T> &list, const T &item)
 {
-	std::size_t erased = 0;
-	auto it = list.choices.begin();
-	auto wit = list.weights.begin();
-	while(it != list.choices.end())
-	{
-		if(item == *it)
-		{
-			list.total -= *wit;
-			wit = list.weights.erase(wit);
-			it = list.choices.erase(it);
-			++erased;
-		}
-		else
-		{
-			++it;
-			++wit;
-		}
-	}
-
-	return erased;
+	return erase_if(list, [&item](const T &t) noexcept -> bool { return item == t; });
 }
 
 
