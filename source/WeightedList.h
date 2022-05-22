@@ -93,15 +93,14 @@ template <class T, class UnaryPredicate>
 std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 {
 	std::size_t erased = 0;
-	unsigned index = 0;
 	unsigned available = list.choices.size() - 1;
-	while(index < list.choices.size() - erased)
+	for(unsigned index = 0; index < list.choices.size() - erased; ++index)
 		if(pred(list.choices[index]))
 		{
 			list.total -= list.weights[index];
 			if(index != available)
 			{
-				while(pred(list.choices[available]))
+				while(index != available && pred(list.choices[available]))
 				{
 					list.total -= list.weights[index];
 					--available;
@@ -113,8 +112,6 @@ std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred)
 			}
 			++erased;
 		}
-		else
-			++index;
 
 	list.choices.erase(std::prev(list.choices.end(), erased), list.choices.end());
 	list.weights.erase(std::prev(list.weights.end(), erased), list.weights.end());
