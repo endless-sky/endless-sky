@@ -407,8 +407,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
-		outfit.FuelDamage(),
 		outfit.AsteroidDamage(),
+		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
 		outfit.IonDamage() * 100.,
