@@ -476,6 +476,37 @@ void Hardpoint::SetIndividualAFMode(bool input)
 
 
 
+void Hardpoint::CycleAutoFireMode()
+{
+	// Default -> always
+	if(!HasIndividualAFMode())
+	{
+		SetIndividualAFMode(true);
+		SetIsAutoFireOn(true);
+		SetFrugalAutoFire(false);
+		return;
+	}
+	// Never -> default
+	if(!IsAutoFireOn())
+	{
+		SetIndividualAFMode(false);
+		SetIsAutoFireOn(true);
+		SetFrugalAutoFire(false);
+		return;
+	}
+	// Frugal -> never
+	if(FrugalAutoFire())
+	{
+		SetIsAutoFireOn(false);
+		SetFrugalAutoFire(false);
+		return;
+	}
+	// Always -> frugal
+	SetFrugalAutoFire(true);
+}
+
+
+
 // Update any counters that change when this projectile fires.
 void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {

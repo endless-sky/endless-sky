@@ -78,6 +78,7 @@ private:
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
 	Rectangle defensiveZone;
+	Rectangle autofireZone;
 	Rectangle opportunisticZone;
 	// Keep track of which item the mouse is hovering over, which item is
 	// currently being dragged and which item is selected.

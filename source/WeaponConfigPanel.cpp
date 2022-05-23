@@ -43,10 +43,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-const WeaponConfigPanel::Column WeaponConfigPanel::columns[5] = {
-	Column(300, {50, Alignment::RIGHT, Truncate::BACK}), // ange
-	Column(310, {50, Alignment::LEFT, Truncate::BACK}), // ammo?
-	Column(370, {80, Alignment::LEFT, Truncate::BACK}), // defensive?
+const WeaponConfigPanel::Column WeaponConfigPanel::columns[6] = {
+	Column(250, {50, Alignment::RIGHT, Truncate::BACK}), // ange
+	Column(260, {50, Alignment::LEFT, Truncate::BACK}), // ammo?
+	Column(310, {80, Alignment::LEFT, Truncate::BACK}), // defensive?
+	Column(390, {60, Alignment::LEFT, Truncate::BACK}), // autofire mode
 	Column(550, {100, Alignment::RIGHT, Truncate::BACK}), // turn rate
 	Column(560, {100, Alignment::LEFT, Truncate::BACK}) // opportunistic?
 };
@@ -126,7 +127,7 @@ void WeaponConfigPanel::Draw()
 	static const double LABEL_WIDTH = weaponsBounds.Width() - 20.;
 	static const double HEADER_PAD = 5.;
 
-	Column weaponColumn(static_cast<int>(LABEL_PAD), {static_cast<int>(weaponsBounds.Width() - LABEL_PAD), Alignment::LEFT, Truncate::BACK}); // name
+	Column weaponColumn(static_cast<int>(LABEL_PAD), {static_cast<int>(weaponsBounds.Width() - LABEL_PAD - 50), Alignment::LEFT, Truncate::BACK}); // name
 
 	// Colors to draw with.
 	Color dimmer = *GameData::Colors().Get("dimmer");
@@ -188,6 +189,7 @@ void WeaponConfigPanel::Draw()
 	table.Draw("ammo?");
 	table.Draw("offensive");
 	//table.Draw("ammo use");
+	table.Draw("autofire");
 	table.Draw("turn speed");
 	table.Draw("targeting mode");
 	table.DrawGap(HEADER_PAD);
@@ -226,12 +228,12 @@ void WeaponConfigPanel::Draw()
 			turretTable.Draw(name, textColor);
 			if(!hardpoint.GetOutfit())
 			{
-				turretTable.Advance(5);
+				turretTable.Advance(6);
 			}
 			else if(hardpoint.GetOutfit()->AntiMissile())
 			{
 				turretTable.Draw(hardpoint.GetOutfit()->Range(), textColor);
-				turretTable.Advance(4);
+				turretTable.Advance(5);
 			}
 			else
 			{
@@ -240,6 +242,9 @@ void WeaponConfigPanel::Draw()
 				if(isHover && defensiveZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
 				turretTable.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);
+				if(isHover && autofireZone.Contains(hoverPoint))
+					turretTable.DrawHighlightCell(dim);
+				turretTable.Draw(!hardpoint.HasIndividualAFMode() ? "default" : (!hardpoint.IsAutoFireOn() ? "never" : (!hardpoint.FrugalAutoFire() ? "always" : "frugal")), textColor);
 				turretTable.Draw(hardpoint.GetOutfit()->TurretTurn() * 60., textColor);
 				if(isHover && opportunisticZone.Contains(hoverPoint))
 					turretTable.DrawHighlightCell(dim);
@@ -255,7 +260,7 @@ void WeaponConfigPanel::Draw()
 			table.Draw(name, textColor);
 			if(!hardpoint.GetOutfit())
 			{
-				table.Advance(5);
+				table.Advance(6);
 			}
 			else
 			{
@@ -264,6 +269,9 @@ void WeaponConfigPanel::Draw()
 				if(isHover && defensiveZone.Contains(hoverPoint))
 					table.DrawHighlightCell(dim);
 				table.Draw(hardpoint.IsDefensive() ? "Off" : "On", textColor);
+				if(isHover && autofireZone.Contains(hoverPoint))
+					table.DrawHighlightCell(dim);
+				table.Draw(!hardpoint.HasIndividualAFMode() ? "default" : (!hardpoint.IsAutoFireOn() ? "never" : (!hardpoint.FrugalAutoFire() ? "always" : "frugal")), textColor);
 				table.Advance();
 				if(isHover && opportunisticZone.Contains(hoverPoint))
 					table.DrawHighlightCell(dim);
@@ -361,6 +369,11 @@ bool WeaponConfigPanel::Click(int x, int y, int /* clicks */)
 	if(defensiveZone.Contains(clickPoint))
 	{
 		(**shipIt).GetArmament().ToggleDefensive(hoverIndex);
+		return true;
+	}
+	else if(autofireZone.Contains(clickPoint))
+	{
+		(**shipIt).GetArmament().CycleAutoFireMode(hoverIndex);
 		return true;
 	}
 	else if(opportunisticZone.Contains(clickPoint))
@@ -478,9 +491,14 @@ void WeaponConfigPanel::SetControlColumnZones(double height, double tableLeft)
 {
 	double defensiveColumnCenterX = columns[2].GetCenter() + tableLeft;
 	double defensiveColumnWidth = columns[2].layout.width;
-	double opportunisticColumnCenterX = columns[4].GetCenter() + tableLeft;
-	double opportunisticColumnWidth = columns[4].layout.width;
 	defensiveZone = Rectangle(Point(defensiveColumnCenterX, 0), Point(defensiveColumnWidth, height));
+
+	double autofireColumnCenterX = columns[3].GetCenter() + tableLeft;
+	double autofireColumnWidth = columns[3].layout.width;
+	autofireZone = Rectangle(Point(autofireColumnCenterX, 0), Point(autofireColumnWidth, height));
+
+	double opportunisticColumnCenterX = columns[5].GetCenter() + tableLeft;
+	double opportunisticColumnWidth = columns[5].layout.width;
 	opportunisticZone = Rectangle(Point(opportunisticColumnCenterX, 0), Point(opportunisticColumnWidth, height));
 }
 

@@ -206,6 +206,15 @@ void Armament::SetOpportunistic(int index, bool opportunistic)
 
 
 
+void Armament::CycleAutoFireMode(int index)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].CycleAutoFireMode();
+}
+
+
+
 // Access the array of weapon hardpoints.
 const vector<Hardpoint> &Armament::Get() const
 {

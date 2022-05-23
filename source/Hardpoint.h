@@ -105,6 +105,8 @@ public:
 	// Set whether the hardpoint has its own auto-fire setting.
 	void SetIndividualAFMode(bool input);
 
+	void CycleAutoFireMode();
+
 
 private:
 	// Reset the reload counters and expend ammunition, if any.

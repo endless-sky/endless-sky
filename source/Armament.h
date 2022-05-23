@@ -60,6 +60,7 @@ public:
 	void SetDefensive(int index, bool defensive);
 	void ToggleOpportunistic(int index);
 	void SetOpportunistic(int index, bool opportunistic);
+	void CycleAutoFireMode(int index);
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
