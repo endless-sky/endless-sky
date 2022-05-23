@@ -39,8 +39,8 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isDefensive = false, bool isOpportunistic = false);
-	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr, bool isDefensive = false, bool isOpportunistic = false);
+	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
+	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To

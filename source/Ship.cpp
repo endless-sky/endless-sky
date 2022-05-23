@@ -278,8 +278,12 @@ void Ship::Load(const DataNode &node)
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
 			bool drawUnder = (key == "gun");
-			bool isDefensive = false;
-			bool isOpportunistic = false;
+      bool isLocked = false;
+      bool isDefensive = false;
+      bool isOpportunistic = false;
+			bool hasIndividualAFMode = false;
+			bool isAutoFireOn = true;
+			bool frugalAutoFire = false;
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
@@ -292,18 +296,43 @@ void Ship::Load(const DataNode &node)
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
 						drawUnder = false;
+          else if(grand.Token(0) == "locked")
+            isLocked = true;
 					else if(grand.Token(0) == "defensive")
 						isDefensive = true;
 					else if(grand.Token(0) == "opportunistic")
 						isOpportunistic = true;
+          else if(grand.Token(0) == "autofireon")
+					{
+						hasIndividualAFMode = true;
+						isAutoFireOn = true;
+					}
+					else if(grand.Token(0) == "autofireoff")
+					{
+						hasIndividualAFMode = true;
+						isAutoFireOn = false;
+					}
+					else if(grand.Token(0) == "frugalaf")
+					{
+						hasIndividualAFMode = true;
+						frugalAutoFire = true;
+					}
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 			}
+			if(outfit == nullptr && !isLocked)
+			{
+        isDefensive = false;
+        isOpportunistic = false;
+				isAutoFireOn = true;
+				frugalAutoFire = false;
+				hasIndividualAFMode = false;
+			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit, isDefensive, isOpportunistic);
+				armament.AddGunPort(hardpoint, gunPortAngle, gunPortParallel, drawUnder, outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 			else
-				armament.AddTurret(hardpoint, drawUnder, outfit, isDefensive, isOpportunistic);
+				armament.AddTurret(hardpoint, drawUnder, outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -425,7 +454,8 @@ void Ship::Load(const DataNode &node)
 			}
 
 			// Verify we have at least as many installed outfits as were identified as "equipped."
-			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
+			// If not (e.g. overriding a previously loaded ship definition),
+			// ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
 				for(const auto &pair : GetEquipped(Weapons()))
 				{
@@ -548,46 +578,52 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit;
-					bool defensive;
-					bool opportunistic;
-					if (nextGun == end)
-					{
-						outfit = nullptr;
-						defensive = false;
-						opportunistic = false;
-					}
-					else
+          bool isLocked = false;
+					bool defensive = false;
+					bool opportunistic = false;
+					bool isAutoFireOn = true;
+					bool frugalAutoFire = false;
+					bool hasIndividualAFMode = false;
+					if(nextGun != end)
 					{
 						outfit = nextGun->GetOutfit();
-						defensive = nextGun->IsDefensive();
-						opportunistic = nextGun->IsOpportunistic();
-					}
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, defensive, opportunistic);
-					if(nextGun != end)
+            isLocked = nextGun->IsLocked();
+            isDefensive = nextGun->IsDefensive();
+            isOpportunistc = nextGun->IsOpportunistic();
+						hasIndividualAFMode = nextGun->HasIndividualAFMode();
+						isAutoFireOn = nextGun->IsAutoFireOn();
+						frugalAutoFire = nextGun->FrugalAutoFire();
 						++nextGun;
+					}
+					else
+						outfit = nullptr;
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAngle(), bit->IsParallel(), bit->IsUnder(), outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 				}
 				else
 				{
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit;
-					bool defensive;
-					bool opportunistic;
-					if(nextTurret == end)
-					{
-						outfit = nullptr;
-						defensive = false;
-						opportunistic = false;
-					}
-					else
+          bool isLocked = false;
+          bool isDefensive = false;
+          bool isOpportunistic = false;
+					bool hasIndividualAFMode = false;
+					bool isAutoFireOn = true;
+					bool frugalAutoFire = false;
+					if(nextTurret != end)
 					{
 						outfit = nextTurret->GetOutfit();
-						defensive = nextTurret->IsDefensive();
-						opportunistic = nextTurret->IsOpportunistic();
-					}
-					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, defensive, opportunistic);
-					if(nextTurret != end)
+            isLocked = nextTurret->IsLocked();
+            isDefensive = nextTurret->IsDefensive();
+            isOpportunistic = nextTurret->IsOpportunistic();
+						isAutoFireOn = nextTurret->IsAutoFireOn();
+						frugalAutoFire = nextTurret->FrugalAutoFire();
+						hasIndividualAFMode = nextTurret->HasIndividualAFMode();
 						++nextTurret;
+					}
+					else
+						outfit = nullptr;
+					merged.AddTurret(bit->GetPoint() * 2., bit->IsUnder(), outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 				}
 			}
 			armament = merged;
@@ -958,10 +994,21 @@ void Ship::Save(DataWriter &out) const
 					out.Write("under");
 				else
 					out.Write("over");
+        if(hardpoint.IsLocked())
+          out.Write("locked");
 				if(hardpoint.IsDefensive())
 					out.Write("defensive");
 				if(hardpoint.IsOpportunistic())
 					out.Write("opportunistic");
+				if(hardpoint.HasIndividualAFMode())
+				{
+					if(hardpoint.IsAutoFireOn())
+						out.Write("autofireon");
+					else
+						out.Write("autofireoff");
+					if(hardpoint.FrugalAutoFire())
+						out.Write("frugalaf");
+				}
 			}
 			out.EndChild();
 		}

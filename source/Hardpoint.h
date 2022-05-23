@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool defensive = false, bool opportunistic = false, bool locked = false);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -55,6 +55,9 @@ public:
 	bool IsLocked() const;
 	bool IsDefensive() const;
 	bool IsOpportunistic() const;
+	bool IsAutoFireOn() const;
+	bool FrugalAutoFire() const;
+	bool HasIndividualAFMode() const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -95,6 +98,12 @@ public:
 	void SetOpportunistic(bool opportunistic);
 	// Toggle the opportunistic value of this hardpoint.
 	void ToggleOpportunistic();
+	void SetIsAutoFireOn(bool input);
+	void ToggleIsAutoFireOn();
+	void SetFrugalAutoFire(bool input);
+	void ToggleFrugalAutoFire();
+	// Set whether the hardpoint has its own auto-fire setting.
+	void SetIndividualAFMode(bool input);
 
 
 private:
@@ -123,6 +132,12 @@ private:
 	bool isDefensive = false;
 	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.
 	bool isOpportunistic = false;
+	// Indicates whether the hardpoint is allowed to fire.
+	bool isAutoFireOn = true;
+	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.
+	bool frugalAutoFire = false;
+	// Indicates whether the hardpoint has its own frugality setting.
+	bool hasIndividualAFMode = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;
