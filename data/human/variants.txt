@@ -333,7 +333,7 @@ ship "Berserker" "Berserker (Afterburner)"
 		"Ramscoop"
 		"Chipmunk Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 
 
@@ -606,7 +606,7 @@ ship "Clipper" "Clipper (Nuclear)"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-		"Afterburner"
+		"Volcano Afterburner"
 
 
 ship "Clipper" "Clipper (Speedy)"
@@ -1532,7 +1532,7 @@ ship "Leviathan" "Leviathan (Hai Weapons)"
 		"Pulse Rifle" 20
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Scram Drive"
 		"Ramscoop"
 
@@ -1552,7 +1552,7 @@ ship "Leviathan" "Leviathan (Heavy)"
 		"Laser Rifle" 25
 		"Impala Plasma Thruster"
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Scram Drive"
 		"Ramscoop"
 	gun "Meteor Missile Launcher"
@@ -1589,7 +1589,7 @@ ship "Leviathan" "Leviathan (Laser)"
 ship "Leviathan" "Leviathan (Plasma Repeater)"
 	outfits
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Breeder Reactor"
 		"D94-YV Shield Generator" 2
 		"Heavy Anti-Missile Turret" 2
@@ -2071,7 +2071,7 @@ ship "Raven" "Raven (Afterburner)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-		"Afterburner"
+		"Volcano Afterburner"
 
 
 ship "Raven" "Raven (Heavy)"
