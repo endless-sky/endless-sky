@@ -1040,11 +1040,13 @@ interface "info panel"
 	sprite "ui/three info buttons"
 		center 0 305
 	
+	#The two sections of the player info panel.
 	box "player"
 		from -500 -290 to -250 280
 	box "fleet"
 		from -250 -290 to 500 280
 	
+	#The four sections of the ship info panel.
 	box "stats"
 		from -500 -290 to -250 280
 	box "outfits"
@@ -1054,6 +1056,17 @@ interface "info panel"
 	box "cargo"
 		from 250 -290 to 500 280
 	
+	#The three sections of the weapon configuration panel.
+	box "silhouette"
+		from -500 -290 to -250 280
+	box "weaponsList"
+		from -250 -290 to 0 280
+	box "weaponsConfigTable"
+		from 0 -290 to 500 280
+	box "weaponsTable"
+		from -250 -290 to 500 280
+	
+	#The rename button and top bar of the ship info tab.
 	visible if "ship tab"
 	button R
 		center -375 -270
@@ -1068,7 +1081,13 @@ interface "info panel"
 	button i
 		center -420 -305
 		dimensions 120 30
+	sprite "ui/wide button"
+		center -295 305
+	button w "Weapons"
+		center -295 305
+		dimensions 90 30
 	
+	#The top bar of the player info tab.
 	visible if "player tab"
 	sprite "ui/player tab"
 		center 0 -310
@@ -1080,6 +1099,20 @@ interface "info panel"
 	button s
 		center -300 -305
 		dimensions 120 30
+	
+	#The turn rate threshold bar for automatically setting tracking mode
+	visible if "show turn rate bar"
+	bar "turnratethreshold"
+		from 100 -250
+		dimensions 360 0
+		color "energy"
+		size 5
+	sprite "ui/wide button"
+		center 550 -250
+	active if "apply turn rate threshold"
+	button a "_Apply"
+		center 550 -250
+		dimensions 90 30
 	
 	visible
 	button d "_Done"
@@ -1166,7 +1199,7 @@ interface "hail panel"
 	button d "_Done"
 		center 250 115
 		dimensions 80 30
-
+	
 	active if "can bribe"
 	button b "Offer _Bribe"
 		center 130 115

@@ -27,7 +27,7 @@ std::vector<DataNode> AsDataNodes(std::string text)
 	std::stringstream in;
 	in.str(text);
 	const auto file = DataFile{in};
-	
+
 	return std::vector<DataNode>{std::begin(file), std::end(file)};
 }
 // Convert the text to a list of nodes, and return the first node.

@@ -86,6 +86,10 @@ public:
 	void DrawHighlight() const;
 	void DrawHighlight(const Color &color) const;
 
+	// Highlight the current cell (before Draw).
+	void DrawHighlightCell() const;
+	void DrawHighlightCell(const Color &color) const;
+
 	// Shift the draw position down by the given amount. This usually should not
 	// be called in the middle of a row, or the fields will not line up.
 	void DrawGap(int y) const;

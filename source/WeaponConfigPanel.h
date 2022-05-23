@@ -1,5 +1,5 @@
-/* ShipInfoPanel.h
-Copyright (c) 2017 by Michael Zahniser
+/*WeaponConfigPanel.h
+Copyright (c) 2022 by warpcore
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -10,36 +10,25 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SHIP_INFO_PANEL_H_
-#define SHIP_INFO_PANEL_H_
+#ifndef WEAPONCONFIGPANEL_H_
+#define WEAPONCONFIGPANEL_H_
 
 #include "Panel.h"
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
 #include "Point.h"
-#include "ShipInfoDisplay.h"
+#include "text/layout.hpp"
 
-#include <map>
-#include <memory>
-#include <set>
-#include <string>
 #include <vector>
 
 class Color;
-class Outfit;
 class PlayerInfo;
-class Rectangle;
 
-
-
-// This panel displays detailed information about one of the player's ships. If
-// they are landed on a planet, it also allows the player to change weapon
-// hardpoints. In flight, this panel allows them to jettison cargo.
-class ShipInfoPanel : public Panel {
+class WeaponConfigPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player);
-	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+	explicit WeaponConfigPanel(PlayerInfo &player);
+	explicit WeaponConfigPanel(PlayerInfo &player, InfoPanelState state);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -49,9 +38,11 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool RClick(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
+	virtual bool Scroll(double dx, double dy) override;
 
 
 private:
@@ -59,21 +50,22 @@ private:
 	void UpdateInfo();
 	void ClearZones();
 
-	// Draw the ship tab (and its subsections).
-	void DrawShipStats(const Rectangle &bounds);
-	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
-	void DrawWeapons(const Rectangle &bounds);
-	void DrawCargo(const Rectangle &bounds);
-
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
-	void Rename(const std::string &name);
-	bool CanDump() const;
-	void Dump();
-	void DumpPlunder(int count);
-	void DumpCommodities(int count);
-	void Disown();
+	void SetControlColumnZones(double height, double tableLeft);
+
+	class Column {
+	public:
+		Column(double start, Layout layout);
+
+		double GetLeft() const;
+		double GetRight() const;
+		double GetCenter() const;
+
+		double start;
+		Layout layout;
+	};
 
 
 private:
@@ -81,28 +73,23 @@ private:
 	// This is the currently selected ship.
 	std::vector<std::shared_ptr<Ship>>::const_iterator shipIt;
 
-	// Information about the currently selected ship.
-	ShipInfoDisplay info;
-	std::map<std::string, std::vector<const Outfit *>> outfits;
+	static const Column columns[];
 
 	// Track all the clickable parts of the UI (other than the buttons).
 	std::vector<ClickZone<int>> zones;
-	std::vector<ClickZone<std::string>> commodityZones;
-	std::vector<ClickZone<const Outfit *>> plunderZones;
-	// Keep track of which item the mouse is hovering over and which item is
-	// currently being dragged.
+	Rectangle defensiveZone;
+	Rectangle opportunisticZone;
+	// Keep track of which item the mouse is hovering over, which item is
+	// currently being dragged and which item is selected.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
+	int selectedIndex = -1;
 
 	InfoPanelState panelState;
 
 	// Track the current mouse location.
 	Point hoverPoint;
-	// Track whether a commodity or plundered outfit is selected to jettison.
-	std::string selectedCommodity;
-	const Outfit *selectedPlunder = nullptr;
+
 };
-
-
 
 #endif

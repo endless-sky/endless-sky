@@ -30,7 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
+	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -51,9 +51,13 @@ public:
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
 	bool CanAim() const;
-	bool HasIndividualAFMode() const;
+
+	bool IsLocked() const;
+	bool IsDefensive() const;
+	bool IsOpportunistic() const;
 	bool IsAutoFireOn() const;
 	bool FrugalAutoFire() const;
+	bool HasIndividualAFMode() const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
@@ -83,14 +87,23 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
-	// Set whether the hardpoint has its own frugality setting.
-	void SetIndividualFrugality(bool input);
-	// Set whether the hardpoint is enabled or disabled.
-	void SetIsEnabled(bool input);
-	void ToggleIsEnabled();
-	// Set whether the hardpoint is always frugal.
-	void SetIsFrugal(bool input);
-	void ToggleIsFrugal();
+
+	void SetLocked(bool locked);
+	void ToggleLocked();
+	// Set the defensive value of this hardpoint.
+	void SetDefensive(bool defensive);
+	// Toggle the defensive value of this hardpoint.
+	void ToggleDefensive();
+	// Set the opportunistic value of this hardpoint.
+	void SetOpportunistic(bool opportunistic);
+	// Toggle the opportunistic value of this hardpoint.
+	void ToggleOpportunistic();
+	void SetIsAutoFireOn(bool input);
+	void ToggleIsAutoFireOn();
+	void SetFrugalAutoFire(bool input);
+	void ToggleFrugalAutoFire();
+	// Set whether the hardpoint has its own auto-fire setting.
+	void SetIndividualAFMode(bool input);
 
 
 private:
@@ -111,6 +124,14 @@ private:
 	bool isParallel = false;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
+
+	// Indicates whether fire control attributes on this hardpoint should be editable,
+	// including by uninstallation.
+	bool isLocked = false;
+	// Indicates whether the hardpoint is set to defensive mode.
+	bool isDefensive = false;
+	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.
+	bool isOpportunistic = false;
 	// Indicates whether the hardpoint is allowed to fire.
 	bool isAutoFireOn = true;
 	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.

@@ -39,8 +39,8 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isEnabled = true, bool isFrugal = false, bool hasIndividualFrugality = false);
-	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr, bool isEnabled = true, bool isFrugal = false, bool hasIndividualFrugality = false);
+	void AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
+	void AddTurret(const Point &point, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
@@ -56,6 +56,10 @@ public:
 
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
+	void ToggleDefensive(int index);
+	void SetDefensive(int index, bool defensive);
+	void ToggleOpportunistic(int index);
+	void SetOpportunistic(int index, bool opportunistic);
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;

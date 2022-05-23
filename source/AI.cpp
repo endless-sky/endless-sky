@@ -2063,6 +2063,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	bool isArmed = false;
 	bool hasAmmo = false;
 	double minSafeDistance = 0.;
+	double shortestDefensiveRange = shortestRange;
+	bool hasDefensiveAmmo = false;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
@@ -2070,7 +2072,6 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		{
 			isArmed = true;
 			bool hasThisAmmo = (!weapon->Ammo() || ship.OutfitCount(weapon->Ammo()));
-			hasAmmo |= hasThisAmmo;
 
 			// Exploding weaponry that can damage this ship requires special
 			// consideration (while we have the ammo to use the weapon).
@@ -2080,7 +2081,20 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			// The missile boat AI should be applied at 1000 pixels range if
 			// all weapons are homing or turrets, and at 2000 if not.
 			double multiplier = (hardpoint.IsHoming() || hardpoint.IsTurret()) ? 1. : .5;
-			shortestRange = min(multiplier * weapon->Range(), shortestRange);
+
+			// If the hardpoint is set to defensive, the installed weapon
+			// should not be considered for determining the shortest range
+			// until all other weapons are out of ammo.
+			if(!hardpoint.IsDefensive())
+			{
+				shortestRange = min(multiplier * weapon->Range(), shortestRange);
+				hasAmmo |= hasThisAmmo;
+			}
+			else
+			{
+				shortestDefensiveRange = min(multiplier * weapon->Range(), shortestDefensiveRange);
+				hasDefensiveAmmo |= hasThisAmmo;
+			}
 		}
 	}
 	// If this ship was using the missile boat AI to run away and bombard its
@@ -2088,7 +2102,12 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// is not realistic, but it's a whole lot less annoying for the player when
 	// they are trying to hunt down and kill the last missile boat in a fleet.
 	if(isArmed && !hasAmmo)
-		shortestRange = 0.;
+	{
+		if(!hasDefensiveAmmo)
+			shortestRange = 0.;
+		else
+			shortestRange = shortestDefensiveRange;
+	}
 
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours() && ship.HasBays())
@@ -2693,7 +2712,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 
 
 // Get a vector giving the direction this ship should aim in in order to do
-// maximum damaged to a target at the given position with its non-turret,
+// maximum damage to a target at the given position with its non-turret,
 // non-homing weapons. If the ship has no non-homing weapons, this just
 // returns the direction to the target.
 Point AI::TargetAim(const Ship &ship)
@@ -2739,13 +2758,51 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 
+bool AI::HasOpportunisticWeapons(const Ship &ship)
+{
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsOpportunistic())
+			return true;
+	return false;
+}
+
+
+
+void AI::AimIdleOpportunisticTurret(const Hardpoint *weaponsStart, const Ship &ship, FireCommand &command, const Hardpoint &hardpoint) const
+{
+	int index = &hardpoint - weaponsStart;
+	// First, check if this turret is currently in motion. If not,
+	// it only has a small chance of beginning to move.
+	double previous = ship.FiringCommands().Aim(index);
+	if(!previous && (Random::Int(60)))
+		return;
+
+	Angle centerAngle = Angle(hardpoint.GetPoint());
+	double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+	double acceleration = Random::Real() - Random::Real() + bias;
+	command.SetAim(index, previous + .1 * acceleration);
+}
+
+
+
+void AI::AimIdleFocusedTurret(const Hardpoint *weaponsStart, FireCommand &command, const Hardpoint &hardpoint) const
+{
+	int index = &hardpoint - weaponsStart;
+	double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+	command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+}
+
+
+
 // Aim the given ship's turrets.
 void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) const
 {
 	// First, get the set of potential hostile ships.
 	auto targets = vector<const Body *>();
 	const Ship *currentTarget = ship.GetTargetShip().get();
-	if(opportunistic || !currentTarget || !currentTarget->IsTargetable())
+	auto focusedTargets = vector<const Body *>();
+	bool hasOpportunisticWeapons = HasOpportunisticWeapons(ship);
+	if(opportunistic || !currentTarget || !currentTarget->IsTargetable() || hasOpportunisticWeapons)
 	{
 		// Find the maximum range of any of this ship's turrets.
 		double maxRange = 0.;
@@ -2765,51 +2822,51 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 		for(auto &&foe : enemies)
 			if(!foe->IsDisabled())
 				targets.emplace_back(foe);
-		// Even if the ship's current target ship is beyond maxRange,
-		// or is already disabled, consider aiming at it.
-		if(currentTarget && currentTarget->IsTargetable()
-				&& find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
+	}
+	// Even if the ship's current target ship is beyond maxRange,
+	// or is already disabled, consider aiming at it.
+	if(currentTarget && currentTarget->IsTargetable())
+	{
+		focusedTargets.push_back(currentTarget);
+		if(find(targets.cbegin(), targets.cend(), currentTarget) == targets.cend())
 			targets.push_back(currentTarget);
 	}
-	else
-		targets.push_back(currentTarget);
 	// If this ship is mining, consider aiming at its target asteroid.
 	if(ship.GetTargetAsteroid())
-		targets.push_back(ship.GetTargetAsteroid().get());
+	{
+		auto targetAsteroid = ship.GetTargetAsteroid().get();
+		targets.push_back(targetAsteroid);
+		focusedTargets.push_back(targetAsteroid);
+	}
 
 	// If there are no targets to aim at, opportunistic turrets should sweep
 	// back and forth at random, with the sweep centered on the "outward-facing"
 	// angle. Focused turrets should just point forward.
+	const Hardpoint *weaponsStart = &ship.Weapons().front();
+	if(targets.empty() && opportunistic)
+	{
+		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
+			if(hardpoint.CanAim())
+				AimIdleOpportunisticTurret(weaponsStart, ship, command, hardpoint);
+		}
+		return;
+	}
 	if(targets.empty() && !opportunistic)
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
 			if(hardpoint.CanAim())
 			{
-				// Get the index of this weapon.
-				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
-				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
-			}
-		return;
-	}
-	if(targets.empty())
-	{
-		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.CanAim())
-			{
-				// Get the index of this weapon.
-				int index = &hardpoint - &ship.Weapons().front();
-				// First, check if this turret is currently in motion. If not,
-				// it only has a small chance of beginning to move.
-				double previous = ship.FiringCommands().Aim(index);
-				if(!previous && (Random::Int(60)))
+				// 'opportunistic' can be false but individual hardpoints on a ship may still be set to opportunistic.
+				if(hardpoint.IsOpportunistic())
+				{
+					AimIdleOpportunisticTurret(weaponsStart, ship, command, hardpoint);
 					continue;
-
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
-				double acceleration = Random::Real() - Random::Real() + bias;
-				command.SetAim(index, previous + .1 * acceleration);
+				}
+				AimIdleFocusedTurret(weaponsStart, command, hardpoint);
 			}
+		}
 		return;
 	}
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
@@ -2830,7 +2887,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			// to aim at it and for a projectile to hit it.
 			double bestScore = numeric_limits<double>::infinity();
 			double bestAngle = 0.;
-			for(const Body *target : targets)
+			for(const Body *target : ((opportunistic || hardpoint.IsOpportunistic()) ? targets : (focusedTargets.empty() ? targets : focusedTargets)))
 			{
 				Point p = target->Position() - start;
 				Point v = target->Velocity();
@@ -3569,7 +3626,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& (Preferences::Has("Automatic firing") || activeCommands.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))

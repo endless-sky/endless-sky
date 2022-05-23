@@ -26,17 +26,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
+void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit, bool isLocked, bool isDefensive, bool isOpportunistic, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
+	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 }
 
 
 
 // Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit, bool isEnabled, bool isFrugal, bool hasIndividualFrugality)
+void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit, bool isLocked, bool isDefensive, bool isOpportunistic, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
 {
-	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit, isEnabled, isFrugal, hasIndividualFrugality);
+	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit, isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 }
 
 
@@ -166,6 +166,42 @@ void Armament::Swap(int first, int second)
 	const Outfit *outfit = hardpoints[first].GetOutfit();
 	hardpoints[first].Install(hardpoints[second].GetOutfit());
 	hardpoints[second].Install(outfit);
+}
+
+
+
+void Armament::ToggleDefensive(int index)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].ToggleDefensive();
+}
+
+
+
+void Armament::SetDefensive(int index, bool defensive)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].SetDefensive(defensive);
+}
+
+
+
+void Armament::ToggleOpportunistic(int index)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].ToggleOpportunistic();
+}
+
+
+
+void Armament::SetOpportunistic(int index, bool opportunistic)
+{
+	if(static_cast<unsigned>(index) >= hardpoints.size())
+		return;
+	hardpoints[index].SetOpportunistic(opportunistic);
 }
 
 
