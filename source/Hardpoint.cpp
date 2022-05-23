@@ -176,7 +176,7 @@ bool Hardpoint::IsAutoFireOn() const
 
 bool Hardpoint::FrugalAutoFire() const
 {
-  return frugalAutoFire;
+	return frugalAutoFire;
 }
 
 
@@ -387,9 +387,9 @@ void Hardpoint::Uninstall()
 	{
 		isDefensive = false;
 		isOpportunistic = false;
-    isAutoFireOn = true;
-    frugalAutoFire = false;
-    hasIndividualAFMode = false;
+	isAutoFireOn = true;
+	frugalAutoFire = false;
+	hasIndividualAFMode = false;
 	}
 }
 
@@ -443,35 +443,35 @@ void Hardpoint::ToggleOpportunistic()
 
 void Hardpoint::SetIsAutoFireOn(bool input)
 {
-  isAutoFireOn = input;
+	isAutoFireOn = input;
 }
 
 
 
 void Hardpoint::ToggleIsAutoFireOn()
 {
-  isAutoFireOn = !isAutoFireOn;
+	isAutoFireOn = !isAutoFireOn;
 }
 
 
 
 void Hardpoint::SetFrugalAutoFire(bool input)
 {
-  frugalAutoFire = input;
+	frugalAutoFire = input;
 }
 
 
 
 void Hardpoint::ToggleFrugalAutoFire()
 {
-  frugalAutoFire = !frugalAutoFire;
+	frugalAutoFire = !frugalAutoFire;
 }
 
 
 
 void Hardpoint::SetIndividualAFMode(bool input)
 {
-  hasIndividualAFMode = input;
+	hasIndividualAFMode = input;
 }
 
 

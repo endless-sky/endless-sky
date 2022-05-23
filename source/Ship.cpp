@@ -278,9 +278,9 @@ void Ship::Load(const DataNode &node)
 			Angle gunPortAngle = Angle(0.);
 			bool gunPortParallel = false;
 			bool drawUnder = (key == "gun");
-      bool isLocked = false;
-      bool isDefensive = false;
-      bool isOpportunistic = false;
+			bool isLocked = false;
+			bool isDefensive = false;
+			bool isOpportunistic = false;
 			bool hasIndividualAFMode = false;
 			bool isAutoFireOn = true;
 			bool frugalAutoFire = false;
@@ -296,13 +296,13 @@ void Ship::Load(const DataNode &node)
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
 						drawUnder = false;
-          else if(grand.Token(0) == "locked")
-            isLocked = true;
+					else if(grand.Token(0) == "locked")
+						isLocked = true;
 					else if(grand.Token(0) == "defensive")
 						isDefensive = true;
 					else if(grand.Token(0) == "opportunistic")
 						isOpportunistic = true;
-          else if(grand.Token(0) == "autofireon")
+					else if(grand.Token(0) == "autofireon")
 					{
 						hasIndividualAFMode = true;
 						isAutoFireOn = true;
@@ -323,8 +323,8 @@ void Ship::Load(const DataNode &node)
 			}
 			if(outfit == nullptr && !isLocked)
 			{
-        isDefensive = false;
-        isOpportunistic = false;
+				isDefensive = false;
+				isOpportunistic = false;
 				isAutoFireOn = true;
 				frugalAutoFire = false;
 				hasIndividualAFMode = false;
@@ -994,8 +994,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("under");
 				else
 					out.Write("over");
-        if(hardpoint.IsLocked())
-          out.Write("locked");
+				if(hardpoint.IsLocked())
+					out.Write("locked");
 				if(hardpoint.IsDefensive())
 					out.Write("defensive");
 				if(hardpoint.IsOpportunistic())
