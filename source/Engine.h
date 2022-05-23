@@ -175,6 +175,7 @@ private:
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;
+	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
