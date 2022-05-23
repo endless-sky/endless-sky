@@ -44,6 +44,7 @@ hazard "Black Hole Accretion Disk"
 		"damage dropoff" 150 600
 		"dropoff modifier" 0
 		"relative shield damage" .0018
+		"fuel damage" -0.5
 
 hazard "Black Hole Event Horizon"
 	"constant strength"
