@@ -199,6 +199,13 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 
 
 
+bool Dialog::AllowsFastForward() const noexcept
+{
+	return allowsFastForward;
+}
+
+
+
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);

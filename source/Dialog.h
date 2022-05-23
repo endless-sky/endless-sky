@@ -72,6 +72,9 @@ template <class T>
 	// Static method used to convert a DataNode into formatted Dialog text.
 	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);
 
+	// Some dialogs allow fast-forward to stay active.
+	bool AllowsFastForward() const noexcept final;
+
 
 protected:
 	// The use can click "ok" or "cancel", or use the tab key to toggle which
@@ -99,6 +102,7 @@ protected:
 	bool okIsActive;
 	bool isMission;
 	bool isOkDisabled = false;
+	bool allowsFastForward = false;
 
 	std::string input;
 
@@ -132,7 +136,9 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialVa
 template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::string initialValue, Truncate truncate)
-	: stringFun(std::bind(fun, t, std::placeholders::_1)), input(initialValue)
+	: stringFun(std::bind(fun, t, std::placeholders::_1)),
+	allowsFastForward(true),
+	input(initialValue)
 {
 	Init(text, truncate);
 }
