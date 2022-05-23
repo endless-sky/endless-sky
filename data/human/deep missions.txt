@@ -1591,7 +1591,7 @@ mission "Deep: Remnant 3: Revealed"
 			variant
 				"Albatross"
 				"Starling"
-		dialog `You have finished scanning the Remnant ships in the system. You may now return to <destination> with the scanner logs.`
+		dialog `You have finished scanning the Remnant ships in the system, and they don't seem to have taken too kindly to that. You may now return to <destination> with the scanner logs.`
 	
 	on visit
 		dialog `You show your scanner logs to Ivan, but he shakes his head. "This isn't enough. There should be more ships for you to scan in <waypoints>. Make sure you're using an outfit scanner as well."`
@@ -1599,7 +1599,7 @@ mission "Deep: Remnant 3: Revealed"
 		event "deep: scan log research" 14
 		event "deep: arculus restored"
 		log `Scanned Remnant ships beyond the wormhole in Terminus and handed the scan logs over to Ivan and his team.`
-		dialog `The team is visibly excited when you return with the scanner logs. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next."`
+		dialog `The team is visibly excited when you return with the scanner logs, but become more somber when you mention that the ships became hostile when you scanned them. "Give us a few weeks to look these over," Ivan says. "Then we will contact you about what we want you to do next. By then, should we return, hopefully those ships won't be too upset anymore."`
 
 event "deep: arculus empty"
 	system "Arculus"
@@ -1735,12 +1735,12 @@ mission "Deep: Remnant: Engines"
 					decline
 			
 			label friendly
-			`	"You told us that these humans were friendly. Do they allow you to purchase their technology?"`
+			`	"You told us that these humans were friendly... well, until you scanned their ships, that is. Do they allow you to purchase their technology?"`
 			branch license
 				has "license: Remnant"
 			`	"No," you respond. "They haven't given me a license to buy any of their outfits or ships."`
 			`	The scientists ponder this for a moment. Eventually, Rayna speaks up. "Maybe if you assist them in some way they may welcome you into their society. I can imagine that they are a little wary after all those years on their own. Try doing jobs for them or see if anyone in their spaceports needs something from you."`
-			`	"You could also plunder their technology if they won't sell it to you," Ivan chimes in.`
+			`	"You could also plunder their technology if they won't sell it to you," Ivan chimes in. "Without killing them, of course," he adds.`
 			choice
 				`	"I'll see if I can try to get my hands on what you need."`
 					goto accept
