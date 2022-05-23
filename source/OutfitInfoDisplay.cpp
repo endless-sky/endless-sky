@@ -407,7 +407,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
-		outfit.AsteroidDamage(),
+		outfit.AsteroidDamage() != outfit.HullDamage() ? outfit.AsteroidDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
