@@ -82,7 +82,7 @@ WeaponConfigPanel::WeaponConfigPanel(PlayerInfo &player, InfoPanelState panelSta
 
 void WeaponConfigPanel::Step()
 {
-    DoHelp("weapon config");
+	DoHelp("weapon config");
 }
 
 

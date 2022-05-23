@@ -27,7 +27,7 @@ class PlayerInfo;
 
 class WeaponConfigPanel : public Panel {
 public:
-    explicit WeaponConfigPanel(PlayerInfo &player);
+	explicit WeaponConfigPanel(PlayerInfo &player);
 	explicit WeaponConfigPanel(PlayerInfo &player, InfoPanelState state);
 
 	virtual void Step() override;
@@ -46,7 +46,7 @@ protected:
 
 
 private:
-    // Handle a change to what ship is shown.
+	// Handle a change to what ship is shown.
 	void UpdateInfo();
 	void ClearZones();
 
