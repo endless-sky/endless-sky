@@ -462,14 +462,14 @@ void Hardpoint::SetFrugalAutoFire(bool input)
 
 
 
-void Hardpiont::ToggleFrugalAutoFire()
+void Hardpoint::ToggleFrugalAutoFire()
 {
   frugalAutoFire = !frugalAutoFire;
 }
 
 
 
-void Hardpoint::SetHasIndividualAFMode(bool input)
+void Hardpoint::SetIndividualAFMode(bool input)
 {
   hasIndividualAFMode = input;
 }

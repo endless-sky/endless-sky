@@ -578,18 +578,18 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit;
-          bool isLocked = false;
-					bool defensive = false;
-					bool opportunistic = false;
+					bool isLocked = false;
+					bool isDefensive = false;
+					bool isOpportunistic = false;
 					bool isAutoFireOn = true;
 					bool frugalAutoFire = false;
 					bool hasIndividualAFMode = false;
 					if(nextGun != end)
 					{
 						outfit = nextGun->GetOutfit();
-            isLocked = nextGun->IsLocked();
-            isDefensive = nextGun->IsDefensive();
-            isOpportunistc = nextGun->IsOpportunistic();
+						isLocked = nextGun->IsLocked();
+						isDefensive = nextGun->IsDefensive();
+						isOpportunistic = nextGun->IsOpportunistic();
 						hasIndividualAFMode = nextGun->HasIndividualAFMode();
 						isAutoFireOn = nextGun->IsAutoFireOn();
 						frugalAutoFire = nextGun->FrugalAutoFire();
@@ -604,18 +604,18 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit;
-          bool isLocked = false;
-          bool isDefensive = false;
-          bool isOpportunistic = false;
+					bool isLocked = false;
+					bool isDefensive = false;
+					bool isOpportunistic = false;
 					bool hasIndividualAFMode = false;
 					bool isAutoFireOn = true;
 					bool frugalAutoFire = false;
 					if(nextTurret != end)
 					{
 						outfit = nextTurret->GetOutfit();
-            isLocked = nextTurret->IsLocked();
-            isDefensive = nextTurret->IsDefensive();
-            isOpportunistic = nextTurret->IsOpportunistic();
+						isLocked = nextTurret->IsLocked();
+						isDefensive = nextTurret->IsDefensive();
+						isOpportunistic = nextTurret->IsOpportunistic();
 						isAutoFireOn = nextTurret->IsAutoFireOn();
 						frugalAutoFire = nextTurret->FrugalAutoFire();
 						hasIndividualAFMode = nextTurret->HasIndividualAFMode();
