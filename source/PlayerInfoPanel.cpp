@@ -248,14 +248,14 @@ void PlayerInfoPanel::Draw()
 				interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
 			}
 		}
-		
+
 		// If ship order has changed by choosing a sort comparison,
 		// show the save order button. Any manual sort by the player
 		// is applied immediately and doesn't need this button.
 		if(panelState.CanEdit() && panelState.CurrentSort())
 			interfaceInfo.SetCondition("show save order");
 	}
-	
+
 	interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
@@ -266,7 +266,7 @@ void PlayerInfoPanel::Draw()
 
 	// Draw the player and fleet info sections.
 	menuZones.clear();
-	
+
 	DrawPlayer(infoPanelUi->GetBox("player"));
 	DrawFleet(infoPanelUi->GetBox("fleet"));
 }
@@ -345,7 +345,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			// Clamp the destination index to the end of the ships list.
 			size_t moved = panelState.AllSelected().size();
 			toIndex = min(panelState.Ships().size() - moved, toIndex);
-			
+
 			if(panelState.ReorderShipsTo(toIndex))
 				ScrollAbsolute(panelState.SelectedIndex() - 12);
 			return true;
@@ -499,7 +499,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 			SortShips(*zone.Value());
 			return true;
 		}
-	
+
 	// Do nothing if the click was not on one of the ships in the fleet list.
 	if(hoverIndex < 0)
 		return true;
@@ -508,7 +508,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	if(panelState.CanEdit() && (shift || control || clicks < 2))
 	{
-		// If the control+click was on an already selected ship, deselect it. 
+		// If the control+click was on an already selected ship, deselect it.
 		if(control && panelState.AllSelected().count(hoverIndex))
 			panelState.Deselect(hoverIndex);
 		else
@@ -536,7 +536,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	{
 		// If not landed, clicking a ship name takes you straight to its info.
 		panelState.SetSelectedIndex(hoverIndex);
-		
+
 		GetUI()->Pop(this);
 		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
 	}
@@ -693,18 +693,18 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			tablePoint + Point((column.offset + column.endX) / 2, table.GetRowSize().Y() / 2),
 			Point(column.layout.width, table.GetRowSize().Y())
 		);
-		
+
 		// Highlight the column header if it is under the mouse
 		// or ships are sorted according to that column.
 		const Color &columnHeaderColor = ((!isDragging && zone.Contains(hoverPoint))
 			|| panelState.CurrentSort() == column.shipSort)
 				? bright : dim;
-		
+
 		table.Draw(column.name, columnHeaderColor);
-		
+
 		menuZones.emplace_back(zone, column.shipSort);
 	}
-	
+
 	table.DrawGap(5);
 
 	// Loop through all the player's ships.
@@ -744,7 +744,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			: dim
 		);
 
-    // Indent the ship name if it is a fighter or drone.
+		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
 		table.Draw(ship.ModelName());
 
@@ -801,11 +801,11 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 	shared_ptr<Ship> lastSelected = panelState.SelectedIndex() == -1
 		? nullptr
 		: panelState.Ships()[panelState.SelectedIndex()];
-	
+
 	for(int i : panelState.AllSelected())
 		selectedShips.insert(panelState.Ships()[i]);
 	panelState.DeselectAll();
-	
+
 	// Move flagship to first position
 	for(auto &ship : panelState.Ships())
 		if(ship.get() == player.Flagship())
@@ -813,7 +813,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			swap(ship, *panelState.Ships().begin());
 			break;
 		}
-	
+
 	stable_sort(
 		panelState.Ships().begin() + 1,
 		panelState.Ships().end(),
@@ -834,7 +834,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			if(it == selectedShips.end())
 				break;
 		}
-			
+
 	// Ships are now sorted.
 	panelState.SetCurrentSort(shipComparator);
 }
