@@ -910,12 +910,12 @@ void Engine::Draw() const
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
+	draw[drawTickTock].Draw();
+	batchDraw[drawTickTock].Draw();
+
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
 		label.Draw();
-
-	draw[drawTickTock].Draw();
-	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
 	{
