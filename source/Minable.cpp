@@ -45,7 +45,10 @@ void Minable::Load(const DataNode &node)
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
+		{
 			hull = child.Value(1);
+			durability = child.Value(1);
+		}
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -179,7 +182,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {
-	hull -= projectile.GetWeapon().AsteroidDamage();
+	hull -= (projectile.GetWeapon().AsteroidDamage() + projectile.GetWeapon().RelativeAsteroidDamage() * durability);
 }
 
 

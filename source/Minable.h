@@ -88,6 +88,7 @@ private:
 
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
+	double durability = 1000.;
 	// Material released when this object is destroyed. Each payload item only
 	// has a 25% chance of surviving, meaning that usually the yield is much
 	// lower than the defined limit but occasionally you get quite lucky.

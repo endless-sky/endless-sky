@@ -165,6 +165,7 @@ public:
 	double RelativeShieldDamage() const;
 	double RelativeHullDamage() const;
 	double RelativeDisabledDamage() const;
+	double RelativeAsteroidDamage() const;
 	double RelativeFuelDamage() const;
 	double RelativeHeatDamage() const;
 	double RelativeEnergyDamage() const;
@@ -277,7 +278,7 @@ private:
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 
-	static const int DAMAGE_TYPES = 21;
+	static const int DAMAGE_TYPES = 22;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
 	static const int SHIELD_DAMAGE = 1;
@@ -299,9 +300,10 @@ private:
 	static const int RELATIVE_SHIELD_DAMAGE = 15;
 	static const int RELATIVE_HULL_DAMAGE = 16;
 	static const int RELATIVE_DISABLED_DAMAGE = 17;
-	static const int RELATIVE_FUEL_DAMAGE = 18;
-	static const int RELATIVE_HEAT_DAMAGE = 19;
-	static const int RELATIVE_ENERGY_DAMAGE = 20;
+	static const int RELATIVE_ASTEROID_DAMAGE = 18;
+	static const int RELATIVE_FUEL_DAMAGE = 19;
+	static const int RELATIVE_HEAT_DAMAGE = 20;
+	static const int RELATIVE_ENERGY_DAMAGE = 21;
 	mutable double damage[DAMAGE_TYPES] = {};
 
 	double piercing = 0.;
@@ -400,6 +402,7 @@ inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
 inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
 inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }
 inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(RELATIVE_DISABLED_DAMAGE); }
+inline double Weapon::RelativeAsteroidDamage() const { return TotalDamage(RELATIVE_ASTEROID_DAMAGE); }
 inline double Weapon::RelativeFuelDamage() const { return TotalDamage(RELATIVE_FUEL_DAMAGE); }
 inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_HEAT_DAMAGE); }
 inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
