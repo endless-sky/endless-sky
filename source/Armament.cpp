@@ -166,6 +166,8 @@ void Armament::Swap(int first, int second)
 	const Outfit *outfit = hardpoints[first].GetOutfit();
 	hardpoints[first].Install(hardpoints[second].GetOutfit());
 	hardpoints[second].Install(outfit);
+	// Swap the fire control parameters.
+	hardpoints[first].SwapFireControlConfigs(hardpoints[second]);
 }
 
 

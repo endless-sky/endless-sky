@@ -39,9 +39,14 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isLocked, bool isDefensive, bool isOpportunistic, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), isLocked(isLocked), isDefensive(isDefensive), isOpportunistic(isOpportunistic), isAutoFireOn(isAutoFireOn), frugalAutoFire(frugalAutoFire), hasIndividualAFMode(hasIndividualAFMode)
+Hardpoint::Hardpoint(const Hardpoint &hardpoint)
 {
+	*this = Hardpoint(hardpoint.GetPoint(), hardpoint.GetAngle(), hardpoint.IsTurret(), hardpoint.IsParallel(), hardpoint.IsUnder(), hardpoint.GetOutfit(), hardpoint.IsLocked(), hardpoint.IsDefensive(), hardpoint.IsOpportunistic(), hardpoint.IsAutoFireOn(), hardpoint.FrugalAutoFire(), hardpoint.HasIndividualAFMode());
+}
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit, bool isLocked, bool isDefensive, bool isOpportunistic, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder), fireControlConfig(isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode)
+{
+	//fireControlConfig(isLocked, isDefensive, isOpportunistic, isAutoFireOn, frugalAutoFire, hasIndividualAFMode);
 }
 
 
@@ -148,42 +153,42 @@ bool Hardpoint::CanAim() const
 
 bool Hardpoint::IsLocked() const
 {
-	return isLocked;
+	return fireControlConfig.isLocked;
 }
 
 
 
 bool Hardpoint::IsDefensive() const
 {
-	return isDefensive;
+	return fireControlConfig.isDefensive;
 }
 
 
 
 bool Hardpoint::IsOpportunistic() const
 {
-	return isOpportunistic;
+	return fireControlConfig.isOpportunistic;
 }
 
 
 
 bool Hardpoint::IsAutoFireOn() const
 {
-	return isAutoFireOn;
+	return fireControlConfig.isAutoFireOn;
 }
 
 
 
 bool Hardpoint::FrugalAutoFire() const
 {
-	return frugalAutoFire;
+	return fireControlConfig.frugalAutoFire;
 }
 
 
 
 bool Hardpoint::HasIndividualAFMode() const
 {
-	return hasIndividualAFMode;
+	return fireControlConfig.hasIndividualAFMode;
 }
 
 
@@ -383,13 +388,9 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
-	if(!isLocked)
+	if(!fireControlConfig.isLocked)
 	{
-		isDefensive = false;
-		isOpportunistic = false;
-	isAutoFireOn = true;
-	frugalAutoFire = false;
-	hasIndividualAFMode = false;
+		fireControlConfig = FireControlConfig();
 	}
 }
 
@@ -397,14 +398,14 @@ void Hardpoint::Uninstall()
 
 void Hardpoint::SetLocked(bool locked)
 {
-	isLocked = locked;
+	fireControlConfig.isLocked = locked;
 }
 
 
 
 void Hardpoint::ToggleLocked()
 {
-	isLocked = !isLocked;
+	fireControlConfig.isLocked = !fireControlConfig.isLocked;
 }
 
 
@@ -412,7 +413,7 @@ void Hardpoint::ToggleLocked()
 // Set the defensive value of this hardpoint.
 void Hardpoint::SetDefensive(bool defensive)
 {
-	isDefensive = defensive;
+	fireControlConfig.isDefensive = defensive;
 }
 
 
@@ -420,7 +421,7 @@ void Hardpoint::SetDefensive(bool defensive)
 // Toggle the defensive value of this hardpoint.
 void Hardpoint::ToggleDefensive()
 {
-	isDefensive = !isDefensive;
+	fireControlConfig.isDefensive = !fireControlConfig.isDefensive;
 }
 
 
@@ -428,7 +429,7 @@ void Hardpoint::ToggleDefensive()
 // Set the opportunistic value of this hardpoint.
 void Hardpoint::SetOpportunistic(bool opportunistic)
 {
-	isOpportunistic = opportunistic;
+	fireControlConfig.isOpportunistic = opportunistic;
 }
 
 
@@ -436,42 +437,42 @@ void Hardpoint::SetOpportunistic(bool opportunistic)
 // Toggle the opportunistic value of this hardpoint.
 void Hardpoint::ToggleOpportunistic()
 {
-	isOpportunistic = !isOpportunistic;
+	fireControlConfig.isOpportunistic = !fireControlConfig.isOpportunistic;
 }
 
 
 
 void Hardpoint::SetIsAutoFireOn(bool input)
 {
-	isAutoFireOn = input;
+	fireControlConfig.isAutoFireOn = input;
 }
 
 
 
 void Hardpoint::ToggleIsAutoFireOn()
 {
-	isAutoFireOn = !isAutoFireOn;
+	fireControlConfig.isAutoFireOn = !fireControlConfig.isAutoFireOn;
 }
 
 
 
 void Hardpoint::SetFrugalAutoFire(bool input)
 {
-	frugalAutoFire = input;
+	fireControlConfig.frugalAutoFire = input;
 }
 
 
 
 void Hardpoint::ToggleFrugalAutoFire()
 {
-	frugalAutoFire = !frugalAutoFire;
+	fireControlConfig.frugalAutoFire = !fireControlConfig.frugalAutoFire;
 }
 
 
 
 void Hardpoint::SetIndividualAFMode(bool input)
 {
-	hasIndividualAFMode = input;
+	fireControlConfig.hasIndividualAFMode = input;
 }
 
 
@@ -507,6 +508,15 @@ void Hardpoint::CycleAutoFireMode()
 
 
 
+void Hardpoint::SwapFireControlConfigs(Hardpoint &other)
+{
+	FireControlConfig temp(other.fireControlConfig);
+	other.fireControlConfig = fireControlConfig;
+	fireControlConfig = temp;
+}
+
+
+
 // Update any counters that change when this projectile fires.
 void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {
@@ -531,4 +541,23 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
 	ship.ExpendAmmo(*outfit);
+}
+
+
+
+Hardpoint::FireControlConfig::FireControlConfig(bool isLocked, bool isDefensive, bool isOpportunistic, bool isAutoFireOn, bool frugalAutoFire, bool hasIndividualAFMode)
+	: isLocked(isLocked), isDefensive(isDefensive), isOpportunistic(isOpportunistic), isAutoFireOn(isAutoFireOn), frugalAutoFire(frugalAutoFire), hasIndividualAFMode(hasIndividualAFMode)
+{
+}
+
+
+
+Hardpoint::FireControlConfig::FireControlConfig(FireControlConfig &input)
+{
+	this->isLocked = input.isLocked;
+	this->isDefensive = input.isDefensive;
+	this->isOpportunistic = input.isOpportunistic;
+	this->isAutoFireOn = input.isAutoFireOn;
+	this->frugalAutoFire = input.frugalAutoFire;
+	this->hasIndividualAFMode = input.hasIndividualAFMode;
 }

@@ -30,6 +30,7 @@ class Visual;
 class Hardpoint {
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
+	Hardpoint(const Hardpoint &hardpoint);
 	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit = nullptr, bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
@@ -106,6 +107,23 @@ public:
 	void SetIndividualAFMode(bool input);
 
 	void CycleAutoFireMode();
+	void SwapFireControlConfigs(Hardpoint &other);
+
+
+private:
+	class FireControlConfig {
+	public:
+		FireControlConfig(bool isLocked = false, bool isDefensive = false, bool isOpportunistic = false, bool isAutoFireOn = true, bool frugalAutoFire = false, bool hasIndividualAFMode = false);
+		// Copy constructor
+		FireControlConfig(FireControlConfig &input);
+
+		bool isLocked = false;
+		bool isDefensive = false;
+		bool isOpportunistic = false;
+		bool isAutoFireOn = true;
+		bool frugalAutoFire = false;
+		bool hasIndividualAFMode = false;
+	};
 
 
 private:
@@ -128,18 +146,7 @@ private:
 	bool isUnder = false;
 
 	// Indicates whether fire control attributes on this hardpoint should be editable,
-	// including by uninstallation.
-	bool isLocked = false;
-	// Indicates whether the hardpoint is set to defensive mode.
-	bool isDefensive = false;
-	// Indicates whether the hardpoint is set to opportunistic. Only applies to turrets.
-	bool isOpportunistic = false;
-	// Indicates whether the hardpoint is allowed to fire.
-	bool isAutoFireOn = true;
-	// Indicates whether the hardpoint should always be frugal, regardless of preference or personality.
-	bool frugalAutoFire = false;
-	// Indicates whether the hardpoint has its own frugality setting.
-	bool hasIndividualAFMode = false;
+	FireControlConfig fireControlConfig;
 
 	// Angle adjustment for convergence.
 	Angle angle;
