@@ -1360,7 +1360,6 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 			return false;
 	}
 
-
 	shared_ptr<Ship> target = it->second.target.lock();
 	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
