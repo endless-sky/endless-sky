@@ -82,7 +82,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 			if(&other == &object)
 				continue;
 
-			double minDistance = (other.Radius() * zoom) + MIN_DISTANCE;
+			double minDistance = (other.Radius() + MIN_DISTANCE) * zoom;
 
 			Point otherPos = other.Position() * zoom;
 			double startDistance = otherPos.Distance(start);
