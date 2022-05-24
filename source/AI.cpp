@@ -3360,7 +3360,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				sort(boardable.begin(), boardable.end(),
 					[](
-						pair<weak_ptr<Ship>, double> &lhs, 
+						pair<weak_ptr<Ship>, double> &lhs,
 						pair<weak_ptr<Ship>, double> &rhs
 					)
 					{
@@ -3373,7 +3373,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
-					auto boardingTarget = find_if(boardable.cbegin(), boardable.cend(), 
+					auto boardingTarget = find_if(boardable.cbegin(), boardable.cend(),
 						[&target](const pair<weak_ptr<Ship>, double> &lhs)
 						{
 							return const_cast<const Ship*>(lhs.first.lock().get()) == target.get();
