@@ -3325,7 +3325,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &)> {
 				Point current = ship.Position();
-				if (!distancePriority)
+				if(!distancePriority)
 				{
 					double agility = ship.Acceleration() * ship.TurnRate();
 					return [agility, this, &ship, current](const shared_ptr<Ship> &other) -> double {
