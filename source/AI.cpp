@@ -1354,16 +1354,17 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		else
 			command.SetTurn(TurnToward(ship, TargetAim(ship)));
 	}
-	else if(type == Orders::COLLECT){
+	else if(type == Orders::COLLECT)
+	{
 		if(DoHarvesting(ship, command))
 		{
 			ship.SetCommands(command);
 			ship.SetCommands(firingCommands);
 			return true;
-		} else {
+		}
+		else
 			// there are no harvestables to collect
 			CircleAround(ship, command, *target);
-		}
 	}
 	else if(!target)
 	{

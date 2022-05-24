@@ -185,6 +185,7 @@ void Minable::TakeDamage(const Projectile &projectile)
 }
 
 
+
 double Minable::Hull() const
 {
 	return min(1., hull / maxhull);
