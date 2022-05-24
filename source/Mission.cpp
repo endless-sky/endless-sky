@@ -296,8 +296,8 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if((isMinor || hasPriority) && location == LANDING)
-		node.PrintTrace("Warning: \"minor\" or \"priority\" tags have no effect on \"landing\" missions:");
+	if(hasPriority && location == LANDING)
+		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
 
@@ -408,6 +408,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				action.Save(out);
 	}
 	out.EndChild();
+}
+
+
+
+void Mission::NeverOffer()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	toOffer.Add("has", "'");
 }
 
 
@@ -669,16 +677,17 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test(player.Conditions()))
+	const auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
 	if(repeat)
 	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
+		auto cit = playerConditions.find(name + ": offered");
+		if(cit != playerConditions.end() && cit->second >= repeat)
 			return false;
 	}
 
@@ -699,6 +708,20 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	return true;
+}
+
+
+
+bool Mission::CanAccept(const PlayerInfo &player) const
+{
+	auto it = actions.find(OFFER);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+
+	it = actions.find(ACCEPT);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	return HasSpace(player);
 }
 
 

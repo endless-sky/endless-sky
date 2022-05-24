@@ -53,6 +53,17 @@ public:
 	static const float LINK_WIDTH;
 	static const float LINK_OFFSET;
 
+	class SystemTooltipData {
+	public:
+		// Number of ships that are in flight
+		unsigned activeShips = 0;
+		// Number of ships that are parked
+		unsigned parkedShips = 0;
+		// Maps planet to number of outfits on that planet
+		std::map<const Planet *, unsigned> outfits;
+	};
+
+
 
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
@@ -125,7 +136,7 @@ protected:
 	// for use in determining which governments are in the legend.
 	std::map<const Government *, double> closeGovernments;
 	// Systems in which your (active and parked) escorts and stored outfits are located.
-	std::map<const System *, std::pair<std::pair<int, int>, int>> escortSystems;
+	std::map<const System *, SystemTooltipData> escortSystems;
 	// Center the view on the given system (may actually be slightly offset
 	// to account for panels on the screen).
 	void CenterOnSystem(const System *system, bool immediate = false);
@@ -152,8 +163,8 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawTooltips();
-	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
+	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
 
 
 private:
