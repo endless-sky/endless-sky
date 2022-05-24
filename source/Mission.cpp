@@ -161,14 +161,12 @@ void Mission::Load(const DataNode &node)
 			{
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "requires wormholes")
-						requiresWormholes = true;
+					if(grand.Token(0) == "no wormholes")
+						noWormholes = true;
 					else if(grand.Token(0) == "requires jump drive")
 						requiresJumpDrive = true;
-					else if(grand.Token(0) == "can use wormholes")
-						canWormhole = true;
-					else if(grand.Token(0) == "can use jump drive")
-						canJumpDrive = true;
+					else if(grand.Token(0) == "use restricted wormholes")
+						useRestrictedWormholes = true;
 				}
 			}
 		}
@@ -1266,26 +1264,17 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path, requiresWormholes, requiresJumpDrive);
-		DistanceMap secondaryDistance(path, canWormhole, canJumpDrive);
+		DistanceMap distance(path, !noWormholes, requiresJumpDrive, !useRestrictedWormholes);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
 		if(bestDays < 0)
-		{
-			bestDays = secondaryDistance.Days(*bestIt);
-			if(bestDays < 0)
-				bestDays = numeric_limits<int>::max();
-		}
+			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
 		{
 			int days = distance.Days(*it);
 			if(days < 0)
-			{
-				days = secondaryDistance.Days(*it);
-				if(days < 0)
-					days = numeric_limits<int>::max();
-			}
+				days = numeric_limits<int>::max();
 			if(days < bestDays)
 			{
 				bestIt = it;
@@ -1299,11 +1288,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		// the route can't be completed given the rules so this mission should
 		// not be offered.
 		if(days < 0)
-		{
-			days = secondaryDistance.Days(*bestIt);
-			if(days < 0)
-				return result;
-		}
+			return result;
 		jumps += days;
 		destinations.erase(bestIt);
 	}

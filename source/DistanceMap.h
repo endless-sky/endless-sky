@@ -36,7 +36,7 @@ public:
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
 	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
 	// Optional arguments are as above.
-	explicit DistanceMap(const System *center, bool useWormholes, bool useJumpDrive, int maxCount = -1, int maxDistance = -1);
+	explicit DistanceMap(const System *center, bool useWormholes, bool useJumpDrive, bool onlyUnrestrictedWormholes = false, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
@@ -107,6 +107,7 @@ private:
 	const System *source = nullptr;
 	const System *center = nullptr;
 	bool useWormholes = true;
+	bool onlyUnrestrictedWormholes = false;
 	int maxCount = -1;
 	int maxDistance = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
