@@ -3319,11 +3319,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.SetTargetShip(shared_ptr<Ship>());
 
 			bool foundEnemy = false;
-			bool distancePriority = Preferences::Has("Board target");
 
 			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &)> {
 				Point current = ship.Position();
-				if(!distancePriority)
+				// If "board target" is set to true, the default behavior (distance priority) is used.
+				if(!Preferences::Has("Board target"))
 				{
 					double agility = ship.Acceleration() * ship.TurnRate();
 					return [agility, this, &ship, current](const shared_ptr<Ship> &other) -> double {
