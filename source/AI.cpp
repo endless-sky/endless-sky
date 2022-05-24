@@ -3329,7 +3329,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				{
 					double agility = ship.Acceleration() * ship.TurnRate();
 					return [agility, this, &ship, current](const shared_ptr<Ship> &other) -> double {
-						double cost = this->Has(ship, other, ShipEvent::SCAN_OUTFITS) ? 
+						double cost = this->Has(ship, other, ShipEvent::SCAN_OUTFITS) ?
 							other.get()->Cost() : (other.get()->ChassisCost() * 2.);
 						return -agility * 2. * (cost * cost) / current.DistanceSquared(other.get()->Position());
 					};
@@ -3348,7 +3348,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double b = strategy(other);
-					
+
 					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
 					{
 						best = b;

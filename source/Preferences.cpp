@@ -66,7 +66,7 @@ void Preferences::Load()
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Board target"] = true;
-	
+
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
