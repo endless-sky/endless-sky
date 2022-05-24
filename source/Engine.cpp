@@ -1812,11 +1812,11 @@ void Engine::HandleKeyboardInputs()
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
 		manueveringCommands | Command::SHIFT);
 
-	// Issuing LAND again within the cooldown period signals a change of landing target.
-	constexpr int landCooldown = 60;
-	++landKeyInterval;
-	if(oldHeld.Has(Command::LAND))
-		landKeyInterval = 0;
+	// Issuing LAND or BOARD again within the cooldown period signals a change of landing orboarding target.
+	constexpr int keyCooldown = 60;
+	++keyInterval;
+	if(oldHeld.Has(Command::LAND) || oldHeld.Has(Command::BOARD))
+		keyInterval = 0;
 
 	// If all previously-held maneuvering keys have been released,
 	// restore any autopilot commands still being requested.
@@ -1824,13 +1824,13 @@ void Engine::HandleKeyboardInputs()
 	{
 		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
-		// Do not switch landing targets when restoring autopilot.
-		landKeyInterval = landCooldown;
+		// Do not switch landing or boarding targets when restoring autopilot.
+		keyInterval = keyCooldown;
 	}
 
 	// If holding JUMP or toggling LAND, also send WAIT. This prevents the jump from
-	// starting (e.g. while escorts are aligning), or switches the landing target.
-	if(keyHeld.Has(Command::JUMP) || (keyHeld.Has(Command::LAND) && landKeyInterval < landCooldown))
+	// starting (e.g. while escorts are aligning), or switches the landing or boarding target.
+	if(keyHeld.Has(Command::JUMP) || ((keyHeld.Has(Command::LAND) || keyHeld.Has(Command::BOARD)) && keyInterval < keyCooldown))
 		activeCommands |= Command::WAIT;
 
 	// Transfer all newly pressed, unhandled keys to active commands.

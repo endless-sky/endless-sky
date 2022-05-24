@@ -3318,9 +3318,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(shift)
 				ship.SetTargetShip(shared_ptr<Ship>());
 
-			double best = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
-			bool foundAnything = false;
 			bool distancePriority = Preferences::Has("Board target");
 
 			auto strategy = [&]() -> function<double(const shared_ptr<Ship> &)> {
@@ -3340,6 +3338,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				};
 			}();
 
+			auto boardable = vector<pair<weak_ptr<Ship>, double>>{};
+
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
@@ -3347,18 +3347,48 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						continue;
 
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-					double b = strategy(other);
 
-					if((isEnemy && !foundEnemy) || (b < best && isEnemy == foundEnemy))
+					if((isEnemy && !foundEnemy) || (isEnemy == foundEnemy))
 					{
-						best = b;
 						foundEnemy = isEnemy;
-						foundAnything = true;
-						ship.SetTargetShip(other);
+						boardable.emplace_back(make_pair(weak_ptr<Ship>(other), strategy(other)));
 					}
 				}
-			if(!foundAnything)
+			if(boardable.empty())
 				activeCommands.Clear(Command::BOARD);
+			else
+			{
+				sort(boardable.begin(), boardable.end(),
+					[](
+						pair<weak_ptr<Ship>, double> &lhs, 
+						pair<weak_ptr<Ship>, double> &rhs
+					)
+					{
+						return lhs.second > rhs.second;
+					}
+				);
+
+				if(!target)
+					ship.SetTargetShip(boardable.back().first.lock());
+				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
+				else if(activeCommands.Has(Command::WAIT))
+				{
+					auto boardingTarget = find_if(boardable.cbegin(), boardable.cend(), 
+						[&target](const pair<weak_ptr<Ship>, double> &lhs)
+						{
+							return const_cast<const Ship*>(lhs.first.lock().get()) == target.get();
+						}
+					);
+
+					if(boardingTarget != boardable.cend())
+					{
+						if(boardingTarget == boardable.cbegin())
+							ship.SetTargetShip(boardable.back().first.lock());
+						else
+							ship.SetTargetShip((--boardingTarget)->first.lock());
+					}
+				}
+			}
 		}
 	}
 	// Player cannot attempt to land while departing from a planet.
