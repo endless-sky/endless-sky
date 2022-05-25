@@ -1710,7 +1710,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/Endless-Sky-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1744,7 +1744,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/Endless-Sky-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
