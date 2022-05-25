@@ -1720,7 +1720,7 @@
 					"/usr/local/opt/jpeg-turbo/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = 0.9.14;
+				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Endless-Sky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1754,7 +1754,7 @@
 					"/usr/local/opt/jpeg-turbo/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = 0.9.14;
+				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Endless-Sky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
