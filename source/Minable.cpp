@@ -179,7 +179,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {
-	hull -= projectile.GetWeapon().HullDamage();
+	hull -= projectile.GetWeapon().AsteroidDamage();
 }
 
 

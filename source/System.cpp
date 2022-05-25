@@ -205,7 +205,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					attributes.insert(child.Token(i));
 		}
- 		else if(key == "link")
+		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
