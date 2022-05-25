@@ -846,7 +846,7 @@ tip "% hull damage / shot:"
 	`Each shot fired by this weapon does this amount of hull damage as a percentage of the target ship or asteroid's total hull.`
 
 tip "% asteroid damage / shot:"
-	`Each shot fired by this weapon does this amount of asteroid damage as a percentage of the target asteroid's total health, in lieu of relative hull damage being used.`
+	`Each shot fired by this weapon does this amount of damage as a percentage of the target asteroid's total health, in lieu of relative hull damage being used.`
 
 tip "% fuel damage / shot:"
 	`The amount of fuel lost by the target per shot as a percentage of the ship's total fuel when hit by this weapon. If its shields are up, the loss will be cut in half.`
