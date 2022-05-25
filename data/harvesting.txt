@@ -10,7 +10,7 @@
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
-	hull 1000
+	hull 900
 	"random hull" 200
 	payload "Aluminum" 40
 	explode "smoke" 40
@@ -31,7 +31,7 @@ outfit "Aluminum"
 
 minable "copper"
 	sprite "asteroid/gold/spin"
-	hull 1200
+	hull 1080
 	"random hull" 240
 	payload "Copper" 20
 	explode "smoke" 20
@@ -52,7 +52,7 @@ outfit "Copper"
 
 minable "gold"
 	sprite "asteroid/gold/spin"
-	hull 2800
+	hull 2520
 	"random hull" 560
 	payload "Gold" 16
 	explode "smoke" 20
@@ -73,7 +73,7 @@ outfit "Gold"
 
 minable "iron"
 	sprite "asteroid/iron/spin"
-	hull 1600
+	hull 1440
 	"random hull" 320
 	payload "Iron" 50
 	explode "smoke" 40
@@ -94,7 +94,7 @@ outfit "Iron"
 
 minable "lead"
 	sprite "asteroid/lead/spin"
-	hull 800
+	hull 720
 	"random hull" 160
 	payload "Lead" 32
 	explode "smoke" 30
@@ -115,7 +115,7 @@ outfit "Lead"
 
 minable "neodymium"
 	sprite "asteroid/iron/spin"
-	hull 3600
+	hull 3240
 	"random hull" 720
 	payload "Neodymium" 40
 	explode "smoke" 40
@@ -136,7 +136,7 @@ outfit "Neodymium"
 
 minable "platinum"
 	sprite "asteroid/silver/spin"
-	hull 4000
+	hull 3600
 	"random hull" 800
 	payload "Platinum" 16
 	explode "smoke" 20
@@ -157,7 +157,7 @@ outfit "Platinum"
 
 minable "silicon"
 	sprite "asteroid/silicon/spin"
-	hull 400
+	hull 360
 	"random hull" 80
 	payload "Silicon" 50
 	explode "smoke" 40
@@ -178,7 +178,7 @@ outfit "Silicon"
 
 minable "silver"
 	sprite "asteroid/silver/spin"
-	hull 2000
+	hull 1800
 	"random hull" 400
 	payload "Silver" 20
 	explode "smoke" 20
@@ -199,7 +199,7 @@ outfit "Silver"
 
 minable "titanium"
 	sprite "asteroid/titanium/spin"
-	hull 2400
+	hull 2160
 	"random hull" 480
 	payload "Titanium" 32
 	explode "smoke" 30
@@ -220,7 +220,7 @@ outfit "Titanium"
 
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
-	hull 4800
+	hull 4320
 	"random hull" 960
 	payload "Tungsten" 24
 	explode "smoke" 30
@@ -241,7 +241,7 @@ outfit "Tungsten"
 
 minable "uranium"
 	sprite "asteroid/lead/spin"
-	hull 3200
+	hull 2880
 	"random hull" 640
 	payload "Uranium" 24
 	explode "smoke" 30
@@ -262,7 +262,7 @@ outfit "Uranium"
 
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
-	hull 20000
+	hull 18000
 	"random hull" 4000
 	payload "Yottrite" 7
 	explode "smoke" 30
@@ -287,7 +287,7 @@ outfit "Yottrite"
 
 minable "plant"
 	sprite "asteroid/plant/plant"
-	hull 2800
+	hull 2520
 	"random hull" 560
 	payload "Void Orchid" 21
 	explode "smoke" 30
@@ -296,7 +296,7 @@ minable "plant"
 
 minable "plant2"
 	sprite "asteroid/plant2/plant2"
-	hull 2600
+	hull 2340
 	"random hull" 520
 	payload "Void Orchid" 20
 	explode "smoke" 30
@@ -305,7 +305,7 @@ minable "plant2"
 
 minable "plant cluster"
 	sprite "asteroid/plant cluster/plant cluster"
-	hull 1200
+	hull 1080
 	"random hull" 240
 	payload "Void Orchid" 11
 	explode "smoke" 20
@@ -314,7 +314,7 @@ minable "plant cluster"
 
 minable "large plant"
 	sprite "asteroid/large plant/large plant"
-	hull 3800
+	hull 3420
 	"random hull" 760
 	payload "Void Orchid" 41
 	explode "smoke" 30
@@ -323,7 +323,7 @@ minable "large plant"
 
 minable "large plant2"
 	sprite "asteroid/large plant2/large plant2"
-	hull 3600
+	hull 3240
 	"random hull" 720
 	payload "Void Orchid" 41
 	explode "smoke" 30
@@ -332,7 +332,7 @@ minable "large plant2"
 
 minable "large plant cluster"
 	sprite "asteroid/large plant cluster/large plant cluster"
-	hull 2200
+	hull 1980
 	"random hull" 440
 	payload "Void Orchid" 22
 	explode "smoke" 30
@@ -341,7 +341,7 @@ minable "large plant cluster"
 
 minable "live crystal"
 	sprite "asteroid/livecrystal/livecrystal"
-	hull 1000
+	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
 	explode "smoke" 15
@@ -350,7 +350,7 @@ minable "live crystal"
 
 minable "space flora"
 	sprite "asteroid/space flora/space flora"
-	hull 1000
+	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
 	explode "smoke" 15
@@ -359,7 +359,7 @@ minable "space flora"
 
 minable "large space flora"
 	sprite "asteroid/large space flora/large space flora"
-	hull 2000
+	hull 1800
 	"random hull" 400
 	payload "Void Orchid" 16
 	explode "smoke" 25
