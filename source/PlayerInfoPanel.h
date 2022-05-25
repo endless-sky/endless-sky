@@ -92,11 +92,11 @@ private:
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
-	
+
 	// Initialize mouse point to something off-screen to not
 	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
-	
+
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };
