@@ -45,7 +45,7 @@ void Minable::Load(const DataNode &node)
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
-			hull = max(0., child.Value(1));
+			hull = child.Value(1);
 		else if(child.Token(0) == "random hull" && child.Size() >= 2)
 			randomHull = max(0., child.Value(1));
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
@@ -126,6 +126,7 @@ void Minable::Place(double energy, double beltRadius)
 
 	// Add a random amount of hull value to the object.
 	hull += Random::Real() * randomHull;
+	maxHull = hull;
 }
 
 
@@ -184,7 +185,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {
-	hull -= projectile.GetWeapon().AsteroidDamage();
+	hull -= (projectile.GetWeapon().AsteroidDamage() + projectile.GetWeapon().RelativeAsteroidDamage() * maxHull);
 }
 
 

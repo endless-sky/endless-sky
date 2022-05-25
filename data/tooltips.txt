@@ -710,6 +710,9 @@ tip "% shield damage / second:"
 tip "% hull damage / second:"
 	`Relative hull damage, converted to damage per second to allow easy comparisons between different weapons.`
 
+tip "% asteroid damage / second:"
+	`Relative asteroid damage, converted to damage per second to allow easy comparisons between different weapons.`
+
 tip "% fuel damage / second:"
 	`The amount of fuel lost as a percentage of a target's total fuel per second when hit by this weapon. If its shields are up, the loss will be cut in half.`
 
@@ -840,7 +843,10 @@ tip "% shield damage / shot:"
 	`Each shot fired by this weapon does this amount of shield damage as a percentage of the target ship's total shields.`
 
 tip "% hull damage / shot:"
-	`Each shot fired by this weapon does this amount of hull damage as a percentage of the target ship's total hull.`
+	`Each shot fired by this weapon does this amount of hull damage as a percentage of the target ship's total hull or the asteroid's total health.`
+
+tip "% asteroid damage / shot:"
+	`Each shot fired by this weapon does this amount of damage as a percentage of the target asteroid's total health, in lieu of relative hull damage being used.`
 
 tip "% fuel damage / shot:"
 	`The amount of fuel lost by the target per shot as a percentage of the ship's total fuel when hit by this weapon. If its shields are up, the loss will be cut in half.`
