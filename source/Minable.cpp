@@ -47,7 +47,7 @@ void Minable::Load(const DataNode &node)
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = max(0., child.Value(1));
 		else if(child.Token(0) == "random hull" && child.Size() >= 2)
-			randomHull = child.Value(1);
+			randomHull = max(0., child.Value(1));
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
