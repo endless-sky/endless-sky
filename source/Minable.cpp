@@ -45,7 +45,9 @@ void Minable::Load(const DataNode &node)
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
-			hull = child.Value(1);
+			hull = max(0., child.Value(1));
+		else if(child.Token(0) == "random hull" && child.Size() >= 2)
+			randomHull = max(0., child.Value(1));
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -121,6 +123,9 @@ void Minable::Place(double energy, double beltRadius)
 	// Calculate the object's initial position.
 	radius = scale / (1. + eccentricity * cos(theta));
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
+
+	// Add a random amount of hull value to the object.
+	hull += Random::Real() * randomHull;
 }
 
 
