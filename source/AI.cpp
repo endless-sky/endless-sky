@@ -3629,7 +3629,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))

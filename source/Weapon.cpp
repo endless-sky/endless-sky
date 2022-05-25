@@ -33,6 +33,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool disabledDamageSet = false;
+	bool asteroidDamageSet = false;
 	bool relativeDisabledDamageSet = false;
 
 	for(const DataNode &child : node)
@@ -212,6 +213,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[DISABLED_DAMAGE] = value;
 				disabledDamageSet = true;
 			}
+			else if(key == "asteroid damage")
+			{
+				damage[ASTEROID_DAMAGE] = value;
+				asteroidDamageSet = true;
+			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
 			else if(key == "heat damage")
@@ -272,6 +278,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
 	if(!relativeDisabledDamageSet)
 		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+	// Asteroid damage defaults to hull damage instead of 0.
+	if(!asteroidDamageSet)
+		damage[ASTEROID_DAMAGE] = damage[HULL_DAMAGE];
 
 	// Sanity checks:
 	if(burstReload > reload)

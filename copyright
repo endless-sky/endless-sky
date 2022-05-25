@@ -1203,6 +1203,16 @@ Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
+Files: images/effect/archon?teleport/*
+Copyright: @Karirawri (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso (under the same license).
+
+Files: sounds/archonteleport*
+Copyright: oldestmillennial
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/oldestmillennial/sounds/533025/ and modified.
+
 Files: images/outfit/emp?rack*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
@@ -1322,6 +1332,7 @@ Files:
  images/outfit/afterburner*
  images/outfit/blue?sun*
  images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
  images/outfit/dark?storm*
  images/outfit/dual?sunbeam?turret*
  images/outfit/nuke*
