@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6637D37D283DB9B600CE7388 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6637D37E283DB9FE00CE7388 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6637D37F283DBA3C00CE7388 /* ESEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; };
 		66ABE9F0283887F7000BF5B9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632F1AE6FD0B004FE1FE /* main.cpp */; };
 		66ABEA3E283887F7000BF5B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		66ABEA3F283887F7000BF5B9 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A95195DF44B002C30B8 /* license.txt */; };
@@ -26,7 +29,6 @@
 		66EEB9E4283AAAA000B7D9E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		66EEB9E5283AAAAB00B7D9E7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		66EEB9E6283AAAAB00B7D9E7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
-		66EEB9F7283AAE8400B7D9E7 /* libmad.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66F3C6992839E57A004A8046 /* libmad.0.dylib */; };
 		66EEBA0E283AB8F400B7D9E7 /* ESEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EEBA0C283AB8F400B7D9E7 /* ESEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66EEBA16283AB96000B7D9E7 /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3C6992839E57A004A8046 /* libmad.0.dylib */; };
 		66EEBA18283AB96100B7D9E7 /* libpng16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
@@ -187,11 +189,6 @@
 		66EEBAC4283ABA5400B7D9E7 /* SDL2.framework in Resources */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		66EEBAC9283ABE1E00B7D9E7 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		66EEBAD3283AE50300B7D9E7 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
-		66F06A93283708E300531F63 /* libpng16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
-		66F06A94283708E300531F63 /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		66F06A95283708E300531F63 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		66F06B2D283708E300531F63 /* libpng16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
-		66F06B2E283708E300531F63 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		66F06B2F283708E300531F63 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		66F06B30283708E300531F63 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		66F06B31283708E300531F63 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
@@ -214,7 +211,6 @@
 		66F3C7442839E757004A8046 /* test_ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66CC869928384F6F00C3B654 /* test_ship.cpp */; };
 		66F3C7462839E757004A8046 /* test_weightedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66CC869B28384F6F00C3B654 /* test_weightedList.cpp */; };
 		66F3C7472839E75A004A8046 /* datanode-factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66CC868C28384F6F00C3B654 /* datanode-factory.cpp */; };
-		66F3C74A2839EA1B004A8046 /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3C6992839E57A004A8046 /* libmad.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +251,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6637D37D283DB9B600CE7388 /* ESEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +261,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				66EEB9F7283AAE8400B7D9E7 /* libmad.0.dylib in CopyFiles */,
-				66F06A93283708E300531F63 /* libpng16.dylib in CopyFiles */,
-				66F06A94283708E300531F63 /* libturbojpeg.0.dylib in CopyFiles */,
-				66F06A95283708E300531F63 /* SDL2.framework in CopyFiles */,
+				6637D37E283DB9FE00CE7388 /* ESEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,13 +667,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66F3C74A2839EA1B004A8046 /* libmad.0.dylib in Frameworks */,
-				66F06B2D283708E300531F63 /* libpng16.dylib in Frameworks */,
-				66F06B2E283708E300531F63 /* libturbojpeg.0.dylib in Frameworks */,
 				66F06B2F283708E300531F63 /* SDL2.framework in Frameworks */,
 				66F06B30283708E300531F63 /* OpenAL.framework in Frameworks */,
 				66F06B31283708E300531F63 /* OpenGL.framework in Frameworks */,
 				66F06B32283708E300531F63 /* Cocoa.framework in Frameworks */,
+				6637D37F283DBA3C00CE7388 /* ESEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1729,7 +1721,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 0.9.14;
-				OTHER_LDFLAGS = "-L<$(BUILT_PRODUCTS_DIR)/ESEngine>";
 				PRODUCT_BUNDLE_IDENTIFIER = "Endless-Sky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1764,7 +1755,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 0.9.14;
-				OTHER_LDFLAGS = "-L<$(BUILT_PRODUCTS_DIR)/ESEngine>";
 				PRODUCT_BUNDLE_IDENTIFIER = "Endless-Sky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1904,7 +1894,6 @@
 					/usr/local/Cellar/mad/0.15.1b/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_LDFLAGS = "-L<$(BUILT_PRODUCTS_DIR)/ESEngine>";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES-UnitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1935,7 +1924,6 @@
 					/usr/local/Cellar/mad/0.15.1b/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_LDFLAGS = "-L<$(BUILT_PRODUCTS_DIR)/ESEngine>";
 				PRODUCT_BUNDLE_IDENTIFIER = "ES-UnitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
