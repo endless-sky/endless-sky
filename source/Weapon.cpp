@@ -33,9 +33,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool disabledDamageSet = false;
-	bool asteroidDamageSet = false;
+	bool minableDamageSet = false;
 	bool relativeDisabledDamageSet = false;
-	bool relativeAsteroidDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
@@ -214,10 +214,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[DISABLED_DAMAGE] = value;
 				disabledDamageSet = true;
 			}
-			else if(key == "asteroid damage")
+			else if(key == "minable damage")
 			{
-				damage[ASTEROID_DAMAGE] = value;
-				asteroidDamageSet = true;
+				damage[MINABLE_DAMAGE] = value;
+				minableDamageSet = true;
 			}
 			else if(key == "fuel damage")
 				damage[FUEL_DAMAGE] = value;
@@ -248,10 +248,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_DISABLED_DAMAGE] = value;
 				relativeDisabledDamageSet = true;
 			}
-			else if (key == "relative asteroid damage")
+			else if (key == "relative minable damage")
 			{
-				damage[RELATIVE_ASTEROID_DAMAGE] = value;
-				relativeAsteroidDamageSet = true;
+				damage[RELATIVE_MINABLE_DAMAGE] = value;
+				relativeMinableDamageSet = true;
 			}
 			else if(key == "relative fuel damage")
 				damage[RELATIVE_FUEL_DAMAGE] = value;
@@ -284,11 +284,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
 	if(!relativeDisabledDamageSet)
 		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
-	// Asteroid damage defaults to hull damage instead of 0.
-	if(!asteroidDamageSet)
-		damage[ASTEROID_DAMAGE] = damage[HULL_DAMAGE];
-	if(!relativeAsteroidDamageSet)
-		damage[RELATIVE_ASTEROID_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+	// Minable damage defaults to hull damage instead of 0.
+	if(!minableDamageSet)
+		damage[MINABLE_DAMAGE] = damage[HULL_DAMAGE];
+	if(!relativeMinableDamageSet)
+		damage[RELATIVE_MINABLE_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
 
 	// Sanity checks:
 	if(burstReload > reload)
