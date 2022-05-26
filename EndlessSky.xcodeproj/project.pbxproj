@@ -1884,7 +1884,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/EndlessSkyUnitTests-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSkyUnitTests-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1914,7 +1914,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/EndlessSkyUnitTests-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSkyUnitTests-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
