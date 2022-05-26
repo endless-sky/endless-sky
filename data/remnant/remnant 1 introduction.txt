@@ -2228,7 +2228,7 @@ mission "Remnant: Salvage 1B"
 		has "Remnant: Salvage 1: done"
 	on offer
 		conversation
-			`After having traveled clear across the galaxy, you finally have arrived at the archives of human history. On the direction of the librarians you locate the gift shop and buy a "souvenir copy" of the archive. You idly wonder if you should buy a couple spare copies just in case, but decide against it.`
+			`After having traveled clear across the galaxy, you finally arrive at the archives of human history. Upon asking a librarian where you could get a copy of the station's archives, you're surprised to have them point you to a gift shop. There you find a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Taely.`
 				accept
 
 
@@ -2273,7 +2273,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I will make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He copies the archive onto a data pad, then returns it to you alongside a credit chip with <payment> on it. "Thank you, I will make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 

@@ -1361,3 +1361,11 @@ outfit "gbullet"
 		"hull damage" 6
 		"hit force" 2
 		"hit effect" "bullet impact"
+
+effect "bullet impact"
+	sprite "effect/bullet impact"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 8
+	"random angle" 40
+	"velocity scale" -.05

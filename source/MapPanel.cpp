@@ -44,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "opengl.h"
@@ -101,6 +102,9 @@ namespace {
 			// Get the system in which the planet storage is located.
 			const Planet *planet = hold.first;
 			const System *system = planet->GetSystem();
+			// Skip outfits stored on planets without a system.
+			if(!system)
+				continue;
 
 			for(const auto &outfit: hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
@@ -436,7 +440,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'f')
 	{
 		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:"));
+			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
