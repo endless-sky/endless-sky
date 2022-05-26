@@ -767,7 +767,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it->CanBeCarried())
 		{
 			// A carried ship must belong to the same government as its parent to dock with it.
-			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov && parent->CanCarry(*it);
+			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov && (it->HasDeployOrder() || parent->CanCarry(*it));
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
