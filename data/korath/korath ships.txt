@@ -417,8 +417,6 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Missile)"
 	outfits 
 		"Korath Grab-Strike" 4
 		"Korath Warder" 2
-		"Firelight Bank" 3
-		"Firelight Torpedo" 78
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -432,9 +430,9 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Missile)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
-	gun "Firelight Bank"
-	gun "Firelight Bank"
-	gun "Firelight Bank"
+	gun
+	gun
+	gun
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -495,7 +493,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
-	gun "Korath Piercer"
+	gun "Korath Piercer Launcher"
 	gun
 	gun
 	turret "Korath Repeater"
