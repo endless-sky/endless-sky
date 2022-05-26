@@ -1408,9 +1408,11 @@ Files:
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/mule*
+ images/ship/raiderii*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/mule*
+ images/thumbnail/raiderii*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
