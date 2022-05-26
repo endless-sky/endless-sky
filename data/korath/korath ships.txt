@@ -151,7 +151,6 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 		"Jump Drive"
 
 
-
 ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
@@ -167,8 +166,8 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 721
-		"weapon capacity" 284
+		"outfit space" 803
+		"weapon capacity" 366
 		"engine capacity" 159
 		weapon
 			"blast radius" 250
@@ -197,6 +196,10 @@ ship "Korath Raider"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
+	gun 32.5 -1
+		angle 60
+	gun -32.5 -1
+		angle 300
 	turret -10 -143 "Korath Grab-Strike"
 	turret 10 -143 "Korath Grab-Strike"
 	turret -36 -141 "Korath Grab-Strike"
@@ -211,7 +214,7 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Korath Raider is their warship of choice for plundering neighboring species."
+	description "The Korath Exiles designed the Raider soon after the Dredger. The Raider can be built cheaply in bulk, allowing for non-stop raids of nearby species."
 
 
 ship "Korath Raider" "Korath Raider (Ember)"
@@ -234,6 +237,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 
+	gun
+	gun
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -262,6 +267,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun
+	gun
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -288,6 +295,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun
+	gun
 	turret
 	turret
 	turret "Korath Grab-Strike"
@@ -295,6 +304,112 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
+ship "Korath Raider Mk.II"
+	sprite "ship/raiderii"
+	thumbnail "thumbnail/raiderii"
+	attributes
+		category "Heavy Warship"
+		"cost" 22395000
+		"shields" 27500
+		"hull" 11000
+		"required crew" 157
+		"bunks" 250
+		"mass" 952
+		"drag" 15
+		"heat dissipation" .6
+		"fuel capacity" 700
+		"cargo space" 183
+		"outfit space" 876
+		"weapon capacity" 439
+		"engine capacity" 212
+		weapon
+			"blast radius" 250
+			"shield damage" 3700
+			"hull damage" 1900
+			"hit force" 5500
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Fire-Lance"
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	engine -20 132
+		over
+	engine 20 132
+		over
+	engine 0 142
+		over
+	"reverse engine" -9 -154
+		zoom 0.7
+	"reverse engine" 9 -154
+		zoom 0.7
+	"steering engine" -89 33.5
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 89 33.5
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -82.5 30
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 82.5 30
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -69.5 -103.5
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 69.5 -103.5
+		zoom 0.3
+		angle -38
+		left
+	"steering engine" -76 -106
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 76 -106
+		zoom 0.3
+		angle -38
+		left
+	gun -45 -150 "Korath Fire-Lance"
+	gun 32.5 -1
+		angle 60
+	gun -32.5 -1
+		angle 300
+	turret -10 -143 "Korath Grab-Strike"
+	turret 10 -143 "Korath Grab-Strike"
+	turret -36 -141 "Korath Grab-Strike"
+	turret 36 -141 "Korath Grab-Strike"
+	turret 0 41 "Korath Banisher"
+	turret 0 94 "Korath Warder"
+	bay "Fighter" -80 151 back
+	bay "Fighter" 80 151 back
+	bay "Fighter" 28.5 145 back
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, originally built and manufactured during an era of shortages and desperation as they adapted to life in exile."
+	description `In the ensuing centuries, however, constant warfare against surrounding aliens has been building pressure on their shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have revised the design to bring it up to their expectations.`
 
 
 ship "Korath Chaser"
