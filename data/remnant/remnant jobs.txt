@@ -231,8 +231,7 @@ mission "Remnant: Logistics Civil Engineering"
 	job
 	repeat
 	to offer
-		not "Remnant: Ssil Vida Active"
-		not "flagship planet: Ssil Vida"
+		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		random < 51
 	source
@@ -258,8 +257,7 @@ mission "Remnant: Logistics Industrial Delivery"
 	job
 	repeat
 	to offer
-		not "Remnant: Ssil Vida Active"
-		not "flagship planet: Ssil Vida"
+		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "Remnant: Logistics Civil Engineering: done" >= 9
 		random < 76
@@ -285,8 +283,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 	job
 	repeat
 	to offer
-		not "Remnant: Ssil Vida Active"
-		not "flagship planet: Ssil Vida"
+		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant"
 		has "Remnant: Logistics Industrial Delivery: done" >= 9
@@ -313,8 +310,7 @@ mission "Remnant: Logistics Salvage Delivery"
 	job
 	repeat
 	to offer
-		not "Remnant: Ssil Vida Active"
-		not "flagship planet: Ssil Vida"
+		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant Capital"
 		has "Remnant: Logistics Outfitter Delivery: done" >= 9
