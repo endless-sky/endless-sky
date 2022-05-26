@@ -3103,7 +3103,7 @@ bool Ship::CanRefuel(const Ship &other) const
 					escortsNeedFuel = true;
 			}
 			// Prioritize refueling escorts before mission NPCs
-			if(escortsNeedFuel && !other.IsYours() && other.GetPersonality().IsEscort())
+			if(!escortsNeedFuel || (escortsNeedFuel && !other.IsYours() && other.GetPersonality().IsEscort()))
 				return false;
 		}
 		else if(!IsYours() && other.IsYours())
