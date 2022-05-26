@@ -466,8 +466,8 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 		"Jump Drive"
 
 	gun "Korath Detainer"
-	gun "Firelight Bank"
-	gun "Firelight Bank"
+	gun
+	gun
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
