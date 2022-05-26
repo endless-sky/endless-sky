@@ -3455,7 +3455,7 @@ int Ship::BaysTotal(const string &category) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!ship.CanBeCarried() || GetGovernment() != ship.GetGovernment())
+	if(!ship.CanBeCarried())
 		return false;
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
