@@ -830,7 +830,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 					parent.reset();
 
 				// Only set a new parent if the new parent can legitimately carry the fighter
-				if(!it->GetParent() || parent->CanCarry(*it) || !parent->GetParent())
+				if(!it->GetParent() || !parent || !parent->GetParent() || parent->CanCarry(*it))
 					it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
