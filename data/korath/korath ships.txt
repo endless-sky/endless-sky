@@ -475,8 +475,8 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)" 
 	sprite "ship/raiderii"
 	outfits 
-		"Korath Grab-Strike" 4
-		"Korath Banisher"
+		"Korath Grab-Strike" 2
+		"Korath Repeater Turret" 3
 		"Korath Warder"
 		"Korath Piercer Launcher"
 		"Korath Piercer" 47
@@ -496,11 +496,11 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)"
 	gun "Korath Piercer Launcher"
 	gun
 	gun
-	turret "Korath Repeater"
-	turret "Korath Repeater"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
-	turret "Korath Repeater"
+	turret "Korath Repeater Turret"
 	turret "Korath Warder"
 
 
