@@ -3460,15 +3460,18 @@ bool Ship::CanCarry(const Ship &ship) const
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
 
-	// If this has no bays then it can't carry the ship.
-	if(!HasBays())
+	int free = BaysTotal(category);
+	if(!free)
 		return false;
 
-	// If this ship has at least 1 free bay then it can carry the ship.
-	for(const Bay &bay : Bays())
-		if((bay.category == category) && (!bay.ship || bay.ship == ship.shared_from_this() || bay.ship->IsDestroyed()))
-			return true;
-	return false;
+	for(const auto &it : escorts)
+	{
+		auto escort = it.lock();
+		if(escort && escort.get() != &ship && escort->attributes.Category() == category
+			&& !escort->IsDestroyed())
+			--free;
+	}
+	return (free > 0);
 }
 
 
