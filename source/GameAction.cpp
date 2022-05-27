@@ -51,7 +51,7 @@ namespace {
 			for(const auto &ship : toTake)
 				player.TakeShip(ship.get(), giftShip.WithOutfits() ? model : nullptr);
 		}
-		Messages::Add((abs(count) == 1 ? "The " + model->VariantName() + " \"" + shipName + "\" was " : 
+		Messages::Add((abs(count) == 1 ? "The " + model->VariantName() + " \"" + shipName + "\" was " :
 			to_string(abs(count)) + " ships corresponding to the model " + model->VariantName() + " were ") +
 			(count > 0 ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 	}
@@ -269,10 +269,10 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write(it.second.Count() > 0 ? "give" : "take", "ship", 
-				  it.first->VariantName(), it.second.Name(), abs(it.second.Count()),
-				  it.second.Unconstrained() ? "unconstrained" : "constrained",
-				  it.second.WithOutfits() ? "with outfits" : "without outfits");
+		out.Write(it.second.Count() > 0 ? "give" : "take", "ship",
+				it.first->VariantName(), it.second.Name(), abs(it.second.Count()),
+				it.second.Unconstrained() ? "unconstrained" : "constrained",
+				it.second.WithOutfits() ? "with outfits" : "without outfits");
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)

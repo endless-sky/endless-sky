@@ -173,7 +173,7 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("require", it.first->Name(), it.second);
 		for(const auto &it : requiredShips)
 			out.Write("owns", it.first->VariantName(), it.second.Name(), it.second.Count(),
-					  it.second.Unconstrained() ? "unconstrained" : "constrained");
+					it.second.Unconstrained() ? "unconstrained" : "constrained");
 
 		action.Save(out);
 	}
@@ -302,7 +302,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	for(auto &&it : requiredShips)
 		if(!it.second.Satisfies(player, it.first))
 			return false;
-	
+
 	// An `on enter` MissionAction may have defined a LocationFilter that
 	// specifies the systems in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
