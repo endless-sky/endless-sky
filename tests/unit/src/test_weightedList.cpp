@@ -324,6 +324,7 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 		WHEN( "random input is generated" ) {
 			int chunkSize = GENERATE(range(1, 12), range(20, 1000, 31));
 			std::vector<int> values = GENERATE_COPY(chunk(chunkSize, range(0, chunkSize)));
+			list.reserve(values.size());
 			for(auto &&v : values)
 				list.emplace_back(v ? v : 1, v);
 			AND_WHEN( "all odds are erased" ) {
