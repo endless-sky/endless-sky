@@ -550,7 +550,7 @@ news "hyperspace relay engineer"
 			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
 			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
-			"Have you ever setup an TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
+			"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
 		word
 			`"`
 
@@ -710,6 +710,30 @@ news "economist"
 			"It's crazy that we live in an age where technology lets us predict solar storms a month in advance, but we still can't predict what the stock market will do a week from today."
 			"The hardest part of being an economist isn't the difficulty of seeing a disaster coming; it's the difficulty of convincing those in power to do something about it."
 			"An economy is almost like a living organism, and if you're able to grasp its intricacy and scope, it's actually a very beautiful thing."
+		word
+			`"`
+
+
+
+news "human mechanic"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			"Don't worry, I keep a strict no-smoking policy when working near the fuel system."
+			"You should really have your coolant system flushed every 50,000 light-years."
+			"They just don't build 'em like they used to."
+			"I've been restoring an old Flivver I bought from a scrapyard as a hobby project. She's going to be a beauty once I get her flying again!"
+			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
+			"I did my apprenticeship with the Navy, but after I finished my tour, I just wanted to open up my own repair shop."
+			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
+			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
+			"Pass me the 10 mm socket wrench?"
 		word
 			`"`
 
@@ -1061,7 +1085,7 @@ news "human syndicate manager"
 			"Nobody ever got fired for buying Syndicate."
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 			"Those union boys are completely unreasonable; if we give them a finger then they try to eat up the whole arm up to the elbow."
-			"I've some disagreements with a manager above me. Can you pickup a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
+			"I've some disagreements with a manager above me. Can you pick up a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
 		word
 			`"`
 
@@ -1177,7 +1201,7 @@ news "human tourism"
 			"Hey! Where's platform 5? I need to board there in a few minutes!"
 			"Have you seen my luggage? I'm sure I put it here some minutes ago."
 			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsolete so fast when we got cheap spaceflight."
-			"I can travel millions of kilometers to another planet, cheaply and within a day; but going to the other side of this planet, just a few thousands kilometers, costs me a fortune and a week of travel time."
+			"I can travel millions of kilometers to another planet, cheaply and within a day; but going to the other side of this planet, just a few thousand kilometers, costs me a fortune and a week of travel time."
 			"Can I speak to the manager? There was a scratch on my cabin-door and it really irritated me. I think my whole vacation is ruined now."
 			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
 		word
@@ -1533,7 +1557,7 @@ news "graffiti on spaceport wall"
 			"Elvis was here. He is alive!"
 			"Waldo was here, but where is he now?"
 			"The butler did it!"
-			"Hello Hero, have you heroicly been hammering hostiles?"
+			"Hello Hero, have you heroically been hammering hostiles?"
 			"What do you get when you cross a rhetorical question with a joke?"
 			"Spacing out in space is never funny."
 			"Don't put graffiti on the wall here."

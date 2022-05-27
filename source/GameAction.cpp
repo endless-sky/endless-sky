@@ -1,5 +1,5 @@
 /* GameAction.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -48,7 +48,7 @@ namespace {
 		{
 			if(!player.HasMapped(mapSize))
 				player.Map(mapSize);
-			Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
 

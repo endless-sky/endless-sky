@@ -36,7 +36,9 @@ mission "First Contact: Wanderer"
 	source
 		attributes "wanderer"
 	to offer
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "First Contact: Unfettered: offered"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
@@ -84,6 +86,61 @@ event "label wanderer space"
 		sprite "label/wanderers"
 
 
+mission "Wanderers: Unfettered Diplomat"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "First Contact: Wanderer: offered"
+		has "First Contact: Unfettered: offered"
+		not "unfettered know of wanderers"
+		not "Wanderers: Hai Diplomat: offered"
+		not "Wanderers: Diplomacy: offered"
+	on offer
+		conversation
+			`The aliens north of Hai space seem to speak the Hai language. Do you want to look for someone here who could serve as an interpreter?`
+			branch hai
+				has "First Contact: Hai"
+			choice
+				`	(Yes.)`
+					goto try
+				`	(Not right now.)`
+					defer
+			label hai
+			choice
+				`	(Yes.)`
+				`	(No; the other Hai south of here are better suited for this.)`
+					decline
+			label try
+			`	You search around the spaceport for any sign of a local government. Eventually, one of the Hai approaches you. "You are lost, monkey. What is it that you are looking for?"`
+			choice
+				`	"Do you know where I can talk to an official?"`
+				`	"Do you know where I could find an interpreter?"`
+					goto interpreter
+				`	"I'm doing fine, thank you."`
+					goto decline
+			`	The Hai says, "If your reason for talking to our chiefs is worthwhile, then I will take you to them."`
+			`	"I'm looking for a Hai interpreter," you say.`
+			label interpreter
+			`	She looks back at you quizzically. "What purpose would an interpreter serve? You can understand my words, can you not?"`
+			choice
+				`	"I need one to talk to the aliens up north from here."`
+				`	"I think that I'll be better off finding one of the chiefs on my own."`
+					goto decline
+			`	The Hai scrunches up her nose. "Foolish monkey. We have already contacted those aliens; we have little use for another emissary."`
+			choice
+				`	"Can you still provide an interpreter, though?"`
+				`	"I understand."`
+					goto end
+			`	"You do not need an interpreter. All you need is to know that those aliens are not worth conversing with."`
+			label end
+			`	The Hai walks away, leaving you to your own devices in the spaceport.`
+				decline
+			label decline
+			`	The Hai scoffs at you. "If you do not seek for help, or seek to help, then you have no place on our worlds." She walks away, and you spend another hour searching the spaceport before giving up and heading back to your ship.`
+				decline
+
+
 
 mission "Wanderers: Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
@@ -95,6 +152,7 @@ mission "Wanderers: Hai Diplomat"
 	clearance
 	to offer
 		has "First Contact: Wanderer: offered"
+		has "First Contact: Hai: offered"
 		not "Wanderers: Diplomacy: offered"
 	on offer
 		conversation
@@ -714,7 +772,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
-			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 

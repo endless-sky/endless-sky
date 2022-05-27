@@ -16,11 +16,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include <map>
+#include <mutex>
 
 using namespace std;
 
 namespace {
 	map<string, Sprite> sprites;
+
+	mutex modifyMutex;
 }
 
 
@@ -48,6 +51,8 @@ void SpriteSet::CheckReferences()
 
 Sprite *SpriteSet::Modify(const string &name)
 {
+	lock_guard<mutex> guard(modifyMutex);
+
 	auto it = sprites.find(name);
 	if(it == sprites.end())
 		it = sprites.emplace(name, Sprite(name)).first;
