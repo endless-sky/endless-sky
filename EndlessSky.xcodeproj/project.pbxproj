@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		661265BA2840503500773CB1 /* ES_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; };
+		661265BD28405ABD00773CB1 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		6637D398283DC80900CE7388 /* ES_Engine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6689037D283EFB7900C2F482 /* ES_Engine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		66ABE9F0283887F7000BF5B9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632F1AE6FD0B004FE1FE /* main.cpp */; };
@@ -1354,6 +1355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661265BD28405ABD00773CB1 /* endless-sky.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
