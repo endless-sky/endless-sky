@@ -110,7 +110,7 @@ public:
 	// Check to see if the items are condemnable (attrocities) or warrant a fine.
 	bool Condemns(const Outfit *outfit) const;
 	int Fines(const Outfit *outfit) const;
-	
+
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
 	void AddReputation(double value) const;
