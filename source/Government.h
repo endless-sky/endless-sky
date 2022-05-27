@@ -18,11 +18,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 class Conversation;
 class DataNode;
 class Fleet;
+class GameData;
 class Phrase;
 class Planet;
 class PlayerInfo;
@@ -44,6 +46,7 @@ public:
 
 	// Load a government's definition from a file.
 	void Load(const DataNode &node);
+	static std::vector<std::pair<double, std::string>> LoadReputationTitles(const DataNode &node);
 
 	// Get the display name of this government.
 	const std::string &GetName() const;
@@ -119,6 +122,7 @@ public:
 	bool IsProvokedOnScan() const;
 	bool ShowReputation() const;
 	void SetShowReputation(bool input);
+	std::string GetReputationTitle() const;
 
 
 private:
@@ -145,6 +149,7 @@ private:
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
 	bool showReputation = false;
+	std::vector<std::pair<double, std::string>> titles;
 };
 
 

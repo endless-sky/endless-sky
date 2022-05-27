@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 
 #include <algorithm>
+#include <limits>
 
 using namespace std;
 
@@ -143,6 +144,8 @@ void Government::Load(const DataNode &node)
 			showReputation = true;
 		else if(child.Token(0) == "hide reputation")
 			showReputation = false;
+		else if(child.Token(0) == "reputation titles")
+			titles = LoadReputationTitles(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -152,6 +155,26 @@ void Government::Load(const DataNode &node)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
+}
+
+
+
+// Load a set of reputation titles and return them as a pair of arrays.
+vector<pair<double, string>> Government::LoadReputationTitles(const DataNode &node)
+{
+	vector<pair<double, string>> result;
+	if(!node.HasChildren())
+		return result;
+	for(const DataNode &child : node)
+	{
+		if(child.Size() != 2)
+		{
+			child.PrintTrace("Skipping incorrectly formatted reputation title node.");
+			continue;
+		}
+		result.emplace_back(child.Token(0) == "-infinity" ? numeric_limits<double>::min() : child.Value(0), child.Token(1));
+	}
+	return result;
 }
 
 
@@ -417,4 +440,25 @@ bool Government::ShowReputation() const
 void Government::SetShowReputation(bool input)
 {
 	showReputation = input;
+}
+
+
+
+string Government::GetReputationTitle() const
+{
+	double rep = Reputation();
+	auto tempTitles = titles;
+	if(tempTitles.empty())
+		tempTitles = *GameData::ReputationTitles();
+	if(tempTitles.empty())
+		return "";
+	string title;
+	for(auto item : tempTitles)
+	{
+		double lowerBound = item.first;
+		if(rep < lowerBound)
+			break;
+		title = item.second;
+	}
+	return title;
 }

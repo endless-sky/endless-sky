@@ -170,11 +170,10 @@ void LogbookPanel::Draw()
 	}
 	else if(reputationsSelected)
 	{
-		for(const pair<string, double> &item : reputations)
+		for(const pair<string, string> &item : reputations)
 		{
 			font.Draw(item.first, pos + textOffset, bright);
-			double value = item.second;
-			DisplayText text(Format::Number(value), {static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT, Truncate::BACK});
+			DisplayText text(item.second, {static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT, Truncate::BACK});
 			font.Draw(text, pos + textOffset, medium);
 			pos.Y() += LINE_HEIGHT;
 		}
@@ -325,8 +324,8 @@ void LogbookPanel::Update(bool selectLast)
 		if(!gov.ShowReputation())
 			continue;
 		string name = gov.GetName();
-		double rep = gov.Reputation();
-		reputations.push_back(pair<string, double>(name, rep));
+		string title = gov.GetReputationTitle();
+		reputations.push_back(pair<string, string>(name, title));
 	}
 	contents.emplace_back("Reputations");
 	dates.emplace_back();

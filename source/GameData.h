@@ -128,6 +128,8 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 
+	static const std::vector<std::pair<double, std::string>> *ReputationTitles();
+
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
 	static const std::vector<StartConditions> &StartOptions();

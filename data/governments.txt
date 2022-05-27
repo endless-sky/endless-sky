@@ -8,6 +8,20 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+"reputation titles"
+	"-infinity" "\"You. Will. Die.\""
+	-100000 "Hated Adversary"
+	-10000 "Feared Enemy"
+	-1000 "Hostile Relations"
+	-100 "Wanted Person"
+	-10 "Petty Disputes"
+	0 "Civil Interactions"
+	10 "Friendly Relations"
+	100 "Respected Person"
+	1000 "Charitable Relations"
+	10000 "Honoured Member"
+	100000 "Legendary Ally"
+
 government "Alpha"
 	swizzle 1
 	"crew attack" 1.5

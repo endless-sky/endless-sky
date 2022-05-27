@@ -62,7 +62,8 @@ private:
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;
-	std::vector<std::pair<std::string, double>> reputations;
+	//std::vector<std::pair<std::string, double>> reputations;
+	std::vector<std::pair<std::string, std::string>> reputations;
 
 	Point hoverPoint;
 

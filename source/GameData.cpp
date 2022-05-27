@@ -92,6 +92,8 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	vector<pair<double, string>> reputationTitles;
 }
 
 
@@ -145,6 +147,7 @@ void GameData::FinishLoading()
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
 	playerGovernment = objects.governments.Get("Escort");
+	reputationTitles = objects.reputationTitles;
 
 	politics.Reset();
 }
@@ -623,6 +626,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
+}
+
+
+
+const vector<pair<double, string>> *GameData::ReputationTitles()
+{
+	return &reputationTitles;
 }
 
 
