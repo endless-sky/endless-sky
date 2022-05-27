@@ -15,10 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/alignment.hpp"
 #include "Color.h"
 #include "text/DisplayText.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Preferences.h"
@@ -31,6 +34,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <set>
+#include <utility>
+#include <iostream>
 
 using namespace std;
 
@@ -115,6 +120,15 @@ void LogbookPanel::Draw()
 	Point textOffset(0., .5 * (LINE_HEIGHT - font.Height()));
 	// Start at this point on the screen:
 	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
+	// Draw the Reputations tab.
+	bool reputationsSelected = selectedName == "Reputations";
+	/*if(reputationsSelected)
+	{
+		FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
+		FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
+	}
+	font.Draw("Reputations", pos + textOffset, bright);
+	pos.Y() += LINE_HEIGHT;*/
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
@@ -152,7 +166,7 @@ void LogbookPanel::Draw()
 			pos.Y() += wrap.Height() + GAP;
 		}
 	}
-	else if(!selectedDate && pit != player.SpecialLogs().end())
+	else if(!selectedDate && !reputationsSelected && pit != player.SpecialLogs().end())
 	{
 		for(const auto &it : pit->second)
 		{
@@ -162,6 +176,17 @@ void LogbookPanel::Draw()
 			wrap.Wrap(it.second);
 			wrap.Draw(pos, medium);
 			pos.Y() += wrap.Height() + GAP;
+		}
+	}
+	else if(reputationsSelected)
+	{
+		for(const pair<string, double> &item : reputations)
+		{
+			font.Draw(item.first, pos + textOffset, bright);
+			double value = item.second;
+			DisplayText text(Format::Number(value), {static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT, Truncate::BACK});
+			font.Draw(text, pos + textOffset, medium);
+			pos.Y() += LINE_HEIGHT;
 		}
 	}
 
@@ -303,6 +328,18 @@ void LogbookPanel::Update(bool selectLast)
 {
 	contents.clear();
 	dates.clear();
+	reputations.clear();
+	for(const pair<const string, Government> &govPair : GameData::Governments())
+	{
+		const Government &gov = govPair.second;
+		if(!gov.ShowReputation())
+			continue;
+		string name = gov.GetName();
+		double rep = gov.Reputation();
+		reputations.push_back(pair<string, double>(name, rep));
+	}
+	contents.emplace_back("Reputations");
+	dates.emplace_back();
 	for(const auto &it : player.SpecialLogs())
 	{
 		contents.emplace_back(it.first);

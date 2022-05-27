@@ -448,6 +448,7 @@ government "Merchant"
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
+	"shwo reputation"
 
 government "Militia"
 	swizzle 2
@@ -460,6 +461,7 @@ government "Militia"
 	"bribe" .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
+	"show reputation"
 
 government "Navy Intelligence"
 	swizzle 0
@@ -522,6 +524,7 @@ government "Pirate"
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
 	raid "pirate raid"
+	"show reputation"
 
 government "Pirate (Rival)"
 	"display name" "Pirate"
@@ -585,6 +588,7 @@ government "Quarg"
 		"Pirate" -.01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
+	"show reputation"
 
 government "Remnant"
 	swizzle 0
@@ -649,6 +653,7 @@ government "Republic"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"
+	"show reputation"
 
 government "Scar's Legion"
 	swizzle 6
@@ -690,6 +695,7 @@ government "Syndicate"
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
 	raid "pirate raid"
+	"show reputation"
 
 government "Syndicate (Extremist)"
 	swizzle 1

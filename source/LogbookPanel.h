@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 class PlayerInfo;
@@ -61,6 +62,7 @@ private:
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;
+	std::vector<std::pair<std::string, double>> reputations;
 
 	Point hoverPoint;
 

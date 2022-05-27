@@ -117,6 +117,8 @@ public:
 	double CrewDefense() const;
 
 	bool IsProvokedOnScan() const;
+	bool ShowReputation() const;
+	void SetShowReputation(bool input);
 
 
 private:
@@ -142,6 +144,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	bool showReputation = false;
 };
 
 
