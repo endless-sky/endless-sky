@@ -86,6 +86,14 @@ event "remnant salvage available"
 
 
 
+event "remnant scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		"provoked on scan" 0
+
+
+
 event "remnant research update bjd1"
 
 

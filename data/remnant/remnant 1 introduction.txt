@@ -2434,6 +2434,25 @@ mission "Remnant: Salvage 6"
 
 
 
+mission "Remnant: Scanning Tolerances"
+	name "Deliver Data to <planet>"
+	description `Deliver data crystal to the researchers on <destination>.`
+	source
+		government "Remnant"
+		not distance 0
+	destination
+		government "Remnant"
+		not distance 0
+	to offer
+		has "license: Remnant Capital"
+		random < 30
+	on offer
+		conversation
+	on complete
+		conversation
+
+
+
 mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
