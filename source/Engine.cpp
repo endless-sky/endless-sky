@@ -904,7 +904,7 @@ list<ShipEvent> &Engine::Events()
 
 
 // Draw a frame.
-void Engine::Draw() const
+void Engine::Draw()
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();
@@ -1036,7 +1036,7 @@ void Engine::Draw() const
 	// Draw ammo status.
 	static const double ICON_SIZE = 30.;
 	static const double AMMO_WIDTH = 80.;
-	Rectangle ammoBox = hud->GetBox("ammo");
+	ammoBox = hud->GetBox("ammo");
 	// Pad the ammo list by the same amount on all four sides.
 	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
@@ -1070,6 +1070,9 @@ void Engine::Draw() const
 		string amount = to_string(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
+		double ammoIconClickCentreX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+		double ammoIconClickCentreY = pos.Y() + ICON_SIZE / 2.;
+		ammoClickZones.emplace_back(Point(ammoIconClickCentreX, ammoIconClickCentreY), Point(80., 30.), it.first);
 	}
 
 	// Draw escort status.
@@ -1105,6 +1108,23 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	isRightClick = false;
+
+	// See if this click was in the ammoBox, then see if it clicked one of the icons.
+	if(ammoBox.Contains(from))
+	{
+		bool control = (SDL_GetModState() & KMOD_CTRL);
+		for(const ClickZone<const Outfit *> &zone : ammoClickZones)
+		{
+			if(zone.Contains(from))
+			{
+				const Outfit *clicked = zone.Value();
+				if(!control)
+					player.DeselectAll();
+				player.ToggleAny(clicked);
+				return;
+			}
+		}
+	}
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");

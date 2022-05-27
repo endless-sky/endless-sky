@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
+#include "ClickZone.h"
 #include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
@@ -79,7 +80,7 @@ public:
 	std::list<ShipEvent> &Events();
 
 	// Draw a frame.
-	void Draw() const;
+	void Draw();
 
 	// Set the given TestContext in the next step of the Engine.
 	void SetTestContext(TestContext &newTestContext);
@@ -194,6 +195,8 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
+	Rectangle ammoBox;
+	std::vector<ClickZone<const Outfit *>> ammoClickZones;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
 	const Sprite *highlightSprite = nullptr;

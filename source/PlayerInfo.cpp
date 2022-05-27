@@ -2112,6 +2112,28 @@ void PlayerInfo::SelectNext()
 
 
 
+void PlayerInfo::DeselectAll()
+{
+	selectedWeapons.clear();
+}
+
+
+
+void PlayerInfo::ToggleAny(const Outfit *outfit)
+{
+	if(!flagship || flagship->Outfits().empty())
+		return;
+
+	if(selectedWeapons.find(outfit) != selectedWeapons.end())
+	{
+		selectedWeapons.erase(outfit);
+		return;
+	}
+	selectedWeapons.insert(outfit);
+}
+
+
+
 // Escorts currently selected for giving orders.
 const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
 {
