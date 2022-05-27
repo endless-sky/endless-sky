@@ -506,3 +506,12 @@ jobs:
         builtin: clear,en-GB_to_en-US
         path: data/
         exclude_file: .codespell.exclude
+
+
+
+  style-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: editorconfig-checker/action-editorconfig-checker@main
+    - run: editorconfig-checker

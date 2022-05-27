@@ -62,7 +62,7 @@ SCENARIO( "a Set can be interacted with by consuming classes even when const", "
 				CHECK( dataPtr == nullptr );
 			}
 		}
-		
+
 		WHEN( "find(key) is called" ) {
 			const auto cIt = s.find(key);
 			THEN( "the Set does not increase in size" ) {

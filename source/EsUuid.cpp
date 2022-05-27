@@ -116,7 +116,7 @@ bool IsNil(const uuid_t &id) noexcept
 std::string Serialize(const uuid_t &id)
 {
 	char buf[UUID_BUFFER_LENGTH];
-	uuid_unparse(id, buf);
+	uuid_unparse_lower(id, buf);
 	return std::string(buf);
 }
 
