@@ -162,7 +162,7 @@ mission "HI2-Bonus 3"
 			apply
 				clear "resistance evidence"
 			`You receive a message from the Heliarch Consul Iekie as you go in for a landing.`
-			`	"Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, found out all these operations without your help, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
+			`	"Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, as without your help found all these operations, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
 			`	<payment> are transferred to your account.`
 				decline
 
@@ -177,7 +177,7 @@ mission "HI2-MP"
 		or
 			has "Heliarch Investigation 2: declined"
 			has "Heliarch Investigation 2: aborted"
-			has "Heliarch Investigation 2 :failed"
+			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
 			`You arrive to a thunderstorm, as is often the norm for <planet>.`
@@ -186,14 +186,14 @@ mission "HI2-MP"
 			choice
 				`	"Are you not going to follow their lead?"`
 				`	"Have you not decided how to investigate the planet?"`
-			`	"Captain <last>. Give us an edge, your human approach to these missions would, is what the consul said. Only, underused, your foreign ideas are, if only the order at which we land on these planets, they are used for."`
+			`	"Captain <last>. An edge your human approach to these missions would give us, the consul said. Except underused, your foreign ideas are, if only the order at which we land on these planets, they are used for."`
 			`	He looks out to the rainy spaceport through your hatch, still open from his friends' exits. "Lead the way, would you? The warehouses, I wish to inspect, but your assistance I could use."`
 			choice
 				`	"Of course, I'll get my rain coat."`
 				`	"I'd rather not go out there with that rain."`
 					goto decline
-			`	You walk in a straight line for about an hour, many times without any building providing cover from the rain. Kirrie takes you to the very edge of the town, where you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and the nonstop precipitation blocking your view. One or two warehouses have a fair bit of rust on their doors, and just once did you spot one with a damaged roof. You can also make out the shapes of small trees and bushes not too far out.`
-			`	"Now, Captain, to start looking for something suspicious, where would you?" He asks, showing you some sort of identification card, explaining that it can open any of the warehouse doors.`
+			`	You walk in a straight line for about an hour, many times without any building providing cover from the rain. Kirrie takes you to the very edge of the town where you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and constant downpour. One or two warehouses have a fair bit of rust on their doors, and just once you spot one with a damaged roof. You can also make out the shapes of small trees and bushes not too far out.`
+			`	"Now, Captain, start looking for something suspicious, where would you?" He asks, showing you some sort of identification card, explaining that it can open any of the warehouse doors.`
 			choice
 				`	(Check the warehouses with the rusty doors.)`
 				`	(Check the warehouse with the leaking roof.)`
@@ -217,13 +217,13 @@ mission "HI2-MP"
 			`	Kirrie tries to open the door but can't get his card to work. "All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too, revealing a hidden staircase leading underground.`
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots. Kirrie is hit on one of his legs before he can take cover.`
-			`	You two attempt to retaliate, spotting several small automatic turrets on the ceiling and walls, but their fire proves too much, so you rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers land nearby shortly after, and dozens of armed agents enter the warehouse, while you wait with Kirrie as his wound is treated.`
-			`	The agents return hours later, reporting they shot down the turrets, and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our reactor modules is."`
-			`	With the local Heliarchs taking care of the place, they have a Neutralizer come and bring you and Kirrie right by your ship, where you find Iplora and Tugroob waiting. You all head inside, and the Kirrie say you may depart now, as his colleagues follow him to his bunk to hear of what happened.`
+			`	You two attempt to retaliate, spotting several small automatic turrets on the ceiling and walls, but their fire proves too much, so you rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers soon land nearby, and dozens of armed agents enter the warehouse while you wait with Kirrie as his wound is treated.`
+			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our reactor modules is."`
+			`	With the local Heliarchs taking care of the place, a Neutralizer drops you and Kirrie at your ship, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
 				accept
 			label trees
 			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
-			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting the odd, wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
+			`	While passing by another set of bushes, Kirrie notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then hastily replanted, noting the odd wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
 			choice
 				`	(Dig out the bushes.)`
 				`	(Head back to the warehouses and look around there.)`
@@ -245,12 +245,12 @@ mission "HI2-MP"
 				accept
 			label trees2
 			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
-			`	While passing by another set of bushes, he notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then forcibly put on the ground again, noting the odd, wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
+			`	While passing by another set of bushes, Kirrie notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed, and then hastily replanted, noting the odd wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
 			choice
 				`	(Dig out the bushes.)`
 					goto bushending
 				`	(Head back to the open warehouses and take shelter there.)`
-			`	Though you can barely hear each other in the rain, Kirrie insists on staying there and digging through the ground for a while to see if he finds anything.`
+			`	Though you can barely hear each other in the rain, Kirrie insists on staying there and digging through the ground for a while to see if he can find anything.`
 			`	You walk back to the empty streets, taking care to not slip on the damp soil. You enter one of the warehouses Kirrie had previously opened and are soon joined by him. He informs you that he dug out the suspicious bushes but couldn't find anything under them.`
 			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
@@ -273,7 +273,7 @@ mission "HI2-SF"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the resources, ships, and strategic location the planet holds made it be marked for investigation anyway.`
+			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the strategic location held by the planet, and the volume of resources and ships, marked it for investigation anyway.`
 			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing, and saying you may depart.`
 
 mission "HI2-SS"
@@ -474,7 +474,7 @@ mission "HI2-IW"
 					goto bumpyblizzard
 				`	(Continue looking around the caves.)`
 			`	You head back inside and continue exploring the cave system. You two find a few more of the hidden campsites, but all are as abandoned as the first one. You're alerted by the wind, snow, and ice whenever you're close to another exit.`
-			`	After a few hours, the storm finally subsides, and you both return to your ship. you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
+			`	After a few hours, the storm finally subsides, and you both return to your ship. You leave to pick up Kirrie and Tugroob, who also come back empty handed.`
 				accept
 			label bumpyblizzard
 			`	Iplora hesitates for a bit, then explains that you would probably get sick going through the storm now. She suggests you wait in the cave until it is safe for human passage.`
@@ -485,7 +485,7 @@ mission "HI2-IW"
 					goto snowdig
 			label back
 			`	She helps you up, and you continue on your way down the hills. You get back to the forest, and she starts finding the trail back to the ship. Halfway through, the storm gets progressively weaker.`
-			`	When you two return to your ship. you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
+			`	When you two return to your ship, you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
 				accept
 			label snowdig
 			`	You start clawing your way down the snow as Iplora asks you to stop and continue moving toward the ship You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
@@ -509,7 +509,7 @@ mission "HI2-IW"
 				goto opencrate
 			label help
 			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves, going uphill. You follow her lead, approaching from another direction.`
-			`	The shots alternate targets, some heading to Iplora, then some to you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
+			`	The shots alternate targets, some firing at Iplora, then some at you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past the last cave you visited when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you. "Fled, our attacker has," she claims. You two walk back to the crate.`
 			label opencrate
 			`	When it's finally open, you see it contains a Heliarch finisher torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device and calls for Heliarch support. Several Heliarch Neutralizers arrive some time after the blizzard subsides, and you're directed to one of them to dry your clothes and make sure you're not frostbitten.`
@@ -584,7 +584,7 @@ mission "Heliarch Recon 1"
 				`	"Alright, which worlds do you need me to land on?"`
 				`	"Sorry, I don't want to get involved in your conflict with the Quarg."`
 					decline
-			`	They ask you to show them your map of the galaxy, so you bring them inside your ship, pointing to them all the Quarg planets and stations you have found. They're a bit startled when they first see the entire map, as if unsure about where to send you.`
+			`	They ask you to show them your map of the galaxy, so you bring them inside your ship and point out to them all the Quarg planets and stations you have found. They're a bit startled when they first see the entire map, as if unsure about where to send you.`
 			`	You give them a quick rundown of each Quarg world, and after discussing among themselves for a bit, the Saryd speaks. "Interested in the Quarg's mining operations, and the various construction stages of their ringworlds, the consul is."`
 			`	He points to some of the worlds, and you list the places you need to land: <stopovers>.`
 			`	They call for some engineers to come work on your ship's sensors, the whole thing taking just a few minutes. When they're done, the Heliarch agents thank you for your cooperation, and tell you to head for the <destination> when you've collected all the data.`
