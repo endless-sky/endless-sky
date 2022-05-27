@@ -448,7 +448,7 @@ government "Merchant"
 	"fine" 0
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	"shwo reputation"
+	"show reputation"
 
 government "Militia"
 	swizzle 2
