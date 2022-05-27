@@ -53,6 +53,64 @@ effect "grab-strike impact"
 	"velocity scale" -.1
 
 
+outfit "Korath Shunt-Strike"
+	category "Turrets"
+	cost 821000
+	thumbnail "outfit/shunt-strike"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"energy capacity" 260
+	"turret mounts" -1
+	"required crew" 1
+	"energy consumption" 0.2
+	"heat generation" 0.3
+	weapon
+		sprite "projectile/shunt-strike"
+			"frame rate" 24
+			"random start frame"
+		"hardpoint sprite" "hardpoint/shunt-strike"
+		"hardpoint offset" 7.
+		sound "shunt-strike"
+		"inaccuracy" 1
+		"turret turn" 2.1
+		"velocity" 9
+		"lifetime" 90
+		"reload" 30
+		"die effect" "shunt-strike hit"
+		"hit effect" "shunt-strike hit"
+		"hit effect" "shunt-strike sparkles" 8
+		"firing energy" 90
+		"firing heat" 331
+		"acceleration" 1
+		"drag" .07
+		"turn" .35
+		"homing" 4
+		"tracking" .9
+		"shield damage" 48
+		"hull damage" 102
+		"corrosion damage" 8
+		"piercing" 0.1
+		"slowing damage" 2.5
+	description "This dismantled Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
+	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
+
+
+effect "shunt-strike hit"
+	sprite "effect/shunt-strike-hit"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 30
+	"velocity scale" 0.05
+
+effect "shunt-strike sparkles"
+	sprite "effect/shunt-strike-sparkles"
+		"frame rate" 15
+	"lifetime" 90
+	"velocity scale" 0.05
+	"random angle" 10
+
+
 outfit "Korath Banisher"
 	category "Turrets"
 	cost 943000
@@ -80,6 +138,30 @@ outfit "Korath Banisher"
 		"hull damage" .9
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
+
+outfit "Korath Expeller"
+	category "Guns"
+	cost 819000
+	thumbnail "outfit/expeller"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"gun ports" -1
+	weapon
+		sprite "projectile/expeller"
+			"frame rate" 60
+		sound "banisher"
+		"hit effect" "banisher impact"
+		"inaccuracy" .4
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 3.6
+		"shield damage" 1.7
+		"hull damage" .75
+		"hit force" 20
+	description "The short-range Expeller is designed for fighters to push vessels away from Korath carriers."
 
 effect "banisher impact"
 	sprite "effect/banisher impact"
@@ -576,3 +658,169 @@ effect "slicer impact"
 	"random spin" 2
 	"random velocity" .1
 	"velocity scale" -.002
+
+outfit "Korath Heaver"
+	category "Secondary Weapons"
+	cost 3450000
+	thumbnail "outfit/korath heaver"
+	"mass" 46
+	"outfit space" -46
+	"weapon capacity" -46
+	"fuel capacity" 200
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/heaver hyperspace"
+			"frame rate" 12
+			rewind
+		"hardpoint sprite" "hardpoint/korath heaver"
+		icon "icon/korath heaver"
+		velocity 30
+		lifetime 8
+		"hit force" 3600
+		"hit effect" "heaver hyperspace hit"
+		sound "heaver"
+		submunition "Heaver Shard" 20
+		"turret turn" 2.2
+		"reload" 40
+		"burst reload" 12
+		"burst count" 6
+		"firing energy" 31
+		"firing heat" 190
+		"firing fuel" 12.5
+		"inaccuracy" 0.5
+	description `Korath Heavers raise to a fine art the age-old warfare method of, "Throw rocks at your enemy until they die." A small Banisher throws asteroids or other debris into an unstable hyperspace window. At close range, this merely pushes the enemy, but after the debris exits hyperspace, it is a rapidly-expanding cloud of deadly projectiles.`
+
+effect "heaver hyperspace hit"
+	sprite "effect/heaver hyperspace hit"
+		"no repeat"
+		rewind
+		"frame rate" 60
+	lifetime 36
+	"velocity scale" .1
+	sound "heaver hyperspace hit"
+
+outfit "Heaver Shard"
+	weapon
+		sprite "projectile/heaver shard"
+			"frame rate" 12
+			"rewind"
+		"random velocity" 3
+		"velocity" 10
+		"lifetime" 40
+		"random lifetime" 15
+		"shield damage" 17
+		"hull damage" 17
+		"inaccuracy" 3.5
+		"hit force" 20
+		"hit effect" "heaver shard hit" 5
+		"missile strength" 12
+
+effect "heaver shard hit"
+	sprite "effect/heaver shard hit"
+		"no repeat"
+		"frame rate" 12
+	lifetime 60
+	sound "heaver shard hit"
+	"velocity scale" .05
+	"random angle" 10
+
+outfit "Korath Inferno"
+	category "Turrets"
+	cost 1970000
+	thumbnail "outfit/korath inferno"
+	"mass" 40
+	"outfit space" -71
+	"weapon capacity" -71
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath inferno"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath inferno"
+		sound "korath inferno"
+		"hit effect" "korath inferno hit"
+		"inaccuracy" 0.5
+		"turret turn" 2.7
+		"velocity" 525
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 7.5
+		"firing heat" 8.5
+		"shield damage" 10.5
+		"hull damage" 4.5
+		"heat damage" 36
+		"burn damage" 2.25
+	description "The Korath Inferno was the crowning achievement of Kor Sestor weapon design before they were driven out of their territory. The more efficient short-range Fire-Lance is based on this technology."
+
+effect "korath inferno hit"
+	sprite "effect/korath inferno hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005
+
+outfit "Korath Digger Turret"
+	category "Turrets"
+	cost 509000
+	thumbnail "outfit/korath digger turret"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"asteroid scan power" 15
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath digger"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/digger turret"
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 1.5
+		"turret turn" 4.6
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 3.1
+		"firing heat" 5.2
+		"shield damage" 1.1
+		"hull damage" 3.2
+		"disruption damage" .04
+	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they turned to an ancient but robust design. Updated with modern engineering, the mild shield disruption lets it damage ships as well, when multiple Diggers are used at once.`
+
+outfit "Korath Digger"
+	category "Guns"
+	cost 419000
+	thumbnail "outfit/korath digger"
+	"mass" 17
+	"outfit space" -17
+	"weapon capacity" -17
+	"asteroid scan power" 10
+	"gun ports" -1
+	weapon
+		sprite "projectile/korath digger short"
+			"frame rate" 20
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 0.1
+		"velocity" 390
+		"lifetime" 1
+		"reload" 1
+		"firing energy"  2.9
+		"firing heat" 4.8
+		"shield damage" 1.1
+		"hull damage" 3.1
+		"disruption damage" .04
+	description `The basis for the design of a Korath Digger was an old turret. This modified version has no turret mount and is more accurate at the cost of a shorter range.`
+
+effect "korath digger hit"
+	sprite "effect/korath digger hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 30
+	"velocity scale" .005
+
