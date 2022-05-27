@@ -1227,7 +1227,6 @@
 			buildConfigurationList = 66ABEA4A283887F7000BF5B9 /* Build configuration list for PBXNativeTarget "Endless Sky" */;
 			buildPhases = (
 				66ABE99B283887F7000BF5B9 /* CopyFiles */,
-				66ABE9A0283887F7000BF5B9 /* ShellScript */,
 				66ABE9A1283887F7000BF5B9 /* Sources */,
 				66ABEA35283887F7000BF5B9 /* Frameworks */,
 				66ABEA3D283887F7000BF5B9 /* Resources */,
@@ -1268,7 +1267,6 @@
 			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "ES_UnitTests" */;
 			buildPhases = (
 				66F06A91283708E300531F63 /* CopyFiles */,
-				66F06A96283708E300531F63 /* ShellScript */,
 				66F06A97283708E300531F63 /* Sources */,
 				66F06B2B283708E300531F63 /* Frameworks */,
 				66F06B33283708E300531F63 /* Resources */,
@@ -1378,20 +1376,6 @@
 			shellScript = "\"${SRCROOT}/utils/fetch_sdl2_framework.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66ABE9A0283887F7000BF5B9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
 		66EEBAC0283ABA2200B7D9E7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -1408,20 +1392,6 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/utils/set_dylibs_rpath.sh\"\n";
-		};
-		66F06A96283708E300531F63 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "
-";
 		};
 /* End PBXShellScriptBuildPhase section */
 
