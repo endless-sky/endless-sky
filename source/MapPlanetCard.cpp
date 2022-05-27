@@ -45,7 +45,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 		GameData::GetPolitics().HasDominated(planet) ? "Dominated" :
 		planet->GetGovernment()->IsEnemy() ? "Hostile" :
 		planet->CanLand() ? "Friendly" : "Restricted";
-	
+
 	sprite = object.GetSprite();
 
 	const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
@@ -74,7 +74,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 			isSelected = true;
 
 			// The first category is the planet name and is not selectable.
-			if(x > Screen::Left() + planetIconMaxSize && 
+			if(x > Screen::Left() + planetIconMaxSize &&
 					relativeY > textStart + categorySize && relativeY < textStart + categorySize * categories)
 				selectedCategory = (relativeY - textStart - categorySize) / categorySize;
 			else
@@ -131,11 +131,11 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const double planetStartingY = mapInterface->GetValue("planet starting Y");
 		const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
 		const double planetLowestY = (textStartingPosition - textStart) + height / 2.;
-		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. && 
+		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. &&
 				availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
-			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2., 
+			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
 				uiPoint.Y() + planetLowestY), spriteScale);
-		
+
 		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categorySize, height]
 			(double number)
 		{
@@ -148,20 +148,20 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		const double margin = mapInterface->GetValue("text margin");
 		if(FitsCategory(4.))
-			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize), 
+			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize),
 				hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
-			font.Draw("Shipyard", uiPoint + Point(margin, textStartingPosition + categorySize * 2.), 
+			font.Draw("Shipyard", uiPoint + Point(margin, textStartingPosition + categorySize * 2.),
 				hasShipyard ? medium : faint);
 		if(FitsCategory(2.))
-			font.Draw("Outfitter", uiPoint + Point(margin, textStartingPosition + categorySize * 3.), 
+			font.Draw("Outfitter", uiPoint + Point(margin, textStartingPosition + categorySize * 3.),
 				hasOutfitter ? medium : faint);
 		if(FitsCategory(1.))
-			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)", 
+			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
 				uiPoint + Point(margin, textStartingPosition + categorySize * 4.), dim);
 
 		if(FitsCategory(categories - (selectedCategory + 1.)))
-			PointerShader::Draw(uiPoint + Point(margin, textStartingPosition + 8. + (selectedCategory + 1) * categorySize), 
+			PointerShader::Draw(uiPoint + Point(margin, textStartingPosition + 8. + (selectedCategory + 1) * categorySize),
 				Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		if(isSelected)

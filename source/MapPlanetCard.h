@@ -75,7 +75,7 @@ private:
 	// The current starting y position.
 	double yCoordinate;
 	bool isShown = false;
-	
+
 	const Sprite *sprite;
 	float spriteScale;
 

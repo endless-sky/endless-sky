@@ -107,7 +107,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 void MapDetailPanel::Step()
 {
 	MapPanel::Step();
-	
+
 	if(selectedSystem != shownSystem)
 		GeneratePlanetCards(*selectedSystem);
 	if(!player.GetPlanet())
@@ -358,7 +358,7 @@ bool MapDetailPanel::RClick(int x, int y)
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
 	set<const Planet *> shown;
-	
+
 	planetCards.clear();
 	SetScroll(0.);
 	unsigned number = 0;
@@ -516,15 +516,15 @@ void MapDetailPanel::DrawInfo()
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	double startingY = mapInterface->GetValue("planet starting Y");
-	double bottomY = mapInterface->GetValue("planet max bottom Y");	
-	
+	double bottomY = mapInterface->GetValue("planet max bottom Y");
+
 	// Draw the panel for the planets.
 	Point size(planetWidth, min((Screen::Height() - bottomY - startingY),
 		planetCards.size() * planetHeight));
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2. + startingY / 2.), 
+	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2. + startingY / 2.),
 		size + Point(0., startingY), back);
-	
+
 	// Edges:
 	Point pos(Screen::Left(), Screen::Top() + startingY);
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
