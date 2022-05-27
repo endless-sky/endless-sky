@@ -207,7 +207,7 @@ void MapShipyardPanel::DrawItems()
 						double outfitValue = 0.;
 						for(const auto &it : ship->Outfits())
 							outfitValue += object.GetPlanet()->GetLocalRelativePrice(*it.first, player.Conditions()) * it.first->Cost() * it.second;
-						
+
 						price = Format::Credits(ship->ChassisCost() + outfitValue) + " credits";
 						isForSale = true;
 						break;

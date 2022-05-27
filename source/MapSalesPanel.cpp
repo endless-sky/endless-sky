@@ -239,12 +239,12 @@ void MapSalesPanel::DrawKey() const
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		pos.Y() += 20.;
 	}
-	
+
 	if(maxColor > 1. || minColor < 1.)
 	{
 		const Color &medium = *GameData::Colors().Get("medium");
 		const Sprite *sales = SpriteSet::Get("ui/key");
-		
+
 		int height = max(SelectedInfo().AttributesHeight(), CompareInfo().AttributesHeight());
 		pos = Screen::TopRight() + Point(-110., height + sales->Height() / 2. + 15);
 		SpriteShader::Draw(sales, pos + Point(110. - sales->Width() / 2., sales->Height() / 2. - 25.));

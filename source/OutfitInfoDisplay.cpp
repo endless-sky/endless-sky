@@ -242,7 +242,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 	int64_t cost = outfit.Cost() * scale;
 	int64_t buyValue = player->StockDepreciation().Value(&outfit, day, player);
 	int64_t sellValue = player->FleetDepreciation().Value(&outfit, day, player);
-	
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else

@@ -157,8 +157,8 @@ protected:
 	// Minimum and maximum color ranges used by mapColor.
 	static double minColor;
 	static double maxColor;
-	
-	
+
+
 private:
 	void DrawTravelPlan();
 	// Indicate which other systems have player escorts.

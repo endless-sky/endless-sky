@@ -242,16 +242,16 @@ void MapOutfitterPanel::DrawItems()
 					const auto pit = storage.find(&planet);
 					if(pit != storage.end())
 						storedInSystem += pit->second.Get(outfit);
-						
+
 					isForSale = (sold != CustomSale::SellType::NONE && (sold != CustomSale::SellType::HIDDEN || storedInSystem)
 						&& planet.HasOutfitter());
 
 					if(isForSale)
 					{
-  						price = Format::Credits(planet.GetLocalRelativePrice(*outfit, player.Conditions()) * outfit->Cost()) + " credits";
-  						if(sold != CustomSale::SellType::VISIBLE)
+						price = Format::Credits(planet.GetLocalRelativePrice(*outfit, player.Conditions()) * outfit->Cost()) + " credits";
+						if(sold != CustomSale::SellType::VISIBLE)
 							price += " (" + (CustomSale::GetShown(sold)) + ")";
-  						break;
+						break;
 					}
 				}
 			}
@@ -292,7 +292,7 @@ void MapOutfitterPanel::Init()
 					seen.insert(outfit);
 				}
 			for(auto &&sales : GameData::CustomSales())
-				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN && 
+				if(sales.second.GetSellType() != CustomSale::SellType::HIDDEN &&
 					it.second.HasOutfitter() && sales.second.Matches(it.second, player.Conditions()))
 					for(const auto& outfit : sales.second.GetOutfits())
 						if(!seen.count(outfit))

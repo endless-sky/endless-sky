@@ -92,7 +92,7 @@ public:
 	double GetLocalRelativePrice(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
 	// Get the availability of this outfit.
 	CustomSale::SellType GetAvailability(const Outfit &outfit, const std::map<std::string, int64_t> &conditions) const;
-	
+
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
 	// You need this good a reputation with this system's government to land here.

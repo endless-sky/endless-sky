@@ -59,8 +59,8 @@ public:
 	int64_t Value(const Ship *ship, int day, int count = 1) const;
 	// Get the value of an outfit.
 	int64_t Value(const Outfit *outfit, int day, const PlayerInfo *player, int count = 1) const;
-	
-	
+
+
 private:
 	// "Sell" an item, removing it from the given record and returning the base
 	// day for its depreciation.

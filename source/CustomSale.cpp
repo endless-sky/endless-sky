@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace 
+namespace
 {
 	const auto show = map<CustomSale::SellType, const string> {
 		{CustomSale::SellType::NONE, ""},
@@ -135,7 +135,7 @@ void CustomSale::Load(const DataNode &node, const Set<Sale<Outfit>> &items, cons
 				{
 					isAdd = (kid.Token(0) == "add");
 					outfit = outfits.Get(kid.Token(isAdd));
-					
+
 					if(kid.Size() < 1 + isAdd)
 						continue;
 
@@ -292,11 +292,11 @@ const Sale<Outfit> CustomSale::GetOutfits() const
 	for(auto it : relativeOutfitPrices)
 		seen.insert(it.first);
 	for(auto it : relativeOutfitOffsets)
-		seen.insert(it.first);	
+		seen.insert(it.first);
 	for(auto &&sale : relativePrices)
 		seen.Add(*sale.first);
 	for(auto &&sale : relativeOffsets)
-		seen.Add(*sale.first);	
+		seen.Add(*sale.first);
 	return seen;
 }
 
@@ -311,7 +311,7 @@ bool CustomSale::Has(const Outfit &item) const
 
 bool CustomSale::Matches(const Planet &planet, const std::map<std::string, int64_t> &playerConditions) const
 {
-	return (location ? location == &planet : locationFilter.Matches(&planet)) && 
+	return (location ? location == &planet : locationFilter.Matches(&planet)) &&
 		(conditions.IsEmpty() || conditions.Test(playerConditions));
 }
 
@@ -326,8 +326,8 @@ void CustomSale::Clear()
 
 void CustomSale::CheckIsEmpty()
 {
-	if(relativeOffsets.empty() && relativePrices.empty() && 
-	   relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
+	if(relativeOffsets.empty() && relativePrices.empty() &&
+		relativeOutfitOffsets.empty() && relativeOutfitPrices.empty())
 		sellType = SellType::NONE;
 	else if(sellType == SellType::NONE)
 		sellType = SellType::VISIBLE;

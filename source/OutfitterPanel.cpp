@@ -190,7 +190,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	int cargo = player.Cargo().Get(outfit);
 	int storage = player.Storage() ? player.Storage()->Get(outfit) : 0;
 	const std::string &show = CustomSale::GetShown(sellType);
-	
+
 	string message;
 	if(cargo && storage && stock)
 		message = "cargo+stored: " + to_string(cargo + storage) + ", in stock: " + to_string(stock);
@@ -208,10 +208,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		message = "in stock: " + to_string(stock);
 	else if(!outfitter.count(selectedOutfit) && sellType == CustomSale::SellType::NONE)
 		message = "(not sold here)";
-	
+
 	if(!show.empty())
 		message += " (" + show + ")";
-	
+
 	if(!message.empty())
 	{
 		Point pos = point + Point(
@@ -413,7 +413,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 			else
 			{
 				// Check if the outfit is for sale or in stock so that we can actually buy it.
-				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE 
+				if(player.GetPlanet()->GetAvailability(*selectedOutfit, player.Conditions()) != CustomSale::SellType::VISIBLE
 					&& player.Stock(selectedOutfit) <= 0)
 					continue;
 				player.Cargo().Add(selectedOutfit);
@@ -460,7 +460,7 @@ void OutfitterPanel::FailBuy() const
 {
 	if(!selectedOutfit)
 		return;
-	
+
 	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day, &player);
 	int64_t credits = player.Accounts().Credits();
 	bool isInCargo = player.Cargo().Get(selectedOutfit);

@@ -580,7 +580,7 @@ Color MapPanel::CommodityColor(double value)
 {
 	if(std::isnan(value))
 		return UninhabitedColor();
-	
+
 	value = min(1., max(-1., value));
 	if(value < 0.)
 		return Color(

@@ -922,7 +922,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 		{
 			int day = date.DaysSinceEpoch();
 			int64_t cost = depreciation.Value(*selected, day, this);
-			
+
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
 			for(const auto &it : selected->Outfits())
