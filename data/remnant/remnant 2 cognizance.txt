@@ -862,7 +862,7 @@ mission "Remnant: Cognizance 22"
 	description "Deliver a data backup to <stopovers> for Taely."
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	stopover
 		government "Remnant"
 		neighbor distance 1 5
@@ -967,7 +967,7 @@ mission "Remnant: Cognizance 23"
 	landing
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	waypoint "Farinus"
 	to offer
 		has "Remnant: Cognizance 22: done"

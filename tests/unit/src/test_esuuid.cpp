@@ -21,9 +21,11 @@ namespace detail {
 	EsUuid::UuidType MakeUuid();
 }
 }
+#include "../../../source/Random.h"
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
+#include <list>
 #include <map>
 #include <memory>
 #include <set>
@@ -48,6 +50,42 @@ struct Identifiable {
 	EsUuid id;
 	const EsUuid &UUID() const noexcept { return id; }
 };
+struct InstantiableContainer : public Identifiable {
+	std::list<InstantiableContainer> items;
+	std::vector<InstantiableContainer> others;
+
+	std::vector<std::string> GetIds() const {
+		auto result = std::vector<std::string>{
+			id.ToString()
+		};
+		for(auto &&ic : items)
+		{
+			auto itemIds = ic.GetIds();
+			result.reserve(result.size() + itemIds.size());
+			for(std::string &id : itemIds)
+				result.push_back(std::move(id));
+		}
+		for(auto &&ic : others)
+		{
+			auto itemIds = ic.GetIds();
+			result.reserve(result.size() + itemIds.size());
+			for(std::string &id : itemIds)
+				result.push_back(std::move(id));
+		}
+		return result;
+	}
+
+	InstantiableContainer Instantiate() const {
+		InstantiableContainer result;
+
+		for(auto &&ic : items)
+			result.items.emplace_back(ic.Instantiate());
+		for(auto &&ic : others)
+			result.others.emplace_back(ic.Instantiate());
+
+		return result;
+	}
+};
 // #endregion mock data
 
 auto AsStrings = [](const std::vector<EsUuid> &container) -> std::vector<std::string> {
@@ -68,6 +106,8 @@ TEST_CASE( "EsUuid class", "[uuid]" ) {
 	}
 	SECTION( "Construction Traits" ) {
 		CHECK( std::is_default_constructible<T>::value );
+		// Ensuring the memory associated with the UUID is initialized means a non-trivial default constructor.
+		CHECK_FALSE( std::is_trivially_default_constructible<T>::value );
 		CHECK( std::is_nothrow_default_constructible<T>::value );
 		// TODO: enable after refactoring how we create ships from stock models.
 		// CHECK_FALSE( std::is_copy_constructible<T>::value );
@@ -203,6 +243,94 @@ SCENARIO( "Copying uniquely identifiable objects", "[uuid][copying]" ) {
 		}
 	}
 }
+
+SCENARIO( "Constructing uniquely identifiable objects", "[uuid][creation]" ) {
+	auto MakeContainer = [](const std::string &parentId, const std::string &childId, const std::string &otherId) {
+		InstantiableContainer result;
+			result.id = EsUuid::FromString(parentId);
+			result.items.emplace_back();
+			result.items.front().id = EsUuid::FromString(childId);
+			result.others.emplace_back();
+			result.others.front().id = EsUuid::FromString(otherId);
+			// Add a random number of other items to the containers.
+			for(auto i = 0U; i < 1 + Random::Int(4); ++i)
+				result.items.emplace_back();
+			for(auto i = 0U; i < 1 + Random::Int(4); ++i)
+				result.others.emplace_back();
+			// Ensure the hierarchy is multiple levels deep.
+			result.items.front().others.emplace_back();
+			result.others.back().items.emplace_back();
+			return result;
+	};
+
+	GIVEN( "A template identifiable object" ) {
+		const std::string parentId = "cac52c1a-b53d-4edc-92d7-6b2e8ac19434";
+		const std::string childItemId = "4d9f7874-4e0c-4904-967b-40b0d20c3e4b";
+		const std::string otherId = "ae50c081-ebd2-438a-8655-8a092e34987a";
+		const InstantiableContainer source = MakeContainer(parentId, childItemId, otherId);
+
+		WHEN( "the template is instantiated" ) {
+			auto instance = source.Instantiate();
+			THEN( "all the IDs are new" ) {
+				CHECK_FALSE( source.GetIds() == instance.GetIds() );
+			}
+			AND_WHEN( "the instance is moved" ) {
+				const auto preMoveIds = instance.GetIds();
+				auto allIds = std::set<std::string>(preMoveIds.begin(), preMoveIds.end());
+				const auto initialCount = allIds.size();
+				THEN( "the IDs are unchanged" ) {
+					auto consumer = std::move(instance);
+					const auto postMoveIds = consumer.GetIds();
+					allIds.insert(postMoveIds.begin(), postMoveIds.end());
+					CHECK( allIds.size() == initialCount );
+				}
+			}
+		}
+	}
+
+	GIVEN( "multiple template identifiable objects" ) {
+		const auto parentIds = std::vector<std::string>{"0ac0837c-bbf8-452a-850d-79d08e667ca7", "33e28130-4e1e-4676-835a-98395c3bc3bb"};
+		const auto childIds = std::vector<std::string>{"4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4", "c4900540-2379-4c75-844b-64e6faf8716b"};
+		const auto otherIds = std::vector<std::string>{"fd228cb7-ae11-4ae3-864c-16f3910ab8fe", "d9dc8a3b-b784-432e-a781-5a1130a75963"};
+
+		std::map<unsigned, InstantiableContainer> collection;
+		collection.emplace(0U, MakeContainer(parentIds[0], childIds[0], otherIds[0]));
+		collection.emplace(1U, MakeContainer(parentIds[1], childIds[1], otherIds[1]));
+		auto allIds = std::set<std::string>{};
+		for(auto &&it : collection)
+		{
+			auto ids = it.second.GetIds();
+			allIds.insert(ids.begin(), ids.end());
+		}
+		for(auto &&list : {parentIds, childIds, otherIds})
+			for(auto &&id : list)
+			{
+				UNSCOPED_INFO( "Collection IDs should include seed ID " + id );
+				REQUIRE( allIds.count(id) == 1 );
+			}
+
+		WHEN( "all templates are instantiated" ) {
+			auto results = std::list<InstantiableContainer>{};
+			for(auto &&it : collection)
+				results.emplace_back(it.second.Instantiate());
+
+			THEN( "all IDs are unique" ) {
+				unsigned num = 1;
+				for (auto &&ic : results)
+				{
+					auto instanceIds = ic.GetIds();
+					for(auto &&id : instanceIds)
+					{
+						UNSCOPED_INFO( "added id " + std::to_string(num) + " is " + id );
+						CHECK( allIds.insert(id).second );
+						++num;
+					}
+				}
+			}
+		}
+	}
+}
+
 
 SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" ) {
 	using T = Identifiable;
