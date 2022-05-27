@@ -60,8 +60,9 @@ private:
 	double randomFrameRate = 0.;
 	// Absolute means it does not depend from the angle of the projectile before, and can be specified.
 	double absoluteAngle = 0.;
-	Point *absoluteVelocity = nullptr;
-	
+	Point absoluteVelocity;
+	bool hasAbsoluteVelocity = false;
+
 	int lifetime = 0;
 	int randomLifetime = 0;
 

@@ -61,7 +61,10 @@ void Effect::Load(const DataNode &node)
 		else if(child.Token(0) == "absolute angle" && child.Size() >= 2)
 			absoluteAngle = child.Value(1);
 		else if(child.Token(0) == "absolute velocity" && child.Size() >= 3)
-			absoluteVelocity = new Point(child.Value(1), child.Value(2));
+		{
+			absoluteVelocity = Point(child.Value(1), child.Value(2));
+			hasAbsoluteVelocity = true;
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
