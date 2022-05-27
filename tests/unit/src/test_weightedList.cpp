@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../../source/WeightedList.h"
 
 // ... and any system includes needed for the test file.
+#include <algorithm>
 #include <cstdint>
 #include <functional>
 #include <stdexcept>
@@ -185,85 +186,32 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 			return o.GetValue() % 2;
 		};
 
-		WHEN( "the half-way point is odd" ) {
-			list.emplace_back(1, 1);
+		WHEN( "the list contains one valid object" ) {
 			list.emplace_back(2, 2);
-			list.emplace_back(3, 3);
-			list.emplace_back(4, 4);
-			list.emplace_back(5, 5);
-			list.emplace_back(6, 6);
-			list.emplace_back(7, 7);
-			list.emplace_back(8, 8);
-			list.emplace_back(9, 9);
-			list.emplace_back(10, 10);
 			AND_WHEN( "all odds are erased" ) {
 				std::size_t erased = erase_if(list, pred);
-				THEN( "the correct number and weight was erased" ) {
-					CHECK( erased == 5 );
-					CHECK( list.size() == 5 );
-					// Pred should only be called once per element.
+				THEN( "the list is unchanged" ) {
+					CHECK( erased == 0 );
+					CHECK( list.size() == 1 );
+					// pred should only be invoked once per element.
 					CHECK( invocations == list.size() + erased );
-					CHECK( list.TotalWeight() == 30 );
+					CHECK( list.TotalWeight() == 2 );
+					// pred should be false for all remaining elements.
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
 				}
 			}
 		}
 
-		WHEN( "the half-way point is even" ) {
+		WHEN( "the list contains one invalid object" ) {
 			list.emplace_back(1, 1);
-			list.emplace_back(2, 2);
-			list.emplace_back(3, 3);
-			list.emplace_back(4, 4);
-			list.emplace_back(5, 5);
-			list.emplace_back(6, 6);
-			list.emplace_back(7, 7);
-			list.emplace_back(8, 8);
-			list.emplace_back(9, 9);
-			list.emplace_back(10, 10);
-			list.emplace_back(11, 11);
-			list.emplace_back(12, 12);
 			AND_WHEN( "all odds are erased" ) {
 				std::size_t erased = erase_if(list, pred);
-				THEN( "the correct number and weight was erased" ) {
-					CHECK( erased == 6 );
-					CHECK( list.size() == 6 );
-					CHECK( invocations == list.size() + erased );
-					CHECK( list.TotalWeight() == 42 );
-				}
-			}
-		}
-
-		WHEN( "there are no valid objects after the half-way point once it's reached" ) {
-			list.emplace_back(1, 1);
-			list.emplace_back(2, 2);
-			list.emplace_back(3, 3);
-			list.emplace_back(5, 5);
-			list.emplace_back(7, 7);
-			list.emplace_back(4, 4);
-			AND_WHEN( "all odds are erased" ) {
-				std::size_t erased = erase_if(list, pred);
-				THEN( "the correct number and weight was erased" ) {
-					CHECK( erased == 4 );
-					CHECK( list.size() == 2 );
-					CHECK( invocations == list.size() + erased );
-					CHECK( list.TotalWeight() == 6 );
-				}
-			}
-		}
-
-		WHEN( "all objects are invalid" ) {
-			list.emplace_back(1, 1);
-			list.emplace_back(3, 3);
-			list.emplace_back(5, 5);
-			list.emplace_back(7, 7);
-			list.emplace_back(9, 9);
-			list.emplace_back(11, 11);
-			AND_WHEN( "all odds are erased" ) {
-				std::size_t erased = erase_if(list, pred);
-				THEN( "the correct number and weight was erased" ) {
-					CHECK( erased == 6 );
+				THEN( "the list is empty" ) {
+					CHECK( erased == 1 );
 					CHECK( list.size() == 0 );
 					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 0 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
 				}
 			}
 		}
@@ -282,6 +230,107 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 					CHECK( list.size() == 6 );
 					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 42 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "all objects are invalid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(3, 3);
+			list.emplace_back(5, 5);
+			list.emplace_back(7, 7);
+			list.emplace_back(9, 9);
+			list.emplace_back(11, 11);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 6 );
+					CHECK( list.size() == 0 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 0 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "the half-way point is valid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(4, 4);
+			list.emplace_back(5, 5);
+			list.emplace_back(6, 6);
+			list.emplace_back(7, 7);
+			list.emplace_back(8, 8);
+			list.emplace_back(9, 9);
+			list.emplace_back(10, 10);
+			list.emplace_back(11, 11);
+			list.emplace_back(12, 12);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 6 );
+					CHECK( list.size() == 6 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 42 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "the half-way point is invalid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(4, 4);
+			list.emplace_back(5, 5);
+			list.emplace_back(6, 6);
+			list.emplace_back(7, 7);
+			list.emplace_back(8, 8);
+			list.emplace_back(9, 9);
+			list.emplace_back(10, 10);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 5 );
+					CHECK( list.size() == 5 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 30 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "there are no valid objects after the half-way point once it's reached" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(5, 5);
+			list.emplace_back(7, 7);
+			list.emplace_back(4, 4);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 4 );
+					CHECK( list.size() == 2 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 6 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "random input is generated" ) {
+			int chunkSize = GENERATE(range(1, 12), range(20, 1000, 31));
+			std::vector<int> values = GENERATE_COPY(chunk(chunkSize, range(0, chunkSize)));
+			for(auto &&v : values)
+				list.emplace_back(v ? v : 1, v);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "no odds remain" ) {
+					CHECK( invocations == list.size() + erased );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
 				}
 			}
 		}
