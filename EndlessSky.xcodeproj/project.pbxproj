@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		661265BA2840503500773CB1 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6637D398283DC80900CE7388 /* ESEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; };
+		661265BA2840503500773CB1 /* ESEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; };
+		6637D398283DC80900CE7388 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6689037D283EFB7900C2F482 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		66ABE9F0283887F7000BF5B9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632F1AE6FD0B004FE1FE /* main.cpp */; };
 		66ABEA3E283887F7000BF5B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
@@ -260,7 +260,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				661265BA2840503500773CB1 /* ESEngine.framework in CopyFiles */,
+				6637D398283DC80900CE7388 /* ESEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F06B2F283708E300531F63 /* SDL2.framework in Frameworks */,
-				6637D398283DC80900CE7388 /* ESEngine.framework in Frameworks */,
+				661265BA2840503500773CB1 /* ESEngine.framework in Frameworks */,
 				66F06B30283708E300531F63 /* OpenAL.framework in Frameworks */,
 				66F06B31283708E300531F63 /* OpenGL.framework in Frameworks */,
 				66F06B32283708E300531F63 /* Cocoa.framework in Frameworks */,
