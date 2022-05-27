@@ -148,7 +148,23 @@ namespace {
 
 	// Check if the ship is escorted by the escort.
 	bool IsEscortedBy(shared_ptr<const Ship> ship, shared_ptr<Ship> escort) {
-		if(!escort || escort->IsParked() || escort->IsDestroyed() || ship->GetSystem() != escort->GetSystem() || (!escort->IsYours() && !escort->GetPersonality().IsEscort()))
+		if(!escort)
+			return false;
+		if(escort->CanBeCarried() || ship->CanBeCarried())
+			return true;
+
+		bool notEscordedBy = false;
+		notEscordedBy |= escort->IsParked();
+		notEscordedBy |= escort->IsDestroyed();
+
+		// This is an NPC but not a mission escort.
+		notEscordedBy |= (!escort->IsYours() && !escort->GetPersonality().IsEscort());
+
+		// Escort is not in the same system as ship.
+		notEscordedBy |= ship->GetSystem() != escort->GetSystem();
+
+		// The escort is not an escort of ship.
+		if(notEscordedBy)
 			return false;
 		return true;
 	}
@@ -2306,6 +2322,9 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount || cloak))
 		return;
 
+	bool fighterCanRefuelFleet = false;
+	bool fighterCanRefuelParent = false;
+	bool updateTankerCarrier = false;
 	for(Bay &bay : bays)
 		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 				|| (ejecting && !Random::Int(6))))
@@ -2357,6 +2376,15 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
+			updateTankerCarrier = true;
+			if(bay.ship->Attributes().Get("fuel capacity"))
+			{
+				fighterCanRefuelFleet = true;
+				// A fighter must have both fuel capacity and ramscoop to refuel
+				// parent.
+				if(bay.ship->IsRefueledByRamscoop())
+					fighterCanRefuelParent = true;
+			}
 			// Update the cached sum of carried ship masses.
 			carriedMass -= bay.ship->Mass();
 			// Create the desired launch effects.
@@ -2365,6 +2393,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 			bay.ship.reset();
 		}
+	if(updateTankerCarrier)
+		isTankerCarrier = fighterCanRefuelFleet && (IsRefueledByRamscoop() || fighterCanRefuelParent);
 }
 
 
@@ -2698,21 +2728,7 @@ bool Ship::IsEnemyInEscortSystem() const
 {
 	if(!IsYours())
 		return false;
-	const Government *gov = (CanBeCarried() && GetParent()) ? GetParent()->GetGovernment() : GetGovernment();
-	const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-	for(const weak_ptr<Ship> &ptr : allEscorts)
-	{
-		shared_ptr<Ship> escort = ptr.lock();
-		if(!IsEscortedBy(this->shared_from_this(), escort))
-			continue;
-		shared_ptr<const Ship> escortTarget = escort->GetTargetShip();
-		if(escortTarget)
-		{
-			if(gov->IsEnemy(escortTarget->GetGovernment()))
-				return true;
-		}
-	}
-	return false;
+	return isEnemyInEscortSystem;
 }
 
 
@@ -2746,19 +2762,7 @@ bool Ship::IsEscortsFullOfFuel() const
 {
 	if(!IsYours())
 		return false;
-	const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-	for(const weak_ptr<Ship> &ptr : allEscorts)
-	{
-		shared_ptr<Ship> escort = ptr.lock();
-		if(!IsEscortedBy(this->shared_from_this(), escort))
-			continue;
-		// Skip fighters and drones.
-		if(escort->CanBeCarried())
-			continue;
-		if(escort->IsFuelLow())
-			return false;
-	}
-	return true;
+	return isEscortsFullOfFuel;
 }
 
 
@@ -2809,9 +2813,11 @@ bool Ship::IsFuelLow() const
 bool Ship::IsFuelLow(double compareTo) const
 {
 	bool lowFuel = attributes.Get("fuel capacity");
+	// Fighters can have less than 100 fuel and can also transfer 100% of fuel
+	// to other escorts.
 	if(CanBeCarried())
-		lowFuel &= fuel < 100.;
-	else if((GetParent() && IsYours()) || (!IsYours() && GetPersonality().IsEscort()))
+		lowFuel &= (fuel < 100. || Fuel() < .5) && Fuel() < 1.;
+	else if(IsYours() || GetPersonality().IsEscort())
 		lowFuel &= fuel < attributes.Get("fuel capacity");
 	else
 		lowFuel &= JumpFuel() < compareTo - fuel;
@@ -2823,6 +2829,16 @@ bool Ship::IsFuelLow(double compareTo) const
 bool Ship::IsRefueledByRamscoop() const
 {
 	return (GetRamscoopRegenPerFrame() * 60 >= 1) || attributes.Get("ramscoop") >= 1;
+}
+
+
+
+// Tanker Carriers are ships with fighters that refuel other ships in a fleet.
+// A tanker carrier or its fighters must have ramscoop and at least 1 fighter
+// has to have fuel capacity.
+bool Ship::IsTankerCarrier() const
+{
+	return isTankerCarrier;
 }
 
 
@@ -3089,29 +3105,27 @@ bool Ship::CanRefuel(const Ship &other) const
 		// own fleet.
 		if(IsYours() && !other.JumpFuelMissing())
 		{
-			const std::vector<std::weak_ptr<Ship>> allEscorts = (CanBeCarried() && GetParent()) ? GetParent()->GetEscorts() : GetEscorts();
-			bool escortsNeedFuel = false;
-			for(const weak_ptr<Ship> &ptr : allEscorts)
-			{
-				shared_ptr<Ship> escort = ptr.lock();
-				if(!IsEscortedBy(this->shared_from_this(), escort))
-					continue;
-				// Both mission NPC escorts and player-owned escorts should be refueled first.
-				if(escort->JumpFuelMissing())
-					return false;
-				if(escort->IsYours() && escort->IsFuelLow() && !escort->CanBeCarried())
-					escortsNeedFuel = true;
-			}
-			// Prioritize refueling escorts before mission NPCs
-			if(!escortsNeedFuel || (escortsNeedFuel && !other.IsYours() && other.GetPersonality().IsEscort()))
+			// The escort fleet must have 1 jump minimum before refilling to 100% fuel.
+			if(!escortsHaveOneJump)
+				return false;
+			// Prioritize refueling non-carrier escorts before mission NPCs
+			if(!refuelMissionNpcEscort && !other.IsYours() && other.GetPersonality().IsEscort())
 				return false;
 		}
 		else if(!IsYours() && other.IsYours())
 			return false;
 		if(GetParent() == other.shared_from_this())
-			return IsRefueledByRamscoop() && fuel > 25.;
-		else
-			return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
+			return IsRefueledByRamscoop() && fuel > 25. && other.Fuel() < 1.;
+		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
+	}
+	if(CanCarry(other))
+	{
+		double otherMissingFuel = (1. - other.Fuel()) * other.Attributes().Get("fuel capacity");
+		double fillUpToBays = BaysFree(other.Attributes().Category());
+		// Avoid rubber banding; fighters or drones should return to fuel from
+		// carrier if at least half can get fuel.
+		if(fuel < otherMissingFuel * max(fillUpToBays/2., 1.))
+			return false;
 	}
 	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
@@ -4414,4 +4428,135 @@ double Ship::GetSpareEnergy() const
 		minimumOperationEnergy = minimumOperatingTime * (-totalConsumption);
 	}
 	return maxEnergy - minimumOperationEnergy;
+}
+
+
+
+// A small check to see if a ship may request help.  Primarily for player escort
+// fleet but can be used by any ship.
+bool Ship::MayRequestHelp() const
+{
+	return (!isTankerCarrier && IsFuelLow()) || IsEnergyLow() || IsDisabled();
+}
+
+
+
+// Perform calculations across all escorts to set private variables
+// escortsHaveOneJump, isEnemyInEscortSystem, isEscortsFullOfFuel, and
+// refuelMissionNpcEscort.  Warning this is an expensive calculation if done too
+// often.
+void Ship::UpdateEscortsState(const vector<weak_ptr<Ship>> allEscorts)
+{
+	bool updatedEscortsFullOfFuel = false;
+	bool updatedEnemyInEscortSystem = false;
+	bool updateEscortsHaveOneJump = false;
+	bool updateRefuelMissionNpcEscort = false;
+	const Government *gov = GetGovernment();
+	for(const weak_ptr<Ship> &ptr : allEscorts)
+	{
+		shared_ptr<Ship> escort = ptr.lock();
+		if(!IsEscortedBy(this->shared_from_this(), escort))
+			continue;
+
+		if(!updatedEscortsFullOfFuel && escort->IsFuelLow() && !escort->CanBeCarried() && !escort->IsTankerCarrier())
+		{
+			isEscortsFullOfFuel = false;
+			updatedEscortsFullOfFuel = true;
+		}
+
+		if(!updatedEnemyInEscortSystem)
+		{
+			shared_ptr<const Ship> escortTarget = escort->GetTargetShip();
+			if(escortTarget)
+				if(gov->IsEnemy(escortTarget->GetGovernment()))
+				{
+					isEnemyInEscortSystem = true;
+					updatedEnemyInEscortSystem = true;
+				}
+		}
+
+		if(!updateEscortsHaveOneJump)
+			if(escort->JumpFuelMissing())
+			{
+				escortsHaveOneJump = false;
+				updateEscortsHaveOneJump = true;
+			}
+
+		if(!updateRefuelMissionNpcEscort)
+			if(escort->IsYours() && escort->IsFuelLow() && !escort->CanBeCarried())
+			{
+				refuelMissionNpcEscort = false;
+				updateRefuelMissionNpcEscort = true;
+			}
+	}
+	if(!updatedEscortsFullOfFuel)
+		isEscortsFullOfFuel = true;
+	if(!updatedEnemyInEscortSystem)
+		isEnemyInEscortSystem = false;
+	if(!updateEscortsHaveOneJump)
+		escortsHaveOneJump = true;
+	if(!updateRefuelMissionNpcEscort)
+		refuelMissionNpcEscort = true;
+}
+
+
+
+// Update the carried ship state based on this ship state.
+void Ship::UpdateEscortsState(shared_ptr<Ship> carriedShip)
+{
+	carriedShip->isEscortsFullOfFuel = isEscortsFullOfFuel;
+	carriedShip->isEnemyInEscortSystem =	isEnemyInEscortSystem;
+	carriedShip->escortsHaveOneJump = escortsHaveOneJump;
+	carriedShip->refuelMissionNpcEscort = refuelMissionNpcEscort;
+
+}
+
+
+
+// Perform calculations across all escorts to set private variables
+// escortsHaveOneJump, isEnemyInEscortSystem, isEscortsFullOfFuel, and
+// refuelMissionNpcEscort.  Warning this is an expensive calculation if done too
+// often.
+void Ship::UpdateEscortsState()
+{
+	// We don't need every ship to update every other ship's state every time.
+	if(!Random::Int(20))
+		return;
+	if(!IsYours())
+		return;
+	std::shared_ptr<Ship> flagship = GetParent();
+	if(flagship)
+		while(flagship->GetParent())
+			flagship = flagship->GetParent();
+
+	// Only evaluate state for escorts in the same system as flagship.
+	if(CanBeCarried() || flagship->GetSystem() != GetSystem())
+		return;
+
+	const vector<weak_ptr<Ship>> allEscorts = flagship ? flagship->GetEscorts(): GetEscorts();
+	UpdateEscortsState(allEscorts);
+
+	// Set the state for all fighters and drones.
+	for(const weak_ptr<Ship> &ptr : allEscorts)
+	{
+		shared_ptr<Ship> escort = ptr.lock();
+		if(!IsEscortedBy(this->shared_from_this(), escort))
+			continue;
+		if(!escort->IsYours() || !(escort->HasBays() || escort->CanBeCarried()))
+			continue;
+		// This covers escorts already deployed in the system.
+		if(escort->CanBeCarried())
+			UpdateEscortsState(escort);
+		else
+		{
+			// This covers boarded escorts not in the system.
+			for(const weak_ptr<Ship> &ptr2 : escort->GetEscorts())
+			{
+				shared_ptr<Ship> carry = ptr2.lock();
+				if(!carry->IsYours() || !carry->CanBeCarried())
+					continue;
+				UpdateEscortsState(carry);
+			}
+		}
+	}
 }

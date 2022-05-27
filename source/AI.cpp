@@ -527,11 +527,20 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(!it->GetSystem())
 			continue;
 
+		bool isStranded = false;
+
 		if(it.get() == flagship)
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
 				MovePlayer(*it, player, activeCommands);
+
+			// Your flagship may request refueling from an escort tanker
+			// carrier.  The flagship can also request help from your escorts
+			// for recharge.
+			//if(!Random::Int(10) && flagship->MayRequestHelp() && (!flagship->IsDisabled() ^ flagship->IsEnergyLow()))
+			if(!Random::Int(10) && flagship->MayRequestHelp())
+				AskForHelp(*it, isStranded, flagship);
 			continue;
 		}
 
@@ -539,7 +548,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		const Personality &personality = it->GetPersonality();
 		double healthRemaining = it->Health();
 		bool isPresent = (it->GetSystem() == playerSystem);
-		bool isStranded = IsStranded(*it);
+		isStranded = IsStranded(*it);
 		bool thisIsLaunching = (isPresent && HasDeployments(*it));
 		if(isStranded || it->IsDisabled())
 		{
@@ -568,7 +577,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		else if(it && flagship && (it->IsYours() || it->GetPersonality().IsEscort()) && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried() && (!orders.count(it.get()) || orders.find(it.get())->second.type == Orders::HOLD_POSITION))
+		else if(!Random::Int(10) && it && flagship && (it->IsYours() || it->GetPersonality().IsEscort()) && it->MayRequestHelp() && it->GetSystem() == flagship->GetSystem() && !it->CanBeCarried())
 			AskForHelp(*it, isStranded, flagship);
 
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
@@ -758,6 +767,10 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetAsteroid(nullptr);
 		}
 
+		// States used by carried ships.  This is outside of CanBeCarried
+		// because the states need to be updated when no ships are deployed.
+		if(!Random::Int(20))
+			it->UpdateEscortsState();
 		// Handle carried ships:
 		if(it->CanBeCarried())
 		{
@@ -765,6 +778,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
+			// Check for a new parent three times a second.
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
@@ -1742,7 +1756,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	bool parentIsNotFullOfFuel = parent.Fuel() < 1.;
 	// Only return to ship if low fuel or if the fighter has ramscoop and is refueling the carrier.
 	bool shouldReturnForFuel = (readyToRefuelCarrier) ? !(fighterHasRefueled && parentIsNotFullOfFuel) : ship.IsFuelLow() && parent.CanRefuel(ship);
-	bool refuelingIsAllowed = !ship.IsYours() || (!orders.count(&ship) && fighterHasRefueled);
+	bool refuelingIsAllowed = !ship.IsYours() || (!orders.count(&ship) && fighterHasRefueled) || parent.CanRefuel(ship);
 	// XOR (^) is intentional because it toggles refueling behavior.  Take fuel
 	// from parent to refuel fleet or deposit fuel to parent because it is being
 	// refueled by a ramscoop equipped fighter.
