@@ -431,8 +431,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 void Engine::Wait()
 {
 	unique_lock<mutex> lock(swapMutex);
-	while(calcTickTock != drawTickTock)
-		condition.wait(lock);
+	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	drawTickTock = calcTickTock;
 }
 
 
@@ -886,7 +886,8 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		drawTickTock = !drawTickTock;
+		calcTickTock = !calcTickTock;
+		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
 }
@@ -1315,8 +1316,7 @@ void Engine::ThreadEntryPoint()
 	{
 		{
 			unique_lock<mutex> lock(swapMutex);
-			while(calcTickTock == drawTickTock && !terminate)
-				condition.wait(lock);
+			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
 
 			if(terminate)
 				break;
@@ -1327,7 +1327,7 @@ void Engine::ThreadEntryPoint()
 
 		{
 			unique_lock<mutex> lock(swapMutex);
-			calcTickTock = drawTickTock;
+			hasFinishedCalculating = true;
 		}
 		condition.notify_one();
 	}
@@ -1822,7 +1822,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1844,6 +1844,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 
