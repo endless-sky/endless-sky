@@ -60,7 +60,8 @@ ipch/
 *.vcxproj*
 *.userosscache
 *.sln.docstates
-*.xcodeproj/**
+*.xcodeproj/xcuserdata/
+*.xcodeproj/*.xcworkspace/xcuserdata/
 .idea/
 .idea_modules/
 CMakeLists.txt
