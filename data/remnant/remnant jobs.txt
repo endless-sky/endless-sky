@@ -541,7 +541,7 @@ mission "Remnant: Rescue 5"
 		random < 10
 	npc accompany save
 		system
-			near "Terminus" 4
+			near "Terminus" 2
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -556,5 +556,5 @@ mission "Remnant: Rescue 5"
 		dialog
 			`Worried that they would never see the Embers again, the captain of the <npc> personally thanks you for bringing them home, even before your communicator notifies you of a resource allocation of <payment>.`
 	on visit
-		dialog 
+		dialog
 			`You have returned, but there is still no word from the missing ship.`

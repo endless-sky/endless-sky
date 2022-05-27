@@ -89,9 +89,7 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft, const bool sale) cons
 		FillShader::Fill(point + Point(.5 * WIDTH, 5.), Point(WIDTH - 20., 1.), color);
 	}
 	else
-	{
 		point -= Point(0, 10.);
-	}
 
 	// Body.
 	point = Draw(point, attributeLabels, attributeValues);
@@ -143,6 +141,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 	attributeLabels.clear();
 	attributeValues.clear();
+	attributesHeight += 20;
 
 	const Outfit &attributes = ship.Attributes();
 

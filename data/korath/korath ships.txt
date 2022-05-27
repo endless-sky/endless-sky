@@ -333,6 +333,7 @@ ship "Korath Chaser"
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1111,6 +1112,7 @@ ship "Far Lek 14"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
@@ -1152,6 +1154,7 @@ ship "Far Osk 27"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 

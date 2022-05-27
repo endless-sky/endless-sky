@@ -251,7 +251,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -372,6 +372,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
+		{"minable damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
@@ -384,6 +385,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
+		{"% minable damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -409,6 +411,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.MinableDamage() != outfit.HullDamage() ? outfit.MinableDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
@@ -421,6 +424,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BurnDamage() * 100.,
 		outfit.RelativeShieldDamage() * 100.,
 		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeMinableDamage() != outfit.RelativeHullDamage() ? outfit.RelativeMinableDamage() * 100. : 0.,
 		outfit.RelativeFuelDamage() * 100.,
 		outfit.RelativeHeatDamage() * 100.,
 		outfit.RelativeEnergyDamage() * 100.,
