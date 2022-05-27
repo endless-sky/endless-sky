@@ -28,7 +28,6 @@
 		66EEB9E4283AAAA000B7D9E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		66EEB9E5283AAAAB00B7D9E7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		66EEB9E6283AAAAB00B7D9E7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
-		66EEBA0E283AB8F400B7D9E7 /* ESEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 66EEBA0C283AB8F400B7D9E7 /* ESEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66EEBA16283AB96000B7D9E7 /* libmad.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3C6992839E57A004A8046 /* libmad.0.dylib */; };
 		66EEBA18283AB96100B7D9E7 /* libpng16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng16.dylib */; };
 		66EEBA1A283AB96100B7D9E7 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
@@ -338,7 +337,6 @@
 		66CC86A028384F6F00C3B654 /* test_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_layout.cpp; sourceTree = "<group>"; };
 		66CC86A128384F6F00C3B654 /* test_truncate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_truncate.cpp; sourceTree = "<group>"; };
 		66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ESEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66EEBA0C283AB8F400B7D9E7 /* ESEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ESEngine.h; path = XCode/ESEngine/ESEngine.h; sourceTree = SOURCE_ROOT; };
 		66F06B43283708E300531F63 /* ES UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ES UnitTests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F3C6992839E57A004A8046 /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = ../../../../../../../usr/local/Cellar/mad/0.15.1b/lib/libmad.0.dylib; sourceTree = "<group>"; };
 		66F3C7482839E8A2004A8046 /* EndlessSkyGame.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EndlessSkyGame.plist; sourceTree = "<group>"; };
@@ -1096,14 +1094,6 @@
 			path = text;
 			sourceTree = "<group>";
 		};
-		66F3C5532839E0DC004A8046 /* ESEngine */ = {
-			isa = PBXGroup;
-			children = (
-				66EEBA0C283AB8F400B7D9E7 /* ESEngine.h */,
-			);
-			path = ESEngine;
-			sourceTree = "<group>";
-		};
 		A9CC52601950C9F6004E4E22 = {
 			isa = PBXGroup;
 			children = (
@@ -1161,7 +1151,6 @@
 		A9CC52721950C9F6004E4E22 /* XCode */ = {
 			isa = PBXGroup;
 			children = (
-				66F3C5532839E0DC004A8046 /* ESEngine */,
 				A99F7A4F195DF3E8002C30B8 /* Images.xcassets */,
 				A9CC52731950C9F6004E4E22 /* Supporting Files */,
 			);
@@ -1194,7 +1183,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EEBA0E283AB8F400B7D9E7 /* ESEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1790,7 +1778,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/ESEngine/ESEngine-Info.plist";
+				INFOPLIST_FILE = "Xcode/ESEngine-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1844,7 +1832,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/ESEngine/ESEngine-Info.plist";
+				INFOPLIST_FILE = "Xcode/ESEngine-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
