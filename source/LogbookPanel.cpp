@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/alignment.hpp"
 #include "Color.h"
 #include "text/DisplayText.h"
-#include "Files.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -34,8 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <set>
-#include <utility>
-#include <iostream>
 
 using namespace std;
 
@@ -122,13 +119,6 @@ void LogbookPanel::Draw()
 	Point pos = Screen::TopLeft() + Point(PAD, PAD - categoryScroll);
 	// Draw the Reputations tab.
 	bool reputationsSelected = selectedName == "Reputations";
-	/*if(reputationsSelected)
-	{
-		FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
-		FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
-	}
-	font.Draw("Reputations", pos + textOffset, bright);
-	pos.Y() += LINE_HEIGHT;*/
 	for(size_t i = 0; i < contents.size(); ++i)
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
