@@ -79,7 +79,7 @@ void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	// If it is systemwide, only draw around the flagship.
-	double maxRange = hazard->SystemWide() ? 2. * (Screen::Width() > Screen::Height() ? 
+	double maxRange = hazard->SystemWide() ? 2. * (Screen::Width() > Screen::Height() ?
 		Screen::Width() : Screen::Height()) : hazard->MaxRange();
 
 	// Calculate how many squares of 1000x1000 fit into the circle we're going to draw in.
