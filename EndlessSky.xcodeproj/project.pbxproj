@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		661265BA2840503500773CB1 /* ESEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; };
-		6637D398283DC80900CE7388 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6689037D283EFB7900C2F482 /* ESEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		661265BA2840503500773CB1 /* ES_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; };
+		6637D398283DC80900CE7388 /* ES_Engine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6689037D283EFB7900C2F482 /* ES_Engine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		66ABE9F0283887F7000BF5B9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A968632F1AE6FD0B004FE1FE /* main.cpp */; };
 		66ABEA3E283887F7000BF5B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		66ABEA3F283887F7000BF5B9 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A95195DF44B002C30B8 /* license.txt */; };
@@ -35,7 +35,7 @@
 		66EEBA20283AB96D00B7D9E7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		66EEBA21283AB96D00B7D9E7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
 		66EEBA22283AB96D00B7D9E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
-		66EEBA23283AB99800B7D9E7 /* ESEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */; };
+		66EEBA23283AB99800B7D9E7 /* ES_Engine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */; };
 		66EEBA27283AB9C300B7D9E7 /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F880250B5F8A00D318FB /* InfoPanelState.cpp */; };
 		66EEBA28283AB9C300B7D9E7 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
 		66EEBA29283AB9C300B7D9E7 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CF1AE6FD0A004FE1FE /* AI.cpp */; };
@@ -225,14 +225,14 @@
 			containerPortal = A9CC52611950C9F6004E4E22 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 66EEBA09283AB8F300B7D9E7;
-			remoteInfo = ESEngineFramework;
+			remoteInfo = ES_EngineFramework;
 		};
 		66EEBAD4283AE61800B7D9E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A9CC52611950C9F6004E4E22 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 66EEBA09283AB8F300B7D9E7;
-			remoteInfo = ESEngine;
+			remoteInfo = ES_Engine;
 		};
 		66F06A90283708E300531F63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -250,7 +250,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6689037D283EFB7900C2F482 /* ESEngine.framework in CopyFiles */,
+				6689037D283EFB7900C2F482 /* ES_Engine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +260,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6637D398283DC80900CE7388 /* ESEngine.framework in CopyFiles */,
+				6637D398283DC80900CE7388 /* ES_Engine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +302,9 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
+		66977DF1284035BE00F64393 /* ES_UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_UnitTests-Info.plist"; sourceTree = "<group>"; };
+		66977DF2284035BE00F64393 /* ES_Engine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_Engine-Info.plist"; sourceTree = "<group>"; };
+		66977DF3284035BE00F64393 /* ES_Game-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_Game-info.plist"; sourceTree = "<group>"; };
 		66ABEA4D283887F7000BF5B9 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CC867A28384F6E00C3B654 /* preferences.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = preferences.txt; sourceTree = "<group>"; };
 		66CC867B28384F6E00C3B654 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -337,11 +340,9 @@
 		66CC869F28384F6F00C3B654 /* test_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_format.cpp; sourceTree = "<group>"; };
 		66CC86A028384F6F00C3B654 /* test_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_layout.cpp; sourceTree = "<group>"; };
 		66CC86A128384F6F00C3B654 /* test_truncate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_truncate.cpp; sourceTree = "<group>"; };
-		66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ESEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66F06B43283708E300531F63 /* ES UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ES UnitTests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ES_Engine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F06B43283708E300531F63 /* ES_UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ES_UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F3C6992839E57A004A8046 /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = ../../../../../../../usr/local/Cellar/mad/0.15.1b/lib/libmad.0.dylib; sourceTree = "<group>"; };
-		66F3C7482839E8A2004A8046 /* EndlessSkyGame.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EndlessSkyGame.plist; sourceTree = "<group>"; };
-		66F3C7492839E8A2004A8046 /* EndlessSkyUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EndlessSkyUnitTests-Info.plist"; sourceTree = "<group>"; };
 		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
@@ -640,7 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EEBAD3283AE50300B7D9E7 /* SDL2.framework in Frameworks */,
-				66EEBA23283AB99800B7D9E7 /* ESEngine.framework in Frameworks */,
+				66EEBA23283AB99800B7D9E7 /* ES_Engine.framework in Frameworks */,
 				66EEB9E5283AAAAB00B7D9E7 /* OpenAL.framework in Frameworks */,
 				66EEB9E6283AAAAB00B7D9E7 /* OpenGL.framework in Frameworks */,
 				66EEB9E4283AAAA000B7D9E7 /* Cocoa.framework in Frameworks */,
@@ -666,7 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F06B2F283708E300531F63 /* SDL2.framework in Frameworks */,
-				661265BA2840503500773CB1 /* ESEngine.framework in Frameworks */,
+				661265BA2840503500773CB1 /* ES_Engine.framework in Frameworks */,
 				66F06B30283708E300531F63 /* OpenAL.framework in Frameworks */,
 				66F06B31283708E300531F63 /* OpenGL.framework in Frameworks */,
 				66F06B32283708E300531F63 /* Cocoa.framework in Frameworks */,
@@ -1116,10 +1117,10 @@
 		A9CC526A1950C9F6004E4E22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66F06B43283708E300531F63 /* ES UnitTests.app */,
+				66F06B43283708E300531F63 /* ES_UnitTests.app */,
 				66ABEA4D283887F7000BF5B9 /* Endless Sky.app */,
 				072599BE26A8C67D007EC229 /* SDL2.framework */,
-				66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */,
+				66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1161,8 +1162,9 @@
 		A9CC52731950C9F6004E4E22 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				66F3C7482839E8A2004A8046 /* EndlessSkyGame.plist */,
-				66F3C7492839E8A2004A8046 /* EndlessSkyUnitTests-Info.plist */,
+				66977DF3284035BE00F64393 /* ES_Game-info.plist */,
+				66977DF1284035BE00F64393 /* ES_UnitTests-Info.plist */,
+				66977DF2284035BE00F64393 /* ES_Engine-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1241,9 +1243,9 @@
 			productReference = 66ABEA4D283887F7000BF5B9 /* Endless Sky.app */;
 			productType = "com.apple.product-type.application";
 		};
-		66EEBA09283AB8F300B7D9E7 /* ESEngine */ = {
+		66EEBA09283AB8F300B7D9E7 /* ES_Engine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66EEBA0F283AB8F400B7D9E7 /* Build configuration list for PBXNativeTarget "ESEngine" */;
+			buildConfigurationList = 66EEBA0F283AB8F400B7D9E7 /* Build configuration list for PBXNativeTarget "ES_Engine" */;
 			buildPhases = (
 				66EEBAC0283ABA2200B7D9E7 /* ShellScript */,
 				66EEBA06283AB8F300B7D9E7 /* Sources */,
@@ -1255,14 +1257,14 @@
 			);
 			dependencies = (
 			);
-			name = ESEngine;
-			productName = ESEngineFramework;
-			productReference = 66EEBA0A283AB8F300B7D9E7 /* ESEngine.framework */;
+			name = ES_Engine;
+			productName = ES_EngineFramework;
+			productReference = 66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		66F06A8E283708E300531F63 /* ES UnitTests */ = {
+		66F06A8E283708E300531F63 /* ES_UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "ES UnitTests" */;
+			buildConfigurationList = 66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "ES_UnitTests" */;
 			buildPhases = (
 				66F06A91283708E300531F63 /* CopyFiles */,
 				66F06A96283708E300531F63 /* ShellScript */,
@@ -1277,9 +1279,9 @@
 				66F06A8F283708E300531F63 /* PBXTargetDependency */,
 				66EEBAD5283AE61800B7D9E7 /* PBXTargetDependency */,
 			);
-			name = "ES UnitTests";
+			name = ES_UnitTests;
 			productName = EndlessSky;
-			productReference = 66F06B43283708E300531F63 /* ES UnitTests.app */;
+			productReference = 66F06B43283708E300531F63 /* ES_UnitTests.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1314,9 +1316,9 @@
 			projectRoot = "";
 			targets = (
 				66ABE998283887F7000BF5B9 /* Endless Sky */,
-				66F06A8E283708E300531F63 /* ES UnitTests */,
+				66F06A8E283708E300531F63 /* ES_UnitTests */,
 				072599BD26A8C67D007EC229 /* SDL2 */,
-				66EEBA09283AB8F300B7D9E7 /* ESEngine */,
+				66EEBA09283AB8F300B7D9E7 /* ES_Engine */,
 			);
 		};
 /* End PBXProject section */
@@ -1615,12 +1617,12 @@
 		};
 		66EEBA26283AB99800B7D9E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66EEBA09283AB8F300B7D9E7 /* ESEngine */;
+			target = 66EEBA09283AB8F300B7D9E7 /* ES_Engine */;
 			targetProxy = 66EEBA25283AB99800B7D9E7 /* PBXContainerItemProxy */;
 		};
 		66EEBAD5283AE61800B7D9E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66EEBA09283AB8F300B7D9E7 /* ESEngine */;
+			target = 66EEBA09283AB8F300B7D9E7 /* ES_Engine */;
 			targetProxy = 66EEBAD4283AE61800B7D9E7 /* PBXContainerItemProxy */;
 		};
 		66F06A8F283708E300531F63 /* PBXTargetDependency */ = {
@@ -1697,7 +1699,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_Game-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1731,7 +1733,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_Game-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1779,7 +1781,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/ESEngine-Info.plist";
+				INFOPLIST_FILE = "Xcode/ES_Engine-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1833,7 +1835,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "Xcode/ESEngine-Info.plist";
+				INFOPLIST_FILE = "Xcode/ES_Engine-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1871,7 +1873,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSkyUnitTests-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_UnitTests-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1901,7 +1903,7 @@
 					"/usr/local/opt/jpeg-turbo/include",
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSkyUnitTests-info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_UnitTests-info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2038,7 +2040,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66EEBA0F283AB8F400B7D9E7 /* Build configuration list for PBXNativeTarget "ESEngine" */ = {
+		66EEBA0F283AB8F400B7D9E7 /* Build configuration list for PBXNativeTarget "ES_Engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66EEBA10283AB8F400B7D9E7 /* Debug */,
@@ -2047,7 +2049,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "ES UnitTests" */ = {
+		66F06B40283708E300531F63 /* Build configuration list for PBXNativeTarget "ES_UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66F06B41283708E300531F63 /* Debug */,
