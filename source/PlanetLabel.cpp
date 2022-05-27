@@ -72,7 +72,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	{
 		bool overlaps = false;
 
-		Point start = object.Position() +
+		Point start = object.Position() * zoom +
 			(radius + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[d]).Unit();
 		Point unit(LINE_ANGLE[d] > 180. ? -1. : 1., 0.);
 		Point end = start + unit * width;
@@ -82,12 +82,14 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 			if(&other == &object)
 				continue;
 
-			double minDistance = other.Radius() + MIN_DISTANCE;
+			double minDistance = (other.Radius() + MIN_DISTANCE) * zoom;
 
-			double startDistance = other.Position().Distance(start);
-			double endDistance = other.Position().Distance(end);
+			Point otherPos = other.Position() * zoom;
+			double startDistance = otherPos.Distance(start);
+			double endDistance = otherPos.Distance(end);
 			overlaps |= (startDistance < minDistance || endDistance < minDistance);
-			double projection = (other.Position() - start).Dot(unit);
+			double projection = (otherPos - start).Dot(unit);
+
 			if(projection > 0. && projection < width)
 			{
 				double distance = sqrt(startDistance * startDistance - projection * projection);

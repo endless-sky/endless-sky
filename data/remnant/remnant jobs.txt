@@ -541,7 +541,7 @@ mission "Remnant: Rescue 5"
 		random < 10
 	npc accompany save
 		system
-			near "Terminus" 4
+			near "Terminus" 2
 		personality derelict timid plunders
 		government "Remnant"
 		fleet

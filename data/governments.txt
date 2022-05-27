@@ -95,7 +95,7 @@ government "Derelict"
 	"fine" 0
 
 government "Drak"
-	swizzle 5
+	swizzle 0
 	color 1 1 1
 	"player reputation" 1
 	"fine" 0
@@ -106,7 +106,7 @@ government "Drak"
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
 	"display name" "Drak"
-	swizzle 5
+	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
