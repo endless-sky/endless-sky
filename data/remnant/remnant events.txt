@@ -86,7 +86,7 @@ event "remnant salvage available"
 
 
 
-event "remnant scanning tolerance"
+event "remnant: scanning tolerance"
 	government "Remnant"
 		"penalty for"
 			scan 0
