@@ -179,7 +179,11 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage]" ) {
 	GIVEN( "a weighted list" ) {
 		auto list = WeightedList<Object>{};
-		auto pred = [](const Object &o) noexcept -> bool { return o.GetValue() % 2; };
+		auto invocations = 0U;
+		auto pred = [&invocations](const Object &o) noexcept -> bool {
+			++invocations;
+			return o.GetValue() % 2;
+		};
 
 		WHEN( "the half-way point is odd" ) {
 			list.emplace_back(1, 1);
@@ -197,6 +201,8 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 				THEN( "the correct number and weight was erased" ) {
 					CHECK( erased == 5 );
 					CHECK( list.size() == 5 );
+					// Pred should only be called once per element.
+					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 30 );
 				}
 			}
@@ -220,6 +226,7 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 				THEN( "the correct number and weight was erased" ) {
 					CHECK( erased == 6 );
 					CHECK( list.size() == 6 );
+					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 42 );
 				}
 			}
@@ -237,6 +244,7 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 				THEN( "the correct number and weight was erased" ) {
 					CHECK( erased == 4 );
 					CHECK( list.size() == 2 );
+					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 6 );
 				}
 			}
@@ -254,6 +262,7 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 				THEN( "the correct number and weight was erased" ) {
 					CHECK( erased == 6 );
 					CHECK( list.size() == 0 );
+					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 0 );
 				}
 			}
@@ -271,6 +280,7 @@ SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage
 				THEN( "the correct number and weight was erased" ) {
 					CHECK( erased == 0 );
 					CHECK( list.size() == 6 );
+					CHECK( invocations == list.size() + erased );
 					CHECK( list.TotalWeight() == 42 );
 				}
 			}
