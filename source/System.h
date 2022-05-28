@@ -61,18 +61,6 @@ public:
 		double energy;
 	};
 
-	class Belt {
-	public:
-		Belt(double radius, int weight = 1);
-
-		double Radius() const;
-		int Weight() const;
-
-	private:
-		double radius;
-		int weight;
-	};
-
 
 public:
 	// Load a system's description.
@@ -126,7 +114,7 @@ public:
 	// Get the radius of an asteroid belt.
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
-	const WeightedList<Belt> &AsteroidBelts() const;
+	const WeightedList<double> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
@@ -211,7 +199,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	WeightedList<Belt> belts;
+	WeightedList<double> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
