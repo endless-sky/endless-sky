@@ -145,6 +145,7 @@ public:
 	// connected provider).
 	int64_t Get(const std::string &name) const;
 	bool Has(const std::string &name) const;
+	bool empty() const;
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.
 	bool Add(const std::string &name, int64_t value);

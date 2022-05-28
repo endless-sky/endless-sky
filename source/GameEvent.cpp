@@ -126,7 +126,7 @@ void GameEvent::Save(DataWriter &out) const
 {
 	if(isDisabled)
 		return;
-	
+
 	out.Write("event");
 	out.BeginChild();
 	{

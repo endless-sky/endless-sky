@@ -48,7 +48,7 @@ namespace {
 		{
 			if(!player.HasMapped(mapSize))
 				player.Map(mapSize);
-			Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
 

@@ -499,13 +499,6 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
 
-	// Draw the ship name.
-	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
-	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
-	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
-		center + offset, *GameData::Colors().Get("bright"));
-
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
 	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
@@ -518,6 +511,13 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
+
+	// Draw the ship name.
+	const Font &font = FontSet::Get(14);
+	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
+	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+		center + offset, *GameData::Colors().Get("bright"));
 }
 
 
@@ -660,6 +660,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == SDLK_HOME)
+		return SetScrollToTop();
+	else if(key == SDLK_END)
+		return SetScrollToBottom();
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -958,6 +962,34 @@ bool ShopPanel::DoScroll(double dy)
 	}
 
 	*scroll = max(0., min(maximum, *scroll - dy));
+
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToTop()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = 0.;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = 0.;
+	else
+		mainScroll = 0.;
+
+	return true;
+}
+
+
+
+bool ShopPanel::SetScrollToBottom()
+{
+	if(activePane == ShopPane::Info)
+		infobarScroll = maxInfobarScroll;
+	else if(activePane == ShopPane::Sidebar)
+		sidebarScroll = maxSidebarScroll;
+	else
+		mainScroll = maxMainScroll;
 
 	return true;
 }
