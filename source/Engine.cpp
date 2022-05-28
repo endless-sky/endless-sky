@@ -1120,11 +1120,11 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 			if(pos.Y() < ammoBox.Top() + ammoPad)
 				break;
 
-			double ammoIconClickCentreX = (ammoBox.Right() + ammoBox.Left()) / 2.;
-			double ammoIconClickCentreY = pos.Y() + ICON_SIZE / 2.;
-			Point ammoIconClickCentre(ammoIconClickCentreX, ammoIconClickCentreY);
+			double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+			double ammoIconClickCenterY = pos.Y() + ICON_SIZE / 2.;
+			Point ammoIconClickCenter(ammoIconClickCenterX, ammoIconClickCenterY);
 			Point ammoIconClickDimensions(AMMO_WIDTH, ICON_SIZE);
-			if(Rectangle(ammoIconClickCentre, ammoIconClickDimensions).Contains(from))
+			if(Rectangle(ammoIconClickCenter, ammoIconClickDimensions).Contains(from))
 			{
 				if(!control)
 					player.DeselectAllSecondaries();
