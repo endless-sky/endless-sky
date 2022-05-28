@@ -350,6 +350,9 @@ phrase "remnant"
 phrase "remnant uncontacted"
 	word
 		"(They sent you a hail consisting of a sign language you don't understand.)"
+		"(You hear a short song about how scanning them will be considered a hostile action.)"
+		"If you value the continued survival of humanity, do not scan our ships."
+		"We value our privacy, and will respond to scanning with deadly force."
 
 phrase "remnant uncontacted"
 	word
