@@ -151,7 +151,8 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 
 
 
-double MapDetailPanel::GetScroll() {
+double MapDetailPanel::GetScroll()
+{
 	return scroll;
 }
 
@@ -777,6 +778,7 @@ void MapDetailPanel::SetCommodity(int index)
 
 
 
-void MapDetailPanel::SetScroll(double newScroll) {
+void MapDetailPanel::SetScroll(double newScroll)
+{
 	MapDetailPanel::scroll = max(0., newScroll);
 }
