@@ -1,5 +1,5 @@
 /* ConditionsStore.cpp
-Copyright (c) 2020 by Peter van der Meer
+Copyright (c) 2020-2022 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -377,6 +377,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 void ConditionsStore::Clear()
 {
 	storage.clear();
+	providers.clear();
 }
 
 
