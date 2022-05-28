@@ -307,38 +307,23 @@ bool ConditionsStore::Erase(const string &name)
 
 ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &name)
 {
-	// If storage in empty, then create the value condition directly.
-	if(storage.empty())
+	// Search for an exact match and return it if it exists.
+	auto it = storage.find(name);
+	if(it != storage.end())
+		return it->second;
+
+	// Check for a prefix provider.
+	ConditionEntry *ceprov = GetEntry(name);
+	// If no prefix provider is found, then just create a new value entry.
+	if(ceprov == nullptr)
 		return storage[name];
 
-	// If no candidate entries are found, then create it.
-	auto it = storage.upper_bound(name);
-	if(it == storage.begin())
-		return storage[name];
-
-	--it;
-	// The entry is valid if we have an exact string match, but also when we have a
-	// prefix entry and the prefix part matches.
-	if(!(name.compare(0, it->first.length(), it->first)))
-	{
-		// If we have an exact match, then we have the entry we want.
-		if(it->first.length() == name.length())
-			return it->second;
-
-		// If we found a matched prefixed entry provider, but no exact match for
-		// the entry itself, then create a new prefixed entry based on the one we
-		// found.
-		DerivedProvider *provider = it->second.provider;
-		if(provider && provider->isPrefixProvider)
-		{
-			ConditionEntry &ce = storage[name];
-			ce.provider = provider;
-			ce.fullKey = name;
-			return ce;
-		}
-	}
-	// If the entry is not found, then create it.
-	return storage[name];
+	// Found a matching prefixed entry provider, but no exact match for the entry itself,
+	// let's create the exact match based on the prefix provider.
+	ConditionEntry &ce = storage[name];
+	ce.provider = ceprov->provider;
+	ce.fullKey = name;
+	return ce;
 }
 
 
@@ -398,25 +383,8 @@ void ConditionsStore::Clear()
 
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
-	if(storage.empty())
-		return nullptr;
-
-	// Perform a single search for values, named providers, and prefixed providers.
-	auto it = storage.upper_bound(name);
-	if(it == storage.begin())
-		return nullptr;
-
-	--it;
-	// The entry is valid if we have an exact string match, but also when we have a
-	// prefix entry and the prefix part matches.
-	if(!(name.compare(0, it->first.length(), it->first)))
-	{
-		DerivedProvider *provider = it->second.provider;
-		if(it->first.length() == name.length() ||
-				(provider && provider->isPrefixProvider))
-			return &(it->second);
-	}
-	return nullptr;
+	// Avoid code-duplication between const and non-const function.
+	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore*>(this)->GetEntry(name));
 }
 
 
@@ -426,20 +394,21 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 	if(storage.empty())
 		return nullptr;
 
-	// Perform a single search for values, named providers and prefixed providers.
+	// Perform a single search for values, named providers, and prefixed providers.
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return nullptr;
 
 	--it;
-	// The entry is valid if we have an exact stringmatch, but also when we have a
-	// prefix entry and the prefix part matches.
-	if(!(name.compare(0, it->first.length(), it->first)))
-	{
-		DerivedProvider *provider = it->second.provider;
-		if(it->first.length() == name.length() ||
-				(provider && provider->isPrefixProvider))
-			return &(it->second);
-	}
+	// The entry is matching if we have an exact string match.
+	if(!name.compare(it->first))
+		return &(it->second);
+
+	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.
+	DerivedProvider *provider = it->second.provider;
+	if(provider && provider->isPrefixProvider && !name.compare(0, provider->name.length(), provider->name))
+		return &(it->second);
+
+	// And otherwise we don't have a match.
 	return nullptr;
 }
