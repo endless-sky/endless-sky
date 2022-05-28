@@ -3319,7 +3319,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.SetTargetShip(shared_ptr<Ship>());
 
 			bool foundEnemy = false;
-			
 			bool boardClosest = Preferences::Has("Board target");
 
 			auto strategy = [&]() -> function<double(const Ship &)>
