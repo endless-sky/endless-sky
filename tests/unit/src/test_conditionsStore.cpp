@@ -544,6 +544,33 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 }
 
 
+SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMultiple]" ) {
+	GIVEN( "A conditionsStore and a prefixed provider" ) {
+		auto store = ConditionsStore();
+		auto mockProvPrefixShips = MockConditionsProvider();
+		mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
+		WHEN( "adding variables with similar names" ) {
+			REQUIRE ( store.Add("ships: A", 20) == true );
+			REQUIRE( mockProvPrefixShips.values["ships: A"] == 20 );
+			REQUIRE( mockProvPrefixShips.values.size() == 1 );
+			REQUIRE ( store.Add("ships: AB", 30) == true );
+			REQUIRE( mockProvPrefixShips.values["ships: AB"] == 30 );
+			REQUIRE( mockProvPrefixShips.values.size() == 2 );
+			REQUIRE ( store.Add("ships: C", 40) == true );
+			REQUIRE( mockProvPrefixShips.values["ships: AB"] == 40 );
+			REQUIRE( mockProvPrefixShips.values.size() == 3 );
+			THEN ( "the values should be retrieved as set" ) {
+				REQUIRE (store.Get("ships: AB") == 30);
+				REQUIRE (store["ships: AB"] == 30);
+				REQUIRE (store.Get("ships: C") == 40);
+				REQUIRE (store["ships: C"] == 40);
+				REQUIRE (store.Get("ships: A") == 20);
+				REQUIRE (store["ships: A"] == 20);
+				REQUIRE( mockProvPrefixShips.values.size() == 3 );
+			}
+		}
+	}
+}
 
 // #endregion unit tests
 
