@@ -458,7 +458,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 	sprite "ship/raiderii"
 	add attributes
 		"cargo space" -40
-		"outfit space" 20
+		"outfit space" 40
 	outfits 
 		"Korath Grab-Strike" 2
 		"Korath Disruptor" 2
@@ -476,7 +476,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
-		"Thruster (Asteroid Class)"
+		"Thruster (Planetary Class)"
 		"Thruster (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
@@ -510,8 +510,10 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
-		"Thruster (Stellar Class)"
-		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Lunar Class)"
 		"Jump Drive"
 
 	gun "Korath Piercer Launcher"
