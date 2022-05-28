@@ -2412,7 +2412,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 	// For a fighter or drone, "board" means "return to ship."
 	// Except when drone or fighter is boarding another drone or fighter.
-	if(victim->CanCarry(*this) && GetParent() == victim)
+	// CanCarry should be last for performance reasons.
+	if(GetParent() == victim && victim->CanCarry(*this))
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -2776,7 +2777,9 @@ bool Ship::IsOutOfEnergy() const
 	bool closeToParent = false;
 	if(canBeCarried)
 	{
-		if(GetParent() && GetParent()->CanCarry(*this))
+		// Because CanCarry is an expensive operation, check this only about 6
+		// times a second.
+		if(!Random::Int(10) && GetParent() && GetParent()->CanCarry(*this))
 		{
 			Point dp = GetParent().get()->Position() - position;
 			Point dv = GetParent().get()->Velocity() - velocity;
@@ -3118,7 +3121,7 @@ bool Ship::CanRefuel(const Ship &other) const
 			return IsRefueledByRamscoop() && fuel > 25. && other.Fuel() < 1.;
 		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
 	}
-	if(CanCarry(other))
+	if(BaysFree(other.Attributes().Category()) && other.CanBeCarried())
 	{
 		double otherMissingFuel = (1. - other.Fuel()) * other.Attributes().Get("fuel capacity");
 		double fillUpToBays = BaysFree(other.Attributes().Category());
