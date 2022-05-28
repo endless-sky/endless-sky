@@ -59,7 +59,7 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
-	
+
 	conditions.Clear();
 }
 
@@ -2541,7 +2541,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
 	netWorthProvider.SetGetFun([this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); });
-	
+
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
 	creditsProvider.SetGetFun([this](const string &name) { return min(limit, accounts.Credits()); });
 
@@ -2550,7 +2550,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
 	unpaidFinesProvider.SetGetFun([this](const string &name) { return min(limit, accounts.TotalDebt("Fine")); });
-	
+
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFun([this](const string &name) { return min(limit, accounts.SalariesOwed()); });
 
@@ -2573,7 +2573,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
 	cargoAttractivenessProvider.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().first; });
-	
+
 	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");	
 	armamentDeterrence.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
 
@@ -2631,7 +2631,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipSystemProvider.SetHasFun(flagshipSystemFun);
 	flagshipSystemProvider.SetGetFun(flagshipSystemFun);
-	
+
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool
 	{
@@ -2641,7 +2641,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipPlanetProvider.SetHasFun(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFun(flagshipPlanetFun);
-	
+
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
@@ -2992,7 +2992,7 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
-	
+
 	// Save any "primary condition" flags that are set.
 	if(Conditions().PrimariesBegin() != Conditions().PrimariesEnd())
 	{

@@ -55,8 +55,8 @@ ConditionsStore::ConditionEntry::operator int64_t() const
 {
 	if(!provider)
 		return value;
-	
-	const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+
+	const string &key = fullKey.empty() ? provider->name : fullKey;
 	return provider->getFun(key);
 }
 
@@ -68,7 +68,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator=(int6
 		value = val;
 	else
 	{
-		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		const string &key = fullKey.empty() ? provider->name : fullKey;
 		provider->setFun(key, val);
 	}
 	return *this;
@@ -82,7 +82,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator++()
 		++value;
 	else
 	{
-		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		const string &key = fullKey.empty() ? provider->name : fullKey;
 		provider->setFun(key, provider->getFun(key) + 1);
 	}
 	return *this;
@@ -96,7 +96,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator--()
 		--value;
 	else
 	{
-		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		const string &key = fullKey.empty() ? provider->name : fullKey;
 		provider->setFun(key, provider->getFun(key) - 1);
 	}
 	return *this;
@@ -110,7 +110,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator+=(int
 		value += val;
 	else
 	{
-		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		const string &key = fullKey.empty() ? provider->name : fullKey;
 		provider->setFun(key, provider->getFun(key) + val);
 	}
 	return *this;
@@ -124,7 +124,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 		value -= val;
 	else
 	{
-		const string &key = prefixedProviderKey.empty() ? provider->name : prefixedProviderKey;
+		const string &key = fullKey.empty() ? provider->name : fullKey;
 		provider->setFun(key, provider->getFun(key) - val);
 	}
 	return *this;
@@ -193,7 +193,7 @@ void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 {
 	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
 		condMapIt++;
-	
+
 	if(condMapIt != condMapEnd)
 		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
 }
@@ -226,10 +226,10 @@ int64_t ConditionsStore::Get(const string &name) const
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
 		return 0;
-	
+
 	if(!ce->provider)
 		return ce->value;
-	
+
 	return ce->provider->getFun(name);
 }
 
@@ -240,10 +240,10 @@ bool ConditionsStore::Has(const string &name) const
 	const ConditionEntry *ce = GetEntry(name);
 	if(!ce)
 		return false;
-	
+
 	if(!ce->provider)
 		return true;
-	
+
 	return ce->provider->hasFun(name);
 }
 
@@ -294,7 +294,7 @@ bool ConditionsStore::Erase(const string &name)
 	ConditionEntry *ce = GetEntry(name);
 	if(!ce)
 		return true;
-	
+
 	if(!(ce->provider))
 	{
 		storage.erase(name);
@@ -315,7 +315,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return storage[name];
-	
+
 	--it;
 	// The entry is valid if we have an exact string match, but also when we have a
 	// prefix entry and the prefix part matches.
@@ -324,7 +324,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &
 		// If we have an exact match, then we have the entry we want.
 		if(it->first.length() == name.length())
 			return it->second;
-		
+
 		// If we found a matched prefixed entry provider, but no exact match for
 		// the entry itself, then create a new prefixed entry based on the one we
 		// found.
@@ -333,7 +333,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &
 		{
 			ConditionEntry &ce = storage[name];
 			ce.provider = provider;
-			ce.prefixedProviderKey = name;
+			ce.fullKey = name;
 			return ce;
 		}
 	}
@@ -400,12 +400,12 @@ ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	if(storage.empty())
 		return nullptr;
-	
+
 	// Perform a single search for values, named providers, and prefixed providers.
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return nullptr;
-	
+
 	--it;
 	// The entry is valid if we have an exact string match, but also when we have a
 	// prefix entry and the prefix part matches.
@@ -425,12 +425,12 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 {
 	if(storage.empty())
 		return nullptr;
-	
+
 	// Perform a single search for values, named providers and prefixed providers.
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return nullptr;
-	
+
 	--it;
 	// The entry is valid if we have an exact stringmatch, but also when we have a
 	// prefix entry and the prefix part matches.

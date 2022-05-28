@@ -54,11 +54,11 @@ public:
 		// ConditionsStore. But we need to keep it public because of how the
 		// DerivedProviders are emplaced in the providers-map-variable.
 		DerivedProvider(const std::string &name, bool isPrefixProvider);
-		
+
 	private:
 		std::string name;
 		bool isPrefixProvider;
-	
+
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
 		std::function<int64_t(const std::string&)> getFun = [](const std::string &name) { return 0; };
@@ -67,7 +67,7 @@ public:
 		std::function<bool(const std::string&)> eraseFun = [](const std::string &name) { return false; };
 	};
 
-	
+
 	// Storage entry for a condition. Can act as a int64_t proxy when operator[] is used for access
 	// to conditions in the ConditionsStore.
 	class ConditionEntry
@@ -82,15 +82,16 @@ public:
 		ConditionEntry &operator--();
 		ConditionEntry &operator+=(int64_t val);
 		ConditionEntry &operator-=(int64_t val);
-	
+
 	private:
 		int64_t value = 0;
 		DerivedProvider *provider = nullptr;
-		// The exact name of the prefixed derived condition that we want to
-		// access using this ConditionEntry.
-		std::string prefixedProviderKey;
+		// The full keyname for condition we want to access. This full keyname is required
+		// when accessing prefixed providers, because such providers will only know the prefix
+		// part of the key.
+		std::string fullKey;
 	};
-	
+
 
 	// Input_iterator helper class to iterate over primary conditions.
 	// This can be used when saving primary conditions to savegames and/or
@@ -98,17 +99,17 @@ public:
 	class PrimariesIterator
 	{
 		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
-	
+
 	public:
 		PrimariesIterator(CondMapItType it, CondMapItType endIt);
-		
+
 		// Iterator traits
 		using iterator_category = std::input_iterator_tag;
 		using value_type = std::pair<const std::string, int64_t>;
 		using difference_type = void;
 		using pointer = const std::pair<const std::string, int64_t>*;
 		using reference = std::pair<const std::string, int64_t>;
-		
+
 		// Default input_iterator operations.
 		std::pair<std::string, int64_t> operator*() const;
 		const std::pair<std::string, int64_t>* operator->();
@@ -116,14 +117,14 @@ public:
 		PrimariesIterator operator++(int);
 		bool operator== (const PrimariesIterator& rhs) const;
 		bool operator!= (const PrimariesIterator& rhs) const;
-	
-	
+
+
 	public:
 		// Helper function to ensure that the primary-conditions iterator points
 		// to a primary (value) condition or to the end-iterator value.
 		void MoveToValueCondition();
-	
-	
+
+
 	private:
 		// The operator->() requires a return value that is a pointer, but in this
 		// case there is no original pair-object to point to, so we generate a
@@ -151,19 +152,19 @@ public:
 	bool Add(const std::string &name, int64_t value);
 	bool Set(const std::string &name, int64_t value);
 	bool Erase(const std::string &name);
-	
+
 	// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
-	
+
 	// Direct (read-only) access to the stored primary conditions.
 	PrimariesIterator PrimariesBegin() const;
 	PrimariesIterator PrimariesEnd() const;
 	PrimariesIterator PrimariesLowerBound(const std::string &key) const;
-	
+
 	// Builds providers for derived conditions based on prefix and name.
 	DerivedProvider &GetProviderPrefixed(const std::string &prefix);
 	DerivedProvider &GetProviderNamed(const std::string &name);
-	
+
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
 
