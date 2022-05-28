@@ -388,7 +388,7 @@ bool UniverseObjects::LoadNode(const DataNode &node, const string &path)
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 

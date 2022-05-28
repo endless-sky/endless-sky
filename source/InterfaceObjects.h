@@ -48,7 +48,7 @@ private:
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
-	
+
 	// A local cache of the menu background interface for thread-safe access.
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
