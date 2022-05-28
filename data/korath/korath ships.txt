@@ -178,7 +178,7 @@ ship "Korath Raider"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 		
 		"Triple Plasma Core"
@@ -225,7 +225,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 		
 		"Triple Plasma Core"
@@ -257,7 +257,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 		
 		"Triple Plasma Core"
@@ -289,7 +289,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
-		#19t missile launcher x1
+		#31t missile launcher x1
 		#0.3t missile x17
 		
 		"Triple Plasma Core"
@@ -341,7 +341,7 @@ ship "Korath Raider Mk.II"
 		"Korath Banisher"
 		"Korath Warder"
 		"Korath Fire-Lance"
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 		
 		"Triple Plasma Core"
@@ -427,8 +427,8 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Missile)"
 	outfits 
 		"Korath Grab-Strike" 4
 		"Korath Warder" 2
-		#19t missile launcher x3
-		#9t missile rack (21 capacity per)
+		#31t missile launcher x3
+		#13t missile rack (21 capacity per)
 		#0.3t missile x108
 		
 		"Triple Plasma Core"
@@ -465,7 +465,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 		"Korath Banisher"
 		"Korath Warder"
 		"Korath Detainer"
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 		
 		"Triple Plasma Core"
@@ -500,7 +500,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)"
 		"Korath Piercer Launcher"
 		"Korath Piercer Rack"
 		"Korath Piercer" 47
-		#19t missile launcher x2
+		#31t missile launcher x2
 		#0.3t missile x66
 
 		"Triple Plasma Core"
