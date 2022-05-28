@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Personality.h"
 #include "Sale.h"
-#include "UnionItem.h"
 #include "Variant.h"
 #include "WeightedList.h"
 
@@ -86,7 +85,6 @@ private:
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
 	WeightedList<Variant> variants;
-
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
 	std::vector<std::string> commodities;

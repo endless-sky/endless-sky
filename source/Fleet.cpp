@@ -277,7 +277,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().Ships();
+	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
 	if(variantShips.empty())
 		return;
 
@@ -446,7 +446,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().Ships();
+	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
 	if(variantShips.empty())
 		return;
 
