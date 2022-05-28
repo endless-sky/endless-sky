@@ -1747,7 +1747,7 @@
 					"$(PROJECT_DIR)/build",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/opt/jpeg-turbo/include",
@@ -1797,7 +1797,7 @@
 					"$(PROJECT_DIR)/build",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/opt/jpeg-turbo/include",
