@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
 #include "CollisionSet.h"
-#include "ClickZone.h"
 #include "Command.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
