@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66ABE998283887F7000BF5B9"
-               BuildableName = "ES_Game.app"
-               BlueprintName = "ES_Game"
+               BuildableName = "Endless Sky.app"
+               BlueprintName = "Endless Sky"
                ReferencedContainer = "container:EndlessSky.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66ABE998283887F7000BF5B9"
-            BuildableName = "ES_Game.app"
-            BlueprintName = "ES_Game"
+            BuildableName = "Endless Sky.app"
+            BlueprintName = "Endless Sky"
             ReferencedContainer = "container:EndlessSky.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66ABE998283887F7000BF5B9"
-            BuildableName = "ES_Game.app"
-            BlueprintName = "ES_Game"
+            BuildableName = "Endless Sky.app"
+            BlueprintName = "Endless Sky"
             ReferencedContainer = "container:EndlessSky.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
