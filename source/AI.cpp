@@ -538,8 +538,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Your flagship may request refueling from an escort tanker
 			// carrier.  The flagship can also request help from your escorts
 			// for recharge.
-			//if(!Random::Int(10) && flagship->MayRequestHelp() && (!flagship->IsDisabled() ^ flagship->IsEnergyLow()))
-			if(!Random::Int(10) && flagship->MayRequestHelp())
+			if(!Random::Int(20) && flagship->MayRequestHelp() && (!flagship->IsDisabled() ^ flagship->IsEnergyLow()))
 				AskForHelp(*it, isStranded, flagship);
 			continue;
 		}
@@ -778,7 +777,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
-			// Check for a new parent three times a second.
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && !Random::Int(1800)))
 			{
 				// Find the possible parents for orphaned fighters and drones.
