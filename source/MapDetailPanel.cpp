@@ -251,7 +251,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
-	if(x < Screen::Left() + 160)
+	bool inPlanetCards = (y < tradeY && y > governmentY);
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	if(x < Screen::Left() + 160 && !inPlanetCards)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
@@ -267,33 +269,33 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
-		else if(y < tradeY && y > governmentY)
+	}
+	else if(x < Screen::Left() + planetCardInterface->GetValue("width") && inPlanetCards)
+	{
+		for(auto &card : planetCards)
 		{
-			for(auto &card : planetCards)
+			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
+			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
-				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
-				if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
-				{
-					GetUI()->Pop(this);
-					GetUI()->Push(new MapShipyardPanel(*this, true));
-					break;
-				}
-				else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
-				{
-					GetUI()->Pop(this);
-					GetUI()->Push(new MapOutfitterPanel(*this, true));
-					break;
-				}
-				// Then this is the planet selected.
-				else if(clickAction != MapPlanetCard::ClickAction::NONE)
-				{
-					selectedPlanet = card.GetPlanet();
-					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
-						SetCommodity(static_cast<int>(clickAction));
-				}
+				GetUI()->Pop(this);
+				GetUI()->Push(new MapShipyardPanel(*this, true));
+				break;
 			}
-			return true;
+			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
+			{
+				GetUI()->Pop(this);
+				GetUI()->Push(new MapOutfitterPanel(*this, true));
+				break;
+			}
+			// Then this is the planet selected.
+			else if(clickAction != MapPlanetCard::ClickAction::NONE)
+			{
+				selectedPlanet = card.GetPlanet();
+				if(clickAction != MapPlanetCard::ClickAction::SELECTED)
+					SetCommodity(static_cast<int>(clickAction));
+			}
 		}
+		return true;
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
 	{
@@ -519,9 +521,11 @@ void MapDetailPanel::DrawInfo()
 	double startingY = mapInterface->GetValue("planet starting Y");
 	double bottomY = mapInterface->GetValue("planet max bottom Y");
 
-	// Draw the panel for the planets.
+	bool hasVisited = player.HasVisited(*selectedSystem);
+	
+	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	Point size(planetWidth, min((Screen::Height() - bottomY - startingY),
-		planetCards.size() * planetHeight));
+		(hasVisited ? planetCards.size() : 0.) * planetHeight));
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2. + startingY / 2.),
 		size + Point(0., startingY), back);
@@ -541,7 +545,7 @@ void MapDetailPanel::DrawInfo()
 	Point uiPoint(Screen::Left() + startingX, Screen::Top() + startingY);
 
 	// Draw the basic information for visitable planets in this system.
-	if(player.HasVisited(*selectedSystem))
+	if(hasVisited)
 	{
 		maxScroll = 0.;
 
