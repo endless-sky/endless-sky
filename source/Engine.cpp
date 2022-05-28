@@ -193,9 +193,11 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+	static const double ICON_SIZE = 30.;
+	static const double AMMO_WIDTH = 80.;
 
 	Rectangle ammoBox;
-	vector<ClickZone<const Outfit *>> ammoClickZones;
+	double ammoPad;
 }
 
 
@@ -1037,11 +1039,9 @@ void Engine::Draw() const
 		MapPanel::DrawMiniMap(player, .5f * min(1.f, jumpCount / 30.f), jumpInProgress, step);
 
 	// Draw ammo status.
-	static const double ICON_SIZE = 30.;
-	static const double AMMO_WIDTH = 80.;
 	ammoBox = hud->GetBox("ammo");
 	// Pad the ammo list by the same amount on all four sides.
-	double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
+	ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
@@ -1073,9 +1073,6 @@ void Engine::Draw() const
 		string amount = to_string(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
-		double ammoIconClickCentreX = (ammoBox.Right() + ammoBox.Left()) / 2.;
-		double ammoIconClickCentreY = pos.Y() + ICON_SIZE / 2.;
-		ammoClickZones.emplace_back(Point(ammoIconClickCentreX, ammoIconClickCentreY), Point(80., 30.), it.first);
 	}
 
 	// Draw escort status.
@@ -1116,14 +1113,22 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	if(ammoBox.Contains(from))
 	{
 		bool control = (SDL_GetModState() & KMOD_CTRL);
-		for(const ClickZone<const Outfit *> &zone : ammoClickZones)
+		Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+		for(const pair<const Outfit *, int> &it : ammo)
 		{
-			if(zone.Contains(from))
+			pos.Y() -= ICON_SIZE;
+			if(pos.Y() < ammoBox.Top() + ammoPad)
+				break;
+
+			double ammoIconClickCentreX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+			double ammoIconClickCentreY = pos.Y() + ICON_SIZE / 2.;
+			Point ammoIconClickCentre(ammoIconClickCentreX, ammoIconClickCentreY);
+			Point ammoIconClickDimensions(AMMO_WIDTH, ICON_SIZE);
+			if(Rectangle(ammoIconClickCentre, ammoIconClickDimensions).Contains(from))
 			{
-				const Outfit *clicked = zone.Value();
 				if(!control)
 					player.DeselectAll();
-				player.ToggleAny(clicked);
+				player.ToggleAny(it.first);
 				return;
 			}
 		}
