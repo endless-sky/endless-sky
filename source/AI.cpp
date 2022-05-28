@@ -3319,21 +3319,25 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.SetTargetShip(shared_ptr<Ship>());
 
 			bool foundEnemy = false;
+			
+			bool boardClosest = Preferences::Has("Board target");
 
-			auto strategy = [&]() -> function<double(const Ship &)> {
+			auto strategy = [&]() -> function<double(const Ship &)>
+			{
 				Point current = ship.Position();
-				// If "board target" is set to true, the default behavior (distance priority) is used.
-				if(!Preferences::Has("Board target"))
+				// If "board target" is set to false, value priority is used.
+				if(!boardClosest)
 				{
-					double agility = ship.Acceleration() * ship.TurnRate();
-					return [agility, this, &ship, current](const Ship &other) -> double {
-						double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+					return [this, &ship](const Ship &other) -> double
+					{
+						// Use the exact cost if the ship was scanned, otherwise use an estimation.
+						return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
 							other.Cost() : (other.ChassisCost() * 2.);
-						return -agility * 2. * (cost * cost) / current.DistanceSquared(other.Position());
 					};
 				}
 				// Default to distance-based strategy.
-				return [current](const Ship &other) -> double {
+				return [current](const Ship &other) -> double
+				{
 					return current.DistanceSquared(other.Position());
 				};
 			}();
@@ -3371,16 +3375,22 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			else
 			{
 				sort(boardable.begin(), boardable.end(),
-					[](
+					[&ship, boardClosest](
 						pair<const Ship *, double> &lhs,
 						pair<const Ship *, double> &rhs
 					)
 					{
-						return lhs.second > rhs.second;
+						// If their cost is the same, prefer the closest ship.
+						if(!boardClosest && lhs.second == rhs.second)
+							return lhs.first->Position().DistanceSquared(ship.Position()) >
+								rhs.first->Position().DistanceSquared(ship.Position());
+						else
+							return boardClosest ? lhs.second > rhs.second : lhs.second < rhs.second;
 					}
 				);
 
-				if(!target)
+				// If there is no valid target (it could be being destroyed).
+				if(!target || !CanBoard(ship, *target))
 					ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
