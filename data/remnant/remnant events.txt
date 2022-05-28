@@ -176,6 +176,8 @@ event "remnant: cognizance 1 systems available"
 		remove attributes "inaccessible"
 	system Egeria
 		remove attributes "inaccessible"
+	system Postverta
+		remove attributes "inaccessible"
 	system Prosa
 		remove attributes "inaccessible"
 	system Statina
