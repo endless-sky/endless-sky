@@ -1326,6 +1326,7 @@ Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
  images/effect/plasma?flare/*
+ images/effect/pug?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/nuke*
