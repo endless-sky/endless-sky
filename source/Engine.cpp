@@ -1113,15 +1113,15 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	if(ammoBox.Contains(from))
 	{
 		bool control = (SDL_GetModState() & KMOD_CTRL);
-		Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+		double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+		double posY = ammoBox.Bottom() - ammoPad;
 		for(const pair<const Outfit *, int> &it : ammo)
 		{
-			pos.Y() -= ICON_SIZE;
-			if(pos.Y() < ammoBox.Top() + ammoPad)
+			posY -= ICON_SIZE;
+			if(posY < ammoBox.Top() + ammoPad)
 				break;
 
-			double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
-			double ammoIconClickCenterY = pos.Y() + ICON_SIZE / 2.;
+			double ammoIconClickCenterY = posY + ICON_SIZE / 2.;
 			Point ammoIconClickCenter(ammoIconClickCenterX, ammoIconClickCenterY);
 			Point ammoIconClickDimensions(AMMO_WIDTH, ICON_SIZE);
 			if(Rectangle(ammoIconClickCenter, ammoIconClickDimensions).Contains(from))
