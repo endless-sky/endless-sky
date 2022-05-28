@@ -422,7 +422,7 @@ ship "Korath Raider Mark XLII"
 	description `Since the Raider's introduction, however, constant warfare against surrounding aliens has been building pressure on their shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have revised the design to bring it up to their expectations.`
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Missile)" 
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Missile)" 
 	sprite "ship/raiderii"
 	outfits 
 		"Korath Grab-Strike" 4
@@ -454,7 +454,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Missile)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Crippler)"
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	sprite "ship/raiderii"
 	add attributes
 		"cargo space" -40
@@ -491,7 +491,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Crippler)"
 	turret "Korath Banisher"
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Repeater)" 
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Repeater)" 
 	sprite "ship/raiderii"
 	outfits 
 		"Korath Grab-Strike" 2
