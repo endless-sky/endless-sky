@@ -35,7 +35,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 		log `The Wanderers are establishing a colony on <planet> in Korath space, but they need help getting the most basic infastructure established.`
 		conversation
 			`The landing pads at the settlement are packed earth and gravel, mostly created by the ships themselves. There is a large tent for the workers to meet and rest and a battered Strong Wind acting as a command center. You can see a small crew of Wanderers hammering forms together with a concrete mixer running nearby. It's a far cry from the clean and elegant spaceports the Wanderers are used to, but not far off some of the Dirt Belt and anarchist worlds you've known.`
-			`	Something of an argument is taking place in front of a tent at the edge of landing area. There are lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
+			`	Something of an argument is taking place in front of a tent at the edge of landing area. There are a lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
 			choice
 				`	(Go over and investigate.)`
 					goto investigate
