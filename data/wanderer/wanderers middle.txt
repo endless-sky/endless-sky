@@ -143,7 +143,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3"
 	on offer
 		conversation 
 			`This time you land on a concrete pad and you see the familiar hexagonal layout of a Wanderer spaceport. There are tents instead of buildings but you can see stakes outlining the shapes to come. You pass a group of Wanderer captains who appear to be holding a swap meet looking for spare ammunition and equipment so they can avoid the trip back across the Eye.`
-			`	The construction supervisor bobs his head enthusiastically when he sees you and eventually remembers to switch to Hai. "Thank you, Captian <last>," he says. "We would be waiting weeks to get started building without your help. We now need to get the warehouse equipment and [personnel, staff] in to organize the outfitter and [technicians, fixers] do do the [maintenance, repairs]. Would you be able to do this for us as well?`
+			`	The construction supervisor bobs his head enthusiastically when he sees you and eventually remembers to switch to Hai. "Thank you, Captain <last>," he says. "We would be waiting weeks to get started building without your help. We now need to get the warehouse equipment and [personnel, staff] in to organize the outfitter and [technicians, fixers] do the [maintenance, repairs]. Would you be able to do this for us as well?`
 			choice
 				`	"Of course. I need an outfitter here as much as anybody."`
 					goto willdo
@@ -156,7 +156,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3"
 	on complete
 		conversation
 			`Things go much smoother this time. The Wanderer in the office takes the chip and after a few moments loads their own translation application and says, "[Complete, Done]. On job [board, list] soon. Spaceport if no see."`
-			`	You thank them and wonder how strange your translator makes you sound to the Wanderers.`
+			`	You thank them, and as the translator conveys it to the Wanderers, you can see them twitch their head and make noises the translator simply states as [amusement, appreciation].`
 
 
 mission "Wanderers: Spera Anatrusk Outfitter 3a"
@@ -197,7 +197,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3b"
 		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
 
 	on stopover
-		dialog "One of the outfitter staff has been learning some Hai and asks you endless questions about the Hai and the worlds beyone the Eye. You look at all the travel bags and boxes and wonder if anyone warned them about how primitive their new home is."
+		dialog "One of the outfitter staff has been learning some Hai and asks you endless questions about the Hai and the worlds beyond the Eye. You look at all the travel bags and boxes and wonder if anyone warned them about how primitive their new home is."
 
 	on visit
 		dialog "You've arrived at <planet> but the escort carrying the outfitter staff hasn't landed. You realize you need to depart and wait for them to arrive."
@@ -249,14 +249,14 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 			`You watch the work crews unload the cargo by uncrating the repulsor lifts in the hold and then using them to move the crates of shelving and supplies into the prefabricated shell that stands on what was formerly an empty field. The spaceport tent has been moved and you can see a new line of stakes where the spaceport building itself will be.`
 			`	Clearly other supplies are coming in as well since you can see three Deep Rivers being unloaded and containers of equipment and construction materials being stacked in a massive yard near the outfitter building.`
 			`	The construction supervisor is shouting into some kind of bull horn to one of the work crews, trying to be heard over the heavy equipment. When he notices you, he stops and flutter-walks over to you.`
-			`Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everything we need to open at least a minimal outfitter."`
+			`"Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everything we need to open at least a minimal outfitter."`
 			
 			choice
 				`	"I'd be glad to."`
 					accept
 				`	"I'm not willing to risk the Mereti ships for the freighters."`
 					decline
-			`	The supervisor nods his head and then turns back to the construction site. He lifts his bull horn and starts shouting at the workers. He get two sentences out before he remembers to stop speaking Hai.`
+			`	The supervisor nods his head and then turns back to the construction site. He lifts his bull horn and starts shouting at the workers. He gets two sentences out before he remembers to stop speaking Hai.`
 
 	on stopover
 		dialog "The dock workers seem eager to load the massive freighters. They are excited to be part of the Migration. They stand together and salute the flight crew when they board for departure."
