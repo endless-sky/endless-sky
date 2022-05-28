@@ -50,7 +50,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 				`	"I guess I'll just leave, then."`
 					decline
 			label handle
-			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data crystal and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials and workers and I can't even request them directly since communications don't work through the wormhole.`
+			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data chip and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials and workers and I can't even request them directly since communications don't work through the wormhole.`
 			`	You turn to go as group of Wanderers with surveying equipment walk up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to disucss with the surveyors. As you walk off, the translator just picks up. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
 				accept
 
