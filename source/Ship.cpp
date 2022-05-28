@@ -2777,9 +2777,7 @@ bool Ship::IsOutOfEnergy() const
 	bool closeToParent = false;
 	if(canBeCarried)
 	{
-		// Because CanCarry is an expensive operation, check this only about 6
-		// times a second.
-		if(!Random::Int(10) && GetParent() && GetParent()->CanCarry(*this))
+		if(GetParent())
 		{
 			Point dp = GetParent().get()->Position() - position;
 			Point dv = GetParent().get()->Velocity() - velocity;
@@ -2788,6 +2786,9 @@ bool Ship::IsOutOfEnergy() const
 			closeToParent = distanceFromParent < 50. && speedRelativeToParent < 1.;
 			// Set closeToParent to false if this ship is disabled due to hull.  It requires additional assistance.
 			closeToParent &= hull >= MinimumHull();
+			// CanCarry is expensive performance-wise so should only be called if necessary.
+			if(closeToParent)
+				closeToParent &= GetParent()->CanCarry(*this);
 			// Clear the parent boarding target when fighter boards.
 			if(closeToParent && GetParent().get()->GetTargetShip().get() == this)
 				GetParent().get()->SetTargetShip(nullptr);
