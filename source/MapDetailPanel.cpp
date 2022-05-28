@@ -551,9 +551,10 @@ void MapDetailPanel::DrawInfo()
 
 		for(auto &card : planetCards)
 		{
+			bool wasDrawn = card.DrawIfFits(uiPoint);
 			const double availableSpace = card.AvailableSpace();
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
-			if(card.DrawIfFits(uiPoint))
+			if(wasDrawn)
 				uiPoint.Y() += availableSpace;
 			// Call it all of the time so we can scroll if an element is partially shown.
 			maxScroll += (planetHeight - availableSpace);
