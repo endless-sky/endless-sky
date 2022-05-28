@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 "reputation titles"
-	"-infinity" "\"You. Will. Die.\""
+	"-infinity" "'You. Will. Die.'"
 	-100000 "Hated Adversary"
 	-10000 "Feared Enemy"
 	-1000 "Hostile Relations"
