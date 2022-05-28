@@ -9,11 +9,11 @@ set -e
 cp icons/icon_512x512.png endless-sky.png
 
 # Build
-scons -Qj $(nproc) install DESTDIR=AppDir
+scons -Qj $(nproc) install DESTDIR=AppDir PREFIX=/usr
 
 # Inside an AppImage, the executable is a link called "AppRun" at the root of AppDir/.
 # Keeping the data files next to the executable is perfectly valid, so we just move them to AppDir/ to avoid errors.
-mv AppDir/usr/local/share/games/endless-sky/* AppDir/
+mv AppDir/usr/share/games/endless-sky/* AppDir/
 
 # Now build the actual AppImage
 curl -sSL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy && chmod +x linuxdeploy
