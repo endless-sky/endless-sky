@@ -320,7 +320,7 @@
 		66977DF1284035BE00F64393 /* ES_UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_UnitTests-Info.plist"; sourceTree = "<group>"; };
 		66977DF2284035BE00F64393 /* ES_Engine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_Engine-Info.plist"; sourceTree = "<group>"; };
 		66977DF3284035BE00F64393 /* ES_Game-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ES_Game-info.plist"; sourceTree = "<group>"; };
-		66ABEA4D283887F7000BF5B9 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66ABEA4D283887F7000BF5B9 /* ES_Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ES_Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CC867A28384F6E00C3B654 /* preferences.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = preferences.txt; sourceTree = "<group>"; };
 		66CC867B28384F6E00C3B654 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66CC867C28384F6E00C3B654 /* retryable_issues.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = retryable_issues.txt; sourceTree = "<group>"; };
@@ -1133,7 +1133,7 @@
 			isa = PBXGroup;
 			children = (
 				66F06B43283708E300531F63 /* ES_UnitTests.app */,
-				66ABEA4D283887F7000BF5B9 /* Endless Sky.app */,
+				66ABEA4D283887F7000BF5B9 /* ES_Game.app */,
 				072599BE26A8C67D007EC229 /* SDL2.framework */,
 				66EEBA0A283AB8F300B7D9E7 /* ES_Engine.framework */,
 			);
@@ -1236,9 +1236,9 @@
 			productReference = 072599BE26A8C67D007EC229 /* SDL2.framework */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		66ABE998283887F7000BF5B9 /* Endless Sky */ = {
+		66ABE998283887F7000BF5B9 /* ES_Game */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66ABEA4A283887F7000BF5B9 /* Build configuration list for PBXNativeTarget "Endless Sky" */;
+			buildConfigurationList = 66ABEA4A283887F7000BF5B9 /* Build configuration list for PBXNativeTarget "ES_Game" */;
 			buildPhases = (
 				66ABE99B283887F7000BF5B9 /* Copy Files */,
 				66ABE9A1283887F7000BF5B9 /* Sources */,
@@ -1252,9 +1252,9 @@
 				66ABE999283887F7000BF5B9 /* PBXTargetDependency */,
 				66EEBA26283AB99800B7D9E7 /* PBXTargetDependency */,
 			);
-			name = "Endless Sky";
+			name = ES_Game;
 			productName = EndlessSky;
-			productReference = 66ABEA4D283887F7000BF5B9 /* Endless Sky.app */;
+			productReference = 66ABEA4D283887F7000BF5B9 /* ES_Game.app */;
 			productType = "com.apple.product-type.application";
 		};
 		66EEBA09283AB8F300B7D9E7 /* ES_Engine */ = {
@@ -1328,7 +1328,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66ABE998283887F7000BF5B9 /* Endless Sky */,
+				66ABE998283887F7000BF5B9 /* ES_Game */,
 				66F06A8E283708E300531F63 /* ES_UnitTests */,
 				072599BD26A8C67D007EC229 /* SDL2 */,
 				66EEBA09283AB8F300B7D9E7 /* ES_Engine */,
@@ -1995,7 +1995,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66ABEA4A283887F7000BF5B9 /* Build configuration list for PBXNativeTarget "Endless Sky" */ = {
+		66ABEA4A283887F7000BF5B9 /* Build configuration list for PBXNativeTarget "ES_Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66ABEA4B283887F7000BF5B9 /* Debug */,
