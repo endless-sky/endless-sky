@@ -1203,13 +1203,23 @@ Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
+Files: images/effect/archon?teleport/*
+Copyright: @Karirawri (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso (under the same license).
+
+Files: sounds/archonteleport*
+Copyright: oldestmillennial
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/oldestmillennial/sounds/533025/ and modified.
+
 Files: images/outfit/emp?rack*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: images/planet/*-hot*
-Copyright: Tommaso Becca
+Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
@@ -1225,7 +1235,7 @@ Files:
  images/outfit/ka'het?vareti?engine*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Becca Tommaso.
 
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
@@ -1314,14 +1324,24 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/star/neutron*
- images/outfit/asteroid?scanner*
+ images/effect/coalition?flare/*
+ images/effect/plasma?flare/*
+ images/effect/wanderer?flare/*
+ images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/nuke*
+ images/hardpoint/sunbeam?turret*
+ images/hardpoint/wanderer?anti-missile*
  images/outfit/afterburner*
+ images/outfit/asteroid?scanner*
  images/outfit/blue?sun*
  images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
  images/outfit/dark?storm*
+ images/outfit/dual?sunbeam?turret*
  images/outfit/nuke*
  images/outfit/red?sun*
+ images/outfit/sunbeam*
+ images/outfit/sunbeam?turret*
  images/outfit/thunderhead?launcher*
  images/outfit/thunderhead?storage*
  images/outfit/wanderer?anti-missile*
@@ -1330,15 +1350,15 @@ Files:
  images/outfit/yellow?sun*
  images/projectile/missile-0*
  images/projectile/missile-1*
- images/hardpoint/nuke*
  images/ship/corvette*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
+ images/star/neutron*
  images/thumbnail/corvette*
- images/thumbnail/msplinter*
  images/thumbnail/mraven*
+ images/thumbnail/msplinter*
  images/thumbnail/raven*
  images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
@@ -1359,6 +1379,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/scene/ssil?vida?alert?hologram*
+ images/scene/remnant?remote?spaceport*
 Copyright: J Everett Nichol (jeverett on Discord)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
@@ -1456,35 +1477,40 @@ Files:
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
 
-Files: images/scene/citydark
-images/scene/buildings
-images/scene/busysteet
-images/scene/iceplains
-images/scene/iceplains2
-images/scene/iceplains3
-images/scene/lonelyrock
-images/scene/redrocks
-images/scene/seasidecliffs
-images/scene/Seasunset
-images/scene/smeer
-images/scene/snowfield
-images/scene/snowvillage
-images/scene/sunet
-images/scene/tower
-images/scene/icepicture
-images/scene/snowplains
+Files:
+ images/scene/citydark*
+ images/scene/buildings*
+ images/scene/busysteet*
+ images/scene/iceplains*
+ images/scene/iceplains2*
+ images/scene/iceplains3*
+ images/scene/lonelyrock*
+ images/scene/redrocks*
+ images/scene/seasidecliffs*
+ images/scene/Seasunset*
+ images/scene/smeer*
+ images/scene/snowfield*
+ images/scene/snowvillage*
+ images/scene/sunet*
+ images/scene/tower*
+ images/scene/icepicture*
+ images/scene/snowplains*
 Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
-Files: images/outfits/skadetear
-images/scenes/hroar
+Files:
+ images/scenes/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0
+Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
+
+Files: images/outfits/skadetear*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

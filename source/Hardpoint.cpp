@@ -281,6 +281,19 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 
+// This weapon jammed. Increase its reload counters, but don't fire.
+void Hardpoint::Jam()
+{
+	// Since this is only called internally by Armament (no one else has non-
+	// const access), assume Armament checked that this is a valid call.
+
+	// Reset the reload count.
+	reload += outfit->Reload();
+	burstReload += outfit->BurstReload();
+}
+
+
+
 // Install a weapon here (assuming it is empty). This is only for
 // Armament to call internally.
 void Hardpoint::Install(const Outfit *outfit)

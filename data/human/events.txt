@@ -2090,37 +2090,10 @@ event "pug flee"
 		fleet "Large Southern Pirates" 3000
 	system Deneb
 		fleet "Small Core Merchants" 5000
-		object
-			sprite star/g5
-			period 10
-		object "Pugglemug"
-			sprite planet/ocean2
-			distance 317.56
-			period 90.543791
-			object
-				sprite planet/dust3
-				distance 159
-				period 16.370052
-		object "Pugglequat"
-			sprite planet/desert3
-			distance 966.8
-			period 480.9777
-			object
-				sprite planet/rhea
-				distance 156
-				period 18.632773
-		object
-			sprite planet/dust7
-			distance 1538.84
-			period 965.85111
-		object
-			sprite planet/dust0
-			distance 1788.4
-			period 1210.0881
-		object "Pug Wormhole"
+		add object "Pug Wormhole"
 			sprite planet/wormhole
 			distance 2320.29
-			period 1788.2712
+			period 1788.27
 	planet "Pugglemug"
 		attributes uninhabited
 	planet "Pugglequat"
