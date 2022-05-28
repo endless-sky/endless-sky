@@ -522,7 +522,7 @@ void MapDetailPanel::DrawInfo()
 	double bottomY = mapInterface->GetValue("planet max bottom Y");
 
 	bool hasVisited = player.HasVisited(*selectedSystem);
-	
+
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	Point size(planetWidth, min((Screen::Height() - bottomY - startingY),
 		(hasVisited ? planetCards.size() : 0.) * planetHeight));
