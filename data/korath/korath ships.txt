@@ -155,7 +155,7 @@ ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
@@ -313,11 +313,11 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider Mk.II"
+ship "Korath Raider Mark XLII"
 	sprite "ship/raiderii"
 	thumbnail "thumbnail/raiderii"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 22395000
 		"shields" 27500
 		"hull" 11000
@@ -422,7 +422,7 @@ ship "Korath Raider Mk.II"
 	description `Since the Raider's introduction, however, constant warfare against surrounding aliens has been building pressure on their shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have revised the design to bring it up to their expectations.`
 
 
-ship "Korath Raider Mk.II" "Korath Raider Mk.II (Missile)" 
+ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Missile)" 
 	sprite "ship/raiderii"
 	outfits 
 		"Korath Grab-Strike" 4
@@ -454,7 +454,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Missile)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
+ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Crippler)"
 	sprite "ship/raiderii"
 	add attributes
 		"cargo space" -40
@@ -491,7 +491,7 @@ ship "Korath Raider Mk.II" "Korath Raider Mk.II (Crippler)"
 	turret "Korath Banisher"
 
 
-ship "Korath Raider Mk.II" "Korath Raider Mk.II (Repeater)" 
+ship "Korath Raider Mark XLII" "Korath Raider Mk.II (Repeater)" 
 	sprite "ship/raiderii"
 	outfits 
 		"Korath Grab-Strike" 2
