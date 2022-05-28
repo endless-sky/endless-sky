@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../../source/WeightedList.h"
 
 // ... and any system includes needed for the test file.
+#include <algorithm>
 #include <cstdint>
 #include <functional>
 #include <stdexcept>
@@ -32,7 +33,6 @@ public:
 	Object(int value) : value(value) {}
 	int GetValue() const { return value; }
 	bool operator==(const Object &other) const { return this->value == other.value; }
-
 	int64_t GetConstant() const { return CONSTANT; }
 };
 // #endregion mock data
@@ -59,7 +59,7 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 			const auto beforeWeight = list.TotalWeight();
 
 			const auto obj = Object(1);
-			list.emplace_back(obj, objWeight);
+			list.emplace_back(objWeight, obj);
 
 			THEN( "the list size increases by 1" ) {
 				CHECK_FALSE( list.empty() );
@@ -71,15 +71,14 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 			AND_WHEN( "a second object is added" ) {
 				const auto extraWeight = 3;
-				list.emplace_back(2, extraWeight);
+				list.emplace_back(extraWeight, 2);
 				THEN( "the list increases in size and weight" ) {
 					CHECK_FALSE( list.empty() );
 					CHECK( list.size() == 2 + beforeSize );
 					CHECK( list.TotalWeight() == beforeWeight + objWeight + extraWeight );
 				}
 				THEN( "the object at the back of the list is the most recently inserted" ) {
-					CHECK( list.back().first.GetValue() == 2 );
-					CHECK( list.back().second == extraWeight );
+					CHECK( list.back().GetValue() == 2 );
 				}
 
 				AND_WHEN( "a single element is erased" ) {
@@ -92,14 +91,13 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 2 );
-						CHECK( it->second == extraWeight );
+						CHECK( it->GetValue() == 2 );
 					}
 				}
 
-				AND_WHEN( "A range is erased from begin to end" ) {
+				AND_WHEN( "a range is erased from begin to end" ) {
 					list.erase(list.begin(), list.end());
-					THEN( "The list is empty." ) {
+					THEN( "the list is empty" ) {
 						CHECK( list.empty() );
 						CHECK( list.TotalWeight() == 0 );
 					}
@@ -107,9 +105,9 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 
 				AND_WHEN( "a range is erased from the middle" ) {
 					// Add more objects to the list so that a range can be deleted.
-					list.emplace_back(3, 1);
-					list.emplace_back(4, 5);
-					list.emplace_back(5, 3);
+					list.emplace_back(1, 3);
+					list.emplace_back(5, 4);
+					list.emplace_back(3, 5);
 					REQUIRE( list.size() == 5 );
 					CHECK( list.TotalWeight() == 14 );
 
@@ -121,17 +119,22 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 					}
 					THEN( "an iterator pointing to the next object in the list is returned" ) {
 						REQUIRE( it != list.end() );
-						CHECK( it->first.GetValue() == 4 );
-						CHECK( it->second == 5 );
+						CHECK( it->GetValue() == 4 );
 					}
 				}
 
-				AND_WHEN( "the erase-remove idiom is used" ) {
-					auto removeIt = std::remove_if(list.begin(), list.end(),
-						[](const std::pair<Object, std::size_t> &o) { return o.first.GetValue() == 1; });
-					REQUIRE( removeIt != list.begin() );
-					REQUIRE( removeIt != list.end() );
-					list.erase(removeIt, list.end());
+				AND_WHEN( "the erase friend function is used" ) {
+					std::size_t count = erase(list, obj);
+					REQUIRE( count > 0 );
+
+					THEN( "the total weight is correctly maintained" ) {
+						CHECK( list.TotalWeight() == extraWeight );
+					}
+				}
+
+				AND_WHEN( "the erase-if friend function is used" ) {
+					std::size_t count = erase_if(list, [](const Object &o) { return o.GetValue() == 1; });
+					REQUIRE( count > 0 );
 
 					THEN( "the total weight is correctly maintained" ) {
 						CHECK( list.TotalWeight() == extraWeight );
@@ -139,22 +142,22 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 				}
 			}
 
-			AND_WHEN( "The list is cleared." ) {
+			AND_WHEN( "the list is cleared" ) {
 				list.clear();
-				THEN( "The list is now empty." ) {
+				THEN( "the list is now empty" ) {
 					CHECK( list.empty() );
 					CHECK( list.size() == 0 );
 				}
-				THEN( "The list no longer has any weight." ) {
+				THEN( "the list no longer has any weight" ) {
 					CHECK( list.TotalWeight() == 0 );
 				}
 			}
 		}
 	}
-	GIVEN( "A weighted list with content" ) {
+	GIVEN( "a weighted list with content" ) {
 		auto list = WeightedList<Object>{};
-		list.emplace_back(10, 4);
-		list.emplace_back(20, 1);
+		list.emplace_back(4, 10);
+		list.emplace_back(1, 20);
 		REQUIRE( list.size() == 2 );
 
 		WHEN( "an average is computed over the same value" ) {
@@ -174,12 +177,173 @@ SCENARIO( "Creating a WeightedList" , "[WeightedList][Creation]" ) {
 	}
 }
 
-SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
+SCENARIO( "Erasing from a WeightedList using a predicate", "[WeightedList][Usage]" ) {
+	GIVEN( "a weighted list" ) {
+		auto list = WeightedList<Object>{};
+		auto invocations = 0U;
+		auto pred = [&invocations](const Object &o) noexcept -> bool {
+			++invocations;
+			return o.GetValue() % 2;
+		};
+
+		WHEN( "the list contains one valid object" ) {
+			list.emplace_back(2, 2);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the list is unchanged" ) {
+					CHECK( erased == 0 );
+					CHECK( list.size() == 1 );
+					// pred should only be invoked once per element.
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 2 );
+					// pred should be false for all remaining elements.
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "the list contains one invalid object" ) {
+			list.emplace_back(1, 1);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the list is empty" ) {
+					CHECK( erased == 1 );
+					CHECK( list.size() == 0 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 0 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "all objects are valid" ) {
+			list.emplace_back(2, 2);
+			list.emplace_back(4, 4);
+			list.emplace_back(6, 6);
+			list.emplace_back(8, 8);
+			list.emplace_back(10, 10);
+			list.emplace_back(12, 12);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 0 );
+					CHECK( list.size() == 6 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 42 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "all objects are invalid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(3, 3);
+			list.emplace_back(5, 5);
+			list.emplace_back(7, 7);
+			list.emplace_back(9, 9);
+			list.emplace_back(11, 11);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 6 );
+					CHECK( list.size() == 0 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 0 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "the half-way point is valid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(4, 4);
+			list.emplace_back(5, 5);
+			list.emplace_back(6, 6);
+			list.emplace_back(7, 7);
+			list.emplace_back(8, 8);
+			list.emplace_back(9, 9);
+			list.emplace_back(10, 10);
+			list.emplace_back(11, 11);
+			list.emplace_back(12, 12);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 6 );
+					CHECK( list.size() == 6 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 42 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "the half-way point is invalid" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(4, 4);
+			list.emplace_back(5, 5);
+			list.emplace_back(6, 6);
+			list.emplace_back(7, 7);
+			list.emplace_back(8, 8);
+			list.emplace_back(9, 9);
+			list.emplace_back(10, 10);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 5 );
+					CHECK( list.size() == 5 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 30 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "there are no valid objects after the half-way point once it's reached" ) {
+			list.emplace_back(1, 1);
+			list.emplace_back(2, 2);
+			list.emplace_back(3, 3);
+			list.emplace_back(5, 5);
+			list.emplace_back(7, 7);
+			list.emplace_back(4, 4);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "the correct number and weight was erased" ) {
+					CHECK( erased == 4 );
+					CHECK( list.size() == 2 );
+					CHECK( invocations == list.size() + erased );
+					CHECK( list.TotalWeight() == 6 );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+
+		WHEN( "random input is generated" ) {
+			int chunkSize = GENERATE(range(1, 12), range(20, 1000, 31));
+			std::vector<int> values = GENERATE_COPY(chunk(chunkSize, range(0, chunkSize)));
+			list.reserve(values.size());
+			for(auto &&v : values)
+				list.emplace_back(v ? v : 1, v);
+			AND_WHEN( "all odds are erased" ) {
+				std::size_t erased = erase_if(list, pred);
+				THEN( "no odds remain" ) {
+					CHECK( invocations == list.size() + erased );
+					CHECK( std::none_of(list.begin(), list.end(), pred) );
+				}
+			}
+		}
+	}
+}
+
+SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 	GIVEN( "a list with no content" ) {
 		const auto list = WeightedList<Object>{};
 		WHEN( "a random selection is performed" ) {
 			REQUIRE( list.empty() );
-			THEN( "an informative runtime exception is thrown." ) {
+			THEN( "an informative runtime exception is thrown" ) {
 				CHECK_THROWS_AS( list.Get(), std::runtime_error );
 				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
 			}
@@ -189,7 +353,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 	GIVEN( "a list with one item" ) {
 		auto list = WeightedList<Object>{};
 		const auto item = Object(0);
-		list.emplace_back(item, 1);
+		list.emplace_back(1, item);
 		WHEN( "a random selection is performed") {
 			REQUIRE( list.size() == 1 );
 			THEN( "the result is always the item" ) {
@@ -203,9 +367,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 		const auto first = Object(0);
 		const auto second = Object(1);
 		const auto third = Object(2);
-		list.emplace_back(first, weights[0]);
-		list.emplace_back(second, weights[1]);
-		list.emplace_back(third, weights[2]);
+		list.emplace_back(weights[0], first);
+		list.emplace_back(weights[1], second);
+		list.emplace_back(weights[2], third);
 
 		WHEN( "a random selection is performed" ) {
 			auto getSampleSummary = [&list](std::size_t size){
@@ -250,18 +414,18 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]") {
 }
 
 SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
-	GIVEN( "A new weighted list." ) {
+	GIVEN( "a new weighted list" ) {
 		auto list = WeightedList<Object>{};
 		REQUIRE( list.empty() );
 
-		WHEN( "Attempting to insert a negative weighted object." ) {
-			THEN( "An invalid argument exception is thrown." ) {
+		WHEN( "attempting to insert a negative weighted object" ) {
+			THEN( "an invalid argument exception is thrown" ) {
 				try{
-					list.emplace_back(1, -1);
+					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
 				} catch(const std::invalid_argument &e) {
 					SUCCEED( "threw when item weight was negative" );
-					AND_THEN( "The invalid object was not inserted into the list." ) {
+					AND_THEN( "the invalid object was not inserted into the list" ) {
 						CHECK( list.empty() );
 						CHECK( list.size() == 0 );
 						CHECK( list.TotalWeight() == 0 );

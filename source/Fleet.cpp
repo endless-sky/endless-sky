@@ -206,17 +206,15 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-			variants.emplace_back(child, child.Size() >= add + 2 ? max<int>(1, child.Value(add + 1)) : 1);
+			int weight = (child.Size() >= add + 2) ? max<int>(1, child.Value(add + 1)) : 1;
+			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = remove_if(variants.begin(), variants.end(),
-				[&toRemove](const pair<Variant, size_t> &v) noexcept -> bool { return v.first == toRemove; });
-			if(removeIt != variants.end())
-				variants.erase(removeIt, variants.end());
-			else
+			int count = erase(variants, toRemove);
+			if(!count)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -243,7 +241,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const pair<Variant, size_t> &v) noexcept -> bool { return !v.first.IsValid(); }))
+			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
 		return false;
 
 	return true;
@@ -253,19 +251,10 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const pair<Variant, size_t> &v) noexcept -> bool
-	{
-		return !v.first.IsValid();
-	};
-	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
-	if(firstInvalid == variants.end())
-		return;
-
-	// Ensure the class invariant can be maintained.
 	int total = variants.TotalWeight();
-	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
-	int count = distance(removeIt, variants.end());
-	variants.erase(removeIt, variants.end());
+	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
+	if(!count)
+		return;
 
 	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
@@ -288,7 +277,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().Ships();
 	if(variantShips.empty())
 		return;
 
@@ -457,7 +446,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		return;
 
 	// Pick a fleet variant to instantiate.
-	const vector<const Ship *> &variantShips = variants.Get().ChooseShips();
+	const vector<const Ship *> &variantShips = variants.Get().Ships();
 	if(variantShips.empty())
 		return;
 

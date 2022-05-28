@@ -2542,13 +2542,13 @@ event "bombed zenith"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2558,7 +2558,7 @@ event "bombed zenith"
 		object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2568,11 +2568,11 @@ event "bombed zenith"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2592,13 +2592,13 @@ event "zenith cooling"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2608,7 +2608,7 @@ event "zenith cooling"
 		object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2618,11 +2618,11 @@ event "zenith cooling"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object

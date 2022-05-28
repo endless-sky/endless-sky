@@ -93,7 +93,7 @@ bool Phrase::ReferencesPhrase(const Phrase *other) const
 	for(const auto &sentence : sentences)
 		for(const auto &part : sentence)
 			for(const auto &choice : part.choices)
-				for(const auto &element : choice.first)
+				for(const auto &element : choice)
 					if(element.second && element.second->ReferencesPhrase(other))
 						return true;
 
@@ -174,10 +174,10 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(Choice(grand), (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand);
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(Choice(grand, true), (grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
 				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
@@ -187,7 +187,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		// Require any newly added phrases have no recursive references. Any recursions
 		// will instead yield an empty string, rather than possibly infinite text.
 		for(auto &choice : part.choices)
-			for(auto &element : choice.first)
+			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
 					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");

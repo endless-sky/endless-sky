@@ -184,7 +184,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					attributes.insert(child.Token(i));
 		}
- 		else if(key == "link")
+		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
@@ -254,18 +254,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			double radius = child.Value(valueIndex);
 			if(remove)
-			{
-				for(auto it = belts.begin(); it != belts.end(); ++it)
-					if(it->first == radius)
-					{
-						belts.eraseAt(it);
-						break;
-					}
-			}
+				erase(belts, radius);
 			else
 			{
 				int weight = (child.Size() >= valueIndex + 2) ? max<int>(1, child.Value(valueIndex + 1)) : 1;
-				belts.emplace_back(radius, weight);
+				belts.emplace_back(weight, radius);
 			}
 		}
 		// Handle the attributes which cannot be "removed."
@@ -363,7 +356,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		node.PrintTrace("Warning: system will be ignored due to missing position:");
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
-		belts.emplace_back(1500., 1);
+		belts.emplace_back(1, 1500.);
 }
 
 
