@@ -4530,7 +4530,7 @@ void Ship::UpdateEscortsState()
 			flagship = flagship->GetParent();
 
 	// Only evaluate state for escorts in the same system as flagship.
-	if(CanBeCarried() || flagship->GetSystem() != GetSystem())
+	if(CanBeCarried() || !flagship || flagship->GetSystem() != GetSystem())
 		return;
 
 	const vector<weak_ptr<Ship>> allEscorts = flagship ? flagship->GetEscorts(): GetEscorts();
