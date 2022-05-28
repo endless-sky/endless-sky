@@ -34,7 +34,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 	on offer
 		log `The Wanderers are establishing a colony on <planet> in Korath space, but they need help getting the most basic infastructure established.`
 		conversation
-			`The landing pads at the settlement are packed earth and gravel, mostly created by the ships themselves. There is a large tent for the workers to meet and rest and a battered Strong Wind acting as a command center. You can see a small crew of Wanderers hammering forms together with a concrete mixer running nearby. It's a far cry from the clean and elegant spaceports the Wanderers are used to, but not far off some of the Dirt Belt and anarchist worlds you've known.`
+			`The landing pads at the settlement are packed earth and gravel, mostly created by the ships themselves. There is a large tent for the workers to meet and rest with a battered Strong Wind acting as a command center. You can see a small crew of Wanderers hammering forms together with a concrete mixer running nearby. It's a far cry from the clean and elegant spaceports the Wanderers are used to, but not far off some of the Dirt Belt and anarchist worlds you've known.`
 			`	Something of an argument is taking place in front of a tent at the edge of landing area. There are a lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
 			choice
 				`	(Go over and investigate.)`
@@ -143,7 +143,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3"
 	on offer
 		conversation 
 			`This time you land on a concrete pad and you see the familiar hexagonal layout of a Wanderer spaceport. There are tents instead of buildings but you can see stakes outlining the shapes to come. You pass a group of Wanderer captains who appear to be holding a swap meet looking for spare ammunition and equipment so they can avoid the trip back across the Eye.`
-			`	The construction supervisor bobs his head enthusiastically when he sees you and eventually remembers to switch to Hai. "Thank you, Captain <last>," he says. "We would be waiting weeks to get started building without your help. We now need to get the warehouse equipment and [personnel, staff] in to organize the outfitter and [technicians, fixers] do the [maintenance, repairs]. Would you be able to do this for us as well?`
+			`	The construction supervisor bobs his head enthusiastically when he sees you and eventually remembers to switch to Hai. "Thank you, Captain <last>," he says. "We would be waiting weeks to get started building without your help. We now need to get the warehouse equipment and [personnel, staff] in to organize the outfitter and [technicians, fixers] to do the [maintenance, repairs]. Would you be able to do this for us as well?`
 			choice
 				`	"Of course. I need an outfitter here as much as anybody."`
 					goto willdo
@@ -305,7 +305,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 5"
 				`	"It's too dangerous to transport Wanderer dignitaries here."`
 					decline
 			`	"You are much like us," she says. "You carry seeds from place to place and some take root and grow and over thousands of years transform worlds.`
-			`	You're not really sure how to respond to that so you just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to to <stopovers>.`
+			`	You just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to to <stopovers>.`
 
 	on stopover
 		dialog "You watch the speeches and news coverage as the Wanderer leaders officially start the Migration through the Eye from the comfort of your cockpit. You think about Rek and wonder how his treatment is going."
