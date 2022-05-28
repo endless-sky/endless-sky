@@ -32,7 +32,7 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 	spin = Angle::Random(effect.randomSpin) - Angle::Random(effect.randomSpin);
 
 	velocity *= effect.velocityScale;
-	if(!effect.absoluteVelocity)
+	if(!effect.hasAbsoluteVelocity)
 		velocity += hitVelocity * (1. - effect.velocityScale);
 
 	if(effect.randomVelocity)
