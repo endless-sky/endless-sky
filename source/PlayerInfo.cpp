@@ -2574,7 +2574,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
 	cargoAttractivenessProvider.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().first; });
 
-	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");	
+	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
 	armamentDeterrence.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
 
 	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
