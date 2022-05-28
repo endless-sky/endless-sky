@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 
+class DataNode;
+class DataWriter;
+
 
 
 // Class that contains storage for conditions. Those conditions can be
@@ -139,8 +142,13 @@ public:
 public:
 	// Constructors to initialize this class.
 	ConditionsStore() = default;
+	ConditionsStore(const DataNode &node);
 	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
+
+	// Serialization support for this class.
+	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
 
 	// Retrieve a "condition" flag from this store (directly or from the
 	// connected provider).

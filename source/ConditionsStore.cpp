@@ -12,6 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionsStore.h"
 
+#include "DataNode.h"
+#include "DataWriter.h"
+
 using namespace std;
 
 
@@ -200,6 +203,14 @@ void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 
 
 
+// Constructor with loading primary conditions from datanode.
+ConditionsStore::ConditionsStore(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 // Constructor where a number of initial manually-set values are set.
 ConditionsStore::ConditionsStore(initializer_list<pair<string, int64_t>> initialConditions)
 {
@@ -214,6 +225,36 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 {
 	for(const auto &it : initialConditions)
 		Set(it.first, it.second);
+}
+
+
+
+void ConditionsStore::Load(const DataNode &node)
+{
+	for(const DataNode &child : node)
+		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+}
+
+
+
+void ConditionsStore::Save(DataWriter &out) const
+{
+	if(PrimariesBegin() != PrimariesEnd())
+	{
+		out.Write("conditions");
+		out.BeginChild();
+		{
+			for(auto it = PrimariesBegin(); it != PrimariesEnd(); ++it)
+			{
+				// If the condition's value is 1, don't bother writing the 1.
+				if(it->second == 1)
+					out.Write(it->first);
+				else if(it->second)
+					out.Write(it->first, it->second);
+			}
+		}
+		out.EndChild();
+	}
 }
 
 

@@ -230,10 +230,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
-		{
-			for(const DataNode &grand : child)
-				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
-		}
+			conditions.Load(child);
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -2994,22 +2991,7 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available mission");
 
 	// Save any "primary condition" flags that are set.
-	if(Conditions().PrimariesBegin() != Conditions().PrimariesEnd())
-	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(auto it = Conditions().PrimariesBegin(); it != Conditions().PrimariesEnd(); ++it)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it->second == 1)
-					out.Write(it->first);
-				else if(it->second)
-					out.Write(it->first, it->second);
-			}
-		}
-		out.EndChild();
-	}
+	conditions.Save(out);
 
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
