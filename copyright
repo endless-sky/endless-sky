@@ -1325,6 +1325,7 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
+ images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*
  images/effect/wanderer?flare/*
