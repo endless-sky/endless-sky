@@ -193,6 +193,9 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
+
+	Rectangle ammoBox;
+	vector<ClickZone<const Outfit *>> ammoClickZones;
 }
 
 
@@ -904,7 +907,7 @@ list<ShipEvent> &Engine::Events()
 
 
 // Draw a frame.
-void Engine::Draw()
+void Engine::Draw() const
 {
 	GameData::Background().Draw(center, centerVelocity, zoom);
 	static const Set<Color> &colors = GameData::Colors();

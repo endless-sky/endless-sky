@@ -80,7 +80,7 @@ public:
 	std::list<ShipEvent> &Events();
 
 	// Draw a frame.
-	void Draw();
+	void Draw() const;
 
 	// Set the given TestContext in the next step of the Engine.
 	void SetTestContext(TestContext &newTestContext);
@@ -195,8 +195,6 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	Rectangle ammoBox;
-	std::vector<ClickZone<const Outfit *>> ammoClickZones;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
 	const Sprite *highlightSprite = nullptr;
