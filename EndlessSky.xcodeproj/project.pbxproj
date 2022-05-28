@@ -599,7 +599,7 @@
 		A98150811EA9634A00428AD6 /* ShipInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipInfoPanel.h; path = source/ShipInfoPanel.h; sourceTree = "<group>"; };
 		A98150831EA9635D00428AD6 /* PlayerInfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerInfoPanel.cpp; path = source/PlayerInfoPanel.cpp; sourceTree = "<group>"; };
 		A98150841EA9635D00428AD6 /* PlayerInfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerInfoPanel.h; path = source/PlayerInfoPanel.h; sourceTree = "<group>"; };
-		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
+		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A6F195DF44B002C30B8 /* credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.txt; sourceTree = "<group>"; };
 		A99F7A94195DF44B002C30B8 /* keys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keys.txt; sourceTree = "<group>"; };
 		A99F7A95195DF44B002C30B8 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
