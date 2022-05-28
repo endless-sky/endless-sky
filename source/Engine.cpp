@@ -1059,7 +1059,7 @@ void Engine::Draw() const
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 
-		const auto &playerSelectedWeapons = player.SelectedWeapons();
+		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
@@ -1127,8 +1127,8 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 			if(Rectangle(ammoIconClickCentre, ammoIconClickDimensions).Contains(from))
 			{
 				if(!control)
-					player.DeselectAll();
-				player.ToggleAny(it.first);
+					player.DeselectAllSecondaries();
+				player.ToggleAnySecondary(it.first);
 				return;
 			}
 		}

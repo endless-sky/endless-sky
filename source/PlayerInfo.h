@@ -241,10 +241,10 @@ public:
 	void SetTravelDestination(const Planet *planet);
 
 	// Toggle which secondary weapon the player has selected.
-	const std::set<const Outfit *> &SelectedWeapons() const;
-	void SelectNext();
-	void DeselectAll();
-	void ToggleAny(const Outfit *outfit);
+	const std::set<const Outfit *> &SelectedSecondaryWeapons() const;
+	void SelectNextSecondary();
+	void DeselectAllSecondaries();
+	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
 	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;

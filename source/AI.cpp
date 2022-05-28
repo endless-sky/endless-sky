@@ -375,7 +375,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 
 	// Toggle your secondary weapon.
 	if(activeCommands.Has(Command::SELECT))
-		player.SelectNext();
+		player.SelectNextSecondary();
 
 	// The commands below here only apply if you have escorts or fighters.
 	if(player.Ships().size() < 2)
@@ -3533,7 +3533,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
-			const auto &playerSelectedWeapons = player.SelectedWeapons();
+			const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))

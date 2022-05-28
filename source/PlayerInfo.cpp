@@ -2049,7 +2049,7 @@ void PlayerInfo::SetTravelDestination(const Planet *planet)
 
 
 // Check which secondary weapons the player has selected.
-const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
+const set<const Outfit *> &PlayerInfo::SelectedSecondaryWeapons() const
 {
 	return selectedWeapons;
 }
@@ -2057,7 +2057,7 @@ const set<const Outfit *> &PlayerInfo::SelectedWeapons() const
 
 
 // Cycle through all available secondary weapons.
-void PlayerInfo::SelectNext()
+void PlayerInfo::SelectNextSecondary()
 {
 	if(!flagship || flagship->Outfits().empty())
 		return;
@@ -2112,14 +2112,14 @@ void PlayerInfo::SelectNext()
 
 
 
-void PlayerInfo::DeselectAll()
+void PlayerInfo::DeselectAllSecondaries()
 {
 	selectedWeapons.clear();
 }
 
 
 
-void PlayerInfo::ToggleAny(const Outfit *outfit)
+void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
 {
 	if(!flagship || flagship->Outfits().empty())
 		return;
