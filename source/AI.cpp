@@ -3201,7 +3201,8 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 // closest to the ship.
 bool AI::TargetMinable(Ship &ship) const
 {
-	double baseline = 10000. * ship.Attributes().Get("asteroid scan power");
+	double scanRange = 10000. * ship.Attributes().Get("asteroid scan power");
+	double baseline = scanRange;
 	int64_t highestCost = (ship.GetTargetAsteroid()) ? ship.GetTargetAsteroid()->GetCost() : 0.;
 	if(!baseline)
 		return false;
@@ -3211,6 +3212,9 @@ bool AI::TargetMinable(Ship &ship) const
 		double metric = ship.Position().DistanceSquared(asteroid->Position());
 		bool targetBasedOnCost = !closestAsteroid;
 		targetBasedOnCost &= asteroid->GetCost() >= highestCost;
+		// Don't target asteroids outside of your scan range.
+		targetBasedOnCost &= metric < scanRange;
+		// If asteroid value is the same as highest then target the one closest to your ship.
 		if(targetBasedOnCost && asteroid->GetCost() == highestCost)
 			targetBasedOnCost &= metric < baseline;
 		if(metric < baseline || targetBasedOnCost)
