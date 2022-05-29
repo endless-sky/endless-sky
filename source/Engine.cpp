@@ -417,7 +417,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			// player: the rest of the NPC track it.
 			if(npcFlagship && ship != npcFlagship)
 				ship->SetParent(npcFlagship);
-			else if(!ship->GetPersonality().IsUninterested())
+			else if(!ship->GetPersonality().IsUninterested() && !ship->GetPersonality().IsStaying())
 				ship->SetParent(flagship);
 			else
 				ship->SetParent(nullptr);
