@@ -2121,7 +2121,7 @@ void PlayerInfo::DeselectAllSecondaries()
 
 void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
 {
-	if(!flagship || flagship->Outfits().empty())
+	if(!flagship)
 		return;
 
 	const auto outfitLoc = selectedWeapons.find(outfit);
