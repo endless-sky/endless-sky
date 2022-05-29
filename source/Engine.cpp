@@ -193,8 +193,8 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
-	static const double ICON_SIZE = 30.;
-	static const double AMMO_WIDTH = 80.;
+	const double ICON_SIZE = 30.;
+	const double AMMO_WIDTH = 80.;
 
 	Rectangle ammoBox;
 	double ammoPad;
@@ -1115,7 +1115,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 		bool control = (SDL_GetModState() & KMOD_CTRL);
 		double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 		double posY = ammoBox.Bottom() - ammoPad;
-		for(const pair<const Outfit *, int> &it : ammo)
+		for(const auto &it : ammo)
 		{
 			posY -= ICON_SIZE;
 			if(posY < ammoBox.Top() + ammoPad)
