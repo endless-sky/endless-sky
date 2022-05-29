@@ -3852,7 +3852,7 @@ mission "Fumbling Mugger"
 	description "Bring a young woman who threatened you on <origin> to <destination>."
 	minor
 	source
-		attributes "dirt belt" "urban"
+		attributes "dirt belt"
 	destination "Maker"
 	passengers 1
 	to offer
