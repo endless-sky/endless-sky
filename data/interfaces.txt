@@ -582,11 +582,11 @@ interface "hud"
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
+	value "ammo icon height" 30
+	value "ammo icon width" 80
 	anchor top
 	point "mini-map"
 		center 0 100
-	value "ammo icon height" 30
-	value "ammo icon width" 80
 
 
 
