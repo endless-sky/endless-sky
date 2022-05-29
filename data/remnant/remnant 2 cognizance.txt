@@ -1206,6 +1206,7 @@ mission "Remnant: Cognizance 26"
 mission "Remnant: Cognizance 27"
 	name "Check in with Torza on <planet>"
 	description "Torza should have a team ready on <planet>."
+	landing
 	source "Ssil Vida"
 	destination "Caelian"
 	to offer
