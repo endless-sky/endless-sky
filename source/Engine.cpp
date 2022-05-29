@@ -197,7 +197,7 @@ namespace {
 	const double AMMO_WIDTH = 80.;
 
 	Rectangle ammoBox;
-	double ammoPad;
+	double ammoPad = 0.;
 }
 
 
