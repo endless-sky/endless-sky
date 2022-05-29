@@ -193,8 +193,8 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
-	static const double ICON_SIZE = 30.;
-	static const double AMMO_WIDTH = 80.;
+	const double ICON_SIZE = 30.;
+	const double AMMO_WIDTH = 80.;
 
 	Rectangle ammoBox;
 	double ammoPad;
