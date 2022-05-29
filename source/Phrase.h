@@ -49,9 +49,6 @@ private:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
 
-		// The likelihood that this choice will be picked by its part.
-		int Weight() const { return weight; };
-		int weight;
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;

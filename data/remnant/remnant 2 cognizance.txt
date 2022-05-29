@@ -862,7 +862,7 @@ mission "Remnant: Cognizance 22"
 	description "Deliver a data backup to <stopovers> for Taely."
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	stopover
 		government "Remnant"
 		neighbor distance 1 5
@@ -967,7 +967,7 @@ mission "Remnant: Cognizance 23"
 	landing
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	waypoint "Farinus"
 	to offer
 		has "Remnant: Cognizance 22: done"
@@ -1206,6 +1206,7 @@ mission "Remnant: Cognizance 26"
 mission "Remnant: Cognizance 27"
 	name "Check in with Torza on <planet>"
 	description "Torza should have a team ready on <planet>."
+	landing
 	source "Ssil Vida"
 	destination "Caelian"
 	to offer

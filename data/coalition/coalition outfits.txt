@@ -85,22 +85,22 @@ outfit "Small Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 44000
+	cost 22000
 	thumbnail "outfit/small battery module"
 	"mass" 4
 	"outfit space" -4
-	"energy capacity" 900
+	"energy capacity" 3600
 	description "Because Coalition ships rely on solar power, they must also be able to store a substantial amount of energy. This small battery pack is much more efficient than comparable human technology."
 
 outfit "Large Battery Module"
 	category "Power"
 	licenses
 		Coalition
-	cost 340000
+	cost 170000
 	thumbnail "outfit/large battery module"
 	"mass" 18
 	"outfit space" -18
-	"energy capacity" 4500
+	"energy capacity" 18000
 	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
 
@@ -238,7 +238,7 @@ outfit "Small Thrust Module"
 	"thrusting energy" 0.46
 	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
@@ -255,7 +255,7 @@ outfit "Large Thrust Module"
 	"thrusting energy" 1.7
 	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
 
@@ -272,7 +272,7 @@ outfit "Small Steering Module"
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"steering flare sound" "atomic tiny"
 	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
 
@@ -289,7 +289,7 @@ outfit "Large Steering Module"
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 

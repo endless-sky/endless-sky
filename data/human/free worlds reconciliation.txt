@@ -973,6 +973,8 @@ mission "FW Pug 1"
 	on enter "Ascella"
 		dialog
 			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+	on waypoint
+		set "fw pug 1: visited waypoints"
 
 
 
@@ -1011,6 +1013,7 @@ mission "FW Pug 1 Return"
 	to offer
 		has "FW Pug 1: active"
 		has "event: pug invasion 4"
+		has "fw pug 1: visited waypoints"
 	
 	on offer
 		conversation
