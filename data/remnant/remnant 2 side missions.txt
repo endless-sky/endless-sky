@@ -306,7 +306,7 @@ mission "Remnant: Shattered Light 4"
 			`	Another Remnant steps forward. "The Weft is what we term the mesh of dimensions, energy, and time that form a subset of the universe. A layer, of sorts." He looks thoughtful. "What you probably know as 'Hyperspace' is what we technically call the secondary weft. There are a few others we are fairly confident exist, and several that we have hypothesized might exist but we have no means of confirming. Practically, each of these overlaps with the primary weft to some extent." His gestures take on an amused tone. "Of course, what we call the Primary Weft is only primary to those of us who live here. For all we know, there may be people living elsewhere that consider their own weft to be the primary one. Nothing says ours is special or the best or anything of the sort."`
 			label shatteredhelp
 			`	"In terms of help, could you go to Caelian? We have sent word ahead, and our engineers are retrieving some of our remaining equipment from the Exodus. We are hoping that it might be of use to help us repair the Shattered Light, or at least understand what happened to it.`
-			`	"In the meantime, something that you might find useful." Behind her five androids emerge from one of the cargo hold, each one carrying a large trunk of equipment. "These are known as NDR-114 Androids, and were cutting edge innovations back when the exodus occurred. Don't expect too much of them: They are not self-aware, sentient, or even particularly advanced artificial intelligence. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. As we have plenty to study, we thought you might appreciate having a few."`
+			`	"Before you leave, though, there was some stuff that survived intact we would like to share with you." Behind her five androids emerge from one of the cargo hold, each one carrying a large trunk of equipment. "These are known as NDR-114 Androids, and were cutting edge innovations back when the exodus occurred. Don't expect too much of them: They are not self-aware, sentient, or even particularly advanced artificial intelligence. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. We have plenty to study, we thought you might appreciate having a few."`
 			scene "outfit/android"
 			`	"Embers light your path, Captain <first>." With that, the crowd disperses.`
 		outfit "NDR-114 Android" 5
@@ -316,11 +316,13 @@ mission "Remnant: Shattered Light 4"
 mission "Remnant: Shattered Light 5"
 	name "Brilliant Energy"
 	description "Retrieve equipment from <destination> to help research the Shattered Light."
+	landing
 	source "Viminal"
 	destination "Caelian"
 	on complete
 		conversation
-			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light.`
+			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
+			`	The team you `
 
 
 
