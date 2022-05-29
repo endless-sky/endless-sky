@@ -1791,7 +1791,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
