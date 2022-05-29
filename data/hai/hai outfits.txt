@@ -169,14 +169,6 @@ outfit "rslug"
 		"ion damage" .3
 		"hit force" 15
 
-effect "bullet impact"
-	sprite "effect/bullet impact"
-		"no repeat"
-		"frame rate" 60
-	"lifetime" 8
-	"random angle" 40
-	"velocity scale" -.05
-
 effect "rail sparks"
 	sprite "effect/railspark"
 		"random start frame"

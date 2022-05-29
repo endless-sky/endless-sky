@@ -14,8 +14,8 @@ if ($av)
 }
 # Remove any existing error files first.
 $FILEDIR = if ($IsWindows -or $Env:OS.ToLower().Contains('windows')) `
-           { "$env:APPDATA\endless-sky" } `
-           else { "$env:HOME/.local/share/endless-sky" };
+          { "$env:APPDATA\endless-sky" } `
+          else { "$env:HOME/.local/share/endless-sky" };
 $ERR_FILE = Join-Path -Path $FILEDIR -ChildPath "errors.txt";
 if (Test-Path -Path $ERR_FILE) { Remove-Item -Path $ERR_FILE; }
 
