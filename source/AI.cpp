@@ -3202,15 +3202,22 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 bool AI::TargetMinable(Ship &ship) const
 {
 	double baseline = 10000. * ship.Attributes().Get("asteroid scan power");
+	int64_t highestCost = (ship.GetTargetAsteroid()) ? ship.GetTargetAsteroid()->GetCost() : 0.;
 	if(!baseline)
 		return false;
-
+	bool closestAsteroid = Preferences::Has("Target asteroid based on");
 	for(auto &&asteroid : minables)
 	{
 		double metric = ship.Position().DistanceSquared(asteroid->Position());
-		if(metric < baseline)
+		bool targetBasedOnCost = !closestAsteroid;
+		targetBasedOnCost &= asteroid->GetCost() >= highestCost;
+		if(targetBasedOnCost && asteroid->GetCost() == highestCost)
+			targetBasedOnCost &= metric < baseline;
+		if(metric < baseline || targetBasedOnCost)
 		{
+			// Target closest asteroid or target the highest value asteroid.
 			ship.SetTargetAsteroid(asteroid);
+			highestCost = asteroid->GetCost();
 			baseline = metric;
 		}
 	}

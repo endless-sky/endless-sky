@@ -57,6 +57,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 }
 
 
@@ -447,6 +448,7 @@ void PreferencesPanel::DrawSettings()
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
 		"Fighters transfer cargo",
+		TARGET_ASTEROIDS_BASED_ON,
 		"\n",
 		"Performance",
 		"Show CPU / GPU load",
@@ -531,6 +533,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(SHIP_OUTLINES) ? "fancy" : "fast";
+		}
+		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		{
+			isOn = true;
+			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
 		}
 		else if(setting == REACTIVATE_HELP)
 		{

@@ -189,3 +189,14 @@ const map<const Outfit *, int> &Minable::Payload() const
 {
 	return payload;
 }
+
+
+
+// Get the value of the asteroid.
+const int64_t &Minable::GetCost()
+{
+	if(!cost)
+		for(auto it : payload)
+			cost += it.first->Cost();
+	return cost;
+}

@@ -63,6 +63,9 @@ public:
 	// Determine what flotsam this asteroid will create.
 	const std::map<const Outfit *, int> &Payload() const;
 
+	// Determine the value of the flotsam this asteroid will create.
+	const int64_t &GetCost();
+
 
 private:
 	std::string name;
@@ -94,6 +97,8 @@ private:
 	std::map<const Outfit *, int> payload;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
+	// The cost of the asteroid payload.
+	int64_t cost = 0.;
 };
 
 
