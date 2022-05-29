@@ -23,6 +23,7 @@
 		66ABEA47283887F7000BF5B9 /* alignment.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 13B643F6BEC24349F9BC9F42 /* alignment.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		66ABEA48283887F7000BF5B9 /* layout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF4321AF819E944EC02FB9 /* layout.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		66ABEA49283887F7000BF5B9 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
+		66C8EB612843F94B00E21EEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		66CC86A828384F6F00C3B654 /* catch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 66CC868228384F6F00C3B654 /* catch.hpp */; };
 		66CC86A928384F6F00C3B654 /* datanode-factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 66CC868328384F6F00C3B654 /* datanode-factory.h */; };
 		66CC86AA28384F6F00C3B654 /* es-test.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 66CC868428384F6F00C3B654 /* es-test.hpp */; };
@@ -1364,6 +1365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C8EB612843F94B00E21EEF /* Images.xcassets in Resources */,
 				661265BD28405ABD00773CB1 /* endless-sky.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
