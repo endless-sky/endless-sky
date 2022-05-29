@@ -107,6 +107,11 @@ help "fleet asteroid mining shortcuts"
 	`   Left click - will target an asteroid without mining it.`
 	`	Right click - will focus your fleet to chase an asteroid and mine it.`
 
+help "fleet harvest tutorial"
+	`<Select nearest asteroid> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids.  Press <Select nearest asteroid> multiple times to toggle harvest mode on and off for your fleet.`
+	``
+	`If you have an asteroid scanner, <Select nearest asteroid> key will also target asteroids for fleet mining.`
+
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
 	`Your ship does not jump until you release the jump key. Once you have escorts, you can hold the key to get them ready to jump, then release it to have them all jump simultaneously.`
