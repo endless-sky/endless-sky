@@ -3873,12 +3873,12 @@ mission "Fumbling Mugger"
 				decline
 			
 			label flip
-			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, you feel metal dig into your spine as a gasp escapes from behind you, before landing on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
 				`	(Put your hands up.)`
 					goto handsup
 				`	(Draw your gun and fire.)`
-			`	You hand darts for your gun, and you manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
 			label peaceful
@@ -3913,7 +3913,7 @@ mission "Fumbling Mugger"
 			
 			label threaten
 			`	You take out your gun and aim it at the woman's head. "Drop the gun," you say, "or I'll shoot."`
-			`	She seizes up for a few moments, before throwing her shotgun away and raising her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
+			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
 			choice
 				`	"Why do you want to go to <planet>?"`
 					goto why2
@@ -3968,7 +3968,7 @@ mission "Fumbling Mugger"
 			choice
 				`	(Wish her good luck.)`
 			label leave
-			`	She nods in response. "I'll try my best."`
+			`	She nods in response. "I'll try my best," she says solemnly as she prepares to depart your ship.`
 				decline
 			label gift
 			action
@@ -3976,7 +3976,6 @@ mission "Fumbling Mugger"
 				set "gifted money to mugger"
 				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to pay for her transport anyway.`
 			`	She is almost incredulous at your gift. "I really can't thank you enough for helping me out." The two of you say your farewells as she gets ready to depart your ship.`
-				decline
 	
 	on complete
 		event "fumbling mugger followup timer" 365
