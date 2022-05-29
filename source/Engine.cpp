@@ -1115,7 +1115,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 		bool control = (SDL_GetModState() & KMOD_CTRL);
 		double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 		double posY = ammoBox.Bottom() - ammoPad;
-		for(const pair<const Outfit *, int> &it : ammo)
+		for(const auto &it : ammo)
 		{
 			posY -= ICON_SIZE;
 			if(posY < ammoBox.Top() + ammoPad)
