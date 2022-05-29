@@ -3869,6 +3869,8 @@ mission "Fumbling Mugger"
 				`	(Try a fancy acrobatic move and disarm your attacker.)`
 					goto flip
 			
+			action
+				set "fumbling mugger shot"
 			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
@@ -3878,6 +3880,8 @@ mission "Fumbling Mugger"
 				`	(Put your hands up.)`
 					goto handsup
 				`	(Draw your gun and fire.)`
+			action
+				set "fumbling mugger shot"
 			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
