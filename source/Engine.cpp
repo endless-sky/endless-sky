@@ -193,10 +193,10 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
-	const double ICON_SIZE = 30.;
-	const double AMMO_WIDTH = 80.;
 
 	Rectangle ammoBox;
+	double ammoIconHeight = 0.;
+	double ammoIconWidth = 0.;
 	double ammoPad = 0.;
 }
 
@@ -1040,8 +1040,10 @@ void Engine::Draw() const
 
 	// Draw ammo status.
 	ammoBox = hud->GetBox("ammo");
+	ammoIconHeight = hud->GetValue("ammo icon height");
+	ammoIconWidth = hud->GetValue("ammo icon width");
 	// Pad the ammo list by the same amount on all four sides.
-	ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
+	ammoPad = .5 * (ammoBox.Width() - ammoIconWidth);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor = *colors.Get("bright");
@@ -1050,12 +1052,12 @@ void Engine::Draw() const
 	// This is the top left corner of the ammo display.
 	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
 	// These offsets are relative to that corner.
-	Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
-	Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
-	Point iconOff(.5 * ICON_SIZE, .5 * ICON_SIZE);
+	Point boxOff(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
+	Point textOff(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
+	Point iconOff(.5 * ammoIconHeight, .5 * ammoIconHeight);
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
-		pos.Y() -= ICON_SIZE;
+		pos.Y() -= ammoIconHeight;
 		if(pos.Y() < ammoBox.Top() + ammoPad)
 			break;
 
@@ -1114,16 +1116,16 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	{
 		bool control = (SDL_GetModState() & KMOD_CTRL);
 		double ammoIconClickCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+		Point ammoIconClickDimensions(ammoIconWidth, ammoIconHeight);
 		double posY = ammoBox.Bottom() - ammoPad;
 		for(const auto &it : ammo)
 		{
-			posY -= ICON_SIZE;
+			posY -= ammoIconHeight;
 			if(posY < ammoBox.Top() + ammoPad)
 				break;
 
-			double ammoIconClickCenterY = posY + ICON_SIZE / 2.;
+			double ammoIconClickCenterY = posY + ammoIconHeight / 2.;
 			Point ammoIconClickCenter(ammoIconClickCenterX, ammoIconClickCenterY);
-			Point ammoIconClickDimensions(AMMO_WIDTH, ICON_SIZE);
 			if(Rectangle(ammoIconClickCenter, ammoIconClickDimensions).Contains(from))
 			{
 				if(!control)

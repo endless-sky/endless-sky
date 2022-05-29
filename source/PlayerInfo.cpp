@@ -2124,10 +2124,10 @@ void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
 	if(!flagship)
 		return;
 
-	const auto outfitLoc = selectedWeapons.find(outfit);
-	if(outfitLoc != selectedWeapons.end())
+	const auto it = selectedWeapons.find(outfit);
+	if(it != selectedWeapons.end())
 	{
-		selectedWeapons.erase(outfitLoc);
+		selectedWeapons.erase(it);
 		return;
 	}
 	selectedWeapons.insert(outfit);

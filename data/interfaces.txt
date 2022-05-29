@@ -585,6 +585,8 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
+	value "ammo icon height" 30
+	value "ammo icon width" 80
 
 
 
