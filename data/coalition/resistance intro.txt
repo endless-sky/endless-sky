@@ -691,7 +691,7 @@ mission "House Bebliss 7-FW"
 	destination "Ablub's Invention"
 	on offer
 		conversation
-			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us work out some of the questions we had about the Pug artifacts. They're a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you, and hand you back the jump drive they borrowed. Have a safe trip there, Captain."`
+			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you, and hand you back the jump drive they borrowed. Have a safe trip there, Captain."`
 			`	When you finish reading the message you plot a course to <destination>.`
 				accept
 	on complete
@@ -1206,7 +1206,7 @@ mission "Resistance: Propaganda 3"
 	on complete
 		payment 491000
 		conversation
-			`This time Tummug doesn't go on to split the flyers into various piles as you're landing. "Already arranged them in the boxes, we have," he says. He directs you to land on a lone hangar on one of the factories far from the city, and some Kimek leave to meet with you and bring the flyers and skywriting drones inside. Tummug hands you <payment>, thanking you for bringing them here.`
+			`This time Tummug doesn't go on to split the flyers into various piles as you're landing. "Already arranged them in the boxes, we have," he says. He directs you to land in a lone hangar on one of the factories far from the city. Upon landing, several Kimek enter the hanger and start crating off the flyers and skywriting drones back to the factory, assumedly to make sure they're all in working order. Tummug hands you <payment>, thanking you for bringing them here.`
 			branch resistance
 				has "Resistance: Questions: done"
 			`	"Now Captain, fly the drones over the city we will, only here to keep an eye on any issues they might have, and repair them, we are," he explains. "To better enjoy the show, head back to the main hangars closer to the city, you should. Once finished, we are, meet you in the spaceport I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
@@ -1559,7 +1559,7 @@ mission "Resistance: Quarg Interview"
 			choice
 				`	"I'll do what I can to help."`
 					goto leaders
-				`	"You speak as if you've done a whole lot than me to help the Lunarium."`
+				`	"It sounds like you've contributed much to the Lunarium cause. How have you helped the Resistance?."`
 			`	"Yes, well observed. Kept the Lunarium Redoubt safe from prying Heliarch eyes and ears, my house has. Under me, assured that found by them, no dealings of ours - no dealings involving you - are," she says in a smug tone.`
 			label leaders
 			`	The Kimek who accompanied you here ask that you continue on. Lobmab and her bodyguards lead the way through busy cubicles and hallways, where dozens of Kimek work at computers and screens, as if monitoring the whole city. At the end of what seems to be the main passage of the complex, you pass through a doorway to find the Lunarium leaders seated around a table. You're shown to a seat, and as Lobmab comes in at the end, one of the bodyguards announces, "Lady Lobmab Bebliss, head of our great House."`
