@@ -116,8 +116,8 @@ mission "Resistance: Grenades"
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch metchiree
 				has "Resistance: Questions: done"
-			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start pushing you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city, eventually bringing you inside a building, and forcing you down an elevator too short for you to stand up straight. When it stops, they walk you around for a while longer, before seating you and removing the sack from your head.`
-			`	Though you're underground, the insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. Coming around the corner, a Kimek you recognize comes to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
+			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start pushing you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment, where you can't stand up straight due to the short ceiling. You feel as if the room was tugged down in a moment, and when it stops, you're walked around for a while longer, before the Kimek seat you and remove the sack from your head.`
+			`	Though you're underground, the insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
 			choice
 				`	"What do you want from me?"`
 					goto want
@@ -416,7 +416,10 @@ mission "House Bebliss 1-B"
 			`	"Usually more... respectful about such requests from our House, people are, but hasty of us to approach a human Captain like we would an Arach one, it may have been," one of them says, going through the menu. "Still interested, the House is, so to entertain your request, we came."`
 			`	"Interested in your assistance, that is," the other continues, as he signals for one of the bodyguards to get a waiter. "An important job for you, we have."`
 			choice
+				`	"Alright, you have my interest. What's this job about?"`
 				`	"Well if you want me to work with you so much, why don't you just tell me what the job is?"`
+				`	"I'm sorry, but I'm not looking for any work now."`
+					decline
 				`	"Second chance, tenth chance, I really don't care how many you give me. I'm not interested."`
 					decline
 			label accept
@@ -1541,7 +1544,7 @@ mission "Resistance: Questions"
 
 mission "Resistance: Quarg Interview"
 	name "The Interview"
-	description "Travel to <destination> with Oobat, an Arach diplomat from the Lunarium, to try and interview the Quarg about their thoughts on the Coalition."
+	description "Travel to <destination> with Oobat, an Arach diplomat from the Lunarium, to try and speak with the Quarg about their thoughts on the current Coalition."
 	passengers 1
 	landing
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
