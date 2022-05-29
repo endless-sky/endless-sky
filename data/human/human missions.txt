@@ -3873,7 +3873,7 @@ mission "Fumbling Mugger"
 				decline
 			
 			label flip
-			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of one foot above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
 				`	(Put your hands up.)`
 					goto handsup
@@ -3908,6 +3908,8 @@ mission "Fumbling Mugger"
 					goto threaten
 				`	(Shoot her.)`
 			
+			action
+				set "fumbling mugger shot"
 			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
@@ -3921,6 +3923,8 @@ mission "Fumbling Mugger"
 					goto freedom
 				`	(Shoot her.)`
 			
+			action
+				set "fumbling mugger shot"
 			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
 				decline
 			
