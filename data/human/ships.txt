@@ -769,8 +769,8 @@ ship "Bulk Freighter"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -787,7 +787,7 @@ ship "Bulk Freighter"
 	engine -22 198
 	engine 22 198
 	gun -20 -175 "Sidewinder Missile Launcher"
-	gun 20 -175 "Sidewinder Missile Launcher"
+	gun 20 -175
 	turret -12 -155 "Laser Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
 	turret 0 5 "Laser Turret"
@@ -1084,8 +1084,8 @@ ship "Container Transport"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1102,7 +1102,7 @@ ship "Container Transport"
 	engine -20 195.5
 	engine 20 195.5
 	gun -23.5 -182 "Sidewinder Missile Launcher"
-	gun 23.5 -182 "Sidewinder Missile Launcher"
+	gun 23.5 -182
 	turret 0 -90.5 "Laser Turret"
 	turret 0 -40.5 "Heavy Anti-Missile Turret"
 	turret 0 9.5 "Laser Turret"
@@ -2625,7 +2625,8 @@ ship "Protector"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Quad Blaster Turret" 6
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
@@ -2649,7 +2650,7 @@ ship "Protector"
 	turret 68.5 0 "Quad Blaster Turret"
 	turret -48.5 48.5 "Quad Blaster Turret"
 	turret 48.5 48.5 "Quad Blaster Turret"
-	turret 0 30 "Heavy Anti-Missile Turret"
+	turret 0 30 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
