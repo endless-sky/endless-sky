@@ -3217,7 +3217,8 @@ bool AI::TargetMinable(Ship &ship) const
 		// If asteroid value is the same as highest then target the one closest to your ship.
 		if(targetBasedOnCost && asteroid->GetCost() == highestCost)
 			targetBasedOnCost &= metric < baseline;
-		if(metric < baseline || targetBasedOnCost)
+		bool targetBasedOnProximity = closestAsteroid && metric < baseline;
+		if(targetBasedOnProximity || targetBasedOnCost)
 		{
 			// Target closest asteroid or target the highest value asteroid.
 			ship.SetTargetAsteroid(asteroid);
