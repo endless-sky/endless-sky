@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "DistanceMap.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -161,9 +162,9 @@ void Mission::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "no wormholes")
-						wormholeStrategy = DistanceMap::WormholeStrategy::ALL;
+						wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "use restricted wormholes")
-						wormholeStrategy = DistanceMap::WormholeStrategy::ONLYUNRESTRICTED;
+						wormholeStrategy = WormholeStrategy::ONLYUNRESTRICTED;
 					else if(grand.Token(0) == "requires jump drive")
 						requiresJumpDrive = true;
 				}

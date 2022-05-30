@@ -15,12 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
-#include "DistanceMap.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
+#include "wormholestrategy.hpp"
 
 #include <list>
 #include <map>
@@ -196,7 +196,7 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	DistanceMap::WormholeStrategy wormholeStrategy = DistanceMap::WormholeStrategy::NONE;
+	WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
 	bool requiresJumpDrive = false;
 	std::string clearance;
 	LocationFilter clearanceFilter;

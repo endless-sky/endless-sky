@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
+#include "wormholestrategy.hpp"
+
 #include <map>
 #include <queue>
 #include <set>
@@ -30,14 +32,6 @@ class System;
 // but can also travel to any of a system's "neighbors." A distance map can also
 // be used to calculate the shortest route between two systems.
 class DistanceMap {
-public:
-	enum class WormholeStrategy : int_fast8_t {
-		ALL,
-		ONLYUNRESTRICTED,
-		NONE
-	};
-
-
 public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
