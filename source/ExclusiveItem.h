@@ -13,6 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef EXCLUSIVE_ITEM_H_
 #define EXCLUSIVE_ITEM_H_
 
+#include <memory>
+#include <utility>
+
 
 
 // An ExclusiveItem is an object stored as either a pointer or a stock
