@@ -153,7 +153,7 @@ outfit "Korath Expeller"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"velocity" 400
+		"velocity" 590
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1.75
