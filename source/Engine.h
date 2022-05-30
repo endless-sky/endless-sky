@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "SecondaryWeaponIconDisplay.h"
 
 #include <condition_variable>
 #include <list>
@@ -191,6 +192,7 @@ private:
 	Point targetUnit;
 	int targetSwizzle = -1;
 	EscortDisplay escorts;
+	SecondaryWeaponIconDisplay secWeapons;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
