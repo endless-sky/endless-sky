@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Minable.h"
 #include "Mission.h"
 #include "Music.h"
+#include "NestedVariant.h"
 #include "News.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
@@ -58,7 +59,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestData.h"
 #include "UniverseObjects.h"
-#include "Variant.h"
 
 #include <algorithm>
 #include <iostream>
@@ -76,7 +76,7 @@ namespace {
 	Set<Galaxy> defaultGalaxies;
 	Set<Sale<Ship>> defaultShipSales;
 	Set<Sale<Outfit>> defaultOutfitSales;
-	Set<Variant> defaultVariants;
+	Set<NestedVariant> defaultVariants;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -631,7 +631,7 @@ const Set<System> &GameData::Systems()
 
 
 
-const Set<Variant> &GameData::Variants()
+const Set<NestedVariant> &GameData::Variants()
 {
 	return objects.variants;
 }

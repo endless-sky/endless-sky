@@ -40,6 +40,7 @@ class Interface;
 class MaskManager;
 class Minable;
 class Mission;
+class NestedVariant;
 class News;
 class Outfit;
 class Panel;
@@ -55,7 +56,6 @@ class System;
 class Test;
 class TestData;
 class TextReplacements;
-class Variant;
 
 
 
@@ -128,7 +128,7 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
-	static const Set<Variant> &Variants();
+	static const Set<NestedVariant> &Variants();
 
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();

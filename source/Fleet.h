@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FLEET_H_
 #define FLEET_H_
 
+#include "FleetVariant.h"
 #include "Personality.h"
 #include "Sale.h"
-#include "Variant.h"
 #include "WeightedList.h"
 
 #include <cstdint>
@@ -84,7 +84,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	WeightedList<Variant> variants;
+	WeightedList<FleetVariant> variants;
 	// The number of different items the ships in this fleet will carry in cargo.
 	int cargo = 3;
 	std::vector<std::string> commodities;

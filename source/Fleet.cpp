@@ -212,9 +212,7 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
-			Variant toRemove(child);
-			int count = erase(variants, toRemove);
-			if(!count)
+			if(!erase(variants, FleetVariant(child)))
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -241,7 +239,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 	// Any variant a fleet could choose should be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
+			[](const FleetVariant &v) noexcept -> bool { return !v.IsValid(); }))
 		return false;
 
 	return true;
@@ -252,7 +250,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 void Fleet::RemoveInvalidVariants()
 {
 	int total = variants.TotalWeight();
-	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
+	int count = erase_if(variants, [](const FleetVariant &v) noexcept -> bool { return !v.IsValid(); });
 	if(!count)
 		return;
 
@@ -531,7 +529,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	return variants.Average(std::mem_fn(&Variant::Strength));
+	return variants.Average(std::mem_fn(&FleetVariant::Strength));
 }
 
 

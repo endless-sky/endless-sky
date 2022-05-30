@@ -1,4 +1,4 @@
-/* Variant.h
+/* FleetVariant.h
 Copyright (c) 2022 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,13 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef VARIANT_H_
-#define VARIANT_H_
+#ifndef FLEET_VARIANT_H_
+#define FLEET_VARIANT_H_
 
+#include "NestedVariant.h"
 #include "UnionItem.h"
 
 #include <cstdint>
-#include <string>
 #include <vector>
 
 class DataNode;
@@ -24,13 +24,13 @@ class Ship;
 
 
 
-// A variant represents a collection of ships that may be spawned by a fleet.
-// Each variant contains one or more ships or variants.
-class Variant {
+// A fleet variant represents a collection of ships that may be spawned by a
+// fleet. Each variant contains one or more ships or nested variants.
+class FleetVariant {
 public:
-	Variant() = default;
+	FleetVariant() = default;
 	// Construct and Load() at the same time.
-	Variant(const DataNode &node);
+	FleetVariant(const DataNode &node);
 
 	void Load(const DataNode &node);
 
@@ -46,29 +46,13 @@ public:
 	// the strength of any nested variants.
 	int64_t Strength() const;
 
-	bool operator==(const Variant &other) const;
-	bool operator!=(const Variant &other) const;
+	bool operator==(const FleetVariant &other) const;
+	bool operator!=(const FleetVariant &other) const;
 
 
 private:
-	// Check whether a variant is contained within itself.
-	bool NestedInSelf(const std::string &check) const;
-	// Determine if this variant template uses well-defined data as a
-	// nested variant.
-	bool NestedIsValid() const;
-	// Choose a ship from this variant given that it is a nested variant.
-	// Nested variants only choose a single ship from among their list
-	// of ships and variants.
-	const Ship *NestedChooseShip() const;
-	// The strength of a nested variant is its normal strength divided by
-	// the total weight of its contents.
-	int64_t NestedStrength() const;
-
-
-private:
-	std::string name;
 	std::vector<const Ship *> ships;
-	std::vector<UnionItem<Variant>> variants;
+	std::vector<UnionItem<NestedVariant>> variants;
 };
 
 

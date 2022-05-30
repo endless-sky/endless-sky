@@ -144,6 +144,8 @@
 		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
+		<Unit filename="source/FleetVariant.cpp" />
+		<Unit filename="source/FleetVariant.h" />
 		<Unit filename="source/Flotsam.cpp" />
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
@@ -226,6 +228,8 @@
 		<Unit filename="source/Mortgage.h" />
 		<Unit filename="source/Music.cpp" />
 		<Unit filename="source/Music.h" />
+		<Unit filename="source/NestedVariant.cpp" />
+		<Unit filename="source/NestedVariant.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
 		<Unit filename="source/News.cpp" />
@@ -336,8 +340,6 @@
 		<Unit filename="source/UnionItem.h" />
 		<Unit filename="source/UniverseObjects.cpp" />
 		<Unit filename="source/UniverseObjects.h" />
-		<Unit filename="source/Variant.cpp" />
-		<Unit filename="source/Variant.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />

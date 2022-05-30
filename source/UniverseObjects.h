@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Minable.h"
 #include "Mission.h"
+#include "NestedVariant.h"
 #include "News.h"
 #include "Outfit.h"
 #include "Person.h"
@@ -40,7 +41,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
-#include "Variant.h"
 
 #include <future>
 #include <map>
@@ -111,7 +111,7 @@ private:
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
-	Set<Variant> variants;
+	Set<NestedVariant> variants;
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
 	std::set<double> neighborDistances;

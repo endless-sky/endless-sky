@@ -1,4 +1,4 @@
-/* Variant.cpp
+/* NestedVariant.cpp
 Copyright (c) 2022 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,33 +10,31 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "Variant.h"
+#include "NestedVariant.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "GameData.h"
 #include "Random.h"
 #include "Ship.h"
 
 #include <algorithm>
-#include <iterator>
 
 using namespace std;
 
 
 
 // Construct and Load() at the same time.
-Variant::Variant(const DataNode &node)
+NestedVariant::NestedVariant(const DataNode &node)
 {
 	Load(node);
 }
 
 
 
-void Variant::Load(const DataNode &node)
+void NestedVariant::Load(const DataNode &node)
 {
-	// If this variant is being loaded from a fleet or another variant, it may
-	// include an additional token that shifts where the name must be searched for.
+	// If this variant is being loaded from a fleet variant, it may include
+	// an additional token that shifts where the name must be searched for.
 	bool addNode = (node.Token(0) == "add");
 	bool removeNode = (node.Token(0) == "remove");
 	// If this variant is being loaded with a second token that is not a number,
@@ -71,8 +69,9 @@ void Variant::Load(const DataNode &node)
 		{
 			if(variant)
 			{
-				// If given a full definition of one of this variant's variant members, remove the variant.
-				auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<Variant>(child));
+				// If given a full definition of a nested variant, remove all instances of that
+				// nested variant from this variant.
+				auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<NestedVariant>(child));
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -109,7 +108,7 @@ void Variant::Load(const DataNode &node)
 					variantName = child.Token(index++);
 					if(variantName == name)
 					{
-						node.PrintTrace("Warning: A variant cannot reference itself:");
+						child.PrintTrace("Warning: A variant cannot reference itself:");
 						continue;
 					}
 				}
@@ -121,12 +120,12 @@ void Variant::Load(const DataNode &node)
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
 				{
-					variants.insert(variants.end(), n, UnionItem<Variant>(GameData::Variants().Get(variantName)));
+					variants.insert(variants.end(), n, UnionItem<NestedVariant>(GameData::Variants().Get(variantName)));
 					if(child.HasChildren())
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.insert(variants.end(), n, UnionItem<Variant>(child));
+					variants.insert(variants.end(), n, UnionItem<NestedVariant>(child));
 			}
 			else
 			{
@@ -141,67 +140,67 @@ void Variant::Load(const DataNode &node)
 	// of this variant aren't loaded yet, eventually the loop will be found after
 	// the last variant loads.
 	if(!name.empty())
-		for(auto it = variants.begin(); it != variants.end(); )
+	{
+		auto removeIt = remove_if(variants.begin(), variants.end(),
+			[this](const UnionItem<NestedVariant> &v) noexcept -> bool { return v.GetItem().NestedInSelf(name); });
+		if(removeIt != variants.end())
 		{
-			if(it->GetItem().NestedInSelf(name))
-			{
-				it = variants.erase(it);
-				Files::LogError("Error: Infinite loop detected and removed in variant \"" + name + "\".");
-			}
-			else
-				++it;
+			variants.erase(removeIt, variants.end());
+			node.PrintTrace("Error: Infinite loop detected and removed in variant \"" + name + "\".");
 		}
+	}
 }
 
 
 
-// Determine if this variant template uses well-defined data.
-bool Variant::IsValid() const
+// Determine if this nested variant template uses well-defined data.
+bool NestedVariant::IsValid() const
 {
-	// At least one valid ship is enough to make the variant valid.
+	// All possible ships must be valid.
 	if(any_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
-		return true;
+			[](const Ship *const s) noexcept -> bool { return !s->IsValid(); }))
+		return false;
 
-	// At least one nested variant is enough to make the variant valid.
+	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<Variant> &v) noexcept -> bool { return v.GetItem().NestedIsValid(); }))
-		return true;
+			[](const UnionItem<NestedVariant> &v) noexcept -> bool { return !v.GetItem().IsValid(); }))
+		return false;
 
-	return false;
+	return true;
 }
 
 
 
-// Choose a list of ships from this variant. All ships from the ships
-// vector are chosen, as well as a random selection of ships from any
-// nested variants in the WeightedList.
-vector<const Ship *> Variant::ChooseShips() const
+// Choose a single ship from this nested variant. Either one ship
+// is chosen from this variant's ships list, or a ship is provided
+// by one of this variant's nested variants.
+const Ship *NestedVariant::ChooseShip() const
 {
-	vector<const Ship *> chosenShips = ships;
-	for(const auto &it : variants)
-		chosenShips.push_back(it.GetItem().NestedChooseShip());
-	return chosenShips;
+	// Randomly choose between the ships and the variants.
+	if(Random::Int(ships.size() + variants.size()) < variants.size())
+		return variants[Random::Int(variants.size())].GetItem().ChooseShip();
+
+	return ships[Random::Int(ships.size())];
 }
 
 
 
-// The strength of a variant is the sum of the cost of its ships and
-// the strength of any nested variants.
-int64_t Variant::Strength() const
+// The strength of a nested variant is the sum of the cost of its ships
+// the strength of any nested variants divided by the total number of
+// ships and variants.
+int64_t NestedVariant::Strength() const
 {
 	int64_t sum = 0;
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.GetItem().NestedStrength();
-	return sum;
+		sum += variant.GetItem().Strength();
+	return sum / (ships.size() + variants.size());
 }
 
 
 
-// An operator for checking the equality of two variants.
-bool Variant::operator==(const Variant &other) const
+bool NestedVariant::operator==(const NestedVariant &other) const
 {
 	// Is either variant named? Do they share the same name?
 	if(!other.name.empty() || !name.empty())
@@ -222,8 +221,7 @@ bool Variant::operator==(const Variant &other) const
 
 
 
-// An operator for checking the inequality of two variants.
-bool Variant::operator!=(const Variant &other) const
+bool NestedVariant::operator!=(const NestedVariant &other) const
 {
 	return !(*this == other);
 }
@@ -231,7 +229,7 @@ bool Variant::operator!=(const Variant &other) const
 
 
 // Check whether a variant is contained within itself.
-bool Variant::NestedInSelf(const string &check) const
+bool NestedVariant::NestedInSelf(const string &check) const
 {
 	if(!name.empty() && name == check)
 		return true;
@@ -241,46 +239,4 @@ bool Variant::NestedInSelf(const string &check) const
 			return true;
 
 	return false;
-}
-
-
-
-// Determine if this variant template uses well-defined data as a
-// nested variant.
-bool Variant::NestedIsValid() const
-{
-	// All possible ships must be valid.
-	if(any_of(ships.begin(), ships.end(),
-			[](const Ship *const s) noexcept -> bool { return !s->IsValid(); }))
-		return false;
-
-	// All possible nested variants must be valid.
-	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<Variant> &v) noexcept -> bool { return !v.GetItem().NestedIsValid(); }))
-		return false;
-
-	return true;
-}
-
-
-
-// Choose a ship from this variant given that it is a nested variant.
-// Nested variants only choose a single ship from among their list
-// of ships and variants.
-const Ship *Variant::NestedChooseShip() const
-{
-	// Randomly choose between the ships and the variants.
-	if(Random::Int(ships.size() + variants.size()) < variants.size())
-		return variants[Random::Int(variants.size())].GetItem().NestedChooseShip();
-
-	return ships[Random::Int(ships.size())];
-}
-
-
-
-// The strength of a nested variant is its normal strength divided by
-// the total weight of its contents.
-int64_t Variant::NestedStrength() const
-{
-	return Strength() / (ships.size() + variants.size());
 }
