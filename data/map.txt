@@ -4909,6 +4909,56 @@ system Aspidiske
 		distance 2771.8
 		period 376.788
 
+system Atik
+	pos -66 -52
+	government Uninhabited
+	habitable 371.071
+	belt 1240
+	link Durax
+	asteroids "small rock" 36 1.99
+	asteroids "medium rock" 44 1.57
+	asteroids "large rock" 12 1.08
+	asteroids "small metal" 36 1.26
+	asteroids "medium metal" 75 1.92
+	asteroids "large metal" 14 1.35
+	minables platinum 21 1.40315
+	minables tungsten 43 1.42935
+	minables gold 36 1.7943
+	minables uranium 22 1.71104
+	trade Clothing 381
+	trade Electronics 632
+	trade Equipment 605
+	trade Food 261
+	trade "Heavy Metals" 958
+	trade Industrial 738
+	trade "Luxury Goods" 1097
+	trade Medical 651
+	trade Metal 327
+	trade Plastic 416
+	fleet "Small Core Pirates" 10000
+	fleet "Large Core Pirates" 18000
+	fleet "Human Miners" 5000
+	fleet "Korath Miners" 15000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/gas16-b
+		distance 1350.7
+		period 681.931
+		object
+			sprite planet/desert4-b
+			distance 304
+			period 26.126
+		object
+			sprite planet/ice4
+			distance 481
+			period 38.374
+	object
+		sprite planet/europa
+		distance 1905.05
+		period 2681.16
+
 system Atria
 	pos -551 532
 	government Republic
@@ -8655,6 +8705,8 @@ system Durax
 	belt 1287
 	haze _menu/haze-133
 	link Alcyone
+	link Misam
+	link Atik
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
 	asteroids "large rock" 6 6.6768
@@ -17537,6 +17589,76 @@ system Mirzam
 			sprite planet/rock17
 			distance 215
 			period 12.1447
+
+system Misam
+	pos -9 -80
+	government Pirate
+	habitable 993
+	belt 1091
+	link Durax
+	asteroids "small rock" 30 2.4918
+	asteroids "medium rock" 65 2.7068
+	asteroids "large rock" 1 2.561
+	asteroids "small metal" 8 1.2002
+	asteroids "medium metal" 10 2.7702
+	asteroids "large metal" 6 2.2562
+	minables copper 22 2.79651
+	minables silver 18 1.38539
+	minables neodymium 14 1.81077
+	trade Clothing 307
+	trade Electronics 741
+	trade Equipment 661
+	trade Food 168
+	trade "Heavy Metals" 851
+	trade Industrial 787
+	trade "Luxury Goods" 1002
+	trade Medical 688
+	trade Metal 288
+	trade Plastic 368
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 3000
+	fleet "Marauder small defense fleet" 2000
+	fleet "Marauder large defense fleet" 5000
+	fleet "Korath Small Raid" 3000
+	fleet "Korath Large Raid" 6000
+	fleet "Human Miners" 10000
+	fleet "Large Syndicate" 20000
+	fleet "Korath Miners" 15000
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/cloud8
+		distance 494.8
+		period 133.965
+		object
+			sprite planet/lava0-b
+			distance 159
+			period 24.2278
+	object "New Tortuga"
+		sprite planet/ocean3-b
+		distance 1010.56
+		period 391.013
+		object
+			sprite planet/luna
+			distance 166
+			period 21.8962
+	object
+		sprite planet/gas16
+		distance 2328.56
+		period 1831.03
+		object
+			sprite planet/io
+			distance 232
+			period 15.0975
+		object
+			sprite planet/callisto-b
+			distance 350
+			period 27.9753
+		object
+			sprite planet/ganymede
+			distance 498
+			period 47.4807
 
 system Mizar
 	pos -579 184
@@ -29123,6 +29245,35 @@ planet "New Switzerland"
 	tribute 300
 		threshold 2000
 		fleet "Small Republic" 11
+
+planet "New Tortuga"
+	attributes pirate "core pirate" core religious factory
+	landscape land/fog6
+	description `A planet of violent storms and frequent earthquakes, New Tortuga would turn away anyone unless they have a reason to hide. The few settlements on the planet are subterranean cave cities far from any fault lines. Thick blast doors block all entrances, and vast pumping systems remove water after the frequent supertyphoon-strength tropical storms.`
+	description `Most of the inhabitants of this planet are Syndicate dissidents who support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets cannot penetrate as far as New Tortuga. Here, shipyards, factories, and outfitters provide an uninterrupted supply.`
+	spaceport `As you walk through the spaceport, you notice a surprising number of religious buildings scattered between the pirate bars and black market stores. Most of the shops are run not by pirates, but by ordinary folk, frequently wearing religious garb. They interact with pirates as customers and guests rather than as an oppressive government.`
+	spaceport `The relative peace is frequently broken by a pirate band wandering through the spaceport. The pirates here are generally more obedient and militarized than the ones seen on other planets. Their ships are more advanced too, judging by what sticks out their weapon and engine hardpoints.`
+	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
+	outfitter "Ammo North"
+	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Syndicate Basics"
+	outfitter "Syndicate Advanced"
+	shipyard "Basic Ships"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
+	shipyard "Southern Pirates"
+	shipyard "Northern Pirates"
+	shipyard "Megaparsec Basics"
+	bribe 0.03
+	security 0
+	"required reputation" -10
+	tribute 6000
+		threshold 5000
+		fleet "Marauder large defense fleet" 10
+		fleet "Marauder small defense fleet" 15
+
 
 planet "New Tibet"
 	attributes "dirt belt" factory religious
