@@ -1283,13 +1283,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		}
 
 		path = *bestIt;
-		int days = distance.Days(*bestIt);
-		// If bestIt still points to a system that is not reachable from here,
-		// the route can't be completed given the rules so this mission should
-		// not be offered.
-		if(days < 0)
-			return result;
-		jumps += days;
+		// If currently unreachable, this system does not add to the deadline.
+		jumps += max(0, distance.Days(*bestIt));
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(path);
