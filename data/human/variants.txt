@@ -665,8 +665,8 @@ ship "Container Transport" "Container Transport (Heavy)"
 		"Laser Turret" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"KP-6 Photovoltaic Panel" 2
@@ -688,7 +688,7 @@ ship "Container Transport" "Container Transport (Proton)"
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Anti-Missile Turret"
-		"Sidewinder Missile Launcher" 1
+		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
@@ -710,7 +710,7 @@ ship "Container Transport" "Container Transport (Short Haul)"
 	outfits
 		"Anti-Missile Turret" 2
 		"Blaster Turret" 3
-		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 45
 		"RT-I Radiothermal"
 		"KP-6 Photovoltaic Array"
