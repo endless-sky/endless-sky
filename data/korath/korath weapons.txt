@@ -775,7 +775,7 @@ outfit "Korath Digger Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/korath digger"
+		sprite "projectile/digger"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/digger turret"
 		sound "korath digger"
@@ -803,7 +803,7 @@ outfit "Korath Digger"
 	"asteroid scan power" 10
 	"gun ports" -1
 	weapon
-		sprite "projectile/korath digger short"
+		sprite "projectile/digger thin"
 			"frame rate" 20
 		sound "korath digger"
 		"hit effect" "korath digger hit"
