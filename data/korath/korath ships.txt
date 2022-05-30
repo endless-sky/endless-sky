@@ -457,8 +457,8 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Missile)"
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	sprite "ship/raiderii"
 	add attributes
-		"cargo space" -40
-		"outfit space" 40
+		"cargo space" -60
+		"outfit space" 60
 	outfits 
 		"Korath Grab-Strike" 2
 		"Korath Disruptor" 2
