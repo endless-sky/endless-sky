@@ -266,7 +266,6 @@ ship "Korath World-Ship" "Korath World-Ship C"
 	turret 91 290 "Korath Warder"
 
 
-
 ship "Kar Ik Vot 349"
 	sprite "ship/kar ik vot 349"
 	thumbnail "thumbnail/kar ik vot 349"
@@ -686,7 +685,6 @@ ship "Far Osk 27"
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
-
 
 
 ship "Model 8"
