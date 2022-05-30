@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "DistanceMap.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
@@ -195,9 +196,8 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	bool noWormholes = false;
+	DistanceMap::WormholeStrategy wormholeStrategy = DistanceMap::WormholeStrategy::NONE;
 	bool requiresJumpDrive = false;
-	bool useRestrictedWormholes = false;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

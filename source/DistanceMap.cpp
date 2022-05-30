@@ -26,14 +26,14 @@ using namespace std;
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
+	: DistanceMap(center, WormholeStrategy::NONE, false, maxCount, maxDistance)
 {
-	*this = DistanceMap(center, false, false, false, maxCount, maxDistance);
 }
 
 
 
-DistanceMap::DistanceMap(const System *center, bool useWormholes, bool useJumpDrive, bool onlyUnrestrictedWormholes, int maxCount, int maxDistance)
-	: center(center), useWormholes(useWormholes), onlyUnrestrictedWormholes(onlyUnrestrictedWormholes), maxCount(maxCount), maxDistance(maxDistance)
+DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy, bool useJumpDrive, int maxCount, int maxDistance)
+	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount), maxDistance(maxDistance)
 {
 	if(useJumpDrive)
 		jumpFuel = 200;
@@ -224,10 +224,10 @@ void DistanceMap::Init(const Ship *ship)
 
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
-		if(useWormholes)
+		if(wormholeStrategy != WormholeStrategy::NONE)
 			for(const StellarObject &object : top.next->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
-					&& (object.GetPlanet()->IsUnrestricted() || !onlyUnrestrictedWormholes))
+					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.

@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
-#include "DistanceMap.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -162,11 +161,11 @@ void Mission::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "no wormholes")
-						noWormholes = true;
+						wormholeStrategy = DistanceMap::WormholeStrategy::ALL;
+					else if(grand.Token(0) == "use restricted wormholes")
+						wormholeStrategy = DistanceMap::WormholeStrategy::ONLYUNRESTRICTED;
 					else if(grand.Token(0) == "requires jump drive")
 						requiresJumpDrive = true;
-					else if(grand.Token(0) == "use restricted wormholes")
-						useRestrictedWormholes = true;
 				}
 			}
 		}
@@ -1264,7 +1263,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path, !noWormholes, requiresJumpDrive, !useRestrictedWormholes);
+		DistanceMap distance(path, wormholeStrategy, requiresJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
