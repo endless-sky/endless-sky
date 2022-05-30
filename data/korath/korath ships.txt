@@ -178,8 +178,8 @@ ship "Korath Raider"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -198,9 +198,9 @@ ship "Korath Raider"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
-	gun 32.5 -1
+	gun 32.5 -1 "Firelight Missile Bank"
 		angle 60
-	gun -32.5 -1
+	gun -32.5 -1 "Firelight Missile Bank"
 		angle 300
 	turret -10 -143 "Korath Grab-Strike"
 	turret 10 -143 "Korath Grab-Strike"
@@ -225,8 +225,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -241,8 +241,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 
-	gun
-	gun
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -257,8 +257,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -273,8 +273,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
-	gun
-	gun
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -289,8 +289,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
-		#31t missile launcher x1
-		#0.3t missile x17
+		"Firelight Missile Bank" 1
+		"Firelight Missile" 17
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
@@ -304,7 +304,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Hyperdrive"
 
 	gun
-	gun
+	gun "Firelight Missile Bank"
 	turret
 	turret
 	turret "Korath Grab-Strike"
@@ -341,8 +341,8 @@ ship "Korath Raider Mark XLII"
 		"Korath Banisher"
 		"Korath Warder"
 		"Korath Fire-Lance"
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -399,9 +399,9 @@ ship "Korath Raider Mark XLII"
 		angle -38
 		left
 	gun -45 -150 "Korath Fire-Lance"
-	gun 32.5 -1
+	gun 32.5 -1 "Firelight Missile Bank"
 		angle 60
-	gun -32.5 -1
+	gun -32.5 -1 "Firelight Missile Bank"
 		angle 300
 	turret -10 -143 "Korath Grab-Strike"
 	turret 10 -143 "Korath Grab-Strike"
@@ -427,9 +427,9 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Missile)"
 	outfits 
 		"Korath Grab-Strike" 4
 		"Korath Warder" 2
-		#31t missile launcher x3
-		#13t missile rack (21 capacity per)
-		#0.3t missile x108
+		"Firelight Missile Bank" 3
+		"Firelight Missile" 120
+		"Firelight Storage Rack" 1
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -443,9 +443,9 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Missile)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 
-	gun
-	gun
-	gun
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -465,8 +465,8 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 		"Korath Banisher"
 		"Korath Warder"
 		"Korath Detainer"
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 		
 		"Triple Plasma Core"
 		"Generator (Furnace Class)"
@@ -482,8 +482,8 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 		"Jump Drive"
 
 	gun "Korath Detainer"
-	gun
-	gun
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Disruptor"
 	turret "Korath Grab-Strike"
@@ -500,8 +500,8 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Repeater)"
 		"Korath Piercer Launcher"
 		"Korath Piercer Rack"
 		"Korath Piercer" 47
-		#31t missile launcher x2
-		#0.3t missile x66
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 66
 
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -517,8 +517,8 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Repeater)"
 		"Jump Drive"
 
 	gun "Korath Piercer Launcher"
-	gun
-	gun
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Grab-Strike"
