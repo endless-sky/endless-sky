@@ -772,7 +772,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// NPCs may take 30 seconds or longer to find a new parent.  Player
 			// owned fighter shouldn't take more than a few seconds.
 			bool findNewParent = it->IsYours() ? !Random::Int(30) : !Random::Int(1800);
-			bool parentHasSpace = !findNewParent || (inParentSystem && parent->CanCarry(*it));
+			bool parentHasSpace = !findNewParent || (inParentSystem && parent->BaysFree(it->Attributes().Category()));
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
