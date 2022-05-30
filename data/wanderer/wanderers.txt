@@ -896,7 +896,7 @@ event "wanderers: the eye opens"
 		add object "The Eye"
 			sprite planet/wormhole
 			distance 2022.87
-			period 919.438
+			period 918.463
 	system Sepriaptu
 		add fleet "Wanderer Defense" 1600
 		add fleet "Wanderer Drones" 800
@@ -930,7 +930,7 @@ event "wanderers: the eye opens"
 		object
 			sprite planet/rock8
 			distance 154.36
-			period 42.8832
+			period 42.8831
 		object
 			sprite planet/rock18
 			distance 384.05
@@ -938,17 +938,17 @@ event "wanderers: the eye opens"
 		object
 			sprite planet/desert1
 			distance 617.3
-			period 342.949
+			period 342.948
 		object
 			sprite planet/gas4
 			distance 1227.46
 			period 961.603
 			object
-				sprite planet/callisto
+				sprite planet/callisto-b
 				distance 272
 				period 15.8216
 			object
-				sprite planet/rock3
+				sprite planet/rock3-b
 				distance 406
 				period 28.8527
 		object "The Eye"
@@ -997,6 +997,7 @@ event "wanderers: spera anatrusk colony"
 		add description `	Hidden deep in a canyon, the Wanderers have begun establishing a military base here.`
 		spaceport `The Wanderers have hollowed out hangars and caves in the soft sandstone walls of this canyon and have begun to build a military base where they can store supplies and repair their ships while trying to decide how best to deal with the new challenges that face them in Korath space.`
 		spaceport `	Oddly enough, they have also found enough time to plant a large garden on a terrace near the base of the canyon, where they are experimenting to find out which plant species will best grow in this arid environment. The Wanderer drive to understand and transform the local ecology is strong, indeed.`
+		outfitter "Wanderer Basics"
 
 event "wanderers: hurricane mass production"
 	fleet "Wanderer Defense"

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/FontSet.h"
 #include "ImageSet.h"
+#include "Information.h"
 #include "MaskManager.h"
 #include "Music.h"
 #include "PlayerInfo.h"
@@ -134,6 +135,22 @@ void UniverseObjects::FinishLoading()
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
 		startConditions.end()
 	);
+
+	// Process any disabled game objects.
+	for(const auto &category : disabled)
+	{
+		if(category.first == "mission")
+			for(const string &name : category.second)
+				missions.Get(name)->NeverOffer();
+		else if(category.first == "event")
+			for(const string &name : category.second)
+				events.Get(name)->Disable();
+		else if(category.first == "person")
+			for(const string &name : category.second)
+				persons.Get(name)->NeverSpawn();
+		else
+			Files::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+	}
 }
 
 
@@ -311,7 +328,17 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "hazard" && node.Size() >= 2)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
+		{
 			interfaces.Get(node.Token(1))->Load(node);
+
+			// If we modified the "menu background" interface, then
+			// we also update our cache of it.
+			if(node.Token(1) == "menu background")
+			{
+				lock_guard<mutex> lock(menuBackgroundMutex);
+				menuBackgroundCache.Load(node);
+			}
+		}
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
@@ -428,7 +455,31 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
+		else if(key == "disable" && node.Size() >= 2)
+		{
+			static const set<string> canDisable = {"mission", "event", "person"};
+			const string &category = node.Token(1);
+			if(canDisable.count(category))
+			{
+				if(node.HasChildren())
+					for(const DataNode &child : node)
+						disabled[category].emplace(child.Token(0));
+				if(node.Size() >= 3)
+					for(int index = 2; index < node.Size(); ++index)
+						disabled[category].emplace(node.Token(index));
+			}
+			else
+				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }

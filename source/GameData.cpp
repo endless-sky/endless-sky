@@ -60,10 +60,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <future>
 #include <iostream>
-#include <map>
-#include <set>
 #include <utility>
 #include <vector>
 
@@ -86,7 +83,6 @@ namespace {
 
 	map<string, string> plugins;
 	SpriteQueue spriteQueue;
-	future<void> dataLoading;
 
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -100,7 +96,7 @@ namespace {
 
 
 
-void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources();
@@ -132,7 +128,7 @@ void GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 		Music::Init(sources);
 	}
 
-	dataLoading = objects.Load(sources, debugMode);
+	return objects.Load(sources, debugMode);
 }
 
 
@@ -187,7 +183,16 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	return min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	// Cache progress completion seen, so clients are
+	// isolated from the loading implementation details.
+	static bool initiallyLoaded = false;
+	if(initiallyLoaded)
+		return 1.;
+
+	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
+	if(val >= 1.)
+		initiallyLoaded = true;
+	return val;
 }
 
 
@@ -195,13 +200,6 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
-}
-
-
-
-bool GameData::IsDataLoaded()
-{
-	return objects.GetProgress() == 1.;
 }
 
 
@@ -860,4 +858,12 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 			}
 	}
 	return images;
+}
+
+
+
+// Thread-safe way to draw the menu background.
+void GameData::DrawMenuBackground(Panel *panel)
+{
+	objects.DrawMenuBackground(panel);
 }

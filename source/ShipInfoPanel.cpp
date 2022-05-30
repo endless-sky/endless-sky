@@ -47,15 +47,20 @@ namespace {
 	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 }
 
-
-ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
-	: player(player), shipIt(player.Ships().begin()), canEdit(player.GetPlanet())
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
+	: ShipInfoPanel(player, InfoPanelState(player))
 {
+}
+
+ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState panelState)
+	: player(player), panelState(panelState)
+{
+	shipIt = this->panelState.Ships().begin();
 	SetInterruptible(false);
 
 	// If a valid ship index was given, show that ship.
-	if(static_cast<unsigned>(index) < player.Ships().size())
-		shipIt += index;
+	if(static_cast<unsigned>(panelState.SelectedIndex()) < player.Ships().size())
+		shipIt += panelState.SelectedIndex();
 	else if(player.Flagship())
 	{
 		// Find the player's flagship. It may not be first in the list, if the
@@ -69,7 +74,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, int index)
 
 
 
-void ShipInfoPanel::Step ()
+void ShipInfoPanel::Step()
 {
 	DoHelp("ship info");
 }
@@ -84,7 +89,7 @@ void ShipInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("ship tab");
-	if(canEdit && (shipIt != player.Ships().end())
+	if(panelState.CanEdit() && (shipIt != player.Ships().end())
 			&& (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 	{
 		if(!(*shipIt)->IsDisabled())
@@ -92,7 +97,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		interfaceInfo.SetCondition("show disown");
 	}
-	else if(!canEdit)
+	else if(!panelState.CanEdit())
 	{
 		interfaceInfo.SetCondition("show dump");
 		if(CanDump())
@@ -125,38 +130,42 @@ void ShipInfoPanel::Draw()
 
 
 
-bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
+	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
 		GetUI()->Pop(this);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
-		if(shipIt == player.Ships().begin())
-			shipIt = player.Ships().end();
+		if(shipIt == panelState.Ships().begin())
+			shipIt = panelState.Ships().end();
 		--shipIt;
 		UpdateInfo();
 	}
-	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
+	else if(!panelState.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
 	{
 		++shipIt;
-		if(shipIt == player.Ships().end())
-			shipIt = player.Ships().begin();
+		if(shipIt == panelState.Ships().end())
+			shipIt = panelState.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i' || command.Has(Command::INFO))
+	else if(key == 'i' || command.Has(Command::INFO) || (control && key == SDLK_TAB))
 	{
+		// Set scroll so the currently shown ship will be the first in page.
+		panelState.SetScroll(shipIt - panelState.Ships().begin());
+
 		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
-	else if(canEdit && (key == 'P' || (key == 'p' && shift)))
+	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
 	}
-	else if(canEdit && key == 'D')
+	else if(panelState.CanEdit() && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
@@ -214,13 +223,13 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 
 
-bool ShipInfoPanel::Click(int x, int y, int clicks)
+bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 {
-	if(shipIt == player.Ships().end())
+	if(shipIt == panelState.Ships().end())
 		return true;
 
 	draggingIndex = -1;
-	if(canEdit && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
+	if(panelState.CanEdit() && hoverIndex >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 		draggingIndex = hoverIndex;
 
 	selectedCommodity.clear();
@@ -254,7 +263,7 @@ bool ShipInfoPanel::Drag(double dx, double dy)
 
 
 
-bool ShipInfoPanel::Release(int x, int y)
+bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
 		(**shipIt).GetArmament().Swap(hoverIndex, draggingIndex);
@@ -270,7 +279,7 @@ void ShipInfoPanel::UpdateInfo()
 	draggingIndex = -1;
 	hoverIndex = -1;
 	ClearZones();
-	if(shipIt == player.Ships().end())
+	if(shipIt == panelState.Ships().end())
 		return;
 
 	const Ship &ship = **shipIt;
@@ -313,7 +322,6 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
 	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("model:", dim, ship.ModelName(), bright, Truncate::MIDDLE, true);
 
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
@@ -623,7 +631,7 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 
 bool ShipInfoPanel::Hover(const Point &point)
 {
-	if(shipIt == player.Ships().end())
+	if(shipIt == panelState.Ships().end())
 		return true;
 
 	hoverPoint = point;
@@ -645,7 +653,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 void ShipInfoPanel::Rename(const string &name)
 {
-	if(shipIt != player.Ships().end() && !name.empty())
+	if(shipIt != panelState.Ships().end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
@@ -656,7 +664,7 @@ void ShipInfoPanel::Rename(const string &name)
 
 bool ShipInfoPanel::CanDump() const
 {
-	if(canEdit || shipIt == player.Ships().end())
+	if(panelState.CanEdit() || shipIt == panelState.Ships().end())
 		return false;
 
 	CargoHold &cargo = (*shipIt)->Cargo();
@@ -757,12 +765,13 @@ void ShipInfoPanel::DumpCommodities(int count)
 void ShipInfoPanel::Disown()
 {
 	// Make sure a ship really is selected.
-	if(shipIt == player.Ships().end() || shipIt->get() == player.Flagship())
+	if(shipIt == panelState.Ships().end() || shipIt->get() == player.Flagship())
 		return;
 
 	const Ship *ship = shipIt->get();
-	// Disown the ship and select a previous ship if available.
-	shipIt = player.DisownShip(ship);
+	if(shipIt != panelState.Ships().begin())
+		--shipIt;
 
+	player.DisownShip(ship);
 	UpdateInfo();
 }

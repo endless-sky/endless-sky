@@ -52,6 +52,11 @@ class UI;
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
+	struct FleetBalance {
+		int64_t maintenanceCosts = 0;
+		int64_t assetsReturns = 0;
+	};
+public:
 	PlayerInfo() = default;
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
@@ -118,8 +123,8 @@ public:
 	Account &Accounts();
 	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
 	int64_t Salaries() const;
-	// Calculate the daily maintenance cost for all ships and in cargo outfits.
-	int64_t Maintenance() const;
+	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
+	FleetBalance MaintenanceAndReturns() const;
 
 	// Access the flagship (the first ship in the list). This returns null if
 	// the player does not have any ships that can be a flagship.
@@ -141,7 +146,7 @@ public:
 	void RenameShip(const Ship *selected, const std::string &name);
 	// Change the order of the given ship in the list.
 	void ReorderShip(int fromIndex, int toIndex);
-	int ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 
@@ -206,6 +211,7 @@ public:
 	// can use to modify the player's reputation with other governments.
 	void SetReputationConditions();
 	void CheckReputationConditions();
+	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;

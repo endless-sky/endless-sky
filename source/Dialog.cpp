@@ -85,7 +85,8 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate)
+Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
 }
@@ -93,8 +94,9 @@ Dialog::Dialog(const string &text, Truncate truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
+	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
 {
 	Init(text, truncate, true, true);
@@ -140,6 +142,7 @@ void Dialog::Draw()
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &inactive = *GameData::Colors().Get("inactive");
 	if(canCancel)
 	{
 		string cancelText = isMission ? "Decline" : "Cancel";
@@ -155,7 +158,7 @@ void Dialog::Draw()
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
-	font.Draw(okText, labelPos, okIsActive ? bright : dim);
+	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
 
 	// Draw the text.
 	text.Draw(textPos, dim);
@@ -198,6 +201,13 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 
 
 
+bool Dialog::AllowsFastForward() const noexcept
+{
+	return allowsFastForward;
+}
+
+
+
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
@@ -217,9 +227,16 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			input += c;
 		else if(intFun && c >= '1' && c <= '9')
 			input += c;
+
+		if(validateFun)
+			isOkDisabled = !validateFun(input);
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
+	{
 		input.erase(input.length() - 1);
+		if(validateFun)
+			isOkDisabled = !validateFun(input);
+	}
 	else if(key == SDLK_TAB && canCancel)
 		okIsActive = !okIsActive;
 	else if(key == SDLK_LEFT)
@@ -235,9 +252,17 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
 		if(okIsActive || isMission)
-			DoCallback();
-
-		GetUI()->Pop(this);
+		{
+			// If the OK button is disabled (because the input failed the validation),
+			// don't execute the callback.
+			if(!isOkDisabled)
+			{
+				DoCallback();
+				GetUI()->Pop(this);
+			}
+		}
+		else
+			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system));
@@ -278,6 +303,8 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
+	SetInterruptible(isMission);
+
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;

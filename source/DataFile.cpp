@@ -100,9 +100,9 @@ void DataFile::LoadData(const string &data)
 	// node at each level - that is, the node that will be the "parent" of any
 	// new node added at the next deeper indentation level.
 	vector<DataNode *> stack(1, &root);
-	vector<int> whiteStack(1, -1);
+	vector<int> separatorStack(1, -1);
+	bool fileIsTabs = false;
 	bool fileIsSpaces = false;
-	bool warned = false;
 	size_t lineNumber = 0;
 
 	size_t end = data.length();
@@ -112,46 +112,45 @@ void DataFile::LoadData(const string &data)
 		size_t tokenPos = pos;
 		char32_t c = Utf8::DecodeCodePoint(data, pos);
 
-		// Find the first non-white character in this line.
-		bool isSpaces = false;
-		int white = 0;
+		bool mixedIndentation = false;
+		int separators = 0;
+		// Find the first tokenizable character in this line (i.e. neither space nor tab).
 		while(c <= ' ' && c != '\n')
 		{
-			// Warn about mixed indentations when parsing files.
-			if(!isSpaces && c == ' ')
+			// Determine what type of indentation this file is using.
+			if(!fileIsTabs && !fileIsSpaces)
 			{
-				// If we've parsed whitespace that wasn't a space, issue a warning.
-				if(white)
-					stack.back()->PrintTrace("Mixed whitespace usage in line");
-				else
+				if(c == '\t')
+					fileIsTabs = true;
+				else if(c == ' ')
 					fileIsSpaces = true;
-
-				isSpaces = true;
 			}
-			else if(fileIsSpaces && !warned && c != ' ')
-			{
-				warned = true;
-				stack.back()->PrintTrace("Mixed whitespace usage in file");
-			}
+			// Issue a warning if the wrong indentation is used.
+			else if((fileIsTabs && c != '\t') || (fileIsSpaces && c != ' '))
+				mixedIndentation = true;
 
-			++white;
+			++separators;
 			tokenPos = pos;
 			c = Utf8::DecodeCodePoint(data, pos);
 		}
 
 		// If the line is a comment, skip to the end of the line.
 		if(c == '#')
+		{
+			if(mixedIndentation)
+				root.PrintTrace("Warning: Mixed whitespace usage for comment at line " + to_string(lineNumber));
 			while(c != '\n')
 				c = Utf8::DecodeCodePoint(data, pos);
+		}
 		// Skip empty lines (including comment lines).
 		if(c == '\n')
 			continue;
 
 		// Determine where in the node tree we are inserting this node, based on
 		// whether it has more indentation that the previous node, less, or the same.
-		while(whiteStack.back() >= white)
+		while(separatorStack.back() >= separators)
 		{
-			whiteStack.pop_back();
+			separatorStack.pop_back();
 			stack.pop_back();
 		}
 
@@ -163,7 +162,7 @@ void DataFile::LoadData(const string &data)
 
 		// Remember where in the tree we are.
 		stack.push_back(&node);
-		whiteStack.push_back(white);
+		separatorStack.push_back(separators);
 
 		// Tokenize the line. Skip comments and empty lines.
 		while(c != '\n')
@@ -224,5 +223,9 @@ void DataFile::LoadData(const string &data)
 		}
 		// Now that we've reached the end of the line, we know no more tokens will be added to the node.
 		node.tokens.shrink_to_fit();
+
+		// Now that we've tokenized this node, print any mixed whitespace warnings.
+		if(mixedIndentation)
+			node.PrintTrace("Warning: Mixed whitespace usage at line");
 	}
 }
