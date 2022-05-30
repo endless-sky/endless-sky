@@ -35,6 +35,9 @@ DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy, bool useJumpDrive, int maxCount, int maxDistance)
 	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount), maxDistance(maxDistance)
 {
+	// If being used to calculate a deadline based on travel time,
+	// and set to use Jump Drive jumps for that calculation,
+	// set jumpFuel to the default fuel cost for a Jump Drive.
 	if(useJumpDrive)
 		jumpFuel = 200;
 	Init();
