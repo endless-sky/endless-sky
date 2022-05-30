@@ -3013,7 +3013,7 @@ mission "Bring More Enforcer Staffs"
 	invisible
 	source "Warfeed"
 	substitutions
-			<staff> "enforcer"
+		<staff> "enforcer"
 	to offer
 		has "Unfettered: Close Quarter: offered"
 		not "Bring Coalition Weapons: offered"
@@ -3321,9 +3321,9 @@ mission "Unfettered: Start Of The War"
 	description `Prove your strength against Si-Ra and Hi-Ye in a battle. But do not kill them.`
 	source "Darkcloak"
 	substitutions
-		<cloaking question> "How does your ship cloak?"
+		<question> "How does your ship cloak?"
 			not "Unfettered: Cloaking Interest: done"
-		<cloaking question> "Why is your hull black?"
+		<question> "Why is your hull black?"
 			has "Unfettered: Cloaking Interest: done"
 	to offer
 		has "event: Unfettered: shield beetle mass production"
@@ -3383,7 +3383,7 @@ mission "Unfettered: Start Of The War"
 					goto tejolis
 				`	"Why is your ship hull so strong?"`
 					goto hull
-				`	"<cloaking question>"`
+				`	"<question>"`
 					goto cloak
 				`	"What kind of weapons are you using?"`
 					goto weapon
@@ -3399,7 +3399,7 @@ mission "Unfettered: Start Of The War"
 				goto questions
 			label cloak
 			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then diseapear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and strategic advantage. But it was no real ghost, everyone has a weakness. His weakness was that whilst we could not see it, it did not mean that it was not there anymore."`
-			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared they stopped shooting like usual, and made him overconfident, doing confused movements, dropping part of their cargo as if they were in distress. So he reappered He saw the other ships coming in but did not react to them in time and got close - too close - to the convoy. Once the fleet arrived, he disappeared but it was too late for him and his limited agility. One of the convoy ships near him rammed him, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead we built a ship based on that wreckage's materials, and the cloaking device is a part of it."`
+			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared they stopped shooting like usual, and made him overconfident, doing confused movements, dropping part of their cargo as if they were in distress. So he reappeared He saw the other ships coming in but did not react to them in time and got close - too close - to the convoy. Once the fleet arrived, he disappeared but it was too late for him and his limited agility. One of the convoy ships near him rammed him, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead we built a ship based on that wreckage's materials, and the cloaking device is a part of it."`
 			branch "gave cloak"
 				has "Unfettered: Cloaking Interest: done"
 			``
