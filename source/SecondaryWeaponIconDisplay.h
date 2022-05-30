@@ -30,14 +30,14 @@ class SecondaryWeaponIconDisplay {
 public:
 	SecondaryWeaponIconDisplay(PlayerInfo &player);
 	void Update(const std::shared_ptr<Ship> &flagship);
-    void Clear();
-    void Draw(Rectangle ammoBox, Point iconDimensions) const;
-    bool Click(const Point &clickPoint);
+	void Clear();
+	void Draw(Rectangle ammoBox, Point iconDimensions) const;
+	bool Click(const Point &clickPoint);
 
 private:
-    std::vector<std::pair<const Outfit *, int>> ammo;
-    mutable std::vector<ClickZone<const Outfit *>> ammoIconZones;
-    PlayerInfo &player;
+	std::vector<std::pair<const Outfit *, int>> ammo;
+	mutable std::vector<ClickZone<const Outfit *>> ammoIconZones;
+	PlayerInfo &player;
 };
 
 

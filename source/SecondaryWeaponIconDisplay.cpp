@@ -27,7 +27,7 @@ using namespace std;
 
 
 SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
-    : player(player)
+	: player(player)
 {
 
 }
@@ -36,17 +36,17 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 
 void SecondaryWeaponIconDisplay::Update(const shared_ptr<Ship> &flagship)
 {
-    Clear();
-    if(flagship)
+	Clear();
+	if(flagship)
 		for(const auto &it : flagship->Outfits())
 		{
-            const Outfit *secWeapon = it.first;
+			const Outfit *secWeapon = it.first;
 			if(!secWeapon->Icon())
 				continue;
 
-            double ammoCount = -1;
+			double ammoCount = -1;
 			if(secWeapon->Ammo())
-                ammoCount = flagship->OutfitCount(secWeapon->Ammo());
+				ammoCount = flagship->OutfitCount(secWeapon->Ammo());
 			else if(secWeapon->FiringFuel())
 			{
 				double remaining = flagship->Fuel()
@@ -61,19 +61,19 @@ void SecondaryWeaponIconDisplay::Update(const shared_ptr<Ship> &flagship)
 
 void SecondaryWeaponIconDisplay::Clear()
 {
-    ammo.clear();
+	ammo.clear();
 }
 
 
 
 void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
 {
-    const Set<Color> &colors = GameData::Colors();
-    const Font &font = FontSet::Get(14);
-    ammoIconZones.clear();
+	const Set<Color> &colors = GameData::Colors();
+	const Font &font = FontSet::Get(14);
+	ammoIconZones.clear();
 
-    double ammoIconWidth = iconDim.X();
-    double ammoIconHeight = iconDim.Y();
+	double ammoIconWidth = iconDim.X();
+	double ammoIconHeight = iconDim.Y();
 	// Pad the ammo list by the same amount on all four sides.
 	double ammoPad = .5 * (ammoBox.Width() - ammoIconWidth);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
@@ -87,7 +87,7 @@ void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
 	Point boxOff(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
 	Point textOff(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
 	Point iconOff(.5 * ammoIconHeight, .5 * ammoIconHeight);
-    double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+	double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= ammoIconHeight;
@@ -101,7 +101,7 @@ void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		Point iconCenter(iconCenterX, pos.Y() + ammoIconHeight / 2.);
-        ammoIconZones.emplace_back(iconCenter, iconDim, it.first);
+		ammoIconZones.emplace_back(iconCenter, iconDim, it.first);
 
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
@@ -119,14 +119,14 @@ void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
 bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint)
 {
 	bool control = (SDL_GetModState() & KMOD_CTRL);
-    for(const ClickZone<const Outfit *> &it : ammoIconZones)
-        if(it.Contains(clickPoint))
-        {
-            if(!control)
-                player.DeselectAllSecondaries();
-            player.ToggleAnySecondary(it.Value());
-            return true;
-        }
-    return false;
+	for(const ClickZone<const Outfit *> &it : ammoIconZones)
+		if(it.Contains(clickPoint))
+		{
+			if(!control)
+				player.DeselectAllSecondaries();
+			player.ToggleAnySecondary(it.Value());
+			return true;
+		}
+	return false;
 }
 
