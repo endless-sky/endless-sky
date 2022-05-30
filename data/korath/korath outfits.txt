@@ -178,6 +178,90 @@ outfit "Control Transceiver"
 	description "This is a miniaturized communication device, which can be connected to all the major systems of a Kor Sestor automaton, apparently as a way of controlling them remotely. The communications are encrypted and authenticated in a way that would make it nearly impossible to spoof the control signals."
 
 
+outfit "Afterburner (Asteroid Class)"
+	plural "Afterburners (Asteroid Class)"
+	category "Engines"
+	"cost" 136000
+	thumbnail "outfit/tiny korath afterburner"
+	"mass" 10
+	"outfit space" -10
+	"engine capacity" -10
+	"fuel capacity" 100
+	"ramscoop" 0.5
+	"afterburner thrust" 8.175
+	"afterburner energy" 0.77
+	"afterburner heat" 6.26
+	"afterburner fuel" 0.0408
+	"afterburner effect" "afterburner"
+	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+	description "Because this outfit is intended for unfueled fighters, it includes a sizable amount of fuel and a ramscoop to supply the afterburner."
+
+outfit "Afterburner (Comet Class)"
+	plural "Afterburner (Comet Class)"
+	category "Engines"
+	"cost" 299000
+	thumbnail "outfit/small korath afterburner"
+	"mass" 19
+	"outfit space" -19
+	"engine capacity" -19
+	"afterburner thrust" 32.7
+	"afterburner energy" 2.8
+	"afterburner heat" 22.75
+	"afterburner fuel" 0.1485
+	"afterburner effect" "afterburner"
+	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+
+outfit "Afterburner (Lunar Class)"
+	plural "Afterburners (Lunar Class)"
+	category "Engines"
+	"cost" 647000
+	thumbnail "outfit/medium korath afterburner"
+	"mass" 32
+	"outfit space" -32
+	"engine capacity" -32
+	"afterburner thrust" 61.8
+	"afterburner energy" 4.9
+	"afterburner heat" 41.65
+	"afterburner fuel" 0.2618
+	"afterburner effect" "afterburner"
+	"flare sound" "plasma medium"
+	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+
+outfit "Afterburner (Planetary Class)"
+	plural "Afterburners (Planetary Class)"
+	category "Engines"
+	"cost" 1459000
+	thumbnail "outfit/large korath afterburner"
+	"mass" 55
+	"outfit space" -55
+	"engine capacity" -55
+	"afterburner thrust" 120
+	"afterburner energy" 8.9
+	"afterburner heat" 79.45
+	"afterburner fuel" 0.478
+	"afterburner effect" "afterburner"
+	"flare sound" "plasma medium"
+	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
+
+outfit "Afterburner (Stellar Class)"
+	plural "Afterburners (Stellar Class)"
+	category "Engines"
+	"cost" 3280000
+	thumbnail "outfit/huge korath afterburner"
+	"mass" 94
+	"outfit space" -94
+	"engine capacity" -94
+	"afterburner thrust" 230.1
+	"afterburner energy" 15.8
+	"afterburner heat" 149.1
+	"afterburner fuel" 0.863
+	"afterburner effect" "afterburner"
+	"flare sound" "plasma medium"
+	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenominal explosion that nearly melts the thruster."
+	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, to keep the reaction chambers from melting."
+
+
 outfit "Engine (Meteor Class)"
 	plural "Engine (Meteor Class)"
 	category "Engines"
@@ -195,7 +279,7 @@ outfit "Engine (Meteor Class)"
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
-	description "This old engine dates back to a distant era before the escalating Korath war dictated faster drones. The Korath Exiles resurrected these engines in recent years to allow their Chasers to carry larger weapons at the cost of some speed."
+	description `Although the prevailing Korath engine fashion has always been "bigger, faster, more power," the Exiles found it necessary to develop these engines to allow their fighters to carry larger weapons or more cargo, at the cost of some speed.`
 
 outfit "Reaction Control System (Meteor Class)"
 	plural "Reaction Control Systems (Meteor Class)"
@@ -204,17 +288,21 @@ outfit "Reaction Control System (Meteor Class)"
 	thumbnail "outfit/korath reaction engines"
 	"mass" 18
 	"outfit space" -18
-	"engine capacity" -18
+	"engine capacity" -13
+	"weapon capacity" -5
 	"reverse thrust" 7.5
 	"turn" 220
 	"reverse thrusting energy" 1.3
 	"reverse thrusting heat" 2.9
 	"turning energy" 0.6
 	"turning heat" 1.8
-	"flare sprite" "effect/korath flare/tiny"
+	"steering flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
-	"flare sound" "plasma tiny"
-	description "This old engine dates back to a distant era before the escalating Korath war dictated faster drones. The Korath Exiles resurrected these engines in recent years to allow their Chasers to carry larger weapons at the cost of some speed."
+	"reverse flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"reverse flare sound" "plasma tiny"
+	"steering flare sound" "plasma tiny"
+	description "This modification of the Meteor Class engines acts as a reverser, allowing a full range of mobility for small craft when paired with more powerful base thrusters."
 
 outfit "Reverser (Asteroid Class)"
 	plural "Reverser (Asteroid Class)"
@@ -227,9 +315,9 @@ outfit "Reverser (Asteroid Class)"
 	"reverse thrust" 11.2
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 3.4
-	"flare sprite" "effect/korath flare/tiny"
+	"reverse flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
-	"flare sound" "plasma tiny"
+	"reverse flare sound" "plasma tiny"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Reverser (Comet Class)"
@@ -243,9 +331,9 @@ outfit "Reverser (Comet Class)"
 	"reverse thrust" 21.8
 	"reverse thrusting energy" 2.8
 	"reverse thrusting heat" 6.5
-	"flare sprite" "effect/korath flare/small"
+	"reverse flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
-	"flare sound" "plasma small"
+	"reverse flare sound" "plasma small"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Reverser (Lunar Class)"
@@ -259,9 +347,9 @@ outfit "Reverser (Lunar Class)"
 	"reverse thrust" 41.2
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 11.9
-	"flare sprite" "effect/korath flare/medium"
+	"reverse flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
-	"flare sound" "plasma medium"
+	"reverse flare sound" "plasma medium"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Reverser (Planetary Class)"
@@ -275,9 +363,9 @@ outfit "Reverser (Planetary Class)"
 	"reverse thrust" 80.0
 	"reverse thrusting energy" 8.9
 	"reverse thrusting heat" 22.7
-	"flare sprite" "effect/korath flare/large"
+	"reverse flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
-	"flare sound" "plasma large"
+	"reverse flare sound" "plasma large"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Reverser (Stellar Class)"
@@ -291,9 +379,9 @@ outfit "Reverser (Stellar Class)"
 	"reverse thrust" 153.4
 	"reverse thrusting energy" 15.8
 	"reverse thrusting heat" 42.6
-	"flare sprite" "effect/korath flare/huge"
+	"reverse flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
-	"flare sound" "plasma huge"
+	"reverse flare sound" "plasma huge"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
 
 
