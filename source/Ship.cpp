@@ -2786,9 +2786,10 @@ bool Ship::IsOutOfEnergy() const
 			closeToParent = distanceFromParent < 50. && speedRelativeToParent < 1.;
 			// Set closeToParent to false if this ship is disabled due to hull.  It requires additional assistance.
 			closeToParent &= hull >= MinimumHull();
+			closeToParent &= static_cast<bool>(GetParent());
 			// CanCarry is expensive performance-wise so should only be called if necessary.
 			if(closeToParent)
-				closeToParent &= GetParent()->CanCarry(*this);
+				closeToParent &= GetParent()->BaysFree(attributes.Category());
 			// Clear the parent boarding target when fighter boards.
 			if(closeToParent && GetParent().get()->GetTargetShip().get() == this)
 				GetParent().get()->SetTargetShip(nullptr);
