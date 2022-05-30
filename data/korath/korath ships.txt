@@ -546,6 +546,7 @@ ship "Tek Far 109"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
+
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
@@ -646,6 +647,7 @@ ship "Far Lek 14"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
+
 ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
@@ -685,6 +687,7 @@ ship "Far Osk 27"
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 
 ship "Model 8"
@@ -732,6 +735,7 @@ ship "Model 8"
 	explode "small explosion" 10
 	"final explode" "final explosion small"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
+
 
 
 ship "Model 16"
@@ -786,6 +790,7 @@ ship "Model 16"
 	explode "large explosion" 10
 	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
+
 
 
 ship "Model 32"
@@ -843,6 +848,7 @@ ship "Model 32"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
 
+
 ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
@@ -898,6 +904,7 @@ ship "Model 64"
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
+
 
 
 ship "Model 128"
@@ -958,6 +965,7 @@ ship "Model 128"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
 
+
 ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
@@ -1016,6 +1024,7 @@ ship "Model 256"
 	explode "large explosion" 30
 	"final explode" "final explosion large"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
+
 
 
 ship "Model 512"
