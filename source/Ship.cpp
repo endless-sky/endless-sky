@@ -2325,6 +2325,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	bool fighterCanRefuelFleet = false;
 	bool fighterCanRefuelParent = false;
 	bool updateTankerCarrier = false;
+	bool readyToRefuelParent = false;
 	for(Bay &bay : bays)
 		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 				|| (ejecting && !Random::Int(6))))
@@ -2334,20 +2335,27 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			{
 				// TODO: Restock fighter weaponry that needs ammo.
 
+				// Only calculate readyToRefuelParent once
+				if(!updateTankerCarrier)
+					readyToRefuelParent = IsEscortsFullOfFuel() && !IsEnemyInEscortSystem();
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
 				double maxFuel = bay.ship->attributes.Get("fuel capacity");
 				if(maxFuel)
 				{
 					double spareFuel = fuel - JumpFuel();
-					bool canRefuelCarrier = IsEscortsFullOfFuel() && !IsEnemyInEscortSystem() && bay.ship->IsRefueledByRamscoop();
-					// XOR is intentional because a ship may take fuel to refuel
-					// the fleet or deposit fuel to refill parent if fleet is
-					// full.
-					if((spareFuel > 100.) ^ canRefuelCarrier)
+					bool carriedShipHasRamscoop = bay.ship->IsRefueledByRamscoop();
+					bool takeFuelFromCarrierOnDeploy = spareFuel > 100.;
+					bool depositFuelIntoCarrier = bay.ship->fuel < .25 * maxFuel;
+					if(readyToRefuelParent && carriedShipHasRamscoop)
+					{
+						takeFuelFromCarrierOnDeploy = !carriedShipHasRamscoop;
+						depositFuelIntoCarrier = carriedShipHasRamscoop;
+					}
+					if(takeFuelFromCarrierOnDeploy)
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't launch.
-					if((bay.ship->fuel < .25 * maxFuel) ^ canRefuelCarrier)
+					if(depositFuelIntoCarrier)
 					{
 						TransferFuel(bay.ship->fuel, this);
 						// Forget about waiting for fuel to launch if the fighter is needed for defense.
@@ -2377,12 +2385,13 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
 			updateTankerCarrier = true;
-			if(bay.ship->Attributes().Get("fuel capacity"))
+			// Settings for tanker carrier.
+			if((!fighterCanRefuelFleet || !fighterCanRefuelParent) && bay.ship->Attributes().Get("fuel capacity"))
 			{
 				fighterCanRefuelFleet = true;
 				// A fighter must have both fuel capacity and ramscoop to refuel
 				// parent.
-				if(bay.ship->IsRefueledByRamscoop())
+				if(!fighterCanRefuelParent && bay.ship->IsRefueledByRamscoop())
 					fighterCanRefuelParent = true;
 			}
 			// Update the cached sum of carried ship masses.
@@ -3100,8 +3109,8 @@ void Ship::Recharge(bool atSpaceport)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	// Can't refuel if current ship has zero fuel capacity.
-	if(attributes.Get("fuel capacity") < 1 || GetSystem() != other.GetSystem() || IsEnemyInEscortSystem())
+	// Can't refuel if current ship has zero fuel capacity or other is full of fuel.
+	if(attributes.Get("fuel capacity") < 1 || GetSystem() != other.GetSystem() || IsEnemyInEscortSystem() || other.Fuel() == 1.)
 		return false;
 	if(CanBeCarried())
 	{
@@ -4526,21 +4535,20 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> carriedShip)
 // often.
 void Ship::UpdateEscortsState()
 {
-	// We don't need every ship to update every other ship's state every time.
-	if(!Random::Int(20))
-		return;
 	if(!IsYours())
 		return;
 	std::shared_ptr<Ship> flagship = GetParent();
 	if(flagship)
 		while(flagship->GetParent())
 			flagship = flagship->GetParent();
+	if(!flagship)
+		flagship = shared_from_this();
 
 	// Only evaluate state for escorts in the same system as flagship.
-	if(CanBeCarried() || !flagship || flagship->GetSystem() != GetSystem())
+	if(!flagship)
 		return;
 
-	const vector<weak_ptr<Ship>> allEscorts = flagship ? flagship->GetEscorts(): GetEscorts();
+	const vector<weak_ptr<Ship>> allEscorts = flagship->GetEscorts();
 	UpdateEscortsState(allEscorts);
 
 	// Set the state for all fighters and drones.
@@ -4566,4 +4574,6 @@ void Ship::UpdateEscortsState()
 			}
 		}
 	}
+	if(flagship != shared_from_this())
+		UpdateEscortsState(flagship);
 }

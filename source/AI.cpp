@@ -521,6 +521,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
+	bool shouldUpdateEscortState = !static_cast<bool>(Random::Int(20));
+	bool playerEscortStateUpdated = false;
 	for(const auto &it : ships)
 	{
 		// Skip any carried fighters or drones that are somehow in the list.
@@ -768,8 +770,13 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// States used by carried ships.  This is outside of CanBeCarried
 		// because the states need to be updated when no ships are deployed.
-		if(!Random::Int(20))
+		if(shouldUpdateEscortState && !Random::Int(10) && (!it->IsYours() || !playerEscortStateUpdated))
+		{
+			if(it->IsYours())
+				playerEscortStateUpdated = true;
+			// Only update escort state if it makes sense to do so.
 			it->UpdateEscortsState();
+		}
 		// Handle carried ships:
 		if(it->CanBeCarried())
 		{
@@ -1749,16 +1756,15 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
-	bool readyToRefuelCarrier = ship.IsEscortsFullOfFuel();
-	bool fighterHasRefueled = ship.CanRefuel(parent);
-	bool parentIsNotFullOfFuel = parent.Fuel() < 1.;
 	// Only return to ship if low fuel or if the fighter has ramscoop and is refueling the carrier.
-	bool shouldReturnForFuel = (readyToRefuelCarrier) ? !(fighterHasRefueled && parentIsNotFullOfFuel) : ship.IsFuelLow() && parent.CanRefuel(ship);
+	bool shouldReturnForFuel = ship.IsFuelLow() && parent.CanRefuel(ship);
+	bool fighterHasRefueled = ship.CanRefuel(parent);
 	bool refuelingIsAllowed = !ship.IsYours() || (!orders.count(&ship) && fighterHasRefueled) || parent.CanRefuel(ship);
-	// XOR (^) is intentional because it toggles refueling behavior.  Take fuel
-	// from parent to refuel fleet or deposit fuel to parent because it is being
-	// refueled by a ramscoop equipped fighter.
-	if((shouldReturnForFuel ^ readyToRefuelCarrier) && refuelingIsAllowed)
+
+	// Refuel the parent tanker carrier if escorts are full of fuel.
+	if(parent.IsTankerCarrier() && ship.IsEscortsFullOfFuel())
+		shouldReturnForFuel = fighterHasRefueled;
+	if(shouldReturnForFuel && refuelingIsAllowed)
 		return true;
 
 	// If an out-of-combat NPC carried ship is carrying a significant cargo
