@@ -572,7 +572,7 @@ outfit "Nanobot Defense Station"
 	mass 2
 	"outfit space" -3
 	"capture defense" 45
-	illegal 10000
+	atrocity 1
 	"energy consumption" 0.01
 	"heat generation" 0.1
 	unplunderable 1

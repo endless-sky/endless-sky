@@ -50,7 +50,6 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"Large Heat Shunt" 3
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
-		"Nanobot Defense Station" 4
 		
 		"Steering (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -80,7 +79,6 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 		"Plasma Core"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
-		"Nanobot Defense Station" 4
 		
 		"Steering (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -110,7 +108,6 @@ ship "Korath Dredger" "Korath Dredger (Grab-Shunt)"
 		"Plasma Core"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 190
-		"Nanobot Defense Station" 4
 		
 		"Steering (Planetary Class)"
 		"Steering (Lunar Class)"
