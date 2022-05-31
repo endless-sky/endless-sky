@@ -33,6 +33,8 @@ public:
 	ExclusiveItem(const ExclusiveItem&) = default;
 	ExclusiveItem &operator=(const ExclusiveItem&) = default;
 
+	bool IsStock() const { return stockItem; }
+
 	const Type *operator->() const noexcept { return stockItem ? stockItem : std::addressof(item); }
 	const Type &operator*() const noexcept { return stockItem ? *stockItem : item; }
 

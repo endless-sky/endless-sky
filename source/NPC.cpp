@@ -323,11 +323,17 @@ string NPC::Validate(bool asTemplate) const
 		if(planet && !planet->IsValid())
 			return "planet \"" + planet->TrueName() + "\"";
 
+		// If a stock phrase or conversation is given, it must not be empty.
+		if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
+			return "stock phrase";
+		if(converstion.IsStock() && conversation->IsEmpty())
+			return "stock conversation";
+
 		// NPC fleets, unlike stock fleets, do not need a valid government
 		// since they will unconditionally inherit this NPC's government.
 		for(auto &&fleet : fleets)
 			if(!fleet->IsValid(false))
-				return "fleet";
+				return fleet.IsStock() ? "stock fleet" : "custom fleet";
 	}
 
 	// Ships must always be valid.
