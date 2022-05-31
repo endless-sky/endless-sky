@@ -1287,8 +1287,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		jumps += max(0, distance.Days(*bestIt));
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path);
-	jumps += distance.Days(result.destination->GetSystem());
+	DistanceMap distance(path, deadlineOptions.wormholeStrategy, deadlineOptions.requiresJumpDrive);
+	// If currently unreachable, this system does not add to the deadline.
+	jumps += max(0, distance.Days(result.destination->GetSystem()));
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 
 	// Set the deadline, if requested.
