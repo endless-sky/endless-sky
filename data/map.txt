@@ -14570,7 +14570,6 @@ system "Kor Ak'Mari"
 	fleet "Korath Home" 5000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1500
-	fleet "Korath Civilian World" 10000
 	object
 		sprite star/carbon
 		period 100
@@ -14636,7 +14635,6 @@ system "Kor En'lakfar"
 	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 5000
-	fleet "Korath Civilian World" 25000
 	object
 		sprite star/g0
 		period 10
@@ -14702,7 +14700,6 @@ system "Kor Fel'tar"
 	fleet "Korath Home" 2500
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 4000
-	fleet "Korath Civilian World" 25000
 	object
 		sprite star/k3
 		period 10
@@ -14771,7 +14768,6 @@ system "Kor Men"
 	fleet "Korath Home" 8000
 	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Large" 1500
-	fleet "Korath Civilian World" 25000
 	fleet "Korath Civilian Miners" 10000
 	object
 		sprite star/f5
@@ -14905,7 +14901,6 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
-	fleet "Korath Civilian World" 3000
 	object
 		sprite star/m3
 		period 10
@@ -14960,7 +14955,6 @@ system "Kor Zena'i"
 	fleet "Korath Home" 1500
 	fleet "Korath Large Raid" 20000
 	fleet "Korath Civilian Large" 1000
-	fleet "Korath Civilian World" 2500
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -17615,11 +17609,9 @@ system Misam
 	trade Medical 688
 	trade Metal 288
 	trade Plastic 368
-	fleet "Small Core Pirates" 1000
-	fleet "Large Core Pirates" 3000
-	fleet "Marauder small defense fleet" 2000
-	fleet "Marauder large defense fleet" 5000
-	fleet "Korath Small Raid" 3000
+	fleet "Small Core Pirates" 750
+	fleet "Large Core Pirates" 2000
+	fleet "Korath Raid" 3000
 	fleet "Korath Large Raid" 6000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
@@ -29271,8 +29263,8 @@ planet "New Tortuga"
 	"required reputation" -10
 	tribute 6000
 		threshold 5000
-		fleet "Marauder large defense fleet" 10
-		fleet "Marauder small defense fleet" 15
+		fleet "Large Core Pirates" 10
+		fleet "Small Core Pirates" 15
 
 
 planet "New Tibet"
