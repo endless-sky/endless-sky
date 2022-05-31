@@ -1157,7 +1157,6 @@ Files:
  images/outfit/expeller*
  images/outfit/firestorm*
  images/outfit/korath heaver*
- images/outfit/korath inferno*
  images/outfit/*korath reverser*
  images/outfit/shunt bomb*
  images/outfit/shunt-strike*
@@ -1173,6 +1172,8 @@ Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures fr
 Files:
  images/hardpoint/digger turret*
  images/outfit/korath digger turret*
+ images/outfit/korath digger*
+ images/outfit/korath inferno*
 Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
