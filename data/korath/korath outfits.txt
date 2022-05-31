@@ -293,11 +293,11 @@ outfit "Engine (Meteor Class)"
 	"flare sound" "plasma tiny"
 	description `Although the prevailing Korath engine fashion has always been "bigger, faster, more power," the Exiles found it necessary to develop these engines to allow their fighters to carry larger weapons or more cargo, at the cost of some speed.`
 
-outfit "Reaction Control System (Meteor Class)"
-	plural "Reaction Control Systems (Meteor Class)"
+outfit "Bow Drive (Meteor Class)"
+	plural "Bow Drives (Meteor Class)"
 	category "Engines"
 	"cost" 187000
-	thumbnail "outfit/korath reaction engines"
+	thumbnail "outfit/korath bow drive"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -13
