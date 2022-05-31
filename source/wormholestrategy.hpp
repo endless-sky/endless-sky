@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 enum class WormholeStrategy : int_fast8_t {
 		ALL,
-		ONLYUNRESTRICTED,
+		ONLY_UNRESTRICTED,
 		NONE,
 };
 

@@ -164,7 +164,7 @@ void Mission::Load(const DataNode &node)
 					if(grand.Token(0) == "no wormholes")
 						wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "use restricted wormholes")
-						wormholeStrategy = WormholeStrategy::ONLYUNRESTRICTED;
+						wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
 					else if(grand.Token(0) == "requires jump drive")
 						requiresJumpDrive = true;
 				}
