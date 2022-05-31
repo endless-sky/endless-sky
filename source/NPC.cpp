@@ -326,7 +326,7 @@ string NPC::Validate(bool asTemplate) const
 		// If a stock phrase or conversation is given, it must not be empty.
 		if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
 			return "stock phrase";
-		if(converstion.IsStock() && conversation->IsEmpty())
+		if(conversation.IsStock() && conversation->IsEmpty())
 			return "stock conversation";
 
 		// NPC fleets, unlike stock fleets, do not need a valid government
