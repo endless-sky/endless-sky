@@ -99,7 +99,7 @@ outfit "Liquid Sodium Cooler"
 	"outfit space" -37
 	"energy consumption" 3
 	"cooling energy" 6
-	"active cooling" 162
+	"active cooling" 164
 	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system draws a moderate amount of power in order to keep the sodium from freezing when the system is inactive."
 
 
