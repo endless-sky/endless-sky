@@ -1464,9 +1464,15 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/outfit/liquid sodium*
+ images/outfit/liquid?sodium*
 Copyright: Saugia <https://github.com/Saugia>
 Comment: Derived from works by NomadicVolcano (public domain).
+License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/nanobot?defense*
+Copyright: Saugia <https://github.com/Saugia>
+Comment: Derived from works by TheronEpic (under same licence).
 License: CC-BY-SA-4.0
 
 Files:
