@@ -1648,7 +1648,8 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few moments they realize, "Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
-			`They talk about it and then one of the Unfettered elders speak up, "Perfect, hand them over to us, we will see to it they have all the comfort they need, hopefully in exchange for some technology." They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
+			`	This seems to trouble them deeply, they are split between those who want to use the Koraths for technological opportinities, and those who still remember too freshly the horrors those Koraths did. The elders are now the most trubulant ones, some show scars or speak of lost family, others insult the Koraths. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. From him standing up, you see a big number of scars on his arms, and can only guess what he went trough. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raidings happened long ago, they could not have been responsible for those. They are victims of that war as much as we are. They should be considered as an asset at the very least, not prisonners. They could help us against the soulless killers." The mention of that name starts a lot of murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be but feel like now is not the time.`
+			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
 			branch logs
 				has "Unfettered: alpha logs"
 			``
@@ -1656,14 +1657,30 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			label logs
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
+				`	"I found out that you set me up with those Alphas."`
+					goto setup
 				`	(Do not speak to them about the logs).`
 					decline
+			label showlogs
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
 				set "Unfettered: jump drive source"
 				clear "Unfettered: alpha logs"
 				payment 200000
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra of <payment> for your troubles."`
+
+			label setup
+			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the elders are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you."`
+			choice
+				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
+					goto showlogs
+				`	"I understand, they just said to the Alphas it was a trap. It will take a while to earn my trust back."`
+					decline
+				`	"I don't want to have anything to do with you Unfettered anymore."`
+			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares from us though."`
+			action
+				set "Unfettered: Alphas 2: Prove Yourself: failed"
+				clear "salary: Unfettered"
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
