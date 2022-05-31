@@ -173,6 +173,13 @@ public:
 
 
 private:
+	struct DeadlineRouteOptions {
+		WormholeStrategy wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
+		bool requiresJumpDrive = false;
+	};
+
+
+private:
 	bool Enter(const System *system, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
@@ -196,8 +203,7 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
-	bool requiresJumpDrive = false;
+	DeadlineRouteOptions deadlineOptions;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

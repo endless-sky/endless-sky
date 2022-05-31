@@ -162,11 +162,11 @@ void Mission::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "no wormholes")
-						wormholeStrategy = WormholeStrategy::ALL;
-					else if(grand.Token(0) == "use restricted wormholes")
-						wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
+						deadlineOptions.wormholeStrategy = WormholeStrategy::NONE;
+					else if(grand.Token(0) == "all wormholes")
+						deadlineOptions.wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "requires jump drive")
-						requiresJumpDrive = true;
+						deadlineOptions.requiresJumpDrive = true;
 				}
 			}
 		}
@@ -1264,7 +1264,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path, wormholeStrategy, requiresJumpDrive);
+		DistanceMap distance(path, deadlineOptions.wormholeStrategy, deadlineOptions.requiresJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
