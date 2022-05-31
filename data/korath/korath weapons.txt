@@ -79,7 +79,7 @@ outfit "Korath Shunt-Strike"
 		"reload" 30
 		"die effect" "shunt-strike hit"
 		"hit effect" "shunt-strike hit"
-		"hit effect" "shunt-strike sparkles" 8
+		"hit effect" "shunt-strike sparkle" 8
 		"firing energy" 90
 		"firing heat" 331
 		"acceleration" 1
@@ -103,8 +103,8 @@ effect "shunt-strike hit"
 	"lifetime" 30
 	"velocity scale" 0.05
 
-effect "shunt-strike sparkles"
-	sprite "effect/shunt-strike-sparkles"
+effect "shunt-strike sparkle"
+	sprite "effect/shunt-strike-sparkle"
 		"frame rate" 15
 	"lifetime" 90
 	"velocity scale" 0.05
