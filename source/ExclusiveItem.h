@@ -28,16 +28,16 @@ public:
 	ExclusiveItem(const Type *item) : stockItem(item) {}
 	explicit ExclusiveItem(Type &&item) : item(std::move(item)) {}
 
-	ExclusiveItem(ExclusiveItem<Type> &&other) = default;
-	ExclusiveItem(const ExclusiveItem<Type> &other) = default;
+	ExclusiveItem(ExclusiveItem<Type>&&) = default;
+	ExclusiveItem<Type> &operator=(ExclusiveItem<Type>&&) = default;
+	ExclusiveItem(const ExclusiveItem<Type>&) = default;
+	ExclusiveItem<Type> &operator=(const ExclusiveItem<Type>&) = default;
 
 	const Type *operator->() const noexcept { return stockItem ? stockItem : std::addressof(item); }
 	const Type &operator*() const noexcept { return stockItem ? *stockItem : item; }
 
-	ExclusiveItem<Type> &operator=(ExclusiveItem<Type> &&other) = default;
-	ExclusiveItem<Type> &operator=(const ExclusiveItem<Type> &other) = default;
-	bool operator==(const ExclusiveItem<Type> &other) const { return **this == *other; }
-	bool operator!=(const ExclusiveItem<Type> &other) const { return !(**this == *other); }
+	bool operator==(const ExclusiveItem<Type> &other) const { return this->operator*() == other.operator*(); }
+	bool operator!=(const ExclusiveItem<Type> &other) const { return !(this->operator*() == other.operator*()); }
 
 
 private:
