@@ -564,3 +564,17 @@ outfit "Korath Repeater Rifle"
 	"capture defense" 2.4
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+
+outfit "Nanobot Defense Station"
+	category "Hand to Hand"
+	cost 53000
+	thumbnail "outfit/nanobot defense station"
+	mass 2
+	"outfit space" -3
+	"capture defense" 45
+	illegal 10000
+	"energy consumption" 0.01
+	"heat generation" 0.1
+	unplunderable 1
+	description `This insidious trap awaits anyone foolish enough to attempt to capture Korath World-Ships.  Intruders are trapped before this airlock, ahead of which a cloud of nanobots programmed to break down organic matter into nutrigel is released.  The resulting gel then drains into the vat below while the robots are recalled.`
+	description `Many races find this means of defense abhorrent.  Citing the excruciating, confusing death experienced by its victims; the violation of taboos relating to cannibalism, and erroneous fears that the nanobots could somehow "escape," fines are levied against anyone found with these airlocks.`  

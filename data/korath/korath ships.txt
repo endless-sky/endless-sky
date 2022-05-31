@@ -197,7 +197,7 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 779
+		"outfit space" 839
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
@@ -215,6 +215,7 @@ ship "Korath World-Ship"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
+		"Nanobot Defense Station" 19
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
