@@ -91,6 +91,18 @@ outfit "Large Heat Shunt"
 	"cooling" 54
 	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
 
+outfit "Liquid Sodium Cooler"
+	category "Systems"
+	cost 1660000
+	thumbnail "outfit/liquid sodium"
+	# These stats are tuned so if the outfit is active 75% of the time and the compensating power comes from a Plasma Core, you'll break even compared to a Large Heat Shunt
+	"mass" 37
+	"outfit space" -37
+	"energy consumption" 1.5
+	"cooling energy" 6
+	"active cooling" 162
+	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system keeps the sodium at a safe temperature to avoid pipe bursts. This draws a moderate amount of power even when the system is inactive."
+
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
