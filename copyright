@@ -1144,6 +1144,47 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/effect/firestorm*
+ images/effect/heaver*
+ images/effect/*digger*
+ images/effect/shunt*
+ images/hardpoint/expeller*
+ images/hardpoint/firestorm*
+ images/hardpoint/korath heaver*
+ images/hardpoint/korath inferno*
+ images/icon/firestorm torpedo*
+ images/icon/korath heaver*
+ images/outfit/expeller*
+ images/outfit/firestorm*
+ images/outfit/korath heaver*
+ images/outfit/korath inferno*
+ images/outfit/*korath reverser*
+ images/outfit/shunt bomb*
+ images/outfit/shunt-strike*
+ images/projectile/expeller*
+ images/projectile/heaver*
+ images/projectile/korath digger*
+ images/projectile/korath inferno*
+ images/projectile/shunt-strike*
+Copyright: None (CC0 Public Domain)
+License: N/A (CC0 Public Domain)
+Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
+
+Files:
+ images/hardpoint/digger turret*
+ images/outfit/korath digger turret*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/*/korath*reverse*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+
+Files:
  images/effect/dragonflame*
  images/effect/fusionflare*
  images/effect/pwave?shot*
@@ -1324,15 +1365,13 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/coalition?flare/*
- images/effect/korath?flare/*
  images/effect/plasma?flare/*
- images/effect/pug?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
+ images/outfit/*?korath?afterburner*
  images/outfit/afterburner*
  images/outfit/asteroid?scanner*
  images/outfit/blue?sun*
@@ -1370,6 +1409,12 @@ Files: sounds/ionball*
 Copyright: pluralz
 License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
+
+Files:
+ images/outfit/tiny korath engine*
+ images/outfit/korath reaction engines*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
 
 Files:
  images/planet/stationh-ancient0*
@@ -1419,9 +1464,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/remnant afterburner.wav
-License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+ images/outfit/liquid sodium*
+Copyright: Saugia <https://github.com/Saugia>
+Comment: Derived from works by NomadicVolcano (public domain).
+License: CC-BY-SA-4.0
 
 Files:
  images/ship/kestrel*
