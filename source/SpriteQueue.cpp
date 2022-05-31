@@ -26,7 +26,8 @@ using namespace std;
 
 
 // Constructor, which allocates worker threads.
-SpriteQueue::SpriteQueue()
+SpriteQueue::SpriteQueue(SpriteSet &sprites)
+	: sprites(sprites)
 {
 	threads.resize(max(4u, thread::hardware_concurrency()));
 	for(thread &t : threads)
@@ -52,16 +53,14 @@ SpriteQueue::~SpriteQueue()
 // Add a sprite to load.
 void SpriteQueue::Add(const shared_ptr<ImageSet> &images)
 {
+	// If this sprite should be deferred, don't load it now.
+	if(ImageSet::IsDeferred(images->Name()))
 	{
-		lock_guard<mutex> lock(readMutex);
-		// Do nothing if we are destroying the queue already.
-		if(added < 0)
-			return;
-
-		toRead.push(images);
-		++added;
+		deferred[sprites.Get(images->Name())] = images;
+		return;
 	}
-	readCondition.notify_one();
+
+	AddToQueue(images);
 }
 
 
@@ -118,6 +117,52 @@ void SpriteQueue::Finish()
 
 
 
+// Load the given deferred sprite, if possible.
+void SpriteQueue::Preload(const Sprite *sprite)
+{
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
+		return;
+
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite.
+	auto pit = preloaded.find(sprite);
+	if(pit != preloaded.end())
+	{
+		for(auto &it : preloaded)
+			if(it.second < pit->second)
+				++it.second;
+
+		pit->second = 0;
+		return;
+	}
+
+	// This sprite is not currently preloaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	const string &name = sprite->Name();
+	pit = preloaded.begin();
+	while(pit != preloaded.end())
+	{
+		++pit->second;
+		if(pit->second >= 20)
+		{
+			Unload(name);
+			pit = preloaded.erase(pit);
+		}
+		else
+			++pit;
+	}
+
+	// Now, load all the files for this sprite.
+	preloaded[sprite] = 0;
+	AddToQueue(dit->second);
+}
+
+
+
 // Thread entry point.
 void SpriteQueue::operator()()
 {
@@ -161,11 +206,27 @@ void SpriteQueue::operator()()
 
 
 
+void SpriteQueue::AddToQueue(const std::shared_ptr<ImageSet> &images)
+{
+	{
+		lock_guard<mutex> lock(readMutex);
+		// Do nothing if we are destroying the queue already.
+		if(added < 0)
+			return;
+
+		toRead.push(images);
+		++added;
+	}
+	readCondition.notify_one();
+}
+
+
+
 void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 {
 	while(!toUnload.empty())
 	{
-		Sprite *sprite = SpriteSet::Modify(toUnload.front());
+		Sprite *sprite = sprites.Modify(toUnload.front());
 		toUnload.pop();
 
 		lock.unlock();
@@ -182,7 +243,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		// It's now safe to modify the lists.
 		lock.unlock();
 
-		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
+		imageSet->Upload(sprites.Modify(imageSet->Name()));
 
 		lock.lock();
 		++completed;

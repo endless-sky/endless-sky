@@ -455,7 +455,7 @@ void MapDetailPanel::DrawInfo()
 	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 
 	// System sprite goes from 0 to 90.
-	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
+	const Sprite *systemSprite = GameData::Sprites().Get("ui/map system");
 	SpriteShader::Draw(systemSprite, uiPoint);
 
 	const Font &font = FontSet::Get(14);
@@ -479,7 +479,7 @@ void MapDetailPanel::DrawInfo()
 	if(player.HasVisited(*selectedSystem))
 	{
 		set<const Planet *> shown;
-		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
+		const Sprite *planetSprite = GameData::Sprites().Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -539,7 +539,7 @@ void MapDetailPanel::DrawInfo()
 	tradeY = uiPoint.Y() - 95.;
 
 	// Trade sprite goes from 310 to 540.
-	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
+	const Sprite *tradeSprite = GameData::Sprites().Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
 
 	uiPoint.X() -= 90.;
@@ -594,7 +594,7 @@ void MapDetailPanel::DrawInfo()
 	{
 		static const int X_OFFSET = 240;
 		static const int WIDTH = 500;
-		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
+		const Sprite *panelSprite = GameData::Sprites().Get("ui/description panel");
 		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
@@ -614,7 +614,7 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
-	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
+	const Sprite *orbitSprite = GameData::Sprites().Get("ui/orbits and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
 

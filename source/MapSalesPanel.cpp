@@ -211,7 +211,7 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 
 void MapSalesPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/sales key");
+	const Sprite *back = GameData::Sprites().Get("ui/sales key");
 	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
@@ -252,7 +252,7 @@ void MapSalesPanel::DrawPanel() const
 		Point(WIDTH, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
+	const Sprite *edgeSprite = GameData::Sprites().Get("ui/right edge");
 	if(edgeSprite->Height())
 	{
 		int steps = Screen::Height() / edgeSprite->Height();
@@ -272,9 +272,9 @@ void MapSalesPanel::DrawInfo() const
 {
 	if(selected >= 0)
 	{
-		const Sprite *left = SpriteSet::Get("ui/left edge");
-		const Sprite *bottom = SpriteSet::Get(compare >= 0 ? "ui/bottom edges" : "ui/bottom edge");
-		const Sprite *box = SpriteSet::Get(compare >= 0 ? "ui/thumb boxes" : "ui/thumb box");
+		const Sprite *left = GameData::Sprites().Get("ui/left edge");
+		const Sprite *bottom = GameData::Sprites().Get(compare >= 0 ? "ui/bottom edges" : "ui/bottom edge");
+		const Sprite *box = GameData::Sprites().Get(compare >= 0 ? "ui/thumb boxes" : "ui/thumb box");
 
 		const ItemInfoDisplay &selectedInfo = SelectedInfo();
 		const ItemInfoDisplay &compareInfo = CompareInfo();
@@ -329,7 +329,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 		corner.Y() += 50.;
 	hidPrevious = hide;
 
-	const Sprite *arrow = SpriteSet::Get(hide ? "ui/collapsed" : "ui/expanded");
+	const Sprite *arrow = GameData::Sprites().Get(hide ? "ui/collapsed" : "ui/expanded");
 	SpriteShader::Draw(arrow, corner + Point(15., 25.));
 
 	const Color &textColor = *GameData::Colors().Get(hide ? "medium" : "bright");

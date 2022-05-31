@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
+#include "SoundSet.h"
 #include "SpriteSet.h"
 
 #include <algorithm>
@@ -215,31 +216,31 @@ void Outfit::Load(const DataNode &node)
 			steeringFlareSprites.back().first.LoadSprite(child);
 		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
-			++flareSounds[Audio::Get(child.Token(1))];
+			++flareSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
-			++reverseFlareSounds[Audio::Get(child.Token(1))];
+			++reverseFlareSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
-			++steeringFlareSounds[Audio::Get(child.Token(1))];
+			++steeringFlareSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
 			++jumpEffects[GameData::Effects().Get(child.Token(1))];
 		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
-			++hyperSounds[Audio::Get(child.Token(1))];
+			++hyperSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
-			++hyperInSounds[Audio::Get(child.Token(1))];
+			++hyperInSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
-			++hyperOutSounds[Audio::Get(child.Token(1))];
+			++hyperOutSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
-			++jumpSounds[Audio::Get(child.Token(1))];
+			++jumpSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
-			++jumpInSounds[Audio::Get(child.Token(1))];
+			++jumpInSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
-			++jumpOutSounds[Audio::Get(child.Token(1))];
+			++jumpOutSounds[GameData::Sounds().Get(child.Token(1))];
 		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
-			flotsamSprite = SpriteSet::Get(child.Token(1));
+			flotsamSprite = GameData::Sprites().Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			thumbnail = SpriteSet::Get(child.Token(1));
+			thumbnail = GameData::Sprites().Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 			LoadWeapon(child);
 		else if(child.Token(0) == "ammo" && child.Size() >= 2)

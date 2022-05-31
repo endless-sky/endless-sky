@@ -154,6 +154,8 @@
 		<Unit filename="source/Galaxy.h" />
 		<Unit filename="source/GameAction.cpp" />
 		<Unit filename="source/GameAction.h" />
+		<Unit filename="source/GameAssets.cpp" />
+		<Unit filename="source/GameAssets.h" />
 		<Unit filename="source/GameData.cpp" />
 		<Unit filename="source/GameData.h" />
 		<Unit filename="source/GameEvent.cpp" />
@@ -299,6 +301,10 @@
 		<Unit filename="source/ShopPanel.h" />
 		<Unit filename="source/Sound.cpp" />
 		<Unit filename="source/Sound.h" />
+		<Unit filename="source/SoundQueue.cpp" />
+		<Unit filename="source/SoundQueue.h" />
+		<Unit filename="source/SoundSet.cpp" />
+		<Unit filename="source/SoundSet.h" />
 		<Unit filename="source/SpaceportPanel.cpp" />
 		<Unit filename="source/SpaceportPanel.h" />
 		<Unit filename="source/Sprite.cpp" />

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Body.h"
 #include "DrawList.h"
+#include "GameData.h"
 #include "pi.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -72,7 +73,7 @@ void StarField::Init(int stars, int width)
 	SetUpGraphics();
 	MakeStars(stars, width);
 
-	lastSprite = SpriteSet::Get("_menu/haze");
+	lastSprite = GameData::Sprites().Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
 	{
 		Point next;
@@ -104,7 +105,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
 	if(!sprite)
-		sprite = SpriteSet::Get("_menu/haze");
+		sprite = GameData::Sprites().Get("_menu/haze");
 
 	for(Body &body : haze[0])
 		body.SetSprite(sprite);

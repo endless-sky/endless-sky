@@ -53,7 +53,7 @@ void GameLoadingPanel::Step()
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
 		// e.g. due to capitalization errors or other typos.
-		SpriteSet::CheckReferences();
+		GameData::Sprites().CheckReferences();
 		Audio::CheckReferences();
 		// All sprites with collision masks should also have their 1x scaled versions, so create
 		// any additional scaled masks from the default one.

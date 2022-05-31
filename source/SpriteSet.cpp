@@ -15,27 +15,30 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "Sprite.h"
 
-#include <map>
-#include <mutex>
-
 using namespace std;
 
-namespace {
-	map<string, Sprite> sprites;
-
-	mutex modifyMutex;
-}
 
 
-
-const Sprite *SpriteSet::Get(const string &name)
+const Sprite *SpriteSet::Get(const string &name) const
 {
-	return Modify(name);
+	lock_guard<mutex> guard(modifyMutex);
+
+	auto it = sprites.find(name);
+	if(it == sprites.end())
+		it = sprites.emplace(name, Sprite(name)).first;
+	return &it->second;
 }
 
 
 
-void SpriteSet::CheckReferences()
+Sprite *SpriteSet::Modify(const string &name)
+{
+	return const_cast<Sprite *>(Get(name));
+}
+
+
+
+void SpriteSet::CheckReferences() const
 {
 	for(const auto &pair : sprites)
 	{
@@ -45,16 +48,4 @@ void SpriteSet::CheckReferences()
 			if(pair.first.compare(0, 5, "land/") != 0)
 				Files::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
 	}
-}
-
-
-
-Sprite *SpriteSet::Modify(const string &name)
-{
-	lock_guard<mutex> guard(modifyMutex);
-
-	auto it = sprites.find(name);
-	if(it == sprites.end())
-		it = sprites.emplace(name, Sprite(name)).first;
-	return &it->second;
 }

@@ -235,7 +235,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+	const Sprite *collapsedArrow = GameData::Sprites().Get("ui/collapsed");
 
 	int heightOffset = 20;
 
@@ -245,7 +245,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		selectedItem = selectedOutfit->Name();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		const Sprite *background = GameData::Sprites().Get("ui/outfitter selected");
 
 		float tileSize = thumbnail
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
@@ -763,12 +763,12 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 
 void OutfitterPanel::DrawKey()
 {
-	const Sprite *back = SpriteSet::Get("ui/outfitter key");
+	const Sprite *back = GameData::Sprites().Get("ui/outfitter key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 
 	const Font &font = FontSet::Get(14);
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
-	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+	const Sprite *box[2] = {GameData::Sprites().Get("ui/unchecked"), GameData::Sprites().Get("ui/checked")};
 
 	Point pos = Screen::BottomLeft() + Point(10., -VisiblityCheckboxesSize() + 10.);
 	Point off = Point(10., -.5 * font.Height());
@@ -874,7 +874,7 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
 {
 	const Sprite *thumbnail = outfit.Thumbnail();
-	const Sprite *back = SpriteSet::Get(
+	const Sprite *back = GameData::Sprites().Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
 	SpriteShader::Draw(thumbnail, center);

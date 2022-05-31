@@ -26,6 +26,7 @@ class ImageBuffer;
 class ImageSet;
 class Mask;
 class Sprite;
+class SpriteSet;
 
 
 
@@ -33,7 +34,7 @@ class Sprite;
 // worker threads that begins loading them as soon as they are added.
 class SpriteQueue {
 public:
-	SpriteQueue();
+	SpriteQueue(SpriteSet &sprites);
 	~SpriteQueue();
 
 	// No moving or copying this class.
@@ -52,16 +53,21 @@ public:
 	void UploadSprites();
 	// Finish loading.
 	void Finish();
+	// Load the given deferred sprite, if possible.
+	void Preload(const Sprite *sprite);
 
 	// Thread entry point.
 	void operator()();
 
 
 private:
+	void AddToQueue(const std::shared_ptr<ImageSet> &images);
 	void DoLoad(std::unique_lock<std::mutex> &lock);
 
 
 private:
+	SpriteSet &sprites;
+
 	// These are the image sets that need to be loaded from disk.
 	std::queue<std::shared_ptr<ImageSet>> toRead;
 	mutable std::mutex readMutex;
@@ -76,6 +82,10 @@ private:
 
 	// These sprites must be unloaded to reclaim GPU memory.
 	std::queue<std::string> toUnload;
+
+	// Track which sprites use deferred loading.
+	std::map<const Sprite *, std::shared_ptr<ImageSet>> deferred;
+	std::map<const Sprite *, int> preloaded;
 
 	// Worker threads for loading sprites from disk.
 	std::vector<std::thread> threads;

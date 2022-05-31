@@ -100,7 +100,7 @@ void StartConditions::Load(const DataNode &node)
 			description += value + "\n";
 		}
 		else if(key == "thumbnail" && hasValue)
-			thumbnail = SpriteSet::Get(value);
+			thumbnail = GameData::Sprites().Get(value);
 		else if(child.Token(0) == "ship" && child.Size() >= 2)
 		{
 			// TODO: support named stock ships.

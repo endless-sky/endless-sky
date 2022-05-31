@@ -223,7 +223,7 @@ void ShopPanel::DrawShipsSidebar()
 		}
 
 		bool isSelected = playerShips.count(ship.get());
-		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+		const Sprite *background = GameData::Sprites().Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
 		// button (if any) applies to it. If so, brighten the background.
@@ -252,7 +252,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+			const Sprite *icon = GameData::Sprites().Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(zones.back().Contains(mouse))
 			{
@@ -392,8 +392,8 @@ void ShopPanel::DrawMain()
 	const Color &bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
 
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
-	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
+	const Sprite *collapsedArrow = GameData::Sprites().Get("ui/collapsed");
+	const Sprite *expandedArrow = GameData::Sprites().Get("ui/expanded");
 
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
@@ -495,7 +495,7 @@ void ShopPanel::DrawMain()
 
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
-	const Sprite *back = SpriteSet::Get(
+	const Sprite *back = GameData::Sprites().Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
 

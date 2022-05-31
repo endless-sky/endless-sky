@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "DataNode.h"
+#include "GameData.h"
+#include "SoundSet.h"
 
 using namespace std;
 
@@ -43,7 +45,7 @@ void Effect::Load(const DataNode &node)
 		if(child.Token(0) == "sprite")
 			LoadSprite(child);
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
-			sound = Audio::Get(child.Token(1));
+			sound = GameData::Sounds().Get(child.Token(1));
 		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
 		else if(child.Token(0) == "random lifetime" && child.Size() >= 2)

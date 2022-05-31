@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Files.h"
 #include "text/FontSet.h"
+#include "GameData.h"
 #include "ImageSet.h"
 #include "Information.h"
 #include "MaskManager.h"
@@ -389,11 +390,11 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "landing message" && node.Size() >= 2)
 		{
 			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+				landingMessages[GameData::Sprites().Get(child.Token(0))] = node.Token(1);
 		}
 		else if(key == "star" && node.Size() >= 2)
 		{
-			const Sprite *sprite = SpriteSet::Get(node.Token(1));
+			const Sprite *sprite = GameData::Sprites().Get(node.Token(1));
 			for(const DataNode &child : node)
 			{
 				if(child.Token(0) == "power" && child.Size() >= 2)

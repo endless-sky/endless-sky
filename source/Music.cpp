@@ -13,12 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Music.h"
 
 #include "Files.h"
+#include "GameData.h"
 
 #include <mad.h>
 
 #include <algorithm>
 #include <cstring>
-#include <map>
 
 using namespace std;
 
@@ -28,33 +28,6 @@ namespace {
 	// How many samples to put in each output block. Because the output is in
 	// stereo, the duration of the sample is half this amount:
 	const size_t OUTPUT_CHUNK = 32768;
-
-	map<string, string> paths;
-}
-
-
-
-void Music::Init(const vector<string> &sources)
-{
-	for(const string &source : sources)
-	{
-		// Find all the sound files that this resource source provides.
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
-
-		for(const string &path : files)
-		{
-			// Sanity check on the path length.
-			if(path.length() < root.length() + 4)
-				continue;
-			string ext = path.substr(path.length() - 4);
-			if(ext != ".mp3" && ext != ".MP3")
-				continue;
-
-			string name = path.substr(root.length(), path.length() - root.length() - 4);
-			paths[name] = path;
-		}
-	}
 }
 
 
@@ -93,8 +66,8 @@ Music::~Music()
 void Music::SetSource(const string &name)
 {
 	// Find a file that provides this music.
-	auto it = paths.find(name);
-	string path = (it == paths.end() ? "" : it->second);
+	auto it = GameData::Music().find(name);
+	string path = (it == GameData::Music().end() ? "" : it->second);
 
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)

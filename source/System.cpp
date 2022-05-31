@@ -281,7 +281,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "jump range")
 			jumpRange = max(0., child.Value(valueIndex));
 		else if(key == "haze")
-			haze = SpriteSet::Get(value);
+			haze = GameData::Sprites().Get(value);
 		else if(key == "trade" && child.Size() >= 3)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "object")

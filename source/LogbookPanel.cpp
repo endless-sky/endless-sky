@@ -89,7 +89,7 @@ void LogbookPanel::Draw()
 		Point(1., Screen::Height()),
 		lineColor);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
+	const Sprite *edgeSprite = GameData::Sprites().Get("ui/right edge");
 	if(edgeSprite->Height())
 	{
 		// If the screen is high enough, the edge sprite should repeat.

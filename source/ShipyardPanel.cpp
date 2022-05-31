@@ -52,7 +52,7 @@ namespace {
 			Dialog::Draw();
 
 			randomPos = cancelPos - Point(80., 0.);
-			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
+			SpriteShader::Draw(GameData::Sprites().Get("ui/dialog cancel"), randomPos);
 
 			const Font &font = FontSet::Get(14);
 			static const string label = "Random";
@@ -148,7 +148,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+	const Sprite *collapsedArrow = GameData::Sprites().Get("ui/collapsed");
 
 	int heightOffset = 20;
 
@@ -157,7 +157,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
 		selectedItem = selectedShip->ModelName();
 
-		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
+		const Sprite *background = GameData::Sprites().Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = shipSprite
 			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))

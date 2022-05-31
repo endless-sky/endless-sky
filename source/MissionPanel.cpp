@@ -508,7 +508,7 @@ bool MissionPanel::Scroll(double dx, double dy)
 
 void MissionPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/mission key");
+	const Sprite *back = GameData::Sprites().Get("ui/mission key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 
 	const Font &font = FontSet::Get(14);
@@ -555,7 +555,7 @@ void MissionPanel::DrawKey() const
 // Fill in the top-middle header bar that names the selected system, and indicates its distance.
 void MissionPanel::DrawSelectedSystem() const
 {
-	const Sprite *sprite = SpriteSet::Get("ui/selected system");
+	const Sprite *sprite = GameData::Sprites().Get("ui/selected system");
 	SpriteShader::Draw(sprite, Point(0., Screen::Top() + .5f * sprite->Height()));
 
 	string text;
@@ -631,13 +631,13 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 	FillShader::Fill(pos + .5 * size, size, back);
 
 	// Edges:
-	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+	const Sprite *bottom = GameData::Sprites().Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
 	Point bottomOff(0., .5 * bottom->Height());
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
 
-	const Sprite *left = SpriteSet::Get("ui/left edge");
-	const Sprite *right = SpriteSet::Get("ui/right edge");
+	const Sprite *left = GameData::Sprites().Get("ui/left edge");
+	const Sprite *right = GameData::Sprites().Get("ui/right edge");
 	double dy = .5 * left->Height();
 	Point leftOff(-.5 * (size.X() + left->Width()), 0.);
 	Point rightOff(.5 * (size.X() + right->Width()), 0.);

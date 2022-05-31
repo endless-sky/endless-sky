@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -101,7 +102,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 		{
 			// A scene always starts a new text node.
 			AddNode();
-			nodes.back().scene = SpriteSet::Get(child.Token(1));
+			nodes.back().scene = GameData::Sprites().Get(child.Token(1));
 		}
 		else if(child.Token(0) == "label" && child.Size() >= 2)
 		{

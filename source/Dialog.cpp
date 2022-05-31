@@ -109,10 +109,10 @@ void Dialog::Draw()
 {
 	DrawBackdrop();
 
-	const Sprite *top = SpriteSet::Get("ui/dialog top");
-	const Sprite *middle = SpriteSet::Get("ui/dialog middle");
-	const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
-	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	const Sprite *top = GameData::Sprites().Get("ui/dialog top");
+	const Sprite *middle = GameData::Sprites().Get("ui/dialog middle");
+	const Sprite *bottom = GameData::Sprites().Get("ui/dialog bottom");
+	const Sprite *cancel = GameData::Sprites().Get("ui/dialog cancel");
 
 	// Get the position of the top of this dialog, and of the text and input.
 	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);

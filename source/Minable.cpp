@@ -43,7 +43,7 @@ void Minable::Load(const DataNode &node)
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
-			SetSprite(SpriteSet::Get(child.Token(1)));
+			SetSprite(GameData::Sprites().Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
 		else if(child.Token(0) == "random hull" && child.Size() >= 2)

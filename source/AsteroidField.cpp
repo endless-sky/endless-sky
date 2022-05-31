@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 
 #include "DrawList.h"
+#include "GameData.h"
 #include "Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
@@ -54,7 +55,7 @@ void AsteroidField::Clear()
 // Add a new asteroid to the list, using the sprite with the given name.
 void AsteroidField::Add(const string &name, int count, double energy)
 {
-	const Sprite *sprite = SpriteSet::Get("asteroid/" + name + "/spin");
+	const Sprite *sprite = GameData::Sprites().Get("asteroid/" + name + "/spin");
 	for(int i = 0; i < count; ++i)
 		asteroids.emplace_back(sprite, energy);
 }

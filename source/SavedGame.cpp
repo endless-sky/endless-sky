@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Date.h"
 #include "text/Format.h"
+#include "GameData.h"
 #include "SpriteSet.h"
 
 using namespace std;
@@ -69,7 +70,7 @@ void SavedGame::Load(const string &path)
 				if(child.Token(0) == "name" && child.Size() >= 2)
 					shipName = child.Token(1);
 				else if(child.Token(0) == "sprite" && child.Size() >= 2)
-					shipSprite = SpriteSet::Get(child.Token(1));
+					shipSprite = GameData::Sprites().Get(child.Token(1));
 			}
 		}
 	}

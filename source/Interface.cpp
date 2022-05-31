@@ -388,7 +388,7 @@ Interface::ImageElement::ImageElement(const DataNode &node, const Point &globalA
 	// If this is a "sprite," look up the sprite with the given name. Otherwise,
 	// the sprite path will be dynamically supplied by the Information object.
 	if(node.Token(0) == "sprite")
-		sprite[Element::ACTIVE] = SpriteSet::Get(node.Token(1));
+		sprite[Element::ACTIVE] = GameData::Sprites().Get(node.Token(1));
 	else
 		name = node.Token(1);
 
@@ -414,9 +414,9 @@ bool Interface::ImageElement::ParseLine(const DataNode &node)
 	// The "inactive" and "hover" sprite only applies to non-dynamic images.
 	// The "colored" tag only applies to outlines.
 	if(node.Token(0) == "inactive" && node.Size() >= 2 && name.empty())
-		sprite[Element::INACTIVE] = SpriteSet::Get(node.Token(1));
+		sprite[Element::INACTIVE] = GameData::Sprites().Get(node.Token(1));
 	else if(node.Token(0) == "hover" && node.Size() >= 2 && name.empty())
-		sprite[Element::HOVER] = SpriteSet::Get(node.Token(1));
+		sprite[Element::HOVER] = GameData::Sprites().Get(node.Token(1));
 	else if(isOutline && node.Token(0) == "colored")
 		isColored = true;
 	else

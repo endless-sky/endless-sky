@@ -85,7 +85,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 	if(outfit && outfit->FlotsamSprite())
 		SetSprite(outfit->FlotsamSprite());
 	else
-		SetSprite(SpriteSet::Get("effect/box"));
+		SetSprite(GameData::Sprites().Get("effect/box"));
 	SetFrameRate(4. * (1. + Random::Real()));
 }
 

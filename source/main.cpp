@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
+#include "GameAssets.h"
 #include "GameData.h"
 #include "GameWindow.h"
 #include "GameLoadingPanel.h"
@@ -80,7 +81,7 @@ int main(int argc, char *argv[])
 		InitConsole();
 #endif
 	Conversation conversation;
-	bool debugMode = false;
+	int loadOptions = 0;
 	bool loadOnly = false;
 	bool printShips = false;
 	bool printTests = false;
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
 		else if(arg == "-t" || arg == "--talk")
 			conversation = LoadConversation();
 		else if(arg == "-d" || arg == "--debug")
-			debugMode = true;
+			loadOptions |= GameAssets::Debug;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if(arg == "--test" && *++it)
@@ -118,9 +119,17 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	try {
+		const bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
+		if(isConsoleOnly)
+			loadOptions |= GameAssets::OnlyData;
+		else
+		{
+			// OpenAL needs to be initialized before we begin loading any sounds/music.
+			Audio::Init();
+		}
+
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		future<void> dataLoading = GameData::BeginLoad(loadOptions);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
@@ -175,10 +184,8 @@ int main(int argc, char *argv[])
 		// Show something other than a blank window.
 		GameWindow::Step();
 
-		Audio::Init(GameData::Sources());
-
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRunName, debugMode);
+		GameLoop(player, conversation, testToRunName, loadOptions & GameAssets::Debug);
 	}
 	catch(const runtime_error &error)
 	{
@@ -378,7 +385,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		// we should draw the game panels instead:
 		(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 		if(isFastForward)
-			SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+			SpriteShader::Draw(GameData::Sprites().Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 		GameWindow::Step();
 

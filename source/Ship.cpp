@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "ShipEvent.h"
 #include "Sound.h"
+#include "SoundSet.h"
 #include "SpriteSet.h"
 #include "Sprite.h"
 #include "StellarObject.h"
@@ -196,7 +197,7 @@ void Ship::Load(const DataNode &node)
 		if(key == "sprite")
 			LoadSprite(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
-			thumbnail = SpriteSet::Get(child.Token(1));
+			thumbnail = GameData::Sprites().Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
@@ -2465,7 +2466,7 @@ int Ship::Scan()
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(Audio::Get("scan"), Position());
+		Audio::Play(GameData::Sounds().Get("scan"), Position());
 
 	if(startedScanning && isYours)
 	{

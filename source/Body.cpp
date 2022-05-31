@@ -199,7 +199,7 @@ void Body::LoadSprite(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
-	sprite = SpriteSet::Get(node.Token(1));
+	sprite = GameData::Sprites().Get(node.Token(1));
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not

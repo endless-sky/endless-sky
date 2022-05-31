@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/layout.hpp"
 #include "Preferences.h"
 #include "Screen.h"
+#include "SoundSet.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -132,7 +133,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
 		Audio::SetVolume((20 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
+		Audio::Play(GameData::Sounds().Get("warder"));
 		return true;
 	}
 
@@ -607,7 +608,7 @@ void PreferencesPanel::DrawPlugins()
 
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(plugin.first);
+			const Sprite *sprite = GameData::Sprites().Get(plugin.first);
 			Point top(15., firstY);
 			if(sprite)
 			{
