@@ -2330,6 +2330,23 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			{
 				// Determine which of the fighter's weapons we can restock.
 				auto restockable = bay.ship->GetArmament().RestockableAmmo();
+				bool tookAmmo = false;
+				// Ammunition found in the cargo hold can be transferred to internally carried fighters.
+				if(bay.side == Bay::INSIDE && !restockable.empty())
+				{
+					for(auto &&ammo : restockable)
+					{
+						int transferrable = bay.ship->Attributes().CanAdd(*ammo, Cargo().Get(ammo));
+						if(transferrable > 0)
+						{
+							bay.ship->AddOutfit(ammo, transferrable);
+							Cargo().Remove(ammo, transferrable);
+							carriedMass += ammo->Mass() * transferrable;
+							tookAmmo = true;
+						}
+					}
+				}
+				// Ammunition kept in dedicated storage can be transferred to any fighter.
 				auto toRestock = map<const Outfit *, int>{};
 				for(auto &&ammo : restockable)
 				{
@@ -2338,9 +2355,9 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 						toRestock.emplace(ammo, count);
 				}
 				auto takenAmmo = TransferAmmo(toRestock, *this, *bay.ship);
-				bool tookAmmo = !takenAmmo.empty();
-				if(tookAmmo)
+				if(!takenAmmo.empty())
 				{
+					tookAmmo = true;
 					// Update the carried mass cache.
 					for (auto &&item : takenAmmo)
 						carriedMass += item.first->Mass() * item.second;
@@ -3562,7 +3579,6 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			// be used by the carrier or other fighters.
 			ship->TransferFuel(ship->fuel, this);
 
-			// Determine the ammunition the fighter can supply.
 			auto restockable = ship->GetArmament().RestockableAmmo();
 			auto toRestock = map<const Outfit *, int>{};
 			for(auto &&ammo : restockable)
@@ -3571,6 +3587,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 				if(count > 0)
 					toRestock.emplace(ammo, count);
 			}
+			// Docking fighters only restock dedicated ammunition storage.
 			TransferAmmo(toRestock, *ship, *this);
 
 			// Update the cached mass of the mothership.
