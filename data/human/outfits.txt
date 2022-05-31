@@ -350,7 +350,6 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. It even helps against scans at spaceports, so you can more reliably land to refuel without getting caught."
 
 
-
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000

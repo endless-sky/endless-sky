@@ -137,7 +137,7 @@ government "Derelict"
 	"fine" 0
 
 government "Drak"
-	swizzle 5
+	swizzle 0
 	color 1 1 1
 	"player reputation" 1
 	"fine" 0
@@ -148,7 +148,7 @@ government "Drak"
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
 	"display name" "Drak"
-	swizzle 5
+	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
@@ -249,11 +249,14 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
 		"Philosophers" .1
-	"bribe" .02
+	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
@@ -268,6 +271,9 @@ government "Hai (Wormhole Access)"
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 		"Bounty Hunter that Attacks Hai" -.01
@@ -278,6 +284,61 @@ government "Hai (Wormhole Access)"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
+government "Hai Merchant"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant (Sympathizers)" .95
+		"Hai Merchant (Human)" .95
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Sympathizers)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Human)" .95
+		"Hai (Unfettered)" .01
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Human)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Sympathizers)" .95
+		"Hai (Unfettered)" -.2
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Hai (Unfettered)"
 	swizzle 4
 	color .69 .33 .82
@@ -286,6 +347,9 @@ government "Hai (Unfettered)"
 	"attitude toward"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" 0.01
+		"Hai Merchant (Human)" -.01
 		"Wanderer" -.01
 		"Pug" -.01
 		"Pug (Wanderer)" -.01
@@ -1000,6 +1064,9 @@ government "Wormhole Alpha"
 	"fine" 0
 	"attitude toward"
 		"Hai" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" -.01
+		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
 		"Bounty Hunter that Won't Enter Hai Space" -.01
 		"Deep Security that won't enter wormhole" -.01

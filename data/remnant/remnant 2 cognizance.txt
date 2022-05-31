@@ -786,7 +786,7 @@ mission "Remnant: Cognizance 21"
 				`	"Who were your ancestors?"`
 				`	"Interesting. Well, what is our mission?"`
 					goto missiondescription
-			`	Dusk looks thoughtful for a moment. "Our ancestors came from a different era for humanity. They were the heirs of a golden age of human scientific development and progress, when governments and institutions poured vast wealth into science. The developments of that time period resulted in the completion of the hyperspace relay network, new terraforming techniques, and advanced genetic engineering capabilities." His face clouds at that. "This, of course, culminated in the Alphas." He pauses, then shakes his head. "But you asked who are ancestors were, not about human history.`
+			`	Dusk looks thoughtful for a moment. "Our ancestors came from a different era for humanity. They were the heirs of a golden age of human scientific development and progress, when governments and institutions poured vast wealth into science. The developments of that time period resulted in the completion of the hyperspace relay network, new terraforming techniques, and advanced genetic engineering capabilities." His face clouds at that. "This, of course, culminated in the Alphas." He pauses, then shakes his head. "But you asked who our ancestors were, not about human history.`
 			`	"In that era there were a number of burgeoning astronomy and exploration programs across human space. Despite also benefiting from the substantial budget increases that science in general was receiving, they were being pushed to the margins of the academic community: Unlike many of the more practical sciences like biology and chemistry which were coming up with new wonders, astronomy and astrophysics was purely academic. There was no budget in explaining the whys of the universe, not when other scientists were creating homo superior and unleashing instantaneous interstellar communication.`
 			`	"So they banded together. It was not, I gather from the records, an unusual thing for academics of a particular field to meet with others of their field. If one faculty could not fund an expedition, perhaps two different faculties working together could. Eventually they formed a loose organization, a sort of 'standing conference' on astronomy and astrophysics, through which they met to discuss, debate, and organize."`
 			choice
@@ -862,7 +862,7 @@ mission "Remnant: Cognizance 22"
 	description "Deliver a data backup to <stopovers> for Taely."
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	stopover
 		government "Remnant"
 		neighbor distance 1 5
@@ -967,7 +967,7 @@ mission "Remnant: Cognizance 23"
 	landing
 	source
 		government "Remnant"
-		attributes "has shipyard"
+		attributes "shipyard"
 	waypoint "Farinus"
 	to offer
 		has "Remnant: Cognizance 22: done"
@@ -1206,6 +1206,7 @@ mission "Remnant: Cognizance 26"
 mission "Remnant: Cognizance 27"
 	name "Check in with Torza on <planet>"
 	description "Torza should have a team ready on <planet>."
+	landing
 	source "Ssil Vida"
 	destination "Caelian"
 	to offer
@@ -1586,7 +1587,7 @@ mission "Remnant: Cognizance 38"
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
 				`	"I think I should tell this to the prefects first."`
-			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can take start preparing for whatever is necessary.`
+			`	The Remnant around you look amused. "Do not be concerned, <first>. Everything you say will reach them. The sooner you tell us, the sooner we can start preparing for whatever is necessary.`
 			choice
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
@@ -1618,3 +1619,14 @@ mission "Remnant: Cognizance 38"
 			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
 			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured Chasers. It is not much, but it may give you a little more ease of outfitting the <ship>.`
 
+
+
+mission "Remnant: Cognizance 39"
+	landing
+	invisible
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 38: done"
+	on offer
+		event "remnant: cognizance calm" 5
