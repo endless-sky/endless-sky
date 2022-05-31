@@ -422,38 +422,6 @@ ship "Korath Raider Mark XLII"
 	description `Since the Raider's introduction, however, constant warfare against surrounding aliens has been building pressure on their shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have revised the design to bring it up to their expectations.`
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Missile)" 
-	sprite "ship/raiderii"
-	outfits 
-		"Korath Grab-Strike" 4
-		"Korath Warder" 2
-		"Firelight Missile Bank" 3
-		"Firelight Missile" 120
-		"Firelight Storage Rack" 1
-		
-		"Triple Plasma Core"
-		"Systems Core (Medium)"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
-		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		
-		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
-		"Steering (Planetary Class)"
-		"Jump Drive"
-
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Warder"
-	turret "Korath Warder"
-
-
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	sprite "ship/raiderii"
 	add attributes
@@ -489,42 +457,6 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	turret "Korath Grab-Strike"
 	turret "Korath Disruptor"
 	turret "Korath Banisher"
-
-
-ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Repeater)" 
-	sprite "ship/raiderii"
-	outfits 
-		"Korath Grab-Strike" 2
-		"Korath Repeater Turret" 3
-		"Korath Warder"
-		"Korath Piercer Launcher"
-		"Korath Piercer Rack"
-		"Korath Piercer" 47
-		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
-
-		"Triple Plasma Core"
-		"Systems Core (Medium)"
-		"Large Heat Shunt" 3
-		"Small Heat Shunt" 2
-		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		
-		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
-		"Steering (Planetary Class)"
-		"Steering (Lunar Class)"
-		"Jump Drive"
-
-	gun "Korath Piercer Launcher"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	turret "Korath Repeater Turret"
-	turret "Korath Repeater Turret"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Repeater Turret"
-	turret "Korath Warder"
 
 
 ship "Korath Chaser"
