@@ -36,8 +36,8 @@ public:
 
 	ExclusiveItem<Type> &operator=(ExclusiveItem<Type> &&other) = default;
 	ExclusiveItem<Type> &operator=(const ExclusiveItem<Type> &other) = default;
-	bool operator==(const ExclusiveItem<Type> &other) const { return *this == *other; }
-	bool operator!=(const ExclusiveItem<Type> &other) const { return !(*this == other); }
+	bool operator==(const ExclusiveItem<Type> &other) const { return **this == *other; }
+	bool operator!=(const ExclusiveItem<Type> &other) const { return !(**this == *other); }
 
 
 private:
