@@ -1203,6 +1203,16 @@ Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
+Files: images/effect/archon?teleport/*
+Copyright: @Karirawri (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso (under the same license).
+
+Files: sounds/archonteleport*
+Copyright: oldestmillennial
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/oldestmillennial/sounds/533025/ and modified.
+
 Files: images/outfit/emp?rack*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
@@ -1314,14 +1324,20 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
+ images/effect/coalition?flare/*
+ images/effect/korath?flare/*
+ images/effect/plasma?flare/*
+ images/effect/pug?flare/*
+ images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
- images/outfit/asteroid?scanner*
  images/outfit/afterburner*
+ images/outfit/asteroid?scanner*
  images/outfit/blue?sun*
  images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
  images/outfit/dark?storm*
  images/outfit/dual?sunbeam?turret*
  images/outfit/nuke*
@@ -1401,6 +1417,11 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ sounds/remnant afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  images/ship/kestrel*
