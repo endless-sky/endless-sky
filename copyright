@@ -1416,17 +1416,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/outfit/firelight missile*
- images/outfit/firelight missile bank*
- images/outfit/firelight storage rack*
+ images/outfit/firelight?missile*
+ images/outfit/firelight?missile bank*
+ images/outfit/firelight?storage?rack*
  images/projectile/firelight
- images/projectile/firelight active
+ images/projectile/firelight?active
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
  sounds/firelight.wav
- sounds/firelight hit.wav
+ sounds/firelight?hit.wav
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
