@@ -103,6 +103,7 @@ jobs:
     runs-on: macos-latest
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
+      TARGET: Endless Sky
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
       - uses: actions/checkout@v2
@@ -119,7 +120,7 @@ jobs:
         run: ./utils/cd_update_versions.sh
         shell: bash
       - name: Build Application
-        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+        run: xcodebuild -target "${{ env.TARGET }}" -configuration Release -jobs $(sysctl -n hw.logicalcpu) -quiet
       - name: Package Application
         run: |
           cd build/Release
