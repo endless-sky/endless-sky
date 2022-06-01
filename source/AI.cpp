@@ -772,7 +772,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// NPCs may take 30 seconds or longer to find a new parent.  Player
 			// owned fighter shouldn't take more than a few seconds.
 			bool findNewParent = it->IsYours() ? !Random::Int(30) : !Random::Int(1800);
-			bool parentHasSpace = !findNewParent || (inParentSystem && parent->BaysFree(it->Attributes().Category()));
+			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
+			if(findNewParent && parentHasSpace)
+				parentHasSpace = parent->CanCarry(*it);
 			if(!hasParent || (!inParentSystem && !it->JumpFuel()) || (!parentHasSpace && findNewParent))
 			{
 				// Find the possible parents for orphaned fighters and drones.
@@ -786,7 +788,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 							if(!other->IsDisabled() && other->CanCarry(*it.get()))
 								return other;
 							else
-								parentChoices.emplace_back(other);
+								if(other->BaysFree(it->Attributes().Category()))
+									parentChoices.emplace_back(other);
 						}
 					return shared_ptr<Ship>();
 				};
@@ -832,7 +835,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				else
 					parent.reset();
 
-				it->SetParent(parent);
+				if(it->GetParent() != parent)
+					it->SetParent(parent);
 			}
 			// Otherwise, check if this ship wants to return to its parent (e.g. to repair).
 			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
