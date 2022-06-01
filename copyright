@@ -1454,6 +1454,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sound/korath?afterburner*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+
+Files:
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/mule*
