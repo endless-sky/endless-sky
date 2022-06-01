@@ -1667,7 +1667,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks @loader_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks @executable_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",
@@ -1698,7 +1698,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XCode/EndlessSky-info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks @loader_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks @executable_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",
@@ -1817,7 +1817,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_UnitTests-info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks @loader_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks @executable_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",
@@ -1846,7 +1846,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/XCode/ES_UnitTests-info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks @loader_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks @executable_path/../Frameworks/ES_Engine.framework/Versions/A/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)",

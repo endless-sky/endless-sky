@@ -15,6 +15,8 @@ game_code: &build
 macos:
   - 'XCode/**'
   - '**/*.xcodeproj'
+  - '**/*.xcworkspace'
+  - '**/xcshareddata/*'
   - 'icons/endless-sky.iconset/**'
   - 'utils/fetch_sdl2_framework.sh'
   - 'utils/set_dylibs_rpath.sh'

@@ -281,39 +281,127 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ARTIFACT: Endless Sky
+      ENGINE: ES_Engine
+      GAME_ARTIFACT: Endless Sky
+      UNITTEST_ARTIFACT: ES_UnitTests
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
-    - name: Restore cached game binary
-      id: cache-artifact
+    - name: Restore cached engine framework
+      id: cache-engine
       uses: actions/cache@v2
       with:
-        path: ${{ env.ARTIFACT }}
+        path: ${{ env.ENGINE }}
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+    - name: Restore cached game binary
+      id: cache-game_artifact
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.GAME_ARTIFACT }}
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+    - name: Restore cached unit tests binary
+      id: cache-unittest_artifact
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.UNITTEST_ARTIFACT }}
         key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Update Homebrew
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: (!(steps.cache-engine.outputs.cache-hit && steps.cache-game_artifact.outputs.cache-hit && steps.cache.unittest_artifact.outputs.cache-hit))
       run: brew update
     - name: Install dependencies
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: (!(steps.cache-engine.outputs.cache-hit && steps.cache-game_artifact.outputs.cache-hit && steps.cache.unittest_artifact.outputs.cache-hit))
       run: brew install libmad libpng jpeg-turbo
     - name: Restore cached SDL2 framework
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
+      if: (!(steps.cache-engine.outputs.cache-hit && steps.cache-game_artifact.outputs.cache-hit && steps.cache.unittest_artifact.outputs.cache-hit))
       uses: actions/cache@v2
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
         key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
-    - name: Compile
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+    - name: Compile Engine
+      if: (!steps.cache-engine.outputs.cache-hit)
+      run: xcodebuild -target "${{ env.ENGINE }}" -configuration Release -jobs $(sysctl -n hw.logicalcpu) -quiet
+    - name: Compile Game
+      if: (!steps.cache-game_artifact.outputs.cache-hit)
+      run: xcodebuild -target "${{ env.GAME_ARTIFACT }}" -configuration Release -jobs $(sysctl -n hw.logicalcpu) -quiet
+    - name: Compile Unit Tests
+      if: (!steps.cache-unittest_artifact.outputs.cache-hit)
+      run: xcodebuild -target "${{ env.UNITTEST_ARTIFACT }}" -configuration Release -jobs $(sysctl -n hw.logicalcpu) -quiet
+    - name: Prepare engine framework
+      if: (!steps.cache-engine.outputs.cache-hit)
+      run: mv "build/Release/${{ env.ENGINE }}.framework/Versions/Current/${{ env.ENGINE }}" .
+    - name: Upload engine framework
+      uses: actions/upload-artifact@v2
+      with:
+        name: engine-${{ matrix.os }}
+        path: ${{ env.ENGINE }}
     - name: Prepare game binary
-      if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: mv "build/Release/Endless Sky.app/Contents/MacOS/Endless Sky" .
+      if: (!steps.cache-game_artifact.outputs.cache-hit)
+      run: mv "build/Release/${{ env.GAME_ARTIFACT }}.app/Contents/MacOS/${{ env.GAME_ARTIFACT }}" .
     - name: Upload game binary
       uses: actions/upload-artifact@v2
       with:
         name: binary-${{ matrix.os }}
-        path: ${{ env.ARTIFACT }}
+        path: ${{ env.GAME_ARTIFACT }}
+    - name: Prepare unit tests binary
+      if: (!steps.cache-unittest_artifact.outputs.cache-hit)
+      run: mv "build/Release/${{ env.UNITTEST_ARTIFACT }}.app/Contents/MacOS/${{ env.UNITTEST_ARTIFACT }}" .
+    - name: Upload unit tests binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: unittest-${{ matrix.os }}
+        path: ${{ env.UNITTEST_ARTIFACT }}
+
+
+  test_macos-unit:
+    needs: [build_macos, changed]
+    if: ${{ needs.changed.outputs.macos == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    env:
+      ENGINE: ES_Engine
+      UNITTESTS: ES_UnitTests
+      SDL2_FRAMEWORK: build/SDL2.framework
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Homebrew
+      run: brew update
+    - name: Install dependencies
+      run: brew install libmad libpng jpeg-turbo
+    - name: Restore cached SDL2 framework
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.SDL2_FRAMEWORK }}
+        key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+    - name: Create empty app structure
+      run: mkdir -p Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks Contents/MacOS Contents/Resources
+    - name: Download engine binary
+      uses: actions/download-artifact@v2
+      with:
+        name: engine-${{ matrix.os }}
+        path: Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A
+    - name: Add support files
+      run: |
+        ln -s /usr/local/opt/libmad/lib/libmad.0.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        ln -s /usr/local/opt/libpng/lib/libpng16.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        ln -s /usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        mv ${{ env.SDL2_FRAMEWORK }} Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks
+        cd Contents/Resources/
+        ln -s ../../data
+        ln -s ../../images
+        ln -s ../../sounds
+    - name: Download unit tests binary
+      uses: actions/download-artifact@v2
+      with:
+        name: unittest-${{ matrix.os }}
+        path: Contents/MacOS
+    - name: Give executable permissions
+      run: chmod +x "Contents/MacOS/${{ env.UNITTESTS }}"
+    - name: Run unit tests
+      run: Contents/MacOS/${{ env.UNITTESTS }} -r compact
+    - name: Run benchmarks
+      run: Contents/MacOS/${{ env.UNITTESTS }} [!benchmark]
 
 
   # This section is for tests on ubuntu 16 (and on ubuntu 20).
@@ -426,7 +514,8 @@ jobs:
       matrix:
         os: [macos-latest]
     env:
-      ES_BINARY: Endless Sky
+      ENGINE: ES_Engine
+      GAME: Endless Sky
       SDL2_FRAMEWORK: build/SDL2.framework
     steps:
     - uses: actions/checkout@v2
@@ -439,13 +528,19 @@ jobs:
       with:
         path: ${{ env.SDL2_FRAMEWORK }}
         key: ${{ matrix.os }}-sdl2-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+    - name: Create empty app structure
+      run: mkdir -p Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks Contents/MacOS Contents/Resources
+    - name: Download engine binary
+      uses: actions/download-artifact@v2
+      with:
+        name: engine-${{ matrix.os }}
+        path: Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A
     - name: Add support files
       run: |
-        mkdir -p Contents/Frameworks Contents/MacOS Contents/Resources
-        ln -s /usr/local/opt/libmad/lib/libmad.0.dylib Contents/Frameworks/
-        ln -s /usr/local/opt/libpng/lib/libpng16.dylib Contents/Frameworks/
-        ln -s /usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib Contents/Frameworks/
-        mv ${{ env.SDL2_FRAMEWORK }} Contents/Frameworks/
+        ln -s /usr/local/opt/libmad/lib/libmad.0.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        ln -s /usr/local/opt/libpng/lib/libpng16.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        ln -s /usr/local/opt/jpeg-turbo/lib/libturbojpeg.0.dylib Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks/
+        mv ${{ env.SDL2_FRAMEWORK }} Contents/Frameworks/${{ env.ENGINE }}.framework/Versions/A/Frameworks
         cd Contents/Resources/
         ln -s ../../data
         ln -s ../../images
@@ -456,9 +551,9 @@ jobs:
         name: binary-${{ matrix.os }}
         path: Contents/MacOS
     - name: Verify Executable
-      run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
+      run: chmod +x "Contents/MacOS/${{ env.GAME }}" && ./"Contents/MacOS/${{ env.GAME }}" -v
     - name: Parse Datafiles
-      run: ./utils/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
+      run: ./utils/test_parse.sh ./"Contents/MacOS/${{ env.GAME }}"
 
 
   test_memory-leaks-lite:
