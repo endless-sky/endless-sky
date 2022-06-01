@@ -1002,6 +1002,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 	{
 		const Government *gov = ship.GetGovernment();
 		bool hasEnemy = false;
+		bool shipIsDisabled = ship.IsDisabled();
 
 		vector<Ship *> canHelp;
 		canHelp.reserve(ships.size());
@@ -1013,7 +1014,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 
 			// If ship is otherwise healthy it should not ask non-escorts for help.
 			// Healthy ships should only request help from fighters if any is required.
-			if(!ship.IsDisabled() && !isStranded && !helper->IsYours())
+			if(!shipIsDisabled && !isStranded && !helper->IsYours())
 				continue;
 
 			// If any able enemies of this ship are in its system, it cannot call for help.
@@ -1041,12 +1042,16 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			if(helper->IsYours() && ship.IsYours() && orders.count(helper.get()))
 				continue;
 
-			// Battery powered ships should only get help if they're disabled.
-			if(ship.CanBeCarried() && !ship.IsDisabled() && ship.IsEnergyLow())
-				continue;
-			// Escorts do not request help with enemies in the system unless disabled.
-			if(ship.IsYours() && hasEnemy && !ship.IsDisabled())
-				continue;
+			if(!shipIsDisabled)
+			{
+				// Battery powered ships should only get help if they're disabled.
+				if(ship.CanBeCarried() && ship.IsEnergyLow())
+					continue;
+
+				// Escorts do not request help with enemies in the system unless disabled.
+				if(ship.IsYours() && hasEnemy)
+					continue;
+			}
 
 			// Check if this ship is physically able to help.
 			if(!CanHelp(ship, *helper, isStranded))
@@ -1075,6 +1080,7 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 // Determine if the selected ship is physically able to render assistance.
 bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
+	bool shipIsDisabled = ship.IsDisabled();
 	// Carriers should help their own fighters.
 	if(ship.GetParent().get() == &helper)
 		return true;
@@ -1087,11 +1093,11 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
 	if(helper.GetGovernment()->IsEnemy(ship.GetGovernment())
-			|| (ship.IsDisabled() && helper.GetGovernment() != ship.GetGovernment()))
+			|| (shipIsDisabled && helper.GetGovernment() != ship.GetGovernment()))
 		return false;
 
 	// If the helper has insufficient fuel, it cannot help this ship unless this ship is also disabled.
-	if(!ship.IsDisabled() && (needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours())) && !helper.CanRefuel(ship) && !helper.IsEnergyLow())
+	if(!shipIsDisabled && (needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours())) && !helper.CanRefuel(ship) && !helper.IsEnergyLow())
 		return false;
 
 	// Helper is not able to continue helping because they must return to carrier for battery recharge.

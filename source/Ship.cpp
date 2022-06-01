@@ -1232,11 +1232,6 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	}
 
 	UpdateEscortsState(shared_from_this());
-	for(auto ptr : escorts)
-	{
-		shared_ptr<Ship> escort = ptr.lock();
-		UpdateEscortsState(escort);
-	}
 }
 
 
@@ -4553,7 +4548,7 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 		}
 
 		// weapons out of ammo do not count
-		if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
+		if((weapon->Ammo() && !OutfitCount(weapon->Ammo())) || !weapon->Range())
 			continue;
 		other->minWeaponRange = min(other->minWeaponRange, weapon->Range());
 		other->maxWeaponRange = max(other->maxWeaponRange, weapon->Range());
@@ -4589,9 +4584,8 @@ void Ship::UpdateEscortsState()
 		if(!IsEscortedBy(this->shared_from_this(), escort))
 			continue;
 		// This covers escorts already deployed in the system.
-		if(escort->CanBeCarried())
-			UpdateEscortsState(escort);
-		else
+		UpdateEscortsState(escort);
+		if(!escort->CanBeCarried())
 		{
 			// This covers boarded escorts not in the system.
 			for(const weak_ptr<Ship> &ptr2 : escort->GetEscorts())
