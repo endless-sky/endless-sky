@@ -2421,8 +2421,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 
 	// For a fighter or drone, "board" means "return to ship."
 	// Except when drone or fighter is boarding another drone or fighter.
-	// CanCarry should be last for performance reasons.
-	if(GetParent() == victim && victim->CanCarry(*this))
+	if(GetParent() == victim && victim->BaysFree(attributes.Category()))
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
@@ -2784,7 +2783,8 @@ bool Ship::IsEscortsFullOfFuel() const
 bool Ship::IsOutOfEnergy() const
 {
 	bool closeToParent = false;
-	if(canBeCarried)
+	bool outOfEnergy = GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.  && GetIdleEnergyPerFrame() < 1.;
+	if(canBeCarried && outOfEnergy)
 	{
 		if(GetParent())
 		{
@@ -2795,7 +2795,7 @@ bool Ship::IsOutOfEnergy() const
 			closeToParent = distanceFromParent < 50. && speedRelativeToParent < 1.;
 			// Set closeToParent to false if this ship is disabled due to hull.  It requires additional assistance.
 			closeToParent &= hull >= MinimumHull();
-			closeToParent &= static_cast<bool>(GetParent());
+			closeToParent &= static_cast<bool>(GetSystem());
 			// CanCarry is expensive performance-wise so should only be called if necessary.
 			if(closeToParent)
 				closeToParent &= GetParent()->BaysFree(attributes.Category());
@@ -2807,9 +2807,7 @@ bool Ship::IsOutOfEnergy() const
 			closeToParent = false;
 	}
 	// Return will always be false if not a fighter.
-	return !landingPlanet && !hasBoarded && !closeToParent
-			&& GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.
-			&& GetIdleEnergyPerFrame() < 1.;
+	return !landingPlanet && !hasBoarded && !closeToParent && outOfEnergy;
 }
 
 
