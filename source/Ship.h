@@ -442,6 +442,8 @@ public:
 	double GetFiringEnergyPerFrame() const;
 	double GetHullEnergyPerFrame() const;
 	double GetIdleEnergyPerFrame() const;
+	double GetMaxWeaponRange() const;
+	double GetMinWeaponRange() const;
 	double GetMovingEnergyPerFrame() const;
 	double GetPotentialIonEnergyLoss() const;
 	double GetRamscoopRegenPerFrame() const;
@@ -518,6 +520,10 @@ private:
 	bool escortsHaveOneJump = false;
 	//Used by CanRefuel to determine refueling other ships.
 	bool refuelMissionNpcEscort = false;
+	//Variables for armaments
+	bool hasAntiMissile = false;
+	double minWeaponRange = 0.;
+	double maxWeaponRange = 0.;
 	bool isEnemyInEscortSystem = false;
 	double steeringDirection = 0.;
 	bool neverDisabled = false;

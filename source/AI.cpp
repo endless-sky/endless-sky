@@ -1138,14 +1138,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	}
 
 	// If this ship is not armed, do not make it fight.
-	double minRange = numeric_limits<double>::infinity();
-	double maxRange = 0.;
-	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
-		{
-			minRange = min(minRange, weapon.GetOutfit()->Range());
-			maxRange = max(maxRange, weapon.GetOutfit()->Range());
-		}
+	double minRange = ship.GetMinWeaponRange();
+	double maxRange = ship.GetMaxWeaponRange();
 	if(!maxRange)
 		return target;
 
