@@ -157,8 +157,8 @@ namespace {
 		notEscordedBy |= escort->IsParked();
 		notEscordedBy |= escort->IsDestroyed();
 
-		// This is an NPC but not a mission escort.
-		notEscordedBy |= !ship->GetParent() && !escort->IsYours() && !escort->GetPersonality().IsEscort();
+		// This is an NPC but not a mission escort escorting player flagship.
+		notEscordedBy |= ship->IsYours() && !ship->GetParent() && !escort->IsYours() && !escort->GetPersonality().IsEscort();
 
 		// Escort is not in the same system as ship.
 		notEscordedBy |= ship->GetSystem() != escort->GetSystem();
