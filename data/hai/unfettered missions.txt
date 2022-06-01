@@ -1678,9 +1678,9 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 					decline
 				`	"I don't want to have anything to do with you Unfettered anymore."`
 			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares from us though."`
-			fail "Unfettered: Alphas 2: Prove Yourself"
 			action
 				clear "salary: Unfettered"
+				fail "Unfettered: Alphas 2: Prove Yourself"
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
