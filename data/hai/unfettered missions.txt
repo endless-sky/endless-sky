@@ -416,7 +416,7 @@ mission "Unfettered: Neutral With The Hai"
 					decline
 			`	He makes a show of thinking it over before responding, "Well, I guess I can forgive your insolence, this time. But listen to what I am about to say."`
 			label agree
-			`	"Go to their home system and make your request, the Hai government despises conflict, so they will most likely grant it. They won't let you land on their homeworld given the circumstances, though, so go to Mirrorlake instead."`
+			`	"Go to our home system and make your request, the Elders despise conflict, so they will most likely grant it. Given the circumstances, Hai-home will definitely not let you land though, so go to Mirrorlake instead."`
 				accept
 	on complete
 		conversation
@@ -486,7 +486,7 @@ mission "Unfettered: Bring Hai"
 					goto whyme
 				`	"I believe they would not have their place here, I will not bring them."`
 					decline
-			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently they know we are still Hai, and that we would never hurt Hai civilians."	He seems confident.`
+			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently they know we are still Hai, and that we would never hurt Hai civilians." He seems confident.`
 			choice
 				`	"What is it exactly you want me to do?"`
 					goto action
@@ -568,7 +568,7 @@ mission "Unfettered: Bring Medical Supplies"
 		payment 1500000
 		conversation
 			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They give you <payment>.`
-			`	As you head to leave, you notice the same Hai elder speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! Without these medical supplies a lot of us Unfettered would have died, captain. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of reverence. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`	As you head to leave, you notice the same Hai elder speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! Without these medical supplies a lot of us Unfettered would have died, captain. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
@@ -800,7 +800,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you. He is fully armoured, meaning as long as you stay with him, everything should be fine.`
 			
 			label outside
-			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around, without making a sound. Well as little sound as possible, anyway, given he is in quite an impressive suit. It must have been crafted specifically for him in order to be so discrete. He does not have his helmet on, probably in order to see his surroundings better.`
+			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He does not have his helmet on as he peers cautiously around corners and assess his surroundings.`
 			choice
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache is well hidden."`
