@@ -1411,8 +1411,8 @@ Files:
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
- images/ship/heavy gust*
- images/ship/mining drone*
+ images/ship/heavy?gust*
+ images/ship/mining?drone*
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
