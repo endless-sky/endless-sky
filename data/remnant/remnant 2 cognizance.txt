@@ -371,7 +371,7 @@ mission "Remnant: Cognizance 9"
 		log "People" "Gavriil" `A technician that works with Plume, and a talented astrobiologist. Gavriil is the project lead for the repurposed Esquiline station.`
 		conversation
 			`You walk into Plume's lab and are greeted by a large stack of crates and equipment. Plume and another Remnant are gathered around the stack, checking items off a list. "Ah, <first>! Good timing. We were just finishing the inventory of supplies that need to go on this delivery. He gestures to the engineer. "This is Gavriil, one of our best technologists and a skilled astrobiologist in his own right. They will be going with you."`
-			`	"It will be a pleasure to work with you," signs Gavriil, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment setup and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
+			`	"It will be a pleasure to work with you," signs Gavriil, making a short bow. "We will be traveling to a research station on <planet>. Yes, it is a gas giant." He smiles at that. "I have to get some equipment set up and get the core systems online. There will be a few more loads of materials afterwards." He looks askance at you. "Shall we get started?"`
 				accept
 	on complete
 		payment 100000
@@ -818,7 +818,7 @@ mission "Remnant: Cognizance 21"
 	on stopover
 		require "Research Laboratory"
 		conversation
-			`Dusk and the team of scientists waste no time in getting to work: They have the preliminary sensors working almost from the moment you leave the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and setup. With the space cleared, they expand the research laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is setup and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
+			`Dusk and the team of scientists waste no time in getting to work: They have the preliminary sensors working almost from the moment you leave the spaceport, and by the time you dock with Ssil Vida they have all their equipment arranged to quickly offload and set up. With the space cleared, they expand the research laboratory and set to work analyzing the system. Before long they are clustered around displays and adjusting sensor readings, deep in discussion. Eventually, Dusk strides over to you. "Everything is set up and proceeding nominally, Captain. We will need a few hours to complete the measurements. You do not need to stand around watching, although you are welcome to if you like." Dusk heads back over to check on one of the devices.`
 			choice
 				`	(Return to the <ship> and prepare for departure.)`
 					goto relax
@@ -1070,7 +1070,7 @@ mission "Remnant: Cognizance 24"
 	on offer
 		conversation
 			`When you enter the cafeteria you are greeted by Dusk and Taely signing at you from across the room to join them. Collecting a tray from the dispenser, you slide into an empty seat at their table, watching as Taely signs: "We were just exchanging news and discovered we can combine our next assignment."`
-			`	Dusk continues. "Based on the initial data we collected while we were at Ssil Vida, there is sufficient novel data to deserve a permanent research team there. Conveniently, the station is already habitable, but we will need several shipments of equipment to setup a self-contained section."`
+			`	Dusk continues. "Based on the initial data we collected while we were at Ssil Vida, there is sufficient novel data to deserve a permanent research team there. Conveniently, the station is already habitable, but we will need several shipments of equipment to set up a self-contained section."`
 			choice
 				`	"Okay, clear enough."`
 					goto skipexplanation
@@ -1232,7 +1232,7 @@ mission "Remnant: Cognizance 28"
 	on offer
 		set "remnant: dusk busy"
 		conversation
-			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have setup a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
+			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have set up a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
 	npc
 		government "Korath"
