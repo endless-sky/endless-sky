@@ -14567,7 +14567,6 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
-	fleet "Korath Home" 5000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1500
 	object
@@ -14631,7 +14630,7 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Home" 8000
+	fleet "Korath Home" 2000
 	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 5000
@@ -14764,8 +14763,8 @@ system "Kor Men"
 	trade Medical 844
 	trade Metal 240
 	trade Plastic 497
+	fleet "Korath Home" 800
 	fleet "Korath Raid" 1300
-	fleet "Korath Home" 8000
 	fleet "Korath Large Raid" 25000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 10000
