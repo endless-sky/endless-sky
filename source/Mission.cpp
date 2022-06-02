@@ -157,16 +157,19 @@ void Mission::Load(const DataNode &node)
 				if(child.Size() >= 3)
 					deadlineMultiplier += child.Value(2);
 			}
+		}
+		else if(child.Token(0) == "route options")
+		{
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "no wormholes")
-						deadlineOptions.wormholeStrategy = WormholeStrategy::NONE;
+						routeOptions.wormholeStrategy = WormholeStrategy::NONE;
 					else if(grand.Token(0) == "all wormholes")
-						deadlineOptions.wormholeStrategy = WormholeStrategy::ALL;
+						routeOptions.wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "requires jump drive")
-						deadlineOptions.requiresJumpDrive = true;
+						routeOptions.requiresJumpDrive = true;
 				}
 			}
 		}
@@ -1264,7 +1267,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path, deadlineOptions.wormholeStrategy, deadlineOptions.requiresJumpDrive);
+		DistanceMap distance(path, routeOptions.wormholeStrategy, routeOptions.requiresJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1287,7 +1290,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		jumps += max(0, distance.Days(*bestIt));
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path, deadlineOptions.wormholeStrategy, deadlineOptions.requiresJumpDrive);
+	DistanceMap distance(path, routeOptions.wormholeStrategy, routeOptions.requiresJumpDrive);
 	// If currently unreachable, this system does not add to the deadline.
 	jumps += max(0, distance.Days(result.destination->GetSystem()));
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);

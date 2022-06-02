@@ -173,7 +173,7 @@ public:
 
 
 private:
-	struct DeadlineRouteOptions {
+	struct RoutingOptions {
 		WormholeStrategy wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
 		bool requiresJumpDrive = false;
 	};
@@ -203,7 +203,7 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	DeadlineRouteOptions deadlineOptions;
+	RoutingOptions routeOptions;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
