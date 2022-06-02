@@ -1324,7 +1324,10 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
+ images/effect/coalition?flare/*
+ images/effect/korath?flare/*
  images/effect/plasma?flare/*
+ images/effect/pug?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/nuke*
@@ -1425,12 +1428,6 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
- sounds/firelight.wav
- sounds/firelight?hit.wav
-License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
-
-Files:
  images/ship/raiderii*
  images/thumbnail/raiderii*
 Copyright: Saugia <https://github.com/Saugia>
@@ -1451,6 +1448,17 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ sounds/remnant?afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ sounds/firelight.wav
+ sounds/firelight?hit.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
