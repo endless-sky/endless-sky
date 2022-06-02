@@ -201,11 +201,11 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 	variant 2
-		"Korath Raider"
-		"Korath Chaser (Expeller)" 2
+		"Korath Raider (Inferno)"
+		"Korath Chaser" 2
 	variant 2
-		"Korath Raider"
-		"Korath Chaser (Digger)" 2
+		"Korath Raider (Fast Shunt)"
+		"Korath Chaser" 2
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -219,12 +219,6 @@ fleet "Korath Ember Waste Raid"
 	variant 2
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
-	variant 2
-		"Korath Raider (Ember)"
-		"Korath Chaser (Expeller)" 2
-	variant 2
-		"Korath Raider (Ember)"
-		"Korath Chaser (Digger)" 2
 
 fleet "Korath Miners"
 	government "Korath"
@@ -235,6 +229,7 @@ fleet "Korath Miners"
 		timid disables plunders frugal mining harvests
 	variant 5
 		"Korath Dredger (Fast Inferno)"
+		"Korath Chaser (Digger)" 4
 
 fleet "Korath Civilian Miners"
 	government "Korath (Civilian)"
@@ -245,7 +240,7 @@ fleet "Korath Civilian Miners"
 		heroic disables frugal mining harvests
 	variant 5
 		"Korath Dredger (Civilian)"
-
+		"Korath Chaser (Expeller)" 4
 
 fleet "Korath Home"
 	government "Korath"
@@ -259,7 +254,7 @@ fleet "Korath Home"
 		"Korath Chaser" 2
 		"Korath Chaser (Digger)" 2
 	variant 7
-		"Korath Dredger"
+		"Korath Dredger (Ground Assault)"
 		"Korath Chaser (Expeller)" 4
 	variant 12
 		"Korath World-Ship"
@@ -280,18 +275,28 @@ fleet "Korath Large Raid"
 		disables plunders opportunistic harvests
 	variant 5
 		"Korath Raider" 2
-		"Korath Chaser (Digger)" 2
-		"Korath Chaser" 2
+		"Korath Chaser (Digger)" 4
+	variant 5
+		"Korath Raider (Inferno)" 2
+		"Korath Chaser" 4
+	variant 5
+		"Korath Raider (Fast Shunt)" 2
+		"Korath Chaser" 4
 	variant 5
 		"Korath Dredger"
 		"Korath Raider"
-		"Korath Chaser" 3
-		"Korath Chaser (Digger)" 3
+		"Korath Chaser (Digger)" 4
+		"Korath Chaser" 2
 	variant 5
 		"Korath Dredger (Grab-Shunt)"
 		"Korath Raider"
-		"Korath Chaser (Digger)" 3
-		"Korath Chaser" 3
+		"Korath Chaser (Digger)" 4
+		"Korath Chaser" 2
+	variant 5
+		"Korath Dredger (Heaver)"
+		"Korath Raider"
+		"Korath Chaser (Digger)" 4
+		"Korath Chaser" 2
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -309,8 +314,14 @@ fleet "Korath Ember Waste Raid"
 	variant 12
 		"Korath Raider (Ember)"
 		"Korath Chaser (Digger)" 2
-	variant 12
+	variant 4
 		"Korath Dredger"
+		"Korath Chaser" 4
+	variant 4
+		"Korath Dredger (Heaver)"
+		"Korath Chaser (Digger)" 4
+	variant 4
+		"Korath Dredger (Fast Inferno)"
 		"Korath Chaser" 4
 
 fleet "Korath Civilian Large"
@@ -323,7 +334,7 @@ fleet "Korath Civilian Large"
 	variant 5
 		"Korath Dredger (Civilian)" 2
 		"Korath Chaser (Digger)" 4
-		"Korath Chaser" 4
+		"Korath Chaser (Expeller)" 4
 	variant 5
 		"Korath Dredger (Civilian)" 2
 		"Korath Chaser (Expeller)" 8
