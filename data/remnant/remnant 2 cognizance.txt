@@ -1029,7 +1029,7 @@ mission "Remnant: Cognizance 23"
 		give ship Merganser
 	npc kill
 		government "Korath"
-		personality coward target uninterested waiting
+		personality coward target uninterested staying
 		system
 			system "Farinus"
 		fleet
