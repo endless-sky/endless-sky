@@ -575,7 +575,7 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"Why was the message only addressed to Hai?"`
 				`	"Were these supplies for soldiers?"`
 					goto soldiers
-			`	He does not seem that much surprised, only disapointed, "I had no say in this, only idiots would refuse help when we are in such need. They will probably say aliens are the reason of this epidemic in the first place... this is not the kind of thinking that will make us strong again, I can tell you that much."`
+			`	He does not seem that much surprised, only disappointed, "I had no say in this, only idiots would refuse help when we are in such need. They will probably say aliens are the reason of this epidemic in the first place... this is not the kind of thinking that will make us strong again, I can tell you that much."`
 			choice
 				`	"I see, I don't want to make you lose any more precious time with an 'alien' then."`
 					goto alien
@@ -588,7 +588,7 @@ mission "Unfettered: Bring Medical Supplies"
 			`	"We may be more... prudent when it comes to aliens, but the Hai in general are not. They can easily have seen many different species before joining us. The Hai who sympathise to our cause dedicate themselves to other causes as well, they help with the relocating of many."`
 				decline
 			label reason
-			`	"Can't you tell?.. I make it a matter of life and death that the hospitals are always in the best of state. However it is not the same for all cities, for all of our worlds. We lack ressources, and lodging, and probably many other things. What we do not lack is heart."`
+			`	"Can't you tell?.. I make it a matter of life and death that the hospitals are always in the best of state. However it is not the same for all cities, for all of our worlds. We lack resources, and lodging, and probably many other things. What we do not lack is heart."`
 				decline
 			label soldiers
 			`	"That is a very legitimate question, but I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer."`
