@@ -402,7 +402,7 @@ mission "Unfettered: Neutral With The Hai"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`On your promenade you find an Unfettered elder who chastises you as a father would to a misbehaving child, "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you, "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Hai government right now! Or, in the future, cooperation with us will become difficult."`
+			`Whilst wandering near the spaceport you find an Unfettered Chief who chastises you as a father would to a misbehaving child, "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you, "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
 			choice
 				`	(Accept.)`
 					goto agree
@@ -416,7 +416,7 @@ mission "Unfettered: Neutral With The Hai"
 					decline
 			`	He makes a show of thinking it over before responding, "Well, I guess I can forgive your insolence, this time. But listen to what I am about to say."`
 			label agree
-			`	"Go to our home system and make your request, the Elders despise conflict, so they will most likely grant it. Given the circumstances, Hai-home will definitely not let you land though, so go to Mirrorlake instead."`
+			`	"Go to our home system and make your request, the Chiefs despise conflict, so they will most likely grant it. Given the circumstances, Hai-home will definitely not let you land though, so go to Mirrorlake instead."`
 				accept
 	on complete
 		conversation
@@ -432,7 +432,7 @@ mission "Unfettered: Neutral With The Hai"
 			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
 				die
 		"reputation: Hai" >?= 1
-		log `Convinced the Hai to stop their conflict with me, as request by an Unfettered elder.`
+		log `Convinced the Hai to stop their conflict with me, as request by an Unfettered Chief.`
 
 
 
@@ -477,7 +477,7 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label brethren
-			`	"Then you have heard about the stories of the Drak modifying our people..." He seems a bit sad. "I do not believe in such things, what makes a Hai -or any other species- “True” is in his heart. It will take him wherever he wants to go." He pauses a bit, thinking, and when he speaks again it is with deep conviction. "Even if we war with the Hai government it does not mean we hate it's people or them us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Hai government."`
+			`	"Then you have heard about the stories of the Drak modifying our people..." He seems a bit sad. "I do not believe in such things, what makes a Hai -or any other species- “True” is in his heart. It will take him wherever he wants to go." He pauses a bit, thinking, and when he speaks again it is with deep conviction. "Even if we war with the Elders it does not mean we hate other Hais or them us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Elders."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
 				`	"What limits?"`
@@ -501,7 +501,7 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label action
-			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a deprecated state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
+			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a dilapidated state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
 			choice
 				`	"I will get to it right away then."`
 					accept
@@ -518,14 +518,14 @@ mission "Unfettered: Bring Hai"
 		clear "Unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
-		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered elder says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem not to require anything at all, other than to be here.`
+		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem not to require anything at all, other than to be here.`
 
 
 
 mission "Unfettered: Bring Medical Supplies Notification"
 	landing
 	name `Need for medical supplies`
-	description `An Unfettered elder told you to come help the hospitals on <destination> that desperately need supplies.`
+	description `An Unfettered Chief told you to come help the hospitals on <destination> that desperately need supplies.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
@@ -546,37 +546,55 @@ mission "Unfettered: Bring Medical Supplies"
 		has "Unfettered: Bring Hai: done"
 	on offer
 		conversation
-			`As you land, you receive a distress message, originating from one of the hospitals nearby. Staff are asking all who can to immediately bring back medical supplies from <stopovers>.`
+			`After you landed, you receive a high priority message, originating from one of the hospitals nearby. "To all Hai, a catastrophic epidemic has just started, hundreads are sick already and if we do not act soon the consequences will be disastrous. Please immediately bring back medical supplies from <stopovers>. Any non-hai seems to not be affected by this." Not sure whether they would accept you bringing supplies you decide to go take a closer look and ask. After all, the epidemic is apparently harmless to you.`
 			`	When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, launching small ships to bring the wounded to the hospitals as quickly as possible. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure, or at least has that appearance, because it is the most useful to them, alongside the shipyards. But one part of it looks to have been grafted onto the rest, and not by a well trained physician, to say the least... You figure they must really be needing more space for their sick.`
 			`	Considering all of this, the Unfettered may not take no for an answer... Plenty of ships are already taking off to try and get those much needed medicals.`
 			choice
 				`	(Signal them I am going to get the supplies.)`
 					accept
 				`	(I do not have time for this.)`
-			`	Thankfully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission, but this will probably have consequences later. You better not stay landed for too long, or you could draw attention.`
+			`	Thankfully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission, but this will probably have consequences later. You better not stay landed for too long, or you could draw unwanted attention.`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
-		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination. Hopefully these supplies will help to make a difference.`
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	
 	on complete
 		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
-		log "People" "Sha-Ri" `An Unfettered elder worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
+		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
 		payment 1500000
 		conversation
-			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They give you <payment>.`
-			`	As you head to leave, you notice the same Hai elder speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! Without these medical supplies a lot of us Unfettered would have died, captain. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They signal you quickly to the local admninistrators who give you <payment>.`
+			`	As you head to leave, you notice the same Hai Chief speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! With the swift response of captains like you, it seems like it has calmed down, maybe we worried too much. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
+				`	"Why was the message only addressed to Hai?"`
 				`	"Were these supplies for soldiers?"`
+					goto soldiers
+			`	He does not seem that much surprised, only disapointed, "I had no say in this, only idiots would refuse help when we are in such need. They will probably say aliens are the reason of this epidemic in the first place... this is not the kind of thinking that will make us strong again, I can tell you that much."`
+			choice
+				`	"I see, I don't want to make you lose any more precious time with an 'alien' then."`
+					goto alien
+				`	"How so? They are shot on sight..."`
+				`	"What is the true reason then?"`
+					goto reason
+			label alien
+			`	"It saddens me you would think that I am worried of other races. You better get going." He does not seem angried, only a bit sad.`
+				decline
+			`	"We may be more... prudent when it comes to aliens, but the Hai in general are not. They can easily have seen many different species before joining us. The Hai who sympathise to our cause dedicate themselves to other causes as well, they help with the relocating of many."`
+				decline
+			label reason
+			`	"Can't you tell?.. I make it a matter of life and death that the hospitals are always in the best of state. However it is not the same for all cities, for all of our worlds. We lack ressources, and lodging, and probably many other things. What we do not lack is heart."`
+				decline
+			label soldiers
 			`	"That is a very legitimate question, but I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer."`
 			choice
 				`	"Glad to have prevented a disaster then."`
-					accept
+					decline
 				`	"So you just tricked me into helping the war effort?"`
 				`	"Are all Unfettered not soldiers?"`
 					goto soldier
@@ -792,12 +810,12 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot in case something goes wrong, and then start following him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing a combat suit.`
+			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close to the spaceport so you do not draw attention by landing off grid. Your crew should be able to intervene should anything go wrong. Then you follow him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing what seems to be an heavy combat suit.`
 			choice
 				`	"Who made this vault, what should I expect?"`
 				`	(No time for talking.)`
 					goto outside
-			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you. He is fully armoured, meaning as long as you stay with him, everything should be fine.`
+			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
 			
 			label outside
 			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He does not have his helmet on as he peers cautiously around corners and assess his surroundings.`
@@ -1099,7 +1117,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"You could just ask the Hai that come to you from their space about it."`
 				`	"I do not want to get in trouble with the Hai."`
 					decline
-			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. Also most of the Hai who join us are not warriors, but rather artists, others who want to explore diverse ways of seeing the world, or even simply disagree with the ways of the Hai government. So do you agree to do this for us?"`
+			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. Also most of the Hai who join us are not warriors, but rather artists, others who want to explore diverse ways of seeing the world, or even simply disagree with the ways of the Elders. So do you agree to do this for us?"`
 			choice
 				`	"It seems easy enough, I will do it."`
 					goto agree
@@ -1255,7 +1273,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 			choice
 				`	"I will land as you ask."`
 					accept
-				`	"Screw you and your government I am taking that ship down!"`
+				`	"Screw you and your Chiefs I am taking that ship down!"`
 			`	"Consider this carefully before taking any actions you may regret in the future. Our offer still stands."`
 	
 	npc
@@ -1289,7 +1307,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to present to the elders the fact that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize Taer Fi. "Can I speak to you about your scans? I really am intrigued as to how that auxiliary could work."`
+			`	Moments later, on your bridge, thinking about how to present to the Chiefs the fact that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize Taer Fi. "Can I speak to you about your scans? I really am intrigued as to how that auxiliary could work."`
 			choice
 				`	"I will not discuss those things with you."`
 					decline
@@ -1331,7 +1349,7 @@ mission "Unfettered: Escort Hai Fleet"
 		has "combat rating" > 100
 	on offer
 		conversation
-			`As you are preparing to leave this planet, an Unfettered elder approaches you. After some time you finally recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed a he. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them trough Hai space, from <stopovers>."`
+			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed a he. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them trough Hai space, from <stopovers>."`
 			choice
 				`	"What are you doing here?"`
 				`	"Why do you need my help?"`
@@ -1456,7 +1474,7 @@ mission "Unfettered: Pirate Help"
 			`	"Perfect! That means you should be ready for what I am about to ask you."`
 			
 			label attacks
-			`	"I do not know much about warfare, but we elders often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the unfettered humans attacks, and suggested an idea. Said attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
+			`	"I do not know much about warfare, but we Chiefs often speak with the warlords, who are charged with military responsibilities, among other things. One such warlord spoke to me about the unfettered humans attacks, and suggested an idea. Said attacks do not seem that bad to us, after all they only plunder a bit, like we do, but this potential attack on the Hai backlines means they will be able to have fewer ships on our border."`
 			choice
 				`	"You mean you want me to help these pirates?"`
 					goto help
@@ -1648,7 +1666,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensively, and after a few moments they realize, "Oh right, your payment! Here it is : <payment>!"`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
-			`	This seems to trouble them deeply, they are split between those who want to use the Koraths for technological opportinities, and those who still remember too freshly the horrors those Koraths did. The elders are now the most trubulant ones, some show scars or speak of lost family, others insult the Koraths. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. From him standing up, you see a big number of scars on his arms, and can only guess what he went trough. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raidings happened long ago, they could not have been responsible for those. They are victims of that war as much as we are. They should be considered as an asset at the very least, not prisonners. They could help us against the soulless killers." The mention of that name starts a lot of murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be but feel like now is not the time.`
+			`	This seems to trouble them deeply, they are split between those who want to use the Koraths for technological opportinities, and those who still remember too freshly the horrors those Koraths did. The Chiefs are now the most trubulant ones, some show scars or speak of lost family, others insult the Koraths. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. From him standing up, you see a big number of scars on his arms, and can only guess what he went trough. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raidings happened long ago, they could not have been responsible for those. They are victims of that war as much as we are. They should be considered as an asset at the very least, not prisonners. They could help us against the soulless killers." The mention of that name starts a lot of murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be but feel like now is not the time.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet because it could cause problems with the Hai. We do not want you to get shot on sight."`
 			branch logs
 				has "Unfettered: alpha logs"
@@ -1670,7 +1688,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. Here is an extra of <payment> for your troubles."`
 
 			label setup
-			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the elders are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you."`
+			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you."`
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
 					goto showlogs
@@ -1692,7 +1710,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		require "Jump Drive" 10
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight but find nothing. Then you go to the Auxiliary to see the Korath.`
-			`	They seem to be prisoners, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the elders about this. Hopefully the Koraths will have recovered by then.`
+			`	They seem to be prisoners, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Koraths will have recovered by then.`
 			choice
 				`	(Explore the Auxiliary further.)`
 				`	(Leave the planet.)`
@@ -1702,7 +1720,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
 					decline
-			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, carrying the Jump Drives wherever they went. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles territory. It is now time to leave the planet and go see the elders.`
+			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, carrying the Jump Drives wherever they went. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles territory. It is now time to leave the planet and go see the Chiefs.`
 			action
 				set "Unfettered: alpha logs"
 
@@ -2001,7 +2019,7 @@ mission "Unfettered: The Word Has Spread"
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 	on offer
 		conversation
-			`The recent activity has not diminished, people are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your elder friend, Sha-Ri, who seems happy to see you. "Ah, here you are, when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. However, some have difficulties joining us because of the Hai government... Could you help getting them here? They have decided to give up all of their belongings, to show they care not for such things."`
+			`The recent activity has not diminished, people are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Sha-Ri, who seems happy to see you. "Ah, here you are, when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our causes, cannot keep up. Indeed those who join generally do so without a ship or big founds; what they are looking for is a chance at a new life, but they need help getting here. Could you provde that help? They have decided to give up all of their belongings, to show they care not for such things."`
 			choice
 				`	"Sure!"`
 					accept
@@ -2390,38 +2408,38 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				`	(Follow him.)`
 				`	"I do not have time right now, I will come back later."`
 					defer
-			`	The lab is like nothing you have seen before, certainly not on the surface. Here things not only seem efficient, they also have some aesthetics properties. It almost looks like a museum, with different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she is not alone... The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although one of them is missing. The Korath are staring at the cooler as if they could steal it's secrets just by looking at it.`
+			`	The lab is like nothing you have seen before, certainly not on the surface. Here things not only seem efficient, they also have some aesthetics properties. It almost looks like a museum, with different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she is not alone... The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although one of them is missing. They are looking all around them, seeming very energetic, and like they can't focus on one thing at a time. However, their main focus is on the cooler and its surrounding technologies so they have not noticed you yet.`
 			choice
 				`	"Here I am, what do you need me for?"`
 				`	(Wait for them to notice me.)`
 					goto wait
-				`	(Ask Koraths.) "What happened to the other Korath?"`
+				`	(Ask Koraths.) "What happened to the missing Korath?"`
 					goto other
-			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it is the crude translator you found with them. It probably just translated everything you just said, but you have the impression it left some words in your language.`
+			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it is the crude translator you found with them. It probably just translated everything you just said, but you have the impression it that some words were just repeated.`
 				goto objective
-			
+
 			label other
-			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it is the crude translator you found with them. It probably just translated everything you just said, but you have the impression it left some words in your language.`
-			`	"'Ter' will 'Ak' speak about it to 'Mer' which 'Ter' do 'Ak' trust." It seems like you have saddened them, you probably cannot get any more information out of them for now.`
+			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it is the crude translator you found with them. It probably just translated everything you just said, but you have the impression it that some words were just repeated.`
+			`	They speak very quickly, and the translator can barrely follow. They don't seem to pause when speaking. "'Ter' will 'Ak' speak about it to 'Mer' which 'Ter' do 'Ak' trust insist and 'Ter' will 'Mah' you into nutrigel 'Ter' 'Me' only the brood master could 'Mahem'." It seems like you have saddened them by speaking of this, you probably cannot get any more information out of them for now. They start speaking together even faster than before, and the translator cannot make any sense out of it.`
 				goto objective
 			
 			label wait
-			`	The Korath eventually notice you and begin staring at you now. Then they speak in an alien language and the translator starts working, speaking in a robotic voice, "Ah it is the 'Mer' who saved 'Ter'. Why is it 'Terah' to see 'Ter'? Did it expect 'Ter' would all 'Fel'?" You realize your surprise to see them working here can probably be read all over your face.`
+			`	The Korath eventually notice you and begin staring at you now. Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but it can barrely follow what they are saying, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the 'Mer' who saved 'Ter' why is it 'Terah' to see 'Ter' did it expect 'Ter' would all 'Fel'?" You realize your surprise to see them working here can probably be read all over your face.`
 			choice
 				`	"I did not expect you to be back to working so soon."`
 					goto working
 				`	"I did not think you would be trusted enough to have access to Hai technology already."`
 				`	"I was not sure you would help the Hai at all."`
 					goto help
-			`	They make a weird sound that is probably laughter. "You call this 'Mesuk'," he says, showing you the cooler, "even our 'Rem' 'Sorobeh' can do something so primitive! But to speak true tongue, there are some interesting 'Estar' here, all the ones not made by 'Unkor' races like you and the Hai, like the 'E Shema' cooler they stole from 'Ter'."`
+			`	They make a weird sound that is probably laughter. "You call this 'Mesuk'", he says, showing you the cooler, "even our 'Rem' 'Sorobeh' can do something so primitive but to speak 'Ter' tongue there are some interesting 'Estar' here 'Erma' not made by 'Unkor' races like you and the Hai like the 'E Shema' cooler they stole from 'Ter' 'Unkor' will never 'Tema'."`
 				goto objective
 			
 			label help
-			`	You seem to have hit a nerve. "'Ter'... have a 'Noc' towards the Unfettered. It needs to be 'Terma' else 'Ter' cannot be free. Then they will have a 'Noc' with 'Ter'."`
+			`	You seem to have hit a nerve. "'Ter'... have a 'Noc' towards the Unfettered but needs to be 'Terma' else 'Ter' cannot be free then they will have a 'Noc' with 'Ter'."`
 				goto objective
 			
 			label working
-			`	"Unlike it, 'Ter' are 'Akeh'."`
+			`	"Unlike it 'Ter' are 'Akeh' 'Ter' always stay 'Akeh' even when having to 'Keh' what you call foood it is 'Eta' nutrigel."`
 			choice
 				`	"I see why the Hai allowed you to access their technology, you think in a similar way."`
 				`	"Oh is that why you got captured by the Alphas?"`
@@ -2596,7 +2614,7 @@ mission "Unfettered: Special Cargo"
 				`	"You could have just sent a message on a secure channel."`
 				`	"This seems too risky for me."`
 					decline
-			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Hai government has become quite apt at languages, by communicating with so many different species. Encryption is just like another language. We cannot risk them learning of this particular mission, you will understand why later. Information is the key here, and it always has been. We also do not want those North to learn from this, they would surely be able to decrypt it.`
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The fettered Hai have become quite apt at languages, by communicating with so many different species. Encryption is just like another language. We cannot risk them learning of this particular mission, you will understand why later. Information is the key here, and it always has been. We also do not want those North to learn from this, they would surely be able to decrypt it.`
 			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
@@ -3183,7 +3201,7 @@ mission "Unfettered: Know Your Enemy"
 		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
 		log "Wanderer" `The Wanderers are a birdlike specie that seems weak and is said to inhabit the old lands of the Unfettered Hai.`
 		payment 1000000
-		dialog `You find the herald back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our elders, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+		dialog `You find the herald back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our Chiefs, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
 
 
 
