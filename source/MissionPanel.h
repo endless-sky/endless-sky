@@ -55,7 +55,7 @@ private:
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
-	Point DrawPanel(Point pos, const std::string &label, int entries) const;
+	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
 	Point DrawList(const std::list<Mission> &list, Point pos,
 		const std::list<Mission>::const_iterator &selectIt) const;
@@ -84,6 +84,8 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
+	bool doSortAsc = true;
+	enum SortType {ABC, PAY, JUMPS, NUM_SORT_TYPES} sortType;
 	WrappedText wrap;
 };
 

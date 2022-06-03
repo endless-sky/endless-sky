@@ -232,7 +232,8 @@ void MissionPanel::Draw()
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
-		available.size());
+		available.size(),
+		true);
 	DrawList(available, pos, availableIt);
 
 	pos = DrawPanel(
@@ -349,6 +350,26 @@ bool MissionPanel::Click(int x, int y, int clicks)
 
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
+		//Panel header
+		if(y < Screen::Top() + 31)
+		{
+			if( y < Screen::Top() + 10)
+			{
+				//empty space
+				return false;
+			}
+			//Sorter buttons
+			else if( x > Screen::Left() + SIDE_WIDTH - 50 && x <= Screen::Left() + SIDE_WIDTH - 10)
+			{
+				if( x <= Screen::Left() + SIDE_WIDTH - 30)
+					sortType = static_cast<SortType>((sortType + 1) % NUM_SORT_TYPES);
+				else
+					doSortAsc = !doSortAsc;
+				return true;
+			}
+			return false;
+		}
+		//Available missions
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
@@ -365,6 +386,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
+		//Accepted missions
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
@@ -620,7 +642,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 
 
 // Draw the background for the lists of available and accepted missions (based on pos).
-Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
+Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool sorter) const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	const Color &unselected = *GameData::Colors().Get("medium");
@@ -649,6 +671,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 		edgePos.Y() -= dy;
 	}
 
+	//Panel title
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 	font.Draw(label, pos, selected);
@@ -656,6 +679,36 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 		pos + Point(.5 * size.X() - 5., 15.),
 		Point(size.X() - 10., 1.),
 		unselected);
+
+	//Panel sorting
+	const Color &text= *GameData::Colors().Get("medium");
+	const Color &box = *GameData::Colors().Get("dim");
+	const Sprite *desc = SpriteSet::Get("ui/sort descending");
+	const Sprite *asc = SpriteSet::Get("ui/sort ascending");
+	const string &abc = "A";
+	const string &pay = "$";
+	const string &jumps = "#";
+
+	//Draw Sorting Columns
+	if(sorter)
+	{
+		FillShader::Fill(
+			pos + Point(SIDE_WIDTH - 50., 0),
+			Point(17., 1.),
+			box);
+		FillShader::Fill(
+			pos + Point(SIDE_WIDTH - 59., 7.),
+			Point(1., 15.),
+			box);
+		FillShader::Fill(
+			pos + Point(SIDE_WIDTH - 41., 7.),
+			Point(1., 15.),
+			box);
+		font.Draw({sortType == ABC ? abc : sortType == PAY ? pay : jumps,
+					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 60., 0.), text);
+		SpriteShader::Draw(doSortAsc ? asc : desc, pos + Point(SIDE_WIDTH - 30., 8.));
+	}
+
 	pos.Y() += 5.;
 
 	return pos;
