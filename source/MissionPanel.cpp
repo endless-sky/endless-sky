@@ -687,7 +687,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *asc = SpriteSet::Get("ui/sort ascending");
 	const string &abc = "A";
 	const string &pay = "$";
-	const string &jumps = "#";
+	const string &time = "#";
 
 	//Draw Sorting Columns
 	if(sorter)
@@ -704,7 +704,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 			pos + Point(SIDE_WIDTH - 41., 7.),
 			Point(1., 15.),
 			box);
-		font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : player.AvailableSortType() == PlayerInfo::PAY ? pay : jumps,
+		font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : player.AvailableSortType() == PlayerInfo::PAY ? pay : time,
 					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 60., 0.), text);
 		SpriteShader::Draw(player.AvailableSortAsc() ? asc : desc, pos + Point(SIDE_WIDTH - 30., 8.));
 	}

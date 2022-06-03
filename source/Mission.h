@@ -98,6 +98,10 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
+	// The mission should take this many jumps.
+	// Only matters to available jobs (not saved to file)
+	const int ExpectedJumps() const;
+	int CalculateJumps(const System * const sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -193,6 +197,7 @@ private:
 	bool isMinor = false;
 	bool autosave = false;
 	Date deadline;
+	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
 	std::string clearance;

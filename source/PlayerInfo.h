@@ -182,7 +182,7 @@ public:
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
 
-	enum SortType {ABC, PAY, DIST};
+	enum SortType {ABC, PAY, TIME};
 	const SortType AvailableSortType() const;
 	void NextAvailableSortType();
 	const bool AvailableSortAsc() const;

@@ -224,7 +224,10 @@ void PlayerInfo::Load(const string &path)
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
+		{
 			availableJobs.emplace_back(child);
+			availableJobs.back().CalculateJumps(system);
+		}
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -1568,7 +1571,7 @@ const PlayerInfo::SortType PlayerInfo::AvailableSortType() const
 
 void PlayerInfo::NextAvailableSortType()
 {
-	availableSortType = static_cast<SortType>((availableSortType + 1) % (DIST+1));
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (TIME+1));
 	SortAvailable();
 }
 
@@ -2740,20 +2743,33 @@ void PlayerInfo::SortAvailable()
 	{
 		switch(availableSortType)
 		{
-			case ABC:
-				return availableSortAsc ? lhs.Name() < rhs.Name() : lhs.Name() > rhs.Name();
+			case TIME:
+			{
+				int lJumps = lhs.ExpectedJumps();
+				int rJumps = rhs.ExpectedJumps();
+				if(lJumps > rJumps)	//reverse < than expected because greater jumps means less time
+					return true;
+				if(lJumps < rJumps)
+					return false;
+			}
+			// Tiebreaker for TIME is PAY
 			case PAY:
 			{
 				const int64_t lPay = lhs.GetAction(Mission::Trigger::COMPLETE).Payment();
 				const int64_t rPay = rhs.GetAction(Mission::Trigger::COMPLETE).Payment();
-				return availableSortAsc ? lPay < rPay : lPay > rPay;
+				if(lPay < rPay)
+					return true;
+				if(lPay > rPay)
+					return false;
 			}
-			case DIST:
-				return availableSortAsc ? lhs.Name() < rhs.Name() : lhs.Name() > rhs.Name();
+			// Tiebreaker for PAY is ABC:
+			case ABC:
+			default:
+				return lhs.Name() < rhs.Name();
 		}
-		//Backup case for sanity's sake:
-		return lhs.Name() < rhs.Name();
 	});
+	if(!availableSortAsc)
+		availableJobs.reverse();
 }
 
 
