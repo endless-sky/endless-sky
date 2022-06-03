@@ -626,8 +626,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled()
-					&& personality.Disables()) || !target->IsTargetable())
+			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
+					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it));
 		}
 		if(isPresent)
@@ -1087,7 +1087,7 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 
 // Pick a new target for the given ship.
-shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
+shared_ptr<Ship> AI::FindTarget(Ship &ship) const
 {
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
@@ -1123,7 +1123,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
 	// Ships with 'plunders' personality always destroy the ships they have boarded.
-	if(oldTarget && person.Plunders() && !person.Disables()
+	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
 		return oldTarget;
 	shared_ptr<Ship> parentTarget;
@@ -1177,6 +1177,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
 				continue;
 		}
+
+		// Merciful ships do not attack any ships that are trying to escape.
+		if(person.IsMerciful() && foe->IsFleeing())
+			continue;
 
 		// Ships which only disable never target already-disabled ships.
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
@@ -1256,6 +1260,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 					target.reset();
 					break;
 				}
+		if(!target)
+			ship.SetFleeing();
 	}
 
 	// Vindictive personalities without in-range hostile targets keep firing at an old
@@ -2232,6 +2238,8 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 			toDump -= dumped;
 		}
 
+	// Merciful ships will let this one be.
+	ship->SetFleeing();
 	Messages::Add(ship->GetGovernment()->GetName() + " " + ship->Noun() + " \"" + ship->Name()
 		+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 

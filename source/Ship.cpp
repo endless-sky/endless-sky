@@ -2653,6 +2653,13 @@ bool Ship::IsLanding() const
 
 
 
+bool Ship::IsFleeing() const
+{
+	return isFleeing;
+}
+
+
+
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
@@ -3824,6 +3831,13 @@ shared_ptr<Flotsam> Ship::GetTargetFlotsam() const
 
 
 
+void Ship::SetFleeing()
+{
+	isFleeing = true;
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -3833,6 +3847,9 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
+		// When you acquire a target, you are no longer fleeing.
+		if(ship)
+			isFleeing = false;
 	}
 	targetAsteroid.reset();
 }

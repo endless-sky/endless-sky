@@ -80,7 +80,7 @@ private:
 	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
-	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
+	std::shared_ptr<Ship> FindTarget(Ship &ship) const;
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
