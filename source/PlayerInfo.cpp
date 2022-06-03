@@ -604,6 +604,8 @@ void PlayerInfo::IncrementDate()
 
 	// Re-calculate all automatic conditions
 	UpdateAutoConditions();
+
+	UpdateMilestones();
 }
 
 
@@ -2560,6 +2562,23 @@ void PlayerInfo::ValidateLoad()
 	// the player will be on the correct planet when a plugin is re-added).
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+}
+
+
+
+void PlayerInfo::UpdateMilestones()
+{
+	for(const Milestone &milestone : GameData::Milestones())
+	{
+		auto milestoneIt = milestones.find(milestone);
+
+		MilestoneState currentState = (milestoneIt != milestones.end() ? milestoneIt.second : MilestoneState::DEFAULT);
+		MilestoneState newState = milestone.CheckState(Conditions());
+		if(newState > currentState)
+		{
+			milestones.insert_or_assign(&milestone, newState);
+		}
+	}
 }
 
 

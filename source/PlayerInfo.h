@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 #include "Depreciation.h"
 #include "GameEvent.h"
+#include "Milestone.h"
 #include "Mission.h"
 
 #include <chrono>
@@ -288,6 +289,8 @@ private:
 	// After loading & applying changes, make sure the player & ship locations are sensible.
 	void ValidateLoad();
 
+	void UpdateMilestones();
+
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
@@ -350,6 +353,7 @@ private:
 	Mission *activeBoardingMission = nullptr;
 
 	std::map<std::string, int64_t> conditions;
+	std::map<const Milestone *, MilestoneState> milestones;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

@@ -214,6 +214,8 @@
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
 		<Unit filename="source/Messages.h" />
+		<Unit filename="source/Milestone.cpp" />
+		<Unit filename="source/Milestone.h" />
 		<Unit filename="source/Minable.cpp" />
 		<Unit filename="source/Minable.h" />
 		<Unit filename="source/Mission.cpp" />
@@ -344,6 +346,7 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
+		<Unit filename="source/milestonestate.hpp" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
