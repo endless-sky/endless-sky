@@ -363,7 +363,7 @@ public:
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
-	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> *visuals);
+	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Reserve a bay for the given escort.
 	void ReserveBay(const std::shared_ptr<Ship> &escort);
 	// Empty the bays. If the carried ships are not special ships that are
@@ -436,7 +436,7 @@ public:
 private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
-	void RemoveEscort(Ship &ship);
+	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
@@ -447,6 +447,8 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	// Move the given ship into one of the bays (if possible) and generate any visuals.
+	bool Carry(const std::shared_ptr<Ship> &ship, std::vector<Visual> &visuals);
 
 
 private:
@@ -473,7 +475,7 @@ private:
 	std::string name;
 	bool canBeCarried = false;
 	// The bay this ship docks too, if any.
-	Bay *reservedBay = nullptr;
+	mutable Bay *reservedBay = nullptr;
 
 	int forget = 0;
 	bool isInSystem = true;

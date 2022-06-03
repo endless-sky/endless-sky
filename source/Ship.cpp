@@ -2382,7 +2382,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, vector<Visual> &visuals)
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
-			victim->Carry(shared_from_this(), &visuals);
+			victim->Carry(shared_from_this(), visuals);
 		return shared_ptr<Ship>();
 	}
 
@@ -2983,12 +2983,6 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	}
 	// This ship should not care about its now-unallied escorts.
 	escorts.clear();
-
-	// Fighters should flee a disabled ship, but if the player manages to capture
-	// the ship before they flee, the fighters are captured, too.
-	for(Bay &bay : bays)
-		if(bay.ship)
-			bay.ship->WasCaptured(shared_from_this());
 }
 
 
@@ -3458,7 +3452,7 @@ int Ship::BaysFree(const string &category) const
 {
 	int count = 0;
 	for(const Bay &bay : bays)
-		count += (bay.category == category) && bay.free;
+		count += bay.free && (bay.category == category);
 	return count;
 }
 
@@ -3485,7 +3479,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	const string &category = ship.attributes.Category();
 
 	for(const auto &bay : bays)
-		if(bay.category == category && (bay.free || ship.reservedBay == &bay))
+		if((bay.free || ship.reservedBay == &bay) && bay.category == category)
 			return true;
 	return false;
 }
@@ -3507,7 +3501,7 @@ bool Ship::CanBeCarried() const
 
 
 
-bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
+bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
 	if(!ship || !ship->CanBeCarried())
 		return false;
@@ -3520,7 +3514,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 		// Check only for the category that we are interested in.
 		const string &category = ship->attributes.Category();
 		for(Bay &bay : bays)
-			if(bay.category == category && bay.free)
+			if(bay.free && bay.category == category)
 			{
 				dockBay = &bay;
 				break;
@@ -3542,6 +3536,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 	ship->isReversing = false;
 	ship->isSteering = false;
 	ship->commands.Clear();
+	ship->firingCommands.Clear();
 	// If this fighter collected anything in space, try to store it
 	// (unless this is a player-owned ship).
 	if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
@@ -3552,11 +3547,6 @@ bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> *visuals)
 	// Update the cached mass of the mothership.
 	carriedMass += ship->Mass();
 
-	// Apply any retrieve effects if applicable (for example, no effect should
-	// be generated when launching from a planet).
-	if(visuals && !dockBay.retrieveEffects.empty())
-		for(const Effect *effect : dockBay->retrieveEffects)
-			visuals->emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
 	return true;
 }
 
@@ -3989,7 +3979,7 @@ void Ship::AddEscort(Ship &ship)
 
 
 
-void Ship::RemoveEscort(Ship &ship)
+void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
 	for( ; it != escorts.end(); ++it)
@@ -4141,4 +4131,21 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+
+// Move the given ship into one of the bays (if possible) and generate any visuals.
+bool Ship::Carry(const shared_ptr<Ship> &ship, vector<Visual> &visuals)
+{
+	bool success = Carry(ship);
+
+	// Apply any retrieve effects. If the ship was carried succesfully then
+	// it was assigned a bay with the effects to generate.
+	if(success && !ship->reservedBay->retrieveEffects.empty())
+		for(const Effect *effect : ship->reservedBay->retrieveEffects)
+			visuals.emplace_back(*effect, ship->Position(), ship->Velocity(), ship->Facing());
+
+	return success;
 }
