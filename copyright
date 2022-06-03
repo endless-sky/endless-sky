@@ -1419,6 +1419,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sounds/remnant afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
  images/ship/kestrel*
  images/ship/kestrele*
  images/ship/kestrels*
