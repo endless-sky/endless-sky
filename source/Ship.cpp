@@ -150,7 +150,12 @@ namespace {
 	bool IsEscortedBy(shared_ptr<const Ship> ship, shared_ptr<Ship> escort) {
 		if(!escort)
 			return false;
-		if(escort->CanBeCarried() || ship->CanBeCarried())
+
+		// Fighters do not have escorts.
+		if(ship->CanBeCarried())
+			return false;
+
+		if(escort->CanBeCarried() && ship->GetGovernment() == escort->GetGovernment())
 			return true;
 
 		bool notEscordedBy = false;
@@ -158,7 +163,7 @@ namespace {
 		notEscordedBy |= escort->IsDestroyed();
 
 		// This is an NPC but not a mission escort escorting player flagship.
-		notEscordedBy |= ship->IsYours() && !ship->GetParent() && !escort->IsYours() && !escort->GetPersonality().IsEscort();
+		notEscordedBy |= ship->IsYours() && !escort->IsYours() && !escort->GetPersonality().IsEscort();
 
 		// Escort is not in the same system as ship.
 		notEscordedBy |= ship->GetSystem() != escort->GetSystem();
@@ -1232,6 +1237,21 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	}
 
 	UpdateEscortsState(shared_from_this());
+	isEscortsFullOfFuel = false;
+	isTankerCarrier = false;
+	// Reset tanker carrier state on jump or takeoff which will become set if fighters are deployed.
+	if(HasBays())
+	{
+		if(IsRefueledByRamscoop())
+			isTankerCarrier = true;
+		if(!isTankerCarrier)
+			for(Bay &bay : bays)
+				if(bay.ship && bay.ship->IsRefueledByRamscoop())
+				{
+					isTankerCarrier = true;
+					break;
+				}
+	}
 }
 
 
@@ -2324,9 +2344,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount || cloak))
 		return;
 
-	bool fighterCanRefuelFleet = false;
-	bool fighterCanRefuelParent = false;
-	bool updateTankerCarrier = false;
+	bool updateReadyToRefuelParent = false;
 	bool readyToRefuelParent = false;
 	for(Bay &bay : bays)
 		if(bay.ship && ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
@@ -2337,9 +2355,13 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			{
 				// TODO: Restock fighter weaponry that needs ammo.
 
-				// Only calculate readyToRefuelParent once
-				if(!updateTankerCarrier)
+				// Only calculate readyToRefuelParent once if there's at least
+				// one ship.
+				if(!updateReadyToRefuelParent)
+				{
 					readyToRefuelParent = IsEscortsFullOfFuel() && !IsEnemyInEscortSystem();
+					updateReadyToRefuelParent = true;
+				}
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
 				double maxFuel = bay.ship->attributes.Get("fuel capacity");
@@ -2349,6 +2371,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 					bool carriedShipHasRamscoop = bay.ship->IsRefueledByRamscoop();
 					bool takeFuelFromCarrierOnDeploy = spareFuel > 100.;
 					bool depositFuelIntoCarrier = bay.ship->fuel < .25 * maxFuel;
+					if(!isTankerCarrier && (IsRefueledByRamscoop() || carriedShipHasRamscoop))
+						isTankerCarrier = true;
 					if(readyToRefuelParent && carriedShipHasRamscoop)
 					{
 						takeFuelFromCarrierOnDeploy = !carriedShipHasRamscoop;
@@ -2363,7 +2387,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 						// Forget about waiting for fuel to launch if the fighter is needed for defense.
 						bool isNotNeededForDefense = !bay.ship->IsArmed(true) || (bay.ship->IsArmed(true) && IsEnemyInEscortSystem());
 						// Launch if fleet is full and fighter or drone is refilling carrier.
-						if(!IsEscortsFullOfFuel() && !bay.ship->IsRefueledByRamscoop() && isNotNeededForDefense)
+						if(!IsEscortsFullOfFuel() && isNotNeededForDefense)
 							continue;
 					}
 				}
@@ -2386,16 +2410,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship->UnmarkForRemoval();
-			updateTankerCarrier = true;
-			// Settings for tanker carrier.
-			if((!fighterCanRefuelFleet || !fighterCanRefuelParent) && bay.ship->Attributes().Get("fuel capacity"))
-			{
-				fighterCanRefuelFleet = true;
-				// A fighter must have both fuel capacity and ramscoop to refuel
-				// parent.
-				if(!fighterCanRefuelParent && bay.ship->IsRefueledByRamscoop())
-					fighterCanRefuelParent = true;
-			}
 			// Update the cached sum of carried ship masses.
 			carriedMass -= bay.ship->Mass();
 			// Create the desired launch effects.
@@ -2404,8 +2418,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 			bay.ship.reset();
 		}
-	if(updateTankerCarrier)
-		isTankerCarrier = fighterCanRefuelFleet && (IsRefueledByRamscoop() || fighterCanRefuelParent);
 }
 
 
@@ -2830,8 +2842,13 @@ bool Ship::IsFuelLow(double compareTo) const
 
 
 
+// If a ship has fuel capacity and ramscooping in the current system then it is
+// considered to be refueled by ramscoop.
 bool Ship::IsRefueledByRamscoop() const
 {
+	// Can only be refueled by ramscoop if there's fuel capacity to store it.
+	if(!attributes.Get("fuel capacity"))
+		return false;
 	return (GetRamscoopRegenPerFrame() * 60 >= 1) || attributes.Get("ramscoop") >= 1;
 }
 
@@ -4465,22 +4482,42 @@ bool Ship::MayRequestHelp() const
 // escortsHaveOneJump, isEnemyInEscortSystem, isEscortsFullOfFuel, and
 // refuelMissionNpcEscort.  Warning this is an expensive calculation if done too
 // often.
-void Ship::UpdateEscortsState(const vector<weak_ptr<Ship>> allEscorts)
+void Ship::UpdateEscortsState(shared_ptr<Ship> flagship, const vector<weak_ptr<Ship>> allEscorts)
 {
 	bool updatedEscortsFullOfFuel = false;
 	bool updatedEnemyInEscortSystem = false;
 	bool updateEscortsHaveOneJump = false;
 	bool updateRefuelMissionNpcEscort = false;
-	const Government *gov = GetGovernment();
+	// Check flagship against itself
+	if(!flagship->IsTankerCarrier() && flagship->IsFuelLow())
+	{
+		flagship->isEscortsFullOfFuel = false;
+		updatedEscortsFullOfFuel = true;
+	}
+	shared_ptr<const Ship> flagshipTarget = flagship->GetTargetShip();
+	const Government *gov = flagship->GetGovernment();
+	if(flagshipTarget)
+		if(gov->IsEnemy(flagshipTarget->GetGovernment()))
+		{
+			flagship->isEnemyInEscortSystem = true;
+			updatedEnemyInEscortSystem = true;
+		}
+	if(flagship->JumpFuelMissing())
+	{
+		flagship->escortsHaveOneJump = false;
+		updateEscortsHaveOneJump = true;
+	}
+
+	// Update flagship state based on escorts
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
-		if(!IsEscortedBy(this->shared_from_this(), escort))
+		if(!IsEscortedBy(flagship, escort))
 			continue;
 
 		if(!updatedEscortsFullOfFuel && escort->IsFuelLow() && !escort->CanBeCarried() && !escort->IsTankerCarrier())
 		{
-			isEscortsFullOfFuel = false;
+			flagship->isEscortsFullOfFuel = false;
 			updatedEscortsFullOfFuel = true;
 		}
 
@@ -4490,7 +4527,7 @@ void Ship::UpdateEscortsState(const vector<weak_ptr<Ship>> allEscorts)
 			if(escortTarget)
 				if(gov->IsEnemy(escortTarget->GetGovernment()))
 				{
-					isEnemyInEscortSystem = true;
+					flagship->isEnemyInEscortSystem = true;
 					updatedEnemyInEscortSystem = true;
 				}
 		}
@@ -4498,25 +4535,25 @@ void Ship::UpdateEscortsState(const vector<weak_ptr<Ship>> allEscorts)
 		if(!updateEscortsHaveOneJump)
 			if(escort->JumpFuelMissing())
 			{
-				escortsHaveOneJump = false;
+				flagship->escortsHaveOneJump = false;
 				updateEscortsHaveOneJump = true;
 			}
 
 		if(!updateRefuelMissionNpcEscort)
 			if(escort->IsYours() && escort->IsFuelLow() && !escort->CanBeCarried())
 			{
-				refuelMissionNpcEscort = false;
+				flagship->refuelMissionNpcEscort = false;
 				updateRefuelMissionNpcEscort = true;
 			}
 	}
 	if(!updatedEscortsFullOfFuel)
-		isEscortsFullOfFuel = true;
+		flagship->isEscortsFullOfFuel = true;
 	if(!updatedEnemyInEscortSystem)
-		isEnemyInEscortSystem = false;
+		flagship->isEnemyInEscortSystem = false;
 	if(!updateEscortsHaveOneJump)
-		escortsHaveOneJump = true;
+		flagship->escortsHaveOneJump = true;
 	if(!updateRefuelMissionNpcEscort)
-		refuelMissionNpcEscort = true;
+		flagship->refuelMissionNpcEscort = true;
 }
 
 
@@ -4570,21 +4607,25 @@ void Ship::UpdateEscortsState()
 	if(!flagship)
 		flagship = shared_from_this();
 
-	// Only evaluate state for escorts in the same system as flagship.
 	if(!flagship)
 		return;
 
+	// Player escorts should only be updated if this ship is owned by the
+	// player.
+	if(flagship->IsYours() && !IsYours())
+		return;
+
 	const vector<weak_ptr<Ship>> allEscorts = flagship->GetEscorts();
-	UpdateEscortsState(allEscorts);
+	UpdateEscortsState(flagship, allEscorts);
 
 	// Set the state for all fighters and drones.
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
-		if(!IsEscortedBy(this->shared_from_this(), escort))
+		if(!IsEscortedBy(flagship, escort))
 			continue;
 		// This covers escorts already deployed in the system.
-		UpdateEscortsState(escort);
+		flagship->UpdateEscortsState(escort);
 		if(!escort->CanBeCarried())
 		{
 			// This covers boarded escorts not in the system.
@@ -4593,10 +4634,11 @@ void Ship::UpdateEscortsState()
 				shared_ptr<Ship> carry = ptr2.lock();
 				if(!carry->CanBeCarried())
 					continue;
-				UpdateEscortsState(carry);
+				flagship->UpdateEscortsState(carry);
 			}
 		}
 	}
 
-	UpdateEscortsState(flagship);
+	// Update this ship based.  If this is the flagship, then it will adjust weapon stats.
+	flagship->UpdateEscortsState(shared_from_this());
 }

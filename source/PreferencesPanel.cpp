@@ -445,6 +445,7 @@ void PreferencesPanel::DrawSettings()
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,
+		"Fighter fleet logistics",
 		"\n",
 		"Performance",
 		"Show CPU / GPU load",

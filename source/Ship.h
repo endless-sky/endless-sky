@@ -453,7 +453,7 @@ public:
 	double GetSpareEnergy() const;
 	bool MayRequestHelp() const;
 	void UpdateEscortsState();
-	void UpdateEscortsState(const std::vector<std::weak_ptr<Ship>> allEscorts);
+	void UpdateEscortsState(std::shared_ptr<Ship> flagship, const std::vector<std::weak_ptr<Ship>> allEscorts);
 	void UpdateEscortsState(std::shared_ptr<Ship> carriedShip);
 
 

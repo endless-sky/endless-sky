@@ -95,6 +95,8 @@ void MainPanel::Step()
 	const Ship *flagship = player.Flagship();
 	if(flagship)
 	{
+		bool displayEscortHelp = !Preferences::Has("help: try out fighter fleet logistics");
+
 		// Check if any help messages should be shown.
 		if(isActive && flagship->IsTargetable())
 			isActive = !DoHelp("navigation");
@@ -110,6 +112,29 @@ void MainPanel::Step()
 			isActive = !DoHelp("friendly disabled");
 		if(isActive && player.Ships().size() > 1)
 			isActive = !DoHelp("multiple ship controls");
+		if(isActive && Preferences::Has("Fighter fleet logistics"))
+			isActive = !DoHelp("fighter fleet logistics");
+		if(isActive && player.Ships().size() > 1 && displayEscortHelp)
+		{
+			bool canShowFleetLogisticsHelp = flagship->IsTankerCarrier();
+			// Check escorts if the flagship cannot offer logistical support.
+			// Because this is an expensive operation performance-wise, this
+			// check is only performed every couple of minutes.
+			if(!canShowFleetLogisticsHelp && !Random::Int(1800))
+				for(const auto &it : flagship->GetEscorts())
+				{
+					auto escort = it.lock();
+					if(!escort || !escort->IsYours())
+						continue;
+					if(escort->HasBays())
+					{
+						canShowFleetLogisticsHelp = true;
+						break;
+					}
+				}
+			if(canShowFleetLogisticsHelp)
+				isActive = !DoHelp("try out fighter fleet logistics");
+		}
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
