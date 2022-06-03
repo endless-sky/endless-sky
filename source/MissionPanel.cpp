@@ -362,9 +362,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else if( x > Screen::Left() + SIDE_WIDTH - 50 && x <= Screen::Left() + SIDE_WIDTH - 10)
 			{
 				if( x <= Screen::Left() + SIDE_WIDTH - 30)
-					sortType = static_cast<SortType>((sortType + 1) % NUM_SORT_TYPES);
+					player.NextAvailableSortType();
 				else
-					doSortAsc = !doSortAsc;
+					player.NextAvailableSortDirection();
 				return true;
 			}
 			return false;
@@ -704,9 +704,9 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 			pos + Point(SIDE_WIDTH - 41., 7.),
 			Point(1., 15.),
 			box);
-		font.Draw({sortType == ABC ? abc : sortType == PAY ? pay : jumps,
+		font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : player.AvailableSortType() == PlayerInfo::PAY ? pay : jumps,
 					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 60., 0.), text);
-		SpriteShader::Draw(doSortAsc ? asc : desc, pos + Point(SIDE_WIDTH - 30., 8.));
+		SpriteShader::Draw(player.AvailableSortAsc() ? asc : desc, pos + Point(SIDE_WIDTH - 30., 8.));
 	}
 
 	pos.Y() += 5.;

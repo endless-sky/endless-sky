@@ -84,8 +84,6 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
-	bool doSortAsc = true;
-	enum SortType {ABC, PAY, JUMPS, NUM_SORT_TYPES} sortType;
 	WrappedText wrap;
 };
 

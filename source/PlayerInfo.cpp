@@ -1559,6 +1559,36 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+const PlayerInfo::SortType PlayerInfo::AvailableSortType() const
+{
+	return availableSortType;
+}
+
+
+
+void PlayerInfo::NextAvailableSortType()
+{
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (DIST+1));
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::AvailableSortAsc() const
+{
+	return availableSortAsc;
+}
+
+
+
+void PlayerInfo::NextAvailableSortDirection()
+{
+	availableSortAsc = !availableSortAsc;
+	SortAvailable();
+}
+
+
+
 // Return a pointer to the mission that was most recently accepted while in-flight.
 const Mission *PlayerInfo::ActiveBoardingMission() const
 {
@@ -2698,9 +2728,30 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
-	// Sort missions on the job board alphabetically.
-	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
+	// Sort missions on the job board.
+	SortAvailable();
+}
+
+
+
+void PlayerInfo::SortAvailable()
+{
+	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
+		switch(availableSortType)
+		{
+			case ABC:
+				return availableSortAsc ? lhs.Name() < rhs.Name() : lhs.Name() > rhs.Name();
+			case PAY:
+			{
+				const int64_t lPay = lhs.GetAction(Mission::Trigger::COMPLETE).Payment();
+				const int64_t rPay = rhs.GetAction(Mission::Trigger::COMPLETE).Payment();
+				return availableSortAsc ? lPay < rPay : lPay > rPay;
+			}
+			case DIST:
+				return availableSortAsc ? lhs.Name() < rhs.Name() : lhs.Name() > rhs.Name();
+		}
+		//Backup case for sanity's sake:
 		return lhs.Name() < rhs.Name();
 	});
 }

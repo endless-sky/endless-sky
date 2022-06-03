@@ -181,6 +181,13 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+
+	enum SortType {ABC, PAY, DIST};
+	const SortType AvailableSortType() const;
+	void NextAvailableSortType();
+	const bool AvailableSortAsc() const;
+	void NextAvailableSortDirection();
+
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
@@ -291,6 +298,7 @@ private:
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
+	void SortAvailable();
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -348,6 +356,9 @@ private:
 	// This pointer to the most recently accepted boarding mission enables
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
+	// How to sort availableJobs
+	bool availableSortAsc = true;
+	SortType availableSortType;
 
 	std::map<std::string, int64_t> conditions;
 
