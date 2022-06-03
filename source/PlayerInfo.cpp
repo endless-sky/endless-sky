@@ -228,6 +228,10 @@ void PlayerInfo::Load(const string &path)
 			availableJobs.emplace_back(child);
 			availableJobs.back().CalculateJumps(system);
 		}
+		else if(child.Token(0) == "sort type")
+			availableSortType = static_cast<SortType>(child.Value(1));
+		else if(child.Token(0) == "sort descending")
+			availableSortAsc = false;
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -3026,6 +3030,9 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	out.Write("sort type", static_cast<int>(availableSortType));
+	if(!availableSortAsc)
+		out.Write("sort descending");
 
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())
