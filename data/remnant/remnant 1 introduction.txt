@@ -267,7 +267,7 @@ mission "Remnant: Defense 1"
 		fleet "Large Remnant"
 	npc evade
 		government "Korath"
-		personality heroic plunders harvests target
+		personality staying heroic plunders harvests target
 		fleet "Korath Ember Waste Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
