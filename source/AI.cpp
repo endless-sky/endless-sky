@@ -529,6 +529,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(!it->GetSystem())
 			continue;
 
+		// Update fleet-wide states for NPCs, player ships, and carried ships.
+		if(shouldUpdateEscortState && !Random::Int(10) && (!it->IsYours() || !playerEscortStateUpdated))
+		{
+			if(it->IsYours())
+				playerEscortStateUpdated = true;
+			// Only update escort state if it makes sense to do so.
+			it->UpdateEscortsState();
+		}
+
 		bool isStranded = false;
 
 		if(it.get() == flagship)
@@ -768,15 +777,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				it->SetTargetAsteroid(nullptr);
 		}
 
-		// States used by carried ships.  This is outside of CanBeCarried
-		// because the states need to be updated when no ships are deployed.
-		if(shouldUpdateEscortState && !Random::Int(10) && (!it->IsYours() || !playerEscortStateUpdated))
-		{
-			if(it->IsYours())
-				playerEscortStateUpdated = true;
-			// Only update escort state if it makes sense to do so.
-			it->UpdateEscortsState();
-		}
 		// Handle carried ships:
 		if(it->CanBeCarried())
 		{

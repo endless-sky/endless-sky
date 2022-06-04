@@ -471,6 +471,9 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	// Functions to calculate and cache values
+	double CalculateMinimumHull() const;
+	bool CalculateIsDisabled() const;
 
 
 private:
@@ -541,6 +544,7 @@ private:
 	// Number of seconds a battery powered ship or fighter should be able to
 	// operate minimally.
 	double minimumOperatingTime = 10.;
+	double minimumHull = 0.;
 
 	Command commands;
 	FireCommand firingCommands;

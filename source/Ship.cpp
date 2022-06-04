@@ -763,8 +763,9 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
+	minimumHull = CalculateMinimumHull();
 	isDisabled = true;
-	isDisabled = IsDisabled();
+	isDisabled = CalculateIsDisabled();
 
 	// Cache this ship's jump range.
 	jumpRange = JumpRange(false);
@@ -2264,7 +2265,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew()) || IsOutOfEnergy();
+	isDisabled = isOverheated || hull < minimumHull || (!crew && RequiredCrew()) || IsOutOfEnergy();
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2709,10 +2710,16 @@ bool Ship::IsOverheated() const
 
 bool Ship::IsDisabled() const
 {
+	return isDisabled;
+}
+
+
+
+bool Ship::CalculateIsDisabled() const
+{
 	if(!isDisabled)
 		return false;
 
-	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
 	bool outOfEnergy = IsOutOfEnergy();
 	return hull < minimumHull || (!crew && needsCrew) || outOfEnergy;
@@ -2798,7 +2805,7 @@ bool Ship::IsOutOfEnergy() const
 			double speedRelativeToParent = dv.Length();
 			closeToParent = distanceFromParent < 50. && speedRelativeToParent < 1.;
 			// Set closeToParent to false if this ship is disabled due to hull.  It requires additional assistance.
-			closeToParent &= hull >= MinimumHull();
+			closeToParent &= hull >= minimumHull;
 			closeToParent &= static_cast<bool>(GetSystem());
 			// CanCarry is expensive performance-wise so should only be called if necessary.
 			if(closeToParent)
@@ -3038,7 +3045,7 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 void Ship::Disable()
 {
 	shields = 0.;
-	hull = min(hull, .5 * MinimumHull());
+	hull = min(hull, .5 * minimumHull);
 	isDisabled = true;
 }
 
@@ -3185,7 +3192,7 @@ double Ship::TransferEnergy(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
+	hull = min(max(hull, minimumHull * 1.5), attributes.Get("hull"));
 	isDisabled = false;
 
 	// Set the new government.
@@ -3285,7 +3292,6 @@ double Ship::Heat() const
 // Get the ship's "health," where <=0 is disabled and 1 means full health.
 double Ship::Health() const
 {
-	double minimumHull = MinimumHull();
 	double hullDivisor = attributes.Get("hull") - minimumHull;
 	double divisor = attributes.Get("shields") + hullDivisor;
 	// This should not happen, but just in case.
@@ -3303,7 +3309,6 @@ double Ship::Health() const
 double Ship::DisabledHull() const
 {
 	double hull = attributes.Get("hull");
-	double minimumHull = MinimumHull();
 
 	return (hull > 0. ? minimumHull / hull : 0.);
 }
@@ -3334,7 +3339,7 @@ double Ship::HullUntilDisabled() const
 	// Ships become disabled when they surpass their minimum hull threshold,
 	// not when they are directly on it, so account for this by adding a small amount
 	// of hull above the current hull level.
-	return max(0., hull + 0.25 - MinimumHull());
+	return max(0., hull + 0.25 - minimumHull);
 }
 
 
@@ -3994,7 +3999,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - minimumHull < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
@@ -4200,7 +4205,7 @@ void Ship::RemoveEscort(const Ship &ship)
 
 
 
-double Ship::MinimumHull() const
+double Ship::CalculateMinimumHull() const
 {
 	if(neverDisabled)
 		return 0.;
@@ -4215,6 +4220,13 @@ double Ship::MinimumHull() const
 	double minimumHull = maximumHull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
 	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
+}
+
+
+
+double Ship::MinimumHull() const
+{
+	return minimumHull;
 }
 
 
@@ -4568,6 +4580,10 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 		other->escortsHaveOneJump = escortsHaveOneJump;
 		other->refuelMissionNpcEscort = refuelMissionNpcEscort;
 	}
+
+	// Set other minimum hull to the calculated value.
+	other->minimumHull = other->CalculateMinimumHull();
+	other->isDisabled = CalculateIsDisabled();
 
 	// Update weapon / arming state of other ship
 	other->hasAntiMissile = false;
