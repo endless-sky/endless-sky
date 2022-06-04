@@ -1066,3 +1066,7 @@ event "remnant: cognizance calm"
 event "remnant: shattered light"
 	shipyard "Remnant"
 		add "Dromedary"
+
+
+
+event "remnant: shattered light research" 

@@ -287,7 +287,6 @@ mission "Remnant: Shattered Light 4"
 		fleet "Korath Ember Waste Raid" 1
 	on complete
 		payment 250000
-		event "remnant: shattered light"
 		clear "Remnant: Shattered Light 3b: failed"
 		set "Remnant: Shattered Light 3b: done"
 		conversation
@@ -306,7 +305,7 @@ mission "Remnant: Shattered Light 4"
 			`	Another Remnant steps forward. "The Weft is what we term the mesh of dimensions, energy, and time that form a subset of the universe. A layer, of sorts." He looks thoughtful. "What you probably know as 'Hyperspace' is what we technically call the secondary weft. There are a few others we are fairly confident exist, and several that we have hypothesized might exist but we have no means of confirming. Practically, each of these overlaps with the primary weft to some extent." His gestures take on an amused tone. "Of course, what we call the Primary Weft is only primary to those of us who live here. For all we know, there may be people living elsewhere that consider their own weft to be the primary one. Nothing says ours is special or the best or anything of the sort."`
 			label shatteredhelp
 			`	"In terms of help, could you go to Caelian? We have sent word ahead, and our engineers are retrieving some of our remaining equipment from the time of the Exodus. We are hoping that it might be of use to help us repair the Shattered Light, or at least understand what happened to it.`
-			`	"Before you leave, though, there was some stuff that survived intact we would like to share with you." Behind her five androids emerge from one of the cargo hold, each one carrying a large trunk of equipment. "These are known as NDR-114 Androids, and were cutting edge innovations back when the exodus occurred. Don't expect too much of them: They are not self-aware, sentient, or even particularly advanced artificial intelligence. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. We have plenty to study, we thought you might appreciate having a few."`
+			`	"Before you leave, though, there was some stuff that survived intact we would like to share with you." Behind her five androids emerge from one of the cargo hold, each one carrying a large trunk of equipment. "These are known as NDR-114 Androids, and were cutting edge innovations back when the exodus occurred. Don't expect too much of them: They are not self-aware, sentient, or even particularly advanced artificial intelligence. They are, however, excellent extensions of a ship's self-maintenance systems. As it turns out, a large number of these androids were instrumental in keeping the Shattered Light flying all these years. We have plenty to study, we thought you might appreciate having a few." She makes a dismissive gesture. "If they end up not being helpful for you, our outfitters will be able to re-assign them to another ship."`
 			scene "outfit/android"
 			`	"Embers light your path, Captain <first>." With that, the crowd disperses.`
 		outfit "NDR-114 Android" 5
@@ -319,11 +318,6 @@ mission "Remnant: Shattered Light 5"
 	landing
 	source "Viminal"
 	destination "Caelian"
-	on complete
-		conversation
-			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
-			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd of people gathered around in animated conversation. They spot you and people start waving their goodbyes as the group pick up their bags and head towards you.`
-			`	"Ah, <first>! Thank you for transport us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 
 
 
@@ -338,22 +332,36 @@ mission "Remnant: Shattered Light 6"
 	destination "Viminal"
 	to offer
 		has "Remnant: Shattered Light 5: done"
+	on offer
+		conversation
+			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
+			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd of people gathered around in animated conversation. They spot you and people start waving their goodbyes as the group pick up their bags and head towards you.`
+			`	"Ah, <first>! Thank you for transport us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 	on complete
+		event "remnant: shattered light"
+		event "remnant: shattered light research" 60
 		conversation
 			`The Remnant spend the trip busily discussing what is known so far and exchanging theories, eagerly asking you questions what you saw and reviewing your sensor records. By the time you reach Viminal, they have a whole collection of theories and have a preliminary plan of what studies they hope to do. When pressed, however, they all acknowledge that their top priority will be documenting the ship. Every scratch, every oddly charge component, every minor modification. "After all," they say, "knowing how it is now is the first step to determining how it arrived here."`
-			`	The entire complement of Remnant crowd the windows when you finally settled into final approach for the covered valley that houses the Shattered Light. You can see that the Remnant have been busy setting up large equipment towers around it, including several small encampments of tents. As you settle in for a landing, you see a camel team manouver a sled with a large anti-aircraft battery into position, where it is promptly shrouded in another tent, which blends into the rest of the camp.`
-			``
-			`	"We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. As we all know, it was part of the exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
+			`	The entire complement of Remnant crowd the windows when you finally settled into final approach for the covered valley that houses the Shattered Light. You can see that the Remnant have been busy setting up large equipment towers around it, including several small encampments of tents. As you settle in for a landing, you see a camel team maneuver a sled with a large anti-aircraft battery into position, where it is promptly shrouded in a tent that blends into the rest of the camp.`
+			`	Traffic control directs you to a pad near a large door of the Shattered Light. Ruach and a small group of Remnant are gathered around a hologram of the ship, and seem to be co-ordinating teams exploring it. Large mounds of equipment appear to have expanded from the sides of the ship, some of which appears to be functional. As you go through your landing checks, the team thank you for the transportation and begins offloading their equipment.`
+			`	"Welcome back, <first>!" signs Ruach from across the pad. "We have made considerable progress already." She appears set to explain what they have discovered.`
+			choice
+				`	"Great, but please save your explanations for those who want them."`
+					goto shatteredrequest
+				`	"You have figured out what happened? Great!"`
+			`	She looks crestfallen "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
+			`	"As we all know, it was part of the exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
 			`	At this point another Remnant takes up the narrative. "Based on the initial incident logs, it appears that something in the stabilization fields failed during transit. The data is not clear whether the systems failed, or if something in the wormhole fluctuations exceeded the parameters that the systems could handle. In any case, the ship appears to have been shunted laterally from the wormhole in mid-transit.`
 			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after you spotted it."`
 			choice
 				`	"Interesting. Well, let me know if I can help."`
 					goto shatteredhelp
 				`	"I am curious as to what will you do now."`
-			`	"The first step will be to unpack the Shattered Light and setup all its equipment. Taking detailed scans of each piece as we do so, of course." One of the other Remnant continues when Ruach pauses. "The Shattered Light carried what amounts to an entire heavy industrial factory. Everything from smelters to welding equipment and everything in between." They smile and their gestures take on a tone of irony. "In fact, the ships we have now are in no small part due to the Shattered Light's absence. Without these capabilities, the the choice about whether or not to commit to learning the techniques of those who lived here before us was much easier."`
+			`	"The first step will be to unpack the Shattered Light and setup all its equipment. Taking detailed scans of each piece as we do so, of course." She gestures around at the equipment expanding out of the side of the ship. "As you can see, we have already started the process, and found that much of it is operational. One of the other Remnant continues. "The Shattered Light carried what amounts to an entire heavy industrial factory. Everything from smelters to welding equipment and everything in between." They smile and their gestures take on a tone of irony. "In fact, the ships we have now are in no small part due to the Shattered Light's absence. Without these capabilities, the the choice about whether or not to commit to learning the techniques of those who lived here before us was much easier. If the Shattered Light had arrived on schedule we may well still be building ships out of the traditional materials prevalent at the time."`
 				goto shatteredrequest
 			label shatteredhelp
 			`	"Thank you, captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work; and as such we do not have the resources to spare for it. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
-			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho crater... But if you have the resources and interest, the opportunity is there... The shipyard will have more information for you." Her gestures trail off with a sign that indicates vast possibilities.`
+			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work; and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho crater... But if you have the resources and interest, the opportunity is there... The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
+			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
