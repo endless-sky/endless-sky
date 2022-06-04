@@ -817,13 +817,13 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	"Should we not take more men to ensure our safety?"`
 					goto moremen
 				`	(No time for talking.)`
-					goto outside
+					goto outsideship
 			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
 				goto outside
 			label moremen
 			`	"We are trying to be discrete here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
 			
-			label outside
+			label outsideship
 			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He does not have his helmet on as he peers cautiously around corners and assess his surroundings.`
 			choice
 				`	"Is everything alright?"`
