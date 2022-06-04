@@ -452,12 +452,13 @@ mission "Unfettered: Bring Hai"
 		set "Unfettered: offered bring hai"
 	on offer
 		conversation
-			`As you exit your ship you notice a group of Unfettered that seem to be discussing something of importance in a big, yet simple, square-shape stadium nearby. A few Unfettered are already heading their way to listen, it does not seem to be restricted of access.`
+			`Looking outside you see the sun is setting... It is a breathtaking view, revealing a big white structure in the distance. As you exit your ship you notice movement. You are partly carried by a crowd of Unfettered that seem to be heading to a big, yet simple, square-shape stadium nearby. That building is grandiose compared to its surroundings, by its sheer length and pure white appearance. In contrast, most buidlings around it appear to be bars or houses, but they are made from less pure materials, or maybe they just have not been cleaned in a long time. Something of great interest must be happening in there, though you notice some Unfettered are just going to the bars around, chatting.`
 			choice
-				`	(Go see them.)`
-				`	(Ignore them.)`
+				`	(Go to the stadium.)`
+				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you head towards them one separates from the rest and comes to meet you. He seems to be lost in his thought and is mumbling on, something about, "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus, "Sorry, I was just thinking out loud! Well you are here anyway so maybe you could help us?"`
+			`	As you head towards the temple, moving with the crowd, you can start to hear words being spoken loudly. A couple with 4 childs is speaking, or more precisely, begging, "... and we fear the next season will be even more rough. We need foundings to restore the lands, nothing grows on them anymore!" The "Chiefs" speak together, and then grant her her request, before the next one in line comes. The sun is almost set, and you can see that the Chiefs are growing a bit impatient. "My cousins would like to join me, but they lack the founds to afford it. Would you allow more to join us, and become true?" This seems to bother them, they answer briefly, "We will contact True ship captains to ask them if they can, but I fear they are indeed busy these days, which is why the prices have gone up." Then they rise up, and one speaks to the crowd, "It is late, you would do well to go home to care for those near you. Never hesitate to come back to us in the next cycle should you need help." At this, the crowd leaves, as do the Chiefs later on. You notice one of them looking at you, pensive, as he just noticed your presence.`
+			`	The same Chief is now moving in your general direction. He seems to be lost in his thought and is mumbling on, something about, "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus, "Sorry, I was just thinking out loud! Well you are here anyway so maybe you could help us?"`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help a friend, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he says, apparently a bit desperate, considering he knows very little if anything at all about you.`
 			choice
 				`	"Of course, what do you need me to do?"`
@@ -810,12 +811,17 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close to the spaceport so you do not draw attention by landing off grid. Your crew should be able to intervene should anything go wrong. Then you follow him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing what seems to be an heavy combat suit.`
+			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close enough to the spaceport as to not draw unwanted attention by landing off grid. Your crew should be able to intervene should anything go wrong. Then you follow him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing what seems to be an heavy combat suit.`
 			choice
 				`	"Who made this vault, what should I expect?"`
+				`	"Should we not take more men to ensure our safety?"`
+					goto moremen
 				`	(No time for talking.)`
 					goto outside
 			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
+				goto outside
+			label moremen
+			`	"We are trying to be discrete here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
 			
 			label outside
 			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He does not have his helmet on as he peers cautiously around corners and assess his surroundings.`
@@ -826,26 +832,37 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto discrete
 			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discrete
-			`	As you get closer to the cache, more and more you get the impression that it is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden. Eventually you notice a door, apparently leading to the underground vault. Suddenly, the Hai stops.`
+			`	You both seem to be heading to a mountain, where you assume the cache is. As you get closer, more and more you get the impression that it is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden. You wonder why these turrets would be in plain sight around a "hidden" depot. You start entering a ridge, and you notice some of your surroundings look... weird, like if the mountain had only changed at some places and not others. Suddenly, the Hai stops.`
 			choice
 				`	(Stay behind him.)`
 					goto stay
 				`	(Go to the door.)`
 			`	As you reach for the door the Hai shouts something, probably trying to warn you, but it is too late. You have already triggered the security systems, and get ripped to shreds by the turrets.`
 				die
-			
+
 			label stay
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be the access codes. By the look on his face, it does not seem to be working very well, though... "Someone else has had access to the vault. This was not expected," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here, I will take care of it."`
 			choice
-				`	"I will not cower away whilst you do all the heavy lifting. I am coming with you."`
-					goto fight
-				`	(Do as he says.)`
+				`	"Should you not want one extra gun, then?"`
+					goto wannafight
+				`	"What about the locals? They do not seem friendly."`
+			`	"Those lowlife scums? They would not attempt attacking a warrior, worried of the consequences," he was about to keep going but then looks at you, armorless and armed with a laser that seems like a toy in comparison to his. "Maybe you should come with me after all."`
+				goto choose
+
+			label outside
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now missing armored friend.`
 				die
-			
-			label fight
-			`	He sighs, "As you wish, but I hope you can take care of yourself on the ground as well as in space. I have disabled the automated defenses just in case they have been hijacked. We just have to go in, make sure they recognize us as friends, and then reactivate them." You both enter the vault.`
-			`	At first you do not notice anything suspicious, but when you get used to the darkness inside the vault, you finally notice a flash of light, quite far away on your left.`
+
+			label wannafight
+			`	"If the vault was compromised it was not by amateurs. I fear those inside are more dangerous, and well armed than the locals. Still I do not have to garantee your security in any way, so you are free to do as you wish. The defense mechanisms are offline at the moment, so you would have to fend for yourself, but locals are so young and frail that even you should manage it." You hear a tone of provocation in the last words.`
+			label choose
+			choice
+				`	(Stay outside.)`
+					goto outside
+				`	(Come in.)`
+
+			`	He sighs, "As you wish, but I hope you can take care of yourself on the ground as well as in space. I have disabled the automated defenses just in case they have been hijacked. We just have to go in, make sure they recognize us as friends, and then reactivate them." You really wonder where that vault could be, until you notice that part of this mountain in front of you is a hologram to disguise the entry. You both enter the vault.`
+			`	At first you do not notice anything suspicious, the vault is clearly alien in origin, but you cannot pinpoint one race, instead it seems to be a mix of many. All of it is very, very old to say the least, and any lights are non functionning, probably because your friend deactivated them, but maybe even before that... At least there is quite some space to move around, enough for an armored vehicule in fact. As you get used to the darkness inside the vault, you finally notice a flash of light, quite far away on your left.`
 			choice
 				`	(It is just a light flicking, no need to worry.)`
 				`	"GET DOWN!"`
@@ -866,7 +883,7 @@ mission "Unfettered: Jump Drive Retrieval"
 				goto ship
 			
 			label vault
-			`	"The point of all of this was to be discrete; jump drives are worth a lot on the black market. Also we needed to make sure there was not any problems with them. Even monkeys could make them blow up when used. Besides, we want to keep using this vault for later, so we may as well ensure its safety."`
+			`	"The point of all of this was to be discrete; jump drives are worth a lot on the black market. We also needed to make sure there was not any malfunctions with them. Even monkeys could rig them to blow when placed on a ship and used to jump. Besides, we want to keep using this vault for later, so we may as well ensure its safety."`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
