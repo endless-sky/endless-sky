@@ -1572,7 +1572,7 @@ const PlayerInfo::SortType PlayerInfo::AvailableSortType() const
 
 void PlayerInfo::NextAvailableSortType()
 {
-	availableSortType = static_cast<SortType>((availableSortType + 1) % (TIME+1));
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (SPEED+1));
 	SortAvailable();
 }
 
@@ -2748,31 +2748,38 @@ void PlayerInfo::SortAvailable()
 	{
 		switch(availableSortType)
 		{
-			case TIME:
+			case SPEED:
+			// A higher "Speed" means the mission takes less time, or jumps to make.
+			// This is sorted as "speed" instead of "# of jumps", so that the "greatest" result
+			//  is a more preferable mission: with fewer jumps.
+			// When two missions tie for SPEED, the PAY tiebreaker comparison
+			//  will keep the same "preferable mission" sort order (which is simply, higher pay)
 			{
 				int lJumps = lhs.ExpectedJumps();
 				int rJumps = rhs.ExpectedJumps();
-				if(lJumps > rJumps)	//reverse < than expected because greater jumps means less time
-					return true;
-				if(lJumps < rJumps)
-					return false;
+				if(lJumps > rJumps)	//reverse < than expected because greater jumps means less speed
+					return rJumps != -1;	//-1 means no route, so consider that greater
+				else if(lJumps < rJumps)
+					return lJumps == -1;
 			}
-			// Tiebreaker for TIME is PAY
+			// Tiebreaker for equal SPEED is PAY
 			case PAY:
 			{
 				const int64_t lPay = lhs.GetAction(Mission::Trigger::COMPLETE).Payment();
 				const int64_t rPay = rhs.GetAction(Mission::Trigger::COMPLETE).Payment();
 				if(lPay < rPay)
 					return true;
-				if(lPay > rPay)
+				else if(lPay > rPay)
 					return false;
 			}
-			// Tiebreaker for PAY is ABC:
+			// Tiebreaker for equal PAY is ABC:
 			case ABC:
 			default:
+			// No more tiebreakers, so just return what it can
 				return lhs.Name() < rhs.Name();
 		}
 	});
+
 	if(!availableSortAsc)
 		availableJobs.reverse();
 }
