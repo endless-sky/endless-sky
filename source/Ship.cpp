@@ -4581,7 +4581,7 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 
 	// Set other minimum hull to the calculated value.
 	other->minimumHull = other->CalculateMinimumHull();
-	other->isDisabled = CalculateIsDisabled();
+	other->isDisabled = other->CalculateIsDisabled();
 
 	// Update weapon / arming state of other ship
 	other->hasAntiMissile = false;
