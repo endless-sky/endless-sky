@@ -46,10 +46,10 @@ namespace {
 	const int APPEASING = (1 << 22);
 	const int MUTE = (1 << 23);
 	const int OPPORTUNISTIC = (1 << 24);
-	const int TARGET = (1 << 25);
-	const int MARKED = (1 << 26);
-	const int LAUNCHING = (1 << 27);
-	const int MERCIFUL = (1 << 28);
+	const int MERCIFUL = (1 << 25);
+	const int TARGET = (1 << 26);
+	const int MARKED = (1 << 27);
+	const int LAUNCHING = (1 << 28);
 
 	const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
