@@ -224,10 +224,7 @@ void PlayerInfo::Load(const string &path)
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "available job")
-		{
 			availableJobs.emplace_back(child);
-			availableJobs.back().CalculateJumps(system);
-		}
 		else if(child.Token(0) == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
@@ -2597,6 +2594,10 @@ void PlayerInfo::ValidateLoad()
 	// the player will be on the correct planet when a plugin is re-added).
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+
+	// Recalculate jumps that the mission will need
+	for(Mission& mission : availableJobs)
+		mission.CalculateJumps(system);
 }
 
 
