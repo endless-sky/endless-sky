@@ -65,6 +65,7 @@ Conversation LoadConversation();
 void PrintShipTable();
 void PrintTestsTable();
 void PrintWeaponTable();
+void PrintEngineTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -85,6 +86,7 @@ int main(int argc, char *argv[])
 	bool printShips = false;
 	bool printTests = false;
 	bool printWeapons = false;
+	bool printEngines = false;
 	string testToRunName = "";
 
 	for(const char *const *it = argv + 1; *it; ++it)
@@ -114,12 +116,14 @@ int main(int argc, char *argv[])
 			printShips = true;
 		else if(arg == "-w" || arg == "--weapons")
 			printWeapons = true;
+		else if(arg == "-e" || arg == "--engines")
+			printEngines = true;
 	}
 	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
+		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -133,7 +137,7 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 
-		if(printShips || printTests || printWeapons)
+		if(printShips || printTests || printWeapons || printEngines)
 		{
 			if(printShips)
 				PrintShipTable();
@@ -141,6 +145,8 @@ int main(int argc, char *argv[])
 				PrintTestsTable();
 			if(printWeapons)
 				PrintWeaponTable();
+			if(printEngines)
+				PrintEngineTable();
 			return 0;
 		}
 
@@ -407,6 +413,7 @@ void PrintHelp()
 	cerr << "    -v, --version: print version information." << endl;
 	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
 	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
+	cerr << "    -e, --engines: print table of engines statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
@@ -577,7 +584,7 @@ void PrintWeaponTable()
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
 		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
 		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
-		<< "homing" << '\t' << "strength" <<'\n';
+		<< "homing" << '\t' << "strength" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-weapons and submunitions.
@@ -608,6 +615,40 @@ void PrintWeaponTable()
 		cout << outfit.Homing() << '\t';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
 		cout << strength << '\n';
+	}
+	cout.flush();
+}
+
+
+
+void PrintEngineTable()
+{
+	cout << "name" << '\t' << "cost" << '\t' << "mass" << '\t' << "outfit space" << '\t'
+		<< "engine capacity" << '\t' << "thrust/s" << '\t' << "thrust energy/s" << '\t'
+		<< "thrust heat/s" << '\t' << "turn/s" << '\t' << "turn energy/s" << '\t'
+		<< "turn heat/s" << '\t' << "reverse thrust/s" << '\t' << "reverse energy/s" << '\t'
+		<< "reverse heat/s" << '\n';
+	for(auto &it : GameData::Outfits())
+	{
+		// Ship non-engines.
+		if(it.second.Category() != "Engines")
+			continue;
+
+		const Outfit &outfit = it.second;
+		cout << it.first << ',';
+		cout << outfit.Cost() << ',';
+		cout << outfit.Mass() << ',';
+		cout << outfit.Get("outfit space") << ',';
+		cout << outfit.Get("engine capacity") << ',';
+		cout << outfit.Get("thrust") * 3600. << ',';
+		cout << outfit.Get("thrusting energy") * 60. << ',';
+		cout << outfit.Get("thrusting heat") * 60. << ',';
+		cout << outfit.Get("turn") * 60. << ',';
+		cout << outfit.Get("turning energy") * 60. << ',';
+		cout << outfit.Get("turning heat") * 60. << ',';
+		cout << outfit.Get("reverse thrust") * 3600. << ',';
+		cout << outfit.Get("reverse thrusting energy") * 60. << ',';
+		cout << outfit.Get("reverse thrusting heat") * 60. << '\n';
 	}
 	cout.flush();
 }
