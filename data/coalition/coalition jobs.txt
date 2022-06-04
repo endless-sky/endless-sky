@@ -1368,7 +1368,7 @@ mission "Heliarch Contain Fail"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		dialog `You and the other agents head to the marked area but when you arrive it becomes evident that whoever occupied the place has managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
+		dialog `You and the other agents head to the marked area, but when you arrive it becomes evident that whoever occupied the place has managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
 
 mission "Heliarch Contain Fake"
 	job
@@ -1399,7 +1399,7 @@ mission "Heliarch Prisoner Transport"
 	job
 	repeat
 	name `Transport Prisoners`
-	description `Bring <bunks> criminals, who were arrested on <origin>, to <destination>. Payment is <payment>`
+	description `Bring <bunks> criminals, who were arrested on <origin>, to <destination>. Payment is <payment>.`
 	passengers 3 11
 	to offer
 		random < 15
@@ -1423,7 +1423,7 @@ mission "Heliarch Investigate"
 	job
 	repeat
 	name `Investigate signs of criminal activity`
-	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>.`
 	passengers 6 11
 	to offer
 		random < 60
