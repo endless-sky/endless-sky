@@ -3271,6 +3271,16 @@ double Ship::Fuel() const
 
 
 
+// The maximum fuel across all carried ships in the fleet.  This is used in
+// fleet refueling so that fighters with the most fuel are prioritized for
+// assisting other ships.
+double Ship::MaxCarriedShipFuel() const
+{
+	return maxCarriedShipFuel;
+}
+
+
+
 double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
@@ -4500,32 +4510,20 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> flagship, const vector<weak_ptr<S
 	bool updatedEnemyInEscortSystem = false;
 	bool updateEscortsHaveOneJump = false;
 	bool updateRefuelMissionNpcEscort = false;
-	// Check flagship against itself
-	if(!flagship->IsTankerCarrier() && flagship->IsFuelLow())
-	{
-		flagship->isEscortsFullOfFuel = false;
-		updatedEscortsFullOfFuel = true;
-	}
-	shared_ptr<const Ship> flagshipTarget = flagship->GetTargetShip();
-	const Government *gov = flagship->GetGovernment();
-	if(flagshipTarget)
-		if(gov->IsEnemy(flagshipTarget->GetGovernment()))
-		{
-			flagship->isEnemyInEscortSystem = true;
-			updatedEnemyInEscortSystem = true;
-		}
-	if(flagship->JumpFuelMissing())
-	{
-		flagship->escortsHaveOneJump = false;
-		updateEscortsHaveOneJump = true;
-	}
 
+	const Government *gov = flagship->GetGovernment();
 	// Update flagship state based on escorts
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
 		if(!IsEscortedBy(flagship, escort))
 			continue;
+
+		if(!escort->CanBeCarried() && escort->GetEscorts().size())
+			UpdateEscortsState(flagship, escort->GetEscorts());
+
+		if(escort->CanBeCarried() && !escort->GetShipToAssist())
+			flagship->maxCarriedShipFuel = max(flagship->maxCarriedShipFuel, escort->Fuel());
 
 		if(!updatedEscortsFullOfFuel && escort->IsFuelLow() && !escort->CanBeCarried() && !escort->IsTankerCarrier())
 		{
@@ -4631,8 +4629,22 @@ void Ship::UpdateEscortsState()
 	if(flagship->IsYours() && !IsYours())
 		return;
 
+	// Reset the carried ship fuel so that it can be recalculated.
+	flagship->maxCarriedShipFuel = 0.;
+
 	const vector<weak_ptr<Ship>> allEscorts = flagship->GetEscorts();
 	UpdateEscortsState(flagship, allEscorts);
+
+	// Check flagship against itself
+	if(!flagship->IsTankerCarrier() && flagship->IsFuelLow())
+		flagship->isEscortsFullOfFuel = false;
+	shared_ptr<const Ship> flagshipTarget = flagship->GetTargetShip();
+	const Government *gov = flagship->GetGovernment();
+	if(flagshipTarget)
+		if(gov->IsEnemy(flagshipTarget->GetGovernment()) && !flagshipTarget->IsDisabled() && flagshipTarget->IsTargetable())
+			flagship->isEnemyInEscortSystem = true;
+	if(flagship->JumpFuelMissing())
+		flagship->escortsHaveOneJump = false;
 
 	// Set the state for all fighters and drones.
 	for(const weak_ptr<Ship> &ptr : allEscorts)

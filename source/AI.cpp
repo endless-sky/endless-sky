@@ -1108,6 +1108,10 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	if(!shipIsDisabled && (needsFuel || ((ship.IsYours() || ship.GetPersonality().IsEscort()) && helper.IsYours())) && !helper.CanRefuel(ship) && !helper.IsEnergyLow())
 		return false;
 
+	// There is another helper with more fuel within the fleet.
+	if(helper.CanBeCarried() && helper.Fuel() < helper.MaxCarriedShipFuel())
+		return false;
+
 	// Helper is not able to continue helping because they must return to carrier for battery recharge.
 	if(helper.IsEnergyLow())
 		return false;

@@ -282,6 +282,7 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
+	double MaxCarriedShipFuel() const;
 	// A ship's heat is generally between 0 and 1, but if it receives
 	// heat damage the value can increase above 1.
 	double Heat() const;
@@ -475,7 +476,6 @@ private:
 	double CalculateMinimumHull() const;
 	bool CalculateIsDisabled() const;
 
-
 private:
 	/* Protected member variables of the Body class:
 	Point position;
@@ -545,6 +545,9 @@ private:
 	// operate minimally.
 	double minimumOperatingTime = 10.;
 	double minimumHull = 0.;
+	// The highest fueled fighter or drone.  This is the Fuel() ratio across all
+	// carried ships in the fleet which are not helping other ships.
+	double maxCarriedShipFuel = 1.;
 
 	Command commands;
 	FireCommand firingCommands;
