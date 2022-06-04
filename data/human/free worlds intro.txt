@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Pact Recon 0"
+	minor
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Alniyat"

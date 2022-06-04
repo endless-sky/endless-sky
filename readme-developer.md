@@ -68,7 +68,7 @@ MinGW provides the tools used to compile the source code into the game's executa
 - Threads: `posix`
 - Exception: `seh`
 
-Endless Sky requires precompiled libraries to compile and play: [Download link](http://endless-sky.github.io/win64-dev.zip)
+Endless Sky requires precompiled libraries to compile and play: [Download link](https://endless-sky.github.io/win64-dev.zip)
 
 The zip can be extracted anywhere on your filesystem; to minimize additional configuration, you can move the `dev64` folder to `C:\`.
 
@@ -145,7 +145,7 @@ Once all the libraries in place, the game is ready to run! You have three option
 
 To build Endless Sky with native tools, you will first need to download Xcode from the App Store.
 
-Next, install [Homebrew](http://brew.sh). Once it is installed, use it to install the libraries you will need:
+Next, install [Homebrew](https://brew.sh). Once it is installed, use it to install the libraries you will need:
 
 ```
   $ brew install libmad libpng jpeg-turbo
