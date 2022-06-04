@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../../source/ExclusiveItem.h"
 
 // ... and any system includes needed for the test file.
+#include <utility>
 
 namespace { // test namespace
 
@@ -47,7 +48,7 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 
 		WHEN( "an object is added by reference" ) {
 			auto obj = Object(2);
-			item = ExclusiveItem<Object>(obj);
+			item = ExclusiveItem<Object>(std::move(obj));
 			THEN( "the object is obtainable and the item is nonstock" ) {
 				CHECK_FALSE( item.IsStock() );
 				CHECK( item->GetValue() == 2 );
@@ -66,16 +67,16 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 	GIVEN( "two exclusive items" ) {
 		auto firstItem = ExclusiveItem<Object>{};
 		auto secondItem = ExclusiveItem<Object>{};
-		
+
 		WHEN( "the contents are equivalent" ) {
 			auto obj = Object(2);
 			firstItem = ExclusiveItem<Object>(&obj);
-			secondItem = ExclusiveItem<Object>(obj);
+			secondItem = ExclusiveItem<Object>(std::move(obj));
 			THEN( "the exclusive items are equivalent" ) {
 				CHECK( firstItem == secondItem );
 			}
 		}
-		
+
 		WHEN( "the contents are not equivalent" ) {
 			firstItem = ExclusiveItem<Object>(Object(2));
 			secondItem = ExclusiveItem<Object>(Object(3));
