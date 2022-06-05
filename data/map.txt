@@ -31050,7 +31050,7 @@ system Nnaug
 			period 292.59886
 
 system Heutesl
-	pos 809.05388 -62.424893
+	pos 816.60944 -72.202671
 	government Gegno
 	habitable 351.25
 	belt 1942
@@ -31102,7 +31102,7 @@ system Heutesl
 			period 156.64992
 
 system Mohuwo
-	pos 854.16497 27.075105
+	pos 867.4983 9.2973272
 	government Uninhabited
 	habitable 1907.2
 	belt 1213
@@ -31223,7 +31223,7 @@ system Scija
 			period 211.04048
 
 system Vanguwo
-	pos 890.10943 133.964
+	pos 890.99832 123.74178
 	government Uninhabited
 	habitable 11530
 	belt 1964
@@ -31348,7 +31348,7 @@ system Anbrim
 		sprite star/f3
 
 system Zeinar
-	pos 842.44278 80.35289
+	pos 836.665 86.575112
 	government "Gegno Scin"
 	belt 1960
 	link Auhru
@@ -31406,8 +31406,8 @@ system Karhio
 	habitable 2560
 	belt 1163
 	haze _menu/haze-133
+	link Pukako
 	link Wreoul
-	link eg1
 	asteroids "small rock" 6 5.082
 	asteroids "medium rock" 8 6.6
 	asteroids "large rock" 13 4.224
@@ -31442,8 +31442,8 @@ system Rouseu
 	habitable 1780
 	belt 1648
 	haze _menu/haze-red
-	link eg3
-	link eg4
+	link Vaiov
+	link Yerser
 	asteroids "small rock" 232 1.344
 	asteroids "medium rock" 42 2.328
 	asteroids "large rock" 106 1.752
@@ -31515,7 +31515,7 @@ system 22b
 			period 201.34942
 
 system Oosuoro
-	pos 810.74832 -40.95267
+	pos 814.74832 -40.95267
 	government Gegno
 	habitable 10525
 	belt 1068
@@ -31648,7 +31648,7 @@ system Jied
 system Yranjiu
 	pos 1008.9984 81.51956
 	government Uninhabited
-	habitable 3276.8
+	habitable 2000
 	belt 1478
 	haze _menu/haze-blackbody
 	asteroids "small rock" 4 2.604
@@ -31659,7 +31659,7 @@ system Yranjiu
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
 	object
-		sprite star/o0
+		sprite star/neutron
 		period 10
 	object
 		sprite planet/rock11
@@ -31673,10 +31673,6 @@ system Yranjiu
 		sprite planet/gas14-b
 		distance 3592.243
 		period 1509.0311
-	object
-		sprite planet/browndwarf-l-rouge
-		distance 2172.0854
-		period 3115.4763
 
 system Aleit
 	pos 754.97055 -106.45268
@@ -31844,9 +31840,9 @@ system Wreoul
 	belt 1409
 	haze _menu/haze-133
 	link Cshudlye
+	link Empeles
 	link Karhio
 	link Nnaug
-	link eg5
 	asteroids "small rock" 3 3.36
 	asteroids "medium rock" 1 2.464
 	asteroids "large rock" 4 2.24
@@ -31944,7 +31940,7 @@ system Ptobeh
 		period 481.55989
 
 system Auhru
-	pos 876.67066 52.666788
+	pos 884.22622 42.444566
 	government "Gegno Scin"
 	habitable 1411.2
 	belt 1633
@@ -32051,7 +32047,7 @@ system Pbelnep
 		period 2433.2033
 
 system Iigen
-	pos 843.05955 -56.610997
+	pos 855.50399 -80.166553
 	government Uninhabited
 	habitable 259.2
 	belt 1699
@@ -32299,7 +32295,7 @@ system Iinjma
 		period 5934.9594
 
 system Iliniza
-	pos 789.42066 99.611222
+	pos 783.19844 110.27789
 	government "Gegno Scin"
 	habitable 538.45
 	belt 1624
@@ -32364,7 +32360,7 @@ system Iliniza
 			period 521.19757
 
 system Yllke
-	pos 915.30955 46.055664
+	pos 928.19844 47.833442
 	government Uninhabited
 	habitable 924.8
 	belt 1925
@@ -32417,7 +32413,7 @@ system Yllke
 			period 237.4387
 
 system Uttna
-	pos 859.66667 -38.8889
+	pos 885.44445 -54.8889
 	government Uninhabited
 	habitable 500
 	belt 1748
@@ -32466,7 +32462,7 @@ system Uttna
 			period 211.72649
 
 system Kilema
-	pos 936.02778 17.222221
+	pos 957.36111 7.8888877
 	government Uninhabited
 	habitable 28.8
 	belt 1612
@@ -32619,9 +32615,9 @@ system Vorsuke
 		sprite star/g5-old
 		distance 2.2578277
 		period 52.961974
-	object
-		sprite planet/earth-b
-		distance 1433.1061
+	object Vigales
+		sprite planet/desert3
+		distance 696.77986
 		period 538.04594
 	object
 		sprite planet/gas9-b
@@ -33196,7 +33192,7 @@ system Gualetri
 		period 77616.03
 
 system Uelawan
-	pos 810.97224 11.694448
+	pos 817.19446 4.1388924
 	government Uninhabited
 	habitable 500
 	belt 1368
@@ -33262,8 +33258,8 @@ system Yli
 	habitable 423.2
 	belt 1404
 	link Eebu
+	link Empeles
 	link Scija
-	link eg5
 	asteroids "large metal" 1 4.3008
 	fleet "Small Vi" 900
 	fleet "Large Vi" 1600
@@ -33356,28 +33352,17 @@ planet Tschyss
 	bribe 0
 	security 0
 
-system Lucina
-	add object "Ember Gegno"
-		sprite planet/wormhole-red
-		distance 11189.415
-		period 2124
-		offset 1242
-
 planet "Ember Gegno"
 	attributes "requires: quantum keystone"
 	description ""
 
-system Gegyes
-	pos 936.74445 -70.444443
-	remove link
-
-system eg2
+system Maoni
 	pos 519.88722 92.825102
 	government Uninhabited
 	habitable 26.45
 	belt 1734
 	haze _menu/haze-red
-	link eg1
+	link Pukako
 	asteroids "small rock" 1 1.914
 	asteroids "medium rock" 8 1.782
 	asteroids "large rock" 1 2.574
@@ -33397,17 +33382,17 @@ system eg2
 		distance 406.48005
 		period 14007.17
 
-system eg1
+system Pukako
 	pos 562.33167 61.047325
 	government Uninhabited
 	habitable 361.25
 	belt 1154
 	haze _menu/haze-33
+	link Empeles
 	link Karhio
-	link eg2
-	link eg3
-	link eg4
-	link eg5
+	link Maoni
+	link Vaiov
+	link Yerser
 	asteroids "small rock" 21 0.53
 	asteroids "medium rock" 154 0.61
 	asteroids "large rock" 5 0.58
@@ -33434,14 +33419,14 @@ system eg1
 			distance 532
 			period 463.83986
 
-system eg4
+system Vaiov
 	pos 587.44278 139.49177
 	government Uninhabited
 	habitable 2560
 	belt 1529
 	haze _menu/haze-red
+	link Pukako
 	link Rouseu
-	link eg1
 	asteroids "large rock" 1 3.876
 	asteroids "small metal" 7 2.958
 	asteroids "medium metal" 172 4.233
@@ -33475,14 +33460,14 @@ system eg4
 			distance 597
 			period 551.3941
 
-system eg3
+system Yerser
 	pos 621.22055 91.936214
 	government Uninhabited
 	habitable 3276.8
 	belt 1478
 	haze _menu/haze-red
+	link Pukako
 	link Rouseu
-	link eg1
 	asteroids "small rock" 4 2.604
 	asteroids "large rock" 7 3.069
 	asteroids "small metal" 9 3.069
@@ -33506,15 +33491,15 @@ system eg3
 		distance 2125
 		period 1530.5884
 
-system eg5
+system Empeles
 	pos 603.415 42.297324
 	government Uninhabited
 	habitable 405
 	belt 1416
 	haze _menu/haze-full
+	link Pukako
 	link Wreoul
 	link Yli
-	link eg1
 	asteroids "small rock" 5 5.6637
 	asteroids "medium rock" 9 4.2966
 	asteroids "large rock" 3 4.4268
@@ -33546,4 +33531,8 @@ system eg5
 		sprite planet/gas12-b
 		distance 8877
 		period 37172.076
+
+planet Vigales
+	landscape land/desert5
+	description "This hot desert world is home to several species of large underground creatures, most often resembling reptilian and amphibious-like creatures such as salamanders or lizards. It is believed that the Vort of Gegno space have originated from this world, or are descendants of an ancestral species that once inhabited it. "
 
