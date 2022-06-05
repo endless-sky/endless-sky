@@ -67,7 +67,7 @@ news "human merchant in human space"
 			" "
 		word
 			"pilot"
-			"captain
+			"captain"
 	message
 		word
 			`"`
