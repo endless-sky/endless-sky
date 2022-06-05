@@ -1,5 +1,5 @@
 /* GameAction.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -48,7 +48,7 @@ namespace {
 		{
 			if(!player.HasMapped(mapSize))
 				player.Map(mapSize);
-			Messages::Add("You received a map of nearby systems", Messages::Importance::High);
+			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
 
@@ -164,7 +164,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(child.Token(1) == "ship" && child.Size() >= 3)
 			giftShips.emplace_back(GameData::Ships().Get(child.Token(2)), child.Size() >= 4 ? child.Token(3) : "");
 		else
-			child.PrintTrace("Skipping unsupported \"give\" syntax:");
+			child.PrintTrace("Error: Skipping unsupported \"give\" syntax:");
 	}
 	else if(key == "outfit" && hasValue)
 	{
@@ -172,7 +172,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(count)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Skipping invalid outfit quantity:");
+			child.PrintTrace("Error: Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
@@ -189,7 +189,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(value > 0)
 			fine += value;
 		else
-			child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
+			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
 	}
 	else if(key == "event" && hasValue)
 	{
@@ -203,7 +203,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 	{
 		string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
 		if(toFail.empty())
-			child.PrintTrace("Skipping invalid \"fail\" with no mission:");
+			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
 		{
 			fail.insert(toFail);

@@ -28,7 +28,7 @@ void Phrase::Load(const DataNode &node)
 	// may not be used in a Phrase's name.
 	if(name.find("${") != string::npos || name.find('}') != string::npos)
 	{
-		node.PrintTrace("Phrase names may not contain '${' or '}':");
+		node.PrintTrace("Error: Phrase names may not contain '${' or '}':");
 		return;
 	}
 
@@ -36,7 +36,7 @@ void Phrase::Load(const DataNode &node)
 	if(sentences.back().empty())
 	{
 		sentences.pop_back();
-		node.PrintTrace("Skipping unparsable node:");
+		node.PrintTrace("Error: Unable to parse node:");
 	}
 }
 
@@ -192,7 +192,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
-					child.PrintTrace("Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
 

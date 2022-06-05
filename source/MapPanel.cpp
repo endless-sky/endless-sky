@@ -44,6 +44,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 
 #include "opengl.h"
@@ -56,19 +57,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Log how many player ships and stored outfits are in a given system, tracking for
-	// ships if they are parked or in-flight.
-	//
-	// The structure of the map used here is:
-	//  - first        -> ships
-	//  - first.first  -> ships (in-flight)
-	//  - first.second -> ships (parked)
-	//  - second       -> outfits (in storage)
-	void TallyEscortsAndOutfits(const vector<shared_ptr<Ship>> &escorts,
-		const std::map<const Planet *, CargoHold> &outfits,
-		map<const System *, pair<pair<int, int>, int>> &locations)
+	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
+	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
+	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
+	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+
+	// Struct to track per system how many pointers are drawn and still
+	// need to be drawn.
+	struct PointerDrawCount {
+		// Amount of systems already drawn.
+		unsigned drawn = 0;
+		unsigned available = 0;
+		unsigned unavailable = 0;
+	};
+
+	// Log how many player ships are in a given system, tracking whether
+	// they are parked or in-flight.
+	void TallyEscorts(const vector<shared_ptr<Ship>> &escorts,
+		map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
-		locations.clear();
 		for(const auto &ship : escorts)
 		{
 			if(ship->IsDestroyed())
@@ -76,22 +83,33 @@ namespace {
 			if(ship->GetSystem())
 			{
 				if(!ship->IsParked())
-					++locations[ship->GetSystem()].first.first;
+					++locations[ship->GetSystem()].activeShips;
 				else
-					++locations[ship->GetSystem()].first.second;
+					++locations[ship->GetSystem()].parkedShips;
 			}
 			// If this ship has no system but has a parent, it is carried (and thus not parked).
 			else if(ship->CanBeCarried() && ship->GetParent() && ship->GetParent()->GetSystem())
-				++locations[ship->GetParent()->GetSystem()].first.first;
+				++locations[ship->GetParent()->GetSystem()].activeShips;
 		}
+	}
+
+	// Log how many stored outfits are in a given system.
+	void TallyOutfits(const std::map<const Planet *, CargoHold> &outfits,
+		map<const System *, MapPanel::SystemTooltipData> &locations)
+	{
 		for(const auto &hold : outfits)
 		{
 			// Get the system in which the planet storage is located.
-			const System* system = hold.first->GetSystem();
+			const Planet *planet = hold.first;
+			const System *system = planet->GetSystem();
+			// Skip outfits stored on planets without a system.
+			if(!system)
+				continue;
+
 			for(const auto &outfit: hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
 				if(outfit.second)
-					locations[system].second += outfit.second;
+					locations[system].outfits[planet] += outfit.second;
 		}
 	}
 
@@ -102,6 +120,22 @@ namespace {
 	const int HOVER_TIME = 60;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
+
+	bool HasMultipleLandablePlanets(const System &system)
+	{
+		const Planet *firstPlanet = nullptr;
+		for(auto &&stellarObject : system.Objects())
+			if(stellarObject.HasValidPlanet() && stellarObject.HasSprite() && !stellarObject.GetPlanet()->IsWormhole())
+			{
+				// We can return true once we found 2 different landable planets.
+				if(!firstPlanet)
+					firstPlanet = stellarObject.GetPlanet();
+				else if(firstPlanet != stellarObject.GetPlanet())
+					return true;
+			}
+
+		return false;
+	}
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -129,8 +163,14 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
-	if(Preferences::Has("Show escort systems on map"))
-		TallyEscortsAndOutfits(player.Ships(), player.PlanetaryStorage(), escortSystems);
+	if(Preferences::Has(SHOW_ESCORT_SYSTEMS) || Preferences::Has(SHOW_STORED_OUTFITS))
+	{
+		escortSystems.clear();
+		if(Preferences::Has(SHOW_ESCORT_SYSTEMS))
+			TallyEscorts(player.Ships(), escortSystems);
+		if(Preferences::Has(SHOW_STORED_OUTFITS))
+			TallyOutfits(player.PlanetaryStorage(), escortSystems);
+	}
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
@@ -295,9 +335,12 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			RingShader::Draw(to, OUTER, INNER, color);
 		}
 
-		Angle angle;
+		unsigned missionCounter = 0;
 		for(const Mission &mission : player.Missions())
 		{
+			if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+				break;
+
 			if(!mission.IsVisible())
 				continue;
 
@@ -313,16 +356,26 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				if(!blink)
 				{
 					bool isSatisfied = IsSatisfied(player, mission);
-					DrawPointer(from, angle, isSatisfied ? currentColor : blockedColor, false);
+					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
 				}
+				else
+					++missionCounter;
 			}
 
 			for(const System *waypoint : mission.Waypoints())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
 				if(waypoint == &system)
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
 			for(const Planet *stopover : mission.Stopovers())
+			{
+				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+					break;
 				if(stopover->IsInSystem(&system))
-					DrawPointer(from, angle, waypointColor, false);
+					DrawPointer(from, missionCounter, waypointColor, false);
+			}
 		}
 	}
 
@@ -387,7 +440,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'f')
 	{
 		GetUI()->Push(new Dialog(
-			this, &MapPanel::Find, "Search for:"));
+			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
@@ -966,10 +1019,10 @@ void MapPanel::DrawEscorts()
 			Point pos = zoom * (squad.first->Position() + center);
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
-			if(squad.second.first.first || squad.second.first.second)
-				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.first.first ? active : parked);
+			if(squad.second.activeShips || squad.second.parkedShips)
+				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
 
-			if(squad.second.second)
+			if(squad.second.outfits.size())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
@@ -1118,7 +1171,7 @@ void MapPanel::DrawNames()
 void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
-	map<const System *, Angle> angle;
+	map<const System *, PointerDrawCount> missionCount;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1127,10 +1180,24 @@ void MapPanel::DrawMissions()
 	const Color &blockedColor = *colors.Get("blocked mission");
 	const Color &specialColor = *colors.Get("special mission");
 	const Color &waypointColor = *colors.Get("waypoint");
+	if(specialSystem)
+	{
+		// The special system pointer is larger than the others.
+		++missionCount[specialSystem].drawn;
+		Angle a = Angle(MISSION_POINTERS_ANGLE_DELTA * missionCount[specialSystem].drawn);
+		Point pos = Zoom() * (specialSystem->Position() + center);
+		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
+		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+	}
+	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
+		auto &it = missionCount[system];
+		if(mission.CanAccept(player))
+			++it.available;
+		else
+			++it.unavailable;
 	}
 	for(const Mission &mission : player.Missions())
 	{
@@ -1138,6 +1205,13 @@ void MapPanel::DrawMissions()
 			continue;
 
 		const System *system = mission.Destination()->GetSystem();
+
+		// Reserve a maximum of half of the slots for available missions.
+		auto &&it = missionCount[system];
+		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
+		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
+			continue;
+
 		bool blink = false;
 		if(mission.Deadline())
 		{
@@ -1146,20 +1220,22 @@ void MapPanel::DrawMissions()
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		DrawPointer(system, it.drawn, blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, angle[waypoint], waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
+			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
 	}
-	if(specialSystem)
+	// Draw the available and unavailable jobs.
+	for(auto &&it : missionCount)
 	{
-		// The special system pointer is larger than the others.
-		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = Zoom() * (specialSystem->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
-		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+		const auto &system = it.first;
+		auto &&counters = it.second;
+		for(unsigned i = 0; i < counters.available; ++i)
+			DrawPointer(system, counters.drawn, availableColor);
+		for(unsigned i = 0; i < counters.unavailable; ++i)
+			DrawPointer(system, counters.drawn, unavailableColor);
 	}
 }
 
@@ -1173,28 +1249,39 @@ void MapPanel::DrawTooltips()
 	// Create the tooltip text.
 	if(tooltip.empty())
 	{
-		pair<pair<int, int>, int> t = escortSystems.at(hoverSystem);
+		MapPanel::SystemTooltipData t = escortSystems.at(hoverSystem);
+
 		if(hoverSystem == &playerSystem)
 		{
-			--t.first.first;
-			if(t.first.first || t.first.second || t.second)
+			if(player.Flagship())
+				--t.activeShips;
+			if(t.activeShips || t.parkedShips || !t.outfits.empty())
 				tooltip = "You are here, with:\n";
 			else
 				tooltip = "You are here.";
 		}
 		// If you have both active and parked escorts, call the active ones
 		// "active escorts." Otherwise, just call them "escorts."
-		if(t.first.first && t.first.second)
-			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " active escort\n" : " active escorts\n");
-		else if(t.first.first)
-			tooltip += to_string(t.first.first) + (t.first.first == 1 ? " escort" : " escorts");
-		if(t.first.second)
-			tooltip += to_string(t.first.second) + (t.first.second == 1 ? " parked escort" : " parked escorts");
-		if(t.second)
+		if(t.activeShips && t.parkedShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " active escort\n" : " active escorts\n");
+		else if(t.activeShips)
+			tooltip += to_string(t.activeShips) + (t.activeShips == 1 ? " escort" : " escorts");
+		if(t.parkedShips)
+			tooltip += to_string(t.parkedShips) + (t.parkedShips == 1 ? " parked escort" : " parked escorts");
+		if(!t.outfits.empty())
 		{
-			if(t.first.first || t.first.second)
+			if(t.activeShips || t.parkedShips)
 				tooltip += "\n";
-			tooltip += to_string(t.second) + (t.second == 1 ? " stored outfit" : " stored outfits");
+
+			unsigned sum = 0;
+			for(const auto &it : t.outfits)
+				sum += it.second;
+
+			tooltip += to_string(sum) + (sum == 1 ? " stored outfit" : " stored outfits");
+
+			if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
+				for(const auto &it : t.outfits)
+					tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
 		}
 
 		hoverText.Wrap(tooltip);
@@ -1218,16 +1305,18 @@ void MapPanel::DrawTooltips()
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
+	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
+void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
 {
-	angle += Angle(30.);
+	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
+		return;
+	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);

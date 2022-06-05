@@ -193,7 +193,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			hidden = !remove;
 		else if(!hasValue && key != "object")
 		{
-			child.PrintTrace("Expected key to have a value:");
+			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
 		else if(key == "attributes")
@@ -205,7 +205,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				for(int i = valueIndex; i < child.Size(); ++i)
 					attributes.insert(child.Token(i));
 		}
- 		else if(key == "link")
+		else if(key == "link")
 		{
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
@@ -327,7 +327,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				else if(type == "jump" && grand.Size() >= 2)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
-					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
+					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
 			}
 		}
 		else

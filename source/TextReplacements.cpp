@@ -34,14 +34,14 @@ void TextReplacements::Load(const DataNode &node)
 	{
 		if(child.Size() < 2)
 		{
-			child.PrintTrace("Skipping improper substitution syntax:");
+			child.PrintTrace("Skipping substitution key with no replacement:");
 			continue;
 		}
 
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Cannot replace an empty string:");
+			child.PrintTrace("Error: Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
@@ -56,7 +56,7 @@ void TextReplacements::Load(const DataNode &node)
 		}
 		if(reserved.count(key))
 		{
-			child.PrintTrace("Skipping reserved substitution key \"" + key + "\":");
+			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
 		}
 

@@ -73,11 +73,13 @@ void NPC::Load(const DataNode &node)
 			mustAccompany = true;
 			failIf |= ShipEvent::DESTROY;
 		}
+		else
+			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
 
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
-		node.PrintTrace("Warning: conflicting NPC mission objective to save and destroy or capture.");
+		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 
@@ -166,7 +168,7 @@ void NPC::Load(const DataNode &node)
 			}
 			else
 			{
-				string message = "Skipping unsupported use of a ship token and child nodes: ";
+				string message = "Error: Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
 					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else

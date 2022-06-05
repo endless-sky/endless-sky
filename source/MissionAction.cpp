@@ -104,12 +104,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(count >= 0)
 				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 			else
-				child.PrintTrace("Skipping invalid \"require\" amount:");
+				child.PrintTrace("Error: Skipping invalid \"require\" amount:");
 		}
 		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 		{
-			child.PrintTrace("Warning: deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 		}
 		else if(key == "system")
@@ -117,7 +117,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			if(system.empty() && child.HasChildren())
 				systemFilter.Load(child);
 			else
-				child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
+				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 		}
 		else
 			action.LoadSingle(child, missionName);
@@ -243,34 +243,30 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			continue;
 		}
 
-		int available = 0;
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
-		bool checkAll = !it.second;
-		if(checkAll)
+		if(!it.second)
 		{
+			// When landed, ships pool their cargo into the player's cargo.
+			if(player.GetPlanet() && player.Cargo().Get(it.first))
+				return false;
+
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
-				{
-					available += ship->Cargo().Get(it.first);
-					available += ship->OutfitCount(it.first);
-				}
+					if(ship->OutfitCount(it.first) || ship->Cargo().Get(it.first))
+						return false;
 		}
 		else
 		{
-			// Required outfits must be present on able ships in the
-			// player's location (or the respective cargo hold).
-			available += flagship ? flagship->OutfitCount(it.first) : 0;
+			// Required outfits must be present on the player's flagship or
+			// in the cargo holds of able ships at the player's location.
+			int available = flagship ? flagship->OutfitCount(it.first) : 0;
 			available += boardingShip ? flagship->Cargo().Get(it.first)
 					: CountInCargo(it.first, player);
+
+			if(available < it.second)
+				return false;
 		}
-
-		if(available < it.second)
-			return false;
-
-		// If the required count is 0, the player must not have any of the outfit.
-		if(checkAll && available)
-			return false;
 	}
 
 	// An `on enter` MissionAction may have defined a LocationFilter that

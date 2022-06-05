@@ -95,7 +95,7 @@ government "Derelict"
 	"fine" 0
 
 government "Drak"
-	swizzle 5
+	swizzle 0
 	color 1 1 1
 	"player reputation" 1
 	"fine" 0
@@ -106,7 +106,7 @@ government "Drak"
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
 	"display name" "Drak"
-	swizzle 5
+	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
@@ -121,6 +121,7 @@ government "Free Worlds"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Alpha" -.4
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
@@ -137,9 +138,12 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
-	"bribe" .02
+	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
@@ -154,6 +158,28 @@ government "Hai (Wormhole Access)"
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
+		"Hai (Unfettered)" -.1
+		"Merchant" .01
+	"bribe" .2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant (Sympathizers)" .95
+		"Hai Merchant (Human)" .95
 		"Hai (Unfettered)" -.1
 		"Merchant" .01
 	"bribe" .02
@@ -161,6 +187,42 @@ government "Hai (Wormhole Access)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Sympathizers)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Human)" .95
+		"Hai (Unfettered)" .01
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant (Human)"
+	"display name" "Hai"
+	swizzle 0
+	color .84 .42 .81
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
+		"Hai Merchant (Sympathizers)" .95
+		"Hai (Unfettered)" -.2
+		"Merchant" .01
+	"bribe" .02
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 
 government "Hai (Unfettered)"
 	swizzle 4
@@ -170,6 +232,9 @@ government "Hai (Unfettered)"
 	"attitude toward"
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" 0.01
+		"Hai Merchant (Human)" -.01
 		"Wanderer" -.01
 		"Pug" -.01
 		"Pug (Wanderer)" -.01
@@ -225,6 +290,9 @@ government "Indigenous Lifeform"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
+	
+	"attitude toward"
+		"Ember Waste" 1
 	"penalty for"
 		assist 0
 		disable 0
@@ -278,6 +346,21 @@ government "Ka'het (Infighting)"
 		"Wanderer" -.01
 	
 	"player reputation" -1
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
+
+government "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 1
 	"friendly hail" "friendly ka'het"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"
@@ -398,8 +481,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Kor Sestor" -.1
-		"Kor Mereti" -.1
+		"Kor Sestor" -.01
+		"Kor Mereti" -.01
 		"Navy Intelligence" 1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
@@ -435,6 +518,25 @@ government "Pirate"
 		"Merchant" -.1
 		"Syndicate" -.01
 	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+	raid "pirate raid"
+
+government "Pirate (Rival)"
+	"display name" "Pirate"
+	swizzle 6
+	color .78 0 0
+	
+	"player reputation" -10
+	"attitude toward"
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Syndicate" -.01
+	"bribe" 0
 	"fine" 0
 	"friendly hail" "friendly pirate"
 	"hostile hail" "hostile pirate"
@@ -656,4 +758,7 @@ government "Wormhole Alpha"
 	"fine" 0
 	"attitude toward"
 		"Hai" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" -.01
+		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01

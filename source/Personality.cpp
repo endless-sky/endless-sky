@@ -108,7 +108,7 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
+				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
@@ -383,5 +383,5 @@ void Personality::Parse(const DataNode &node, int index, bool remove)
 			flags |= it->second;
 	}
 	else
-		node.PrintTrace("Invalid personality setting: \"" + token + "\"");
+		node.PrintTrace("Warning: Skipping unrecognized personality \"" + token + "\":");
 }

@@ -37,6 +37,8 @@ public:
 protected:
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
+	virtual int SelectedSpriteSwizzle() const override;
+	virtual int CompareSpriteSwizzle() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
 	virtual const std::string &KeyLabel(int index) const override;

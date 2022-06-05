@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 
 #include <cassert>
+#include <future>
 #include <stdexcept>
 #include <string>
 
@@ -119,13 +120,12 @@ int main(int argc, char *argv[])
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		GameData::BeginLoad(isConsoleOnly, debugMode);
+		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			while(!GameData::IsDataLoaded())
-				this_thread::yield();
+			dataLoading.wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
@@ -218,9 +218,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, gamePanels, dataFinishedLoading));
-	if(!conversation.IsEmpty())
-		menuPanels.Push(new ConversationPanel(player, conversation));
+	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;
