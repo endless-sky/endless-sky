@@ -2523,6 +2523,10 @@ void PlayerInfo::ApplyChanges()
 		ship->SetGovernment(GameData::PlayerGovernment());
 		ship->FinishLoading(false);
 	}
+
+	// Recalculate jumps that the available jobs will need
+	for(Mission& mission : availableJobs)
+		mission.CalculateJumps(system);
 }
 
 
@@ -2628,10 +2632,6 @@ void PlayerInfo::ValidateLoad()
 	// the player will be on the correct planet when a plugin is re-added).
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
-
-	// Recalculate jumps that the mission will need
-	for(Mission& mission : availableJobs)
-		mission.CalculateJumps(system);
 }
 
 
