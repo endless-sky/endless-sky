@@ -186,7 +186,7 @@ ship Conglomerate
 	explode "medium explosion" 38
 	explode "small explosion" 26
 	"final explode" "final explosion large"
-	description "Almost as large as a human cruiser, Dolomites are the Gegno's most common jack-of-all-trades cargo vessel in service, having been used since the early days of colonization. They are used as both passenger liners and cargo vessels, and carry decent amounts of both to note. Due to its popularity and continuous usage, both of the Gegno Vi and Gegno Scin factions have developed further on the original design for their own purposes."
+	description "Conglomerate Description"
 
 ship Slate
 	sprite ship/slate
