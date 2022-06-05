@@ -186,7 +186,11 @@ public:
 	const SortType AvailableSortType() const;
 	void NextAvailableSortType();
 	const bool AvailableSortAsc() const;
-	void NextAvailableSortDirection();
+	void ToggleAvailableSortAsc();
+	const bool AvailableSortRush() const;
+	void ToggleAvailableSortRush();
+	const bool AvailableSortGray() const;
+	void ToggleAvailableSortGray();
 
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
@@ -359,6 +363,8 @@ private:
 	// How to sort availableJobs
 	bool availableSortAsc = true;
 	SortType availableSortType;
+	bool sortSeparateRush = false;
+	bool sortSeparateGray = false;
 
 	std::map<std::string, int64_t> conditions;
 

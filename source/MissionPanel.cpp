@@ -351,7 +351,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		//Panel header
-		if(y < Screen::Top() + 31)
+		if(y < Screen::Top() + 30)
 		{
 			if( y < Screen::Top() + 10)
 			{
@@ -359,12 +359,16 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				return false;
 			}
 			//Sorter buttons
-			else if( x > Screen::Left() + SIDE_WIDTH - 50 && x <= Screen::Left() + SIDE_WIDTH - 10)
+			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
-				if( x <= Screen::Left() + SIDE_WIDTH - 30)
+				if( x < Screen::Left() + SIDE_WIDTH - 80)
+					player.ToggleAvailableSortRush();
+				else if( x < Screen::Left() + SIDE_WIDTH - 45)
+					player.ToggleAvailableSortGray();
+				else if( x < Screen::Left() + SIDE_WIDTH - 25)
 					player.NextAvailableSortType();
 				else
-					player.NextAvailableSortDirection();
+					player.ToggleAvailableSortAsc();
 				return true;
 			}
 			return false;
@@ -683,9 +687,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	//Panel sorting
 	const Color &text= *GameData::Colors().Get("medium");
 	const Color &box = *GameData::Colors().Get("dim");
-	const Sprite *desc = SpriteSet::Get("ui/sort descending");
-	const Sprite *asc = SpriteSet::Get("ui/sort ascending");
-	const Sprite *checkbox[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
+	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
 	const string &abc = "A";
 	const string &pay = "$";
 	const string &time = "#";
@@ -693,6 +696,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	//Draw Sorting Columns
 	if(sorter)
 	{
+		SpriteShader::Draw(arrow[player.AvailableSortAsc()], pos + Point(SIDE_WIDTH - 25., 8.));
+
 		FillShader::Fill(
 			pos + Point(SIDE_WIDTH - 45., 0),
 			Point(17., 1.),
@@ -708,13 +713,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : player.AvailableSortType() == PlayerInfo::PAY ? pay : time,
 					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 55., 0.), text);
 
-		SpriteShader::Draw(player.AvailableSortAsc() ? asc : desc, pos + Point(SIDE_WIDTH - 25., 8.));
+		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
+		SpriteShader::Draw(checkbox[player.AvailableSortGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
-		font.Draw({"A", {15, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 90., 0.), text);
-		SpriteShader::Draw(checkbox[1], pos + Point(SIDE_WIDTH - 70., 8.));
-
-		font.Draw({"R", {15, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 120., 0.), text);
-		SpriteShader::Draw(checkbox[1], pos + Point(SIDE_WIDTH - 100., 8.));
+		font.Draw({"R", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 107., 0.), text);
+		SpriteShader::Draw(checkbox[player.AvailableSortRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
 	pos.Y() += 5.;

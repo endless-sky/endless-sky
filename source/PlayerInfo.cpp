@@ -229,6 +229,10 @@ void PlayerInfo::Load(const string &path)
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
 			availableSortAsc = false;
+		else if(child.Token(0) == "separate rush")
+			sortSeparateRush = true;
+		else if(child.Token(0) == "separate gray")
+			sortSeparateGray = true;
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -1585,9 +1589,39 @@ const bool PlayerInfo::AvailableSortAsc() const
 
 
 
-void PlayerInfo::NextAvailableSortDirection()
+void PlayerInfo::ToggleAvailableSortAsc()
 {
 	availableSortAsc = !availableSortAsc;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::AvailableSortRush() const
+{
+	return sortSeparateRush;
+}
+
+
+
+void PlayerInfo::ToggleAvailableSortRush()
+{
+	sortSeparateRush = !sortSeparateRush;
+	SortAvailable();
+}
+
+
+
+const bool PlayerInfo::AvailableSortGray() const
+{
+	return sortSeparateGray;
+}
+
+
+
+void PlayerInfo::ToggleAvailableSortGray()
+{
+	sortSeparateGray = !sortSeparateGray;
 	SortAvailable();
 }
 
@@ -3041,6 +3075,10 @@ void PlayerInfo::Save(const string &path) const
 	out.Write("sort type", static_cast<int>(availableSortType));
 	if(!availableSortAsc)
 		out.Write("sort descending");
+	if(sortSeparateRush)
+		out.Write("separate rush");
+	if(sortSeparateGray)
+		out.Write("separate gray");
 
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())
