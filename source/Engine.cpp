@@ -509,7 +509,7 @@ void Engine::Step(bool isActive)
 	{
 		// TODO: std::exchange
 		zoom = nextZoom;
-		nextZoom = 0.; 
+		nextZoom = 0.;
 	}
 	// Smoothly zoom in and out.
 	if(isActive)
