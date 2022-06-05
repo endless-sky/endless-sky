@@ -30744,8 +30744,8 @@ system Vesvii
 	asteroids "large metal" 4 2.9376
 	minables lead 15 4.1961328
 	minables tungsten 24 2.9650974
-	fleet "Vi Warfleet" 360
-	fleet "Scin Warfleet" 360
+	fleet "Vi Warfleet" 420
+	fleet "Scin Warfleet" 420
 	object
 		sprite star/k5-old
 		distance 139.45132
@@ -31182,7 +31182,7 @@ system Aleit
 	object "Giaru Gegno"
 		sprite planet/ringworld
 		distance 812
-		period 360	
+		period 360
 	object "Giaru Gegno"
 		sprite planet/ringworld
 		distance 812
@@ -32828,39 +32828,194 @@ planet Tschyss
 	bribe 0
 	security 0
 
+system Lucina
+	add object "Ember Gegno"
+		sprite planet/wormhole-red
+		distance 11189.415
+		period 2124
+		offset 1242
+
 planet "Ember Gegno"
 	attributes "requires: quantum keystone"
 	description ""
 
+system Gegyes
+	pos 936.74445 -70.444443
+	remove link
+
 system eg2
 	pos 519.88722 92.825102
+	government Uninhabited
+	habitable 26.45
+	belt 1734
 	haze _menu/haze-red
 	link eg1
+	asteroids "small rock" 1 1.914
+	asteroids "medium rock" 8 1.782
+	asteroids "large rock" 1 2.574
+	asteroids "small metal" 4 1.815
+	asteroids "medium metal" 58 1.716
+	asteroids "large metal" 33 2.376
+	minables copper 14 3.2280789
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/rock1-b
+		distance 974.45806
+		period 695.71756
+	object
+		sprite planet/miranda
+		distance 406.48005
+		period 14007.17
 
 system eg1
 	pos 562.33167 61.047325
+	government Uninhabited
+	habitable 361.25
+	belt 1154
 	haze _menu/haze-33
 	link Karhio
 	link eg2
 	link eg3
 	link eg4
 	link eg5
+	asteroids "small rock" 21 0.53
+	asteroids "medium rock" 154 0.61
+	asteroids "large rock" 5 0.58
+	asteroids "large metal" 1 0.65
+	minables neodymium 2 0.76902448
+	minables lead 26 1.0955883
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/desert0-b
+		distance 813
+		period 1090.8798
+	object
+		sprite planet/gas10-hot
+		distance 2492
+		period 5854.1402
+		object
+			sprite planet/rock3
+			distance 400
+			period 302.40614
+		object
+			sprite planet/rock20
+			distance 532
+			period 463.83986
 
 system eg4
 	pos 587.44278 139.49177
+	government Uninhabited
+	habitable 2560
+	belt 1529
 	haze _menu/haze-red
 	link Rouseu
 	link eg1
+	asteroids "large rock" 1 3.876
+	asteroids "small metal" 7 2.958
+	asteroids "medium metal" 172 4.233
+	asteroids "large metal" 1 3.366
+	minables tungsten 5 5.5887299
+	minables aluminum 32 6.6162542
+	minables platinum 8 5.1710371
+	object
+		sprite star/k5-old
+		distance 190
+		period 130.94846
+	object
+		sprite planet/browndwarf-y
+		distance 190
+		period 130.94846
+		offset 180
+	object
+		sprite planet/rhea-b
+		distance 587
+		period 251.40978
+	object
+		sprite planet/lava6
+		distance 863
+		period 448.16837
+	object
+		sprite planet/gas10
+		distance 2375
+		period 2046.0697
+		object
+			sprite planet/luna
+			distance 597
+			period 551.3941
 
 system eg3
 	pos 621.22055 91.936214
+	government Uninhabited
+	habitable 3276.8
+	belt 1478
 	haze _menu/haze-red
 	link Rouseu
 	link eg1
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/rock11-b
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock9
+		distance 710
+		period 295.60212
+	object
+		sprite planet/gas14-b
+		distance 2125
+		period 1530.5884
 
 system eg5
 	pos 603.415 42.297324
+	government Uninhabited
+	habitable 405
+	belt 1416
 	haze _menu/haze-full
 	link Wreoul
 	link Yli
 	link eg1
+	asteroids "small rock" 5 5.6637
+	asteroids "medium rock" 9 4.2966
+	asteroids "large rock" 3 4.4268
+	asteroids "small metal" 92 5.3382
+	asteroids "medium metal" 61 5.7939
+	asteroids "large metal" 13 3.8409
+	minables iron 10 8.6874573
+	minables aluminum 14 7.2972511
+	object
+		sprite star/g3
+		period 10
+	object
+		sprite planet/rock16
+		distance 969.8354
+		period 234.41286
+	object
+		sprite planet/ocean2
+		distance 639.33613
+		period 1840.597
+	object
+		sprite planet/uranus-b
+		distance 3515
+		period 9262.0149
+		object
+			sprite planet/ice0-b
+			distance 227
+			period 129.2824
+	object
+		sprite planet/gas12-b
+		distance 8877
+		period 37172.076
+

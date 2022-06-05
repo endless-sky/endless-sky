@@ -19,18 +19,29 @@ mission "Augen Destruction"
 		set "dead augen"
 		fail
 
-#mission Intermediary
-	#on complete
-		#event "Vesvii War"
+mission Intermediary
+	on complete
+		event "Vesvii War"
 
-#mission "Active Augen"
-	#to offer
-	#	has "Intermediary: done"
-	#	has "Stationed Augen: failed"
-	#	not "dead augen"
-	#npc save
-		#government "Gegno Vi"
-		#personality heroic vindictive staying
-		#system Vesvii
-		#ship Augen "Vytii Yrrlausei"
+mission "Active Augen"
+	to offer
+		has "Intermediary: done"
+		has "Stationed Augen: failed"
+		not "dead augen"
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Vesvii
+		ship Augen "Vytii Yrrlausei"
+
+mission "First Contact: Gegno"
+	landing
+	source
+		"Giaru Gegno"
+	to offer
+		has "First Contact: Quarg: offered"
+	on offer
+		conversation
+			"The Quarg on this unfinished ringworld move in a more eerily quiet manner than what you're used to, and if it weren't for the occasional construction sounds it's almost as if they aren't even there.  The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you quicker than you're used to. After a few minutes of discussion and gestures between themselves, one of them motions you to follow them."
+			"	You walk with the Quarg, occasionally having trouble keeping up pace with their silently brisk steps, until you are led to a smaller room with two Quarg sat down at the end of it. They talk, but this time you can hear "
 

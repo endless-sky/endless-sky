@@ -142,6 +142,7 @@ government "Gegno"
 	"attitude toward"
 		"Gegno Scin" 1
 		"Gegno Vi" 1
+		Quarg 1
 	"penalty for"
 		assist 0
 		board -1
