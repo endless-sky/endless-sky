@@ -735,6 +735,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("dim");
+	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
@@ -749,6 +750,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
+
+		if(it->Deadline())
+			SpriteShader::Draw(fast, pos + Point(-5.,10.));
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
