@@ -2808,9 +2808,16 @@ void PlayerInfo::SortAvailable()
 			}
 			// Tiebreaker for equal PAY is ABC:
 			case ABC:
+			{
+
+				if(lhs.Name() < rhs.Name())
+					return true;
+				else if(lhs.Name() > rhs.Name())
+					return false;
+			}
+			// Tiebreaker fallback to keep sorting consistent is unique UUID:
 			default:
-			// No more tiebreakers, so just return what it can
-				return lhs.Name() < rhs.Name();
+				return lhs.UUID() < rhs.UUID();
 		}
 	});
 
