@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "InfoPanelState.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
 
@@ -37,7 +38,8 @@ class Rectangle;
 // hardpoints. In flight, this panel allows them to jettison cargo.
 class ShipInfoPanel : public Panel {
 public:
-	explicit ShipInfoPanel(PlayerInfo &player, int index = -1);
+	explicit ShipInfoPanel(PlayerInfo &player);
+	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -91,10 +93,11 @@ private:
 	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
+
+	InfoPanelState panelState;
+
 	// Track the current mouse location.
 	Point hoverPoint;
-	// You can only make changes to ships when landed on a planet.
-	bool canEdit = false;
 	// Track whether a commodity or plundered outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;

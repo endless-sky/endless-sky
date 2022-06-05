@@ -826,6 +826,18 @@ void OutfitterPanel::ToggleCargo()
 		selectedOutfit = nullptr;
 	}
 
+	if(playerShip)
+	{
+		playerShip = nullptr;
+		playerShips.clear();
+	}
+	else
+	{
+		playerShip = player.Flagship();
+		if(playerShip)
+			playerShips.insert(playerShip);
+	}
+
 	ShopPanel::ToggleCargo();
 }
 

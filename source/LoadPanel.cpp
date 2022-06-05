@@ -216,10 +216,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
+			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == selectedPilot; }));
+				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -423,7 +423,7 @@ void LoadPanel::UpdateLists()
 		sort(it.second.begin(), it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
-				return a.second > b.second;
+				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
 		);
 
@@ -498,8 +498,7 @@ void LoadPanel::LoadCallback()
 
 	player.Load(loadedInfo.Path());
 
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
+	GetUI()->PopThrough(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));
 	// It takes one step to figure out the planet panel should be created, and
 	// another step to actually place it. So, take two steps to avoid a flicker.

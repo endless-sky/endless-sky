@@ -387,7 +387,6 @@ Files:
  images/outfit/nerve?gas*
  images/outfit/catalytic?ramscoop*
  images/outfit/plasma?repeater*
- images/outfit/afterburner*
  images/outfit/anti-missile*
  images/outfit/blaster?turret*
  images/outfit/blaster*
@@ -633,7 +632,6 @@ Files:
  images/land/station11*
  images/land/station13*
  images/land/station14*
- images/land/station15*
  images/land/station16*
  images/land/station17*
  images/land/station18*
@@ -645,8 +643,6 @@ Files:
  images/land/station24*
  images/land/station25*
  images/land/station26*
- images/land/station27*
- images/land/station28*
  images/land/station29*
  images/land/station30*
  images/land/station31*
@@ -698,27 +694,27 @@ License: public-domain
 
 Files:
  images/land/station8*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/49037799721/ and cropped.
+Copyright: MTA of the State of New York
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
 
 Files:
  images/land/station27*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51198503318/in/album-72157603760635197/ and cropped.
+Copyright: Sebastian Sinisterra
+Licence: CC BY 2.0
+Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
 
 Files:
  images/land/station28*
-Copyright: Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51731417282/in/album-72157603760635197/ and cropped.
+Copyright: mwewering
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
 
 Files:
  images/land/station15*
-CopyrightL Thomas Hawk
-Licence: CC BY-NC 2.0
-Comment: Taken from https://www.flickr.com/photos/thomashawk/51772186137/in/album-72157603760635197/ and cropped.
+Copyright: mikecook
+Licence: Pixabay License
+Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
 
 Files:
  images/land/station5.jpg
@@ -740,18 +736,6 @@ Files: sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
-
-Files:
- sounds/jump?drive?red.wav
- sounds/jump?in?red.wav
- sounds/jump?out?red.wav
-Copyright: Zachary Siple
-License: CC-BY-NC-3.0
-Comment: Derived from:
- https://freesound.org/people/tim.kahn/sounds/338969/
- https://freesound.org/people/SoundFX.studio/sounds/456272/
- https://freesound.org/people/Setuniman/sounds/155860/
- https://freesound.org/people/Tuben/sounds/161392/
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -915,14 +899,14 @@ Files:
  images/ship/blackbird*
  images/ship/falcon*
  images/ship/hawk*
- images/ship/osprey*
  images/ship/quicksilver*
+ images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
- images/thumbnail/osprey*
  images/thumbnail/quicksilver*
+ images/thumbnail/scout*
  images/thumbnail/sparrow*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
@@ -1066,9 +1050,9 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/enforcer?confrontation?gear*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+Copyright: 1010Todd (1010todd3d@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Derived from works by Evan Fluharty (under the same license).
+Comment: Derived from works by Becca Tommaso (tommasobecca03@gmail.com) (under the same license) and Evan Fluharty (under the same license).
 
 Files:
  images/outfit/hai?williwaw*
@@ -1219,13 +1203,23 @@ Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
+Files: images/effect/archon?teleport/*
+Copyright: @Karirawri (crim@live.no)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser and Becca Tommaso (under the same license).
+
+Files: sounds/archonteleport*
+Copyright: oldestmillennial
+License: CC-BY-3.0
+Comment: Taken from https://freesound.org/people/oldestmillennial/sounds/533025/ and modified.
+
 Files: images/outfit/emp?rack*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files: images/planet/*-hot*
-Copyright: Tommaso Becca
+Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 Comment: Derived from works by ESA/Hubble & NASA (under the same license)
 
@@ -1241,7 +1235,7 @@ Files:
  images/outfit/ka'het?vareti?engine*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Tommaso Becca.
+Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Becca Tommaso.
 
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
@@ -1330,19 +1324,43 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/star/neutron*
+ images/effect/coalition?flare/*
+ images/effect/korath?flare/*
+ images/effect/plasma?flare/*
+ images/effect/pug?flare/*
+ images/effect/wanderer?flare/*
+ images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/nuke*
+ images/hardpoint/sunbeam?turret*
+ images/hardpoint/wanderer?anti-missile*
+ images/outfit/afterburner*
+ images/outfit/asteroid?scanner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
+ images/outfit/dark?storm*
+ images/outfit/dual?sunbeam?turret*
  images/outfit/nuke*
+ images/outfit/red?sun*
+ images/outfit/sunbeam*
+ images/outfit/sunbeam?turret*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
  images/projectile/missile-0*
  images/projectile/missile-1*
- images/hardpoint/nuke*
  images/ship/corvette*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
+ images/star/neutron*
  images/thumbnail/corvette*
- images/thumbnail/msplinter*
  images/thumbnail/mraven*
+ images/thumbnail/msplinter*
  images/thumbnail/raven*
  images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
@@ -1363,6 +1381,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/scene/ssil?vida?alert?hologram*
+ images/scene/remnant?remote?spaceport*
 Copyright: J Everett Nichol (jeverett on Discord)
 License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
@@ -1391,13 +1410,28 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/ship/aerie*
  images/ship/bactrian*
+ images/ship/hailstone*
+ images/ship/heavy?gust*
+ images/ship/mining?drone*
  images/ship/mule*
+ images/ship/squall*
+ images/ship/sunder*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
+ images/thumbnail/hailstone*
+ images/thumbnail/heavy?gust*
+ images/thumbnail/mining?drone*
  images/thumbnail/mule*
+ images/thumbnail/squall*
+ images/thumbnail/sunder*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ sounds/remnant afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  images/ship/kestrel*
@@ -1460,35 +1494,40 @@ Files:
 Copyright: Scrinarii1337#0001
 License: CC-BY-SA-4.0
 
-Files: images/scene/citydark
-images/scene/buildings
-images/scene/busysteet
-images/scene/iceplains
-images/scene/iceplains2
-images/scene/iceplains3
-images/scene/lonelyrock
-images/scene/redrocks
-images/scene/seasidecliffs
-images/scene/Seasunset
-images/scene/smeer
-images/scene/snowfield
-images/scene/snowvillage
-images/scene/sunet
-images/scene/tower
-images/scene/icepicture
-images/scene/snowplains
+Files:
+ images/scene/citydark*
+ images/scene/buildings*
+ images/scene/busysteet*
+ images/scene/iceplains*
+ images/scene/iceplains2*
+ images/scene/iceplains3*
+ images/scene/lonelyrock*
+ images/scene/redrocks*
+ images/scene/seasidecliffs*
+ images/scene/Seasunset*
+ images/scene/smeer*
+ images/scene/snowfield*
+ images/scene/snowvillage*
+ images/scene/sunet*
+ images/scene/tower*
+ images/scene/icepicture*
+ images/scene/snowplains*
 Copyright: unsplash.com/
 License: CC0 (Creative Commons Zero)/Public-Domain
 
-Files: images/outfits/skadetear
-images/scenes/hroar
+Files:
+ images/scenes/hroar*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0
+Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
+
+Files: images/outfits/skadetear*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
