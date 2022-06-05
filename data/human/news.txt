@@ -10,6 +10,8 @@
 
 
 
+# News that always appears
+
 news "human merchant anywhere"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
@@ -18,16 +20,16 @@ news "human merchant anywhere"
 			not attributes "human"
 	name
 		word
-			"Merchant captain"
-			"Starship captain"
-			"Spacecraft captain"
-			"Spaceship captain"
-			"Freelance captain"
-			"Merchant pilot"
-			"Starship pilot"
-			"Spacecraft pilot"
-			"Spaceship pilot"
-			"Freelance pilot"
+			"Merchant"
+			"Starship"
+			"Spacecraft"
+			"Spaceship"
+			"Freelance"
+		word
+			" "
+		word
+			"pilot"
+			"captain
 	message
 		word
 			`"`
@@ -58,24 +60,22 @@ news "human merchant in human space"
 			not attributes "human"
 	name
 		word
-			"Merchant captain"
-			"Starship captain"
-			"Spacecraft captain"
-			"Spaceship captain"
-			"Freelance captain"
-			"Merchant pilot"
-			"Starship pilot"
-			"Spacecraft pilot"
-			"Spaceship pilot"
-			"Freelance pilot"
+			"Merchant"
+			"Starship"
+			"Spacecraft"
+			"Spaceship"
+			"Freelance"
+		word
+			" "
+		word
+			"pilot"
+			"captain
 	message
 		word
 			`"`
 		word
-			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
 			"I keep hearing rumors about ships disappearing north of Syndicate space. It's probably a bunch of hot air, but either way, I'm staying away from there!"
 			"I try to stick to safe parts of space if I can. Pirate attacks are too much risk for my tastes."
-			"It's such a shame how much the political situation has deteriorated. We're all humans; why can't we just get along?"
 			"I always buy my engines in the Deep. They sell the best of the best up there."
 			"With all these pirate attacks, so many people seem to be arming up and outfitting themselves for war, but I think that's a waste of money. Powerful engines, a scram drive, an afterburner, and some anti-missile defenses are all you need to stay safe."
 			"Slow and steady wins the race. Hauling cargo may not be very glamorous, but with a big enough fleet, you can net a million a week."
@@ -111,6 +111,7 @@ news "human merchant in human space"
 			"I was doing some jobs in the Core, when an enormous alien warship jumped in and attacked! People say I'm crazy, but I'm lucky to have gotten out of there with my life!"
 			"The Syndicate tries to keep alien attacks under wraps, but if you've been around as long as I have, you'll see them eventually."
 			"I was working a Syndicate defense job once, expecting to only deal with some pirates. Instead, I had to drive off an alien warship that jumped in same way the Quarg do! They made us sign a non-disclosure agreement, so don't tell anyone I said that."
+			"Take caution when doing bounty jobs: when accepting one of those jobs, only the bounty hunter is allowed to attack the target. Not even the Navy can help out."
 		word
 			`"`
 
@@ -134,8 +135,6 @@ news "human farming"
 			"Surprised to see horses and wooden carts in the 31st century, huh? Sometimes the old ways are the best."
 			"Everybody who wants to stay here is crazy. We can't hardly make any money and nobody appreciates what we do."
 			"I hope I make enough money this season to afford passage to Maker. I hear there are at least opportunities to get ahead there."
-			"Why don't those bureaucrats ever leave us alone? With all the regulations and taxes I have to plan for, it's tough to make ends meet."
-			"I hear that merchant captains don't pay any taxes. What a racket! They tax hard-working folks like me who produce the real value in this galaxy and ignore the parasites like you who just move it around!"
 			"It's a good thing the Republic still lets the Syndicate sell pesticides. Without those, I'm not sure how we could grow anything at all what with the tough native weeds on this planet."
 			"Did you eat today? Thank a farmer."
 			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
@@ -184,6 +183,7 @@ news "human mining"
 			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
 			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
+			"I've heard that miners who work on Clink are thirteen orders of magnitude more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
 			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
 		word
 			`"`
@@ -216,8 +216,7 @@ news "street vendor"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "urban"
-		not
-			attributes "paradise"
+		not attributes "paradise"
 	name
 		word
 			"Street vendor"
@@ -236,6 +235,31 @@ news "street vendor"
 			"I wish I had enough money to ask captains roaming around the spaceport for transport to somewhere nicer."
 			"Sell a man a fish and you can sell him fish every day; teach a man to fish and you lose your customer."
 			"I have the safest stall in town; nobody ever died from the food that I serve. At least, nobody that I know."
+			"Can I offer you an egg in this trying time?"
+		word
+			`"`
+
+
+
+news "grifter"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "urban"
+		not attributes "paradise"
+	name
+		word
+			"Suspicious salesperson"
+			"Hooded salesperson"
+			"Shifty dealer"
+	message
+		word
+			`"`
+		word
+			"Can I interest you in a pair of super shoes? These sneakers are able to double your running speed! They can also help when walking away from people who are promoting shady products!"
+			"I know a guy who can get you plastic surgery real cheap. Not to imply that you need it, of course."
+			"A single spray of this nanotech perfume will make you irresistible to any prospective partners! Just don't use it when close to a dog. Or any other animal."
+			"Can I offer you an enchanted playing card deck? You're guaranteed to get perfect hands in every game you play! What? No! It's not just a pile of 52 aces!"
+			"This laser razor never needs sharpening! Just remember to take some iodine before using it."
 		word
 			`"`
 
@@ -244,6 +268,7 @@ news "street vendor"
 news "company psychologist"
 	location
 		government "Syndicate"
+		attributes "rich" "urban"
 	name
 		word
 			"Company psychologist"
@@ -298,7 +323,6 @@ news "unemployed youth"
 		word
 			"I may be living on the street, but at least I haven't let myself get trapped in debt slavery like the workers on Syndicate worlds."
 			"Got any change?"
-			"I may be dirty, but I'll never be as filthy as those politicians in power."
 			"Actually, I'm working on a novel. Well, right now I'm just doing world-building and research, so I haven't written much of the actual story yet."
 			"Do you know how lucky you are, that you can visit a different world every week if you want to? I've been stuck on this one filthy little planet my whole life."
 			"If I had enough money, I'd go up to a captain in the spaceport and ask for transport to anywhere else. Nowhere's as bad as this place."
@@ -314,6 +338,10 @@ news "unemployed youth"
 news "union organizer"
 	location
 		government "Syndicate"
+		not attributes "research"
+		or
+			not attributes "frontier"
+			attributes "urban"
 	name
 		word
 			"Union organizer"
@@ -342,8 +370,6 @@ phrase "small trash item"
 		"cooling duct"
 		"radar jammer"
 		"fuel pod"
-		
-		
 
 news "waste collector"
 	location
@@ -355,6 +381,7 @@ news "waste collector"
 			"Waste collector"
 			"Garbage collector"
 			"Trash collector"
+			"Janitor"
 	message
 		word
 			`"`
@@ -395,6 +422,7 @@ news "dock worker"
 			"I use the knowledge I gain from this job to invest in stocks. You can always tell what companies are on the move from the products that pass through here."
 			"I got a raise today. Only two credits more than my previous salary. Ridiculous!"
 			"Found a bomb in a crate the other day. Turns out I probably saved a very important diplomat from being blown to pieces."
+			"Apparently, the spaceports in the Deep have fully automated loading systems. Could you imagine that!"
 		word
 			`"`
 
@@ -485,6 +513,7 @@ news "tour guide"
 			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
 			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
 			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
+			"One time, I gave a tour to a bunch of shady individuals in longcoats and wide-brimmed hats. I think they might have been pirates."
 		word
 			`"`
 
@@ -493,6 +522,7 @@ news "tour guide"
 news "human resources worker"
 	location
 		government "Syndicate"
+		attributes "factory" "urban"
 	name
 		word
 			"Human resources worker"
@@ -513,6 +543,7 @@ news "human resources worker"
 news "loan officer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich"
 	name
 		word
 			"Loan officer"
@@ -521,7 +552,6 @@ news "loan officer"
 		word
 			`"`
 		word
-			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
 			"We charge however much interest the market will support. The only captains who can't manage to pay their debts are the ones with no business sense whatsoever."
 			"Sadly, for the last several centuries there have been laws against inflicting bodily harm on people to convince them to pay off their debts."
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
@@ -538,6 +568,9 @@ news "hyperspace relay engineer"
 		not
 			government "Quarg"
 			not attributes "human"
+		or
+			not attributes "dirt belt"
+			attributes "urban"
 	name
 		word
 			"Hyperspace relay engineer"
@@ -560,6 +593,9 @@ news "hyperspace scientist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "research" "deep"
+	to show
+		not "event: pug invasion"
+		not "event: fwc pug invasion"
 	name
 		word
 			"Hyperspace researcher"
@@ -635,6 +671,7 @@ phrase "athlete competition location"
 news "athlete"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "core" "paradise" "rim"
 	name
 		word
 			"Athlete"
@@ -657,6 +694,7 @@ news "athlete"
 news "dentist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "paradise" "rich" "urban"
 	name
 		word
 			"Dentist"
@@ -669,6 +707,7 @@ news "dentist"
 			"If the galaxy has many alien species, I hope they all have teeth."
 			"The advent of almost perfect artificial teeth may tempt you to stop caring if your natural teeth start to rot. Trust me that taking care of your teeth saves a lot of pain from both your mouth and your wallet."
 			"I'm that one dentist that doesn't recommend anything."
+			"I used to work as a back-alley doctor before getting this job."
 		word
 			`"`
 
@@ -676,10 +715,13 @@ news "dentist"
 
 news "epidemiologist"
 	location
-		government "Republic" "Quarg"
-		not
-			government "Quarg"
-			not attributes "human"
+		or
+			and
+				government "Quarg"
+				attributes "human"
+			and
+				government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+				attributes "medical"
 	name
 		word
 			"Epidemiologist"
@@ -699,6 +741,7 @@ news "epidemiologist"
 news "economist"
 	location
 		government "Syndicate"
+		attributes "rich" "urban"
 	name
 		word
 			"Economist"
@@ -718,6 +761,7 @@ news "economist"
 news "human mechanic"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "rim" "factory" "south" "core"
 	name
 		word
 			"Mechanic"
@@ -732,7 +776,6 @@ news "human mechanic"
 			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
 			"I did my apprenticeship with the Navy, but after I finished my tour, I just wanted to open up my own repair shop."
 			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
-			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
 			"Pass me the 10 mm socket wrench?"
 		word
 			`"`
@@ -742,6 +785,10 @@ news "human mechanic"
 news "nuclear technician"
 	location
 		government "Syndicate"
+		not attributes "volcanic"
+		or
+			not attributes "frontier"
+			attributes "urban"
 	name
 		word
 			"Nuclear technician"
@@ -785,6 +832,7 @@ news "substance abuse counselor"
 news "reporter"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		attributes "rich" "urban" "frontier" "tourism"
 		not
 			government "Quarg"
 			not attributes "human"
@@ -1029,12 +1077,11 @@ news "human retiree"
 		word
 			"Retiring is the best thing I ever did. They should make it mandatory!"
 			"All of my children have gone to the most prestigious academy on Hestia. They're so brilliant, it was the only place that would do."
-			"It makes me feel so safe to know that there are half a dozen Navy warships in orbit. The barbarians north of here wouldn't dare attack us!"
 			"This is such a great place to retire. They tax income much more heavily than investments and business profits, so if you make most of your money elsewhere, you can avoid paying practically any taxes at all!"
 			"I don't stand for it when I hear youngsters complain about the fact that I have a generous pension. I worked for 40 years to earn this retirement!"
-			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
 			"We're very fortunate to have been able to retire here. Don't ever take your blessings for granted, captain."
 			"It's amazing how much technology has progressed in my lifetime!"
+			"You wouldn't believe the kinds of ruffians they let in here. My neighbour got their fortune by winning the lottery, for goodness sake!"
 		word
 			`"`
 
@@ -1056,8 +1103,6 @@ news "human financial analyst"
 			"Have you heard about the Navy admiral who married a commoner? I just can't believe things like that still happen."
 			"I'm about to lose my vacation home on Martini! Next time I'm insisting on a pre-nuptial agreement."
 			"My son won a silver trophy in his last game. He's going to be a great athlete some day."
-			"The galactic economy's in trouble, mark my words. Indicators haven't been this negative in more than 50 years, but nobody wants to hear it."
-			"God, these taxes are killing me. I make a good income, but it feels like half of it goes to the Republic, and I've got bills to pay, too."
 			"I manage 8-figure portfolios, but what gets me up in the morning is the sight of a beautiful sunrise. I know it's all geo-engineered, but is a painting any less sublime just because it was made by human hands?"
 			"Nearly lost my shirt in the commodities market last week. If my boss ever found out, it'd be curtains for me!"
 		word
@@ -1211,6 +1256,7 @@ news "human tourism"
 news "human protester"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
+		attributes "urban"
 	name
 		word
 			"Protester"
@@ -1471,6 +1517,17 @@ news "human republic reporter in pirate space"
 			`"`
 
 
+phrase "restaurant names"
+	word
+		"The "
+	phrase
+		"civilian subphrase 2"
+		"civilian subphrase 3"
+		"civilian subphrase 4"
+		"civilian subphrase 5"
+		"civilian subphrase 10"
+		
+
 news "syndicate pa system"
 	location
 		government "Syndicate"
@@ -1485,11 +1542,37 @@ news "syndicate pa system"
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
-			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
+			"Dear traveler: we recommend you to have dinner in our local restaurant '${restaurant names}'. You will not be disappointed."
 		word
 			`"`
 
 
+
+phrase "tourist names"
+	phrase
+		"male names"
+		"female names"
+
+phrase "platfom number"
+	word
+		"1" 100
+		"2" 100
+		"3" 100
+		"4" 100
+		"5" 100
+		"6" 100
+		"7" 100
+		"8" 100
+		"9" 100
+		"10" 100
+		"11" 100
+		"12" 100
+		"13" 100
+		"14" 100
+		"15" 100
+		"16" 100
+		"9 and three quarters"
+		
 
 news "tourist pa system"
 	location
@@ -1508,12 +1591,28 @@ news "tourist pa system"
 			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
 			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
 			"Please stand clear of the doors when the shuttle train is departing."
-			"This is the final boarding call for passengers Eline, John, and Robert Phillips. Please proceed to platform 3 for immediate boarding."
+			"This is the final boarding call for passengers ${tourist names}, ${tourist names}, and ${tourist names} ${tourist names}. Please proceed to platform ${platfom number} for immediate boarding."
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
 
 
+
+phrase "republic motto graffiti"
+	word
+		`` 2
+		`Underneath are the words "PEACE AMONG THE STARS".` 2
+		`Underneath are the words "DEATH AMONG THE STARS".`
+		`Underneath are the words "TYRANNY AMONG THE STARS".`
+		`Underneath are the words "POVERTY AMONG THE STARS".`
+		`Underneath are the words "PEACE AMONG THE PARADISE WORLDS".`
+
+phrase "deep motto graffiti"
+	word
+		`` 2
+		`Underneath are the words "Peace, Prosperity, Progress".` 2
+		`Underneath are the words "Power, Poverty, Pride".`
+		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky".`
 
 news "graffiti on spaceport wall"
 	location
@@ -1532,6 +1631,16 @@ news "graffiti on spaceport wall"
 			"Farmer's family / Where's our guardian fleet? / Trapped in Paradise"
 			"Built on graveyards / Our infant species pretends / No bodies remain"
 			"The honest soldier / Rescue children when Hope dies / Fired by Earth's wisest"
+			"Future looking bleak / Desperation reigns supreme / Light the fuse and watch"
+			"A little trinket / Into the tempest of blood / Reopen the door"
+			"Step into the stars / Listen to the larks dreaming / And open your eye"
+			"Combined trinity / Drive out the ringleaders / Unity through fear"
+			"With a change in heart / Seeking to make a new life / But with skin of green"
+			"Cloudy star shines dim / Yet your mind is clear as day / Remember the past"
+			"Uncover the truth / Let sinners bask in sunlight / Reconcile freedom"
+			"No more hope of peace / Become what you most dreaded / Checkmate in seven"
+			"When all hope is lost / Unify the warmongers / Become the greater foe"
+			"Music begets past / Past begets relevations / That beget dragons"
 			"What lies beyond life / A Rampant AI wonders / Exit door leads in - Warlord Mike"
 			"There once was a man from New Boston / To fly's a dream he'd had often / He purchased a shuttle / Brought folks in to huddle / Why do merchants call this a coffin? - Lake"
 			"There once was a man from New Boston / He picked the ugliest of options / He purchased a star barge / Mission cargo's too large / This shipment's starting to smell rotten... - Lake"
@@ -1561,3 +1670,884 @@ news "graffiti on spaceport wall"
 			"What do you get when you cross a rhetorical question with a joke?"
 			"Spacing out in space is never funny."
 			"Don't put graffiti on the wall here."
+			"A spray-painted circle surrounded by two arrows forms the Republic insignia. ${republic motto graffiti}"
+			"A spray-painted tree with a mass of branches in the shape of a brain forms the Deep insignia. ${deep motto graffiti}"
+
+
+# Before the bombings
+
+news "human merchant in human space pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Merchant"
+			"Starship"
+			"Spacecraft"
+			"Spaceship"
+			"Freelance"
+		word
+			" "
+		word
+			"pilot"
+			"captain
+	message
+		word
+			`"`
+		word
+			"Pirate attacks keep getting more and more frequent, even in star systems that used to be perfectly safe. Why isn't the Navy doing something about it?"
+			"Have you heard of the Southern Mutual Defense Pact? It's a group of militia dedicated to making the South as safe as it was a century ago. It's still no Navy though."
+			"Why do the southern militia have to risk life or death every day, while the Paradise planets hoard the Navy for an attack that'll never come? Something has to change, and soon."
+			"Back when my mother was a merchant, she could fly a horde of Haulers across the South without a shred of fear of a pirate attack. Now, even when escorted by a warship, I lose a Freighter every few months."
+			"Stupid Paradise planets and their stupid priorities. Newsflash, idiots: pirates ain't gonna raid the Paradise Planets, 'cause they're too busy ransacking the South."
+			"Can't the bigwigs in Parliament even have the smallest bit of empathy and consider for a femtosecond whether they should send the Navy to protect the South?"
+			"Got offered a pretty nice job in the South a while ago. Something to do with improving surveillance to increase the security of the region. Anything to protect my fellow captains. Plus, it paid a pretty penny."
+			"I lost most of my fleet in a freak pirate attack a month ago. Would never have had to deal with that a few decades ago."
+			"I think that most captains nowadays complain too much. If you think that the Republic is so bad, why don't you make your own government?"
+		word
+			`"`
+
+
+
+news "human farming pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "farming"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"Taxes on food are absolutely ludicrous these days. I barely turn a profit at the prices I'm selling at."
+			"Pesticides have gotten so expensive in recent times that I lose less money by letting my crops die."
+			"Why don't those bureaucrats ever leave us alone? With all the regulations and taxes I have to plan for, it's tough to make ends meet."
+			"I hear that merchant captains don't pay any taxes. What a racket! They tax hard-working folks like me who produce the real value in this galaxy and ignore the parasites like you who just move it around!"
+		word
+			`"`
+
+
+
+news "human farming in the dirt belt pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "farming"
+		attributes "dirt belt" "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"The ship that was supposed to be delivering my biannual pesticide supply got shot down by pirates. Guess I'll just have to make do on reserves this season."
+			"I heard that the last ship carrying my harvest out to the Paradise Planets got looted by pirates."
+			"The rest of the galaxy relies on us for food, yet the Navy barely patrols around here."
+		word
+			`"`
+
+
+
+news "human textiles pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "textiles"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Textile worker"
+	message
+		word
+			`"`
+		word
+			"A bunch of other workers got laid off a few weeks ago. The brutal tax rates that the Republic enforce mean that the company I work at can barely generate any profit."
+			"Why couldn't I be born two decades earlier? Now not only do I have to toil to afford a spaceship, I also have to work towards getting a useless bit of paper that only exists to fill the pockets of those in power."
+		word
+			`"`
+
+
+
+news "human textiles in the south pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "textiles"
+		attributes "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Textile worker"
+	message
+		word
+			`"`
+		word
+			"The building that I worked at got raided by pirates a couple of months ago. Don't see why they didn't just steal something worth way more than fabric."
+			"I'm supposed to be working right now, but the ship that was carrying our next shipment of thread was looted by pirates."
+			"The company that I worked at got an order from the local militia for a lot of uniforms."
+		word
+			`"`
+
+
+
+news "human mining pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Miner"
+	message
+		word
+			`"`
+		word
+			"Mining might be a hard gig, but at least the pay's fairly constant. I've heard of some other professions that got hit hard by the Republic's increased taxation."
+			"My friend tricked me into thinking that Parliament had passed a new law where miners would be fined for every gram of material extracted from the ground. To be honest, I wouldn't be surprised if they did something as stupid as that."
+		word
+			`"`
+
+
+
+news "human mining in the south pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+		attributes "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Miner"
+	message
+		word
+			`"`
+		word
+			"My company's been getting a bunch of orders from Southbound Shipyards for metals. I hope that they keep on coming; I've never been paid this well before."
+			"To think that the materials extracted by folks like us just get spirited away for use in some cushy Paradise World project, instead of on the people who need it most. The only reason I haven't quit is... actually, why haven't I quit?"
+		word
+			`"`
+
+
+
+news "company psychologist pre fw"
+	location
+		government "Syndicate"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Company psychologist"
+	message
+		word
+			`"`
+		word
+			"I know I'm not supposed to break confidentiality, but my clients have said some... worrying things recently."
+			"I've heard that the high ranks of the Syndicate are increasingly seeking out counselling. The state of the galaxy must really be getting to them."
+		word
+			`"`
+
+
+
+news "unemployed youth pre fw"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent"
+		attributes "urban" "near earth" "dirt belt" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Unemployed youth"
+	message
+		word
+			`"`
+		word
+			"I may be dirty, but I'll never be as filthy as those politicians in power."
+			"I might not know a lot, but I do know that the way things are run right now is absolute bunk."
+			"I wish that something could bring the Republic's pride down a few sizes and make them think about the little people."
+		word
+			`"`
+
+
+
+news "dock worker pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "rim" "factory" "south" "core"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Dock worker"
+	message
+		word
+			`"`
+		word
+			"I took this job a decade ago in order to save up for a starship. But now with all the piracy going around, I'm not so sure I want to become a merchant captain anymore."
+			"Working this job makes me think about how peaceful human space nowadays, even despite the Republic's faults. I sure hope that nothing happens to spark a major conflict."
+			"I'm just thankful that I'm still able to live my life somewhat well. My cousin who works in farming wasn't so lucky."
+		word
+			`"`
+
+
+
+news "dock worker in the dirt belt pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Dock worker"
+	message
+		word
+			`"`
+		word
+			"Honestly, I don't even bother with voting anymore. What's the point when the representative we elect is just a single person against the dozens of politicians each Paradise World gets?"
+			"With the amount of weapons and guns loaded onto ships heading to the South, you'd think that they're preparing for a war."
+		word
+			`"`
+
+
+
+news "tour guide pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Tour guide"
+	message
+		word
+			`"`
+		word
+			"While the tourism industry hasn't been as directly hard-hit by taxes as others, people having less money means that they go on vacation less."
+		word
+			`"`
+
+
+
+news "tour guide in the south pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism"
+		attributes "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Tour guide"
+	message
+		word
+			`"`
+		word
+			"A tour group I was supposed to be guiding got kidnapped by pirates on their way here."
+			"One time, I got held up by a gang of pirates who wanted to know where the planet's bank is. They apparently took several million credits."
+			"People are so scared of the recent surge of piracy that they're forgoing interstellar vacations in favor of staying closer to home."
+		word
+			`"`
+
+
+
+news "loan officer pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Loan officer"
+			"Mortgage broker"
+	message
+		word
+			`"`
+		word
+			"You probably think the interest rates we charge are exorbitant, but with all the ships getting blown up by pirates these days, we barely break even."
+			"Don't blame us for declining 90% of loan applications for a starship: if piracy was less prevalent, we would gladly hand over the money. Do you realize how much you merchants make?"
+		word
+			`"`
+
+
+
+news "economist pre fw"
+	location
+		government "Syndicate"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Economist"
+	message
+		word
+			`"`
+		word
+			"If you ask me, the Syndicate are investing too much into weapons and defense systems. The pirate threat isn't as bad as the media hypes it up to be."
+			"When I first joined the industry, there was green across every ledger. Now, I'm lucky to come a report that isn't half-red."
+		word
+			`"`
+
+
+
+news "human mechanic pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
+			"My parents tried to discourage me from ship maintenance. They told me there was no money to be made servicing ships that would never see the light of combat. Well, look at me now! There's more piracy than ever, and merchants have never needed repairs more."
+		word
+			`"`
+
+
+
+news "reporter in the south pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Reporter"
+	message
+		word
+			`"`
+		word
+			"My employers sent me down here for the latest scoop, but what is there to report on? Nothing interesting ever happens around here."
+			"Every few days, there's a news story about a horrible atrocity carried out by a gang of pirates, but everyone forgets about it a few months later."
+			"Could I get your thoughts about piracy in the South and Rim?"
+			"Could I get your thoughts about parliamentary representation in more rural areas?"
+			"Fun fact: Did you know that journalists in the South and Rim are 10 times more likely to die than journalists in the Paradise Worlds?"
+		word
+			`"`
+
+
+
+news "insurance agent pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "urban" "paradise" "near earth"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Insurance agent"
+	message
+		word
+			`"`
+		word
+			"The company I work at doesn't offer any insurance for assets in the South or Rim. The threat of piracy is just too much."
+			"If you think that piracy is bad for you captains, take a moment to think about how easily people can perform insurance fraud by claiming pirates damaged their belongings."
+		word
+			`"`
+
+
+
+news "human retiree pre fw"
+	location
+		attributes "paradise"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Retiree"
+			"Pensioner"
+	message
+		word
+			`"`
+		word
+			"It makes me feel so safe to know that there are half a dozen Navy warships in orbit. The barbarians north of here wouldn't dare attack us!"
+			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
+			"I must admit, the galaxy was better back in my day."
+		word
+			`"`
+
+
+
+news "human financial analyst pre fw"
+	location
+		attributes "paradise" "near earth"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Financial analyst"
+	message
+		word
+			`"`
+		word
+			"The galactic economy's in trouble, mark my words. Indicators haven't been this negative in more than 50 years, but nobody wants to hear it."
+			"God, these taxes are killing me. I make a good income, but it feels like half of it goes to the Republic, and I've got bills to pay, too."
+			"I got a glance of a colleague's reports. Apparently, his predictions are far more dire than what is officially posted."
+			"If you ask me, something bad is about to happen. Nothing ever runs smoothly for as long as the Republic has."
+			"The Syndicate is paying their analysts less and less as the years go by. Don't they realize how vital people like us are to their success?"
+			"Something just doesn't sit right with me. While the Syndicate has been laying off analysts left and right, their investments have never been more profitable."
+		word
+			`"`
+
+
+
+news "human mercenary pre fw"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "frontier"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Mercenary"
+	message
+		word
+			`"`
+		word
+			"The threat of piracy might be a bit dicey, but I'm not complaining about the employment opportunities it provides."
+			"With the Navy patrolling border systems less and less, mercs like me have never been more spoiled for postings."
+			"I've heard some whispers on the wind that the southern militias are becoming more and more organized, to the point of putting the Navy to shame."
+			"That 'Southern Mutual Defense Pact' thing that's happening in the South is cute, but I doubt it'll amount to anything."
+			"The militias in the South are lousy with their payments; I could live for a decade off just one of their jobs."
+		word
+			`"`
+
+
+
+news "human republic soldier pre fw"
+	location
+		government "Republic"
+		attributes "military"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Republic Soldier"
+	message
+		word
+			`"`
+		word
+			"Trust me, the Navy is just as unhappy that we're cooped up in the Paradise Worlds instead of fending off pirates."
+			"A lieutenant from here disobeyed his orders and decided to patrol the Dirt Belt. He ended up getting court martialed, but most of us soldiers were cheering him on from the sidelines."
+			"I'm pleased with where I'm posted: I mostly end up patrolling the Paradise Worlds, so I get plenty of time to catch up with family there."
+			"As worrisome as the pirates are, I'm glad that the galaxy is at peace, and soldiers don't have to throw their lives away en masse."
+		word
+			`"`
+
+
+
+news "graffiti on spaceport wall in the south pre fw"
+	location
+		government "Republic"
+		attributes "rim" "south"
+	to show
+		not "event: war begins"
+	name
+		word
+			"Graffiti painted on a wall"
+	message
+		word
+			`Four spray-painted circles mark the wall. Underneath are the words "STAND UNITED".`
+
+
+
+# After the bombings
+
+news "human merchant in human space post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Merchant"
+			"Starship"
+			"Spacecraft"
+			"Spaceship"
+			"Freelance"
+		word
+			" "
+		word
+			"pilot"
+			"captain
+	message
+		word
+			`"`
+		word
+			"It's such a shame how much the political situation has deteriorated. We're all humans; why can't we just get along?"
+			"I've been a merchant for a long, long time, but I've never seen something as big as the bombings."
+			"If you ask me, the timing of the bombings are way too convenient for the Free Worlds to not be involved."
+			"I'd stay away from the Free Worlds if I were you. You might meet the same fate as Geminus!"
+			"I was initially supportive of the Free Worlds, standing up to Parliament and all, but after the bombings, I'm not so sure."
+			"Whatever the outcome of the current situation is, I guarantee that a select few people in the weapons industry will become very, very rich."
+			"Have you seen pictures of the aftermaths of the bombings? What a terrible sight they are to behold."
+			"You know, I was delivering fissile materials to Geminus before the bombings. Do you think... Ah, forget it. I'm overthinking things, aren't I?"
+			"I transported a family to Martini a few days before the bombings. I hope they're okay."
+			"Apparently the Free Worlds are ruled over by a council that elects itself. Doesn't sound very democratic to me."
+			"I did some work for the Southern Mutual Defense Pact, before it became the Free Worlds. Then, shortly after the bombings happened, I got questioned by a Navy officer. I don't know what's happening, but I don't like it."
+		word
+			`"`
+
+
+
+news "human merchant in human space post deployment"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		not
+			government "Quarg"
+			not attributes "human"
+	to show
+		has "event: southern carriers 1"
+		not "chosen sides"
+	name
+		word
+			"Merchant"
+			"Starship"
+			"Spacecraft"
+			"Spaceship"
+			"Freelance"
+		word
+			" "
+		word
+			"pilot"
+			"captain
+	message
+		word
+			`"`
+		word
+			"The Free Worlds might be complicit in the bombings of Martini and Geminus, but you can't deny that they're real good at keeping the South safe."
+			"I've seen some of those newfangled carriers the Free Worlds uses. If you ask me, they look like pieces of trash."
+			"Have you tried using those prototype carriers that the Free Worlds makes? They're specially modified Haulers that carry fighters instead of cargo. Isn't that ingenious?"
+			"Most people think that the Free Worlds behind the bombings, but I don't think so. I've met some of their commanders, and they all seem too pleasant to be responsible for such an act."
+			"Have you heard the junk that Free Worlds ships spout? 'Be strong! Be free!' It makes me want to vomit."
+			"I was about to be totaled by a gang of pirates when a Free Worlds fleet swooped in and saved me. I wish that I could repay them."
+			"I've been doing some jobs for the Free Worlds lately. It's only harmless reconnaissance work, but it pays well."
+			"I've heard that one of the Free Worlds commanders is quite the intolerant fellow. One of my friends bungled a merchant escort mission, and he got chewed out for it."
+			"I was only able to start my career because the Free Worlds don't require you to buy a pilot's license."
+		word
+			`"`
+
+
+news "human farming post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "farming"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"All this 'Free Worlds' stuff is too much for a simple farmer like me. Can't people just get along for once?"
+			"I might not know the future of the galaxy in these uncertain times, but I know that I'll be farming 'til the end of my days."
+			"Them Free Worlders have potential, but it'll take more than promises to win me over."
+			"Somedays, you wake up to a completely different galaxy."
+		word
+			`"`
+
+
+news "human farming in fw post bombings"
+	location
+		government "Free Worlds"
+		attributes "farming"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Farmer"
+	message
+		word
+			`"`
+		word
+			"The lighter taxes that the Free Worlds impose are nice, but I'm worried that the Republic are going to put tariffs on food from Free space."
+			"My cousin moved to this planet because he heard that the Free Worlds are fairer to farmers. I don't get it myself; I feel like my life has been the same inside and outside of the Republic."
+		word
+			`"`
+
+
+
+news "human textiles post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "textiles"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Textile worker"
+	message
+		word
+			`"`
+		word
+			"My workplace has implemented a blanket ban on any discussion on the bombings. Not that anyone follows it, of course."
+			"My boss has been ordering us to make hundreds of bodybags. I don't see the point; I mean, there's no way the Republic are actually going to go to war with the Free Worlds."
+			"When I first heard of the bombings, I thought I was having a nightmare. Still feels like I'm in one, to be honest."
+		word
+			`"`
+
+
+
+news "human mining post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Miner"
+	message
+		word
+			`"`
+		word
+			"To think that someone could do such a horrible thing to Martini and Geminus... It saddens me how far people are willing to go to win."
+			"The site I work at was shut down for a day in recognition of the bombings. We weren't paid for the time that was taken off, though."
+			"Everyone around me is talking about some kind of 'bombings', and about how war is imminent, but I haven't heard anything on my newsfeed. Do you know what's going on?"
+			"I became a miner to provide for my daughter. Now I don't know if there's going to be a galaxy left by the time she's an adult."
+		word
+			`"`
+
+
+
+news "human factory post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Factory worker"
+	message
+		word
+			`"`
+		word
+			"To a little guy like me, there's not much hope in the future. Parliament may be a corrupt gang of powermongers, but the Free Worlds are willing to commit terrorist acts to survive, to say nothing of the Syndicate."
+			"I'm at my breaking point. I mean, how can we just keep working at the daily grind like nothing's happened when thousands have died and the galaxy is on the brink of war?"
+		word
+			`"`
+
+
+
+news "grifter post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "urban"
+		not attributes "paradise"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Suspicious salesperson"
+			"Hooded salesperson"
+			"Shifty dealer"
+	message
+		word
+			`"`
+		word
+			"Worried that someone you know might send a nuclear bomb your way? Why not invest in one of my bomb detectors?"
+			"This quantum holographic USB dongle will protect you from radiation emitted by nuclear bombs!"
+			"Don't want to be caught unaware by nuclear blasts? Why not reserve a spot in my secret bunker?"
+		word
+			`"`
+
+
+
+news "company psychologist post bombings"
+	location
+		government "Syndicate"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Company psychologist"
+	message
+		word
+			`"`
+		word
+			"Things have gotten so bad that my therapist's therapist's therapist's therapist's therapist's therapist has needed to seek counselling herself. I wonder if her therapist has their own therapist."
+			"You know, if the events of the galaxy are wearing you down, I'm sure that I could make a spot in my schedule for you."
+			"Sorry, no time to chat. My entire day is filled with appointments from dawn until dusk."
+		word
+			`"`
+
+
+
+news "unemployed youth post bombings"
+	location
+		government "Republic" "Neutral" "Independent"
+		attributes "urban" "near earth" "dirt belt" "south"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Unemployed youth"
+	message
+		word
+			`"`
+		word
+			"First chance I get, I'm heading to the Free Worlds."
+			"A bunch of my friends are moving down to Free space. I'm thinking of traveling myself."
+			"All my friends are traveling to the Free Worlds, but I'm probably going to go to the Syndicate. They have far more jobs on offer, and they aren't at risk of being attacked by the Republic."
+			"Some of my friends are too easily convinced. I mean, all the Free Worlds have done is promise that they'll be better than the Republic, and my friends are already treating them as messiahs."
+			"Did you know there exist people who believe the Free Worlds aren't responsible for the bombings? What idiots."
+		word
+			`"`
+
+
+
+news "unemployed youth in fw post bombings"
+	location
+		government "Free Worlds"
+		attributes "urban" "near earth" "dirt belt" "south"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Unemployed youth"
+	message
+		word
+			`"`
+		word
+			"Most of my friends are taking up positions in the Free Worlds militia. I'm considering enlisting myself."
+			"The Free Worlds keeps on promising that they'll improve conditions for the lower-classes, but so did the Republic."
+			"Down with the Republic! Up with the Free Worlds!"
+			"Did you know there exist people who believe the Free Worlds were responsible for the bombings? What idiots."
+			"Free Worlds, Republic; they're both just faceless governments that think words speak louder than actions, if you ask me."
+		word
+			`"`
+
+
+
+news "union organizer post bombings"
+	location
+		government "Syndicate"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Union organizer"
+	message
+		word
+			`"`
+		word
+			"Regardless of what you think of the Free Worlds, they're quite useful as an incentive to improve working conditions. Nothing's been able to challenge the job monopoly of the Syndicate until now."
+			"As nice as it is to have the Free Worlds promoting better working conditions, they're also causing all of our most devoted members to move south. All we have left are people too passive to bring any real change."
+			"I've heard rumors that the Syndicate is using accusations of terrorism as an excuse to lock up union leaders. Sounds like fearmongering, if you ask me. After all, the Syndicate could arrest those people without reason and still get away with it."
+		word
+			`"`
+
+
+
+news "waste collector post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "urban" "factory"
+		not attributes "paradise" "station"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Waste collector"
+			"Garbage collector"
+			"Trash collector"
+			"Janitor"
+	message
+		word
+			`"`
+		word
+			"The government has been employing guards to check the waste that leaves this planet. I get the safety concerns with recent events, but those guards think that they can treat us like slaves."
+			"I got accosted by a Navy officer who thought I was smuggling a bomb. He sure was embarassed when he found out I was only carrying a bag of animal droppings."
+		word
+			`"`
+
+
+
+news "dock worker post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "dirt belt" "rim" "factory" "south" "core"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Dock worker"
+	message
+		word
+			`"`
+		word
+			"I'm glad that I never bothered with the stock market. My colleague lost a bunch in stocks after the bombings."
+			"I've been stocking up on food in case war breaks out. Most of my coworkers think I'm a paranoid fool, but it's better to be safe than sorry."
+			"What's changed since the bombings doesn't disturb me as much as what hasn't changed."
+			"That look on your face... You're a Republic Intelligence officer in disguise, aren't you! Don't try to deny it, I can see through your facade!"
+			"I think that the woman who works a few landing pads that way is a spy for the Free Worlds."
+		word
+			`"`
+
+
+
+news "lower class paradise post bombings"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rich" "paradise"
+	to show
+		has "event: war begins"
+		not "chosen sides"
+	name
+		word
+			"Housekeeper"
+			"Domestic worker"
+			"Groundskeeper"
+			"Gardener"
+			"Hair stylist"
+			"Dentist"
+			"Dietitian"
+			"Chef"
+			"Chauffeur"
+	message
+		word
+			`"`
+		word
+			"Have you been to the Free Worlds? If I may ask... are the people there happy?"
+			"My employers made quite a fuss after the bombings happened. Apparently, they left behind an antique tea set in their holiday apartment on Martini. Poor things."
+			"Even with the protection of the Navy, the Free Worlds were able to attack the Paradise Worlds!"
+		word
+			`"`
+
