@@ -152,7 +152,7 @@ outfit "Astuit Battery"
 		reload 4
 		velocity 8
 		"hardpoint offset" 6
-		inaccuracy 3
+		inaccuracy 5
 		"turret turn" 2.2
 		"firing energy" 13.2
 		"firing heat" 46
@@ -197,7 +197,7 @@ outfit "Acuit Artillery"
 		"hardpoint sprite" hardpoint/scinturret
 		sound scinshot
 		lifetime 65
-		reload 34
+		reload 62
 		"burst reload" 10
 		velocity 18
 		"hardpoint offset" 26
@@ -205,8 +205,8 @@ outfit "Acuit Artillery"
 		"turret turn" 1.3
 		"firing energy" 130
 		"firing heat" 200
-		"shield damage" 176
-		"hull damage" 110
+		"shield damage" 352
+		"hull damage" 220
 	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon."
 
 outfit "Guile Anti-Missile"

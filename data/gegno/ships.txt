@@ -613,14 +613,14 @@ ship Coesite
 		"C7 Brawl Core"
 		"Guile Anti-Missile"
 		Hyperdrive
+		"R01 Skirmish Battery"
 		"R02 Battlezone Battery"
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
-	engine -31 85
-	engine 31 85
-	turret 0 -46.5 "Astuit Battery"
-	turret -34 18 "Astuit Battery"
-	turret 34 18 "Guile Anti-Missile"
+	engine 46.5 92.5
+	engine -46.5 92.5
+	turret -25 -16.5 "Astuit Battery"
+	turret 25 -16.5 "Astuit Battery"
 	leak leak 60 50
 	leak flame 50 80
 	explode "medium explosion" 6
@@ -655,14 +655,17 @@ ship Felsic
 			"hit force" 690
 	outfits
 		"Astuit Battery" 2
-		"C7 Brawl Core"
+		"C17 Warzone Core"
+		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"SC-14 Plasma Steering"
 		"SC-14 Plasma Thruster"
-	engine 0 135
-	turret 0 63 "Astuit Battery"
-	turret 0 -79.5 "Astuit Battery"
+	engine -18 152
+	engine 18 152
+	turret 0 -76 "Guile Anti-Missile"
+	turret -44 85.5 "Astuit Battery"
+	turret 44 85.5 "Astuit Battery"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 7
@@ -690,7 +693,7 @@ ship Feldspar
 		"outfit space" 866
 		"required crew" 133
 		shields 0
-		"weapon capacity" 212
+		"weapon capacity" 232
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
