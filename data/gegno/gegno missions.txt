@@ -43,5 +43,5 @@ mission "First Contact: Gegno"
 	on offer
 		conversation
 			"The Quarg on this unfinished ringworld move in a more eerily quiet manner than what you're used to, and if it weren't for the occasional construction sounds it's almost as if they aren't even there.  The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you quicker than you're used to. After a few minutes of discussion and gestures between themselves, one of them motions you to follow them."
-			"	You walk with the Quarg, occasionally having trouble keeping up pace with their silently brisk steps, until you are led to a smaller room with two Quarg sat down at the end of it. They talk, but this time you can hear "
+			"	You walk with the Quarg, occasionally having trouble keeping up pace with their silently brisk steps, until you are led to a smaller room with two Quarg sat down at the end of it. They talk, but this time you can hear- TO BE COMPLETED"
 
