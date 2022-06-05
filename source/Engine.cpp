@@ -505,9 +505,12 @@ void Engine::Step(bool isActive)
 	Audio::Update(center);
 
 	// Update the zoom value now that the calculation thread is paused.
-	// TODO: std::exchange
-	swap(zoom, nextZoom);
-	nextZoom = 0.; 
+	if(nextZoom)
+	{
+		// TODO: std::exchange
+		zoom = nextZoom;
+		nextZoom = 0.; 
+	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
