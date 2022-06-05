@@ -2885,7 +2885,7 @@ mission "Home for Skadenga 1"
 			`	Alone, you have a decision to make. You can dismantle portions of the Ice-Crawler and use them to strengthen your personal comms to get a signal out to the <ship>. Or, you can try to repair the Ice-Crawler and get it running again - in which case you wouldn't be able to use its parts to boost your comm signal.`
 			choice
 				`	(Cannibalize the Ice-Crawler to communicate.)`
-				`	(Tyr to fix the Ice-Crawler.)`
+				`	(Try to fix the Ice-Crawler.)`
 					goto fixme
 			`	You have much more faith in your ship than some antique vehicle. You spend hours ripping once-vital machinery out of the Ice-Crawler in order to make a signal booster for your comms, eventually cobbling together a functional booster and programming a repeating burst S.O.S. message into it.`
 			`You're certain your ship will eventually pick it up. Unfortunately, the damage you've done to the Ice-Crawler has affected its heater, which gives out during your eighth hour of waiting. In the meantime, you put on the jacket Hjlod left you and stuff it with rags and trash in a bid to keep warm.`
