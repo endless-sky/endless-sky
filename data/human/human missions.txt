@@ -122,7 +122,7 @@ mission "Pookie, Part 3"
 			`The weather on <origin> is unusually rough today; the sky ripples with thunder while rain whips against locals brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
 			choice
 				`	(Check it out.)`
-				`	(Stay dry in your ship.)`
+				`	(Stay dry in my ship.)`
 					defer
 			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
 			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while worming your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
@@ -148,8 +148,6 @@ mission "Pookie, Part 3"
 			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs, calming observing her surroundings. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
 			`	"Our final contestant for the day is a most... unorthodox choice. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was in the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
 			`	You feel your back get nudged, and turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 3,000 credits," she says unusually sweetly.`
-			branch notpoor
-				"credits" >= 3000
 			choice
 				`	(Bet on Bleedbug.)`
 				`	(Bet on Doom.)`
@@ -157,16 +155,11 @@ mission "Pookie, Part 3"
 				`	(Bet on Puny.)`
 				`	"I'll pass."`
 					goto nobet
+			branch notpoor
+				"credits" >= 3000
 			`	You dig through your pockets for a credit chip to toss into the bucket, until you realize that you don't have enough money to make a bet. Impatient with your bumbling, the woman turns to take money from a person next to you.`
 				goto next
 			label notpoor
-			choice
-				`	(Bet on Bleedbug.)`
-				`	(Bet on Doom.)`
-				`	(Bet on Zinc.)`
-				`	(Bet on Puny.)`
-				`	"I'll pass."`
-					goto nobet
 			action
 				set "bet on hound racing"
 				payment -3000
@@ -175,9 +168,9 @@ mission "Pookie, Part 3"
 			label nobet
 			`	The woman turns to take bets from a person next to you.`
 			label next
-			`	After several minutes pass, the siren sounds again, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
+			`	After several minutes pass, the siren sounds, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
 			`	A red light on the ceiling turns on, and the audience shouts, "Three!" A second one lights up. "Two!" A third light, this time yellow, turns on. "One!"`
-			`	A green light appears, and the crowd descends into chaos as the cages' doors open.`
+			`	A green light appears, and the crowd descends into chaos as the cage doors open.`
 			`	The first to move is Bleedbug, desperate to get as far away from Doom as possible. Doom himself has his eyes set on a different target. As soon as the doors open, he rushes over the lane lines towards Zinc and bares his teeth for a bite. Anticipating this, Zinc dodges beneath the attack, and lunges in with her mouth open. Doom responds to the threat by lowering his head and bashing into her, and the two animals are quickly locked into a brutal mess of teeth and blood. The crowd goes wild at the spectacle unfolding before them as the brawl approaches your section of the fence.`
 			choice
 				`	(Continue watching.)`
@@ -214,7 +207,7 @@ mission "Pookie, Part 3"
 			label nope
 			`	You head towards the exit, pushing aside audience members completely captivated by the fight. Flinging the door open, you hear a gunshot from behind, and decide to run out.`
 			label outside
-			`	As you step outside, you are greeted by sheets of rain lashing you. The strength of the torrent almost causes you to fall backwards, but you manage to steady yourself. You take a glance back at the racing complex to find that the guard in the black uniform is missing. You turn back to begin the trek back to your ship, but halfway there, you feel something touch your lower leg.`
+			`	As you step outside, you are greeted by sheets of rain lashing you. The strength of the torrent almost causes you to fall backwards, but you manage to steady yourself. You take a glance back at the racing complex to find that the guard in the black uniform is missing. You turn to begin the trek back to your ship, but halfway there, you feel something touch your lower leg.`
 			choice
 				`	(Turn around.)`
 					goto turner
@@ -345,10 +338,10 @@ mission "Pookie, Part 5"
 				`	(Take a reststop in the town.)`
 				`	(Keep on traveling to the spaceport.)`
 					goto traveler
-			`	You tell the taxi driver to pull into the town, and get off in the middle of the commercial district into a bustling crowd of people. As you try to find something to do, you eyes catch upon a storefront with a sign saying 'Antette and Co. Animal Adoption Agency.' You beckon Puny to follow and enter the adoption center.`
+			`	You tell the taxi driver to pull into the town, and get off in the middle of the commercial district into a bustling crowd of people. As you try to find something to do, your eyes catch upon a storefront with a sign saying "Antette and Co. Animal Adoption Agency." You beckon Puny to follow and enter the adoption center.`
 				goto within
 			label traveler
-			`	You lean back in your seat and shift your eyes over to the side window. While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says 'Antette and Co. Animal Adoption Agency.' You tell the taxi driver to stop the car and step into the adoption center, leading Puny behind you.`
+			`	You lean back in your seat and shift your eyes over to the side window. While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says "Antette and Co. Animal Adoption Agency." You tell the taxi driver to stop the car and step into the adoption center, leading Puny behind you.`
 			label within
 			`	The inside of the store is decorated with pale blue wallpaper. To either side of you are rows of plastic chairs, and in front of you is a receptionist looking down at his nails. When he notices you, he lazily says, "Welcome, welcome. What can I do for you."`
 			`	You point down at Puny and say, "Could you find a home for this dog?"`
