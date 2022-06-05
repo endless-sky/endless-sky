@@ -173,7 +173,7 @@ fleet "Large Scin"
 		Felsic
 		Coesite 2
 	variant 2
-		"Felsic P"
+		Felsic
 		Coesite
 	variant 2
 		Feldspar
