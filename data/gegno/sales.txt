@@ -22,10 +22,8 @@ shipyard "Gegno Vi Ships"
 	"Hornfel Med"
 	Protolith
 	Schist
-	"Schist Heavy"
 	"Schist Light"
-	"Schist Med A"
-	"Schist Med B"
+	"Schist Med"
 	Slate
 
 outfitter "Gegno Vi Outfits"
@@ -52,13 +50,10 @@ outfitter "Gegno Vi Outfits"
 
 shipyard "Gegno Scin Ships"
 	Coesite
-	"Coesite P"
 	Feldspar
 	Felsic
-	"Felsic P"
 	Halite
 	Mica
-	"Mica P"
 	Muscovite
 	"Muscovite P"
 
@@ -80,4 +75,3 @@ outfitter "Gegno Scin Outfits"
 	"SC-14 Plasma Thruster"
 	"SC-15 Plasma Engines"
 	"Talc Laser"
-

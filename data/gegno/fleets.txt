@@ -149,15 +149,12 @@ fleet "Small Scin"
 	variant 7
 		Coesite
 	variant 3
-		"Felsic P"
-		Coesite
-		"Coesite P"
+		"Felsic"
+		Coesite 2
 	variant 4
-		Coesite
-		"Coesite P"
+		Coesite 2
 	variant
-		Coesite
-		"Coesite P" 2
+		Coesite 3
 	variant
 		Feldspar
 		Halite 6
@@ -170,14 +167,11 @@ fleet "Large Scin"
 		heroic vindictive opportunistic
 	variant 6
 		Coesite 2
-	variant 4
-		Coesite
-		"Coesite P"
 	variant 3
 		Felsic
 	variant 2
 		Felsic
-		"Coesite P" 2
+		Coesite 2
 	variant 2
 		"Felsic P"
 		Coesite

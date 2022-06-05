@@ -275,29 +275,13 @@ ship Schist "Schist Light"
 		"cargo space" 18
 		drag 0.1
 
-ship Schist "Schist Med A"
+ship Schist "Schist Med"
 	sprite ship/schistmeda
 	thumbnail thumbnail/schistmeda
 	add attributes
 		mass 22
 		"cargo space" 22
 		drag 0.2
-
-ship Schist "Schist Med B"
-	sprite ship/schistmedb
-	thumbnail thumbnail/schistmedb
-	add attributes
-		mass 24
-		"cargo space" 24
-		drag 0.2
-
-ship Schist "Schist Heavy"
-	sprite ship/schistheavy
-	thumbnail thumbnail/schistheavy
-	add attributes
-		mass 30
-		"cargo space" 30
-		drag 0.4
 
 ship Eclogite
 	sprite ship/eclogite
@@ -600,14 +584,6 @@ ship Mica
 	explode "tiny explosion" 12
 	description "The Mica is the Gegno Scin's counterpart to a shuttlecraft, and is a derivative of the Gegno's Shale and the Vi's Slate. It is ever so slightly smaller for the slightly shorter Scin, but carries newer engine systems that almost double the speed of both the Shale and the Slate. Combined with the speed and the room for a few more Scin, it is a relatively faster option for a captain looking for a shuttlecraft in Gegno space."
 
-ship Mica "Mica P"
-	sprite ship/micap
-	thumbnail thumbnail/micap
-	add attributes
-		mass 8
-		drag 0.5
-		"solar collection" 0.46
-
 ship Coesite
 	sprite ship/coesite
 	thumbnail thumbnail/coesite
@@ -653,22 +629,6 @@ ship Coesite
 	"final explode" "final explosion small"
 	description "Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry 3 turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
 
-ship Coesite "Coesite P"
-	sprite ship/coesitep
-	thumbnail thumbnail/coesitep
-	add attributes
-		mass 17
-		drag 0.9
-		"solar collection" 0.86
-	outfits
-		"Astuit Battery"
-		"C7 Brawl Core"
-		"Guile Anti-Missile" 2
-		Hyperdrive
-		"R02 Battlezone Battery"
-		"SC-12 Plasma Thruster"
-		"SC-14 Plasma Steering"
-
 ship Felsic
 	sprite ship/felsic
 	thumbnail thumbnail/felsic
@@ -711,22 +671,6 @@ ship Felsic
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
 	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they have more efficient engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turret mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
-
-ship Felsic "Felsic P"
-	sprite ship/felsicp
-	thumbnail thumbnail/felsicp
-	add attributes
-		mass 17
-		drag 0.9
-		"solar collection" 0.86
-	outfits
-		"Astuit Battery"
-		"C7 Brawl Core"
-		"Guile Anti-Missile"
-		Hyperdrive
-		"R02 Battlezone Battery"
-		"SC-14 Plasma Steering"
-		"SC-14 Plasma Thruster"
 
 ship Feldspar
 	sprite ship/feldspar
