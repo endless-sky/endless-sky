@@ -2780,6 +2780,20 @@ void PlayerInfo::SortAvailable()
 {
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
+		if(sortSeparateRush)
+		{
+			if(lhs.Deadline() && !rhs.Deadline())
+				return !availableSortAsc; //availableSortAsc instead of true, reverse the affects of reversal below
+			if(!lhs.Deadline() && rhs.Deadline())
+				return availableSortAsc;
+		}
+		if(sortSeparateGray)
+		{
+			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+				return !availableSortAsc;
+			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
+				return availableSortAsc;
+		}
 		switch(availableSortType)
 		{
 			case SPEED:
