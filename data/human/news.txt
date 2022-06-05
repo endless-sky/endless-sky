@@ -27,7 +27,7 @@ news "human merchant anywhere"
 			" "
 		word
 			"pilot"
-			"captain
+			"captain"
 	message
 		word
 			`"`
@@ -341,10 +341,7 @@ news "unemployed youth"
 news "union organizer"
 	location
 		government "Syndicate"
-		not attributes "research"
-		or
-			not attributes "frontier"
-			attributes "urban"
+		not attributes "research" "frontier"
 	name
 		word
 			"Union organizer"
@@ -572,9 +569,7 @@ news "hyperspace relay engineer"
 		not
 			government "Quarg"
 			not attributes "human"
-		or
-			not attributes "dirt belt" "frontier"
-			attributes "urban"
+		not attributes "dirt belt" "frontier"
 	name
 		word
 			"Hyperspace relay engineer"
@@ -714,15 +709,30 @@ news "dentist"
 
 
 
-news "epidemiologist"
+news "epidemiologist in human space"
 	location
-		or
-			and
-				government "Quarg"
-				attributes "human"
-			and
-				government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-				attributes "medical"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "medical"
+	name
+		word
+			"Epidemiologist"
+	message
+		word
+			`"`
+		word
+			"People always worry about extra-terrestrial viruses and bacteria, but the deadliest diseases are very often caused by microbes we brought with us to the stars from good old Mother Earth."
+			"Would you be willing to donate a saliva sample? Frequent interstellar travelers are the primary vector for pandemics, so we're supposed to monitor any starship captains that come through here."
+			"It's been so many centuries since the Rigellian Plague that most spaceports don't even have quarantine facilities anymore. When the next big one comes, we'll be woefully unprepared."
+			"Don't listen to those conspiracy theories that say you can catch awful viruses from the Quarg. Their physiology is so alien that we're immune to all their diseases."
+		word
+			`"`
+
+
+
+news "epidemiologist on quarg world"
+	location
+		government "Quarg"
+		attributes "human"
 	name
 		word
 			"Epidemiologist"
@@ -787,10 +797,7 @@ news "human mechanic"
 news "nuclear technician"
 	location
 		government "Syndicate"
-		not attributes "volcanic"
-		or
-			not attributes "frontier"
-			attributes "urban"
+		not attributes "volcanic" "frontier"
 	name
 		word
 			"Nuclear technician"
@@ -1085,7 +1092,7 @@ news "human retiree"
 			"I feel sorry for the young workers who are supporting me right now. They have to pay more in taxes and pension contributions than I ever did, and they probably won't get to retire until they're 70, at least."
 			"We're very fortunate to have been able to retire here. Don't ever take your blessings for granted, captain."
 			"It's amazing how much technology has progressed in my lifetime!"
-			"You wouldn't believe the kinds of ruffians they let in here. My neighbour got their fortune by winning the lottery, for goodness sake!"
+			"You wouldn't believe the kinds of ruffians they let in here. My neighbor got their fortune by winning the lottery, for goodness sake!"
 		word
 			`"`
 
@@ -1560,7 +1567,7 @@ phrase "tourist names"
 		"male names"
 		"female names"
 
-phrase "platfom number"
+phrase "platform number"
 	word
 		"1" 100
 		"2" 100
@@ -1598,7 +1605,7 @@ news "tourist pa system"
 			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
 			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
 			"Please stand clear of the doors when the shuttle train is departing."
-			"This is the final boarding call for passengers ${tourist names}, ${tourist names}, and ${tourist names} ${tourist names}. Please proceed to platform ${platfom number} for immediate boarding."
+			"This is the final boarding call for passengers ${tourist names}, ${tourist names}, and ${tourist names} ${tourist names}. Please proceed to platform ${platform number} for immediate boarding."
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
