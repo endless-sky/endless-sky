@@ -581,10 +581,10 @@ void PrintShipTable()
 
 void PrintWeaponTable()
 {
-	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
-		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
-		<< "homing" << '\t' << "strength" << '\n';
+	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
+		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ','
+		<< "shield/s" << ',' << "hull/s" << ',' << "heatdmg/s" << ',' << "push/s" << ','
+		<< "homing" << ',' << "strength" << ',';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-weapons and submunitions.
@@ -592,27 +592,29 @@ void PrintWeaponTable()
 			continue;
 
 		const Outfit &outfit = it.second;
-		cout << it.first << '\t';
-		cout << outfit.Cost() << '\t';
-		cout << -outfit.Get("weapon capacity") << '\t';
+		cout << it.first << ',';
+		cout << outfit.Cost() << ',';
+		cout << -outfit.Get("weapon capacity") << ',';
 
-		cout << outfit.Range() << '\t';
+		cout << outfit.Range() << ',';
 
 		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
-		cout << energy << '\t';
+		cout << energy << ',';
 		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
-		cout << heat << '\t';
+		cout << heat << ',';
 		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
-		cout << firingforce << '\t';
+		cout << firingforce << ',';
 
 		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
-		cout << shield << '\t';
+		cout << shield << ',';
 		double hull = outfit.HullDamage() * 60. / outfit.Reload();
-		cout << hull << '\t';
+		cout << hull << ',';
+		double heatDmg = outfit.HeatDamage() * 60. / outfit.Reload();
+		cout << heatDmg << ',';
 		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
-		cout << hitforce << '\t';
+		cout << hitforce << ',';
 
-		cout << outfit.Homing() << '\t';
+		cout << outfit.Homing() << ',';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
 		cout << strength << '\n';
 	}
