@@ -764,6 +764,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
 	minimumHull = CalculateMinimumHull();
+	maximumHeat = CalculateMaximumHeat();
+	requiredCrew = CalculateRequiredCrew();
 	isDisabled = true;
 	isDisabled = CalculateIsDisabled();
 
@@ -2265,7 +2267,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < minimumHull || (!crew && RequiredCrew()) || IsOutOfEnergy();
+	isDisabled = CalculateIsDisabled();
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -3506,6 +3508,13 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
+	return maximumHeat;
+}
+
+
+
+double Ship::CalculateMaximumHeat() const
+{
 	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
 }
 
@@ -3531,6 +3540,13 @@ int Ship::Crew() const
 
 
 int Ship::RequiredCrew() const
+{
+	return requiredCrew;
+}
+
+
+
+int Ship::CalculateRequiredCrew() const
 {
 	if(attributes.Get("automaton"))
 		return 0;
@@ -3649,8 +3665,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// Recalculate the disabled ship check.
 	isDisabled = true;
-	isDisabled = IsDisabled();
-
+	isDisabled = CalculateIsDisabled();
 	// Report what happened to this ship from this weapon.
 	int type = 0;
 	if(!wasDisabled && isDisabled)
@@ -4579,8 +4594,11 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 		other->refuelMissionNpcEscort = refuelMissionNpcEscort;
 	}
 
-	// Set other minimum hull to the calculated value.
+	// Set other minimum hull to the calculated value.  isDisabled should be
+	// calculated last.
 	other->minimumHull = other->CalculateMinimumHull();
+	other->maximumHeat = other->CalculateMaximumHeat();
+	other->requiredCrew = other->CalculateRequiredCrew();
 	other->isDisabled = other->CalculateIsDisabled();
 
 	// Update weapon / arming state of other ship

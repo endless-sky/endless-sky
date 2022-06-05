@@ -473,8 +473,10 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 	// Functions to calculate and cache values
-	double CalculateMinimumHull() const;
 	bool CalculateIsDisabled() const;
+	double CalculateMaximumHeat() const;
+	double CalculateMinimumHull() const;
+	int CalculateRequiredCrew() const;
 
 private:
 	/* Protected member variables of the Body class:
@@ -545,6 +547,8 @@ private:
 	// operate minimally.
 	double minimumOperatingTime = 10.;
 	double minimumHull = 0.;
+	double maximumHeat = std::numeric_limits<double>::infinity();
+	int requiredCrew = 0;
 	// The highest fueled fighter or drone.  This is the Fuel() ratio across all
 	// carried ships in the fleet which are not helping other ships.
 	double maxCarriedShipFuel = 1.;
