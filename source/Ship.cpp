@@ -709,6 +709,10 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size());
 
+	// Calculate some cached values before Recharge.
+	minimumHull = CalculateMinimumHull();
+	maximumHeat = CalculateMaximumHeat();
+	requiredCrew = CalculateRequiredCrew();
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
 	if(isNewInstance)
@@ -763,9 +767,6 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
-	minimumHull = CalculateMinimumHull();
-	maximumHeat = CalculateMaximumHeat();
-	requiredCrew = CalculateRequiredCrew();
 	isDisabled = true;
 	isDisabled = CalculateIsDisabled();
 
