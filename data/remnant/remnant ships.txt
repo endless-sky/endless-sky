@@ -1040,7 +1040,7 @@ ship "Smew"
 	thumbnail "thumbnail/smew"
 	attributes
 		category "Fighter"
-			licenses
+		licenses
 			Remnant
 		"cost" 1641000
 		"shields" 1200
