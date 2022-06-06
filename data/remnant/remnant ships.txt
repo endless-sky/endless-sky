@@ -1037,7 +1037,7 @@ ship "Puffin"
 
 ship "Smew"
     sprite "ship/smew"
-    thumbnail "ship/smew"
+    thumbnail "thumbnail/smew"
     attributes
         category "Fighter"
         licenses
