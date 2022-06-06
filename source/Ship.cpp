@@ -4535,7 +4535,7 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> flagship, const vector<weak_ptr<S
 		if(!IsEscortedBy(flagship, escort))
 			continue;
 
-		if(!escort->CanBeCarried() && escort->GetEscorts().size())
+		if(!escort->CanBeCarried() && escort->GetEscorts().size() && &escort->GetEscorts() != &allEscorts)
 			UpdateEscortsState(flagship, escort->GetEscorts());
 
 		if(escort->CanBeCarried() && !escort->GetShipToAssist())
@@ -4633,12 +4633,30 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 // often.
 void Ship::UpdateEscortsState()
 {
+	vector<shared_ptr<Ship>> parents;
 	std::shared_ptr<Ship> flagship = GetParent();
 	if(flagship)
+	{
+		parents.emplace_back(flagship);
+		string errmsg = "Error: the following ships form a circular parent relationship: ";
 		while(flagship->GetParent())
+		{
+			auto nextparent = find(parents.begin(), parents.end(), flagship->GetParent());
+			if(nextparent != parents.end())
+			{
+				for(auto next : parents)
+					errmsg += next->name + ", ";
+				errmsg += flagship->GetParent()->name;
+				Files::LogError(errmsg);
+				break;
+			}
 			flagship = flagship->GetParent();
+			parents.emplace_back(flagship);
+		}
+	}
 	if(!flagship)
 		flagship = shared_from_this();
+	parents.clear();
 
 	if(!flagship)
 		return;
@@ -4669,9 +4687,11 @@ void Ship::UpdateEscortsState()
 	for(const weak_ptr<Ship> &ptr : allEscorts)
 	{
 		shared_ptr<Ship> escort = ptr.lock();
+		// Skip this ship as it will be updated at the end.
+		if(escort == shared_from_this())
+			continue;
 		if(!IsEscortedBy(flagship, escort))
 			continue;
-		// This covers escorts already deployed in the system.
 		flagship->UpdateEscortsState(escort);
 		if(!escort->CanBeCarried())
 		{
@@ -4679,6 +4699,8 @@ void Ship::UpdateEscortsState()
 			for(const weak_ptr<Ship> &ptr2 : escort->GetEscorts())
 			{
 				shared_ptr<Ship> carry = ptr2.lock();
+				if(!carry)
+					continue;
 				if(!carry->CanBeCarried())
 					continue;
 				flagship->UpdateEscortsState(carry);
