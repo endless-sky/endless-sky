@@ -685,14 +685,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		unselected);
 
 	//Panel sorting
-	const Color &text= *GameData::Colors().Get("medium");
-	const Color &box = *GameData::Colors().Get("dim");
+	const Color &text= *GameData::Colors().Get("medium");;
 	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
-	const string &abc = "A";
-	const string &pay = "$";
 	//const Sprite *planets = SpriteSet::Get("ui/sort planets");
-	const Sprite *speed = SpriteSet::Get("ui/sort speed");
+	const Sprite *sortIcon[3] = {SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
 	//Draw Sorting Columns
@@ -700,30 +697,12 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	{
 		SpriteShader::Draw(arrow[player.AvailableSortAsc()], pos + Point(SIDE_WIDTH - 25., 8.));
 
-		FillShader::Fill(
-			pos + Point(SIDE_WIDTH - 45., 0),
-			Point(20., 1.),
-			box);
-		FillShader::Fill(
-			pos + Point(SIDE_WIDTH - 55., 7.),
-			Point(1., 15.),
-			box);
-		FillShader::Fill(
-			pos + Point(SIDE_WIDTH - 34., 7.),
-			Point(1., 15.),
-			box);
-
-		if(player.AvailableSortType() == PlayerInfo::SPEED)
-			SpriteShader::Draw(speed, pos + Point(SIDE_WIDTH - 45., 8.));
-		else
-			font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : pay,
-					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 55.5, 0.), text);
+		SpriteShader::Draw(sortIcon[player.AvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
 
 		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.SeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
-		//font.Draw({"R", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 107., 0.), text);
 		SpriteShader::Draw(checkbox[player.SeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
