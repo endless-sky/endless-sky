@@ -1655,6 +1655,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
 }
