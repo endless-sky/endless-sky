@@ -649,8 +649,8 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool sorter) const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
-	const Color &unselected = *GameData::Colors().Get("medium");
-	const Color &selected = *GameData::Colors().Get("bright");
+	const Color separatorLine = GameData::Colors().Get("medium")->Opaque();
+	const Color &title = *GameData::Colors().Get("bright");
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
@@ -702,11 +702,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 	//Panel title
-	font.Draw(label, pos, selected);
+	font.Draw(label, pos, title);
 	FillShader::Fill(
 		pos + Point(.5 * size.X() - 5., 15.),
 		Point(size.X() - 10., 1.),
-		unselected);
+		separatorLine);
 
 	pos.Y() += 5.;
 
