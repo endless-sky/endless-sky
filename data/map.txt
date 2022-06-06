@@ -19884,7 +19884,7 @@ system Postverta
 		sprite planet/desert7
 		distance 439
 		period 316.657
-	object
+	object Fertriery
 		sprite planet/fog0
 		distance 814
 		period 799.520
