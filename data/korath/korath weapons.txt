@@ -645,7 +645,7 @@ outfit "Firelight Turning"
 		"velocity" 0.1
 		"acceleration" -0.1
 		"lifetime" 20
-		"turn" 4
+		"turn" 4.6
 		"homing" 4
 		"submunition" "Firelight Activated"
 		"infrared tracking" .7
@@ -663,8 +663,8 @@ outfit "Firelight Activated"
 		"die effect" "small explosion"
 		"velocity" 3
 		"lifetime" 140
-		"acceleration" 1.8
-		"turn" 1
+		"acceleration" 1.6
+		"turn" 2
 		"drag" .1
 		"homing" 4
 		"infrared tracking" .5
