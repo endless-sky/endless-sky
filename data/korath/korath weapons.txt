@@ -87,10 +87,8 @@ outfit "Korath Shunt-Strike"
 		"homing" 4
 		"tracking" .9
 		"shield damage" 48
-		"hull damage" 102
-		"corrosion damage" 8
+		"corrosion damage" 9
 		"piercing" 0.1
-		"slowing damage" 2.5
 	description "This dismantled Systems Core is attached to the firing mechanism of a Grab-Strike. It fires homing balls of repair microbots that eat through a target's shields and attempt to rebuild its hull and systems as Small Heat Shunts. They inevitably fail, but not before wreaking havoc on the ship."
 	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
 
