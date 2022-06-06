@@ -166,8 +166,8 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 763
-		"weapon capacity" 326
+		"outfit space" 776
+		"weapon capacity" 339
 		"engine capacity" 159
 		weapon
 			"blast radius" 250
@@ -327,9 +327,9 @@ ship "Korath Raider Mark XLII"
 		"drag" 15
 		"heat dissipation" .6
 		"fuel capacity" 700
-		"cargo space" 183
-		"outfit space" 816
-		"weapon capacity" 369
+		"cargo space" 163
+		"outfit space" 871
+		"weapon capacity" 377
 		"engine capacity" 212
 		weapon
 			"blast radius" 250
