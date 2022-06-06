@@ -1035,6 +1035,59 @@ ship "Puffin"
 
 
 
+ship "Smew"
+    sprite "ship/smew"
+    thumbnail "ship/smew"
+    attributes
+        category "Fighter"
+        licenses
+            Remnant
+        "cost" 1641000
+        "shields" 1200
+        "hull" 2800
+        "cargo space" 90
+        "fuel capacity" 100
+        "ramscoop" 0.8
+        "required crew" 2
+        "bunks" 9
+        "mass" 60
+        "drag" 1.96
+        "heat dissipation" .65
+        "outfit space" 92
+        "weapon capacity" 10
+        "engine capacity" 42
+        "shield generation" 0.48
+        "shield energy" 0.32
+        "hull repair rate" 0.9
+        "hull energy" 0.58
+        "outfit scan power" 14
+        "outfit scan speed" 1
+        "tactical scan power" 28
+        "asteroid scan power" 50
+        weapon
+            "blast radius" 24
+            "shield damage" 130
+            "hull damage" 175
+            "hit force" 315
+    outfits
+        "Millennium Cell"
+        "Crystal Capacitor"
+        "Quantum Key Stone"
+        "Thermoelectric Cooler"
+        
+        "Crucible-Class Steering"
+        "Crucible-Class Thruster"
+        
+    gun 0 -47.5
+    engine 0 48.5
+    leak "remnant leak sparkle" 22 3
+    explode "tiny explosion" 35
+    explode "small explosion" 24
+    description "The Remnant have long favoured turns of action that avoid putting crew directly at risk; though their Terns are a rather effective result of this ideology, the remnant still had to face the fact that, eventually, one of their manned ships was going to end up too crippled to escape to safety. To that end, the Smew was developed: Though quite lightly armed, Smews are capable of carrying a considerable quantity of cargo and passengers for a ship of their size, and are durable enough to absorb some fire from enemies while doing so."
+    description "    Though originally designed as lifeboats, the surprisingly mobile freighter-fighter hybrid has seen a remarkable amount of usage in mining fleets, as a way to supplement the otherwise poor cargo capacity of the Ibis. Because their purpose can vary from fleet to fleet, Smews are traditionally sold with a fair amount of free space; enough for a small weapon, upgraded engines, or additional support systems."
+    description "    Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"
