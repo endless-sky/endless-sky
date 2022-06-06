@@ -1151,7 +1151,6 @@ Files:
  images/hardpoint/expeller*
  images/hardpoint/firestorm*
  images/hardpoint/korath heaver*
- images/hardpoint/korath inferno*
  images/icon/firestorm torpedo*
  images/icon/korath heaver*
  images/outfit/expeller*
@@ -1173,7 +1172,6 @@ Files:
  images/hardpoint/digger turret*
  images/outfit/korath digger turret*
  images/outfit/korath digger*
- images/outfit/korath inferno*
 Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
@@ -1473,6 +1471,14 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/hardpoint/korath inferno*
+ images/outfit/korath inferno*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tomaso (under same licence) and Michael Zahniser (under same license).
+
 
 Files:
  images/outfit/liquid?sodium*
