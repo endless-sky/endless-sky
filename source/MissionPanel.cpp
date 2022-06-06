@@ -675,14 +675,9 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		edgePos.Y() -= dy;
 	}
 
-	//Panel title
+
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
-	font.Draw(label, pos, selected);
-	FillShader::Fill(
-		pos + Point(.5 * size.X() - 5., 15.),
-		Point(size.X() - 10., 1.),
-		unselected);
 
 	//Panel sorting
 	const Color &text= *GameData::Colors().Get("medium");;
@@ -705,6 +700,14 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
 		SpriteShader::Draw(checkbox[player.SeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
+
+
+	//Panel title
+	font.Draw(label, pos, selected);
+	FillShader::Fill(
+		pos + Point(.5 * size.X() - 5., 15.),
+		Point(size.X() - 10., 1.),
+		unselected);
 
 	pos.Y() += 5.;
 
