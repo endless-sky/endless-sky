@@ -234,7 +234,7 @@ void MissionPanel::Draw()
 		"Missions available here:",
 		available.size(),
 		true);
-	DrawList(available, pos, availableIt);
+	DrawList(available, pos, availableIt, true);
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
@@ -735,7 +735,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
-	const std::list<Mission>::const_iterator &selectIt) const
+	const std::list<Mission>::const_iterator &selectIt, bool separateRushGray) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -743,6 +743,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 	const Color &selected = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
+	bool separated = false;
 
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
@@ -750,6 +751,13 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 			continue;
 
 		pos.Y() += 20.;
+		if(separateRushGray && !separated &&
+			((player.AvailableSortRush() && it->Deadline()) ||
+			(player.AvailableSortGray() && !it->CanAccept(player))))
+		{
+			pos.Y() += 8.;
+			separated = true;
+		}
 
 		bool isSelected = it == selectIt;
 		if(isSelected)

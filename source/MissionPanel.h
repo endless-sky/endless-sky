@@ -58,7 +58,7 @@ private:
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
 	Point DrawList(const std::list<Mission> &list, Point pos,
-		const std::list<Mission>::const_iterator &selectIt) const;
+		const std::list<Mission>::const_iterator &selectIt, bool separateRushGray = false) const;
 	void DrawMissionInfo();
 
 	bool CanAccept() const;
