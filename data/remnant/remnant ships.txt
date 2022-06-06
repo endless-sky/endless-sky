@@ -1039,7 +1039,7 @@ ship "Smew"
 	sprite "ship/smew"
 	thumbnail "thumbnail/smew"
 	attributes
-			category "Fighter"
+		category "Fighter"
 			licenses
 			Remnant
 		"cost" 1641000
