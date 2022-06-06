@@ -240,7 +240,8 @@ fleet "Korath Civilian Miners"
 		heroic disables frugal mining harvests coward
 	variant 5
 		"Korath Dredger (Civilian)"
-		"Korath Chaser (Expeller)" 4
+		"Korath Chaser (Expeller)" 2
+		"Korath Chaser (Digger)" 2
 
 fleet "Korath Home"
 	government "Korath"
@@ -252,7 +253,7 @@ fleet "Korath Home"
 	variant 7
 		"Korath Dredger (Fast Inferno)"
 		"Korath Chaser" 2
-		"Korath Chaser (Digger)" 2
+		"Korath Chaser (Expeller)" 2
 	variant 7
 		"Korath Dredger (Ground Assault)"
 		"Korath Chaser (Expeller)" 4
@@ -275,7 +276,7 @@ fleet "Korath Large Raid"
 		disables plunders opportunistic harvests
 	variant 5
 		"Korath Raider" 2
-		"Korath Chaser (Digger)" 4
+		"Korath Chaser"  4
 	variant 5
 		"Korath Raider (Inferno)" 2
 		"Korath Chaser" 4
@@ -285,18 +286,15 @@ fleet "Korath Large Raid"
 	variant 5
 		"Korath Dredger"
 		"Korath Raider"
-		"Korath Chaser (Digger)" 4
-		"Korath Chaser" 2
+		"Korath Chaser" 6
 	variant 5
 		"Korath Dredger (Grab-Shunt)"
 		"Korath Raider"
-		"Korath Chaser (Digger)" 4
-		"Korath Chaser" 2
+		"Korath Chaser" 6
 	variant 5
 		"Korath Dredger (Heaver)"
 		"Korath Raider"
-		"Korath Chaser (Digger)" 4
-		"Korath Chaser" 2
+		"Korath Chaser" 6
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -305,21 +303,15 @@ fleet "Korath Ember Waste Raid"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
-	variant 12
+	variant 36
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
-	variant 12
-		"Korath Raider (Ember)"
-		"Korath Chaser (Expeller)" 2
-	variant 12
-		"Korath Raider (Ember)"
-		"Korath Chaser (Digger)" 2
 	variant 4
 		"Korath Dredger"
 		"Korath Chaser" 4
 	variant 4
 		"Korath Dredger (Heaver)"
-		"Korath Chaser (Digger)" 4
+		"Korath Chaser" 4
 	variant 4
 		"Korath Dredger (Fast Inferno)"
 		"Korath Chaser" 4

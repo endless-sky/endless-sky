@@ -103,6 +103,21 @@ outfit "Liquid Sodium Cooler"
 	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system draws a moderate amount of power in order to keep the sodium from freezing when the system is inactive."
 
 
+outfit "Systems Core (Tiny)"
+	plural "Systems Cores (Tiny)"
+	category "Systems"
+	cost 621000
+	thumbnail "outfit/tiny systems core"
+	"mass" 17
+	"outfit space" -17
+	"energy capacity" 1300
+	"shield generation" 0.8
+	"shield energy" 1.2
+	"hull repair rate" 0.1
+	"hull energy" 0.1
+	"hull heat" 0.15
+	description `Most Korath pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Few are willing to sacrifice enough firepower to mount this computer, sheild generator, and set of hull-walking repair bots.`
+
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
 	category "Systems"

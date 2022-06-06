@@ -339,22 +339,24 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 	outfits
 		"Korath Expeller"
 		
-		"Generator (Furnace Class)"
-		"Small Heat Shunt"
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
 		"Korath Repeater Rifle" 
 		
-		"Engine (Meteor Class)"
+		"Thruster (Asteroid Class)"
+		"Bow Drive (Meteor Class)"
 
 ship "Korath Chaser" "Korath Chaser (Digger)"
 	outfits
 		"Korath Digger"
 		
-		"Generator (Furnace Class)"
-		"Small Heat Shunt"
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
 		"Korath Repeater Rifle" 
-		
-		"Thruster (Asteroid Class)"
-		"Steering (Asteroid Class)"
+		"Cargo Expansion"
+		"Interference Plating"
+				
+		"Engine (Meteor Class)"
 
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
