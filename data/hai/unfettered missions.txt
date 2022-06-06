@@ -547,8 +547,8 @@ mission "Unfettered: Bring Medical Supplies"
 		has "Unfettered: Bring Hai: done"
 	on offer
 		conversation
-			`After you landed, you receive a high priority message, originating from one of the hospitals nearby. "To all Hai, a catastrophic epidemic has just started, hundreads are sick already and if we do not act soon the consequences will be disastrous. Please immediately bring back medical supplies from <stopovers>. Any non-hai seems to not be affected by this." Not sure whether they would accept you bringing supplies you decide to go take a closer look and ask. After all, the epidemic is apparently harmless to you.`
-			`	When landing on an Unfettered planet, even after you brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, launching small ships to bring the wounded to the hospitals as quickly as possible. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure, or at least has that appearance, because it is the most useful to them, alongside the shipyards. But one part of it looks to have been grafted onto the rest, and not by a well trained physician, to say the least... You figure they must really be needing more space for their sick.`
+			`After landing, you receive a high priority message which appears to be repeating on priority channels in both Hai and human standard. It is tagged with the information for one of the hospitals nearby. "Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically and has now been classified as an uncontrolled epidemic. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current medical supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return." Unsure whether they would accept your assistance as an outsider, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
+			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, various vehicles coming and going frequently to bring the wounded to the hospital. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards, or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and not by a well trained physician, to say the least... Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Considering all of this, the Unfettered may not take no for an answer... Plenty of ships are already taking off to try and get those much needed medicals.`
 			choice
 				`	(Signal them I am going to get the supplies.)`
@@ -568,8 +568,8 @@ mission "Unfettered: Bring Medical Supplies"
 		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
 		payment 1500000
 		conversation
-			`The local health specialists seem greatly relieved when you manage to bring the medical supplies back in time. They signal you quickly to the local admninistrators who give you <payment>.`
-			`	As you head to leave, you notice the same Hai Chief speaking with the medical teams. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew I could count on you! With the swift response of captains like you, it seems like it has calmed down, maybe we worried too much. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. A local administrator takes the time to track you down and give you <payment>.`
+			`	As you head to leave, you notice the same Hai Chief speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. Maybe we worried too much? We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
@@ -599,7 +599,7 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"So you just tricked me into helping the war effort?"`
 				`	"Are all Unfettered not soldiers?"`
 					goto soldier
-			`He does not answer your question directly, "If you really must know, these supplies were used to treat an outbreak of a disease among soldiers, and thus prevent an outbreak that would have affected all of us. If the soldiers are not able to protect us, then civilians will suffer as well. The Hai would not dare to kill us, of course, but they would destroy our way of life, our spirits."`
+			`He does not answer your question directly, "If you really must know, these supplies were used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. If the soldiers are not able to protect us, then civilians will suffer as well. The Hai would not dare to kill us, of course, but they would destroy our way of life, our spirits."`
 			
 			label soldier
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
@@ -811,7 +811,8 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close enough to the spaceport as to not draw unwanted attention by landing off grid. Your crew should be able to intervene should anything go wrong. Then you follow him to the hatch. He is moving at a quick pace, you have difficulties following him, even given the fact he is wearing what seems to be an heavy combat suit.`
+			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close enough to the spaceport as to not draw unwanted attention by landing off grid - utilising one of the lesser used auxiliary spaceports that are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
+			`	You then follow Si-Ra to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
 				`	"Who made this vault, what should I expect?"`
 				`	"Should we not take more men to ensure our safety?"`
@@ -819,12 +820,12 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	(No time for talking.)`
 					goto outsideship
 			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
-				goto outside
+				goto outsideship
 			label moremen
 			`	"We are trying to be discrete here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
-			
 			label outsideship
-			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He does not have his helmet on as he peers cautiously around corners and assess his surroundings.`
+			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." 
+			`	Once outside he moves at a quick enough pace that you have difficulties following him. He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He depresses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path.`
 			choice
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache is well hidden."`
