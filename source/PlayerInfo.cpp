@@ -2780,35 +2780,59 @@ void PlayerInfo::SortAvailable()
 {
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
+		// First, separate rush orders if wanted
 		if(sortSeparateRush)
 		{
-			if(lhs.Deadline() && !rhs.Deadline())
-				return !availableSortAsc; //availableSortAsc instead of true, reverse the affects of reversal below
 			if(!lhs.Deadline() && rhs.Deadline())
-				return availableSortAsc;
+				return availableSortAsc; //availableSortAsc instead of true, to counter the actual reversal below
+			if(lhs.Deadline() && !rhs.Deadline())
+				return !availableSortAsc;
 		}
+		// Then, separate greyed-out jobs you can't accept
 		if(sortSeparateGray)
 		{
-			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
-				return !availableSortAsc;
 			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
 				return availableSortAsc;
+			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+				return !availableSortAsc;
 		}
+		// Sort by desired type:
 		switch(availableSortType)
 		{
 			case SPEED:
-			// A higher "Speed" means the mission takes less time, or jumps to make.
-			// This is sorted as "speed" instead of "# of jumps", so that the "greatest" result
+			// A higher "Speed" means the mission takes less time, ie. fewer jumps.
+			// This is sorted as "speed" instead of "# of jumps", so that the "greatest" mission
 			//  is a more preferable mission: with fewer jumps.
 			// When two missions tie for SPEED, the PAY tiebreaker comparison
 			//  will keep the same "preferable mission" sort order (which is simply, higher pay)
 			{
-				int lJumps = lhs.ExpectedJumps();
-				int rJumps = rhs.ExpectedJumps();
-				if(lJumps > rJumps)	//reverse < than expected because greater jumps means less speed
-					return rJumps != -1;	//-1 means no route, so consider that greater
-				else if(lJumps < rJumps)
-					return lJumps == -1;
+				const int lJumps = lhs.ExpectedJumps();
+				const int rJumps = rhs.ExpectedJumps();
+
+				if(lJumps == rJumps)
+				{
+					// SPEED compares equal - follow through to tiebreaker 'case PAY' below
+				}
+				else if(lJumps > 0 && rJumps > 0)
+				{
+					// reverse < than expected because fewer jumps means better speed, and a 'greater' result.
+					return lJumps > rJumps;
+				}
+				else
+				{
+					// If both are negative:
+					// Zero jumps means the mission's destination is the source system
+					//  which implies the actual path is complicated - consider that slow.
+					// Negative jumps means the mission path is undetermined, e.g. through a wormhole
+					//  which we'll consider worse than 0.
+					//  -2 means there's two unknown paths, so is worse than -1
+
+					// If one is negative and one is positive:
+					// Consider the positive case 'greater' because at least the number of jumps is known.
+
+					// TL;DR: simply compare the value when at least one value is not positive
+					return lJumps < rJumps;
+				}
 			}
 			// Tiebreaker for equal SPEED is PAY
 			case PAY:
@@ -2823,7 +2847,6 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal PAY is ABC:
 			case ABC:
 			{
-
 				if(lhs.Name() < rhs.Name())
 					return true;
 				else if(lhs.Name() > rhs.Name())
