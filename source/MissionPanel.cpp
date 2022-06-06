@@ -688,6 +688,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
 	const Sprite *sortIcon[3] = {SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
+	static const string grayLabel = "? ";
 
 	//Draw Sorting Columns
 	if(sorter)
@@ -698,7 +699,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		if(hoverSort)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
 
-		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
+		font.Draw({grayLabel, {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.SeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
