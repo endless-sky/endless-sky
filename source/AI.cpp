@@ -1407,7 +1407,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	const Government *gov = ship.GetGovernment();
 	if(ignoreTargetShip)
-	{}
+	{
+		// Do not move to attack, scan, or assist the target ship.
+	}
 	else if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
