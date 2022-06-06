@@ -581,8 +581,8 @@ outfit "Firelight Storage Rack"
 	category "Ammunition"
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 9.6
-	"outfit space" -11
+	"mass" 3.3
+	"outfit space" -6
 	"firelight missile capacity" 9
 	ammo "Firelight Missile"
 	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
@@ -601,9 +601,9 @@ outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 21.4
-	"outfit space" -31
-	"weapon capacity" -31
+	"mass" 22.6
+	"outfit space" -28
+	"weapon capacity" -28
 	"gun ports" -1
 	"energy capacity" 700
 	"firelight missile capacity" 18
@@ -630,7 +630,7 @@ outfit "Firelight Missile Bank"
 		"homing" 4
 		"trigger radius" 30
 		"blast radius" 60
-		"hit force" 1000
+		"hit force" 100
 		"missile strength" 60
 	description "As the Firestorm torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to further scale down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as an Expeller gun."
@@ -652,7 +652,7 @@ outfit "Firelight Turning"
 		"optical tracking" .9
 		"trigger radius" 30
 		"blast radius" 60
-		"hit force" 400
+		"hit force" 60
 		"missile strength" 60
 
 outfit "Firelight Activated"
@@ -662,9 +662,9 @@ outfit "Firelight Activated"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
-		"lifetime" 180
+		"lifetime" 140
 		"acceleration" 1.8
-		"turn" 3
+		"turn" 1
 		"drag" .1
 		"homing" 4
 		"infrared tracking" .5
@@ -674,10 +674,10 @@ outfit "Firelight Activated"
 		"shield damage" 950
 		"hull damage" 950
 		"heat damage" 1800
-		"burn damage" 20
-		"corrosion damage" 3
+		"burn damage" 10
+		"corrosion damage" 2
 		"hit force" 400
-		"missile strength" 78
+		"missile strength" 60
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"

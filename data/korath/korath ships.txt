@@ -166,8 +166,8 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 803
-		"weapon capacity" 366
+		"outfit space" 763
+		"weapon capacity" 326
 		"engine capacity" 159
 		weapon
 			"blast radius" 250
@@ -179,7 +179,7 @@ ship "Korath Raider"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -328,8 +328,8 @@ ship "Korath Raider Mark XLII"
 		"heat dissipation" .6
 		"fuel capacity" 700
 		"cargo space" 183
-		"outfit space" 876
-		"weapon capacity" 439
+		"outfit space" 816
+		"weapon capacity" 369
 		"engine capacity" 212
 		weapon
 			"blast radius" 250
