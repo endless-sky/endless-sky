@@ -517,7 +517,9 @@ bool MissionPanel::Hover(int x, int y)
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
-	return dragSide ? true : MapPanel::Hover(x, y);
+	hoverSort = y < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
+			x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
+	return (dragSide || hoverSort) ? true : MapPanel::Hover(x, y);
 }
 
 
@@ -651,6 +653,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	const Color separatorLine = GameData::Colors().Get("medium")->Opaque();
 	const Color &title = *GameData::Colors().Get("bright");
+	const Color &highlight = *GameData::Colors().Get("dim");
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
@@ -692,6 +695,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(arrow[player.AvailableSortAsc()], pos + Point(SIDE_WIDTH - 25., 8.));
 
 		SpriteShader::Draw(sortIcon[player.AvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
+		if(hoverSort)
+			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
 
 		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.SeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));

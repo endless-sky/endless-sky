@@ -84,6 +84,7 @@ private:
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
+	bool hoverSort = false;
 	WrappedText wrap;
 };
 
