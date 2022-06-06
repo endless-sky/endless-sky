@@ -752,7 +752,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				highlight);
 
 		if(it->Deadline())
-			SpriteShader::Draw(fast, pos + Point(-5.,10.));
+			SpriteShader::Draw(fast, pos + Point(-4.,8.));
 
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
