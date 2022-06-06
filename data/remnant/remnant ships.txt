@@ -1039,8 +1039,8 @@ ship "Smew"
 	sprite "ship/smew"
 	thumbnail "thumbnail/smew"
 	attributes
-        	category "Fighter"
-        	licenses
+			category "Fighter"
+			licenses
 			Remnant
 		"cost" 1641000
 		"shields" 1200
@@ -1069,7 +1069,7 @@ ship "Smew"
 			"shield damage" 130
 			"hull damage" 175
 			"hit force" 315
-    	outfits
+	outfits
 		"Millennium Cell"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
