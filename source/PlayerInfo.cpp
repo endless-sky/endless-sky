@@ -1597,14 +1597,14 @@ void PlayerInfo::ToggleAvailableSortAsc()
 
 
 
-const bool PlayerInfo::AvailableSortRush() const
+const bool PlayerInfo::SeparateRush() const
 {
 	return sortSeparateRush;
 }
 
 
 
-void PlayerInfo::ToggleAvailableSortRush()
+void PlayerInfo::ToggleSeparateRush()
 {
 	sortSeparateRush = !sortSeparateRush;
 	SortAvailable();
@@ -1612,14 +1612,14 @@ void PlayerInfo::ToggleAvailableSortRush()
 
 
 
-const bool PlayerInfo::AvailableSortGray() const
+const bool PlayerInfo::SeparateGray() const
 {
 	return sortSeparateGray;
 }
 
 
 
-void PlayerInfo::ToggleAvailableSortGray()
+void PlayerInfo::ToggleSeparateGray()
 {
 	sortSeparateGray = !sortSeparateGray;
 	SortAvailable();

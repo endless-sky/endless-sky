@@ -362,9 +362,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
 				if( x < Screen::Left() + SIDE_WIDTH - 80)
-					player.ToggleAvailableSortRush();
+					player.ToggleSeparateRush();
 				else if( x < Screen::Left() + SIDE_WIDTH - 45)
-					player.ToggleAvailableSortGray();
+					player.ToggleSeparateGray();
 				else if( x < Screen::Left() + SIDE_WIDTH - 25)
 					player.NextAvailableSortType();
 				else
@@ -720,11 +720,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 55.5, 0.), text);
 
 		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
-		SpriteShader::Draw(checkbox[player.AvailableSortGray()], pos + Point(SIDE_WIDTH - 70., 8.));
+		SpriteShader::Draw(checkbox[player.SeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
 		//font.Draw({"R", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 107., 0.), text);
-		SpriteShader::Draw(checkbox[player.AvailableSortRush()], pos + Point(SIDE_WIDTH - 100., 8.));
+		SpriteShader::Draw(checkbox[player.SeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
 	pos.Y() += 5.;
@@ -752,8 +752,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 
 		pos.Y() += 20.;
 		if(separateRushGray && !separated &&
-			((player.AvailableSortRush() && it->Deadline()) ||
-			(player.AvailableSortGray() && !it->CanAccept(player))))
+			((player.SeparateRush() && it->Deadline()) ||
+			(player.SeparateGray() && !it->CanAccept(player))))
 		{
 			pos.Y() += 8.;
 			separated = true;

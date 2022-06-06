@@ -187,10 +187,10 @@ public:
 	void NextAvailableSortType();
 	const bool AvailableSortAsc() const;
 	void ToggleAvailableSortAsc();
-	const bool AvailableSortRush() const;
-	void ToggleAvailableSortRush();
-	const bool AvailableSortGray() const;
-	void ToggleAvailableSortGray();
+	const bool SeparateRush() const;
+	void ToggleSeparateRush();
+	const bool SeparateGray() const;
+	void ToggleSeparateGray();
 
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
