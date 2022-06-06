@@ -199,7 +199,7 @@ outfit "Afterburner (Asteroid Class)"
 	"engine capacity" -10
 	"fuel capacity" 100
 	"ramscoop" 0.5
-	"afterburner thrust" 8.175
+	"afterburner thrust" 16
 	"afterburner energy" 0.77
 	"afterburner heat" 6.26
 	"afterburner fuel" 0.0408
@@ -215,7 +215,7 @@ outfit "Afterburner (Comet Class)"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"afterburner thrust" 32.7
+	"afterburner thrust" 65
 	"afterburner energy" 2.8
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.1485
@@ -230,7 +230,7 @@ outfit "Afterburner (Lunar Class)"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"afterburner thrust" 61.8
+	"afterburner thrust" 124
 	"afterburner energy" 4.9
 	"afterburner heat" 41.65
 	"afterburner fuel" 0.2618
@@ -245,7 +245,7 @@ outfit "Afterburner (Planetary Class)"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"afterburner thrust" 120
+	"afterburner thrust" 240
 	"afterburner energy" 8.9
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.478
@@ -261,7 +261,7 @@ outfit "Afterburner (Stellar Class)"
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
-	"afterburner thrust" 230.1
+	"afterburner thrust" 460
 	"afterburner energy" 15.8
 	"afterburner heat" 149.1
 	"afterburner fuel" 0.863
