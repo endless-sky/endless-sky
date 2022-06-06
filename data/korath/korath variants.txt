@@ -38,6 +38,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 	turret "Korath Inferno"
 	turret "Korath Inferno"
 
+
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	sprite "ship/dredger"
 	outfits
@@ -67,6 +68,7 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 	turret -80 130
 	turret 80 130 "Korath Banisher"
 
+
 ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 	outfits
 		"Korath Warder" 2
@@ -95,6 +97,7 @@ ship "Korath Dredger" "Korath Dredger (Fast Inferno)"
 	turret "Korath Warder"
 	turret "Korath Inferno"
 	turret "Korath Inferno"
+
 
 ship "Korath Dredger" "Korath Dredger (Grab-Shunt)"
 	outfits
@@ -126,6 +129,7 @@ ship "Korath Dredger" "Korath Dredger (Grab-Shunt)"
 	turret "Korath Shunt-Strike"
 	turret "Korath Shunt-Strike"
 
+
 ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 	"crew" 470
 	outfits
@@ -146,6 +150,7 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 		"Thruster (Lunar Class)"
 		"Hyperdrive"
 		"Jump Drive"
+
 
 ship "Korath Dredger" "Korath Dredger (Heaver)"
 	outfits
@@ -177,6 +182,7 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 	turret "Korath Warder"
 	turret "Korath Warder"
 
+
 ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 	outfits
 		"Korath Banisher" 2
@@ -195,6 +201,7 @@ ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive (Broken)"
+
 
 
 ship "Korath Raider" "Korath Raider (Crippled)"
@@ -221,6 +228,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Grab-Strike"
 	turret "Korath Banisher"
 	turret "Korath Warder"
+
 
 ship "Korath Raider" "Korath Raider (Ember)"
 	sprite "ship/raider"
@@ -335,6 +343,7 @@ ship "Korath Raider" "Korath Raider (Fast Shunt)"
 	turret "Korath Warder"
 
 
+
 ship "Korath Chaser" "Korath Chaser (Expeller)"
 	outfits
 		"Korath Expeller"
@@ -345,6 +354,7 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 		
 		"Thruster (Asteroid Class)"
 		"Bow Drive (Meteor Class)"
+
 
 ship "Korath Chaser" "Korath Chaser (Digger)"
 	outfits
@@ -357,6 +367,7 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		"Interference Plating"
 				
 		"Engine (Meteor Class)"
+
 
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
@@ -386,6 +397,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	turret 66 210 "Korath Banisher"
 
 
+
 ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	sprite "ship/world-ship b"
 	outfits
@@ -411,6 +423,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	turret -83 165
 	turret 83 165
 	turret 0 277 "Korath Banisher"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	sprite "ship/world-ship b"
@@ -441,6 +454,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
+
 ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship b"
 	outfits
@@ -467,6 +481,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
+
 
 
 ship "Korath World-Ship" "Korath World-Ship C (Jump)"
