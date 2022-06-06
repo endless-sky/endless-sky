@@ -691,7 +691,9 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
 	const string &abc = "A";
 	const string &pay = "$";
-	const string &time = "#";
+	//const Sprite *planets = SpriteSet::Get("ui/sort planets");
+	const Sprite *speed = SpriteSet::Get("ui/sort speed");
+	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
 	//Draw Sorting Columns
 	if(sorter)
@@ -700,23 +702,28 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 		FillShader::Fill(
 			pos + Point(SIDE_WIDTH - 45., 0),
-			Point(17., 1.),
+			Point(20., 1.),
 			box);
 		FillShader::Fill(
-			pos + Point(SIDE_WIDTH - 54., 7.),
+			pos + Point(SIDE_WIDTH - 55., 7.),
 			Point(1., 15.),
 			box);
 		FillShader::Fill(
-			pos + Point(SIDE_WIDTH - 36., 7.),
+			pos + Point(SIDE_WIDTH - 34., 7.),
 			Point(1., 15.),
 			box);
-		font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : player.AvailableSortType() == PlayerInfo::PAY ? pay : time,
-					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 55., 0.), text);
+
+		if(player.AvailableSortType() == PlayerInfo::SPEED)
+			SpriteShader::Draw(speed, pos + Point(SIDE_WIDTH - 45., 8.));
+		else
+			font.Draw({player.AvailableSortType() == PlayerInfo::ABC ? abc : pay,
+					{20, Alignment::CENTER}}, pos + Point(SIDE_WIDTH - 55.5, 0.), text);
 
 		font.Draw({"A", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
 		SpriteShader::Draw(checkbox[player.AvailableSortGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
-		font.Draw({"R", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 107., 0.), text);
+		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
+		//font.Draw({"R", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 107., 0.), text);
 		SpriteShader::Draw(checkbox[player.AvailableSortRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
