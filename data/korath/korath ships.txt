@@ -226,7 +226,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -258,7 +258,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -290,7 +290,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 1
-		"Firelight Missile" 17
+		"Firelight Missile" 9
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
@@ -342,7 +342,7 @@ ship "Korath Raider Mark XLII"
 		"Korath Warder"
 		"Korath Fire-Lance"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -434,7 +434,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 		"Korath Warder"
 		"Korath Detainer"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 66
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Generator (Furnace Class)"

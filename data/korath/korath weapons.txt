@@ -581,9 +581,9 @@ outfit "Firelight Storage Rack"
 	category "Ammunition"
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 3.3
-	"outfit space" -13
-	"firelight missile capacity" 21
+	"mass" 9.6
+	"outfit space" -11
+	"firelight missile capacity" 9
 	ammo "Firelight Missile"
 	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
 
@@ -601,12 +601,12 @@ outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 16
+	"mass" 21.4
 	"outfit space" -31
 	"weapon capacity" -31
 	"gun ports" -1
 	"energy capacity" 700
-	"firelight missile capacity" 33
+	"firelight missile capacity" 18
 	weapon
 		ammo "Firelight Missile"
 		sprite "projectile/firelight"
