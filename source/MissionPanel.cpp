@@ -680,10 +680,9 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
 	//Panel sorting
-	const Color &text= *GameData::Colors().Get("medium");;
+	const Color &text= *GameData::Colors().Get("medium");
 	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
-	//const Sprite *planets = SpriteSet::Get("ui/sort planets");
 	const Sprite *sortIcon[3] = {SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
