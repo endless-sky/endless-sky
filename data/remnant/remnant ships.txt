@@ -1074,9 +1074,9 @@ ship "Smew"
 		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
-
-	"Crucible-Class Steering"
-	"Crucible-Class Thruster"	
+		
+		"Crucible-Class Steering"
+		"Crucible-Class Thruster"	
 
 	gun 0 -47.5
 	engine 0 48.5
