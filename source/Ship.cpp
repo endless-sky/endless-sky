@@ -2391,7 +2391,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 						// Forget about waiting for fuel to launch if the fighter is needed for defense.
 						bool isNotNeededForDefense = !bay.ship->IsArmed(true) || (bay.ship->IsArmed(true) && IsEnemyInEscortSystem());
 						// Launch if fleet is full and fighter or drone is refilling carrier.
-						if(!IsEscortsFullOfFuel() && isNotNeededForDefense)
+						if(!carriedShipHasRamscoop && isNotNeededForDefense)
 							continue;
 					}
 				}
