@@ -500,7 +500,16 @@ void OutfitterPanel::FailBuy() const
 	}
 
 	if(!playerShip)
+	{
+		double mass = selectedOutfit->Mass();
+		double freeCargo = player.Cargo().Free();
+
+		GetUI()->Push(new Dialog("You cannot buy this outfit, because it takes up "
+			+ Tons(mass) + " of mass, and your fleet has "
+			+ Tons(freeCargo) + " of cargo space free."));
 		return;
+	}
+
 
 	double outfitNeeded = -selectedOutfit->Get("outfit space");
 	double outfitSpace = playerShip->Attributes().Get("outfit space");
