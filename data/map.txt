@@ -8705,8 +8705,8 @@ system Durax
 	belt 1287
 	haze _menu/haze-133
 	link Alcyone
-	link Misam
 	link Atik
+	link Misam
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
 	asteroids "large rock" 6 6.6768
@@ -8729,8 +8729,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 5000
-	fleet "Korath Miners" 25000
+	fleet "Korath Raid" 6000
+	fleet "Korath Miners" 17000
 	object
 		sprite star/g0-old
 		period 10
@@ -17610,8 +17610,8 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 3000
-	fleet "Korath Large Raid" 6000
+	fleet "Korath Raid" 4000
+	fleet "Korath Large Raid" 8000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
