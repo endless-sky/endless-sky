@@ -346,7 +346,7 @@ mission "Remnant: Shattered Light 6"
 			`	Traffic control directs you to a pad near a large door of the Shattered Light. Ruach and a small group of Remnant are gathered around a hologram of the ship, and seem to be co-ordinating teams exploring it. Large mounds of equipment appear to have expanded from the sides of the ship, some of which appears to be functional. As you go through your landing checks, the team thank you for the transportation and begins offloading their equipment.`
 			`	"Welcome back, <first>!" signs Ruach from across the pad. "We have made considerable progress already." She appears set to explain what they have discovered.`
 			choice
-				`	"Great, but please save your explanations for those who want them."`
+				`	"Great, but please spare me the details."`
 					goto shatteredrequest
 				`	"You have figured out what happened? Great!"`
 			`	She looks crestfallen "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
