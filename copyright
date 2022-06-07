@@ -1410,10 +1410,20 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/ship/aerie*
  images/ship/bactrian*
+ images/ship/hailstone*
+ images/ship/heavy?gust*
+ images/ship/mining?drone*
  images/ship/mule*
+ images/ship/squall*
+ images/ship/sunder*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
+ images/thumbnail/hailstone*
+ images/thumbnail/heavy?gust*
+ images/thumbnail/mining?drone*
  images/thumbnail/mule*
+ images/thumbnail/squall*
+ images/thumbnail/sunder*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
