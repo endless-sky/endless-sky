@@ -255,7 +255,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 {
 	if(key == 'a' && CanAccept())
 	{
-		Accept();
+		Accept((mod & KMOD_SHIFT));
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
@@ -736,7 +736,7 @@ bool MissionPanel::CanAccept() const
 
 
 
-void MissionPanel::Accept()
+void MissionPanel::Accept(bool force)
 {
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = 0;
@@ -747,6 +747,11 @@ void MissionPanel::Accept()
 		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
+		if(force)
+		{
+			MakeSpaceAndAccept();
+			return;
+		}
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
