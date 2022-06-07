@@ -2377,10 +2377,17 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 					bool depositFuelIntoCarrier = bay.ship->fuel < .25 * maxFuel;
 					if(!isTankerCarrier && (IsRefueledByRamscoop() || carriedShipHasRamscoop))
 						isTankerCarrier = true;
-					if(readyToRefuelParent && carriedShipHasRamscoop)
+					// Carried ship can refuel the parent so favor optimizing for fuel generation.
+					if(carriedShipHasRamscoop)
 					{
-						takeFuelFromCarrierOnDeploy = !carriedShipHasRamscoop;
-						depositFuelIntoCarrier = carriedShipHasRamscoop;
+						if(readyToRefuelParent)
+						{
+							takeFuelFromCarrierOnDeploy = !carriedShipHasRamscoop;
+							depositFuelIntoCarrier = carriedShipHasRamscoop;
+						}
+						else if(Preferences::Has("Fighter fleet logistics"))
+							// Refuel parent unless max fuel can be given.
+							takeFuelFromCarrierOnDeploy &= spareFuel > maxFuel;
 					}
 					if(takeFuelFromCarrierOnDeploy)
 						TransferFuel(min(maxFuel - bay.ship->fuel, spareFuel), bay.ship.get());
@@ -3149,15 +3156,8 @@ bool Ship::CanRefuel(const Ship &other) const
 			return IsRefueledByRamscoop() && fuel > 25. && other.Fuel() < 1.;
 		return !IsFuelLow() && other.IsFuelLow() && HasDeployOrder();
 	}
-	if(BaysFree(other.Attributes().Category()) && other.CanBeCarried())
-	{
-		double otherMissingFuel = (1. - other.Fuel()) * other.Attributes().Get("fuel capacity");
-		double fillUpToBays = BaysFree(other.Attributes().Category());
-		// Avoid rubber banding; fighters or drones should return to fuel from
-		// carrier if at least half can get fuel.
-		if(fuel < otherMissingFuel * max(fillUpToBays/2., 1.))
-			return false;
-	}
+	else if(other.CanBeCarried() && other.GetParent() == shared_from_this())
+		return fuel - JumpFuel(targetSystem) > other.Attributes().Get("fuel capacity") - other.fuel;
 	return (!IsYours() || other.JumpFuelMissing() || other.GetParent() == this->shared_from_this()) && (fuel - JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
