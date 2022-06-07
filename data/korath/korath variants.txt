@@ -369,6 +369,18 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		"Engine (Meteor Class)"
 
 
+ship "Korath Chaser" "Korath Chaser (World-Ship)"
+	outfits
+		"Generator (Candle Class)"
+		"Systems Core (Tiny)"
+		"Small Bunk Room"
+		"Korath Repeater Rifle" 3
+		
+		"Steering (Asteroid Class)"
+		"Afterburner (Asteroid Class)"
+		"Hyperdrive"
+
+
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits

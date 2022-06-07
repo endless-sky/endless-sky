@@ -14567,8 +14567,8 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
-	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 1500
+	fleet "Korath Miners" 5000
+	fleet "Korath Large Raid" 1500
 	object
 		sprite star/carbon
 		period 100
