@@ -216,7 +216,8 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Korath Exiles designed the Raider soon after the Dredger. The Raider can be built cheaply in bulk, allowing for non-stop raids of nearby species."
+	description "Successive Raider designs have been the Korath warship of choice for plundering neighbouring species for generations."
+	description "This model, like all Exile ships, has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for easy replacement, facilitating continued raids of nearby systems."
 
 
 ship "Korath Raider" "Korath Raider (Ember)"
