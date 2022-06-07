@@ -506,7 +506,6 @@ void OutfitterPanel::FailBuy() const
 	double outfitSpace = playerShip->Attributes().Get("outfit space");
 	if(outfitNeeded > outfitSpace)
 	{
-		string need =  to_string(outfitNeeded) + (outfitNeeded != 1. ? "tons" : "ton");
 		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
 			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
 			+ Tons(outfitSpace) + " free."));
