@@ -87,8 +87,8 @@ outfit "Korath Shunt-Strike"
 		"homing" 4
 		"tracking" .9
 		"shield damage" 48
-		"corrosion damage" 9
-		"minable damage" 90
+		"corrosion damage" 2
+		"minable damage" 200
 		"piercing" 0.1
 		"blast radius" 30
 		"safe"
