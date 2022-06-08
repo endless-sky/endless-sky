@@ -686,7 +686,8 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Color &text= *GameData::Colors().Get("medium");
 	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
-	const Sprite *sortIcon[3] = {SpriteSet::Get("ui/sort abc"), SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed")};
+	const Sprite *sortIcon[4] = {SpriteSet::Get("ui/sort abc"),
+		SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 	static const string grayLabel = "? ";
 

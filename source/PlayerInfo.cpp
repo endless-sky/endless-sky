@@ -1576,7 +1576,7 @@ const PlayerInfo::SortType PlayerInfo::AvailableSortType() const
 
 void PlayerInfo::NextAvailableSortType()
 {
-	availableSortType = static_cast<SortType>((availableSortType + 1) % (SPEED+1));
+	availableSortType = static_cast<SortType>((availableSortType + 1) % (CONVENIENT+1));
 	SortAvailable();
 }
 
@@ -2779,6 +2779,16 @@ void PlayerInfo::CreateMissions()
 
 void PlayerInfo::SortAvailable()
 {
+	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
+	set<const void*> destinations;
+	if(availableSortType == CONVENIENT)
+	{
+		for(const Mission &mission : Missions())
+		{
+			destinations.insert(mission.Destination());
+			destinations.insert(mission.Destination()->GetSystem());
+		}
+	}
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
 		// First, separate rush orders if wanted
@@ -2800,6 +2810,19 @@ void PlayerInfo::SortAvailable()
 		// Sort by desired type:
 		switch(availableSortType)
 		{
+			case CONVENIENT:
+			{
+				// Sorting by "convenience" means you already have a mission to that planet.
+				// Still convenient but not as much is a different planet in the same system.
+				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
+				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				if(lConvenient < rConvenient)
+					return true;
+				if(lConvenient > rConvenient)
+					return false;
+			}
+			// Tiebreaker for equal CONVENIENT is SPEED
 			case SPEED:
 			// A higher "Speed" means the mission takes less time, ie. fewer jumps.
 			// This is sorted as "speed" instead of "# of jumps", so that the "greatest" mission
