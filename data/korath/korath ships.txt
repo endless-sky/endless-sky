@@ -108,15 +108,18 @@ ship "Korath Raider"
 		"Korath Banisher"
 		"Korath Warder"
 		
-		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
+		"Interference Plating"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
+		"Bow Drive (Meteor Class)"
+		"Afterburner (Comet Class)"
 		"Jump Drive"
 	
 	engine -20 127

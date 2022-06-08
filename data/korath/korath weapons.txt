@@ -63,8 +63,7 @@ outfit "Korath Shunt-Strike"
 	"energy capacity" 260
 	"turret mounts" -1
 	"required crew" 1
-	"energy consumption" 0.2
-	"heat generation" 0.3
+	"asteroid scan power" 16
 	weapon
 		sprite "projectile/shunt-strike"
 			"frame rate" 24
@@ -79,8 +78,9 @@ outfit "Korath Shunt-Strike"
 		"reload" 30
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
-		"firing energy" 90
-		"firing heat" 331
+		"firing energy" 60
+		"firing heat" 150
+		"relative firing shields" 0.001
 		"acceleration" 1
 		"drag" .07
 		"turn" .35
@@ -88,9 +88,13 @@ outfit "Korath Shunt-Strike"
 		"tracking" .9
 		"shield damage" 48
 		"corrosion damage" 9
+		"minable damage" 90
 		"piercing" 0.1
-	description "This modified Systems Core fires homing balls of repair microbots that pass through a target's shields and attempt to convert its hull into heat shunts. They inevitably fail, as Exile microbots cannot sustain themselves without a Systems Core, but not before wreaking havoc on the ship."
-	description "To maintain a ready supply of microbots, this turret constantly builds more, consuming energy and producing heat even when inactive."
+		"blast radius" 30
+		"safe"
+		"missile strength" 80
+	description "This weapon fires homing balls of microbots that pass through a target's shields and attempt to convert its hull into raw materials or useful items such as heat shunts. They inevitably fail, as Exile microbots cannot sustain themselves without a Systems Core, but not before wreaking havoc on the ship."
+	description "Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it is never used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
 
 effect "shunt-strike hit"
 	sprite "effect/shunt-strike-hit"
