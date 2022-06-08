@@ -18,14 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// An ExclusiveItem is an object stored as either a pointer or a stock
-// object, but not both.
+// This class provides "data template" classes with abstracted access to an object that
+// is either a reference to a shared, "stock" data or is a locally customized instance.
 template <class Type>
 class ExclusiveItem {
 public:
 	ExclusiveItem() = default;
 
-	ExclusiveItem(const Type *item) : stockItem(item) {}
+	explicit ExclusiveItem(const Type *item) : stockItem(item) {}
 	explicit ExclusiveItem(Type &&item) : item(std::move(item)) {}
 
 	ExclusiveItem(ExclusiveItem&&) = default;
@@ -33,7 +33,7 @@ public:
 	ExclusiveItem(const ExclusiveItem&) = default;
 	ExclusiveItem &operator=(const ExclusiveItem&) = default;
 
-	bool IsStock() const { return stockItem; }
+	bool IsStock() const noexcept { return stockItem; }
 
 	const Type *operator->() const noexcept { return stockItem ? stockItem : std::addressof(item); }
 	const Type &operator*() const noexcept { return stockItem ? *stockItem : item; }

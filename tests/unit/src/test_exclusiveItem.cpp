@@ -39,23 +39,22 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 	GIVEN( "an exclusive item" ) {
 		auto item = ExclusiveItem<Object>{};
 
-		WHEN( "it is freshly made" ) {
+		WHEN( "it is default-constructed" ) {
 			THEN( "it contains default data" ) {
 				CHECK_FALSE( item.IsStock() );
 				CHECK( item->GetValue() == 0 );
 			}
 		}
 
-		WHEN( "an object is added by reference" ) {
-			auto obj = Object(2);
-			item = ExclusiveItem<Object>(std::move(obj));
+		WHEN( "constructed with an rvalue reference" ) {
+			item = ExclusiveItem<Object>(Object(2));
 			THEN( "the object is obtainable and the item is nonstock" ) {
 				CHECK_FALSE( item.IsStock() );
 				CHECK( item->GetValue() == 2 );
 			}
 		}
 
-		WHEN( "an object is added by pointer" ) {
+		WHEN( "constructed with a pointer to an instance" ) {
 			auto obj = Object(3);
 			item = ExclusiveItem<Object>(&obj);
 			THEN( "the object is obtainable and the item is stock" ) {
@@ -69,9 +68,9 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 		auto secondItem = ExclusiveItem<Object>{};
 
 		WHEN( "the contents are equivalent" ) {
-			auto obj = Object(2);
+			const auto obj = Object(2);
 			firstItem = ExclusiveItem<Object>(&obj);
-			secondItem = ExclusiveItem<Object>(std::move(obj));
+			secondItem = ExclusiveItem<Object>(Object(2));
 			THEN( "the exclusive items are equivalent" ) {
 				CHECK( firstItem == secondItem );
 			}
