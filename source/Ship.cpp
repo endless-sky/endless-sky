@@ -2359,7 +2359,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 				{
 					tookAmmo = true;
 					// Update the carried mass cache.
-					for (auto &&item : takenAmmo)
+					for(auto &&item : takenAmmo)
 						carriedMass += item.first->Mass() * item.second;
 				}
 
