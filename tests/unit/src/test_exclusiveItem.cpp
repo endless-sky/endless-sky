@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "../../../source/ExclusiveItem.h"
 
 // ... and any system includes needed for the test file.
-#include <utility>
 
 namespace { // test namespace
 
