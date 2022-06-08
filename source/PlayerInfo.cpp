@@ -2785,8 +2785,11 @@ void PlayerInfo::SortAvailable()
 	{
 		for(const Mission &mission : Missions())
 		{
-			destinations.insert(mission.Destination());
-			destinations.insert(mission.Destination()->GetSystem());
+			if(mission.IsVisible())
+			{
+				destinations.insert(mission.Destination());
+				destinations.insert(mission.Destination()->GetSystem());
+			}
 		}
 	}
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
