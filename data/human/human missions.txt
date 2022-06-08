@@ -356,9 +356,7 @@ mission "Transport Workers B"
 	minor
 	source
 		attributes "dirt belt"
-	destination
-		government "Syndicate"
-		attributes "factory"
+	destination "Maker"
 	to offer
 		random < 5
 	passengers 1
@@ -400,6 +398,7 @@ mission "Transport Workers B"
 	on complete
 		payment
 		payment 10000
+		log `Transported a teenage boy to Maker so that he can work to marry his girlfriend.`
 		dialog `You drop off the young man from <origin> who is hoping to find work and save enough money for his girlfriend to join him. "Good luck," you say. "Be wise. Don't let yourself get into debt." He thanks you, and pays you <payment>.`
 
 
@@ -482,11 +481,16 @@ mission "There Might Be Riots 1"
 	
 	on offer
 		conversation
-			`A woman in a well-tailored suit approaches you. "Captain <last>?" she asks. You nod. "My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
+			`A woman in a well-tailored suit approaches you. "Captain <last>?" You nod. "Are you available for a transport job?" she asks.`
+			choice
+				`	"What is it?"`
+				`	"Not right now."`
+					defer
+			`	"My name is Becca," she says. "I'm a stage manager for a band, and the transport we had under contract bailed out on us. Any chance you could take us to <destination>? Given the circumstances, we can pay quite well."`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm not headed in that direction right now."`
-					defer
+					decline
 			`	"Great," she says, "I'll tell the boys to start loading their gear into your ship." About a half an hour later the road crew begins carting instruments and amplifiers into your cargo hold. Soon after that, you hear the roar of a crowd in the distance and another group of men comes running into your ship. "We're with the band," they say. "Quick, shut the hatch." Half a minute later, a mob of people has surrounded your ship and a few of them are even climbing on top of it. It takes you a second to realize they're not angry or bent on destruction - they're just a group of crazy fans.`
 			`	"Happens everywhere we go," says one of the musicians, calmly, as he watches a video feed of the mob on one of your monitors. He tells you that he's Ulrich, the lead singer. Then he introduces the rest of the singers and musicians.`
 			choice
@@ -725,7 +729,7 @@ mission "There Might Be Riots part 3B"
 
 mission "Drug Running 1"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -741,7 +745,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet> for <payment>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -760,7 +764,7 @@ mission "Drug Running 1"
 
 mission "Drug Running 2"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -790,7 +794,7 @@ mission "Drug Running 2"
 
 mission "Drug Running 3"
 	name "Drug Running"
-	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	description "Bring a shipment of illegal drugs to <destination>. Payment will be <payment>. If you are caught with this cargo, you may be fined."
 	minor
 	repeat
 	source
@@ -806,7 +810,7 @@ mission "Drug Running 3"
 		has "Drug Running 2: done"
 	
 	on offer
-		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
+		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet> for <payment>.`
 	
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -899,7 +903,7 @@ mission "Hallucination"
 
 mission "Shady passenger transport 1"
 	name "Shady passenger transport"
-	description "Discreetly transport a passenger to <destination>. If you are caught with him, you may be fined."
+	description "Discreetly transport a passenger to <destination>. Payment will be <payment>. If you are caught with him, you may be fined."
 	minor
 	repeat
 	source
@@ -935,7 +939,7 @@ mission "Shady passenger transport 1"
 
 mission "Shady passenger transport 2"
 	name "Shady passenger transport"
-	description "Discreetly transport two passengers to <destination>. If you are caught with them, you may be fined."
+	description "Discreetly transport two passengers to <destination>. Payment will be <payment>. If you are caught with them, you may be fined."
 	minor
 	repeat
 	source
@@ -981,7 +985,7 @@ mission "Shady passenger transport 2"
 
 mission "Shady passenger transport 3"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	minor
 	repeat
 	source
@@ -1038,7 +1042,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
 	minor
 	source
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1225,7 +1229,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1316,7 +1320,7 @@ mission "Courier 3"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>, and you will be paid <payment>."`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2108,9 +2112,9 @@ mission "Terminus exploration"
 			branch skip
 				not "First Contact: Hai: offered"
 			action
-				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear striking resemblance to the wormhole that leads to the Hai.`
+				log `Ivan said that although he's not sure if the anomaly is a wormhole or not, it does bear a striking resemblance to the wormhole that leads to the Hai.`
 			`	"You mean the wormhole to the Hai?" you ask.`
-			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bearings striking resemblance to it in some of our readings, although it is very different in others."`
+			`	"Interesting, you know of it," Ivan responds. "The anomaly in Terminus bears a striking resemblance to it in some of our readings, although it is very different in others."`
 				goto end
 			label skip
 			action
@@ -2913,6 +2917,8 @@ mission "Hauler VI cargo prototype 1"
 	source
 		planet "Deep"
 	destination "Skymoot"
+	to offer
+		"armament deterrence" > 0
 	npc accompany
 		government "Merchant"
 		personality escort timid
@@ -3645,7 +3651,7 @@ mission "Street Swindle"
 					decline
 			label firstgamewatch
 			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
-			`	"The next buy-in is a larger prize!" the announcer calls after her before turning to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.` 
+			`	"The next buy-in is a larger prize!" the announcer calls after her before turning to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.`
 			choice
 				`	"I'll do it!" (Bet 6000 credits).`
 					goto secondgameplay
@@ -3775,8 +3781,8 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "z" at the start of the mission name is to make it offer only if no other missions have.
-mission "z Spaceport Reminder Resetter"
+# Use of "00" at the start of the mission name is to make it offer only if no other missions have.
+mission "00 Spaceport Reminder Resetter"
 	minor
 	invisible
 	repeat
@@ -3827,4 +3833,166 @@ mission "Spaceport Reminder"
 			label thanks
 			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
 				decline
+
+
+
+mission "Fumbling Mugger Patch"
+	landing
+	invisible
+	to offer
+		has "Transport Workers B: done"
+	on offer
+		event "fumbling mugger timer" 60
+		fail
+
+
+event "fumbling mugger timer"
+
+
+mission "Fumbling Mugger"
+	name "Transport to <planet>"
+	description "Bring a young woman who threatened you on <origin> to <destination>."
+	minor
+	source
+		attributes "dirt belt"
+	destination "Maker"
+	passengers 1
+	to offer
+		random < 45
+		has "event: fumbling mugger timer"
+	on offer
+		conversation
+			`Your exploration of the spaceport leads you to a dark alley where the number of working lights are far outnumbered by the number of broken ones. The contents of steel bins lining the walls overflow onto the pavement, attracting swarms of flies to them. On the surfaces that are illuminated, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A dark crimson stains the bottom half of a broken window.`
+			`	Suddenly, you feel a cold object pushed against your back as a woman speaks softly. "Hands where I can see them, Captain."`
+			choice
+				`	(Lift your hands up and slowly turn.)`
+					goto peaceful
+				`	(Spin around and fire.)`
+				`	(Try a fancy acrobatic move and disarm your attacker.)`
+					goto flip
+			
+			action
+				set "fumbling mugger shot"
+			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label flip
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			choice
+				`	(Put your hands up.)`
+					goto handsup
+				`	(Draw your gun and fire.)`
+			action
+				set "fumbling mugger shot"
+			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label peaceful
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen.`
+			label handsup
+			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
+			choice
+				`	"And if I don't take you there?"`
+				`	"Are you going to pay me?"`
+					goto payment
+				`	"Why do you want to go there?"`
+					goto why
+			
+			`	She scoffs. "What do you think? How else might an encounter involving a gun pointed-"`
+				goto fail
+			label payment
+			`	She scoffs. "Payment? If I wanted to pay you, I wouldn't be in this alley pointing-"`
+				goto fail
+			label why
+			`	She scoffs. "All you need to know is that I've got a gun pointed-"`
+			
+			label fail
+			`	The attacker's speech is interrupted by a click as her shotgun swings open. She takes a step back as her eyes widen with panic.`
+			label choice
+			choice
+				`	(Threaten her with your gun.)`
+					goto threaten
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label threaten
+			`	You take out your gun and aim it at the woman's head. "Drop the gun," you say, "or I'll shoot."`
+			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
+			choice
+				`	"Why do you want to go to <planet>?"`
+					goto why2
+				`	"Get out of my sight, and I'll let you go."`
+					goto freedom
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label freedom
+			`	She nods her head and backs away from you, hands still held up. When she disappears around a corner, you holster your gun and walk back to a safer portion of the spaceport.`
+				decline
+			
+			label why2
+			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
+			`	"Just humor me for a moment," you reply.`
+			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
+			choice
+				`	"I can take you there."`
+				`	"I can't transport you."`
+					goto decline
+			`	"Really?" she says. "You realize that I can't pay you in any way, right?"`
+			choice
+				`	"You don't need to pay me."`
+					goto accept
+				`	"You can pay me later."`
+				`	"Actually, I can't take you there without payment."`
+					goto decline
+			action
+				set "Fumbling Mugger: future payment"
+			label accept
+			`	The woman's eyes light up. "I can't thank you enough for this." The two of you head out of the alleys and back to the landing pads, and you show her to an empty bunk on your ship.`
+				accept
+			
+			label decline
+			`	"I understand." She shuffles away with her head hung, and you head back to a brighter area of the spaceport.`
+				decline
+	
+	on abort
+		conversation
+			`As you tell the woman about the change in travel plans, she sighs with resignation. "I suppose that I shouldn't expect anything after how I treated you." You recall that she doesn't even have a single credit to her name, and without any money, it is unlikely that she will survive for long.`
+			branch poor
+				"credits" < 15000
+			choice
+				`	(Wish her good luck.)`
+					goto leave
+				`	(Give her 15,000 credits before dropping her off.)`
+					goto gift
+			label poor
+			choice
+				`	(Wish her good luck.)`
+			label leave
+			`	She nods in response. "I'll try my best," she says solemnly as she prepares to depart your ship.`
+				decline
+			label gift
+			action
+				payment -15000
+				set "gifted money to mugger"
+				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to pay for her transport anyway.`
+			`	She is almost incredulous at your gift. "I really can't thank you enough for helping me out." The two of you say your farewells as she gets ready to depart your ship.`
+	
+	on complete
+		event "fumbling mugger followup timer" 365
+		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to take her there anyway.`
+		dialog `The hooded woman prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'm sorry for threatening you back on <origin>, Captain. I'll try to find some way to repay you." She walks off into the bustling spaceport to find her lover.`
+
+
+event "fumbling mugger followup timer"
+
 
