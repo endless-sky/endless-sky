@@ -519,7 +519,7 @@ mission "Deep: Mystery Cubes 3"
 			`	One of the Navy crewmen produces a football from their cabin, and a small game begins inside of an open landing pad. Others try to pass the time by reading or writing. Everyone comes to a standstill though once the ground begins to rumble; an earthquake. A Navy member calls out to everyone. "Don't worry, this is a small one. We get earthquakes like this a lot on Gemstone." The shaking eventually subsides, and you decide to go into your ship to rest.`
 			
 			label mirfak
-			`	Suddenly, your communication device beeps and you hear Lieutenant Paris's voice, "The blockade in Mirfak has just been attacked. I repeat, the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as the pirate fleet included one of the stolen Cruisers."`
+			`	Suddenly, your communication device beeps and you hear Lieutenant Paris' voice, "The blockade in Mirfak has just been attacked. I repeat, the blockade in Mirfak has just been attacked. Reports are that the blockade has sustained heavy losses as the pirate fleet included one of the stolen Cruisers."`
 			`	A rather young recruit asks, "Should we go help them?" to which a senior officer responds, "We were given orders and we're going to follow them unless told otherwise." The comms fall silent, and the waiting resumes.`
 			``
 			`	A few anxious hours pass with no new information. Suddenly, without warning, one of the Ravens takes off and your communications device begins blaring. "A pirate fleet just jumped into the system, alongside two Navy Cruisers painted in pirate colors!" All the captains and their crew scatter for their ships, ready to fight.`
@@ -1103,7 +1103,7 @@ mission "Deep: Project Hawking"
 			`	You duck for cover behind a concrete barrier that divides two landing pads when you hear the Quicksilver's cannons roar to life. The projectiles stream right overhead, exploding into the side of the building, sending rubble everywhere.`
 			
 			label crash
-			`	As quickly as it appeared, the Quicksilver disappears, shrouded from view by the trees. Even though its engine noise has abated, Paris has to shout for his orders to be heard above the commotion. As you rise to your feet you feel the earth heave, and a few moments later the muffled thud of an explosion drowns out Paris's voice. A dark cloud of smoke is rising up from a half kilometer away, in the direction the Quicksilver flew. Even in daylight you can see light from the fires below, reflected ominously by the airborne soot. A second tremor, somehow larger than the first, catches everyone off guard, knocking you back to the ground.`
+			`	As quickly as it appeared, the Quicksilver disappears, shrouded from view by the trees. Even though its engine noise has abated, Paris has to shout for his orders to be heard above the commotion. As you rise to your feet you feel the earth heave, and a few moments later the muffled thud of an explosion drowns out Paris' voice. A dark cloud of smoke is rising up from a half kilometer away, in the direction the Quicksilver flew. Even in daylight you can see light from the fires below, reflected ominously by the airborne soot. A second tremor, somehow larger than the first, catches everyone off guard, knocking you back to the ground.`
 			choice
 				`	"Earthquake!"`
 				`	"What is happening?"`
@@ -3436,7 +3436,7 @@ mission "Home for Skadenga 7"
 			`	Together, you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
 			`	Upon seeing this, the old and overwhelmed matron falls to her knees in tears. "These folk are lost," she says. "We are lost."`
 			`	The Ondurdis looks at you with her tear-wrecked face and says, "You are instrument of Skade. I saw it. But why? Why this? Why to us?"`
-			`	After that, she will say no more to you. She lifts her eyes to the sky and begins to chant wildly. A few Skadenga who have made it this far join her. Various news outlets swarm around them to record the Ondurdis's breakdown.`
+			`	After that, she will say no more to you. She lifts her eyes to the sky and begins to chant wildly. A few Skadenga who have made it this far join her. Various news outlets swarm around them to record the Ondurdis' breakdown.`
 			`	You back away slowly and bump into someone. You turn to see the real-estate agent Carla Von Hausen smiling at you. "Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
 				`	"Your superiors!?"`
@@ -3866,7 +3866,7 @@ mission "Home for Skadenga 13"
 					goto amends
 				`	"No. I am done here."`
 					goto done
-			`	The Ondurdis's eyes sparkle mischievously. "Too old. Suffice to say, my name is Eymani, and I was Pathfinder who discovered cure to Rigellian plague. As to how I am so old, or all that I have seen: I cannot say more, for it is not my story to tell."`
+			`	The Ondurdis' eyes sparkle mischievously. "Too old. Suffice to say, my name is Eymani, and I was Pathfinder who discovered cure to Rigellian plague. As to how I am so old, or all that I have seen: I cannot say more, for it is not my story to tell."`
 				goto done
 			label elves
 			`	"Elves is broad term. Many creatures over long ages have been called elves. But, here, in Deep, I believe there are two kinds. First, there are alfar, known by many. They were ones who transported us here from Earth. I do not know why they did this, but I do know that it was not out of kindness. They are devious, and they are opaque."`
