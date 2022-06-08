@@ -216,7 +216,7 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "Successive Raider designs have been the Korath warship of choice for plundering neighbouring species for generations."
+	description "Successive Raider designs have been the Korath warship of choice for plundering neighboring species for generations."
 	description "This model, like all Exile ships, has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for easy replacement, facilitating continued raids of nearby systems."
 
 
@@ -420,7 +420,7 @@ ship "Korath Raider Mark XLII"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation of life in exile."
-	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavours, the shipwrights of the Korath have updated the design to deal with modern targets.`
+	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
 
 
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
