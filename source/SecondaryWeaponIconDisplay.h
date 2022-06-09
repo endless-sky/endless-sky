@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Rectangle.h"
 #include "Ship.h"
 
-#include <memory>
 #include <vector>
 #include <utility>
 
@@ -29,7 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class SecondaryWeaponIconDisplay {
 public:
 	SecondaryWeaponIconDisplay(PlayerInfo &player);
-	void Update(const std::shared_ptr<Ship> &flagship);
+	void Update(const Ship &flagship);
 	void Clear();
 	void Draw(Rectangle ammoBox, Point iconDimensions) const;
 	bool Click(const Point &clickPoint);

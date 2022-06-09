@@ -556,7 +556,9 @@ void Engine::Step(bool isActive)
 	targets.clear();
 
 	// Update the player's ammo amounts.
-	secWeapons.Update(flagship);
+	if(flagship)
+		secWeapons.Update(*flagship.get());
+
 
 	// Display escort information for all ships of the "Escort" government,
 	// and all ships with the "escort" personality, except for fighters that
