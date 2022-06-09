@@ -40,10 +40,10 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 {
 	ammo.clear();
-	for(const auto &it : flagship.Outfits())
+	for(const auto &it : flagship.Weapons())
 	{
-		const Outfit *secWeapon = it.first;
-		if(!secWeapon->Icon())
+		const Outfit *secWeapon = it.GetOutfit();
+		if(!secWeapon || !secWeapon->Icon())
 			continue;
 
 		double ammoCount = -1;
