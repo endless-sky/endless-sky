@@ -1,4 +1,5 @@
 [Desktop Entry]
+Version=1.5
 Name=Endless Sky
 Comment=Space exploration and combat game
 Comment[de]=Weltraumhandels und Kampfsimulator
@@ -9,3 +10,5 @@ Terminal=false
 Type=Application
 Keywords=game;simulator;space;sandbox;rpg;
 Categories=Game;Simulation;
+PrefersNonDefaultGPU=true
+SingleMainWindow=true
