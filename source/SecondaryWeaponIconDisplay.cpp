@@ -25,8 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
-#include "SDL2/SDL_keyboard.h"
-
 using namespace std;
 
 
