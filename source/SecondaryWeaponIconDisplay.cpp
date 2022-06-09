@@ -46,7 +46,7 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || added.count(secWeapons))
+		if(!secWeapon || !secWeapon->Icon() || added.count(secWeapon))
 			continue;
 
 		double ammoCount = -1;
