@@ -262,7 +262,7 @@ test "Tests - Wormhole Navigation"
 		call "Depart"
 		# Give jump command.
 		input
-			command	jump
+			command jump
 		watchdog 12000
 		label notRigel1
 		branch notRigel1
@@ -365,7 +365,7 @@ test "Tests - Ember Wastes Navigation"
 			month == 12
 			day == 17
 		input
-			command	jump
+			command jump
 		watchdog 12000
 		label notMora1
 		branch notMora1
