@@ -25,6 +25,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
+#include <unordered_set>
+
 using namespace std;
 
 
@@ -40,10 +42,11 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 {
 	ammo.clear();
+	unordered_set<const Outfit *> added;
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon())
+		if(!secWeapon || !secWeapon->Icon() || added.count(secWeapons))
 			continue;
 
 		double ammoCount = -1;
@@ -55,6 +58,7 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 				* flagship.Attributes().Get("fuel capacity");
 			ammoCount = remaining / secWeapon->FiringFuel();
 		}
+		added.insert(secWeapon);
 		ammo.emplace_back(secWeapon, ammoCount);
 	}
 }
@@ -63,7 +67,6 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 
 void SecondaryWeaponIconDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 {
-	//const Set<Color> &colors = GameData::Colors();
 	const Font &font = FontSet::Get(14);
 	ammoIconZones.clear();
 
