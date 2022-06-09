@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define MISSION_ACTION_H_
 
 #include "Conversation.h"
+#include "ExclusiveItem.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
 #include "Phrase.h"
@@ -69,11 +70,8 @@ private:
 	LocationFilter systemFilter;
 
 	std::string dialogText;
-	const Phrase *stockDialogPhrase = nullptr;
-	Phrase dialogPhrase;
-
-	const Conversation *stockConversation = nullptr;
-	Conversation conversation;
+	ExclusiveItem<Phrase> dialogPhrase;
+	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
 	std::map<const Outfit *, int> requiredOutfits;

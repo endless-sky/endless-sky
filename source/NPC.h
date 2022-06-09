@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Conversation.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "Fleet.h"
 #include "LocationFilter.h"
 #include "Personality.h"
@@ -104,11 +105,8 @@ private:
 
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
-	const Phrase *stockDialogPhrase = nullptr;
-	Phrase dialogPhrase;
-
-	Conversation conversation;
-	const Conversation *stockConversation = nullptr;
+	ExclusiveItem<Phrase> dialogPhrase;
+	ExclusiveItem<Conversation> conversation;
 
 	// Conditions that must be met in order for this NPC to be placed or despawned:
 	ConditionSet toSpawn;
@@ -128,8 +126,7 @@ private:
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<const Ship *> stockShips;
 	std::list<std::string> shipNames;
-	std::list<Fleet> fleets;
-	std::list<const Fleet *> stockFleets;
+	std::list<ExclusiveItem<Fleet>> fleets;
 
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;

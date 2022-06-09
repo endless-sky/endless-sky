@@ -539,7 +539,7 @@ outfit "Bellows-Class Afterburner"
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
-	sound "afterburner"
+	sound "remnant afterburner"
 
 
 
