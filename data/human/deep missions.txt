@@ -2765,7 +2765,11 @@ mission "Home for Skadenga 1"
 	minor
 	cargo "Setstokkr" 1
 	to offer
-		has "Deep: Questions: done"
+		or
+			has "Deep: Questions: done"
+			and
+				has "deep: helped before archaeology"
+				has "Deep: Interrogation: offered"
 		random < 50
 	source "Nifel"
 	stopover "Asgard"
