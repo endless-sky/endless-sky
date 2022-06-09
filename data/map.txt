@@ -8729,7 +8729,7 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 6000
+	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
 	object
 		sprite star/g0-old
@@ -17610,8 +17610,8 @@ system Misam
 	trade Plastic 368
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
-	fleet "Korath Raid" 4000
-	fleet "Korath Large Raid" 10000
+	fleet "Korath Raid" 5000
+	fleet "Korath Large Raid" 11000
 	fleet "Human Miners" 10000
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
