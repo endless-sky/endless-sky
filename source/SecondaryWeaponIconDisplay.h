@@ -31,7 +31,7 @@ public:
 	SecondaryWeaponIconDisplay(PlayerInfo &player);
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
-	bool Click(const Point &clickPoint);
+	bool Click(const Point &clickPoint, bool control);
 
 private:
 	std::vector<std::pair<const Outfit *, int>> ammo;

@@ -113,10 +113,9 @@ void SecondaryWeaponIconDisplay::Draw(const Rectangle &ammoBox, const Point &ico
 
 
 
-bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint)
+bool SecondaryWeaponIconDisplay::Click(const Point &clickPoint, bool control)
 {
-	bool control = (SDL_GetModState() & KMOD_CTRL);
-	for(const ClickZone<const Outfit *> &it : ammoIconZones)
+	for(const auto &it : ammoIconZones)
 		if(it.Contains(clickPoint))
 		{
 			if(!control)
