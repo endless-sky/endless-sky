@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "ExclusiveItem.h"
 
 #include <string>
 #include <vector>
@@ -59,8 +60,7 @@ private:
 	std::vector<Ship> ships;
 
 	// The conversation to display when a game begins with this scenario.
-	Conversation conversation;
-	const Conversation *stockConversation = nullptr;
+	ExclusiveItem<Conversation> conversation;
 
 	const Sprite *thumbnail = nullptr;
 	// The user-friendly display name for this starting scenario.
