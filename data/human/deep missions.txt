@@ -2780,7 +2780,7 @@ mission "Home for Skadenga 1"
 			apply
 				payment -2000
 			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
-			` 	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
+			`		She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
 			`	She hits a switch and the hatch opens; she then escorts you into a frigid maintenance dock. A loud, ugly vehicle is whirring at the center of a mess of broken and discarded parts. "There she is!" The woman is nearly shouting as she speaks over the mechanical hum. "We call her Brunhilda, the Queen of the Ice, a most.. durable vehicle, capable of giving you an authentic ice-explorer experience!"`
 			`	The Ice-Crawler, Brunhilda, looks less than dependable to you. It appears to be a run-down, mismash of parts and jury-rigged technology forced onto a three century old Ice-Crawler, probably used by the original colonists.`
 			choice
@@ -2793,7 +2793,7 @@ mission "Home for Skadenga 1"
 			`	"Well, you know the old saying, 'They don't build 'em like they used to?' It's your lucky day because that is when this was built! Part of the excitement of the tour is riding in an authentic four hundred year old colonial Ice-Crawler."`
 			label what
 			`	The woman pulls out a small touchscreen. "For very standard liability reasons, I need you to quickly put your digital signature right here. You, or your estate, can't sue us if you're injured or die on the excursion. Furthermore there is no expectation of rescue should you get lost out there, or the Ice-Crawler breaks down." She gives you a small forced smile. "Not that it ever would happen, and like I said, this is a very standard waiver in the tourist trade. I wouldn't think too much about it."`
-			` 	She holds up the touchscreen for you to sign.`
+			`		She holds up the touchscreen for you to sign.`
 			choice
 				`	(Key my signature.)`
 					goto yolo
@@ -2829,7 +2829,7 @@ mission "Home for Skadenga 1"
 				goto questions
 			label ice
 			`	"Very safe. Except when not. Ice always frozen, but sometime very thin. I can tell. You cannot. Trust Hjlod and you not drown and get eaten by Ice-Slug."`
-			` 	"You have more question?"`
+			`		"You have more question?"`
 				goto questions
 			label monster
 			`	"Every world have animal. Some animal big, some small. Voolly octopus, mostly small. Size of this Ice-Crawler, only. Vorst in Glaesisvellir ice-plains is Ice-Slug. They can squeeze through tiniest hole in ice. This take long time, for they are as big as house. They have no teeth, too hard to squeeze through little hole, but they have acid spit. Put hole in Ice-Crawler, easy. They eat many foolish researcher and tourist."`
@@ -2892,12 +2892,12 @@ mission "Home for Skadenga 1"
 				`	(Blue, green, white.)`
 					goto boom
 			label boom
-			` 	You're confident that this is the correct sequence of wires. You plug each one in and start the Ice-Crawler up. The vehicle hums to life.`
+			`		You're confident that this is the correct sequence of wires. You plug each one in and start the Ice-Crawler up. The vehicle hums to life.`
 			choice
 				`	(Pump a fist into the air.)`
 				`	(Cheer.)`
 					goto cheer
-			` 	In a moment of levity, you pump your fist into the air.`
+			`		In a moment of levity, you pump your fist into the air.`
 			`	Unfortunately, your fist does not make it very far. The Ice-Crawler, with its criss-crossed wires, has a critical energy build up that results in an instantaneous, completely deadly explosion.`
 			scene "scene/smeer"
 			`	The Ice-Crawler, your entire body, your fist, and more than a couple hundred tons of snow are all incinerated in a fraction of a second.`
@@ -2944,7 +2944,7 @@ mission "Home for Skadenga 1"
 				set "put on jacket"
 			`	You throw on the jacket and stuff a few rags in your coat for good measure.`
 			`	Hjlod nods at you and opens the hatch. "It is only meter to surface."`
-			` 	She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking, you are relieved when you quickly rise above it into the icy clear air above.`
+			`		She plunges into the snow and swim-climbs her way up it. You follow her, and though the cold is shocking, you are relieved when you quickly rise above it into the icy clear air above.`
 			`	"Stay close," she says as she begins to trek through the snow. "Any path but mine is dangerous."`
 			scene "scene/snowplain"
 			choice
@@ -2980,7 +2980,7 @@ mission "Home for Skadenga 1"
 			label travel
 			`	The cold, monotonous trudging weighs on you as the hours pass. You're dimly aware of Nifel's two suns as they make their journey across the wide open sky.`
 			`	Evening and exhaustion approach hand in hand, and as the last sun sets, you're not sure how much farther you can go. "There!" Hjlod breaks the silence of hours as she points at the weak flicker of light in the twilight landscape. "This is good," she admits hoarsely as you both stumble toward the light. "Ve vould have not survived night."`
-			` 	The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl for as long as you can. And then nothing.`
+			`		The night air grows too cold. You slow as your body begins to shutdown and frostbite gnaws at your hands, feet and exposed arm. The light is still too distant, and you can barely move. You think you see the shadows of humanoid figures against the light. But then you stumble and fall. You crawl for as long as you can. And then nothing.`
 			choice
 				`	(Wake up.)`
 			label villagearrival
@@ -4072,11 +4072,11 @@ mission "Hjlod Remembers Nifel"
 			
 	on complete
 		outfit "Tear of Skade"
-		conversation		
+		conversation
 			`Nifel is colder than you remember. The snow is deeper, and the ice harder. Despite this, the small recolonized settlement of Udainsakr appears to be thriving. Although it started with less than 50 Skadenga, thanks to the steady flow of pilgrims, the village population now numbers over a thousand.`
 			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
-			` 	She holds out the box. "This is tear of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
+			`		She holds out the box. "This is tear of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
 			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
