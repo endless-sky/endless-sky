@@ -235,7 +235,7 @@ ship "Albatross" "Albatross (Ember Shield)"
 ship "Albatross" "Albatross (Sniper II)"
 	outfits
 		"Inhibitor Cannon" 5
-		"EMP Torpedo II Bay" 2
+		"Teciimach Bay" 2
 		"Point Defense Turret" 3
 		"EMP Torpedo" 39
 		"EMP Torpedo Storage Bay" 3
@@ -259,8 +259,8 @@ ship "Albatross" "Albatross (Sniper II)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "EMP Torpedo II Bay"
-	gun "EMP Torpedo II Bay"
+	gun "Teciimach Bay"
+	gun "Teciimach Bay"
 
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
@@ -378,7 +378,7 @@ ship "Gull" "Gull (Support)"
 
 ship "Gull" "Gull (Support II)"
 	outfits
-		"EMP Torpedo II Bay"
+		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
 		"EMP Torpedo" 16
@@ -717,7 +717,7 @@ ship "Merganser"
 ship "Merganser" "Merganser II"
 	outfits
 		"Inhibitor Cannon" 2
-		"EMP Torpedo II Pod"
+		"Teciimach Pod"
 		"EMP Torpedo" 3
 		
 		"Millennium Cell" 2
@@ -730,7 +730,7 @@ ship "Merganser" "Merganser II"
 		"Bellows-Class Afterburner"
 		"Scram Drive"
 		
-	gun 0 -48.5 "EMP Torpedo II Pod"
+	gun 0 -48.5 "Teciimach Pod"
 	gun -6 -41 "Inhibitor Cannon"
 	gun 6 -41 "Inhibitor Cannon"
 	turret 0 0
@@ -1006,7 +1006,7 @@ ship "Peregrine"
 ship "Peregrine" "Peregrine II"
 	outfits
 		"Thrasher Cannon" 4
-		"EMP Torpedo II Bay" 1
+		"Teciimach Bay" 1
 		"Point Defense Turret"
 		"Thrasher Turret"
 		"EMP Torpedo" 9
@@ -1025,7 +1025,7 @@ ship "Peregrine" "Peregrine II"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
-	gun 0 -133.5 "EMP Torpedo II Bay"
+	gun 0 -133.5 "Teciimach Bay"
 	gun -12.5 -105 "Thrasher Cannon"
 	gun 12.5 -105 "Thrasher Cannon"
 	gun -17.5 -83 "Thrasher Cannon"

@@ -1084,11 +1084,11 @@ event "remnant: cognizance calm"
 
 
 
-event "remnant: emp ii deployment"
+event "remnant: teciimach deployment"
 	outfitter "Remnant"
 		remove "EMP Torpedo Bay"
-		add "EMP Torpedo II Bay"
-		add "EMP Torpedo II Pod"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
 	shipyard "Remnant"
 		remove "Peregrine"
 		add "Peregrine II"
