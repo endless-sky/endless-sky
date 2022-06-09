@@ -14,14 +14,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SECONDARY_WEAPON_ICON_DISPLAY_H_
 
 #include "ClickZone.h"
-#include "Outfit.h"
-#include "PlayerInfo.h"
-#include "Point.h"
-#include "Rectangle.h"
-#include "Ship.h"
 
 #include <vector>
 #include <utility>
+
+class Outfit;
+class PlayerInfo;
+class Point;
+class Rectangle;
+class Ship;
 
 
 
@@ -29,8 +30,7 @@ class SecondaryWeaponIconDisplay {
 public:
 	SecondaryWeaponIconDisplay(PlayerInfo &player);
 	void Update(const Ship &flagship);
-	void Clear();
-	void Draw(Rectangle ammoBox, Point iconDimensions) const;
+	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint);
 
 private:

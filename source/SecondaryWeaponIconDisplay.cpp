@@ -16,6 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Outfit.h"
+#include "PlayerInfo.h"
+#include "Point.h"
+#include "Rectangle.h"
+#include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -36,7 +41,7 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 
 void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 {
-	Clear();
+	ammo.clear();
 	for(const auto &it : flagship.Outfits())
 	{
 		const Outfit *secWeapon = it.first;
@@ -58,36 +63,29 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 
 
 
-void SecondaryWeaponIconDisplay::Clear()
+void SecondaryWeaponIconDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 {
-	ammo.clear();
-}
-
-
-
-void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
-{
-	const Set<Color> &colors = GameData::Colors();
+	//const Set<Color> &colors = GameData::Colors();
 	const Font &font = FontSet::Get(14);
 	ammoIconZones.clear();
 
-	double ammoIconWidth = iconDim.X();
-	double ammoIconHeight = iconDim.Y();
+	const double &ammoIconWidth = iconDim.X();
+	const double &ammoIconHeight = iconDim.Y();
 	// Pad the ammo list by the same amount on all four sides.
 	double ammoPad = .5 * (ammoBox.Width() - ammoIconWidth);
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
-	Color selectedColor = *colors.Get("bright");
-	Color unselectedColor = *colors.Get("dim");
+	const Color &selectedColor = *GameData::Colors().Get("bright");
+	const Color &unselectedColor = *GameData::Colors().Get("dim");
 
 	// This is the bottom left corner of the ammo display.
-	Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	auto pos = Point(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
 	// These offsets are relative to that corner.
-	Point boxOff(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
-	Point textOff(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
-	Point iconOff(.5 * ammoIconHeight, .5 * ammoIconHeight);
-	double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
-	for(const pair<const Outfit *, int> &it : ammo)
+	auto boxOff = Point(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
+	auto textOff = Point(ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
+	auto iconOff = Point(.5 * ammoIconHeight, .5 * ammoIconHeight);
+	const double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
+	for(const auto &it : ammo)
 	{
 		pos.Y() -= ammoIconHeight;
 		if(pos.Y() < ammoBox.Top() + ammoPad)
@@ -99,7 +97,7 @@ void SecondaryWeaponIconDisplay::Draw(Rectangle ammoBox, Point iconDim) const
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
-		Point iconCenter(iconCenterX, pos.Y() + ammoIconHeight / 2.);
+		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);
 		ammoIconZones.emplace_back(iconCenter, iconDim, it.first);
 
 		// Some secondary weapons may not have limited ammo. In that case, just
