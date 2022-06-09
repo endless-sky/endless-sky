@@ -53,7 +53,7 @@ void FleetVariant::Load(const DataNode &node)
 			{
 				// If given a full definition of a nested variant, remove all instances of that
 				// nested variant from this variant.
-				auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<NestedVariant>(child));
+				auto removeIt = std::remove(variants.begin(), variants.end(), ExclusiveItem<NestedVariant>(child));
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -96,12 +96,12 @@ void FleetVariant::Load(const DataNode &node)
 				// fleet variant.
 				if(!variantName.empty())
 				{
-					variants.insert(variants.end(), n, UnionItem<NestedVariant>(GameData::Variants().Get(variantName)));
+					variants.insert(variants.end(), n, ExclusiveItem<NestedVariant>(GameData::Variants().Get(variantName)));
 					if(child.HasChildren())
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.insert(variants.end(), n, UnionItem<NestedVariant>(child));
+					variants.insert(variants.end(), n, ExclusiveItem<NestedVariant>(child));
 			}
 			else
 			{
@@ -125,7 +125,7 @@ bool FleetVariant::IsValid() const
 
 	// At least one nested variant is enough to make the variant valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<NestedVariant> &v) noexcept -> bool { return v.GetItem().IsValid(); }))
+			[](const ExclusiveItem<NestedVariant> &v) noexcept -> bool { return v->IsValid(); }))
 		return true;
 
 	return false;
@@ -140,7 +140,7 @@ vector<const Ship *> FleetVariant::ChooseShips() const
 {
 	vector<const Ship *> chosenShips = ships;
 	for(const auto &it : variants)
-		chosenShips.push_back(it.GetItem().ChooseShip());
+		chosenShips.push_back(it->ChooseShip());
 	return chosenShips;
 }
 
@@ -154,7 +154,7 @@ int64_t FleetVariant::Strength() const
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.GetItem().Strength();
+		sum += variant->Strength();
 	return sum;
 }
 

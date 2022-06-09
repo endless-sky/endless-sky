@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FLEET_VARIANT_H_
 #define FLEET_VARIANT_H_
 
+#include "ExclusiveItem.h"
 #include "NestedVariant.h"
-#include "UnionItem.h"
 
 #include <cstdint>
 #include <vector>
@@ -52,7 +52,7 @@ public:
 
 private:
 	std::vector<const Ship *> ships;
-	std::vector<UnionItem<NestedVariant>> variants;
+	std::vector<ExclusiveItem<NestedVariant>> variants;
 };
 
 

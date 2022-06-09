@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef NESTED_VARIANT_H_
 #define NESTED_VARIANT_H_
 
-#include "UnionItem.h"
+#include "ExclusiveItem.h"
 
 #include <cstdint>
 #include <string>
@@ -61,7 +61,7 @@ private:
 private:
 	std::string name;
 	std::vector<const Ship *> ships;
-	std::vector<UnionItem<NestedVariant>> variants;
+	std::vector<ExclusiveItem<NestedVariant>> variants;
 };
 
 

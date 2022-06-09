@@ -67,7 +67,7 @@ void NestedVariant::Load(const DataNode &node)
 
 		if(remove)
 		{
-			if(variant)
+			if(variant && !variants.empty())
 			{
 				// If given a full definition of a nested variant, remove all instances of that
 				// nested variant from this variant.
@@ -77,7 +77,7 @@ void NestedVariant::Load(const DataNode &node)
 				else
 					child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 			}
-			else
+			else if(!ships.empty())
 			{
 				// If given the name of a ship, remove all instances of that ship from this variant.
 				auto removeIt = std::remove(ships.begin(), ships.end(), GameData::Ships().Get(child.Token(1)));
@@ -120,12 +120,12 @@ void NestedVariant::Load(const DataNode &node)
 				// Otherwise this is a new variant definition only for this variant.
 				if(!variantName.empty())
 				{
-					variants.insert(variants.end(), n, UnionItem<NestedVariant>(GameData::Variants().Get(variantName)));
+					variants.insert(variants.end(), n, ExclusiveItem<NestedVariant>(GameData::Variants().Get(variantName)));
 					if(child.HasChildren())
 						child.PrintTrace("Warning: Skipping children of named variant in variant definition:");
 				}
 				else
-					variants.insert(variants.end(), n, UnionItem<NestedVariant>(child));
+					variants.insert(variants.end(), n, ExclusiveItem<NestedVariant>(child));
 			}
 			else
 			{
@@ -142,7 +142,7 @@ void NestedVariant::Load(const DataNode &node)
 	if(!name.empty())
 	{
 		auto removeIt = remove_if(variants.begin(), variants.end(),
-			[this](const UnionItem<NestedVariant> &v) noexcept -> bool { return v.GetItem().NestedInSelf(name); });
+			[this](const ExclusiveItem<NestedVariant> &v) noexcept -> bool { return v->NestedInSelf(name); });
 		if(removeIt != variants.end())
 		{
 			variants.erase(removeIt, variants.end());
@@ -163,7 +163,7 @@ bool NestedVariant::IsValid() const
 
 	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<NestedVariant> &v) noexcept -> bool { return !v.GetItem().IsValid(); }))
+			[](const UnionItem<NestedVariant> &v) noexcept -> bool { return !v->IsValid(); }))
 		return false;
 
 	return true;
@@ -178,7 +178,7 @@ const Ship *NestedVariant::ChooseShip() const
 {
 	// Randomly choose between the ships and the variants.
 	if(Random::Int(ships.size() + variants.size()) < variants.size())
-		return variants[Random::Int(variants.size())].GetItem().ChooseShip();
+		return variants[Random::Int(variants.size())]->ChooseShip();
 
 	return ships[Random::Int(ships.size())];
 }
@@ -194,7 +194,7 @@ int64_t NestedVariant::Strength() const
 	for(const Ship *ship : ships)
 		sum += ship->Cost();
 	for(const auto &variant : variants)
-		sum += variant.GetItem().Strength();
+		sum += variant->Strength();
 	return sum / (ships.size() + variants.size());
 }
 
@@ -235,7 +235,7 @@ bool NestedVariant::NestedInSelf(const string &check) const
 		return true;
 
 	for(const auto &it : variants)
-		if(it.GetItem().NestedInSelf(check))
+		if(it->NestedInSelf(check))
 			return true;
 
 	return false;
