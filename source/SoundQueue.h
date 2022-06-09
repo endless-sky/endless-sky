@@ -46,10 +46,10 @@ public:
 	~SoundQueue();
 
 	// No moving or copying this class.
-	SoundQueue(const SoundQueue &other) = delete;
-	SoundQueue(SoundQueue &&other) = delete;
-	SoundQueue &operator=(const SoundQueue &other) = delete;
-	SoundQueue &operator=(SoundQueue &&other) = delete;
+	SoundQueue(const SoundQueue &) = delete;
+	SoundQueue(SoundQueue &&) = delete;
+	SoundQueue &operator=(const SoundQueue &) = delete;
+	SoundQueue &operator=(SoundQueue &&) = delete;
 
 	// Add a sound to load.
 	void Add(Item item);

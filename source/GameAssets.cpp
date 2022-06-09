@@ -28,7 +28,7 @@ using namespace std;
 namespace {
 	map<string, shared_ptr<ImageSet>> FindImages(const vector<string> &sources)
 	{
-		map<string, shared_ptr<ImageSet>> images;
+		auto images = map<string, shared_ptr<ImageSet>>{};
 		for(const string &source : sources)
 		{
 			// All names will only include the portion of the path that comes after
@@ -126,11 +126,13 @@ void GameAssets::LoadSounds(const std::vector<std::string> &sources)
 			if(path.length() < root.length() + 4)
 				continue;
 			string ext = path.substr(path.length() - 4);
-			string name = path.substr(root.length(), path.length() - root.length() - 4);
 
 			// Music sound files are loaded when needed.
 			if(ext == ".mp3" || ext == ".MP3")
+			{
+				string name = path.substr(root.length(), path.length() - root.length() - 4);
 				music[name] = path;
+			}
 			// Regular sound files are loaded into memory for faster access.
 			else if(ext == ".wav" || ext == ".WAV")
 			{

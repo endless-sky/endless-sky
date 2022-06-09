@@ -67,7 +67,7 @@ void SoundQueue::Add(Item item)
 // Determine the fraction of sprites uploaded to the GPU.
 double SoundQueue::GetProgress() const
 {
-	// Wait until we have completed loading of as many sprites as we have added.
+	// Wait until we have completed loading of as many sounds as we have added.
 	// The value of "added" is protected by readMutex.
 	unique_lock<mutex> readLock(readMutex);
 	// Special cases: we're bailing out, or we are done.
