@@ -3338,8 +3338,6 @@ mission "Home for Skadenga 5"
 	on complete
 		event "mani refit" 21
 		conversation
-			apply
-				set "Asgard2"
 			scene "scene/citydark"
 			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Security forces, Transport Union, and other semi-governmental fleets are all serviced here.`
 			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.`
@@ -3356,6 +3354,7 @@ mission "Mani Refit"
 	to offer
 		has "event: mani refit"
 		has "Home for Skadenga 5: done"
+		not "Home for Skadenga 6: offered"
 	description "Head back to <destination> and meet up with the Transport Union's Fleet."
 	source
 		government "Republic"
@@ -3375,7 +3374,7 @@ mission "Home for Skadenga 6"
 	source "Mani"
 	destination "Nifel"
 	to offer
-		has	"Asgard2"
+		has	"event: mani refit"
 	on offer
 		conversation
 			`You arrive at the spaceport to see a Union Executive overseeing the final preparations of his fleet. After a moment, the last crewmembers leave his side and board their ships. He walks over to you. "The fleet is ready to launch. Please, try to bring them back to me in one piece."`
