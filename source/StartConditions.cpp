@@ -79,10 +79,7 @@ void StartConditions::Load(const DataNode &node)
 					[&value](const Ship &s) noexcept -> bool { return s.ModelName() == value; }),
 					ships.end());
 			else if(key == "conversation")
-			{
-				stockConversation = nullptr;
-				conversation = Conversation();
-			}
+				conversation = ExclusiveItem<Conversation>();
 			else if(key == "conditions")
 				conditions = ConditionSet();
 			else
@@ -115,9 +112,9 @@ void StartConditions::Load(const DataNode &node)
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
 		else if(key == "conversation" && child.HasChildren() && !add)
-			conversation.Load(child);
+			conversation = ExclusiveItem<Conversation>(Conversation(child));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
-			stockConversation = GameData::Conversations().Get(value);
+			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
 			child.PrintTrace("Skipping unsupported use of \"add\":");
 		else
@@ -196,7 +193,7 @@ const vector<Ship> &StartConditions::Ships() const noexcept
 
 const Conversation &StartConditions::GetConversation() const
 {
-	return stockConversation ? *stockConversation : conversation;
+	return *conversation;
 }
 
 

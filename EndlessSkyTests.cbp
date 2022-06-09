@@ -75,6 +75,7 @@
 		<Unit filename="tests/unit/src/test_datafile.cpp" />
 		<Unit filename="tests/unit/src/test_datanode.cpp" />
 		<Unit filename="tests/unit/src/test_esuuid.cpp" />
+		<Unit filename="tests/unit/src/test_exclusiveItem.cpp" />
 		<Unit filename="tests/unit/src/test_firecommand.cpp" />
 		<Unit filename="tests/unit/src/test_main.cpp" />
 		<Unit filename="tests/unit/src/test_point.cpp" />

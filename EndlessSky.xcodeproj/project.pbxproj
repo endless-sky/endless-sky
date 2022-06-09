@@ -212,6 +212,7 @@
 		072599BE26A8C67D007EC229 /* SDL2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SDL2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		072599CC26A8C942007EC229 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = build/SDL2.framework; sourceTree = "<group>"; };
 		0C4C4012AF26E3108B2325EF /* GameAssets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameAssets.cpp; path = source/GameAssets.cpp; sourceTree = "<group>"; };
+		086E48E490C9BAD6660C7274 /* ExclusiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExclusiveItem.h; path = source/ExclusiveItem.h; sourceTree = "<group>"; };
 		0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeightedList.h; path = source/WeightedList.h; sourceTree = "<group>"; };
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
@@ -878,6 +879,7 @@
 				56D7425D82443AEB90B51A87 /* SoundQueue.h */,
 				BCF44249A38BF244AA7780AD /* SoundSet.cpp */,
 				63C749B190E7B2F79261B493 /* SoundSet.h */,
+				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 			);
 			name = source;
 			sourceTree = "<group>";

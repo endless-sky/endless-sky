@@ -635,7 +635,7 @@ ship "Modified Osprey"
 		"Tactical Scanner"
 		"Wanderer Ramscoop"
 		
-		"Afterburner"
+		"Volcano Afterburner"
 		`"Bufaer" Atomic Thruster`
 		"Ionic Afterburner" 5
 		"Type 4 Radiant Thruster"
