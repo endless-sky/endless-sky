@@ -37,7 +37,7 @@ SecondaryWeaponIconDisplay::SecondaryWeaponIconDisplay(PlayerInfo &player)
 void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 {
 	Clear();
-	for(const auto &it : flagship->Outfits())
+	for(const auto &it : flagship.Outfits())
 	{
 		const Outfit *secWeapon = it.first;
 		if(!secWeapon->Icon())
@@ -45,11 +45,11 @@ void SecondaryWeaponIconDisplay::Update(const Ship &flagship)
 
 		double ammoCount = -1;
 		if(secWeapon->Ammo())
-			ammoCount = flagship->OutfitCount(secWeapon->Ammo());
+			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
 		else if(secWeapon->FiringFuel())
 		{
-			double remaining = flagship->Fuel()
-				* flagship->Attributes().Get("fuel capacity");
+			double remaining = flagship.Fuel()
+				* flagship.Attributes().Get("fuel capacity");
 			ammoCount = remaining / secWeapon->FiringFuel();
 		}
 		ammo.emplace_back(secWeapon, ammoCount);
