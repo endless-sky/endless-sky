@@ -2789,6 +2789,15 @@ void PlayerInfo::SortAvailable()
 			{
 				destinations.insert(mission.Destination());
 				destinations.insert(mission.Destination()->GetSystem());
+
+				for(const Planet* stopover : mission.Stopovers())
+				{
+					destinations.insert(stopover);
+					destinations.insert(stopover->GetSystem());
+				}
+
+				for(const System* waypoint : mission.Waypoints())
+					destinations.insert(waypoint);
 			}
 		}
 	}
