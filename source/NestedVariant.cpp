@@ -71,7 +71,7 @@ void NestedVariant::Load(const DataNode &node)
 			{
 				// If given a full definition of a nested variant, remove all instances of that
 				// nested variant from this variant.
-				auto removeIt = std::remove(variants.begin(), variants.end(), UnionItem<NestedVariant>(child));
+				auto removeIt = std::remove(variants.begin(), variants.end(), ExclusiveItem<NestedVariant>(child));
 				if(removeIt != variants.end())
 					variants.erase(removeIt, variants.end());
 				else
@@ -163,7 +163,7 @@ bool NestedVariant::IsValid() const
 
 	// All possible nested variants must be valid.
 	if(any_of(variants.begin(), variants.end(),
-			[](const UnionItem<NestedVariant> &v) noexcept -> bool { return !v->IsValid(); }))
+			[](const ExclusiveItem<NestedVariant> &v) noexcept -> bool { return !v->IsValid(); }))
 		return false;
 
 	return true;
