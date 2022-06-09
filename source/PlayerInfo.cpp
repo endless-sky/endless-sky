@@ -1120,7 +1120,7 @@ void PlayerInfo::Land(UI *ui)
 
 	if(!freshlyLoaded)
 	{
-		Audio::Play(GameData::Sounds().Get("landing"));
+		Audio::Play("landing");
 		Audio::PlayMusic(planet->MusicName());
 	}
 
@@ -1252,7 +1252,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	flagship->AllowCarried(false);
 
 	shouldLaunch = false;
-	Audio::Play(GameData::Sounds().Get("takeoff"));
+	Audio::Play("takeoff");
 
 	// Jobs are only available when you are landed.
 	availableJobs.clear();

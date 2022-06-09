@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Audio.h"
 #include "Color.h"
-#include "GameData.h"
 #include "PointerShader.h"
 #include "SoundSet.h"
 #include "UI.h"
@@ -26,7 +25,7 @@ MenuAnimationPanel::MenuAnimationPanel()
 {
 	SetTrapAllEvents(false);
 
-	Audio::Play(GameData::Sounds().Get("landing"));
+	Audio::Play("landing");
 }
 
 

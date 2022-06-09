@@ -45,10 +45,12 @@ public:
 
 	// Play the given sound, at full volume.
 	static void Play(const Sound *sound);
+	static void Play(const std::string &sound);
 
 	// Play the given sound, as if it is at the given distance from the
 	// "listener". This will make it softer and change the left / right balance.
 	static void Play(const Sound *sound, const Point &position);
+	static void Play(const std::string &sound, const Point &position);
 
 	// Play the given music. An empty string means to play nothing.
 	static void PlayMusic(const std::string &name);

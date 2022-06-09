@@ -1,5 +1,5 @@
 /* SoundQueue.cpp
-Copyright (c) 2022 by quyykk
+Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -47,8 +47,8 @@ SoundQueue::~SoundQueue()
 
 
 
-// Add a sprite to load.
-void SoundQueue::Add(Item item)
+// Add a sound to load.
+void SoundQueue::Add(Item &&item)
 {
 	{
 		lock_guard<mutex> lock(readMutex);
@@ -64,7 +64,7 @@ void SoundQueue::Add(Item item)
 
 
 
-// Determine the fraction of sprites uploaded to the GPU.
+// Determine the fraction of sounds loaded by OpenAL.
 double SoundQueue::GetProgress() const
 {
 	// Wait until we have completed loading of as many sounds as we have added.
@@ -103,7 +103,6 @@ void SoundQueue::operator()()
 			// Load the sound file.
 			if(!sounds.Modify(sound.name)->Load(sound.path, sound.name))
 				Files::LogError("Unable to load sound \"" + sound.name + "\" from path: " + sound.path);
-
 
 			lock.lock();
 			++completed;

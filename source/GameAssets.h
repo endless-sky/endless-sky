@@ -50,9 +50,6 @@ public:
 	// Determine the fraction of assets read from disk.
 	double GetProgress() const;
 
-	// Check for undefined assets and emit a warning for each of them.
-	void CheckReferences();
-
 
 private:
 	void LoadImages(const std::vector<std::string> &sources);

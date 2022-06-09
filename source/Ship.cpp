@@ -2466,7 +2466,7 @@ int Ship::Scan()
 
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(GameData::Sounds().Get("scan"), Position());
+		Audio::Play("scan", Position());
 
 	if(startedScanning && isYours)
 	{

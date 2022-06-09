@@ -207,6 +207,13 @@ void Audio::Play(const Sound *sound)
 
 
 
+void Audio::Play(const string &sound)
+{
+	Play(GameData::Sounds().Get(sound));
+}
+
+
+
 // Play the given sound, as if it is at the given distance from the
 // "listener". This will make it softer and change the left / right balance.
 void Audio::Play(const Sound *sound, const Point &position)
@@ -223,6 +230,13 @@ void Audio::Play(const Sound *sound, const Point &position)
 		unique_lock<mutex> lock(audioMutex);
 		deferred[sound].Add(position - listener);
 	}
+}
+
+
+
+void Audio::Play(const string &sound, const Point &position)
+{
+	Play(GameData::Sounds().Get(sound), position);
 }
 
 

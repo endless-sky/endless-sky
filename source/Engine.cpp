@@ -1388,7 +1388,7 @@ void Engine::CalculateStep()
 		bool isJumping = flagship->IsUsingJumpDrive();
 		const map<const Sound *, int> &jumpSounds = isJumping ? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
 		if(jumpSounds.empty())
-			Audio::Play(GameData::Sounds().Get(isJumping ? "jump drive" : "hyperdrive"));
+			Audio::Play(isJumping ? "jump drive" : "hyperdrive");
 		else
 			for(const auto &sound : jumpSounds)
 				Audio::Play(sound.first);
@@ -1613,7 +1613,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
 			if(jumpSounds.empty())
-				Audio::Play(GameData::Sounds().Get(isJump ? "jump out" : "hyperdrive out"), position);
+				Audio::Play(isJump ? "jump out" : "hyperdrive out", position);
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
@@ -1624,7 +1624,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		{
 			const map<const Sound *, int> &jumpSounds = isJump ? ship->Attributes().JumpInSounds() : ship->Attributes().HyperInSounds();
 			if(jumpSounds.empty())
-				Audio::Play(GameData::Sounds().Get(isJump ? "jump in" : "hyperdrive in"), position);
+				Audio::Play(isJump ? "jump in" : "hyperdrive in", position);
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
@@ -2280,7 +2280,7 @@ void Engine::FillRadar()
 	else if(hasHostiles && !hadHostiles)
 	{
 		if(Preferences::Has("Warning siren"))
-			Audio::Play(GameData::Sounds().Get("alarm"));
+			Audio::Play("alarm");
 		alarmTime = 180;
 		hadHostiles = true;
 	}

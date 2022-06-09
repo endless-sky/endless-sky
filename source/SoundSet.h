@@ -1,5 +1,5 @@
 /* SoundSet.h
-Copyright (c) 2022 by quyykk
+Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -22,9 +22,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class for storing sprites, and for getting the sprite associated with a given
-// name. If a sprite has not been loaded yet, this will still return an object
-// but with no OpenGL textures associated with it (so it will draw nothing).
+// Class for storing sounds, and for getting the soundassociated with a given
+// name. If a sound has not been loaded yet, this will still return an object
+// but with no OpenAL buffers associated with it (so it will be silent).
 class SoundSet {
 public:
 	// Get a pointer to the sound with the given name.
@@ -37,6 +37,7 @@ public:
 	// Provide iterators for looping over all the sounds.
 	std::map<std::string, Sound>::const_iterator begin() const { return sounds.begin(); };
 	std::map<std::string, Sound>::const_iterator end() const { return sounds.end(); };
+
 
 private:
 	mutable std::map<std::string, Sound> sounds;

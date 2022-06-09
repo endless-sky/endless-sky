@@ -38,10 +38,10 @@ public:
 	~SpriteQueue();
 
 	// No moving or copying this class.
-	SpriteQueue(const SpriteQueue &other) = delete;
-	SpriteQueue(SpriteQueue &&other) = delete;
-	SpriteQueue &operator=(const SpriteQueue &other) = delete;
-	SpriteQueue &operator=(SpriteQueue &&other) = delete;
+	SpriteQueue(const SpriteQueue &) = delete;
+	SpriteQueue(SpriteQueue &&) = delete;
+	SpriteQueue &operator=(const SpriteQueue &) = delete;
+	SpriteQueue &operator=(SpriteQueue &&) = delete;
 
 	// Add a sprite to load.
 	void Add(const std::shared_ptr<ImageSet> &images);

@@ -1,5 +1,5 @@
 /* SoundQueue.h
-Copyright (c) 2022 by quyykk
+Copyright (c) 2022 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -14,23 +14,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SOUND_QUEUE_H_
 
 #include <condition_variable>
-#include <map>
-#include <memory>
 #include <mutex>
 #include <queue>
 #include <string>
 #include <thread>
 #include <vector>
 
-class ImageBuffer;
-class ImageSet;
-class Mask;
-class Sprite;
 class SoundSet;
 
 
 
-// Class for queuing up a list of sprites to be loaded from the disk, with a set of
+// Class for queuing up a list of sounds to be loaded from the disk, with a set of
 // worker threads that begins loading them as soon as they are added.
 class SoundQueue {
 public:
@@ -52,8 +46,8 @@ public:
 	SoundQueue &operator=(SoundQueue &&) = delete;
 
 	// Add a sound to load.
-	void Add(Item item);
-	// Determine the fraction of sounds uploaded to the GPU.
+	void Add(Item &&item);
+	// Determine the fraction of sounds loaded by OpenAL.
 	double GetProgress() const;
 
 	// Thread entry point.
