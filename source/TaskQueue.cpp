@@ -22,10 +22,12 @@ using namespace std;
 namespace {
 	struct Task {
 		// The function to execute in parallel.
-		packaged_task<void()> async;
+		function<void()> async;
 		// If specified, this function is called in the main thread after
 		// the function above has finished executing.
 		function<void()> sync;
+
+		promise<void> promise;
 	};
 
 	queue<Task> tasks;
@@ -34,7 +36,7 @@ namespace {
 	bool shouldQuit = false;
 
 	// These image sets have been loaded from disk but have not been uploaded.
-	queue<function<void()>> syncTasks;
+	queue<Task> syncTasks;
 	mutex syncMutex;
 
 	// Worker threads for executing tasks.
@@ -83,9 +85,15 @@ namespace {
 				{
 					{
 						unique_lock<mutex> lock(syncMutex);
-						syncTasks.push(std::move(task.sync));
+						syncTasks.push(std::move(task));
+						// No work to do anymore in this thread for this task so mark
+						// the future as ready.
+						syncTasks.back().promise.set_value();
 					}
 				}
+				else
+					// We are done and can mark the future as ready.
+					task.promise.set_value();
 
 				lock.lock();
 			}
@@ -140,9 +148,8 @@ future<void> TaskQueue::Run(function<void()> f, function<void()> g)
 			return result;
 
 		// Queue this task for execution and create a future to track its state.
-		packaged_task<void()> task(std::move(f));
-		result = task.get_future();
-		tasks.push(Task{std::move(task), std::move(g)});
+		tasks.push(Task{std::move(f), std::move(g)});
+		result = tasks.back().promise.get_future();
 	}
 	asyncCondition.notify_one();
 
@@ -158,12 +165,12 @@ void TaskQueue::ProcessTasks()
 	for(int i = 0; !syncTasks.empty() && i < MAX_SYNC_TASKS; ++i)
 	{
 		// Extract the one item we should work on right now.
-		auto task = syncTasks.front();
+		auto task = std::move(syncTasks.front());
 		syncTasks.pop();
 
 		lock.unlock();
 
-		task();
+		task.sync();
 
 		lock.lock();
 	}
