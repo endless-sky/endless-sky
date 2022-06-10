@@ -43,7 +43,7 @@ mission "Resistance: Charity 1"
 		payment 44000
 		conversation
 			`You find the local charity workers, and they begin unloading the charity supplies. When they're about done, you receive a transmission from the Kimek who gave you the job.`
-			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
+			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
 
 mission "Resistance: Charity 2"
 	name "Charity Delivery"
@@ -246,7 +246,7 @@ mission "Resistance: Torpedoes"
 		outfit "Typhoon Torpedo" -60
 		payment 1852000
 		conversation
-			`Donning your heavy winter clothing, you open the hatch after landing on a marked snowfield, close to the base of a mountain. Several Saryds are waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own finishers, these are, but still hurt their hulls good, they should."`
+			`Once again, your monitor beeps, and some coordinates appear on the screen. You follow them, arriving to a snowfield, close to the base of a mountain.Donning your heavy winter clothing, you open the hatch to find several Saryds waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own finishers, these are, but still hurt their hulls good, they should."`
 			choice
 				`	"Are you sure they won't find you here?"`
 					goto find
