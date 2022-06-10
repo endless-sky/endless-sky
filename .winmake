@@ -83,11 +83,11 @@ dist: BIN_DIR ::= "$(BIN_DIR)/pkgd"
 
 # Target-specific build recipes
 dist:
-	$(scons_env) $(scons_exe) $(scons_opts) mode=release
+	$(scons_env) "$(scons_exe)" $(scons_opts) mode=release
 debug release:
-	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
+	$(scons_env) "$(scons_exe)" $(scons_opts) mode=$@
 build-tests test:
-	$(scons_env) $(scons_exe) $(scons_opts) $@
+	$(scons_env) "$(scons_exe)" $(scons_opts) $@
 profile:
 	@echo "Profiling is currently only supported on linux"
 
