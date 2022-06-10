@@ -27,7 +27,7 @@ namespace {
 		// the function above has finished executing.
 		function<void()> sync;
 
-		promise<void> promise;
+		promise<void> futurePromise;
 	};
 
 	queue<Task> tasks;
@@ -88,12 +88,12 @@ namespace {
 						syncTasks.push(std::move(task));
 						// No work to do anymore in this thread for this task so mark
 						// the future as ready.
-						syncTasks.back().promise.set_value();
+						syncTasks.back().futurePromise.set_value();
 					}
 				}
 				else
 					// We are done and can mark the future as ready.
-					task.promise.set_value();
+					task.futurePromise.set_value();
 
 				lock.lock();
 			}
@@ -149,7 +149,7 @@ future<void> TaskQueue::Run(function<void()> f, function<void()> g)
 
 		// Queue this task for execution and create a future to track its state.
 		tasks.push(Task{std::move(f), std::move(g)});
-		result = tasks.back().promise.get_future();
+		result = tasks.back().futurePromise.get_future();
 	}
 	asyncCondition.notify_one();
 
