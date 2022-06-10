@@ -769,7 +769,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			// A carried ship must belong to the same government as its parent to dock with it.
 			bool hasParent = parent && !parent->IsDestroyed() && parent->GetGovernment() == gov;
 			bool inParentSystem = hasParent && parent->GetSystem() == it->GetSystem();
-			// NPCs may take 30 seconds or longer to find a new parent.  Player
+			// NPCs may take 30 seconds or longer to find a new parent. Player
 			// owned fighter shouldn't take more than a few seconds.
 			bool findNewParent = it->IsYours() ? !Random::Int(30) : !Random::Int(1800);
 			bool parentHasSpace = inParentSystem && parent->BaysFree(it->Attributes().Category());
