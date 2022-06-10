@@ -279,7 +279,7 @@ outfit "EMP Torpedo Bay"
 
 
 
-outfit "Teciimach Cannister"
+outfit "Teciimach Canister"
 	plural "EMP Torpedoes"
 	category "Ammunition"
 	licenses
@@ -287,11 +287,11 @@ outfit "Teciimach Cannister"
 	cost 5500
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
-	"teciimach cannister capacity" -1
-	description "This cannister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	"teciimach canister capacity" -1
+	description "This canister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
 	description "Unlike the previous generation of 'EMP torpedoes', the Teciimach torpedoes synchronize themselves with their mothership in order to avoid impacting their allies."
 
-outfit "Teciimach Cannister Rack"
+outfit "Teciimach Canister Rack"
 	category "Ammunition"
 	licenses
 		Remnant
@@ -300,9 +300,9 @@ outfit "Teciimach Cannister Rack"
 	"mass" 5
 	"outfit space" -9
 	"energy capacity" 500
-	"teciimach cannister capacity" 9
-	ammo "Teciimach Cannister"
-	description "The Teciimach Cannister rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
+	"teciimach canister capacity" 9
+	ammo "Teciimach Canister"
+	description "The Teciimach Canister rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
 
 outfit "Teciimach Bay"
@@ -315,13 +315,13 @@ outfit "Teciimach Bay"
 	"outfit space" -13
 	"weapon capacity" -13
 	"gun ports" -1
-	"teciimach cannister capacity" 9
+	"teciimach canister capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "Teciimach Cannister"
+		ammo "Teciimach Canister"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
@@ -364,13 +364,13 @@ outfit "Teciimach Pod"
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"teciimach cannister capacity" 3
+	"teciimach canister capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "Teciimach Cannister"
+		ammo "Teciimach Canister"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
