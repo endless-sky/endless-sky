@@ -1048,7 +1048,7 @@ ship "Smew"
 		"cargo space" 90
 		"fuel capacity" 100
 		"ramscoop" 0.8
-		"required crew" 2
+		"required crew" 1
 		"bunks" 9
 		"mass" 60
 		"drag" 1.96
