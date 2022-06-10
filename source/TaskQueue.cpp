@@ -67,8 +67,7 @@ namespace {
 				lock.unlock();
 
 				// Execute the task.
-				try
-				{
+				try {
 					task.async();
 				}
 				catch(...)
