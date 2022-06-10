@@ -628,7 +628,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() && personality.Disables())
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
-				it->SetTargetShip(FindTarget(*it));
+				FindTarget(*it);
 		}
 		if(isPresent)
 		{
@@ -1087,20 +1087,20 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 
 // Pick a new target for the given ship.
-shared_ptr<Ship> AI::FindTarget(Ship &ship) const
+void AI::FindTarget(Ship &ship) const
 {
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov || ship.GetPersonality().IsPacifist())
-		return target;
+		return ship.SetTargetShip(target);
 
 	bool isYours = ship.IsYours();
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
-			return it->second.target.lock();
+			return ship.SetTargetShip(it->second.target.lock());
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -1113,7 +1113,7 @@ shared_ptr<Ship> AI::FindTarget(Ship &ship) const
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		}
 	if(!maxRange)
-		return target;
+		return ship.SetTargetShip(target);
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1125,7 +1125,7 @@ shared_ptr<Ship> AI::FindTarget(Ship &ship) const
 	// Ships with 'plunders' personality always destroy the ships they have boarded.
 	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
 			&& oldTarget->IsDisabled() && Has(ship, oldTarget, ShipEvent::BOARD))
-		return oldTarget;
+		return ship.SetTargetShip(oldTarget);
 	shared_ptr<Ship> parentTarget;
 	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
 	if(ship.GetParent() && !parentIsEnemy)
@@ -1273,7 +1273,7 @@ shared_ptr<Ship> AI::FindTarget(Ship &ship) const
 			target.reset();
 	}
 
-	return target;
+	return ship.SetTargetShip(target);
 }
 
 
