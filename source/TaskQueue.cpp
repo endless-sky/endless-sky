@@ -30,12 +30,13 @@ namespace {
 		promise<void> futurePromise;
 	};
 
+	// The main task queue used by the worker threads.
 	queue<Task> tasks;
 	mutex asyncMutex;
 	condition_variable asyncCondition;
 	bool shouldQuit = false;
 
-	// These image sets have been loaded from disk but have not been uploaded.
+	// The secondary task queue for tasks that need to be executed on the main thread.
 	queue<Task> syncTasks;
 	mutex syncMutex;
 
