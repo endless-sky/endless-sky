@@ -160,7 +160,7 @@ mission "Remnant: Teciimach Deployment"
 	on offer
 		event "remnant: teciimach deployment"
 		conversation
-			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with cannisters trundle out of the outfitter heading for ships, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
+			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with canisters trundle out of the outfitter heading for ships, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
 			`	"Good timing, Captain! We just rolled out an upgrade to some of our oldest equipment, and our Mergansers finally have something to carry as first-strike weapon. Interested in taking a look?"`
 			choice
 				`	"Yes"`
