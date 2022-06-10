@@ -822,7 +822,7 @@ void Engine::Step(bool isActive)
 
 	if(doClick && !isRightClick)
 	{
-		doClick = !player.SelectShips(clickBox, hasShift) && !secWeapons.Click(clickPoint, hasControl);
+		doClick = !player.SelectShips(clickBox, hasShift) && !secWeapons.Click(clickPoint, SDL_GetModState() && KMOD_CTRL);
 		if(doClick)
 		{
 			const vector<const Ship *> &stack = escorts.Click(clickPoint);
