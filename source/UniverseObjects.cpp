@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 #include "Random.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "StarField.h"
 

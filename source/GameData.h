@@ -76,10 +76,7 @@ public:
 	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void ProcessSprites();
-	// Wait until all pending sprite uploads are completed.
-	static void FinishLoadingSprites();
+	static std::future<void> Preload(const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::string> &Sources();

@@ -49,12 +49,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "Test.h"
 #include "TestData.h"
 #include "UniverseObjects.h"
@@ -82,7 +82,6 @@ namespace {
 	StarField background;
 
 	map<string, string> plugins;
-	SpriteQueue spriteQueue;
 
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
@@ -92,6 +91,18 @@ namespace {
 
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
+
+	// Tracks the progress of loading the sprites when the game starts>.
+	int spriteLoadingProgress = 0;
+	int totalSprites = 0;
+
+	// Loads a sprite while total progress tracking.
+	void LoadSprite(const shared_ptr<ImageSet> &image)
+	{
+		TaskQueue::Run([image] { image->Load(); },
+				[image] { image->Upload(SpriteSet::Modify(image->Name())); ++spriteLoadingProgress; });
+		++totalSprites;
+	}
 }
 
 
@@ -121,7 +132,7 @@ future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
 			if(ImageSet::IsDeferred(it.first))
 				deferred[SpriteSet::Get(it.first)] = it.second;
 			else
-				spriteQueue.Add(it.second);
+				LoadSprite(it.second);
 		}
 
 		// Generate a catalog of music files.
@@ -183,16 +194,8 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	// Cache progress completion seen, so clients are
-	// isolated from the loading implementation details.
-	static bool initiallyLoaded = false;
-	if(initiallyLoaded)
-		return 1.;
-
-	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
-	if(val >= 1.)
-		initiallyLoaded = true;
-	return val;
+	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
+	return min(min(spriteProgress, Audio::GetProgress()), objects.GetProgress());
 }
 
 
@@ -206,12 +209,12 @@ bool GameData::IsLoaded()
 
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
-void GameData::Preload(const Sprite *sprite)
+future<void> GameData::Preload(const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
 	if(!sprite || dit == deferred.end())
-		return;
+		return future<void>();
 
 	// If this sprite is one of the currently loaded ones, there is no need to
 	// load it again. But, make note of the fact that it is the most recently
@@ -224,7 +227,7 @@ void GameData::Preload(const Sprite *sprite)
 				++it.second;
 
 		pit->second = 0;
-		return;
+		return future<void>();
 	}
 
 	// This sprite is not currently preloaded. Check to see whether we already
@@ -237,7 +240,7 @@ void GameData::Preload(const Sprite *sprite)
 		++pit->second;
 		if(pit->second >= 20)
 		{
-			spriteQueue.Unload(name);
+			SpriteSet::Modify(name)->Unload();
 			pit = preloaded.erase(pit);
 		}
 		else
@@ -246,22 +249,9 @@ void GameData::Preload(const Sprite *sprite)
 
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
-	spriteQueue.Add(dit->second);
-}
-
-
-
-void GameData::ProcessSprites()
-{
-	spriteQueue.UploadSprites();
-}
-
-
-
-// Wait until all pending sprite uploads are completed.
-void GameData::FinishLoadingSprites()
-{
-	spriteQueue.Finish();
+	auto image = dit->second;
+	return TaskQueue::Run([image] { image->Load(); },
+			[image] { image->Upload(SpriteSet::Modify(image->Name())); });
 }
 
 
@@ -829,7 +819,7 @@ void GameData::LoadSources()
 			icon->Add(*it + "icon@2x.jpg");
 
 		icon->ValidateFrames();
-		spriteQueue.Add(icon);
+		LoadSprite(icon);
 	}
 }
 

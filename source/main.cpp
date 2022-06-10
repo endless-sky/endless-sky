@@ -35,6 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "TaskQueue.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "UI.h"
@@ -46,7 +47,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cassert>
 #include <future>
-#include <stdexcept>
+#include <exception>
 #include <string>
 
 #ifdef _WIN32
@@ -118,6 +119,11 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	try {
+		TaskQueue::Init();
+		struct TaskQueueCleanup {
+			~TaskQueueCleanup() { TaskQueue::Quit(); }
+		} _;
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
@@ -180,7 +186,7 @@ int main(int argc, char *argv[])
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
-	catch(const runtime_error &error)
+	catch(const exception &error)
 	{
 		Audio::Quit();
 		bool doPopUp = testToRunName.empty();
@@ -317,6 +323,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+
+		// Process any tasks to execute.
+		TaskQueue::ProcessTasks();
 
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		const Test *runningTest = testContext.CurrentTest();

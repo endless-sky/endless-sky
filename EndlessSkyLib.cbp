@@ -304,8 +304,6 @@
 		<Unit filename="source/SpaceportPanel.h" />
 		<Unit filename="source/Sprite.cpp" />
 		<Unit filename="source/Sprite.h" />
-		<Unit filename="source/SpriteQueue.cpp" />
-		<Unit filename="source/SpriteQueue.h" />
 		<Unit filename="source/SpriteSet.cpp" />
 		<Unit filename="source/SpriteSet.h" />
 		<Unit filename="source/SpriteShader.cpp" />
@@ -320,6 +318,8 @@
 		<Unit filename="source/StellarObject.h" />
 		<Unit filename="source/System.cpp" />
 		<Unit filename="source/System.h" />
+		<Unit filename="source/TaskQueue.cpp" />
+		<Unit filename="source/TaskQueue.h" />
 		<Unit filename="source/Test.cpp" />
 		<Unit filename="source/Test.h" />
 		<Unit filename="source/TestContext.cpp" />
