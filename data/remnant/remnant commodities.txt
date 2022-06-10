@@ -63,7 +63,7 @@ trade
 		"industrial gases"
 		"ultrasonic agitators"
 
-trade	
+trade
 	commodity "remnant outfitter repair"
 		"Inhibitor Cannon"
 		"Thrasher Cannon"
