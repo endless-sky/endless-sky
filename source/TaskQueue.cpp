@@ -169,9 +169,7 @@ void TaskQueue::ProcessTasks()
 		syncTasks.pop();
 
 		lock.unlock();
-
 		task.sync();
-
 		lock.lock();
 	}
 }

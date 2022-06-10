@@ -92,11 +92,11 @@ namespace {
 	const Government *playerGovernment = nullptr;
 	map<const System *, map<string, int>> purchases;
 
-	// Tracks the progress of loading the sprites when the game starts>.
+	// Tracks the progress of loading the sprites when the game starts.
 	int spriteLoadingProgress = 0;
 	int totalSprites = 0;
 
-	// Loads a sprite while total progress tracking.
+	// Loads a sprite whith total progress tracking.
 	void LoadSprite(const shared_ptr<ImageSet> &image)
 	{
 		TaskQueue::Run([image] { image->Load(); },
