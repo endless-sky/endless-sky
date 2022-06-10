@@ -37,7 +37,7 @@ namespace {
 	bool shouldQuit = false;
 
 	// The secondary task queue for tasks that need to be executed on the main thread.
-	queue<Task> syncTasks;
+	queue<function<void()>> syncTasks;
 	mutex syncMutex;
 
 	// Worker threads for executing tasks.
@@ -83,17 +83,12 @@ namespace {
 				// in the main thread.
 				if(task.sync)
 				{
-					{
-						unique_lock<mutex> lock(syncMutex);
-						syncTasks.push(std::move(task));
-						// No work to do anymore in this thread for this task so mark
-						// the future as ready.
-						syncTasks.back().futurePromise.set_value();
-					}
+					unique_lock<mutex> lock(syncMutex);
+					syncTasks.push(std::move(task.sync));
 				}
-				else
-					// We are done and can mark the future as ready.
-					task.futurePromise.set_value();
+
+				// We are done and can mark the future as ready.
+				task.futurePromise.set_value();
 
 				lock.lock();
 			}
@@ -169,7 +164,7 @@ void TaskQueue::ProcessTasks()
 		syncTasks.pop();
 
 		lock.unlock();
-		task.sync();
+		task();
 		lock.lock();
 	}
 }
