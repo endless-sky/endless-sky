@@ -780,6 +780,9 @@ void MissionPanel::Accept()
 					break;
 			}
 	}
+
+	if(availableIt != available.end())
+		CenterOnSystem(availableIt->Destination()->GetSystem());
 }
 
 
