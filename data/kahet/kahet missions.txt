@@ -655,7 +655,7 @@ mission "Ka'het: Patir Mystery 5"
 					goto still
 				`	(Keep staying still.)`
 					goto still
-				`	(Try shooting at the hover engines of the Ka'sei with your sidearm.)`
+				`	(Try shooting at the hover engines of the Ka'sei with my sidearm.)`
 			`	You take out your gun and start aiming for the Fetri'sei's side pods. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far away to reach it in time before a Ravager beam tears through your suit. The last thing you see is Dusk closing the airlock.`
 				die
 			
