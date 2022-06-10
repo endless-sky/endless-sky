@@ -277,6 +277,34 @@ outfit "EMP Torpedo Bay"
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
+
+
+outfit "Teciimach Cannister"
+	plural "EMP Torpedoes"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 5500
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"teciimach cannister capacity" -1
+	description "This cannister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description "Unlike the previous generation of 'EMP torpedoes', the Teciimach torpedoes synchronize themselves with their mothership in order to avoid impacting their allies."
+
+outfit "Teciimach Cannister Rack"
+	category "Ammunition"
+	licenses
+		Remnant
+	cost 98000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -9
+	"energy capacity" 500
+	"teciimach cannister capacity" 9
+	ammo "Teciimach Cannister"
+	description "The Teciimach Cannister rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
+
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
 	licenses
@@ -284,16 +312,16 @@ outfit "Teciimach Bay"
 	cost 583000
 	thumbnail "outfit/teciimach bay"
 	"mass" 9
-	"outfit space" -14
-	"weapon capacity" -14
+	"outfit space" -13
+	"weapon capacity" -13
 	"gun ports" -1
-	"emp torpedo capacity" 9
+	"teciimach cannister capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "EMP Torpedo"
+		ammo "Teciimach Cannister"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
@@ -319,12 +347,12 @@ outfit "Teciimach Bay"
 		"shield damage" 900
 		"hull damage" 125
 		"disabled damage" 60
-		"ion damage" 60
+		"ion damage" 65
 		"energy damage" 2000
 		"hit force" 90
-		"missile strength" 90
-	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
-	description "Centuries later, the Teciimach revision includes a range of upgrades to their efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
+		"missile strength" 95
+	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
@@ -336,13 +364,13 @@ outfit "Teciimach Pod"
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
-	"emp torpedo capacity" 3
+	"teciimach cannister capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"
 			"frame rate" 2
 			"no repeat"
 		sound "torpedo"
-		ammo "EMP Torpedo"
+		ammo "Teciimach Cannister"
 		icon "icon/emp"
 		"fire effect" "emp torpedo fire" 5
 		"hit effect" "nuke explosion"
@@ -373,7 +401,7 @@ outfit "Teciimach Pod"
 		"ion damage" 60
 		"energy damage" 2000
 		"hit force" 90
-		"missile strength" 90
+		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor class vessels."
 	description "Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
 

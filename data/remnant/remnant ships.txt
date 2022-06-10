@@ -381,8 +381,8 @@ ship "Gull" "Gull (Support II)"
 		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"EMP Torpedo" 16
-		"EMP Torpedo Storage Bay"
+		"Teciimach Cannister" 16
+		"Teciimach Cannister Rack"
 
 		"Epoch Cell"
 		"Millennium Cell"
@@ -718,7 +718,7 @@ ship "Merganser" "Merganser II"
 	outfits
 		"Inhibitor Cannon" 2
 		"Teciimach Pod"
-		"EMP Torpedo" 3
+		"Teciimach Cannister" 3
 		
 		"Millennium Cell" 2
 		"Crystal Capacitor" 2

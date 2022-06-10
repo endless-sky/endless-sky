@@ -147,7 +147,7 @@ mission "Remnant: Visit to Paradise 1"
 
 
 
-mission "Remnant: EMP II Deployment"
+mission "Remnant: Teciimach Deployment"
 	name "Watch the new EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
 	landing
@@ -160,7 +160,7 @@ mission "Remnant: EMP II Deployment"
 	on offer
 		event "remnant: teciimach deployment"
 		conversation
-			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with EMPs trundle out of the outfitter heading for ships, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
+			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with cannisters trundle out of the outfitter heading for ships, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
 			`	"Good timing, Captain! We just rolled out an upgrade to some of our oldest equipment, and our Mergansers finally have something to carry as first-strike weapon. Interested in taking a look?"`
 			choice
 				`	"Yes"`
@@ -168,13 +168,19 @@ mission "Remnant: EMP II Deployment"
 					goto empno
 			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP torpedo canisters into place. "Well, you have probably seen us use EMP torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
 			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focusing on the torpedoes themselves, others focusing on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole works. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
+			`	She looks at you and nods contemplatively. "One thing worth noting: You are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
+			choice
+				`	"Whatever makes things easier for everyone."`
+					goto empno
+				`	"Thanks. What names were changed?"`
+			`	She looks amused. "Mainly weapons. If something is named an adjective that describes what it does, then it was a name we made up on the spot to include in the linguistic overlay we put in place for the displays. We did that so that you would have an easier time understanding what something does. Thankfully, you no longer need such aides."`
 			choice
 				`	"Thanks for the explanation."`
 					goto empno
-				`	"What does 'Warren' mean?"`
+				`	"Thanks! Circling back to our earlier topic, what does 'Warren' mean?"`
 			`	"It is our term for the network of caves, tunnels, and spaces deep underground. All three of our main worlds have them in some form or another. We know a little about the original people who built them, but not nearly as much as we would like. They called themselves the Zitchal Maugdrakoi, and one of the most distinguishing features we have been able to learn about them is that they do not seem to attach much importance to directionality. For example, in a control room we found, there were instruments and controls on every available surface, with just a scattering of handholds scattered around to support the operator." She shrugs. "Plume or Dusk would know more than I about them. I mostly focus on understanding their equipment."`
 			label empno
-			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on an EMP bay.`
+			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on an a new bay.`
 				accept
 	npc
 		government "Remnant"
