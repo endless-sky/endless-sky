@@ -282,6 +282,9 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_UP)
 	{
 		SelectAnyMission();
+		// If SelectAnyMission() returns true, it just auto-selected the first mission on a side,
+		//  so iterate back one step and wrap to the end of the list
+		// If false, a mission was already selected, so, well, iterate one step back all the same.
 		if(availableIt != available.end())
 		{
 			// All available missions are, by definition, visible.
@@ -299,11 +302,14 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN && !SelectAnyMission())
+	else if(key == SDLK_DOWN)
 	{
-		// Keyed "Down," and didn't auto-select the first mission on a side,
-		// so update the existing selected mission.
-		if(availableIt != available.end())
+		if(SelectAnyMission())
+		{
+			// If SelectAnyMission() auto-selected the first mission on a side,
+			// don't need to update the existing selected mission.
+		}
+		else if(availableIt != available.end())
 		{
 			++availableIt;
 			if(availableIt == available.end())
