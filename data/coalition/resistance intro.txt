@@ -246,7 +246,7 @@ mission "Resistance: Torpedoes"
 		outfit "Typhoon Torpedo" -60
 		payment 1852000
 		conversation
-			`Once again, your monitor beeps, and some coordinates appear on the screen. You follow them, arriving to a snowfield, close to the base of a mountain.Donning your heavy winter clothing, you open the hatch to find several Saryds waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own finishers, these are, but still hurt their hulls good, they should."`
+			`Once again, your monitor beeps, and some coordinates appear on the screen. You follow them, arriving to a snowfield, close to the base of a mountain. Donning your heavy winter clothing, you open the hatch to find several Saryds waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own finishers, these are, but still hurt their hulls good, they should."`
 			choice
 				`	"Are you sure they won't find you here?"`
 					goto find
