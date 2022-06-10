@@ -83,11 +83,11 @@ dist: BIN_DIR ::= "$(BIN_DIR)/pkgd"
 
 # Target-specific build recipes
 dist:
-	$(scons_env) "$(scons_exe)" $(scons_opts) mode=release
+	$(scons_env) $(scons_exe) $(scons_opts) mode=release
 debug release:
-	$(scons_env) "$(scons_exe)" $(scons_opts) mode=$@
+	$(scons_env) $(scons_exe) $(scons_opts) mode=$@
 build-tests test:
-	$(scons_env) "$(scons_exe)" $(scons_opts) $@
+	$(scons_env) $(scons_exe) $(scons_opts) $@
 profile:
 	@echo "Profiling is currently only supported on linux"
 
@@ -114,7 +114,7 @@ scons_exe = $(PYTHON_BINARY) ./scons-local/scons.py
 get_scons: scons-local; @echo "Using locally installed scons"
 else
 # (A system-installed SCons also implies that a python binary is located in the user's PATH.)
-scons_exe ::= $(native_scons)
+scons_exe ::= "$(native_scons)"
 get_scons:
 	@echo "Using system scons $(scons_exe)"
 endif
