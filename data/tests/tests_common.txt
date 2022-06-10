@@ -393,7 +393,7 @@ test-data "Fighters and Carriers and Escorts"
 			fuel 500
 			shields 5700
 			hull 1900
-			position 0 0				
+			position 0 0
 			engine -10 91
 			engine 10 91
 			gun -13 -79 "Sidewinder Missile Launcher"
