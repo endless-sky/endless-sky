@@ -136,20 +136,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 				break;
 	}
 
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, true);
+	SetSelectedScrollAndCenter(true);
 }
 
 
@@ -184,6 +171,28 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 			if(FindMissionForSystem(*it))
 				break;
 	}
+
+	SetSelectedScrollAndCenter();
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
 }
 
 
@@ -323,17 +332,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
+	SetSelectedScrollAndCenter();
 
 	return true;
 }
@@ -357,9 +356,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
-			DoScroll(available, availableIt, availableScroll, false);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -376,9 +373,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
-			CenterOnSystem(selectedSystem);
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
