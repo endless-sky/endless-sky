@@ -96,7 +96,7 @@ namespace {
 	int spriteLoadingProgress = 0;
 	int totalSprites = 0;
 
-	// Loads a sprite whith total progress tracking.
+	// Loads a sprite with total progress tracking.
 	void LoadSprite(const shared_ptr<ImageSet> &image)
 	{
 		TaskQueue::Run([image] { image->Load(); },
