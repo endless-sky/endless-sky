@@ -63,6 +63,7 @@ mission "First Contact: Gegno"
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 
 #missions set up for future content
+
 mission "Stationed Vi Augen"
 	invisible
 	landing
