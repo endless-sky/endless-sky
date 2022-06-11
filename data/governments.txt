@@ -134,13 +134,13 @@ government "Free Worlds"
 government Gegno
 	swizzle 28
 	color 0.56 0.44 0.2
-	"player reputation" 0.1
+	"player reputation" 0.01
 	"crew attack" 1.7
 	"crew defense" 2.2
 	"attitude toward"
 		"Gegno Scin" 1
 		"Gegno Vi" 1
-		Quarg 1
+		Quarg 0.1
 	"penalty for"
 		assist 0
 		board -1
@@ -158,7 +158,7 @@ government "Gegno Scin"
 	"crew attack" 2.1
 	"crew defense" 2.7
 	"attitude toward"
-		"Gegno Vi" -0.05
+		"Gegno Vi" -0.01
 		Gegno 1
 	"penalty for"
 		assist 0
@@ -166,7 +166,6 @@ government "Gegno Scin"
 		capture -1
 		destroy -1
 		atrocity -1
-		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -178,14 +177,13 @@ government "Gegno Vi"
 	"crew defense" 1.9
 	"attitude toward"
 		Gegno 1
-		"Gegno Scin" -0.05
+		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
 		board -1
 		capture -1
 		destroy -1
 		atrocity -1
-		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
