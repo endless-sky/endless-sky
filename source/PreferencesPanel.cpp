@@ -442,7 +442,7 @@ void PreferencesPanel::DrawSettings()
 		"AI",
 		"Automatic aiming",
 		"Automatic firing",
-        "Mouse controls",
+		"Mouse controls",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		TURRET_TRACKING,

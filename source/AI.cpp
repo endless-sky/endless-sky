@@ -3517,42 +3517,42 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
 
-    if (Preferences::Has("Mouse controls"))
-    {
-        Angle shipAngle = ship.Facing();
-        if (rightMouseButtonHeld)
-        {
-            int index = 0;
-            for(const Hardpoint &hardpoint : ship.Weapons())
-            {
-                if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
-                    firingCommands.SetFire(index);
-                ++index;
-            }
-        }
+	if (Preferences::Has("Mouse controls"))
+	{
+		Angle shipAngle = ship.Facing();
+		if (rightMouseButtonHeld)
+		{
+			int index = 0;
+			for(const Hardpoint &hardpoint : ship.Weapons())
+			{
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+					firingCommands.SetFire(index);
+				++index;
+			}
+		}
 
-        // To stop jittering due to the mouseAngle changing
-        // frequently, the ship is only turned if both the
-        // angles differ by more than or equal to one degree
-        if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 1 )
-        {
-            command.SetTurn(0);
-        }
-        else if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 180 )
-        {
-            if (shipAngle.Degrees360() < mouseAngle.Degrees360())
-                command.SetTurn(1);
-            if (shipAngle.Degrees360() > mouseAngle.Degrees360())
-                command.SetTurn(-1);
-        } 
-        else
-        {
-            if (shipAngle.Degrees360() > mouseAngle.Degrees360())
-                command.SetTurn(1);
-            if (shipAngle.Degrees360() < mouseAngle.Degrees360())
-                command.SetTurn(-1);
-        }
-    }
+		// To stop jittering due to the mouseAngle changing
+		// frequently, the ship is only turned if both the
+		// angles differ by more than or equal to one degree
+		if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 1 )
+		{
+			command.SetTurn(0);
+		}
+		else if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 180 )
+		{
+			if (shipAngle.Degrees360() < mouseAngle.Degrees360())
+				command.SetTurn(1);
+			if (shipAngle.Degrees360() > mouseAngle.Degrees360())
+				command.SetTurn(-1);
+		} 
+		else
+		{
+			if (shipAngle.Degrees360() > mouseAngle.Degrees360())
+				command.SetTurn(1);
+			if (shipAngle.Degrees360() < mouseAngle.Degrees360())
+				command.SetTurn(-1);
+		}
+	}
 
 	if(activeCommands)
 	{
