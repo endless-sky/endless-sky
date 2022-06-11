@@ -203,7 +203,7 @@ ship Gypsum
 		"fuel capacity" 500
 		"heat dissipation" 0.8
 		hull 5200
-		"outfit space" 190
+		"outfit space" 240
 		"required crew" 18
 		shields 0
 		"weapon capacity" 42
