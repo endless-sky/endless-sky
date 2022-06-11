@@ -3544,7 +3544,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				command.SetTurn(1);
 			if (shipAngle.Degrees360() > mouseAngle.Degrees360())
 				command.SetTurn(-1);
-		} 
+		}
 		else
 		{
 			if (shipAngle.Degrees360() > mouseAngle.Degrees360())

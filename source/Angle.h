@@ -50,7 +50,7 @@ public:
 	Point Unit() const;
 	// Convert an Angle object to degrees, in the range -180 to 180.
 	double Degrees() const;
-    double Degrees360() const;
+	double Degrees360() const;
 
 	// Return a point rotated by this angle around (0, 0).
 	Point Rotate(const Point &point) const;
