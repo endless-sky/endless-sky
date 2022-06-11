@@ -3533,7 +3533,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
         // To stop jittering due to the mouseAngle changing
         // frequently, the ship is only turned if both the
-        // angles differ by more than one degree
+        // angles differ by more than or equal to one degree
         if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 1 )
         {
             command.SetTurn(0);
