@@ -75,6 +75,8 @@ ship Shale
 	swizzle 0
 	attributes
 		category Transport
+		licenses
+			"Gegno Civilian"
 		cost 265000
 		mass 121
 		bunks 7
@@ -111,6 +113,8 @@ ship Dolomite
 	swizzle 0
 	attributes
 		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
 		cost 1692000
 		mass 570
 		bunks 80
@@ -238,6 +242,9 @@ ship Slate
 	swizzle 0
 	attributes
 		category Transport
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
 		cost 336000
 		mass 121
 		bunks 7
@@ -275,6 +282,9 @@ ship Schist
 	attributes
 		category "Light Freighter"
 		cost 1932000
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
 		mass 560
 		bunks 86
 		"cargo space" 122
@@ -334,6 +344,10 @@ ship Eclogite
 	swizzle 0
 	attributes
 		category "Light Warship"
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
 		cost 2500000
 		mass 275
 		bunks 20
@@ -380,6 +394,10 @@ ship Hornfel
 	swizzle 0
 	attributes
 		category "Medium Warship"
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
 		cost 7630000
 		mass 740
 		bunks 74
@@ -463,6 +481,11 @@ ship Gneiss
 	swizzle 0
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
+			"Vi Lord"
 		cost 15690000
 		mass 1245
 		bunks 162
@@ -514,6 +537,11 @@ ship Protolith
 	swizzle 0
 	attributes
 		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
+			"Vi Lord"
 		cost 17600000
 		mass 1260
 		bunks 292
@@ -564,6 +592,10 @@ ship Halite
 	swizzle 0
 	attributes
 		category Fighter
+		licenses
+			"Gegno Civilian"
+			"Scin Hoplologist"
+			"Scin Architect"
 		cost 129000
 		mass 30
 		bunks 1
@@ -601,6 +633,9 @@ ship Mica
 	swizzle 0
 	attributes
 		category Transport
+		licenses
+			"Gegno Civilian"
+			"Scin Adjutant"
 		cost 358000
 		mass 115
 		bunks 9
@@ -637,6 +672,9 @@ ship Coesite
 	swizzle 0
 	attributes
 		category "Light Warship"
+		licenses
+			"Gegno Civilian"
+			"Scin Adjutant"
 		cost 3120000
 		mass 245
 		bunks 26
@@ -681,6 +719,10 @@ ship Tridymite
 	swizzle 0
 	attributes
 		category "Light Warship"
+		licenses
+			"Gegno Civilian"
+			"Scin Architect"
+			"Scin Hoplologist"
 		cost 1960000
 		mass 225
 		bunks 20
@@ -726,6 +768,10 @@ ship Felsic
 	swizzle 0
 	attributes
 		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
+			"Scin Architect"
+			"Scin Hoplologist"
 		cost 2342000
 		mass 565
 		bunks 78
@@ -772,6 +818,10 @@ ship Feldspar
 	swizzle 0
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Gegno Civilian"
+			"Scin Architect"
+			"Scin Hoplologist"
 		cost 14760000
 		mass 1146
 		bunks 192
@@ -846,6 +896,10 @@ ship Muscovite
 	swizzle 0
 	attributes
 		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
+			"Scin Architect"
+			"Scin Hoplologist"
 		cost 16460000
 		mass 1090
 		bunks 166

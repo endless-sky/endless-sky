@@ -6,6 +6,9 @@ outfit "Irate Cannon"
 	"gun ports" -1
 	"outfit space" -12
 	"weapon capacity" -12
+	licenses
+		"Gegno Civilian" 
+		"Vi Evocati"
 	weapon
 		sprite projectile/irate
 		sound irate
@@ -31,6 +34,10 @@ outfit "Chloeric Cannon"
 	"gun ports" -1
 	"outfit space" -37
 	"weapon capacity" -37
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
 	weapon
 		sprite projectile/chloeric
 		sound chloeric
@@ -59,6 +66,10 @@ outfit "Chloeric Turret"
 	"required crew" 2
 	"turret mounts" -1
 	"weapon capacity" -42
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
 	weapon
 		sprite projectile/chloeric
 		"hardpoint sprite" hardpoint/chloeric
@@ -89,6 +100,11 @@ outfit "Ballistic Cannon"
 	"required crew" 3
 	"turret mounts" -1
 	"weapon capacity" -120
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
 	weapon
 		sprite projectile/ballistic
 		"hardpoint sprite" hardpoint/ballistic
@@ -142,6 +158,9 @@ effect "ballistic hit"
 
 outfit "Astuit Battery"
 	category Turrets
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
 	cost 764000
 	mass 28
 	thumbnail outfit/astuit
@@ -175,6 +194,9 @@ effect "astuit hit"
 outfit "Talc Laser"
 	category Guns
 	cost 109000
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
 	mass 15
 	thumbnail outfit/talc
 	"gun ports" -1
@@ -196,6 +218,9 @@ outfit "Talc Laser"
 
 outfit "Acuit Artillery"
 	category Turrets
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
 	cost 1406000
 	mass 81
 	thumbnail outfit/acuit
@@ -232,6 +257,9 @@ effect "acuit hit"
 
 outfit "Guile Anti-Missile"
 	category Turrets
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
 	cost 690000
 	mass 24
 	thumbnail outfit/guile

@@ -1,5 +1,7 @@
 outfit "RG15 Torch Thruster"
 	category Engines
+	licenses
+		"Gegno Civilian"
 	cost 26000
 	mass 31
 	thumbnail "outfit/small torch"
@@ -9,12 +11,14 @@ outfit "RG15 Torch Thruster"
 	"thrusting energy" 0.9
 	"thrusting heat" 2
 	"flare sprite" "effect/ion torch/small"
-		"frame rate" 2.5000001
+		"frame rate" 2.5
 	"flare sound" "ion torch small"
 	description "The RG15 Ion Torch Thruster is the smallest torch thruster found amongst Gegno Vi ships and it is almost exclusively mounted on the Slate. It's not amazingly efficient, weighing more and producing more heat than most thrusters of a similar size, but also has a slightly lower energy consumption rate."
 
 outfit "RG15 Torch Steering"
 	category Engines
+	licenses
+		"Gegno Civilian"
 	cost 21000
 	mass 25
 	thumbnail "outfit/small torch steer"
@@ -24,12 +28,14 @@ outfit "RG15 Torch Steering"
 	"turning energy" 0.4
 	"turning heat" 1.4
 	"steering flare sprite" "effect/ion torch/small"
-		"frame rate" 2.3999999
+		"frame rate" 2.4
 	"steering flare sound" "ion torch small"
 	description "This steering system that incorporates RG15 thrusters is only meant for the smallest of Gegno Vi ships, and mounting it on anything larger than a Shuttle-class ship is unheard of. Despite this, its energy requirement is a notch lower than normal, so some Gegno pilots use it as a cheap addon."
 
 outfit "RG18 Torch Thruster"
 	category Engines
+	licenses
+		"Gegno Civilian"
 	cost 58000
 	mass 51
 	thumbnail "outfit/med torch"
@@ -39,12 +45,14 @@ outfit "RG18 Torch Thruster"
 	"thrusting energy" 1.2
 	"thrusting heat" 3.5
 	"flare sprite" "effect/ion torch/medium"
-		"frame rate" 2.3999999
+		"frame rate" 2.4
 	"flare sound" "ion torch medium"
 	description "Ion Torch Thrusters are the Gegno's equivalent of humanity's ion thrusters, but are still earlier in design and lacking in most departments when compared. They have heavier frames and their thrust output is a lot more chaotic and explosive, causing them to run notably hotter but require slightly less energy. The RG18 is the most common-sized thruster amongst Gegno Vi vessels, and a notable size at that."
 
 outfit "RG18 Torch Steering"
 	category Engines
+	licenses
+		"Gegno Civilian"
 	cost 46000
 	mass 39
 	thumbnail "outfit/med torch steer"
@@ -54,12 +62,17 @@ outfit "RG18 Torch Steering"
 	"turning energy" 1.3
 	"turning heat" 2.4
 	"steering flare sprite" "effect/ion torch/medium"
-		"frame rate" 2.3999999
+		"frame rate" 2.4
 	"steering flare sound" "ion torch medium"
 	description "The RG18 Steering system is decently hefty for a steering system of its size. Most mid-ranged Gegno Vi ships run these as a minimum to be able to turn their already heavy ships, and they perform their job just well enough."
 
 outfit "RG3 Torch Thruster"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
 	cost 128000
 	mass 83
 	thumbnail "outfit/large torch"
@@ -75,6 +88,11 @@ outfit "RG3 Torch Thruster"
 
 outfit "RG3 Torch Steering"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
 	cost 102000
 	mass 64
 	thumbnail "outfit/large torch steer"
@@ -90,6 +108,10 @@ outfit "RG3 Torch Steering"
 
 outfit "SC-1 Plasma Engines"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
 	cost 128000
 	mass 24
 	thumbnail outfit/tinyscplasma
@@ -102,12 +124,15 @@ outfit "SC-1 Plasma Engines"
 	"turning energy" 0.31
 	"turning heat" 0.86
 	"flare sprite" effect/scplasma/tiny
-		"frame rate" 0.59999999
+		"frame rate" 0.6
 	"flare sound" "scplasma tiny"
 	description "In order to power the small Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's larger, more sluggish Ion Engines, which would never be compact or light enough to run on a fighter."
 
 outfit "SC-12 Plasma Thruster"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
 	cost 98000
 	mass 25
 	thumbnail outfit/smallscplasma
@@ -117,12 +142,15 @@ outfit "SC-12 Plasma Thruster"
 	"thrusting energy" 0.8
 	"thrusting heat" 2.7
 	"flare sprite" effect/scplasma/small
-		"frame rate" 0.50000003
+		"frame rate" 0.5
 	"flare sound" "scplasma small"
 	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more accurate and powerful SC thrusters tend to run notably hotter."
 
 outfit "SC-12 Plasma Steering"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
 	cost 95800
 	mass 19
 	thumbnail outfit/smallscplasmasteer
@@ -132,12 +160,15 @@ outfit "SC-12 Plasma Steering"
 	"turning energy" 0.55
 	"turning heat" 1.8
 	"steering flare sprite" effect/scplasma/small
-		"frame rate" 0.50000003
+		"frame rate" 0.5
 	"steering flare sound" "scplasma small"
 	description "The new SC plasma thruster design excels as a better steering system too, allowing Gegno Scin ships to turn at much faster rates than their opposing brothers. What might take a Gegno Vi ship a long time to maneuver, takes a Scin ship running these only a moment's worth or less."
 
 outfit "SC-14 Plasma Thruster"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
 	cost 162000
 	mass 45
 	thumbnail outfit/medscplasma
@@ -147,12 +178,15 @@ outfit "SC-14 Plasma Thruster"
 	"thrusting energy" 2.8
 	"thrusting heat" 7.9
 	"flare sprite" effect/scplasma/med
-		"frame rate" 0.40000001
+		"frame rate" 0.4
 	"flare sound" "scplasma medium"
 	description "SC7-class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with satisfactory system loads."
 
 outfit "SC-14 Plasma Steering"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
 	cost 156400
 	thumbnail outfit/medscplasmasteer
 	"engine capacity" -34
@@ -162,12 +196,16 @@ outfit "SC-14 Plasma Steering"
 	"turning energy" 1.5
 	"turning heat" 4.78
 	"steering flare sprite" effect/scplasma/med
-		"frame rate" 0.40000001
+		"frame rate" 0.4
 	"steering flare sound" "scplasma medium"
 	description "At a larger scale than typical SC2 thrusters, SC7 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than others."
 
 outfit "SC-15 Plasma Engines"
 	category Engines
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
 	cost 2312000
 	thumbnail outfit/largescplasma
 	"engine capacity" -112
@@ -179,7 +217,7 @@ outfit "SC-15 Plasma Engines"
 	"thrusting energy" 11.1
 	"thrusting heat" 26.4
 	"flare sprite" effect/scplasma/large
-		"frame rate" 0.29999999
+		"frame rate" 0.3
 	"reverse flare sprite" effect/scplasma/large
 	"flare sound" "scplasma large"
 	"reverse flare sound" "scplasma large"

@@ -1,5 +1,7 @@
 outfit "R01 Skirmish Battery"
 	category Power
+	licenses
+		"Gegno Civilian"
 	plural "R01 Skirmish Batteries"
 	cost 17500
 	mass 12
@@ -10,6 +12,8 @@ outfit "R01 Skirmish Battery"
 
 outfit "R02 Battlezone Battery"
 	category Power
+	licenses
+		"Gegno Civilian"
 	plural "R02 Battlezone Batteries"
 	cost 32000
 	mass 23
@@ -20,6 +24,8 @@ outfit "R02 Battlezone Battery"
 
 outfit "R03 Warforge Battery"
 	category Power
+	licenses
+		"Gegno Civilian"
 	plural "R03 Warforge Batteries"
 	cost 61700
 	mass 41
@@ -30,6 +36,11 @@ outfit "R03 Warforge Battery"
 
 outfit "R04 Crusade Battery"
 	category Power
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
 	plural "R04 Crusade Batteries"
 	cost 136000
 	mass 83
@@ -40,6 +51,8 @@ outfit "R04 Crusade Battery"
 
 outfit "C3 Scrap Cell"
 	category Power
+	licenses
+		"Gegno Civilian"
 	cost 54000
 	mass 25
 	thumbnail outfit/vicoretiny
@@ -50,6 +63,8 @@ outfit "C3 Scrap Cell"
 
 outfit "C7 Brawl Core"
 	category Power
+	licenses
+		"Gegno Civilian"
 	cost 68100
 	mass 39
 	thumbnail outfit/vicoresmall
@@ -60,6 +75,8 @@ outfit "C7 Brawl Core"
 
 outfit "C17 Warzone Core"
 	category Power
+	licenses
+		"Gegno Civilian"
 	plural "C7 Warzone Cores"
 	cost 2472000
 	mass 87
@@ -71,6 +88,11 @@ outfit "C17 Warzone Core"
 
 outfit "C27 Campaign Core"
 	category Power
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
 	plural "C7 Campaign Cores"
 	cost 8145000
 	mass 145
@@ -82,6 +104,10 @@ outfit "C27 Campaign Core"
 
 outfit "I70 Ameliorate Cell"
 	category Power
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
 	cost 166000
 	mass 20
 	thumbnail outfit/scincoretiny
