@@ -100,4 +100,4 @@ mission "Active Augen"
 		system Vesvii
 		ship Augen "Vytii Yrrlausei"
 
-event Vesvii War
+event "Vesvii War"
