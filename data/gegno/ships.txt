@@ -157,6 +157,8 @@ ship Conglomerate
 	swizzle 0
 	attributes
 		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
 		cost 1692000
 		mass 760
 		bunks 166
@@ -198,6 +200,8 @@ ship Gypsum
 	swizzle 0
 	attributes
 		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
 		cost 1692000
 		mass 380
 		bunks 40
