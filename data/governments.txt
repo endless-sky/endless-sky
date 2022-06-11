@@ -147,6 +147,7 @@ government Gegno
 		capture -1
 		destroy -1
 		atrocity -1
+		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -165,6 +166,7 @@ government "Gegno Scin"
 		capture -1
 		destroy -1
 		atrocity -1
+		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -183,6 +185,7 @@ government "Gegno Vi"
 		capture -1
 		destroy -1
 		atrocity -1
+		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
