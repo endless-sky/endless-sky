@@ -2138,6 +2138,8 @@ void Engine::DoWeather(Weather &weather)
 
 void Engine::HandleMouseInput()
 {
+	if (Preferences::Has("Mouse controls"))
+	{
 	int mousePosX;
 	int mousePosY;
 	if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
@@ -2146,12 +2148,11 @@ void Engine::HandleMouseInput()
 		rightMouseButtonHeld = false;
 	double relx = mousePosX - Screen::RawWidth()/2;
 	double rely = mousePosY - Screen::RawHeight()/2;
-	if (relx == 0) {
+	if (relx == 0)
 		mouseAngle = 90;
-	} else {
+	else
 		mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
-	}
-	if (relx < 0) {
+	if (relx < 0)
 		mouseAngle += 180;
 	}
 }
