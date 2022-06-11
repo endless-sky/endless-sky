@@ -23,7 +23,7 @@ mission "Wanderers: Pre-Colony"
 
 mission "Wanderers: Spera Anatrusk Outfitter 1"
 	landing
-	name "Establish outfitter on Spera Anatrusk"
+	name "Establish outfitter on <origin>"
 	description "Return to the Wanderer capital on <destination>."
 	source "Spera Anatrusk"
 	destination "Vara K'chrai"
@@ -35,7 +35,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 		log `The Wanderers are establishing a colony on <planet> in Korath space, but they need help getting the most basic infastructure established.`
 		conversation
 			`The landing pads at the settlement are packed earth and gravel, mostly created by the ships themselves. There is a large tent for the workers to meet and rest with a battered Strong Wind acting as a command center. You can see a small crew of Wanderers hammering forms together with a concrete mixer running nearby. It's a far cry from the clean and elegant spaceports the Wanderers are used to, but not far off some of the Dirt Belt and anarchist worlds you've known.`
-			`	Something of an argument is taking place in front of a tent at the edge of landing area. There are a lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
+			`	Something of an argument is taking place in front of a tent at the edge of the landing area. There are a lot of wings flapping and raised voices, but they aren't speaking Hai, so you have no idea what it's about.`
 			choice
 				`	(Go over and investigate.)`
 					goto investigate
@@ -43,15 +43,15 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 					decline
 			label investigate
 			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
-			`	You walk up to the Wanderer they were all shouting at.  He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He hold up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and either exploring or getting killed and no one is [available, willing] to do transport work."`
+			`	You walk up to the Wanderer they were all shouting at. He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He holds up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and either exploring or getting killed and no one is [available, willing] to do transport work."`
 			choice
 				`	"Tell me what you need and I'll handle it."`
 					goto handle
 				`	"I guess I'll just leave, then."`
 					decline
 			label handle
-			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data chip and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials and workers and I can't even request them directly since communications don't work through the wormhole.`
-			`	You turn to go as group of Wanderers with surveying equipment walk up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to discuss with the surveyors. As you walk off, the translator just picks up. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
+			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data chip and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials, and workers. I can't request them directly since communications don't work through the wormhole.`
+			`	You turn to go as a group of Wanderers with surveying equipment walks up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to discuss with the surveyors. As you walk off, the translator just picks up. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
 				accept
 
 	on complete
@@ -102,7 +102,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 2b"
 
 	on complete
 		dialog "A team of workers unload the <cargo> while the foreman checks the manifest before handing you a credit chip for <payment>."
-		payment 200000 2
+		payment 200000
 
 mission "Wanderers: Spera Anatrusk Outfitter 2c"
 	landing
@@ -125,7 +125,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 2c"
 
 	on complete
 		dialog "The construction supervisor drops by as the workers are unloading. He gives you a credit chip for <payment> and asks you to meet him in the tent that serves as the spaceport when all the deliveries are done."
-		payment 250000 3
+		payment 250000
 
 
 mission "Wanderers: Spera Anatrusk Outfitter 3"
@@ -150,7 +150,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3"
 				`	"You'll need to find someone else for the next part."`
 					decline
 			label willdo 
-			`	"That is [optimal, excellent]," he says as he hands you a data chip. If you will take this to <destination>, they will make all the arrangements.`
+			`	"That is [optimal, excellent]," he says as he hands you a data chip. "If you will take this to <destination>, they will make all the arrangements."`
 				accept
 	
 	on complete
