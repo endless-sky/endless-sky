@@ -38,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -61,6 +62,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Visual.h"
 #include "Weather.h"
 #include "text/WrappedText.h"
+
+#include <SDL2\SDL.h>
 
 #include <algorithm>
 #include <cmath>
@@ -1360,7 +1363,7 @@ void Engine::CalculateStep()
 		return;
 
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player, activeCommands);
+	ai.Step(player, activeCommands, mouseAngle, rightMouseButtonHeld);
 
 	// Clear the active players commands, they are all processed at this point.
 	activeCommands.Clear();
@@ -1440,6 +1443,7 @@ void Engine::CalculateStep()
 	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
+    HandleMouseInput();
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will
@@ -2130,6 +2134,28 @@ void Engine::DoWeather(Weather &weather)
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
 	}
+}
+
+
+
+void Engine::HandleMouseInput()
+{
+    int mousePosX;
+    int mousePosY;
+    if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+        rightMouseButtonHeld = true;
+    else
+        rightMouseButtonHeld = false;
+    double relx = mousePosX - Screen::RawWidth()/2;
+    double rely = mousePosY - Screen::RawHeight()/2;
+    if (relx == 0) {
+        mouseAngle = 90;
+    } else {
+        mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
+    }
+    if (relx < 0) {
+        mouseAngle += 180;
+    }
 }
 
 

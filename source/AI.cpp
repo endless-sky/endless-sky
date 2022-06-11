@@ -497,7 +497,7 @@ void AI::ClearOrders()
 
 
 
-void AI::Step(const PlayerInfo &player, Command &activeCommands)
+void AI::Step(const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld)
 {
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
@@ -540,7 +540,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
-				MovePlayer(*it, player, activeCommands);
+				MovePlayer(*it, player, activeCommands, mouseAngle, rightMouseButtonHeld);
 			continue;
 		}
 
@@ -3153,7 +3153,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
+void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld)
 {
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
@@ -3516,11 +3516,49 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
+
+    if (Preferences::Has("Mouse controls"))
+    {
+        Angle shipAngle = ship.Facing();
+        if (rightMouseButtonHeld)
+        {
+            int index = 0;
+            for(const Hardpoint &hardpoint : ship.Weapons())
+            {
+                if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+                    firingCommands.SetFire(index);
+                ++index;
+            }
+        }
+
+        // To stop jittering due to the mouseAngle changing
+        // frequently, the ship is only turned if both the
+        // angles differ by more than one degree
+        if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 1 )
+        {
+            command.SetTurn(0);
+        }
+        else if (abs(mouseAngle.Degrees360() - shipAngle.Degrees360()) < 180 )
+        {
+            if (shipAngle.Degrees360() < mouseAngle.Degrees360())
+                command.SetTurn(1);
+            if (shipAngle.Degrees360() > mouseAngle.Degrees360())
+                command.SetTurn(-1);
+        } 
+        else
+        {
+            if (shipAngle.Degrees360() > mouseAngle.Degrees360())
+                command.SetTurn(1);
+            if (shipAngle.Degrees360() < mouseAngle.Degrees360())
+                command.SetTurn(-1);
+        }
+    }
+
 	if(activeCommands)
 	{
 		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(activeCommands.Has(Command::RIGHT | Command::LEFT))
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !Preferences::Has("Mouse controls"))
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
