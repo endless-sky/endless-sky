@@ -138,6 +138,7 @@ government Gegno
 	"crew attack" 1.7
 	"crew defense" 2.2
 	"attitude toward"
+		"Gegno Scin" 1
 		"Gegno Vi" 1
 		Quarg 1
 	"penalty for"
@@ -637,9 +638,9 @@ government "Quarg"
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
-		"Gegno" .01
-		"Gegno Vi" .01
-		"Gegno Scin" .01
+		"Gegno" 1
+		"Gegno Vi" 1
+		"Gegno Scin" 1
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 
