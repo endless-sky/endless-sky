@@ -13,15 +13,14 @@ outfit "Irate Cannon"
 		"hit effect" "tiny explosion"
 		lifetime 15
 		reload 20
-		"missile strength" 14
 		velocity 22
 		"hardpoint offset" 1.5
 		inaccuracy 2
 		"firing energy" 9
 		"firing heat" 155
-		"shield damage" 15
-		"hull damage" 50
-		stream
+		"shield damage" 6
+		"hull damage" 16
+		"hit force" 40
 	description "Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed energy and metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers."
 
 outfit "Chloeric Cannon"
@@ -39,14 +38,17 @@ outfit "Chloeric Cannon"
 		"hit effect" "small explosion"
 		lifetime 55
 		reload 90
+		"missile strength" 18
 		velocity 11
 		"hardpoint offset" -11
 		inaccuracy 2
 		"firing energy" 35
 		"firing heat" 365
-		"shield damage" 115
-		"hull damage" 480
+		"shield damage" 95
+		"hull damage" 380
+		"hit force" 180
 	description "A caliber higher than the Irate Cannon, Chloeric cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon (as well as its sister cannons), it is very ineffective against any sort of shielding."
+	description "A flaw in the shell design, however, is that point defense systems are just able to make them out as valid targets on account of their slower speed, material make-up, and size nearing a small missile."
 
 outfit "Chloeric Turret"
 	category Turrets
@@ -65,16 +67,18 @@ outfit "Chloeric Turret"
 		"hit effect" "small explosion"
 		lifetime 55
 		reload 80
-		"missile strength" 18
+		"missile strength" 12
 		velocity 9
 		"hardpoint offset" 5
 		inaccuracy 2
 		"turret turn" 1.2
 		"firing energy" 40
 		"firing heat" 385
-		"shield damage" 115
-		"hull damage" 480
-	description "Mounted on a turret a Chloeric Cannon is much more devastating without the need to line up the ship for a shot. It can consistently put out damage to a target's hull, and with multiple turrets, threatean any shieldless vessel to retreat after a long enough bombardment."
+		"shield damage" 95
+		"hull damage" 380
+		"hit force" 180
+	description "Mounted on a turret, a Chloeric Cannon is much more devastating without the need to keep a target in front to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is threaten to retreat after a decent enough bombardment."
+	description "As with the regular mount, the shells are large and slow enough to be targeted by point defense systems."
 
 outfit "Ballistic Cannon"
 	category Turrets
@@ -93,7 +97,7 @@ outfit "Ballistic Cannon"
 		"hit effect" "ballistic hit"
 		lifetime 100
 		reload 110
-		"missile strength" 26
+		"missile strength" 18
 		velocity 8
 		"hardpoint offset" 1.1 4.8
 		inaccuracy 3
@@ -101,9 +105,10 @@ outfit "Ballistic Cannon"
 		"firing energy" 140
 		"firing heat" 637
 		"shield damage" 145
-		"hull damage" 777
-		"hit force" 120
-	description "The Gegno Ballistic Cannon is one of the largest cannons you've ever seen. It even requires its own vented system on the gun itself, and the huge turret mount is necessary for one of these cannons to even be fitted on a ship. The shells a Ballistic Cannon fire can almost be equated to that of explosive rockets. They deal tremendous hull damage; however, they are lethargic and are still much less effective against anything shielded."
+		"hull damage" 776
+		"hit force" 360
+	description "The Gegno Ballistic Cannon tops its sister cannons as the highest caliber. A huge, self-sustaining turret mount with its own vent ports is necessary for one of these cannons to even be fitted on a ship, provided there are crew to operate it."
+	description "The shells a Ballistic Cannon fires almost equate to that of explosive rockets, dealing tremendous hull damage. However, due to their lethargic nature and material composition, they are just as easily vulnerable to point defense systems."
 
 effect "ballistic fire"
 	sprite effect/balfire
@@ -147,7 +152,7 @@ outfit "Astuit Battery"
 		sprite projectile/astuit
 		"hardpoint sprite" hardpoint/astuit
 		sound astuit
-		"hit effect" "blaster impact"
+		"hit effect" "astuit hit"
 		lifetime 44
 		reload 4
 		velocity 8
@@ -155,10 +160,17 @@ outfit "Astuit Battery"
 		inaccuracy 5
 		"turret turn" 2.2
 		"firing energy" 13.2
-		"firing heat" 46
-		"shield damage" 14
-		"hull damage" 20
-	description "The Gegno Scin are the first Gegno to advance pure plasma technology far enough to use it in combat. Asuit Batteries are very similar to how human Energy Blasters work - they fire small condensed plasma projectiles at high rates of fire. With 4 on a turreted mount, it is a constant stream of damage being laid upon a target, and although each shot does not do very much, consistent fire on the same target adds up. However, energy usage adds up just as much."
+		"firing heat" 76
+		"shield damage" 8
+		"hull damage" 8.2
+	description "The Gegno Scin are the first Gegno to advance plasma technology enough to allow use of it in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
+	description `Although each shot does not hit very hard, consistent fire adds up- but so does energy usage.`
+effect "astuit hit"
+	sprite "effect/ast hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 6
+	"velocity scale" .001
 
 outfit "Talc Laser"
 	category Guns
@@ -176,11 +188,11 @@ outfit "Talc Laser"
 		lifetime 1
 		velocity 160
 		inaccuracy 0.5
-		"firing energy" 0.7
-		"firing heat" 1.2
+		"firing energy" 0.5
+		"firing heat" 7.2
 		"shield damage" 1.3
 		"hull damage" 2.3
-	description "Unlike the humans, the Gegno Scin were able to progress beam technology much earlier in their timeline, with experiment after experiment leading up to the Talc Laser. Although the damage is nowhere near as impressive as humanity's beam lasers, a consistent source of damage is notably effecting against the slow moving ships of the Gegno Vi."
+	description "Unlike humans, the Gegno Scin were able to research beam technology much earlier in their timeline although at a much slower efficiency. Several experiments eventually lead up to the Talc Laser, a very basic beam laser that is strong against hull armor. A consistent source of talc laser damage is very effective against the slow moving ships of the Gegno Vi. There are still a few drawbacks as an early product, most notably how much heat the beam generates while firing."
 
 outfit "Acuit Artillery"
 	category Turrets
@@ -188,16 +200,17 @@ outfit "Acuit Artillery"
 	mass 81
 	thumbnail outfit/acuit
 	"outfit space" -81
-	"required crew" 2
+	"required crew" 1
 	"turret mounts" -1
 	"weapon capacity" -81
 	weapon
 		sprite projectile/acuit
 			"random start frame"
 		"hardpoint sprite" hardpoint/scinturret
+		"hit effect" "acuit hit"
 		sound scinshot
 		lifetime 65
-		reload 62
+		reload 56
 		"burst reload" 10
 		velocity 18
 		"hardpoint offset" 26
@@ -205,9 +218,17 @@ outfit "Acuit Artillery"
 		"turret turn" 1.3
 		"firing energy" 130
 		"firing heat" 200
-		"shield damage" 352
-		"hull damage" 220
-	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon."
+		"shield damage" 362
+		"hull damage" 280
+		"hit force" 40
+	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon from afar."
+
+effect "acuit hit"
+	sprite "effect/acuit hit"
+		"frame rate" 18
+		"no repeat"
+	lifetime 18
+	"velocity scale" -0.004
 
 outfit "Guile Anti-Missile"
 	category Turrets
@@ -221,13 +242,13 @@ outfit "Guile Anti-Missile"
 		"hardpoint sprite" hardpoint/guile
 		"hit effect" "scin anti-missile"
 		lifetime 1
-		reload 17
+		reload 10
 		anti-missile 14
 		velocity 170
 		"hardpoint offset" 10
 		"firing energy" 26
 		"firing heat" 8
-	description "Although the Gegno have yet to create space-rated engine systems small enough to support rocket and missile technology, the Scin developed a type of anti-missile system based on their new beam technology that began a new arms race. Guiles are able to predict the trajectory of a Vi cannon shell, as well as any other similar projectile-based weapons, and eliminate that much more damage."
+	description "Although the Gegno have yet to create space-rated engine systems small and efficient enough to support missile technology, the Scin developed a type of anti-missile system based on their new beam technology. Guiles are able to predict the trajectory of large Vi cannon shells, as well as any other similar projectile-based weapons, to lower and eliminate heavy damage in a battle."
 
 effect "scin anti-missile"
 	sprite effect/scinAM
@@ -235,4 +256,34 @@ effect "scin anti-missile"
 		"no repeat"
 	sound scinAM
 	lifetime 16
+
+outfit Excavator
+	category Guns
+	mass 42
+	thumbnail outfit/mouthparts?
+	"gun ports" -1
+	"outfit space" -42
+	"weapon capacity" -42
+	weapon
+		sound drill
+		"hit effect" drilling
+		lifetime 1
+		velocity 18
+		inaccuracy 90
+		"shield damage" 8
+		"hull damage" 104
+		"hit force" -10
+		"firing energy" 4
+		"firing heat" 100
+
+effect drilling
+	sprite effect/smoke
+		"no repeat"
+	sound "explosion tiny"
+	lifetime 20
+	"velocity scale" -0.01
+	"random angle" 360
+	"random velocity" 0.4
+	"random spin" 2
+	"random frame rate" 5
 

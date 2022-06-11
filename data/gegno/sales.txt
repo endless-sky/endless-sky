@@ -1,7 +1,8 @@
 shipyard "Gegno Ships"
+	Conglomerate
 	Dolomite
 	Shale
-	Conglomerate
+	Gypsum
 
 outfitter "Gegno Outfits"
 	"C3 Scrap Cell"
@@ -55,7 +56,6 @@ shipyard "Gegno Scin Ships"
 	Halite
 	Mica
 	Muscovite
-	"Muscovite P"
 
 outfitter "Gegno Scin Outfits"
 	"Acuit Artillery"

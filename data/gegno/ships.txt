@@ -67,7 +67,7 @@ ship Augen
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description x
+	description "The Augen is an ancient battleship design proposed by the Vi to protect the Gegno from potential outside dangers."
 
 ship Shale
 	sprite ship/shale
@@ -84,7 +84,7 @@ ship Shale
 		"fuel capacity" 400
 		"heat dissipation" 0.8
 		hull 825
-		"outfit space" 135
+		"outfit space" 125
 		"required crew" 1
 		shields 0
 		"weapon capacity" 12
@@ -103,7 +103,7 @@ ship Shale
 	leak leak 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "Due to the Gegno splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with the single purpose as a transport vessel, whether it be cargo, trade goods, travellers, or recruits to move off homeworld to pursue the efforts of the Vi and the Scin."
+	description "Due to the Gegno splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with transportation being its single purpose. Whether it be cargo, trade goods, travellers, or recruits to move off homeworld, Slates build the foundations of the Gegno."
 
 ship Dolomite
 	sprite ship/dolomite
@@ -116,11 +116,11 @@ ship Dolomite
 		bunks 80
 		"cargo space" 140
 		drag 5.9
-		"engine capacity" 120
+		"engine capacity" 76
 		"fuel capacity" 500
 		"heat dissipation" 0.7
 		hull 10500
-		"outfit space" 230
+		"outfit space" 150
 		"required crew" 34
 		shields 0
 		"weapon capacity" 20
@@ -134,7 +134,7 @@ ship Dolomite
 		Hyperdrive
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery"
-		"RG15 Torch Steering" 
+		"RG15 Torch Steering"
 		"RG15 Torch Thruster"
 	engine -21 155
 	engine 21 155
@@ -158,14 +158,14 @@ ship Conglomerate
 		bunks 166
 		"cargo space" 400
 		drag 8.9
-		"engine capacity" 180
+		"engine capacity" 136
 		"fuel capacity" 400
 		"heat dissipation" 0.7
 		hull 13300
-		"outfit space" 320
+		"outfit space" 240
 		"required crew" 68
 		shields 0
-		"weapon capacity" 100
+		"weapon capacity" 18
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -175,7 +175,7 @@ ship Conglomerate
 		"C7 Brawl Core"
 		Hyperdrive
 		"R02 Battlezone Battery"
-		"RG18 Torch Steering" 
+		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
 	engine -32.5 215
 	engine 32.5 215
@@ -186,7 +186,51 @@ ship Conglomerate
 	explode "medium explosion" 38
 	explode "small explosion" 26
 	"final explode" "final explosion large"
-	description "Conglomerate Description"
+	description "Over time the Gegno needed larger vessels to carry materials from new worlds alike- ones that would be more efficient and more efficient to build than older outdated City-Ships. Conglomerates are built to haul, moving large amounts of materials and personnel across Gegno space."
+
+ship Gypsum
+	sprite ship/gypsum
+	thumbnail thumbnail/gypsum
+	swizzle 0
+	attributes
+		category "Light Freighter"
+		cost 1692000
+		mass 380
+		bunks 40
+		"cargo space" 104
+		drag 3
+		"engine capacity" 120
+		"fuel capacity" 500
+		"heat dissipation" 0.8
+		hull 5200
+		"outfit space" 190
+		"required crew" 18
+		shields 0
+		"weapon capacity" 42
+		weapon
+			"blast radius" 72
+			"shield damage" 320
+			"hull damage" 620
+			"hit force" 720
+	outfits
+		"C7 Brawl Core"
+		Excavator
+		Hyperdrive
+		"R01 Skirmish Battery"
+		"RG15 Torch Steering"
+		"RG18 Torch Steering"
+		"RG18 Torch Thruster"
+	engine 0 124
+	gun 0 -117 Excavator
+	leak leak 60 50
+	leak flame 60 80
+	explode "large explosion" 14
+	explode "medium explosion" 24
+	explode "small explosion" 26
+	explode "tiny explosion" 10
+	"final explode" "final explosion medium"
+	description "To fuel their exponentionally increasing construction rate and need for materials, many Miner-class ships were devised for space usage. Rather than re-use older ship designs, Miners would be designed to focus only on the purpose of mining. The Gypsum platform is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easily manufacturable."
+	description `Compared to other vessels in the galaxy, the Gypsum is much slower due to the Gegno's technology level, and has a harder time keeping up with faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
 
 ship Slate
 	sprite ship/slate
@@ -203,7 +247,7 @@ ship Slate
 		"fuel capacity" 400
 		"heat dissipation" 0.8
 		hull 825
-		"outfit space" 135
+		"outfit space" 125
 		"required crew" 1
 		shields 0
 		"weapon capacity" 12
@@ -222,7 +266,7 @@ ship Slate
 	leak leak 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "The Slate is the Gegno Vi's variation of the Shale. It appears they took the original design and added bulkier systems and more space, characteristic of Vi vessels. Slightly larger than a normal shuttleship to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
+	description "The Slate is the Gegno Vi's variation of the Shale. It appears they took the original design and added bulkier systems with more space, a prime characteristic of Vi vessels. Slightly larger than other shuttleships to suit the Vi's stature, it's able to carry more than a few Gegno cadets along with a small cargo load."
 
 ship Schist
 	sprite ship/schist
@@ -235,14 +279,14 @@ ship Schist
 		bunks 86
 		"cargo space" 122
 		drag 5.9
-		"engine capacity" 126
+		"engine capacity" 106
 		"fuel capacity" 500
 		"heat dissipation" 0.7
 		hull 12375
-		"outfit space" 270
+		"outfit space" 210
 		"required crew" 36
 		shields 0
-		"weapon capacity" 84
+		"weapon capacity" 38
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -265,7 +309,8 @@ ship Schist
 	explode "small explosion" 25
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
-	description "The Schist is the Gegno Vi's variation of the Gegno's old mid-range Dolomite. It has a decent cargo size, and enough bunks to carry a whole squadron of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to the homeworld. Although its relatively light armament is an exception to the Vi's very aggressive and combat-oriented ship design, Schists still carry a pair of cannons to bring something to a fight."
+	description "The Schist is the Gegno Vi's variation of the Gegno's old mid-range Dolomite. It has a decent cargo size, and enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
+	description `Although a relatively light armament is an exception for the Vi's very aggressive and combat-oriented ship design philosophy, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
 
 ship Schist "Schist Light"
 	sprite ship/schistlight
@@ -296,12 +341,12 @@ ship Eclogite
 		drag 3.7
 		"engine capacity" 110
 		"fuel capacity" 400
-		"heat dissipation" 0.8
+		"heat dissipation" 0.7
 		hull 6900
-		"outfit space" 375
+		"outfit space" 285
 		"required crew" 8
 		shields 0
-		"weapon capacity" 90
+		"weapon capacity" 96
 		weapon
 			"blast radius" 36
 			"shield damage" 210
@@ -327,7 +372,7 @@ ship Eclogite
 	explode "small explosion" 20
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
-	description "The Eclogite is a newer Gegno ship - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a pass before swinging around for another run."
+	description "The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a maneuver before adjusting position for another pounding."
 
 ship Hornfel
 	sprite ship/hornfel
@@ -342,7 +387,7 @@ ship Hornfel
 		drag 5.9
 		"engine capacity" 94
 		"fuel capacity" 400
-		"heat dissipation" 0.7
+		"heat dissipation" 0.6
 		hull 14550
 		"outfit space" 428
 		"required crew" 58
@@ -427,7 +472,7 @@ ship Gneiss
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 22275
-		"outfit space" 805
+		"outfit space" 815
 		"required crew" 142
 		shields 0
 		"weapon capacity" 412
@@ -460,7 +505,8 @@ ship Gneiss
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bolstering 3 mounts dedicated to Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing dangerously threatening broadsides at the opposing force. Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer."
+	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bolstering 3 huge mounts dedicated to hold enourmous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing dangerously threatening broadsides at the opposing force."
+	description `Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
 ship Protolith
 	sprite ship/protolith
@@ -473,14 +519,14 @@ ship Protolith
 		bunks 292
 		"cargo space" 530
 		drag 16.1
-		"engine capacity" 180
+		"engine capacity" 176
 		"fuel capacity" 700
 		"heat dissipation" 0.4
 		hull 19575
-		"outfit space" 768
+		"outfit space" 568
 		"required crew" 84
 		shields 0
-		"weapon capacity" 300
+		"weapon capacity" 180
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
@@ -495,9 +541,9 @@ ship Protolith
 		"R03 Warforge Battery"
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
-	engine 0 250
-	engine -41.5 242
-	engine 41.5 242
+	engine 0 260
+	engine -39 250
+	engine 39 250
 	gun 37 -212 "Irate Cannon"
 	gun 45 -199.5 "Irate Cannon"
 	turret 0 -33 "Chloeric Turret"
@@ -510,7 +556,7 @@ ship Protolith
 	explode "medium explosion" 35
 	explode "small explosion" 25
 	"final explode" "final explosion large"
-	description "Protoliths are descendants of the Gegno's early city ships used to colonize nearby planets. They now carry hundreds of battle-ready Vi both in and out of war, and carry huge cargo loads to supply depots. They are not typically used as warships but can be mounted with a small payload that can threaten most ships smaller than them, or fend off larger ships long enough for reinforcements to arrive."
+	description "Protoliths are descendants of the Gegno's early City-Ships used to colonize nearby planets. They now carry hundreds of battle-ready Vi both in and out of war, and carry huge cargo loads to supply depots. They are not typically used as warships but can be mounted with a small payload that can threaten most ships smaller than them, or fend off larger ships long enough for reinforcements to arrive."
 
 ship Halite
 	sprite ship/halite
@@ -524,11 +570,11 @@ ship Halite
 		"cargo space" 1
 		drag 0.74
 		"engine capacity" 30
-		"heat dissipation" 1
-		hull 860
-		"outfit space" 120
+		"heat dissipation" 0.76
+		hull 780
+		"outfit space" 78
 		"required crew" 1
-		shields 0
+		shields 240
 		"weapon capacity" 30
 		weapon
 			"blast radius" 14
@@ -539,14 +585,15 @@ ship Halite
 		"I70 Ameliorate Cell"
 		"SC-1 Plasma Engines"
 		"Talc Laser" 2
-	engine -9 42
-	engine 9 42
+	engine -11 42
+	engine 11 42
 	gun -18.5 -44.5 "Talc Laser"
 	gun 18.5 -44.5 "Talc Laser"
 	leak leak 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
-	description "Halites are a double-first for the Gegno. They are the Gegno Scin's newest ship design, and are the Gegno's first fighter-based craft. They are also the first Gegno ships equipped with early-stage beam weapon technology, with almost half the hull dedicated to it. Able to fly around the Gegno Vi's slower projectile techology, Halites are able to bring a swarm of instant damage to the slow-moving Vi warships, making them hard to deal with in numbers."
+	description "Halites are a successful experimental test platform designed by the Gegno Scin. They are Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology, with almost half the hull dedicated to it."
+	description "Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft."
 
 ship Mica
 	sprite ship/mica
@@ -559,11 +606,11 @@ ship Mica
 		bunks 9
 		"cargo space" 36
 		drag 1.7
-		"engine capacity" 58
+		"engine capacity" 50
 		"fuel capacity" 400
 		"heat dissipation" 0.8
 		hull 700
-		"outfit space" 150
+		"outfit space" 120
 		"required crew" 1
 		shields 0
 		"weapon capacity" 10
@@ -595,11 +642,11 @@ ship Coesite
 		bunks 26
 		"cargo space" 60
 		drag 4
-		"engine capacity" 140
+		"engine capacity" 120
 		"fuel capacity" 400
 		"heat dissipation" 0.7
 		hull 6450
-		"outfit space" 325
+		"outfit space" 264
 		"required crew" 9
 		shields 0
 		"weapon capacity" 110
@@ -611,10 +658,9 @@ ship Coesite
 	outfits
 		"Astuit Battery" 2
 		"C7 Brawl Core"
-		"Guile Anti-Missile"
 		Hyperdrive
 		"R01 Skirmish Battery"
-		"R02 Battlezone Battery"
+		"R02 Battlezone Battery" 2
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
 	engine 46.5 92.5
@@ -629,6 +675,51 @@ ship Coesite
 	"final explode" "final explosion small"
 	description "Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry 3 turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
 
+ship Tridymite
+	sprite ship/tridymite
+	thumbnail thumbnail/tridymite
+	swizzle 0
+	attributes
+		category "Light Warship"
+		cost 1960000
+		mass 225
+		bunks 20
+		"cargo space" 40
+		drag 4
+		"engine capacity" 86
+		"fuel capacity" 400
+		"heat dissipation" 0.7
+		hull 5890
+		"outfit space" 190
+		"required crew" 9
+		shields 0
+		"weapon capacity" 62
+		weapon
+			"blast radius" 35
+			"shield damage" 220
+			"hull damage" 430
+			"hit force" 410
+	outfits
+		"C7 Brawl Core"
+		"Guile Anti-Missile"
+		Hyperdrive
+		"R02 Battlezone Battery"
+		"SC-12 Plasma Thruster"
+		"SC-14 Plasma Steering"
+	engine 38.5 73
+		zoom 0.9
+	engine -38.5 73
+		zoom 0.9
+	engine 0 67.5
+	turret 0 18.5 "Guile Anti-Missile"
+	leak leak 50 40
+	leak flame 40 70
+	explode "medium explosion" 3
+	explode "small explosion" 19
+	explode "tiny explosion" 14
+	"final explode" "final explosion small"
+	description "Using a similar yet smaller frame to the Coesite, the Tridymite was designed as the production platform for the Gegno Scin's new Guile system. As its younger sibling, the Tridymite is a smaller escort vessel that provides anti-cannon screening for Scin fleets, while Coesites are armed with more offensive weaponry."
+
 ship Felsic
 	sprite ship/felsic
 	thumbnail thumbnail/felsic
@@ -640,14 +731,14 @@ ship Felsic
 		bunks 78
 		"cargo space" 160
 		drag 5.9
-		"engine capacity" 126
+		"engine capacity" 106
 		"fuel capacity" 500
-		"heat dissipation" 0.8
+		"heat dissipation" 0.7
 		hull 11000
-		"outfit space" 300
+		"outfit space" 310
 		"required crew" 38
 		shields 0
-		"weapon capacity" 80
+		"weapon capacity" 84
 		weapon
 			"blast radius" 74
 			"shield damage" 340
@@ -673,7 +764,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they have more efficient engines, dedicating the remaining space to a larger cargo capacity. The Scin also outfitted them with two turret mounts, allowing them to double as a secondary combat vessel, and an extra hand in anti-shell duty when needed."
+	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they expanded the profile have more efficient engines, dedicating the remaining space to a larger cargo capacity. On top of fitting more cargo room, the Scin also oufitted these 3 turret mounts, allowing them to double as a secondary combat vessel to support their war efforts, and to fill in the lack of a dedicated warship."
 
 ship Feldspar
 	sprite ship/feldspar
@@ -686,14 +777,14 @@ ship Feldspar
 		bunks 192
 		"cargo space" 82
 		drag 15
-		"engine capacity" 182
+		"engine capacity" 172
 		"fuel capacity" 600
-		"heat dissipation" 1.4
+		"heat dissipation" 1
 		hull 18800
-		"outfit space" 866
+		"outfit space" 566
 		"required crew" 133
 		shields 0
-		"weapon capacity" 232
+		"weapon capacity" 194
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
@@ -706,16 +797,20 @@ ship Feldspar
 		"R03 Warforge Battery"
 		"SC-14 Plasma Steering"
 		"SC-15 Plasma Engines"
-	engine 28.5 196.5
-	engine -28.5 196.5
-	"reverse engine" -34.5 -186.5
+	engine 31 198
+	engine -31 198
+	"reverse engine" -38 -188
+		zoom 0.7
 		angle -360
-	"reverse engine" 34.5 -186.5
+	"reverse engine" 38 -188
+		zoom 0.7
 		angle -360
-	"steering engine" 106.5 31.5
+	"steering engine" 108 33
+		zoom 0.7
 		angle -63.001099
 		left
-	"steering engine" -106.5 31.5
+	"steering engine" -108 33
+		zoom 0.7
 		angle 63.001099
 		right
 	turret -72.5 17 "Acuit Artillery"
@@ -742,7 +837,8 @@ ship Feldspar
 	explode "small explosion" 50
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also double as a semi-experimental platform, carrying a brand new multi-engine system and the latest in Gegno plasma technology. Able to keep a decent stance away from a battle while still putting down fire, Feldspars are quite a dangerously well-rounded ship for their size, but are susceptible to hull damage as much as any other Scin ship."
+	description "The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also were designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology."
+	description `Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone, as they rely a lot on their fighters since they aren't a dedicated warship themselves.`
 
 ship Muscovite
 	sprite ship/muscovite
@@ -757,7 +853,7 @@ ship Muscovite
 		drag 16.1
 		"engine capacity" 182
 		"fuel capacity" 600
-		"heat dissipation" 1.2
+		"heat dissipation" 0.9
 		hull 16400
 		"outfit space" 440
 		"required crew" 68
@@ -782,8 +878,8 @@ ship Muscovite
 		angle -360
 	"reverse engine" -46.5 -157.5
 		angle -360
-	turret 0 -30.5 "Guile Anti-Missile"
-	turret 0 50 "Guile Anti-Missile"
+	turret 0 -26 "Guile Anti-Missile"
+	turret 0 64 "Guile Anti-Missile"
 	bay Fighter 0.5 109.5
 		angle -180
 		under
@@ -795,24 +891,6 @@ ship Muscovite
 	explode "medium explosion" 42
 	explode "small explosion" 38
 	"final explode" "final explosion large"
-	description "Since Protoliths were largely acquired by the Vi before spaceship developmented progressed too far, the Scin had to design a brand new heavy freighter vessel from scratch. The Muscovite is able to perform in many roles, having a very large crew capability and cargo capacity. Each Muscovite is also equipped with a rear fighter bay capable of carrying a Halite, allowing the Scin to transport fighters to outposts that need them for Feldspars. Like the Felspar, the Muscovite is also equipped with a brand new engine system, making a ship that can take a bit of a pounding faster as well."
-
-ship Muscovite "Muscovite P"
-	sprite ship/muscovitep
-	thumbnail thumbnail/muscovitep
-	add attributes
-		mass 41
-		"cargo space" 60
-		drag 2.1
-		"outfit space" 50
-		"solar collection" 1.72
-	outfits
-		"Acuit Artillery"
-		"C27 Campaign Core"
-		"Guile Anti-Missile"
-		Hyperdrive
-		"R02 Battlezone Battery"
-		"R03 Warforge Battery"
-		"SC-14 Plasma Steering"
-		"SC-15 Plasma Engines"
+	description "Since Protoliths were largely acquired by the Vi before spaceship developmented progressed too far, the Scin had to design a brand new heavy freighter vessel from scratch. The Muscovite is able to perform in many roles, having a very large crew capability and cargo capacity."
+	description `Each Muscovite is also equipped with a rear fighter bay capable of carrying a Halite, allowing the Scin to transport fighters to outposts that need them for Feldspars. Like the Felspar, the Muscovite is also equipped with a brand new engine system, making a ship that can take a bit of a pounding faster as well.`
 

@@ -131,16 +131,13 @@ government "Free Worlds"
 	"hostile hail" "hostile free worlds"
 	raid "pirate raid"
 
-government "Gegno"
+government Gegno
 	swizzle 28
-	color 0.56 0.44 0.20
-
+	color 0.56 0.44 0.2
 	"player reputation" 0.1
 	"crew attack" 1.7
 	"crew defense" 2.2
-
 	"attitude toward"
-		"Gegno Scin" 1
 		"Gegno Vi" 1
 		Quarg 1
 	"penalty for"
@@ -149,47 +146,42 @@ government "Gegno"
 		capture -1
 		destroy -1
 		atrocity -1
-		provoke -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Scin"
 	swizzle 28
 	color 0.5 0.55 0.33
-
-	"player reputation" 0.1
+	"player reputation" -0.1
 	"crew attack" 2.1
 	"crew defense" 2.7
-
 	"attitude toward"
-		Gegno 1
 		"Gegno Vi" -0.05
+		Gegno 1
 	"penalty for"
 		assist 0
-		board 0
-		capture 0
-		destroy 0
-		atrocity 0
+		board -1
+		capture -1
+		destroy -1
+		atrocity -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
 government "Gegno Vi"
 	swizzle 28
 	color 0.68 0.4 0.4
-
 	"player reputation" -0.1
 	"crew attack" 3
 	"crew defense" 1.9
-
 	"attitude toward"
 		Gegno 1
 		"Gegno Scin" -0.05
 	"penalty for"
 		assist 0
-		board 0
-		capture 0
-		destroy 0
-		atrocity 0
+		board -1
+		capture -1
+		destroy -1
+		atrocity -1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -646,6 +638,8 @@ government "Quarg"
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
 		"Gegno" .01
+		"Gegno Vi" .01
+		"Gegno Scin" .01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 

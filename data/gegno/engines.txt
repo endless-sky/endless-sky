@@ -11,7 +11,7 @@ outfit "RG15 Torch Thruster"
 	"flare sprite" "effect/ion torch/small"
 		"frame rate" 2.5000001
 	"flare sound" "ion torch small"
-	description "The RG15 Ion Torch Thruster is the smallest torch thruster found among Gegno Vi ships, and it is almost exclusively mounted on the Slate. It's not amazingly efficient, weighing more and producing more heat than most thrusters of a similar size, but also has a slightly lower energy consumption rate."
+	description "The RG15 Ion Torch Thruster is the smallest torch thruster found amongst Gegno Vi ships and it is almost exclusively mounted on the Slate. It's not amazingly efficient, weighing more and producing more heat than most thrusters of a similar size, but also has a slightly lower energy consumption rate."
 
 outfit "RG15 Torch Steering"
 	category Engines
@@ -26,7 +26,7 @@ outfit "RG15 Torch Steering"
 	"steering flare sprite" "effect/ion torch/small"
 		"frame rate" 2.3999999
 	"steering flare sound" "ion torch small"
-	description "This steering system that incorporates RG15 thrusters is only meant for the smallest of Gegno Vi ships, and mounting it on anything larger than a Shuttle-class ship is unheard of. Its energy requirement is a notch lower than normal, so some Gegno pilots use it as a cheap addon."
+	description "This steering system that incorporates RG15 thrusters is only meant for the smallest of Gegno Vi ships, and mounting it on anything larger than a Shuttle-class ship is unheard of. Despite this, its energy requirement is a notch lower than normal, so some Gegno pilots use it as a cheap addon."
 
 outfit "RG18 Torch Thruster"
 	category Engines
@@ -56,7 +56,7 @@ outfit "RG18 Torch Steering"
 	"steering flare sprite" "effect/ion torch/medium"
 		"frame rate" 2.3999999
 	"steering flare sound" "ion torch medium"
-	description "The RG18 Steering system is decently hefty for a steering system of its size. Most mid-ranged Gegno Vi ships run these as a minimum to be able to turn their already low-maneuverability ships, and they perform their job just well enough."
+	description "The RG18 Steering system is decently hefty for a steering system of its size. Most mid-ranged Gegno Vi ships run these as a minimum to be able to turn their already heavy ships, and they perform their job just well enough."
 
 outfit "RG3 Torch Thruster"
 	category Engines
@@ -71,7 +71,7 @@ outfit "RG3 Torch Thruster"
 	"flare sprite" "effect/ion torch/large"
 		"frame rate" 2.3
 	"flare sound" "ion torch large"
-	description "RG3 Ion Torch Thrusters are the Gegno's largest thrusters, and the oldest still used. Based off of the massive thrusters that powered early Gegno generation ships, these are only found on the largest of Gegno spacecraft, weighing and overheating anything smaller out of a choice."
+	description "RG3 Ion Torch Thrusters are the Gegno's largest thrusters and the oldest still used. Based off of the massive thrusters that powered early Gegno generation ships, these are only found on the largest of Gegno spacecraft, overweighing and overheating anything smaller out of the option."
 
 outfit "RG3 Torch Steering"
 	category Engines
@@ -86,7 +86,7 @@ outfit "RG3 Torch Steering"
 	"steering flare sprite" "effect/ion torch/large"
 		"frame rate" 2.3
 	"steering flare sound" "ion torch large"
-	description "As the largest and oldest steering system seen around Gegno space, only a few ships are equipped with RG3 Torch Thrusters, as most are nowhere near massive enough to be able to run them."
+	description "As the largest and oldest steering system seen around Gegno space, only a few ships are equipped with RG3 Torch Thrusters, as most ships are nowhere near massive enough to be able to run them."
 
 outfit "SC-1 Plasma Engines"
 	category Engines
@@ -149,7 +149,7 @@ outfit "SC-14 Plasma Thruster"
 	"flare sprite" effect/scplasma/med
 		"frame rate" 0.40000001
 	"flare sound" "scplasma medium"
-	description "SC7-class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with acceptable system loads."
+	description "SC7-class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with satisfactory system loads."
 
 outfit "SC-14 Plasma Steering"
 	category Engines
@@ -182,6 +182,6 @@ outfit "SC-15 Plasma Engines"
 		"frame rate" 0.29999999
 	"reverse flare sprite" effect/scplasma/large
 	"flare sound" "scplasma large"
-	"reverse flare sound" "scplasma medium"
-	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of almost the same size almost twice as fast."
+	"reverse flare sound" "scplasma large"
+	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of the same size almost twice as fast."
 
