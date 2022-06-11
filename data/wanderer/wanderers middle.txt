@@ -40,6 +40,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 				`	(Go over and investigate.)`
 					goto investigate
 				`	(Leave and explore this part of space.)`
+					event "wanderers: spera anatrusk colony" 40
 					decline
 			label investigate
 			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
@@ -330,6 +331,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 5"
 			`	There are more cameras and speeches and you are not allowed to escape this time: they insist that you sit on the platform throughout the ceremony. Once it's all over, the Director of Spaceports hands you a credit chip for <payment> and says, "Thank you, Captain <last>. You have helped us begin our new [mission, aventure] in this [hostile, dangerous] space. Soon we will be able to begin our proper work. We have many things to do and we've not even begun to explore the worlds we need to [rehabilitate, repair]. We are glad that you have chosen to [wander, toil] with us.`
 		payment 3000000
 		event "wanderers: spera anatrusk outfitter advanced"
+		event "wanderers: spera anatrusk colony" 10
 
 
 

@@ -2867,6 +2867,5 @@ mission "Wanderers Ap'arak 3"
 	on complete
 		event "wanderers: the eye opens"
 		event "wanderers: derecho mass production" 16
-		event "wanderers: spera anatrusk colony" 90
 		conversation
 			`A few minutes after you land on <planet>, a sudden uproar passes through the Wanderers in the spaceport. It's hard to be sure, but you think they sound excited, not frightened. Ships start taking off, more and more of them until the spaceport is almost deserted, and no one who is left seems at all interested in talking with you or explaining what is going on. You're probably going to have to return to your ship and see for yourself what all the fuss is about.`
