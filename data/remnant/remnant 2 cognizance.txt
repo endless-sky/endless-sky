@@ -1592,7 +1592,7 @@ mission "Remnant: Cognizance 38"
 				`	(Explain everything that happened.)`
 					goto cognizanceexplanation
 				`	"I thought the prefects were your leaders?"`
-			` "They bear our executive responsibilities, it is true. Times of critical threats require the capacity for decisions to be made in the instant. But do not confuse the authority to make high-value decisions with being in charge of everything. The less immediate a decision is, the more likely it is to be the product of significant discussion among us all. Likewise, decisions about what constitute the policy and values of our society are things decided upon by the unified whole, not any one individual." She pauses, and smiles. "Admittedly, given your involvement in smaller projects and unfolding events, our society probably does have a certain autocratic appearance."`
+			`	"They bear our executive responsibilities, it is true. Times of critical threats require the capacity for decisions to be made in the instant. But do not confuse the authority to make high-value decisions with being in charge of everything. The less immediate a decision is, the more likely it is to be the product of significant discussion among us all. Likewise, decisions about what constitute the policy and values of our society are things decided upon by the unified whole, not any one individual." She pauses, and smiles. "Admittedly, given your involvement in smaller projects and unfolding events, our society probably does have a certain autocratic appearance."`
 			choice
 				`	"Okay, I will explain everything."`
 					goto cognizanceexplanation

@@ -242,7 +242,7 @@ mission "Remnant: Logistics Civil Engineering"
 		not distance 0
 		not planet "Ssil Vida"
 		not planet "Esquiline"
-	on visit 
+	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `A project engineer inspects the <cargo> and signs off on your payment of <payment>.`
@@ -268,7 +268,7 @@ mission "Remnant: Logistics Industrial Delivery"
 		not distance 0
 		not planet "Ssil Vida"
 		not planet "Esquiline"
-	on visit 
+	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `A project technician inspects the <cargo> and approves your payment of <payment>.`
@@ -295,7 +295,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 		not distance 0
 		not planet "Ssil Vida"
 		not planet "Esquiline"
-	on visit 
+	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `A repair technician inspects the <cargo> parts and authorizes your payment of <payment>.`
@@ -322,7 +322,7 @@ mission "Remnant: Logistics Salvage Delivery"
 		not distance 0
 		not planet "Ssil Vida"
 		not planet "Esquiline"
-	on visit 
+	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `Two armed repair technicians inspects the <cargo> and authorize your payment of <payment>.`
