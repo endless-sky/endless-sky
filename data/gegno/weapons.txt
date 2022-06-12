@@ -55,7 +55,8 @@ outfit "Chloeric Cannon"
 		"hull damage" 380
 		"hit force" 180
 	description "A caliber higher than the Irate Cannon, Chloeric cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon (as well as its sister cannons), it is very ineffective against any sort of shielding."
-	description "A flaw in the shell design, however, is that point defense systems are just able to make them out as valid targets on account of their slower speed, material make-up, and size nearing a small missile."
+	description "	A flaw in the shell design, however, is that point defense systems are just able to make them out as valid targets on account of their slower speed, material make-up, and size nearing a small missile."
+
 
 outfit "Chloeric Turret"
 	category Turrets
@@ -183,7 +184,8 @@ outfit "Astuit Battery"
 		"shield damage" 8
 		"hull damage" 8.2
 	description "The Gegno Scin are the first Gegno to advance plasma technology enough to allow use of it in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
-	description `Although each shot does not hit very hard, consistent fire adds up- but so does energy usage.`
+	description `Although each shot does not hit very hard, consistent fire adds up- but so does energy usage.`
+
 effect "astuit hit"
 	sprite "effect/ast hit"
 		"no repeat"
