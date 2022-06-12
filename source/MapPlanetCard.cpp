@@ -102,7 +102,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 {
 	// Need to update this before checking if the element fits.
 	yCoordinate = uiPoint.Y();
-	isShown = Shown();
+	isShown = IsShown();
 	if(isShown)
 	{
 		const Font &font = FontSet::Get(14);
@@ -175,9 +175,16 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 
 
-bool MapPlanetCard::Shown() const
+bool MapPlanetCard::IsShown() const
 {
-	return AvailableSpace() >= 0.;
+	return AvailableSpace() > 15.;
+}
+
+
+
+bool MapPlanetCard::IsSelected() const
+{
+	return isSelected;
 }
 
 

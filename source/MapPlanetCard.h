@@ -47,7 +47,9 @@ public:
 	// Draw this at the corresponding scoll; if it is not outside bounds, and return if we drew it.
 	bool DrawIfFits(const Point &uiPoint);
 	// If this object is currently being shown.
-	bool Shown() const;
+	bool IsShown() const;
+	// Whether or not this object by selected, by clicking on it or otherwise.
+	bool IsSelected() const;
 	// Return the space available for this planet card on its current position.
 	double AvailableSpace() const;
 
@@ -55,7 +57,7 @@ public:
 
 
 protected:
-	// Highlight this card; to be called when it is selected.
+	// Highlight this card; this is to be called when it is selected.
 	void Highlight(double availableSpace) const;
 	double AvailableBottomSpace() const;
 	double AvailableTopSpace() const;

@@ -127,6 +127,7 @@ interface "map detail panel"
 	value "government top Y" 45
 	value "text margin" 15
 	value "trade height" 190
+	value "arrow offset" 10
 
 
 

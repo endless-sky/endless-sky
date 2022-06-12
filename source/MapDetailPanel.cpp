@@ -251,9 +251,10 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
-	bool inPlanetCards = (y < tradeY && y > governmentY);
+	bool yInPlanetCards = (y < tradeY && y > governmentY);
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	if(x < Screen::Left() + 160 && !inPlanetCards)
+	const double planetCardWidth = planetCardInterface->GetValue("width");
+	if(x < Screen::Left() + 160 && !yInPlanetCards)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
@@ -270,29 +271,41 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
-	else if(x < Screen::Left() + planetCardInterface->GetValue("width") && inPlanetCards)
+	else if(x < Screen::Left() + planetCardWidth && yInPlanetCards)
 	{
-		for(auto &card : planetCards)
+		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+		bool clickedArrow = (maxScroll && x > Screen::Left() + planetCardWidth - mapInterface->GetValue("arrow offset") - 5.);
+		if(clickedArrow)
 		{
-			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
-			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
+			const double planetCardHeight = planetCardInterface->GetValue("height");
+			bool arrowUp = (y < governmentY + planetCardHeight && !planetCards.front().IsShown());
+			bool arrowDown = (!arrowUp && y > tradeY - planetCardHeight && !planetCards.back().IsShown());
+			scroll += (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.);
+		}
+		else
+		{
+			for(auto &card : planetCards)
 			{
-				GetUI()->Pop(this);
-				GetUI()->Push(new MapShipyardPanel(*this, true));
-				break;
-			}
-			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
-			{
-				GetUI()->Pop(this);
-				GetUI()->Push(new MapOutfitterPanel(*this, true));
-				break;
-			}
-			// Then this is the planet selected.
-			else if(clickAction != MapPlanetCard::ClickAction::NONE)
-			{
-				selectedPlanet = card.GetPlanet();
-				if(clickAction != MapPlanetCard::ClickAction::SELECTED)
-					SetCommodity(static_cast<int>(clickAction));
+				MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
+				if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
+				{
+					GetUI()->Pop(this);
+					GetUI()->Push(new MapShipyardPanel(*this, true));
+					break;
+				}
+				else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
+				{
+					GetUI()->Pop(this);
+					GetUI()->Push(new MapOutfitterPanel(*this, true));
+					break;
+				}
+				// Then this is the planet selected.
+				else if(clickAction != MapPlanetCard::ClickAction::NONE)
+				{
+					selectedPlanet = card.GetPlanet();
+					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
+						SetCommodity(static_cast<int>(clickAction));
+				}
 			}
 		}
 		return true;
@@ -548,16 +561,32 @@ void MapDetailPanel::DrawInfo()
 	if(hasVisited)
 	{
 		maxScroll = 0.;
-
+		bool drawArrows = false;
 		for(auto &card : planetCards)
 		{
+			// This updates the location of the card so it needs to be called before AvailableSpace().
 			bool wasDrawn = card.DrawIfFits(uiPoint);
 			const double availableSpace = card.AvailableSpace();
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			if(wasDrawn)
 				uiPoint.Y() += availableSpace;
-			// Call it all of the time so we can scroll if an element is partially shown.
+			else
+				drawArrows = true;
+
+			// Do this all of the time so we can scroll if an element is partially shown.
 			maxScroll += (planetHeight - availableSpace);
+		}
+
+		if(drawArrows)
+		{
+			const double arrowOffset = mapInterface->GetValue("arrow offset");
+			// Draw the pointers to go up and down by a planet.
+			if(!planetCards.front().IsShown())
+				PointerShader::Draw(Point(Screen::Left() + planetWidth - arrowOffset,
+					Screen::Top() + startingY + arrowOffset), Point(0., -1.), 10.f, 10.f, 5.f, medium);
+			if(!planetCards.back().IsShown())
+				PointerShader::Draw(uiPoint + Point(planetWidth - startingX - arrowOffset, -arrowOffset),
+					Point(0., 1.), 10.f, 10.f, 5.f, medium);
 		}
 	}
 
