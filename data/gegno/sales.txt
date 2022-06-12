@@ -73,41 +73,41 @@ outfitter "Gegno Scin Outfits"
 	"SC-12 Plasma Thruster"
 	"SC-14 Plasma Steering"
 	"SC-14 Plasma Thruster"
-	"SC-15 Plasma Engines"
+	"SC-15 Plasma Thrusters"
 	"Talc Laser"
 
 # Special Outfits
 
 outfit "Gegno Civilian License"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "You have been accepted as a titular Gegno citizen that provides benefits for the Gegno race, and have been awarded access to their civilian technology."
 
 outfit "Vi Lord Markings"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset to their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
 outfit "Vi Centurion Markings"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgment. Access to a portion of the Vi's military arsenal awaits your interests."
 
 outfit "Vi Evocati Markings"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "The Gegno Vi have recognized you as a committed warrior to their cause, and see usefulness in you. Low level Vi technology now becomes accessible for your leisure."
 
 outfit "Scin Hoplologist Certification"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the allowance of usage of advanced Scin weaponry."
 
 outfit "Scin Architect Certification"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "Showing that you are avantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
 
 outfit "Scin Adjutant Certification"
 	category "Special"
-	thumbnail
+	#thumbnail
 	description "Productive acts perpetrated by you have raised the interests of the Gegno Scin, and they authorize you to purchase their most basic technology."
