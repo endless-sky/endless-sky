@@ -86,11 +86,11 @@ outfit "Gegno Civilian License"
 outfit "Vi Lord Markings"
 	category "Special"
 	thumbnail
-	description "A majority of the Vi's military hierarcy recognizes you as a respectable foe and invaluable asset to their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
+	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset to their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
 outfit "Vi Centurion Markings"
 	category "Special"
 	thumbnail
-	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgement. Access to a portion of the Vi's military arsenal awaits your interests."
+	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgment. Access to a portion of the Vi's military arsenal awaits your interests."
 
 outfit "Vi Evocati Markings"
 	category "Special"

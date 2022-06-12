@@ -639,9 +639,9 @@ government "Quarg"
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
-		"Gegno" 1
-		"Gegno Vi" 1
-		"Gegno Scin" 1
+		"Gegno" .01
+		"Gegno Vi" .01
+		"Gegno Scin" .01
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 

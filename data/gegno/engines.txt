@@ -30,7 +30,7 @@ outfit "RG15 Torch Steering"
 	"steering flare sprite" "effect/ion torch/small"
 		"frame rate" 2.4
 	"steering flare sound" "ion torch small"
-	description "This steering system that incorporates RG15 thrusters is only meant for the smallest of Gegno Vi ships, and mounting it on anything larger than a Shuttle-class ship is unheard of. Despite this, its energy requirement is a notch lower than normal, so some Gegno pilots use it as a cheap addon."
+	description "This steering system is meant for the smallest of Gegno Vi ships, and mounting it exclusively on anything larger than a Shuttle-class ship is unheard of. Still, it offers relatively high energy efficiency so some Gegno pilots use it as a cheap addon."
 
 outfit "RG18 Torch Thruster"
 	category Engines
@@ -144,7 +144,7 @@ outfit "SC-12 Plasma Thruster"
 	"flare sprite" effect/scplasma/small
 		"frame rate" 0.5
 	"flare sound" "scplasma small"
-	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more accurate and powerful SC thrusters tend to run notably hotter."
+	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more stable and powerful SC thrusters tend to run notably hotter."
 
 outfit "SC-12 Plasma Steering"
 	category Engines
@@ -180,7 +180,7 @@ outfit "SC-14 Plasma Thruster"
 	"flare sprite" effect/scplasma/med
 		"frame rate" 0.4
 	"flare sound" "scplasma medium"
-	description "SC7-class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with satisfactory system loads."
+	description "SC-14 class Thrusters power the Scin's average gunboat or transport, providing a more than reliable speed for a ship in need of it. They easily can propel any medium-sized ship forward as fast as they need with satisfactory system loads."
 
 outfit "SC-14 Plasma Steering"
 	category Engines
@@ -190,7 +190,7 @@ outfit "SC-14 Plasma Steering"
 	cost 156400
 	thumbnail outfit/medscplasmasteer
 	"engine capacity" -34
-	mas 0
+	mass 34
 	"outfit space" -34
 	turn 690
 	"turning energy" 1.5
@@ -198,15 +198,16 @@ outfit "SC-14 Plasma Steering"
 	"steering flare sprite" effect/scplasma/med
 		"frame rate" 0.4
 	"steering flare sound" "scplasma medium"
-	description "At a larger scale than typical SC2 thrusters, SC7 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than others."
+	description "At a larger scale than typical SC2 thrusters, SC-14 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than others."
 
-outfit "SC-15 Plasma Engines"
+outfit "SC-15 Plasma Thrusters"
 	category Engines
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
 		"Scin Architect"
 	cost 2312000
+	mass -112
 	thumbnail outfit/largescplasma
 	"engine capacity" -112
 	"outfit space" -112
@@ -221,5 +222,4 @@ outfit "SC-15 Plasma Engines"
 	"reverse flare sprite" effect/scplasma/large
 	"flare sound" "scplasma large"
 	"reverse flare sound" "scplasma large"
-	description "The Gegno Scin have taken a second step forward with the SC9-class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels, and is able to maneuver ships of the same size almost twice as fast."
-
+	description "The Gegno Scin have taken a second step forward from the SC-14 class Engine System, incorporating both reverse and forward thrust. In order to field the SC9, the Scin had to design their largest ships around the system, rather than fit it on later. The reverse thrust is especially important in engagements with the Gegno Vi's forward-heavy combat vessels."
