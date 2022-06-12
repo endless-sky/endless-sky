@@ -411,8 +411,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		if(it->second.type & Orders::REQUIRES_TARGET)
 		{
 			shared_ptr<Ship> ship = it->second.target.lock();
-			// Check if the target ship itself is targetable.
-			bool invalidTarget = !ship || !ship->IsTargetable() || (ship->IsDisabled() && it->second.type == Orders::ATTACK);
+			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
+			bool invalidTarget = !ship || (!ship->IsTargetable() && !(&*it->first == flagship && ship->IsYours())) ||
+				(ship->IsDisabled() && it->second.type == Orders::ATTACK);
 			// Check if the target ship is in a system where we can target.
 			// This check only checks for undocked ships (that have a current system).
 			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
