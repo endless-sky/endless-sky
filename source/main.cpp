@@ -119,10 +119,7 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	try {
-		TaskQueue::Init();
-		struct TaskQueueCleanup {
-			~TaskQueueCleanup() { TaskQueue::Quit(); }
-		} _;
+		TaskQueue taskQueue;
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;

@@ -23,8 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class TaskQueue {
 public:
 	// Initialize the threads used to execute the tasks.
-	static void Init();
-	static void Quit();
+	TaskQueue();
+	~TaskQueue();
 
 	// Queue a function to execute in parallel.
 	static std::future<void> Run(std::function<void()> f);
