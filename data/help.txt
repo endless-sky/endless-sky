@@ -104,13 +104,23 @@ help "fleet asteroid mining shortcuts"
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid (chase and mine).`
 	``
 	`Alternate targeting:`
-	`   Left click - will target an asteroid without mining it.`
+	`	Left click - will target an asteroid without mining it.`
 	`	Right click - will focus your fleet to chase an asteroid and mine it.`
 
 help "fleet harvest tutorial"
-	`<Select nearest asteroid> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids.  Press <Select nearest asteroid> multiple times to toggle harvest mode on and off for your fleet.`
+	`<Select nearest asteroid> key is a shortcut for your fleet to harvest discarded cargo and mined asteroids. Press <Select nearest asteroid> multiple times to toggle harvest mode on and off for your fleet.`
 	``
 	`If you have an asteroid scanner, <Select nearest asteroid> key will also target asteroids for fleet mining.`
+
+help "fighters transfer cargo"
+	`By enabling "Fighters transfer cargo" option, drones and fighters will transfer cargo to their parent carrier if there is cargo space in the carrier. If a fighter cargo hold is full then it will return to the carrier automatically.`
+	``
+	`Drones and fighters will transfer cargo upon docking with their carrier for any reason.`
+
+help "try out fighters transfer cargo"
+	`You have a carrier which can use fighters to collect dropped materials if the fighter has cargo space.`
+	``
+	`	In Preferences and Settings under AI section, turn on "Fighters transfer cargo" to learn more.`
 
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
