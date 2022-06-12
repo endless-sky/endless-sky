@@ -126,7 +126,8 @@ outfit "Ballistic Cannon"
 		"hull damage" 776
 		"hit force" 360
 	description "The Gegno Ballistic Cannon tops its sister cannons as the highest caliber. A huge, self-sustaining turret mount with its own vent ports is necessary for one of these cannons to even be fitted on a ship, provided there are crew to operate it."
-	description "The shells a Ballistic Cannon fires almost equate to that of explosive rockets, dealing tremendous hull damage. However, due to their lethargic nature and material composition, they are just as easily vulnerable to point defense systems."
+	description "	The shells a Ballistic Cannon fires almost equate to that of explosive rockets, dealing tremendous hull damage. However, due to their lethargic nature and material composition, they are just as easily vulnerable to point defense systems."
+
 
 effect "ballistic fire"
 	sprite effect/balfire
