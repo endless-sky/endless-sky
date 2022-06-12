@@ -2417,7 +2417,7 @@ mission "Coalition: Expeditions Past 2"
 				`	"So, will you still be paying me for the job, or is that the consuls now since they've officially approved this?"`
 				`	"You seem eager to get started. So, where are we heading?"`
 					goto heading
-			`	"Approval for us to leave, they gave me, but prove any further assistance - be that a jump drive, or funding - they won't," she explains. "Saved up well over the past few years, I have, so once done we are, pay you several million credits, I shall. But, who knows, maybe if exciting enough, our findings out there are, convinced to give you a bonus, the consuls might be," she smiles.`
+			`	"Approval for us to leave, they gave me, but provide any further assistance - be that a jump drive, or funding - they won't," she explains. "Saved up well over the past few years, I have, so once done we are, pay you several million credits, I shall. But, who knows, maybe if exciting enough, our findings out there are, convinced to give you a bonus, the consuls might be," she smiles.`
 			label heading
 			`	"Ready to go outside, we are not. Not for the purpose of finding out about the last expedition, at least. A tool from House Idriss, we need, if to trace my ancestor's steps, we are. To <destination>, we must go."`
 			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
