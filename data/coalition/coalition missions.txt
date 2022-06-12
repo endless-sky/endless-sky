@@ -2413,9 +2413,14 @@ mission "Coalition: Expeditions Past 2"
 				`	"Good to hear they had a change of heart. So, where are we heading?"`
 					goto heading
 			`	"Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, and then adopted by the Heliarchs, it was. Remains in use to this day, the term does," she says in excitement, pausing with a smile as if considering that she herself is one such "inspector" now.`
+			choice
+				`	"So, will you still be paying me for the job, or is that the consuls now since they've officially approved this?"`
+				`	"You seem eager to get started. So, where are we heading?"`
+					goto heading
+			`	"Approval for us to leave, they gave me, but prove any further assistance - be that a jump drive, or funding - they won't," she explains. "Saved up well over the past few years, I have, so once done we are, pay you several million credits, I shall. But, who knows, maybe if exciting enough, our findings out there are, convinced to give you a bonus, the consuls might be," she smiles.`
 			label heading
 			`	"Ready to go outside, we are not. Not for the purpose of finding out about the last expedition, at least. A tool from House Idriss, we need, if to trace my ancestor's steps, we are. To <destination>, we must go."`
-			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
+			`	As she's about to continue, your conversation is cut short by a Kimek rushing towards you two, shouting frantically. Once he's closer, you recognize him as Arbiter Kicharri from earlier, and Sedlitaris tries to calm him down while he's catching his breath. "Professor, if about my request this is, already met with the council, I have. Approved it-"`
 			`	"I know! Exactly what I'm furious about, that is!" He shouts. "Asked them to give you a definitive answer, I had, but not this kind of definitive! Listen, permission or not, safe to leave, it is not. Know that, you do." He looks at her for a few moments, then to you. "Captain, as her superior, greatly appreciate your intent to help Sedlitaris, I do, but too brash about this, she has been. Take her out of our space, you must not."`
 			`	He looks at her again, as if expecting some response. When no response comes, he turns away slowly, saying, "Don't waste your life on this," and walking away. Sedlitaris sighs once he turns a corridor and says she's ready for the trip.`
 			choice
@@ -2423,6 +2428,17 @@ mission "Coalition: Expeditions Past 2"
 				`	"Alright, let's head back to the ship."`
 					goto end
 			`	"I do. Know what he meant, I also do not," she says, looking back to the corner Kicharri turned. "Approving of my wish for this trip, he never was. Some time to calm down, he needs. For now, back to your ship, we should go."`
+			choice
+				`	"Alright, let's go."`
+					goto end
+				`	"I'm not sure I'm comfortable going after that."`
+			`	She steps back, seemingly shocked at your change of mind. "What? Captain, a superstitious Kimek, the arbiter is. Pay no mind to that rant, you should. Assure you I do, fine we will be."`
+			choice
+				`	"I'm sorry, but I won't help you anymore."`
+				`	"I better not regret this. Let's head to the ship."`
+					goto end
+			`	Sedlitaris doesn't say anything, but makes no effort to hide her frustration. She looks to where Kicharri headed, and storms off after him.`
+				decline
 			label end
 			`	You find five Heliarchs waiting by your ship, who Sedlitaris introduces as representatives of the council, and who must be present when House Idriss provides the piece of equipment she wants. You show her and the others to their bunks and prepare for the trip.`
 				accept
@@ -2450,12 +2466,33 @@ mission "Coalition: Expeditions Past 3"
 				`	"I've just been hired to transport her."`
 					goto hired
 				`	"What's so wrong about her wanting to explore outside the Coalition?"`
+					goto wrong
+				`	"Wait, what did you say about the outside being dangerous?"`
+			`	The Saryd looks at you, puzzled. Then, as if realizing something, turns to Sedlitaris, "Told the human, you haven't?"`
+			`	"That's enough Repilor. Trespassing on a restricted area, you are. Escort him to his ship," she tells the guards, and after exchanging looks briefly, and after some struggle on Repilor's part, the Arachi manage to push him back inside the Sojourner. "Ignore that you should, Captain. Always... difficult, my brother was. Too stubborn to realize when to stop, and easy to impress with folk tales of the outside."`
+			choice
+				`	"If you say so. Should I wait in my ship until you all are done here?"`
+					goto accept
+				`	"Folk tales or not, I'm not really willing to find out after that. He didn't seem to be lying."`
+			`	"What?" she exclaims. "Please Captain, fall for my brother's little rant, you cannot. Finally permission to leave, I have!"`
+			choice
+				`	"Alright, alright. But I hope I don't regret this."`
+				`	"I'm sorry. Whatever it is he was afraid of, I'm not willing to risk it."`
+					goto decline
+			`	"You won't." She says, heading to you and holding your hands with hers, as if in thanks. "Promise you I do, fine we will be, Captain."`
+				goto accept
+			label decline
+			`	You hear her stomping her hoofs on the ground as you head back to your ship, and see her and the Heliarch council representatives arguing with one another as you close your hatch. When you're back on the spaceport landing area, a Sojourner lands next to your ship, and Repilor, the Saryd from earlier, comes out.`
+			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you had. That filled her head with more grandiose tales of the outside, you did." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did. Better for the both of you, this is." He nods lightly in a bow, and heads back to his ship.`
+				decline
+			label wrong
 			`	"Awaiting 'explorers,' nothing but an unknown, certain doom is. Wish for that to be my sister's fate, I do not," he answers.`
 			label hired
 			`	"Captain <last> has nothing to do with it. Simply agreed to help me, they have, no different from the jobs you take, this is." Sedlitaris says.`
 			`	"A job, this is not, but a trek bound to end in tragedy." He thinks for a few seconds, looking at the Saryd ships that landed on the plateau. "Permission to leave, you have, but obligated to do so, you aren't. Quit, you still can. Leave the ranks, you could, and work with me. Give you my own ship, I will. Like that, would you not? To fly a ship of your own again?"`
 			`	"Finally allowed to leave, I am. Let go of this opportunity I won't, Repilor. Back in a few weeks, I'll be, lecture me all you want then, you can."`
 			`	He stares her down for a while, bringing a hand to his face to wipe some tears forming on his eyes. "Wiser than this, the elder sibling should've been." He turns around and heads back to the Sojourner, which departs along with the three Travelers.`
+			label accept
 			`	The representatives urge you and Sedlitaris to follow them into the complex, making your way past the walls and fences, and into one of the larger warehouses. Inside, large shelves stacked to the ceiling surround a hexagonal hole in the middle, closed off by metal bars and a shut gate. You're told it's an elevator and is bringing up the piece of equipment Sedlitaris requires.`
 			`	"Deeply sorry for that scandal you witnessed, I am, Captain," she says while you wait. "Imagined, I hadn't, that follow us here, my brother would."`
 			choice
@@ -2520,7 +2557,7 @@ mission "Coalition: Expeditions Past 4"
 			`	"Stopping them?" She takes a long pause, eyes locked onto the pylon. "Wonder that, I also do. Perhaps encountered some complication, they had. Learn more from other log entries, I'm sure we will."`
 				goto end
 			label where
-			`	"Our first attempt at colonizing an outside world, it was. Somewhere northwest of here, it should be, but consult your ship's records for the exact coordiantes, we'll need to."`
+			`	"Our first attempt at colonizing an outside world, it was. Somewhere northwest of here, it should be, but consult your ship's records for the exact coordinates, we'll need to."`
 			label end
 			`	You two make your way out of the cave, returning to the ravine, and from there head to your ship. Sedlitaris asks for your map and compares the coordinates with the data from the pylon again, finding that <destination> is what the recording referred to as Distant Home. She heads to her room, and you set <planet> as your destination.`
 				accept
@@ -2708,7 +2745,7 @@ mission "Coalition: Expeditions Past 9"
 		conversation
 			`You fly around <origin> as Sedlitaris searches for the pylon's exact position, in the hopes that she can bring it back as well. She tells you to land by a mountain range, and has you readjust your landing spot every so often as she tries to nail the exact location of the pylon. "Buried it to protect it from the atmosphere's acidity, they must have," she comments.`
 			`	By the time she's done, you open your ship's hatch right to where the pylon should be and help her dig it out, taking care to not be out for too long. When the device is dug out, you bring it inside your ship while Sedlitaris fills up the hole with what dirt had been dug out.`
-			`	As you're flying to the hangars, she plays the pylon's entry: "Log started. Made a route from Summit straight to the meeting point, I had, but find the split group, I could not. Restless, agitated, the crew has become, heading straight to Ablub, we are, after buried, this thing is. If find this, anyone from the split group is, head back-" at that point an untranslated shouting muffles what Mimodum was saying, followed by dozens of legs in a rush. "No..." is heard right before the recording ends.`
+			`	As you're flying to the spaceport, she plays the pylon's entry: "Log started. Made a route from Summit straight to the meeting point, I had, but find the split group, I could not. Restless, agitated, the crew has become, heading straight to Ablub, we are, after buried, this thing is. If find this, anyone from the split group is, head back-" at that point an untranslated shouting muffles what Mimodum was saying, followed by dozens of legs in a rush. "No..." is heard right before the recording ends.`
 			`	You focus on flying the ship, but even when you've landed, Sedlitaris remains silent.`
 			choice
 				`	"Are you alright?"`
@@ -2753,11 +2790,11 @@ mission "Coalition: Expeditions Past 10"
 			`	She goes back to her bunk, saying she wishes to be alone for a while, and you fly to the planet's spaceport. A few hours later, she comes back out. "Finished my report, I have. Ready to go back home I am, Captain <last>. A long trip this was, and promised to pay you well, I did, so when <planet> we reach, give you your well-earned 10,000,000 credits, I shall. Present my findings to the council, I must."`
 			choice
 				`	"That's a lot of money. I was worried you wouldn't even want to pay me, with how disappointed you were earlier."`
-					goto alot
+					goto money
 				`	"Aren't you worried we'll get ambushed, like how Mimodum's ship was?"`
 			`	She grins for a moment, seemingly taking it as a joke. "If going to ambush us, the Quarg were, already done it, they would have. Too close to the Coalition by now, we are."`
 				goto accept
-			label alot
+			label money
 			`	"Ah, forgive me for that, Captain. True it is, that disappointed, I am. However, an inspector should not let that trouble her duties," she explains. "Done your work, you have, so now do mine, I must. Not discussed in Mimodum's audio entries, many details of interest to the council were. An initial gathering of that data, I have prepared."`
 			label accept
 			`	She asks that you bring her to <destination> as soon as possible, and goes back to her bunk to rest.`
@@ -2768,12 +2805,12 @@ mission "Coalition: Expeditions Past 10"
 		"coalition jobs" += 15
 		payment 35000000
 		conversation
-			`Sedlitaris uses your commlink to tell the spaceport authorities that she's returned, and soon after you land a crowd of Heliarchs and Coalition civilians alike are surrounding your ship. The Heliarch agents try and organise the crowd as best as they can, and a group of Heliarch consuls rush through the masses to meet you two at your ship.`
+			`Sedlitaris uses your commlink to tell the spaceport authorities that she's returned, and soon after you land a crowd of Heliarchs and Coalition civilians alike are surrounding your ship. The Heliarch agents try and organize the crowd as best as they can, and a group of Heliarch consuls rush through the masses to meet you two at your ship.`
 			`	"Inspector! A most... fortunate return this is. A great deal of information you've collected, we take it?" an Arach consul asks.`
 			`	"Yes, eager to hear your report, we are," one of the Kimek consuls continues. "A rare occasion, it is, to be able to learn of the outside from one of our esteemed inspectors."`
 			`	A Saryd consul, who's kept a stern look on his face, cuts in. "Returned with his fleet, your ancestor, Mimodum, did not. Learned of the reason for that, have you?"`
 			`	"Yes," she says. "Recovered as much information as I wished to, I could not, but prepared a report on what me and Captain <last> found, I have. Additionally, recovered two of the pylons Mimodum left, we have."`
-			`	One of the consuls adresses you, "Tell us, Captain, run into any er... complications during the trip, have you? Maybe occasioned by the tribune - the inspector - being with you?"`
+			`	One of the consuls addresses you, "Tell us, Captain, run into any er... complications during the trip, have you? Maybe occasioned by the tribune - the inspector - being with you?"`
 			choice
 				`	"She stayed inside my ship whenever there was a risk of humans seeing her, if that's what you're asking."`
 				`	"I didn't notice anything out of the usual, no."`
