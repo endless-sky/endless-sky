@@ -33083,7 +33083,7 @@ planet Essime
 	landscape land/mountain4
 	description "Starting from an early age, most Vi give their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land. "
 	spaceport "The spaceport here is a very large circular shape with tall pylons reaching up into a dome roofing. The empty space between each pylon is occasionally interrupted by a freighter or two, and in the center of it is a main center shaft where most pilots are gathered. Surrounding the pilots are what appear to be older members of the Vi deep in conversation."
-	spaceport "Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present."
+	spaceport "	Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present."
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
