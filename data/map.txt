@@ -32661,7 +32661,7 @@ system Asio
 		period 3115.4
 
 system 24b
-	pos 410.6 17.38
+	pos 411.6 21.5
 	government Uninhabited
 	habitable 26.45
 	belt 1734
@@ -32700,7 +32700,7 @@ system 24b
 		period 82856.5
 
 system 19c
-	pos 382.6 17.5
+	pos 382.6 16.5
 	government Uninhabited
 	habitable 2560
 	belt 1607
