@@ -892,7 +892,7 @@ ship Feldspar
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
 	description "The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite Fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They also were designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology."
-	description `Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone, as they rely a lot on their fighters since they aren't a dedicated warship themselves.`
+	description `	Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone, as they rely a lot on their fighters since they aren't a dedicated warship themselves.`
 
 ship Muscovite
 	sprite ship/muscovite
