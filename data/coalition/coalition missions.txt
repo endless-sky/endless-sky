@@ -2012,7 +2012,7 @@ mission "Coalition: Council of Ahr: Ablomab"
 	destination "Ahr"
 	on offer
 		conversation
-			`You land on <source> to find that House Ablomab's representative had to oversee an "emergency meltdown drill" on the neighboring planet, Bloptab's Furnace. His interplanetary shuttle still hasn't arrived, so you're left to wait for him on the spaceport.`
+			`You land on <origin> to find that House Ablomab's representative had to oversee an "emergency meltdown drill" on the neighboring planet, Bloptab's Furnace. His interplanetary shuttle still hasn't arrived, so you're left to wait for him on the spaceport.`
 			`	He finally arrives some hours after sunset, dragging along a heavy suitcase and barely holding on to what must be the Arach equivalent of coffee. As you help him with the heavy luggage, he introduces himself as Dubug. "Sorry about the wait, I am. Replace a coworker on the meltdown drill, I had to. A routine task, it is, but also routine, the Council is, so care much for the delay, the house did not. Show me to my room, could you?"`
 			`	While you're both walking to your ship, he finishes his drink, but it doesn't seem to help him keep his eyes open; you have to help him avoid bumping into either the other Arachi here or the spaceport decorations. Although he doesn't seem very talkative, it might help his focus to get a conversation going.`
 			choice
