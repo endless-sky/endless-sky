@@ -238,7 +238,7 @@ ship Gypsum
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description "To fuel their exponentionally increasing construction rate and need for materials, many Miner-class ships were devised for space usage. Rather than re-use older ship designs, Miners would be designed to focus only on the purpose of mining. The Gypsum platform is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easily manufacturable."
-	description `Compared to other vessels in the galaxy, the Gypsum is much slower due to the Gegno's technology level, and has a harder time keeping up with faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
+	description `	Compared to other vessels in the galaxy, the Gypsum is much slower due to the Gegno's technology level, and has a harder time keeping up with faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
 
 ship Slate
 	sprite ship/slate
