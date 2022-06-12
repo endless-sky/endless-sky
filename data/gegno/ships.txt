@@ -178,7 +178,7 @@ ship Conglomerate
 			"hull damage" 1160
 			"hit force" 1650
 	outfits
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"RG18 Torch Steering"
@@ -221,7 +221,7 @@ ship Gypsum
 			"hull damage" 620
 			"hit force" 720
 	outfits
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		Excavator
 		Hyperdrive
 		"R01 Skirmish Battery"
@@ -307,7 +307,7 @@ ship Schist
 			"hull damage" 660
 			"hit force" 700
 	outfits
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		Hyperdrive
 		"Irate Cannon" 2
 		"R02 Battlezone Battery"
@@ -371,7 +371,7 @@ ship Eclogite
 			"hull damage" 490
 			"hit force" 470
 	outfits
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		"Chloeric Cannon"
 		Hyperdrive
 		"Irate Cannon" 4
@@ -699,7 +699,7 @@ ship Coesite
 			"hit force" 440
 	outfits
 		"Astuit Battery" 2
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		Hyperdrive
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery" 2
@@ -746,7 +746,7 @@ ship Tridymite
 			"hull damage" 430
 			"hit force" 410
 	outfits
-		"C7 Brawl Core"
+		"C7 Brawl Cell"
 		"Guile Anti-Missile"
 		Hyperdrive
 		"R02 Battlezone Battery"
@@ -850,7 +850,7 @@ ship Feldspar
 		Hyperdrive
 		"R03 Warforge Battery"
 		"SC-14 Plasma Steering"
-		"SC-15 Plasma Engines"
+		"SC-15 Plasma Thrusters"
 	engine 31 198
 	engine -31 198
 	"reverse engine" -38 -188
@@ -929,7 +929,7 @@ ship Muscovite
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
 		"SC-14 Plasma Steering"
-		"SC-15 Plasma Engines"
+		"SC-15 Plasma Thrusters"
 	engine -55.5 165.5
 	engine 55.5 165.5
 	"reverse engine" 46.5 -157.5

@@ -58,9 +58,9 @@ outfit "RG18 Torch Steering"
 	thumbnail "outfit/med torch steer"
 	"engine capacity" -39
 	"outfit space" -39
-	turn 420
-	"turning energy" 1.3
-	"turning heat" 2.4
+	turn 408
+	"turning energy" 0.9
+	"turning heat" 2.7
 	"steering flare sprite" "effect/ion torch/medium"
 		"frame rate" 2.4
 	"steering flare sound" "ion torch medium"
@@ -98,7 +98,7 @@ outfit "RG3 Torch Steering"
 	thumbnail "outfit/large torch steer"
 	"engine capacity" -64
 	"outfit space" -64
-	turn 700
+	turn 701
 	"turning energy" 1.6
 	"turning heat" 4.2
 	"steering flare sprite" "effect/ion torch/large"
