@@ -950,5 +950,5 @@ ship Muscovite
 	explode "small explosion" 38
 	"final explode" "final explosion large"
 	description "Since Protoliths were largely acquired by the Vi before spaceship developmented progressed too far, the Scin had to design a brand new heavy freighter vessel from scratch. The Muscovite is able to perform in many roles, having a very large crew capability and cargo capacity."
-	description `Each Muscovite is also equipped with a rear fighter bay capable of carrying a Halite, allowing the Scin to transport fighters to outposts that need them for Feldspars. Like the Felspar, the Muscovite is also equipped with a brand new engine system, making a ship that can take a bit of a pounding faster as well.`
+	description `	Each Muscovite is also equipped with a rear fighter bay capable of carrying a Halite, allowing the Scin to transport fighters to outposts that need them for Feldspars. Like the Felspar, the Muscovite is also equipped with a brand new engine system, making a ship that can take a bit of a pounding faster as well.`
 
