@@ -47,12 +47,13 @@ outfit "R04 Crusade Battery"
 	thumbnail outfit/gbatterylarge
 	"energy capacity" 8885
 	"outfit space" -83
-	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost enough power as a small generator, enough to support the massive warships of both the Scin and the Vi. However, they fall under the capacity of similarly-sized human batteries due to inefficient handling of their scale."
+	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost as much power as a small generator, enough to support the massive warships of both the Scin and the Vi. However, they fall under the capacity of similarly-sized human batteries due to inefficient handling of their scale."
 
 outfit "C3 Scrap Cell"
 	category Power
 	licenses
 		"Gegno Civilian"
+	plural "C3 Scrap Cells"
 	cost 54000
 	mass 25
 	thumbnail outfit/vicoretiny
@@ -61,23 +62,24 @@ outfit "C3 Scrap Cell"
 	"outfit space" -25
 	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch that abusing the Gegno's slightly hotter running tech. Its output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
 
-outfit "C7 Brawl Core"
+outfit "C7 Brawl Cell"
 	category Power
 	licenses
 		"Gegno Civilian"
+	plural "C7 Brawl Cells"
 	cost 68100
 	mass 39
 	thumbnail outfit/vicoresmall
 	"energy generation" 2.5
 	"heat generation" 3.9
 	"outfit space" -39
-	description "C7 Brawl Cores are a slight deviation from the other C class cores as it is set upright-forward. It is a more rudimentary type of radiothermal reactor than the C3, but nevertheless produces the necessary power for the ships that typically carry one."
+	description "C7 Brawl Cores are a slight deviation from other C-class power sources as it is set upright-forward. It is a more rudimentary type of radiothermal reactor than the C3, but nevertheless produces the necessary power for the ships that typically carry one."
 
 outfit "C17 Warzone Core"
 	category Power
 	licenses
 		"Gegno Civilian"
-	plural "C7 Warzone Cores"
+	plural "C17 Warzone Cores"
 	cost 2472000
 	mass 87
 	thumbnail outfit/vicoremed
@@ -93,14 +95,14 @@ outfit "C27 Campaign Core"
 		"Vi Evocati"
 		"Vi Centurion"
 		"Vi Lord"
-	plural "C7 Campaign Cores"
+	plural "C27 Campaign Cores"
 	cost 8145000
 	mass 145
 	thumbnail outfit/vicorelarge
 	"energy generation" 22.3
 	"heat generation" 62.9
 	"outfit space" -145
-	description "In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during their colony ship era. It's still used to this day and is as efficient as one warship needs it to be, but just looking at it still raises concerns."
+	description "In order to power the largest of vessels along with their power-guzzling systems and engines, the Gegno designed the Campaign Fusion Reactor from earlier prototypes during their colony ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it still raises concerns."
 
 outfit "I70 Ameliorate Cell"
 	category Power
@@ -108,6 +110,7 @@ outfit "I70 Ameliorate Cell"
 		"Gegno Civilian"
 		"Scin Hoplologist"
 		"Scin Architect"
+	plural "I70 Ameliorate Cells"
 	cost 166000
 	mass 20
 	thumbnail outfit/scincoretiny
