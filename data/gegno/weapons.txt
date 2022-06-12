@@ -250,7 +250,7 @@ outfit "Acuit Artillery"
 		"shield damage" 362
 		"hull damage" 280
 		"hit force" 40
-	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon from afar."
+	description "With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. The Acuit Artillery Cannon outranges most weapons in Gegno space, and has a rate of fire higher than most other weapons, making it a very efficient bombardment weapon from afar."
 
 effect "acuit hit"
 	sprite "effect/acuit hit"
