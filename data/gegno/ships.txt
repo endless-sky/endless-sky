@@ -324,7 +324,7 @@ ship Schist
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description "The Schist is the Gegno Vi's variation of the Gegno's old mid-range Dolomite. It has a decent cargo size, and enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
-	description `Although a relatively light armament is an exception for the Vi's very aggressive and combat-oriented ship design philosophy, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
+	description `	Although a relatively light armament is an exception for the Vi's very aggressive and combat-oriented ship design philosophy, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
 
 ship Schist "Schist Light"
 	sprite ship/schistlight
