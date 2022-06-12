@@ -33111,7 +33111,7 @@ planet Enbi
 	description "	On closer inspection, the method that created the canyons does not seem entirely natural, and there are slight glints of light shimmering down in the deepest regions. How these crevices appeared is a mystery, but it is clear that the Vi had no hand in creating them."
 	spaceport "Rows of alternating towers stretch far ahead and behind the one your spacecraft is stationed at, and a thick layer of fog acts as a sort of floor connecting them. Every now and then, the fog breaks, revealing the large shipyards down below either side of you, followed by a new row of towers."
 	spaceport "	Off in the distance of the breaking fog is one vast gray structure, almost taking up your field of view. The closer towards the mass, the more buildings there seems to be, and it's unlikely you could get anywhere near there without becoming a threat."
-	spaceport "If you stare too long, the nearby guards gesture more aggressively towards you, suggesting you keep your attention to yourself."
+	spaceport "	If you stare too long, the nearby guards gesture more aggressively towards you, suggesting you keep your attention to yourself."
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
