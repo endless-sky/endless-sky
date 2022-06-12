@@ -59,7 +59,7 @@ outfit "RG18 Torch Steering"
 	"engine capacity" -39
 	"outfit space" -39
 	turn 408
-	"turning energy" 0.9
+	"turning energy" 0.75
 	"turning heat" 2.7
 	"steering flare sprite" "effect/ion torch/medium"
 		"frame rate" 2.4
@@ -140,11 +140,11 @@ outfit "SC-12 Plasma Thruster"
 	"outfit space" -25
 	thrust 10.6
 	"thrusting energy" 0.8
-	"thrusting heat" 2.7
+	"thrusting heat" 2.9
 	"flare sprite" effect/scplasma/small
 		"frame rate" 0.5
 	"flare sound" "scplasma small"
-	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more stable and powerful SC thrusters tend to run notably hotter."
+	description "Rather than further developing on the Ion Torch design of the Gegno Vi, the Gegno Scin began work on a plasma-based thruster concept. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel a percentage of heat in their thrust, the more stable and powerful SC thrusters tend to run hotter."
 
 outfit "SC-12 Plasma Steering"
 	category Engines

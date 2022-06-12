@@ -1,7 +1,7 @@
 outfit "Irate Cannon"
 	category Guns
 	cost 475000
-	mass 2
+	mass 12
 	thumbnail "outfit/irate cannon"
 	"gun ports" -1
 	"outfit space" -12
@@ -29,7 +29,7 @@ outfit "Irate Cannon"
 outfit "Chloeric Cannon"
 	category Guns
 	cost 610000
-	mass 13
+	mass 37
 	thumbnail "outfit/chloeric cannon"
 	"gun ports" -1
 	"outfit space" -37
@@ -302,6 +302,7 @@ outfit Excavator
 		lifetime 1
 		velocity 18
 		inaccuracy 90
+		"reload" 1
 		"shield damage" 8
 		"hull damage" 104
 		"hit force" -10
