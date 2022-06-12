@@ -629,7 +629,7 @@ ship Halite
 	explode "small explosion" 8
 	explode "tiny explosion" 10
 	description "Halites are a successful experimental test platform designed by the Gegno Scin. They are Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology, with almost half the hull dedicated to it."
-	description "Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft."
+	description "	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft."
 
 ship Mica
 	sprite ship/mica
