@@ -109,7 +109,7 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
-	void HandleMouseInput();
+	void HandleMouseInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -180,6 +180,7 @@ private:
 	bool terminate = false;
 	bool wasActive = false;
 	bool rightMouseButtonHeld = false;
+	bool isMouseTurningEnabled = false;
 	Angle mouseAngle = 0;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];

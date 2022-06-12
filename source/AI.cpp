@@ -3517,7 +3517,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
 
-	if (Preferences::Has("Mouse controls") && !ship.IsBoarding() && !ship.IsReversing())
+	if (activeCommands.Has(Command::MOUSETURNING)) {
+		isMouseTurningEnabled = !isMouseTurningEnabled;
+	}
+
+	if (isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing())
 	{
 		Angle shipAngle = ship.Facing();
 		if (rightMouseButtonHeld)
@@ -3558,7 +3562,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !Preferences::Has("Mouse controls"))
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !isMouseTurningEnabled)
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{

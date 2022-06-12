@@ -196,6 +196,7 @@ private:
 	FireCommand firingCommands;
 
 	bool isCloaking = false;
+	bool isMouseTurningEnabled = false;
 
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;

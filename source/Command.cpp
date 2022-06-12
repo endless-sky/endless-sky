@@ -72,7 +72,7 @@ const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
 const Command Command::WAIT(1uL << 27, "");
 const Command Command::STOP(1ul << 28, "");
 const Command Command::SHIFT(1uL << 29, "");
-
+const Command Command::MOUSETURNING(1uL << 30, "Toggle mouse-turning");
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -244,6 +244,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"mouseturning", Command::MOUSETURNING},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},

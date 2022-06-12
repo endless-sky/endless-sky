@@ -1360,6 +1360,8 @@ void Engine::CalculateStep()
 	if(!player.GetSystem())
 		return;
 
+	// Handle the mouse input of the mouse navigation
+	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands, mouseAngle, rightMouseButtonHeld);
 
@@ -1441,7 +1443,6 @@ void Engine::CalculateStep()
 	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
-	HandleMouseInput();
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will
@@ -2136,24 +2137,26 @@ void Engine::DoWeather(Weather &weather)
 
 
 
-void Engine::HandleMouseInput()
+void Engine::HandleMouseInput(Command &activeCommands)
 {
-	if (Preferences::Has("Mouse controls"))
+	if (activeCommands.Has(Command::MOUSETURNING))
+		isMouseTurningEnabled = !isMouseTurningEnabled;
+	if (isMouseTurningEnabled)
 	{
-	int mousePosX;
-	int mousePosY;
-	if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-		rightMouseButtonHeld = true;
-	else
-		rightMouseButtonHeld = false;
-	double relx = mousePosX - Screen::RawWidth()/2;
-	double rely = mousePosY - Screen::RawHeight()/2;
-	if (relx == 0)
-		mouseAngle = 90;
-	else
-		mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
-	if (relx < 0)
-		mouseAngle += 180;
+		int mousePosX;
+		int mousePosY;
+		if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+			rightMouseButtonHeld = true;
+		else
+			rightMouseButtonHeld = false;
+		double relx = mousePosX - Screen::RawWidth()/2;
+		double rely = mousePosY - Screen::RawHeight()/2;
+		if (relx == 0)
+			mouseAngle = 90;
+		else
+			mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
+		if (relx < 0)
+			mouseAngle += 180;
 	}
 }
 
