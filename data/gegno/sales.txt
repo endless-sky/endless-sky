@@ -6,7 +6,7 @@ shipyard "Gegno Ships"
 
 outfitter "Gegno Outfits"
 	"C3 Scrap Cell"
-	"C7 Brawl Core"
+	"C7 Brawl Cell"
 	Hyperdrive
 	"Irate Cannon"
 	"Local Map"
@@ -32,7 +32,7 @@ outfitter "Gegno Vi Outfits"
 	"C17 Warzone Core"
 	"C27 Campaign Core"
 	"C3 Scrap Cell"
-	"C7 Brawl Core"
+	"C7 Brawl Cell"
 	"Chloeric Cannon"
 	"Chloeric Turret"
 	Hyperdrive
