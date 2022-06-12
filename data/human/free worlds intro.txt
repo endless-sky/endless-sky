@@ -1174,7 +1174,7 @@ mission "FW Katya 7"
 					decline
 			label thanks
 			`	"I appreciate your help, Captain <last>," says Katya.`
-				accept			
+				accept
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
