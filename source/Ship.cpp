@@ -767,7 +767,6 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Ships read from a save file may have non-default shields or hull.
 	// Perform a full IsDisabled calculation.
-	isDisabled = true;
 	isDisabled = CalculateIsDisabled();
 
 	// Cache this ship's jump range.
@@ -2727,12 +2726,7 @@ bool Ship::IsDisabled() const
 
 bool Ship::CalculateIsDisabled() const
 {
-	if(!isDisabled)
-		return false;
-
-	bool needsCrew = RequiredCrew() != 0;
-	bool outOfEnergy = IsOutOfEnergy();
-	return hull < minimumHull || (!crew && needsCrew) || outOfEnergy;
+	return hull < minimumHull || (!crew && RequiredCrew()) || IsOutOfEnergy();
 }
 
 
@@ -3665,8 +3659,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	heat = max(0., heat);
 
 	// Recalculate the disabled ship check.
-	isDisabled = true;
-	isDisabled = CalculateIsDisabled();
+	isDisabled |= hull < minimumHull;
 	// Report what happened to this ship from this weapon.
 	int type = 0;
 	if(!wasDisabled && isDisabled)
