@@ -258,16 +258,12 @@ outfit "Surveillance Pod"
 
 outfit "Cloaking Device"
 	category "Systems"
-	cost 1000000
+	cost 1200000
 	"mass" 10
 	"outfit space" -10
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
-	"cloaking shows on radar" 1
-	"cloaking visibility" .1
-	"cloaking targetability" .1
-	"cloaking invulnerability" -1
 	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 

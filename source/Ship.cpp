@@ -3327,6 +3327,10 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	// A "phasing ship" cannot take damage.
+	if(Cloaking() == 1. && attributes.Get("cloaking invulnerability") >= 0.)
+		return 0;
+
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
