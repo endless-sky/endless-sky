@@ -668,7 +668,7 @@ ship Mica
 	leak leak 30 40
 	explode "small explosion" 4
 	explode "tiny explosion" 12
-	description "The Mica is the Gegno Scin's counterpart to a shuttlecraft, and is a derivative of the Gegno's Shale and the Vi's Slate. It is ever so slightly smaller for the slightly shorter Scin, but carries newer engine systems that almost double the speed of both the Shale and the Slate. Combined with the speed and the room for a few more Scin, it is a relatively faster option for a captain looking for a shuttlecraft in Gegno space."
+	description "The Mica is the Gegno Scin's take on a shuttlecraft, and is based on the Shale and the Vi's Slate. It is ever so slightly smaller, since the Scin aren't as large, but carries newer engine systems so it is almost twice as fast as the Shale and the Slate."
 
 ship Coesite
 	sprite ship/coesite
