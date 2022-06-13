@@ -318,12 +318,10 @@ mission "HI2-SS"
 					goto hole3
 				`	"Hold on. We can still check the ones down there."`
 			`	At this point, Tugroob grips the containers with all of his legs and brings his entire body weight against them, crushing each crate and barrel open. Once everything is broken up and it turns out there was nothing inside any of them after all, you two try to leave, but with the sandstorm raging strong, you decide to wait it out inside the barn.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group, and the agents head to their bunks.`
-				accept
+				goto fail
 			label hole3
 			`	You two find the hole, but with the storm making it too dificult to see any safe path for you to get down there, you two head back inside to wait for better visibility.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group, and the agents head to their bunks.`
-				accept
+				goto fail
 			label hole
 			`	You two carefully make your way down the hole. It bottoms out around ten meters below the barn.`
 			`	As you come down, Tugroob points to the cracked, rocky walls. He says that most of them were unstable, and you should watch out for rock slides.`
@@ -343,8 +341,7 @@ mission "HI2-SS"
 			`	The two of you head inside to find the place nearly empty, save for a few crates and barrels in the corners.`
 			`	You follow Tugroob to the upper levels but once again find nothing but dusty containers. A small gap between the planks here allows piles of sand to come inside. The storm envelops the barn.`
 			`	"Much too obvious a hiding spot, this would be," he says, but seeing as the storm doesn't let up, you two break open the crates, just in case. To Tugroob's frustration, you find nothing.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group and the agents head to their bunks.`
-				accept
+				goto fail
 			label rockraider
 			apply
 				"resistance evidence" ++
@@ -367,7 +364,8 @@ mission "HI2-SS"
 			`	You carefully go about putting your arm inside a few of the holes, with Tugroob helping you up for the ones you couldn't reach, but ultimately you find nothing.`
 			`	Many small rocks fell while you were checking the holes, but miraculously you both remain unscathed. Unfortunately, too much sand from the storm above is piling up for you to look around for more holes or the exact location of the larger cracks you saw before.`
 			`	"Dangerous, it will be, to remain here for long, Captain," Tugroob says as he urges you to cling to them. He carefully crawls back up, and you two take refuge inside the barn.`
-			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. You two meet up with the rest of the group, and the agents head to their bunks.`
+			label fail
+			`	Night falls, with no sign of the storm dying down, and after receiving a notification from Iplora, Tugroob informs you that you should both head back to the ship and pick her and Kirrie up. As soon as the storm lets up slightly, he helps you out of the barn and through the raging winds, until you reach your ship. You two meet up with the rest of the group, and the agents head to their bunks.`
 				accept
 			label decline
 			`	"I see," he says. He gives you the coordinates he needs to go to and you drop him off before returning to the hangars.`
