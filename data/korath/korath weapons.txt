@@ -78,7 +78,7 @@ outfit "Korath Shunt-Strike"
 		"reload" 30
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
-		"firing energy" 60
+		"firing energy" 100
 		"firing heat" 150
 		"relative firing shields" 0.001
 		"acceleration" 1
@@ -87,7 +87,7 @@ outfit "Korath Shunt-Strike"
 		"homing" 4
 		"tracking" .9
 		"shield damage" 48
-		"corrosion damage" 2
+		"corrosion damage" 3
 		"minable damage" 200
 		"piercing" 0.1
 		"blast radius" 30
