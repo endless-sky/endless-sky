@@ -2622,7 +2622,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || 
-		(cloak == 1. && attributes.Get("cloaking targetability"))) && hull >= 0. && hyperspaceCount < 70);
+		(cloak == 1. && attributes.Get("cloaking targetability") > 0.)) && hull >= 0. && hyperspaceCount < 70);
 }
 
 
