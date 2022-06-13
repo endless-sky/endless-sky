@@ -116,7 +116,7 @@ outfit "Systems Core (Tiny)"
 	"hull repair rate" 0.1
 	"hull energy" 0.1
 	"hull heat" 0.15
-	description `Most Korath pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Few are willing to sacrifice enough firepower to mount this computer, shield generator, and set of hull-walking repair bots.`
+	description `Most Korath pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Few are willing to sacrifice enough firepower to mount this computer, shield generator, and set of repair microbots.`
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
@@ -131,7 +131,7 @@ outfit "Systems Core (Small)"
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
+	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small amount of hull-welding microbots that can make minor repairs to the ship's outer armor while in flight.`
 
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
@@ -146,7 +146,7 @@ outfit "Systems Core (Medium)"
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
+	description `This "systems core" houses a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
@@ -161,7 +161,7 @@ outfit "Systems Core (Large)"
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2
-	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
+	description `This massive bank of computers, shield generators, and repair microbot stations holds everything needed to keep the very largest of Korath ships in working condition.`
 
 
 outfit "Fuel Processor"
@@ -589,10 +589,10 @@ outfit "Korath Repeater Rifle"
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
 
-outfit "Nanobot Defense Station"
+outfit "Microbot Defense Station"
 	category "Hand to Hand"
 	cost 53000
-	thumbnail "outfit/nanobot defense station"
+	thumbnail "outfit/Microbot defense station"
 	mass 2
 	"outfit space" -3
 	"capture defense" 45
@@ -600,5 +600,5 @@ outfit "Nanobot Defense Station"
 	"energy consumption" 0.01
 	"heat generation" 0.1
 	unplunderable 1
-	description `This insidious trap awaits anyone foolish enough to attempt to capture Korath World-Ships.  Intruders are trapped before this airlock, ahead of which a cloud of nanobots programmed to break down organic matter into nutrigel is released.  The resulting gel then drains into the vat below while the robots are recalled.`
-	description `Many races find this means of defense abhorrent.  Citing the excruciating, confusing death experienced by its victims; the violation of taboos relating to cannibalism, and erroneous fears that the nanobots could somehow "escape," mere possession of these airlocks may carry the death penalty.`
+	description `This insidious trap awaits anyone foolish enough to attempt to capture Korath World-Ships.  Intruders are trapped before this airlock, ahead of which a cloud of microbots programmed to break down organic matter into nutrigel is released.  The resulting gel then drains into the vat below while the robots are recalled.`
+	description `Many races find this means of defense abhorrent.  Citing the excruciating, confusing death experienced by its victims; the violation of taboos relating to cannibalism, and erroneous fears that the micrbots could somehow "escape," mere possession of these airlocks may carry the death penalty.`

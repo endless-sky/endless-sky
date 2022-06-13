@@ -217,7 +217,7 @@ ship "Korath World-Ship"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-		"Nanobot Defense Station" 19
+		"Microbot Defense Station" 19
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
