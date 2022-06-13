@@ -814,7 +814,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description "Felsics are essentially stripped Schists repurposed for a more engaging role. In place of the heavier engines that the Vi had mounted on, they expanded the profile have more efficient engines, dedicating the remaining space to a larger cargo capacity. On top of fitting more cargo room, the Scin also oufitted these 3 turret mounts, allowing them to double as a secondary combat vessel to support their war efforts, and to fill in the lack of a dedicated warship."
+	description "Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties well as well as doubling as a secondary combat vessel, making up for the lack off a dedicated Scin warship."
 
 ship Feldspar
 	sprite ship/feldspar
