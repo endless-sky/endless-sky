@@ -52,10 +52,13 @@ mission "First Contact: Gegno"
 					goto together
 			label vi
 			`	"While it is characteristic, such a tremendous proposition is rather dull for a growing species. Be that as it may, you humans follow to a much lesser degree than that of the Vi."`
+				goto end
 			label scin
 			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of disappointment. "The pursuit of technology leaves behind many values important to a species' growth."`
+				goto end
 			label together
 			`	"Regrettably, the Gegno chiefly do not have a drive to pursue their future, diluting themeselves far into their present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
+			label end
 			choice
 				`	"It seems like you do not like the paths they've chosen."`
 			`	With its physique raising above you, the Quarg now stands up, darting its gaze off to the side. The verve it exhibited earlier is now long gone. "It is not in our grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an uprisal of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
