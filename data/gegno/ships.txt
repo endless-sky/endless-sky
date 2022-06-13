@@ -715,7 +715,7 @@ ship Coesite
 	explode "small explosion" 24
 	explode "tiny explosion" 18
 	"final explode" "final explosion small"
-	description "Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry 3 turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
+	description "Coesites are smaller warships that the Scin use as screening vessels during battle with the Vi. They are speedy and carry two turret mounts which allows them to always be orbiting and firing on the move. Coesites are the designated platform for the Scin's anti-shell turrets, allowing them to take out shells ahead of their larger ships to reduce incoming fire and turn the tide of war."
 
 ship Tridymite
 	sprite ship/tridymite
