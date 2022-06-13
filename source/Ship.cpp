@@ -3328,7 +3328,7 @@ double Ship::MaxReverseVelocity() const
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
 	// A "phasing ship" cannot take damage.
-	if(Cloaking() == 1. && attributes.Get("cloaking invulnerability") >= 0.)
+	if(cloak == 1. && attributes.Get("cloaking invulnerability") >= 0.)
 		return 0;
 
 	bool wasDisabled = IsDisabled();

@@ -119,8 +119,8 @@ tip "cloaking targetability:"
 tip "cloaking show on radar:"
 	`This cloaking device does not hide you from radars.`
 
-tip "cloaking action:"
-	`This device is so efficient at hiding you that you may shoot when cloaked, becoming vulnerable for a short moment, before being cloaked again. You can also board and hail whilst cloaked with this device.`
+tip "cloaked action:"
+	`This device is so efficient at hiding you that you may shoot when cloaked, losing this amount of cloaking in the process, before being cloaked again. You can also board and hail whilst cloaked, using this device.`
 
 tip "cooling:"
 	`Reduces heat by this amount per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
