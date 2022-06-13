@@ -163,13 +163,13 @@ env.Default(sky)
 
 # The testing infrastructure ignores "mode" specification (i.e. we only test optimized output).
 # (If we add support for code coverage output, this will likely need to change.)
-testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
-env.VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
+testBuildDirectory = pathjoin("tests", "unit", env["BUILDDIR"])
+env.VariantDir(testBuildDirectory, pathjoin("tests", "unit", "src"), duplicate = 0)
 test = env.Program(
-	target=pathjoin("tests", "endless-sky-tests"),
+	target=pathjoin("tests", "unit", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
-	 # Add Catch header & additional test includes to the existing search paths
-	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
+	# Add Catch header & additional test includes to the existing search paths.
+	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.
@@ -197,7 +197,7 @@ env.Install("$DESTDIR$PREFIX/games", sky)
 env.Install("$DESTDIR$PREFIX/share/applications", "endless-sky.desktop")
 
 # Install app center metadata:
-env.Install("$DESTDIR$PREFIX/share/appdata", "endless-sky.appdata.xml")
+env.Install("$DESTDIR$PREFIX/share/metainfo", "endless-sky.appdata.xml")
 
 # Install icons, keeping track of all the paths.
 # Most Ubuntu apps supply 16, 22, 24, 32, 48, and 256, and sometimes others.

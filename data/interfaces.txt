@@ -132,8 +132,13 @@ interface "menu background"
 
 
 interface "main menu"
+	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
+	box "credits"
+		from -470 -165
+		to -250 115
+
 	sprite "_menu/side panel"
 		center 360 0
 
@@ -1165,7 +1170,7 @@ interface "info panel"
 	visible if "show save order"
 	sprite "ui/wide button"
 		center -195 305
-	button v "Save Order"
+	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
 

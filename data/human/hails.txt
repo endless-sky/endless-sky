@@ -72,6 +72,9 @@ phrase "band"
 		"Turais is Unbreakable"
 		"Windblain Aureo"
 		"Darkstone Ocean"
+		"Planck Massacre"
+		"Occam's Chainsaw"
+		"The Crimson Kippers"
 
 phrase "media name"
 	word

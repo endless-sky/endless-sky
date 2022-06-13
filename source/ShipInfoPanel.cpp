@@ -74,7 +74,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 
 
 
-void ShipInfoPanel::Step ()
+void ShipInfoPanel::Step()
 {
 	DoHelp("ship info");
 }

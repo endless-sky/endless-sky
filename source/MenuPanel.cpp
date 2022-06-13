@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Command.h"
-#include "ConversationPanel.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -28,10 +27,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
+#include "Rectangle.h"
 #include "Ship.h"
-#include "ShipyardPanel.h"
 #include "Sprite.h"
-#include "SpriteShader.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
@@ -47,17 +45,25 @@ using namespace std;
 
 namespace {
 	const int scrollSpeed = 2;
+	bool showCreditsWarning = true;
 }
 
 
 
 MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), scroll(0)
+	: player(player), gamePanels(gamePanels), mainMenuUi(GameData::Interfaces().Get("main menu"))
 {
 	assert(GameData::IsLoaded() && "MenuPanel should only be created after all data is fully loaded");
 	SetIsFullScreen(true);
 
-	credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	if(mainMenuUi->GetBox("credits").Dimensions())
+		credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
+	else if(showCreditsWarning)
+	{
+		Files::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		showCreditsWarning = false;
+	}
+
 	if(gamePanels.IsEmpty())
 	{
 		gamePanels.Push(new MainPanel(player));
@@ -75,7 +81,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 void MenuPanel::Step()
 {
-	if(GetUI()->IsTop(this))
+	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -89,7 +95,6 @@ void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
-	const Font &font = FontSet::Get(14);
 
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
@@ -123,25 +128,11 @@ void MenuPanel::Draw()
 	}
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	GameData::Interfaces().Get("main menu")->Draw(info, this);
+	mainMenuUi->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
 
-	// TODO: allow pausing the credits scroll
-	int y = 120 - scroll / scrollSpeed;
-	for(const string &line : credits)
-	{
-		float fade = 1.f;
-		if(y < -145)
-			fade = max(0.f, (y + 165) / 20.f);
-		else if(y > 95)
-			fade = max(0.f, (115 - y) / 20.f);
-		if(fade)
-		{
-			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
-			font.Draw(line, Point(-470., y), color);
-		}
-		y += 20;
-	}
+	if(!credits.empty())
+		DrawCredits();
 }
 
 
@@ -166,8 +157,49 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'q')
 		GetUI()->Quit();
+	else if(key == ' ')
+		scrollingPaused = !scrollingPaused;
 	else
 		return false;
 
 	return true;
+}
+
+
+
+bool MenuPanel::Click(int x, int y, int clicks)
+{
+	// Double clicking on the credits pauses/resumes the credits scroll.
+	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
+	{
+		scrollingPaused = !scrollingPaused;
+		return true;
+	}
+
+	return false;
+}
+
+
+
+void MenuPanel::DrawCredits() const
+{
+	const Font &font = FontSet::Get(14);
+	const auto creditsRect = mainMenuUi->GetBox("credits");
+	const int top = static_cast<int>(creditsRect.Top());
+	const int bottom = static_cast<int>(creditsRect.Bottom());
+	int y = bottom + 5 - scroll / scrollSpeed;
+	for(const string &line : credits)
+	{
+		float fade = 1.f;
+		if(y < top + 20)
+			fade = max(0.f, (y - top) / 20.f);
+		else if(y > bottom - 20)
+			fade = max(0.f, (bottom - y) / 20.f);
+		if(fade)
+		{
+			Color color(((line.empty() || line[0] == ' ') ? .2f : .4f) * fade, 0.f);
+			font.Draw(line, Point(creditsRect.Left(), y), color);
+		}
+		y += 20;
+	}
 }
