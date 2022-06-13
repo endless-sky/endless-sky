@@ -192,7 +192,7 @@ ship Conglomerate
 	explode "medium explosion" 38
 	explode "small explosion" 26
 	"final explode" "final explosion large"
-	description "Over time the Gegno needed larger vessels to carry materials from new worlds alike- ones that would be more efficient and more efficient to build than older outdated City-Ships. Conglomerates are built to haul, moving large amounts of materials and personnel across Gegno space."
+	description "Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than older, outdated City-Ships. Conglomerates are built to haul, moving large amounts of cargo and personnel across Gegno space."
 
 ship Gypsum
 	sprite ship/gypsum
