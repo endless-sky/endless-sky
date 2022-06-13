@@ -336,7 +336,7 @@ ship Schist "Schist Light"
 
 ship Schist "Schist Med"
 	sprite ship/schistmeda
-	thumbnail thumbnail/schistmeda
+	thumbnail thumbnail/schistmed
 	add attributes
 		mass 22
 		"cargo space" 22
