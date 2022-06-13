@@ -383,19 +383,6 @@ effect "gridfire cloud"
 
 
 
-outfit "Pug Cloaking Device"
-	category "Systems"
-	cost 1200000
-	"mass" 10
-	"outfit space" -10
-	"cloak" .01
-	"cloaking energy" 1
-	"cloaking fuel" .2
-	"unplunderable" 1
-	description "You're sure the cloaking device is here somewhere, but you can't see it."
-
-
-
 outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
@@ -709,7 +696,7 @@ ship "Pug Arfecta"
 		"Tier 3 Anti-Missile" 2
 		"Pug Gridfire Turret" 3
 		
-		"Pug Cloaking Device"
+		"Cloaking Device"
 		"Pug Biodefenses" 12
 		"Pug Peacekeeping Staff" 36
 		
