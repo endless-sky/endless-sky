@@ -105,7 +105,7 @@ ship Shale
 	leak leak 50 60
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description "Due to the Gegno splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with transportation being its single purpose. Whether it be cargo, trade goods, travellers, or recruits to move off homeworld, Slates build the foundations of the Gegno."
+	description "Due to the Gegno splitting up and colonizing new worlds, they needed a smaller ship to do a lot of the grunt work instead of always relying on their enormous (and expensive) City-Ships. The Shale is the Gegno's design of a shuttle-ship, small and compact with transportation being its single purpose. Whether it be cargo, trade goods, travellers, or recruits, Shales are the foundation of the Gegno interstellar civilization."
 
 ship Dolomite
 	sprite ship/dolomite
