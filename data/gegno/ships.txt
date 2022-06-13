@@ -120,7 +120,7 @@ ship Dolomite
 		bunks 80
 		"cargo space" 140
 		drag 5.9
-		"engine capacity" 76
+		"engine capacity" 81
 		"fuel capacity" 500
 		"heat dissipation" 0.7
 		hull 10500
@@ -137,8 +137,7 @@ ship Dolomite
 		"C3 Scrap Cell"
 		Hyperdrive
 		"R01 Skirmish Battery"
-		"R02 Battlezone Battery"
-		"RG15 Torch Steering"
+		"RG15 Torch Steering" 2
 		"RG15 Torch Thruster"
 	engine -21 155
 	engine 21 155
