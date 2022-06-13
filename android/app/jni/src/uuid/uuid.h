@@ -175,7 +175,7 @@ static void uuid_fmt(const uuid_t uuid, char *buf, char const * fmt)
 	*p = '\0';
 }
 
-static void uuid_unparse(const uuid_t uu, char *out)
+static void uuid_unparse_lower(const uuid_t uu, char *out)
 {
 	uuid_fmt(uu, out, hexdigits_lower);
 }

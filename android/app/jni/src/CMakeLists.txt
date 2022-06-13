@@ -197,6 +197,8 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Bitset.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/InfoPanelState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MenuAnimationPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Variant.cpp
+
 )
 
 target_link_libraries(main 
