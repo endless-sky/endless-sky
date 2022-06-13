@@ -3522,7 +3522,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		isMouseTurningEnabled = !isMouseTurningEnabled;
 	}
 
-	if (isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing())
+	if (isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing() && !ship.IsLanding())
 	{
 		Angle shipAngle = ship.Facing();
 		if (rightMouseButtonHeld)

@@ -152,7 +152,7 @@ double Angle::Degrees() const
 double Angle::Degrees360() const
 {
 	// Returns the angle in degrees in the range of [0, 360).
-	return (angle / DEG_TO_STEP - 360. * (angle >= STEPS / 2)) + 180;
+	return angle / DEG_TO_STEP;
 }
 
 
