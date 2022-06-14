@@ -89,7 +89,8 @@ outfit "Chloeric Turret"
 		"shield damage" 95
 		"hull damage" 380
 		"hit force" 180
-	description "Mounted on a turret, a Chloeric Cannon is much more devastating without the need to keep a target in front to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is threaten to retreat after a decent enough bombardment."
+	description "Mounted on a turret, a Chloeric Cannon is much more devastating without the need to keep a target in front to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment."
+
 	description "	As with the regular mount, the shells are large and slow enough to be targeted by point defense systems."
 
 
