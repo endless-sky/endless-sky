@@ -57,7 +57,7 @@ mission "First Contact: Gegno"
 			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of disappointment. "The pursuit of technology leaves behind many values important to a species' growth."`
 				goto end
 			label together
-			`	"Regrettably, the Gegno chiefly do not have a drive to pursue their future, diluting themeselves far into their present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
+			`	"Regrettably, most Gegno do not have a drive to pursue their future, diluting themselves far into their present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
 			label end
 			choice
 				`	"It seems like you do not like the paths they've chosen."`
