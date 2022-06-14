@@ -33093,7 +33093,7 @@ planet "Sies Upi"
 	landscape land/hills1
 	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to make manageable living conditions."
 	description "	Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
-	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as another's shutting down. There doesn't look to be very many non-personnel civilians here, and it feels somewhat clausterphobic with all of the guards standing around."
+	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-personnel civilians here, and it feels somewhat claustrophobic with all of the guards standing around."
 	government "Gegno Vi"
 
 planet Siedi
