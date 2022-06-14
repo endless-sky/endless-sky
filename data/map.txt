@@ -4921,10 +4921,10 @@ system Atik
 	asteroids "small metal" 36 1.26
 	asteroids "medium metal" 75 1.92
 	asteroids "large metal" 14 1.35
-	minables platinum 21 1.40315
-	minables tungsten 43 1.42935
-	minables gold 36 1.7943
-	minables uranium 22 1.71104
+	minables platinum 14 2.8
+	minables tungsten 29 2.9
+	minables gold 24 3.6
+	minables uranium 15 3.8
 	trade Clothing 381
 	trade Electronics 632
 	trade Equipment 605
