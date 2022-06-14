@@ -314,6 +314,9 @@ outfit "Engine (Meteor Class)"
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"steering flare sound" "plasma tiny"
 	description `Although the prevailing Korath engine fashion has always been "bigger, faster, more power," the Exiles found it necessary to develop these engines to allow their fighters to carry larger weapons or more cargo, at the cost of some speed.`
 
 outfit "Bow Drive (Meteor Class)"
