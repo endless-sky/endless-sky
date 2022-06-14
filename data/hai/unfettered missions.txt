@@ -824,7 +824,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			label moremen
 			`	"We are trying to be discrete here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
 			label outsideship
-			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times." 
+			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times."`
 			`	Once outside he moves at a quick enough pace that you have difficulties following him. He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He depresses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path.`
 			choice
 				`	"Is everything alright?"`
