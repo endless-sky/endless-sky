@@ -236,6 +236,7 @@ outfit "Afterburner (Comet Class)"
 	"afterburner fuel" 0.1485
 	"afterburner effect" "korath afterburner"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 
 outfit "Afterburner (Lunar Class)"
 	plural "Afterburners (Lunar Class)"
@@ -251,6 +252,7 @@ outfit "Afterburner (Lunar Class)"
 	"afterburner fuel" 0.2618
 	"afterburner effect" "korath afterburner"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, you can't help but feel concerned about the safety of installing one."
 
 outfit "Afterburner (Planetary Class)"
 	plural "Afterburners (Planetary Class)"
