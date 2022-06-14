@@ -2468,8 +2468,8 @@ mission "Coalition: Expeditions Past 3"
 				`	"What's so wrong about her wanting to explore outside the Coalition?"`
 					goto wrong
 				`	"Wait, what did you say about the outside being dangerous?"`
-			`	The Saryd looks at you, puzzled. Then, as if realizing something, turns to Sedlitaris, "Told the human, you haven't?"`
-			`	"That's enough Repilor. Trespassing on a restricted area, you are. Escort him to his ship," she tells the guards, and after exchanging looks briefly, and after some struggle on Repilor's part, the Arachi manage to push him back inside the Sojourner. "Ignore that you should, Captain. Always... difficult, my brother was. Too stubborn to realize when to stop, and easy to impress with folk tales of the outside."`
+			`	The Saryd looks at you, puzzled. Then, as if realizing something, he turns to Sedlitaris. "Told the human, you haven't?"`
+			`	"That's enough Repilor. Trespassing on a restricted area, you are. Escort him to his ship," she tells the guards, and after some struggle on Repilor's part, the Arachi manage to push him back inside the Sojourner. "Ignore that you should, Captain. Always... difficult, my brother was. Too stubborn to realize when to stop, and easy to impress with folk tales of the outside."`
 			choice
 				`	"If you say so. Should I wait in my ship until you all are done here?"`
 					goto accept
@@ -2483,7 +2483,8 @@ mission "Coalition: Expeditions Past 3"
 				goto accept
 			label decline
 			`	You hear her stomping her hoofs on the ground as you head back to your ship, and see her and the Heliarch council representatives arguing with one another as you close your hatch. When you're back on the spaceport landing area, a Sojourner lands next to your ship, and Repilor, the Saryd from earlier, comes out.`
-			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you had. That filled her head with more grandiose tales of the outside, you did." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did. Better for the both of you, this is." He nods lightly in a bow, and heads back to his ship.`
+			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you did. That filled her head with more grandiose tales of the outside, you must have." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did.
+			`	"That no inspector has ever returned from their expedition, the truth is, so afraid you were leading my sister to her death, I was. Better for the both of you, this is." He nods lightly in a bow, and heads back to his ship.`
 				decline
 			label wrong
 			`	"Awaiting 'explorers,' nothing but an unknown, certain doom is. Wish for that to be my sister's fate, I do not," he answers.`
