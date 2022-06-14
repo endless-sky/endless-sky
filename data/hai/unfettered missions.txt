@@ -3308,7 +3308,7 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		"outfit space" 2
 		"weapon capacity" 3
 	outfits
-		"TriPulse Shredder" 8
+		"Tripulse Shredder" 8
 		"Boulder Reactor"
 		"Geode Reactor"
 		"Hai Ravine Batteries"
