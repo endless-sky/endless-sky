@@ -33137,7 +33137,7 @@ planet "Enn Bue"
 
 planet Cipi
 	landscape land/mountain5
-	description "Cipi's forestries and mountains are a suitable place for the Gegno Scin's less active population, home to the more quiet-working. The population of this planet is limited, and architecture is built on the alpines to avoid hurting the natural landscapes of the planet. This provides the Scin with healthy crop and hunting seasons to supply their main population without the interference of pollutive industry."
+	description "Cipi's forestries and mountains are a suitable place for the Gegno Scin's less active population, home to more quiet industries. The population of this planet is limited, and architecture is built on the alpines to avoid hurting the natural landscapes of the planet. This provides the Scin with healthy crop and hunting seasons to supply their main population without the interference of polluting industry."
 	spaceport "Rather than inside the mountain, the spaceport is built at the very edge supported underneath by several pylons in a half-oval formation. The valley down below, between you and the mountain range just a bit further away, seems almost cramped between the formations. Occasionally, a few Halite fighters buzz by at low altitudes and then sharply turn off into the distance, though you expect them to be louder than they really are."
 	government "Gegno Scin"
 	"required reputation" 1
