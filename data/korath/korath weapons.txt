@@ -752,7 +752,7 @@ outfit "Korath Inferno"
 		"hull damage" 4.5
 		"heat damage" 36
 		"burn damage" 2.25
-	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design.  The three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
+	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design. The three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
 
 effect "korath inferno hit"
 	sprite "effect/korath inferno hit"
