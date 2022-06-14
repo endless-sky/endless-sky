@@ -419,7 +419,7 @@ ship "Korath Raider Mark XLII"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation of life in exile."
+	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation caused by a life in exile."
 	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
 
 
