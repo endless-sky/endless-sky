@@ -33147,7 +33147,7 @@ planet Cipi
 planet "Ef Osch"
 	landscape land/beach11-harro
 	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
-	spaceport "Each island vessel also serves as a makeshift yet decent spaceport with all of the basic facilitices. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern."
+	spaceport "Each island vessel also serves as a makeshift yet functioning spaceport with all of the basic facilities. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern."
 	spaceport "	The island ports also are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommodates the ship they are piloting."
 	government "Gegno Scin"
 	"required reputation" 1
