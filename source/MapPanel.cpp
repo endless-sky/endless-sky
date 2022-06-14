@@ -650,30 +650,24 @@ void MapPanel::Select(const System *system)
 	}
 	else if(shift)
 	{
-		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Days(system) <= 0)
+		const System *planEnd = plan.front();
+		if(system == planEnd)
 			return;
 
+		DistanceMap localDistance(player, planEnd, system);
+		if(!localDistance.HasRoute(system))
+			return;
+
+		vector<const System*> newPlan = localDistance.Plan();
 		auto it = plan.begin();
-		while(system != *it)
-		{
-			it = ++plan.insert(it, system);
-			system = localDistance.Route(system);
-		}
+		plan.insert(it, newPlan.begin(), newPlan.end());
 	}
-	else if(distance.Days(system) > 0)
+	else if(distance.HasRoute(system))
 	{
-		plan.clear();
 		if(!isJumping)
 			flagship->SetTargetSystem(nullptr);
 
-		while(system != source)
-		{
-			plan.push_back(system);
-			system = distance.Route(system);
-		}
-		if(isJumping)
-			plan.push_back(source);
+		plan = distance.Plan(system);
 	}
 }
 

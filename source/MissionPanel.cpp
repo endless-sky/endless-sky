@@ -203,20 +203,22 @@ void MissionPanel::Draw()
 	MapPanel::Draw();
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const System *system = selectedSystem;
-	while(distance.Days(system) > 0)
+	vector<const System*> plan = distance.Plan(selectedSystem);
+	const System* prev = player.GetSystem();
+	while(!plan.empty())
 	{
-		const System *next = distance.Route(system);
+		const System *next = plan.back();
+		plan.pop_back();
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (system->Position() + center);
+		Point from = Zoom() * (prev->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
 
 		LineShader::Draw(from, to, 5.f, routeColor);
 
-		system = next;
+		prev = next;
 	}
 
 	const Set<Color> &colors = GameData::Colors();

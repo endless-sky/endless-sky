@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <queue>
 #include <set>
+#include <vector>
 #include <utility>
 
 class PlayerInfo;
@@ -24,44 +25,48 @@ class System;
 
 
 
-// This is a map of how many hyperspace jumps it takes to get to other systems
-// from the given "center" system. Ships with a hyperdrive travel using the
-// "links" between systems. Ships with jump drives can make use of those links,
-// but can also travel to any of a system's "neighbors." A distance map can also
-// be used to calculate the shortest route between two systems.
+// This is a map of shortest routes to get to other systems from the given "center"
+// system. It also tracks how many days and fuel it takes to get there. Ships with
+// a hyperdrive travel using the "links" between systems. Ships with jump drives
+// can make use of those links, but can also travel to any system that's closeby.
+// Wormholes can also be used by players or ships.
 class DistanceMap {
 public:
-	// Find paths to the given system. The optional arguments put a limit on how
-	// many systems will be returned and how far away they are allowed to be.
-	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	// Find paths branching out from the given system. The optional arguments put
+	// a limit on how many systems will be returned (e.g. buying a local map)
+	// and how far away they are allowed to be (e.g. a valid mission location)
+	explicit DistanceMap(const System *center, int maxSystems = -1, int maxDays = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	explicit DistanceMap(const PlayerInfo &player, const System *center = nullptr);
+	// Optionally, the pathfinding will stop once a path to the destination is found.
+	explicit DistanceMap(const PlayerInfo &player, const System *center = nullptr, const System *destination = nullptr);
 	// Calculate the path for the given ship to get to the given system. The
-	// ship will use a jump drive or hyperdrive depending on what it has. The
-	// pathfinding will stop once a path to the destination is found.
+	// ship will use a jump drive or hyperdrive depending on what it has.
 	DistanceMap(const Ship &ship, const System *destination);
 
-	// Find out if the given system is reachable.
-	bool HasRoute(const System *system) const;
+	// Find out if the given system is reachable, defaulting to 'destination'
+	bool HasRoute(const System *system = nullptr) const;
 	// Find out how many days away the given system is.
 	int Days(const System *system) const;
-	// Starting in the given system, what is the next system along the route?
-	const System *Route(const System *system) const;
-
+	// Get the first step on the route from center to this system (or 'destination')
+	const System* FirstStep(const System* system = nullptr) const;
+	// Get the planned route from center to this system (starting with .back())
+	std::vector<const System*> Plan(const System* system = nullptr) const;
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
-	// Get the end of the route.
-	const System *End() const;
-
-	// How much fuel is needed to travel between two systems.
-	int RequiredFuel(const System *system1, const System *system2) const;
+	// How much fuel is needed to travel to this system
+	int RequiredFuel(const System *system) const;
 
 
 private:
-	// For each system, track how much fuel it will take to get there, how many
-	// days, how much danger you will pass through, and where you will go next.
+	// DistanceMap is built using branching paths from 'center' to all systems.
+	// The final result, though, is Edges backtracking those paths:
+	// Each system has one Edge which points to the previous step along
+	// the route to get there, including how much fuel and how many days
+	// the total route will take, and how much danger you will pass through.
+	// While building the map, some systems have a non-optimal Edge that
+	// gets replaced when a better route is found.
 	class Edge {
 	public:
 		Edge(const System *system = nullptr);
@@ -71,9 +76,14 @@ private:
 		// is lower priority than the given item.
 		bool operator<(const Edge &other) const;
 
-		const System *next = nullptr;
+		// There could be a System* thisSystem, but it would remained unused
+		const System *prev = nullptr;
+		// Fuel/days needed to get to this system using the route though 'prev'
 		int fuel = 0;
 		int days = 0;
+		// Danger tracks up to the 'prev' system, not to the this system.
+		// It's used for comparison purposes only. Anyone going to this system
+		// is going to hit its danger anyway, so it doesn't change anything.
 		double danger = 0.;
 	};
 
@@ -81,7 +91,7 @@ private:
 private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
-	// source system or the maximum count is reached.
+	// destination system or the maximum count is reached.
 	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(Edge edge, bool useJump);
@@ -96,20 +106,27 @@ private:
 
 
 private:
+	// Final route, each Edge pointing to the previous step along the route.
 	std::map<const System *, Edge> route;
 
 	// Variables only used during construction:
-	std::priority_queue<Edge> edges;
+	// 'edgesTodo' holds unfinished candidate Edges - Only the 'prev' value
+	// is up-to-date. Other values are one step behind, awaiting an update.
+	// The top() value is the best route among uncertain systems. Once
+	// popped, that's the best route to that system - and then adjacent links
+	// from that system are processed, which will build upon the popped Edge
+	std::priority_queue<Edge> edgesTodo;
 	const PlayerInfo *player = nullptr;
-	const System *source = nullptr;
+	const System *destination = nullptr;
 	const System *center = nullptr;
-	int maxCount = -1;
-	int maxDistance = -1;
+	int maxSystems = -1;
+	int maxDays = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
 	// the ship does not have that type of drive.
+	// Defaults are set for hyperlane usage only. A given ships overrides these.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
-	bool useWormholes = true;
+	bool useWormholes = false;
 	double jumpRange = 0.;
 };
 
