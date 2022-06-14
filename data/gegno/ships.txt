@@ -813,7 +813,7 @@ ship Felsic
 	explode "small explosion" 28
 	explode "tiny explosion" 16
 	"final explode" "final explosion medium"
-	description "Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties well as well as doubling as a secondary combat vessel, making up for the lack off a dedicated Scin warship."
+	description "Felsics are based on Schists, but offer many upgrades in exchange for less durability and space for engines. The Scin have opted for three turret mounts, as well as expanded capacity for outfits and weapons. All this allows these ships to perform logistical duties well as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship."
 
 ship Feldspar
 	sprite ship/feldspar
