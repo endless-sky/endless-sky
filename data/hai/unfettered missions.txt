@@ -418,22 +418,54 @@ mission "Unfettered: Neutral With The Hai"
 			label agree
 			`	"Go to our home system and make your request, the Elders despise conflict, so they will most likely grant it. Given the circumstances, Hai-home will definitely not let you land though, so go to Mirrorlake instead."`
 				accept
+	on fail
+		dialog `You have chosen to stay hostile to the Hai. This may prevent you from doing some of the Unfettered missions.`
 	on complete
 		conversation
-			`You find the Hai leaders that agreed to meet you and express your request to settle the disputes between you. They consider this amongst themselves before responding, "Tell us, <last>, captain of the <ship>, why should we grant you such a request?"`
+			`You find the Hai leaders that agreed to meet you and express your request to settle the disputes between you. They consider this amongst themselves before responding, "You are not the first one coming to us, saying they have redeemed themselves... Long ago, when I was but a child, an 'ex' pirate came, asking for forgiveness, so he could live a new life with us; that is what he promised. He betrayed us and stole our technology to use it against us! Back then we were not so... friendly, and he was pursued and killed. Tell us, <last>, captain of the <ship>, why should we grant you such a request? What garantee can you give us that he did not?"`
 			choice
 				`	"Because otherwise you get shot!" (Draw your weapon)`
 					goto death
-				`	"I know I have done stupid things in the past, but I have learned my error. I promise not to make such mistakes again."`
-				`	"I can continue bringing food to the Unfettered for you, so they do not starve to death."`
+				`	"I give you access to my account. Should I betray you you will automatically receive a large sum of 100 millions."`
+				`	"The Unfettered will reject me should I attack you again."`
+					goto emptypromise
+				`	"I have changed my mind, the Unfettered will have to accept I am hostile to you."`
+					goto refuse
+			label secondchance
 			`	They seem willing to give you a second chance. "You have convinced us, but we will not grant you this pardon twice."`
+			action
+				"reputation: Hai" >?= 1
+				"reputation: Hai (Wormhole Access)" >?= 1
+				"reputation: Hai Merchant" >?= 1
+				"reputation: Hai Merchant (Sympathizers)" >?= 1
+				"reputation: Hai Merchant (Human)" >?= 1
+				log `Convinced the Hai to stop their conflict with me, as request by an Unfettered Chief. I promised to pay them a large sum should I not respect my word.`
+			``
 				accept
 			label death
 			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
 				die
-		"reputation: Hai" >?= 1
-		log `Convinced the Hai to stop their conflict with me, as request by an Unfettered Chief.`
+			label emptypromise
+			`	An elder marches forward, "That is not enough." They clearly expect more of you.`
+			choice
+				`	"I give you access to my account. Should I betray you you will automatically receive a large sum."`
+					goto secondchance
+				`	"I have changed my mind, the Unfettered will have to accept I am hostile to you."`
+			label refuse
+			action
+				fail "Unfettered: Neutral With The Hai"
 
+mission "Unfettered: Untrustable"
+	to offer
+		has "reputation: Hai" < 0
+		has "Unfettered: Neutral With The Hai: done"
+		not "Unfettered: Neutral With The Hai: failed"
+	on offer
+		dialog `Since you have not respected your word to be neutral to the Hai you have received the agreed fine of 100 millions. Should you refuse to pay it the Unfettered will no longer consider you a friend.`
+	on accept
+		fine 100000000
+	on decline
+		"reputation: Hai (Unfettered)" <?= -1
 
 
 mission "Unfettered: Bring Hai"
@@ -445,6 +477,7 @@ mission "Unfettered: Bring Hai"
 	blocked "You will need room for 10 passengers in order to take the next Unfettered mission."
 	to offer
 		has "Unfettered Jump Drive 1: offered"
+		has "reputation: Hai" >= 0
 		or
 			not "Unfettered: offered bring hai"
 			random < 20
@@ -504,7 +537,6 @@ mission "Unfettered: Bring Hai"
 					accept
 				`	"I do not want to bring you Hai defectors, sorry."`
 					decline
-	
 	on stopover
 		dialog `The Hai seem happy to get on your ship. Now return to <origin> with them.`
 	on fail
@@ -541,6 +573,7 @@ mission "Unfettered: Bring Medical Supplies"
 	deadline 8
 	to offer
 		has "Unfettered: Bring Hai: done"
+		has "reputation: Hai" >= 0
 	on offer
 		conversation
 			`After landing, you receive a high priority message which appears to be repeating on priority channels in both Hai and human standard. It is tagged with the information for one of the hospitals nearby. "Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically and has now been classified as an uncontrolled epidemic. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current medical supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return." Unsure whether they would accept your assistance as an outsider, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
@@ -551,14 +584,12 @@ mission "Unfettered: Bring Medical Supplies"
 					accept
 				`	(I do not have time for this.)`
 			`	Thankfully it seems that everyone is too busy with the local problem to annoy you or press you into accepting this mission, but this will probably have consequences later. You better not stay landed for too long, or you could draw unwanted attention.`
-	
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
 		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of they addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
-	
 	on complete
 		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
 		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
@@ -590,7 +621,6 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"Are all Unfettered not soldiers?"`
 					goto soldier
 			`He does not answer your question directly, "If you really must know, these supplies were used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. If the soldiers are not able to protect us, then civilians will suffer as well. The Hai would not dare to kill us, of course, but they would destroy our way of life, our spirits."`
-			
 			label soldier
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
 
@@ -666,7 +696,6 @@ mission "Unfettered: Prove Your Strength"
 				`	"Let me show you my worth in battle. Right now."`
 					accept
 				`	(Run away.)`
-
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
@@ -682,7 +711,6 @@ mission "Unfettered: Prove Your Strength"
 				`	"You could have just asked."`
 			`	"One cannot learn much from words only, and I was not sure how you would react. That is why I provoked you." One of his crew tells him something you do not understand. "Well that, and, yes, maybe I was a bit too prideful, took on a challenge I should not have from someone..." He shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
-			
 			label dangerous
 			`	"Worry not, respect is only to be earned once. From me, at least. Do know there are other captains eager to challenge you, and most are stronger than me. Or at least they have more ships..."`
 			label end
@@ -757,7 +785,6 @@ mission "Unfettered: Prove Your Strength 2"
 			label leave
 			`	"One last thing: We should not go there by jump drive, especially considering where we are going, it would only attract unwanted attention to us. It would not be of use anyway considering we should not travel trough wanderer space, I do not want to try their patience or tolerance to seeing me on your ship." You acompagny him to your ship, and he admits to quite like the interior of it, as well as general look of it, this ship "is adequate for a warrior," he says.`
 				accept
-
 	on visit
 		dialog `You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or left your escort allocated to carrying the jump drives behind, in which case better launch and wait for it.`
 	on fail
@@ -846,7 +873,6 @@ mission "Unfettered: Jump Drive Retrieval"
 				`	(Stay outside.)`
 					goto outside
 				`	(Come in.)`
-
 			`	He sighs, "As you wish, but I hope you can take care of yourself on the ground as well as in space. I have disabled the automated defenses just in case they have been hijacked. We just have to go in, make sure they recognize us as friends, and then reactivate them." You really wonder where that vault could be, until you notice that part of this mountain in front of you is a hologram to disguise the entry. You both enter the vault.`
 			`	At first you do not notice anything suspicious, the vault is clearly alien in origin, but you cannot pinpoint one race, instead it seems to be a mix of many. All of it is very, very old to say the least, and any lights are non functioning, probably because your friend deactivated them, but maybe even before that... At least there is quite some space to move around, enough for an armored vehicle in fact. As you get used to the darkness inside the vault, you finally notice a flash of light, quite far away on your left.`
 			choice
@@ -855,7 +881,6 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto down
 			`	It was indeed just a light flicking. From a laser sight, used to acquire a target: you.`
 				die
-			
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. He was evidently trained for this, as you shout he does not hesitate nor does he ask any questions. He promptly jumps to the side and, once in a stable position on the ground, fires his rifle. You are impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but still your armored companion fires three more times.`
 			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then run the necessary tests on the jump drives whilst he takes care of the security systems.`
@@ -867,7 +892,6 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto vault
 			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives. To cripple your ship, or worse." As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers.`
 				goto ship
-			
 			label vault
 			`	"The point of all of this was to be discrete; jump drives are worth a lot on the black market. We also needed to make sure there was not any malfunctions with them. Even monkeys could rig them to blow when placed on a ship and used to jump. Besides, we want to keep using this vault for later, so we may as well ensure its safety."`
 			choice
@@ -880,7 +904,6 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	You go back to your ship with the Hai, and give the orders to collect and install the jump drives.`
 			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing trough the correct procedures.`
 				launch
-
 	on accept
 		"outfit" "Jump Drive" 4
 	npc evade
@@ -1122,7 +1145,6 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 					goto scan
 				`	"I do not want to get in trouble with the Hai."`
 					decline
-			
 			label design
 			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course?"`
 			choice
@@ -1341,6 +1363,7 @@ mission "Unfettered: Escort Hai Fleet"
 	to offer
 		has "Unfettered: Solifuge 2: Auxiliary Design: done"
 		has "combat rating" > 100
+		has "reputation: Hai" >= 0
 	on offer
 		conversation
 			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed a he. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them trough Hai space, from <stopovers>."`
@@ -1446,6 +1469,7 @@ mission "Unfettered: Pirate Help"
 	to offer
 		has "Unfettered: Escort Hai Fleet: done"
 		not "Pirate Troubles [0]: offered"
+		has "reputation: Hai" >= 0
 	on offer
 		conversation
 			`Entering the spaceport, you quickly find Sha-Ri. He looks relieved you are here and that you have arrived well and safe with the convoy. It seems like he speaks to you with more respect than before, "Finally you have arrived. When I heard about the unfettered human attack, I was worried sick."`
@@ -2209,6 +2233,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	cargo "food" 34
 	clearance `After explaining you are here to take a tribute, you receive clearance to land.`
 	to offer
+		has "reputation: Hai" >= 0
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 	on offer
 		conversation
@@ -2232,10 +2257,8 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			label brag
 			`	"Stupid monkey, thinks it knows everything... There are higher powers in this galaxy, and even then that is not required to match that carrier, because even if it is big and impressive, we have made something more advanced."`
 				goto mighty
-			
 			label curious
 			`	He was about to say something, but instead ignores your question.`
-			
 			label mighty
 			`	"If you want to help us and get access to our mighty shield beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this, but who needs their approval if you can buy shield beetles here instead?`
 			choice
@@ -2553,6 +2576,7 @@ mission "Unfettered: Special Cargo"
 	description `Go to <waypoints> and find a way to acquire the 'unique' item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He Yi, on Warfeed.`
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		has "reputation: Hai" >= 0
 	source "Darkcloak"
 	waypoint "Alcyone"
 	destination "Warfeed"
@@ -2617,6 +2641,7 @@ mission "Unfettered: Special Cargo 1B"
 	destination "Warfeed"
 	to offer
 		has "Unfettered: Special Cargo: active"
+		has "reputation: Hai" >= 0
 	on offer
 		require "Mystery Cube" 0
 		conversation
@@ -2743,6 +2768,7 @@ mission "Unfettered: Special Cargo 2"
 	cargo "food (tribute)" 93
 	blocked `You need 93 cargo space for the next Unfettered mission.`
 	to offer
+		has "reputation: Hai" >= 0
 		has "Unfettered: Special Cargo: done"
 	on offer
 		conversation
@@ -2864,7 +2890,6 @@ mission "Unfettered: Close Quarter"
 					goto start
 				`	(Smartly get into position and get ready.)`
 			`	You carefully observe your surroundings and decide to head towards one of the smaller circles, not too close yet not too far from him, and consider your covers. Everything is simulated to resemble an urban environment, probably because the ancestors of the Unfettered had to protect their cities from the Korath. You feel the adrenaline of the coming battle surging into your veins.`
-			
 			label start
 			`	You shout and try to shoot him... Except you completely miss him; you were not expecting so much recoil from such a small pistol. It also seems to have a very low accuracy. Obviously, your opponent knew this, and he is already rushing your way.`
 			choice
@@ -2882,7 +2907,6 @@ mission "Unfettered: Close Quarter"
 				goto heyi
 			label ready
 			`	You try to shoot him but he is too fast and you too inexperienced. By moving you have made yourself an easy target for him, though; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher, sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
-			
 			label heyi
 			`	It seems like your fight has attracted the attention of many of the Unfettered, including He Yi. He comes to speak to you, "That was a nice fight, especially considering this must be your first!"`
 			choice
@@ -2991,7 +3015,7 @@ conversation "more staffs"
 		decline
 
 mission "Bring More Enforcer Staffs"
-	minor # so both don't pop up at the same time
+	minor # so both staff conversations don't pop up at the same time
 	invisible
 	source "Warfeed"
 	substitutions
