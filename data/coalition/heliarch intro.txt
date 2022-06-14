@@ -1133,7 +1133,7 @@ mission "Heliarch Containment 1"
 			choice
 				`	"Okay. Bring your friends and the cargo to my ship."`
 					accept
-				`	"That seems a bit excessive for a riot, no?"`
+				`	"That seems a bit excessive."`
 					goto excessive
 				`	"You'll have to find someone else. I'm not heading there right now."`
 					decline
