@@ -422,7 +422,7 @@ mission "Unfettered: Neutral With The Hai"
 		dialog `You have chosen to stay hostile to the Hai. This may prevent you from doing some of the Unfettered missions.`
 	on complete
 		conversation
-			`You find the Hai leaders that agreed to meet you and express your request to settle the disputes between you. They consider this amongst themselves before responding, "You are not the first one coming to us, saying they have redeemed themselves... Long ago, when I was but a child, an 'ex' pirate came, asking for forgiveness, so he could live a new life with us; that is what he promised. He betrayed us and stole our technology to use it against us! Back then we were not so... friendly, and he was pursued and killed. Tell us, <last>, captain of the <ship>, why should we grant you such a request? What garantee can you give us that he did not?"`
+			`You find the Hai leaders that agreed to meet you and express your request to settle the disputes between you. They consider this amongst themselves before responding, "You are not the first one coming to us, saying they have redeemed themselves... Long ago, when I was but a child, an 'ex' pirate came, asking for forgiveness, so he could live a new life with us; that is what he promised. He betrayed us and stole our technology to use it against us! Back then we were not so... friendly, and he was pursued and killed. Tell us, <last>, captain of the <ship>, why should we grant you such a request? What guarantee can you give us that he did not?"`
 			choice
 				`	"Because otherwise you get shot!" (Draw your weapon)`
 					goto death
