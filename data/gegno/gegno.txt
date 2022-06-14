@@ -106,7 +106,7 @@ phrase "gegno uncontacted leave"
 
 phrase "hostile gegno uncontacted" .
 	word
-		"(A loud enraged voice says something in a language you cannot decifer.)"
+		"(A loud enraged voice says something in a language you cannot decipher.)"
 		"(You hear loud chants and shouts in a language you do not know.)"
 
 phrase "friendly gegno"
