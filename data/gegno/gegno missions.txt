@@ -60,7 +60,7 @@ mission "First Contact: Gegno"
 			`	"Regrettably, most Gegno do not have a drive to pursue their future, diluting themselves far into their present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
 			label end
 			choice
-				`	"It seems like you do not like the paths they've chosen."`
+				`	"It seems that you do not like the paths they've chosen."`
 			`	With its physique raising above you, the Quarg now stands up, darting its gaze off to the side. The verve it exhibited earlier is now long gone. "It is not in our grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an uprisal of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their hostility for the foreseeable future."`
 				decline
