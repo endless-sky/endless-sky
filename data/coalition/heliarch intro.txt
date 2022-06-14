@@ -1319,7 +1319,7 @@ mission "Heliarch Containment 5"
 		"reputation: Lunarium" = -1000
 		event "resistance fleeing rb"
 		conversation
-			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
+			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is non-functional.`
 			`	Suddenly, a few Heliarchs rush past you heading for an office. They quickly reemerge and approach you.`
 			`	"Captain! Helped us, you have. Trustworthy, you are, and in need of a combat-ready ship, we are."`
 			choice
