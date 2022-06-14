@@ -2409,10 +2409,10 @@ mission "Coalition: Expeditions Past 2"
 				`	"Didn't care to hear your case? What do you mean?"`
 			`	"According to protocol, present valid reasoning for their expedition, and a thorough travel plan, aspiring inspectors must. This time, taken every legal detail into account, I had, in preparation for the meeting, but once I entered, barely time to greet them, they gave me." She explains. "Said that thought it over and willing to oblige, they were, so just sign a few documents, I did, and now officially an inspector, I am."`
 			choice
-				`	"I take it 'inspector' is what you call explorers?"`
+				`	"I take it inspector is what you call explorers?"`
 				`	"Good to hear they had a change of heart. So, where are we heading?"`
 					goto heading
-			`	"Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, and then adopted by the Heliarchs, it was. Remains in use to this day, the term does," she says in excitement, pausing with a smile as if considering that she herself is one such "inspector" now.`
+			`	"No mere explorers, we are," she begins. "A rank granted with utmost respect to the Coalition's bravest, those unafraid to venture out into the void, to chart the unknown, it is. Date back thousands of years, the title does. First used by early Saryds, when set out to explore beyond the home system, they had, and then adopted by the Heliarchs, it was. Remains in use to this day, the term does," she says in excitement, pausing with a smile as if considering that she herself is one such "inspector" now.`
 			choice
 				`	"So, will you still be paying me for the job, or is that the consuls now since they've officially approved this?"`
 				`	"You seem eager to get started. So, where are we heading?"`
@@ -2483,8 +2483,8 @@ mission "Coalition: Expeditions Past 3"
 				goto accept
 			label decline
 			`	You hear her stomping her hoofs on the ground as you head back to your ship, and see her and the Heliarch council representatives arguing with one another as you close your hatch. When you're back on the spaceport landing area, a Sojourner lands next to your ship, and Repilor, the Saryd from earlier, comes out.`
-			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you did. That filled her head with more grandiose tales of the outside, you must have." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did.
-			`	"That no inspector has ever returned from their expedition, the truth is, so afraid you were leading my sister to her death, I was. Better for the both of you, this is." He nods lightly in a bow, and heads back to his ship.`
+			`	"Forgive me for being rude earlier, you must." He says as he greets you. "Thought I had, that talked my sister into this you did. That filled her head with more grandiose tales of the outside, you must have." He sighs. "Thank you, Captain. Hate you now, my sister must, but the right thing, you did.`
+			`	"That no inspector in the last 6000 years has ever returned from their expedition, the truth is, so afraid you were leading my sister to her death, I was. Better for the both of you, this is." He gives you a few seconds to process, then continues. "Please, hold it against her, I ask that you do not. Certain I am that intending you no harm, she was. It's just... trying to leave for so long, she has been, that afraid of telling you the whole truth, I imagine she was." He nods lightly in a bow, and heads back to his ship.`
 				decline
 			label wrong
 			`	"Awaiting 'explorers,' nothing but an unknown, certain doom is. Wish for that to be my sister's fate, I do not," he answers.`
