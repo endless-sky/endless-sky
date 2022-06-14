@@ -592,7 +592,7 @@ outfit "Korath Repeater Rifle"
 outfit "Microbot Defense Station"
 	category "Hand to Hand"
 	cost 53000
-	thumbnail "outfit/Microbot defense station"
+	thumbnail "outfit/microbot defense station"
 	mass 2
 	"outfit space" -3
 	"capture defense" 45
