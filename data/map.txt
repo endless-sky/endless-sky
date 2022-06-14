@@ -4940,8 +4940,18 @@ system Atik
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
 	object
-		sprite star/b5
-		period 10
+		sprite star/b-giant
+		distance 150
+		period 4.4
+	object
+		sprite star/b3
+		distance 300
+		period 4.4
+		offset 180
+	object
+		sprite star/b-dwarf
+		distance 350
+		period 300
 	object
 		sprite planet/gas16-b
 		distance 1350.7
@@ -17616,8 +17626,18 @@ system Misam
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
 	object
-		sprite star/k0
+		sprite star/g-giant
+		distance 50
 		period 10
+	object
+		sprite star/k8
+		distance 150
+		period 10
+		offset 180
+	object
+		sprite star/m-dwarf
+		distance 200
+		period 60
 	object
 		sprite planet/cloud8
 		distance 494.8
