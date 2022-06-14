@@ -280,7 +280,7 @@ mission "Unfettered Challenge [0]"
 				payment 200000
 				"reputation: Hai (Unfettered)" += 15
 				fail "Unfettered Challenge [0]"
-			`You receive a message from the <npc> : "Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here are the <payment> but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
+			`You receive a message from the <npc>: "Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here is the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
 				decline
 
 mission "Unfettered Challenge [1]"
@@ -306,7 +306,7 @@ mission "Unfettered Challenge [1]"
 				payment 400000
 				"reputation: Hai (Unfettered)" += 30
 				fail "Unfettered Challenge [1]"
-			`You receive a message from the <npc> : "Raaaah... Well you have beaten me alright, so I'll pay up... Here are the <payment> credits, captain. Next time I will not underestimate you anymore!"`
+			`You receive a message from the <npc> : "Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment> credits, captain. Next time I will not underestimate you anymore!"`
 				decline
 
 mission "Unfettered Challenge [2]"
@@ -328,13 +328,13 @@ mission "Unfettered Challenge [2]"
 			variant
 				"Shield Beetle (Pulse)"
 				"Sea Scorpion (Pulse)"
-		dialog `You seem to learn from our encounters as well... Well next time it will be different.`
+		dialog `You receive an ominous message from the <npc>: "You seem to learn from our encounters well... next time it will be different.`
 		conversation
 			action
 				payment 600000
 				"reputation: Hai (Unfettered)" += 60
 				fail "Unfettered Challenge [2]"
-			`You receive a message from the <npc> : "Nicely done! You seem to learn from our encounters as well... But next time will be different, I assure you. For now, here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
+			`You receive a message from the <npc> : "Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
 				decline
 
 
@@ -354,7 +354,7 @@ mission "Get Jump Drives(1)"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
+		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
 		outfit "Jump Drive"
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
@@ -378,10 +378,10 @@ mission "Get Jump Drives(2)"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `You manage to land and retrieve the jump drives without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
+		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
 		outfit "Jump Drive" 2
 	on visit
-		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+		dialog `You have a mission to bring a jump drive here. You may have left your escort carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
 		payment 1000000
 		outfit "Jump Drive" -2
@@ -400,10 +400,10 @@ mission "Get Jump Drives(3)"
 		has "Unfettered: Prove your strength 2: done"
 	stopover "Deadman's Cove"
 	on stopover
-		dialog `You manage to land and retrieve the jump drives without too much trouble. Do not rely on luck too long though, you had better depart quickly!`
+		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
 		outfit "Jump Drive" 3
 	on visit
-		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+		dialog `You have a mission to bring a jump drive here. You may have left your escort carrying the jump drive behind, in which case you better launch and wait for it.`
 	on complete
 		payment 1500000
 		outfit "Jump Drive" -3
@@ -433,7 +433,7 @@ mission "Bring True Hai"
 	on complete
 		payment
 		payment 150000
-		dialog `You feel good that you managed to bring these Hai to their True home. The Unfettered hand you the agreed payment of <payment>.`
+		dialog `You feel good that you managed to bring these Hai to their true home. The Unfettered hand you the agreed payment of <payment>.`
 
 
 

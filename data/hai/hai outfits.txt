@@ -56,7 +56,7 @@ outfit "Pulse Turret"
 		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
-outfit "TriPulse Shredder"
+outfit "Tripulse Shredder"
 	category "Guns"
 	cost 130000
 	thumbnail "outfit/tripulse shredder"
@@ -76,7 +76,7 @@ outfit "TriPulse Shredder"
 		"firing heat" 60
 		"shield damage" 45
 		"hull damage" 34
-	description "An early stage in development of better and faster weaponry to rival that of the Wanderers, the TriPulse Shredder is still essentially just three Pulse Cannons in one single larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power, but the quicker firing speed still generates much more total heat in the same time. Additionally, the single shared housing results in a much less stable firing pattern."
+	description "An early stage in the development of better and faster weaponry to rival that of the Wanderers, the Tripulse Shredder is still essentially just three Pulse Cannons in one single larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power, but the quicker firing speed still generates much more total heat in the same time. Additionally, the single shared housing results in a much less stable firing pattern."
 
 effect "pulse impact"
 	sprite "effect/pulse impact"
@@ -132,7 +132,7 @@ outfit "True Unfettered License"
 	thumbnail "outfit/true unfettered license"
 	"capture attack" 10
 	"capture defense" 10
-	description "This sword may be bit of a strange license, but it inspires pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
+	description "This sword may be bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"

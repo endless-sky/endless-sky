@@ -870,7 +870,7 @@ ship "Shield Beetle Prototype"
 	explode "large explosion" 53
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
-	description "This is a prototype build by the Unfettered. They have upgraded its shield matrix as well as pretty much everything they could, at the cost of stability and heat."
+	description "This is a prototype build by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, at the cost of stability and heat."
 
 
 ship "Solifuge"

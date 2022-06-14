@@ -402,7 +402,7 @@ mission "Unfettered: Neutral With The Hai"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`Whilst wandering near the spaceport you find an Unfettered Chief who chastises you as a father would to a misbehaving child, "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you, "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
+			`Whilst wandering near the spaceport you find an Unfettered Chief who chastises you as a father would to a misbehaving child. "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you. "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
 			choice
 				`	(Accept.)`
 					goto agree
@@ -452,25 +452,25 @@ mission "Unfettered: Bring Hai"
 		set "Unfettered: offered bring hai"
 	on offer
 		conversation
-			`Looking outside you see the sun is setting... It is a breathtaking view, revealing a big white structure in the distance. As you exit your ship you notice movement. You are partly carried by a crowd of Unfettered that seem to be heading to a big, yet simple, square-shape stadium nearby. That building is grandiose compared to its surroundings, by its sheer length and pure white appearance. In contrast, most buidlings around it appear to be bars or houses, but they are made from less pure materials, or maybe they just have not been cleaned in a long time. Something of great interest must be happening in there, though you notice some Unfettered are just going to the bars around, chatting.`
+			`Looking outside you see the sun is setting... it is a breathtaking view that reveals a big white structure in the distance. As you exit your ship you notice movement. You are partly carried by a crowd of Unfettered that seem to be heading to a big, yet simple, square-shape stadium nearby. That building is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most buidlings around it appear to be bars or houses, but they are made from less pure materials, or maybe they just have not been cleaned in a long time. Something of great interest must be happening in there, though you notice some Unfettered are just going to the bars around, chatting.`
 			choice
 				`	(Go to the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you head towards the temple, moving with the crowd, you can start to hear words being spoken loudly. A couple with 4 children is speaking, or more precisely, begging, "... and we fear the next season will be even more rough. We need foundings to restore the lands, nothing grows on them anymore!" The "Chiefs" speak together, and then grant her her request, before the next one in line comes. The sun is almost set, and you can see that the Chiefs are growing a bit impatient. "My cousins would like to join me, but they lack the founds to afford it. Would you allow more to join us, and become true?" This seems to bother them, they answer briefly, "We will contact True ship captains to ask them if they can, but I fear they are indeed busy these days, which is why the prices have gone up." Then they rise up, and one speaks to the crowd, "It is late, you would do well to go home to care for those near you. Never hesitate to come back to us in the next cycle should you need help." At this, the crowd leaves, as do the Chiefs later on. You notice one of them looking at you, pensive, as he just noticed your presence.`
-			`	The same Chief is now moving in your general direction. He seems to be lost in his thought and is mumbling on, something about, "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus, "Sorry, I was just thinking out loud! Well you are here anyway so maybe you could help us?"`
+			`	As you head towards the temple, moving with the crowd, you can start to hear words being spoken loudly. A couple with 4 children is speaking, or more precisely, begging, "... and we fear the next season will be even more rough. We need foundings to restore the lands, nothing grows on them anymore!" The "Chiefs" speak together, and then grant her her request, before the next one in line comes. The sun is almost set, and you can see that the Chiefs are growing a bit impatient. "My cousins would like to join me, but they lack the funds to afford it. Would you allow more to join us, and become true?" This seems to bother them, and they answer briefly, "We will contact True ship captains to ask them if they can, but I fear they are indeed busy these days, which is why the prices have gone up." Then they rise up, and one speaks to the crowd, "It is late, you would do well to go home to care for those near you. Never hesitate to come back to us in the next cycle should you need help." At this, the crowd leaves, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
+			`	The same Chief is now moving towards you. He seems to be lost in his thought and is mumbling something about you. "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus. "Sorry, I was just thinking out loud! Well, you are here anyway, so maybe you could help us?"`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help a friend, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he says, apparently a bit desperate, considering he knows very little if anything at all about you.`
 			choice
 				`	"Of course, what do you need me to do?"`
 					goto action
-				`	"What do you mean, brother and sisters from Hai space? Are you not different?"`
+				`	"What do you mean, brothers and sisters from Hai space? Are you not different?"`
 					goto brethren
 				`	"Why do you need me to do it?"`
 				`	"This seems like a bad idea, ask someone else."`
 					decline
 			
 			label whyme
-			`	"Well normally they would be able to pay to come here, but the price is pretty high; too high. The Hai make it difficult for us to go anywhere; as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here, or at least they ask for a big fee, because of the obvious risks involved, like getting killed in all that cross fire. Yet you somehow made your way here, probably also under fire from our own people, but now that we are allied, you hopefully should not have any issues getting out of here. So, are you willing to help us?"`
+			`	"Well, normally they would be able to pay to come here, but the price is pretty high; too high. The Fettered Hai make it difficult for us to go anywhere; as you have probably noticed they have a fleet at the edge of our system. And not many Hai captains are willing to bring them here. If they do they ask for a big fee because of the obvious risks involved, like getting killed in all that cross fire. Yet you somehow made your way here, probably also under fire from our own people, but now that we are allied, you hopefully should not have any issues getting out of here. So, are you willing to help us?"`
 			choice
 				`	"Of course, what do you need me to do?"`
 					goto action
@@ -478,14 +478,14 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label brethren
-			`	"Then you have heard about the stories of the Drak modifying our people..." He seems a bit sad. "I do not believe in such things, what makes a Hai -or any other species- “True” is in his heart. It will take him wherever he wants to go." He pauses a bit, thinking, and when he speaks again it is with deep conviction. "Even if we war with the Elders it does not mean we hate other Hais or them us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Elders."`
+			`	"Then you have heard about the stories of the Drak modifying our people..." He seems a bit sad. "I do not believe in such things, what makes a Hai - or any other species - “true” is in his heart. It will take him wherever he wants to go." He pauses a bit, thinking, and when he speaks again it is with deep conviction. "Even if we war with the Elders it does not mean we hate other Hai, or they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the limits of the Elders."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
 				`	"What limits?"`
 					goto limits
 				`	"Why do you need me to do it anyway?"`
 					goto whyme
-				`	"I believe they would not have their place here, I will not bring them."`
+				`	"I believe they would not have their place here. I will not bring them."`
 					decline
 			`	"Quite the contrary! They may not believe in our way of doing things, but they would never dare to restrict the movement of their own people. It would be against all they stand for. Even if we behave differently they know we are still Hai, and that we would never hurt Hai civilians." He seems confident.`
 			choice
@@ -502,7 +502,7 @@ mission "Unfettered: Bring Hai"
 					decline
 			
 			label action
-			`	"Oh it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet, they will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a dilapidated state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
+			`	"Oh, it is pretty simple actually, you only need to go to <stopovers>, pick up <bunks> Hai and bring them to this planet. They will find their way from there." You somehow doubt that affirmation, seeing how everything here is in a dilapidated state to say the least. You hope that at least the Hai actually know about that fact, or you may actually have to bring them back...`
 			choice
 				`	"I will get to it right away then."`
 					accept
@@ -510,7 +510,7 @@ mission "Unfettered: Bring Hai"
 					decline
 	
 	on stopover
-		dialog `The Hai seem happy to get on your ship, now return to <origin> with them.`
+		dialog `The Hai seem happy to get on your ship. Now return to <origin> with them.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -519,7 +519,7 @@ mission "Unfettered: Bring Hai"
 		clear "Unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
-		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine, and already finding a place to call home, shared among the others. They may not have much, but they seem not to require anything at all, other than to be here.`
+		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine, and already finding a place to call home. They may not have much, but they seem not to require anything at all, other than to be here.`
 
 
 
