@@ -502,7 +502,7 @@ mission "HI2-IW"
 				`	(Take cover.)`
 				`	(Pull out your gun and help her.)`
 					goto help
-			`	You get inside the hole, hoping you'll have enough protection from the blasts, and hear Iplora move around, occasionally peeking to see her shooting and taking cover, running and dodging incoming blasts. The shots stop, and you see her come over, saying you can get out now.`
+			`	You get inside the hole, hoping you'll have enough protection from the blasts. You can still hear Iplora move around, and you occasionally peek your head over to see her shooting and taking cover, running and dodging incoming blasts. The shots stop and you see her come over, saying that it's safe to get out now.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the crate.`
 				goto opencrate
 			label help
@@ -543,7 +543,7 @@ mission "visited alta hai"
 
 mission "Heliarch Recon 1"
 	name "Heliarch Reconnaissance"
-	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, letting your modified ship sensors scan their surroundings, then head back to the <destination>."
+	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, let your modified ship sensors scan their surroundings, then head back to the <destination>."
 	minor
 	source
 		government "Heliarch"
@@ -571,7 +571,7 @@ mission "Heliarch Recon 1"
 				`	"Obviously I have my limits as for what I would do."`
 			`	"A jump drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
 			`	"Few in number, our own jump drives are, and too risky would it be, for one of our own to venture far out," the Kimek adds.`
-			`	"If to help us gain knowledge of the opressors, you wish, lend the Coalition your ship's sensors for a short time, would you?" Asks the Arach.`
+			`	"If to help us gain knowledge of the opressors, you wish, lend the Coalition your ship's sensors for a short time, would you?" asks the Arach.`
 			choice
 				`	"Are you asking me to spy on the Quarg?"`
 				`	"Sorry, I don't want to get involved in your conflict with the Quarg."`
@@ -597,7 +597,7 @@ mission "Heliarch Recon 1"
 			`The Heliarch trio are eagerly waiting for you when you return. They are quick to welcome you, urging you to show them your ship's logs so they can see what information you've gathered. They don't seem to pay much mind to data on Grakhord or Forpelog, being much more interested in the ringworlds. As they examine the data, though, the Saryd frowns, while the Kimek brings all his legs closer to his body, and Arach squints all her eyes - probably their versions of that reaction.`
 			`	"Land on the rings, you really did, right Captain?" The Saryd asks while pointing at Lagrange, then Kuwaru Efreti, then Alta Hai.`
 			`	You nod, and the Kimek hits your control panel lightly with one of his legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
-			`	They have engineers return your ship to normality, while you explain how your ship behaved while landing on them. They speak among themselves for a while, then the Arach says, "Too straightforward an approach, we might have taken. Captain <last>, contact you again soon, we will."`
+			`	They have engineers return your sensors to normal, while you explain how your ship behaved while landing on them. They speak among themselves for a while, then the Arach says, "Too straightforward an approach, we might have taken. Captain <last>, contact you again soon, we will."`
 			`	They hand you <payment>, and leave to one of the Heliarch sections of the ring.`
 
 mission "Heliarch Recon Alta Hai"
@@ -609,7 +609,7 @@ mission "Heliarch Recon Alta Hai"
 		has "Heliarch Recon 1: active"
 	on offer
 		conversation
-			`Coming in for a landing, something from inside your ship produces an irritating, high pitched whistle sound. It grows stronger the closer you get to the ringworld, until your ship completely shuts down, only to click back to normality and land as usual at the last moment. Looking outside, you spot several Quarg standing still, staring at your ship, until they hastily leave without contacting you at all.`
+			`Coming in for a landing, something from inside your ship produces an irritating, high pitched whistle sound. It grows stronger the closer you get to the ringworld, until your ship completely shuts down. Your controls are rendered useless as you attempt to land manually, only for your autopilot to click back to normal and land as usual at the last moment. Looking outside, you spot several Quarg standing still, staring at your ship, until they hastily leave without contacting you at all.`
 				decline
 
 mission "Heliarch Recon Forpelog"
@@ -683,7 +683,7 @@ mission "Heliarch Recon 2-A"
 			`	"Scan them during our war, we of course did, but much more precise now, our technology has become," the Saryd explains. "To use one of our own scanners, we cannot ask of you. Much risk, it would pose, but if to the <planet>, a human outfit scanner you could bring, alter it to suit our purposes, we will."`
 			choice
 				`	"Alright, I'll go there once I have an outfit scanner ready."`
-				`	"That sounds even riskier than what you had me do before. Sorry, but I'm not interested."`
+				`	"That sounds even more dangerous than what you had me do before. Sorry, but I'm not interested."`
 					decline
 			`	They thank you for your willingness to help, and tell you they will be waiting on the <destination>.`
 				accept
@@ -718,7 +718,7 @@ mission "Heliarch Recon 2-B"
 		payment 200000
 		conversation
 			`Once again the engineers remove your outfit scanner, taking a copy of the scan logs and handing it to the Heliarch agents, who give you <payment>. "Grateful to you, we are, Captain <last>," the Saryd says. "Remember your assistance, the consul will."`
-			`	When the engineers return, they put your outfit scanner back in place, and the Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
+			`	When the engineers return, they put your outfit scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
 			`	He wishes you safe travels, and leaves with his colleagues.`
 
 mission "Quarg Interrogation"
@@ -752,7 +752,7 @@ mission "Quarg Interrogation"
 			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, headed to the Wardragon.`
 				accept
 			label truth
-			`	"And why did you agree? Do you wish to join their ranks, perhaps?" It asks.`
+			`	"And why did you agree? Do you wish to join their ranks, perhaps?" it asks.`
 			choice
 				`	"I just wanted to help. It's not like I destroyed your ships or something."`
 				`	"They told me that the Quarg keep others in 'separate boxes', and that you hinder their development."`
@@ -762,7 +762,7 @@ mission "Quarg Interrogation"
 			label hinder
 			`	"And you believe that? Have we restricted your movement? Chastised you for interacting with the Hai or Korath? Even after you agreed to help those foolish, tyrannical Heliarchs, are you not here, in one of our worlds, peacefully conversing with a Quarg?"`
 			label end
-			`	It blinks a few more times as a few small stripes on its face rapidly alternate between shades of deep blue and bright red, then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs', human." It walks away, headed to the Wardragon it looked at before.`
+			`	It blinks a few more times as a few small stripes on its face rapidly alternate between shades of deep blue and bright red. It then ends with, "It would be most wise to cut off all your ties with these 'Heliarchs', human." It walks away, headed to the Wardragon it looked at before.`
 				decline
 	npc save
 		government "Quarg"
@@ -851,7 +851,7 @@ mission "Heliarch Recon 3-B"
 			`	You confirm it, explaining to them that you were involved in the work around the site on Zug, and were there when the Wardragon came in to protect it.`
 			`	"Then no trouble finding it, you should have," the Arach says. "Far from other Quarg, that ship is, so easier for you to flee, it should be, if attack you it does."`
 			`	"All we need, a quick scan is," the Saryd tells you. "Once scanned it, you have, come back right away, you should."`
-			`	You're warned not to disable or destroy the Wardragon should it attack you, as that would no doubt permanently, damage your standing with them.`
+			`	You're warned not to disable or destroy the Wardragon should it attack you, as that would no doubt permanently damage your standing with them.`
 			`	When the engineers are done, the agents wish you good luck, and you head back inside your ship.`
 				accept
 	on accept
@@ -890,7 +890,7 @@ mission "Heliarch Recon 3-C"
 	on offer
 		require "Scanning Module" 1
 		conversation
-			`The Heliarch agents are waiting for you when you land, with a team of engineers they have perform some quick tests on your scanning module.`
+			`The Heliarch agents are waiting for you when you land with a team of engineers. They have them perform some quick tests on your scanning module.`
 			`	"Take your time with this task, you of course can, Captain, but told us to ask you to be hasty, Consul Aulori has," the Arach says. "Unsure about how long this window of opportunity will last, all of us are."`
 			choice
 				`	"What's this 'window of opportunity' about?"`
@@ -899,7 +899,7 @@ mission "Heliarch Recon 3-C"
 			`	You confirm it, explaining to them that you were involved in the work around the site on Zug, and were there when the Wardragon came in to protect it.`
 			`	"Then no trouble finding it, you should have," the Arach says. "Far from other Quarg, that ship is, so easier for you to flee, it should be, if attack you it does."`
 			`	"All we need, a quick scan is," the Saryd tells you. "Once scanned it, you have, come back right away, you should."`
-			`	You're warned not to disable or destroy the Wardragon should it attack you, as that would no doubt permanently, damage your standing with them.`
+			`	You're warned not to disable or destroy the Wardragon should it attack you, as that would no doubt permanently damage your standing with them.`
 			`	When the engineers are done, the agents wish you good luck, and you head back inside your ship.`
 				accept
 	npc save "scan outfits"
@@ -961,8 +961,8 @@ mission "Heliarch Expedition 1"
 			choice
 				`	"Can you bring me to a higher-up? I have some information on ringworlds."`
 				`	"Is there anyone I can talk to about a broken ringworld?"`
-			`	The group discusses among themselves for a bit, then they bring you to a restricted section of the ringworld, reserved for the Heliarch. "Wait here, please," they tell you, offering you a seat on one end of a long table.`
-			`	Some ten minutes pass before anyone comes in, but after that many Heliarch members start filling up the room, taking their own seats at the table. When the door opens for the last of them to come in, the guard announces "Consul Aulori," to which all the Helliarchs stand up and salute, the noise of conversation giving room to hooves hitting the ground. An old Saryd of gray eyes, pale hairs, with a short, well-kept beard, wearing a peculiar necklace with four large gemstones hanging from it. He sits opposite to you, the other Heliarchs sitting back down when he does.`
+			`	The group discusses among themselves for a bit, then they bring you to a restricted section of the ringworld, reserved for Heliarchs. "Wait here, please," they tell you, offering you a seat on one end of a long table.`
+			`	Some ten minutes pass before anyone comes in, but after that many Heliarch members start filling up the room, taking their own seats at the table. When the door opens for the last of them to come in, the guard announces "Consul Aulori," to which all the Helliarchs stand up and salute, the noise of conversation giving room to hooves hitting the ground. He is an old Saryd of gray eyes, pale hairs, with a short, well-kept beard, wearing a peculiar necklace with four large gemstones hanging from it. He sits opposite to you, the other Heliarchs sitting back down when he does.`
 			`	"Forgive me for the delay you must, colleagues," he says to the other Heliarchs. "Caught up in my evening prayers, I was." He examines the room for a while, briefly glancing at each of the Heliarchs, until his eyes settle on yours. "Told, I was, that some valuable information for us, you have, Captain <last>."`
 			choice
 				`	"I know of a system where a broken Quarg ringworld is. I figured I should tell you."`
@@ -974,7 +974,7 @@ mission "Heliarch Expedition 1"
 				`	"Is this some joke? If you don't care about the broken ringworld, just tell me. Don't waste my time."`
 			`	He leans forward lightly, staring at you. Looking around the table, the other Heliarchs are engaged in a what appears to be a quiet, heated discussion, gesticulating and occasionally tilting the table with their body weight amidst whispers.`
 			`	"How?" Aulori asks, eyes still locked on you. You explain as best as you can about where Deneb is, and what you saw on the other side of the wormhole. When you get to explaining how the system was discovered, the Heliarchs seem to collectively gasp when you first utter the word "Pug." You pause, and many go back to the quiet, whispering discussions, some laughing it off, and others staying silent.`
-			`	One Saryd moves as if getting up, but sits back down once Aulori stands up, firmly pushing one hand against the table. Conversation around the table dies out, as he stares you down for a long minute. "Leave us for a moment, would you?" He finally says, having some guards bring you outside the room.`
+			`	One Saryd moves as if getting up, but sits back down once Aulori stands up, firmly pushing one hand against the table. Conversation around the table dies out, as he stares you down for a long minute. "Leave us for a moment, would you?" he finally says, having some guards bring you outside the room.`
 			`	The whispering discussion from earlier now becomes a much louder debate, though the door muffles it all enough that no translator outside the room manages to pick up what is being said. After half an hour, most voices are cut as someone rapidly hits the table, roughly, yelling something in what you think is the Saryd language.`
 			`	It all grows quiet for a while, and then the door opens again. Some of the other Heliarchs leave in a haste, and you're asked to head inside again. Consul Aulori is standing up still, giving you a nod as you come in.`
 			`	"Adjusted, your ship's sensors will be. Better suited, they will become, for detailed tridimensional projections," he says. He has a guard bring you back to your ship, where some engineers go inside your ship and spend some time tinkering with it. After they're done, one of the Heliarchs that was in the room approaches you, telling you they need you to land on the planet you described, <stopovers>, and to travel to <waypoints> to scan the ringworld. He wishes you luck, then hurries back to the restricted areas.`
@@ -982,7 +982,7 @@ mission "Heliarch Expedition 1"
 	on stopover
 		dialog `You fly around the mysterious world for a while, until your sensors beep in an odd way, in what you guess is the signal that the Heliarch's modifications are done doing their read on the planet.`
 	on enter "World's End"
-		dialog `You fire up your ship's sensors, letting it collect the data the Heliarch want for hours on end. Eventually you hear a series of beeps in a dull rhythm, and look to see your their performance is back to normal.`
+		dialog `You fire up your ship's sensors, letting it collect the data the Heliarch want for hours on end. Eventually you hear a series of beeps in a dull rhythm, and look to see that their performance is back to normal.`
 	on complete
 		event "heliarch expedition break" 22 34
 		payment 3000000
