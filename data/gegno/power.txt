@@ -60,7 +60,7 @@ outfit "C3 Scrap Cell"
 	"energy generation" 1.4
 	"heat generation" 2.2
 	"outfit space" -25
-	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch that abusing the Gegno's slightly hotter running tech. Its output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
+	description "The Scrap Cell is a small radiothermal generator that produces energy generation in a pinch while abusing the Gegno's slightly hotter running tech. Its output is very limited, and is only used in tandem with the Gegno's smaller-sized systems."
 
 outfit "C7 Brawl Cell"
 	category Power
