@@ -826,7 +826,7 @@ mission "Unfettered: Jump Drive Retrieval"
 		has "Unfettered: Prove Your Strength 2: active"
 	on offer
 		conversation
-			`Following the advice of the Hai, you park your ship close to the hidden depot, yet still close enough to the spaceport as to not draw unwanted attention by landing off grid - utilizing one of the lesser used auxiliary spaceports that are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
+			`You park your ship close to the hidden depot, as suggested by the Hai. You are still close enough to the spaceport to not draw unwanted attention by landing off grid - utilizing one of the lesser used auxiliary spaceports that are often used by captains seeking a degree of discretion. Your crew should be able to intervene should anything go wrong.`
 			`	You then follow Si-Ra to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
 				`	"Who made this vault, what should I expect?"`

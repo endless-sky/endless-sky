@@ -210,7 +210,7 @@ mission "Unfettered Silicon Asteroid Mining"
 		random < 60
 	on complete
 		payment 250000
-		dialog `The Unfettered unloading the materials you mined seem enthused. "This will allow us to repair our ships!" they tell you as they hand over your payment of <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practise, you know." they tell you as they hand over your payment of <payment> credits.`
 		outfit "Silicon" -50
 
 mission "Unfettered Silver Asteroid Mining"
@@ -226,7 +226,7 @@ mission "Unfettered Silver Asteroid Mining"
 		random < 60
 	on complete
 		payment 400000
-		dialog `The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships!" they tell you as they hand over your payment of <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are, most of them try to get the ressources from enemy ships, but this is a safer wayy to do it." they tell you as they hand over your payment of <payment> credits.`
 		outfit "Silver" -15
 
 
