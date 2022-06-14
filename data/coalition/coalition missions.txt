@@ -2630,6 +2630,8 @@ mission "Coalition: Expeditions Past 6"
 				`	"Actually, yes. They were called Sheragi."`
 				`	"No, I didn't even know there used to be ruins here."`
 					goto notknow
+			apply
+				"told coalition about sheragi" ++
 			`	Surprised that you know more, she listens to your story with Albert Foster, and how you had a dream about ships evacuating Zug. You tell her of the city buried under the layers of rock, the efforts to uncover it, and how the Quarg eventually sent someone to keep watch of the digging process.`
 			`	"Cities buried whole by lava? Tuned their scanners to look for such odd ruins, no expedition must have..." she stops and thinks for a few minutes, working on the pylon's command panel. "Tell the story again, could you, Captain <last>? Formally record the findings here, I would like." You spend the next few hours retelling what you saw, and helping her collect what information on the Sheragi and their ruins humans have learned since Foster published his initial findings.`
 			`	Once she's satisfied, you two look to your map and match coordinates with the next stop Mimodum made.`
@@ -2804,7 +2806,6 @@ mission "Coalition: Expeditions Past 10"
 		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		"coalition jobs" += 15
-		payment 35000000
 		conversation
 			`Sedlitaris uses your commlink to tell the spaceport authorities that she's returned, and soon after you land a crowd of Heliarchs and Coalition civilians alike are surrounding your ship. The Heliarch agents try and organize the crowd as best as they can, and a group of Heliarch consuls rush through the masses to meet you two at your ship.`
 			`	"Inspector! A most... fortunate return this is. A great deal of information you've collected, we take it?" an Arach consul asks.`
@@ -2838,4 +2839,16 @@ mission "Coalition: Expeditions Past 10"
 			`	She breathes in relief. "Thank you, Captain. To trick you, my intention wasn't. Thanks to your help, maybe put an end to this fear of leaving, or even convince the council to get the expedition efforts going again, I can."`
 			label end
 			`	Suddenly, a Saryd Sojourner nearly rams your ship, just barely avoiding it as lands less twenty meters from your ship. "My little brother," Sedlitaris says as she looks at the ship. "Forgive me Captain, but get to seeing my family, I must. From the discussion earlier, very worried about me, they must have been. Thanks again for everything." Her brother rushes into hugging her as he leaves his ship, then proceeds to shake her while screaming something. An elderly Saryd couple slowly comes out of the Sojourner as well, and Sedlitaris and her brother go and meet them, hugging and going inside. The Sojourner takes off before the spaceport workers can even begin tending to the ship, and you look at it as it leaves the ringworld.`
+			branch sheragi
+				has "told coalition about sheragi"
+			action
+				payment 35000000
 			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition.`
+				decline
+			label sheragi
+			apply
+				clear "told coalition about sheragi"
+			action
+				payment 50000000
+			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition. You decide to take some time to rest in your ship, after all that's happened, but not an hour passes before your ship is hailed by the local authorities, asking you to please open your hatch.`
+			`	You comply, and one of the Heliarch consuls from earlier, a Saryd, comes in. "Hello, Captain," he greets you with a somewhat shaky voice. "Just going over the findings, we were..." he struggles at finding words, eyes fixated on the ground. "Caught our attention the most, the report on Ancient Light has. The report about the 'Sheragi' and the ruins on a nearby world." He pauses, and pulls out a device similar to the one Sedlitaris used to transfer you your payment. "Finished the journey of ancient Saryd inspectors, humanity's efforts, your efforts, have. For that, hope to compensate you and the girl enough, the council cannot." He inputs a few commands, and you look to see you've received another 15,000,000 credits. "Sent her to die, we had. I had. And with answers to secrets our ancestors dreamed of unveiling, she did." His eyes finally come up, meeting yours. "Glad I am, that proud of at least one of us, they can be." He looks away again, gives you a nod, and leaves your ship.`
