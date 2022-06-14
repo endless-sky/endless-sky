@@ -1104,7 +1104,7 @@ mission "Heliarch Expedition 5"
 		conversation
 			`You land back on the foggy valley to deliver the outfits, finding several large tents set up inside the cavern.`
 			`	"Small enough debris, we found, that bring them here, we could. Analyzing and experimenting, the scientists are," the Heliarch captain tells you when you find him.`
-			`	After everything has been unloaded from your ship, he hands you <payment>, saying they will be fine on their own now, that soon the Water Coolant System will be altered to provide clean water, and that the power systems will shortly be connected to the research facilities.`
+			`	After everything has been unloaded from your ship, he hands you <payment>, saying they will be fine on their own now. Soon the Water Coolant System will be altered to provide clean water, he says, and that the power systems will shortly be connected to the research facilities.`
 			`	"Back home within a few months, we should be," he says, before looking around at the sky. "If all goes well." He thanks you for all your help, and wishes you a safe trip back to the Milky Way.`
 
 
@@ -1127,7 +1127,7 @@ mission "Heliarch Containment 1"
 	on offer
 		conversation
 			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here.`
-			`	It's no different with you. A Kimek agent approaching you after noticing you watching.`
+			`	It's no different with you. A Kimek agent approaches you after noticing you watching.`
 			`	"Much assistance, we require, Captain," they say. "A transport for <destination>, we need. For <bunks> of us, and <cargo>. Of great urgency, this task is."`
 			`	Without you even noticing it, an Arach agent has also gotten close, and after the Kimek is done speaking, says, "To contain a riot, there, we must go. <payment>, you will receive."`
 			choice
@@ -1152,7 +1152,7 @@ mission "Heliarch Containment 1"
 
 mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
-	description "Land on <stopovers>, to pick up the <bunks> Heliarch Soldiers in need of medical attention, and transport them to <destination> by <date>."
+	description "Land on <stopovers>, to pick up the <bunks> Heliarch soldiers in need of medical attention, and transport them to <destination> by <date>."
 	deadline
 	passengers 21
 	to offer
@@ -1262,7 +1262,7 @@ mission "Heliarch Containment 4-A"
 	destination "Remote Blue"
 	on offer
 		conversation
-			`You see an Arach coming toward you as you enter the spaceport, and recognize him as Consul Plortup, the one who you helped with deploying drones on a Saryd world.`
+			`You see an Arach coming toward you as you enter the spaceport, and recognize him as Consul Plortup, the one who you helped deploy drones on a Saryd world.`
 			`	"Ask for your assistance, once again, I must, Captain <last>," he says.`
 			`	You have no time to ask what's going on, or refuse, as he has you brought to a separate room where a Saryd, Kimek, and Arach are waiting.`
 			`	"Brewing on <destination>, another riot is. Your continued support, we hope you'll once more provide, Captain."`
@@ -1304,12 +1304,12 @@ mission "Heliarch Containment 4-B"
 	on complete
 		payment 495000
 		conversation
-			`You land in the station to find that <payment> have been transferred to you. Along with the credits comes a transmission from Plortup. "For my absence, forgive me, you must, Captain. On Fourth Shadow, broken out, another riot has, so organizing some ships from within the Ring of Power, I am."`
+			`You land in the station to find that <payment> have been transferred to you. Along with the credits comes a transmission from Plortup. "For my absence, forgive me you must, Captain. On Fourth Shadow, broken out another riot has, so organizing some ships from within the Ring of Power, I am."`
 			`	He goes on to explain that the riot was quite a large one, and much of the fleet stationed here was sent there to help contain it. What remained is helping with the Remote Blue riot, so the station is fairly devoid of a military presence now.`
 
 mission "Heliarch Containment 5"
 	name "Stop The Fleeing Ships"
-	description "Defeat the criminal ships that are attempting to flee. You must disable and board their ships, to help the Heliarchs find the source of their weapons."
+	description "Defeat the criminal ships that are attempting to flee. You must disable and board their ships, in order to help the Heliarchs find the source of their weapons."
 	landing
 	to offer
 		has "Heliarch Containment 4-B: done"
@@ -1320,7 +1320,7 @@ mission "Heliarch Containment 5"
 		event "resistance fleeing rb"
 		conversation
 			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything in particular. You also notice that the job board is completely empty, that the market's trade values are not updating, and any news system is awfully destabilized.`
-			`	Suddenly, a few Heliarch rush past you heading for an office. They quickly reemerge and approach you.`
+			`	Suddenly, a few Heliarchs rush past you heading for an office. They quickly reemerge and approach you.`
 			`	"Captain! Helped us, you have. Trustworthy, you are, and in need of a combat-ready ship, we are."`
 			choice
 				`	"What's going on?"`
@@ -1334,7 +1334,7 @@ mission "Heliarch Containment 5"
 		government "Lunarium"
 		ship "Saryd Sojourner (Bombardments)" "Hodoviah"
 		conversation
-			`Unlike the other two vessels, this ship is equipped with Heliarch weaponry. Sadly, you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
+			`Unlike the other two vessels, this ship is equipped with Heliarch weaponry. Unfortunately you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
 				launch
 	npc board
 		personality timid plunders entering target
@@ -1357,7 +1357,7 @@ mission "Heliarch Containment 5"
 		payment 1320000
 		conversation
 			`Though you never managed to find out if there were any hostages on board, the Heliarchs stationed at <planet> still herald you as a hero for "detaining the thugs".`
-			`	They immediately set to repair your ship, and you're still on alert for a few hours in case any more ships come through, but everything appears to be normal. The station returns to normality as well: communications and other functions are restored.`
+			`	They immediately set to repair your ship. You're still on alert for a few hours in case any more ships come through, but nothing appears to be out of the ordinary. The station returns to normal as well; communications and other functions are restored.`
 			`	As soon as the commlinks are back, the Heliarchs contact Consul Plortup and inform him of what happened. Shortly after, <payment> are added to your account.`
 			`	"Humiliating, it would be, had under such circumstances, the criminal ships escaped. Done well, you have, Captain," he says.`
 			`	He discusses with you the outfits that the ships were using and is equally alarmed that they had not only Heliarch equipment, but had also acquired human weapons.`
@@ -1387,7 +1387,7 @@ mission "Heliarch Drills 1"
 		"combat rating" >= 8104
 	on offer
 		conversation
-			`A pair of Heliarch Judicators land by your ship as you leave for the spaceport, and the workers storm to the ships, getting ready to refuel them. Coming down from one of the Judicators, a young Saryd with black hair barely reaching her shoulders pulls out a watch of sorts, seeming to time how long they take to completely fill up the ships' fuel tanks.`
+			`A pair of Heliarch Judicators land by your ship as you leave for the spaceport. The workers storm to the ships, getting ready to refuel them. Coming down from one of the Judicators, a young Saryd with black hair barely reaching her shoulders pulls out a watch of sorts, seeming to time how long they take to completely fill up the ships' fuel tanks.`
 			`	When they're done, she gives an approving nod, and takes a look around the hangars. When she notices you watching, she approaches you. "Greetings, human visitor," she says. "Magister Lotuora, I am. Intrigued by our ships, were you?" You begin a nod, and that's enough for her to keep talking. "A refuelling drill, it was. When coming down, inform the local authorities at the last minute, we do, so that more 'authentic' it is. An important part, it is, in testing how well prepared for emergencies we are."`
 			choice
 				`	"What sort of emergencies?"`
@@ -1442,7 +1442,7 @@ mission "Heliarch Drills 2-A"
 		not "Resistance: Questions: done"
 	on offer
 		conversation
-			`When you find Magister Lotuora in the spaceport, she shows you to a map of the Coalition, pointing to two systems, one in Kimek and one in Saryd space. "Made many calls, I have, and to assemble many ships for this drill, I've managed. How fit for their job, our Hunters are, we shall see."`
+			`When you find Magister Lotuora in the spaceport, she shows you to a map of the Coalition. Pointing to two systems, she indicates one in Kimek and one in Saryd space. "Made many calls, I have, and to assemble many ships for this drill, I've managed. How fit for their job, our Hunters are, we shall see."`
 			choice
 				`	"What do you mean?"`
 					goto explain
@@ -1456,7 +1456,7 @@ mission "Heliarch Drills 2-A"
 				`	"Can you tell me where my pursuers will be?"`
 			`	"Know of their pursuers, the pursued do not," she says, letting a laugh as if it was a joke. "Well, usually... From many systems across the Coalition, the Hunters are. Ready to follow your ship when you launch, they will be."`
 			label accept
-			`	She points again to one of the planets, "Still preparing, some Hunters around Ashy Reach are, so head for <planet> first, you should," she wishes you luck on avoiding the Heliarch Hunters, and heads off to a Heliarch military building.`
+			`	She points again to one of the planets, "Still preparing, some Hunters around Ashy Reach are, so head for <planet> first, you should." She wishes you luck on avoiding the Heliarch Hunters, and heads off to a Heliarch military building.`
 				accept
 	npc evade
 		government "Heliarch"
@@ -1590,7 +1590,7 @@ mission "Heliarch Drills 2-C"
 		not "Resistance: Questions: done"
 	on offer
 		conversation
-			`Once again, you managed to avoid the Heliarch Hunters while landing on <origin>, and once again a local Heliarch agent informs Magister Lotuora of your success. "Excellent work, Captain <last>," she says when she contacts you. "Now, talked with some contacts I have, and one more drill for you to help with, I have arranged. Return to <planet> at your earliest convenience, you may." She signs off, but calls back seconds after. "Ah, forgive me Captain. Forgotten something, I had. Heard of the recent drills, some colleagues did, and readied their own Hunters to participate, they now have. Avoid them on your return to <planet>, as per usual, you should."`
+			`Once again, you managed to avoid the Heliarch Hunters while landing on <origin>, and a local Heliarch agent informs Magister Lotuora of your success. "Excellent work, Captain <last>," she says when she contacts you. "Now, talked with some contacts I have, and one more drill for you to help with, I have arranged. Return to <planet> at your earliest convenience, you may." She signs off, but calls back seconds after. "Ah, forgive me Captain. Forgotten something, I had. Heard of the recent drills, some colleagues did, and readied their own Hunters to participate, they now have. Avoid them on your return to <planet>, as per usual, you should."`
 			`	She mentions they've contributed some credits to your reward, now a total of <payment>, which will be yours when you land on <destination> without any of the Hunters on your tail.`
 				accept
 	npc evade
@@ -1730,7 +1730,7 @@ mission "Heliarch Drills 2-C"
 
 mission "Heliarch Drills 3"
 	name "Combat Drill"
-	description "Head to the <waypoints> system to fight the <npc>, reporting back to <planet> when you succeed. You must only disable the ship, destroying or capturing it would deem you an enemy of the Heliarchs."
+	description "Head to the <waypoints> system to fight the <npc>, reporting back to <planet> when you succeed. You must only disable the ship. Destroying or capturing it would deem you an enemy of the Heliarchs."
 	source "Belug's Plunge"
 	waypoint "Torbab"
 	to offer
@@ -1739,7 +1739,7 @@ mission "Heliarch Drills 3"
 	on offer
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
-			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, boarding a Punisher and flying away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall."`
+			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall."`
 			`	She stares on for a while, then brings up a map. "Headed to the <waypoints> system, the Punisher is. Wait for you there, it will." She tells you to head to <waypoints> when you're ready to fight the Punisher, and reminds you to only disable the ship, as any harsher action would make you a criminal to the Heliarchs.`
 				accept
 	npc disable save
@@ -1758,8 +1758,8 @@ mission "Heliarch Drills 3"
 		"assisted heliarch" ++
 		payment 800000
 		conversation
-			`Magister Lotuora greets you when you return. "Prevailed over one of our Punishers, you have! Perhaps the real threat, you are, not the Quarg," she says, waiting for a few seconds as she looks at you, as if expecting you to laugh. She hands you <payment>, and continues, "Sent a recording of the fight, I was. Learn much from it, I hope we can."`
-			`	She thanks you for helping her with the drills, saying it will be a great help in training the cadets at the local academy, and wishes you safe travels, heading to a Heliarch building.`
+			`Magister Lotuora greets you when you return. "Prevailed over one of our Punishers, you have! Perhaps the real threat, you are, not the Quarg," she says, looking at you for a few seconds as if expecting you to laugh. She hands you <payment>, and continues, "Sent a recording of the fight, I was. Learn much from it, I hope we can."`
+			`	She thanks you for helping her with the drills, saying it will be a great help in training the cadets at the local academy. She finally wishes you safe travels, heading to a Heliarch building.`
 
 
 
@@ -1790,14 +1790,14 @@ mission "Heliarch License"
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
 	on complete
-		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology, and a translation device, to freely converse with the Coalition species."
+		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device, to freely converse with the Coalition species."
 		set "language: Coalition"
 		event "first heliarch unlock"
 		set "license: Heliarch"
 		conversation
 			`When you land, you're met with a bit of ceremony. A trio of Heliarch consuls welcomes you, each carrying a gemstone: an emerald for the Saryd, a ruby for the Kimek, and a sapphire for the Arach. They each pass the precious stones to you, starting with the Saryd, then the Kimek, and lastly the Arach. Cameras and photographers surround the scene, kept at bay by lines of Heliarch guards. It seems your joining the ranks has turned into something of an event.`
 			`	When the consuls are done, they have you follow them into the restricted sections of the ring, bringing you to a very large, circular room, somewhat like a colosseum or an auditorium, with hundreds of Heliarch consuls seated. There are also many more camera workers and photographers, though all of them are Heliarch members this time. You're instructed to head to the center.`
-			`	The consuls who brought you here speak, and once again you're reminded of your "contributions and loyalty" to the Coalition. "Truly special, this ceremony is," the Arach says. "Join our ranks, for the first time, an outsider does. Contributed much, this outsider has, shown devotion to our Coalition, this outsider has."`
+			`	The consuls who brought you here speak, and once again you're reminded of your "contributions and loyalty" to the Coalition. "Truly special, this ceremony is," the Arach says. "Join our ranks, for the first time, an outsider does. Contributed much, this outsider has, and shown devotion to our Coalition, this outsider has."`
 			`	"From humanity, <first> <last> has come," the Kimek continues. "Our most recent neighbor, and a group still under the chiding eyes of the Quarg, they are. To reach them all, to free them all, we still cannot, but, our first step in that front, Captain <last>'s coronation is."`
 			`	The Saryd approaches you, carrying some type of chest. Opening it, she reveals a golden circlet inside, staying silent and looking at you.`
 			choice
@@ -1809,7 +1809,7 @@ mission "Heliarch License"
 				`	(Take the circlet.)`
 			label circlet
 			`	You pick up the circlet, and raise it to your head, the Heliarch consuls all standing up when you do. You bring it down and adjust it to your head. Once the "crowning" is done, many of the consuls cheer in celebration, with something akin to a round of applause, and more of the speeches from before.`
-			`	When it's all over, you're escorted back to your ship, where you're told that the circlet serves as a permission to buy certain outfits. They also hand you a small box, a translation device. "One of us you now are, Captain," the Saryd says. "Find some new work in our job boards, you may, if properly equipped, you are."`
+			`	When it's all over, you're escorted back to your ship, where you're told that the circlet serves as a permission to buy certain outfits. They also hand you a small box, which you soon realize is a translation device. "One of us you now are, Captain," the Saryd says. "Find some new work in our job boards, you may, if properly equipped, you are."`
 			`	The trio congratulates you once again, and wish you safe travels.`
 
 event "first heliarch unlock"
