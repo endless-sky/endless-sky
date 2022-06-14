@@ -31881,7 +31881,7 @@ system Wreoul
 
 planet "Dueyu Eitch"
 	landscape land/desert4
-	description "The historic homeworld of all Gegno, Dueyu Eitch is a rugged, rocky world with covered with enormous metropolises and structures. Each city is based on an elevated structure, and starting from the bottom up the buildings are more advanced the farther they reach into the sky. Larger cities are lit by the varying reds and oranges of industrial forgery, and more urban areas are speckled with yellow and green. Beneath the heavily populated surface are traces of enormous cavities, suggesting the Gegno began a majority of their ancestry in the ground."
+	description "The historic homeworld of all Gegno, Dueyu Eitch is a rugged, rocky world covered with enormous metropolises and structures. Each city is based on an elevated structure, and starting from the bottom up the buildings are more advanced the farther they reach into the sky. Larger cities are lit by the varying reds and oranges of industrial forgery, and more urban areas are speckled with yellow and green. Beneath the heavily populated surface are traces of enormous cavities, suggesting the Gegno began a majority of their ancestry in the ground."
 	description "	Three distinct subspecies can be seen walking about the architecture: One that is very bulky and scaly in appearance, another slimmer and more bone-like, and the third a combination of the first two; all standing several feet taller than a human being."
 	spaceport x
 	government Gegno
