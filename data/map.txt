@@ -33129,7 +33129,7 @@ planet "Oup Je"
 planet "Enn Bue"
 	landscape land/canyon01
 	description "Lengthy oval-like shipyards speckle the surface of this otherwise inhospitable desert planet, home to most of the Gegno Scin's ship production. A majority of wealthy materials come from the neighboring gas giant's moons; however, the strong gravitational pull occasionally generates natural disasters that ravage the surface. Despite all of this, the Scin remain vigilant and efficient in their craftworks."
-	spaceport "Enveloped in a large black dome cap, this spaceport is a lot quieter inside than the loud winds and storms often found outside. It has definitely seen a severe duststorm or two, but still holds tight together. The Gegno Scin here give you lengthy stares, oddly enough taking turns to observe you. One will look up then look back down to themselves followed by another's attention."
+	spaceport "Enveloped in a large black dome cap, this spaceport is a lot quieter inside than the loud winds and storms often found outside. It has definitely seen a severe duststorm or two, but still holds tight together. The Gegno Scin here give you lengthy stares, and oddly enough you notice that they take turns to observe you. One will look up then look back down to themselves followed by another's attention."
 	government "Gegno Scin"
 	"required reputation" 1
 	bribe 0
