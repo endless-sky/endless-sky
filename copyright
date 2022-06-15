@@ -775,11 +775,6 @@ Copyright: Copyright "BW_Clowes"
 License: CC-BY-3.0
 Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
 
-Files: images/effect/explosion/pug/*
-Copyright: Vilhelm (https://github.com/Vilhelm16)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
 Files:
  sounds/thrasher.wav
  sounds/point?defense.wav
@@ -1325,6 +1320,7 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
+ images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*

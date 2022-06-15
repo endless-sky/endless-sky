@@ -2165,7 +2165,7 @@ conversation "taely cultural data"
 			defer
 	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand.") "... the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 	choice
 		`	"Yes. What can I do to help?"`
 		`	"Sorry, not interested."`
@@ -3793,7 +3793,7 @@ mission "Remnant: Logistics 1"
 			label delivery
 			`	"That generator was originally scheduled for delivery 30 days from now, but it was ready earlier and the project can install it now. So, by bringing it over, you have enabled us to move the project forward and free up delivery capacity next month."`
 			`	"So, why did you offer this work to me?" you ask, trying to mimic the gestures you've seen that you think refer to one's self.`
-			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no...what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
+			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no... what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
 			choice
 				`	"Thanks for the opportunity."`
 					goto thanks
