@@ -68,12 +68,12 @@ outfit "Tripulse Shredder"
 		sprite "projectile/pulse"
 		sound "pulse"
 		"hit effect" "pulse impact"
-		"inaccuracy" 2
+		"inaccuracy" 5
 		"velocity" 15
 		"lifetime" 30
-		"reload" 6.5
-		"burst count" 30
-		"burst reload" 3
+		"reload" 6
+		"burst count" 36
+		"burst reload" 4
 		"cluster"
 		"firing energy" 25
 		"firing heat" 60
