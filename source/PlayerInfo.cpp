@@ -1187,6 +1187,23 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
+	// Auto-sell commodities
+	int64_t profit;
+	int tonsSold;
+	SellCommodities(profit, tonsSold);
+	if(tonsSold)
+	{
+		string message = "You sold " + to_string(tonsSold)
+			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+
+		if(profit < 0)
+			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+		else
+			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+
+		Messages::Add(message, Messages::Importance::High);
+	}
+
 	// If the player is actually landing (rather than simply loading the game),
 	// new missions are created and new fines may be levied.
 	if(!freshlyLoaded)
@@ -1296,7 +1313,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		const System* destination = travelPlan.front();
 
 		BuyBestTrade(destination);
-	};
+	}
 
 
 	// Recharge any ships that can be recharged, and load available cargo.
@@ -1517,6 +1534,37 @@ void PlayerInfo::BuyBestTrade(const System *destination)
 	amount = cargo.Add(type, amount);
 	Accounts().AddCredits(-amount * price);
 	GameData::AddPurchase(*system, type, amount);
+
+	string message = "Your AUTO-TRADEBOT 9000 bought " + to_string(amount)
+		+ (amount == 1 ? " ton" : " tons") + " of " + type + " "
+		+ "for " + Format::Credits(amount * price) + " credits, to be sold at "
+		+ destination->Name();
+
+	Messages::Add(message, Messages::Importance::High);
+}
+
+
+
+// Sell commodities
+void PlayerInfo::SellCommodities(int64_t& profit, int& tonsSold)
+{
+	for(const auto &it : GameData::Commodities())
+	{
+		int64_t amount = cargo.Get(it.name);
+		int64_t price = system->Trade(it.name);
+		if(!price || !amount)
+			continue;
+
+		int64_t basis = GetBasis(it.name, -amount);
+		AdjustBasis(it.name, basis);
+
+		profit += amount * price + basis;
+		tonsSold += amount;
+
+		cargo.Remove(it.name, amount);
+		accounts.AddCredits(amount * price);
+		GameData::AddPurchase(*system, it.name, -amount);
+	}
 }
 
 

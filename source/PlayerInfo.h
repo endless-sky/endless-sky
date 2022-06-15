@@ -168,6 +168,7 @@ public:
 	bool TakeOff(UI *ui);
 	// Auto-purchase and sell commodities
 	void BuyBestTrade(const System *destination);
+	void SellCommodities(int64_t& profit, int& tonsSold);
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
