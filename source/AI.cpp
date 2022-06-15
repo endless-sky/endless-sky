@@ -1334,7 +1334,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		SelectRoute(ship, it->second.targetSystem);
 
 		// Travel there even if your parent is not planning to travel.
-		if(ship.GetTargetSystem())
+		if((ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar())
 			MoveIndependent(ship, command);
 		else
 			return false;
@@ -1393,14 +1393,24 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 
 	bool friendlyOverride = false;
+	bool ignoreTargetShip = false;
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.target.lock() == target)
-			friendlyOverride = (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF);
+		if(it != orders.end())
+		{
+			if(it->second.type == Orders::MOVE_TO)
+				ignoreTargetShip = (ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar();
+			else if(it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF)
+				friendlyOverride = it->second.target.lock() == target;
+		}
 	}
 	const Government *gov = ship.GetGovernment();
-	if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
+	if(ignoreTargetShip)
+	{
+		// Do not move to attack, scan, or assist the target ship.
+	}
+	else if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -3549,7 +3559,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& (Preferences::Has("Automatic firing") || activeCommands.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
@@ -3630,7 +3639,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))

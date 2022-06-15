@@ -326,7 +326,7 @@ outfit "Ember Tear"
 		sound "ion"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
-		"hit effect" "ember tear vortex" 
+		"hit effect" "ember tear vortex"
 		"fire effect" "ember tear fire"
 		"velocity" 800
 		"inaccuracy" 0
@@ -398,11 +398,11 @@ outfit "Crystal Capacitor"
 	category "Power"
 	licenses
 		Remnant
-	cost 113000
+	cost 57000
 	thumbnail "outfit/crystal capacitor"
 	"mass" 12
 	"outfit space" -12
-	"energy capacity" 3400
+	"energy capacity" 13600
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
@@ -539,7 +539,7 @@ outfit "Bellows-Class Afterburner"
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
-	sound "afterburner"
+	sound "remnant afterburner"
 
 
 
