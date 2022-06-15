@@ -427,7 +427,7 @@ ship "Sea Scorpion"
 		"fuel capacity" 500
 		"cargo space" 50
 		"outfit space" 510
-		"weapon capacity" 145
+		"weapon capacity" 168
 		"engine capacity" 104
 		weapon
 			"blast radius" 84
