@@ -54,7 +54,8 @@ outfit "Chloeric Cannon"
 		"shield damage" 95
 		"hull damage" 380
 		"hit force" 180
-	description "A caliber higher than the Irate Cannon, Chloeric cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon (as well as its sister cannons), it is very ineffective against any sort of shielding."
+	description "A caliber higher than the Irate Cannon, Chloeric cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding."
+
 	description "	A flaw in the shell design, however, is that point defense systems are just able to make them out as valid targets on account of their slower speed, material make-up, and size nearing a small missile."
 
 
