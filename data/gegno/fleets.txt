@@ -88,23 +88,23 @@ fleet "Vi Transport"
 	variant 8
 		Schist
 	variant 3
-		"Schist Light"
+		"Schist Med"
 	variant 2
 		Slate
+		"Schist Heavy"
 		"Schist Med"
-		"Schist Light"
 	variant 2
 		Slate 2
 		Schist
 	variant 4
 		Slate
-		"Schist Med"
+		"Schist Heavy"
 	variant
 		Schist 2
 	variant 2
-		"Schist Light"
-	variant
 		"Schist Med"
+	variant
+		"Schist Heavy"
 	variant
 		Protolith
 
@@ -115,23 +115,23 @@ fleet "Vi Cargo"
 	personality
 		plunders heroic opportunistic
 	variant 2
-		"Schist Med"
+		"Schist Heavy"
 	variant 2
 		"Hornfel Light"
 	variant
 		"Hornfel Heavy"
 	variant 2
-		"Schist Light"
+		"Schist Med"
 	variant
 		Hornfel
 	variant
 		Schist
 	variant
 		"Hornfel Med"
-		"Schist Med"
+		"Schist Heavy"
 	variant
 		Protolith
-		"Schist Med"
+		"Schist Heavy"
 
 fleet "Small Scin"
 	government "Gegno Scin"

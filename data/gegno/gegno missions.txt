@@ -34,7 +34,7 @@ mission "First Contact: Gegno"
 			label ships
 			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration."`
 			choice
-				`	"Why do they pursue in the name of sacrifice?"`
+				`	"Do the Gegno upset you in some way?"`
 					goto sacrifice
 			label guidance
 			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration. "The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery, will the Gegno prosper."`

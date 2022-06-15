@@ -30,7 +30,7 @@ outfit "RG15 Torch Steering"
 	"steering flare sprite" "effect/ion torch/small"
 		"frame rate" 2.4
 	"steering flare sound" "ion torch small"
-	description "This steering system is meant for the smallest of Gegno Vi ships, and mounting it exclusively on anything larger than a Shuttle-class ship is unheard of. Still, it offers relatively high energy efficiency so some Gegno pilots use it as a cheap addon."
+	description "This steering system is meant for the smallest of Gegno Vi ships, and mounting it exclusively on anything larger than a Shuttle-class ship is unheard of. Still, it is another additional source of propulsion, so some Gegno pilots use it as a cheap addon."
 
 outfit "RG18 Torch Thruster"
 	category Engines

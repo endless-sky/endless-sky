@@ -67,7 +67,8 @@ ship Augen
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description "The Augen is an ancient battleship design proposed by the Vi to protect the Gegno from potential outside dangers."
+	description "The Augen-class is an ancient battleship design proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in the huge canyon shipyard present on the foggy world of Enbi, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to the current vessels in service of the Vi fleet."
+	description `	This project was meant to result in two sister-ship behemoths, not one, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship Shale
 	sprite ship/shale
@@ -167,7 +168,7 @@ ship Conglomerate
 		"fuel capacity" 400
 		"heat dissipation" 0.7
 		hull 13300
-		"outfit space" 240
+		"outfit space" 200
 		"required crew" 68
 		shields 0
 		"weapon capacity" 18
@@ -182,6 +183,7 @@ ship Conglomerate
 		"R02 Battlezone Battery"
 		"RG18 Torch Steering"
 		"RG18 Torch Thruster"
+		"RG15 Torch Steering"
 	engine -32.5 215
 	engine 32.5 215
 	leak leak 30 40
@@ -325,20 +327,20 @@ ship Schist
 	description "The Schist is the Gegno Vi's variation of the Gegno's old mid-range Dolomite. It has a decent cargo size, and enough bunks to carry a whole platoon of Gegno warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories." 
 	description `	Although a relatively light armament is an exception for the Vi's very aggressive and combat-oriented ship design philosophy, Schists still carry a pair of cannon mounts to be able to bring something, rather than nothing, to a fight.`
 
-ship Schist "Schist Light"
+ship Schist "Schist Med"
 	sprite ship/schistlight
 	thumbnail thumbnail/schistlight
 	add attributes
-		mass 18
-		"cargo space" 18
+		mass 22
+		"cargo space" 22
 		drag 0.1
 
-ship Schist "Schist Med"
+ship Schist "Schist Heavy"
 	sprite ship/schistmeda
 	thumbnail thumbnail/schistmed
 	add attributes
-		mass 22
-		"cargo space" 22
+		mass 38
+		"cargo space" 38
 		drag 0.2
 
 ship Eclogite
@@ -554,22 +556,21 @@ ship Protolith
 		"fuel capacity" 700
 		"heat dissipation" 0.4
 		hull 19575
-		"outfit space" 568
+		"outfit space" 468
 		"required crew" 84
 		shields 0
-		"weapon capacity" 180
+		"weapon capacity" 130
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
 			"hull damage" 2050
 			"hit force" 3950
 	outfits
-		"C27 Campaign Core"
+		"C7 Brawl Core" 2
 		"Chloeric Turret" 2
 		Hyperdrive
 		"Irate Cannon" 2
 		"R02 Battlezone Battery"
-		"R03 Warforge Battery"
 		"RG3 Torch Steering"
 		"RG3 Torch Thruster"
 	engine 0 260
@@ -783,7 +784,7 @@ ship Felsic
 		"engine capacity" 106
 		"fuel capacity" 500
 		"heat dissipation" 0.7
-		hull 11000
+		hull 10050
 		"outfit space" 310
 		"required crew" 38
 		shields 0
