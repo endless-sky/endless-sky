@@ -33073,7 +33073,7 @@ planet Ternituul
 	landscape land/fog1
 	description "Ternituul is a dull world covered in a thick layer of fog hiding a dry desolate surface; an ideal world for the hardened Gegno Vi. A large portion of the Vi's military branch is based here, where new recruits are thrown into the first bottleneck of their lives. It is not uncommon for inhabitants to be lost to the bleak ecosystem of this planet."
 	description "	The fog also hides a more grim aspect of this world- numerous graveyards cover the terrain, serving as a final resting place for most Vi. Large ceremonies are constantly held for the fallen, though instead of grievance, the Vi celebrate the commitment and dignity of their fellow brethren."
-	spaceport "Here, the spaceport is built very close to and partly in the ground, nearly a danger to any craft landing. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."
+	spaceport "Here, the spaceport is built very close to and partly in the ground, making it slightly dangerous for any craft trying to land here. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
