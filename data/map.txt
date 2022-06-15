@@ -33345,7 +33345,7 @@ planet "Gue Faur"
 planet Tschyss
 	landscape land/sivael6
 	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
-	description "	Despite the scale and numbers of onboard facilities, there is only a small percentage of Gegno making use of them."
+	description "	Despite the scale and number of onboard facilities, there is only a small percentage of Gegno making use of them."
 	spaceport "Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated lock."
 	government Gegno
 	"required reputation" 1
