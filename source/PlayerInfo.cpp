@@ -1290,6 +1290,15 @@ bool PlayerInfo::TakeOff(UI *ui)
 			++it;
 	}
 
+	// Auto-buy commodities to fill your ships to sell at target planet
+	if(!travelPlan.empty())
+	{
+		const System* destination = travelPlan.front();
+
+		BuyBestTrade(destination);
+	};
+
+
 	// Recharge any ships that can be recharged, and load available cargo.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1466,6 +1475,48 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 
 	return true;
+}
+
+
+
+// While on a planet, fill cargo with commodities that make
+// the most profit when sold at destination
+void PlayerInfo::BuyBestTrade(const System *destination)
+{
+	// All cargo, except keep your flagship free of space for plundering
+	// TODO: check each ship for special outfit attribute or something?
+	int64_t amount = cargo.Free() - flagship->Cargo().Free();
+	if(amount <= 0)
+		return;
+
+	if(!HasVisited(*destination) || !destination->IsInhabited(Flagship()))
+		return;
+
+	int64_t bestProfit = 0;
+	string type;
+	int64_t price;
+
+	for(const Trade::Commodity &commodity : GameData::Commodities())
+	{
+		int64_t sellPrice = destination->Trade(commodity.name);
+		int64_t purcPrice = system->Trade(commodity.name);
+		int64_t profit = sellPrice - purcPrice;
+		if(profit > bestProfit)
+		{
+			bestProfit = profit;
+			type = commodity.name;
+			price = purcPrice;
+		}
+	}
+
+	if(!bestProfit)
+		return;
+
+	amount = min(amount, min<int64_t>(Cargo().Free(), Accounts().Credits() / price));
+	AdjustBasis(type, amount * price);
+	amount = cargo.Add(type, amount);
+	Accounts().AddCredits(-amount * price);
+	GameData::AddPurchase(*system, type, amount);
 }
 
 

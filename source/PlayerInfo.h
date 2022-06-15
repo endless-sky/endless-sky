@@ -166,6 +166,8 @@ public:
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
+	// Auto-purchase and sell commodities
+	void BuyBestTrade(const System *destination);
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
