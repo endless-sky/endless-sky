@@ -1969,6 +1969,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	(Leave.)`
 					decline
 			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds. Now listen to my words, and listen well: you have to earn your rewards, they do not just drop out of the sky. Well maybe for me it just did, but I did plan the setting!"`
+			choice
 				`	(Celebrate.)`
 					goto celebrate
 				`	(Punch him.)`
