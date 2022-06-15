@@ -146,7 +146,7 @@ outfit "Systems Core (Medium)"
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	description `This "systems core" houses a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
+	description `Systems cores house a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
@@ -359,7 +359,7 @@ outfit "Reverser (Asteroid Class)"
 		"frame rate" 8
 	"reverse flare sound" "plasma tiny"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
-	description "The Asteroid Class reverser provides a modest amount of thrust, giving Korath captains an extra edge in battle."
+	description "The Asteroid Class reverser provides a modest amount of thrust, giving Korath captains with weapons space to spare a small edge in battle."
 
 outfit "Reverser (Comet Class)"
 	plural "Reversers (Comet Class)"
@@ -376,7 +376,7 @@ outfit "Reverser (Comet Class)"
 		"frame rate" 7.5
 	"reverse flare sound" "plasma small"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
-	description "The Comet Class reverser is usually found on larger Korath ships, and installed when a Korath captain is willing to sacrifice some weapons space for an extra bit of manuverability."
+	description "The Comet Class reverser is unpopular amongst Korath captains, who find it a bit weak to pair with Planetary Class engines, yet too large too be worth sacrificing weapons space."
 
 outfit "Reverser (Lunar Class)"
 	plural "Reversers (Lunar Class)"
