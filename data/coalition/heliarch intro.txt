@@ -68,7 +68,7 @@ mission "Heliarch Investigation 2"
 			choice
 				`	"Nice to meet you."`
 				`	"Are you the one that has a job for me?"`
-			`	"Stable and safe, our great Coalition is. Sadly, there are some who ideas of revolt and rebellion spread," she says. "To combat these thoughts of disunion, we swore. Correct such behavior, we must," she points to the three agents beside you. "Dedicated to that, our agents are, but often times slow and predictable, their tactics are. A different approach might be due, so an outsider's help, and their way of thinking, we'd like to ask for."`
+			`	"Stable and safe, our great Coalition is. Sadly, there are some who ideas of revolt and rebellion spread," she says. "To combat these thoughts of disunion, we swore. Correct such behavior, we must," she says as she points to the three agents beside you. "Dedicated to that, our agents are, but often times slow and predictable, their tactics are. A different approach might be due, so an outsider's help, and their way of thinking, we'd like to ask for."`
 			choice
 				`	"What exactly would I have to do?"`
 				`	"In that case, I'm not interested. I thought this was some simple job, not a political matter."`
@@ -200,7 +200,7 @@ mission "HI2-MP"
 					goto reactor
 				`	(Go further out and check the trees and bushes.)`
 					goto trees
-			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents, in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts. Just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
+			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
 			choice
 				`	(Check the warehouse with the leaky roof now.)`
 					goto reactor
@@ -208,7 +208,7 @@ mission "HI2-MP"
 					goto trees2
 				`	(Leave the rest of this to Kirrie.)`
 			`	You apologize and tell Kirrie that you don't know what to do next. While he does agree to do it himself, he never stops asking for your opinion on his choices.`
-			`	You spend a few more hours checking the warehouses until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse, so you take shelter in one of them until the weather settles. Once it does, it is nearly nightfall, and Kirrie is notified by Iplora that she and Tugroob are already back at the ship, so you two decide to head back too.`
+			`	You spend a few more hours checking the warehouses until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse, so you take shelter in one of them until the weather settles. Once it does, it is nearly nightfall, and Kirrie is notified by Iplora that she and Tugroob are already back at the ship. You two decide to head back as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. Exhausted, they get back in their bunks, asking you to depart the planet.`
 				accept
 			label reactor
@@ -239,7 +239,7 @@ mission "HI2-MP"
 				`	(Check the warehouses with the rusty doors.)`
 				`	(Check the warehouse with the leaky roof.)`
 					goto reactor
-			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts, just mountains of plastic stacked together. You check a few more like this but none turn out to have anything, and as the rain and wind become too much to walk through, you take shelter in one of the warehouses.`
+			`	Kirrie uses his card to open the door, explaining that it is an access card granted to Heliarch agents in the event they need to conduct any work such as this, or simply to identify themselves as an agent. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this but none turn out to have anything, and as the rain and wind become too much to walk through, you take shelter in one of the warehouses.`
 			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, saying you may depart now.`
 				accept
@@ -311,7 +311,7 @@ mission "HI2-SS"
 				`	"You're right. Should we go outside and check around that hole?"`
 					goto hole2
 				`	"Maybe, but they could be trying to hide in plain sight. Let's open up these crates."`
-			`	You two go about opening all the crates on the upper floor but end up finding nothing.`
+			`	You two go about opening all the crates on the upper floor but finish empty handed.`
 			`	"Find nothing here we will, Captain," Tugroob says.`
 			choice
 				`	"Sorry, let's go outside and check that hole while we can."`
@@ -385,9 +385,9 @@ mission "HI2-FS"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`For this planet, the trio informs you that they cannot spend too much time in one place, considering how densely populated it is, so they hand you the coordinates of dozens of factories, with the instructions to take them to each factory in whichever order you'd prefer.`
+			`For this planet, the trio informs you that they cannot spend too much time in one place considering how densely populated it is. Instead, they hand you the coordinates of dozens of factories, with the instructions to take them to each factory in whichever order you'd prefer.`
 			`	"Surprise inspections, we shall perform," Kirrie says as the three prepare their equipment and weapons. You spend hours flying around the planet dropping one agent off in a factory, running off to another, then another, then picking up the first of the three, and continuing the process.`
-			`	After picking up Tugroob from the last factory, they all analyze their findings one last time, going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side, and briefly writing a description if any such "abnormality" was noted in a factory.`
+			`	After picking up Tugroob from the last factory, they all analyze their findings one last time. They do this by going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side, and briefly writing a description if any such "abnormality" was noted in a factory.`
 			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says. You land on a Heliarch base, and they hand all their findings to the agents there before returning to your ship. As they head to their bunks, you see several Heliarch ships fly off in the direction of some of the factories.`
 
 mission "HI2-IW"
@@ -457,7 +457,7 @@ mission "HI2-IW"
 				`	(Go inside with Iplora.)`
 					goto cave
 				`	(Search around the snow field.)`
-			`	You tell her you'll look around the snow for a while and go inside if the storm gets rough again. Walking around in the blizzard, this time minding the bumpy ground below, you try to spot anything unusual in the snow. Although the scenery is a great sight, the task itself quickly becomes dull, and even after walking far away from the hills, your effort produces no results. The snow starts falling much faster, so you begin making your way back to the caverns.`
+			`	You tell her you'll look around the snow for a while and go inside if the storm gets rough again. Walking around in the blizzard, this time minding the bumpy ground below, you try to spot anything unusual in the snow. Although the scenery is a great sight, the task itself quickly becomes dull. Even after walking far away from the hills, your effort produces no results. The snow starts falling much faster, so you begin making your way back to the caverns.`
 			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way and realize you don't exactly remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
 			choice
 				`	(Enter the nearest cavern.)`
@@ -486,15 +486,15 @@ mission "HI2-IW"
 			`	When you two return to your ship, you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
 				accept
 			label snowdig
-			`	You start clawing your way down the snow as Iplora asks you to stop and continue moving toward the ship You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
+			`	You start clawing your way down the snow as Iplora asks you to stop and continue moving toward the ship. You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
 			`	"Satisfied? Return, we must. Come now," You turn to see her offering her hand once again.`
 			choice
 				`	(Take her hand.)`
 					goto back
 				`	(Head to another mound and try digging there.)`
 			label keepdig
-			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow muffling the sounds around you, you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, this time creating a faint metallic echo. She takes her hands off of you and lays down, now helping you dig out whatever is there. She stands up once the crate is visible. It's large and looks like a coffin, but much of it is still buried. She asks you to help her get some hooks on it, after which she struggles to try and pull it out.`
-			`	The slippery snow certainly doesn't help her hooves, but it does make the crate slippery as well. It's coaxed out of the ground, bit by bit. You help her as best as you can and eventually get it on top of the snow field. Iplora searches through some tools in her bag and takes out what looks like a crowbar. She starts opening it, a dim light creeping out, but an energy blast, coming from the the top of the hills, hits the ground near the hole. It misses you by just about a meter.`
+			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow muffling the sounds around you, you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, this time creating a faint metallic echo. She takes her hands off of you and lays down, now helping you dig out whatever is there. Once the crate is visible, she stands up. It's large and looks like a coffin, but much of it is still buried. She asks you to help her get some hooks on it, after which she struggles to try and pull it out.`
+			`	The slippery snow certainly doesn't help her hooves, but it does make the crate slippery as well. It's coaxed out of the ground, bit by bit. You help her as best as you can and eventually get it on top of the snow field. Iplora searches through some tools in her bag and takes out what looks like a crowbar. She starts opening it, a dim light creeping out, but an energy blast coming from the the top of the hills hits the ground near the hole. It misses you by just about a meter.`
 			`	She yells for you to get down, pulling out her weapon and firing in the direction the shot came from.`
 			apply
 				"resistance evidence" ++
@@ -506,7 +506,7 @@ mission "HI2-IW"
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the crate.`
 				goto opencrate
 			label help
-			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves, going uphill. You follow her lead, approaching from another direction.`
+			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves up the hill. You follow her lead, approaching from another direction.`
 			`	The shots alternate targets, some firing at Iplora, then some at you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past the last cave you visited when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you. "Fled, our attacker has," she claims. You two walk back to the crate.`
 			label opencrate
@@ -594,7 +594,7 @@ mission "Heliarch Recon 1"
 		"coalition jobs" ++
 		payment 165000
 		conversation
-			`The Heliarch trio are eagerly waiting for you when you return. They are quick to welcome you, urging you to show them your ship's logs so they can see what information you've gathered. They don't seem to pay much mind to data on Grakhord or Forpelog, being much more interested in the ringworlds. As they examine the data, though, the Saryd frowns, while the Kimek brings all his legs closer to his body, and Arach squints all her eyes - probably their versions of that reaction.`
+			`The Heliarch trio are eagerly waiting for you when you return. They are quick to welcome you, urging you to show them your ship's logs so they can see what information you've gathered. They don't seem to pay much mind to data on Grakhord or Forpelog, being much more interested in the ringworlds. As they examine the data, though, the Saryd frowns, while the Kimek brings all his legs closer to his body, and the Arach squints all her eyes - probably their versions of that reaction.`
 			`	"Land on the rings, you really did, right Captain?" The Saryd asks while pointing at Lagrange, then Kuwaru Efreti, then Alta Hai.`
 			`	You nod, and the Kimek hits your control panel lightly with one of his legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
 			`	They have engineers return your sensors to normal, while you explain how your ship behaved while landing on them. They speak among themselves for a while, then the Arach says, "Too straightforward an approach, we might have taken. Captain <last>, contact you again soon, we will."`
@@ -797,7 +797,7 @@ mission "Heliarch Recon 3-A"
 			`	"A 'proper' close-up scan, with a Heliarch scanning module, the consul wants," the Arach explains. "Now that in our ranks, you are, simple enough for you, purchasing one should be. Once ready, you are, head to the <planet> to hear the plan, you must."`
 			label choice
 			choice
-				`	"Ok, I'll be heading there as soon as possible."`
+				`	"Okay, I'll be heading there as soon as possible."`
 					accept
 				`	"Sorry, but I don't want to risk upsetting the Quarg any more than I already have."`
 					decline
@@ -1248,7 +1248,7 @@ mission "Heliarch Containment 3"
 		payment 330000
 		conversation
 			`Landing on <planet>, you're met by Consul Plortup, who hands you your payment of <payment>.`
-			`	"Aided us, once more, you have, Captain. To further work with you, I look forward. Search for me in the local spaceport anytime, you should. More work for you I most likely will have." He performs a brief salute, and leaves for some other section of the ring.`
+			`	"Aided us once more, you have, Captain. To further work with you, I look forward. Search for me in the local spaceport anytime, you should. More work for you I most likely will have." He performs a brief salute, and leaves for some other section of the ring.`
 
 mission "Heliarch Containment 4-A"
 	name "Undercover"
