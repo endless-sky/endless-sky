@@ -2884,7 +2884,7 @@ mission "Coalition: Long Lost Property 1"
 			label proposal
 			`	They bring you to a dead end street not far from the spaceport surrounded by various older buildings. A wide hole is at the end, almost like a subway entrance, with stairs leading dozens of meters underground. You follow them down the stairs to find something similar to a customs area, where some Arachi and Kimek in uniforms ready their stations once they see you three.`
 			`	You continue after some waiting, as the operators insist on manually inspecting every last bit of your electronic devices. Inside, you see a few dozen workers at their computers, with one occasionally heading to the back and taking an elevator somewhere. They seldom talk, so the only sound you can make out is that of some machinery working below you. Eventually, you're greeted by an Arach in some manner of tuxedo, or at least their equivalent to one, a blueish fabric dotted with black buttons. "Ah, Captain <last>, you must be!" She greets you. "To our corporate headquarters, I welcome you."`
-			`	She urges you to follow her to her office, and you go along with the two Arachi who guided you here. Once you're in the office, a modest, spacious room made to accomodate the Arachi, she introduces herself. "Flopug, you may call me. Acting president of House Idriss, I am. Now, told about what we need your services for, were you?"`
+			`	She urges you to follow her to her office, and you go along with the two Arachi who guided you here. Once you're in the office, a modest, spacious room made to accommodate the Arachi, she introduces herself. "Flopug, you may call me. Acting president of House Idriss, I am. Now, told about what we need your services for, were you?"`
 			choice
 				`	"These two told me House Idriss lost something."`
 				`	"No, not really."`
@@ -2952,8 +2952,8 @@ mission "Coalition: Long Lost Property 3"
 	destination "Ablub's Invention"
 	on offer
 		conversation
-			`When you ask one of the market organizers about a local pirate returning with an alien probe, you find out he already sold it. You are then pointed to a large, surprisingly well-kept junkyard, which is something of a miniature shipyard: a few crews work on their ships in the vicinity, adding or switching parts for those they just bought. The junkyard itself is surronded by half a dozen concrete buildings, with defensive turrets on top. A few excavators and bulldozers move ship pieces and other components around, trying to keep everything organized.`
-			`	You tell one of the workers you're looking for the probe, and they leave for a few minutes, heading inside the grey building by the entrance.`
+			`When you ask one of the market organizers about a local pirate returning with an alien probe, you find out he already sold it. You are then pointed to a large, surprisingly well-kept junkyard, which is something of a miniature shipyard: a few crews work on their ships in the vicinity, adding or switching parts for those they just bought. The junkyard itself is surrounded by half a dozen concrete buildings, with defensive turrets on top. A few excavators and bulldozers move ship pieces and other components around, trying to keep everything organized.`
+			`	You tell one of the workers you're looking for the probe, and they leave for a few minutes, heading inside the gray building by the entrance.`
 			branch money
 				"credits" > 1000000
 			`	They come back alone, saying, "Boss has looked you up, and found your pockets a bit empty. If you want that kind of information, come back when you're ready to pay."`
