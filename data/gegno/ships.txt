@@ -587,7 +587,7 @@ ship Protolith
 	explode "medium explosion" 35
 	explode "small explosion" 25
 	"final explode" "final explosion large"
-	description "Protoliths are descendants of the Gegno's early City-Ships used to colonize nearby systems. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships but can support enough weaponry to threaten most smaller ships, or fend off larger ships long enough for reinforcements to arrive."
+	description "Protoliths are descendants of the Gegno's early City-Ships used to colonize nearby systems. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive."
 
 ship Halite
 	sprite ship/halite
