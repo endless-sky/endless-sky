@@ -71,7 +71,10 @@ outfit "Tripulse Shredder"
 		"inaccuracy" 2
 		"velocity" 15
 		"lifetime" 30
-		"reload" 6.6
+		"reload" 6.5
+		"burst count" 30
+		"burst reload" 3
+		"cluster"
 		"firing energy" 25
 		"firing heat" 60
 		"shield damage" 45
