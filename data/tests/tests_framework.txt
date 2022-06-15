@@ -183,7 +183,7 @@ test "Test-Framework - Navigate"
 			"ships: Light Freighter" == 3
 		# Give jump command.
 		input
-			command	jump
+			command jump
 		# Wait loop while jumping to Alpha Centuari (with a timeout for if this jump fails).
 		watchdog 12000
 		label notAlpha1
