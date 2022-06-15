@@ -458,12 +458,12 @@ ship "Sea Scorpion"
 		zoom 0.8
 		angle 90
 		right
-	turret -35.5 24.5
-	turret 35.5 24.5
-	gun -27 -56
-	gun 27 -56
 	gun -13 -77.5
 	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
 	leak "leak" 40 50
 	leak "flame" 40 30
 	explode "tiny explosion" 24
@@ -858,9 +858,9 @@ ship "Shield Beetle Prototype"
 	gun 48 -53.5
 	gun -61.5 -23 "Hai Tracker Pod"
 	gun 61.5 -23 "Hai Tracker Pod"
+	turret 0 5 "Chameleon Anti-Missile"
 	turret -55.5 74.5
 	turret 55.5 74.5
-	turret 0 5 "Chameleon Anti-Missile"
 	leak "leak" 35 45
 	leak "flame" 60 95
 	leak "big leak" 50 45
