@@ -490,7 +490,7 @@ mission "Unfettered: Bring Hai"
 				`	(Go to the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you head towards the temple, moving with the crowd, you can start to hear words being spoken loudly. A couple with 4 children is speaking, or more precisely, begging, "... and we fear the next season will be even more rough. We need foundings to restore the lands, nothing grows on them anymore!" The "Chiefs" speak together, and then grant her her request, before the next one in line comes. The sun is almost set, and you can see that the Chiefs are growing a bit impatient. "My cousins would like to join me, but they lack the funds to afford it. Would you allow more to join us, and become true?" This seems to bother them, and they answer briefly, "We will contact True ship captains to ask them if they can, but I fear they are indeed busy these days, which is why the prices have gone up." Then they rise up, and one speaks to the crowd, "It is late, you would do well to go home to care for those near you. Never hesitate to come back to us in the next cycle should you need help." At this, the crowd leaves, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
+			`	As you head towards the stadium, moving with the crowd, you can start to hear words being spoken loudly, and probably amplified by some kind of device. You wait outside but the temple is well open and thus you can see what is going on, trough the crowd, given the Hai are naturally quite small. A couple with 4 children is speaking, or more precisely, begging, "... and we fear the next season will be even more rough. We need foundings to restore the lands, nothing grows on them anymore!" The "Chiefs" speak together, and then grant her her request, before the next one in line comes. The sun is almost set, and you can see that the Chiefs are growing a bit impatient. "My cousins would like to join me, but they lack the funds to afford it. Would you allow more to join us, and become true?" This seems to bother them, and they answer briefly, "We will contact True ship captains to ask them if they can, but I fear they are indeed busy these days, which is why the prices have gone up." Then they rise up, and one speaks to the crowd, "It is late, you would do well to go home to care for those near you. Never hesitate to come back to us in the next cycle should you need help." At this, the crowd leaves, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
 			`	The same Chief is now moving towards you. He seems to be lost in his thoughts and is mumbling something about you. "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus. "Sorry, I was just thinking out loud! Well, you are here anyway, so maybe you could help us?"`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help a friend, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he says, apparently a bit desperate, considering he knows very little if anything at all about you.`
 			choice
@@ -568,7 +568,7 @@ mission "Unfettered: Bring Medical Supplies"
 	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
 	stopover "Snowfeather"
-	cargo "medicals" 120
+	cargo "medicals" 50
 	blocked `You need <tons> cargo space available to carry the medicals supplies.`
 	deadline 8
 	to offer
@@ -593,7 +593,7 @@ mission "Unfettered: Bring Medical Supplies"
 	on complete
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. A local administrator takes the time to track you down and give you <payment>.`
-			`	As you head to leave, you notice the same Hai Chief speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. Maybe we worried too much? We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`	As you head to leave, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. Maybe we worried too much? We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
@@ -1152,7 +1152,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"That is too mysterious for me, I am not interested."`
 					decline
 			label scan
-			`	"The information provided by a tactical scanner should be sufficient, if you do not have one you can install one on Darkcloak, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster."`
+			`	"The information provided by one of our value detectors should be sufficient, if you do not have one you can install one on Darkcloak, on the way there. You may want to get multiple scanners, so you can scan the ship from a longer range, and faster. Please do actively scan it, passive intel gathered on the fly will not do."`
 			choice
 				`	"Sure, will do."`
 					goto agree
@@ -1284,7 +1284,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		ship "Auxiliary (Alpha)" "Settler"
 
 		conversation
-			`You have finished scanning the Auxiliary. There can be no doubt, this is has Alphas on it. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
+			`You have finished scanning the Auxiliary. There can be no doubt, this it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
 			`	"We demand that you land right away. If you go to any other system that ship may pursue you. We do not want a dispute between our suppliers of jump drives; this is probably just a misunderstanding. If you land we can guarantee your safety here, we have requested that ship to land on another port, on Firelode, since it did fire on you first you without any apparent provocation."`
 			choice
 				`	"I will land as you ask."`
@@ -1323,7 +1323,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to present to the Chiefs the fact that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised of the intervention but quickly recognize Taer Fi. "Can I speak to you about your scans? I really am intrigued as to how that auxiliary could work."`
+			`	Moments later, on your bridge, thinking about how to present to the Chiefs the fact that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh you are back, good!" You are a bit surprised by the intervention but quickly recognize Taer Fi. "Can I speak to you about your scans? I really am intrigued as to how that auxiliary could work."`
 			choice
 				`	"I will not discuss those things with you."`
 					decline
@@ -1613,8 +1613,10 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		dialog `You are still on the right path, you even find small debris of ships. They probably had to stay here a bit longer to fight them off.`
 	on enter "Makferuti" "Sobarati"
 		dialog `There are no traces of fuel here, they probably went to another system, looking for refuge from the hostile drones.`
-	on enter "Silikatakfar" "Eneremprukt" "Mesuket"
+	on enter "Silikatakfar" "Eneremprukt"
 		dialog `You cannot find any traces of fuel here. This is not the right direction.`
+	on enter "Mesuket"
+		dialog `There is plenty of traces of fuel here given the canarge going on, but you figure the Alphas would not have passed by this system given how dangerous it is.`
 	on enter "Persitar"
 		dialog `This does not look like a good hiding spot...`
 	on enter "Ferukistek"

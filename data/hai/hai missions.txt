@@ -1149,7 +1149,8 @@ mission "Pirate Troubles [3]"
 					goto obey
 				`	(Attempt to escape.)`
 			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
-			
+				goto die
+
 			label obey
 			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
 			choice
