@@ -566,7 +566,7 @@ ship Protolith
 			"hull damage" 2050
 			"hit force" 3950
 	outfits
-		"C7 Brawl Core" 2
+		"C7 Brawl Cell" 2
 		"Chloeric Turret" 2
 		Hyperdrive
 		"Irate Cannon" 2

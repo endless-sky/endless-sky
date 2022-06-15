@@ -23,7 +23,7 @@ shipyard "Gegno Vi Ships"
 	"Hornfel Med"
 	Protolith
 	Schist
-	"Schist Light"
+	"Schist Heavy"
 	"Schist Med"
 	Slate
 
