@@ -427,7 +427,7 @@ outfit "Reverser (Stellar Class)"
 		"frame rate" 6
 	"reverse flare sound" "plasma huge"
 	description "This Korath engine has been modified for installation in a ship's weapon space, allowing it to push the ship in reverse."
-	description "Modelled on their largest engines, the Stellar Class reverser provides a reverse thrust unlike anything you've seen before."
+	description "Modeled on their largest engines, the Stellar Class reverser provides a reverse thrust unlike anything you've seen before."
 
 
 outfit "Thruster (Asteroid Class)"
