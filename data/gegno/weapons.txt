@@ -278,7 +278,7 @@ outfit "Guile Anti-Missile"
 		"hardpoint sprite" hardpoint/guile
 		"hit effect" "scin anti-missile"
 		lifetime 1
-		reload 10
+		reload 12
 		anti-missile 14
 		velocity 170
 		"hardpoint offset" 10

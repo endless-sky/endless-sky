@@ -610,7 +610,7 @@ ship Halite
 		hull 780
 		"outfit space" 78
 		"required crew" 1
-		shields 240
+		shields 210
 		"weapon capacity" 30
 		weapon
 			"blast radius" 14
@@ -735,7 +735,7 @@ ship Tridymite
 		"engine capacity" 86
 		"fuel capacity" 400
 		"heat dissipation" 0.7
-		hull 5890
+		hull 5290
 		"outfit space" 190
 		"required crew" 9
 		shields 0
@@ -784,7 +784,7 @@ ship Felsic
 		"engine capacity" 106
 		"fuel capacity" 500
 		"heat dissipation" 0.7
-		hull 10050
+		hull 9650
 		"outfit space" 310
 		"required crew" 38
 		shields 0
@@ -912,7 +912,7 @@ ship Muscovite
 		"engine capacity" 182
 		"fuel capacity" 600
 		"heat dissipation" 0.9
-		hull 16400
+		hull 15400
 		"outfit space" 440
 		"required crew" 68
 		shields 0
