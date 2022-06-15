@@ -591,9 +591,6 @@ mission "Unfettered: Bring Medical Supplies"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
-		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
-		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
-		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. A local administrator takes the time to track you down and give you <payment>.`
 			`	As you head to leave, you notice the same Hai Chief speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional, "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. Maybe we worried too much? We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
@@ -623,6 +620,9 @@ mission "Unfettered: Bring Medical Supplies"
 				decline
 			label soldier
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
+		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
+		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
+		payment 1500000
 
 
 
@@ -681,10 +681,11 @@ mission "Unfettered: Prove Your Strength"
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says, with a provocative tone.`
 			`	Time for him to learn a lesson. But then it occurs to you that perhaps you are the one who needs to learn humility.`
-			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, and leave your fleet parked. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
+			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, alone, a battle of flagships. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
+				`	(Crush his rodent face.)`
 				`	"Can you tell me more about the rules of this fight?"`
 					goto rules
 				`	(Run away.)`
@@ -695,8 +696,13 @@ mission "Unfettered: Prove Your Strength"
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
+				`	(Crush his rodent face.)`
 				`	(Run away.)`
 					decline
+			label crush
+			`	You rush his way, fist drawn, and probably give his friends the exact excuse they were looking for to open fire on you, 'monkey'. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can put a cross on doing any further business with the Unfettered.`
+				decline
+
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target
@@ -752,7 +758,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"How soon will you have that new ship?"`
 				`	"Well just do it with that bigger ship then, I am not interested."`
 					decline
-			`	"As soon as the end of this job, hopefully! It should pay well. Being able to buy a brand new ship kind of well." Knowing him this will probably be a very dangerous mission, but it seems like it may be worth it.`
+			`	"As soon as the this job is done, hopefully! It should pay well. Being able to buy a brand new ship kind of well." Judging from your last encounter this will probably be a very dangerous mission, but it seems like it may be worth it.`
 			choice
 				`	"What kind of job is it?"`
 					goto job
@@ -775,7 +781,7 @@ mission "Unfettered: Prove Your Strength 2"
 					goto cut
 				`	"Sorry I will not risk my ship by going anywhere close to these pirates."`
 					decline
-			`	"Jump drives are a very prized possession among my people, I would not risk one by travelling trough hostile space. You had access to a jump drive so you should know about the hostiles to the South. The wanderers would not be very happy to see me either..." He seems disappointed by you having to ask such an obvious thing.`
+			`	"Jump drives are a very prized possession among my people, I would not risk one by travelling trough hostile space. You had access to a jump drive so you should know about the hostiles to the south. The aliens to the north would not be very happy to see me either... A jump drive would not be of any help to us." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -849,20 +855,13 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto discrete
 			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discrete
-			`	You both seem to be heading to a quite far away mountain, where you assume the cache is. At one time you spot a local that appeared to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that it is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You start entering a ridge, and you notice some of your surroundings look... weird, like if the mountain had only been affected by the elements at some places and not others. Suddenly, the Hai stops, and raises a hand high up, palm open.`
-			choice
-				`	(Stay behind him.)`
-					goto stay
-				`	(Go to the door.)`
-			`	As you reach for the door the Hai shouts something, probably trying to warn you, but it is too late. You have already triggered the security systems, and get ripped to shreds by the turrets, probably not recognized as neutral or ally like he is by the vault's security.`
-				die
-			label stay
+			`	You both seem to be heading to a quite far away mountain, where you assume the cache is. At one time you spot a local that appeared to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that it is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You start entering a ridge, and you notice some of your surroundings look... weird, like if the mountain had only been affected by the elements at some places and not others. Suddenly, the Hai stops, and raises a hand high up, palm open. Recognizing the sign, you stop.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be the access codes. By the look on his face, it does not seem to be working very well, though... "Someone else has had access to the vault. This was not expected," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here, I will take care of it."`
 			choice
 				`	"Should you not want one extra gun, then?"`
 					goto wannafight
-				`	"What about the locals? They do not seem friendly."`
-			`	"Those lowlife scums? They would not attempt attacking a warrior, worried of the consequences," he was about to keep going but then looks at you, armorless and armed with a laser that seems like a toy in comparison to his. "Maybe you should come with me after all."`
+				`	"What about the locals? They do not seem friendly. I just saw one nearby."`
+			`	"Those lowlife scums? They would not attempt attacking a warrior, worried of the consequences, furthermore there should not be any around here, so far away from the village," he was about to keep going but then looks at you, armorless and armed with a laser that seems like a toy in comparison to his. "Maybe you should come with me after all."`
 				goto choose
 			label outside
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now missing armored friend.`
@@ -884,17 +883,17 @@ mission "Unfettered: Jump Drive Retrieval"
 				die
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. He was evidently trained for this as he is already on the ground and sighting his rifle. You are impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but still your armored companion fires three more times.`
-			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then run the necessary tests on the jump drives whilst he takes care of the security systems.`
+			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you, whilst he takes care of the security systems.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
 					goto vault
-			`	"As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives. To cripple your ship, or worse." As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers.`
+			`	"We needed to act discretely so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defences against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets."`
 				goto ship
 			label vault
-			`	"The point of all of this was to be discrete; jump drives are worth a lot on the black market. We also needed to make sure there was not any malfunctions with them. Even monkeys could rig them to blow when placed on a ship and used to jump. Besides, we want to keep using this vault for later, so we may as well ensure its safety."`
+			`	"We needed to make sure there was not any malfunctions with them, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses."`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
@@ -902,7 +901,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered are not the ones who placed those jump drives here..." He really does not seem to want to tell you much about this vault.`
 			
 			label ship
-			`	You go back to your ship with the Hai, and give the orders to collect and install the jump drives.`
+			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and install the jump drives directly on your ship if possible to be able to flee more swifly, or in cargo.`
 			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
 				launch
 	on accept
@@ -1017,17 +1016,16 @@ mission "Unfettered: I Shall Go Unpunished"
 			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
 				defer
 			label run
-			`As you run you see a silouette running too. It is armed and you think you recognize the uniform of a member of your crew. Could he be running after the intruder too? Is this just a big misunderstanding?`
+			`As you run you see a silouette running too. They are armed and you think you recognize the uniform of a member of your crew. Could he be running after the intruder too? Is this just a big misunderstanding?`
 			choice
-				`(Order him to stand down).`
-				`(Follow him to see where he is going).`
+				`(Order them to stand down).`
+				`(Follow them to see where he is going).`
 					goto follow
 				`(Shoot).`
 					goto shoot
 			label shout
 			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them and they escape your ship. Thankfully they did not manage to steal anything, only to move a few gold bars.`
 				defer
-
 			label follow
 			`You can now clearly see it is a human woman, and you indeed know her. She is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket and now it will take her a while. She did not notice you after her, yet.`
 			choice
@@ -1037,9 +1035,8 @@ mission "Unfettered: I Shall Go Unpunished"
 					goto shout
 				`(Shoot).`
 			label shoot
-			`You hit the crew member in the shoulder and he falls. You go remove his weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before the crew member loses consciousness. Looking eye in the eye, you could see terror. You put him at a nearby hospital, but when you come back later, he is gone, and no one has seen or heard anything.`
+			`You hit the crew member in the shoulder and they fall. You go remove her weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, he is gone, and no one has seen or heard anything.`
 				defer
-
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
 			choice
@@ -1660,7 +1657,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		payment 10000000
 		"salary: Unfettered" = 1000
 		conversation
-			`As you land with the Auxiliary you notice tens, then hundreds of Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they realise it belongs to you. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. You notice they are doing different signs with their hand.`
+			`As you land with the Auxiliary you notice tens, then hundreds of Unfettered start coming your way, cheering. They are probably expecting jump drives, and more keep coming from every direction. Maybe they have not seen this Auxiliary yet, but only heard tales of it, or maybe this is what always happens when it lands, loaded with jump drives. Whatever the case, they seem surprised when they realize it belongs to you. They murmur with each others and then they just start saluting, by rising one fist up. First a few do it, then more, until finally all of them are there, saluting in front of you in respect. You notice they are doing different signs with their hand.`
 			choice
 				`	(Raise my fist like warriors do.)`
 				`	(Bow.)`
@@ -1696,7 +1693,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				clear "Unfettered: alpha logs"
 				payment 200000
 			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
-
+				decline
 			label setup
 			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you."`
 			choice
@@ -1963,7 +1960,6 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	(Just celebrate.)`
 					goto celebrate
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other..."`
-			
 			label loot
 			`	"Well I guess I can tell you, we had arranged for this behemoth to bring us important tech materials. I cannot tell you more than this but I can guarantee you that you will like the final outcome of it..."`
 			choice
@@ -1971,9 +1967,12 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	(Leave.)`
 					decline
 			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds. Now listen to my words, and listen well: you have to earn your rewards, they do not just drop out of the sky. Well maybe for me it just did, but I did plan the setting!"`
-			
+				`	(Celebrate.)`
+					goto celebrate
+				`	(Punch him.)`
+			`	You punch him in the face and he looks at you, surprised, then laughes, probably under the effects of what he drank. "I did not know you had it in you, <first>!", his face then darkens as he continues, "But do not try that again."`
 			label celebrate
-			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sha-Ri was taking when you first came here, now he is has a purple one. You do not feel confident enough to try anything he does not have.`
+			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sha-Ri was taking when you first came here, now he has a purple one.`
 			choice
 				`	(The Purple one.)`
 				`	(The Green one.)`
@@ -2168,6 +2167,7 @@ mission "Unfettered: Icelake"
 					accept
 				`	"Sorry but I have other things to do."`
 			`	They talk for a bit and after a while still decide to come with you, for better or worse.`
+				decline
 
 mission "Unfettered: Changed Their Mind"
 	name `Return Hai`
@@ -3360,7 +3360,7 @@ mission "Unfettered: Start Of The War"
 		ship "Shield Beetle Prototype (Black)" "Tejolis"
 		conversation
 			action
-				"reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)" + 100
+				"reputation: Hai (Unfettered)" += 100
 				event "shield beetles accessible"
 			`	"You sure know how to fight, but sheer firepower may not be enough, you should still train more before we are ready to start the war. Also we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions."`
 	
