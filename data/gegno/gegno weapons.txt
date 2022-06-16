@@ -50,7 +50,7 @@ outfit "Chloeric Cannon"
 		"hardpoint offset" -11
 		inaccuracy 2
 		"firing energy" 105
-		"firing heat" 145
+		"firing heat" 195
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
@@ -86,7 +86,7 @@ outfit "Chloeric Turret"
 		inaccuracy 2
 		"turret turn" 1.2
 		"firing energy" 120
-		"firing heat" 145
+		"firing heat" 195
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180

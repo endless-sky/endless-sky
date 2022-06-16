@@ -6,7 +6,7 @@ outfit "R01 Skirmish Battery"
 	cost 17500
 	mass 12
 	thumbnail outfit/gbatterytiny
-	"energy capacity" 1121
+	"energy capacity" 2121
 	"outfit space" -12
 	description "Skirmish batteries are very common amongst ships across Gegno space. They can be either a perfectly convenient storage of battery power to offset the load of larger Gegno generators, or a nice addition to add on top of them where more energy would be needed."
 
@@ -18,7 +18,7 @@ outfit "R02 Battlezone Battery"
 	cost 32000
 	mass 23
 	thumbnail outfit/gbatterysmall
-	"energy capacity" 2237
+	"energy capacity" 3237
 	"outfit space" -23
 	description "Battlezone batteries are primarily used on the Gegno's medium-range combat vessels, holding a decent amount of power for long lasting engagements. They also fit nicely on larger vessels as an extra power source to feed their larger systems."
 
@@ -30,7 +30,7 @@ outfit "R03 Warforge Battery"
 	cost 61700
 	mass 41
 	thumbnail outfit/gbatterymed
-	"energy capacity" 4469
+	"energy capacity" 5469
 	"outfit space" -41
 	description "Warforge batteries have proved their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage."
 
@@ -45,7 +45,7 @@ outfit "R04 Crusade Battery"
 	cost 136000
 	mass 83
 	thumbnail outfit/gbatterylarge
-	"energy capacity" 8885
+	"energy capacity" 9885
 	"outfit space" -83
 	description "As the largest battery mounted on Gegno ships, the Crusade Battery supplies almost as much power as a small generator, enough to support the massive warships of both the Scin and the Vi. However, the Gegno are inefficient at increasing density with size, as done with human batteries, so these fall behind similarly sized options."
 
@@ -114,9 +114,9 @@ outfit "I70 Ameliorate Cell"
 	cost 166000
 	mass 27
 	thumbnail outfit/scincoretiny
-	"energy capacity" 640
+	"energy capacity" 840
 	"energy generation" 1.4
-	"heat generation" 2.8
+	"heat generation" 2.9
 	"outfit space" -27
 	description "Due to the need for a smaller, more compact power system created for fighters, the I70 Cell was designed by the Scin to be fitted on their Halite fighters. It has a small energy capacity to fuel the Scin's diminutive thrusters, and is able to power their weapons with a minor but acceptable energy generation. Unfortunately, as a side effect, a bit more unwanted heat is also generated."
 
