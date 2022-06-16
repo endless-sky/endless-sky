@@ -1193,7 +1193,7 @@ void PlayerInfo::Land(UI *ui)
 	SellCommodities(profit, tonsSold);
 	if(tonsSold)
 	{
-		string message = "You sold " + to_string(tonsSold)
+		string message = "You automatically sold " + to_string(tonsSold)
 			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
 
 		if(profit < 0)
@@ -1498,11 +1498,14 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 // While on a planet, fill cargo with commodities that make
 // the most profit when sold at destination
-void PlayerInfo::BuyBestTrade(const System *destination)
+void PlayerInfo::BuyBestTrade(const System *destination, bool includeFlagship)
 {
 	// All cargo, except keep your flagship free of space for plundering
 	// TODO: check each ship for special outfit attribute or something?
-	int64_t amount = cargo.Free() - flagship->Cargo().Free();
+	int64_t amount = cargo.Free();
+	if(!includeFlagship)
+		amount -= flagship->Cargo().Free();
+
 	if(amount <= 0)
 		return;
 

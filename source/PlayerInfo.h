@@ -167,7 +167,7 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 	// Auto-purchase and sell commodities
-	void BuyBestTrade(const System *destination);
+	void BuyBestTrade(const System *destination, bool includeFlagship = false);
 	void SellCommodities(int64_t& profit, int& tonsSold);
 
 	// Get or add to pilot's playtime.
