@@ -202,6 +202,8 @@ government "Heliarch Test Dummy"
 	swizzle 0
 	color 1 .8 .5
 	"player reputation" -1000
+	"hostile hail" "heliarch test dummy"
+	"hostile disabled hail" "disabled heliarch test dummy"
 	"bribe" 0
 	"fine" 0
 
