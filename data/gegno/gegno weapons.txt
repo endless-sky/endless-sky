@@ -20,7 +20,7 @@ outfit "Irate Cannon"
 		"hardpoint offset" 1.5
 		inaccuracy 2
 		"firing energy" 18
-		"firing heat" 105
+		"firing heat" 95
 		"shield damage" 6
 		"hull damage" 16
 		"hit force" 40
@@ -50,7 +50,7 @@ outfit "Chloeric Cannon"
 		"hardpoint offset" -11
 		inaccuracy 2
 		"firing energy" 105
-		"firing heat" 195
+		"firing heat" 445
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
@@ -86,7 +86,7 @@ outfit "Chloeric Turret"
 		inaccuracy 2
 		"turret turn" 1.2
 		"firing energy" 120
-		"firing heat" 195
+		"firing heat" 445
 		"shield damage" 95
 		"hull damage" 280
 		"hit force" 180
@@ -122,7 +122,7 @@ outfit "Ballistic Cannon"
 		inaccuracy 3
 		"turret turn" 0.6
 		"firing energy" 247
-		"firing heat" 437
+		"firing heat" 537
 		"shield damage" 145
 		"hull damage" 776
 		"hit force" 360
@@ -183,7 +183,7 @@ outfit "Astuit Battery"
 		inaccuracy 5
 		"turret turn" 2.2
 		"firing energy" 13.2
-		"firing heat" 76
+		"firing heat" 34
 		"shield damage" 8
 		"hull damage" 8.2
 	description "The Gegno Scin are the first Gegno to advance plasma technology enough to allow use of it in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
@@ -210,14 +210,14 @@ outfit "Talc Laser"
 	"weapon capacity" -15
 	weapon
 		sprite projectile/talc
-			"frame rate" 1.0000001
+			"frame rate" 1
 		sound talcbeam
 		"hit effect" "beam laser impact"
 		lifetime 1
 		velocity 160
-		inaccuracy 0.5
-		"firing energy" 1.5
-		"firing heat" 7.2
+		inaccuracy 1.3
+		"firing energy" 1.2
+		"firing heat" 7
 		"shield damage" 1.3
 		"hull damage" 2.3
 	description "Unlike humans, the Gegno Scin were able to research beam technology much earlier in their timeline, although at a much slower efficiency. Several experiments eventually lead up to the Talc Laser, a very basic beam laser that is strong against hull armor. A consistent source of Talc Laser damage is very effective against the slow moving ships of the Gegno Vi. There are still a few drawbacks as an early product, most notably in how much heat the beam generates while firing."
@@ -249,7 +249,7 @@ outfit "Acuit Artillery"
 		inaccuracy 3
 		"turret turn" 1.3
 		"firing energy" 130
-		"firing heat" 200
+		"firing heat" 204
 		"shield damage" 162
 		"hull damage" 280
 		"hit force" 40
