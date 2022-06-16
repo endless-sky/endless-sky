@@ -1247,3 +1247,178 @@ phrase "hostile disabled coalition"
 		"You can only wonder what they're saying"
 	word
 		".)"
+
+phrase "friendly lunarium"
+	word
+		"To"
+	word
+		" "
+	word
+		"free"
+		"liberate"
+		"unchain"
+	word
+		" "
+	word
+		"our"
+	word
+		"great"
+		"noble"
+		"good"
+	word
+		" "
+	word
+		"Coalition"
+		"union"
+	word
+		", "
+	word
+		"we"
+	word
+		" "
+	word
+		"fight for"
+		"must"
+		"strive for"
+	word
+		"."
+		"!"
+
+phrase "friendly lunarium"
+	word
+		"To"
+	word
+		" "
+	word
+		"overthrow"
+		"defeat"
+		"eliminate"
+		"destroy"
+	word
+		"the"
+	word
+		" "
+	word
+		"oppressors"
+		"Heliarchs"
+		"unjust rulers"
+		"the Tyrant House"
+		"overlords"
+	word
+		"we"
+	word
+		" "
+	word
+		"fight for"
+		"must"
+		"strive for"
+	word
+		"."
+		"!"
+
+phrase "friendly disabled lunarium"
+	word
+		"Repairs, we do need"
+		"Disabled, our ship has become"
+		"Disabled, our ship is"
+	word
+		". "
+	word
+		"Board our ship, you must"
+		"Help, you must"
+		"Appreciated, assistance would be"
+	word
+		"."
+
+phrase "hostile lunarium"
+	word
+		"Attack"
+		"Oppose"
+		"Betray"
+	word
+		" "
+	word
+		"the"
+	word
+		"Coalition's freedom"
+		"freedom of the Coalition"
+		"hope of the Coalition"
+		"
+	word
+		", "
+	word
+		"you have"
+	word
+		"."
+		"!"
+	word
+		"Fight"
+		"Battle"
+		"Struggle"
+	word
+		"to the end"
+		"to the last"
+		"until our deaths"
+	word
+		", "
+	word
+		"we will"
+		"we must"
+	word
+		"."
+		"!"
+
+phrase "hostile lunarium"
+	word
+		"Sided with"
+		"Allied yourself with"
+		"Aligned yourself with"
+	word
+		"injustice"
+		"oppression"
+		"the oppressors"
+		"unjust rulers"
+		"the Tyrant House"
+		"the Heliarchs"
+	word
+		", "
+	word
+		"you have."
+	word
+		"For the"
+	word
+		"good of"
+		"future of"
+	word
+		"the Coalition,"
+	word
+		"oppose"
+		"fight"
+		"defeat"
+		"destroy"
+	word
+		"you"
+	word
+		", "
+	word
+		"we"
+	word
+		"must"
+		"shall"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled lunarium"
+	word
+		"("
+	word
+		"The Lunarium ship hails you, speaking in a language you do not understand."
+		"The Lunarium yell at you in an alien language."
+	word
+		" "
+	word
+		"Their translation device must be broken"
+		"You can only wonder what they're saying"
+	word
+		".)"
