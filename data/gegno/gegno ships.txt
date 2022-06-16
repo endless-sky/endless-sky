@@ -94,7 +94,7 @@ ship Shale
 		"outfit space" 125
 		"required crew" 1
 		shields 0
-		"weapon capacity" 12
+		"weapon capacity" 0
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -123,7 +123,7 @@ ship Dolomite
 		cost 1692000
 		mass 570
 		bunks 80
-		"cargo space" 140
+		"cargo space" 155
 		drag 5.9
 		"engine capacity" 81
 		"fuel capacity" 500
@@ -132,7 +132,7 @@ ship Dolomite
 		"outfit space" 150
 		"required crew" 34
 		shields 0
-		"weapon capacity" 20
+		"weapon capacity" 0
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -166,7 +166,7 @@ ship Conglomerate
 		cost 1692000
 		mass 760
 		bunks 166
-		"cargo space" 400
+		"cargo space" 415
 		drag 8.9
 		"engine capacity" 136
 		"fuel capacity" 400
@@ -175,7 +175,7 @@ ship Conglomerate
 		"outfit space" 200
 		"required crew" 68
 		shields 0
-		"weapon capacity" 18
+		"weapon capacity" 0
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -210,7 +210,7 @@ ship Gypsum
 		cost 1692000
 		mass 380
 		bunks 40
-		"cargo space" 104
+		"cargo space" 115
 		drag 3
 		"engine capacity" 120
 		"fuel capacity" 500
@@ -266,7 +266,7 @@ ship Slate
 		"outfit space" 125
 		"required crew" 1
 		shields 0
-		"weapon capacity" 12
+		"weapon capacity" 0
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -656,7 +656,7 @@ ship Mica
 		"outfit space" 120
 		"required crew" 1
 		shields 0
-		"weapon capacity" 10
+		"weapon capacity" 0
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -920,19 +920,20 @@ ship Muscovite
 		"outfit space" 440
 		"required crew" 68
 		shields 0
-		"weapon capacity" 140
+		"weapon capacity" 166
 		weapon
 			"blast radius" 216
 			"shield damage" 1920
 			"hull damage" 1630
 			"hit force" 3200
 	outfits
-		"C27 Campaign Core"
+		"C7 Battle Cell"
+		"C17 Warzone Core"
 		"Guile Anti-Missile" 2
 		Hyperdrive
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
-		"SC-14 Plasma Steering"
+		"SC-14 Plasma Steering" 2
 		"SC-15 Plasma Thrusters"
 	engine -55.5 165.5
 	engine 55.5 165.5
