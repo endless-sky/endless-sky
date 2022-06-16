@@ -589,6 +589,22 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
+
+	// "Buy best" button goes after trade sprite
+	if(selectedSystem && selectedSystem != &playerSystem
+		&& player.HasVisited(*selectedSystem)
+		&& selectedSystem->IsInhabited(player.Flagship())
+		&& selectedSystem->HasTrade())
+	{
+		const Sprite *buyAllSprite = SpriteSet::Get("ui/planet dialog button"); //160x60
+		const auto alignCenter = Layout(160, Alignment::CENTER);
+		SpriteShader::Draw(buyAllSprite, uiPoint + Point(70, 35));
+		font.Draw({"Fill Fleet with", alignCenter}, uiPoint + Point(-10, 20), medium);
+		font.Draw({"Best Trade", alignCenter}, uiPoint + Point(-10, 37), medium);
+	}
+
+
+	// Planet description when selected
 	if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
