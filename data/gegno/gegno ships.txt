@@ -927,7 +927,7 @@ ship Muscovite
 			"hull damage" 1630
 			"hit force" 3200
 	outfits
-		"C7 Battle Cell"
+		"C7 Brawl Cell"
 		"C17 Warzone Core"
 		"Guile Anti-Missile" 2
 		Hyperdrive
