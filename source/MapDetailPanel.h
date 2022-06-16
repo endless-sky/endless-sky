@@ -58,6 +58,7 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
+	int autoBuyY = 0;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;

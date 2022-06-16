@@ -167,8 +167,11 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 	// Auto-purchase and sell commodities
-	void BuyBestTrade(const System *destination, bool includeFlagship = false);
-	void SellCommodities(int64_t& profit, int& tonsSold);
+	int CanBuyBestTrade(const System *destination);
+	void BuyBestTrade(const System &destination, bool includeFlagship = false, bool sellFirst = true);
+	std::string BestTradeType(const System &destination);
+	void SellCommodities(const std::string& exclude = "");
+	void AddProfit(int64_t profitAdd, int tonsSoldAdd);
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
@@ -331,6 +334,10 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
+
+	// Keep track of commodities sold and how much profit was made.
+	int64_t profit = 0;
+	int tonsSold = 0;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;

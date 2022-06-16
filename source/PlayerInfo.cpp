@@ -1187,22 +1187,12 @@ void PlayerInfo::Land(UI *ui)
 	StepMissions(ui);
 	UpdateCargoCapacities();
 
+	// Reset commodity profit
+	profit = 0;
+	tonsSold = 0;
 	// Auto-sell commodities
-	int64_t profit;
-	int tonsSold;
-	SellCommodities(profit, tonsSold);
-	if(tonsSold)
-	{
-		string message = "You automatically sold " + to_string(tonsSold)
-			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
-
-		if(profit < 0)
-			message += "at a loss of " + Format::Credits(-profit) + " credits.";
-		else
-			message += "for a total profit of " + Format::Credits(profit) + " credits.";
-
-		Messages::Add(message, Messages::Importance::High);
-	}
+	// TODO: only with appropriate setting/mission/outfit
+	// SellCommodities();
 
 	// If the player is actually landing (rather than simply loading the game),
 	// new missions are created and new fines may be levied.
@@ -1307,13 +1297,17 @@ bool PlayerInfo::TakeOff(UI *ui)
 			++it;
 	}
 
-	// Auto-buy commodities to fill your ships to sell at target planet
+	// Auto-buy commodities to fill your ships to sell along your route
+	// TODO: only with appropriate setting/mission/outfit
+	/*
 	if(!travelPlan.empty())
 	{
 		const System* destination = travelPlan.front();
+		//TODO: Find system within your jump range?
 
-		BuyBestTrade(destination);
+		BuyBestTrade(*destination);
 	}
+	*/
 
 
 	// Recharge any ships that can be recharged, and load available cargo.
@@ -1491,16 +1485,113 @@ bool PlayerInfo::TakeOff(UI *ui)
 		Messages::Add(out.str(), Messages::Importance::High);
 	}
 
+	if(profit)
+	{
+		// Report if you manually sold commodities or outfits
+		string message = "You sold " + to_string(tonsSold)
+			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+
+		if(profit < 0)
+			message += "at a loss of " + Format::Credits(-profit) + " credits.";
+		else
+			message += "for a total profit of " + Format::Credits(profit) + " credits.";
+
+		Messages::Add(message, Messages::Importance::High);
+	}
+
 	return true;
+}
+
+
+
+// Check if the selected system has commodities that will make profit
+// when traded from this planet. This assumes you will sell other
+// commodities to make room for the best one.
+// 0: No, or no space. 1: Space in fleet. 2: Space in Flagship only
+int PlayerInfo::CanBuyBestTrade(const System *destination)
+{
+	if(!destination
+		|| destination == system
+		|| !HasVisited(*destination)
+		|| !destination->IsInhabited(Flagship())
+		|| !destination->HasTrade())
+		return 0;
+
+	string type = BestTradeType(*destination);
+	if(type.empty())
+		return 0;
+
+	int sizeForCommodities = cargo.Size()
+		- cargo.OutfitsSize() - cargo. MissionCargoSize() - cargo.Get(type);
+
+	if(sizeForCommodities <= 0)
+		return 0;
+
+	if(sizeForCommodities <= Flagship()->Cargo().Size())
+		return 2;
+
+	return 1;
+}
+
+
+
+// What is the best trade from the current system to the destination
+string PlayerInfo::BestTradeType(const System &destination)
+{
+	int64_t bestProfit = 0;
+	string type;
+
+	for(const Trade::Commodity &commodity : GameData::Commodities())
+	{
+		int64_t sellPrice = destination.Trade(commodity.name);
+		int64_t purcPrice = system->Trade(commodity.name);
+		int64_t profit = sellPrice - purcPrice;
+		if(profit > bestProfit)
+		{
+			bestProfit = profit;
+			type = commodity.name;
+		}
+	}
+
+	return type;
 }
 
 
 
 // While on a planet, fill cargo with commodities that make
 // the most profit when sold at destination
-void PlayerInfo::BuyBestTrade(const System *destination, bool includeFlagship)
+void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, bool sellFirst)
 {
-	// All cargo, except keep your flagship free of space for plundering
+	string type = BestTradeType(destination);
+	if(type.empty())
+		return;
+
+	if(sellFirst)
+	{
+		int64_t profitSave = profit;
+		int tonsSoldSave = tonsSold;
+		SellCommodities(type);
+		int64_t profitAuto = profit - profitSave;
+		int tonsSoldAuto = tonsSold - tonsSoldSave;
+		profit = profitSave;
+		tonsSold = tonsSoldSave;
+
+		if(profitAuto)
+		{
+			// Report if robo-merchant sold things to make room
+			string message = "Your AUTO-TRADEBOT sold " + to_string(tonsSoldAuto)
+				+ (tonsSoldAuto == 1 ? " ton" : " tons") + " of cargo ";
+
+			if(profitAuto < 0)
+				message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
+			else
+				message += "for a total profit of " + Format::Credits(profitAuto) + " credits.";
+
+			Messages::Add(message, Messages::Importance::High);
+		}
+	}
+
+	// Fill all cargo, but keep your flagship free of space for plundering
 	// TODO: check each ship for special outfit attribute or something?
 	int64_t amount = cargo.Free();
 	if(!includeFlagship)
@@ -1509,64 +1600,55 @@ void PlayerInfo::BuyBestTrade(const System *destination, bool includeFlagship)
 	if(amount <= 0)
 		return;
 
-	if(!HasVisited(*destination) || !destination->IsInhabited(Flagship()))
-		return;
+	int64_t price = system->Trade(type);
 
-	int64_t bestProfit = 0;
-	string type;
-	int64_t price;
-
-	for(const Trade::Commodity &commodity : GameData::Commodities())
-	{
-		int64_t sellPrice = destination->Trade(commodity.name);
-		int64_t purcPrice = system->Trade(commodity.name);
-		int64_t profit = sellPrice - purcPrice;
-		if(profit > bestProfit)
-		{
-			bestProfit = profit;
-			type = commodity.name;
-			price = purcPrice;
-		}
-	}
-
-	if(!bestProfit)
-		return;
-
-	amount = min(amount, min<int64_t>(Cargo().Free(), Accounts().Credits() / price));
+	amount = min(amount, Accounts().Credits() / price);
 	AdjustBasis(type, amount * price);
 	amount = cargo.Add(type, amount);
 	Accounts().AddCredits(-amount * price);
 	GameData::AddPurchase(*system, type, amount);
 
-	string message = "Your AUTO-TRADEBOT 9000 bought " + to_string(amount)
+	string message = "Your AUTO-TRADEBOT bought " + to_string(amount)
 		+ (amount == 1 ? " ton" : " tons") + " of " + type + " "
 		+ "for " + Format::Credits(amount * price) + " credits, to be sold at "
-		+ destination->Name();
+		+ destination.Name();
 
 	Messages::Add(message, Messages::Importance::High);
 }
 
 
 
-// Sell commodities
-void PlayerInfo::SellCommodities(int64_t& profit, int& tonsSold)
+// Sell all commodities - track profit and tons sold for message
+void PlayerInfo::AddProfit(int64_t profitAdd, int tonsSoldAdd)
+{
+	profit += profitAdd;
+	tonsSold += tonsSoldAdd;
+}
+
+
+
+// Sell all commodities - track profit and tons sold for message
+void PlayerInfo::SellCommodities(const string& exclude)
 {
 	for(const auto &it : GameData::Commodities())
 	{
-		int64_t amount = cargo.Get(it.name);
-		int64_t price = system->Trade(it.name);
+		const string& name = it.name;
+		if(name == exclude)
+			continue;
+
+		int64_t amount = cargo.Get(name);
+		int64_t price = system->Trade(name);
 		if(!price || !amount)
 			continue;
 
-		int64_t basis = GetBasis(it.name, -amount);
-		AdjustBasis(it.name, basis);
+		int64_t basis = GetBasis(name, -amount);
+		AdjustBasis(name, basis);
 
-		profit += amount * price + basis;
-		tonsSold += amount;
+		AddProfit(amount * price + basis, amount);
 
-		cargo.Remove(it.name, amount);
+		cargo.Remove(name, amount);
 		accounts.AddCredits(amount * price);
-		GameData::AddPurchase(*system, it.name, -amount);
+		GameData::AddPurchase(*system, name, -amount);
 	}
 }
 
