@@ -380,6 +380,10 @@ government "Lunarium"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
 	"attitude toward"
 		"Quarg" .01
 		"Heliarch" -.01
