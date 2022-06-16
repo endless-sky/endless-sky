@@ -1517,6 +1517,31 @@ int PlayerInfo::CanBuyBestTrade(const System *destination)
 		|| !destination->HasTrade())
 		return 0;
 
+	// See if we can potentially land in the system
+	bool landable = false;
+	for(const StellarObject &object : destination->Objects())
+	{
+		if(object.HasSprite() && object.HasValidPlanet())
+		{
+			const Planet *planet = object.GetPlanet();
+			if(planet->CanLand(*Flagship()))
+			{
+				landable = true;
+				break;
+			}
+			// TODO: optionally skip bribeable planets for auto-buy
+			const string& lang = planet->GetGovernment()->Language();
+			if(planet->GetBribeFraction() &&
+				(lang.empty() || GetCondition("language: " + lang)))
+			{
+				landable = true;
+				break;
+			}
+		}
+	}
+	if(!landable)
+		return 0;
+
 	string type = BestTradeType(*destination);
 	if(type.empty())
 		return 0;
