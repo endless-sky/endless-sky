@@ -598,7 +598,7 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
 				`	"What could have caused this crisis? Does it happen often?"`
-				`	"Were these supplies for soldiers?"`
+				`	"Are all Unfettered soldiers? I see a lot of you armed, and seemingly ready for action."`
 					goto soldiers
 			`	"It depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, the Hai who sympathise with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
 			`	"As for the frequency, well the precarious conditions here mean this does happen too often, as a result we have the habit of quickly reacting to any seemingly deadly diseases. That means that sometimes we worry for nothing, but this was not one of those times. We are a strong people, but even a strong Heshi is nothing in shallow waters. It is a matter of life or death that the hospital be in its best possible state but it is only that way thanks to much work and investments, whereas the many places in which our people live are not quite as sophisticated."`
@@ -609,17 +609,24 @@ mission "Unfettered: Bring Medical Supplies"
 			`	"Oh it is a great predator ruling the sees on our homeworld. It is swift and nimble, you do not see it coming and when you do it is already too late. They have a tongue with a spine at its end that extends to catch its prey, but are not that big so they often hunt in groups. You would translate it as 'sea scorpion', I believe."`
 				decline
 			label soldiers
-			`	"That is a very legitimate question, but I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer."`
+			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems! Our soldiers indeed suffer the most from that fight."`
+			`	"And then, I have to grant it to you, many may be armed amongst those you see here, but remember that you often wander in the spaceports, where soldiers come to resupply. We also all need to be ready for action, in case the raiders ever return."`
 			choice
 				`	"Glad to have prevented a disaster then."`
 					decline
-				`	"So you just tricked me into helping the war effort?"`
-				`	"Are all Unfettered not soldiers?"`
-					goto soldier
-			`He does not answer your question directly, "If you really must know, these supplies were used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. If the soldiers are not able to protect us, then civilians will suffer as well. The Hai would not dare to kill us, of course, but they would destroy our way of life, our spirits."`
+				`	"So did you just tricked me into helping the war effort?"`
+				`	"Were these supplies for soldiers?"`
+					goto soldiers
+				`	"The raiders?"`
+					goto raiders
+			`	He does not answer your question directly, "If you really must know, these supplies were indeed used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer. The Hai would not dare to kill us, of course, but they could destroy our way of life, our spirits. And we need our soldiers to bring us supplies."`
 				decline
-			label soldier
-			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems!"`
+			label soldiers
+			`	"I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others."`
+				decline
+			label raiders
+			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military focused. A lot of those you see here are amongst those who wanted to repay the raiders in kind once they stopped. We could not all just drop our weapons, so if our brothers would not at least be ready for further attacks, we will be if they ever need us."`
+				decline
 		log `Brought medial supplies to Darkcloak when it was in great need of them, to prevent an epidemic.`
 		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he probably has quite some influence.`
 		payment 1500000
@@ -1016,7 +1023,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
 				defer
 			label run
-			`As you run you see a silouette running too. They are armed and you think you recognize the uniform of a member of your crew. Could he be running after the intruder too? Is this just a big misunderstanding?`
+			`As you run you see a silouette running too. They are armed and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
 			choice
 				`(Order them to stand down).`
 				`(Follow them to see where he is going).`
@@ -1027,15 +1034,15 @@ mission "Unfettered: I Shall Go Unpunished"
 			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them and they escape your ship. Thankfully they did not manage to steal anything, only to move a few gold bars.`
 				defer
 			label follow
-			`You can now clearly see it is a human woman, and you indeed know her. She is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket and now it will take her a while. She did not notice you after her, yet.`
+			`You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you indeed know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket and know it will take them a while. They did not notice you after them, yet.`
 			choice
-				`(Wait for her near the exit to stun her).`
+				`(Wait for the traitor near the exit to stun them).`
 					goto wait
-				`(Order her to stand down).`
+				`(Order the crew member to stand down).`
 					goto shout
 				`(Shoot).`
 			label shoot
-			`You hit the crew member in the shoulder and they fall. You go remove her weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, he is gone, and no one has seen or heard anything.`
+			`You hit the crew member in the shoulder and they fall. You go remove their weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
 				defer
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
@@ -1047,36 +1054,36 @@ mission "Unfettered: I Shall Go Unpunished"
 			label lostbars
 			action
 				outfit "Gold Bars" -5
-			defer
-
+			``
+				defer
 			label wait
-			`You patiently wait for her to come, and hit her in the back with your pistol. Then you proceed to attach her, and, after reuniting with a marine you hired a long time ago, and trust, wait for answers. He proceeds to search her first, and for a second you wonder if you really want to know about this.`
+			`You patiently wait for the intruder to come, and hit them in the back with your pistol. Then you proceed to attach them, and, after reuniting with a marine you hired a long time ago, and trust, wait for answers. He proceeds to search her first, and for a second you wonder if you really want to know about this.`
 			choice
 				`(Ignorance is bliss).`
 				`(I prefer not to stay in the dark).`
 					goto light
 			label bliss
-			`You leave her here on this world after awakening her, and she seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed, or maybe you should get rid of them.`
+			`You leave the traitor here on this world after awakening them, and they seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
 				defer
 			label light
-			`After doing his torough search, the marine shows you her distinct marking on her leg, which is only visible by a special light. He addresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means she holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
+			`After doing his torough search, the marine shows you the distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. He addresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means that this person holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
 			choice
-				`(I am involved, may as well know all about it. Wake her).`
+				`(I am already involved, may as well know all about it. Wake them).`
 				`(Ignorance is bliss).`
 					goto bliss
-			`You were readying to slap her a bit to bring her back, but he stops you, "I will do this, but then nothing else." He goes to take a bucket of water to wake her up. She seems to recognize the hopelessness of her situation, and is willing to bargain, "I will tell you the truth, but then you will let me go and we will never see each others again. But let me be clear, I will not speak, under any circumstances other than those. I also seriously doubt your competences as a torturer so spare me any threats."`
+			`You were readying to slap the traitor a bit to bring her back, but he stops you, "I will do this for you, but then nothing else." He goes to take a bucket of water to wake her up. the crew member seems to recognize the hopelessness of their situation, and is willing to bargain, "I will tell you the truth, but then you will let me go and we will never see each others again. But let me be clear, I will not speak, under any circumstances other than those. I also seriously doubt your competences as a torturer so please, spare me any threats."`
 			choice
 				`(This is it. I want to know all).`
 				`(Ignorance is bliss).`
 					goto bliss
-			`She takes a deep breath, "An important organization wants these gold bars you have on boards. They are not just normal gold. If you were to sell them to me I could give you a good price, and you would not be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have all of them."`
+			`She takes a deep breath, "An important organization wants these gold bars you have on boards. They are not just normal gold. If you were to sell them to me I could give you a good price, and you would not be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have all of them. I may have told you too much for them to allow me to live, already."`
 			choice
 				`(Sell the bars).`
-				`(Keep them, and drop her on the planet).`
+				`(Keep them, and drop that traitor on the planet).`
 					goto bliss
-				`(Keep her for further interrogating).`
+				`(Keep the crew member for further interrogating).`
 					goto escape
-			`She nods, "this is the right choice you are making, captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters we will easily get our hands on it, so it is no problem to us but you would only be payed the price of brute gold for it."`
+			`The soon to be gone traitor nods, "this is the right choice you are making, captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters we will easily get our hands on it, so it is no problem to us but you would only be payed the price of brute gold for it."`
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
@@ -1084,7 +1091,8 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				decline
 			label escape
-			`You tighten her hold, and tell your marine to keep a watch on her until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. She would have been killed if he returned without the gold bars, so I let her take a few. You should quit this whilst you still can."`
+			`You tighten the traitor's hold, and tell your marine to keep a watch on them until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. The ex crew member would have been killed if they had returned without the gold bars, so I let them take a few. You should quit this whilst you still can."`
+				goto lostbars
 
 mission "Unfettered: Bar Selling"
 	invisible
@@ -1206,7 +1214,7 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-ship "Auxiliary" "Auxiliary (Alpha)"
+ship "Auxiliary" "Auxiliary (Alpha with JD)"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
 	outfits
@@ -1232,6 +1240,36 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 	cargo
 		outfits
 			"Jump Drive" 10
+	gun -12 -180 "Hai Tracker Pod"
+	gun 12 -180 "Hai Tracker Pod"
+	turret 0 -72 "Bullfrog Anti-Missile"
+	turret 0 -21 "Korath Disruptor"
+	turret 0 31 "Korath Slicer Turret"
+	turret 0 83 "Bullfrog Anti-Missile"
+
+ship "Auxiliary" "Auxiliary (Alpha)"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Korath Disruptor"
+		"Korath Slicer Turret"
+		"Bullfrog Anti-Missile" 2
+
+		"Double Plasma Core"
+		"Systems Core (Large)" 2
+		"Large Heat Shunt" 2
+		"Wanderer Ramscoop"
+		"Fuel Pod" 7
+		"Brig"
+
+		`"Bufaer" Atomic Thruster`
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -1281,7 +1319,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		government "Alpha"
 		personality target staying timid entering
 		system "Hi Yahr"
-		ship "Auxiliary (Alpha)" "Settler"
+		ship "Auxiliary (Alpha with JD)" "Settler"
 
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt, this it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
@@ -1594,12 +1632,18 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	"Some kind of beam weapon, and a very strong one at that, it looks like it only got partially deflected by the shields. I wonder what kind of weapon can do that." She looks intrigued.`
 			choice
 				`	"They seemed to be using the same weapon against me."`
+					goto logs
 				`	"What can we use that information for?"`
 					goto information
-			`	"Yes I have noticed from the scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine. They could not have designed such weapons by themselves, they probably just stole them from nearby aliens."`
+			label logs
+			`	"Yes I have noticed from the scanner logs, I would advise not relying too heavily on your shields. But they do not seem to have that many of those weapons, so you should be fine. I do not believe they could not have designed such weapons by themselves, they probably just stole them from nearby aliens."`
+			choice
+				`	"What about the damage on their ship? How is that relevant to my mission?"`
+					goto information
+				`	"You should have asked me to do an outfit scan, earlier..."`
+			`	"Maybe, but it could have provoked them further, they apparently very much like to keep hold of their secrets. I only wanted to know about the structure of the ship. I have to grand you that knowing more about those weapons would be uesfull. Now, back to the damage on their ship."`
 			label information
 			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire, however there are still some microfractures, which should in theory be big enough for the ship to lose some hyperdrive fuel wherever it goes. Just follow the fuel trail."`
-			
 			label agree
 			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering these marks on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars."`
 				accept
@@ -1629,7 +1673,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `Whilst capturing the ship you noticed that only very few of the crew were actually Alphas, some were probably mercenaries. There was no doubt who was in command of this vessel though. You have managed to capture it, but you have discovered a brig full of captured Korath. You should head to the Alpha base to see if you can find anything else, and decide what to do with the prisoners once there.`
+		dialog `Whilst capturing the ship you noticed that only very few of the crew were actually Alphas, some were probably mercenaries. There was no doubt who was in command of this vessel though. However, you cannot find the jump drives here. You should head to the Alpha base to see if you can find those or anything else of interest.`
 	npc
 		government "Alpha"
 		system "Host"
@@ -1684,7 +1728,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			label logs
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
-				`	"I found out that you set me up with those Alphas."`
+				`	"Did you know that the Alphas intended the leak, to lure me into a trap?"`
 					goto setup
 				`	(Do not speak to them about the logs).`
 					decline
@@ -1694,17 +1738,17 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				set "Unfettered: jump drive source"
 				clear "Unfettered: alpha logs"
 				payment 200000
-			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
+			`	"Those are probably too well encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
 				decline
 			label setup
-			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you."`
+			`	He seems surprised, and takes a while to respond, stuttering a bit. "I.. I can assure you I had no idea, and certainly no say in this. The ways of the Chiefs are sometimes mysterious, they may have really wanted you to prove your worth against the green humans, and made sure they would meet you in battle. Given you made it back it seems it was a fair fight. It was, in a way, a trap for the Alphas more so than for you. Maybe some planned this but I can assure you that not all of us where complices."`
 			choice
 				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
 					goto showlogs
-				`	"I understand, they just said to the Alphas it was a trap. It will take a while to earn my trust back."`
+				`	"I understand but it will take a while to earn my trust back."`
 					decline
 				`	"I don't want to have anything to do with you Unfettered anymore."`
-			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares from us though."`
+			`	"It did not have to be this way, but if you want to go, we will not detain you. Do not expect any shares of the loot from us though."`
 			action
 				clear "salary: Unfettered"
 				fail "Unfettered: Alphas 2: Prove Yourself"
@@ -1716,22 +1760,25 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
-		require "Jump Drive" 10
+		require "brig"
 		conversation
-			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight but find nothing. Then you go to the Auxiliary to see the Korath.`
-			`	They seem to be prisoners, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
+			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. It seems to be too deep or at least shielded from scans in some way. You will have to go blind in it.`
+			`	Weirdly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here it is probably a skeleton crew. You exit your ship but cannot find anyone. They could be hidden so you go carrefully with your crew, looking for the jump drive vault, which can not be far. On the way you hear sounds... Sounds that definitely did not originate from humans. Heading that way you find a brig with Koraths in itm and a very peculiar symbol over it, that looks like a lizard's head. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
+			`	You find the jump drives easily enough, close to the hangar, there are 10 of them and you load them unto your ship.`
 			choice
-				`	(Explore the Auxiliary further.)`
+				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
 					decline
-			`	As you explore the Auxiliary further, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, but they are so well encrypted there is no hope learning details any time soon. You do find their captain's most recent log; apparently they had indeed been waiting here to ambush you on arrival.`
+			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries but the details are so well encrypted there is no hope learning more any time soon. You do find their captain's most recent log; apparently they had indeed been waiting here to ambush you on arrival.`
 			choice
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
 					decline
-			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, carrying the Jump Drives wherever they went. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles' territory. It is now time to leave the planet and go see the Chiefs.`
+			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs, as a primitive way of encryption, on top of the more serious encryptions used for sensitive information.`
+			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, and for bringing jump drives to the Unfettered. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles' territory. It is now time to leave the planet and go see the Chiefs.`
 			action
 				set "Unfettered: alpha logs"
+		outfit "Jump Drive" 10
 
 
 
