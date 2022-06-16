@@ -1133,3 +1133,27 @@ phrase "hostile disabled heliarch"
 		"You can only wonder what they're saying"
 	word
 		".)"
+
+phrase "heliarch test dummy"
+	word
+		"Best of luck, I wish you for this battle."
+		"Focus on the battle you must, Captain."
+		"Distract me from the fight, you must not."
+		"Helping me learn, your unique fighting style is."
+		"New to your alien weaponry I am."
+		"Useful for future combat, this experience is."
+
+phrase "disabled heliarch test dummy"
+	word
+		"Bested us, you have."
+		"Defeated me, you have."
+		"A good fight, it was."
+		"A tough opponent you were."
+	word
+		" "
+	word
+		"Impressive, your combat skills are."
+		"Work on my tactics, I must."
+		"Congratulations, captain!"
+		"Attack me further, you should not. Make you an enemy of the Heliarchs, destroying me would."
+		"Put to good use as a Heliarch, your combat skills would be."
