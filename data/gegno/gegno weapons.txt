@@ -308,7 +308,7 @@ outfit Excavator
 		"reload" 1
 		"shield damage" 8
 		"hull damage" 14
-		"mineable damage" 104
+		"minable damage" 104
 		"hit force" -4
 		"firing energy" 4
 		"firing heat" 100
