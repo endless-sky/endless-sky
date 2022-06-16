@@ -112,11 +112,11 @@ outfit "I70 Ameliorate Cell"
 		"Scin Architect"
 	plural "I70 Ameliorate Cells"
 	cost 166000
-	mass 20
+	mass 27
 	thumbnail outfit/scincoretiny
-	"energy capacity" 160
+	"energy capacity" 640
 	"energy generation" 1.4
 	"heat generation" 2.8
-	"outfit space" -20
+	"outfit space" -27
 	description "Due to the need for a smaller, more compact power system created for fighters, the I70 Cell was designed by the Scin to be fitted on their Halite fighters. It has a small energy capacity to fuel the Scin's diminutive thrusters, and is able to power their weapons with a minor but acceptable energy generation. Unfortunately, as a side effect, a bit more unwanted heat is also generated."
 
