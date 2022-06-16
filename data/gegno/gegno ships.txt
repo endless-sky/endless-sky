@@ -5,15 +5,15 @@ ship Augen
 	attributes
 		category "Heavy Warship"
 		cost 3700000
-		mass 3600
+		mass 5000
 		bunks 360
 		"cargo space" 84
 		drag 40
-		"engine capacity" 2000
+		"engine capacity" 600
 		"fuel capacity" 500
 		"heat dissipation" 0.4
-		hull 66600
-		"outfit space" 2000
+		hull 67000
+		"outfit space" 1800
 		"required crew" 280
 		shields 0
 		"weapon capacity" 1000
@@ -37,16 +37,20 @@ ship Augen
 	engine -22.5 373.5
 	engine -52 297
 	"steering engine" 131 54.5
-		angle -60.001831
+		angle -60
+		zoom 0.8
 		left
 	"steering engine" 128.5 116
-		angle -53.997803
+		zoom 0.8
+		angle -60
 		left
 	"steering engine" -107 161.5
-		angle 60.001831
+		zoom 0.8
+		angle 60
 		right
 	"steering engine" -121 97
-		angle 60.001831
+		zoom 0.8
+		angle 60
 		right
 	turret 14 -304.5 "Ballistic Cannon"
 	turret 13.5 -219 "Ballistic Cannon"
