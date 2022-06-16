@@ -51,7 +51,7 @@ mission "First Contact: Gegno"
 				`"Why do they not combine their efforts to better their future together?"`
 					goto together
 			label vi
-			`	"While it is characteristic, such a tremendous proposition is rather dull for a growing species. Be that as it may, you humans follow to a much lesser degree than that of the Vi."`
+			`	"While it is characteristic, such a tremendous proposition is rather dull for a growing species. Be that as it may, you humans follow this doctrine to a much lesser degree than that of the Vi."`
 				goto end
 			label scin
 			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of disappointment. "The pursuit of technology leaves behind many values important to a species' growth."`
