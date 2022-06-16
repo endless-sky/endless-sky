@@ -198,7 +198,7 @@ outfit "SC-14 Plasma Steering"
 	"steering flare sprite" effect/scplasma/med
 		"frame rate" 0.4
 	"steering flare sound" "scplasma medium"
-	description "At a larger scale than typical SC2 thrusters, SC-14 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than others."
+	description "Built at a larger scale than typical SC2 thrusters, SC-14 steering thrusters are one of the most impactful steering systems in Gegno space, allowing the Scin to reposition their medium and even largest ships many times faster than their Vi counterparts."
 
 outfit "SC-15 Plasma Thrusters"
 	category Engines
