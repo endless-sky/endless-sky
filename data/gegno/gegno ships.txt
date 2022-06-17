@@ -31,7 +31,7 @@ ship Augen
 		"Irate Cannon" 3
 		"R04 Crusade Battery"
 		"RG18 Torch Steering" 2
-		"RG3 Torch Thruster" 2
+		"RG3 Torch Thruster" 4
 	engine 94 297
 	engine 55.5 373.5
 	engine -22.5 373.5
