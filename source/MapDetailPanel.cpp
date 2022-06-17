@@ -208,7 +208,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		int canBuyBest = player.HasBestTrade(selectedSystem);
 		if(canBuyBest)
-			player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 2);
+			player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 1);
 		else if(key == 't' && player.Cargo().CommoditiesSize())
 			player.SellCommodities();
 	}
@@ -232,7 +232,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		{
 			// The player clicked on the button to auto-trade
 			if(canBuyBest)
-				player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 2);
+				player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 1);
 			else
 				player.SellCommodities();
 			return true;
