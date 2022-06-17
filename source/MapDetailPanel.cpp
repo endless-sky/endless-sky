@@ -619,12 +619,12 @@ void MapDetailPanel::DrawInfo()
 		SpriteShader::Draw(buyAllSprite, uiPoint + Point(70, 35));
 		if(canBuyBest == 0)
 		{
-			font.Draw({"Sell Commodities", alignCenter}, uiPoint + Point(-10, 28), medium);
+			font.Draw({"Sell Commodi_ties", alignCenter}, uiPoint + Point(-10, 28), medium);
 		}
 		else
 		{
 			font.Draw({canBuyBest == 2 ? "Fill Ship with" : "Fill Fleet with", alignCenter}, uiPoint + Point(-10, 20), medium);
-			font.Draw({"Best Trade", alignCenter}, uiPoint + Point(-10, 37), medium);
+			font.Draw({"_Best _Trade", alignCenter}, uiPoint + Point(-10, 37), medium);
 		}
 	}
 
