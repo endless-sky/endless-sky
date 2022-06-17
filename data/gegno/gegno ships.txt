@@ -9,14 +9,14 @@ ship Augen
 		bunks 360
 		"cargo space" 84
 		drag 40
-		"engine capacity" 440
+		"engine capacity" 460
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 67000
 		"outfit space" 1800
 		"required crew" 280
 		shields 0
-		"weapon capacity" 9000
+		"weapon capacity" 900
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
@@ -30,7 +30,7 @@ ship Augen
 		Hyperdrive
 		"Irate Cannon" 3
 		"R04 Crusade Battery"
-		"RG18 Torch Steering" 2
+		"RG3 Torch Steering" 2
 		"RG3 Torch Thruster" 4
 	engine 94 297
 	engine 55.5 373.5
@@ -38,18 +38,18 @@ ship Augen
 	engine -52 297
 	"steering engine" 131 54.5
 		angle -60
-		zoom 0.8
+		zoom 0.5
 		left
 	"steering engine" 128.5 116
-		zoom 0.8
+		zoom 0.5
 		angle -60
 		left
 	"steering engine" -107 161.5
-		zoom 0.8
+		zoom 0.5
 		angle 60
 		right
 	"steering engine" -121 97
-		zoom 0.8
+		zoom 0.5
 		angle 60
 		right
 	turret 14 -304.5 "Ballistic Cannon"
