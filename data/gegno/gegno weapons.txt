@@ -19,7 +19,7 @@ outfit "Irate Cannon"
 		velocity 22
 		"hardpoint offset" 1.5
 		inaccuracy 2
-		"firing energy" 18
+		"firing energy" 10
 		"firing heat" 95
 		"shield damage" 6
 		"hull damage" 16
