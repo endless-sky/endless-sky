@@ -206,9 +206,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if(key == 'b' || key == 't')
 	{
-		int canBuyBest = player.CanBuyBestTrade(selectedSystem);
+		int canBuyBest = player.HasBestTrade(selectedSystem);
 		if(canBuyBest)
-			player.BuyBestTrade(*selectedSystem, canBuyBest == 2, true);
+			player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 2);
 		else if(key == 't' && player.Cargo().CommoditiesSize())
 			player.SellCommodities();
 	}
@@ -226,13 +226,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
-		int canBuyBest = player.CanBuyBestTrade(selectedSystem);
+		int canBuyBest = player.HasBestTrade(selectedSystem);
 		if(y >= autoBuyY && y < autoBuyY + 60 &&
 			(canBuyBest || player.Cargo().CommoditiesSize()))
 		{
-			// The player clicked on the button to auto-buy:
+			// The player clicked on the button to auto-trade
 			if(canBuyBest)
-				player.BuyBestTrade(*selectedSystem, canBuyBest == 2, true);
+				player.BuyBestTrade(*selectedSystem, canBuyBest == 2, canBuyBest == 2);
 			else
 				player.SellCommodities();
 			return true;
@@ -610,8 +610,8 @@ void MapDetailPanel::DrawInfo()
 
 	autoBuyY = uiPoint.Y();
 
-	// "Buy best" button goes after trade sprite
-	int canBuyBest = player.CanBuyBestTrade(selectedSystem);
+	// "Buy best" button goes after trade prices
+	int canBuyBest = player.HasBestTrade(selectedSystem);
 	if(canBuyBest || player.Cargo().CommoditiesSize())
 	{
 		const Sprite *buyAllSprite = SpriteSet::Get("ui/planet dialog button"); //160x60

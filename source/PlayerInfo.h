@@ -167,7 +167,7 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 	// Auto-purchase and sell commodities
-	int CanBuyBestTrade(const System *destination);
+	int HasBestTrade(const System *destination);
 	void BuyBestTrade(const System &destination, bool includeFlagship = false, bool sellFirst = true);
 	std::string BestTradeType(const System &destination);
 	void SellCommodities(const std::string& exclude = "");
@@ -338,6 +338,11 @@ private:
 	// Keep track of commodities sold and how much profit was made.
 	int64_t profit = 0;
 	int tonsSold = 0;
+	// Keep track of commodities bought by auto-selector
+	std::string autoBoughtType;
+	std::string autoBoughtDestination;
+	int64_t autoBoughtPrice;
+	int64_t autoBoughtAmount;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
