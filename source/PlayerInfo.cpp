@@ -1619,7 +1619,7 @@ void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, b
 			// Report if robo-merchant sold things to make room
 			string message = "You sold " + to_string(tonsSoldAuto)
 				+ (tonsSoldAuto == 1 ? " ton" : " tons")
-				+ " of cargo to make room for " + autoBoughtType;
+				+ " of cargo to make room for " + autoBoughtType + " ";
 
 			if(profitAuto < 0)
 				message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
