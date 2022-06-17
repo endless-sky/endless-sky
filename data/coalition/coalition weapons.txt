@@ -83,7 +83,7 @@ outfit "Finisher Maegrolain"
 		Heliarch
 	cost 7260000
 	thumbnail "outfit/finisher maegrolain"
-	"mass" 40
+	"mass" 28
 	"outfit space" -88
 	"weapon capacity" -88
 	"gun ports" -1
