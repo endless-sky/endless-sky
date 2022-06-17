@@ -9,14 +9,14 @@ ship Augen
 		bunks 360
 		"cargo space" 84
 		drag 40
-		"engine capacity" 600
+		"engine capacity" 440
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 67000
 		"outfit space" 1800
 		"required crew" 280
 		shields 0
-		"weapon capacity" 1000
+		"weapon capacity" 9000
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
@@ -31,7 +31,7 @@ ship Augen
 		"Irate Cannon" 3
 		"R04 Crusade Battery"
 		"RG18 Torch Steering" 2
-		"RG3 Torch Thruster"
+		"RG3 Torch Thruster" 2
 	engine 94 297
 	engine 55.5 373.5
 	engine -22.5 373.5
@@ -498,13 +498,13 @@ ship Gneiss
 		cost 15690000
 		mass 1245
 		bunks 162
-		"cargo space" 84
+		"cargo space" 95
 		drag 18
 		"engine capacity" 150
 		"fuel capacity" 500
 		"heat dissipation" 0.4
 		hull 22275
-		"outfit space" 815
+		"outfit space" 765
 		"required crew" 142
 		shields 0
 		"weapon capacity" 412
@@ -515,7 +515,7 @@ ship Gneiss
 			"hit force" 1200
 	outfits
 		"Ballistic Cannon" 3
-		"C27 Campaign Core"
+		"C17 Warzone Core"
 		Hyperdrive
 		"Irate Cannon" 4
 		"R04 Crusade Battery"
@@ -609,7 +609,7 @@ ship Halite
 		bunks 1
 		"cargo space" 1
 		drag 0.74
-		"engine capacity" 30
+		"engine capacity" 21
 		"heat dissipation" 0.76
 		hull 780
 		"outfit space" 78
@@ -853,6 +853,7 @@ ship Feldspar
 		"C27 Campaign Core"
 		Hyperdrive
 		"R03 Warforge Battery"
+		"SC-12 Plasma Steering"
 		"SC-14 Plasma Steering"
 		"SC-15 Plasma Thrusters"
 	engine 31 198

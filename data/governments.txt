@@ -143,11 +143,6 @@ government Gegno
 		Quarg 0.1
 	"penalty for"
 		assist 0
-		board 1
-		capture 1
-		destroy 1
-		atrocity 1
-		provoke 1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -162,10 +157,6 @@ government "Gegno Scin"
 		Gegno 1
 	"penalty for"
 		assist 0
-		board 1
-		capture 1
-		destroy 1
-		atrocity 1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
@@ -180,10 +171,6 @@ government "Gegno Vi"
 		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
-		board 1
-		capture 1
-		destroy 1
-		atrocity 1
 	"friendly hail" "gegno uncontacted"
 	"hostile hail" "hostile gegno uncontacted"
 
