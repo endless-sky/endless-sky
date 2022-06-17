@@ -1492,7 +1492,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(autoBoughtAmount)
 	{
 		// Report if commodities were auto-selected
-		string message = "Your AUTO-TRADEBOT bought " + to_string(autoBoughtAmount)
+		string message = "You bought " + to_string(autoBoughtAmount)
 			+ (autoBoughtAmount == 1 ? " ton" : " tons") + " of " + autoBoughtType + " "
 			+ "for " + Format::Credits(autoBoughtPrice * autoBoughtAmount) + " credits, to be sold at "
 			+ autoBoughtDestination;
@@ -1617,8 +1617,9 @@ void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, b
 		if(profitAuto)
 		{
 			// Report if robo-merchant sold things to make room
-			string message = "Your AUTO-TRADEBOT sold " + to_string(tonsSoldAuto)
-				+ (tonsSoldAuto == 1 ? " ton" : " tons") + " of cargo ";
+			string message = "You sold " + to_string(tonsSoldAuto)
+				+ (tonsSoldAuto == 1 ? " ton" : " tons")
+				+ " of cargo to make room for " + autoBoughtType;
 
 			if(profitAuto < 0)
 				message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
