@@ -167,6 +167,7 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	bool TakeOff(UI *ui);
 	// Auto-purchase and sell commodities
+	bool CanTrade();
 	int HasBestTrade(const System *destination);
 	void BuyBestTrade(const System &destination, bool includeFlagship = false, bool sellFirst = true);
 	std::string BestTradeType(const System &destination);

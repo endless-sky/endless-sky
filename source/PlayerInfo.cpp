@@ -1517,6 +1517,18 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 
 
+// Check if commodities are currently tradeable
+bool PlayerInfo::CanTrade()
+{
+	return planet
+		&& Flagship()
+		&& planet->CanUseServices()
+		&& planet->IsInhabited()
+		&& system->HasTrade();
+}
+
+
+
 // Check if the selected system has commodities that will make profit
 // when traded from this planet. It checks if the system is landable
 // or bribeable. This will check available cargo, and assumes you will
