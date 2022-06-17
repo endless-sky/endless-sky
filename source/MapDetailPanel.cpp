@@ -204,6 +204,14 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		else
 			SetCommodity(commodity - 1);
 	}
+	else if(key == 'b' || key == 't')
+	{
+		int canBuyBest = player.CanBuyBestTrade(selectedSystem);
+		if(canBuyBest)
+			player.BuyBestTrade(*selectedSystem, canBuyBest == 2, true);
+		else if(key == 't' && player.Cargo().CommoditiesSize())
+			player.SellCommodities();
+	}
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
@@ -219,13 +227,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
 		int canBuyBest = player.CanBuyBestTrade(selectedSystem);
-		if(y >= autoBuyY && y < autoBuyY + 60 && (canBuyBest || player.Cargo().CommoditiesSize()))
+		if(y >= autoBuyY && y < autoBuyY + 60 &&
+			(canBuyBest || player.Cargo().CommoditiesSize()))
 		{
 			// The player clicked on the button to auto-buy:
-			if(canBuyBest == 0)
-				player.SellCommodities();
-			else
+			if(canBuyBest)
 				player.BuyBestTrade(*selectedSystem, canBuyBest == 2, true);
+			else
+				player.SellCommodities();
 			return true;
 		}
 		else if(y >= tradeY && y < tradeY + 200)
@@ -614,7 +623,7 @@ void MapDetailPanel::DrawInfo()
 		}
 		else
 		{
-			font.Draw({canBuyBest == 2 ? "Fill ship with" : "Fill Fleet with", alignCenter}, uiPoint + Point(-10, 20), medium);
+			font.Draw({canBuyBest == 2 ? "Fill Ship with" : "Fill Fleet with", alignCenter}, uiPoint + Point(-10, 20), medium);
 			font.Draw({"Best Trade", alignCenter}, uiPoint + Point(-10, 37), medium);
 		}
 	}
