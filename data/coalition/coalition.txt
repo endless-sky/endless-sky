@@ -1257,6 +1257,11 @@ phrase "friendly lunarium"
 		"free"
 		"liberate"
 		"unchain"
+		"emancipate"
+		"release"
+		"rescue"
+		"save"
+		"unshackle"
 	word
 		" "
 	word
@@ -1265,6 +1270,9 @@ phrase "friendly lunarium"
 		"great"
 		"noble"
 		"good"
+		"grand"
+		"honorable"
+		"righteous"
 	word
 		" "
 	word
@@ -1294,10 +1302,11 @@ phrase "friendly lunarium"
 		"defeat"
 		"eliminate"
 		"destroy"
+		"topple"
+		"depose"
+		"unseat"
 	word
-		"the"
-	word
-		" "
+		" the "
 	word
 		"oppressors"
 		"Heliarchs"
@@ -1305,13 +1314,12 @@ phrase "friendly lunarium"
 		"the Tyrant House"
 		"overlords"
 	word
-		"we"
-	word
-		" "
+		" we "
 	word
 		"fight for"
 		"must"
 		"strive for"
+		"struggle for"
 	word
 		"."
 		"!"
@@ -1332,18 +1340,19 @@ phrase "friendly disabled lunarium"
 
 phrase "hostile lunarium"
 	word
-		"Attack"
-		"Oppose"
-		"Betray"
+		"Attacked"
+		"Opposed"
+		"Betrayed"
+		"Countered"
+		"Violated"
 	word
-		" "
-	word
-		"the"
+		" the "
 	word
 		"Coalition's freedom"
 		"freedom of the Coalition"
 		"hope of the Coalition"
-		"
+		"good of the Coalition"
+		"Coalition's hope"
 	word
 		", "
 	word
@@ -1352,13 +1361,18 @@ phrase "hostile lunarium"
 		"."
 		"!"
 	word
+		" "
+	word
 		"Fight"
 		"Battle"
 		"Struggle"
+		"Clash"
+		"Duel"
 	word
 		"to the end"
 		"to the last"
 		"until our deaths"
+		"until our ends"
 	word
 		", "
 	word
@@ -1374,6 +1388,8 @@ phrase "hostile lunarium"
 		"Allied yourself with"
 		"Aligned yourself with"
 	word
+		" "
+	word
 		"injustice"
 		"oppression"
 		"the oppressors"
@@ -1383,25 +1399,25 @@ phrase "hostile lunarium"
 	word
 		", "
 	word
-		"you have."
+		"you have. "
 	word
-		"For the"
+		"For the "
 	word
-		"good of"
-		"future of"
+		"good of "
+		"future of "
 	word
-		"the Coalition,"
+		"the Coalition, "
 	word
 		"oppose"
 		"fight"
 		"defeat"
 		"destroy"
 	word
-		"you"
+		" you"
 	word
 		", "
 	word
-		"we"
+		"we "
 	word
 		"must"
 		"shall"
@@ -1422,3 +1438,104 @@ phrase "hostile disabled lunarium"
 		"You can only wonder what they're saying"
 	word
 		".)"
+
+phrase "hostile disabled lunarium"
+	word
+		"Live on"
+		"Continue"
+		"Persist"
+		"Carry on"
+		"Cling on"
+	word
+		" "
+	word
+		", "
+	word
+		"our"
+	word 
+		" "
+	word
+		"fight"
+		"struggle"
+		"battle"
+		"cause"
+	word
+		" "
+	word
+		"will"
+		"shall"
+	word
+		", "
+	word
+		"even after"
+	word
+		" "
+	word
+		"gone"
+		"destroyed"
+		"dead"
+		"eliminated"
+	word
+		" "
+	word
+		"I am"
+		"we are"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled lunarium"
+	word
+		"To "
+	word
+		"know that"
+		"understand that"
+	word
+		" "
+	word
+		"you"
+		"the Heliarchs"
+		"the oppressors"
+		"the tyrants"
+		"the Tyrant House"
+		"your hunger for power"
+	word
+		" "
+	word
+		"will"
+	word
+		" "
+	word
+		"inevitably"
+		"necessarily"
+		"unavoidably"
+		"surely"
+	word
+		" "
+	word
+		"fall"
+		"be defeated"
+		"be overthrown"
+	word
+		", "
+	word
+		"my"
+		"our"
+	word
+		" "
+	word
+		"only"
+		"final"
+	word
+		" "
+	word
+		"solace"
+		"hope"
+		"comfort"
+		"consolation"
+		"relief"
+	word
+		"is"
+	word
+		"."
+		"!"
