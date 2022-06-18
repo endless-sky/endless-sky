@@ -17,7 +17,7 @@ mission "Lunarium Initial Log"
 		log "Factions" "Lunarium Redoubt" "The Lunarium Redoubt is a resistance movement, opposed to the Heliarchs, within the Coalition, aiming to free it from their rule.
 		fail
 
-mission "Resistance: Charity 1"
+mission "Resistance: Smuggling: Charity 1"
 	name "Charity Delivery"
 	description "Deliver a care package of <cargo> to <destination>, as part of a charity initiative."
 	minor
@@ -56,7 +56,7 @@ mission "Resistance: Charity 1"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Kimek who gave you the job.`
 			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
 
-mission "Resistance: Charity 2"
+mission "Resistance: Smuggling: Charity 2"
 	name "Charity Delivery"
 	description "Bring <cargo> and <bunks> doctors to <destination>, to aid the poor Kimek on the planet who are suffering through harsh winter conditions."
 	passengers 5
@@ -66,7 +66,7 @@ mission "Resistance: Charity 2"
 	destination "Into White"
 	to offer
 		random < 50
-		has "Resistance: Charity 1: done"
+		has "Resistance: Smuggling: Charity 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	on offer
@@ -88,7 +88,7 @@ mission "Resistance: Charity 2"
 		conversation
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the doctors are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help and ask that you look for them in Kimek worlds if you wish to continue helping.`
 
-mission "Resistance: Charity 3"
+mission "Resistance: Smuggling: Charity 3"
 	name "Charity Delivery"
 	description "Bring <cargo> to <destination>"
 	cargo "charity supplies" 46
@@ -97,7 +97,7 @@ mission "Resistance: Charity 3"
 	destination "Remote Blue"
 	to offer
 		random < 70
-		has "Resistance: Charity 2: done"
+		has "Resistance: Smuggling: Charity 2: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	on offer
@@ -113,14 +113,14 @@ mission "Resistance: Charity 3"
 	on complete
 		payment 261000
 
-mission "Resistance: Grenades"
+mission "Resistance: Smuggling: Grenades"
 	name "Grenade Smuggling"
 	description "Bring 100 fragmentation grenades from human space to <destination>."
 	landing
 	source "Remote Blue"
 	destination "Mebla's Portion"
 	to offer
-		has "Resistance: Charity 3: done"
+		has "Resistance: Smuggling: Charity 3: done"
 		not "Heliarch License: done"
 	on offer
 		log "It seems the charity I've been helping is actually the Lunarium, a resistance group within the Coalition, aiming to free it from the rule of the Heliarchs. Some of the work was genuinely charity, apparently, but some of it was to support the Lunarium's own goals."
@@ -186,7 +186,7 @@ mission "Resistance: Grenades"
 			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the crates and bring them to a specified warehouse. As this information comes in, you notice that a cargo loader the spaceport workers use has been prepared for you. You get the grenades out of your ship as fast as you can, worried that someone might see you, and start moving them to the designated warehouse. The door is open, with a few Arachi waiting inside by a staircase. They say nothing to you and simply help with the grenades, taking them off of the cargo loader and bringing them down the stairs, box by box.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
 
-mission "Resistance: AM"
+mission "Resistance: Smuggling: AM"
 	name "Anti-Missile Smuggling"
 	description "Bring three heavy anti-missile turrets to <destination>."
 	landing
@@ -195,7 +195,7 @@ mission "Resistance: AM"
 		not planet "Mebla's Portion"
 	destination "Fourth Shadow"
 	to offer
-		has "Resistance: Grenades: done"
+		has "Resistance: Smuggling: Grenades: done"
 		random < 15 + 3 * "assisted resistance" * "assisted resistance"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
@@ -223,7 +223,7 @@ mission "Resistance: AM"
 		conversation
 			`Your monitor beeps loudly as you prepare for your descent onto <planet>, indicating that you have a message. The message details instructions on how to complete your delivery. Under the guise that you're transporting heavy factory equipment, you stop on a landing pad adjacent to a massive automated compound. A gantry crane moves the turrets down to ground levels, setting them on cargo platforms, which are then pulled into a large warehouse. Once all is done, you see that <payment> have been added to your account.`
 
-mission "Resistance: Torpedoes"
+mission "Resistance: Smuggling: Torpedoes"
 	landing
 	name "Torpedo Smuggling"
 	description "Bring two torpedo and two typhoon launchers to <destination>, along with the maximum ammunition for each."
@@ -233,7 +233,7 @@ mission "Resistance: Torpedoes"
 		not planet "Into White"
 	destination "Into White"
 	to offer
-		has "Resistance: AM: done"
+		has "Resistance: Smuggling: AM: done"
 		has "event: deep sky tech available"
 		random < 20 + 3 * "assisted resistance" * "assisted resistance"
 		not "Heliarch Investigation 2: active"
@@ -273,7 +273,7 @@ mission "Resistance: Torpedoes"
 			label end
 			`	The final torpedo is brought out of your ship, and the Saryds start bringing them inside a cave leading into the mountain. The Saryd who paid you thanks you again, and follows after the others. You head back to your ship and fly it to the hangars, hoping to find something warm to drink.`
 
-mission "Resistance: Heat"
+mission "Resistance: Smuggling: Heat"
 	landing
 	name "Heated Smuggling"
 	description "Deliver two plasma turrets and ten flamethrowers to <destination>."
@@ -282,7 +282,7 @@ mission "Resistance: Heat"
 		not planet "Secret Sky"
 	destination "Secret Sky"
 	to offer
-		has "Resistance: Torpedoes: done"
+		has "Resistance: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
 		random < 25 + 3 * "assisted resistance" * "assisted resistance"
 		not "Heliarch Investigation 2: active"
@@ -328,7 +328,7 @@ mission "Resistance: Heat"
 			label end
 			`	He bids you farewell once the last flamethrower is loaded onto the barge, and gets on it with the others to sail away. The barge is fully encompassed by the planet's ever-present fog within minutes of raising the anchor. You get inside your ship, and head to the usual hangars.`
 
-mission "Resistance: Reactors"
+mission "Resistance: Smuggling: Reactors"
 	landing
 	name "Reactor Smuggling"
 	description "Bring an armageddon core, a fusion reactor, and a breeder reactor to <destination>. It will most likely take a long time for the Lunarium to move the heavy reactors, so to avoid the risk of larger Heliarch patrols you must deliver them before the fifth day of the month."
@@ -337,7 +337,7 @@ mission "Resistance: Reactors"
 		not planet "Mebla's Portion"
 	destination "Mebla's Portion"
 	to offer
-		has "Resistance: Heat: done"
+		has "Resistance: Smuggling: Heat: done"
 		random < 40 + 3 * "assisted resistance" * "assisted resistance"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
