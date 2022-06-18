@@ -960,7 +960,7 @@ mission "Unfettered: Nemo Me Impune Lacessit"
 		near "Ya Hai" 10
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
-		not "sold bars"
+		not "unfettered: sold bars"
 		random < 3
 	on offer
 		require "Gold Bars"
@@ -980,7 +980,7 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 		near Sol 100
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
-		not "sold bars"
+		not "unfettered: sold bars"
 		random < 1
 	on offer
 		require "Gold Bars"
@@ -1043,6 +1043,9 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(Shoot).`
 			label shoot
 			`You hit the crew member in the shoulder and they fall. You go remove their weapon, to be sure, and want to ask for an explanation but the only answer you get is "nemo me impune lacessit", before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+			action
+				set "unfettered: knows about bars"
+			``
 				defer
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
@@ -1054,6 +1057,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			label lostbars
 			action
 				outfit "Gold Bars" -5
+				set "unfettered: knows about bars"
 			``
 				defer
 			label wait
@@ -1064,6 +1068,9 @@ mission "Unfettered: I Shall Go Unpunished"
 					goto light
 			label bliss
 			`You leave the traitor here on this world after awakening them, and they seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
+			action
+				set "unfettered: knows about bars"
+			``
 				defer
 			label light
 			`After doing his torough search, the marine shows you the distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. He addresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means that this person holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
@@ -1087,7 +1094,8 @@ mission "Unfettered: I Shall Go Unpunished"
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
-				set "sold bars"
+				set "unfettered: sold bars"
+				set "unfettered: knows about bars"
 			``
 				decline
 			label escape
@@ -1099,7 +1107,7 @@ mission "Unfettered: Bar Selling"
 	landing
 	repeat
 	to offer
-		has "sold bars"
+		has "unfettered: sold bars"
 	on offer
 		outfit "Gold Bars" -1
 		payment 1000000
@@ -1697,7 +1705,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You have landed but without the Alpha Auxiliary and its cargo of Jump Drives. Go and find traces of fuel from it, in systems neighboring Hi Yahr. Do not forget to land on the Alpha base to recover any information or jump drives it may have!`
+		dialog `You have landed but without the 10 Jump Drives. Go and find traces of fuel from the Auxiliary, in systems neighboring Hi Yahr. Do not forget to land on the Alpha base to recover any information or jump drives it may have!`
 	to complete
 		has "Unfettered: Alphas 3: Bring The Spoils: offered"
 	on complete
@@ -1763,7 +1771,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
-		# when the take ship & check for ship PR will be merged this will be more proper
+		# when the take ship & check for ship PR will be merged this will be more proper but for now I just added this loot that you cannot get trough any other means in the game except later on in the campaign
 		outfit "Loot" -1
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. It seems to be too deep or at least shielded from scans in some way. You will have to go blind in it.`
@@ -2388,7 +2396,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			`	He actually gives you a VIP tour of the whole shipyard facility, which is too good to be true. At the end he drops you at the local militia office, and they have some questions for you about that scanner they find on you...`
 				decline
 			label buyship
-			`	"Oh, is that so. Well normally I cannot sell you a ship but I could make an exception for you... But you do understand I cannot sell you a warship." You understand he may mean you will have to pay more for said ship. Better prepare your bank account! It may not be prudent for you to back off now, as he would probably suspect something. Noticing your hesitation, he adds, "There is no issue if you do not have the money right now, I can offer you a loan of the exact price of the ship, with a small... bonus."`
+			`	"Oh, is that so. Well normally I cannot sell ships but I could make an exception for you... But you do understand I cannot sell you a warship." He may mean you will have to pay more for said ship. Better prepare your bank account! It may not be prudent for you to back off now, as he would probably suspect something. Noticing your hesitation, he adds, "There is no issue if you do not have the money right now, I can offer you a loan of the exact price of the ship, with a small... bonus."`
 			choice
 				`	"I would like a Centipede."`
 					goto centipede
@@ -2656,7 +2664,7 @@ mission "Unfettered: Special Cargo"
 				`	"You could have just sent a message on a secure channel."`
 				`	"This seems too risky for me."`
 					decline
-			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The fettered Hai have become quite apt at languages, by communicating with so many different species. Encryption is just like another language. We cannot risk them learning of this particular mission, you will understand why later. Information is the key here, and it always has been. We also do not want those north to learn from this, they would surely be able to decrypt it.`
+			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission, you will understand why later. Information is the key here, and it always has been. We also do not want those north to learn from this, they would surely be able to decrypt it.`
 			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
@@ -2706,8 +2714,14 @@ mission "Unfettered: Special Cargo 1B"
 					goto steal
 				`	(Try to bargain.)`
 					goto bargain
-				`	(Take a captive and ask for the item in exchange.)`
-			`	You manage to find one isolated pirate that looks like he is important, but still not enough to have personal bodyguards. You manage to take him hostage, but it is hard to restrain him, given his strength. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
+				`	(Try to take an isolated pirate captive and ask for the item in exchange.)`
+			`	In front of the ship there is a group of pirates, and you see one of them separate from the others to go within the ship. Judging from his appearance and the way others where addressing him you assume him to be the leader of that small band, at least. You follow him.`
+			branch luckyish
+				random < 20
+			`	You get close to him and were about to threaten him with your gun when he swiftly turns back and incapacitates you. You never wake up again. That pirate probably has had some experience with backstabs before.`
+				die
+			label luckyish
+			`	Threatening him with your gun, you manage to take him hostage, and he seems to have understood the threat pretty well. He does not try to call for help. However, it is hard to force him to move around, given his stature. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
 				die
 			label steal
 			`	You manage to enter the ship discretely, some people will always notice but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord into a fight to get the item, in space.`
@@ -2737,10 +2751,10 @@ mission "Unfettered: Special Cargo 1B"
 			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discretely, but you can drop them off the ship and then go take them once you are out, hoping nobody will notice. Looking through a porthole you do not see anyone around at the moment, conveniently, there is even some sand here, so the bars should be hidden under it.`
 			branch knowsbars
 				has "Unfettered: I Shall Go Unpunished: offered"
-			`It may not be what you are looking for, but these bars are probably worth a small fortune, and you reckon you could get away with 30 tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterwards, and claim the item as your own.`
+			`It may not be what you are looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterwards, and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
 				goto fake
 			label knowsbars
-			`You recognize the same bars that earned you betrayal from a member of your crew. Something about them must make them somehow special, and hugely valuable to those who know of it. Knowing how people react to them, they would probably not touch them, even if they did notice, given they could be killed to retrieve them. This is a pirate world after all.`
+			`You recognize the same bars that earned you betrayal from a member of your crew. Something about them must make them somehow special, and hugely valuable to those who know of it. Knowing how people react to them, some would probably not touch them, even if they did notice, given they could be killed to retrieve the precious bars. However some may kill you in order to get the potential reward. This is a pirate world after all.`
 				goto fake
 			label engine
 			`	Now these are some fine last generation atomic engines, a true beauty. But that does not help you find the item at all. Why would there be anything near the engines?`
@@ -2757,7 +2771,35 @@ mission "Unfettered: Special Cargo 1B"
 			`	You take the item, hoping it is the right one, and swiftly leave the ship. If only you had been given a more precise description, you could know for sure. Some pirates seem to notice you, maybe they suspect something or recognize this item, but nobody tries to stop you. As you reach your ship you notice that the Degenerate just launched, right before you. They must have noticed the item was missing.`
 				flee
 			label takebars
-			`You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discretely with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
+			`	How many stacks of bars will you take? The more, the bigger the risk, but also the rewards... Someone could come here at any time, to refill the weapons.`
+			choice
+				`	(1 will do).`
+					goto one
+				`	(3 should be enough).`
+					goto three
+				`	(5).`
+					goto five
+				`	(8 could be reasonnable.)`
+				`	(Take as much as I can, 15!).`
+				`	(Never mind this isn't a good idea).`
+					goto fake
+			`	You got too greedy. As you were dropping the bars you feel a sudden cold hit to your head. You never wake up again.`
+				die
+			label one
+			action
+				outfit "Gold Bars" 1
+			``
+				goto dropbars
+			label three
+			action
+				outfit "Gold Bars" 3
+			``
+				goto dropbars
+			label five
+			action
+				outfit "Gold Bars" 5
+			label dropbars
+			`	You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discretely with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
 			action
 				outfit "Gold Bars" 15
 			``
@@ -3418,8 +3460,22 @@ mission "Unfettered: Start Of The War"
 			action
 				"reputation: Hai (Unfettered)" += 100
 				event "shield beetles accessible"
-			`	"You sure know how to fight, but sheer firepower may not be enough, you should still train more before we are ready to start the war. Also we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions."`
-	
+			`	"You sure know how to fight! Sheer firepower is not always be enough. Maybe we are the ones who need training. I feel like it is only fair you give us tips, this time."`
+			choice
+				`	(You were overconfident and that's what let you down).`
+					goto mistake
+				`	(A good fight, you just had no chance against my superior firepower).`
+				`	(You lacked coordination with each other).`
+					goto mistake
+				`	(Nothing specific to say, well fought).`
+					goto train
+			`	He-Yi answer first, "It looks like that was indeed the case. Sheer strenght may break all locks, but is it fun? Is it strategic? I try not to rely on that tactic too often." Sa-Ri then speaks, "Well captain I sure wish I had the money to get such a fleet. I could barrely afford this ship, and it will need repairs again now."`
+				goto train
+			label mistake
+			`	He-Yi answers first, "Yes, that is true. We will try not to repeat that mistake again, captain." Sa-Ri then speaks, "Next time it will not be so easy, captain!"`
+			label train
+			`	"The war will start soon, but there is still some time to train. Indeed we will require more jump drives than what we currently have, because our Alpha supplies have been disrupted by your actions... Use that time well, captain."`
+
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
