@@ -123,7 +123,7 @@ mission "Resistance: Smuggling: Grenades"
 		has "Resistance: Smuggling: Charity 3: done"
 		not "Heliarch License: done"
 	on offer
-		log "It seems the charity I've been helping is actually the Lunarium, a resistance group within the Coalition, aiming to free it from the rule of the Heliarchs. Some of the work was genuinely charity, apparently, but some of it was to support the Lunarium's own goals."
+		log "Been providing transport services for a charity that is actually the Lunarium, a resistance group within the Coalition aiming to free it from the Heliarchs' rule. Some of the work was genuinely charity, apparently, but some was to support the resistance."
 		set "Lunarium introduced"
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
