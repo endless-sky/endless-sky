@@ -316,7 +316,7 @@ news "parent"
 		word
 			"My kids make me so proud. They are doing so well; one is doctor and one is a lawyer. I'm so happy that none of them choose a job like becoming a spaceship captain."
 			"I'm sad that I'm not a grandparent yet; my kids are more busy with flying spaceships than with extending the family line."
-			"I'm so ashamed that my boy only graduated with great honor. The daughter of the neighbours graduated with highest honor, what should I say to the neighbours when I meet them again?"
+			"I'm so ashamed that my boy only graduated with great honor. The daughter of the neighbors graduated with highest honor, what should I say to the neighbors when I meet them again?"
 			"Do you want to see a picture of our newborn baby? We are so happy!"
 			"Don't you hate it when parents only talk about their kids and nothing else? I really try to avoid that ... although I do have really nice kids. Do you want to hear about them?"
 		word
