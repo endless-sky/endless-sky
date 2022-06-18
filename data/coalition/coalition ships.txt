@@ -463,7 +463,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Small Steering Module"
 		"Scram Drive"
 	
-	gun "Bombardment Cannon"
+	gun
 	gun "Finisher Pod"
 	gun "Finisher Pod"
 	turret "Heliarch Repulsor"
