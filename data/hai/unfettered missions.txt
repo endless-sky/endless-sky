@@ -3158,8 +3158,8 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 
 mission "Unfettered: Know Your Enemy"
-	name `Approach the enemy and learn to communicate`
-	description `You should use your status of independent from the Unfettered to scan all of Wanderer space. Also, you need to be able to communicate with the enemy, go and try to speak with them and then go to <stopovers> to see if He Yi managed to get a translator.`
+	name `Approach the enemy and get a translator.`
+	description `You should use your status of independent from the Unfettered to scan all of Wanderer space. Also, you need to obtain a translator, first go meet the Wanderers and then go to <stopovers> to see if He Yi managed to get one.`
 	source "Firelode"
 	stopover "Warfeed"
 	to offer
@@ -3190,9 +3190,9 @@ mission "Unfettered: Know Your Enemy"
 				has "reputation: Wanderer" >= 0"
 			choice
 				`	"But I am at war with them already."`
-			`	"We know. Here is a message in Hai that you will transmit to them. Hearing it, they should behave as though they have never seen you before... It is probably best you do not know what is in this message though. You need to make the Hai see this new alien race as an ambassador between our races, the Hai would not believe anything if it came from us. We do not want to drag our brethren into a conflict that is ours, we are the warriors, not them. But they still need to see how weak the birds are."`
+			`	"We know. Here is a message in Hai that you will transmit to them. It says you are our ambassador, do not abuse that status by shooting them! You need to make the Hai see this new alien race as an ambassador between our races, the Hai would not believe anything if it came from us. We do not want to drag our brethren into a conflict that is ours, we are the warriors, not them. But they still need to see how weak the birds are."`
 			action
-				"reputation: Wanderer" = 1
+				"reputation: Wanderer" = 0
 			label neutral
 			`	"Do scout all of their systems for us, and bring back any information you may gather."`
 			choice
@@ -3221,14 +3221,14 @@ mission "Unfettered: Know Your Enemy"
 	waypoint "Es'sprak'ai"
 
 	on waypoint
-		dialog `You have scouted all of the Wanderer's systems. If you can somehow speak Hai already, it is time to come back to <destination>, for a reward.`
+		dialog `You have scouted all of the Wanderer's systems. If you can somehow speak Hai already, it is time to come back to <destination>, for a reward, else go to <stopover>.`
 	to complete
 		has "language: Wanderer"
 	on complete
 		log `The Unfettered asked me to be able to speak like a True Hai, because that is the language in which I should make demands to the Unfettered later.`
 		log "Wanderer" `The Wanderers are a birdlike specie that seems weak and is said to inhabit the old lands of the Unfettered Hai.`
 		payment 1000000
-		dialog `You find the herald back. "Now you can speak to us like a True Hai, finally. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our Chiefs, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
+		dialog `You find the herald back. "Now we can speak to you in the True language of the Hai, finally. And you can speak to us in Hai, trough the translator. By respect to you, we will keep speaking to you in your language. Except for some maybe... You only should use the translator to speak and understand our Chiefs, or at least some of them. They will probably do as if they noticed nothing, but trust me, they care. Oh and here are <payment> for the intel, we could not have gotten it so easily given they shoot our ships on sight."`
 
 
 
