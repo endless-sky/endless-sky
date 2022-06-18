@@ -177,6 +177,8 @@ mission "Resistance: Smuggling: Grenades"
 			`	She explains that the crates you brought in were filled with Heliarch assault guns, meant to supply the members here with better weaponry. "Used the charity as a means of smuggling, for decades we have," she explains. "But difficult to acquire, larger Heliarch outfits are. Difficult to transport in secret. Capable of leaving, you are, so bring in outfits from the outside, you could." She tells you the Lunarium needs some explosives they could reproduce with relative ease, and use against the Heliarchs in boarding operations. They've been informed that not far from the Coalition, there are human worlds selling fragmentation grenades, which would do the job. "A hundred of them, to <planet>, you must bring," she says. "Paid twice their value, you will be, <payment>."`
 			`	A communicator on her beeps, and she gets word that the workers have finished unloading the smuggled guns. She tells you you'll receive coordinates for delivering the grenades once you're landing on <planet>, and wishes you good luck.`
 				accept
+	on accept
+		log "Agreed to acquire some grenades for the Lunarium from human space. They've offered to pay quite well."
 	on visit
 		dialog `You've arrived on <planet>, but the ship carrying the grenades hasn't arrived in this system yet. Better depart and wait for it.`
 	on complete
@@ -215,6 +217,9 @@ mission "Resistance: Smuggling: AM"
 			label accept
 			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the 'inspection' is done, she leaves your ship and scurries off.`
 				accept
+	on accept
+		log "Agreed to smuggle the Lunarium three of the largest human anti-missile turrets. They hope to reverse engineer them to defend against Heliarch weaponry, though the effectiveness of human designs here is dubious."
+		log "Given what appears to be some sort of communication device by a Lunarium representative to facilitate easier contact."
 	on visit
 		dialog `You've arrived on <planet>, but the ship carrying the anti-missile turrets hasn't arrived in this system yet. Better depart and wait for it.`
 	on complete
@@ -352,6 +357,8 @@ mission "Resistance: Smuggling: Reactors"
 			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'armageddon core,' 'fusion reactor' and 'breeder reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Every month the rotating patrols switch. New patrols on the fifth usually arrive, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
 			`	She signs off, the beeping stops, and your monitor returns to normal.`
 				accept
+	on accept
+		log "The Lunarium will need more power than the Coalition solar panels can provide to take on the Heliarchs. Agreed to provide them samples of human shipboard nuclear reactors to reproduce to this end."
 	on visit
 		dialog `You land on <planet>, but don't receive any instructions from the local Lunarium members. Either one or more of the reactors aren't with you in the system, or you're past the delivery window. You should prepare to bring in the three reactors before the fifth day of the month, and try again.`
 	to complete
@@ -362,6 +369,8 @@ mission "Resistance: Smuggling: Reactors"
 		outfit "Breeder Reactor" -1
 		payment 33000000
 		"assisted resistance" ++
+		log "After delivering some nuclear reactors, Chiree says she won't make further contact via the usual communicator, but others of the Lunarium on Coalition worlds may offer similar work."
+		log "Factions" "Lunarium Redoubt" "Apparently, some Arach houses are not entirely happy with the status of the Coalition under the Heliarchs, and so they help fund the Lunarium."
 		conversation
 			`When you come in to land, the local Lunarium contacts direct you to a site far away from any of the cities. You are led close to a gigantic cave entrance, on a valley already blanketed by the planet's typical heavy downpours. Dozens of Arachi and Kimek are waiting for you, and once you do they use hulking cargo loaders to carefully take each reactor from your ship, slowly bringing them inside the cave. They repeat this slow, arduous process with each reactor that you were tasked to bring to them.`
 			`	Most of those not working on moving the reactors are heavily armed, keeping careful watch of the skies and occasionally tuning into a communicator for any signs of Heliarch ships that may be approaching. After over an hour, once the last reactor is finally taken out of your cargo hold, one of the Arachi comes up to you and hands you <payment>, thanking you for your service to their cause. "A lot of money, this is, but worth it, the reactors should be."`
