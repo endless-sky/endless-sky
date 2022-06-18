@@ -149,7 +149,7 @@ mission "Resistance: Smuggling: Grenades"
 			label group
 			`	"Heard of us in the news, you must have? Terrorists, bandits, outlaws, criminals... many nicknames, the Heliarchs give us." She looks at the weapons inside the crate. "The Lunarium Redoubt, this is. A group of thugs or whatever they call us, we are not. Trying to rescue our Coalition from the Heliarchs, we are."`
 			label equipment
-			`	A pair of Kimek walk past the table where you're seated, headed for the elevator. The Kimek seated in front of you stays silent as she watches them leave. "No criminal, I was, when these two, I lost," she points to the stubs on her left side. "Make sure the Heliarchs can never do that again, we will. Greatly appreciated, your help would be." She asks that one of the weapons from the crate be put on the table, and taps it with her leg. "Powerful, the blasts from these are, but in need of some more broad, wider-impacting equipment we are. Explosives. Fetch for us some grenades from human space, you could."`
+			`	A pair of Kimek walk past the table where you're seated, headed for the elevator. The Kimek seated in front of you stays silent as she watches them leave. "No criminal, I was, when these two, I lost," she gestures to the stubs on her left side. "Make sure the Heliarchs can never do that again, we will. Greatly appreciated, your help would be." She asks that one of the weapons from the crate be put on the table, and taps it with her leg. "Powerful, the blasts from these are, but in need of some more broad, wider-impacting equipment we are. Explosives. Fetch for us some grenades from human space, you could."`
 			choice
 				`	"Alright, I'll help you. How many grenades do you need?"`
 					goto accept
