@@ -2779,7 +2779,7 @@ mission "Unfettered: Special Cargo 1B"
 					goto three
 				`	(5).`
 					goto five
-				`	(8 could be reasonnable.)`
+				`	(8 could be reasonable.)`
 				`	(Take as much as I can, 15!).`
 				`	(Never mind this isn't a good idea).`
 					goto fake
@@ -3469,7 +3469,7 @@ mission "Unfettered: Start Of The War"
 					goto mistake
 				`	(Nothing specific to say, well fought).`
 					goto train
-			`	He-Yi answer first, "It looks like that was indeed the case. Sheer strenght may break all locks, but is it fun? Is it strategic? I try not to rely on that tactic too often." Sa-Ri then speaks, "Well captain I sure wish I had the money to get such a fleet. I could barrely afford this ship, and it will need repairs again now."`
+			`	He-Yi answer first, "It looks like that was indeed the case. Sheer strength may break all locks, but is it fun? Is it strategic? I try not to rely on that tactic too often." Sa-Ri then speaks, "Well captain I sure wish I had the money to get such a fleet. I could barrely afford this ship, and it will need repairs again now."`
 				goto train
 			label mistake
 			`	He-Yi answers first, "Yes, that is true. We will try not to repeat that mistake again, captain." Sa-Ri then speaks, "Next time it will not be so easy, captain!"`
