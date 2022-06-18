@@ -576,8 +576,8 @@ mission "Unfettered: Bring Medical Supplies"
 		has "reputation: Hai" >= 0
 	on offer
 		conversation
-			`After landing, you receive a high priority message which appears to be repeating on priority channels in both Hai and human standard. It is tagged with the information for one of the hospitals nearby. "Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically and has now been classified as an uncontrolled epidemic. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current medical supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return." Unsure whether they would accept your assistance as an outsider, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
-			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, various vehicles coming and going frequently to bring the wounded to the hospital. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards, or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and not by a well trained physician, to say the least... Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
+			`When you land, there is a message repeating on priority channels in Hai standard. It is tagged with the information for one of the hospitals nearby, but unfortunately it is in Hai so you can only guess meaning out of it. It has to be pretty important, and you can recognize the words for Hai disease, uncontrolled as well as numbers in the hundreads. Unsure whether they would accept your assistance as an outsider, and given the message is in Hai, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
+			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, various vehicles coming and going frequently to bring the wounded to the hospital. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards, or at least it has that appearance. One part of it looks to have been grafted onto the rest though, it is probably a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you here, you're not sure you'll be able to leave at least being accosted for your assistance with this.`
 			choice
 				`	(Signal them I am going to get the supplies.)`
@@ -667,7 +667,7 @@ mission "Unfettered: Prove Your Strength"
 		has "armament deterrence" > 4
 	on offer
 		conversation
-			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. There seems to also be more warriors here than on the other Unfettered planets, or at least they are less afraid to wander around armed. It seems they ready for action at any time, you are happy to no longer be their enemy, at least for now.`
+			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they ready for action at any time, you are happy to no longer be their enemy, at least for now.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
 			`	"This is the monkey you speak so highly off? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you.`
 			choice
@@ -678,21 +678,23 @@ mission "Unfettered: Prove Your Strength"
 					decline
 			`	"See? The monkey dares not even speak! He would not stand a chance in combat! Even our modest ship would bring him straight out of the sky! But we should not even try, or we could hurt the little monkey! But my friends, there is no shame for him to have... with a ship looking like that one I too would be hesitant to fight!" He seems very full of himself, perhaps someone should teach him a lesson.`
 			choice
-				`	"What dare you say about the <ship>?"`
+				`	"You dare insult the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
 					goto provoke
 				`	(Go, he is not worth it.)`
 					decline
-			`	"Oh so that was your ship indeed! I was not sure, given your reputation, that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, then he turns to address the crowd once again.`
-
+			`	"Oh so that was your ship indeed! I was not sure, given your reputation, that you would fly in something like that. Your prowess is not exaggerated indeed then, for you managed to not crash on landing with such a thing," he says, then he turns to address the crowd once again. "I wonder if he could take off again. Maybe he needs our assistance for that."`
+				goto lesson
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says, with a provocative tone.`
+			label lesson
 			`	Time for him to learn a lesson. But then it occurs to you that perhaps you are the one who needs to learn humility.`
 			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, alone, a battle of flagships. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					accept
 				`	(Crush his rodent face.)`
+					goto crush
 				`	"Can you tell me more about the rules of this fight?"`
 					goto rules
 				`	(Run away.)`
