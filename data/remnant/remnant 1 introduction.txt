@@ -2440,15 +2440,16 @@ mission "Remnant: Scanning Tolerances"
 	description `Deliver data crystal to the researchers on <destination>.`
 	source
 		government "Remnant"
-		not distance 0
 	destination
 		government "Remnant"
 		not distance 0
 	to offer
 		has "license: Remnant Capital"
+		not "remnant untrusted"
 		random < 30
 	on offer
 		conversation
+			``
 	on complete
 		conversation
 

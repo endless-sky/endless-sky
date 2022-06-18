@@ -352,7 +352,9 @@ phrase "remnant uncontacted"
 		"(They sent you a hail consisting of a sign language you don't understand.)"
 		"(You hear a short song about how scanning them will be considered a hostile action.)"
 		"If you value the continued survival of humanity, do not scan our ships."
+		"If you value your continued survival, do not scan our ships."
 		"We value our privacy, and will respond to scanning with deadly force."
+		"Do not scan our ships."
 
 phrase "remnant uncontacted"
 	word
@@ -477,6 +479,34 @@ phrase "friendly remnant"
 	word
 		"."
 		"!"
+
+phrase "friendly remnant"
+	word
+		"Please"
+	word 
+		" "
+	word
+		"do not"
+		"try not to"
+		"refrain from"
+	word
+		" "
+	word
+		"scanning"
+	word
+		" "
+	word
+		"us."
+		"our ships."
+
+phrase "friendly remnant"
+	word
+		"Loose lips sink ships."
+		"Careless talk costs lives."
+		"Keep mum."
+		"Careless scans costs lives."
+		"If no-one knows we are here, no-one can target us."
+		"They cannot target what they do not know."
 
 phrase "friendly remnant"
 	word
