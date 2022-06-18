@@ -616,12 +616,12 @@ mission "Unfettered: Bring Medical Supplies"
 					decline
 				`	"So did you just tricked me into helping the war effort?"`
 				`	"Were these supplies for soldiers?"`
-					goto soldiers
+					goto forsoldiers
 				`	"The raiders?"`
 					goto raiders
 			`	He does not answer your question directly, "If you really must know, these supplies were indeed used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. Most of the wounds came from battle, that is true, but the "soldiers" as you say need to be kept well just as everyone else, or else we do all suffer. The Hai would not dare to kill us, of course, but they could destroy our way of life, our spirits. And we need our soldiers to bring us supplies."`
 				decline
-			label soldiers
+			label forsoldiers
 			`	"I do not view any of the Hai as "soldiers" or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others."`
 				decline
 			label raiders
