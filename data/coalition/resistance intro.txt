@@ -8,6 +8,15 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Lunarium Initial Log"
+	invisible
+	landing
+	to offer
+		has "Lunarium introduced"
+	on offer
+		log "Factions" "Lunarium Redoubt" "The Lunarium Redoubt is a resistance movement, opposed to the Heliarchs, within the Coalition, aiming to free it from their rule.
+		fail
+
 mission "Resistance: Charity 1"
 	name "Charity Delivery"
 	description "Deliver a care package of <cargo> to <destination>, as part of a charity initiative."
@@ -29,14 +38,16 @@ mission "Resistance: Charity 1"
 				`	"What sort of charity work?"`
 				`	"Sorry, I'm busy right now."`
 					decline
-			`	"Very prosperous, many Kimek worlds have become, but still lagging behind, a few of our planets are," she explains. "Very poor, the people of <planet> are, and lack many amenities such as computers and communicators, they do. Want to help them, our more fortunate people do, and offered up many supplies, they have. In need of captains to transport them to <planet>, we are," she finishes, looking at your ship.`
+			`	"Very prosperous, many Kimek worlds have become, but still lagging behind, a few of our planets are," she explains. "Very poor, the people of <planet> are, and many amenities such as computers and communicators, they lack. To help them, our more fortunate want, and offered up many supplies, they have. In need of captains to transport them to <planet>, we are," she finishes, looking at your ship.`
 			choice
 				`	"I'd be glad to help you. Have the supplies loaded into my ship."`
 				`	"That's a noble cause, but I don't work as a cargo hauler, sorry."`
 					decline
-			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you much, we cannot, but helping many, you will be. Assure you of that, I do."`
+			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you much, we cannot, but helping many, you will be. Of that you I assure."`
 			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More colleagues are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
+	on accept
+		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the charity supplies hasn't entered this system yet. Better depart and wait for it.`
 	on complete
@@ -60,14 +71,14 @@ mission "Resistance: Charity 2"
 		not "Heliarch License: done"
 	on offer
 		conversation
-			`As you make your way through the spaceport on <origin> you're approached by a Kimek in a blue uniform. She approaches you when she sees you, and you recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
-			`	"Meet again we do, Captain <last>!" She says. "Interested in some more charity work, are you?"`
+			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
+			`	"Again we meet, Captain <last>!" She says. "In some more charity work, are you interested?"`
 			choice
 				`	"I'd love to. What do you need me to do?"`
 				`	"Sorry, charity doesn't pay much and I'm kind of in need of cash."`
 					decline
 			`	"An ever-colder world, <planet> is. Left the planet, many have, but wish to abandon their homes, lots of Kimek there do not," she explains. "Lacking proper winter clothing for the harsher weather, many are, and led to many job losses, the snowfall has, so delivering various coats and warm clothing pieces, we are."`
-			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on the planet also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be. Compensate you enough for how much this helps, <payment> cannot, but hope, I do, that worth it to you, it is."`
+			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on <planet> also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be. Compensate you enough for how much this helps, <payment> cannot, but hope, I do, that worth it to you, it is."`
 			`	Some workers bring <cargo> into your ship, while you show the <bunks> Kimek doctors their bunks. The Kimek who met you here wishes you all a safe trip to <planet>, and moves on to speak with some other captains.`
 				accept
 	on visit
@@ -91,7 +102,7 @@ mission "Resistance: Charity 3"
 		not "Heliarch License: done"
 	on offer
 		conversation
-			`A group of Kimek in the blue uniforms approach you in the spaceport. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
+			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of the charity you have been helping by transporting supplies and people. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
 			choice
 				`	"What do you need me to do?"`
 				`	"Sorry, I'm not interested in helping anymore."`
@@ -112,6 +123,8 @@ mission "Resistance: Grenades"
 		has "Resistance: Charity 3: done"
 		not "Heliarch License: done"
 	on offer
+		log "It seems the charity I've been helping is actually the Lunarium, a resistance group within the Coalition, aiming to free it from the rule of the Heliarchs. Some of the work was genuinely charity, apparently, but some of it was to support the Lunarium's own goals."
+		set "Lunarium introduced"
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch metchiree
@@ -131,10 +144,10 @@ mission "Resistance: Grenades"
 				`	"What sort of equipment?"`
 					goto equipment
 				`	"And if I refuse?"`
-			`	"Then put that sack on your head again, we will, and brought back to your ship, we will be," she says. "Harming you, we are not. Tell on us, you could, but not very... willing to investigate here, most Heliarchs are."`
+			`	"Then put that sack on your head again, we will, and brought back to your ship, you will be," she says. "Harming you, we are not. Tell on us, you could, but not very... willing to investigate here, most Heliarchs are."`
 				goto equipment
 			label group
-			`	"Heard from us in the news, you must have? Terrorists, bandits, outlaws, criminals... many nicknames, the Heliarchs give us." She looks at the weapons inside the crate. "The Lunarium Redoubt, this is. A group of thugs or whatever they call us, we are not. Trying to rescue our Coalition from the Heliarchs, we are."`
+			`	"Heard of us in the news, you must have? Terrorists, bandits, outlaws, criminals... many nicknames, the Heliarchs give us." She looks at the weapons inside the crate. "The Lunarium Redoubt, this is. A group of thugs or whatever they call us, we are not. Trying to rescue our Coalition from the Heliarchs, we are."`
 			label equipment
 			`	A pair of Kimek walk past the table where you're seated, headed for the elevator. The Kimek seated in front of you stays silent as she watches them leave. "No criminal, I was, when these two, I lost," she points to the stubs on her left side. "Make sure the Heliarchs can never do that again, we will. Greatly appreciated, your help would be." She asks that one of the weapons from the crate be put on the table, and taps it with her leg. "Powerful, the blasts from these are, but in need of some more broad, wider-impacting equipment we are. Explosives. Fetch for us some grenades from human space, you could."`
 			choice
@@ -154,7 +167,7 @@ mission "Resistance: Grenades"
 			`	She breathes deeply for a moment, then asks the other Kimek to put her prosthetics back on. "Very well," she says, before walking back into the strange grouping of cubicles. The Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship, removing the sack from your head and walking off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual about it.`
 				decline
 			label metchiree
-			`	While they're removing the crates from your hold, a familiar Kimek approaches you: it's Chiree, the local Lunarium leader. "Speak in your ship, may we, Captain?" You bring her inside <ship>, and she continues. "Since one of us, you now are, ask you to help with acquiring some equipment, I'd like."`
+			`	While they're removing the crates from your hold, a familiar Kimek approaches you: it's Chiree, the local Lunarium leader. "Speak in your ship, may we, Captain?" You bring her inside <ship>, and she continues. "Since one of us, you now are, to help with acquiring some equipment, you I'd like to ask."`
 			choice
 				`	"What sort of equipment?"`
 					goto equipment2
@@ -190,7 +203,7 @@ mission "Resistance: AM"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`You land to find an Arach Heliarch agent waiting for you. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have," she says. She heads inside your ship before you can say anything, and rushes to the cockpit, asking you to close the door after you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we need, so sent to ask you for three of the largest human anti-missile turrets, I was."`
+			`You land to find an Arach Heliarch agent waiting for you. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have," she says. She heads inside your ship before you can say anything, and rushes to the cockpit, asking you to close the door after you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
 			choice
 				`	"Where should I take them to?"`
 				`	"I'm not sure human anti-missiles will be very effective against your missiles."`
@@ -237,6 +250,8 @@ mission "Resistance: Torpedoes"
 			`	You input the message, and get a response almost immediately; it seems Chiree's prosthetics don't negate the advantage of having so many legs typing in unison. "Two 'torpedo launchers' and two 'typhoon launchers' are what we need, along with the ammo to fill all of them. Brought to <planet>, they must be. There, our most adequate facilities for torpedoes are. Receive <payment> once you've delivered them there, you will."`
 			`	The interface pops out, and the round drive stops beeping as your monitor returns to normal.`
 				accept
+	on accept
+		log "Agreed to provide the Lunarium with some torpedo and typhoon launchers. The lack of anti-missile systems on Heliarch ships means missile technology will be highly beneficial for the Lunarium."
 	on visit
 		dialog `You've arrived on <planet>, but the ship carrying the launchers and their ammo hasn't arrived in this system yet. Better depart and wait for it.`
 	on complete
@@ -291,6 +306,8 @@ mission "Resistance: Heat"
 			`	She quickly types out another message. "A larger delivery, this will be, so a good hiding spot, we'll need. To <destination>, bring two 'plasma turrets' and ten 'flamethrowers' you must. Paid <payment>, you will be."`
 			`	The beeping stops and your monitor returns to normal again.`
 				accept
+	on accept
+		log "Agreed to bring the Lunarium some plasma turrets and flamethrowers, they seem to believe heat dammage will be effective against Heliarch ships."
 	on visit
 		dialog `You've arrived on <planet>, but the ship carrying the plasma turret hasn't arrived in this system yet. Better depart and wait for it.`
 	on complete
@@ -328,11 +345,11 @@ mission "Resistance: Reactors"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`Landing on <origin>, the Lunarium's device starts beeping once again. Your monitor's screen shifts as you receive Chiree's message. "Captain <last>, a more complicated task for you, I have. Some better power generation, our ships will need, if to fight Heliarch warships, we are. Simpler to mass-produce, human ones should be, but only on <planet>, large enough facilities for that are."`
+			`Landing on <origin>, the Lunarium's device starts beeping once again. Your monitor's screen shifts as you receive Chiree's message. "Captain <last>, a more complicated task for you, I have. Some better power generation, our ships will need, if to fight Heliarch warships, we are. Simpler to mass-produce, human ones should be, but only on <planet>, large enough facilities exist."`
 			choice
 				`	"Why is that a problem? I already delivered the grenades to that planet."`
 				`	"Did something change about <planet>?"`
-			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'armageddon core,' 'fusion reactor' and 'breeder reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Switch out every month, the rotating patrols there do. Arrive on the fifth, the new patrols usually do, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
+			`	"Larger than other equipment you've brought us, these generators are," the next message says. "The 'armageddon core,' 'fusion reactor' and 'breeder reactor', what we need are, but take a long time to move such large pieces, it will. Risk being seen, we cannot, so only in some days, delivered they may be. Every month the rotating patrols switch. New patrols on the fifth usually arrive, so delivered during that window before the fifth, the reactors must be. Pay you well for this, we will, <payment>."`
 			`	She signs off, the beeping stops, and your monitor returns to normal.`
 				accept
 	on visit
