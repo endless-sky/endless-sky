@@ -429,7 +429,7 @@ news "hai joining unfettered"
 		word
 			`"`
 		word
-			"So many poeple need relocation. I have made it my job to carry them around, asking for little if anything. Some are Hai going into unfettered space because they have lost themselves."
+			"So many people need relocation. I have made it my job to carry them around, asking for little if anything. Some are Hai going into unfettered space because they have lost themselves."
 			"With the new rumours of action soon in the north the demand in transport here have risen up, I cannot possibly transport all of them. Time to buy a new ship I guess."
 			"Many of those who transport Hai here ask for little. Too little, have you seen the increase in demand? I am going to raise my price, I cannot be transporting people around all day for nothing."
 			"Once I am done transporting people I will stay here and be a part of the action."

@@ -1270,6 +1270,9 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 	add attributes
 		"bunks" -112
 		"cargo space" 200
+	cargo
+		outfits
+			"Loot" 1
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -1760,7 +1763,8 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
-		require "brig"
+		# when the take ship & check for ship PR will be merged this will be more proper
+		outfit "Loot" -1
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. It seems to be too deep or at least shielded from scans in some way. You will have to go blind in it.`
 			`	Weirdly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here it is probably a skeleton crew. You exit your ship but cannot find anyone. They could be hidden so you go carrefully with your crew, looking for the jump drive vault, which can not be far. On the way you hear sounds... Sounds that definitely did not originate from humans. Heading that way you find a brig with Koraths in itm and a very peculiar symbol over it, that looks like a lizard's head. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
@@ -2851,10 +2855,10 @@ mission "Unfettered: Special Cargo 2"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will alleviate the cost. Next time try to show more strength, it is all that Unfettered in general respect. Thankfully money is not really much of an issue to us."`
 			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered," he gestures to the mystery cube, "somewhere on the surface, discretely. It doesn't matter where as long as no one noticed. You'll also need to be able to tell me exactly where it is, so it can be retrieved later."
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered," he gestures to the mystery cube, "somewhere on the surface, discretely. It doesn't matter where as long as no one noticed. You'll also need to be able to tell me exactly where it is, so it can be retrieved later."`
 			choice
-				`	"Is this the real reason for my trip, like with the shipyard?"
-			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my tactics when there is no need?"
+				`	"Is this the real reason for my trip, like with the shipyard?"`
+			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my tactics when there is no need?"`
 			choice
 				`	"I will do it."`
 					accept
