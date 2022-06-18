@@ -48,6 +48,8 @@ mission "Resistance: Charity 1"
 				accept
 	on accept
 		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
+	on accept
+		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the charity supplies hasn't entered this system yet. Better depart and wait for it.`
 	on complete
