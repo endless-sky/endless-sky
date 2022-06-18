@@ -595,7 +595,7 @@ outfit "Firelight Missile"
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
-	description `The reactor element inside a Firelight missile must be kept minimally active in order to ensure it is ready for launch.  Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
+	description `The reactor element inside a Firelight missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
