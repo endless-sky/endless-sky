@@ -29894,7 +29894,7 @@ planet Shroud
 
 planet "Silo of Ablodab"
 	attributes arach "coalition station" mining factory
-	landscape
+	landscape land/station9
 	description `First built by the Heliarchs just centuries after their victory over the Quarg, this station serves as both a control point for the automated strip mines on the planet below, and a smeltery to process all the raw materials brought over into the finest alloy platings. First used to produce many of the components of the two other stations in the system, the Silo now serves as a factory of replacement ship parts, to aid the local dry dock's repairing functions, if needed. Within restricted sections, under constant Heliarch patrol, the station features a few large, warehouse-like rooms, where the surplus platings are stored until they're needed.`
 	spaceport `In its early days, the Silo boasted more activity than most other Coalition stations of its size, with merchant and military ships alike aiding in the construction process of its younger, sibling stations. Over thousands of years, many of the areas dedicated to living grounds and trade centers were swapped out for more and more storage sections for the alloy platings.`
 	"required reputation" 15
