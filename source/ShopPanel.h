@@ -36,6 +36,30 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
+
+	// The result of an attempt to buy. Implicitly converted from a string or
+	// boolean in code. Any string indicates failure. True indicates success,
+	// of course, while false indicate failure, but no need to pop up a message.
+	class BuyResult {
+	public:
+		BuyResult(const char* error) : success(false), message(error) {}
+		BuyResult(const std::string& error) : success(false), message(error) {}
+		BuyResult(bool result) : success(result), message() {}
+		BuyResult() = delete;
+
+		operator bool() const { return success; }
+		operator !() const { return !success; }
+		operator const std::string&() const { return message; }
+
+		bool Succeeded() const { return success;}
+		bool HasMessage() const { return message != ""; }
+		const std::string& Message() const { return message; }
+	private:
+		const bool success = true;
+		const std::string message;
+	};
+
+public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
 	virtual void Step() override;
@@ -58,9 +82,8 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const = 0;
-	virtual void Buy(bool alreadyOwned = false) = 0;
-	virtual void FailBuy() const = 0;
+	virtual const BuyResult CanBuy(bool checkAlreadyOwned = true) const = 0;
+	virtual void Buy(bool checkAlreadyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
 	virtual void Sell(bool toStorage = false) = 0;
 	virtual void FailSell(bool toStorage = false) const;

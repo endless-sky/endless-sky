@@ -222,7 +222,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
+const ShopPanel::BuyResult ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!selectedShip)
 		return false;
@@ -240,7 +240,7 @@ bool ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 
 
 
-void ShipyardPanel::Buy(bool alreadyOwned)
+void ShipyardPanel::Buy(bool checkAlreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -265,7 +265,7 @@ void ShipyardPanel::Buy(bool alreadyOwned)
 
 
 
-void ShipyardPanel::FailBuy() const
+void ShipyardPanel::FailBuy(const string& message) const
 {
 	if(!selectedShip)
 		return;

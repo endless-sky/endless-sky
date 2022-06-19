@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -604,8 +605,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
 			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
 	{
-		if(!CanBuy(key == 'i' || key == 'c'))
-			FailBuy();
+		const auto result = CanBuy(key == 'i' || key == 'c');
+		if(!result)
+		{
+			if(result.HasMessage())
+				GetUI()->Push(new Dialog(result));
+		}
 		else
 		{
 			Buy(key == 'i' || key == 'c');
