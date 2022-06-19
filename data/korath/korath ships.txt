@@ -320,7 +320,7 @@ ship "Korath Raider Mark XLII"
 	attributes
 		category "Medium Warship"
 		"cost" 22395000
-		"shields" 27500
+		"shields" 29500
 		"hull" 11000
 		"required crew" 157
 		"bunks" 250
