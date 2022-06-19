@@ -4004,7 +4004,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	to offer
 		random < 15
-	source attributes "frontier" "pirate" "rim"
+	source attributes frontier pirate rim
 	stopover Skymoot
 	on offer
 		conversation
@@ -4042,7 +4042,7 @@ mission "Dangerous Games 1"
 						`	(Stay and watch the Dragonriders).`
 							goto watch
 						`	(Take off and leave everybody else behind).`
-					`		goto betrayal
+							goto betrayal
 					label watch
 					`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
 					choice
@@ -4064,17 +4064,16 @@ mission "Dangerous Games 1"
 					label takeoff
 					`	The ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
 			on complete
-				payment ????
 				conversation
 					`As you land and fuel up, Karengo herds the seven surviving men out of the ship. "Meet us at the bar, yeah?" he says to you. "This day deserves a celebration." You nod, but can't help but notice red eyes and wet cheeks among the rest of the Dragonriders as they shuffle off.`
-					`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.
+					`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.`
 					`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, brother." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
 					choice
 						`	"To the Dragonriders!"`
 						`	"To our fallen friends!"`
 						`	"I'm good, thanks."`
 					`	Karengo gives you an unreadable look and lowers his glass.`
-					`	"Your payment, plus Bolek and Jarek's signup fees. <payment>."
+					`	"Your payment, plus Bolek and Jarek's signup fees. <payment>."`
 				action
 					payment 12000 500
 					choice
