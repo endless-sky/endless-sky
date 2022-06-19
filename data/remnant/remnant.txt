@@ -488,11 +488,10 @@ phrase "friendly remnant"
 	word
 		"do not"
 		"try not to"
-		"refrain from"
 	word
 		" "
 	word
-		"scanning"
+		"scan"
 	word
 		" "
 	word
@@ -507,6 +506,7 @@ phrase "friendly remnant"
 		"Careless scans costs lives."
 		"If no-one knows we are here, no-one can target us."
 		"They cannot target what they do not know."
+		"Kindly restrain your curiosity about us until we trust you more."
 
 phrase "friendly remnant"
 	word

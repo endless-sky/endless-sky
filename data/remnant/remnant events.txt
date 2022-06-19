@@ -18,6 +18,9 @@ event "remnant: change hail"
 	government "Remnant"
 		"friendly hail" "friendly remnant"
 		"hostile hail" "hostile remnant"
+	government "Remnant (Research)"
+		"friendly hail" "friendly remnant"
+		"hostile hail" "hostile remnant"
 
 
 
