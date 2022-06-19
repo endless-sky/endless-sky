@@ -28166,6 +28166,7 @@ planet Greymoon
 	security 0.5
 
 planet "Guardian Array Sapphire"
+	attributes heliarch arach "coalition station" 
 	landscape
 	description `More commonly referred to by its nickname "Checkpoint of Ablodab," this enormous station was built shortly after the end of the Coalition's war with the Quarg, meant to serve as a regional dry dock that damaged combat ships could return to after some time in the front lines. With no Quarg attack in so long, though, it's shifted into being a simple refuelling hub for passingby merchant ships, as its dozens of warship-sized hangars remain mostly unused.`
 	description `	In spite of the lack of combat activity the station was designed to support, the local Heliarchs run a tight schedule even for civilian visitors as they first land, ensuring ships are refuelled and tended to as quickly as possible.`
