@@ -2452,7 +2452,7 @@ mission "Remnant: Scanning Tolerances"
 		random < 30
 	on offer
 		conversation
-			`You were just in the process of disembarking from <ship> when a young Remnant jogs up to you. "Good day, Captain <first>. Sorry to interrupt, but we have an urgent delivery that needs to go to Torza on <destination>. Could you deliver this please?`
+			`You were just in the process of disembarking from <ship> when a young Remnant jogs up to you. "Good day, Captain <first>. Sorry to interrupt, but we have an urgent delivery that needs to go to Torza on <destination>. Could you deliver this please?"`
 			choice
 				`	"Yes, I can."`
 					goto agreement
