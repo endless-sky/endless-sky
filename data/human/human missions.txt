@@ -3999,7 +3999,7 @@ event "fumbling mugger followup timer"
 
 mission "Dangerous Games 1"
 	name "Dragonriders"
-	description "A lively man named Karengo and a few passionate youths are traveling with you to see the dragons on <stopover>. Take the group to <destination> and return the group back to <source> once they've finished."
+	description "A lively man named Karengo and a few passionate youths are traveling with you to see the dragons on <stopover>. Take the group to <stopover> and return the group back to <destination> once they've finished."
 	minor
 	passengers 9
 	to offer
