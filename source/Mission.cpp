@@ -144,7 +144,7 @@ void Mission::Load(const DataNode &node)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
-		else if(child.Token(0) == "deadelin" && child.Size() >= 4)
+		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "deadline")
 		{
