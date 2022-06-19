@@ -1432,13 +1432,15 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/icon/firelight*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
- images/projectile/firelight
- images/projectile/firelight?active
+ images/projectile/firelight*
+ images/projectile/firelight?active*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
+Comment: Wing details done by Becca Tommaso.
 
 Files:
  images/ship/raiderii*
