@@ -27970,7 +27970,7 @@ planet "Garden Empyreal"
 	description `	First devised by the Kimek before the Coalition's war with the Quarg, the structure was actually completed relatively recently, just two thousand years ago. Populating the gas giant's uppermost level, several hardy species of artificially engineered bacteria are cultivated, being periodically "scooped" by the lower body of each hub, and mass-produced into a nutritious soup.`
 	spaceport `When not in "harvest season", the hubs are relatively quiet, and serve mostly as a tourist destination, many coming for the unique, close-up view of a sea of clouds, swarming with furious storms and dotted with more floating silver palaces in the distance.`
 	spaceport `	Hubs share the same design in general, but the decoration pieces, services and local amenities of each one have grown in their own way over the centuries. The only shop present in every one of them is the signature restaurant, which serves a variety of dishes, drinks and even desserts all based on the processed, scooped up produce.`
-	"required reputation" 15
+	"required reputation" 20
 
 planet Geminus
 	attributes factory mining paradise
