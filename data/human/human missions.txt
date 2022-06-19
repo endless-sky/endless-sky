@@ -3999,7 +3999,7 @@ event "fumbling mugger followup timer"
 
 mission "Dangerous Games 1"
 	name "Dragonriders"
-	description "A lively man named Karengo and a few passionate youth are traveling with you to see the dragons on <stopover>. Take the group to <destination> and return the group back to <source> once they've finished."
+	description "A lively man named Karengo and a few passionate youths are traveling with you to see the dragons on <stopover>. Take the group to <destination> and return the group back to <source> once they've finished."
 	minor
 	passengers 9
 	to offer
@@ -4031,7 +4031,7 @@ mission "Dangerous Games 1"
 		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
 	on stopover
 		conversation
-			`	The men load into a shuttle and Karengo directs you down through the atmosphere of <planet>, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
+			`	Karengo directs you down through the atmosphere of <planet>, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
 			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the men, or "Dragonriders", as they creatively branded themselves during their first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
 			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
 			`	The dragons of <planet> you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are largely invisible - a trick of the way the light reflects around the scales on their hides. They are faster, too, or perhaps the ones on the show had been drugged to make them easier to film.`
