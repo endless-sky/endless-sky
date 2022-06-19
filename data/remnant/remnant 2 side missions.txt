@@ -156,7 +156,7 @@ mission "Remnant: Teciimach Deployment"
 		attributes "has shipyard" remnant
 	to offer
 		has "event: remnant: cognizance calm"
-		has "Remnant: Broken Jump Drive 5: done"
+		has "event remnant research update bjd1"
 	on offer
 		event "remnant: teciimach deployment"
 		conversation
