@@ -4079,9 +4079,9 @@ mission "Dangerous Games 1"
 			action
 				payment 12000 500
 			choice
-			`	"Thanks."`
-				goto end
-			`	I can't accept their money. It's not right."`
-		`	Karengo shrugs and doesn't take it back.`
-		label end
-		`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+				`	"Thanks."`
+					goto end
+				`	I can't accept their money. It's not right."`
+			`	Karengo shrugs and doesn't take it back.`
+			label end
+			`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
