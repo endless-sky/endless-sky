@@ -27966,7 +27966,7 @@ planet Furnace
 
 planet "Garden Empyreal"
 	attributes kimek "coalition station" shipping wealthy tourism
-	landscape
+	landscape land/clouds_03
 	description `Not counting the trio of Quarg ringworlds, this is the largest megastructure in Coalition space, an array of gigantic metal pyramids, each one nearly a dozen times larger than the average space station. Spread out over the planet's upper atmosphere, these so-called "hubs" are connected by long, inextensible, and extremely sturdy wires, ensuring no part of the structure is destabilized.`
 	description `	First devised by the Kimek before the Coalition's war with the Quarg, the structure was actually completed relatively recently, just two thousand years ago. Populating the gas giant's uppermost level, several hardy species of artificially engineered bacteria are cultivated, being periodically "scooped" by the lower body of each hub, and mass-produced into a nutritious soup.`
 	spaceport `When not in "harvest season", the hubs are relatively quiet, and serve mostly as a tourist destination, many coming for the unique, close-up view of a sea of clouds, swarming with furious storms and dotted with more floating silver palaces in the distance.`
