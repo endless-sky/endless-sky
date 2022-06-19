@@ -28165,6 +28165,7 @@ planet Greymoon
 	security 0.5
 
 planet "Guardian Array Sapphire"
+	landscape
 	description `More commonly referred to by its nickname "Checkpoint of Ablodab," this enormous station was built shortly after the end of the Coalition's war with the Quarg, meant to serve as a regional dry dock that damaged combat ships could return to after some time in the front lines. With no Quarg attack in so long, though, it's shifted into being a simple refuelling hub for passingby merchant ships, as its dozens of warship-sized hangars remain mostly unused.`
 	description `	In spite of the lack of combat activity the station was designed to support, the local Heliarchs run a tight schedule even for civilian visitors as they first land, ensuring ships are refuelled and tended to as quickly as possible.`
 	spaceport `Built to serve as a purely strategical military repair port, the station has very little in the form of amenities, with a few basic cantinas and large, mostly empty living quarters, meant to house troops stationed here. There are no shops, and nearly all civilians you see are moving from their spaceships, on their way to a quick break, or heading back, ready to depart and continue their business.`
@@ -29269,6 +29270,7 @@ planet Ochrescoop
 	security 0.5
 
 planet "Ogmur's Siphon"
+	landscape
 	description `This refinery was built shortly after the nearby dry dock station was finished, to ensure the system was self-sufficient in terms of hyperspace fuel. A small fleet of tanker ships are docked on specially marked hangar bays, always ready to bring the fuel elsewhere if needed.`
 	description `	"Ogmur" is what the Arachi baptized the gas giant below, naming it after a giant snake-like creature of their mythology. With an abnormally dense core, and storms more ruthless than in any other gas giant in the Coalition, Ogmur swallowed the first five iterations of this station before they could be completed, and though this one has remained stable for thousands of years after its completion, superstition surrounding the planet makes it so the Siphon gets very few visitors.`
 	spaceport `While technically part of the system's "Guardian" military complex, there's little Heliarch control over the free space in this station, so a few shops and brand restaurants have opened up to serve the local workers and occasional visitor. Whether by necessity due to the lack of services in the system, or simply boredom in the monotony of the station, the food here is by far the best in the system, and even better than in some Coalition planets.`
@@ -29882,6 +29884,7 @@ planet Shroud
 		fleet "Large Republic" 14
 
 planet "Silo of Ablodab"
+	landscape
 	description `First built by the Heliarchs just centuries after their victory over the Quarg, this station serves as both a control point for the automated strip mines on the planet below, and a smeltery to process all the raw materials brought over into the finest alloy platings. First used to produce many of the components of the two other stations in the system, the Silo now serves as a factory of replacement ship parts, to aid the local dry dock's repairing functions, if needed. Within restricted sections, under constant Heliarch patrol, the station features a few large, warehouse-like rooms, where the surplus platings are stored until they're needed.`
 	spaceport `In its early days, the Silo boasted more activity than most other Coalition stations of its size, with merchant and military ships alike aiding in the construction process of its younger, sibling stations. Over thousands of years, many of the areas dedicated to living grounds and trade centers were swapped out for more and more storage sections for the alloy platings.`
 
