@@ -441,7 +441,6 @@ ship "Heliarch Hunter"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
-		"Bombardment Cannon"
 		"Finisher Pod" 2
 		"Finisher Storage Tube"
 		"Finisher Torpedo" 100
@@ -462,9 +461,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Small Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
-		"Hyperdrive"
+		"Scram Drive"
 	
-	gun "Bombardment Cannon"
+	gun
 	gun "Finisher Pod"
 	gun "Finisher Pod"
 	turret "Heliarch Repulsor"
@@ -479,7 +478,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Small Reactor Module"
 		"Large Battery Module"
 		"Overcharged Shield Module" 2
-		"Overclocked Repair Module" 2
+		"Overclocked Repair Module"
 		"Cooling Module" 3
 		"Scanning Module"
 		"Outfits Expansion"
@@ -487,21 +486,23 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Enforcer Confrontation Gear" 16
 		
 		"Large Thrust Module" 2
+		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module" 2
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 	outfits
 		"Finisher Pod" 3
-		"Finisher Storage Tube" 8
-		"Finisher Torpedo" 280
+		"Finisher Storage Tube" 6
+		"Finisher Torpedo" 240
 		
-		"Small Reactor Module" 2
-		"Small Battery Module"
+		"Large Reactor Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
-		"Scanning Module"
+		"Scanning Module" 2
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 27
 		"Enforcer Confrontation Gear" 17
@@ -509,7 +510,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 	outfits
@@ -522,7 +523,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 2
 		"Cooling Module" 3
-		"Scanning Module" 2
+		"Scanning Module"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 26
 		"Enforcer Confrontation Gear" 18
@@ -530,8 +531,8 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Small Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module"
+		"Scram Drive"
 
 
 ship "Heliarch Interdictor"
