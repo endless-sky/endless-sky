@@ -4052,7 +4052,7 @@ mission "Dangerous Games 1"
 				`	(Take off and leave everybody else behind).`
 			label betrayal
 			`	The ship takes off with a roar at your touch. Between the cries of the dragons, the sound of the engines, and the air rushing past, you can barely hear the fear and betrayal in the voices of the men you've left behind.`
-				decline
+				fail
 			label leave
 			`	You turn on the external speakers. "WE ARE LEAVING," you blast to the survivors, "GET ON BOARD."`
 			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him, when a flicker of motion on a monitor catches your eye.`
