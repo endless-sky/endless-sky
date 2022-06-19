@@ -4001,7 +4001,8 @@ mission "Laborer"
 	name "Out of Work"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
-	source attributes "factory" "mining"
+	source 
+		attributes "factory" "mining"
 	destination attributes "factory" "mining"
 	minor
 	to offer
@@ -4039,8 +4040,10 @@ mission "Laborer"
 				`	"You don't trust me? Just keep walking, then, if you're gonna be like that."`
 			choice
 				`	"Sorry, money up front."`
+					goto decline
 				`	"Okay, I can take you to <planet>."`
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress."
+			label accept
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress."`
 				accept
 			label decline
 				`	"I knew it. You're just like everyone else."`
@@ -4049,7 +4052,7 @@ mission "Laborer"
 		conversation
 			`	The worker you picked up from <source> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You think that you'd feel more sorry for him if you weren't so eager to get his ceaseless negativity off your ship.`
 			`	He carries his bags to the lowered ramp, then turns back before disembarking.`
-l			`	"Thanks for the lift. You're one of the good ones, you know?"`
+			`	"Thanks for the lift. You're one of the good ones, you know?"`
 			choice
 				`	"You're welcome. Better luck on this world."`
 					goto luck
