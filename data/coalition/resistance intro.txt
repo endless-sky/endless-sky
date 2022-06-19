@@ -31,8 +31,11 @@ mission "Resistance: Smuggling: Charity 1"
 		has "Coalition: First Contact: done"
 		not "Heliarch License: done"
 		not "Heliarch Investigation 2: active"
+		not "Resistance: Questions: active"
 	on offer
 		conversation
+			branch metchiree
+				has "Resistance: Questions: done"
 			`A Kimek in a blue uniform approaches you. "Good day, Captain. Interested in helping with some charity work, would you be?" She asks.`
 			choice
 				`	"What sort of charity work?"`
@@ -46,6 +49,20 @@ mission "Resistance: Smuggling: Charity 1"
 			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you much, we cannot, but helping many, you will be. Of that you I assure."`
 			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More colleagues are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
+			label metchiree
+			`A Kimek in a blue uniform approaches you, and you recognize her as Chiree, the Lunarium leader you met when joining them. She asks to speak in private, and you two go inside your ship. "Much better," she says once the hatch is closed. "Easier to explain you the job, it will be, if speak freely and truly of it, I can.`
+			`	"A 'charity' of sorts in Kimek space, me and other members maintain. True and honest, the donations we receive are, and glad to help those in need within our region, we are. But, also a great cover for certain Lunarium cargo transfers, it is. Wish to enlist your help in that, we do."`
+			choice
+				`	"What will I be transporting?"`
+				`	"Sorry, I'm not available for that now."`
+					decline
+			`	"A regular delivery, this one is. Some tech and amenity goods, to <planet>, a poorer world, you would transport. Wish to risk your valuable aid with a dangerous smuggling task right away, we do not, so help you build a background with the charity, we will. Paid only <payment> for this, you would be, but promise you much greater bounties further down the line, I do."`
+			choice
+				`	"Alright, I'll do what I can."`
+				`	"I actually have some more pressing missions I need to get to, sorry."`
+					decline
+			`	Her mouth produces something of a chirping, clicking sound, "Good. Very good. Have the goods brought in shortly, I will." She leaves your ship, and signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More members are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
+				accept
 	on accept
 		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
 	on visit
@@ -53,8 +70,14 @@ mission "Resistance: Smuggling: Charity 1"
 	on complete
 		payment 44000
 		conversation
+			branch metchiree
+				has "Resistance: Questions: done"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Kimek who gave you the job.`
 			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
+				decline
+			label metchiree
+			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Chiree.`
+			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
 
 mission "Resistance: Smuggling: Charity 2"
 	name "Charity Delivery"
@@ -69,8 +92,11 @@ mission "Resistance: Smuggling: Charity 2"
 		has "Resistance: Smuggling: Charity 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
+		not "Resistance: Questions: active"
 	on offer
 		conversation
+			branch metchiree
+				has "Resistance: Questions: done"
 			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
 			`	"Again we meet, Captain <last>!" She says. "In some more charity work, are you interested?"`
 			choice
@@ -81,12 +107,31 @@ mission "Resistance: Smuggling: Charity 2"
 			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on <planet> also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be. Compensate you enough for how much this helps, <payment> cannot, but hope, I do, that worth it to you, it is."`
 			`	Some workers bring <cargo> into your ship, while you show the <bunks> Kimek doctors their bunks. The Kimek who met you here wishes you all a safe trip to <planet>, and moves on to speak with some other captains.`
 				accept
+			label metchiree
+			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You quickly recognize Chiree, and gesture for her to follow you into your ship. "Thank you, Captain," she says once you're both inside. "Another 'charity' job for you, I have. With some passengers, this time."`
+			choice
+				`	"Just a normal delivery again?"`
+				`	"I'm sorry, but I'm not interested in helping with this kind of work anymore."`
+					decline
+			`	"No," she is quick to respond. "Well, not entirely. In need of more winter clothing, citizens on <planet> are. Also in need of doctors to combat many illnesses the cold there brings, they are. Transport <bunks> passengers there, you also would. Doctors, two of them are. Headed there to help treat the sick in a hospital. As for the other three... 'researchers' of ours, the best way to describe them is. Of course, if questioned, say that all <bunks> of them are doctors, you must."`
+			choice
+				`	"Alright, I'll take them there."`
+				`	"I'm sorry, but I'm not interested in helping with this kind of work anymore."`
+					decline
+			`	She leaves your ship, and meets with a nearby group of <bunks> other Kimek - your passengers, you imagine - before having some workers load up the cargo into your ship. The Kimek greet you briefly with nods and some leg movement as you meet them, and after the cargo is ready, you show them to their bunks.`
+			`	"Paid <payment> for this job, you will be. Have a safe trip, Captain," Chiree says before leaving.`
+				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the charity supplies and Kimek doctors hasn't entered this system yet. Better depart and wait for it.`
 	on complete
 		payment 132000
 		conversation
+			branch metchiree
+				has "Resistance: Questions: done"
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the doctors are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help and ask that you look for them in Kimek worlds if you wish to continue helping.`
+				decline
+			label metchiree
+			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the "doctors" are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help, and come in close as they're about to leave, quietly asking that you look for more members on worlds on northern Kimek space.`
 
 mission "Resistance: Smuggling: Charity 3"
 	name "Charity Delivery"
@@ -100,8 +145,11 @@ mission "Resistance: Smuggling: Charity 3"
 		has "Resistance: Smuggling: Charity 2: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
+		not "Resistance: Questions: active"
 	on offer
 		conversation
+			branch metchiree
+				has "Resistance: Questions: done"
 			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of the charity you have been helping by transporting supplies and people. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
 			choice
 				`	"What do you need me to do?"`
@@ -109,6 +157,14 @@ mission "Resistance: Smuggling: Charity 3"
 					decline
 			`	"Lack many of their preferred diet options, the Arachi and Saryds on <planet> do," they explain. "Enough to order it from off-world, the poorer of them do not have, so sending them a care package, our group is."`
 			`	They show you to a pile of containers and crates near the hangars, and you have them load them into your ship. "Once on <planet>, you are, pay you <payment>, we will. Thank you for the help, Captain." They wish you a safe trip, and vanish into the spaceport halls.`
+				accept
+			label metchiree
+			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of Chiree's "charity" group, and one of them signals to your ship once they're close. You get the hint, and bring them aboard. "More work for you, Chiree has. To <planet>." They begin the moment you close the hatch. "Prepared an important job, she has. One only you can do. Paid <payment> to deliver <cargo> to <planet>, you will be, and once there, tell you the details about the main mission, she can."`
+			choice
+				`	"Understood. I'll go there right away."`
+				`	"I'm sorry, but I don't think this line of work is for me."`
+					decline
+			`	They nod, and you all leave your ship. They show you a pile of containers and crates near the hangars, and load them in your cargo hold.`
 				accept
 	on complete
 		payment 261000
@@ -1556,6 +1612,9 @@ mission "Resistance: Questions"
 		has "First Contact: Quarg: offered"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
+		not "Resistance: Smuggling: Charity 1: active"
+		not "Resistance: Smuggling: Charity 2: active"
+		not "Resistance: Smuggling: Charity 3: active"
 	to fail
 		or
 			has "Heliarch Investigation 2: active"
