@@ -144,19 +144,16 @@ void Mission::Load(const DataNode &node)
 			description = child.Token(1);
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
+		else if(child.Token(0) == "deadelin" && child.Size() >= 4)
+			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "deadline")
 		{
-			if(child.Size() >= 4)
-				deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-			else
-			{
-				if(child.Size() == 1)
-					deadlineMultiplier += 2;
-				if(child.Size() >= 2)
-					deadlineBase += child.Value(1);
-				if(child.Size() >= 3)
-					deadlineMultiplier += child.Value(2);
-			}
+			if(child.Size() == 1)
+				deadlineMultiplier += 2;
+			if(child.Size() >= 2)
+				deadlineBase += child.Value(1);
+			if(child.Size() >= 3)
+				deadlineMultiplier += child.Value(2);
 		}
 		else if(child.Token(0) == "route options")
 		{
@@ -170,8 +167,12 @@ void Mission::Load(const DataNode &node)
 						routeOptions.wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "requires jump drive")
 						routeOptions.requiresJumpDrive = true;
+					else
+						node.PrintTrace("Invalid 'route options' child: \"" + grand.Token(0) + "\" in mission: " + name);
 				}
 			}
+			else
+				node.PrintTrace("Ignoring 'route options' node with no children.");
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
