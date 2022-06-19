@@ -4024,7 +4024,7 @@ mission "Riley"
 			`	She nods, and moves on to another captain to beseech her help instead.`
 				decline
 			label question
-			`	"I wouldn't know how to fly it, and I don't have time to learn. Please, can you help or not?"
+			`	"I wouldn't know how to fly it, and I don't have time to learn. Please, can you help or not?"`
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
 					goto help
@@ -4039,24 +4039,24 @@ mission "Riley"
 	on complete
 		payment 13000
 		conversation
-			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.
+			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
 			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
 			`	She didn't mention it, but it's clear that she was concerned that she'll arrive too late to say goodbye.`
-			As you neared the <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <source> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
+			`	As you neared the <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <source> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
 			`	He'd cried when it was time to leave, and she had, too, but life went on, and it was years before she heard from him again. His message nearly broke her. "Ri, please come as soon as you can. I may not have long, and wish to hold your hand one more time. All love, Dad."`
 			`	Riley directs you to a pad near her old home, and you land the shuttle. She starts toward the door, then pauses and turns around with a self-conscious, but oddly sad, chuckle.`
 			`	"Right - your payment. <payment>, as I promised."`
 			choice
 				`	"Thank you. Do you think I could come along? I've heard so much about your father."`
 					goto father
-				`	"Thank you, and good luck."
+				`	"Thank you, and good luck."`
 					goto end
 				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
-				action
-					fine 13000
+			action
+				fine 13000
 				goto choice
 			label credits
 			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
@@ -4064,7 +4064,7 @@ mission "Riley"
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
 					goto father
-				`	"Thank you, and good luck."
+				`	"Thank you, and good luck."`
 					goto end
 			label father
 			`	She is taken aback at first, but agrees to let you join, and you wind your way away from the landing pads, across rural, wooded countryside, and finally to a modest house nestled along a valley edge. Riley knocks, and a nurse lets you in.`
