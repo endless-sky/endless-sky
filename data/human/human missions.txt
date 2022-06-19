@@ -4042,10 +4042,8 @@ mission "Dangerous Games 1"
 				`	(Announce that I'm leaving).`
 					goto leave
 				`	(Stay and watch the Dragonriders).`
-					goto watch
 				`	(Take off and leave everybody else behind).`
 					goto betrayal
-			label watch
 			`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
 			choice
 				`	(Get everyone out of there).`
