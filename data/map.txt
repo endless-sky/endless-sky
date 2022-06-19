@@ -29327,6 +29327,7 @@ planet "Pelubta Station"
 	"required reputation" 20
 
 planet "Periaxle Circuit"
+	attributes saryd "coalition station" research
 	landscape
 	description `The first structure of this scale the Coalition ever built, this station was designed and fully built before the War of Independence. Originally a Saryd attempt at emulating, at a much smaller scale, the Quarg's own ringworlds, almost all of the living quarters and amenities were stripped away over the course of the war, and the station transformed into a gigantic particle accelerator, used by the Saryds to research weapons and shielding technology. Nowadays, its purpose has shifted into a more general purpose research facility.`
 	description `	Completed dozens of centuries before the war, the structure's original platings failed to last the test of millennia unscathed like the Quarg's own, and are in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance craft can be seen conducting repairs on some outer section of the ring.`
