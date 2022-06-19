@@ -56,7 +56,7 @@ public:
 	iterator end() noexcept { return choices.end(); }
 	const_iterator end() const noexcept { return choices.end(); }
 
-	void clear() noexcept { choices.clear(); total = 0; }
+	void clear() noexcept { choices.clear(); weights.clear(); total = 0; }
 	void reserve(std::size_t n) { choices.reserve(n); weights.reserve(n); }
 	std::size_t size() const noexcept { return choices.size(); }
 	bool empty() const noexcept { return choices.empty(); }

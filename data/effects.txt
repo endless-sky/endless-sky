@@ -312,7 +312,7 @@ effect "bolide"
 effect "pug tiny explosion"
 	sprite "effect/explosion/pug/tiny"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 27
 	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
@@ -324,7 +324,7 @@ effect "pug tiny explosion"
 effect "pug small explosion"
 	sprite "effect/explosion/pug/small"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 22
 	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
@@ -336,7 +336,7 @@ effect "pug small explosion"
 effect "pug medium explosion"
 	sprite "effect/explosion/pug/medium"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 19
 	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
@@ -348,7 +348,7 @@ effect "pug medium explosion"
 effect "pug large explosion"
 	sprite "effect/explosion/pug/large"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 17
 	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360
