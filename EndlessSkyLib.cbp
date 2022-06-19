@@ -349,6 +349,7 @@
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/wormhole-strategy.hpp" />
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
@@ -368,7 +369,6 @@
 		<Unit filename="source/text/alignment.hpp" />
 		<Unit filename="source/text/layout.hpp" />
 		<Unit filename="source/text/truncate.hpp" />
-		<Unit filename="source/wormhole-strategy.hpp" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />
