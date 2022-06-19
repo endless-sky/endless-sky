@@ -4025,6 +4025,7 @@ mission "Dangerous Games 1"
 			choice
 				`	"Captain <last>, at your service. We leave at dawn!"`
 				`	(Stay silent)."`
+					decline
 			`	You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>" he says, "let's do this."`
 				accept
 	on visit
@@ -4081,6 +4082,6 @@ mission "Dangerous Games 1"
 			`	"Thanks."`
 				goto end
 			`	I can't accept their money. It's not right."`
-				`	Karengo shrugs and doesn't take it back.`
-			label end
-			`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+		`	Karengo shrugs and doesn't take it back.`
+		label end
+		`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
