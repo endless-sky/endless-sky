@@ -4054,10 +4054,10 @@ mission "Riley"
 				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
-			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 			action
 				fine 13000
-				goto choice
+				`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
+					goto choice
 			label credits
 			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
 			label choice
