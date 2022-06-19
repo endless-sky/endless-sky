@@ -4027,60 +4027,60 @@ mission "Dangerous Games 1"
 				`	(Stay silent)."`
 			`	You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>" he says, "let's do this."`
 				accept
-			on visit
-				dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
-			on stopover
-				conversation
-					`	The men load into a shuttle and Karengo directs you down through the atmosphere of <planet>, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
-					`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the men, or "Dragonriders", as they creatively branded themselves during their first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
-					`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
-					`	The dragons of <planet> you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are largely invisible - a trick of the way the light reflects around the scales on their hides. They are faster, too, or perhaps the ones on the show had been drugged to make them easier to film.`
-					`	A quick survey of the scene shows that Karengo has tagged three dragons with some sort of harmless marker gun to make them easier to track. Eight of the Dragonriders are chasing the largest one, which is missing part of a tooth and has blackened scales from where it hit your shuttle's shield. The last Dragonrider is nowhere in sight.`
-					`	Suddenly, proximity sensors go off on the starboard side and a camera shows something - or someone - bounce off your shield and tumble down the mountain.`
-					choice
-						`	(Announce that I'm leaving).`
-							goto leave
-						`	(Stay and watch the Dragonriders).`
-							goto watch
-						`	(Take off and leave everybody else behind).`
-							goto betrayal
-					label watch
-					`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
-					choice
-						`	(Get everyone out of there).`
-							goto leave
-						`	(Take off and leave everybody else behind).`
-					label betrayal
-					`	The ship takes off with a roar at your touch. Between the cries of the dragons, the sound of the engines, and the air rushing past, you can barely hear the fear and betrayal in the voices of the men you've left behind.`
-						fail
-					label leave
-					`	You turn on the external speakers. "WE ARE LEAVING," you blast to the survivors, "GET ON BOARD."`
-					`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him, when a flicker of motion on a monitor catches your eye.`
-					`	Karengo is there, and he's riding a dragon, gripping the ridge of scales around its neck. The dragon is frantically trying to get him off, but deft application of his jetpack is, for now, keeping him on top of the beast. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
-					choice
-						`	(Take off).`
-							goto takeoff
-						`	(Swear and take off).`
-					`	"Pignuts," you mutter to yourself.`
-					label takeoff
-					`	The ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
-			on complete
-				conversation
-					`	As you land and fuel up, Karengo herds the seven surviving men out of the ship. "Meet us at the bar, yeah?" he says to you. "This day deserves a celebration." You nod, but can't help but notice red eyes and wet cheeks among the rest of the Dragonriders as they shuffle off.`
-					`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.`
-					`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, brother." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
-					choice
-						`	"To the Dragonriders!"`
-						`	"To our fallen friends!"`
-						`	"I'm good, thanks."`
-					`	Karengo gives you an unreadable look and lowers his glass.`
-					`	"Your payment, plus Bolek and Jarek's signup fees. <payment>."`
-				action
-					payment 12000 500
-					choice
-						`	"Thanks."`
-							goto end
-						`	I can't accept their money. It's not right."`
-					`	Karengo shrugs and doesn't take it back.`
-					label end
-					`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
+	on stopover
+		conversation
+			`	The men load into a shuttle and Karengo directs you down through the atmosphere of <planet>, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
+			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the men, or "Dragonriders", as they creatively branded themselves during their first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
+			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
+			`	The dragons of <planet> you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are largely invisible - a trick of the way the light reflects around the scales on their hides. They are faster, too, or perhaps the ones on the show had been drugged to make them easier to film.`
+			`	A quick survey of the scene shows that Karengo has tagged three dragons with some sort of harmless marker gun to make them easier to track. Eight of the Dragonriders are chasing the largest one, which is missing part of a tooth and has blackened scales from where it hit your shuttle's shield. The last Dragonrider is nowhere in sight.`
+			`	Suddenly, proximity sensors go off on the starboard side and a camera shows something - or someone - bounce off your shield and tumble down the mountain.`
+			choice
+				`	(Announce that I'm leaving).`
+					goto leave
+				`	(Stay and watch the Dragonriders).`
+					goto watch
+				`	(Take off and leave everybody else behind).`
+					goto betrayal
+			label watch
+			`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
+			choice
+				`	(Get everyone out of there).`
+					goto leave
+				`	(Take off and leave everybody else behind).`
+			label betrayal
+			`	The ship takes off with a roar at your touch. Between the cries of the dragons, the sound of the engines, and the air rushing past, you can barely hear the fear and betrayal in the voices of the men you've left behind.`
+				fail
+			label leave
+			`	You turn on the external speakers. "WE ARE LEAVING," you blast to the survivors, "GET ON BOARD."`
+			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him, when a flicker of motion on a monitor catches your eye.`
+			`	Karengo is there, and he's riding a dragon, gripping the ridge of scales around its neck. The dragon is frantically trying to get him off, but deft application of his jetpack is, for now, keeping him on top of the beast. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
+			choice
+				`	(Take off).`
+					goto takeoff
+				`	(Swear and take off).`
+				`	"Pignuts," you mutter to yourself.`
+			label takeoff
+			`	The ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
+	on complete
+		conversation
+			`	As you land and fuel up, Karengo herds the seven surviving men out of the ship. "Meet us at the bar, yeah?" he says to you. "This day deserves a celebration." You nod, but can't help but notice red eyes and wet cheeks among the rest of the Dragonriders as they shuffle off.`
+			`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.`
+			`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, brother." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
+			choice
+				`	"To the Dragonriders!"`
+				`	"To our fallen friends!"`
+				`	"I'm good, thanks."`
+			`	Karengo gives you an unreadable look and lowers his glass.`
+			`	"Your payment, plus Bolek and Jarek's signup fees. <payment>."`
+		action
+			payment 12000 500
+			choice
+				`	"Thanks."`
+					goto end
+				`	I can't accept their money. It's not right."`
+			`	Karengo shrugs and doesn't take it back.`
+			label end
+			`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
