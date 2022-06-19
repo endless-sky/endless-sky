@@ -179,6 +179,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		070CD8162818CE9200A853BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9CC52611950C9F6004E4E22 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 070CD8102818CC6B00A853BB;
+			remoteInfo = libmad;
+		};
 		072599CE26A8CADA007EC229 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A9CC52611950C9F6004E4E22 /* Project object */;
@@ -206,8 +213,10 @@
 
 /* Begin PBXFileReference section */
 		02D34A71AE3BC4C93FC6865B /* TestData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestData.cpp; path = source/TestData.cpp; sourceTree = "<group>"; };
+		070CD8152818CC6B00A853BB /* libmad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmad.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		072599BE26A8C67D007EC229 /* SDL2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SDL2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		072599CC26A8C942007EC229 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = build/SDL2.framework; sourceTree = "<group>"; };
+		086E48E490C9BAD6660C7274 /* ExclusiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExclusiveItem.h; path = source/ExclusiveItem.h; sourceTree = "<group>"; };
 		0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeightedList.h; path = source/WeightedList.h; sourceTree = "<group>"; };
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
@@ -496,7 +505,7 @@
 		A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapSalesPanel.h; path = source/MapSalesPanel.h; sourceTree = "<group>"; };
 		A9BDFB521E00B8AA00A6B27E /* Music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Music.cpp; path = source/Music.cpp; sourceTree = "<group>"; };
 		A9BDFB531E00B8AA00A6B27E /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Music.h; path = source/Music.h; sourceTree = "<group>"; };
-		A9BDFB551E00B94700A6B27E /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = /usr/local/opt/libmad/lib/libmad.0.dylib; sourceTree = "<absolute>"; };
+		A9BDFB551E00B94700A6B27E /* libmad.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmad.0.dylib; path = build/libmad.0.dylib; sourceTree = "<group>"; };
 		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
 		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* Endless Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Endless Sky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -863,6 +872,7 @@
 				8CB543A1AA20F764DD7FC15A /* MenuAnimationPanel.h */,
 				61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */,
 				5EBC44769E84CF0C953D08B3 /* Variant.h */,
+				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -889,6 +899,7 @@
 			children = (
 				A9CC52691950C9F6004E4E22 /* Endless Sky.app */,
 				072599BE26A8C67D007EC229 /* SDL2.dylib */,
+				070CD8152818CC6B00A853BB /* libmad.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -951,6 +962,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		070CD8102818CC6B00A853BB /* libmad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 070CD8122818CC6B00A853BB /* Build configuration list for PBXNativeTarget "libmad" */;
+			buildPhases = (
+				070CD8112818CC6B00A853BB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libmad;
+			productName = libmad;
+			productReference = 070CD8152818CC6B00A853BB /* libmad.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		072599BD26A8C67D007EC229 /* SDL2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 072599C826A8C67D007EC229 /* Build configuration list for PBXNativeTarget "SDL2" */;
@@ -981,6 +1007,7 @@
 			);
 			dependencies = (
 				072599CF26A8CADA007EC229 /* PBXTargetDependency */,
+				070CD8172818CE9200A853BB /* PBXTargetDependency */,
 			);
 			name = EndlessSky;
 			productName = EndlessSky;
@@ -1015,6 +1042,7 @@
 			targets = (
 				A9CC52681950C9F6004E4E22 /* EndlessSky */,
 				072599BD26A8C67D007EC229 /* SDL2 */,
+				070CD8102818CC6B00A853BB /* libmad */,
 			);
 		};
 /* End PBXProject section */
@@ -1038,6 +1066,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		070CD8112818CC6B00A853BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/utils/mad-compat.rb",
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/build/libmad.0.dylib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "HOMEBREW_NO_COLOR=1 \"${SRCROOT}/utils/build_custom_libmad.sh\"";
+			showEnvVarsInLog = 0;
+		};
 		072599A726A0CDC9007EC229 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1057,10 +1101,10 @@
 			files = (
 			);
 			inputPaths = (
-				"$(TEMP_ROOT)/sdl2.dmg",
+				"$(SRCROOT)/utils/fetch_sdl2_framework.sh",
 			);
 			outputPaths = (
-				"$(TEMP_ROOT)/SDL2.framework",
+				"$(PROJECT_DIR)/build/SDL2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1227,6 +1271,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		070CD8172818CE9200A853BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 070CD8102818CC6B00A853BB /* libmad */;
+			targetProxy = 070CD8162818CE9200A853BB /* PBXContainerItemProxy */;
+		};
 		072599CF26A8CADA007EC229 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 072599BD26A8C67D007EC229 /* SDL2 */;
@@ -1235,6 +1284,56 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		070CD8132818CC6B00A853BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+			};
+			name = Debug;
+		};
+		070CD8142818CC6B00A853BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = all;
+			};
+			name = Release;
+		};
 		072599C626A8C67D007EC229 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1397,6 +1496,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/opt/jpeg-turbo/include",
+					"/usr/local/opt/mad-compat/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
@@ -1426,6 +1526,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/usr/local/opt/jpeg-turbo/include",
+					"/usr/local/opt/mad-compat/include",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
@@ -1444,6 +1545,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		070CD8122818CC6B00A853BB /* Build configuration list for PBXNativeTarget "libmad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				070CD8132818CC6B00A853BB /* Debug */,
+				070CD8142818CC6B00A853BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		072599C826A8C67D007EC229 /* Build configuration list for PBXNativeTarget "SDL2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

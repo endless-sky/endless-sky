@@ -775,11 +775,6 @@ Copyright: Copyright "BW_Clowes"
 License: CC-BY-3.0
 Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
 
-Files: images/effect/explosion/pug/*
-Copyright: Vilhelm (https://github.com/Vilhelm16)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
 Files:
  sounds/thrasher.wav
  sounds/point?defense.wav
@@ -1082,6 +1077,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
+ images/ship/chaser*
+ images/thumbnail/chaser*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence)
+
+Files:
  images/outfit/torpedopod*
  images/outfit/typhoonpod*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1325,6 +1327,7 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
+ images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*
@@ -1410,10 +1413,20 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/ship/aerie*
  images/ship/bactrian*
+ images/ship/hailstone*
+ images/ship/heavy?gust*
+ images/ship/mining?drone*
  images/ship/mule*
+ images/ship/squall*
+ images/ship/sunder*
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
+ images/thumbnail/hailstone*
+ images/thumbnail/heavy?gust*
+ images/thumbnail/mining?drone*
  images/thumbnail/mule*
+ images/thumbnail/squall*
+ images/thumbnail/sunder*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
