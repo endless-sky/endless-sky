@@ -1260,7 +1260,7 @@ ship "Auxiliary" "Auxiliary (Alpha with JD)"
 outfit "Alpha Pirate Crew"
 	"crew defense" -50
 	"crew attack" -75
-	"unplunderable"
+	"unplunderable" 1
 	description `This ship is mostly manned by pirates and not actual Alphas, though they do lead them.`
 	description `You should not be seeing this.`
 
