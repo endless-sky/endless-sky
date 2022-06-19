@@ -368,6 +368,7 @@
 		<Unit filename="source/text/alignment.hpp" />
 		<Unit filename="source/text/layout.hpp" />
 		<Unit filename="source/text/truncate.hpp" />
+		<Unit filename="source/wormohle-strategy.hpp" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />
