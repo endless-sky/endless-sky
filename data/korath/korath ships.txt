@@ -315,8 +315,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 
 
 ship "Korath Raider Mark XLII"
-	sprite "ship/raiderii"
-	thumbnail "thumbnail/raiderii"
+	sprite "ship/raiderxlii"
+	thumbnail "thumbnail/raiderxlii"
 	attributes
 		category "Medium Warship"
 		"cost" 22895000
@@ -426,7 +426,8 @@ ship "Korath Raider Mark XLII"
 
 
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
-	sprite "ship/raiderii"
+	sprite "ship/raiderxlii"
+	thumbnail "thumbnail/raiderxlii"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70
