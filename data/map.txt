@@ -29274,6 +29274,7 @@ planet Ochrescoop
 	security 0.5
 
 planet "Ogmur's Siphon"
+	attributes arach "coalition station" research
 	landscape
 	description `This refinery was built shortly after the nearby dry dock station was finished, to ensure the system was self-sufficient in terms of hyperspace fuel. A small fleet of tanker ships are docked on specially marked hangar bays, always ready to bring the fuel elsewhere if needed.`
 	description `	"Ogmur" is what the Arachi baptized the gas giant below, naming it after a giant snake-like creature of their mythology. With an abnormally dense core, and storms more ruthless than in any other gas giant in the Coalition, Ogmur swallowed the first five iterations of this station before they could be completed, and though this one has remained stable for thousands of years after its completion, superstition surrounding the planet makes it so the Siphon gets very few visitors.`
