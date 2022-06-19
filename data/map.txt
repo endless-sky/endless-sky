@@ -28172,7 +28172,7 @@ planet "Guardian Array Sapphire"
 	description `More commonly referred to by its nickname "Checkpoint of Ablodab," this enormous station was built shortly after the end of the Coalition's war with the Quarg, meant to serve as a regional dry dock that damaged combat ships could return to after some time in the front lines. With no Quarg attack in so long, though, it's shifted into being a simple refuelling hub for passingby merchant ships, as its dozens of warship-sized hangars remain mostly unused.`
 	description `	In spite of the lack of combat activity the station was designed to support, the local Heliarchs run a tight schedule even for civilian visitors as they first land, ensuring ships are refuelled and tended to as quickly as possible.`
 	spaceport `Built to serve as a purely strategical military repair port, the station has very little in the form of amenities, with a few basic cantinas and large, mostly empty living quarters, meant to house troops stationed here. There are no shops, and nearly all civilians you see are moving from their spaceships, on their way to a quick break, or heading back, ready to depart and continue their business.`
-	spaceport `	On scheduled days of each month, Heliarch fleets that were damaged in training drills come in to stress test the station's repair capabilities, leading to a sudden boom in the station's population, and a crowding of the facilities..`
+	spaceport `	On scheduled days of each month, Heliarch fleets that were damaged in training drills come in to stress test the station's repair capabilities, leading to a sudden boom in the station's population, and a crowding of the facilities...`
 	"required reputation" 25
 	security 0.6
 
