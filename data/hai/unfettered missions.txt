@@ -1257,6 +1257,13 @@ ship "Auxiliary" "Auxiliary (Alpha with JD)"
 	turret 0 31 "Korath Slicer Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
 
+outfit "Alpha Pirate Crew"
+	"crew defense" -50
+	"crew attack" -75
+	"unplunderable"
+	description `This ship is mostly manned by pirates and not actual Alphas, though they do lead them.`
+	description `You should not be seeing this.`
+
 ship "Auxiliary" "Auxiliary (Alpha)"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
@@ -1282,7 +1289,7 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 		"cargo space" 200
 	cargo
 		outfits
-			"Loot" 1
+			"Alpha Pirate Crew"
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -1692,13 +1699,11 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying
 		ship "Far Osk 27" "Prancer"
-		ship "Far Osk 27" "Vixen"
 		ship "Far Osk 27" "Cupid"
 		ship "Far Osk 27" "Comet"
 		ship "Far Osk 27" "Dagger"
 		ship "Far Osk 27" "Oren"
 		ship "Far Osk 27" "Mert"
-		ship "Far Osk 27" "Greedy"
 		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
 	
@@ -1773,8 +1778,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
-		# when the take ship & check for ship PR will be merged this will be more proper but for now I just added this loot that you cannot get trough any other means in the game except later on in the campaign
-		outfit "Loot" -1
+		outfit "Alpha Pirate Crew" -1
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. It seems to be too deep or at least shielded from scans in some way. You will have to go blind in it.`
 			`	Weirdly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here it is probably a skeleton crew. You exit your ship but cannot find anyone. They could be hidden so you go carrefully with your crew, looking for the jump drive vault, which can not be far. On the way you hear sounds... Sounds that definitely did not originate from humans. Heading that way you find a brig with Koraths in itm and a very peculiar symbol over it, that looks like a lizard's head. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
