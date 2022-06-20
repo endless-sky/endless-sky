@@ -1490,10 +1490,28 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/hardpoint/korath inferno*
  images/outfit/korath inferno*
+ images/icon/firelight*
+ images/outfit/firelight*
+ images/outfit/firelight?bank*
+ images/outfit/firelight?rack*
+ images/projectile/firelight*
+ images/projectile/firelight?active*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
-Comment: Derived from works by Becca Tomaso (under same licence) and Michael Zahniser (under same license).
+Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
+Files:
+ images/ship/raiderxlii*
+ images/thumbnail/raiderxlii*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
+
+Files:
+ images/outfit/nanobot?defense*
+Copyright: Saugia <https://github.com/Saugia>
+Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same licence).
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/liquid?sodium*
@@ -1502,10 +1520,9 @@ Comment: Derived from works by NomadicVolcano (public domain).
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/nanobot?defense*
-Copyright: Saugia <https://github.com/Saugia>
-Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same licence).
-License: CC-BY-SA-4.0
+ sounds/remnant afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  images/ship/kestrel*
@@ -1521,6 +1538,17 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ sounds/remnant?afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ sounds/firelight.wav
+ sounds/firelight?hit.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
