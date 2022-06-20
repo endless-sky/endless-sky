@@ -1277,9 +1277,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		for(++it; it != destinations.end(); ++it)
 		{
 			int days = distance.Days(*it);
-			if(days < 0)
-				days = numeric_limits<int>::max();
-			if(days < bestDays)
+			if(days >= 0 && days < bestDays)
 			{
 				bestIt = it;
 				bestDays = days;
