@@ -253,6 +253,8 @@ namespace {
 			png_set_expand_gray_1_2_4_to_8(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
+		if(colorType == PNG_COLOR_TYPE_RGB)
+			png_set_filler(png, 0xFFFF, PNG_FILLER_AFTER);
 		// Let libpng handle any interlaced image decoding.
 		png_set_interlace_handling(png);
 		png_read_update_info(png, info);

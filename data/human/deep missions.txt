@@ -1051,7 +1051,7 @@ mission "Deep: Project Hawking"
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
 			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
-			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
+			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "... <last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
 	on accept
@@ -2647,7 +2647,7 @@ mission "Stone of our Fathers 4"
 			choice
 				`	(Head to bed for some well deserved sleep.)`
 			`	The day is bright and the sky is clear, the storm long forgotten as you prepare your things. Both men meet you in the main room. Thorleif opens up his hand to accept the stone, which you gladly place into it. He smiles and looks it over, tracing his finger along its chiseled runes.`
-			`	"Thank you, <first>". You nod, happy to be done with this mission and free to fly the space lanes once more.`
+			`	"Thank you, <first>." You nod, happy to be done with this mission and free to fly the space lanes once more.`
 			`	"Just more thing," Thorleif adds with a sly grin. "I'll need a captain willing to ferry me to Alfheim. That's where my family's cairn is located."`
 			`	Before you know it, the three of you are on Helm's boat and heading for the spaceport.`
 			`	"Alfheim," Thorleif says idly, "you know of it? The name means the home of the Alfar, or elves as you call them. I've never been there, only heard of it. It'll be strange to visit the world of my ancestors."`
@@ -3268,7 +3268,7 @@ mission "Home for Skadenga 4"
 			`	"That is no surprise," Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
 			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
-			`	"Now", Hjlod says, "Tell me about Setstokkr. Did you find it?"`
+			`	"Now," Hjlod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
 				`	"I found nothing definitive."`
 					goto nothing
@@ -3345,8 +3345,6 @@ mission "Home for Skadenga 5"
 	on complete
 		event "mani refit" 21
 		conversation
-			apply
-				set "Asgard2"
 			scene "scene/citydark"
 			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Security forces, Transport Union, and other semi-governmental fleets are all serviced here.`
 			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.`

@@ -31,7 +31,7 @@ mission "Disabled Ka'het"
 		log "Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton."
 		conversation
 			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working.`
-			`	You have no troubles docking with what seems to be its "exoskeleton", trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
+			`	You have no troubles docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
 				decline
 
 conversation "ka'het: remnant"
@@ -655,7 +655,7 @@ mission "Ka'het: Patir Mystery 5"
 					goto still
 				`	(Keep staying still.)`
 					goto still
-				`	(Try shooting at the hover engines of the Ka'sei with your sidearm.)`
+				`	(Try shooting at the hover engines of the Ka'sei with my sidearm.)`
 			`	You take out your gun and start aiming for the Fetri'sei's side pods. Your first shot misses it completely, but after that you are able to make three full hits on the hover engines. Almost instantly, the Ka'sei starts emitting a loud siren. The ship fires a beam just to the left of you, letting out an ear-piercing wail. Both you and Dusk jump back to the airlock as fast as possible, but you are too far away to reach it in time before a Ravager beam tears through your suit. The last thing you see is Dusk closing the airlock.`
 				die
 			

@@ -775,11 +775,6 @@ Copyright: Copyright "BW_Clowes"
 License: CC-BY-3.0
 Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
 
-Files: images/effect/explosion/pug/*
-Copyright: Vilhelm (https://github.com/Vilhelm16)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
-
 Files:
  sounds/thrasher.wav
  sounds/point?defense.wav
@@ -1082,6 +1077,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
+ images/ship/chaser*
+ images/thumbnail/chaser*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence)
+
+Files:
  images/outfit/torpedopod*
  images/outfit/typhoonpod*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1325,6 +1327,7 @@ License: CC-BY-SA-4.0
 Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
+ images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*
@@ -1429,9 +1432,22 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/remnant afterburner.wav
-License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+ images/icon/firelight*
+ images/outfit/firelight*
+ images/outfit/firelight?bank*
+ images/outfit/firelight?rack*
+ images/projectile/firelight*
+ images/projectile/firelight?active*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
+
+Files:
+ images/ship/raiderxlii*
+ images/thumbnail/raiderxlii*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
 
 Files:
  images/ship/kestrel*
@@ -1447,6 +1463,17 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ sounds/remnant?afterburner.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ sounds/firelight.wav
+ sounds/firelight?hit.wav
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
