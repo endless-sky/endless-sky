@@ -348,6 +348,45 @@ ship "Korath Raider" "Korath Raider (Fast Shunt)"
 
 
 
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
+	sprite "ship/raiderxlii"
+	thumbnail "thumbnail/raiderxlii"
+	add attributes
+		"cargo space" -70
+		"outfit space" 70
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Disruptor" 2
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Detainer"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Banisher"
+
+
+
 ship "Korath Chaser" "Korath Chaser (Expeller)"
 	outfits
 		"Korath Expeller"

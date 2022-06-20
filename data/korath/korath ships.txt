@@ -263,44 +263,6 @@ ship "Korath Raider Mark XLII"
 	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
-	add attributes
-		"cargo space" -70
-		"outfit space" 70
-	outfits 
-		"Korath Grab-Strike" 2
-		"Korath Disruptor" 2
-		"Korath Banisher"
-		"Korath Warder"
-		"Korath Detainer"
-		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
-		
-		"Triple Plasma Core"
-		"Generator (Furnace Class)"
-		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 3
-		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		
-		"Thruster (Planetary Class)"
-		"Thruster (Lunar Class)"
-		"Steering (Planetary Class)"
-		"Jump Drive"
-
-	gun "Korath Detainer"
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	turret "Korath Grab-Strike"
-	turret "Korath Disruptor"
-	turret "Korath Grab-Strike"
-	turret "Korath Disruptor"
-	turret "Korath Banisher"
-
-
 ship "Korath Chaser"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
