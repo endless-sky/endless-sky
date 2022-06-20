@@ -4002,8 +4002,9 @@ mission "Laborer"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
 	source 
+		attributes "mining"
+	destination
 		attributes "factory" "mining"
-	destination attributes "factory" "mining"
 	minor
 	to offer
 		random < 15
@@ -4011,19 +4012,19 @@ mission "Laborer"
 		conversation
 			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
 			choice
-				`	(Go see what the laborer is arguing about).`
-				`	(Leave).`
+				`	(Go see what the laborer is arguing about.)`
+				`	(Ignore them.)`
 					decline
-			`	"Lady, I'm not trying to low-ball you here!" The man is nearly shouting. "I don't have the money! That's the whole point!"`
+			`	The man is nearly shouting. "Lady, I'm not trying to low-ball you here! I don't have the money! That's the whole point!"`
 			`	"I appreciate your conundrum," replies the woman, her voice clipped. "However, my policy is cash upfront. Good day."`
 			`	She turns and walks away briskly, and the man slumps down into a chair.`
 			choice
 				`	"What was that all about?"`
-				`	(Leave before he notices you).`
+				`	(Leave before he notices you.)`
 					decline
 			`	He gives you a once-over, and you see a spark of hope in his eyes. "You're a captain? Please, I need to get to <destination>. Work has dried up here, and I need a fresh start."`
 			choice
-				`	"And what's your offer?"`
+				`	"What are you able to pay me?"`
 					goto offer
 				`	"Work dried up on the whole planet?"`
 			`	"This planet is messed up. Everybody likes to talk behind your back. I did a job for one of the big mining companies here, but my boss had it out for me. Told everybody I did it wrong, even though they never gave me any training at all. Then he went and put me on the permanent record. So yeah, sooner I get off this dump, the better."`
@@ -4080,5 +4081,5 @@ mission "Laborer Payment"
 	on offer
 		payment 10000 3000
 		conversation
-			`You received a payment of <payment> from the down on his luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
+			`You receive a payment of <payment> from the down on his luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
 				decline
