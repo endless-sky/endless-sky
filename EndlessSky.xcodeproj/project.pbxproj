@@ -30,6 +30,7 @@
 		90CF46CE84794C6186FC6CE2 /* EsUuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 950742538F8CECF5D4168FBC /* EsUuid.cpp */; };
 		920F40E0ADECA8926F423FDA /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */; };
 		94DF4B5B8619F6A3715D6168 /* Weather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A4C648B242742B22A34FA /* Weather.cpp */; };
+		971E44D4BE13E0E34B0E8BCB /* WormholeStrategy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0A8D4660843F103AAA562770 /* WormholeStrategy.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		9E1F4BF78F9E1FC4C96F76B5 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E8047A8987DD8EC99FF8E2E /* Test.cpp */; };
 		A90633FF1EE602FD000DA6C0 /* LogbookPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90633FD1EE602FD000DA6C0 /* LogbookPanel.cpp */; };
 		A90C15D91D5BD55700708F3A /* Minable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90C15D71D5BD55700708F3A /* Minable.cpp */; };
@@ -218,6 +219,7 @@
 		072599BE26A8C67D007EC229 /* SDL2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SDL2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		072599CC26A8C942007EC229 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = build/SDL2.framework; sourceTree = "<group>"; };
 		086E48E490C9BAD6660C7274 /* ExclusiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExclusiveItem.h; path = source/ExclusiveItem.h; sourceTree = "<group>"; };
+		0A8D4660843F103AAA562770 /* WormholeStrategy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WormholeStrategy.hpp; path = source/WormholeStrategy.hpp; sourceTree = "<group>"; };
 		0C90483BB01ECD0E3E8DDA44 /* WeightedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeightedList.h; path = source/WeightedList.h; sourceTree = "<group>"; };
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 				5EBC44769E84CF0C953D08B3 /* Variant.h */,
 				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 				8FAB4360A9F50A214D9EC514 /* wormhole-strategy.hpp */,
+				0A8D4660843F103AAA562770 /* WormholeStrategy.hpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				F55745BDBC50E15DCEB2ED5B /* layout.hpp in Headers */,
 				16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */,
 				3B33410CBA138FE9250E79DE /* wormhole-strategy.hpp in Headers */,
+				971E44D4BE13E0E34B0E8BCB /* WormholeStrategy.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
