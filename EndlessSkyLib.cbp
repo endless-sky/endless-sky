@@ -345,11 +345,11 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
+		<Unit filename="source/WormholeStrategy.hpp" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
-		<Unit filename="source/wormhole-strategy.hpp" />
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
