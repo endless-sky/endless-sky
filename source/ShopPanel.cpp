@@ -609,7 +609,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!result)
 		{
 			if(result.HasMessage())
-				GetUI()->Push(new Dialog(result));
+				GetUI()->Push(new Dialog(result.Message()));
 		}
 		else
 		{

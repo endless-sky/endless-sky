@@ -309,23 +309,19 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
+ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 {
-	if(!planet)
-		return "You don't seem to be on a planet. "
-			"How exactly did you get this error message?";
-
-	if(!selectedOutfit)
+	if(!planet || !selectedOutfit)
 		return false;
 
-	// Check if the outfit is only installed: so not available to get
+	// Check if the outfit is available to get at all.
 	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
 	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
 		return "You cannot buy this outfit here. "
 			"It is being shown in the list because you have one, "
 			"but this " + planet->Noun() + " does not sell them.";
 
-	// Check special unique outfits, if you already have them
+	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize > 0 && player.HasMapped(mapSize))
 		return "You have already mapped all the systems shown by this map, "
@@ -358,9 +354,10 @@ const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 				+ Format::Credits(licenseCost) + " credits to buy the necessary licenses.";
 	}
 
-	// The outfit can be bought: but can it fit? Either into cargo, or a selected ship.
+	// The outfit can be bought: but can it fit?
 	if(!playerShip)
 	{
+		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
 		double freeCargo = player.Cargo().Free();
 		if(!mass || freeCargo >= mass)
@@ -372,13 +369,13 @@ const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	}
 	else
 	{
+		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
 				return true;
 
 		// If no selected ship can install the outfit,
-		// Report error based on playerShip
-
+		// report error based on playerShip.
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
 		double outfitSpace = playerShip->Attributes().Get("outfit space");
 		if(outfitNeeded > outfitSpace)
@@ -424,7 +421,7 @@ const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		if(selectedOutfit->Get("installable") < 0.)
 			return "This item is not an outfit that can be installed in a ship.";
 
-		// Catch-all for unhandled outfit requirements:
+		// For unhandled outfit requirements, show a catch-all error message.
 		return "You cannot install this outfit in your ship, "
 			"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, it may use up more cargo space than you have left.";
@@ -433,7 +430,7 @@ const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 
 
 
-void OutfitterPanel::Buy(bool checkAlreadyOwned)
+void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -462,12 +459,12 @@ void OutfitterPanel::Buy(bool checkAlreadyOwned)
 	}
 
 	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanBuy(checkAlreadyOwned); ++i)
+	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
 	{
 		// Buying into cargo, either from storage or from stock/supply.
 		if(!playerShip)
 		{
-			if(checkAlreadyOwned)
+			if(alreadyOwned)
 			{
 				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
 					continue;
@@ -492,14 +489,14 @@ void OutfitterPanel::Buy(bool checkAlreadyOwned)
 
 		for(Ship *ship : shipsToOutfit)
 		{
-			if(!CanBuy(checkAlreadyOwned))
+			if(!CanBuy(alreadyOwned))
 				return;
 
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
-			else if(checkAlreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{

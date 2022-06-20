@@ -222,7 +222,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-const ShopPanel::BuyResult ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
+ShopPanel::BuyResult ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!selectedShip)
 		return false;
@@ -235,39 +235,37 @@ const ShopPanel::BuyResult ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 		return "Buying this ship requires a special license. "
 			"You will probably need to complete some sort of mission to get one.";
 
+	// Check if the player can't pay.
 	cost += licenseCost;
 	if(player.Accounts().Credits() < cost)
 	{
-		// Check if you could sell your ships to pay for the new ship
+		// Check if ships could be sold to pay for the new ship.
 		for(const auto &it : player.Ships())
 			cost -= player.FleetDepreciation().Value(*it, day);
 
-		if(player.Accounts().Credits() < cost)
-		// Still not enough.
-		{
-			// Check if it's because of the license.
-			if(player.Accounts().Credits() >= cost - licenseCost)
-				return "You do not have enough credits to buy this ship, "
-					"because it will cost you an extra " + Format::Credits(licenseCost) +
-					" credits to buy the necessary licenses. "
-					"Consider checking if the bank will offer you a loan.";
-			else
-				return "You do not have enough credits to buy this ship. "
-					"Consider checking if the bank will offer you a loan.";
-		}
-		else
+		if(player.Accounts().Credits() >= cost)
 		{
 			string ship = (player.Ships().size() == 1) ? "your current ship" : "some of your ships";
 			return "You do not have enough credits to buy this ship. "
 				"If you want to buy it, you must sell " + ship + " first.";
 		}
+
+		// Check if the license cost is the tipping point.
+		if(player.Accounts().Credits() >= cost - licenseCost)
+			return "You do not have enough credits to buy this ship, "
+				"because it will cost you an extra " + Format::Credits(licenseCost) +
+				" credits to buy the necessary licenses. "
+				"Consider checking if the bank will offer you a loan.";
+
+		return "You do not have enough credits to buy this ship. "
+				"Consider checking if the bank will offer you a loan.";
 	}
 	return true;
 }
 
 
 
-void ShipyardPanel::Buy(bool checkAlreadyOwned)
+void ShipyardPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
