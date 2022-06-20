@@ -155,20 +155,20 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
 		}
-		else if(child.Token(0) == "route options")
+		else if(child.Token(0) == "distance calc options")
 		{
 			if(child.HasChildren())
 			{
 				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "no wormholes")
-						routeOptions.wormholeStrategy = WormholeStrategy::NONE;
+						distanceCalcOptions.wormholeStrategy = WormholeStrategy::NONE;
 					else if(grand.Token(0) == "only unrestricted wormholes")
-						routeOptions.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
+						distanceCalcOptions.wormholeStrategy = WormholeStrategy::ONLY_UNRESTRICTED;
 					else if(grand.Token(0) == "all wormholes")
-						routeOptions.wormholeStrategy = WormholeStrategy::ALL;
+						distanceCalcOptions.wormholeStrategy = WormholeStrategy::ALL;
 					else if(grand.Token(0) == "requires jump drive")
-						routeOptions.requiresJumpDrive = true;
+						distanceCalcOptions.requiresJumpDrive = true;
 					else
 						grand.PrintTrace("Invalid \"route options\" child:");
 				}
@@ -1270,7 +1270,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path, routeOptions.wormholeStrategy, routeOptions.requiresJumpDrive);
+		DistanceMap distance(path, distanceCalcOptions.wormholeStrategy, distanceCalcOptions.requiresJumpDrive);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(*bestIt);
@@ -1291,7 +1291,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		jumps += bestDays == numeric_limits<int>::max() ? 0 : bestDays;
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path, routeOptions.wormholeStrategy, routeOptions.requiresJumpDrive);
+	DistanceMap distance(path, distanceCalcOptions.wormholeStrategy, distanceCalcOptions.requiresJumpDrive);
 	// If currently unreachable, this system does not add to the deadline.
 	jumps += max(0, distance.Days(result.destination->GetSystem()));
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);

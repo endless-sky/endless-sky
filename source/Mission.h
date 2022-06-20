@@ -203,7 +203,7 @@ private:
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
-	RoutingOptions routeOptions;
+	RoutingOptions distanceCalcOptions;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
