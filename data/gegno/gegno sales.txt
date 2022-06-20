@@ -106,7 +106,7 @@ outfit "Scin Hoplologist Certification"
 outfit "Scin Architect Certification"
 	category "Special"
 	#thumbnail
-	description "Showing that you are avantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
+	description "Showing that you are advantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
 
 outfit "Scin Adjutant Certification"
 	category "Special"
