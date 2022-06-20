@@ -4016,7 +4016,7 @@ mission "Laborer"
 					decline
 			`	"Lady, I'm not trying to low-ball you here!" The man is nearly shouting. "I don't have the money! That's the whole point!"`
 			`	"I appreciate your conundrum," replies the woman, her voice clipped. "However, my policy is cash upfront. Good day."`
-			`	She turns and walks away briskly, and the man slumps against the bar.`
+			`	She turns and walks away briskly, and the man slumps down into a chair.`
 			choice
 				`	"What was that all about?"`
 				`	(Leave before he notices you).`
@@ -4041,12 +4041,12 @@ mission "Laborer"
 			choice
 				`	"Sorry, money up front."`
 					goto decline
-				`	"Okay, I can take you to <planet>."`
+				`	"Fine, I can take you to <planet>."`
 			label accept
-			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress."`
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
 				accept
 			label decline
-				`	"I knew it. You're just like everyone else."`
+				`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
 					decline
 	on complete
 		conversation
@@ -4074,11 +4074,11 @@ event "laborer payment"
 mission "Laborer Payment"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 	to offer
 		has "event: laborer payment"
 	on offer
-		payment 7000
+		payment 10000 3000
 		conversation
 			`You received a payment of <payment> from the down on his luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
 				decline
