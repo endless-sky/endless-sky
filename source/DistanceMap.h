@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
-#include "wormholestrategy.hpp"
+#include "WormholeStrategy.hpp"
 
 #include <map>
 #include <queue>

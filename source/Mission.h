@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
-#include "wormholestrategy.hpp"
+#include "WormholeStrategy.hpp"
 
 #include <list>
 #include <map>
