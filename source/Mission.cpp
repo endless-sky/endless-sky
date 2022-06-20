@@ -172,7 +172,7 @@ void Mission::Load(const DataNode &node)
 				}
 			}
 			else
-				node.PrintTrace("Ignoring 'route options' node with no children.");
+				child.PrintTrace("Warning: skipping unsupported \"route options\" definition:");
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
