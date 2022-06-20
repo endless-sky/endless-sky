@@ -4002,7 +4002,8 @@ mission "Riley"
 	minor
 	passengers 1
 	source
-		attributes deep urban
+		attributes deep 
+		attributes urban
 	deadline
 	destination "Pilot"
 	to offer
