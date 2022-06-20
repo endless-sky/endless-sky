@@ -1286,7 +1286,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 		path = *bestIt;
 		// If currently unreachable, this system does not add to the deadline.
-		jumps += max(0, distance.Days(*bestIt));
+		jumps += bestDays == numeric_limits<int>::max() ? 0 : bestDays;
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(path, routeOptions.wormholeStrategy, routeOptions.requiresJumpDrive);
