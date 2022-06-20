@@ -168,7 +168,7 @@ void Mission::Load(const DataNode &node)
 					else if(grand.Token(0) == "requires jump drive")
 						routeOptions.requiresJumpDrive = true;
 					else
-						node.PrintTrace("Invalid 'route options' child: \"" + grand.Token(0) + "\" in mission: " + name);
+						grand.PrintTrace("Invalid \"route options\" child:");
 				}
 			}
 			else
