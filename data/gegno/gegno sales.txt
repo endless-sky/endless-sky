@@ -87,6 +87,7 @@ outfit "Vi Lord Markings"
 	category "Special"
 	#thumbnail
 	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset to their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
+	
 outfit "Vi Centurion Markings"
 	category "Special"
 	#thumbnail
