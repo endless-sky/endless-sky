@@ -952,6 +952,14 @@ fleet "Marauders"
 	variant 1
 		"Marauder Raven" 2
 		
+mission "Unfettered: Stop of the Hunt"
+	invisible
+	repeat
+	landing
+	on offer
+		require "Gold Bars" 0
+		fail "Unfettered: Nemo Me Impune Lacessit"
+		fail "Unfettered: Nemo Me Impune Lacessit 2"
 
 mission "Unfettered: Nemo Me Impune Lacessit"
 	invisible
@@ -1699,12 +1707,10 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying
 		ship "Far Osk 27" "Prancer"
-		ship "Far Osk 27" "Cupid"
 		ship "Far Osk 27" "Comet"
 		ship "Far Osk 27" "Dagger"
 		ship "Far Osk 27" "Oren"
 		ship "Far Osk 27" "Mert"
-		ship "Far Osk 27" "Anger"
 		ship "Far Osk 27" "Dart"
 	
 	to fail
@@ -2806,9 +2812,6 @@ mission "Unfettered: Special Cargo 1B"
 				outfit "Gold Bars" 5
 			label dropbars
 			`	You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discretely with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
-			action
-				outfit "Gold Bars" 15
-			``
 				flee
 			
 			label caught
