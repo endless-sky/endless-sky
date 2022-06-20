@@ -12,6 +12,8 @@ ship Augen
 		"engine capacity" 460
 		"fuel capacity" 500
 		"heat dissipation" 0.4
+		"heat protection" 2
+		"ion protection" 2
 		hull 67000
 		"outfit space" 1800
 		"required crew" 280
@@ -90,6 +92,8 @@ ship Shale
 		"engine capacity" 58
 		"fuel capacity" 400
 		"heat dissipation" 0.8
+		"heat protection" 3
+		"ion protection" 3
 		hull 825
 		"outfit space" 125
 		"required crew" 1
@@ -128,6 +132,8 @@ ship Dolomite
 		"engine capacity" 81
 		"fuel capacity" 500
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 10500
 		"outfit space" 150
 		"required crew" 34
@@ -171,6 +177,8 @@ ship Conglomerate
 		"engine capacity" 136
 		"fuel capacity" 400
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 13300
 		"outfit space" 200
 		"required crew" 68
@@ -215,6 +223,8 @@ ship Gypsum
 		"engine capacity" 120
 		"fuel capacity" 500
 		"heat dissipation" 0.8
+		"heat protection" 3
+		"ion protection" 3
 		hull 5200
 		"outfit space" 240
 		"required crew" 18
@@ -262,6 +272,8 @@ ship Slate
 		"engine capacity" 58
 		"fuel capacity" 400
 		"heat dissipation" 0.8
+		"heat protection" 3
+		"ion protection" 3
 		hull 825
 		"outfit space" 125
 		"required crew" 1
@@ -301,6 +313,8 @@ ship Schist
 		"engine capacity" 106
 		"fuel capacity" 500
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 12375
 		"outfit space" 210
 		"required crew" 36
@@ -365,6 +379,8 @@ ship Eclogite
 		"engine capacity" 110
 		"fuel capacity" 400
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 6900
 		"outfit space" 285
 		"required crew" 8
@@ -415,6 +431,8 @@ ship Hornfel
 		"engine capacity" 94
 		"fuel capacity" 400
 		"heat dissipation" 0.6
+		"heat protection" 3
+		"ion protection" 3
 		hull 14550
 		"outfit space" 428
 		"required crew" 58
@@ -503,6 +521,8 @@ ship Gneiss
 		"engine capacity" 150
 		"fuel capacity" 500
 		"heat dissipation" 0.4
+		"heat protection" 3
+		"ion protection" 3
 		hull 22275
 		"outfit space" 765
 		"required crew" 142
@@ -559,6 +579,8 @@ ship Protolith
 		"engine capacity" 176
 		"fuel capacity" 700
 		"heat dissipation" 0.4
+		"heat protection" 3
+		"ion protection" 3
 		hull 19575
 		"outfit space" 468
 		"required crew" 84
@@ -611,6 +633,8 @@ ship Halite
 		drag 0.74
 		"engine capacity" 21
 		"heat dissipation" 0.76
+		"heat protection" 7
+		"ion protection" 7
 		hull 780
 		"outfit space" 78
 		"required crew" 1
@@ -652,6 +676,8 @@ ship Mica
 		"engine capacity" 50
 		"fuel capacity" 400
 		"heat dissipation" 0.8
+		"heat protection" 3
+		"ion protection" 3
 		hull 700
 		"outfit space" 120
 		"required crew" 1
@@ -691,6 +717,8 @@ ship Coesite
 		"engine capacity" 120
 		"fuel capacity" 400
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 6450
 		"outfit space" 264
 		"required crew" 9
@@ -739,6 +767,8 @@ ship Tridymite
 		"engine capacity" 86
 		"fuel capacity" 400
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 5290
 		"outfit space" 190
 		"required crew" 9
@@ -788,6 +818,8 @@ ship Felsic
 		"engine capacity" 106
 		"fuel capacity" 500
 		"heat dissipation" 0.7
+		"heat protection" 3
+		"ion protection" 3
 		hull 9650
 		"outfit space" 310
 		"required crew" 38
@@ -838,6 +870,8 @@ ship Feldspar
 		"engine capacity" 172
 		"fuel capacity" 600
 		"heat dissipation" 1
+		"heat protection" 3
+		"ion protection" 3
 		hull 18800
 		"outfit space" 566
 		"required crew" 133
@@ -917,6 +951,8 @@ ship Muscovite
 		"engine capacity" 182
 		"fuel capacity" 600
 		"heat dissipation" 0.9
+		"heat protection" 3
+		"ion protection" 3
 		hull 15400
 		"outfit space" 440
 		"required crew" 68
