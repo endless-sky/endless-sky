@@ -143,6 +143,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 
 	const Outfit &attributes = ship.Attributes();
 
+	if(!ship.IsYours())
+		for(const auto& license : attributes.Licenses())
+		{
+			attributeLabels.push_back("license:");
+			attributeValues.push_back(license);
+			attributesHeight += 20;
+		}
+
 	int64_t fullCost = ship.Cost();
 	int64_t depreciated = depreciation.Value(ship, day);
 	if(depreciated == fullCost)

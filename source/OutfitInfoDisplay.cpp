@@ -240,6 +240,13 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
+	for(const auto& license : outfit.Licenses())
+	{
+		requirementLabels.push_back("license:");
+		requirementValues.push_back(license);
+		requirementsHeight += 20;
+	}
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
