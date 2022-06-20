@@ -19,7 +19,7 @@ has_encoded_file() {
 add_new() {
   local OPTS='--tree <group> --parent source'
   echo -n "'${1}': "
-  py -m pbxproj file "${XPROJECT}" "source/${1}" ${OPTS} --target EndlessSky ${2}
+  python3 -m pbxproj file "${XPROJECT}" "source/${1}" ${OPTS} --target EndlessSky ${2}
   # Make sure the file was added with Unicode encoding (fileEncoding = 4;)
   if ! has_encoded_file ${1}; then
     local GOOD_STR="isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c"
