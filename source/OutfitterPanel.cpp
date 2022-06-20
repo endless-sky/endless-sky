@@ -348,7 +348,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 				+ Format::Credits(credits) + ".";
 
 		// Add the cost to buy the required license.
-		cost += licenseCost;
 		if(cost + licenseCost > credits)
 			return "You don't have enough money to buy this outfit, because it will cost you an extra "
 				+ Format::Credits(licenseCost) + " credits to buy the necessary licenses.";
