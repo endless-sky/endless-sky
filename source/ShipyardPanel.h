@@ -45,7 +45,6 @@ protected:
 	virtual int DrawDetails(const Point &center) override;
 	virtual const BuyResult CanBuy(bool checkAlreadyOwned = true) const override;
 	virtual void Buy(bool checkAlreadyOwned = false) override;
-	virtual void FailBuy(const std::string& message) const;
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;

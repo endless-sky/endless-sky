@@ -232,10 +232,37 @@ const ShopPanel::BuyResult ShipyardPanel::CanBuy(bool checkAlreadyOwned) const
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
-		return false;
-	cost += licenseCost;
+		return "Buying this ship requires a special license. "
+			"You will probably need to complete some sort of mission to get one.";
 
-	return (player.Accounts().Credits() >= cost);
+	cost += licenseCost;
+	if(player.Accounts().Credits() < cost)
+	{
+		// Check if you could sell your ships to pay for the new ship
+		for(const auto &it : player.Ships())
+			cost -= player.FleetDepreciation().Value(*it, day);
+
+		if(player.Accounts().Credits() < cost)
+		// Still not enough.
+		{
+			// Check if it's because of the license.
+			if(player.Accounts().Credits() >= cost - licenseCost)
+				return "You do not have enough credits to buy this ship, "
+					"because it will cost you an extra " + Format::Credits(licenseCost) +
+					" credits to buy the necessary licenses. "
+					"Consider checking if the bank will offer you a loan.";
+			else
+				return "You do not have enough credits to buy this ship. "
+					"Consider checking if the bank will offer you a loan.";
+		}
+		else
+		{
+			string ship = (player.Ships().size() == 1) ? "your current ship" : "some of your ships";
+			return "You do not have enough credits to buy this ship. "
+				"If you want to buy it, you must sell " + ship + " first.";
+		}
+	}
+	return true;
 }
 
 
@@ -261,42 +288,6 @@ void ShipyardPanel::Buy(bool checkAlreadyOwned)
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
 	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
-}
-
-
-
-void ShipyardPanel::FailBuy(const string& message) const
-{
-	if(!selectedShip)
-		return;
-
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
-
-	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
-	if(licenseCost < 0)
-	{
-		GetUI()->Push(new Dialog("Buying this ship requires a special license. "
-			"You will probably need to complete some sort of mission to get one."));
-		return;
-	}
-
-	cost += licenseCost;
-	if(player.Accounts().Credits() < cost)
-	{
-		for(const auto &it : player.Ships())
-			cost -= player.FleetDepreciation().Value(*it, day);
-		if(player.Accounts().Credits() < cost)
-			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
-				"Consider checking if the bank will offer you a loan."));
-		else
-		{
-			string ship = (player.Ships().size() == 1) ? "your current ship" : "one of your ships";
-			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
-				"If you want to buy it, you must sell " + ship + " first."));
-		}
-		return;
-	}
 }
 
 
