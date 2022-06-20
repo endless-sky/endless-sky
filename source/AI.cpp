@@ -3321,13 +3321,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			bool foundEnemy = false;
 			bool boardClosest = Preferences::Has("Board target");
 
-			auto strategy = [&]() -> function<double(const Ship &)>
+			auto strategy = [&]() noexcept -> function<double(Ship &)>
 			{
 				Point current = ship.Position();
 				// If "board target" is set to false, value priority is used.
 				if(!boardClosest)
 				{
-					return [this, &ship](const Ship &other) -> double
+					return [this, &ship](Ship &other) noexcept -> double
 					{
 						// Use the exact cost if the ship was scanned, otherwise use an estimation.
 						return this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
@@ -3335,38 +3335,38 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					};
 				}
 				// Default to distance-based strategy.
-				return [current](const Ship &other) -> double
+				return [current](Ship &other) noexcept -> double
 				{
 					return current.DistanceSquared(other.Position());
 				};
 			}();
 
-			auto boardable = vector<pair<const Ship *, double>>{};
+			auto boardable = vector<pair<Ship *, double>>{};
 
-			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](const Ship &other)
+			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](Ship &other) noexcept
 			{
 				if(CanBoard(ship, other))
-					boardable.emplace_back(make_pair(&other, strategy(other)));
+					boardable.emplace_back(&other, strategy(other));
 			};
 
 			if(shift)
 			{
-				for(const Ship *other : governmentRosters[ship.GetGovernment()])
-					if(other->GetSystem() == ship.GetSystem())
-						fillBoardable(*other);
+				for(Ship *escort : governmentRosters[ship.GetGovernment()])
+					if(escort->GetSystem() == ship.GetSystem())
+						fillBoardable(*escort);
 			}
 			else
 			{
 				// First check if we can board enemy ships, then allies.
-				for(const Ship *other : GetShipsList(ship, true))
-					fillBoardable(*other);
+				for(Ship *enemy : GetShipsList(ship, true))
+					fillBoardable(*enemy);
 				// The current target is not considered by GetShipsList.
 				if(target)
-					fillBoardable(*target.get());
+					fillBoardable(*const_cast<Ship *>(target.get()));
 
 				if(boardable.empty())
-					for(const Ship *other : GetShipsList(ship, false))
-						fillBoardable(*other);
+					for(Ship *ally : GetShipsList(ship, false))
+						fillBoardable(*ally);
 			}
 
 			if(boardable.empty())
@@ -3375,8 +3375,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				sort(boardable.begin(), boardable.end(),
 					[&ship, boardClosest](
-						pair<const Ship *, double> &lhs,
-						pair<const Ship *, double> &rhs
+						const pair<Ship *, double> &lhs,
+						const pair<Ship *, double> &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
@@ -3388,25 +3388,24 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					}
 				);
 
-				// If there is no valid target (it could be being destroyed).
+				// If there is no valid target (it could be exploding).
 				if(!target || !CanBoard(ship, *target))
-					ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
+					ship.SetTargetShip((boardable.back().first->shared_from_this()));
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
-					auto boardingTarget = find_if(boardable.cbegin(), boardable.cend(),
-						[&target](const pair<const Ship *, double> &lhs)
-						{
-							return lhs.first == target.get();
-						}
-					);
-
-					if(boardingTarget != boardable.cend())
+					auto &previousBoardingTarget = boardable.front();
+					for(const auto &boardingTarget : boardable)
 					{
-						if(boardingTarget == boardable.cbegin())
-							ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
-						else
-							ship.SetTargetShip((const_cast<Ship *>((--boardingTarget)->first)->shared_from_this()));
+						if(boardingTarget.first == target.get())
+						{
+							if(boardingTarget == boardable.front())
+								ship.SetTargetShip(boardable.back().first->shared_from_this());
+							else
+								ship.SetTargetShip((previousBoardingTarget).first->shared_from_this());
+							break;
+						}
+						previousBoardingTarget = boardingTarget;
 					}
 				}
 			}
