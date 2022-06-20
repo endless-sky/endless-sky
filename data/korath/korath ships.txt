@@ -426,8 +426,6 @@ ship "Korath Raider Mark XLII"
 
 
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70
