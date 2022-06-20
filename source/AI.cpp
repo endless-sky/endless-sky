@@ -3341,7 +3341,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				};
 			}();
 
-			auto boardable = vector<pair<Ship *, double>>{};
+			using shipValue = pair<Ship *, double>;
+			auto boardable = vector<shipValue>{};
 
 			auto fillBoardable = [&ship, &foundEnemy, &boardable, &strategy](Ship &other) noexcept
 			{
@@ -3375,8 +3376,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				sort(boardable.begin(), boardable.end(),
 					[&ship, boardClosest](
-						const pair<Ship *, double> &lhs,
-						const pair<Ship *, double> &rhs
+						const shipValue &lhs, const shipValue &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
