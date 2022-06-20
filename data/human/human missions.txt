@@ -4004,7 +4004,7 @@ mission "Laborer"
 	source 
 		attributes "mining"
 	destination
-		attributes "factory" "mining"
+		attributes "mining"
 	minor
 	to offer
 		random < 15
