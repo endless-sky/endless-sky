@@ -1,4 +1,4 @@
-/* wormhole-strategy.hpp
+/* WormholeStrategy.hpp
 Copyright (c) 2022 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
