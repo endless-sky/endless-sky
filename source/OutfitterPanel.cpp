@@ -313,7 +313,7 @@ const ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 {
 	if(!planet)
 		return "You don't seem to be on a planet. "
-			 "How exactly did you get this error message?";
+			"How exactly did you get this error message?";
 
 	if(!selectedOutfit)
 		return false;
