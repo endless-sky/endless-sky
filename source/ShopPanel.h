@@ -48,7 +48,6 @@ public:
 		BuyResult() = delete;
 
 		operator bool() const { return success; }
-		operator !() const { return !success; }
 		operator const std::string&() const { return message; }
 
 		bool Succeeded() const { return success;}
