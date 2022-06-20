@@ -114,7 +114,7 @@ outfit "Finisher Maegrolain"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
-	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher torpedoes, having much greater damage potential than its smaller counterpart.`
+	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher torpedoes. It has much greater damage potential than its smaller counterpart.`
 
 outfit "Finisher Pod"
 	category "Secondary Weapons"
