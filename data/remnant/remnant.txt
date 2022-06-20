@@ -421,7 +421,7 @@ phrase "remnant uncontacted hostile"
 		"(They sign so quickly that your hail receiver can't process it all.)"
 		"(It seems you are not welcome here.)"
 
-phrase "friendly remnant"
+phrase "remnant greetings"
 	word
 		"Greetings"
 		"Hello there"
@@ -437,7 +437,7 @@ phrase "friendly remnant"
 		"."
 		"!"
 
-phrase "friendly remnant"
+phrase "remnant preparations"
 	word
 		"I almost died"
 		"Several hostiles attacked my ship"
@@ -480,7 +480,7 @@ phrase "friendly remnant"
 		"."
 		"!"
 
-phrase "friendly remnant"
+phrase "remnant no scan"
 	word
 		"Please"
 	word 
@@ -498,7 +498,7 @@ phrase "friendly remnant"
 		"us."
 		"our ships."
 
-phrase "friendly remnant"
+phrase "remnant secrecy"
 	word
 		"Loose lips sink ships."
 		"Careless talk costs lives."
@@ -506,9 +506,9 @@ phrase "friendly remnant"
 		"Careless scans costs lives."
 		"If no-one knows we are here, no-one can target us."
 		"They cannot target what they do not know."
-		"Kindly restrain your curiosity about us until we trust you more."
+		"Kindly keep your knowledge of us to yourself."
 
-phrase "friendly remnant"
+phrase "remnant outfit recommendations"
 	word
 		"If"
 	word

@@ -39,6 +39,8 @@ ship "Albatross"
 		"outfit scan power" 18
 		"outfit scan speed" 1
 		"tactical scan power" 39
+		"hull protection" 1
+		"shield protection" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
