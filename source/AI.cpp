@@ -3394,18 +3394,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
-					auto &previousBoardingTarget = boardable.front();
-					for(const auto &boardingTarget : boardable)
-					{
-						if(boardingTarget.first == target.get())
+					auto boardingTarget = find_if(boardable.begin(), boardable.end(),
+						[&target](const pair<const Ship *, double> &lhs)
 						{
-							if(boardingTarget == boardable.front())
-								ship.SetTargetShip(boardable.back().first->shared_from_this());
-							else
-								ship.SetTargetShip((previousBoardingTarget).first->shared_from_this());
-							break;
+							return lhs.first == target.get();
 						}
-						previousBoardingTarget = boardingTarget;
+					);
+
+					if(boardingTarget != boardable.cend())
+					{
+						if(boardingTarget == boardable.cbegin())
+							ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
+						else
+							ship.SetTargetShip((const_cast<Ship *>((--boardingTarget)->first)->shared_from_this()));
 					}
 				}
 			}
