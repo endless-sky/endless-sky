@@ -29331,7 +29331,7 @@ planet "Periaxle Circuit"
 	attributes saryd "coalition station" research
 	landscape land/station34
 	description `The first structure of such scale the Coalition ever built, this station was designed and fully built before the War of Independence. Originally a Saryd attempt at emulating, at a much smaller scale, the Quarg's own ringworlds, almost every living quarter and amenities were stripped away over the course of the war in favour of a gigantic particle accelerator used by the Saryds to research weapons and shielding technology. Nowadays, its use has shifted into a more general-purpose research facility.`
-	description `	Completed dozens of centuries before the war, the structure's original platings failed to last the test of millennia unscathed like the Quarg's own, and are in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance craft can be seen conducting repairs on some outer section of the ring.`
+	description `	Completed dozens of centuries before the war, the structure's original platings failed to last the test of time unscathed, unlike the Quarg's own, and are in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance crafts can be seen conducting repairs on some outer section of the ring.`
 	spaceport `Having very little in the form of windows to look out into the system, and not much to gaze at the small, barren planet it encompasses, the station sees very few visitors - mostly cargo hauliers bringing in supplies for the crew staffed here or the occasional university groups coming to visit the particle accelerator and deepen their knowledge.`
 	"required reputation" 15
 
