@@ -602,8 +602,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
+	else if(key == 'b' || key == 'i' || key == 'c')
 	{
 		const auto result = CanBuy(key == 'i' || key == 'c');
 		if(!result)

@@ -309,17 +309,10 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
+ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 {
 	if(!planet || !selectedOutfit)
 		return false;
-
-	// Check if the outfit is available to get at all.
-	bool isAlreadyOwned = checkAlreadyOwned && IsAlreadyOwned();
-	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0 || isAlreadyOwned))
-		return "You cannot buy this outfit here. "
-			"It is being shown in the list because you have one, "
-			"but this " + planet->Noun() + " does not sell them.";
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
@@ -336,7 +329,51 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 	if(licenseCost < 0)
 		return "You cannot buy this outfit, because it requires a license that you don't have.";
 
-	if(!isAlreadyOwned)
+	// Check if the outfit is available to get at all.
+	bool isInCargo = player.Cargo().Get(selectedOutfit);
+	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
+	bool isInStore = outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0;
+	if(isInStorage
+		&& !(!onlyOwned && !isInStore && !playerShip))
+	{
+		// In storage, the outfit is certainly available to get
+
+		// Except for this one case: 'b' does not move storage to cargo.
+	}
+	else if(isInCargo && playerShip)
+	{
+		// Installing to a ship will work from cargo.
+	}
+	else if(onlyOwned)
+	{
+		// Not using the store, there's nowhere to get this outfit
+		if(isInStore)
+		{
+			// Player hit 'i' or 'c' when they should've hit 'b'
+			if(playerShip)
+				return "You'll need to buy this outfit to install it. (using 'b')";
+			else
+				return "You'll need to buy this outfit to put it in your cargo hold. (using 'b')";
+		}
+		else
+		{
+			// Player hit 'i' or 'c' to install, with no outfit to use
+			if(playerShip)
+				return "You do not have any of these outfits available to install.";
+			else
+				return "You do not have any of these outfits in storage to move to your cargo hold.";
+		}
+	}
+	else if (!isInStore)
+	{
+		// The store doesn't have it.
+		return "You cannot buy this outfit here. "
+			"It is being shown in the list because you have one, "
+			"but this " + planet->Noun() + " does not sell them.";
+	}
+
+	// Check if you need to pay, and can't afford it
+	if(!isInCargo && !isInStorage)
 	{
 		// Determine what you will have to pay to buy this outfit.
 		int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
@@ -353,7 +390,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 				+ Format::Credits(licenseCost) + " credits to buy the necessary licenses.";
 	}
 
-	// The outfit can be bought: but can it fit?
+	// Check if the outfit will fit
 	if(!playerShip)
 	{
 		// Buying into cargo, so check cargo space vs mass.
@@ -362,7 +399,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 		if(!mass || freeCargo >= mass)
 			return true;
 
-		return "You cannot buy this outfit, because it takes up "
+		return "You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
 			+ Tons(mass) + " of mass, and your fleet has "
 			+ Tons(freeCargo) + " of cargo space free.";
 	}
@@ -429,7 +466,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 
 
 
-void OutfitterPanel::Buy(bool alreadyOwned)
+void OutfitterPanel::Buy(bool onlyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
 	if(licenseCost)
@@ -458,12 +495,12 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 	}
 
 	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanBuy(alreadyOwned); ++i)
+	for(int i = 0; i < modifier && CanBuy(onlyOwned); ++i)
 	{
 		// Buying into cargo, either from storage or from stock/supply.
 		if(!playerShip)
 		{
-			if(alreadyOwned)
+			if(onlyOwned)
 			{
 				if(!player.Storage() || !player.Storage()->Get(selectedOutfit))
 					continue;
@@ -488,14 +525,14 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 
 		for(Ship *ship : shipsToOutfit)
 		{
-			if(!CanBuy(alreadyOwned))
+			if(!CanBuy(onlyOwned))
 				return;
 
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
 			else if(player.Storage() && player.Storage()->Get(selectedOutfit))
 				player.Storage()->Remove(selectedOutfit);
-			else if(alreadyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
+			else if(onlyOwned || !(player.Stock(selectedOutfit) > 0 || outfitter.Has(selectedOutfit)))
 				break;
 			else
 			{
