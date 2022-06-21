@@ -96,10 +96,10 @@ outfit "Liquid Sodium Cooler"
 	cost 1660000
 	thumbnail "outfit/liquid sodium"
 	"mass" 37
-	"outfit space" -37
-	"energy consumption" 3
-	"cooling energy" 7.1
-	"active cooling" 164
+	"outfit space" -34
+	"energy consumption" 2
+	"cooling energy" 6
+	"active cooling" 151
 	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system draws a moderate amount of power in order to keep the sodium from freezing when the system is inactive."
 
 
