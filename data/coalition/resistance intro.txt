@@ -50,7 +50,9 @@ mission "Resistance: Smuggling: Charity 1"
 			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More colleagues are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
 			label metchiree
-			`A Kimek in a blue uniform approaches you, and you recognize her as Chiree, the Lunarium leader you met when joining them. She asks to speak in private, and you two go inside your ship. "Much better," she says once the hatch is closed. "Easier to explain you the job, it will be, if speak freely and truly of it, I can.`
+			action
+				log "People" "Chiree" "One of the things Chiree does for the Lunarium is maintain and operate a 'charity' in Kimek space, to help the less fortunate of the Coalition there, and also to help obfuscate the Lunarium's activities from the Heliarchs and their agents."
+			`A Kimek in a blue uniform approaches you, and you recognize her as Chiree, the Lunarium leader you met when joining them. She asks to speak in private, and you two go inside your ship. "Much better," she says once the hatch is closed. "Easier to explain to you the job, it will be, if speak freely and truly of it, I can.`
 			`	"A 'charity' of sorts in Kimek space, me and other members maintain. True and honest, the donations we receive are, and glad to help those in need within our region, we are. But, also a great cover for certain Lunarium cargo transfers, it is. Wish to enlist your help in that, we do."`
 			choice
 				`	"What will I be transporting?"`
