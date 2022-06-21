@@ -50,6 +50,8 @@ public:
 
 private:
 	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
+	void AddRequirementGap();
+	void AddRequirementAttribute(const std::string &label, double value);
 	void UpdateAttributes(const Outfit &outfit);
 
 
