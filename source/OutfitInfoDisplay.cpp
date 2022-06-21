@@ -277,7 +277,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
-	AddRequirementGap();
+	requirementLabels.emplace_back();
+	requirementValues.emplace_back();
+	requirementsHeight += 10;
 
 	bool hasContent = false;
 	static const vector<string> BEFORE =
@@ -292,20 +294,15 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	}
 
 	if(hasContent)
-		AddRequirementGap();
+	{
+		requirementLabels.emplace_back();
+		requirementValues.emplace_back();
+		requirementsHeight += 10;
+	}
 
 	for(const pair<const char *, double> &it : outfit.Attributes())
 		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
 			AddRequirementAttribute(it.first, it.second);
-}
-
-
-
-void OutfitInfoDisplay::AddRequirementGap()
-{
-	requirementLabels.emplace_back();
-	requirementValues.emplace_back();
-	requirementsHeight += 10;
 }
 
 
