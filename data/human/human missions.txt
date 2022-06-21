@@ -4020,13 +4020,9 @@ mission "Riley"
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
 					goto help
-				`	"With that much money, why not buy your own ship?"`
-					goto question
 				`	"I don't have time to take on a passenger right now."`
 			`	She nods, and moves on to another captain to beseech her help instead.`
 				decline
-			label question
-			`	"I wouldn't know how to fly it, and I don't have time to learn. Please, can you help or not?"`
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
 					goto help
@@ -4039,7 +4035,7 @@ mission "Riley"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Riley hasn't entered this system yet. Better depart and wait for it.`
 	on complete
-		payment 180000
+		payment 13000
 		conversation
 			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
 			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
@@ -4057,7 +4053,7 @@ mission "Riley"
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
 			action
-				fine 180000
+				fine 13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 				goto choice
 			label credits
