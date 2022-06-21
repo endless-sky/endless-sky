@@ -803,8 +803,7 @@ news "human ship salesperson"
 			`"`
 		word
 			"When one hatch closes, another one opens. Other than that it's a pretty good spaceship."
-			"This is a very durable spaceship. By the way; do want to buy extended warranty to cover all the breakdowns this ship typically experiences in the first year?"
-			"This is a very durable spaceship. By the way; do want to buy an additional insurance, just in case it does explode in mid-air?"
+			"First I tell my customers how very durable my ships are. And after they buy, then I tell them about all the fragile parts to convince them to also buy extended warranty."
 			"Like new, low mileage, previously owned by an elderly lady."
 			"Hey, you there! I have the perfect ship for you."
 			"One of my ships has a fuel leak? No way, it's... sweat from the all the hard work it does."
@@ -1040,7 +1039,7 @@ news "chef"
 			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
 			"We can bake the most delicious fluffy cakes in space, but our trade-union said we shouldn't call them spacecakes."
 			"Hey, don't just hang around over there! Help me load this stuff; those 50 catering-containers aren't going to move themselves."
-			"Be careful what you transport; I once had a competitor that tried to poison my supplies during transport. Both the competitor and the transporting captain are in jail now."
+			"Be careful what you transport; another chef once tried to poison my supplies during transport. Both that chef and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
 			"If you ever start a restaurant near a spaceport, then don't call it `The Space Bar`. You might think you're funny, but so did hundreds of other new restaurant owners before you."
 		word
@@ -1340,7 +1339,6 @@ news "human tourism"
 			"Can I speak to the manager? There was a scratch on my cabin-door and it really irritated me. I think my whole vacation is ruined now."
 			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
 			"Warn me if you see my partner or my secret lover. They learned about each other and now they're both trying to kill me."
-			"Listen very carefully, I shall say this only once; I'm actually a secret agent trying to get to the naval base. Haha, just joking!"
 		word
 			`"`
 
