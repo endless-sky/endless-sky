@@ -3517,14 +3517,14 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" / 4 + "ship: Medium Warship" / 2 + "ship: Heavy Warship"
+		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
 		or
 			and
 				not "Hunted: active"
-				"ship scale" < 8
-				random < 2 + "ship scale"
+				"ship scale" < 32
+				random < 2 + "ship scale" / 4
 			and
-				"ship scale" >= 8 + "Hunted: active"
+				"ship scale" >= 32 + "Hunted: active" * 4
 				random < 10
 		or
 			not "chosen sides"
