@@ -485,7 +485,7 @@ mission "Unfettered: Bring Hai"
 		set "Unfettered: offered bring hai"
 	on offer
 		conversation
-			`Looking outside you see the sun is setting. You take a moment to admire the breathtaking view and notice a large, white structure in the distance. After exiting your ship, you are caught up in a crowd of Unfettered that almost carries you with it. They are headed towards the building you saw. The building is square-shaped and seems to be a stadium of some sort. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most structures around it appear to be bars or houses. They have far less sterling appearances, or maybe they just have not been cleaned in a long time. Something of great interest must be happening there, though not all the Unfettered are interested, you notice some are just going to the bars, chatting.`
+			`Looking outside you see the sun is setting. You take a moment to admire the breathtaking view and notice a large, white, square shaped structure in the distance, perhaps some sort of stadium. After exiting your ship, you are caught up in a crowd of Unfettered that almost carries you with it. They are headed towards the building you saw. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most structures around it appear to be bars or houses. They have far less sterling appearances, or maybe they just have not been cleaned in a long time. Something of great interest must be happening there, though not all the Unfettered are interested, you notice some are just going to the bars, chatting.`
 			choice
 				`	(Go to the stadium.)`
 				`	(Ignore them and go back to my ship.)`
@@ -614,7 +614,7 @@ mission "Unfettered: Bring Medical Supplies"
 			choice
 				`	"Glad to have prevented a disaster then."`
 					decline
-				`	"So did you just tricked me into helping the war effort?"`
+				`	"So you just tricked me into helping the war effort?"`
 				`	"Were these supplies for soldiers?"`
 					goto forsoldiers
 				`	"The raiders?"`
@@ -799,7 +799,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"You humans always seem obsessed with money... It will be a lot... really a lot! I will only take 25% of it, and you know how much my people value jump drives."`
 			label leave
-			`	"One last thing: We should not go there by jump drive, especially considering where we are going, it would only attract unwanted attention to us. It would not be of use anyway considering we should not travel trough wanderer space, I do not want to try their patience or tolerance to seeing me on your ship." You acompagny him to your ship, and he admits to quite like the interior of it, as well as general look of it, this ship "is adequate for a warrior," he says.`
+			`	"One last thing: We should not go there by jump drive, especially considering where we are going, it would only attract unwanted attention to us. It would not be of use anyway considering we should not travel through Wanderer space, I do not want to try their patience or tolerance to seeing me on your ship." You accompany him to your ship, and he admits to quite like the interior of it, as well as general look of it, this ship "is adequate for a warrior," he says.`
 				accept
 	on visit
 		dialog `You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or left your escort allocated to carrying the jump drives behind, in which case better launch and wait for it.`
@@ -1621,8 +1621,6 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			label next
 			`	"And while you are at it, find out where they are getting these jump drives from, so you can become our new supplier, for even richer rewards. Of course, if you cannot obtain such information, we will at least ask proof that you have taken on the Alphas, by bringing their ship."`
 			choice
-				`	"I better get on my way to kill Alphas then."`
-					accept
 				`	"How can I find them?"`
 				`	"I will not risk engaging the Alphas."`
 					decline
@@ -1633,9 +1631,6 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 					decline
 			`	Before you go, one of the warlords come to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I am not sure you would ever come back if you are not victorious. But never forget that Jump Drives matter more than anything else, you should steal as many as you can if you do indeed manage to beat the Alphas."`
 				accept
-
-	on enter "Wah Yoot"
-		dialog `Taer-Fi sends you a message: "Hello, captain <last>, I have reviewed the scanner logs you brought me and I think I may have found something interesting..."`
 
 
 
