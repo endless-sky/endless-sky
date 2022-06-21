@@ -91,7 +91,7 @@ outfit "Ion Cannon"
 		"shield damage" 168
 		"hull damage" 60
 		"ion damage" 5
-	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
+	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy and causing its weapons to jam. If a ship has sizable battery reserves, this may have little effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers, or otherwise cause it to have difficulty firing its weapons."
 
 effect "ion impact"
 	sprite "effect/ion impact"
@@ -168,14 +168,6 @@ outfit "rslug"
 		"hull damage" 8.4
 		"ion damage" .3
 		"hit force" 15
-
-effect "bullet impact"
-	sprite "effect/bullet impact"
-		"no repeat"
-		"frame rate" 60
-	"lifetime" 8
-	"random angle" 40
-	"velocity scale" -.05
 
 effect "rail sparks"
 	sprite "effect/railspark"
@@ -358,7 +350,7 @@ outfit "Quantum Keystone"
 	category "Systems"
 	cost 12000
 	thumbnail "outfit/keystone"
-	"mass" 1
+	"mass" 0.1
 	"outfit space" -1
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
@@ -367,51 +359,51 @@ outfit "Quantum Keystone"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
-	cost 18000
+	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 491
+	"energy capacity" 2164
 	description "Hai power storage technology is thousands of years old, but remarkably simple and robust. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
 	category "Power"
-	cost 22000
+	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
 	"outfit space" -15
-	"energy capacity" 1709
+	"energy capacity" 6836
 	description "This battery pack has more than three times the energy capacity of the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
-	cost 55000
+	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
 	"outfit space" -30
-	"energy capacity" 3761
+	"energy capacity" 15044
 	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
-	cost 124000
+	cost 47000
 	thumbnail "outfit/large battery hai"
-	"mass" 60
-	"outfit space" -60
-	"energy capacity" 8205
+	"mass" 50
+	"outfit space" -50
+	"energy capacity" 27350
 	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
-	cost 300000
+	cost 74000
 	thumbnail "outfit/huge battery hai"
-	"mass" 120
-	"outfit space" -120
-	"energy capacity" 17777
+	"mass" 70
+	"outfit space" -70
+	"energy capacity" 42222
 	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and allowing them to survive longer in a fight against opponents carrying Ion Cannons."
 
 
@@ -464,10 +456,10 @@ outfit `"Baellie" Atomic Engines`
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 7.7
-	"thrusting energy" .92
-	"thrusting heat" 1.83
-	"turn" 250
+	"thrust" 7.3
+	"thrusting energy" .87
+	"thrusting heat" 1.7
+	"turn" 244
 	"turning energy" .64
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
@@ -476,7 +468,7 @@ outfit `"Baellie" Atomic Engines`
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
-	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
+	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie."`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
@@ -485,9 +477,9 @@ outfit `"Basrem" Atomic Thruster`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 13.2
-	"thrusting energy" 1.5
-	"thrusting heat" 2.9
+	"thrust" 12.5
+	"thrusting energy" 1.4
+	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -500,9 +492,9 @@ outfit `"Benga" Atomic Thruster`
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 23.6
-	"thrusting energy" 2.6
-	"thrusting heat" 5.0
+	"thrust" 22.4
+	"thrusting energy" 2.5
+	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -515,9 +507,9 @@ outfit `"Biroo" Atomic Thruster`
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 41.5
-	"thrusting energy" 4.2
-	"thrusting heat" 8.6
+	"thrust" 39.4
+	"thrusting energy" 4
+	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
@@ -530,9 +522,9 @@ outfit `"Bondir" Atomic Thruster`
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 66.1
-	"thrusting energy" 6.4
-	"thrusting heat" 13.4
+	"thrust" 62.8
+	"thrusting energy" 6.1
+	"thrusting heat" 12.7
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -545,13 +537,14 @@ outfit `"Bufaer" Atomic Thruster`
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 120.1
-	"thrusting energy" 10.9
-	"thrusting heat" 23.8
+	"thrust" 114.1
+	"thrusting energy" 10.4
+	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
+
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
@@ -560,9 +553,9 @@ outfit `"Basrem" Atomic Steering`
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 309
+	"turn" 301
 	"turning energy" .7
-	"turning heat" 1.6
+	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
@@ -575,9 +568,9 @@ outfit `"Benga" Atomic Steering`
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 577
+	"turn" 563
 	"turning energy" 1.1
-	"turning heat" 2.8
+	"turning heat" 2.85
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
@@ -590,7 +583,7 @@ outfit `"Biroo" Atomic Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 1054
+	"turn" 1028
 	"turning energy" 2.0
 	"turning heat" 5.1
 	"steering flare sprite" "effect/atomic flare/small"
@@ -605,7 +598,7 @@ outfit `"Bondir" Atomic Steering`
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1758
+	"turn" 1714
 	"turning energy" 3.2
 	"turning heat" 8.2
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -620,13 +613,14 @@ outfit `"Bufaer" Atomic Steering`
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 3043
+	"turn" 2967
 	"turning energy" 5.2
 	"turning heat" 13.8
 	"steering flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"steering flare sound" "atomic large"
 	description "Nine out of ten human captains interviewed in Hai space say that they would choose Hai atomic engines over those of Deep Sky any day... that is, if they could afford such expensive engines."
+
 
 outfit "Pulse Rifle"
 	category "Hand to Hand"
@@ -636,3 +630,10 @@ outfit "Pulse Rifle"
 	"capture defense" 1.0
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
+
+
+outfit "Shield Beetle Pendant"
+	category "Special"
+	thumbnail "outfit/crystal pendant"
+	"quantum keystone" 1
+	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."

@@ -726,7 +726,7 @@ mission "Wanderers: Kor Efret 3"
 		event "wanderers: kashikt battle begins"
 		conversation
 			`With Rek's help, you make contact with the team of Korath engineers, and Rek explains the Wanderer plan to hack into the Kor Mereti network. Her speech is slower than before, and she has to keep asking questions; clearly the conversation involves technical jargon that she is not yet familiar with. When she is done explaining, the Korath are silent for a minute, then one of them answers quite loudly, almost shouting, gesturing in your direction as if pushing you away.`
-			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ...unless it is proven to be beneficial."`
+			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ... unless it is proven to be beneficial."`
 			choice
 				`	"But perhaps the Wanderers could succeed where the Korath have failed."`
 				`	"What about the Kor Sestor? Do they have any hope of taking over those drones?"`
@@ -2542,13 +2542,13 @@ event "bombed zenith"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2558,7 +2558,7 @@ event "bombed zenith"
 		object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2568,11 +2568,11 @@ event "bombed zenith"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2592,13 +2592,13 @@ event "zenith cooling"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2608,7 +2608,7 @@ event "zenith cooling"
 		object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2618,11 +2618,11 @@ event "zenith cooling"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2873,8 +2873,8 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
 		conversation
-			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying cement mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
-			`	As the Navy troops begin pouring the cement, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
+			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying concrete mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
+			`	As the Navy troops begin pouring the concrete, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
 			`	When the battle is over, the Navy troops explore the bunker, hoping to find prisoners, but they find no one alive. They seal up the entrance and collapse the bunker, and prepare to travel back with you to <planet>.`
 				accept
 	npc accompany save

@@ -16,8 +16,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "InfoPanelState.h"
 #include "Point.h"
+#include "text/layout.hpp"
 
+#include <map>
+#include <memory>
 #include <set>
 #include <vector>
 
@@ -32,6 +36,7 @@ class Rectangle;
 class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
+	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -59,23 +64,39 @@ private:
 	bool Hover(const Point &point);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
+	// Try to scroll to the given position. Return true if position changed.
+	bool ScrollAbsolute(int scroll);
 
+	void SortShips(InfoPanelState::ShipComparator &shipComparator);
+
+	class SortableColumn {
+	public:
+		SortableColumn(std::string name, double offset, double endX, Layout layout, InfoPanelState::ShipComparator *shipSort);
+
+		std::string name;
+		double offset = 0.;
+		double endX = 0.;
+		Layout layout;
+		InfoPanelState::ShipComparator *shipSort = nullptr;
+	};
 
 private:
 	PlayerInfo &player;
 
-	std::vector<ClickZone<int>> zones;
-	// Keep track of which ship the mouse is hovering over, which ship was most
-	// recently selected, which ship is currently being dragged, and all ships
-	// that are currently selected.
+	static const SortableColumn columns[];
+
+	InfoPanelState panelState;
+
+	// Column headers that sort ships when clicked.
+	std::vector<ClickZone<InfoPanelState::ShipComparator*>> menuZones;
+
+	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
-	int selectedIndex = -1;
-	std::set<int> allSelected;
-	// This is the index of the ship at the top of the fleet listing.
-	int scroll = 0;
-	Point hoverPoint;
-	// When the player is landed, they are able to change their flagship and reorder their fleet.
-	bool canEdit = false;
+
+	// Initialize mouse point to something off-screen to not
+	// make the game think the player is hovering on something.
+	Point hoverPoint = Point(-10000, -10000);
+
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };
