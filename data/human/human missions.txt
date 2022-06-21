@@ -4078,7 +4078,7 @@ mission "Riley"
 			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
 			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
 			`	Riley, in turn, had always surrounded herself with music, and moved to ${rileyOriginPlanet} to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
-			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I...have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "whatever happens, please don't think ill of me. I will always love you."`
+			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "whatever happens, please don't think ill of me. I will always love you."`
 			`	His body relaxes, and he's gone.`
 			choice
 				`	(Stay comfortingly close).`
@@ -4088,18 +4088,18 @@ mission "Riley"
 			label close
 			`	You take a seat, feeling the emotion of the moment wash over you as Riley silently weeps. Minutes go by, unnoticed.`
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
-			`	"It...worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I couldn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
+			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I couldn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
 			choice
 				`	(Stay silent)."`
 					goto continue
-				`	"Is this ...legal?"`
+				`	"Is this... legal?"`
 			`	"Well, no," he replies. "Not under Deep law. I assure you that my only intention is to continue my work; nothing more."`
 			`	A quick search shows a 30000 credit reward for turning in a mind upload.`
 			label continue
 			`	"Riley, what do you think?"`
-			`	Dad, is that really you? How do you feel?"`
+			`	"Dad, is that really you? How do you feel?"`
 			`	She steps closer to the Core, and they talk for a few tentative minutes. As far as you can tell, the mind that she is talking to is indistinguishable from the man you came to meet.`
-			`	Finally, she turns to you. "It really is my dad. It's a lot to get used to, but...how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my way back."`
+			`	Finally, she turns to you. "It really is my dad. It's a lot to get used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my way back."`
 			choice
 				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
 					goto suggest
