@@ -21,7 +21,7 @@ ship "Korath Dredger"
 		"bunks" 395
 		"mass" 1503
 		"drag" 18.3
-		"heat dissipation" .65
+		"heat dissipation" .45
 		"fuel capacity" 900
 		"cargo space" 605
 		"outfit space" 827
@@ -34,39 +34,38 @@ ship "Korath Dredger"
 			"hull damage" 2300
 			"hit force" 5900
 	outfits
-		"Korath Banisher" 2
-		"Korath Grab-Strike" 3
+		"Korath Digger Turret" 2
+		"Korath Banisher"
+		"Korath Grab-Strike" 2
 		"Korath Warder" 2
 		
 		"Systems Core (Large)"
 		"Triple Plasma Core"
-		"Large Heat Shunt" 3
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
 		"Fuel Processor"
-		"Korath Repeater Rifle" 190
+		"Korath Repeater Rifle" 208
 		
+		"Reverser (Lunar Class)"
 		"Steering (Planetary Class)"
-		"Steering (Asteroid Class)"
-		"Thruster (Planetary Class)"
-		"Thruster (Asteroid Class)"
+		"Thruster (Stellar Class)"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	turret -37.5 -152.5 "Korath Warder"
-	turret 37.5 -152.5 "Korath Warder"
-	turret 0 -153 "Korath Grab-Strike"
-	turret -42 -28 "Korath Banisher"
-	turret 42 -28 "Korath Banisher"
-	turret -86 128.5 "Korath Grab-Strike"
-	turret 86 128.5 "Korath Grab-Strike"
+	turret -37.5 -152.5 "Korath Digger Turret"
+	turret 37.5 -152.5 "Korath Digger Turret"
+	turret 0 -153 "Korath Banisher"
+	turret -42 -28 "Korath Grab-Strike"
+	turret 42 -28 "Korath Grab-Strike"
+	turret -86 128.5 "Korath Warder"
+	turret 86 128.5 "Korath Warder"
 	engine 0 179
 	engine -32 164 .7
 	engine 32 164 .7
 	"reverse engine" -93.5 -65 0.7
 	"reverse engine" 93.5 -65 0.7
 	"reverse engine" -79 80.5 0.7
-		over
 	"reverse engine" 79 80.5 0.7
-		over
 	bay "Fighter" -93.5 -20.5
 	bay "Fighter" 93.5 -20.5
 	bay "Fighter" -87 128.5
@@ -95,7 +94,7 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 781
+		"outfit space" 777
 		"weapon capacity" 339
 		"engine capacity" 159
 		weapon
@@ -108,14 +107,14 @@ ship "Korath Raider"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
+		"Firelight Storage Rack" 1
+		"Firelight Missile" 45
 		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 1
 		"Small Heat Shunt" 3
-		"Interference Plating"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
