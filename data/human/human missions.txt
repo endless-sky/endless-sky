@@ -4057,7 +4057,7 @@ mission "Riley"
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
 			action
-				fine 13000
+				fine 180000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 				goto choice
 			label credits
