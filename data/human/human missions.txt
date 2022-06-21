@@ -4004,7 +4004,7 @@ mission "Laborer"
 	source 
 		attributes "mining"
 	destination
-		attributes "factory" "mining"
+		attributes "mining"
 	minor
 	to offer
 		random < 15
@@ -4028,6 +4028,7 @@ mission "Laborer"
 					goto offer
 				`	"Work dried up on the whole planet?"`
 			`	"This planet is messed up. Everybody likes to talk behind your back. I did a job for one of the big mining companies here, but my boss had it out for me. Told everybody I did it wrong, even though they never gave me any training at all. Then he went and put me on the permanent record. So yeah, sooner I get off this dump, the better."`
+			`You say, "What are you able to pay me?"`
 			label offer
 			`	His eyes drop. "I can pay you after I earn the money. I've just gotta get to <planet> to get work, and then I'll send the money. I just want to earn a living, same as anyone."`
 			choice
