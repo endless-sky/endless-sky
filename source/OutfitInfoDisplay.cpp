@@ -192,6 +192,11 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
+
+	const set<string> NEVER_REQUIREMENT = {
+		"heat dissipation",
+		"automaton"
+	};
 }
 
 
@@ -312,8 +317,7 @@ void OutfitInfoDisplay::AddRequirementGap()
 void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 {
 	// These attributes have negative values but are not requirements
-	static const set<string> EXCEPTIONS = {"heat dissipation", "automaton"};
-	if(EXCEPTIONS.count(label))
+	if(NEVER_REQUIREMENT.count(label))
 		return;
 
 	// Special case for 'crew required' - use positive values as a requirement.
@@ -340,12 +344,45 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight = 20;
 
 	bool hasNormalAttributes = false;
+
+	// These attributes are regularly negative on outfits, so when positive,
+	// tag "added" and show them first. They conveniently don't use SCALE or
+	// BOOLEAN_ATTRIBUTES.
+	static const vector<string> EXPECTED_NEGATIVE = {
+		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
+	};
+
+	for(const string& attr : EXPECTED_NEGATIVE)
+	{
+		double value = outfit.Get(attr);
+		if(value <= 0)
+			continue;
+
+		attributeLabels.emplace_back(attr + " added:");
+		attributeValues.emplace_back(Format::Number(value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
-		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
-		};
-		if(SKIP.count(it.first))
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+			continue;
+
+		// Only show positive values here.
+		// Negative values are considered requirements, with some exceptions.
+		if(static_cast<string>(it.first) == "required crew")
+		{
+			// 'required crew' is inverted - positive values are requirements.
+			// A negative 'required crew' would be a benefit, so it is listed here.
+			if(it.second > 0)
+				continue;
+		}
+		else if(NEVER_REQUIREMENT.count(it.first))
+		{
+			// This attribute is always listed here, though they are negative.
+		}
+		else if(it.second < 0)
 			continue;
 
 		auto sit = SCALE.find(it.first);
