@@ -4051,6 +4051,7 @@ mission "Laborer"
 				`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
 					decline
 	on complete
+		event "laborer payment" 400
 		conversation
 			`The worker you picked up from <source> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You think that you'd feel more sorry for him if you weren't so eager to get his ceaseless negativity off your ship.`
 			`	He carries his bags to the lowered ramp, then turns back before disembarking.`
@@ -4070,7 +4071,8 @@ mission "Laborer"
 				`	He bobs his head at you in farewell. "I'll send you the payment when I have it."`
 			label end
 				`	He turns and walks off.`
-		event "laborer payment" 400
+
+event "laborer payment"
 
 mission "Laborer Payment"
 	landing
