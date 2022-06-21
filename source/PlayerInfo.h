@@ -183,14 +183,14 @@ public:
 	const std::list<Mission> &AvailableJobs() const;
 
 	enum SortType {ABC, PAY, SPEED, CONVENIENT};
-	const SortType AvailableSortType() const;
+	const SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
-	const bool AvailableSortAsc() const;
-	void ToggleAvailableSortAsc();
-	const bool SeparateRush() const;
-	void ToggleSeparateRush();
-	const bool SeparateGray() const;
-	void ToggleSeparateGray();
+	const bool ShouldSortAscending() const;
+	void ToggleSortAscending();
+	const bool ShouldSortSeparateRush() const;
+	void ToggleSortSeparateRush();
+	const bool ShouldSortSeparateGray() const;
+	void ToggleSortSeparateGray();
 
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();

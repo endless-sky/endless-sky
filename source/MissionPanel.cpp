@@ -362,13 +362,13 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
 				if( x < Screen::Left() + SIDE_WIDTH - 80)
-					player.ToggleSeparateRush();
+					player.ToggleSortSeparateRush();
 				else if( x < Screen::Left() + SIDE_WIDTH - 45)
-					player.ToggleSeparateGray();
+					player.ToggleSortSeparateGray();
 				else if( x < Screen::Left() + SIDE_WIDTH - 25)
 					player.NextAvailableSortType();
 				else
-					player.ToggleAvailableSortAsc();
+					player.ToggleSortAscending();
 				return true;
 			}
 			return false;
@@ -694,17 +694,17 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	//Draw Sorting Columns
 	if(sorter)
 	{
-		SpriteShader::Draw(arrow[player.AvailableSortAsc()], pos + Point(SIDE_WIDTH - 25., 8.));
+		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 25., 8.));
 
-		SpriteShader::Draw(sortIcon[player.AvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
+		SpriteShader::Draw(sortIcon[player.GetAvailableSortType()], pos + Point(SIDE_WIDTH - 45., 8.));
 		if(hoverSort)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
 
 		font.Draw({grayLabel, {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
-		SpriteShader::Draw(checkbox[player.SeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
+		SpriteShader::Draw(checkbox[player.ShouldSortSeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
-		SpriteShader::Draw(checkbox[player.SeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
+		SpriteShader::Draw(checkbox[player.ShouldSortSeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
 
@@ -740,8 +740,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 
 		pos.Y() += 20.;
 		if(separateRushGray && !separated &&
-			((player.SeparateRush() && it->Deadline()) ||
-			(player.SeparateGray() && !it->CanAccept(player))))
+			((player.ShouldSortSeparateRush() && it->Deadline()) ||
+			(player.ShouldSortSeparateGray() && !it->CanAccept(player))))
 		{
 			pos.Y() += 8.;
 			separated = true;

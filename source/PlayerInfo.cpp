@@ -1567,7 +1567,7 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
-const PlayerInfo::SortType PlayerInfo::AvailableSortType() const
+const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
 {
 	return availableSortType;
 }
@@ -1582,14 +1582,14 @@ void PlayerInfo::NextAvailableSortType()
 
 
 
-const bool PlayerInfo::AvailableSortAsc() const
+const bool PlayerInfo::ShouldSortAscending() const
 {
 	return availableSortAsc;
 }
 
 
 
-void PlayerInfo::ToggleAvailableSortAsc()
+void PlayerInfo::ToggleSortAscending()
 {
 	availableSortAsc = !availableSortAsc;
 	SortAvailable();
@@ -1597,14 +1597,14 @@ void PlayerInfo::ToggleAvailableSortAsc()
 
 
 
-const bool PlayerInfo::SeparateRush() const
+const bool PlayerInfo::ShouldSortSeparateRush() const
 {
 	return sortSeparateRush;
 }
 
 
 
-void PlayerInfo::ToggleSeparateRush()
+void PlayerInfo::ToggleSortSeparateRush()
 {
 	sortSeparateRush = !sortSeparateRush;
 	SortAvailable();
@@ -1612,14 +1612,14 @@ void PlayerInfo::ToggleSeparateRush()
 
 
 
-const bool PlayerInfo::SeparateGray() const
+const bool PlayerInfo::ShouldSortSeparateGray() const
 {
 	return sortSeparateGray;
 }
 
 
 
-void PlayerInfo::ToggleSeparateGray()
+void PlayerInfo::ToggleSortSeparateGray()
 {
 	sortSeparateGray = !sortSeparateGray;
 	SortAvailable();
