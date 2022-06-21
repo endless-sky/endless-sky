@@ -982,7 +982,6 @@ fleet "Marauders"
 		
 mission "Unfettered: Stop of the Hunt"
 	invisible
-	minor
 	repeat
 	landing
 	to offer
