@@ -2859,9 +2859,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 			escort->parent.reset();
 	}
 	// This ship should not care about its now-unallied escorts.
-	escorts.list.clear();
-	escorts.slowest.reset();
-	escorts.cruiseVelocity = -1.;
+	escorts = Escorts{};
 }
 
 
@@ -3813,12 +3811,11 @@ void Ship::AddEscort(Ship &ship)
 
 void Ship::RemoveEscort(const Ship &ship)
 {
-	// Reset the cached value if we are removing the slowest escort, we will
-	// re-scan the list of escorts to set the escorts velocity based on
-	// remaining active escorts.
+	// When removing the slowest escort, we need to determine the new "speed limit."
 	shared_ptr<Ship> slowest = escorts.slowest.lock();
-	bool findSlowest = (!slowest || (&ship == slowest.get()));
-	if(findSlowest){
+	const bool findSlowest = (!slowest || (&ship == slowest.get()));
+	if(findSlowest)
+	{
 		escorts.cruiseVelocity = -1.;
 		escorts.slowest.reset();
 	}
@@ -3849,14 +3846,11 @@ void Ship::RemoveEscort(const Ship &ship)
 // (Re)Register escorts, for example because some escort got destroyed.
 void Ship::TuneForEscorts()
 {
-	// Check if we have a valid slowest escort. If we have one, then we don't
-	// need to rescan for the next slowest escort.
+	// If the cached slowest escort is still ours, we don't need to re-find one.
 	shared_ptr<Ship> slowest = escorts.slowest.lock();
 	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
 		return;
 
-	// Reset this value, we will re-scan the list of escorts to set the
-	// escorts velocity based on remaining active escorts.
 	escorts.cruiseVelocity = -1.;
 	escorts.slowest.reset();
 

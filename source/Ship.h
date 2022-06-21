@@ -596,7 +596,7 @@ private:
 
 	// Links between escorts and parents.
 	std::weak_ptr<Ship> parent;
-	struct EscortsStruct {
+	struct Escorts {
 		// The actual list of escorts.
 		std::vector<std::weak_ptr<Ship>> list;
 		// Cached data from escorts to determine the cruisespeed for landing.
