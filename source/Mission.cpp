@@ -1382,14 +1382,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 
 
-int Mission::CalculateJumps(const System * const sourceSystem)
+int Mission::CalculateJumps(const System * sourceSystem)
 {
 	expectedJumps = 0;
 
 	// Estimate how far the player will have to travel to visit all the waypoints
 	// and stopovers and then to land on the destination planet. Rather than a
 	// full traveling salesman path, just calculate a greedy approximation.
-	const System *path = sourceSystem;
 	list<const System *> destinations;
 	for(const System *system : waypoints)
 		destinations.push_back(system);
@@ -1399,18 +1398,18 @@ int Mission::CalculateJumps(const System * const sourceSystem)
 	while(!destinations.empty())
 	{
 		// Find the closest destination to this location.
-		DistanceMap distance(path);
+		DistanceMap distance(sourceSystem);
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
 			if(distance.Days(*it) < distance.Days(*bestIt))
 				bestIt = it;
 
-		path = *bestIt;
+		sourceSystem = *bestIt;
 		expectedJumps += distance.Days(*bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path);
+	DistanceMap distance(sourceSystem);
 	expectedJumps += distance.Days(destination->GetSystem());
 
 	return expectedJumps;
