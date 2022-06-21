@@ -428,7 +428,7 @@ private:
 	void RemoveEscort(const Ship &ship);
 	// Cache relevant data for all escorts or the given escort.
 	void TuneForEscorts();
-	void TuneForEscort(const std::shared_ptr<Ship> &ship);
+	void TuneForEscort(const Ship &ship);
 	// Let the parent re-check if all cached data for its escorts still is valid.
 	void TuneParent();
 	// Get the hull amount at which this ship is disabled.
@@ -597,6 +597,9 @@ private:
 	// Links between escorts and parents.
 	std::weak_ptr<Ship> parent;
 	struct Escorts {
+	public:
+		~Escorts();
+	public:
 		// The actual list of escorts.
 		std::vector<std::weak_ptr<Ship>> list;
 		// Cached data from escorts to determine the cruisespeed for landing.

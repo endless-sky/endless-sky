@@ -2851,14 +2851,8 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
-	// If a flagship is captured, its escorts become independent.
-	for(const auto &it : escorts.list)
-	{
-		shared_ptr<Ship> escort = it.lock();
-		if(escort)
-			escort->parent.reset();
-	}
-	// This ship should not care about its now-unallied escorts.
+	// If a flagship is captured, its escorts become independent and
+	// this ship should not care about its now-unallied escorts.
 	escorts = Escorts{};
 }
 
@@ -3803,8 +3797,8 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 void Ship::AddEscort(Ship &ship)
 {
 	auto sp = ship.shared_from_this();
-	TuneForEscort(sp);
 	escorts.list.push_back(std::move(sp));
+	TuneForEscort(ship);
 }
 
 
@@ -3835,7 +3829,7 @@ void Ship::RemoveEscort(const Ship &ship)
 		else
 		{
 			if(escort && findSlowest)
-				TuneForEscort(escort);
+				TuneForEscort(*escort);
 			++it;
 		}
 	}
@@ -3858,29 +3852,29 @@ void Ship::TuneForEscorts()
 	{
 		auto escort = it.lock();
 		if(escort)
-			TuneForEscort(escort);
+			TuneForEscort(*escort);
 	}
 }
 
 
 
-// Store relevant cached data for the given escort.
-void Ship::TuneForEscort(const std::shared_ptr<Ship> &ship)
+// Cache the maximum speed that the parent should stay below to keep
+// all escorts together.
+void Ship::TuneForEscort(const Ship &ship)
 {
-	// Cache the maximum speed that the parent should stay below to keep
-	// all escorts together.
-	// We don't cache the speeds of escorts that have 0 velocity to avoid
-	// having the parent get stuck when one of the escorts doesn't have
-	// regular thrust.
-	// We also don't cache the speeds of carried ships, since they are often
+	// We don't cache the speeds of carried ships, since they are often
 	// docked and the carrier waits for them during docking already.
-	if(!ship->CanBeCarried() && !ship->IsDestroyed() && government == ship->GetGovernment())
+	if(!ship.CanBeCarried() && !ship.IsDestroyed() && government == ship.GetGovernment())
 	{
-		double eV = ship->MaxVelocity() * 0.9;
+		double eV = ship.MaxVelocity() * 0.9;
+		// We don't cache the speeds of escorts that have 0 velocity to avoid
+		// having the parent get stuck when one of the escorts doesn't have
+		// regular thrust.
 		if(eV > 0. && (escorts.cruiseVelocity <= 0. || (eV < escorts.cruiseVelocity)))
 		{
 			escorts.cruiseVelocity = eV;
-			escorts.slowest = ship;
+			auto sp = make_shared<Ship>(ship);
+			escorts.slowest = sp;
 		}
 	}
 }
@@ -4030,3 +4024,14 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 	}
 }
 
+
+
+Ship::Escorts::~Escorts()
+{
+	for(const auto &it : list)
+	{
+		shared_ptr<Ship> escort = it.lock();
+		if(escort)
+			escort->parent.reset();
+	}
+}
