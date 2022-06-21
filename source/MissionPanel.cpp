@@ -351,9 +351,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		//Panel header
-		if(y < Screen::Top() + 30)
+		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
 		{
-			if( y < Screen::Top() + 10)
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
 			{
 				//empty space
 				return false;
@@ -513,7 +513,7 @@ bool MissionPanel::Hover(int x, int y)
 		{
 			dragSide = -1;
 
-			hoverSort = y < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
+			hoverSort = y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
 				x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
 		}
 	}
