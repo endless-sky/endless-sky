@@ -350,15 +350,15 @@ bool MissionPanel::Click(int x, int y, int clicks)
 
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
-		//Panel header
+		// Panel header
 		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
 		{
 			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
 			{
-				//empty space
+				// empty space
 				return false;
 			}
-			//Sorter buttons
+			// Sorter buttons
 			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
 				if( x < Screen::Left() + SIDE_WIDTH - 80)
@@ -373,7 +373,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			return false;
 		}
-		//Available missions
+		// Available missions
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
@@ -390,7 +390,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
-		//Accepted missions
+		// Accepted missions
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
@@ -685,7 +685,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Font &font = FontSet::Get(14);
 	pos += Point(10., 10. + (20. - font.Height()) * .5);
 
-	//Panel sorting
+	// Panel sorting
 	const Color &text= *GameData::Colors().Get("medium");
 	const Sprite *arrow[2] = {SpriteSet::Get("ui/sort descending"), SpriteSet::Get("ui/sort ascending")};
 	const Sprite *checkbox[2] = {SpriteSet::Get("ui/checked"), SpriteSet::Get("ui/unchecked")};
@@ -693,7 +693,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 
-	//Draw Sorting Columns
+	// Draw Sorting Columns
 	if(sorter)
 	{
 		SpriteShader::Draw(arrow[player.ShouldSortAscending()], pos + Point(SIDE_WIDTH - 25., 8.));
@@ -710,7 +710,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	}
 
 
-	//Panel title
+	// Panel title
 	font.Draw(label, pos, title);
 	FillShader::Fill(
 		pos + Point(.5 * size.X() - 5., 15.),

@@ -2803,11 +2803,12 @@ void PlayerInfo::SortAvailable()
 	}
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
-		// First, separate orders with deadlines, if wanted
+		// First, separate rush orders with deadlines, if wanted
 		if(sortSeparateDeadline)
 		{
+			// availableSortAsc instead of true, to counter the reverse below
 			if(!lhs.Deadline() && rhs.Deadline())
-				return availableSortAsc; //availableSortAsc instead of true, to counter the actual reversal below
+				return availableSortAsc;
 			if(lhs.Deadline() && !rhs.Deadline())
 				return !availableSortAsc;
 		}
