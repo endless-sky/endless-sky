@@ -1032,7 +1032,7 @@ mission "Saryd Census 2"
 			choice
 				`	(Go browse some shops, then come back later.)`
 					goto shops
-				`	(Ask them to tell you about the data they have collected.)`
+				`	(Ask them about the data they have collected.)`
 			`	They explain how this census was mostly focused on the total population growth of the Coalition and how things are going as expected.`
 			`	"Remained stable, the Saryd population has," one of them comments. "At about 30 billion individuals, our numbers still are, though slightly increasing the fertility rate has been."`
 			`	As you continue to chat, one of them gets curious and asks you about humanity's population, to which you respond that your species numbers about 100 billion people.`
@@ -1859,7 +1859,7 @@ mission "Coalition: Pilgrimage 5"
 			`	She tells you she'll pass the time until then by visiting local shops, asking if you'd like to come with her.`
 			choice
 				`	(Go along with her.)`
-				`	(Stay in your ship.)`
+				`	(Stay in my ship.)`
 					goto notgo
 			`	She takes you around the spaceport city, touring some clothing shops and bringing you to parks she had visited with her husband. Shortly after noon you two enter a restaurant, where she insists on paying for your meal. You tour the city with her for a while longer and, just before the sun sets, reach the forest at the base of the mountain on top of which Starlit University is located.`
 			`	Once night falls, many lights start to appear inside the forest, and Vellorae beckons you to follow her in. "Stick close, you should. Difficult to navigate the path, for other species it often is." As you walk down a trail with her, you approach one of the lights to see that it's a bonfire on a platform in a miniature clearing, at what you hope is a safe distance from the trees around it. Continuing to the next light, Vellorae clutches the bangle in her hands the entire time, humming some guttural, almost tribal chant. As you pass by another fire, a short burst of flames gets closer to some nearby shrubs, but thankfully is put out before it can cause any harm. It is extinguished with an odd, large, fabric net on a pole by a cloaked Saryd who seemed to materialize from the trees near the fire.`
