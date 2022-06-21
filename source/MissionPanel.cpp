@@ -510,16 +510,19 @@ bool MissionPanel::Hover(int x, int y)
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		if(index < available.size())
+		{
 			dragSide = -1;
+
+			hoverSort = y < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
+				x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
+		}
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
 		if(static_cast<int>(index) < AcceptedVisible())
 			dragSide = 1;
 	}
-	hoverSort = y < Screen::Top() + 30 && y >= Screen::Top() + 10 &&
-			x < Screen::Left() + SIDE_WIDTH - 25 && x >= Screen::Left() + SIDE_WIDTH - 45;
-	return (dragSide || hoverSort) ? true : MapPanel::Hover(x, y);
+	return dragSide ? true : MapPanel::Hover(x, y);
 }
 
 
