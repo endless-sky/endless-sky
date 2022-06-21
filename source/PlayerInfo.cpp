@@ -229,10 +229,10 @@ void PlayerInfo::Load(const string &path)
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
 			availableSortAsc = false;
-		else if(child.Token(0) == "separate rush")
-			sortSeparateRush = true;
-		else if(child.Token(0) == "separate gray")
-			sortSeparateGray = true;
+		else if(child.Token(0) == "separate deadline")
+			sortSeparateDeadline = true;
+		else if(child.Token(0) == "separate possible")
+			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -1597,31 +1597,31 @@ void PlayerInfo::ToggleSortAscending()
 
 
 
-const bool PlayerInfo::ShouldSortSeparateRush() const
+const bool PlayerInfo::ShouldSortSeparateDeadline() const
 {
-	return sortSeparateRush;
+	return sortSeparateDeadline;
 }
 
 
 
-void PlayerInfo::ToggleSortSeparateRush()
+void PlayerInfo::ToggleSortSeparateDeadline()
 {
-	sortSeparateRush = !sortSeparateRush;
+	sortSeparateDeadline = !sortSeparateDeadline;
 	SortAvailable();
 }
 
 
 
-const bool PlayerInfo::ShouldSortSeparateGray() const
+const bool PlayerInfo::ShouldSortSeparatePossible() const
 {
-	return sortSeparateGray;
+	return sortSeparatePossible;
 }
 
 
 
-void PlayerInfo::ToggleSortSeparateGray()
+void PlayerInfo::ToggleSortSeparatePossible()
 {
-	sortSeparateGray = !sortSeparateGray;
+	sortSeparatePossible = !sortSeparatePossible;
 	SortAvailable();
 }
 
@@ -2803,8 +2803,8 @@ void PlayerInfo::SortAvailable()
 	}
 	availableJobs.sort([&](const Mission &lhs, const Mission &rhs)
 	{
-		// First, separate rush orders if wanted
-		if(sortSeparateRush)
+		// First, separate orders with deadlines, if wanted
+		if(sortSeparateDeadline)
 		{
 			if(!lhs.Deadline() && rhs.Deadline())
 				return availableSortAsc; //availableSortAsc instead of true, to counter the actual reversal below
@@ -2812,7 +2812,7 @@ void PlayerInfo::SortAvailable()
 				return !availableSortAsc;
 		}
 		// Then, separate greyed-out jobs you can't accept
-		if(sortSeparateGray)
+		if(sortSeparatePossible)
 		{
 			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
 				return availableSortAsc;
@@ -3155,10 +3155,10 @@ void PlayerInfo::Save(const string &path) const
 	out.Write("sort type", static_cast<int>(availableSortType));
 	if(!availableSortAsc)
 		out.Write("sort descending");
-	if(sortSeparateRush)
-		out.Write("separate rush");
-	if(sortSeparateGray)
-		out.Write("separate gray");
+	if(sortSeparateDeadline)
+		out.Write("separate deadline");
+	if(sortSeparatePossible)
+		out.Write("separate possible");
 
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())

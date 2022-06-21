@@ -187,10 +187,10 @@ public:
 	void NextAvailableSortType();
 	const bool ShouldSortAscending() const;
 	void ToggleSortAscending();
-	const bool ShouldSortSeparateRush() const;
-	void ToggleSortSeparateRush();
-	const bool ShouldSortSeparateGray() const;
-	void ToggleSortSeparateGray();
+	const bool ShouldSortSeparateDeadline() const;
+	void ToggleSortSeparateDeadline();
+	const bool ShouldSortSeparatePossible() const;
+	void ToggleSortSeparatePossible();
 
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
@@ -363,8 +363,8 @@ private:
 	// How to sort availableJobs
 	bool availableSortAsc = true;
 	SortType availableSortType;
-	bool sortSeparateRush = false;
-	bool sortSeparateGray = false;
+	bool sortSeparateDeadline = false;
+	bool sortSeparatePossible = false;
 
 	std::map<std::string, int64_t> conditions;
 

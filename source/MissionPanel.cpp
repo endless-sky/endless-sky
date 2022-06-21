@@ -362,9 +362,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else if( x > Screen::Left() + SIDE_WIDTH - 110 && x <= Screen::Left() + SIDE_WIDTH - 5)
 			{
 				if( x < Screen::Left() + SIDE_WIDTH - 80)
-					player.ToggleSortSeparateRush();
+					player.ToggleSortSeparateDeadline();
 				else if( x < Screen::Left() + SIDE_WIDTH - 45)
-					player.ToggleSortSeparateGray();
+					player.ToggleSortSeparatePossible();
 				else if( x < Screen::Left() + SIDE_WIDTH - 25)
 					player.NextAvailableSortType();
 				else
@@ -692,7 +692,6 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 	const Sprite *sortIcon[4] = {SpriteSet::Get("ui/sort abc"),
 		SpriteSet::Get("ui/sort pay"), SpriteSet::Get("ui/sort speed"), SpriteSet::Get("ui/sort convenient")};
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
-	static const string grayLabel = "? ";
 
 	//Draw Sorting Columns
 	if(sorter)
@@ -703,11 +702,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		if(hoverSort)
 			FillShader::Fill(pos + Point(SIDE_WIDTH - 45., 8.), Point(22., 16.), highlight);
 
-		font.Draw({grayLabel, {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
-		SpriteShader::Draw(checkbox[player.ShouldSortSeparateGray()], pos + Point(SIDE_WIDTH - 70., 8.));
+		font.Draw({"? ", {0, Alignment::RIGHT}}, pos + Point(SIDE_WIDTH - 77., 0.), text);
+		SpriteShader::Draw(checkbox[player.ShouldSortSeparatePossible()], pos + Point(SIDE_WIDTH - 70., 8.));
 
 		SpriteShader::Draw(fast, pos + Point(SIDE_WIDTH - 113., 8.));
-		SpriteShader::Draw(checkbox[player.ShouldSortSeparateRush()], pos + Point(SIDE_WIDTH - 100., 8.));
+		SpriteShader::Draw(checkbox[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 100., 8.));
 	}
 
 
@@ -726,7 +725,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
-	const std::list<Mission>::const_iterator &selectIt, bool separateRushGray) const
+	const std::list<Mission>::const_iterator &selectIt, bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -742,9 +741,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 			continue;
 
 		pos.Y() += 20.;
-		if(separateRushGray && !separated &&
-			((player.ShouldSortSeparateRush() && it->Deadline()) ||
-			(player.ShouldSortSeparateGray() && !it->CanAccept(player))))
+		if(separateDeadlineOrPossible && !separated &&
+			((player.ShouldSortSeparateDeadline() && it->Deadline()) ||
+			(player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
 		{
 			pos.Y() += 8.;
 			separated = true;
