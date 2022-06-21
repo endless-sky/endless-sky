@@ -45,8 +45,8 @@ news "human merchant anywhere"
 			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
 			"Somebody installed my anti-gravity plates upside-down. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
 			"To the optimist the glass is half full, but zero gravity is even better, because there you don't even need the glass."
-			"My ship has a built-in cinema, an artificial gravity pool and an indoor roller-coaster. But you also have a nice ship captain."
-			"Hey, didn't I see you 3 weeks ago in the `The Space Bar` on Bourne?"
+			"My ship has a built-in cinema, an artificial gravity pool and an indoor roller-coaster. But you also have a nice ship, I guess."
+			"Hey, didn't I see you 3 weeks ago in the 'The Space Bar' on Bourne?"
 		word
 			`"`
 
@@ -113,18 +113,18 @@ news "human merchant in human space"
 			"I was doing some jobs in the Core, when an enormous alien warship jumped in and attacked! People say I'm crazy, but I'm lucky to have gotten out of there with my life!"
 			"The Syndicate tries to keep alien attacks under wraps, but if you've been around as long as I have, you'll see them eventually."
 			"I was working a Syndicate defense job once, expecting to only deal with some pirates. Instead, I had to drive off an alien warship that jumped in same way the Quarg do! They made us sign a non-disclosure agreement, so don't tell anyone I said that."
-			"I once got hired by someone in search for his true love; He didn't know which ship she left in, so we travelled to dozens of planets to search for her, until he ran out of credits."
+			"I once got hired by someone in search for his true love; he didn't know which ship she left in, so we travelled to dozens of planets to search for her, until he ran out of credits."
 			"I once had a passenger that returned to a spaceport where she met her true love. I wonder if they ever got together again."
-			"I once put 50,000 rifles and 150,000 grenades into my armory, one grenade got melted into the floor due to the weight of all the other weaponry on top of it and I could no longer sell that grenade."
+			"I once put 50,000 rifles and 150,000 grenades into my armory. One grenade got melted into the floor due to the weight of all the other weaponry on top of it and I could no longer sell that grenade."
 			"I felt lonely, so I participated in Romantic Matchmaking on a Syndicate planet, but that was a big scam! They never asked anything about the type of partner I was looking for, they only asked questions about what I wanted to buy in the next 10 years."
 			"I once joined Romantic Matchmaking organized by the Syndicate, but they couldn't tell me anything about my true love due to privacy concerns. Can you believe that?"
 			"Romantic Matchmaking as organized by the Syndicate is garbage; the Syndicate laws don't allow differentiating on gender, so there is a 50% chance that the match they find for you is the wrong gender."
-			"I once got married, but my partner didn't allow me to fly further than 5 planets away. Guess what; I'm now more than 5 planets away from my ex-partner."
+			"I once got married, but my partner didn't allow me to fly further than 5 systems away from her. Guess what? I'm now more than 5 systems away from my ex-partner."
 			"I once married somebody with no credits, and I lost half of my fleet when we divorced."
 			"I really found my true love in one of those Romantic Match Making programs; my love always joins me on every flight I do and we are a great team."
-			"I often join those Syndicate Romantic Match Making programs; they are a great source to pick-up crew members that work for free, at least until they find out and then I dump them on whatever planet I'm visiting."
+			"I often join those Syndicate Romantic Matchmaking programs; they are a great source to pick-up crew members that work for free, at least until they find out. Then I dump them on whatever planet I'm visiting."
 			"Truck drivers in the old days were required by law to take a break every 2 hours. Can you imagine that in our business? Stopping our ships every 2 hours to take a rest?"
-			"I once had some Flat Earthers as passengers, they claimed that planets are 2 dimensional circles instead of 3 dimensional spheres."
+			"I once had some Flat Earthers as passengers, they claimed that the planets we saw are 2 dimensional circles instead of 3 dimensional spheres."
 			"Some Flat Earthers accused me of playing propaganda videos on the ships viewports when they looked out of the ship while we were in orbit."
 		word
 			`"`
@@ -156,7 +156,7 @@ news "human farming"
 			"I used to be a merchant captain like you. Bank account got up to a few million at one point. Thought I had it all. One day I realized none of it was making me happy. I bought this farm and gave the rest away. Best thing I ever did."
 			"I came out here because I liked the company of animals more than people like you. Go away."
 			"You should check around spaceports often. You might find one of us needing a captain like you for a job."
-			"Carpe Diem! (Enjoy your day.)"
+			"Carpe Diem!"
 		word
 			`"`
 
@@ -406,7 +406,7 @@ news "waste collector"
 			"All's fine and dandy until someone dumps a ton of rotten Caldan lobsters and you have to deal with the smell."
 			"My worth comes from removing what's worthless!"
 			"You wouldn't believe some of the stuff people throw away around the spaceport. Yesterday I found a perfectly intact ${small trash item} that someone had dumped."
-			"You may look down on me, but I typically earn more money in a day than you in a month."
+			"You may look down on me, but I earn more money in a day than you do in a month."
 		word
 			`"`
 
@@ -530,8 +530,8 @@ news "tour guide"
 			"I'm handing out astronaut badges by the dozen for first-time space travelers. It lost a bit of glamour now that every fool can book a flight on a spaceship."
 			"As I get older, I remember all the people I lost along the way. Maybe I'm in the wrong profession."
 			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
-			"Antigrav boards for rent! You break it you pay."
-			"I sometimes misread 'wine tasting' as 'time wasting', the worst part is that nobody noticed so far."
+			"Antigrav boards for rent! You break it, you pay."
+			"I sometimes misread 'wine tasting' as 'time wasting'. The worst part is that nobody's noticed so far."
 			"Contact me if you are looking for some special company. No questions asked, no strings attached."
 		word
 			`"`
@@ -553,7 +553,7 @@ news "human resources worker"
 			"For most jobs, it's essential to know how to get along with others and be a team player. But I bet a freelance pilot like you never needs to worry about that."
 			"Many people overestimate their own capabilities. Those people usually don't last long in their jobs."
 			"Some people underestimate their own capabilities. Those people usually get bored and unproductive over time due to their work not being enough of a challenge."
-			"Presentism, where people are present but don't do productive work, is a bigger problems these days than absenteeism."
+			"Presentism, where people are present but don't do productive work, is a bigger problem these days than absenteeism."
 		word
 			`"`
 
@@ -600,7 +600,7 @@ news "hyperspace relay engineer"
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
 			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
 			"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
-			"Do you know the DRQ of the HSBE for the North hyperlane? You dont understand? Sorry; a hyperlane can be thought off as a corridor through space."
+			"Do you know the DRQ of the HSBE for the North hyperlane? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space."
 		word
 			`"`
 
@@ -699,7 +699,7 @@ news "athlete"
 			"Does your ship have a weight room?"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
 			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
-			"I once went to a sports-event on Dancer in the the Rastaban system, but never again! All activities were indoors because of the horrible atmosphere the planet has."
+			"I once went to a sports event on Dancer in the the Rastaban system, but never again! All activities were indoors because of the horrible atmosphere the planet has."
 		word
 			`"`
 
@@ -806,8 +806,8 @@ news "human ship salesperson"
 			"This is a very durable spaceship. By the way; do want to buy extended warranty to cover all the breakdowns this ship typically experiences in the first year?"
 			"This is a very durable spaceship. By the way; do want to buy an additional insurance, just in case it does explode in mid-air?"
 			"Like new, low mileage, previously owned by an elderly lady."
-			"Hey, you there; I have the perfect ship for you."
-			"One of my ships having a fuel leak? No way, it's sweat from the hard work it does."
+			"Hey, you there! I have the perfect ship for you."
+			"One of my ships has a fuel leak? No way, it's... sweat from the all the hard work it does."
 		word
 			`"`
 
@@ -900,9 +900,9 @@ news "public relations worker"
 		word
 			`"`
 		word
-			"If you ever get accused of smuggling drugs, then the first person to call is not your lawyer, but it is me."
-			"It doesn't matter if an accusation is true or false, what does matter if an accusation is made public or not yet."
-			"One of my clients crashed her shuttle on the Parliament Building. Keeping that out of the news was horribly expensive, but it was still cheaper than the reputation hit from getting it broadcasted."
+			"If you ever get accused of smuggling drugs, then the first person to call is not your lawyer, but me."
+			"It doesn't matter if an accusation is true or false. What does matter is if an accusation is made public or not."
+			"One of my clients crashed her shuttle into the Parliament building. Keeping that out of the news was horribly expensive, but it was still cheaper than the reputation hit from getting it broadcasted."
 		word
 			`"`
 
@@ -1038,11 +1038,11 @@ news "chef"
 			"Eating fancy dishes is great, but sometimes there's nothing you want more than a good old sandwich."
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
 			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
-			"We can bake the most delicious fluffy cakes in space, but our trade-union said we shouldn't call them spacecake."
-			"Hey, don't just hang around over there! Help me load this stuff; those 50 catering-containers are not going to move themselves."
+			"We can bake the most delicious fluffy cakes in space, but our trade-union said we shouldn't call them spacecakes."
+			"Hey, don't just hang around over there! Help me load this stuff; those 50 catering-containers aren't going to move themselves."
 			"Be careful what you transport; I once had a competitor that tried to poison my supplies during transport. Both the competitor and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
-			"If you ever start a restaurant near a spaceport, then don't call it `The Space Bar`. You might think you are funny, but so did hundreds of other new restaurant owners before you."
+			"If you ever start a restaurant near a spaceport, then don't call it `The Space Bar`. You might think you're funny, but so did hundreds of other new restaurant owners before you."
 		word
 			`"`
 
@@ -1065,7 +1065,7 @@ news "insurance agent"
 			"I just got done handling an insurance fraud case where the owner claimed her entire home had been eaten by Sagittarian sand-fleas."
 			"It's a real shame that not everyone is able to afford insurance. More people insured means more money for us."
 			"I used to be a gambler. Still am in a way, but I'm acceptable to society now."
-			"A spaceship controller, is that someone that controls a spaceship, or a spaceship that controls something? The premiums and amounts of paperwork for those are quite different."
+			"A spaceship controller... is that someone that controls a spaceship, or a spaceship that controls something? The premiums and amounts of paperwork for those are quite different."
 		word
 			`"`
 
@@ -1190,9 +1190,9 @@ news "human syndicate manager"
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 			"Those union boys are completely unreasonable; if we give them a finger then they try to eat up the whole arm up to the elbow."
 			"I've some disagreements with a manager above me. Can you pick up a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
-			"I'm a manager, the folks here need to learn that it is my way or the highway."
+			"I'm a manager. The folks here need to learn that it is my way or the highway."
 			"Those union guys wanted to rally on a planet nearby, but unionising is forbidden on that planet, so we could stop them easily by closing the spaceport there for known criminals!"
-			"My employees are angry when they need to do unpaid overtime in exceptional situations, they should have realized that working for me is exceptional every day."
+			"My employees are angry when they need to do unpaid overtime in exceptional situations. They should have realized that working for me is exceptional every day."
 			"Patience is a virtue, but why is 'just hurry up' not also a virtue? Hurrying up works much better in the factory."
 			"When everything is under control, then we are not going fast enough. Except of course in your business, where people typically die due to explosions or due to the vacuum of space when things go out of control."
 			"I allow people to go home when they are no longer productive, even if it is 3 PM. Who are we kidding if we just steer on being present instead of steering on being productive?"
@@ -1200,8 +1200,8 @@ news "human syndicate manager"
 			"I'm really fed up with employees that have a 'can do' attitude. Just do your job, without the attitude."
 			"I'm actively recruiting people with a 9-to-5 mentality, because I know how important it is to have a good work/life balance."
 			"We used to advertise our food products with 100% organic ingredients, but nobody believed us. Now we are advertising with 60% organic ingredients and sales are sky high."
-			"We used to advertise that we are best in the marked, but that didn't work. Now we advertise with the slogan 'just what is needed to get the job done' and that really caught on."
-			"We hired a marketing agency and they came up with the sloppy slogan 'just what is needed to get the job done'. Can you believe we spent huge amounts of money on that garbage?"
+			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done,' and that really caught on."
+			"We hired a marketing agency and they came up with the sloppy slogan 'Just what's needed to get the job done'. Can you believe we spent huge amounts of money on that garbage?"
 		word
 			`"`
 
@@ -1212,15 +1212,15 @@ news "human work coach"
 		government "Syndicate"
 	name
 		word
-			"Corporate Consultant"
-			"Work/Life balance Coach"
-			"Work efficiency Coach"
+			"Corporate consultant"
+			"Work/Life balance coach"
+			"Work efficiency coach"
 	message
 		word
 			`"`
 		word
-			"A startup company once hired me, and I immediately advised them to stop their company; Hiring an expensive consultant like me is a horrible decision for a cash strapped startup."
-			"Working as a high-performer requires sound decision making abilities. Hiring an expensive consultant like me usually suggests a lack thereof, but I'm not complaining since I get paid well."
+			"A startup company once hired me, and I immediately advised them to stop; hiring an expensive consultant like me is a horrible decision for a cash strapped startup."
+			"Working as the head of a company requires sound decision making abilities. Hiring an expensive consultant like me usually suggests a lack thereof, but I'm not complaining since I get paid well."
 		word
 			`"`
 
@@ -1339,7 +1339,7 @@ news "human tourism"
 			"I can travel millions of kilometers to another planet, cheaply and within a day; but going to the other side of this planet, just a few thousand kilometers, costs me a fortune and a week of travel time."
 			"Can I speak to the manager? There was a scratch on my cabin-door and it really irritated me. I think my whole vacation is ruined now."
 			"Can I speak to the manager? The landing on this planet was a bit rough and I'm seriously considering filing a complaint."
-			"Warn me if you see my partner or if you see my secret lover. They learned about each-other and now they are both trying to kill me."
+			"Warn me if you see my partner or my secret lover. They learned about each other and now they're both trying to kill me."
 			"Listen very carefully, I shall say this only once; I'm actually a secret agent trying to get to the naval base. Haha, just joking!"
 		word
 			`"`
@@ -1513,7 +1513,7 @@ news "human pirate"
 			"I missed my lover during the raids today. But only by a few inches; next time I'll aim better."
 			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
 			"Living on the edge."
-			"You can't win the game if you're afraid to lose it"
+			"You can't win the game if you're afraid to lose it."
 		word
 			`"`
 
@@ -1624,7 +1624,7 @@ news "spaceport video advertisement"
 			"You see a video of stuntmen making a jump from the edge of space. The 'do not try this at home', 'illegal on many planets', and 'high risk/deadly' warnings at the end of the video suggest that this might become quite a popular sport."
 			"A video of fast spaceships racing over some 3 dimensional track in space is shown on the screen, interwoven with videos of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
-			"Some video is showing Syndicate equipment. The video ends with the slogan 'just what is needed to get the job done'."
+			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what is needed to get the job done'."
 
 
 
@@ -1644,7 +1644,7 @@ news "syndicate pa system"
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
 			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
 			"Attention course participants: The course 'Efficient Passenger Logistics' has been canceled because the trainer got stuck in transit."
-			"Attention: The safe spaceship piloting training has been canceled because our instructors collided and crashed their shuttles this morning."
+			"Attention: The safe spaceship piloting training has been canceled because our instructors crashed their shuttles this morning."
 			"Notice: The course on dealing with space sickness has been canceled because the instructor got seasick."
 		word
 			`"`
@@ -1724,4 +1724,4 @@ news "graffiti on spaceport wall"
 			"Slow spaceships slowdown speedy shipping."
 			"Fast Flivvers; ferociously ferrying famous families fast and friendly."
 			"Veni, vidi, hyperjumped away."
-			"Those who dance, will be called fools, by those who cannot hear the music."
+			"Those who dance will be called fools by those who cannot hear the music."

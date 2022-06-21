@@ -1098,7 +1098,6 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"Some"
 		"Some of my"
 	word
 		" "
