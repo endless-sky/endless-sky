@@ -305,8 +305,24 @@ void OutfitInfoDisplay::AddRequirementGap()
 
 
 
-void OutfitInfoDisplay::AddRequirementAttribute(const string &label, double value)
+// Any attribute with a negative value is considered a requirement.
+// Any exceptions to that rule would require in-game code to handle
+// their unique properties, so when code is added to handle a new
+// attribute, this code also should also be updated.
+void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 {
+	// These attributes have negative values but are not requirements
+	static const set<string> EXCEPTIONS = {"heat dissipation", "automaton"};
+	if(EXCEPTIONS.count(label))
+		return;
+
+	// Special case for 'crew required' - use positive values as a requirement.
+	if(label == "required crew")
+	{
+		label = "crew";
+		value *= -1;
+	}
+
 	if(value >= 0)
 		return;
 
