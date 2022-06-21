@@ -3865,10 +3865,10 @@ mission "Fumbling Mugger"
 			`Your exploration of the spaceport leads you to a dark alley where the number of working lights are far outnumbered by the number of broken ones. The contents of steel bins lining the walls overflow onto the pavement, attracting swarms of flies to them. On the surfaces that are illuminated, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A dark crimson stains the bottom half of a broken window.`
 			`	Suddenly, you feel a cold object pushed against your back as a woman speaks softly. "Hands where I can see them, Captain."`
 			choice
-				`	(Lift your hands up and slowly turn.)`
+				`	(Lift my hands up and slowly turn.)`
 					goto peaceful
 				`	(Spin around and fire.)`
-				`	(Try a fancy acrobatic move and disarm your attacker.)`
+				`	(Try a fancy acrobatic move and disarm the attacker.)`
 					goto flip
 			
 			action
