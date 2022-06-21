@@ -343,8 +343,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	bool hasNormalAttributes = false;
 
 	// These attributes are regularly negative on outfits, so when positive,
-	// tag "added" and show them first. They conveniently don't use SCALE or
-	// BOOLEAN_ATTRIBUTES.
+	// tag them with "added" and show them first. They conveniently
+	// don't use SCALE or BOOLEAN_ATTRIBUTES.
 	static const vector<string> EXPECTED_NEGATIVE = {
 		"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
 	};
@@ -366,14 +366,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
 			continue;
 
-		// Only show positive values here.
-		// Negative values are considered requirements, with some exceptions.
+		// Only show positive values here, with some exceptions.
+		// Negative values are usually handled as a "requirement"
 		if(static_cast<string>(it.first) == "required crew")
 		{
 			// 'required crew' is inverted - positive values are requirements.
-			// A negative 'required crew' would be a benefit, so it is listed here.
 			if(it.second > 0)
 				continue;
+
+			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
 		else if(NEVER_REQUIREMENT.count(it.first))
 		{
