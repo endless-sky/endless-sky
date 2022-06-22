@@ -752,7 +752,7 @@ outfit "Korath Blaze-Pike"
 		"hull damage" 3
 		"heat damage" 24
 		"burn damage" 1.2
-	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapan. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
+	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
 
 effect "blaze-pike hit"
 	sprite "effect/blaze-pike hit"
