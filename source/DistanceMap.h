@@ -50,9 +50,9 @@ public:
 	// Find out how many days away the given system is.
 	int Days(const System *system) const;
 	// Get the first step on the route from center to this system (or 'destination')
-	const System* FirstStep(const System* system = nullptr) const;
+	const System * FirstStep(const System *system = nullptr) const;
 	// Get the planned route from center to this system (starting with .back())
-	std::vector<const System*> Plan(const System* system = nullptr) const;
+	std::vector<const System *> Plan(const System *system = nullptr) const;
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
 	// How much fuel is needed to travel to this system
@@ -76,7 +76,7 @@ private:
 		// is lower priority than the given item.
 		bool operator<(const Edge &other) const;
 
-		// There could be a System* thisSystem, but it would remained unused.
+		// There could be a System *thisSystem, but it would remained unused.
 		const System *prev = nullptr;
 		// Fuel/days needed to get to this system using the route though 'prev'.
 		int fuel = 0;

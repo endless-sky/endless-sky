@@ -210,17 +210,15 @@ namespace {
 		// Now we know it could refuel. But it could also jump along the route
 		// and refuel later. Calculate if it can reach the next refuel.
 		double fuel = fuelCapacity * ship.Fuel();
-		vector<const System*> plan = route.Plan();
-		const System* system;
-		while (!plan.empty())
+		const vector<const System *> plan = route.Plan();
+		const System *system;
+		for (auto it = plan.rbegin(); it != plan.rend(); ++it)
 		{
-			system = plan.back();
+			system = *it;
 
 			// If the next system with fuel is outside the range of this ship, should refuel.
 			if(system->HasFuelFor(ship))
 				return fuel < route.RequiredFuel(system);
-
-			plan.pop_back();
 		}
 
 		// If no system on the way has fuel, refuel if needed to get to the destination.

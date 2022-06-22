@@ -658,7 +658,7 @@ void MapPanel::Select(const System *system)
 		if(!localDistance.HasRoute())
 			return;
 
-		vector<const System*> newPlan = localDistance.Plan();
+		vector<const System *> newPlan = localDistance.Plan();
 		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
 	else if(distance.HasRoute(system))

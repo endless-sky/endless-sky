@@ -103,7 +103,7 @@ set<const System *> DistanceMap::Systems() const
 
 
 // Get the first step on the route from the center to this system.
-const System* DistanceMap::FirstStep(const System* system) const
+const System * DistanceMap::FirstStep(const System *system) const
 {
 	if(!system)
 		system = destination;
@@ -111,7 +111,7 @@ const System* DistanceMap::FirstStep(const System* system) const
 	if(!HasRoute(system))
 		return nullptr;
 
-	const System* firstStep = nullptr;
+	const System *firstStep = nullptr;
 	while(system != center)
 	{
 		firstStep = system;
@@ -123,12 +123,12 @@ const System* DistanceMap::FirstStep(const System* system) const
 
 
 // Get the planned route from center to this system.
-vector<const System*> DistanceMap::Plan(const System* system) const
+vector<const System *> DistanceMap::Plan(const System *system) const
 {
 	if(!system)
 		system = destination;
 
-	auto plan = vector<const System*> {};
+	auto plan = vector<const System *> {};
 	if(!HasRoute(system))
 		return plan;
 
@@ -240,7 +240,7 @@ void DistanceMap::Init(const Ship *ship)
 		Edge nextEdge = edgesTodo.top();
 		edgesTodo.pop();
 
-		const System* currentSystem = nextEdge.prev;
+		const System *currentSystem = nextEdge.prev;
 
 		// If a destination is given, stop searching once we have the best route.
 		if(currentSystem == destination)
@@ -298,7 +298,7 @@ void DistanceMap::Init(const Ship *ship)
 // Add the given links to the map, if better. Return false if max systems has been reached.
 bool DistanceMap::Propagate(Edge nextEdge, bool useJump)
 {
-	const System* currentSystem = nextEdge.prev;
+	const System *currentSystem = nextEdge.prev;
 
 	// nextEdge is a copy to be used for this jump type, so build upon its fields.
 	nextEdge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
