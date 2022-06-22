@@ -255,7 +255,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 {
 	if(key == 'a' && CanAccept())
 	{
-		Accept((mod & KMOD_SHIFT));
+		Accept((mod & KMOD_CTRL));
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
