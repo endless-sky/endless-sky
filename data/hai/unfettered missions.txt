@@ -938,7 +938,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered are not the ones who placed those jump drives here..." He really does not seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and simply tranfer  the jump drives in cargo or rather install them directly on your ship if possible, to be able to flee more swifly.`
+			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and simply transfer the jump drives in cargo or rather install them directly on your ship if possible, to be able to flee more swifly.`
 			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
 				launch
 	on accept
