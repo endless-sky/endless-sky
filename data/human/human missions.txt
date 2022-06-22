@@ -4010,24 +4010,19 @@ mission "Riley"
 		random < 15
 	on offer
 		conversation
-			`Entering the spaceport a young woman is moving from captain to captain, looking for transport.`
+			`Entering the spaceport, you notice a young woman moving from captain to captain, probably looking to hire one.`
 			choice
-				`	(Ask the young woman where she needs to get to).`
-				`	(Ignore her).`
+				`	(Ask the young woman if you can help her.)`
+				`	(Ignore her.)`
 					decline
+			`	You approach the woman and ask her if she is looking to hire a pilot.`
 			`	"I need to get to <destination> to see my father. He's dying. I have <payment> credits to pay for the journey; please, will you help me? I need to be there in <deadline> days, at the most."`
 			`	Her eyelids are baggy, her clothes wrinkled, and she holds herself rigidly; signs of desperation, stress, and sleep deprivation.`
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
 					goto help
 				`	"I don't have time to take on a passenger right now."`
-			`	She nods, and moves on to another captain to beseech her help instead.`
-				decline
-			choice
-				`	"I can help you. We'll make haste to reach <planet> in time."`
-					goto help
-				`	"I don't have time to take on a passenger right now."`
-			`	She nods, and moves on to another captain to beseech her help instead.`
+			`	She nods, and moves on to another captain to beseech instead.`
 				decline
 			label help
 			`	Her eyes widen, and she opens her mouth twice before words come out. "Thank you! This means the world to me. My name is Riley, by the way. I don't have much luggage; I'll be ready to leave as soon as you are."`
@@ -4039,8 +4034,8 @@ mission "Riley"
 		conversation
 			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
 			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
-			`	She didn't mention it, but it's clear that she was concerned that she'll arrive too late to say goodbye.`
-			`	As you neared the <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <source> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
+			`	She didn't mention it, but it's clear that she was concerned that she'd arrive too late to say goodbye.`
+			`	As you neared <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <source> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
 			`	He'd cried when it was time to leave, and she had, too, but life went on, and it was years before she heard from him again. His message nearly broke her. "Ri, please come as soon as you can. I may not have long, and wish to hold your hand one more time. All love, Dad."`
 			`	Riley directs you to a pad near her old home, and you land the ship. She starts toward the door, then pauses and turns around with a self-conscious, but oddly sad, chuckle.`
 			`	"Right - your payment. <payment>, as I promised."`
@@ -4069,23 +4064,23 @@ mission "Riley"
 			`	Her father is in a comfortable-looking medical cradle. Wires flow from it to the holoscreens around the room, showing vitals and other indecipherable information. Despite his wan, strained face and atrophied body, he raises his head to look at his daughter.`
 			`	"Ri," he says, face lighting up. "My love. You cannot know how happy it makes me to see you. And you have company, I see. My name's Church."`
 			choice
-				`	"I've heard so much; it's a pleasure to meet you. Riley chartered a flight with me."`
+				`	"Riley chartered a flight here aboard my ship. I heard so much about you on the way, it's a pleasure to meet you."`
 				`	Riley and I have gotten to know each other on the long flight here. You've raised an incredible woman."`
-			`	"<first> was the only captain willing to fly to <planet>. I wouldn't have made it here without them," she says.`
+			`	"<first> was the only captain willing to fly here from <origin>. I wouldn't be here without them," she says.`
 			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
 			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
-			`	Riley, in turn, had always surrounded herself with music, and moved to ${rileyOriginPlanet} to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
-			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "whatever happens, please don't think ill of me. I will always love you."`
+			`	Riley, in turn, had always surrounded herself with music, and moved to <origin> to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
+			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "Whatever happens, please don't think ill of me. I will always love you."`
 			`	His body relaxes, and he's gone.`
 			choice
-				`	(Stay comfortingly close).`
+				`	(Stay comfortingly close.)`
 					goto close
-				`	(Hold Riley).`
-			`	You hold Riley as she silently weeps. Time goes by, but nobody pays it any mind.`
+				`	(Hold Riley.)`
+			`	You hold Riley as she silently weeps. Time goes by, but neither of you pay it any mind.`
 			label close
 			`	You take a seat, feeling the emotion of the moment wash over you as Riley silently weeps. Minutes go by, unnoticed.`
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
-			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I couldn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
+			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I didn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
 			choice
 				`	(Stay silent)."`
 					goto continue
@@ -4096,7 +4091,7 @@ mission "Riley"
 			`	"Riley, what do you think?"`
 			`	"Dad, is that really you? How do you feel?"`
 			`	She steps closer to the Core, and they talk for a few tentative minutes. As far as you can tell, the mind that she is talking to is indistinguishable from the man you came to meet.`
-			`	Finally, she turns to you. "It really is my dad. It's a lot to get used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my way back."`
+			`	Finally, she turns to you. "It really is my dad. It's a lot to get used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back."`
 			choice
 				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
 					goto suggest
@@ -4106,12 +4101,12 @@ mission "Riley"
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
 			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
-			`	You head back to your shuttle, leaving behind a father survived by his daughter; no more and no less than nature intended.`
+			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
-			`	You can feel her smile on your back until the door closes behind you. You catch yourself smiling as well, as you make your way back to your shuttle and return to the stars.`
+			`	You can feel her smile on your back until the door closes behind you. You catch yourself smiling as well, as you make your way back to your ship and return to the stars.`
 				decline
 			label bounty
 			action
