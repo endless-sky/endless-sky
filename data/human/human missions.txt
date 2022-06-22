@@ -4005,7 +4005,7 @@ mission "Riley"
 		attributes deep 
 		attributes urban
 	deadline
-	destination "Pilot"
+	destination "Memory"
 	to offer
 		random < 15
 	on offer
@@ -4050,7 +4050,7 @@ mission "Riley"
 			action
 				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
-				goto choice
+				goto choice1
 			label credits
 			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
 			label choice
@@ -4063,6 +4063,7 @@ mission "Riley"
 			action
 				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
+			label choice1
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
 					goto father
