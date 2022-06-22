@@ -1065,6 +1065,8 @@ Comment: Derived from works by Michael Zahniser (under the same license)
 Files:
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
+ images/ship/bulk?freighter*
+ images/thumbnail/bulk?freighter*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).
@@ -1079,6 +1081,7 @@ Comment: Derived from work by Michael Zahniser (under the same licence) and Red-
 Files:
  images/ship/chaser*
  images/thumbnail/chaser*
+ images/effect/korath?afterburner*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)
@@ -1091,13 +1094,6 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Becca Tomaso (under the same licence).
 
 Files:
- images/ship/bulk?freighter*
- images/thumbnail/bulk?freighter*
-Copyright: Lia Gerty (https://github.com/ravenshining)
-License: CC-BY-SA-4.0
-Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tommaso (under the same licence).
-
-Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+*
@@ -1107,6 +1103,12 @@ Files:
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
+
+Files:
+ images/projectile/korath digger*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by NomadicVolcano (public domain).
 
 Files:
  images/planet/browndwarf-t-rouge*
@@ -1148,7 +1150,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/effect/firestorm*
  images/effect/heaver*
- images/effect/*digger*
+ images/effect/korath?digger*
  images/effect/shunt*
  images/hardpoint/expeller*
  images/hardpoint/firestorm*
@@ -1163,7 +1165,6 @@ Files:
  images/outfit/shunt-strike*
  images/projectile/expeller*
  images/projectile/heaver*
- images/projectile/korath digger*
  images/projectile/korath inferno*
  images/projectile/shunt-strike*
 Copyright: None (CC0 Public Domain)
