@@ -93,9 +93,9 @@ private:
 	// currently being dragged.
 	int hoverIndex = -1;
 	int draggingIndex = -1;
-	
+
 	InfoPanelState panelState;
-	
+
 	// Track the current mouse location.
 	Point hoverPoint;
 	// Track whether a commodity or plundered outfit is selected to jettison.

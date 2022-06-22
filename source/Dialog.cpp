@@ -85,7 +85,8 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate)
+Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
 }
@@ -93,8 +94,9 @@ Dialog::Dialog(const string &text, Truncate truncate)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate)
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
+	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
 {
 	Init(text, truncate, true, true);
@@ -195,6 +197,13 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 				text += "\n\t";
 			text += child.Token(i);
 		}
+}
+
+
+
+bool Dialog::AllowsFastForward() const noexcept
+{
+	return allowsFastForward;
 }
 
 

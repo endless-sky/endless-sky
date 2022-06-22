@@ -5865,8 +5865,14 @@ system "Bore Fah"
 	trade Medical 725
 	trade Metal 358
 	trade Plastic 322
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 1000
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 2000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 1000
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 4000
+	fleet "Small Hai Merchant (Human)" 6000
+	fleet "Large Hai Merchant (Human)" 9000
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
@@ -5926,8 +5932,14 @@ system "Bote Asu"
 	trade Medical 765
 	trade Metal 408
 	trade Plastic 362
-	fleet "Small Hai" 900
-	fleet "Large Hai" 600
+	fleet "Small Hai" 1800
+	fleet "Large Hai" 1200
+	fleet "Small Hai Merchant" 900
+	fleet "Large Hai Merchant" 600
+	fleet "Small Hai Merchant (Sympathizers)" 3600
+	fleet "Large Hai Merchant (Sympathizers)" 3600
+	fleet "Small Hai Merchant (Human)" 4000
+	fleet "Large Hai Merchant (Human)" 6000
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 12000
 	fleet "Hai Surveillance" 3000
@@ -7369,8 +7381,14 @@ system "Da Ent"
 	trade Medical 695
 	trade Metal 408
 	trade Plastic 532
-	fleet "Small Hai" 500
-	fleet "Large Hai" 1200
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 2400
+	fleet "Small Hai Merchant" 500
+	fleet "Large Hai Merchant" 1200
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 4800
+	fleet "Small Hai Merchant (Human)" 4500
+	fleet "Large Hai Merchant (Human)" 5000
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
@@ -7440,8 +7458,14 @@ system "Da Lest"
 	trade Medical 595
 	trade Metal 368
 	trade Plastic 452
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1400
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2800
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1400
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 5600
+	fleet "Small Hai Merchant (Human)" 3500
+	fleet "Large Hai Merchant (Human)" 4000
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
 	fleet "Hai Surveillance" 5000
@@ -8576,8 +8600,14 @@ system "Due Yoot"
 	trade Medical 595
 	trade Metal 538
 	trade Plastic 472
-	fleet "Small Hai" 700
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 1500
+	fleet "Large Hai Merchant (Human)" 3000
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 5000
@@ -9859,8 +9889,14 @@ system "Fah Root"
 	trade Medical 435
 	trade Metal 538
 	trade Plastic 332
-	fleet "Small Hai" 2000
-	fleet "Large Hai" 4000
+	fleet "Small Hai" 4000
+	fleet "Large Hai" 8000
+	fleet "Small Hai Merchant" 2000
+	fleet "Large Hai Merchant" 4000
+	fleet "Small Hai Merchant (Sympathizers)" 8000
+	fleet "Large Hai Merchant (Sympathizers)" 16000
+	fleet "Small Hai Merchant (Human)" 7500
+	fleet "Large Hai Merchant (Human)" 12500
 	fleet "Small Human Merchants (Hai)" 15000
 	fleet "Large Human Merchants (Hai)" 25000
 	fleet "Hai Surveillance" 3000
@@ -9928,8 +9964,14 @@ system "Fah Soom"
 	trade Medical 615
 	trade Metal 368
 	trade Plastic 532
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1600
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 3200
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1600
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 6400
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 4000
@@ -12362,8 +12404,14 @@ system "Heia Due"
 	trade Medical 675
 	trade Metal 518
 	trade Plastic 362
-	fleet "Small Hai" 600
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 1000
+	fleet "Large Hai Merchant (Human)" 2500
 	fleet "Small Human Merchants (Hai)" 2000
 	fleet "Large Human Merchants (Hai)" 5000
 	fleet "Hai Surveillance" 2000
@@ -12499,8 +12547,14 @@ system "Hevru Hai"
 	trade Medical 509
 	trade Metal 457
 	trade Plastic 503
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 2500
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 5000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 2500
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 10000
+	fleet "Small Hai Merchant (Human)" 4500
+	fleet "Large Hai Merchant (Human)" 7500
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet Quarg 600
@@ -13085,8 +13139,14 @@ system "Imo Dep"
 	trade Medical 865
 	trade Metal 198
 	trade Plastic 532
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 2000
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 4000
+	fleet "Small Hai Merchant" 1000
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 4000
+	fleet "Large Hai Merchant (Sympathizers)" 8000
+	fleet "Small Hai Merchant (Human)" 5000
+	fleet "Large Hai Merchant (Human)" 7000
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
 	fleet "Hai Surveillance" 3000
@@ -13211,8 +13271,14 @@ system "Io Lowe"
 	trade Medical 765
 	trade Metal 438
 	trade Plastic 262
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1200
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2400
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1200
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4800
+	fleet "Small Hai Merchant (Human)" 2000
+	fleet "Large Hai Merchant (Human)" 3500
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
 	fleet "Hai Surveillance" 5000
@@ -13275,8 +13341,14 @@ system "Io Mann"
 	trade Medical 615
 	trade Metal 588
 	trade Plastic 532
-	fleet "Small Hai" 700
-	fleet "Large Hai" 1800
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 3600
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 1800
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 7200
+	fleet "Small Hai Merchant (Human)" 1500
+	fleet "Large Hai Merchant (Human)" 3000
 	fleet "Small Human Merchants (Hai)" 3000
 	fleet "Large Human Merchants (Hai)" 6000
 	fleet "Hai Surveillance" 3000
@@ -15591,8 +15663,14 @@ system "Lom Tahr"
 	trade Medical 695
 	trade Metal 458
 	trade Plastic 372
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1600
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 3200
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1600
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 6400
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
@@ -16383,8 +16461,14 @@ system "Mei Yohn"
 	trade Medical 865
 	trade Metal 348
 	trade Plastic 362
-	fleet "Small Hai" 600
-	fleet "Large Hai" 1000
+	fleet "Small Hai" 1200
+	fleet "Large Hai" 2000
+	fleet "Small Hai Merchant" 600
+	fleet "Large Hai Merchant" 1000
+	fleet "Small Hai Merchant (Sympathizers)" 2400
+	fleet "Large Hai Merchant (Sympathizers)" 4000
+	fleet "Small Hai Merchant (Human)" 3500
+	fleet "Large Hai Merchant (Human)" 5000
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 5000
@@ -19800,7 +19884,7 @@ system Postverta
 		sprite planet/desert7
 		distance 439
 		period 316.657
-	object
+	object Fertriery
 		sprite planet/fog0
 		distance 814
 		period 799.520
@@ -20598,8 +20682,14 @@ system "Rati Cal"
 	trade Medical 665
 	trade Metal 448
 	trade Plastic 392
-	fleet "Small Hai" 900
-	fleet "Large Hai" 1700
+	fleet "Small Hai" 1800
+	fleet "Large Hai" 3400
+	fleet "Small Hai Merchant" 900
+	fleet "Large Hai Merchant" 1700
+	fleet "Small Hai Merchant (Sympathizers)" 3600
+	fleet "Large Hai Merchant (Sympathizers)" 6800
+	fleet "Small Hai Merchant (Human)" 4000
+	fleet "Large Hai Merchant (Human)" 5500
 	fleet "Small Human Merchants (Hai)" 8000
 	fleet "Large Human Merchants (Hai)" 11000
 	fleet "Hai Surveillance" 5000
@@ -24779,8 +24869,14 @@ system "Ula Mon"
 	trade Medical 855
 	trade Metal 378
 	trade Plastic 372
-	fleet "Small Hai" 400
-	fleet "Large Hai" 900
+	fleet "Small Hai" 800
+	fleet "Large Hai" 1800
+	fleet "Small Hai Merchant" 400
+	fleet "Large Hai Merchant" 900
+	fleet "Small Hai Merchant (Sympathizers)" 1600
+	fleet "Large Hai Merchant (Sympathizers)" 3600
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 3000
@@ -25107,8 +25203,14 @@ system "Uwa Fahn"
 	trade Medical 895
 	trade Metal 398
 	trade Plastic 372
-	fleet "Small Hai" 700
-	fleet "Large Hai" 700
+	fleet "Small Hai" 1400
+	fleet "Large Hai" 1400
+	fleet "Small Hai Merchant" 700
+	fleet "Large Hai Merchant" 700
+	fleet "Small Hai Merchant (Sympathizers)" 2800
+	fleet "Large Hai Merchant (Sympathizers)" 2800
+	fleet "Small Hai Merchant (Human)" 5500
+	fleet "Large Hai Merchant (Human)" 8000
 	fleet "Small Human Merchants (Hai)" 11000
 	fleet "Large Human Merchants (Hai)" 16000
 	fleet "Hai Surveillance" 3000
@@ -25402,6 +25504,12 @@ system "Wah Ki"
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
 	fleet "Large Unfettered" 800
+	fleet "Small Hai Merchant" 4800
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 1200
+	fleet "Large Hai Merchant (Sympathizers)" 500
+	fleet "Small Hai Merchant (Human)" 9000
+	fleet "Large Hai Merchant (Human)" 14000
 	fleet "Small Human Merchants (Hai)" 18000
 	fleet "Large Human Merchants (Hai)" 28000
 	object
@@ -25470,8 +25578,14 @@ system "Wah Oh"
 	trade Medical 525
 	trade Metal 478
 	trade Plastic 432
-	fleet "Small Hai" 500
-	fleet "Large Hai" 1500
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 3000
+	fleet "Small Hai Merchant" 500
+	fleet "Large Hai Merchant" 1500
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 6000
+	fleet "Small Hai Merchant (Human)" 3000
+	fleet "Large Hai Merchant (Human)" 4500
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
@@ -25946,8 +26060,14 @@ system "Ya Hai"
 	trade Medical 795
 	trade Metal 488
 	trade Plastic 472
-	fleet "Small Hai" 400
-	fleet "Large Hai" 500
+	fleet "Small Hai" 800
+	fleet "Large Hai" 1000
+	fleet "Small Hai Merchant" 400
+	fleet "Large Hai Merchant" 500
+	fleet "Small Hai Merchant (Sympathizers)" 1600
+	fleet "Large Hai Merchant (Sympathizers)" 2000
+	fleet "Small Hai Merchant (Human)" 6000
+	fleet "Large Hai Merchant (Human)" 8500
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 17000
 	fleet "Hai Surveillance" 3000
@@ -26334,8 +26454,14 @@ system "Zuba Zub"
 	trade Medical 925
 	trade Metal 238
 	trade Plastic 452
-	fleet "Small Hai" 1000
-	fleet "Large Hai" 800
+	fleet "Small Hai" 2000
+	fleet "Large Hai" 1600
+	fleet "Small Hai Merchant" 1600
+	fleet "Large Hai Merchant" 2000
+	fleet "Small Hai Merchant (Sympathizers)" 2000
+	fleet "Large Hai Merchant (Sympathizers)" 1600
+	fleet "Small Hai Merchant (Human)" 5000
+	fleet "Large Hai Merchant (Human)" 9000
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
@@ -26797,7 +26923,7 @@ planet Avalon
 	security 0
 
 planet Aventine
-	attributes "has shipyard" remnant
+	attributes remnant
 	landscape land/mountain17-harro
 	description `This is not a particularly warm world, but it is the best that the first Remnant refugees were able to find when they explored the Ember Waste. It is here that they built their capital, in a deep valley that is almost always shrouded in clouds. In meadows farther up the mountain slopes, a few particularly hardy food crops are grown, but for the most part the Remnant rely on artificial greenhouses or cultured yeast for protein supplements. Remnant cuisine is unlikely to ever become a draw for tourists, even if their isolation here is broken.`
 	spaceport `The oldest buildings in the Remnant capital city harken back to classic human architecture, with stone facades and columns reminiscent of ancient Rome. But as you walk outward toward the more recent additions, the buildings become less and less recognizably human, with curved organic shapes and hundreds of overhanging walkways and balconies. It is as if the layers left behind by centuries of habitation are a frozen record of the slow transition of Remnant culture into something bizarre and almost alien.`
@@ -27012,7 +27138,7 @@ planet Burthen
 		fleet "Small Syndicate" 7
 
 planet Caelian
-	attributes "has shipyard" remnant
+	attributes remnant
 	landscape land/sky7
 	description `When the first members of the Remnant discovered this region of space, Caelian was the only habitable world they found with enough insolation to be able to operate solar-powered factories and bioreactors. The first settlements were scattered widely, with the houses hidden underground in order to be less visible from space, because they feared that the Alphas would overrun human space and eventually find their way into the Waste. Centuries later, when they learned that the Alpha Wars had ended, they began to expand the factories and settlements more openly.`
 	spaceport `Nearly all members of the Remnant are dark-skinned, either from exposure to high levels of ultraviolet radiation or because that is what their first ancestors who came here looked like. So, they walk around this spaceport village without much fear of the scorching desert sun, bringing supplies back and forth to the houses and to the flat clay pavement of the landing zone. Aside from some camels that the settlers brought with them, there are very few animals here.`
@@ -30378,7 +30504,7 @@ planet "Vibrant Water"
 	"required reputation" 15
 
 planet Viminal
-	attributes "has shipyard" remnant
+	attributes remnant
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
@@ -30522,7 +30648,7 @@ planet "Wyvern Station"
 planet Xerolophos
 	attributes "gas giant" "requires: gaslining" "requires: inaccessible" uninhabited
 	landscape land/nasa29
-	description `Although formerly classified as a "Hot Jupiter", Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
+	description `Although formerly classified as a "Hot Jupiter," Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
 	description `	While it's possible that Xerolophos might have migrated here long ago, the Remnant haven't been able to explain the extreme temperatures of the planet even after years of studies and dispatching dozens of probes.`
 	government Uninhabited
 	security 0

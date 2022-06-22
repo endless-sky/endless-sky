@@ -216,10 +216,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
+			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == selectedPilot; }));
+				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{

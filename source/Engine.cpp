@@ -427,8 +427,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 void Engine::Wait()
 {
 	unique_lock<mutex> lock(swapMutex);
-	while(calcTickTock != drawTickTock)
-		condition.wait(lock);
+	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	drawTickTock = calcTickTock;
 }
 
 
@@ -876,7 +876,8 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		drawTickTock = !drawTickTock;
+		calcTickTock = !calcTickTock;
+		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
 }
@@ -1321,8 +1322,7 @@ void Engine::ThreadEntryPoint()
 	{
 		{
 			unique_lock<mutex> lock(swapMutex);
-			while(calcTickTock == drawTickTock && !terminate)
-				condition.wait(lock);
+			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
 
 			if(terminate)
 				break;
@@ -1333,7 +1333,7 @@ void Engine::ThreadEntryPoint()
 
 		{
 			unique_lock<mutex> lock(swapMutex);
-			calcTickTock = drawTickTock;
+			hasFinishedCalculating = true;
 		}
 		condition.notify_one();
 	}

@@ -154,7 +154,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	{
 		// Set scroll so the currently shown ship will be the first in page.
 		panelState.SetScroll(shipIt - panelState.Ships().begin());
-		
+
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
@@ -522,7 +522,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color bright = *GameData::Colors().Get("bright");
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
-	
+
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	Table table;
@@ -633,7 +633,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 {
 	if(shipIt == panelState.Ships().end())
 		return true;
-	
+
 	hoverPoint = point;
 
 	hoverIndex = -1;
