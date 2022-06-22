@@ -241,7 +241,7 @@ void MapPanel::Draw()
 	DrawMissions();
 	DrawTooltips();
 
-	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
+	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
@@ -654,19 +654,19 @@ void MapPanel::Select(const System *system)
 		if(system == planEnd)
 			return;
 
-		DistanceMap localDistance(player, planEnd, system);
-		if(!localDistance.HasRoute())
+		RoutePlan addedRoute(player, *planEnd, *system);
+		if(!addedRoute.HasRoute())
 			return;
 
-		vector<const System *> newPlan = localDistance.Plan();
+		vector<const System *> newPlan = addedRoute.Plan();
 		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
-	else if(distance.HasRoute(system))
+	else if(distance.HasRoute(*system))
 	{
 		if(!isJumping)
 			flagship->SetTargetSystem(nullptr);
 
-		plan = distance.Plan(system);
+		plan = distance.Plan(*system);
 	}
 }
 

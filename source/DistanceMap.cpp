@@ -22,8 +22,9 @@ using namespace std;
 
 
 
-// Find paths branching out from the given system, optionally limiting
-// system count or days. The default negative values mean no limit.
+// Find paths branching out from the given system. The optional arguments put
+// a limit on how many systems will be returned (e.g. buying a local map) and
+// a limit on how many jumps away they can be (e.g. a valid mission location).
 DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 	: center(center), maxSystems(maxSystems), maxDays(maxDays)
 {
@@ -32,60 +33,65 @@ DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 
 
 
-// If a player is given, the map will start from the player's system and will
-// only use hyperspace paths known to the player; that is, one end of the path
-// has been visited. Also, if the player's flagship has a jump drive, the
-// route will make use of it. The optional arguments allows appending
-// a route to the end of a planned route, still using parameters of the player.
-DistanceMap::DistanceMap(const PlayerInfo &player, const System *center, const System *destination)
-	: player(&player), destination(destination), useWormholes(true)
+// If a player is given, the map will start from the player's system.
+// Pathfinding will only use hyperspace paths known to the player; that is,
+// one end of the path has been visited. Also, if the ship has a jump drive
+// or wormhole access, the route will make use of it.
+DistanceMap::DistanceMap(const PlayerInfo &player)
+	: player(&player),  useWormholes(true)
 {
 	if(!player.Flagship())
 		return;
 
-	if(!center)
-	{
-		if(player.Flagship()->IsEnteringHyperspace())
-			center = player.Flagship()->GetTargetSystem();
-		else
-			center = player.Flagship()->GetSystem();
-	}
-	if(!center)
-		return;
+	if(player.Flagship()->IsEnteringHyperspace())
+		center = player.Flagship()->GetTargetSystem();
 	else
-		this->center = center;
+		center = player.Flagship()->GetSystem();
+
+	Init(player.Flagship());
+}
+
+
+// Private constructors with a destination for use by RoutePlan
+DistanceMap::DistanceMap(const System &center, const System &destination)
+	: center(&center), destination(&destination)
+{
+	Init();
+}
+
+
+
+DistanceMap::DistanceMap(const PlayerInfo &player, const System &center, const System &destination)
+	: center(&center), destination(&destination), useWormholes(true)
+{
+	if(!player.Flagship())
+		return;
 
 	Init(player.Flagship());
 }
 
 
 
-// Calculate the path for the given ship to get to the given system. The
-// ship will use a jump drive or hyperdrive depending on what it has. The
-// pathfinding will stop once a path to the destination is found.
-DistanceMap::DistanceMap(const Ship &ship, const System *destination)
-	: destination(destination), center(ship.GetSystem()), useWormholes(true)
+DistanceMap::DistanceMap(const Ship &ship, const System &destination)
+	: center(ship.GetSystem()), destination(&destination), useWormholes(true)
 {
-	if(!center || !destination)
-		return;
-
 	Init(&ship);
 }
 
 
 
 // Find out if the given system is reachable
-bool DistanceMap::HasRoute(const System *system) const
+bool DistanceMap::HasRoute(const System &system) const
 {
-	return route.count(system ? system : destination);
+	return route.count(&system);
 }
 
 
 
 // Find out how many days away the given system is.
-int DistanceMap::Days(const System *system) const
+int DistanceMap::Days(const System &system) const
 {
-	auto it = route.find(system);
+	auto it = route.find(&system);
 	return (it == route.end() ? -1 : it->second.days);
 }
 
@@ -102,51 +108,20 @@ set<const System *> DistanceMap::Systems() const
 
 
 
-// Get the first step on the route from the center to this system.
-const System * DistanceMap::FirstStep(const System *system) const
-{
-	if(!system)
-		system = destination;
-
-	if(!HasRoute(system))
-		return nullptr;
-
-	const System *firstStep = nullptr;
-	while(system != center)
-	{
-		firstStep = system;
-		system = route.at(system).prev;
-	}
-	return firstStep;
-}
-
-
-
 // Get the planned route from center to this system.
-vector<const System *> DistanceMap::Plan(const System *system) const
+vector<const System *> DistanceMap::Plan(const System &system) const
 {
-	if(!system)
-		system = destination;
-
 	auto plan = vector<const System *> {};
 	if(!HasRoute(system))
 		return plan;
 
-	while(system != center)
+	const System *nextStep = &system;
+	while(nextStep != center)
 	{
-		plan.push_back(system);
-		system = route.at(system).prev;
+		plan.push_back(nextStep);
+		nextStep = route.at(nextStep).prev;
 	}
 	return plan;
-}
-
-
-
-// Get the amount of fuel needed to get to this system.
-int DistanceMap::RequiredFuel(const System *system) const
-{
-	auto it = route.find(system);
-	return (it == route.end() ? -1 : it->second.fuel);
 }
 
 
@@ -179,7 +154,7 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	if(!center)
+	if(!center || center == destination)
 		return;
 
 	// To get to the starting point, there is no previous system,
@@ -268,7 +243,7 @@ void DistanceMap::Init(const Ship *ship)
 						continue;
 
 					// In order to plan travel through a wormhole, it must be
-					// "accessible" to your flagship, and you must have visited
+					// "accessible" to the ship, and you must have visited
 					// the wormhole and both endpoint systems. (If this is a
 					// multi-stop wormhole, you may know about some paths that
 					// it takes but not others.)
@@ -365,4 +340,107 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) 
 		return true;
 
 	return (player->HasVisited(from) || player->HasVisited(to));
+}
+
+
+// RoutePlan is a wrapper on DistanceMap that uses destination
+RoutePlan::RoutePlan(const System &center, const System &destination)
+{
+	Init(DistanceMap(center, destination));
+}
+
+
+
+RoutePlan::RoutePlan(const PlayerInfo &player, const System &center, const System &destination)
+{
+	Init(DistanceMap(player, center, destination));
+}
+
+
+
+RoutePlan::RoutePlan(const Ship &ship, const System &destination)
+{
+	Init(DistanceMap(ship, destination));
+}
+
+
+
+void RoutePlan::Init(const DistanceMap& distance)
+{
+	const System* destination = distance.destination;
+	auto it = distance.route.find(destination);
+	if(it == distance.route.end())
+		return;
+
+	hasRoute = true;
+
+	while(it->first != distance.center)
+	{
+		plan.emplace_back(it->first, it->second);
+		it = distance.route.find(it->second.prev);
+	}
+}
+
+
+
+// Find out if the destination is reachable.
+bool RoutePlan::HasRoute() const
+{
+	return hasRoute;
+}
+
+
+
+// Get the first step on the route from center to the destination.
+const System *RoutePlan::FirstStep() const
+{
+	if(!hasRoute)
+		return nullptr;
+
+	return plan.back().first;
+}
+
+
+
+// Find out how many days away the destination is.
+int RoutePlan::Days() const
+{
+	if(!hasRoute)
+		return -1;
+
+	return plan.front().second.days;
+}
+
+
+
+// How much fuel is needed to travel to this system along the route.
+int RoutePlan::RequiredFuel() const
+{
+	if(!hasRoute)
+		return -1;
+
+	return plan.front().second.fuel;
+}
+
+
+
+
+// Get the list of jumps to take to get to the destination.
+vector<const System *> RoutePlan::Plan() const
+{
+	auto steps = vector<const System *> {};
+	for(const auto it : plan)
+		steps.push_back(it.first);
+	return steps;
+}
+
+
+
+// How much fuel is needed to travel to this system along the route.
+vector<pair<const System *, int>> RoutePlan::FuelCosts() const
+{
+	auto steps = vector<pair<const System *, int>> {};
+	for(const auto it : plan)
+		steps.emplace_back(it.first, it.second.fuel);
+	return steps;
 }

@@ -1252,15 +1252,14 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		auto it = destinations.begin();
 		auto bestIt = it;
 		for(++it; it != destinations.end(); ++it)
-			if(distance.Days(*it) < distance.Days(*bestIt))
+			if(distance.Days(**it) < distance.Days(**bestIt))
 				bestIt = it;
 
 		path = *bestIt;
-		jumps += distance.Days(*bestIt);
+		jumps += distance.Days(**bestIt);
 		destinations.erase(bestIt);
 	}
-	DistanceMap distance(path);
-	jumps += distance.Days(result.destination->GetSystem());
+	jumps += RoutePlan(*path, *result.destination->GetSystem()).Days();
 	int64_t payload = static_cast<int64_t>(result.cargoSize) + 10 * static_cast<int64_t>(result.passengers);
 
 	// Set the deadline, if requested.

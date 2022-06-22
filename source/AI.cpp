@@ -182,8 +182,13 @@ namespace {
 
 	// Determine if the ship with the given travel plan should refuel in
 	// its current system, or if it should keep traveling.
-	bool ShouldRefuel(const Ship &ship, const DistanceMap &route)
+	bool ShouldRefuel(const Ship &ship, const RoutePlan &route)
 	{
+		// If we can't get to the destination --- no reason to refuel.
+		// (though AI may choose to elsewhere)
+		if(!route.HasRoute())
+			return false;
+
 		// If the ship is full, no refuel.
 		if(ship.Fuel() == 1.)
 			return false;
@@ -202,27 +207,19 @@ namespace {
 		if(!ship.JumpFuel())
 			return false;
 
-		// If we can't get to the destination --- no reason to refuel.
-		// (though AI may choose to elsewhere)
-		if(!route.HasRoute())
-			return false;
-
 		// Now we know it could refuel. But it could also jump along the route
 		// and refuel later. Calculate if it can reach the next refuel.
 		double fuel = fuelCapacity * ship.Fuel();
-		const vector<const System *> plan = route.Plan();
-		const System *system;
-		for (auto it = plan.rbegin(); it != plan.rend(); ++it)
+		const vector<pair<const System *, int>> costs = route.FuelCosts();
+		for (auto it = costs.begin(); it != costs.end(); ++it)
 		{
-			system = *it;
-
 			// If the next system with fuel is outside the range of this ship, should refuel.
-			if(system->HasFuelFor(ship))
-				return fuel < route.RequiredFuel(system);
+			if(it->first->HasFuelFor(ship))
+				return fuel < it->second;
 		}
 
 		// If no system on the way has fuel, refuel if needed to get to the destination.
-		return fuel < route.RequiredFuel(system);
+		return fuel < route.RequiredFuel();
 	}
 
 	const StellarObject *GetRefuelLocation(const Ship &ship)
@@ -256,7 +253,7 @@ namespace {
 		const System *from = ship.GetSystem();
 		if(from == targetSystem || !targetSystem)
 			return;
-		const DistanceMap route(ship, targetSystem);
+		const RoutePlan route(ship, *targetSystem);
 		if(ShouldRefuel(ship, route))
 		{
 			// There is at least one planet that can refuel the ship.
@@ -265,8 +262,7 @@ namespace {
 		}
 		const System *nextSystem = route.FirstStep();
 		// The destination may be accessible by both jump and wormhole.
-		// Prefer wormhole travel in these cases, to conserve fuel. Must
-		// check accessibility as DistanceMap may only see the jump path.
+		// Prefer wormhole travel in these cases, to conserve fuel.
 		if(nextSystem)
 			for(const StellarObject &object : from->Objects())
 			{
@@ -1610,7 +1606,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 	// If the parent is in-system and planning to jump, non-staying escorts should follow suit.
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
-		DistanceMap route(ship, parent.GetTargetSystem());
+		RoutePlan route(ship, *parent.GetTargetSystem());
 		const System *dest = route.FirstStep();
 		ship.SetTargetSystem(dest);
 		if(!dest)

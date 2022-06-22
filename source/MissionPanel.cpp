@@ -203,7 +203,7 @@ void MissionPanel::Draw()
 	MapPanel::Draw();
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const vector<const System *> plan = distance.Plan(selectedSystem);
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
 	const System *prev = player.GetSystem();
 	for (auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
@@ -570,8 +570,8 @@ void MissionPanel::DrawSelectedSystem() const
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
 	if(it != plan.end())
 		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
+	else if(distance.HasRoute(*selectedSystem))
+		jumps = distance.Days(*selectedSystem);
 
 	if(jumps == 1)
 		text += " (1 jump away)";
