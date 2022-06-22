@@ -938,7 +938,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered are not the ones who placed those jump drives here..." He really does not seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and install the jump drives directly on your ship if possible to be able to flee more swifly, or in cargo.`
+			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and simply tranfer  the jump drives in cargo or rather install them directly on your ship if possible, to be able to flee more swifly.`
 			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
 				launch
 	on accept
@@ -2605,7 +2605,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Why do you say that?"`
 			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us anyway."`
 			label help
-			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, a lot of them. We already have a some on the way, but more would help speed things up significantly."`
+			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, a lot of them. We already have some on the way, but more would help speed things up significantly, especially given that with your jump drives you can make it there faster than pirates, and with less risk to the cargo, hopefully."`
 			choice
 				`	"I will cover whatever distance necessary."`
 				`	"I do not want to do long distance cargo mission, screw the Unfettered and your big ships."`
@@ -2787,7 +2787,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discretely, but you can drop them off the ship and then go take them once you are out, hoping nobody will notice. Looking through a porthole you do not see anyone around at the moment, conveniently, there is even some sand here, so the bars should be hidden under it.`
+			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discretely, but you can drop them off the ship and then go take them once you are out, hoping nobody will notice. Looking through a porthole you do not see anyone around at the moment, conveniently, there is even some sand on the ground there, so the bars should sink in it, partially hidden under it.`
 			branch knowsbars
 				has "Unfettered: I Shall Go Unpunished: offered"
 			`It may not be what you are looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterwards, and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
@@ -2858,7 +2858,7 @@ mission "Unfettered: Special Cargo 1B"
 				goto caught
 
 			label bargain
-			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request. "I assume you are referring to the item my warlord just acquired, it is indeed very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew him." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
+			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "I think I know of which item you speak, indeed the old warlord was aware of it and orderer it delivered to him, something Kira knows not of yet... She does not need to. Indeed that item is very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew her." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
 			choice
 				`	"That low? Well here you go mate."`
 				`	"I do not have that kind of money, perhaps we could negotiate?"`
@@ -2867,11 +2867,9 @@ mission "Unfettered: Special Cargo 1B"
 					goto challenge
 			`	He seems disappointed and wishing he had asked for more, but he shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
-				set "Unfettered: brokered deal"
-				"reputation: Mari's Legion" >?= 1
 				payment -10000000
 			``
-				accept
+				goto leaveinpeace
 			label negotiate
 			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do you say?"`
 			choice
@@ -2880,9 +2878,11 @@ mission "Unfettered: Special Cargo 1B"
 					goto challenge
 			`	He seems disappointed to have only 8 million credits but you feel like he still had the upper hand in that trade. He shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
+				payment -8000000
+			label leaveinpeace
+			action
 				set "Unfettered: brokered deal"
 				"reputation: Mari's Legion" >?= 1
-				payment -8000000
 			``
 				accept
 			label challenge
@@ -2948,7 +2948,7 @@ mission "Unfettered: Special Cargo 2"
 				`	"Why this particular world?"`
 				`	"I will do it."`
 					accept
-			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we do not want to bring too much heat on you. Ships that get produced there are sent to the worlds which border us. Also because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet movements, in order to be able to react in time, should the worst arrive: our lessers could attack us when we seem weak."`
+			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we do not want to bring too much heat on you. As you know, that is where most of their big ships are made, and ships that get produced there are sent to the worlds which border us. Also because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet movements, in order to be able to react in time, should the worst arrive: our lessers could attack us when we seem weak. Of course, we need something discrete to do it, else our operatives could get caught, whilst still collecting every single detail there is to know about the rate at which they produce ships, how, and so on."`
 			choice
 				`	"You could just have me place the cube in orbit if it is so sensible to movement all over the system."`
 				`	"I will do it."`
@@ -3329,7 +3329,7 @@ mission "Unfettered: Bring Detainer"
 				`	"Sure, I will go and bring it back for you."`
 					accept
 				`	"Where can I find said weapon?"`
-			`	"The ones who spoke to me about it are the green humans, and we know that they were active in the territory to the east, so you would do well to go and look there, maybe a bit more to the south, because there are legends speaking of an everlasting battlefield. One that never ends to make carnage, as if gods were laughing in the background, enjoying the show that seems without end."`
+			`	"The ones who spoke to me about it are the green humans, and we know that they were active in the territory to the east, so you would do well to go and look there, maybe a bit more to the south, because there are legends speaking of an everlasting battlefield. One that never ends to make carnage, as if gods were laughing in the background, enjoying the show that seems without end. The Alphas did not tell me that much, though, I heard it in a bar, so it may be a bit exaggerated."`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
