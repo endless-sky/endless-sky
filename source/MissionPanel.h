@@ -48,7 +48,8 @@ protected:
 
 
 private:
-	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem
+	// Use availableIt/acceptedIt to set selectedSystem, call DoScroll/CenterOnSystem
+	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
