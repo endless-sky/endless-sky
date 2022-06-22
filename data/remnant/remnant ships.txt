@@ -130,7 +130,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		"Quantum Key Stone"
 		"Outfits Expansion" 2
@@ -156,7 +155,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
-		"Quantum Key Stone"
 		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Outfits Expansion" 4
@@ -188,7 +186,6 @@ ship "Albatross" "Albatross (Shield)"
 
 		"Aeon Cell"
 		"Millennium Cell"
-		"Quantum Key Stone"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Outfits Expansion" 6

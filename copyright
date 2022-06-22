@@ -695,25 +695,25 @@ License: public-domain
 Files:
  images/land/station8*
 Copyright: MTA of the State of New York
-Licence: CC BY 2.0
+License: CC BY 2.0
 Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
 
 Files:
  images/land/station27*
 Copyright: Sebastian Sinisterra
-Licence: CC BY 2.0
+License: CC BY 2.0
 Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
 
 Files:
  images/land/station28*
 Copyright: mwewering
-Licence: Pixabay License
+License: Pixabay License
 Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
 
 Files:
  images/land/station15*
 Copyright: mikecook
-Licence: Pixabay License
+License: Pixabay License
 Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
 
 Files:
@@ -748,6 +748,7 @@ License: public-domain
 Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
 
 Files: sounds/torpedo?hit.wav
+Copyright: Public Domain
 License: public-domain
 
 Files: sounds/meteor.wav
@@ -756,6 +757,7 @@ License: CC-BY-SA-3.0
 Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
 
 Files: sounds/sidewinder.wav
+Copyright: Copyright "NHMWretched"
 License: public-domain
 Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
 
@@ -767,6 +769,7 @@ Comment: Taken from http://soundbible.com/1151-Grenade.html
 Files:
  sounds/asteroid crunch small.wav
  sounds/asteroid crunch medium.wav
+Copyright: Copyright AlanCat
 License: public-domain
 Comment: Derived from https://freesound.org/people/AlanCat/sounds/381645/
 
@@ -1343,6 +1346,7 @@ Files:
  images/outfit/caldera?afterburner*
  images/outfit/dark?storm*
  images/outfit/dual?sunbeam?turret*
+ images/outfit/finisher?maegrolain*
  images/outfit/nuke*
  images/outfit/red?sun*
  images/outfit/sunbeam*
@@ -1466,12 +1470,14 @@ Comment: Derived from works by Michael Zahniser (under the same license) and det
 
 Files:
  sounds/remnant?afterburner.wav
+Copyright: Public Domain
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  sounds/firelight.wav
  sounds/firelight?hit.wav
+Copyright: Public Domain
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 

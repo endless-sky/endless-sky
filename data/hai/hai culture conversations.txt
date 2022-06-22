@@ -223,7 +223,7 @@ mission "Academy Motto"
 		conversation
 			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
 			choice
-				`	(Play games on your ship.)`
+				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
 					goto fieldtrip
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
@@ -247,7 +247,7 @@ mission "Academy Motto"
 			choice
 				`	(Ask them about it.)`
 					goto question
-				`	(Keep your thoughts to yourself.)`
+				`	(Keep my thoughts to myself.)`
 			`	The staff member takes your plate and wishes you a lovely day.`
 				decline
 			label question
