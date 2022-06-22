@@ -4052,13 +4052,20 @@ mission "Riley"
 				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
-			action
-				fine 13000
+			set "returned payment to Riley"
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 				goto choice
 			label credits
 			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
 			label choice
+			choice
+				`	"Do you think I could come along? I've heard so much about your father."`
+					goto father
+				`	"Thank you, and good luck."`
+					goto end
+				`	"Hold on to the credits. I'm a captain; I can always make more."`
+			set "returned payment to Riley"
+			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
 					goto father
@@ -4091,7 +4098,7 @@ mission "Riley"
 					goto continue
 				`	"Is this... legal?"`
 			`	"Well, no," he replies. "Not under Deep law. I assure you that my only intention is to continue my work; nothing more."`
-			`	A quick search shows a 30000 credit reward for turning in a mind upload.`
+			`	You remember that there is a 100000 credit reward for turning in a mind upload.`
 			label continue
 			`	"Riley, what do you think?"`
 			`	"Dad, is that really you? How do you feel?"`
@@ -4115,10 +4122,16 @@ mission "Riley"
 				decline
 			label bounty
 			action
-				payment 30000
-			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep government office, and watch as they descend on the house.`
-			`	Your bank account notifies you that <payment> have been added to your account. Turning away, you head back to your ship.`
+				payment 100000
+			`	You say your goodbyes and leave. From across the street, you make a call to the local government office, and watch as they descend on the house.`
+			`	Your bank account notifies you that 100000 have been added to your account. Turning away, you head back to your ship.`
 				decline
 			label end
 				You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
+
+mission "Return Riley's Payment"
+	invisible
+	to offer
+		has "returned payment to Riley"
+	payment -13000
