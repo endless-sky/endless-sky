@@ -114,6 +114,45 @@ outfit "Finisher Pod"
 		"submunition" "Active Finisher" 1
 	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
+outfit "Finisher Maegrolain"
+	category "Secondary Weapons"
+	licenses
+		Heliarch
+	cost 7260000
+	thumbnail "outfit/finisher maegrolain"
+	"mass" 58
+	"outfit space" -88
+	"weapon capacity" -88
+	"gun ports" -1
+	"finisher capacity" 60
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Finisher Torpedo"
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 8
+		"hit effect" "finisher impact" 2
+		"hit effect" "finisher fragment" 12
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 6
+		"velocity" 9
+		"lifetime" 60
+		"reload" 60
+		"burst reload" 15
+		"burst count" 20
+		"firing energy" 184
+		"firing heat" 76
+		"acceleration" .8
+		"drag" .1
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .8
+		"missile strength" 50
+		"submunition" "Active Finisher" 1
+	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher torpedoes. It has much greater damage potential than its smaller counterpart.`
+
 outfit "Active Finisher"
 	weapon
 		sprite "projectile/finisher"
