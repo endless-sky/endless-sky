@@ -216,7 +216,7 @@ outfit "Korath Fire-Lance"
 		sound "fire-lance"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
-		"velocity" 350
+		"velocity" 390
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.5
@@ -725,12 +725,50 @@ effect "heaver shard hit"
 	sound "heaver shard hit"
 	"velocity scale" .05
 	"random angle" 10
+	
+outfit "Korath Blaze-Pike"
+	category "Turrets"
+	cost 1970000
+	thumbnail "outfit/blaze-pike"
+	"mass" 57
+	"outfit space" -54
+	"weapon capacity" -54
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/blaze-pike"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/blaze-pike"
+		sound "fire-lance"
+		"hit effect" "blaze-pike hit"
+		"inaccuracy" 0.45
+		"turret turn" 3.7
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 5
+		"firing heat" 5.1
+		"shield damage" 7
+		"hull damage" 3
+		"heat damage" 24
+		"burn damage" 1.2
+	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapan. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
+
+effect "blaze-pike hit"
+	sprite "effect/blaze-pike hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005
 
 outfit "Korath Inferno"
 	category "Turrets"
-	cost 1970000
+	cost 2670000
 	thumbnail "outfit/korath inferno"
-	"mass" 40
+	"mass" 77
 	"outfit space" -71
 	"weapon capacity" -71
 	"turret mounts" -1
@@ -743,7 +781,7 @@ outfit "Korath Inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
 		"turret turn" 2.7
-		"velocity" 525
+		"velocity" 550
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 7.5

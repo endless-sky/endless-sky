@@ -1164,7 +1164,6 @@ Files:
  images/projectile/expeller*
  images/projectile/heaver*
  images/projectile/korath?digger*
- images/projectile/korath?inferno*
  images/projectile/shunt-strike*
 Copyright: None (CC0 Public Domain)
 License: N/A (CC0 Public Domain)
@@ -1398,6 +1397,9 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/projectile/fire-lance*
+ images/projectile/blaze-pike*
+ images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
@@ -1488,9 +1490,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/hardpoint/blaze-pike*
  images/hardpoint/korath?inferno*
  images/outfit/korath?inferno*
  images/icon/firelight*
+ images/outfit/blaze?pike*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
