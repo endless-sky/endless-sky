@@ -4048,7 +4048,7 @@ mission "Riley"
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
 			action
-				set "returned payment to Riley"
+				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 				goto choice
 			label credits
@@ -4061,7 +4061,7 @@ mission "Riley"
 					goto end
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
 			action
-				set "returned payment to Riley"
+				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
@@ -4079,7 +4079,7 @@ mission "Riley"
 			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
 			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
 			`	Riley, in turn, had always surrounded herself with music, and moved to <origin> to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
-			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "Whatever happens, please don't think ill of me. I will always love you."`
+			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And," Church hesitates for a moment, "whatever happens, please don't think ill of me. I will always love you."`
 			`	His body relaxes, and he's gone.`
 			choice
 				`	(Stay comfortingly close.)`
@@ -4094,8 +4094,8 @@ mission "Riley"
 				`	(Stay silent)."`
 					goto continue
 				`	"Is this... legal?"`
-			`	"Well, no," he replies. "Not under Deep law. I assure you that my only intention is to continue my work; nothing more."`
-			`	You remember that there is a 100000 credit reward for turning in a mind upload.`
+			`	"Well, no," he replies. "Not under Republic law. I assure you that my only intention is to continue my work; nothing more."`
+			`	The authorities would probably release a substantial reward if you informed them of this.`
 			label continue
 			`	"Riley, what do you think?"`
 			`	"Dad, is that really you? How do you feel?"`
@@ -4120,16 +4120,10 @@ mission "Riley"
 			label bounty
 			action
 				payment 100000
-			`	You say your goodbyes and leave. From across the street, you make a call to the local government office, and watch as they descend on the house.`
-			`	Your bank account notifies you that 100000 have been added to your account. Turning away, you head back to your ship.`
+			`	You say your goodbyes and leave. From across the street, you make a call to the local government office, and watch as their forces descend on the house.`
+			`	Your bank account notifies you that <payment> have been added to your account. Turning away, you head back to your ship.`
 				decline
 			label end
 				You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
 
-mission "Return Riley's Payment"
-	invisible
-	to offer
-		has "returned payment to Riley"
-	on complete
-		payment -13000
