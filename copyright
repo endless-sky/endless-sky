@@ -1148,39 +1148,38 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/effect/firestorm*
  images/effect/heaver*
  images/effect/korath?digger*
  images/effect/shunt*
  images/hardpoint/expeller*
  images/hardpoint/firestorm*
- images/hardpoint/korath heaver*
- images/icon/firestorm torpedo*
- images/icon/korath heaver*
+ images/hardpoint/korath?heaver*
+ images/icon/firestorm?torpedo*
+ images/icon/korath?heaver*
  images/outfit/expeller*
  images/outfit/firestorm*
- images/outfit/korath heaver*
+ images/outfit/korath?heaver*
  images/outfit/*korath reverser*
- images/outfit/shunt bomb*
  images/outfit/shunt-strike*
  images/projectile/expeller*
  images/projectile/heaver*
- images/projectile/korath inferno*
+ images/projectile/korath?digger*
+ images/projectile/korath?inferno*
  images/projectile/shunt-strike*
 Copyright: None (CC0 Public Domain)
 License: N/A (CC0 Public Domain)
 Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
 
 Files:
- images/hardpoint/digger turret*
- images/outfit/korath digger turret*
- images/outfit/korath digger*
+ images/hardpoint/digger?turret*
+ images/outfit/korath?digger?turret*
+ images/outfit/korath?digger*
 Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
- images/*/korath*reverse*
+ images/*/korath*reverser*
 Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1421,8 +1420,8 @@ License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
 
 Files:
- images/outfit/tiny korath engine*
- images/outfit/korath reaction engines*
+ images/outfit/tiny?korath?engine*
+ images/outfit/korath?reaction?engines*
 Copyright: Ejo Thims <https://github.com/EjoThims>
 License: CC-BY-SA-4.0
 
@@ -1489,8 +1488,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/hardpoint/korath inferno*
- images/outfit/korath inferno*
+ images/hardpoint/korath?inferno*
+ images/outfit/korath?inferno*
  images/icon/firelight*
  images/outfit/firelight*
  images/outfit/firelight?bank*
@@ -1519,11 +1518,6 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 Comment: Derived from works by NomadicVolcano (public domain).
 License: CC-BY-SA-4.0
-
-Files:
- sounds/remnant afterburner.wav
-License: public-domain
-Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
  images/ship/kestrel*
