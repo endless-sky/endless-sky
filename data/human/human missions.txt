@@ -4047,7 +4047,8 @@ mission "Riley"
 				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
 					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
-			set "returned payment to Riley"
+			action
+				set "returned payment to Riley"
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 				goto choice
 			label credits
@@ -4059,7 +4060,8 @@ mission "Riley"
 				`	"Thank you, and good luck."`
 					goto end
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
-			set "returned payment to Riley"
+			action
+				set "returned payment to Riley"
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
