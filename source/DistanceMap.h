@@ -16,8 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <queue>
 #include <set>
-#include <vector>
 #include <utility>
+#include <vector>
 
 class PlayerInfo;
 class Ship;

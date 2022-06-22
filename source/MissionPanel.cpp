@@ -205,10 +205,9 @@ void MissionPanel::Draw()
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	vector<const System*> plan = distance.Plan(selectedSystem);
 	const System* prev = player.GetSystem();
-	while(!plan.empty())
+	for (auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		const System *next = plan.back();
-		plan.pop_back();
+		const System *next = *it;
 
 		Point from = Zoom() * (prev->Position() + center);
 		Point to = Zoom() * (next->Position() + center);

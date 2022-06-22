@@ -184,7 +184,7 @@ namespace {
 	// its current system, or if it should keep traveling.
 	bool ShouldRefuel(const Ship &ship, const DistanceMap &route)
 	{
-		// If fuel is full of fuel, no refuel
+		// If the ship is full, no refuel
 		if(ship.Fuel() == 1.)
 			return false;
 

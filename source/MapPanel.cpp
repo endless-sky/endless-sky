@@ -655,12 +655,11 @@ void MapPanel::Select(const System *system)
 			return;
 
 		DistanceMap localDistance(player, planEnd, system);
-		if(!localDistance.HasRoute(system))
+		if(!localDistance.HasRoute())
 			return;
 
 		vector<const System*> newPlan = localDistance.Plan();
-		auto it = plan.begin();
-		plan.insert(it, newPlan.begin(), newPlan.end());
+		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
 	else if(distance.HasRoute(system))
 	{
