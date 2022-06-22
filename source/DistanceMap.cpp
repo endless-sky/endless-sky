@@ -102,7 +102,7 @@ set<const System *> DistanceMap::Systems() const
 
 
 
-// Get the first step on the route from the center to this system
+// Get the first step on the route from the center to this system.
 const System* DistanceMap::FirstStep(const System* system) const
 {
 	if(!system)
@@ -122,7 +122,7 @@ const System* DistanceMap::FirstStep(const System* system) const
 
 
 
-// Get the planned route from center to this system
+// Get the planned route from center to this system.
 vector<const System*> DistanceMap::Plan(const System* system) const
 {
 	if(!system)
@@ -142,7 +142,7 @@ vector<const System*> DistanceMap::Plan(const System* system) const
 
 
 
-// Get the amount of fuel needed to get to this system
+// Get the amount of fuel needed to get to this system.
 int DistanceMap::RequiredFuel(const System *system) const
 {
 	auto it = route.find(system);
@@ -194,7 +194,7 @@ void DistanceMap::Init(const Ship *ship)
 	{
 		hyperspaceFuel = ship->HyperdriveFuel();
 		// Todo: consider outfit "jump distance" at each link to find if more fuel is needed
-		// by a second jump drive outfit with more range and cost via JumpDriveFuel(to)
+		// by a second jump drive outfit with more range and cost via JumpDriveFuel(to).
 		jumpFuel = ship->JumpDriveFuel();
 		jumpRange = ship->JumpRange();
 		// If hyperjumps and non-hyper jumps cost the same amount, there is no
@@ -224,9 +224,9 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive). If multiple routes have the same fuel and the same number of
 	// jumps, break the tie by using how "dangerous" the route is.
 
-	// Find all edges from that route, add better routes to the map, and continue
+	// Find all edges from that route, add better routes to the map, and continue.
 
-	// Add this fake edge "from center" so it's the first popped value
+	// Add this fake edge "from center" so it's the first popped value.
 	edgesTodo.emplace(center);
 	while(maxSystems && !edgesTodo.empty())
 	{
@@ -242,7 +242,7 @@ void DistanceMap::Init(const Ship *ship)
 
 		const System* currentSystem = nextEdge.prev;
 
-		// If a destination is given, stop searching once we have the best route
+		// If a destination is given, stop searching once we have the best route.
 		if(currentSystem == destination)
 			break;
 
@@ -250,7 +250,7 @@ void DistanceMap::Init(const Ship *ship)
 		// Don't need to worry about the danger for the next system because
 		// if you're going there, all routes would include that same danger.
 		// (It is slightly redundant that this includes the danger of the
-		//  starting system instead, but the code is simpler this way)
+		//  starting system instead, but the code is simpler this way.)
 		nextEdge.danger += currentSystem->Danger();
 
 		// Increment the travel time to include the next system. The fuel cost will be
@@ -300,7 +300,7 @@ bool DistanceMap::Propagate(Edge nextEdge, bool useJump)
 {
 	const System* currentSystem = nextEdge.prev;
 
-	// nextEdge is a copy to be used for this jump type, so build upon its fields
+	// nextEdge is a copy to be used for this jump type, so build upon its fields.
 	nextEdge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
 	for(const System *link : (useJump ? currentSystem->JumpNeighbors(jumpRange) : currentSystem->Links()))
 	{
@@ -336,7 +336,7 @@ void DistanceMap::Add(const System &to, Edge edge)
 	route[&to] = edge;
 
 	// Start building upon this edge and enqueue - this copy of edge
-	// is in an incomplete state and needs to be dequeued and worked on
+	// is in an incomplete state and needs to be dequeued and worked on.
 	edge.prev = &to;
 	if(maxDays < 0 || edge.days < maxDays)
 		edgesTodo.emplace(edge);

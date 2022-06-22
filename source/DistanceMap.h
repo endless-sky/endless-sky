@@ -76,9 +76,9 @@ private:
 		// is lower priority than the given item.
 		bool operator<(const Edge &other) const;
 
-		// There could be a System* thisSystem, but it would remained unused
+		// There could be a System* thisSystem, but it would remained unused.
 		const System *prev = nullptr;
-		// Fuel/days needed to get to this system using the route though 'prev'
+		// Fuel/days needed to get to this system using the route though 'prev'.
 		int fuel = 0;
 		int days = 0;
 		// Danger tracks up to the 'prev' system, not to the this system.
@@ -114,7 +114,7 @@ private:
 	// is up-to-date. Other values are one step behind, awaiting an update.
 	// The top() value is the best route among uncertain systems. Once
 	// popped, that's the best route to that system - and then adjacent links
-	// from that system are processed, which will build upon the popped Edge
+	// from that system are processed, which will build upon the popped Edge.
 	std::priority_queue<Edge> edgesTodo;
 	const PlayerInfo *player = nullptr;
 	const System *destination = nullptr;
@@ -123,7 +123,7 @@ private:
 	int maxDays = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
 	// the ship does not have that type of drive.
-	// Defaults are set for hyperlane usage only. A given ships overrides these.
+	// Defaults are set for hyperlane usage only. Using a ship overrides these.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
 	bool useWormholes = false;

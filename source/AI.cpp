@@ -184,25 +184,25 @@ namespace {
 	// its current system, or if it should keep traveling.
 	bool ShouldRefuel(const Ship &ship, const DistanceMap &route)
 	{
-		// If the ship is full, no refuel
+		// If the ship is full, no refuel.
 		if(ship.Fuel() == 1.)
 			return false;
 
-		// If the ship has nowhere to refuel, no refuel
+		// If the ship has nowhere to refuel, no refuel.
 		const System *from = ship.GetSystem();
 		if(!from->HasFuelFor(ship))
 			return false;
 
-		// If the ship doesn't have fuel, no refuel
+		// If the ship doesn't have fuel, no refuel.
 		double fuelCapacity = ship.Attributes().Get("fuel capacity");
 		if(!fuelCapacity)
 			return false;
 
-		// If the ship has no drive (or doesn't require fuel), no refuel
+		// If the ship has no drive (or doesn't require fuel), no refuel.
 		if(!ship.JumpFuel())
 			return false;
 
-		// If we can't get to the destination --- no reason to refuel
+		// If we can't get to the destination --- no reason to refuel.
 		// (though AI may choose to elsewhere)
 		if(!route.HasRoute())
 			return false;
@@ -216,14 +216,14 @@ namespace {
 		{
 			system = plan.back();
 
-			// If the next system with fuel is outside the range of this ship, should refuel
+			// If the next system with fuel is outside the range of this ship, should refuel.
 			if(system->HasFuelFor(ship))
 				return fuel < route.RequiredFuel(system);
 
 			plan.pop_back();
 		}
 
-		// If no system on the way has fuel, refuel if needed to get to the destination
+		// If no system on the way has fuel, refuel if needed to get to the destination.
 		return fuel < route.RequiredFuel(system);
 	}
 
