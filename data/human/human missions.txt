@@ -4131,4 +4131,5 @@ mission "Return Riley's Payment"
 	invisible
 	to offer
 		has "returned payment to Riley"
-	payment -13000
+	on complete
+		payment -13000
