@@ -73,8 +73,8 @@ outfit "Korath Shunt-Strike"
 		sound "shunt-strike"
 		"inaccuracy" 1
 		"turret turn" 2.1
-		"velocity" 9
-		"lifetime" 90
+		"velocity" 10
+		"lifetime" 81
 		"reload" 30
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
@@ -82,8 +82,8 @@ outfit "Korath Shunt-Strike"
 		"firing heat" 150
 		"relative firing shields" 0.001
 		"acceleration" 1
-		"drag" .07
-		"turn" .35
+		"drag" .1
+		"turn" .2
 		"homing" 4
 		"tracking" .9
 		"shield damage" 48
