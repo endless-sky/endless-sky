@@ -37,10 +37,13 @@ public:
 	Music();
 	~Music();
 
+	// Set the source of music. If the path is empty, this music will be silent.
 	void SetSource(const std::string &name = "");
+	// Get the name of the current music source playing.
+	const std::string &GetSource() const;
+	// Get the next audio buffer to play.
 	const std::vector<int16_t> &NextChunk();
 
-	const std::string GetCurrentTrackName();
 
 private:
 	// This is the entry point for the decoding thread.
@@ -54,6 +57,7 @@ private:
 	std::vector<int16_t> next;
 	std::vector<int16_t> current;
 
+	std::string currentSource;
 	std::string previousPath;
 	// This pointer holds the file for as long as it is owned by the main
 	// thread. When the decode thread takes possession of it, it sets this
@@ -65,7 +69,6 @@ private:
 	std::thread thread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;
-	std::string currentTrackName = "";
 };
 
 

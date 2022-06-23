@@ -99,6 +99,7 @@ void Music::SetSource(const string &name)
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
 		return;
+	currentSource = name;
 	previousPath = path;
 
 	// Inform the decoding thread that it should switch to decoding a new file.
@@ -112,11 +113,17 @@ void Music::SetSource(const string &name)
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
 
-	currentTrackName = name;
-
 	// Notify the decoding thread that it can start.
 	lock.unlock();
 	condition.notify_all();
+}
+
+
+
+// Get the name of the current music source playing.
+const string &Music::GetSource() const
+{
+	return currentSource;
 }
 
 
@@ -275,11 +282,4 @@ void Music::Decode()
 		mad_stream_finish(&stream);
 		fclose(file);
 	}
-}
-
-
-
-// Return the name of the current music track playing.
-const string Music::GetCurrentTrackName() {
-	return currentTrackName;
 }
