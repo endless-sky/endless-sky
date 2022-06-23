@@ -118,6 +118,9 @@ public:
 
 	bool IsProvokedOnScan() const;
 
+	// Get non-combat music for this government
+	std::string Music() const;
+
 
 private:
 	unsigned id;
@@ -142,6 +145,7 @@ private:
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
+	std::string music;
 };
 
 
