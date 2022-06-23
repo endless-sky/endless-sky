@@ -41,7 +41,6 @@ public:
 	const std::vector<int16_t> &NextChunk();
 
 	const std::string GetCurrentTrackName();
-	const std::string GetPreviousTrackName();
 
 private:
 	// This is the entry point for the decoding thread.
@@ -67,7 +66,6 @@ private:
 	std::mutex decodeMutex;
 	std::condition_variable condition;
 	std::string currentTrackName = "";
-	std::string previousTrackName = "";
 };
 
 
