@@ -462,9 +462,13 @@ const Government *System::GetGovernment() const
 
 
 // Get the name of the ambient audio to play in this system.
+// If none is set, use the ambient music for the government.
 const string &System::MusicName() const
 {
-	return music;
+	static const Government* government = GetGovernment();
+	static const string governmentMusic = government->Music();
+
+	return music.empty() ? governmentMusic : music;
 }
 
 
