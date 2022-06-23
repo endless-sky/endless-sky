@@ -112,7 +112,8 @@ void Music::SetSource(const string &name)
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
 
-	trackName = name;
+	previousTrackName = currentTrackName;
+	currentTrackName = name;
 
 	// Notify the decoding thread that it can start.
 	lock.unlock();
@@ -275,4 +276,18 @@ void Music::Decode()
 		mad_stream_finish(&stream);
 		fclose(file);
 	}
+}
+
+
+
+// Return the name of the current music track playing.
+const string Music::GetCurrentTrackName() {
+	return currentTrackName;
+}
+
+
+
+// Return the name of the previous music track played.
+const string Music::GetPreviousTrackName() {
+	return previousTrackName;
 }

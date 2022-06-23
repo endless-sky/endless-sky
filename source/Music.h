@@ -40,8 +40,8 @@ public:
 	void SetSource(const std::string &name = "");
 	const std::vector<int16_t> &NextChunk();
 
-	std::string trackName = "";
-
+	const std::string GetCurrentTrackName();
+	const std::string GetPreviousTrackName();
 
 private:
 	// This is the entry point for the decoding thread.
@@ -66,6 +66,8 @@ private:
 	std::thread thread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;
+	std::string currentTrackName = "";
+	std::string previousTrackName = "";
 };
 
 
