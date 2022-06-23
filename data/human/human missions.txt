@@ -4066,7 +4066,6 @@ mission "Riley"
 			label choice1
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
-					goto father
 				`	"Thank you, and good luck."`
 					goto end
 			label father
