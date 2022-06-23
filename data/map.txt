@@ -1703,6 +1703,7 @@ system "9 Spring Above"
 		period 347.571
 	object "Garden Empyreal"
 		sprite "planet/gas3-c"
+			scale 0.5
 		distance 1763.76
 		period 914.375
 	object
@@ -1763,6 +1764,7 @@ system Ablodab
 		period 226.474
 		object "Guardian Array Sapphire"
 			sprite "planet/station4c"
+				scale 0.5
 			distance 148.05
 			period 24
 	object
@@ -1775,6 +1777,7 @@ system Ablodab
 			period 14.1834
 		object "Ogmur's Siphon"
 			sprite "planet/station5c"
+				scale 0.5
 			distance 363.58
 			period 24.6
 	object
@@ -1783,6 +1786,7 @@ system Ablodab
 		period 1425.67
 		object "Silo of Ablodab"
 			sprite "planet/station6c"
+				scale 0.5
 			distance 201
 			period 52
 	object
@@ -22802,6 +22806,7 @@ system "Silver Bell"
 		period 503.253
 	object "Periaxle Circuit"
 		sprite "planet/station7cb"
+			scale 0.5
 		distance 1096
 		period 503.253
 
