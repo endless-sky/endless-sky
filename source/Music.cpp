@@ -112,6 +112,8 @@ void Music::SetSource(const string &name)
 	// Also clear any decoded data left over from the previous file.
 	next.clear();
 
+	trackName = name;
+
 	// Notify the decoding thread that it can start.
 	lock.unlock();
 	condition.notify_all();

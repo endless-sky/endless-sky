@@ -40,6 +40,8 @@ public:
 	void SetSource(const std::string &name = "");
 	const std::vector<int16_t> &NextChunk();
 
+	std::string trackName = "";
+
 
 private:
 	// This is the entry point for the decoding thread.
