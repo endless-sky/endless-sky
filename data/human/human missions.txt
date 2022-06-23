@@ -3130,7 +3130,7 @@ mission "Pirate Duel"
 			label end
 			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
 			choice
-				`	(Ready your ship for the battle with the Esca.)`
+				`	(Ready my ship for the battle with the Esca.)`
 					accept
 				`	(Ignore the invitation.)`
 					decline
@@ -3583,13 +3583,13 @@ mission "Mafia Extortion"
 					goto draws
 				`	(Mock the man further.)`
 					goto draws
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			label draws
 			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
 				`	"Ha, ha, you really are a failure of a goon."`
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
@@ -3597,9 +3597,9 @@ mission "Mafia Extortion"
 			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
 			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
-				`	(Run towards your ship and leave immediately.)`
+				`	(Run towards my ship and leave immediately.)`
 					goto leave
-				`	(Put away your sidearm and pretend nothing happened.)`
+				`	(Put away my sidearm and pretend nothing happened.)`
 			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
@@ -3865,10 +3865,10 @@ mission "Fumbling Mugger"
 			`Your exploration of the spaceport leads you to a dark alley where the number of working lights are far outnumbered by the number of broken ones. The contents of steel bins lining the walls overflow onto the pavement, attracting swarms of flies to them. On the surfaces that are illuminated, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A dark crimson stains the bottom half of a broken window.`
 			`	Suddenly, you feel a cold object pushed against your back as a woman speaks softly. "Hands where I can see them, Captain."`
 			choice
-				`	(Lift your hands up and slowly turn.)`
+				`	(Lift my hands up and slowly turn.)`
 					goto peaceful
 				`	(Spin around and fire.)`
-				`	(Try a fancy acrobatic move and disarm your attacker.)`
+				`	(Try a fancy acrobatic move and disarm the attacker.)`
 					goto flip
 			
 			action
@@ -3879,9 +3879,9 @@ mission "Fumbling Mugger"
 			label flip
 			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
-				`	(Put your hands up.)`
+				`	(Put my hands up.)`
 					goto handsup
-				`	(Draw your gun and fire.)`
+				`	(Draw my gun and fire.)`
 			action
 				set "fumbling mugger shot"
 			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
@@ -3910,7 +3910,7 @@ mission "Fumbling Mugger"
 			`	The attacker's speech is interrupted by a click as her shotgun swings open. She takes a step back as her eyes widen with panic.`
 			label choice
 			choice
-				`	(Threaten her with your gun.)`
+				`	(Threaten her with my gun.)`
 					goto threaten
 				`	(Shoot her.)`
 			
