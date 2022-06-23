@@ -28171,8 +28171,8 @@ planet "Guardian Array Sapphire"
 	landscape land/station33
 	description `More commonly referred to as "Checkpoint of Ablodab," this enormous station was built shortly after the end of the Coalition's war against the Quarg, meant to serve as a regional dry dock and supply base that damaged combat ships could return to after some time at the front lines. The lack of any subsequent counterattack, though, shifted its role to being a simple refueling hub for passing merchant ships, its dozens of warship-sized hangars remaining mostly unused.`
 	description `	Despite the apparent lack of combat activity the station was designed to support, the local Heliarchs run a tight schedule even for civilian visitors as they land, ensuring ships are refueled and tended to as quickly as possible.`
-	spaceport `Built to serve as a purely strategic military repair port, the station has very little in the form of amenities, with a few basic cantinas and large, mostly empty living quarters intended to house troops stationed here. There are no shops, and nearly every civilian you see is moving from their spaceships on their way to a quick break, or heading back, ready to depart and continue their business.`
-	spaceport `	On certain days every month, Heliarch ships "damaged" during combat exercises dock to stress test the station's turnover capabilities, breathing new life in the station's population, and extreme overcrowding of the facilities...`
+	spaceport `Built to serve as a purely strategic military repair port, the station has very little in the form of amenities, with a few basic cantinas and large, mostly empty living quarters intended to house troops stationed here. There are no shops, and nearly every civilian you see is moving as if they are trying to finish their business on the station as quickly as possible.`
+	spaceport `	On certain days every month, Heliarch ships "damaged" during combat exercises dock to stress test the station's turnover capabilities, breathing new life into the station's population, and causing extreme overcrowding of the facilities...`
 	"required reputation" 25
 	security 0.6
 
