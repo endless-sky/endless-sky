@@ -285,9 +285,12 @@ const Sprite *Planet::Landscape() const
 
 
 // Get the name of the ambient audio to play on this planet.
+// If none is configured, defer to that set for the system.
 const string &Planet::MusicName() const
 {
-	return music;
+	static const System* system = GetSystem();
+	const string systemMusic = system->MusicName();
+	return music.empty() ? systemMusic : music;
 }
 
 
