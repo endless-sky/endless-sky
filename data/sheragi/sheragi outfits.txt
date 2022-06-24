@@ -244,7 +244,7 @@ outfit "Particle Waveform Turret"
 	weapon
 		sprite "projectile/particle waveform"
 			"frame rate" 20
-		sound "pwave"
+		sound "particle waveform"
 		"hardpoint sprite" "hardpoint/particle waveform turret"
 		"hardpoint offset" 11
 		"fire effect" "lightning flare"
@@ -345,9 +345,9 @@ outfit "Heavy Ion Cyclotron"
 	"weapon capacity" -21
 	"gun ports" -1
 	weapon
-		sprite "projectile/heavy ion cyclotron"
+		sprite "projectile/heavy ion"
 			"frame rate" 30
-		sound "hion"
+		sound "heavy ion"
 		"hit effect" "proton impact" 3
 		"submunition" "Heavy Ion Fragment" 3
 		"velocity" 28

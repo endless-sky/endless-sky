@@ -16,8 +16,8 @@ person "Michael Zahniser"
 		word
 			"I hope you're enjoying the game!"
 	ship Kestrel Kestrel
-		sprite "ship/kestreloriginal"
-		thumbnail "thumbnail/kestreloriginal"
+		sprite "ship/kestrel original"
+		thumbnail "thumbnail/kestrel original"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -760,7 +760,7 @@ person "Local God"
 
 ship "Ursa Polaris"
 	plural "Ursa Polaris"
-	sprite "ship/localworldship"
+	sprite "ship/local world-ship"
 	attributes
 		category "Heavy Warship"
 		cost 142857
