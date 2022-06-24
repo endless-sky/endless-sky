@@ -171,6 +171,7 @@ public:
 	int HasBestTrade(const System *destination);
 	void BuyBestTrade(const System &destination, bool includeFlagship = false, bool sellFirst = true);
 	std::string BestTradeType(const System &destination);
+	void MessageAutoTrade();
 	void SellCommodities(const std::string& exclude = "");
 	void AddProfit(int64_t profitAdd, int tonsSoldAdd);
 

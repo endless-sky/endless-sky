@@ -33,6 +33,7 @@ class MapDetailPanel : public MapPanel {
 public:
 	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
 	explicit MapDetailPanel(const MapPanel &panel);
+	~MapDetailPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;

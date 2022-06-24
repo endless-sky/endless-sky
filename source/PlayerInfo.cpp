@@ -1475,7 +1475,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	cargo.Clear();
 	stockDepreciation = Depreciation();
 
-	if(tonsSold)
+	if(profit)
 	{
 		// Report if you manually sold commodities or outfits
 		string message = "You sold " + to_string(tonsSold)
@@ -1489,31 +1489,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 		Messages::Add(message, Messages::Importance::High);
 	}
 
-	if(tonsSoldAuto)
-	{
-		// Report if robo-merchant sold things to make room
-		string message = "You sold " + to_string(tonsSoldAuto)
-			+ (tonsSoldAuto == 1 ? " ton" : " tons")
-			+ " of cargo to make room for " + autoBoughtType + " ";
-
-		if(profitAuto < 0)
-			message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
-		else
-			message += "for a total profit of " + Format::Credits(profitAuto) + " credits.";
-
-		Messages::Add(message, Messages::Importance::High);
-	}
-
-	if(autoBoughtAmount)
-	{
-		// Report if commodities were auto-selected
-		string message = "You bought " + to_string(autoBoughtAmount)
-			+ (autoBoughtAmount == 1 ? " ton" : " tons") + " of " + autoBoughtType + " "
-			+ "for " + Format::Credits(autoBoughtPrice * autoBoughtAmount) + " credits, to be sold at "
-			+ autoBoughtDestination;
-
-		Messages::Add(message, Messages::Importance::High);
-	}
+	MessageAutoTrade();
 
 	if(sold)
 	{
@@ -1627,7 +1603,12 @@ string PlayerInfo::BestTradeType(const System &destination)
 // Purchase commodities that make the most profit when sold at destination
 void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, bool sellFirst)
 {
+	string oldType = autoBoughtType;
 	autoBoughtType = BestTradeType(destination);
+
+	if(oldType != autoBoughtType)
+		autoBoughtAmount = 0;
+
 	if(autoBoughtType.empty())
 		return;
 
@@ -1666,6 +1647,44 @@ void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, b
 
 
 
+void PlayerInfo::MessageAutoTrade()
+{
+	if(tonsSoldAuto)
+	{
+		// Report if you sold things to make room for auto-selected trade.
+		string message = "You sold " + to_string(tonsSoldAuto)
+			+ (tonsSoldAuto == 1 ? " ton" : " tons")
+			+ " of cargo to make room for " + autoBoughtType;
+
+		if(profitAuto < 0)
+			message += " at a loss of " + Format::Credits(-profitAuto) + " credits.";
+		else if(profitAuto == 0)
+			message += ".";
+		else
+			message += " for a total profit of " + Format::Credits(profitAuto) + " credits.";
+
+		Messages::Add(message, Messages::Importance::High);
+
+		tonsSoldAuto = 0;
+		profitAuto = 0;
+	}
+
+	if(autoBoughtAmount)
+	{
+		// Report if commodities were auto-selected and bought.
+		string message = "You bought " + to_string(autoBoughtAmount)
+			+ (autoBoughtAmount == 1 ? " ton" : " tons") + " of " + autoBoughtType + " "
+			+ "for " + Format::Credits(autoBoughtPrice * autoBoughtAmount) + " credits, to be sold at "
+			+ autoBoughtDestination;
+
+		Messages::Add(message, Messages::Importance::High);
+
+		autoBoughtAmount = 0;
+	}
+}
+
+
+
 // Track profit and tons sold for message on takeoff
 void PlayerInfo::AddProfit(int64_t profitAdd, int tonsSoldAdd)
 {
@@ -1678,7 +1697,9 @@ void PlayerInfo::AddProfit(int64_t profitAdd, int tonsSoldAdd)
 // Sell all commodities - track profit and tons sold for message
 void PlayerInfo::SellCommodities(const string& exclude)
 {
-	autoBoughtAmount = 0;
+	if(exclude != autoBoughtType)
+		autoBoughtAmount = 0;
+
 	for(const auto &it : GameData::Commodities())
 	{
 		const string& name = it.name;

@@ -100,6 +100,13 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 
 
 
+MapDetailPanel::~MapDetailPanel()
+{
+	player.MessageAutoTrade();
+}
+
+
+
 void MapDetailPanel::Step()
 {
 	MapPanel::Step();
