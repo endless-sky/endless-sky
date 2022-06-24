@@ -289,7 +289,8 @@ const Sprite *Planet::Landscape() const
 const string &Planet::MusicName() const
 {
 	static const System* system = GetSystem();
-	const string systemMusic = system->MusicName();
+	static const string systemMusic = system->MusicName();
+
 	return music.empty() ? systemMusic : music;
 }
 
