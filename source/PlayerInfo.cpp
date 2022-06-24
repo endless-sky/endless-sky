@@ -1489,6 +1489,21 @@ bool PlayerInfo::TakeOff(UI *ui)
 		Messages::Add(message, Messages::Importance::High);
 	}
 
+	if(tonsSoldAuto)
+	{
+		// Report if robo-merchant sold things to make room
+		string message = "You sold " + to_string(tonsSoldAuto)
+			+ (tonsSoldAuto == 1 ? " ton" : " tons")
+			+ " of cargo to make room for " + autoBoughtType + " ";
+
+		if(profitAuto < 0)
+			message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
+		else
+			message += "for a total profit of " + Format::Credits(profitAuto) + " credits.";
+
+		Messages::Add(message, Messages::Importance::High);
+	}
+
 	if(autoBoughtAmount)
 	{
 		// Report if commodities were auto-selected
@@ -1621,25 +1636,10 @@ void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, b
 		int64_t profitSave = profit;
 		int tonsSoldSave = tonsSold;
 		SellCommodities(autoBoughtType);
-		int64_t profitAuto = profit - profitSave;
-		int tonsSoldAuto = tonsSold - tonsSoldSave;
+		profitAuto += profit - profitSave;
+		tonsSoldAuto += tonsSold - tonsSoldSave;
 		profit = profitSave;
 		tonsSold = tonsSoldSave;
-
-		if(profitAuto)
-		{
-			// Report if robo-merchant sold things to make room
-			string message = "You sold " + to_string(tonsSoldAuto)
-				+ (tonsSoldAuto == 1 ? " ton" : " tons")
-				+ " of cargo to make room for " + autoBoughtType + " ";
-
-			if(profitAuto < 0)
-				message += "at a loss of " + Format::Credits(-profitAuto) + " credits.";
-			else
-				message += "for a total profit of " + Format::Credits(profitAuto) + " credits.";
-
-			Messages::Add(message, Messages::Importance::High);
-		}
 	}
 
 	// Fill all cargo, but keep your flagship free of space for plundering

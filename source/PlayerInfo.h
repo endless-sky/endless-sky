@@ -344,6 +344,8 @@ private:
 	std::string autoBoughtDestination;
 	int64_t autoBoughtPrice;
 	int64_t autoBoughtAmount;
+	int64_t profitAuto = 0;
+	int tonsSoldAuto = 0;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
