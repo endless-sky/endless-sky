@@ -340,7 +340,7 @@ minable "large plant cluster"
 	explode "final explosion medium"
 
 minable "live crystal"
-	sprite "asteroid/livecrystal/livecrystal"
+	sprite "asteroid/live crystal/live crystal"
 	hull 900
 	"random hull" 200
 	payload "Void Orchid" 8
