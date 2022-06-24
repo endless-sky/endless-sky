@@ -437,6 +437,6 @@ outfit "City-Ship License"
 
 outfit "Tear of Skade"
 	category "Systems"
-	thumbnail "outfit/skadetear"
+	thumbnail "outfit/skade tear"
 	"cooling" 4
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."

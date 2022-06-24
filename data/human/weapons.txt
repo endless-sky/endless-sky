@@ -1330,7 +1330,7 @@ outfit "Gatling Gun"
 	"gun ports" -1
 	"gatling round capacity" 3000
 	weapon
-		sprite "projectile/tinyflare"
+		sprite "projectile/muzzle flash"
 			"random start frame"
 		sound "gatling"
 		ammo "Gatling Gun Ammo"

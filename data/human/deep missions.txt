@@ -3845,7 +3845,7 @@ mission "Home for Skadenga 13"
 		outfit "Tear of Skade"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
-			scene "outfit/skadetear"
+			scene "outfit/skade tear"
 			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
@@ -4043,7 +4043,7 @@ mission "Hjlod Remembers Windblain"
 		conversation
 			`Hjlod is waiting for you when you land. She looks healthy, strong, and happy - less gaunt and stressed then you recall her looking on Nifel when you first met. She gives you a hug. "Alvays good to see you, <first>. I have been thinking, vith all that vent on and needed to be done, I never had chance to thank you for saving me from cold."`
 			`	She reaches into her pocket and pulls out a small pouch. "I have stone that has long been in my family. I wish to give it to you. Keep you cold in hot ship, remind you of Hjlod in far-off galaxy."`
-			scene "outfit/skadetear"
+			scene "outfit/skade tear"
 			`	Hjlod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before."`
 			`	"How many of these are there?" you ask.`
 			`	"Only few," she answers. "They were found around the Goddess-Stone in the early days. Passed from Skadenga mother to Skadenga daughter. I have no daughter, but I have you, so this is now yours."`
@@ -4075,7 +4075,7 @@ mission "Hjlod Remembers Nifel"
 			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
 			`	She holds out the box. "This is tear of Skadenga. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
-			scene "outfit/skadetear"
+			scene "outfit/skade tear"
 			`	The box opens, displaying a small, blue glowing rock. "This is Tear of Skade. Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
 			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
