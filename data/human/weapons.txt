@@ -981,7 +981,7 @@ outfit "Torpedo Launcher"
 outfit "Torpedo Pod"
 	category "Secondary Weapons"
 	cost 30000
-	thumbnail "outfit/torpedopod"
+	thumbnail "outfit/torpedo pod"
 	"mass" 5
 	"outfit space" -8
 	"weapon capacity" -8
@@ -1082,7 +1082,7 @@ outfit "Typhoon Launcher"
 outfit "Typhoon Pod"
 	category "Secondary Weapons"
 	cost 100000
-	thumbnail "outfit/typhoonpod"
+	thumbnail "outfit/typhoon pod"
 	"mass" 6
 	"outfit space" -12
 	"weapon capacity" -12
