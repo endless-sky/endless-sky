@@ -1150,33 +1150,33 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
- images/effect/fusionflare*
+ images/effect/fusion?flare*
  images/effect/pwave?shot*
- images/effect/sheragiam*
- images/effect/pwavehp*
+ images/effect/sheragi?am*
+ images/effect/particle?waveform?turret*
  images/effect/ka'het?flare/*
- images/effect/fissionflare*
+ images/effect/fission?flare*
  images/effect/pwtflare*
  images/effect/nuke*
  images/icon/dragonflame*
  images/icon/shard*
  images/outfit/dragonflame*
- images/outfit/pwave?turret*
- images/outfit/embattery*
- images/outfit/sheragicooling*
- images/outfit/fusiondrive*
- images/outfit/fissiondrive*
- images/outfit/hion*
+ images/outfit/particle?waveform?turret*
+ images/outfit/em?battery*
+ images/outfit/sheragi?cooling*
+ images/outfit/fusion?drive*
+ images/outfit/fission?drive*
+ images/outfit/heavy?ion?cyclotron*
  images/outfit/shard*
  images/outfit/sheragi?ews*
- images/outfit/small?embattery*
+ images/outfit/small?em?battery*
  images/outfit/small?sheragi?cooling*
- images/projectile/pwavecannon*
- images/projectile/hion*
- images/projectile/hionfrag*
- images/projectile/shardactive*
- images/projectile/shardinactive*
- images/projectile/ionball*
+ images/projectile/particle?waveform*
+ images/projectile/heavy?ion*
+ images/projectile/heavy?ion?frag*
+ images/projectile/shard?active*
+ images/projectile/shard?inactive*
+ images/projectile/ion?ball*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
  images/ship/blackdiamond*
@@ -1186,8 +1186,8 @@ Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 
 Files:
- images/effect/pwave?impact*
- images/effect/ionball?ring*
+ images/effect/particle?waveform?impact*
+ images/effect/ion?ball?ring*
  images/effect/ion?explosion*
 Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
@@ -1198,12 +1198,12 @@ Copyright: TheHadnot
 License: public-domain
 Comment: Taken from https://freesound.org/people/TheHadnot/sounds/160880/
 
-Files: sounds/pwave*
+Files: sounds/particle?waveform*
 Copyright: aust_paul
 License: public-domain
 Comment: Taken from https://freesound.org/people/aust_paul/sounds/30935/
 
-Files: sounds/hion*
+Files: sounds/heavy?ion*
 Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
@@ -1328,7 +1328,7 @@ Copyright: Matteo "Lead" M.
 License: CC-BY-SA-4.0
 
 Files:
- images/asteroid/livecrystal/livecrystal*
+ images/asteroid/live?crystal/live?crystal*
  images/effect/coalition?flare/*
  images/effect/explosion/pug/*
  images/effect/korath?flare/*
@@ -1373,7 +1373,7 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 
-Files: sounds/ionball*
+Files: sounds/ion?ball*
 Copyright: pluralz
 License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
