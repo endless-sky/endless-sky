@@ -288,10 +288,13 @@ const Sprite *Planet::Landscape() const
 // If none is configured, defer to that set for the system.
 const string &Planet::MusicName() const
 {
+	if(!music.empty())
+		return music;
+
 	static const System* system = GetSystem();
 	static const string systemMusic = system->MusicName();
 
-	return music.empty() ? systemMusic : music;
+	return systemMusic;
 }
 
 

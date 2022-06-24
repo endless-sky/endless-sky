@@ -465,10 +465,13 @@ const Government *System::GetGovernment() const
 // If none is set, use the ambient music for the government.
 const string &System::MusicName() const
 {
+	if(!music.empty())
+		return music;
+
 	static const Government* government = GetGovernment();
 	static const string governmentMusic = government->Music();
 
-	return music.empty() ? governmentMusic : music;
+	return governmentMusic;
 }
 
 
