@@ -291,7 +291,7 @@ void Audio::PlayMusic(const string &name)
 		return;
 
 	// Skip changing music if the requested music is already playing.
-	if(currentTrack->GetSource() == name)
+	if(name == currentTrack->GetSource())
 		return;
 
 	// Don't worry about thread safety here, since music will always be started
