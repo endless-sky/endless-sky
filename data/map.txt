@@ -22802,6 +22802,7 @@ system "Silver Bell"
 			period 16.4391
 	object
 		sprite "planet/station7c"
+			scale 0.5
 		distance 1195.71
 		period 503.253
 	object "Periaxle Circuit"
