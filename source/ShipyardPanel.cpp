@@ -100,7 +100,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	shipInfo.Update(*playerShip, player, player.FleetDepreciation(), collapsed.count("description"));
 	shipInfo.DrawAttributes(point, true);
 
 	return shipInfo.GetAttributesHeight(true);
@@ -154,7 +154,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		shipInfo.Update(*selectedShip, player, player.StockDepreciation(), collapsed.count("description"));
 		selectedItem = selectedShip->ModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");

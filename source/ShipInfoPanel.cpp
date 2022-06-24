@@ -283,7 +283,7 @@ void ShipInfoPanel::UpdateInfo()
 		return;
 
 	const Ship &ship = **shipIt;
-	info.Update(ship, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(ship, player, player.FleetDepreciation());
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 		player.Flagship()->SetTargetShip(*shipIt);
 
@@ -716,7 +716,7 @@ void ShipInfoPanel::Dump()
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
 
-	info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+	info.Update(**shipIt, player, player.FleetDepreciation());
 	if(loss)
 		Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
 			, Messages::Importance::High);
@@ -732,7 +732,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt, player, player.FleetDepreciation());
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."
@@ -752,7 +752,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player.FleetDepreciation(), player.GetDate().DaysSinceEpoch());
+		info.Update(**shipIt, player, player.FleetDepreciation());
 
 		if(loss)
 			Messages::Add("You jettisoned " + Format::Credits(loss) + " credits worth of cargo."

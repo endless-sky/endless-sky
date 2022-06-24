@@ -732,11 +732,13 @@ outfit "Void Rifle"
 	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 
 outfit "Remnant License"
+	cost 10000
 	category "Special"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 
 outfit "Remnant Capital License"
+	cost 10000
 	category "Special"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
