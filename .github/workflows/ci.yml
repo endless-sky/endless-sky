@@ -401,6 +401,8 @@ jobs:
         os: [windows-latest]
     steps:
     - uses: actions/checkout@v2
+    - name: Install mingw
+      run: choco install mingw
     - name: Install runtime dependencies
       run: |
         Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
