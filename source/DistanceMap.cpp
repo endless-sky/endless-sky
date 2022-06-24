@@ -38,7 +38,7 @@ DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 // one end of the path has been visited. Also, if the ship has a jump drive
 // or wormhole access, the route will make use of it.
 DistanceMap::DistanceMap(const PlayerInfo &player)
-	: player(&player),  useWormholes(true)
+	: player(&player), useWormholes(true)
 {
 	if(!player.Flagship())
 		return;
@@ -62,7 +62,7 @@ DistanceMap::DistanceMap(const System &center, const System &destination)
 
 
 DistanceMap::DistanceMap(const PlayerInfo &player, const System &center, const System &destination)
-	: center(&center), destination(&destination), useWormholes(true)
+	: player(&player), center(&center), destination(&destination), useWormholes(true)
 {
 	if(!player.Flagship())
 		return;
