@@ -34,16 +34,16 @@ namespace {
 	// Dimensions of the table.
 	const int MIN_X = -310;
 	const int MAX_X = 190;
-	
+
 	// Column headings.
 	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
 	const int COLUMN[5] = {-290, -180, -100, -30, 20};
 	const int EXTRA_X = 100;
-	
+
 	// Position of the first line of the table.
 	const int FIRST_Y = 78;
-	
+
 	// Maximum number of rows of mortages, etc. to draw.
 	const int MAX_ROWS = 8;
 }
@@ -80,19 +80,18 @@ void BankPanel::Draw()
 	table.AddColumn(MAX_X - 20, {Alignment::RIGHT});
 	table.SetHighlight(MIN_X + 10, MAX_X - 10);
 	table.DrawAt(Point(0., FIRST_Y));
-	
+
 	// Use stock colors from the game data.
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &unselected = *GameData::Colors().Get("medium");
 	const Color &selected = *GameData::Colors().Get("bright");
-	
+
 	// Draw the heading of the table.
-	table.DrawUnderline(unselected);
 	table.SetColor(selected);
 	for(const string &heading : HEADING)
 		table.Draw(heading);
 	table.DrawGap(5);
-	
+
 	// Figure out the total payments and principal (other than salaries). This
 	// is in case there are more mortgages than can be displayed.
 	int64_t otherPrincipal = 0;
@@ -103,7 +102,7 @@ void BankPanel::Draw()
 		otherPayment += mortgage.Payment();
 	}
 	int64_t totalPayment = otherPayment;
-	
+
 	// Check if salaries need to be drawn.
 	int64_t salaries = player.Salaries();
 	int64_t salariesOwed = player.Accounts().SalariesOwed();
@@ -116,16 +115,16 @@ void BankPanel::Draw()
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.
-	int64_t maintenance = player.Maintenance();
+	PlayerInfo::FleetBalance b = player.MaintenanceAndReturns();
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (maintenance != 0 || maintenanceDue != 0) - (income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0) - (b.assetsReturns != 0 || income[0] != 0 || income[1] != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
 		mortgageRows = mortgageCount;
-	
+
 	// Keep track of what row of the table we are on.
 	int row = 0;
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
@@ -138,7 +137,7 @@ void BankPanel::Draw()
 		}
 		else
 			table.SetColor(unselected);
-		
+
 		// Check if this is the last row we have space to draw. If so, check if
 		// it must include a combination of multiple mortgages.
 		bool isLastRow = (row == mortgageRows - 1);
@@ -158,7 +157,7 @@ void BankPanel::Draw()
 			table.Draw(mortgage.Interest());
 			table.Draw(mortgage.Term());
 			table.Draw(mortgage.Payment());
-			
+
 			// Keep track of how much out of the total principal and payment has
 			// not yet been included in one of the rows of the table.
 			otherPrincipal -= mortgage.Principal();
@@ -166,7 +165,7 @@ void BankPanel::Draw()
 		}
 		table.Draw("[pay extra]");
 		++row;
-		
+
 		// Bail out if this was the last row we had space to draw.
 		if(isLastRow)
 			break;
@@ -177,7 +176,7 @@ void BankPanel::Draw()
 	{
 		// Include salaries in the total daily payment.
 		totalPayment += salaries;
-		
+
 		table.Draw("Crew Salaries");
 		// Check whether the player owes back salaries.
 		if(salariesOwed)
@@ -192,10 +191,10 @@ void BankPanel::Draw()
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
-	if(maintenance || maintenanceDue)
+	if(b.maintenanceCosts || maintenanceDue)
 	{
-		totalPayment += maintenance;
-		
+		totalPayment += b.maintenanceCosts;
+
 		table.Draw("Maintenance");
 		if(maintenanceDue)
 		{
@@ -205,36 +204,38 @@ void BankPanel::Draw()
 		}
 		else
 			table.Advance(3);
-		table.Draw(maintenance);
+		table.Draw(b.maintenanceCosts);
 		table.Advance();
 	}
-	if(income[0] || income[1])
+	if(income[0] || income[1] || b.assetsReturns)
 	{
 		// Your daily income offsets expenses.
-		totalPayment -= income[0] + income[1];
-		
-		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
+		totalPayment -= income[0] + income[1] + b.assetsReturns;
+
+		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income",
+			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
+			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0)], incomeLayout});
+		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0) + 4 * (b.assetsReturns != 0)], incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(-(income[0] + income[1]));
+		table.Draw(-(income[0] + income[1] + b.assetsReturns));
 		table.Advance();
 	}
-	
+
 	// Draw the total daily payment.
 	table.Advance(3);
 	table.Draw("total:", selected);
 	table.Draw(totalPayment, unselected);
 	table.Advance();
-	
+
 	// Draw the credit score.
 	table.DrawAt(Point(0., FIRST_Y + 210.));
 	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
 	const auto scoreLayout = Layout(460, Truncate::MIDDLE);
 	table.DrawCustom({credit, scoreLayout});
 	table.Advance(5);
-	
+
 	// Report whether the player qualifies for a new loan.
 	string amount;
 	if(!qualify)
@@ -250,7 +251,7 @@ void BankPanel::Draw()
 		table.Advance(4);
 		table.Draw("[apply]", selected);
 	}
-	
+
 	// Draw the "Pay All" button.
 	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	Information info;
@@ -302,7 +303,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -331,7 +332,7 @@ bool BankPanel::Click(int x, int y, int clicks)
 	}
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -353,12 +354,12 @@ void BankPanel::PayExtra(const string &str)
 		int64_t payment = min(amount, min(player.Accounts().Credits(), mortgages[selectedRow].Principal()));
 		if(payment < 1)
 			break;
-		
+
 		// Make an extra payment.
 		player.Accounts().PayExtra(selectedRow, payment);
 		amount -= payment;
 	} while(isOther && static_cast<unsigned>(selectedRow) < mortgages.size());
-	
+
 	// Recalculate how much the player can prequalify for.
 	qualify = player.Accounts().Prequalify();
 }
@@ -369,11 +370,11 @@ void BankPanel::PayExtra(const string &str)
 void BankPanel::NewMortgage(const string &str)
 {
 	int64_t amount = static_cast<int64_t>(Format::Parse(str));
-	
+
 	// Limit the amount to whatever you have qualified for.
 	amount = min(amount, qualify);
 	if(amount > 0)
 		player.Accounts().AddMortgage(amount);
-	
+
 	qualify = player.Accounts().Prequalify();
 }

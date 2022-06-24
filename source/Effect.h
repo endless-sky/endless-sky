@@ -37,18 +37,18 @@ public:
 	Point Unit() const;
 	double Zoom() const;
 	*/
-	
+
 	const std::string &Name() const;
 	void SetName(const std::string &name);
-	
+
 	void Load(const DataNode &node);
-	
-	
+
+
 private:
 	std::string name;
-	
+
 	const Sound *sound = nullptr;
-	
+
 	// Parameters used for randomizing spin and velocity. The random angle is
 	// added to the parent angle, and then a random velocity in that direction
 	// is added to the parent velocity.
@@ -57,10 +57,10 @@ private:
 	double randomAngle = 0.;
 	double randomSpin = 0.;
 	double randomFrameRate = 0.;
-	
+
 	int lifetime = 0;
 	int randomLifetime = 0;
-	
+
 	// Allow the Visual class to access all these private members.
 	friend class Visual;
 };

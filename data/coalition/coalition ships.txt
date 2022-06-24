@@ -24,7 +24,7 @@ ship "Arach Courier"
 		"drag" 2.9
 		"heat dissipation" .65
 		"fuel capacity" 300
-		"cargo space" 78
+		"cargo space" 94
 		"outfit space" 148
 		"weapon capacity" 39
 		"engine capacity" 40
@@ -69,7 +69,7 @@ ship "Arach Freighter"
 		"drag" 10.6
 		"heat dissipation" .55
 		"fuel capacity" 500
-		"cargo space" 310
+		"cargo space" 372
 		"outfit space" 349
 		"weapon capacity" 132
 		"engine capacity" 92
@@ -119,7 +119,7 @@ ship "Arach Hulk"
 		"drag" 18.9
 		"heat dissipation" .50
 		"fuel capacity" 500
-		"cargo space" 541
+		"cargo space" 688
 		"outfit space" 520
 		"weapon capacity" 208
 		"engine capacity" 148
@@ -173,7 +173,7 @@ ship "Arach Spindle"
 		"drag" 10.8
 		"heat dissipation" .55
 		"fuel capacity" 500
-		"cargo space" 280
+		"cargo space" 392
 		"outfit space" 434
 		"weapon capacity" 138
 		"engine capacity" 148
@@ -225,7 +225,7 @@ ship "Arach Transport"
 		"drag" 7.2
 		"heat dissipation" .60
 		"fuel capacity" 400
-		"cargo space" 190
+		"cargo space" 228
 		"outfit space" 281
 		"weapon capacity" 96
 		"engine capacity" 70
@@ -292,7 +292,7 @@ ship "Heliarch Breacher"
 		"Finisher Torpedo" 40
 		
 		"Small Reactor Module" 2
-		"Small Battery Module" 2
+		"Small Battery Module"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -300,8 +300,7 @@ ship "Heliarch Breacher"
 		"Enforcer Riot Staff" 8
 		"Enforcer Confrontation Gear" 6
 		
-		"Large Thrust Module"
-		"Small Thrust Module" 3
+		"Large Thrust Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
 	
@@ -344,7 +343,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Finisher Torpedo" 160
 		
 		"Small Reactor Module"
-		"Small Battery Module" 2
+		"Small Battery Module"
 		"Large Shield Module"
 		"Large Repair Module"
 		"Cooling Module"
@@ -352,8 +351,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 7
 		
-		"Large Thrust Module"
-		"Small Thrust Module" 3
+		"Large Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -364,7 +362,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Bombardment Turret"
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -374,8 +372,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
-		"Large Steering Module"
-		"Small Steering Module" 2
+		"Large Steering Module" 2
 		"Hyperdrive"
 
 
@@ -384,7 +381,7 @@ ship "Heliarch Hunter"
 	thumbnail "thumbnail/heliarch hunter"
 	attributes
 		category "Medium Warship"
-		licenses	
+		licenses
 			Heliarch
 		"cost" 32985000
 		"shields" 54900
@@ -412,7 +409,7 @@ ship "Heliarch Hunter"
 		"Heliarch Attractor"
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -423,7 +420,7 @@ ship "Heliarch Hunter"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module"
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Scram Drive"
 	
 	engine -5.5 103 .1
@@ -442,9 +439,34 @@ ship "Heliarch Hunter"
 	"final explode" "final explosion large" 1
 	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
 
+ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 160
+		
+		"Large Reactor Module"
+		"Small Battery Module" 2
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion"
+		"Enforcer Riot Staff" 12
+		"Enforcer Confrontation Gear" 35
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 4
+		"Scram Drive"
+		
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
-		"Bombardment Cannon"
 		"Finisher Pod" 2
 		"Finisher Storage Tube"
 		"Finisher Torpedo" 100
@@ -465,9 +487,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Small Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
-		"Hyperdrive"
+		"Scram Drive"
 	
-	gun "Bombardment Cannon"
+	gun
 	gun "Finisher Pod"
 	gun "Finisher Pod"
 	turret "Heliarch Repulsor"
@@ -482,7 +504,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Small Reactor Module"
 		"Large Battery Module"
 		"Overcharged Shield Module" 2
-		"Overclocked Repair Module" 2
+		"Overclocked Repair Module"
 		"Cooling Module" 3
 		"Scanning Module"
 		"Outfits Expansion"
@@ -490,21 +512,23 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Enforcer Confrontation Gear" 16
 		
 		"Large Thrust Module" 2
+		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module" 2
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 	outfits
 		"Finisher Pod" 3
-		"Finisher Storage Tube" 8
-		"Finisher Torpedo" 280
+		"Finisher Storage Tube" 6
+		"Finisher Torpedo" 240
 		
-		"Small Reactor Module" 2
-		"Small Battery Module"
+		"Large Reactor Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
-		"Scanning Module"
+		"Scanning Module" 2
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 27
 		"Enforcer Confrontation Gear" 17
@@ -512,7 +536,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 	outfits
@@ -525,7 +549,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 2
 		"Cooling Module" 3
-		"Scanning Module" 2
+		"Scanning Module"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 26
 		"Enforcer Confrontation Gear" 18
@@ -533,8 +557,8 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Small Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module"
+		"Scram Drive"
 
 
 ship "Heliarch Interdictor"
@@ -571,7 +595,7 @@ ship "Heliarch Interdictor"
 		"Heliarch Repulsor"
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 4
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -581,6 +605,7 @@ ship "Heliarch Interdictor"
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
+		"Small Steering Module"
 		"Hyperdrive"
 	
 	engine -30 163 .5
@@ -601,17 +626,40 @@ ship "Heliarch Interdictor"
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
 		"Finisher Pod" 2
-		"Finisher Torpedo" 80
+		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 120
 		"Bombardment Turret" 2
 		
 		"Large Reactor Module"
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
-		"Cooling Module"
+		"Cooling Module" 2
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 200
+		
+		"Large Reactor Module"
+		"Small Battery Module" 4
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 20
+		"Enforcer Confrontation Gear" 63
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -626,8 +674,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module"
-		"Small Battery Module"
+		"Small Battery Module" 4
 		"Overcharged Shield Module" 2
 		"Overclocked Repair Module" 2
 		"Cooling Module" 3
@@ -638,6 +685,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
+		"Small Steering Module"
 		"Hyperdrive"
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
@@ -667,9 +715,11 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Battery Module"
 		"Overcharged Shield Module"
+		"Small Shield Module"
 		"Overclocked Repair Module" 2
+		"Small Repair Module"
 		"Cooling Module" 3
 		"Scanning Module" 5
 		"Outfits Expansion" 2
@@ -711,13 +761,12 @@ ship "Heliarch Judicator"
 			"hit force" 3800
 	outfits
 		"Finisher Pod" 2
-		"Finisher Torpedo" 120
-		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 140
+		"Finisher Storage Tube" 3
 		"Ion Hail Turret"
 		
 		"Large Reactor Module"
-		"Small Battery Module"
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 2
 		"Cooling Module" 2
@@ -844,8 +893,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		
 		"Large Reactor Module"
 		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Battery Module"
 		"Overcharged Shield Module"
+		"Small Shield Module"
 		"Overclocked Repair Module" 3
 		"Cooling Module" 3
 		"Scanning Module"
@@ -856,7 +906,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Large Thrust Module"
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module"
+		"Small Steering Module" 2
 		"Scram Drive"
 
 
@@ -890,10 +940,10 @@ ship "Heliarch Neutralizer"
 		"Ion Rain Gun" 4
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
-		"Cooling Module"
+		"Cooling Module" 2
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 11
@@ -947,9 +997,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Ion Rain Gun" 4
 		
 		"Small Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
-		"Large Repair Module"
+		"Overclocked Repair Module"
 		"Cooling Module"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 10
@@ -965,8 +1015,8 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 	outfits
 		"Bombardment Cannon" 4
 		
-		"Small Reactor Module" 2
-		"Small Battery Module"
+		"Large Reactor Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
@@ -975,7 +1025,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
-		"Small Thrust Module"
+		"Small Thrust Module" 2
 		"Large Steering Module" 2
 		"Hyperdrive"
 
@@ -999,7 +1049,7 @@ ship "Heliarch Punisher"
 		"fuel capacity" 600
 		"cargo space" 94
 		"outfit space" 885
-		"weapon capacity" 324
+		"weapon capacity" 352
 		"engine capacity" 187
 		weapon
 			"blast radius" 400
@@ -1024,7 +1074,7 @@ ship "Heliarch Punisher"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Hyperdrive"
 	
 	engine -24 184 .6
@@ -1047,6 +1097,36 @@ ship "Heliarch Punisher"
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
 
+ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 4
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 320
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
+		"Scanning Module"
+		"Outfits Expansion" 4
+		"Enforcer Riot Staff" 29
+		"Enforcer Confrontation Gear" 113
+		
+		"Large Thrust Module" 3
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+	
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	gun
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
 		"Bombardment Cannon" 4
@@ -1057,7 +1137,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Bombardment Turret"
 		
 		"Large Reactor Module" 2
-		"Large Battery Module"
+		"Small Battery Module" 3
 		"Overcharged Shield Module" 2
 		"Overclocked Repair Module" 2
 		"Cooling Module" 4
@@ -1066,7 +1146,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 2
+		"Small Thrust Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1089,8 +1169,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 
 		"Large Reactor Module" 2
 		"Small Reactor Module"
-		"Large Battery Module" 2
-		"Small Battery Module"
+		"Large Battery Module"
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 3
 		"Cooling Module" 5
@@ -1099,10 +1178,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Enforcer Riot Staff" 96
 		"Enforcer Confrontation Gear" 48
 
-		"Large Thrust Module" 2
-		"Small Thrust Module" 2
+		"Large Thrust Module" 3
 		"Large Steering Module" 2
-		"Small Steering Module" 2
+		"Small Steering Module" 3
 		"Hyperdrive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
@@ -1111,13 +1189,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Finisher Torpedo" 240
 		"Heliarch Repulsor"
 		
-		"Large Reactor Module"
-		"Small Reactor Module"
-		"Large Battery Module" 2
+		"Large Reactor Module" 2
+		"Small Battery Module" 3
 		"Overcharged Shield Module" 3
 		"Overclocked Repair Module" 2
-		"Cooling Module" 3
+		"Cooling Module" 4
 		"Scanning Module" 4
+		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 85
 		"Enforcer Confrontation Gear" 40
 		
@@ -1149,6 +1227,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Large Thrust Module" 4
 		"Small Thrust Module"
 		"Large Steering Module" 2
+		"Hyperdrive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits
@@ -1200,8 +1279,8 @@ ship "Heliarch Pursuer"
 		"Ion Rain Gun"
 		
 		"Large Collector Module"
-		"Small Collector Module"
-		"Small Battery Module" 3
+		"Small Collector Module" 2
+		"Small Battery Module"
 		"Small Shield Module"
 		"Small Repair Module"
 		
@@ -1216,6 +1295,7 @@ ship "Heliarch Pursuer"
 	explode "small explosion" 10
 	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
 	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1258,7 +1338,8 @@ ship "Heliarch Rover"
 		"Bombardment Cannon" 2
 		
 		"Large Collector Module"
-		"Large Battery Module"
+		"Small Battery Module" 2
+		"Small Cogeneration Module"
 		"Small Shield Module"
 		"Small Repair Module" 3
 		
@@ -1272,6 +1353,7 @@ ship "Heliarch Rover"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1327,6 +1409,7 @@ ship "Heliarch Stalker"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits
@@ -1353,12 +1436,12 @@ ship "Kimek Briar"
 		"shields" 3600
 		"hull" 1700
 		"required crew" 3
-		"bunks" 25
+		"bunks" 38
 		"mass" 180
 		"drag" 3.8
 		"heat dissipation" .75
 		"fuel capacity" 700
-		"cargo space" 21
+		"cargo space" 23
 		"outfit space" 245
 		"weapon capacity" 89
 		"engine capacity" 60
@@ -1399,12 +1482,12 @@ ship "Kimek Spire"
 		"shields" 14200
 		"hull" 4900
 		"required crew" 19
-		"bunks" 197
+		"bunks" 296
 		"mass" 570
 		"drag" 8.4
 		"heat dissipation" .60
 		"fuel capacity" 800
-		"cargo space" 64
+		"cargo space" 70
 		"outfit space" 489
 		"weapon capacity" 256
 		"engine capacity" 129
@@ -1440,7 +1523,7 @@ ship "Kimek Spire"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly two hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
+	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly three hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -1453,12 +1536,12 @@ ship "Kimek Thistle"
 		"shields" 7500
 		"hull" 2800
 		"required crew" 7
-		"bunks" 52
+		"bunks" 78
 		"mass" 270
 		"drag" 5.8
 		"heat dissipation" .70
 		"fuel capacity" 700
-		"cargo space" 29
+		"cargo space" 32
 		"outfit space" 321
 		"weapon capacity" 118
 		"engine capacity" 87
@@ -1502,12 +1585,12 @@ ship "Kimek Thorn"
 		"shields" 1400
 		"hull" 800
 		"required crew" 1
-		"bunks" 7
+		"bunks" 10
 		"mass" 80
 		"drag" 1.8
 		"heat dissipation" .80
 		"fuel capacity" 600
-		"cargo space" 12
+		"cargo space" 13
 		"outfit space" 133
 		"weapon capacity" 40
 		"engine capacity" 38
@@ -1547,12 +1630,12 @@ ship "Saryd Runabout"
 		"shields" 2000
 		"hull" 1400
 		"required crew" 2
-		"bunks" 13
+		"bunks" 14
 		"mass" 140
 		"drag" 2.8
 		"heat dissipation" .70
 		"fuel capacity" 400
-		"cargo space" 42
+		"cargo space" 46
 		"outfit space" 172
 		"weapon capacity" 44
 		"engine capacity" 42
@@ -1590,12 +1673,12 @@ ship "Saryd Sojourner"
 		"shields" 13000
 		"hull" 7700
 		"required crew" 17
-		"bunks" 84
+		"bunks" 101
 		"mass" 640
 		"drag" 12.9
 		"heat dissipation" .50
 		"fuel capacity" 800
-		"cargo space" 260
+		"cargo space" 312
 		"outfit space" 568
 		"weapon capacity" 202
 		"engine capacity" 156
@@ -1645,12 +1728,12 @@ ship "Saryd Traveler"
 		"shields" 6500
 		"hull" 4000
 		"required crew" 10
-		"bunks" 45
+		"bunks" 54
 		"mass" 350
 		"drag" 5.5
 		"heat dissipation" .60
 		"fuel capacity" 600
-		"cargo space" 137
+		"cargo space" 164
 		"outfit space" 466
 		"weapon capacity" 177
 		"engine capacity" 79
@@ -1698,12 +1781,12 @@ ship "Saryd Visitor"
 		"shields" 4000
 		"hull" 2400
 		"required crew" 5
-		"bunks" 29
+		"bunks" 32
 		"mass" 270
 		"drag" 4.4
 		"heat dissipation" .65
 		"fuel capacity" 400
-		"cargo space" 98
+		"cargo space" 108
 		"outfit space" 320
 		"weapon capacity" 90
 		"engine capacity" 57

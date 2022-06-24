@@ -12,6 +12,7 @@
 news "food in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Visiting chef"
@@ -38,6 +39,7 @@ news "food in Hai space"
 news "trading in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Merchant captain"
@@ -63,6 +65,7 @@ news "trading in Hai space"
 news "science in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Scientist"
@@ -132,6 +135,7 @@ news "cute hai story in Hai space"
 news "business owner in Hai space"
 	location
 		government "Hai"
+		not attributes "station"
 	name
 		word
 			"Store owner"
@@ -216,6 +220,7 @@ news "there might be riots on allhome human"
 news "concerned merchant in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Merchant captain"
@@ -257,6 +262,7 @@ news "concerned hai in Hai space"
 news "human citizen in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Human citizen"
@@ -298,6 +304,7 @@ news "human reaction to Greenwater outfitter"
 news "businessperson in hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Businessperson"
@@ -317,6 +324,7 @@ news "businessperson in hai space"
 news "reformed pirate in Hai space"
 	location
 		government "Hai"
+		not attributes "retirement"
 	name
 		word
 			"Reformed pirate"
