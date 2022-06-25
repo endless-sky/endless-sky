@@ -224,7 +224,7 @@ outfit "Korath Fire-Lance"
 		"shield damage" 3.5
 		"hull damage" 1.5
 		"heat damage" 8
-		"burn damage" .5
+		"burn damage" .15
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
 
 effect "fire-lance impact"
@@ -256,12 +256,12 @@ outfit "Korath Blaze-Pike"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 5
-		"firing heat" 5.1
-		"shield damage" 7
-		"hull damage" 3
-		"heat damage" 24
-		"burn damage" 1.2
-	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
+		"firing heat" 4.5
+		"shield damage" 7.1
+		"hull damage" 3.1
+		"heat damage" 18
+		"burn damage" 0.45
+	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely double the gun's effect, but rather magnify it exponentially."
 
 effect "blaze-pike hit"
 	sprite "effect/blaze-pike hit"
@@ -295,10 +295,10 @@ outfit "Korath Inferno"
 		"reload" 1
 		"firing energy" 7.5
 		"firing heat" 8.5
-		"shield damage" 10.5
-		"hull damage" 4.5
-		"heat damage" 36
-		"burn damage" 2.25
+		"shield damage" 10.8
+		"hull damage" 4.8
+		"heat damage" 30
+		"burn damage" 0.9
 	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design. The three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
 
 effect "korath inferno hit"
