@@ -193,10 +193,12 @@ namespace {
 		{"atrocity", "This outfit is considered an atrocity."}
 	};
 
-	const set<string> NEVER_REQUIREMENT = {
-		"heat dissipation",
-		"automaton"
-	};
+	bool IsNotRequirement(const string& label)
+	{
+		return label == "automaton" ||
+			SCALE.find(label) != SCALE.end() ||
+			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+	}
 }
 
 
@@ -314,7 +316,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 {
 	// These attributes have negative values but are not requirements
-	if(NEVER_REQUIREMENT.count(label))
+	if(IsNotRequirement(label))
 		return;
 
 	// Special case for 'crew required' - use positive values as a requirement.
@@ -376,9 +378,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
-		else if(NEVER_REQUIREMENT.count(it.first))
+		else if(IsNotRequirement(it.first))
 		{
-			// This attribute is always listed here, though they are negative.
+			// This attribute is always listed here, though they may be negative.
 		}
 		else if(it.second < 0)
 			continue;
