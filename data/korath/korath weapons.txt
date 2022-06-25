@@ -278,8 +278,8 @@ outfit "Korath Inferno"
 	cost 2670000
 	thumbnail "outfit/korath inferno"
 	"mass" 77
-	"outfit space" -71
-	"weapon capacity" -71
+	"outfit space" -77
+	"weapon capacity" -77
 	"turret mounts" -1
 	"required crew" 1
 	weapon

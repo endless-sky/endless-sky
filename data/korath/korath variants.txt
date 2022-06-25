@@ -169,7 +169,7 @@ ship "Korath Dredger" "Korath Dredger (Inferno)"
 		"Steering (Planetary Class)"
 		"Reverser (Comet Class)"
 		"Thruster (Planetary Class)"
-		"Afterburner (Lunar Class)"
+		"Afterburner (Comet Class)"
 		"Jump Drive"
 		"Scram Drive"
 	
@@ -364,7 +364,7 @@ ship "Korath Raider" "Korath Raider (Inferno)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
-		"Afterburner (Comet Class)"
+		"Afterburner (Asteroid Class)"
 		"Bow Drive (Meteor Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
