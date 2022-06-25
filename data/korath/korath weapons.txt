@@ -235,6 +235,82 @@ effect "fire-lance impact"
 	"random angle" 360
 	"velocity scale" 0.
 
+outfit "Korath Blaze-Pike"
+	category "Turrets"
+	cost 1970000
+	thumbnail "outfit/blaze-pike"
+	"mass" 57
+	"outfit space" -54
+	"weapon capacity" -54
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/blaze-pike"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/blaze-pike"
+		sound "fire-lance"
+		"hit effect" "blaze-pike hit"
+		"inaccuracy" 0.45
+		"turret turn" 3.7
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 5
+		"firing heat" 5.1
+		"shield damage" 7
+		"hull damage" 3
+		"heat damage" 24
+		"burn damage" 1.2
+	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
+
+effect "blaze-pike hit"
+	sprite "effect/blaze-pike hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005
+
+outfit "Korath Inferno"
+	category "Turrets"
+	cost 2670000
+	thumbnail "outfit/korath inferno"
+	"mass" 77
+	"outfit space" -71
+	"weapon capacity" -71
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/korath inferno"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/korath inferno"
+		sound "korath inferno"
+		"hit effect" "korath inferno hit"
+		"inaccuracy" 0.5
+		"turret turn" 2.7
+		"velocity" 550
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 7.5
+		"firing heat" 8.5
+		"shield damage" 10.5
+		"hull damage" 4.5
+		"heat damage" 36
+		"burn damage" 2.25
+	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design. The three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
+
+effect "korath inferno hit"
+	sprite "effect/korath inferno hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 360
+	"random spin" 1
+	"random velocity" 5
+	"velocity scale" .005
+
 
 outfit "Korath Repeater"
 	category "Guns"
@@ -660,6 +736,71 @@ effect "slicer impact"
 	"random velocity" .1
 	"velocity scale" -.002
 
+
+outfit "Korath Digger Turret"
+	category "Turrets"
+	cost 509000
+	thumbnail "outfit/korath digger turret"
+	"mass" 14
+	"outfit space" -16
+	"weapon capacity" -16
+	"asteroid scan power" 15
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/digger"
+			"frame rate" 20
+		"hardpoint sprite" "hardpoint/digger turret"
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 1.5
+		"turret turn" 4.6
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.9
+		"firing heat" 4.9
+		"shield damage" 0.8
+		"hull damage" 1.3
+		"minable damage" 5.2
+		"disruption damage" .08
+	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they reengineered this ancient but robust design. The mild shield disruption effect makes it somewhat useful in combat.`
+
+outfit "Korath Digger"
+	category "Guns"
+	cost 419000
+	thumbnail "outfit/korath digger"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"asteroid scan power" 10
+	"gun ports" -1
+	weapon
+		sprite "projectile/digger thin"
+			"frame rate" 20
+		sound "korath digger"
+		"hit effect" "korath digger hit"
+		"inaccuracy" 0.1
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy"  2.1
+		"firing heat" 4.3
+		"shield damage" 0.5
+		"hull damage" 0.9
+		"minable damage" 4.6
+		"disruption damage" .06
+	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
+
+effect "korath digger hit"
+	sprite "effect/korath digger hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 30
+	"velocity scale" .005
+
+
 outfit "Korath Heaver"
 	category "Secondary Weapons"
 	cost 3450000
@@ -725,145 +866,7 @@ effect "heaver shard hit"
 	sound "heaver shard hit"
 	"velocity scale" .05
 	"random angle" 10
-	
-outfit "Korath Blaze-Pike"
-	category "Turrets"
-	cost 1970000
-	thumbnail "outfit/blaze-pike"
-	"mass" 57
-	"outfit space" -54
-	"weapon capacity" -54
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/blaze-pike"
-			"frame rate" 20
-		"hardpoint sprite" "hardpoint/blaze-pike"
-		sound "fire-lance"
-		"hit effect" "blaze-pike hit"
-		"inaccuracy" 0.45
-		"turret turn" 3.7
-		"velocity" 450
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 5
-		"firing heat" 5.1
-		"shield damage" 7
-		"hull damage" 3
-		"heat damage" 24
-		"burn damage" 1.2
-	description "The seeming reverence the Korath have for fire looks as if it is embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not double the gun's effect, but rather magnify it exponentially."
 
-effect "blaze-pike hit"
-	sprite "effect/blaze-pike hit"
-		"no repeat"
-		"frame rate" 30
-	"lifetime" 5
-	"random angle" 360
-	"random spin" 1
-	"random velocity" 5
-	"velocity scale" .005
-
-outfit "Korath Inferno"
-	category "Turrets"
-	cost 2670000
-	thumbnail "outfit/korath inferno"
-	"mass" 77
-	"outfit space" -71
-	"weapon capacity" -71
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/korath inferno"
-			"frame rate" 20
-		"hardpoint sprite" "hardpoint/korath inferno"
-		sound "korath inferno"
-		"hit effect" "korath inferno hit"
-		"inaccuracy" 0.5
-		"turret turn" 2.7
-		"velocity" 550
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 7.5
-		"firing heat" 8.5
-		"shield damage" 10.5
-		"hull damage" 4.5
-		"heat damage" 36
-		"burn damage" 2.25
-	description "Some Korath consider the Inferno the crowning achievement of Exile weapon design. The three Fire-Lances mounted together in precisely the right manner combine synergistically, creating a longer, more powerful beam than three would individually."
-
-effect "korath inferno hit"
-	sprite "effect/korath inferno hit"
-		"no repeat"
-		"frame rate" 30
-	"lifetime" 5
-	"random angle" 360
-	"random spin" 1
-	"random velocity" 5
-	"velocity scale" .005
-
-outfit "Korath Digger Turret"
-	category "Turrets"
-	cost 509000
-	thumbnail "outfit/korath digger turret"
-	"mass" 14
-	"outfit space" -16
-	"weapon capacity" -16
-	"asteroid scan power" 15
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/digger"
-			"frame rate" 20
-		"hardpoint sprite" "hardpoint/digger turret"
-		sound "korath digger"
-		"hit effect" "korath digger hit"
-		"inaccuracy" 1.5
-		"turret turn" 4.6
-		"velocity" 480
-		"lifetime" 1
-		"reload" 1
-		"firing energy" 2.9
-		"firing heat" 4.9
-		"shield damage" 0.8
-		"hull damage" 1.3
-		"minable damage" 5.2
-		"disruption damage" .08
-	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they reengineered this ancient but robust design. The mild shield disruption effect makes it somewhat useful in combat.`
-
-outfit "Korath Digger"
-	category "Guns"
-	cost 419000
-	thumbnail "outfit/korath digger"
-	"mass" 10
-	"outfit space" -10
-	"weapon capacity" -10
-	"asteroid scan power" 10
-	"gun ports" -1
-	weapon
-		sprite "projectile/digger thin"
-			"frame rate" 20
-		sound "korath digger"
-		"hit effect" "korath digger hit"
-		"inaccuracy" 0.1
-		"velocity" 480
-		"lifetime" 1
-		"reload" 1
-		"firing energy"  2.1
-		"firing heat" 4.3
-		"shield damage" 0.5
-		"hull damage" 0.9
-		"minable damage" 4.6
-		"disruption damage" .06
-	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
-
-effect "korath digger hit"
-	sprite "effect/korath digger hit"
-		"no repeat"
-		"frame rate" 30
-	"lifetime" 5
-	"random angle" 30
-	"velocity scale" .005
 
 outfit "Firelight Storage Rack"
 	category "Ammunition"
