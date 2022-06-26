@@ -504,6 +504,13 @@ void Engine::Step(bool isActive)
 	wasActive = isActive;
 	Audio::Update(center);
 
+	// Update the zoom value now that the calculation thread is paused.
+	if(nextZoom)
+	{
+		// TODO: std::exchange
+		zoom = nextZoom;
+		nextZoom = 0.;
+	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
@@ -518,9 +525,9 @@ void Engine::Step(bool isActive)
 
 			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
 			if(zoom < zoomTarget)
-				zoom = min(zoomTarget, zoom * (1. + zoomRatio));
+				nextZoom = min(zoomTarget, zoom * (1. + zoomRatio));
 			else if(zoom > zoomTarget)
-				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+				nextZoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
 		}
 	}
 
@@ -1338,6 +1345,11 @@ void Engine::ThreadEntryPoint()
 void Engine::CalculateStep()
 {
 	FrameTimer loadTimer;
+
+	// If there is a pending zoom update then use it
+	// because the zoom will get updated in the main thread
+	// as soon as the calculation thread is finished.
+	const double zoom = nextZoom ? nextZoom : this->zoom;
 
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step, zoom);

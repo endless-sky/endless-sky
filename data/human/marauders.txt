@@ -145,7 +145,7 @@ ship "Marauder Bounder"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 		
 	engine -12 44
@@ -855,7 +855,7 @@ ship "Marauder Raven"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 	
 	engine -9.5 63
