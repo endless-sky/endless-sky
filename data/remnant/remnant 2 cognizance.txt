@@ -822,7 +822,7 @@ mission "Remnant: Cognizance 21"
 			choice
 				`	(Return to the <ship> and prepare for departure.)`
 					goto relax
-				`	(Ask if you can help with their work.)`
+				`	(Ask if I can help with their work.)`
 					goto scienceassistant
 				`	(Explore Ssil Vida.)`
 			apply explorationinterest += 1
@@ -979,7 +979,7 @@ mission "Remnant: Cognizance 23"
 			choice
 				`	(Walk over to where she is standing.)`
 					goto walkover
-				`	(Wait until she notices you.)`
+				`	(Wait until she notices me.)`
 			`	After several minutes of watching Taely commune with the trio of ships, she turns toward you and waves you over. "Enjoying the view?" she signs as you approach, but she continues without waiting for a response. "They are nice ships, and a major step forward in our ship development. Well worth watching." She nods to herself as she runs a hand along a fin, as if checking something.`
 				goto merganserintro
 			label walkover
@@ -1306,14 +1306,14 @@ mission "Remnant: Cognizance 30"
 		conversation
 			`You walk into the cafeteria to find a group of Remnant looking tired but pleased with themselves. Torza is striding among them with a tray filled with bottles, handing them out. "Good work, everyone. Excellent pacing on that run." He turns towards you. "And right on schedule, the captain who will be transporting you over to Ssil Vida." He gestures for you to take a seat and offers you a bottle as well.`
 			choice
-				`	(Gesture that you are not thirsty.)`
+				`	(Gesture that I am not thirsty.)`
 					goto notthirsty
 				`	(Take a bottle and gesture appreciation.)`
 			`	You sip from the bottle, and discover that it tastes like some kind of restorative sports drink. You can pick out hints of salt and a few other flavors, but most of it is an indeterminate taste you cannot quite identify. Torza nods in approval as you drink. "Especially in heat like this, hydration is important." He continues weaving around the group handing out the remaining bottles.`
 			choice
 				`	(Drink in silence.)`
 					goto powerbriefing
-				`	(Ask the Remnant next to you what just happened.)`
+				`	(Ask the Remnant next to me what just happened.)`
 			`	The Remnant smiles tiredly. "We did a ten kilometer run in just under thirty seven minutes, wearing our emergency environmental suits and carrying basic survival and maintenance gear. Torza set a hard pace, but we kept up." She takes a sip from her drink. "It is hard work, but endurance is rather important for survival, especially in an unknown environment like <planet>." She takes another sip. "It was an interesting change of pace. Normally I carry full engineering kit, so this was a 'fast scramble' in comparison. He" - she gestures at Torza - "likes to change things up. No two runs are the same when he sets the pace."`
 				goto powerbriefing
 			label notthirsty

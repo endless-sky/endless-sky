@@ -435,7 +435,7 @@ mission "Tarazed Ship Christening"
 			`	"Uhh... that would be me," the woman says, glancing around awkwardly.`
 			choice
 				`	(Try to salvage the awkward situation.)`
-				`	(Get out while you can.)`
+				`	(Get out while I can.)`
 					goto getout
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
@@ -485,7 +485,7 @@ mission "News Reporter - Paradise"
 			choice
 				`	(Wait for her to approach.)`
 					goto walk
-				`	(Hope she doesn't notice you.)`
+				`	(Hope she doesn't notice me.)`
 					goto notice
 				`	(Try to avoid her.)`
 			`	You take a hallway off to the side to evade her. Just as you think you've gotten out of sight, you hear a voice. "Excuse me!" You turn to see the reporter following you.`
@@ -535,7 +535,7 @@ mission "Scientists at the Pub after a Conference"
 		random < 1
 	on offer
 		conversation
-			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading  "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics". The group takes their seats at a long table near to you.`
+			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading  "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics." The group takes their seats at a long table near to you.`
 			choice
 				`	(Order a meal and listen in to their conversation.)`
 					goto "overheard scientists 1"
@@ -556,7 +556,7 @@ mission "Scientists at the Pub after a Conference"
 			choice
 				`	(Order another beverage and continue listening.)`
 					goto "overheard scientists 2"
-				`	(Finish your meal and leave.)`
+				`	(Finish my meal and leave.)`
 					decline
 			label "overheard scientists 2"
 			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
@@ -571,9 +571,9 @@ mission "Scientists at the Pub after a Conference"
 			`	"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
 			`	"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
 			choice
-				`	(Finish up at your own pace.)`
+				`	(Finish up at my own pace.)`
 					goto "overheard scientists 3"
-				`	(Settle your bill as quickly as possible and leave.)`
+				`	(Settle my bill as quickly as possible and leave.)`
 					decline
 			label "overheard scientists 3"
 			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
