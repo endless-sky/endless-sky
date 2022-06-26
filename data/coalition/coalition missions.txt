@@ -2866,9 +2866,9 @@ mission "Coalition: Long Lost Property 1"
 	destination "Darkstone"
 	on offer
 		conversation
-			`You notice a pair of Arachi, who you assume to be spaceport workers due to their uniforms, talking while pointing to your ship. One of them is slightly shorter than most Arachi you've seen, while the other is a good bit taller. They approach you after they see you noticed them, and the larger of them speaks up. "Excuse us you must, Captain, but in need of your help, we are."`
-			`	"Work at House Idriss, we do, and looking to recover some lost property, the House is." the shorter one explains. "Accompany us to our headquarters, could you? Meet up with you, our boss-"`
-			`	"President." The other one interrupts him.`
+			`You notice a pair of Arachi, who you assume to be spaceport workers due to their uniforms, talking while pointing to your ship. One of them is slightly shorter than most Arach you've seen, while the other is a good bit taller. They approach you after they see you noticed them, and the larger of them speaks up. "Excuse us you must, Captain, but in need of your help, we are."`
+			`	"Work at House Idriss, we do, and looking to recover some lost property, the House is," the shorter one explains. "Accompany us to our headquarters, could you? Meet up with you, our boss-"`
+			`	"President," the other one interrupts him.`
 			`	"Our president will."`
 			choice
 				`	"I've got some time. Lead the way."`
@@ -2876,14 +2876,14 @@ mission "Coalition: Long Lost Property 1"
 				`	"What is it that you lost?"`
 				`	"Sorry, I'm not interested."`
 					decline
-			`	"Umm... confidential information, that is." The taller one says. "If wish to learn more, you do, accompany us, you should."`
+			`	"Umm... confidential information, that is," the taller one says. "If wish to learn more, you do, accompany us, you should."`
 			choice
 				`	"Alright then, show me the way."`
 				`	"This seems a bit shady. I'll pass."`
 					decline
 			label proposal
 			`	They bring you to a dead end street not far from the spaceport surrounded by various older buildings. A wide hole is at the end, almost like a subway entrance, with stairs leading dozens of meters underground. You follow them down the stairs to find something similar to a customs area, where some Arachi and Kimek in uniforms ready their stations once they see you three.`
-			`	You continue after some waiting, as the operators insist on manually inspecting every last bit of your electronic devices. Inside, you see a few dozen workers at their computers, with one occasionally heading to the back and taking an elevator somewhere. They seldom talk, so the only sound you can make out is that of some machinery working below you. Eventually, you're greeted by an Arach in some manner of tuxedo, or at least their equivalent to one, a blueish fabric dotted with black buttons. "Ah, Captain <last>, you must be!" She greets you. "To our corporate headquarters, I welcome you."`
+			`	You continue after some waiting, as the operators insist on manually inspecting every last bit of your electronic devices. Inside, you see a few dozen workers at their computers, with one occasionally heading to the back and taking an elevator somewhere. They seldom talk, so the only sound you can make out is that of some machinery working below you. Eventually, you're greeted by an Arach in some manner of tuxedo, or at least their equivalent to one, a blueish fabric dotted with black buttons. "Ah, Captain <last>, you must be!" she greets you. "To our corporate headquarters, I welcome you."`
 			`	She urges you to follow her to her office, and you go along with the two Arachi who guided you here. Once you're in the office, a modest, spacious room made to accommodate the Arachi, she introduces herself. "Flopug, you may call me. Acting president of House Idriss, I am. Now, told about what we need your services for, were you?"`
 			choice
 				`	"These two told me House Idriss lost something."`
@@ -2903,7 +2903,7 @@ mission "Coalition: Long Lost Property 1"
 				`	"What if I can't find it in the system? If it hasn't arrived, would I need to wait a long time for it to get there?"`
 					goto wait
 				`	"What's in it for me?"`
-			`	"Pay you handsomely for the retrieval, House Idriss would," she answers. "Also, if of any use, the data is, use it in some form of long-ranged scanners, we could. Willing to share a copy of such equipment with you, we would be."`
+			`	"Pay you handsomely for the retrieval, House Idriss would," she answers. "Also, if of any use, the data is, adapted to deep space, the artificial intelligence may have done. New technologies, this could provide us, and to you we would share such a prize."`
 				goto accept
 			label wait
 			`	"Not too long," the short Arach answers. "Minor changes in its speed, the probe might have had, but delay its arrival for more than a few weeks, it could not. One week from now, the absolute limit date for its arrival is."`
@@ -2924,7 +2924,7 @@ mission "Coalition: Long Lost Property 2"
 	destination "Greenrock"
 	on offer
 		conversation
-			`After looking up the recent local news, you feel relieved as you won't need to wait for the probe to arrive: average headlines like "Unidentified object enters Han" or more sensationalist ones like "Doomsday Drone! What YOU can do in face of impending doom" were all the rage a few weeks ago, when the probe first arrived. None of them detail what happened to it, though, so you decide to ask the planet's inhabitants.`
+			`After looking up the recent local news, you feel relieved as you won't need to wait for the probe to arrive: average headlines like "Unidentified Object Enters Han" or more sensationalist ones like "Doomsday Drone! What YOU Can Do In the Face of Impending Doom" were all the rage a few weeks ago, when the probe first arrived. None of them detail what happened to it, though, so you decide to ask the planet's inhabitants.`
 			`	The spaceport workers you ask don't seem to know much more than the fact that it entered the system weeks ago, and some of the locals seem to have believed the more dramatic headlines, getting worried when you bring it up. When you reach the local produce market, one of the farmers you ask sheds some light on the issue. "A band of pirates passed by here just a few days after I watched the news about that machine. They were here for the usual, getting food from us as tribute. Must've read the news while they were here. One of them asked me about it, if we had seen it do anything dangerous. I said no, and he muttered something about selling it in a junkyard."`
 			choice
 				`	"Did you catch his name?"`
@@ -2976,7 +2976,7 @@ mission "Coalition: Long Lost Property 3"
 			`	He stares at you for a few seconds, and lets out a laugh. "Well, it was worth a try. Alright, a hundred thousand it is."`
 				goto where
 			label fail
-			`	"Now I can't just trust you to get every last one of their ships, can I?" He replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
+			`	"Now I can't just trust you to get every last one of their ships, can I?" he replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
 			choice
 				`	"Fine, just tell me already."`
 			label bribe
@@ -2984,12 +2984,12 @@ mission "Coalition: Long Lost Property 3"
 				payment -1000000
 			`	"Thank you for your patronage," he says, and sits back down.`
 			label where
-			`	"The men who approached me for the machine are pirates, though I imagine you already had that figured out," he begins. "They aren't from the south though, I could tell you that much. Older, better dressed. Said they had read the reports about the 'unknown probe' entering Han, and wanted it for their business. I asked how they intended to use it, nobody here had figured how it worked, but they said they'd find a way to make use of it, have it serve as some kind of surveillance equipment, something like that."`
+			`	"The men who approached me for the machine are pirates, though I imagine you already had that figured out," he begins. "They aren't from the south though, I could tell you that much. Older, better dressed. Said they had read the reports about the 'unknown probe' entering Han, and wanted it for their business. I asked how they intended to use it, nobody here had figured how it worked, but they said they'd find a way to make use of it, have it serve as some kind of surveillance equipment, or something like that."`
 			choice
 				`	"What do you think they meant by that?"`
 					goto meant
 				`	"Did you catch their names?"`
-			`	"Did they tell me their names? Yes. Their real ones? Doubt it, they seemed organized enough that they wanted to keep that information hidden. I did get a look at their ships while we were loading the product into one of them, though."`
+			`	"Did they tell me their names? Yes. Their real ones? Doubt it. They seemed organized enough that they wanted to keep that information hidden. I did get a look at their ships while we were loading the product into one of them, though."`
 				goto ships
 			label meant
 			`	He shrugs, "My guess is their base is behind some bottleneck, so they wanted something that could tell them in advance if any Navy or bounty hunter was coming for them. I did get to look at their ships, seemed very well equipped for running away, if they knew someone was coming."`
@@ -3018,6 +3018,7 @@ mission "Coalition: Long Lost Property 3"
 			`	When she returns, followed by the Arach duo who brought you here the first time, she hands you <payment>. "Registers of some attempts at breaching the probe's security, there are, but compromised the data, thankfully none of them have. A most curious path, its AI took," she says. "As fine-tuned as our current systems, it is not, but developed its algorithms to better determine the current status of distant stars, it has. Still going over the data, we are, so how accurate it became, we don't yet know."`
 			`	The other Arachi tell you they'll meet you in the spaceport once they finish checking the data, as they'd like you to check a system personally in order to compare it with what the probe's information. They accompany you to the staircase leading back to the street, then head back to continue analyzing the data.`
 
+# Replace the below two missions once some sort of "on board" child of "npc" exists.
 mission "Coalition: Long Lost Property 3A"
 	invisible
 	landing
@@ -3068,7 +3069,7 @@ mission "Coalition: Long Lost Property 4"
 	on offer
 		conversation
 			`The Arach duo greet you in the spaceport and ask you to bring them inside your ship to talk. They look to the sides and behind them every other moment, as if watching out for something. When you're inside your ship's command room, the taller one speaks. "Compared the probe's prediction with its last reading of the system of arrival, we have. A very good approximation to real conditions, it reached. Though incredibly outdated, its hardware is, an ingenious program, what my ancestors-"`
-			`	"My ancestors," the short one interrupts him.`
+			`	"Our ancestors," the short one interrupts him.`
 			`	"What our ancestors created is."`
 			`	They show you a device with a map on screen, depicting nearby star systems, and the short Arach starts explaining. "Intrigued as to just how accurate its predictions have become, we are, so to verify its data about a star deeper in human space, the next step is." He points to a system at the edge of the map. "Have humans discovered this system, Captain? Interested in comparing the probe's data on far away binary stars, the president is."`
 			`	You look at the screen and at your own map for a moment, and recognize the system as <waypoints>. "Settled it is, then. Head to that system, you should," the taller one speaks again. "Still with our adjustments, your scanners are, so just tinker them a bit to gather the needed data, we will."`
@@ -3084,7 +3085,7 @@ mission "Coalition: Long Lost Property 4"
 			`	"Umm... more errors with this one, the probe committed," the taller Arach says. "Gotten a good deal right, it still did, but a shame it is, that deal with that much more of a distance, it couldn't."`
 			`	"Not distance, the cause of errors was," the short Arach responds. "Confused with the binaries' signatures, it got. Refined to account for binary star systems and their oddities, its algorithms had to be."`
 			`	"At any rate, happy to call the probe's voyage a success, I am," Flopug cuts them off. "Expected it to have developed this well, we hadn't, when notified of its existence by... I mean, when remember about the approaching date of its arrival to that system, we did."`
-			`	They turn your scanners back to normal, telling you that they'll work on using the data to develop a new piece of scanning equipment.  They also tell you that they will let you know about it when it's ready, the next time you're on <origin>, though it may be many months before they're ready. After thanking you for your help once again, the three Arachi leave your ship.`
+			`	They turn your scanners back to normal, telling you that they'll work on using the data to develop a new piece of scanning equipment. They also tell you that they will let you know about it when it's ready, the next time you're on <origin>, though it may be many months before they're ready. After thanking you for your help once again, the three Arachi leave your ship.`
 
 event "outskirts gauger ready"
 
