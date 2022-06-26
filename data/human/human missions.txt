@@ -3998,6 +3998,7 @@ event "fumbling mugger followup timer"
 
 
 mission "Laborer"
+	minor
 	name "Out of Work"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
@@ -4005,7 +4006,6 @@ mission "Laborer"
 		attributes "mining"
 	destination
 		attributes "mining"
-	minor
 	to offer
 		random < 15
 	on offer
@@ -4028,7 +4028,7 @@ mission "Laborer"
 					goto offer
 				`	"Work dried up on the whole planet?"`
 			`	"This planet is messed up. Everybody likes to talk behind your back. I did a job for one of the big mining companies here, but my boss had it out for me. Told everybody I did it wrong, even though they never gave me any training at all. Then he went and put me on the permanent record. So yeah, sooner I get off this dump, the better."`
-			`You say, "What are you able to pay me?"`
+			`	"What are you able to pay me?" you ask.`
 			label offer
 			`	His eyes drop. "I can pay you after I earn the money. I've just gotta get to <planet> to get work, and then I'll send the money. I just want to earn a living, same as anyone."`
 			choice
@@ -4039,7 +4039,7 @@ mission "Laborer"
 				`	"Sorry, money up front."`
 					goto decline
 			label question
-				`	"You don't trust me? Just keep walking, then, if you're gonna be like that."`
+			`	"You don't trust me? Just keep walking, then, if you're gonna be like that."`
 			choice
 				`	"Sorry, money up front."`
 					goto decline
@@ -4048,29 +4048,21 @@ mission "Laborer"
 			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
 				accept
 			label decline
-				`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
-					decline
+			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
+				decline
 	on complete
 		event "laborer payment" 400
 		conversation
-			`The worker you picked up from <source> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You think that you'd feel more sorry for him if you weren't so eager to get his ceaseless negativity off your ship.`
-			`	He carries his bags to the lowered ramp, then turns back before disembarking.`
-			`	"Thanks for the lift. You're one of the good ones, you know?"`
+			`The worker you picked up from <origin> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You think that you'd feel more sorry for him if you weren't so eager to get his ceaseless negativity off your ship.`
+			`	He carries his bags to the lowered ramp, then turns back before disembarking. "Thanks for the lift. You're one of the good ones, you know?"`
 			choice
 				`	"You're welcome. Better luck on this world."`
 					goto luck
 				`	"You have my bank address, right?"`
-					goto bank
-				`	"I need that money now."`
-			`	He shoots you an accused look. "You said I could pay you later. As we discussed, I'll send you the payment when I have it."`
-				goto end
-			label bank
-				`	He shoots you a look of thinly masked annoyance. "Yeah. I'll send you the credits when I have them. Bye, now."`
-					goto end
+			`	He shoots you a look of thinly masked annoyance. "Yeah. I'll send you the credits when I have them. Bye, now."`
+				decline
 			label luck
-				`	He bobs his head at you in farewell. "I'll send you the payment when I have it."`
-			label end
-				`	He turns and walks off.`
+			`	He bobs his head at you in farewell. "I promise I'll send you the payment when I have it. Bye, now."`
 
 event "laborer payment"
 
@@ -4083,5 +4075,5 @@ mission "Laborer Payment"
 	on offer
 		payment 17000
 		conversation
-			`You receive a payment of <payment> from the down on his luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
+			`You receive a payment of <payment> from the down-on-his-luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and make me come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
 				decline
