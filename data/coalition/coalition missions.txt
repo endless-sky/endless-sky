@@ -2977,6 +2977,10 @@ mission "Coalition: Long Lost Property 3"
 				goto where
 			label fail
 			`	"Now I can't just trust you to get every last one of their ships, can I?" he replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
+			
+# For the mission NPCs to work properly, this needs to force an accept at this point.
+# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
+			
 			choice
 				`	"Fine, just tell me already."`
 			label bribe
