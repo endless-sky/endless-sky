@@ -90,11 +90,12 @@ namespace {
 	bool EscortsReadyToJump(const Ship &ship)
 	{
 		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
 		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
 		{
 			shared_ptr<const Ship> escort = ptr.lock();
 			// Skip escorts which are not player-owned and not escort mission NPCs.
-			if(!escort || (shipIsYours && !escort->IsYours() && !escort->GetPersonality().IsEscort()))
+			if(!escort || gov->IsEnemy(escort->GetGovernment()) || (shipIsYours && !escort->IsYours() && !escort->GetPersonality().IsEscort()))
 				continue;
 			if(!escort->IsDisabled() && !escort->CanBeCarried()
 					&& escort->GetSystem() == ship.GetSystem()
