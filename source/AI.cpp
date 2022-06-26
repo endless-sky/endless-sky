@@ -92,6 +92,9 @@ namespace {
 		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
 		{
 			shared_ptr<const Ship> locked = escort.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!locked->IsYours() && !locked->GetPersonality().IsEscort())
+				continue;
 			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
 					&& locked->GetSystem() == ship.GetSystem()
 					&& locked->JumpFuel() && !locked->IsReadyToJump(true))
