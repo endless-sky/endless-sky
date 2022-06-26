@@ -155,6 +155,10 @@ namespace {
 		if(ship->CanBeCarried())
 			return false;
 
+		// Check for hostile government.
+		if(ship->GetGovernment()->IsEnemy(escort->GetGovernment()))
+			return false;
+
 		if(escort->CanBeCarried() && ship->GetGovernment() == escort->GetGovernment())
 			return true;
 
