@@ -290,6 +290,10 @@ void Audio::PlayMusic(const string &name)
 	if(!isInitialized)
 		return;
 
+	// Skip changing music if the requested music is already playing.
+	if(name == currentTrack->GetSource())
+		return;
+
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
 	musicFade = 65536;
