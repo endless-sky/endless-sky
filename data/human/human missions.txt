@@ -4267,12 +4267,12 @@ mission "Dangerous Games 2"
 					has "Jorma and Daciana dead"
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
-			`	Once back to the surface, Karengo calls up someone on his reciever. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label onlyplayer
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
-			`	Once back to the surface, Karengo calls up someone on his reciever. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 			label end
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>.`
 			`	The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person.`
