@@ -3999,7 +3999,7 @@ event "fumbling mugger followup timer"
 
 mission "Dangerous Games 2"
 	name "Karengo's Galactic Adventures"
-	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". He mentioned going underwater and something about a "quoijuu". Bring Karengo and crew to <destination>."
+	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
 	minor
 	passengers 9
 	to offer
@@ -4007,6 +4007,7 @@ mission "Dangerous Games 2"
 		has "Dangerous Games 1: done"
 	source 
 		attributes "frontier" "pirate" "rim"
+	cargo "subpods" 9
 	destination Poseidos
 	on offer
 		conversation
@@ -4032,7 +4033,7 @@ mission "Dangerous Games 2"
 				`	"Ok, I'll take a look."`
 					goto adventure
 				`	"We could get lost and then die."`
-			`	Karengo smiles in a way that is only reminiscent of reassuring.`
+			`	Karengo laughs. "You worry too much," he says.`
 			label adventure
 			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
 			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working. A young couple, Balazs and Jorma, uneasily exchange glances.`
@@ -4055,7 +4056,7 @@ mission "Dangerous Games 2"
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
 			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
-			`	Then, without warning, a proximity sensor goes off, at the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
+			`	Then, without warning, a proximity sensor goes off. At the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto riddletwo
 			label east
@@ -4150,7 +4151,7 @@ mission "Dangerous Games 2"
 				`	(Go south.)`
 			`	You smoothly turn the ship to the right, heading south.`
 			`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
-			`	The result, however, is a surprise. The display shows a massive object directly below you...as well as as two leviathan-sized *things* back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of human-sized teeth line their jaws.`
+			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as as two leviathan-sized *things* back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
 				goto treasure
 			label north5
@@ -4158,7 +4159,7 @@ mission "Dangerous Games 2"
 				set "Jorma and Daciana dead"
 			`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.`
 			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
-			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of human-sized teeth line their jaws.`
+			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind; good enough. If one of those rams the ship, nobody is going home anyway.`
 			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
 			`	"Quoijuu," says Karengo simply.`
@@ -4266,12 +4267,12 @@ mission "Dangerous Games 2"
 					has "Jorma and Daciana dead"
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
-			`	Once reunited with your fleet, a small flock of scientists haul the machine to the engineering section for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	Once back to the surface, Karengo calls up someone on his reciever. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label onlyplayer
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
-			`	Once reunited with your fleet, a small flock of scientists haul the machine to the engineering section for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	Once back to the surface, Karengo calls up someone on his reciever. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 			label end
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>.`
 			`	The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person.`
