@@ -1702,7 +1702,7 @@ system "9 Spring Above"
 		distance 925.521
 		period 347.571
 	object "Garden Empyreal"
-		sprite "planet/gas3-c"
+		sprite planet/gas3-c
 			scale 0.5
 		distance 1763.76
 		period 914.375
@@ -1763,7 +1763,7 @@ system Ablodab
 		distance 514.56
 		period 226.474
 		object "Guardian Array Sapphire"
-			sprite "planet/station4c"
+			sprite planet/station4c
 				scale 0.5
 			distance 148.05
 			period 24
@@ -1776,7 +1776,7 @@ system Ablodab
 			distance 263
 			period 14.1834
 		object "Ogmur's Siphon"
-			sprite "planet/station5c"
+			sprite planet/station5c
 				scale 0.5
 			distance 363.58
 			period 24.6
@@ -1785,7 +1785,7 @@ system Ablodab
 		distance 1754.3
 		period 1425.67
 		object "Silo of Ablodab"
-			sprite "planet/station6c"
+			sprite planet/station6c
 				scale 0.5
 			distance 201
 			period 52
@@ -22801,12 +22801,12 @@ system "Silver Bell"
 			distance 346
 			period 16.4391
 	object
-		sprite "planet/station7c"
+		sprite planet/station7c
 			scale 0.5
 		distance 1195.71
 		period 503.253
 	object "Periaxle Circuit"
-		sprite "planet/station7cb"
+		sprite planet/station7cb
 			scale 0.5
 		distance 1096
 		period 503.253
@@ -27971,7 +27971,7 @@ planet Furnace
 		fleet "Large Syndicate" 7
 
 planet "Garden Empyreal"
-	attributes kimek "coalition station" shipping wealthy tourism
+	attributes "coalition station" kimek shipping tourism wealthy
 	landscape land/clouds_03
 	description `Not including the trio of Quarg ringworlds, this is the largest megastructure in Coalition space. Arrays of gigantic metal pyramids lay at every angle, each nearly a dozen times larger than the average space station. Spread out over the planet's upper atmosphere, these so-called "hubs" are connected by long, inextensible, and extremely sturdy wires, ensuring no part of the structure is destabilized.`
 	description `	First devised by the Kimek before the Coalition's war against the Quarg, the structure was completed relatively recently two thousand years ago. Populating the gas giant's uppermost atmosphere lay several hardy species of artificially engineered bacteria, periodically being "scooped" by the lower body of each hub and then later mass-produced into a nutritious soup.`
@@ -28173,7 +28173,7 @@ planet Greymoon
 	security 0.5
 
 planet "Guardian Array Sapphire"
-	attributes heliarch arach "coalition station" 
+	attributes arach "coalition station" heliarch
 	landscape land/station33
 	description `More commonly referred to as "Checkpoint of Ablodab," this enormous station was built shortly after the end of the Coalition's war against the Quarg, meant to serve as a regional dry dock and supply base that damaged combat ships could return to after some time at the front lines. The lack of any subsequent counterattack, though, shifted its role to being a simple refueling hub for passing merchant ships, its dozens of warship-sized hangars remaining mostly unused.`
 	description `	Despite the apparent lack of combat activity the station was designed to support, the local Heliarchs run a tight schedule even for civilian visitors as they land, ensuring ships are refueled and tended to as quickly as possible.`
@@ -29334,7 +29334,7 @@ planet "Pelubta Station"
 	"required reputation" 20
 
 planet "Periaxle Circuit"
-	attributes saryd "coalition station" research
+	attributes "coalition station" research saryd
 	landscape land/station34
 	description `The first structure of such scale the Coalition ever built, this station was designed and fully built before the War of Independence. Originally a Saryd attempt at emulating the Quarg's own ringworlds, almost all living quarters and amenities were stripped away over the course of the war in favor of a gigantic particle accelerator used by the Saryds to research weapons and shielding technology. Nowadays, its use has shifted into a more general-purpose research facility.`
 	description `	Completed dozens of centuries before the war, the structure's original plating failed to last the test of time unscathed, unlike the Quarg's own, and is in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance crafts can be seen conducting repairs on some outer section of the ring.`
@@ -29899,7 +29899,7 @@ planet Shroud
 		fleet "Large Republic" 14
 
 planet "Silo of Ablodab"
-	attributes arach "coalition station" mining factory
+	attributes arach "coalition station" factory mining
 	landscape land/station9
 	description `First built by the Heliarchs mere centuries after their victory over the Quarg, this station serves as both a control point for the automated strip mines on the planet below and a smeltery to process all the raw materials brought up into the finest alloy platings. First used to produce many of the components of the two other stations in the system, the Silo now serves as a factory for spare ship parts in order to aid the local dry dock's repair functionalities when required. Within restricted sections under constant Heliarch patrol, the station features a few massive, warehouse-like rooms, where the surplus platings are stored.`
 	spaceport `In its early days, the Silo boasted among the highest activity as compared to most other stations of its size, with merchant and military ships alike aiding in the construction process of its younger sibling stations. Over thousands of years, many of the areas dedicated to living grounds and trade centers were moved out to more accessible locations across the Coalition, swapped out in favor of storage dumps to support the increasing demand for alloy plating.`
