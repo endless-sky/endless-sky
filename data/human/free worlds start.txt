@@ -620,14 +620,13 @@ mission "FW Hope Recon 1C"
 			apply
 				karma ++
 				set "fw accepted Susquehanna's word of honor"
-			`	Most ships are equipped with external speakers for exactly this sort of situation.`
-			`	"Crew of the R.N.S. Susquehanna, this is Captain <last> of the Free Worlds ship <ship>," you announce. "Will you each give me your word of honor that you will take no further part in fighting the Free Worlds?"`
-			`	The Gunboat captain thinks for a brief moment and gives you a thumbs-up sign, their hand held high in the air. Their crew follows suit without any visible hesitation.`
-			`	You consider the situation and decide not to bother with landing and taking your new prisoners on board.`
+			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
+			`	"Crew of the <npc>, this is Captain <last> of the Free Worlds ship <ship>," you announce. "I accept your surrender, but will you each give me your word of honor that you will take no further part in fighting the Free Worlds?"`
+			`	The soldier appear to think for a brief moment before one of them holds their hand high in from of them, giving you a thumbs-up sign. The rest of the soldiers quickly follow suit without any hesitation.`
 			`	"Thank you," you reply. "You may return to your ship and fly back to Republic space."`
-			`	The Navy sailors exchange looks, apparently surprised, but they recover quickly. Their captain snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The R.N.S. Susquehanna's crew fall into formation, march back to their ship, fire up their engines, and take off.`
+			`	The Navy soldiers exchange looks, apparently surprised, but they recover quickly. One of them snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The <npc>'s crew fall into formation, march back to their ship, fire up their engines, and take off.`
 			`	Their weapon systems remain unarmed and inactive, as far as your sensors can tell.`
-			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship. They gave you their word of honor that they would leave this system...`
+			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship.`
 				launch
 	
 	
