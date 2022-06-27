@@ -20,6 +20,13 @@ using namespace std;
 
 
 
+Phrase::Phrase(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Phrase::Load(const DataNode &node)
 {
 	// Set the name of this phrase, so we know it has been loaded.

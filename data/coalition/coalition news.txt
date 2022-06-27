@@ -301,3 +301,40 @@ news "coalition vendor"
 			`"Interested in these ringworld keychains, are you? For you, only 30 credits!"`
 			`"Caught your eye, this necklace has? Real hedgelion quills, these are. Great luck, they bring, for those generous enough to make a purchase."`
 			`"Arcology miniatures? Arachi armor replicas? Multipurpose gardening tools? For all of those and more, the best prices I have!"`
+
+news "coalition civilian expeditions past"
+	to show
+		has "Coalition: Expeditions Past 10: done"
+	location
+		government "Coalition" "Heliarch"
+	name
+		word
+			"Spaceport worker"
+			"Passerby"
+			"Local vendor"
+			"Saryd captain"
+			"Kimek captain"
+			"Arach captain"
+	message
+		word
+			`"Heard, I have, that come back from the outside, that Heliarch tribune did. Very lucky, she must be."`
+			`"Heard, I have, that come back from the outside, that Heliarch girl did. If you ask me, a lie that she ever left, it is."`
+			`"Seen the news, have you? Returned from the outside, a Saryd Heliarch has! Wonder how bad it was out there, I do."`
+			`"The one that helped that Heliarch inspector in her expedition, you are. A very strong ship, you must have, if made it back, you two did."`
+			`"Helped that Heliarch inspector come back from the outside, you have. Always thought that impossible, I did."`
+
+news "heliarch expeditions past"
+	to show
+		has "Coalition: Expeditions Past 10: done"
+	location
+		government "Heliarch"
+	name
+		word
+			"Heliarch agent"
+	message
+		word
+			`"Promoted to the rank of arbiter after her expedition, that Saryd inspector was. Very impressed by her findings on the outside, the consuls must have been."`
+			`"Promoted to the rank of arbiter after her 'expedition,' that Saryd girl was, but what proof of her actually leaving do we have? Stupid enough to have tried that, nobody is."`
+			`"Though a success, that Saryd inspector's expedition was, turned many of the consuls furious at one another, her return has. Expected her to make it back, many of them had not."`
+			`"Our thanks for helping inspector Sedlitaris, you have. Finally found their way back, the last expedition's reports have."`
+			`"The one who helped inspector Sedlitaris on her expedition you are, correct? Read her report on it, I have. Disconcerting, the fate of the last expedition is, but at least recovered their findings, we now have."`

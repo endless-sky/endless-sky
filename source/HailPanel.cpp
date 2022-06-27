@@ -149,6 +149,8 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
 					+ Format::Credits(bribe) + " credits.";
+			else if(gov->IsEnemy())
+				message = "You are not welcome here.";
 			else
 				message = "I'm afraid we can't permit you to land here.";
 		}
