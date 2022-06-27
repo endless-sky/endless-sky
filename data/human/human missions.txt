@@ -4000,7 +4000,7 @@ event "fumbling mugger followup timer"
 mission "Dangerous Games 1"
 	minor
 	name "Dragonriders"
-	description "A lively man named Karengo and a few passionate youths are traveling to see the dragons on <stopover>. Take the group there, then return them to <destination> once they've finished."
+	description "A lively man named Karengo and a few passionate youths are traveling to see the dragons on <stopovers>. Take the group there, then return them to <destination> once they've finished."
 	passengers 9
 	source
 		attributes "frontier" "pirate"
@@ -4026,7 +4026,7 @@ mission "Dangerous Games 1"
 				`	"Captain <last>, at your service. We leave at dawn!"`
 				`	(Stay silent.)`
 			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
-			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy. I'll bring you all to Skymoot." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to Skymoot." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
 				decline
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
@@ -4035,7 +4035,7 @@ mission "Dangerous Games 1"
 	on stopover
 		conversation
 			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
-			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the eight men, or "Dragonriders," as they creatively branded themselves during their first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
+			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the eight men, or "Dragonriders," as they creatively branded themselves during the first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
 			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
 			`	The dragons of Skymoot you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are faster than you thought possible, or perhaps the ones on the show had been drugged to make them easier to film.`
 			`	A quick survey of the scene shows that Karengo has tagged three dragons with some sort of harmless marker gun to make them easier to track. Eight of the Dragonriders, Karengo included, are chasing the largest one, which is missing part of a tooth and has blackened scales from where it hit your ship's shields. The last Dragonrider is nowhere in sight.`
@@ -4059,7 +4059,7 @@ mission "Dangerous Games 1"
 			label leave
 			`	You turn on the external speakers. "We are leaving," you blast to the survivors. "Get on board."`
 			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him, when a flicker of motion on a monitor catches your eye.`
-			`	Karengo is there, and he's riding a dragon, gripping the ridge of scales around its neck. The dragon is frantically trying to get him off, but deft application of his jetpack is, for now, keeping him on top of the beast. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
+			`	Karengo is riding a dragon, gripping the ridge of scales around its neck. The dragon frantically tries to get him off, but deft application of his jetpack keeps him on top of the beast for now. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
 			`	You activate your engines, and the ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
 	on complete
 		payment 12000 500
@@ -4071,12 +4071,11 @@ mission "Dangerous Games 1"
 				`	"To the Dragonriders!"`
 				`	"To our fallen friends!"`
 				`	"I'm good, thanks."`
-			`	Karengo gives you an unreadable look and lowers his glass.`
-			`	"Your payment, plus Bolek and Jarek's signup fees: <payment>."`
+			`	Karengo gives you an unreadable look, lowers his glass, and says, "Your payment, plus Bolek and Jarek's signup fees: <payment>."`
 			choice
 				`	"Thanks."`
 					goto end
 				`	I can't accept their money. It's not right."`
 			`	Karengo shrugs and doesn't take it back.`
 			label end
-			`	"Maybe I'll see you again sometime, yeah? I'm in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
