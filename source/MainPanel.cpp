@@ -114,8 +114,6 @@ void MainPanel::Step()
 			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
 		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
 			isActive = !DoHelp("fleet harvest tutorial");
-		if(isActive && Preferences::Has("Fighters transfer cargo"))
-			isActive = !DoHelp("fighters transfer cargo");
 		if(isActive && flagship->HasBays())
 			isActive = !DoHelp("try out fighters transfer cargo");
 		bool displayEscortHelp = !Preferences::Has("help: try out fighters transfer cargo");
@@ -139,6 +137,8 @@ void MainPanel::Step()
 			if(isActive && canShowFightersTransferCargoHelp)
 				isActive = !DoHelp("try out fighters transfer cargo");
 		}
+		if(isActive && Preferences::Has("Fighters transfer cargo"))
+			isActive = !DoHelp("fighters transfer cargo");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
