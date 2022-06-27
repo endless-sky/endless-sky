@@ -4028,7 +4028,7 @@ mission "Dangerous Games 2"
 		conversation
 			`As before on Skymoot, Karengo guides you down to a landing spot far away from the local government. "Don't want no interruptions," he says.`
 			`	Despite days of pressuring, you've been unable to get Karengo to tell you exactly what a quoijuu is, other than the slightly ominous, "the biggest fish." He sends a file to your ship computer and grins. "Since it's too late to back out now, it's time to fill you in. Quoijuu aren't the only thing down there; you've also got scyllae, taniwhales, morgawrii, plus some hydrothermal vents, none of which will benefit us if we run into them."`
-			`	"The good news is that there is a path to follow. The bad news is that the only person to make the path public was a bit of a nut. It's all in riddles, and I haven't been able to make head nor tail of them. Look them over and we'll follow your lead. And don't worry too much about it - what's the worst that could happen?"`
+			`	"The good news is that there is a path to follow. The bad news is that the only person to make the path public was a bit of a nut. It's all in riddles, and I haven't been able to make heads or tails of them. Look them over and we'll follow your lead. And don't worry too much about it - what's the worst that could happen?"`
 			choice
 				`	"Ok, I'll take a look."`
 					goto adventure
