@@ -1769,7 +1769,7 @@ system Ablodab
 			period 24
 	object
 		sprite planet/gas5
-		distance 1141.05
+		distance 1376.54
 		period 747.863
 		object
 			sprite planet/tethys-b
@@ -1782,7 +1782,7 @@ system Ablodab
 			period 24.6
 	object
 		sprite planet/cloud5
-		distance 1754.3
+		distance 2252.22
 		period 1425.67
 		object "Silo of Ablodab"
 			sprite planet/station6c
