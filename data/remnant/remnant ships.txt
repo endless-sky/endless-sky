@@ -280,19 +280,19 @@ ship Dromedary
 	engine 32.5 207
 	engine 3 207
 	engine -27.5 207
-	turret 10 -136.5 "Thrasher Turret"
-	turret -21.5 -57.5 "Point Defense Turret"
-	turret -63.5 120 "Thrasher Turret"
-	turret 51 101
-	turret 52.5 143 "Point Defense Turret"
 	gun 65 -111
 		angle 40
 	gun -72 -97.5
 		angle 320
-	gun 78 64
-		angle 90
 	gun -66.5 61
 		angle 270
+	gun 78 64
+		angle 90
+	turret 10 -136.5 "Thrasher Turret"
+	turret -21.5 -57.5 "Point Defense Turret"
+	turret 51 101
+	turret -63.5 120 "Thrasher Turret"
+	turret 52.5 143 "Point Defense Turret"
 	bay "Fighter" -51 -54 under
 	bay "Fighter" 47 -40 under
 	leak "leak" 30 50
@@ -357,7 +357,6 @@ ship "Dromedary" "Dromedary Ghost"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		
 		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
@@ -371,19 +370,19 @@ ship "Dromedary" "Dromedary Ghost"
 	engine 32.5 207
 	engine 3 207
 	engine -27.5 207
-	turret 10 -136.5
-	turret -21.5 -57.5
-	turret -63.5 120
-	turret 51 101
-	turret 52.5 143
 	gun 65 -111 
 		angle 40
 	gun -72 -97.5 
 		angle 320
-	gun 78 64 
-		angle 90
 	gun -66.5 61 
 		angle 270
+	gun 78 64 
+		angle 90
+	turret 10 -136.5
+	turret -21.5 -57.5
+	turret 51 101
+	turret -63.5 120
+	turret 52.5 143
 		
 
 ship "Dromedary" "Dromedary Specter"
@@ -448,19 +447,19 @@ ship "Dromedary" "Dromedary Specter"
 	engine 32.5 207
 	engine 3 207
 	engine -27.5 207
-	turret 10 -136.5
-	turret -21.5 -57.5
-	turret -63.5 120
-	turret 51 101
-	turret 52.5 143
 	gun 65 -111 
 		angle 40
 	gun -72 -97.5 
 		angle 320
-	gun 78 64 
-		angle 90
 	gun -66.5 61 
 		angle 270
+	gun 78 64 
+		angle 90
+	turret 10 -136.5
+	turret -21.5 -57.5
+	turret 51 101
+	turret -63.5 120
+	turret 52.5 143
 
 
 ship "Dromedary" "Dromedary Wreck"
@@ -520,19 +519,19 @@ ship "Dromedary" "Dromedary Wreck"
 	engine 32.5 207
 	engine 3 207
 	engine -27.5 207
-	turret 10 -136.5 "Laser Turret"
-	turret -21.5 -57.5 "Anti-Missile Turret"
-	turret -63.5 120 "Laser Turret"
-	turret 51 101 "Quad Blaster Turret"
-	turret 52.5 143 "Anti-Missile Turret"
 	gun 65 -111 
 		angle 40
 	gun -72 -97.5 
 		angle 320
-	gun 78 64 
-		angle 90
 	gun -66.5 61 
 		angle 270
+	gun 78 64 
+		angle 90
+	turret 10 -136.5 "Laser Turret"
+	turret -21.5 -57.5 "Anti-Missile Turret"
+	turret 51 101 "Quad Blaster Turret"
+	turret -63.5 120 "Laser Turret"
+	turret 52.5 143 "Anti-Missile Turret"
 	bay "Fighter" -51 -54 under
 	leak "leak" 30 50
 	leak "flame" 30 80
