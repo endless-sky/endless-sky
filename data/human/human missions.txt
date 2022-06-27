@@ -4053,8 +4053,8 @@ mission "Laborer"
 	on complete
 		event "laborer payment" 400
 		conversation
-			`The worker you picked up from <origin> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You think that you'd feel more sorry for him if you weren't so eager to get his ceaseless negativity off your ship.`
-			`	He carries his bags to the lowered ramp, then turns back before disembarking. "Thanks for the lift. You're one of the good ones, you know?"`
+			`The worker you picked up from <origin> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You stopped paying attention to what he was saying after a while as he went on for what felt like forever, often repeating himself.`
+			`	Upon arriving, he carries his bags to the lowered ramp, then turns back before disembarking. "Thanks for the lift. You're one of the good ones, you know?"`
 			choice
 				`	"You're welcome. Better luck on this world."`
 					goto luck
