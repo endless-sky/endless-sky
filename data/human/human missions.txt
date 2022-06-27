@@ -3999,32 +3999,33 @@ event "fumbling mugger followup timer"
 
 mission "Dangerous Games 2"
 	name "Karengo's Galactic Adventures"
-	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". He mentioned going underwater and something about a "quoijuu". Bring Karengo and crew to <destination> and then return to <source>."
+	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". He mentioned going underwater and something about a "quoijuu". Bring Karengo and crew to <destination>."
 	minor
 	passengers 9
 	to offer
 		random < 15
 		has "Dangerous Games 1: done"
-	source attributes "frontier" "pirate" "rim"
-	stopover Poseidos
-	payment 20000 500
+	source 
+		attributes "frontier" "pirate" "rim"
+	destination Poseidos
 	on offer
 		conversation
-			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.
-			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.
-			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."
-			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.
+			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.`
+			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.`
+			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."`
+			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
 			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well...an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. You've got a waterproof lander, right?"`
 			choice
 				`	"Uh, yeah. I think so.`
 				`	"Of course."`
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
-			`	Karengo laughs. "Those landers are made to handle anything, it'll be fine. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."
+			`	Karengo laughs. "Those landers are made to handle anything, it'll be fine. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
 			`	"Oh, nearly forgot. We're headed to <destination>. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and shields up. We leave at noon!"`
-			on stopover
+			on complete
+				payment 20000 500
 				conversation
-					`As before on Skymoot, Karengo guides you down to a landing spot far away from the local government. "Don't want no interruptions," he says.
+					`As before on Skymoot, Karengo guides you down to a landing spot far away from the local government. "Don't want no interruptions," he says.`
 					`	Despite days of pressuring, you've been unable to get Karengo to tell you exactly what a quoijuu is, other than the slightly ominous, "the biggest fish". He sends a file to your ship computer and grins. "Since it's too late to back out now, it's time to fill you in. Quoijuu aren't the only thing down there; you've also got scyllae, taniwhales, morgawrii, plus some hydrothermal vents, none of which will benefit us if we run into them."`
 					`	"The good news is that there is a path to follow. The bad news is that the only person to make the path public was a bit of a nut. It's all in riddles, and I haven't been able to make head nor tail of them. Look them over and we'll follow your lead. And don't worry too much about it - what's the worst that could happen?"`
 					choice
@@ -4033,13 +4034,13 @@ mission "Dangerous Games 2"
 						`	"We could get lost and then die."`
 					`	Karengo smiles in a way that is only reminiscent of reassuring.`
 					label adventure
-					`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other out to put on wetsuits, when Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.
+					`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other out to put on wetsuits, when Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
 					`	At your touch, the ship slowly sinks below the waves. As Karengo warned you about on the way over, most of your navigation systems quickly flash red warnings and go offline; there is some unknown interference that overwhelm your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working. A young couple, Balazs and Jorma, uneasily exchange glances.`
 					`	EIGHT KILOMETERS, the depth meter reads.`
 					`	TEN KILOMETERS.`
 					`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 					`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they needs anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-					`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. A fan of 10 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.
+					`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. A fan of 10 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 					`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 					`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
 					choice
@@ -4127,7 +4128,7 @@ mission "Dangerous Games 2"
 						set "Mussie dead"
 					label rollcall
 					branch dead1
-					`	has "Elias and Taddese dead"
+						has "Elias and Taddese dead"
 					`	Karengo sounds a roll call over the radio. Mussie never reports in, and his subpod beacon isn't responding. "Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead."`
 					`	Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 					goto riddlethree
@@ -4147,13 +4148,13 @@ mission "Dangerous Games 2"
 						`	(Go east.)`
 							goto east5
 						`	(Go south.)`
-					`	You smoothly turn the ship to the right, heading south.
+					`	You smoothly turn the ship to the right, heading south.`
 					`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 					`	The result, however, is a surprise. The display shows a massive object directly below you...as well as as two leviathan-sized *things* back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of human-sized teeth line their jaws.`
 					`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
 					goto treasure
 					label north5
-					`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.
+					`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.`
 					`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 					`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of human-sized teeth line their jaws.`
 					`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind; good enough. If one of those rams the ship, nobody is going home anyway.`
@@ -4204,7 +4205,7 @@ mission "Dangerous Games 2"
 						`	(Go east.)`
 							goto east4
 						`	(Go south.)`
-					`	You smoothly turn the ship to the right, heading south.
+					`	You smoothly turn the ship to the right, heading south.`
 					`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 					`	The result, however, is a surprise. The display shows a massive object directly below you...as well as as two leviathan-sized *things* back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of human-sized teeth line their jaws.`
 					`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
