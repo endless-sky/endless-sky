@@ -584,13 +584,10 @@ mission "Scientists at the Pub after a Conference"
 				decline
 
 
-mission "System-Bound Shuttle"
+mission "Sol-Bound Shuttle"
 	minor
 	source 
-		or
-			"Earth"
-			"Mars"
-			"Luna"
+		system "Sol"
 	to offer
 		random < 1
 	on offer
@@ -608,7 +605,7 @@ mission "System-Bound Shuttle"
 				`	"Doesn't that get boring?"`
 					goto boring
 				`	"Is there really enough travel within Sol that you can make a living off of it?"`
-			`	"You'd be suprised. There's a lot of people in this system after all, and a lot of those people have enough money to leave Earth but not enough to leave Sol. It's a nice niche I've carved out for myself."`
+			`	"You'd be surprised. There's a lot of people in this system after all, and a lot of those people have enough money to leave Earth but not enough to leave Sol. It's a nice niche I've carved out for myself."`
 				goto end
 			label boring
 			`	"For you, maybe. I can tell by your accent that you've done a bit of travelling from your home planet. I like staying closer to home, though. With all the instability in the galaxy - pirates, aliens, and who knows what else - staying in Sol keeps me safe. Call me paranoid, but being in a place where I don't have to worry about that is something I value." She eyes a ship to the side that's having its hull repaired. The damage appears to have been inflicted by a beam weapon.`
