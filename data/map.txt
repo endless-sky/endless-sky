@@ -1769,8 +1769,8 @@ system Ablodab
 			period 24
 	object
 		sprite planet/gas5
-		distance 1141.05
-		period 747.863
+		distance 1376.54
+		period 990.943
 		object
 			sprite planet/tethys-b
 			distance 263
@@ -1782,8 +1782,8 @@ system Ablodab
 			period 24.6
 	object
 		sprite planet/cloud5
-		distance 1754.3
-		period 1425.67
+		distance 2252.22
+		period 2073.87
 		object "Silo of Ablodab"
 			sprite planet/station6c
 				scale 0.5
@@ -22786,8 +22786,8 @@ system "Silver Bell"
 		period 503.253
 	object "Chosen Nexus"
 		sprite planet/cloud3
-		distance 1355.87
-		period 607.680
+		distance 1500
+		period 707.106
 	object
 		sprite planet/gas3-b
 		distance 2442.31
