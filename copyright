@@ -1402,6 +1402,7 @@ Files:
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/ship/surveillance?drone*
  images/thumbnail/auxiliary*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
@@ -1410,6 +1411,7 @@ Files:
  images/thumbnail/gunboat*
  images/thumbnail/lance*
  images/thumbnail/rainmaker*
+ images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
