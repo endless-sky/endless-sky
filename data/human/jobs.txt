@@ -3631,3 +3631,18 @@ mission "Transport tourists to Luna"
 		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
+mission "Transport seasonal workers to Earth"
+	job
+	repeat
+	description "This group of <bunks> temporary farm workers are looking for transportation back home to Earth. They will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source "Mars"
+	destination "Earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
