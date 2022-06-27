@@ -4014,7 +4014,7 @@ mission "Dangerous Games 2"
 			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.`
 			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."`
 			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
-			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well...an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. You've got a waterproof lander, right?"`
+			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. You've got a waterproof lander, right?"`
 			choice
 				`	"Uh, yeah. I think so.`
 				`	"Of course."`
@@ -4026,7 +4026,7 @@ mission "Dangerous Games 2"
 		payment 20000 500
 		conversation
 			`As before on Skymoot, Karengo guides you down to a landing spot far away from the local government. "Don't want no interruptions," he says.`
-			`	Despite days of pressuring, you've been unable to get Karengo to tell you exactly what a quoijuu is, other than the slightly ominous, "the biggest fish". He sends a file to your ship computer and grins. "Since it's too late to back out now, it's time to fill you in. Quoijuu aren't the only thing down there; you've also got scyllae, taniwhales, morgawrii, plus some hydrothermal vents, none of which will benefit us if we run into them."`
+			`	Despite days of pressuring, you've been unable to get Karengo to tell you exactly what a quoijuu is, other than the slightly ominous, "the biggest fish." He sends a file to your ship computer and grins. "Since it's too late to back out now, it's time to fill you in. Quoijuu aren't the only thing down there; you've also got scyllae, taniwhales, morgawrii, plus some hydrothermal vents, none of which will benefit us if we run into them."`
 			`	"The good news is that there is a path to follow. The bad news is that the only person to make the path public was a bit of a nut. It's all in riddles, and I haven't been able to make head nor tail of them. Look them over and we'll follow your lead. And don't worry too much about it - what's the worst that could happen?"`
 			choice
 				`	"Ok, I'll take a look."`
@@ -4034,12 +4034,12 @@ mission "Dangerous Games 2"
 				`	"We could get lost and then die."`
 			`	Karengo smiles in a way that is only reminiscent of reassuring.`
 			label adventure
-			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other out to put on wetsuits, when Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
-			`	At your touch, the ship slowly sinks below the waves. As Karengo warned you about on the way over, most of your navigation systems quickly flash red warnings and go offline; there is some unknown interference that overwhelm your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working. A young couple, Balazs and Jorma, uneasily exchange glances.`
+			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
+			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working. A young couple, Balazs and Jorma, uneasily exchange glances.`
 			`	EIGHT KILOMETERS, the depth meter reads.`
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
-			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they needs anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
+			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. A fan of 10 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
@@ -4055,8 +4055,8 @@ mission "Dangerous Games 2"
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
 			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
-			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
-			`	Shuttering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+			`	Then, without warning, a proximity sensor goes off, at the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto riddletwo
 			label east
 			action
@@ -4070,10 +4070,10 @@ mission "Dangerous Games 2"
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the south. The swirling clouds of emissions seem to get thicker and thicker, until there's no reason to look at anything but the ship compass. The screen beeps once and a blip disappears.`
 			`	"Elias?" Karengo asks. "Your transmitter just cut out." When there's no response, he swears. "Everybody go back." he broadcasts. "Something's wrong."`
-			`	You spin your ship around and hear a loud crunch come from outside - your shields have just impacted something large and solid. The outer lights shine off falling stone and it suddenly it all comes together; you've led everybody through a field of hydrothermal vents that rise for tens of meters off the bottom, obscured by their own noxious clouds. You guide your ship back to safety, toppling more underwater smokestacks as you go.`
+			`	You spin your ship around and hear a loud crunch come from outside - your shields have just impacted something large and solid. The outer lights shine off falling stone and, suddenly, it all comes together; you've led everybody through a field of hydrothermal vents that rise for tens of meters off the bottom, obscured by their own noxious clouds. You guide your ship back to safety, toppling more underwater smokestacks as you go.`
 				goto riddletwo
 			label north
-			`	You turn the ship to the north and glide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
+			`	You turn the ship to the north and guide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
 			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way to we go next, <first>?"`
 			label riddletwo
 			branch dead
@@ -4090,7 +4090,7 @@ mission "Dangerous Games 2"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
 			`	"Last one there's a rotten fish eye!" shouts Mussie, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
 			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
-			`	Shuttering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto rollcall
 			label east1
 			`	"A bee-less beast," you mutter to yourself. "A poet, this writer was not." Turning east, the ship powers forward, cautious but confident.`
@@ -4169,7 +4169,7 @@ mission "Dangerous Games 2"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
 			`	"Last one there's a rotten fish eye!" shouts Mussie, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
 			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
-			`	Shuttering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto failure
 			label dead2
 			choice
@@ -4243,7 +4243,7 @@ mission "Dangerous Games 2"
 					has "Jorma and Daciana dead"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
-			`	An unknowable something has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
+			`	Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
 			`	It's slow work, but the group is able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work and you end up with a sizable haul. At last, you are done.`
 				goto return
 			label alldead
@@ -4276,6 +4276,6 @@ mission "Dangerous Games 2"
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>.`
 			`	The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person.`
 			`	However, they've proven to only grow near a power source that has been submerged in water from <planet>. Efforts to stimulate growth through other means have all failed.`
-			`	If cultivated, they could significantly boost the effective production of drugs back on <planet>.`
+			`	If cultivated, they could significantly boost the production of drugs for Karengo's operations.`
 			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences'. Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
 				decline
