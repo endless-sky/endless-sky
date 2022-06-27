@@ -1066,6 +1066,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ image/effect/firestorm?ring*
+Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
+License: CC0 (Creative Commons Zero)/Public-Domain
+
+Files:
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1449,8 +1454,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
 Files:
- images/ship/raiderxlii*
- images/thumbnail/raiderxlii*
+ images/ship/raider?xlii*
+ images/thumbnail/raider?xlii*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
