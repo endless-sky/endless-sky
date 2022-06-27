@@ -4194,9 +4194,9 @@ mission "Dangerous Games 2"
 			`	"Quoijuu," says Karengo simply.`
 				goto failure
 			label east3
-			`	By now, the proximity alarm is familiar to you, as is the solid wall rushing toward your already-slowing ship and the feeling as the ship's subpod tracker loses two more dots, leaving a single remaining subpod; Karengo's.`
 			action
 				set "Jorma and Daciana dead"
+			`	By now, the proximity alarm is familiar to you, as is the solid wall rushing toward your already-slowing ship and the feeling as the ship's subpod tracker loses two more dots, leaving a single remaining subpod; Karengo's.`
 				goto failure
 			label dead3
 			choice
@@ -4232,11 +4232,15 @@ mission "Dangerous Games 2"
 			`	A 3D holo floats on the console, displaying the smooth lines of a starship soaring down into the depths. The jagged edges suggest that this is only a part of a much larger vessel, although it's hard to guess at the size of the whole ship from the fragment.`
 			`	Your craft moves closer to investigate and you send out another ping, this time more focused, and the holographic ship display flickers and refines. The outlines of sealed entrances are visible, unnecessary with the ship torn apart as it is. Sea growth is mostly absent from the hull, to your surprise, except for a radial pattern of some sort of crystal-shaped growth. Infrared imaging shows a dim glow of heat at its center.`
 			branch somesurvive
-				has "Mussie dead" "Elias and Taddese dead" "Jorma and Daciana dead"
+				or 
+					has "Mussie dead" 
+					has "Elias and Taddese dead"
+					has "Jorma and Daciana dead"
 			branch alldead
-				has "Mussie dead"
-				has "Elias and Taddese dead"
-				has "Jorma and Daciana dead"
+				and
+					has "Mussie dead"
+					has "Elias and Taddese dead"
+					has "Jorma and Daciana dead"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
 			`	An unknowable something has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
@@ -4247,7 +4251,7 @@ mission "Dangerous Games 2"
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
 			`	An unknowable something has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
 			`	It's slow work, but you and Karengo are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult. You wish there were others to help gather more salvage, but, at last, you are done.`
-			goto return
+				goto return
 			label somesurvive
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
@@ -4256,9 +4260,10 @@ mission "Dangerous Games 2"
 			label return
 			`	Carefully, you navigate back to the surface, the knowledge that you've made it through once doing absolutely nothing to help with the very rational fear of the depths. Walls seem to loom just out of sight, and massive, yellow eyes seem to appear, then dissolve into tricks of the light.`
 			branch onlyplayer
-				has "Mussie dead"
-				has "Elias and Taddese dead"
-				has "Jorma and Daciana dead"
+				and
+					has "Mussie dead"
+					has "Elias and Taddese dead"
+					has "Jorma and Daciana dead"
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once reunited with your fleet, a small flock of scientists haul the machine to the engineering section for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
