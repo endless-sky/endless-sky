@@ -22786,7 +22786,7 @@ system "Silver Bell"
 		period 503.253
 	object "Chosen Nexus"
 		sprite planet/cloud3
-		distance 1355.87
+		distance 1500
 		period 607.680
 	object
 		sprite planet/gas3-b
