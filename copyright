@@ -1422,6 +1422,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -1443,10 +1444,21 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sounds/remnant?afterburner*
+Copyright: Saugia <https://github.com/Saugia>
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
  images/icon/firelight*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
+ images/planet/station4c*
+ images/planet/station5c*
+ images/planet/station6c*
+ images/planet/station7c*
+ images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
 Copyright: Saugia <https://github.com/Saugia>
