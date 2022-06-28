@@ -14,6 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <thread>
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 using namespace std;
 
 
@@ -56,7 +60,11 @@ void FrameTimer::Wait()
 		if(now + step + maxLag < next)
 			next = now + step;
 
+#ifdef _WIN32
+		Sleep(chrono::duraction_cast<chrono::milliseconds>(next - now).count());
+#else
 		this_thread::sleep_until(next);
+#endif
 		now = chrono::steady_clock::now();
 	}
 	// If the lag is too high, don't try to do catch-up.
