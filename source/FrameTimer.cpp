@@ -15,7 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 
 #ifdef _WIN32
-#include <Windows.h>
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 #endif
 
 using namespace std;
