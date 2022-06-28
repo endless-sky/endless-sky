@@ -34,7 +34,7 @@ test "Sell 1 ship"
 				"ships: Fighter" == 1
 				"ships: Heavy Warship" == 1
 				"ships: Medium Warship" == 1
-				"flagship: Finch" == 1
+				"flagship model: Finch" == 1
 		
 
 test "Sell 2 ships"
@@ -53,7 +53,7 @@ test "Sell 2 ships"
 				"ships: Fighter" == 0
 				"ships: Heavy Warship" == 1
 				"ships: Medium Warship" == 1
-				"flagship: Bactrian" == 1
+				"flagship model: Bactrian" == 1
 
 
 test "Sell 3 ships"
@@ -73,4 +73,4 @@ test "Sell 3 ships"
 				"ships: Fighter" == 0
 				"ships: Heavy Warship" == 0
 				"ships: Medium Warship" == 1
-				"flagship: Aerie" == 1
+				"flagship model: Aerie" == 1
