@@ -3998,17 +3998,17 @@ event "fumbling mugger followup timer"
 
 
 mission "Dangerous Games 2"
+	minor
 	name "Karengo's Galactic Adventures"
 	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
-	minor
+	source 
+		attributes "frontier" "pirate" "rim"
+	destination Poseidos
+	cargo "subpods" 9
 	passengers 9
 	to offer
 		random < 15
 		has "Dangerous Games 1: done"
-	source 
-		attributes "frontier" "pirate" "rim"
-	cargo "subpods" 9
-	destination Poseidos
 	on offer
 		conversation
 			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.`
@@ -4041,7 +4041,7 @@ mission "Dangerous Games 2"
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. A fan of 10 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 10 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
 			choice
