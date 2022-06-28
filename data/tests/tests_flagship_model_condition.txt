@@ -7,14 +7,14 @@ test "Clear flagship model condition"
 		call "Load First Savegame"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
-		assert
-			"flagship model: Finch" == 1
-		call "Land"
-		call "Sell first ship"
-		call "Depart"
 		# assert
 		#	"flagship model: Finch" == 1
 		# I think failing here is a known issue.
+		call "Land"
+		call "Sell first ship"
+		call "Depart"
+		assert
+			"flagship model: Finch" == 1
 		call "Land"
 		call "Sell first ship"
 		call "Depart"
