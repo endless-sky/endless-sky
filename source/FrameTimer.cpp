@@ -61,7 +61,7 @@ void FrameTimer::Wait()
 			next = now + step;
 
 #ifdef _WIN32
-		Sleep(chrono::duraction_cast<chrono::milliseconds>(next - now).count());
+		Sleep(chrono::duration_cast<chrono::milliseconds>(next - now).count());
 #else
 		this_thread::sleep_until(next);
 #endif
