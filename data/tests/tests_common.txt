@@ -585,6 +585,15 @@ test "Depart"
 			"test: Depart: zoom_restore_counter" > 0
 
 
+test "Land"
+	status partial
+	description "Helper ffunction to land on the first selected planet. If that planet does not allow the ship to land, the test will fail."
+	sequence
+		input
+			key l
+		watchdog 12000
+
+
 test "Sell first ship"
 	status partial
 	description "Test procedure that handles selling of the first ship in the list."
