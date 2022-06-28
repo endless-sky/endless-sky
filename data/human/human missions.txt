@@ -4078,6 +4078,7 @@ mission "Laborer Payment"
 			`You receive a payment of <payment> from the down-on-his-luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and make me come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
 				decline
 
+
 mission "Riley"
 	name "Visiting Home"
 	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
@@ -4208,4 +4209,3 @@ mission "Riley"
 			label end
 				You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
-
