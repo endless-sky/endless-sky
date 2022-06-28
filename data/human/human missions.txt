@@ -4088,7 +4088,7 @@ mission "Saving Artifacts 1"
 		random < 10
 		has "fw conservatory founded"
 	source "Earth"
-	destination "Alexandria Station"
+	destination "Alexandria"
 	on offer
 		conversation
 			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
