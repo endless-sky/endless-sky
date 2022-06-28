@@ -4119,7 +4119,7 @@ mission "Saving Artifacts 1"
 mission "Saving Artifacts 2"
 	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <source>, where they will be safe."
 	minor
-	source "Alexandria Station"
+	source "Alexandria"
 	destination "Greenrock"
 	to offer
 		has "Saving Artifacts 1: done"
@@ -4176,9 +4176,9 @@ mission "Saving Artifacts 2"
 				`	"I didn't realize the great Lokust was such a weakling."`
 			`	He becomes visibily enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will get to use them."`
 			`	The communication cuts off. "He always uses that same line," the clerk says, rolling his eyes.`
-				apply
-					set "Duel Lokust"
-				decline
+			apply
+				set "Duel Lokust"
+			decline
 			label pay
 			action
 				payment -500000
