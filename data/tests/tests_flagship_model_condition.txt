@@ -3,7 +3,7 @@ test "Land - Clear flagship model condition helper"
 	description "Helper for landing while running the Clear flagship model condition test."
 	sequence
 		input
-			command landing
+			command land
 		label landing
 		branch landing
 			"flagship planet: New Boston" < 1
