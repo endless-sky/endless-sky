@@ -1,3 +1,14 @@
+test "Land - Clear flagship model condition helper"
+	status partial
+	description "Helper for landing while running the Clear flagship model condition test."
+	sequence
+		input
+			command landing
+		label landing
+		branch landing
+			"flagship planet: New Boston" < 1
+
+
 test "Clear flagship model condition"
 	status active
 	description "Test that the flagship model condition is correctly cleared."
@@ -7,22 +18,21 @@ test "Clear flagship model condition"
 		call "Load First Savegame"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
-		# assert
-		#	"flagship model: Finch" == 1
-		# I think failing here is a known issue.
-		call "Land"
+		assert
+			"flagship model: Finch" == 1
+		call "Land - Clear flagship model condition helper"
 		call "Sell first ship"
 		call "Depart"
 		assert
 			"flagship model: Finch" == 1
-		call "Land"
+		call "Land - Clear flagship model condition helper"
 		call "Sell first ship"
 		call "Depart"
 		assert
 			and
 				"flagship model: Bactrian" == 1
 				"flagship model: Finch" == 0
-		call "Land"
+		call "Land - Clear flagship model condition helper"
 		call "Sell first ship"
 		call "Depart"
 		assert
