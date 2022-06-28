@@ -325,7 +325,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// When flying around, all test processing must be handled in the
 			// thread-safe section of Engine. When not flying around (and when no
 			// Engine exists), then it is safe to execute the tests from here.
-			auto mainPanel = gamePanels.Root().get();
+			auto mainPanel = gamePanels.Root();
 			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
 				mainPanel->SetTestContext(testContext);
 			else
@@ -631,11 +631,15 @@ void InitConsole()
 		return;
 
 	// Perform console redirection.
-	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+	FILE *fstdout, *fstderr, *fstdin;
+	freopen_s(&fstdout, "CONOUT$", "w", stdout);
+	freopen_s(&fstderr, "CONOUT$", "w", stderr);
+	freopen_s(&fstdin, "CONIN$", "r", stdin);
+	if(redirectStdout && fstdout)
 		setvbuf(stdout, nullptr, _IOFBF, 4096);
-	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+	if(redirectStderr && fstderr)
 		setvbuf(stderr, nullptr, _IOLBF, 1024);
-	if(redirectStdin && freopen("CONIN$", "r", stdin))
+	if(redirectStdin && fstdin)
 		setvbuf(stdin, nullptr, _IONBF, 0);
 }
 #endif
