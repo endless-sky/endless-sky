@@ -3288,8 +3288,8 @@ ship "Surveillance Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -5 29
-	engine 5 29
+	engine -3 29
+	engine 3 29
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
