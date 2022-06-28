@@ -160,7 +160,7 @@ mission "From Earth Day celebration [1]"
 mission "Transport farmers to Mars"
 	job
 	repeat
-	description "This group of <bunks> factory workers are hoping to start a new on <planet> as farmers. They will pay you <payment> to take them there."
+	description "This group of <bunks> factory workers are hoping to start anew on <planet> as farmers. They will pay you <payment> to take them there."
 	passengers 2 2 .8
 	to offer
 		random < 50
@@ -182,7 +182,7 @@ mission "Transport tourists to Luna"
 	to offer
 		random < 50
 	source "Earth"
-	destination "Mars"
+	destination "Luna"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete

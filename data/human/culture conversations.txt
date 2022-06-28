@@ -596,10 +596,8 @@ mission "Sol-Bound Shuttle"
 			choice
 				`	"Where's your hyperdrive?"`
 				`	"How are you going to travel anywhere with that ship?"`
-					goto ask
 				`	(Go back to your ship.)`
 					decline
-			label ask
 			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
 			choice
 				`	"Doesn't that get boring?"`
