@@ -62,6 +62,9 @@ void FrameTimer::Wait()
 		if(now + step + maxLag < next)
 			next = now + step;
 
+		// The Winpthreads implementation of sleep on MinGW > 8 is inaccurate when
+		// compared to the native Windows Sleep function.
+		// See the thread starting with https://sourceforge.net/p/mingw-w64/mailman/message/37013810/.
 #ifdef _WIN32
 		Sleep(chrono::duration_cast<chrono::milliseconds>(next - now).count());
 #else
