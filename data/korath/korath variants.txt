@@ -43,7 +43,6 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 
 
 ship "Korath Dredger" "Korath Dredger (Crippled)"
-	sprite "ship/dredger"
 	outfits
 		"Korath Digger Turret" 2
 		"Korath Banisher"
@@ -213,8 +212,37 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 
 
 
+ship "Korath Raider" "Korath Raider (Blaze)"
+	outfits
+		"Korath Blaze-Pike" 4
+		"Korath Digger Turret" 1
+		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+
+
 ship "Korath Raider" "Korath Raider (Crippled)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
@@ -247,7 +275,6 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 
 
 ship "Korath Raider" "Korath Raider (Ember)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -282,7 +309,6 @@ ship "Korath Raider" "Korath Raider (Ember)"
 
 
 ship "Korath Raider" "Korath Raider (Ember Shunt)"
-	sprite "ship/raider"
 	outfits
 		"Korath Shunt-Strike" 4
 		"Korath Banisher"
@@ -316,7 +342,6 @@ ship "Korath Raider" "Korath Raider (Ember Shunt)"
 
 
 ship "Korath Raider" "Korath Raider (Hyperdrive)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -348,42 +373,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Inferno)"
-	sprite "ship/raider"
-	outfits
-		"Korath Grab-Strike" 2
-		"Korath Digger Turret" 2
-		"Korath Inferno"
-		"Korath Warder"
-		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
-		
-		"Triple Plasma Core"
-		"Large Heat Shunt" 3
-		"Systems Core (Medium)"
-		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		
-		"Afterburner (Asteroid Class)"
-		"Bow Drive (Meteor Class)"
-		"Steering (Planetary Class)"
-		"Thruster (Planetary Class)"
-		"Jump Drive"
-	
-	gun "Firelight Missile Bank"
-	gun "Firelight Missile Bank"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
-	turret "Korath Inferno"
-	turret "Korath Warder"
-
-
 
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70

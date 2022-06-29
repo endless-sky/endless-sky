@@ -201,7 +201,7 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 	variant 4
-		"Korath Raider (Inferno)"
+		"Korath Raider (Blaze)"
 		"Korath Chaser" 2
 
 fleet "Korath Ember Waste Raid"
@@ -273,7 +273,7 @@ fleet "Korath Home"
 		"Korath Chaser (Expeller)" 4
 	variant 1
 		"Korath Dredger (Inferno)"
-		"Korath Raider (Inferno)"
+		"Korath Raider (Blaze)"
 		"Korath Chaser" 4
 		"Korath Chaser (Expeller)" 2
 
@@ -288,11 +288,11 @@ fleet "Korath Large Raid"
 		"Korath Raider" 2
 		"Korath Chaser"  4
 	variant 5
-		"Korath Raider (Inferno)" 2
+		"Korath Raider (Blaze)" 2
 		"Korath Chaser" 4
 	variant 3
 		"Korath Dredger (Inferno)"
-		"Korath Raider"
+		"Korath Raider (Blaze)"
 		"Korath Chaser" 6
 
 fleet "Korath Ember Waste Raid"
