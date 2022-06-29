@@ -8,6 +8,40 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Mining Drone"
+	sprite "ship/mining drone"
+	thumbnail "thumbnail/mining drone"
+	attributes
+		category "Drone"
+		"cost" 50000
+		"shields" 1000
+		"hull" 800
+		"automaton" 1
+		"mass" 15
+		"drag" .53
+		"heat dissipation" .9
+		"outfit space" 53
+		"weapon capacity" 0
+		"engine capacity" 28
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"Energy Blaster"
+
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+	gun 0 0
+	engine -5 29
+	engine 5 29
+	explode "tiny explosion" 15
+	description "Thing."
+
 ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
@@ -3294,6 +3328,8 @@ ship "Sunder"
 	engine -14 55
 	gun -19 -55 "Energy Blaster"
 	gun 19 -55 "Energy Blaster"
+	bay "Drone" -43.5 2
+	bay "Drone" 43.5 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30

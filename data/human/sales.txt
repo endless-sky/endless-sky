@@ -87,6 +87,7 @@ shipyard "Syndicate Basics"
 	"Wasp"
 	"Freighter"
 	"Sunder"
+	"Mining Drone"
 
 shipyard "Syndicate Advanced"
 	"Bulk Freighter"
