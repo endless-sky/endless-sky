@@ -1342,6 +1342,7 @@ Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/coalition?flare/*
  images/effect/explosion/pug/*
+ images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/pug?flare/*
