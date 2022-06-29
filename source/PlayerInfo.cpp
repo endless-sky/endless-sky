@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <ctime>
+#include <functional>
 #include <iterator>
 #include <limits>
 #include <sstream>
@@ -2550,7 +2551,7 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored.
-	auto mit = partition(missions.begin(), missions.end(), [](const Mission &m) { return m.IsValid(); });
+	auto mit = partition(missions.begin(), missions.end(), mem_fn(&Mission::IsValid));
 	if(mit != missions.end())
 		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
 
