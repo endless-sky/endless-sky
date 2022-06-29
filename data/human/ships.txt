@@ -40,6 +40,7 @@ ship "Mining Drone"
 	engine -5 29
 	engine 5 29
 	explode "tiny explosion" 15
+	"final explode" "final explosion small"
 	description "Thing."
 
 ship "Aerie"
