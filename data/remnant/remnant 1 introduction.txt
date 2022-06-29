@@ -359,8 +359,8 @@ mission "Remnant: Defense 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger (Crippled)"
-				"Korath Chaser (Expeller)" 4
+				"Korath Raider (Crippled)"
+				"Korath Chaser" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on visit
 		dialog `You have returned to <planet>, but you haven't deployed the surveillance satellite yet. Return to <waypoints> and make sure that all of the Korath there have been eliminated.`
