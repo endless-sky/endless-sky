@@ -583,6 +583,9 @@ test "Depart"
 		input
 		branch zoom_restore_loop
 			"test: Depart: zoom_restore_counter" > 0
+		# Clean-up temporary variables
+		apply
+			clear "test: Depart: zoom_restore_counter"
 
 
 test "Sell first ship"
