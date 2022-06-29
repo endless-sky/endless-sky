@@ -83,6 +83,9 @@ fleet "Large Southern Merchants"
 		"Hawk"
 	variant 10
 		"Freighter (Fancy)"
+		"Sunder"
+	variant 10
+		"Freighter (Fancy)"
 		"Hawk"
 	variant 30
 		"Freighter" 2
@@ -172,6 +175,8 @@ fleet "Small Core Merchants"
 		"Star Barge (Armed)"
 	variant 30
 		"Freighter"
+	variant 20
+		"Sunder"
 	variant 10
 		"Freighter (Fancy)"
 	variant 10
@@ -268,6 +273,8 @@ fleet "Large Core Merchants"
 		"Container Transport (Heavy)"
 	variant 4
 		"Container Transport (Proton)"
+	variant 4
+		"Sunder" 2
 	variant 20
 		"Star Barge (Armed)" 3
 	variant 8
@@ -479,6 +486,9 @@ fleet "Small Northern Merchants"
 	variant 20
 		"Freighter"
 		"Shuttle" 4
+	varient 12
+		"Shuttle" 2
+		"Sunder" 2
 	variant 6
 		"Freighter"
 		"Berserker"
