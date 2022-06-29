@@ -3260,47 +3260,47 @@ ship "Star Queen"
 
 
 
-	ship "Sunder"
-		sprite "ship/sunder"
-		thumbnail "thumbnail/sunder"
-		attributes
-			category "Light Freighter"
-			"cost" 600000
-			"shields" 2000
-			"hull" 1000
-			"required crew" 2
-			"bunks" 4
-			"mass" 130
-			"drag" 0.8
-			"heat dissipation" .7
-			"fuel capacity" 500
-			"cargo space" 80
-			"outfit space" 200
-			"weapon capacity" 15
-			"engine capacity" 90
-		outfits
-			"Energy Blaster" 2
+ship "Sunder"
+	sprite "ship/sunder"
+	thumbnail "thumbnail/sunder"
+	attributes
+		category "Light Freighter"
+		"cost" 600000
+		"shields" 2000
+		"hull" 1000
+		"required crew" 2
+		"bunks" 4
+		"mass" 130
+		"drag" 0.8
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 200
+		"weapon capacity" 15
+		"engine capacity" 90
+	outfits
+		"Energy Blaster" 2
 
-			"nGVF-CC Fuel Cell"
-			"LP036a Battery Pack"
-			"D23-QP Shield Generator"
-			"Asteroid Scanner"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Asteroid Scanner"
 
-			"X3200 Ion Steering"
-			"X3700 Ion Thruster"
-			"Hyperdrive"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+		"Hyperdrive"
 
-		engine 14 55
-		engine -14 55
-		gun -19 -55 "Energy Blaster"
-		gun 19 -55 "Energy Blaster"
-		leak "leak" 50 50
-		leak "flame" 50 80
-		leak "big leak" 90 30
-		explode "tiny explosion" 10
-		explode "small explosion" 25
-		"final explode" "final explosion medium"
-		description "The Sunder is the latest ugly-but-efficient model from the Syndicate. It is classified as a light freighter, but was designed and used for mining. As such, it has strong engines and a relatively large cargo bay."
+	engine 14 55
+	engine -14 55
+	gun -19 -55 "Energy Blaster"
+	gun 19 -55 "Energy Blaster"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	"final explode" "final explosion medium"
+	description "The Sunder is the latest ugly-but-efficient model from the Syndicate. It is classified as a light freighter, but was designed and used for mining. As such, it has strong engines and a relatively large cargo bay."
 
 
 
