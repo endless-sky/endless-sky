@@ -2550,13 +2550,13 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored.
-	auto isInvalidMission = [](const Mission& m) noexcept -> bool { return !m.IsValid(); };
-	auto mit = remove_if(missions.begin(), missions.end(), isInvalidMission);
+	auto mit = partition(missions.begin(), missions.end(), [](const Mission &m) { return m.IsValid(); });
 	if(mit != missions.end())
 		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
 
 	// Invalid available jobs or missions are erased (since there is no guarantee
 	// the player will be on the correct planet when a plugin is re-added).
+	auto isInvalidMission = [](const Mission& m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
 }
