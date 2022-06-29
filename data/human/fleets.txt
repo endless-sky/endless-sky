@@ -486,7 +486,7 @@ fleet "Small Northern Merchants"
 	variant 20
 		"Freighter"
 		"Shuttle" 4
-	varient 12
+	variant 12
 		"Shuttle" 2
 		"Sunder" 2
 	variant 6
