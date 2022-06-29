@@ -2087,7 +2087,7 @@ void Ship::DoGeneration()
 					carried.emplace_back(1. - bay.ship->Health(), bay.ship.get());
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
-				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
+				? +[] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
 					{ return lhs.first > rhs.first; }
 				// The default strategy is to prioritize the healthiest ship first, in
 				// order to get fighters back out into the battle as soon as possible.
