@@ -152,8 +152,8 @@ ship "Korath Raider"
 
 
 ship "Korath Raider Mark XLII"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
+	sprite "ship/raider xlii"
+	thumbnail "thumbnail/raider xlii"
 	attributes
 		category "Medium Warship"
 		"cost" 22895000
