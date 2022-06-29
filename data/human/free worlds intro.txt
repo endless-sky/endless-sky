@@ -11,14 +11,14 @@
 mission "Pact Recon 0"
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
-	waypoint "Alniyat"
-	waypoint "Han"
-	waypoint "Atria"
-	waypoint "Lesath"
 	source
 		attributes "south"
 		not government "Pirate"
 	destination "Glaze"
+	waypoint "Alniyat"
+	waypoint "Han"
+	waypoint "Atria"
+	waypoint "Lesath"
 	to offer
 		random < 60
 		not "event: war begins"
@@ -73,14 +73,14 @@ mission "Pact Recon 1"
 	landing
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
-	waypoint "Wei"
-	waypoint "Alnasl"
-	waypoint "Eber"
-	waypoint "Alpha Arae"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
 		not government "Pirate"
 	destination "Glaze"
+	waypoint "Wei"
+	waypoint "Alnasl"
+	waypoint "Eber"
+	waypoint "Alpha Arae"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -101,14 +101,14 @@ mission "Pact Recon 2"
 	landing
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
-	waypoint "Men"
-	waypoint "Antares"
-	waypoint "Shaula"
-	waypoint "Nunki"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
 		not government "Pirate"
 	destination "Glaze"
+	waypoint "Men"
+	waypoint "Antares"
+	waypoint "Shaula"
+	waypoint "Nunki"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -129,14 +129,14 @@ mission "Pact Recon 3"
 	landing
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
-	waypoint "Orvala"
-	waypoint "Hintar"
-	waypoint "Naper"
-	waypoint "Boral"
 	source
 		attributes "south" "dirt belt" "rim" "near earth"
 		not government "Pirate"
 	destination "Glaze"
+	waypoint "Orvala"
+	waypoint "Hintar"
+	waypoint "Naper"
+	waypoint "Boral"
 	to offer
 		random < 40
 		not "event: war begins"
@@ -336,8 +336,8 @@ mission "FW Recon 1"
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
 	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
-	waypoint "Menkent"
 	source "Glaze"
+	waypoint "Menkent"
 	to offer
 		has "FW Recon 1: done"
 	to fail
