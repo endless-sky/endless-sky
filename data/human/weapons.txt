@@ -28,7 +28,8 @@ outfit "Mining Laser"
 		"firing heat" 18
 		"shield damage" 10.6
 		"hull damage" 6.6
-	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
+		"minable damage" 10
+	description "Thing."
 
 
 outfit "Energy Blaster"
