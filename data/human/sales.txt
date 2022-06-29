@@ -86,6 +86,7 @@ shipyard "Syndicate Basics"
 	"Star Barge"
 	"Wasp"
 	"Freighter"
+	"Sunder"
 
 shipyard "Syndicate Advanced"
 	"Bulk Freighter"
