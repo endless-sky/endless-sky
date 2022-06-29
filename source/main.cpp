@@ -337,7 +337,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				// from within the engine at the moment.
 				Command ignored;
 				runningTest->Step(testContext, player, ignored);
-				// Set the UI delay (of 3 seconds) for the next test-step for if we are debugging.
+				// Reset the visual delay.
 				testDebugUIDelay = 3 * 60;
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
