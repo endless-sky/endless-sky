@@ -20,8 +20,8 @@ ship "Mining Drone"
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
-		"outfit space" 53
-		"weapon capacity" 0
+		"outfit space" 70
+		"weapon capacity" 10
 		"engine capacity" 28
 		weapon
 			"blast radius" 3
