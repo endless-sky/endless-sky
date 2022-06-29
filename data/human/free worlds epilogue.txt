@@ -183,7 +183,7 @@ mission "FW Epilogue: Danforth"
 			
 			label next
 			`	"Are the pirates giving you any trouble?" you ask.`
-			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the south. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
+			`	"A bit," he says. "We still have far too many pirates in this sector, in part due to the Free Worlds driving them out of the South. The pirates grew stronger and more bold as the war dragged on, when all our fleets were busy elsewhere, but now we're beginning to get them under control again."`
 			
 			branch checkmate2
 				has "free worlds checkmate"

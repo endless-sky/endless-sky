@@ -1073,7 +1073,7 @@ mission "FW Senate 1B"
 mission "FW Pirates 2"
 	landing
 	name "Southern Patrol"
-	description "Lead a patrol through the Free Worlds systems on the southern rim, driving off any pirates you encounter, then meet up with Tomek on <destination>."
+	description "Lead a patrol through the Free Worlds systems on the Southern Rim, driving off any pirates you encounter, then meet up with Tomek on <destination>."
 	autosave
 	source "Bourne"
 	waypoint "Yed Prior"
@@ -1132,7 +1132,7 @@ mission "FW Pirates 2"
 			`	"That may be," he says, "but their leaders are dangerous criminals, perhaps even more dangerous than the Navy, because they have no honor or morality. And every anarchist world is a possible haven for other lawless individuals. Including any of the Alphas who are still in hiding. So I say, we need to capture and control those worlds."`
 			label next
 			`	"But I suppose we need to wait for the Senate to decide?" you ask.`
-			`	"Indeed," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the southern rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
+			`	"Indeed," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the Southern Rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
 			`	"Of course!" you say.`
 				accept
 	
@@ -1299,13 +1299,13 @@ mission "FW Pirates 3.2A"
 	
 	on offer
 		conversation
-			`When you land on <origin>, you do indeed find a Free Worlds fleet gathered, but nowhere near as large a fleet as you had hoped for. As you survey the motley mix of grizzled militia veterans and young, naive interceptor pilots, you can't help but wonder if a fleet this size really has any chance at all against the strongest pirate world in southern space.`
+			`When you land on <origin>, you do indeed find a Free Worlds fleet gathered, but nowhere near as large a fleet as you had hoped for. As you survey the motley mix of grizzled militia veterans and young, naive interceptor pilots, you can't help but wonder if a fleet this size really has any chance at all against the strongest pirate world in Southern space.`
 			`	Perhaps the Senate was right in suggesting a diplomatic solution. If you disobey their orders and lead this entire fleet to their deaths, that will not earn you any friends in the Free Worlds.`
 			choice
 				`	(Give up on Tomek's scheme and follow the Senate's orders to make a diplomatic visit to Thule, instead.)`
 					decline
 				`	(Go ahead and attack Greenrock, even though it may be an impossible fight.)`
-			`	You meet with the volunteer captains and give them a brief pep talk, telling them that you will be praised as heroes for years to come after you eliminate southern piracy in one fell swoop. The younger ones are fired up, but you can tell that some of the older veterans are very worried.`
+			`	You meet with the volunteer captains and give them a brief pep talk, telling them that you will be praised as heroes for years to come after you eliminate Southern piracy in one fell swoop. The younger ones are fired up, but you can tell that some of the older veterans are very worried.`
 			`	Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
 				accept
 	
