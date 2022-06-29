@@ -95,7 +95,7 @@ outfit "Liquid Sodium Cooler"
 	category "Systems"
 	cost 1660000
 	thumbnail "outfit/liquid sodium"
-	"mass" 37
+	"mass" 34
 	"outfit space" -34
 	"energy consumption" 2
 	"cooling energy" 6
