@@ -3310,8 +3310,8 @@ ship "Sunder"
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 90
-		"outfit space" 250
-		"weapon capacity" 15
+		"outfit space" 270
+		"weapon capacity" 65
 		"engine capacity" 90
 	outfits
 		"Repulsion Laser" 2
