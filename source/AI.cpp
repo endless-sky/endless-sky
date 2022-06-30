@@ -95,7 +95,7 @@ namespace {
 		{
 			shared_ptr<const Ship> escort = ptr.lock();
 			// Skip escorts which are not player-owned and not escort mission NPCs.
-			if(!escort || gov->IsEnemy(escort->GetGovernment()) || (shipIsYours && !escort->IsYours() && !escort->GetPersonality().IsEscort()))
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort() || gov->IsEnemy(escort->GetGovernment()))))
 				continue;
 			if(!escort->IsDisabled() && !escort->CanBeCarried()
 					&& escort->GetSystem() == ship.GetSystem()
