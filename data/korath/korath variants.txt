@@ -84,10 +84,10 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 		"Cargo Expansion"
 		"Korath Repeater Rifle" 206
 		
-		"Reverser (Planetary Class)"
+		"Reverser (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
-		"Afterburner (Lunar Class)"
+		"Afterburner (Comet Class)"
 		"Engine (Meteor Class)"
 		"Jump Drive"
 		"Scram Drive"
@@ -135,7 +135,7 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 205
 		
-		"Reverser (Comet Class)"
+		"Reverser (Asteroid Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Stellar Class)"
 		"Jump Drive"

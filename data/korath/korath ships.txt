@@ -46,7 +46,7 @@ ship "Korath Dredger"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 208
 		
-		"Reverser (Lunar Class)"
+		"Reverser (Asteroid Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Stellar Class)"
 		"Hyperdrive"
