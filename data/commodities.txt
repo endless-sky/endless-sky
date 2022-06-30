@@ -79,6 +79,7 @@ trade
 		"pumpkins"
 		"purified water"
 		"quinoa"
+		"ramen"
 		"raisins"
 		"ready-to-eat meals"
 		"rice"
