@@ -31,7 +31,7 @@ outfit "Repulsion Laser"
 		"minable damage" 150
 		"piercing" 1
 	description "The Repulsion Laser creates a negative-gravity field inside of whatever it is targeting. This requires the Repulsion Laser to be large, energy-greedy, and very hot, but it does generate some interesting effects."
-	description "Because the Repulsion Laser does not create a physical beam, it can pass straight through all shields. However, ships are not held together with gravity, but structural integrity (and spit, gum, and prayers). This means that it has a very weak effect on ships. Not to be deterred from the possibility of profit, the Syndicate realized that the next best use for it was asteroid mining, because asteroids quite literally rip themselves apart when subject to it."
+	description "Because the Repulsion Laser does not create a physical beam, it can pass straight through all shields. However, ships are not held together with gravity, but structural integrity (and spit, gum, and prayers). This means that it has a very weak effect on ships. Not to be deterred from the possibility of profit, the Syndicate realized that the next best use for it was asteroid mining, because asteroids quite literally rip themselves apart when subjected to it."
 
 outfit "Energy Blaster"
 	category "Guns"
