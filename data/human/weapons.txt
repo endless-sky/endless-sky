@@ -10,7 +10,7 @@
 
 outfit "Repulsion Laser"
 	category "Guns"
-	cost 16000
+	cost 40000
 	thumbnail "outfit/breeder"
 	"mass" 30
 	"outfit space" -30
