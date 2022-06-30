@@ -211,7 +211,7 @@ namespace {
 		// and refuel later. Calculate if it can reach the next refuel.
 		double fuel = fuelCapacity * ship.Fuel();
 		const vector<pair<const System *, int>> costs = route.FuelCosts();
-		for (auto it = costs.begin(); it != costs.end(); ++it)
+		for (auto it = costs.rbegin(); it != costs.rend(); ++it)
 		{
 			// If the next system with fuel is outside the range of this ship, should refuel.
 			if(it->first->HasFuelFor(ship))
