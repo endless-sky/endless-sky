@@ -3309,15 +3309,15 @@ ship "Sunder"
 		"drag" 0.8
 		"heat dissipation" .7
 		"fuel capacity" 500
-		"cargo space" 80
-		"outfit space" 200
+		"cargo space" 90
+		"outfit space" 250
 		"weapon capacity" 15
 		"engine capacity" 90
 	outfits
 		"Repulsion Laser" 2
 
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Asteroid Scanner"
 
