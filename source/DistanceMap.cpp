@@ -429,7 +429,7 @@ int RoutePlan::RequiredFuel() const
 vector<const System *> RoutePlan::Plan() const
 {
 	auto steps = vector<const System *> {};
-	for(const auto it : plan)
+	for(const auto &it : plan)
 		steps.push_back(it.first);
 	return steps;
 }
@@ -440,7 +440,7 @@ vector<const System *> RoutePlan::Plan() const
 vector<pair<const System *, int>> RoutePlan::FuelCosts() const
 {
 	auto steps = vector<pair<const System *, int>> {};
-	for(const auto it : plan)
+	for(const auto &it : plan)
 		steps.emplace_back(it.first, it.second.fuel);
 	return steps;
 }
