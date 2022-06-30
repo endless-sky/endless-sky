@@ -367,8 +367,7 @@ RoutePlan::RoutePlan(const Ship &ship, const System &destination)
 
 void RoutePlan::Init(const DistanceMap& distance)
 {
-	const System* destination = distance.destination;
-	auto it = distance.route.find(destination);
+	auto it = distance.route.find(distance.destination);
 	if(it == distance.route.end())
 		return;
 
