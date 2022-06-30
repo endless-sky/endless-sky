@@ -31,7 +31,7 @@ ship "Mining Drone"
 	outfits
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
-		"Energy Blaster"
+		"Repulsion Laser"
 
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
@@ -3314,7 +3314,7 @@ ship "Sunder"
 		"weapon capacity" 15
 		"engine capacity" 90
 	outfits
-		"Energy Blaster" 2
+		"Repulsion Laser" 2
 
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -3327,8 +3327,8 @@ ship "Sunder"
 
 	engine 14 55
 	engine -14 55
-	gun -19 -55 "Energy Blaster"
-	gun 19 -55 "Energy Blaster"
+	gun -19 -55 "Repulsion Laser"
+	gun 19 -55 "Repulsion Laser"
 	bay "Drone" -43.5 2
 	bay "Drone" 43.5 2
 	leak "leak" 50 50

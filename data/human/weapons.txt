@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-outfit "Mining Laser"
+outfit "Repulsion Laser"
 	category "Guns"
 	cost 16000
 	thumbnail "outfit/breeder"
@@ -26,11 +26,12 @@ outfit "Mining Laser"
 		"reload" 12
 		"firing energy" 5.8
 		"firing heat" 18
-		"shield damage" 10.6
-		"hull damage" 6.6
-		"minable damage" 10
-	description "Thing."
-
+		"shield damage" 1
+		"hull damage" 1
+		"minable damage" 20
+		"piercing" 1
+		description "The Repulsion Laser creates a negative-gravity field inside of whatever it is targeting. This requires the Repulsion Laser to be large, energy-greedy, and very hot, but it does generate some interesting effects."
+		description "Because the Repulsion Laser does not create a physical beam, it can pass straight through all shields. However, ships are not held together with gravity, but structural integrity. This means that it has a very weak effect on ships. Not to be deterred from the possibility of profit, the Syndicate realized that the next best use for it was asteroid mining, because asteroids quite literally rip themselves apart when subject to it."
 
 outfit "Energy Blaster"
 	category "Guns"
