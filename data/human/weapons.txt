@@ -13,8 +13,8 @@ outfit "Repulsion Laser"
 	cost 16000
 	thumbnail "outfit/breeder"
 	"mass" 30
-	"outfit space" -5
-	"weapon capacity" -5
+	"outfit space" -30
+	"weapon capacity" -30
 	"gun ports" -1
 	weapon
 		sprite "projectile/blaster"
@@ -26,9 +26,9 @@ outfit "Repulsion Laser"
 		"reload" 12
 		"firing energy" 50
 		"firing heat" 60
-		"shield damage" 1
-		"hull damage" 1
-		"minable damage" 20
+		"shield damage" 0
+		"hull damage" 10
+		"minable damage" 150
 		"piercing" 1
 	description "The Repulsion Laser creates a negative-gravity field inside of whatever it is targeting. This requires the Repulsion Laser to be large, energy-greedy, and very hot, but it does generate some interesting effects."
 	description "Because the Repulsion Laser does not create a physical beam, it can pass straight through all shields. However, ships are not held together with gravity, but structural integrity (and also spit, gum, and prayers). This means that it has a very weak effect on ships. Not to be deterred from the possibility of profit, the Syndicate realized that the next best use for it was asteroid mining, because asteroids quite literally rip themselves apart when subject to it."
