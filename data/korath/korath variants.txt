@@ -16,7 +16,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Korath Digger Turret"
 		"Korath Shunt-Strike"
 		"Korath Heaver"
-		"Korath Banisher" 2
+		"Korath Banisher"
 		"Korath Warder" 2
 		
 		"Large Heat Shunt"
