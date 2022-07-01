@@ -30,7 +30,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		
 		"Afterburner (Asteroid Class)"
 		"Steering (Lunar Class)"
-		"Reverser (Lunar Class)"
+		"Reverser (Asteroid Class)"
 		"Thruster (Planetary Class)"
 		"Scram Drive"
 	
