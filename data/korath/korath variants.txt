@@ -75,7 +75,7 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 		"Korath Warder"
 		"Korath Banisher"
 		
-		"Small Heat Shunt" 1
+		"Small Heat Shunt" 2
 		"Fuel Processor" 1
 		"Systems Core (Large)"
 		"Double Plasma Core"
