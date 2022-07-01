@@ -23,6 +23,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Small Heat Shunt"
 		"Fuel Processor" 2
 		"Systems Core (Medium)"
+		"Systems Core (Small)"
 		"Double Plasma Core"
 		"Korath Repeater Rifle" 206
 		"Microbot Defense Station" 8
