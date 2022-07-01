@@ -25,7 +25,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Systems Core (Medium)"
 		"Double Plasma Core"
 		"Korath Repeater Rifle" 206
-		"Microbot Defense Station" 7
+		"Microbot Defense Station" 8
 		
 		"Afterburner (Comet Class)"
 		"Steering (Lunar Class)"
