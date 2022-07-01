@@ -27,7 +27,7 @@ outfit "Repulsion Laser"
 		"firing energy" 50
 		"firing heat" 60
 		"shield damage" 0
-		"hull damage" 10
+		"hull damage" 2
 		"minable damage" 150
 		"piercing" 1
 	description "The Repulsion Laser creates a negative-gravity field inside of whatever it is targeting. This requires the Repulsion Laser to be large, energy-greedy, and very hot, but it does generate some interesting effects."
