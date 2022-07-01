@@ -21,7 +21,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
-		"Fuel Processor" 1
+		"Fuel Processor" 2
 		"Systems Core (Medium)"
 		"Double Plasma Core"
 		"Korath Repeater Rifle" 206
