@@ -33335,7 +33335,7 @@ planet Cyife
 planet "Gue Faur"
 	landscape land/forest3
 	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
-	spaceport "The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a female Scin will stop nearby to observe and record you then carry on as if nothing happened."
+	spaceport "The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a female Scin will stop nearby to observe and record you, and then carry on as if nothing happened."
 	government "Gegno Scin"
 	"required reputation" 1
 	bribe 0
