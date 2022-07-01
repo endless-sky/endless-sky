@@ -186,7 +186,7 @@ outfit "Astuit Battery"
 		"firing heat" 34
 		"shield damage" 8
 		"hull damage" 8.2
-	description "The Gegno Scin are the first Gegno to advance plasma technology enough to allow use of it in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
+	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
 	description "	Although each shot does not hit very hard, consistent fire adds up - but so does energy usage."
 
 
