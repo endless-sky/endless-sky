@@ -19,8 +19,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Korath Banisher" 2
 		"Korath Warder" 2
 		
-		"Liquid Sodium Cooler"
-		"Small Heat Shunt"
+		"Large Heat Shunt"
 		"Fuel Processor" 2
 		"Systems Core (Medium)"
 		"Systems Core (Small)"
@@ -34,11 +33,11 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Thruster (Planetary Class)"
 		"Scram Drive"
 	
+	turret "Korath Shunt-Strike"
+	turret "Korath Heaver"
+	turret "Korath Warder"
+	turret "Korath Warder"
 	turret
-	turret "Korath Digger Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Banisher"
 	turret "Korath Banisher"
 	turret "Korath Digger Turret"
 
