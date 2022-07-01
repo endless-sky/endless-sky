@@ -27,12 +27,12 @@ ship "Korath Dredger"
 		"outfit space" 600
 		"weapon capacity" 226
 		"engine capacity" 170
-		
-	weapon
-		"blast radius" 300
-		"shield damage" 4600
-		"hull damage" 2300
-		"hit force" 5900
+		weapon
+			"blast radius" 300
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
+
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 1
@@ -51,7 +51,7 @@ ship "Korath Dredger"
 		"Hyperdrive"
 		"Jump Drive"
 		
-	turret 0 -153 "Korath Grab-Strike""
+	turret 0 -153 "Korath Grab-Strike"
 	turret -37.5 -152.5 "Korath Digger Turret"
 	turret 37.5 -152.5 "Korath Grab-Strike"
 	turret -42 -28 "Korath Warder"
