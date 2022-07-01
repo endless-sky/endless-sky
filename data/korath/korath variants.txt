@@ -50,8 +50,8 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"Korath Warder" 2
 		
 		"Triple Plasma Core"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 3
+		"Large Heat Shunt"
+		"Small Heat Shunt" 6
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
