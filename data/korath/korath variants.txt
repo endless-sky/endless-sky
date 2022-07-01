@@ -14,8 +14,8 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"atmosphere scan" 1
 	outfits
 		"Korath Digger Turret"
-		"Korath Digger Turret"
-		"Korath Digger Turret"
+		"Korath Shunt-Strike"
+		"Korath Heaver"
 		"Korath Banisher" 2
 		"Korath Warder" 2
 		
