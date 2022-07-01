@@ -127,6 +127,34 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 	turret "Korath Shunt-Strike"
 
 
+ship "Korath Dredger" "Korath Dredger (Ground Assault)"
+	"crew" 470
+	outfits
+		"Korath Banisher" 2
+		"Korath Warder" 2
+		
+		"Outfits Expansion" 11
+		"Double Plasma Core"
+		"Bunk Room" 16
+		"Large Heat Shunt" 2
+		"Small Bunk Room" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 475
+		
+		"Bow Drive (Meteor Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Lunar Class)"
+		"Hyperdrive"
+		"Jump Drive"
+
+	turret 
+	turret
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
 
 ship "Korath Raider" "Korath Raider (Blaze)"
 	outfits
