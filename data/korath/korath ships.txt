@@ -65,7 +65,6 @@ ship "Korath Dredger"
 	"reverse engine" 93.5 -65 0.7
 	"reverse engine" -79 80.5 0.7
 	"reverse engine" 79 80.5 0.7
-		over
 	bay "Fighter" -93.5 -20.5
 	bay "Fighter" 93.5 -20.5
 	bay "Fighter" -87 128.5
