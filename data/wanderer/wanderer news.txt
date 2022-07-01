@@ -15,14 +15,40 @@ news "wanderer civilians, no dialog 1"
 		not attributes "evacuation"
 	name
 		word
+			"Individual"
+	message
+		word
+			"Outside the spaceport, you see someone performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
+			"A dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
+news "wanderer civilians no dialog 2"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Group"
+	message
+		word
+			"A crowd has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
+			"On a booth near the spaceport, a group is playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
+
+news "wanderer civilians, no dialog 1, post language"
+	to show
+		has "language: Wanderer"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
 			"Wanderer"
 	message
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
-			"Outside the spaceport, you see a Wanderer performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
-			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
 
-news "wanderer civilian's no dialog 2"
+news "wanderer civilians no dialog 2, post language"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -32,10 +58,8 @@ news "wanderer civilian's no dialog 2"
 	message
 		word
 			"While walking through the spaceport, you see several Wanderers flying through the air, about to land. They do not notice you, and you duck to avoid them."
-			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
 			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
-			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
 
@@ -83,7 +107,7 @@ news "Wanderer Linguistics 2"
 			`"`
 		word
 			"The Hai language is [complicated, convoluted], but learning it has yielded much [insight, knowledge] about the Hai in general."
-			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours." 
+			"It is difficult to [pronounce, speak] Hai words, because their [physiology, structure] is so much different than ours."
 			"I went to a [prison, jail] where some Unfettered Hai were being held, in order to [study, apprehend] their language on a more [in-depth, detailed] level. It was hard to get [information, data] out of them, to say the least."
 		word
 			`"`
@@ -104,7 +128,7 @@ news "Wanderer civilians, dialog"
 		word
 			`"`
 		word
-			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature." 
+			"Whenever I go on a [journey, trip] through space I always bring some of my [favorite, most cherished] potted plants. It gets [lonely, barren] when you are far from nature."
 			"I have [heard of, known of] a human captain in Wanderer space, but seeing you is still quite [strange, odd]."
 			"I cannot [imagine, fathom] being unable to fly. How do you manage to get anywhere?"
 			"I wonder what kinds of [creatures, beings] live on your home planet."
@@ -153,7 +177,7 @@ news "Wanderer oil safety"
 			`"`
 		word
 			"My job is to prevent the [destruction, death] of that which we have sought to [renew, nurture]."
-			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!" 
+			"The oil drillers have no [respect, regard] for the [life, existence] of this planet. Just yesterday I caught one [covering up, hiding] a spill that [affected, impacted] an estimated 328 blades of grass!"
 		word
 			`"`
 
@@ -180,7 +204,7 @@ news "wanderer farmer"
 	to show
 		has "language: Wanderer"
 	location
-		government "Wanderer" 
+		government "Wanderer"
 		attributes "farming"
 	name
 		word
@@ -279,7 +303,7 @@ news "Wanderers and Korath"
 	location
 			government "Wanderer"
 			not attributes "evacuation"
-	name 
+	name
 		word
 			"Wanderer merchant captain"
 			"Wanderer captain"

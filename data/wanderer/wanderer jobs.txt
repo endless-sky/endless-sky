@@ -757,7 +757,7 @@ mission "Wanderer Bulk Delivery [2]"
 
 mission "Wanderer Captured Unfettered"
 	name "Captured Unfettered to <planet>"
-	job 
+	job
 	repeat
 	description "Transport <bunks> captured Unfettered soldiers to <planet>. Payment is <payment>."
 	passengers 3

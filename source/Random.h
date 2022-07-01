@@ -25,15 +25,15 @@ public:
 	// Seed the generator (e.g. to make it produce exactly the same random
 	// numbers it produced previously).
 	static void Seed(uint64_t seed);
-	
+
 	static uint32_t Int();
 	static uint32_t Int(uint32_t modulus);
-	
+
 	static double Real();
-	
+
 	// Slower functions for getting random numbers from a given distribution.
 	// Do not use these functions in time-critical code.
-	
+
 	// Return the expected number of failures before k successes, when the
 	// probability of success is p. The mean value will be k / (1 - p).
 	static uint32_t Polya(uint32_t k, double p = .5);

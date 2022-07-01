@@ -103,7 +103,7 @@ float Body::GetFrame(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-	
+
 	return frame;
 }
 
@@ -115,14 +115,14 @@ const Mask &Body::GetMask(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-	
+
 	static const Mask EMPTY;
 	int current = round(frame);
 	if(!sprite || current < 0)
 		return EMPTY;
-	
+
 	const vector<Mask> &masks = GameData::GetMaskManager().GetMasks(sprite, Scale());
-	
+
 	// Assume that if a masks array exists, it has the right number of frames.
 	return masks.empty() ? EMPTY : masks[current % masks.size()];
 }
@@ -200,7 +200,7 @@ void Body::LoadSprite(const DataNode &node)
 	if(node.Size() < 2)
 		return;
 	sprite = SpriteSet::Get(node.Token(1));
-	
+
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
 	// start at zero starts when the game started, it does not make sense for it
@@ -232,7 +232,7 @@ void Body::LoadSprite(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
@@ -244,7 +244,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 {
 	if(!sprite)
 		return;
-	
+
 	out.Write(tag, sprite->Name());
 	out.BeginChild();
 	{
@@ -329,14 +329,14 @@ void Body::SetStep(int step) const
 	// If the animation is paused, reduce the step by however many frames it has
 	// been paused for.
 	step -= pause;
-	
+
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
 	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
 		return;
 	currentStep = step;
-	
+
 	// If the sprite only has one frame, no need to animate anything.
 	float frames = sprite->Frames();
 	if(frames <= 1.f)
@@ -348,7 +348,7 @@ void Body::SetStep(int step) const
 	// This is the number of frames per full cycle. If rewinding, a full cycle
 	// includes the first and last frames once and every other frame twice.
 	float cycle = (rewind ? 2.f * lastFrame : frames) + delay;
-	
+
 	// If this is the very first step, fill in some values that we could not set
 	// until we knew the sprite's frame count and the starting step.
 	if(randomize)
@@ -363,14 +363,14 @@ void Body::SetStep(int step) const
 		// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
 		frameOffset -= frameRate * step;
 	}
-	
+
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
 	frame = max(0.f, frameRate * step + frameOffset);
 	// If repeating, wrap the frame index by the total cycle time.
 	if(repeat)
 		frame = fmod(frame, cycle);
-	
+
 	if(!rewind)
 	{
 		// If not repeating, frame should never go higher than the index of the

@@ -3,6 +3,7 @@ root = true
 
 [*]
 insert_final_newline = true
+trim_trailing_whitespace = true
 
 # Data files
 [data/**.txt]
@@ -10,13 +11,20 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[*.{cpp,h,rc,hpp}]
-trim_trailing_whitespace = false
+[{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
+# Except any third-party libraries
+[catch.hpp]
+indent_style = unset
 
 # Markdown
 [*.md]
 trim_trailing_whitespace = false
+
+# Scripts
+[*.{sh,ps1}]
+indent_style = space
+indent_size = 2
 
 [*.xml]
 indent_style = space
@@ -25,4 +33,3 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
-trim_trailing_whitespace = true

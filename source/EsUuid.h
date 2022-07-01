@@ -38,47 +38,47 @@ public:
 		UuidType &operator=(const UuidType &other) { return *this = UuidType(other); }
 #if defined(_WIN32)
 		UuidType(const UuidType &other) = default;
-		UUID id;
+		UUID id = {};
 #else
 		UuidType(const UuidType &other) { uuid_copy(id, other.id); }
-		uuid_t id;
+		uuid_t id = {};
 #endif
 	};
-	
-	
+
+
 public:
 	static EsUuid FromString(const std::string &input);
 	EsUuid() noexcept = default;
 	~EsUuid() noexcept = default;
 	// Copying a UUID does not copy its value. (This allows us to use simple copy operations on stock
 	// ship definitions when spawning fleets, etc.)
-	EsUuid(const EsUuid &other) noexcept : value() {};
+	EsUuid(const EsUuid &other) noexcept : value{} {};
 	// Copy-assigning also results in an empty UUID.
 	EsUuid &operator=(const EsUuid &other) noexcept { return *this = EsUuid(other); };
 	// UUIDs can be move-constructed as-is.
 	EsUuid(EsUuid &&) noexcept = default;
 	// UUIDs can be move-assigned as-is.
 	EsUuid &operator=(EsUuid &&) noexcept = default;
-	
+
 	// UUIDs can be compared against other UUIDs.
 	bool operator==(const EsUuid &other) const noexcept(false);
 	bool operator!=(const EsUuid &other) const noexcept(false);
 	bool operator<(const EsUuid &other) const noexcept(false);
-	
+
 	// Explicitly clone this UUID.
 	void clone(const EsUuid &other);
-	
+
 	// Get a string representation of this ID, e.g. for serialization.
 	std::string ToString() const noexcept(false);
-	
-	
+
+
 private:
 	// Internal constructor, from a string.
 	explicit EsUuid(const std::string &input);
 	// Lazy initialization getter.
 	const UuidType &Value() const;
-	
-	
+
+
 private:
 	mutable UuidType value;
 };
@@ -92,7 +92,7 @@ struct UUIDComparator {
 	{
 		return a->UUID() < b->UUID();
 	}
-	
+
 	// Comparator for collections of T*, e.g. set<T *>
 	bool operator()(const T *a, const T *b) const noexcept(false)
 	{

@@ -61,7 +61,7 @@ mission "Intro [0]"
 			`	"Great," he says. "My name is James, by the way."`
 			`	"<first> <last>," you say.`
 			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
-			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Or take a look at the outfitter if you like, but they don't sell much here compared to on the big manufacturing worlds."`
+			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. While they don't sell much here compared to on the big manufacturing worlds, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
 				accept
 	
 	on accept
@@ -250,7 +250,7 @@ mission "Intro [2 Freighter]"
 				`	"Sounds good. Let's do it!"`
 				`	"Sorry, no way am I loading up my shiny new starship with smelly fish."`
 					decline
-			`	"Great!" he says. "You might want to stop by the outfitter and buy a local map, by the way. Hyperspace routes aren't always logical, and the last thing you want to do is get lost and end up with a pile of rotten fish that no one wants filling up your cargo hold."`
+			`	"Great!" he says. "I mentioned this earlier, but you might want to stop by the outfitter and buy a local map. Hyperspace routes aren't always logical, and the last thing you want to do is get lost and end up with a pile of rotten fish that no one wants filling up your cargo hold."`
 				accept
 	
 	on complete
@@ -375,7 +375,7 @@ mission "Intro [2 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James's face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
+			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James' face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
 			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
 			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds.`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`

@@ -42,42 +42,42 @@ public:
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.
 	DistanceMap(const Ship &ship, const System *destination);
-	
+
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
 	// Find out how many days away the given system is.
 	int Days(const System *system) const;
 	// Starting in the given system, what is the next system along the route?
 	const System *Route(const System *system) const;
-	
+
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
 	// Get the end of the route.
 	const System *End() const;
-	
+
 	// How much fuel is needed to travel between two systems.
 	int RequiredFuel(const System *system1, const System *system2) const;
-	
-	
+
+
 private:
 	// For each system, track how much fuel it will take to get there, how many
 	// days, how much danger you will pass through, and where you will go next.
 	class Edge {
 	public:
 		Edge(const System *system = nullptr);
-		
+
 		// Sorting operator to prioritize the "best" edges. The priority queue
 		// returns the "largest" item, so this should return true if this item
 		// is lower priority than the given item.
 		bool operator<(const Edge &other) const;
-		
+
 		const System *next = nullptr;
 		int fuel = 0;
 		int days = 0;
 		double danger = 0.;
 	};
-	
-	
+
+
 private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
@@ -93,11 +93,11 @@ private:
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
 	bool CheckLink(const System &from, const System &to, bool useJump) const;
-	
-	
+
+
 private:
 	std::map<const System *, Edge> route;
-	
+
 	// Variables only used during construction:
 	std::priority_queue<Edge> edges;
 	const PlayerInfo *player = nullptr;

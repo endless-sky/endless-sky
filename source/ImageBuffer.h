@@ -30,32 +30,32 @@ public:
 	ImageBuffer(int frames = 1);
 	ImageBuffer(const ImageBuffer &) = delete;
 	~ImageBuffer();
-	
+
 	ImageBuffer &operator=(const ImageBuffer &) = delete;
-	
+
 	// Set the number of frames. This must be called before allocating.
 	void Clear(int frames = 1);
 	// Allocate the internal buffer. This must only be called once for each
 	// image buffer; subsequent calls will be ignored.
 	void Allocate(int width, int height);
-	
+
 	int Width() const;
 	int Height() const;
 	int Frames() const;
-	
+
 	const uint32_t *Pixels() const;
 	uint32_t *Pixels();
-	
+
 	const uint32_t *Begin(int y, int frame = 0) const;
 	uint32_t *Begin(int y, int frame = 0);
-	
+
 	void ShrinkToHalfSize();
-	
+
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
 	bool Read(const std::string &path, int frame = 0);
-	
-	
+
+
 private:
 	int width;
 	int height;

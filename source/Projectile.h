@@ -36,11 +36,27 @@ class Weapon;
 // projectiles that may look different or travel in a new direction.
 class Projectile : public Body {
 public:
+	class ImpactInfo {
+	public:
+		ImpactInfo(const Weapon &weapon, Point position, double distanceTraveled)
+			: weapon(weapon), position(std::move(position)), distanceTraveled(distanceTraveled) {}
+
+		const Weapon &weapon;
+		Point position;
+		double distanceTraveled;
+	};
+
+
+public:
+	static Angle Inaccuracy(double value);
+
+
+public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon);
 	Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon);
 	// Ship explosion.
 	Projectile(Point position, const Weapon *weapon);
-	
+
 	/* Functions provided by the Body base class:
 	Frame GetFrame(int step = -1) const;
 	const Point &Position() const;
@@ -49,7 +65,7 @@ public:
 	Point Unit() const;
 	const Government *GetGovernment() const;
 	*/
-	
+
 	// Move the projectile. It may create effects or submunitions.
 	void Move(std::vector<Visual> &visuals, std::vector<Projectile> &projectiles);
 	// This projectile hit something. Create the explosion, if any. This also
@@ -59,13 +75,15 @@ public:
 	double Clip() const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
-	
+
 	// Find out if this is a missile, and if so, how strong it is (i.e. what
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
 	// Get information on the weapon that fired this projectile.
 	const Weapon &GetWeapon() const;
-	
+	// Get information on how this projectile impacted a ship.
+	ImpactInfo GetInfo() const;
+
 	// Find out which ship or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
@@ -76,22 +94,25 @@ public:
 	std::shared_ptr<Ship> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
-	
+
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
-	
-	
+
+
 private:
 	void CheckLock(const Ship &target);
-	
-	
+
+
 private:
 	const Weapon *weapon = nullptr;
-	
+
 	std::weak_ptr<Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
 	const Government *targetGovernment = nullptr;
-	
+
+	// The change in velocity of all stages of this projectile
+	// relative to the firing ship.
+	Point dV;
 	double clip = 1.;
 	int lifetime = 0;
 	double distanceTraveled = 0;

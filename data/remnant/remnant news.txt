@@ -103,7 +103,7 @@ news "remnant security advisory"
 			"System"
 			"Defense"
 		word
-			" "	
+			" "
 		word
 			"Advisory"
 			"Status"
@@ -223,7 +223,7 @@ news "remnant incomprehensible"
 			"Spaceport alley"
 			"Spaceport hallway"
 	message
-		phrase 
+		phrase
 			"Amount of Remnant"
 		word
 			" sign "
@@ -260,8 +260,8 @@ news "remnant incomprehensible"
 		word
 			". "
 		word
-			"You can not "
-		word 
+			"You cannot "
+		word
 			"make out"
 			"figure out"
 			"understand"
@@ -290,7 +290,7 @@ news "remnant cafeteria"
 			"Kitchen"
 		
 	message
-		phrase 
+		phrase
 			"Amount of Remnant"
 		word
 			" "

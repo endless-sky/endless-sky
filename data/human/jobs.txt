@@ -2009,7 +2009,7 @@ mission "Family [0]"
 	passengers 2 4 .5
 	to offer
 		random < 60
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2030,7 +2030,7 @@ mission "Family [1]"
 	passengers 2 4 .5
 	to offer
 		random < 50
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2051,7 +2051,7 @@ mission "Family [2]"
 	passengers 2 4 .5
 	to offer
 		random < 40
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2072,7 +2072,7 @@ mission "Family [3]"
 	passengers 2 4 .5
 	to offer
 		random < 30
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2093,7 +2093,7 @@ mission "Strike Breakers [mining]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2115,7 +2115,7 @@ mission "Strike Breakers [textile]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2137,7 +2137,7 @@ mission "Strike Breakers [factory]"
 	passengers 5 5 .2
 	to offer
 		random < 10
-		"passenger space" > 20
+		"passenger space" > 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2182,7 +2182,7 @@ mission "Colonists [1]"
 	passengers 10 4 .1
 	to offer
 		random < 20
-		"passenger space" > 30
+		"passenger space" > 20
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2206,7 +2206,7 @@ mission "Stranded Field Trip"
 	cargo "educational supplies" 2 10 .6
 	to offer
 		random < 10
-		"passenger space" > 50
+		"passenger space" > 30
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2409,7 +2409,7 @@ mission "Large Bulk Delivery [0]"
 	cargo random 40 2 .02
 	to offer
 		random < 70
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2430,7 +2430,7 @@ mission "Large Bulk Delivery [1]"
 	cargo random 40 2 .02
 	to offer
 		random < 60
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2451,7 +2451,7 @@ mission "Large Bulk Delivery [2]"
 	cargo random 40 2 .02
 	to offer
 		random < 50
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2474,7 +2474,7 @@ mission "Large Rush Delivery [0]"
 	cargo random 20 6 .1
 	to offer
 		random < 90
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2496,7 +2496,7 @@ mission "Large Rush Delivery [1]"
 	cargo random 20 6 .1
 	to offer
 		random < 80
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2518,7 +2518,7 @@ mission "Large Rush Delivery [2]"
 	cargo random 20 6 .1
 	to offer
 		random < 70
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2541,7 +2541,7 @@ mission "Large Rush Delivery [3]"
 	cargo random 20 6 .1
 	to offer
 		random < 60
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2845,45 +2845,6 @@ mission "Bounty Hunting (Big)"
 		payment 250000
 		dialog phrase "generic bounty hunting payment dialog"
 
-mission "Bounty Hunting (Small, Boarding, Entering)"
-	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
-	passengers 1
-	deadline 14
-	repeat
-	job
-	to offer
-		"combat rating" > 80
-		random < 15
-	on offer
-		require "Brig"
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-		distance 2 6
-	npc board
-		government "Bounty"
-		personality timid fleeing uninterested entering target
-		fleet
-			names "civilian"
-			variant
-				"Flivver (Racing)"
-			variant
-				"Arrow"
-			variant
-				"Scout (Speedy)"
-			variant
-				"Clipper (Speedy)"
-		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
-	on visit
-		dialog phrase "generic bounty hunting boarding on visit"
-	on complete
-		payment 175000
-		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
-
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
 	description "A low-end pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
@@ -3005,6 +2966,45 @@ mission "Bounty Hunting (Big, Hidden)"
 		payment 450000
 		dialog phrase "generic bounty hunting payment dialog"
 
+mission "Bounty Hunting (Small, Boarding, Entering)"
+	name "Stolen ship near <system>"
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	passengers 1
+	deadline 14
+	repeat
+	job
+	to offer
+		"combat rating" > 80
+		random < 15
+	on offer
+		require "Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		distance 2 6
+	npc board
+		government "Bounty"
+		personality timid fleeing uninterested entering target
+		fleet
+			names "civilian"
+			variant
+				"Flivver (Racing)"
+			variant
+				"Arrow"
+			variant
+				"Scout (Speedy)"
+			variant
+				"Clipper (Speedy)"
+		dialog "You blast your way onto the ship and confine the fleeing criminal to your ship's brig. Time to deliver them to <planet>."
+	on visit
+		dialog phrase "generic bounty hunting boarding on visit"
+	on complete
+		payment 175000
+		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal."
+
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
 	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
@@ -3045,6 +3045,114 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	on complete
 		payment 350000
 		dialog "The government of <planet> gratefully pays you <payment> for apprehending the criminal gang."
+
+mission "Bounty Hunting (Solo Marauder I)"
+	name "Marauder interceptor near <system>"
+	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 100
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" > 50
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder I"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 80000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder II)"
+	name "Small Marauder near <system>"
+	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		or
+			"combat rating" > 200
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" > 100
+		"combat rating" < 600
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder II"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 130000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder III)"
+	name "Marauder near <system>"
+	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		"combat rating" < 1550
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder III"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 180000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Bounty Hunting (Solo Marauder IV)"
+	name "Large Marauder near <system>"
+	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2980
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 2
+		fleet "Marauder IV"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 280000
+		dialog phrase "generic bounty hunting payment dialog"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
@@ -3409,14 +3517,14 @@ mission "Hunted"
 	to offer
 		"combat rating" > 8103
 		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" / 4 + "ship: Medium Warship" / 2 + "ship: Heavy Warship"
+		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
 		or
 			and
 				not "Hunted: active"
-				"ship scale" < 8
-				random < 2 + "ship scale"
+				"ship scale" < 32
+				random < 2 + "ship scale" / 4
 			and
-				"ship scale" >= 8 + "Hunted: active"
+				"ship scale" >= 32 + "Hunted: active" * 4
 				random < 10
 		or
 			not "chosen sides"

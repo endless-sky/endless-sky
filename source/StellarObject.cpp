@@ -43,12 +43,12 @@ double StellarObject::Radius() const
 	double radius = -1.;
 	if(HasSprite())
 		radius = .5 * min(Width(), Height());
-	
+
 	// Special case: stars may have a huge cloud around them, but only count the
 	// core of the cloud as part of the radius.
 	if(isStar)
 		radius = min(radius, 80.);
-	
+
 	return radius;
 }
 
@@ -84,7 +84,7 @@ const string &StellarObject::LandingMessage() const
 	// Check if there's a custom message for this sprite type.
 	if(GameData::HasLandingMessage(GetSprite()))
 		return GameData::LandingMessage(GetSprite());
-	
+
 	static const string EMPTY;
 	return (message ? *message : EMPTY);
 }
@@ -106,7 +106,7 @@ int StellarObject::RadarType(const Ship *ship) const
 		return Radar::FRIENDLY;
 	else if(!planet->GetGovernment()->IsEnemy())
 		return Radar::UNFRIENDLY;
-	
+
 	return Radar::HOSTILE;
 }
 
