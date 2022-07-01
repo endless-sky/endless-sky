@@ -216,9 +216,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		if(CanTrade())
 		{
-			int canBuyBest = player.HasBestTrade(selectedSystem);
-			if(canBuyBest)
-				player.BuyBestTrade(*selectedSystem, canBuyBest == 2);
+			auto tradeState = player.GetBestTradeState(selectedSystem);
+			if(tradeState)
+				player.BuyBestTrade(*selectedSystem, tradeState);
 			else if(key == 't' && player.Cargo().CommoditiesSize())
 				player.SellCommodities();
 		}
@@ -239,19 +239,19 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		// name, the system government, a planet box, the commodity listing, or nothing.
 		if(y >= autoBuyY && y < autoBuyY + 60 && CanTrade())
 		{
-			int canBuyBest = player.HasBestTrade(selectedSystem);
-			if(canBuyBest || player.Cargo().CommoditiesSize())
+			auto tradeState = player.GetBestTradeState(selectedSystem);
+			if(tradeState || player.Cargo().CommoditiesSize())
 			{
 				// The player clicked on the button to auto-trade
-				if(canBuyBest)
-					player.BuyBestTrade(*selectedSystem, canBuyBest == 2);
+				if(tradeState)
+					player.BuyBestTrade(*selectedSystem, tradeState);
 				else
 					player.SellCommodities();
 				return true;
 			}
 			// (otherwise the button isn't shown)
 		}
-		if(y >= tradeY && y < tradeY + 200)
+		else if(y >= tradeY && y < tradeY + 200)
 		{
 			// The player clicked on a tradable commodity. Color the map by its price.
 			SetCommodity((y - tradeY) / 20);
@@ -624,23 +624,27 @@ void MapDetailPanel::DrawInfo()
 
 	autoBuyY = uiPoint.Y();
 
-	// "Buy best" button goes after trade prices
+	// "Buy best trade" button goes after commodity prices
 	if(CanTrade())
 	{
-		int canBuyBest = player.HasBestTrade(selectedSystem);
-		if(canBuyBest || player.Cargo().CommoditiesSize())
+		auto tradeState = player.GetBestTradeState(selectedSystem);
+		if(tradeState || player.Cargo().CommoditiesSize())
 		{
 			const Sprite *buyAllSprite = SpriteSet::Get("ui/planet dialog button"); //160x60
 			const auto alignCenter = Layout(160, Alignment::CENTER);
 			SpriteShader::Draw(buyAllSprite, uiPoint + Point(70, 35));
-			if(canBuyBest == 0)
+			if(!tradeState)
 			{
 				font.Draw({"Sell Commodi_ties", alignCenter}, uiPoint + Point(-10, 28), medium);
 			}
 			else
 			{
-				font.Draw({canBuyBest == 2 ? "Fill Ship with" : "Fill Fleet with", alignCenter}, uiPoint + Point(-10, 20), medium);
-				font.Draw({"_Best _Trade", alignCenter}, uiPoint + Point(-10, 37), medium);
+				font.Draw({tradeState == PlayerInfo::BestTradeState::FLEET ?
+							"Fill Fleet with" : "Fill Ship with", alignCenter},
+							uiPoint + Point(-10, 20),
+							tradeState == PlayerInfo::BestTradeState::POOR ? dim : medium);
+				font.Draw({"_Best _Trade", alignCenter}, uiPoint + Point(-10, 37),
+							tradeState == PlayerInfo::BestTradeState::POOR ? dim : medium);
 			}
 		}
 	}

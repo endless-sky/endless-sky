@@ -1524,15 +1524,14 @@ bool PlayerInfo::CanTrade()
 // when traded from this planet. It checks if the system is landable
 // or bribeable. This will check available cargo, and assumes you will
 // sell other commodities to make room for the best one.
-// 0: No, or no space, or already full. 1: Space in fleet. 2: Space in Flagship only
-int PlayerInfo::HasBestTrade(const System *destination)
+PlayerInfo::BestTradeState PlayerInfo::GetBestTradeState(const System *destination)
 {
 	if(!destination
 		|| destination == system
 		|| !HasVisited(*destination)
 		|| !destination->IsInhabited(Flagship())
 		|| !destination->HasTrade())
-		return 0;
+		return NONE;
 
 	// See if we can potentially land in the system
 	bool landable = false;
@@ -1557,22 +1556,25 @@ int PlayerInfo::HasBestTrade(const System *destination)
 		}
 	}
 	if(!landable)
-		return 0;
+		return NONE;
 
 	string type = BestTradeType(*destination);
 	if(type.empty())
-		return 0;
+		return NONE;
 
 	int sizeForCommodities = cargo.Size()
 		- cargo.OutfitsSize() - cargo. MissionCargoSize() - cargo.Get(type);
 
 	if(sizeForCommodities <= 0)
-		return 0;
+		return NONE;
+
+	if(system->Trade(autoBoughtType) > Accounts().Credits())
+		return POOR;
 
 	if(sizeForCommodities <= Flagship()->Cargo().Size())
-		return 2;
+		return SHIP;
 
-	return 1;
+	return FLEET;
 }
 
 
@@ -1601,8 +1603,11 @@ string PlayerInfo::BestTradeType(const System &destination)
 
 
 // Purchase commodities that make the most profit when sold at destination
-void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, bool sellFirst)
+void PlayerInfo::BuyBestTrade(const System &destination, BestTradeState state, bool sellFirst)
 {
+	if(state == POOR)
+		return;
+
 	string oldType = autoBoughtType;
 	autoBoughtType = BestTradeType(destination);
 
@@ -1626,7 +1631,7 @@ void PlayerInfo::BuyBestTrade(const System &destination, bool includeFlagship, b
 	// Fill all cargo, but keep your flagship free of space for plundering
 	// TODO: check each ship for special outfit attribute or something?
 	int64_t amount = cargo.Free();
-	if(!includeFlagship)
+	if(state != SHIP)
 		amount -= flagship->Cargo().Free();
 
 	if(amount <= 0)
