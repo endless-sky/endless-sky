@@ -57,7 +57,8 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"Korath Repeater Rifle" 190
 		
 		"Steering (Lunar Class)"
-		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
 		"Hyperdrive"
 		"Jump Drive (Broken)"
 		
