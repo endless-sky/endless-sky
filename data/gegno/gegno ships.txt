@@ -656,7 +656,7 @@ ship Halite
 	leak leak 60 50
 	explode "small explosion" 8
 	explode "tiny explosion" 10
-	description "Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology, with almost half the hull dedicated to it."
+	description "Halites are a successful experimental test platform designed by the Gegno Scin. They are the Gegno's first fighter-based craft, and the first to equip both early-stage beam weapon and shield technology; almost half the hull is dedicated to it."
 	description "	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft."
 
 ship Mica
