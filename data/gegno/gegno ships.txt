@@ -557,7 +557,7 @@ ship Gneiss
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bolstering 3 huge mounts dedicated to hold enormous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing dangerously threatening broadsides at the opposing force."
+	description "Gneiss Battleships are the Gegno Vi's true sword & shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing 3 huge mounts dedicated to holding enormous Ballistic Cannons. Gniesses also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force."
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
 ship Protolith
