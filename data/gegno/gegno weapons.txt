@@ -220,7 +220,7 @@ outfit "Talc Laser"
 		"firing heat" 7
 		"shield damage" 1.3
 		"hull damage" 2.3
-	description "Unlike humans, the Gegno Scin were able to research beam technology much earlier in their timeline, although at a much slower efficiency. Several experiments eventually lead up to the Talc Laser, a very basic beam laser that is strong against hull armor. A consistent source of Talc Laser damage is extremely effective against the slow moving ships of the Gegno Vi. As an early product there are still a few drawbacks, most notably in how much heat the beam generates while firing."
+	description "Unlike humans, the Gegno Scin were able to research beam technology much earlier in their timeline, although at a much slower efficiency. Several experiments eventually led up to the Talc Laser, a very basic beam laser that is strong against hull armor. A consistent source of Talc Laser damage is extremely effective against the slow moving ships of the Gegno Vi. As an early product there are still a few drawbacks, most notably in how much heat the beam generates while firing."
 
 
 outfit "Acuit Artillery"
