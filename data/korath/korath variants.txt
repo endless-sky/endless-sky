@@ -103,7 +103,7 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 	outfits
 		"Korath Shunt-Strike" 4
 		"Korath Banisher"
-		"Korath Digger"
+		"Korath Digger Turret"
 		
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
