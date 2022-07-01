@@ -79,7 +79,6 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 		"Fuel Processor" 1
 		"Systems Core (Large)"
 		"Double Plasma Core"
-		"Cargo Expansion"
 		"Korath Repeater Rifle" 206
 		
 		"Reverser (Lunar Class)"
