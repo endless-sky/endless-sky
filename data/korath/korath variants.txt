@@ -106,7 +106,7 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 		"Korath Digger Turret"
 		
 		"Liquid Sodium Cooler"
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Systems Core (Medium)"
 		"Triple Plasma Core"
