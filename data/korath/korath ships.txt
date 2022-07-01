@@ -24,7 +24,7 @@ ship "Korath Dredger"
 		"heat dissipation" .45
 		"fuel capacity" 900
 		"cargo space" 605
-		"outfit space" 600
+		"outfit space" 607
 		"weapon capacity" 226
 		"engine capacity" 170
 		weapon
