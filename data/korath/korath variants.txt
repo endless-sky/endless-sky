@@ -34,7 +34,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Thruster (Planetary Class)"
 		"Scram Drive"
 	
-	turret "Korath Digger Turret"
+	turret
 	turret "Korath Digger Turret"
 	turret "Korath Warder"
 	turret "Korath Warder"
