@@ -76,7 +76,7 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 		"Korath Warder"
 		"Korath Banisher"
 		
-		"Small Heat Shunt" 2
+		"Small Heat Shunt" 3
 		"Fuel Processor" 1
 		"Systems Core (Large)"
 		"Double Plasma Core"
@@ -136,6 +136,7 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 		"Double Plasma Core"
 		"Bunk Room" 16
 		"Large Heat Shunt" 2
+		"Small Heat Shunt"
 		"Small Bunk Room" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 475

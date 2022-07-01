@@ -42,6 +42,7 @@ ship "Korath Dredger"
 		"Systems Core (Large)"
 		"Double Plasma Core"
 		"Large Heat Shunt"
+		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
