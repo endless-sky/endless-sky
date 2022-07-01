@@ -31,7 +31,7 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool canTrade = true);
 	explicit MapDetailPanel(const MapPanel &panel);
 	~MapDetailPanel();
 
@@ -63,6 +63,9 @@ private:
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
+
+	// Whether to show the auto-trade button
+	bool CanTrade();
 
 	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.
 	std::map<const Planet *, int> planetY;

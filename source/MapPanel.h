@@ -131,6 +131,8 @@ protected:
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
+	// Can trade commodities
+	bool canTrade = true;
 
 	// Distance from the screen center to the nearest owned system,
 	// for use in determining which governments are in the legend.

@@ -84,9 +84,10 @@ namespace {
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool canTrade)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
 {
+	this->canTrade = canTrade;
 }
 
 
@@ -213,7 +214,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if(key == 'b' || key == 't')
 	{
-		if(player.CanTrade())
+		if(CanTrade())
 		{
 			int canBuyBest = player.HasBestTrade(selectedSystem);
 			if(canBuyBest)
@@ -236,7 +237,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
-		if(y >= autoBuyY && y < autoBuyY + 60 && player.CanTrade())
+		if(y >= autoBuyY && y < autoBuyY + 60 && CanTrade())
 		{
 			int canBuyBest = player.HasBestTrade(selectedSystem);
 			if(canBuyBest || player.Cargo().CommoditiesSize())
@@ -624,7 +625,7 @@ void MapDetailPanel::DrawInfo()
 	autoBuyY = uiPoint.Y();
 
 	// "Buy best" button goes after trade prices
-	if(player.CanTrade())
+	if(CanTrade())
 	{
 		int canBuyBest = player.HasBestTrade(selectedSystem);
 		if(canBuyBest || player.Cargo().CommoditiesSize())
@@ -785,4 +786,11 @@ void MapDetailPanel::SetCommodity(int index)
 {
 	commodity = index;
 	player.SetMapColoring(commodity);
+}
+
+
+
+bool MapDetailPanel::CanTrade()
+{
+	return canTrade && player.CanTrade();
 }
