@@ -17,8 +17,8 @@ ship "Korath Dredger"
 		"cost" 29370000
 		"shields" 27000
 		"hull" 22000
-		"required crew" 127
-		"bunks" 347
+		"required crew" 137
+		"bunks" 331
 		"mass" 1357
 		"drag" 17.1
 		"heat dissipation" .45
