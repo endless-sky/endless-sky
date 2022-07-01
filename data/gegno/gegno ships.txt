@@ -253,7 +253,7 @@ ship Gypsum
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description "To fuel their exponentially increasing construction rates, and corresponding need for materials, the Gegno decided to design a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture."
-	description `	Because of the Gegno's limited technology, the Gypsum is much slower than similarly sized ships elsewhere in the galaxy, making it too slow to effectively catch faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
+	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to effectively catch faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
 
 ship Slate
 	sprite ship/slate
