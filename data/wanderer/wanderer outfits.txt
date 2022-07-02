@@ -301,8 +301,8 @@ outfit "Small Biochemical Cell"
 	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
-	"energy generation" 1.6
-	"heat generation" 1.4
+	"energy generation" 2
+	"heat generation" 1.75
 	"energy capacity" 3000
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
@@ -314,9 +314,9 @@ outfit "Large Biochemical Cell"
 	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
-	"energy generation" 6.2
-	"heat generation" 4.9
-	"energy capacity" 7000
+	"energy generation" 7.75
+	"heat generation" 6.125
+	"energy capacity" 12000
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Red Sun Reactor"
