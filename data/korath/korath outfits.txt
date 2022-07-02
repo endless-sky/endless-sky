@@ -211,16 +211,16 @@ outfit "Afterburner (Asteroid Class)"
 	thumbnail "outfit/tiny korath afterburner"
 	"mass" 10
 	"outfit space" -10
-	"engine capacity" -10
+	"engine capacity" -5
 	"fuel capacity" 100
-	"ramscoop" 0.5
-	"afterburner thrust" 11
-	"afterburner energy" 0.47
-	"afterburner heat" 3.8
-	"afterburner fuel" 0.02
+	"ramscoop" 0.25
+	"afterburner thrust" 16
+	"afterburner energy" 0.77
+	"afterburner heat" 6.26
+	"afterburner fuel" 0.03
 	"afterburner effect" "korath afterburner"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
-	description "The smallest of afterburners is actually more fuel processor than it is afterburner.  It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrastellar ships and dispense with conventional thrusters entirely."
+	description "The smallest of afterburners is as much fuel processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrastellar ships and dispense with conventional thrusters entirely."
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburner (Comet Class)"
