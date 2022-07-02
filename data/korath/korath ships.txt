@@ -18,7 +18,7 @@ ship "Korath Dredger"
 		"shields" 27000
 		"hull" 22000
 		"required crew" 137
-		"bunks" 331
+		"bunks" 357
 		"mass" 1357
 		"drag" 17.1
 		"heat dissipation" .45
