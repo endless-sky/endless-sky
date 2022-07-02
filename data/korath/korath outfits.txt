@@ -210,8 +210,8 @@ outfit "Afterburner (Asteroid Class)"
 	category "Engines"
 	"cost" 136000
 	thumbnail "outfit/tiny korath afterburner"
-	"mass" 10
-	"outfit space" -10
+	"mass" 9
+	"outfit space" -9
 	"engine capacity" -5
 	"fuel capacity" 100
 	"ramscoop" 0.25
