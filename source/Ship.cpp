@@ -3915,8 +3915,7 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	auto sp = ship.shared_from_this();
-	escorts.list.push_back(std::move(sp));
+	escorts.list.push_back(ship.shared_from_this());
 	TuneForEscort(ship);
 }
 
@@ -3992,8 +3991,7 @@ void Ship::TuneForEscort(const Ship &ship)
 		if(eV > 0. && (escorts.cruiseVelocity <= 0. || (eV < escorts.cruiseVelocity)))
 		{
 			escorts.cruiseVelocity = eV;
-			auto sp = make_shared<Ship>(ship);
-			escorts.slowest = sp;
+			escorts.slowest = ship.shared_from_this();
 		}
 	}
 }
