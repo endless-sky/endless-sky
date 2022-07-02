@@ -19,12 +19,12 @@ ship "Korath Dredger"
 		"hull" 22000
 		"required crew" 137
 		"bunks" 357
-		"mass" 1357
+		"mass" 1503
 		"drag" 17.1
 		"heat dissipation" .45
 		"fuel capacity" 900
-		"cargo space" 605
-		"outfit space" 757
+		"cargo space" 675
+		"outfit space" 675
 		"weapon capacity" 276
 		"engine capacity" 170
 		weapon
@@ -39,15 +39,16 @@ ship "Korath Dredger"
 		"Korath Warder" 1
 		"Korath Digger Turret" 3
 		
-		"Systems Core (Large)"
+		"Systems Core (Medium)"
 		"Double Plasma Core"
+		"Plasma Core"
 		"Large Heat Shunt"
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
-		"Bow Drive (Meteor Class)"
-		"Steering (Lunar Class)"
+		"Reverser (Lunar Class)"
+		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
 		"Hyperdrive"
 		"Jump Drive"
