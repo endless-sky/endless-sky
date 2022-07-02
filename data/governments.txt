@@ -388,6 +388,7 @@ government "Korath (Civilian)"
 	language "Korath"
 
 	"attitude toward"
+		"Kor Mereti" -.01
 		"Kor Sestor" -.01
 		"Korath" .01
 

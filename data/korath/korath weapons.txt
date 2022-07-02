@@ -764,7 +764,7 @@ outfit "Korath Digger Turret"
 		"hull damage" 1.3
 		"minable damage" 5.2
 		"disruption damage" .08
-	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they reengineered this ancient but robust design. The mild shield disruption effect makes it somewhat useful in combat.`
+	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient but robust design. The mild shield disruption effect makes it somewhat useful in combat.`
 
 outfit "Korath Digger"
 	category "Guns"

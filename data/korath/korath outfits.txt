@@ -267,6 +267,8 @@ outfit "Afterburner (Planetary Class)"
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.32
 	"afterburner effect" "korath afterburner"
+	"heat capacity" 500
+	"heat dissipation" 0.02
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
 
