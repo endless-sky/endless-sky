@@ -27,7 +27,7 @@ ship "Korath Dredger"
 		"cargo space" 675
 		"outfit space" 763
 		"weapon capacity" 276
-		"engine capacity" 170
+		"engine capacity" 206
 		weapon
 			"blast radius" 300
 			"shield damage" 4600
@@ -40,18 +40,17 @@ ship "Korath Dredger"
 		"Korath Warder" 1
 		"Korath Digger Turret" 3
 		
-		"Systems Core (Medium)"
-		"Double Plasma Core"
-		"Plasma Core"
-		"Large Heat Shunt"
-		"Small Heat Shunt" 2
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
 		"Reverser (Lunar Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
-		"Hyperdrive"
+		"Scram Drive"
 		"Jump Drive"
 		
 	turret 0 -153 "Korath Grab-Strike"
