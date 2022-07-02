@@ -170,11 +170,11 @@ void Mission::Load(const DataNode &node)
 					else if(grand.Token(0) == "requires jump drive")
 						distanceCalcOptions.requiresJumpDrive = true;
 					else
-						grand.PrintTrace("Invalid \"route options\" child:");
+						grand.PrintTrace("Invalid \"distance calc options\" child:");
 				}
 			}
 			else
-				child.PrintTrace("Warning: skipping unsupported \"route options\" definition:");
+				child.PrintTrace("Warning: skipping unsupported \"distance calc options\" definition:");
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
