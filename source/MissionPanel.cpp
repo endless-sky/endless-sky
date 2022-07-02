@@ -116,8 +116,10 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
+	availableEscorts(player.AvailableEscorts()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
+	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
+	availableEscortsIt(player.AvailableJobs().begin())
 {
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
@@ -148,6 +150,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 
+
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, true);
 }
@@ -159,6 +162,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
+	availableEscorts(player.AvailableEscorts()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
@@ -202,6 +206,7 @@ void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 
+	// Draw the route to the selected system.
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
@@ -219,6 +224,7 @@ void MissionPanel::Draw()
 		system = next;
 	}
 
+	// Highlight systems with active or available miisions.
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
@@ -230,10 +236,23 @@ void MissionPanel::Draw()
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 
 	Point pos = DrawPanel(
-		Screen::TopLeft() + Point(0., -availableScroll),
+		Screen::TopLeft() + Point(0., -availableScroll - availableEscortsScroll),
 		"Missions available here:",
-		available.size());
+		available.size() + availableEscorts.size() + 1);
 	DrawList(available, pos, availableIt);
+
+	// Draw the Heading for the Escorts
+	const Color &unselected = *GameData::Colors().Get("medium");
+	const Color &selected = *GameData::Colors().Get("bright");
+	Point size(SIDE_WIDTH, 20 * available.size() + 40);
+	const Font &font = FontSet::Get(14);
+	font.Draw("Escorts available here:", pos + Point(0., 19. + (available.size() * 20) + ((20. - font.Height()) * .5)), selected);
+	FillShader::Fill(
+		pos + Point(.5 * size.X() - 5., 15.) + Point(0., 19. + (available.size() * 20) + ((20. - font.Height()) * .5)),
+		Point(size.X() - 10., 1.),
+		unselected);
+
+	DrawList(availableEscorts, pos + Point(0., (available.size() + 1) * 20), availableEscortsIt);
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
@@ -328,6 +347,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		selectedSystem = availableIt->Destination()->GetSystem();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
+	else if(availableEscortsIt != availableEscorts.end())
+	{
+		selectedSystem = availableEscortsIt->Destination()->GetSystem();
+		DoScroll(availableEscorts, availableEscortsIt, availableEscortsScroll, false);
+	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
@@ -355,6 +379,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			availableIt = available.begin();
 			while(index--)
 				++availableIt;
+			availableEscortsIt = availableEscorts.end();
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			selectedSystem = availableIt->Destination()->GetSystem();
@@ -362,6 +387,19 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			CenterOnSystem(selectedSystem);
 			return true;
 		}
+		else if(index > available.size() && index <= available.size() + availableEscorts.size())
+		{
+			index -= available.size() + 1;
+			availableEscortsIt = availableEscorts.begin();
+			while(index--)
+				++availableEscortsIt;
+			acceptedIt = accepted.end();
+			availableIt = available.end();
+			dragSide = -1;
+			DoScroll(availableEscorts, availableEscortsIt, availableEscortsScroll, false);
+			return true;
+		}
+
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
@@ -375,6 +413,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				++acceptedIt;
 			}
 			availableIt = available.end();
+			availableEscortsIt = availableEscorts.end();
 			dragSide = 1;
 			selectedSystem = acceptedIt->Destination()->GetSystem();
 			DoScroll(accepted, acceptedIt, acceptedScroll, true);
@@ -447,6 +486,8 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			DoScroll(available, availableIt, availableScroll, false);
 		else if(acceptedIt != accepted.end())
 			DoScroll(accepted, acceptedIt, acceptedScroll, true);
+		else if(availableEscortsIt != availableEscorts.end())
+			DoScroll(availableEscorts, availableEscortsIt, availableEscortsScroll, true);
 	}
 
 	return true;
@@ -719,6 +760,8 @@ void MissionPanel::DrawMissionInfo()
 		wrap.Wrap(availableIt->Description());
 	else if(acceptedIt != accepted.end())
 		wrap.Wrap(acceptedIt->Description());
+	else if(availableEscortsIt != availableEscorts.end())
+		wrap.Wrap(availableEscortsIt->Description());
 	else
 		return;
 	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
@@ -729,7 +772,11 @@ void MissionPanel::DrawMissionInfo()
 bool MissionPanel::CanAccept() const
 {
 	if(availableIt == available.end())
-		return false;
+	{
+		if(availableEscortsIt == availableEscorts.end())
+			return false;
+		return availableEscortsIt->CanAccept(player);
+	}
 
 	return availableIt->CanAccept(player);
 }
@@ -738,7 +785,8 @@ bool MissionPanel::CanAccept() const
 
 void MissionPanel::Accept()
 {
-	const Mission &toAccept = *availableIt;
+	const Mission &toAccept = availableIt != available.end() ? *availableIt : *availableEscortsIt;
+		
 	int cargoToSell = 0;
 	if(toAccept.CargoSize())
 		cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
@@ -762,7 +810,7 @@ void MissionPanel::Accept()
 	}
 
 	++availableIt;
-	player.AcceptJob(toAccept, GetUI());
+	player.AcceptJob(toAccept, GetUI(), availableEscortsIt != availableEscorts.end());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
 

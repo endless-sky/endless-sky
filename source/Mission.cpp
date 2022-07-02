@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <sstream>
 
+
 using namespace std;
 
 namespace {
@@ -184,12 +185,16 @@ void Mission::Load(const DataNode &node)
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
+		else if(child.Token(0) == "cost" && child.Size() >= 2)
+			cost = child.Value(1);
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
+		else if(child.Token(0) == "playerescort")
+			isPlayerEscort = true;
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -331,6 +336,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
+		if(isPlayerEscort)
+			out.Write("playerescort");
+		if(cost)
+			out.Write("cost", cost);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -520,6 +529,16 @@ bool Mission::IsMinor() const
 
 
 
+// Check if this mission is an player escort. If yes it will be handled 
+// different than normal missions.
+bool Mission::IsPlayerEscort() const
+{
+	return isPlayerEscort;
+}
+
+
+
+
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);
@@ -603,6 +622,12 @@ int Mission::Passengers() const
 	return passengers;
 }
 
+
+
+int Mission::Cost() const
+{
+	return cost;
+}
 
 
 // The mission must be completed by this deadline (if there is a deadline).
@@ -1125,6 +1150,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
+	result.isPlayerEscort = isPlayerEscort;
+	result.cost = cost;
 	result.autosave = autosave;
 	result.location = location;
 	result.repeat = repeat;

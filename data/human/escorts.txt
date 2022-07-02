@@ -1,0 +1,41 @@
+mission "Escort B"
+	name "Escort B"
+	description "This Captain will Escort you for 200 credits per day."
+	repeat
+	job
+	playerescort
+	cost 200
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to complete
+		never
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+			variant
+				"Star Barge"
+
+mission "Escort A"
+	name "Escort A"
+	description "This Captain will Escort you for 300 credits per day."
+	repeat
+	job
+	playerescort
+	cost 300
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to complete
+		never
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+			variant
+				"Star Barge"
