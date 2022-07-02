@@ -164,9 +164,9 @@ mission "Remnant: Shattered Light 1"
 		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it."
 	on complete
 		conversation
-			`Looking around the Viminal spaceport, you manage to spot Taely using something that looks kind of like a small catapult to throw a large rock across the cavern. A nearby Merganser leaps into the air and chases after it. The ship pounces on the rock, vanishes from sight, and then reappears next to Taely and drops the rock next to her. Without looking away from the Merganser she waves you over.`
+			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
 			`	"Well met, <first>, how goes your travels, found anything interesting?`
-			`	She listens to your description of the encounter with the ghostly ship, and looks at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the starport."`
+			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the starport."`
 
 
 
@@ -188,7 +188,7 @@ mission "Remnant: Shattered Light 2"
 	on offer
 		require "Research Laboratory"
 		conversation
-			`Your arrival in the starport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They turn as one when you approach, breaking off their conversation.`
+			`Your arrival in the starport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher." Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty doing the best with that which the Embers blessed me, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
 			`	Ruach's gestures take on a more precise cadence. "Taely tells me that you have spotted a strange 'ghost' in Caeculus that bears a resemblance to ancestral ships. Could you take me to do a scan of it please?"`
 			choice
@@ -199,7 +199,7 @@ mission "Remnant: Shattered Light 2"
 	on complete
 		payment 50000
 		conversation
-			`The <ship> has not even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple spots down to stare up at the gills of an Albatross. A few moments later, Taely drops down to the ground beside her. As you approach you can see Ruach has a hologram of the spectral ship floating in the air between them. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach says as you approach.`
+			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. Taely copied her actions a few moments later, taking her time as you make preparations to follow them. You can see Ruach has a hologram of the spectral ship by the time you arrive, floating in the air between them. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach mused.`
 			`	"Sorry for leaving you behind, this is just such an exciting discovery. This ship you have found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions here! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
 			
 
@@ -224,9 +224,9 @@ mission "Remnant: Shattered Light 3"
 	on offer
 		conversation
 			`The group of people standing around a hologram over on one side of the cafeteria. Ruach gestures for you to join them, and introduces you to each of the people in the group. "I would just like to start by offering our thanks for your assistance, Captain <first>. You have sharp eyes to pick this up as early as you did. Other scouts reported it shortly thereafter, but you spotted it first." She gestures to the hologram of the ship floating in front of you.`
-			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the many mysteries here is what has happened to it, and what we should do about it."`
+			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the oldest mysteries here is what has happened to it, and what we should do about it."`
 			`	Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
-			`	"As such, we are proposing that we use the same equipment we use for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
+			`	"As such, our proposition is to use the same equipment we used for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronicity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
 			`	Ruach takes the lead again. "So, Captain, we will need you to bring us in close to the Shattered Light so we can give this a try. Our sentries have reported seeing it in the systems near Coluber, so it may take some searching."`
 			choice
 				`	"Looks good. Start loading the <ship>!"`
@@ -239,7 +239,7 @@ mission "Remnant: Shattered Light 3"
 				accept
 	on complete
 		conversation
-			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land with a view of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
+			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
 			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity, we can handle the rest."`
 			`	Moments later your ship pings a point on the ship indicating a gaping hole on the ship. Nodding your assent, the <ship> swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
@@ -272,7 +272,7 @@ mission "Remnant: Shattered Light 4"
 		fail "Remnant: Shattered Light 3b"
 		conversation
 			`Eventually you find a good vantage point several kilometers away where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse by the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air explode out from it, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
-			`	The dust and debris settles within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is. Literally everything that one could need to lay the foundations for a new colony, packed into a single ship. You note large gashes in the hull, along with massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
+			`	The dust and debris settle within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is; Everything that one could need to lay the foundations for a new colony is packed into a single ship. You note large gashes in the hull, massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
 			`	As you slow to a hover alongside, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the primary weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
 				accept
 	npc accompany
@@ -348,20 +348,20 @@ mission "Remnant: Shattered Light 6"
 			choice
 				`	"Great, but please spare me the details."`
 					goto shatteredrequest
-				`	"You have figured out what happened? Great!"`
+				`	"You figured out what happened? Great!"`
 			`	She looks crestfallen "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
 			`	"As we all know, it was part of the exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
 			`	At this point another Remnant takes up the narrative. "Based on the initial incident logs, it appears that something in the stabilization fields failed during transit. The data is not clear whether the systems failed, or if something in the wormhole fluctuations exceeded the parameters that the systems could handle. In any case, the ship appears to have been shunted laterally from the wormhole in mid-transit.`
-			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after you spotted it."`
+			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after, you spotted it."`
 			choice
 				`	"Interesting. Well, let me know if I can help."`
 					goto shatteredhelp
 				`	"I am curious as to what you will do now."`
-			`	"The first step will be to unpack the Shattered Light and setup all its equipment. Taking detailed scans of each piece as we do so, of course." She gestures around at the equipment expanding out of the side of the ship. "As you can see, we have already started the process, and found that much of it is operational. One of the other Remnant continues. "The Shattered Light carried what amounts to an entire heavy industrial factory. Everything from smelters to welding equipment and everything in between." They smile and their gestures take on a tone of irony. "In fact, the ships we have now are in no small part due to the Shattered Light's absence. Without these capabilities, the the choice about whether or not to commit to learning the techniques of those who lived here before us was much easier. If the Shattered Light had arrived on schedule we may well still be building ships out of the traditional materials prevalent at the time."`
+			`	"The first step will be to unpack the Shattered Light and set up all its equipment. Taking detailed scans of each piece as we do so, of course." She gestures around at the equipment expanding out of the side of the ship. "As you can see, we have already started the process and found that much of it is operational. One of the other Remnant continues. "The Shattered Light carried what amounts to an entire heavy industrial factory. Everything from smelters to welding equipment and everything in between." They smile and their gestures take on a tone of irony. "In fact, the ships we have now are in no small part due to the Shattered Light's absence. Without these capabilities, the choice about whether or not to commit to learning the techniques of those who lived here before us was much easier. If the Shattered Light had arrived on schedule we may well still be building ships out of the traditional materials prevalent at the time."`
 				goto shatteredrequest
 			label shatteredhelp
 			`	"Thank you, captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work; and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Taely gestures take a tone of curiosity. "One thing that you could help us with if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho crater... But if you have the resources and interest, the opportunity is there... The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
