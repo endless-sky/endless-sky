@@ -63,10 +63,3 @@ hazard "Black Hole Gravity"
 		"hit force" -25
 		"damage dropoff" 150 2500
 		"dropoff modifier" 0
-
-hazard "Pre Supernova"
-	"constant strength"
-	"period" -1
-	"strength" 1
-	weapon
-		"heat damage" 10000
