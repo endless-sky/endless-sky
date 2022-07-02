@@ -1371,7 +1371,7 @@ mission "FW Katya 2B"
 					goto plan
 			
 			label convinced
-			`	"Absolutely," he says. "It makes no sense. First of all, that attack hurt their cause more than it helped it. And second, I've known Katerina and her friends in the Coalition for a long time. There's no way they would agree to such a thing. So, whoever is responsible is out there somewhere, and the Free Worlds will bring them to justice."`
+			`	"Absolutely," he says. "It makes no sense. First of all, that attack hurt their cause more than it helped it. And second, I've known Katerina and her friends in the Free Worlds for a long time. There's no way they would agree to such a thing. So, whoever is responsible is out there somewhere, and the Free Worlds will bring them to justice."`
 			choice
 				`	"Well, then, what's our plan?"`
 			
