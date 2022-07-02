@@ -22,6 +22,10 @@
   <url type="homepage">https://endless-sky.github.io/</url>
   <screenshots>
     <screenshot type="default">
+      <image>https://user-images.githubusercontent.com/20871346/118372384-fd937580-b576-11eb-889f-c51dc95eda61.png</image>
+      <caption>The game's "new pilot" scenario-picking screen</caption>
+    </screenshot>
+    <screenshot>
       <image>https://endless-sky.github.io/images/screenshots/battle.jpg</image>
       <caption>A chaotic battle between the Republic and the Free Worlds</caption>
     </screenshot>
@@ -43,7 +47,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.9.14" date="2021-05-17">
+    <release version="0.9.14" date="2021-07-11">
       <description>
         <p>This is a "stable" release, focusing on bug fixes and polishing the recent v0.9.13 release.</p>
         <p>Changes include:</p>

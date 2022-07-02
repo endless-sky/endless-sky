@@ -103,7 +103,7 @@ news "remnant security advisory"
 			"System"
 			"Defense"
 		word
-			" "	
+			" "
 		word
 			"Advisory"
 			"Status"
@@ -223,7 +223,7 @@ news "remnant incomprehensible"
 			"Spaceport alley"
 			"Spaceport hallway"
 	message
-		phrase 
+		phrase
 			"Amount of Remnant"
 		word
 			" sign "
@@ -260,8 +260,8 @@ news "remnant incomprehensible"
 		word
 			". "
 		word
-			"You can not "
-		word 
+			"You cannot "
+		word
 			"make out"
 			"figure out"
 			"understand"
@@ -290,7 +290,7 @@ news "remnant cafeteria"
 			"Kitchen"
 		
 	message
-		phrase 
+		phrase
 			"Amount of Remnant"
 		word
 			" "
@@ -301,5 +301,79 @@ news "remnant cafeteria"
 			"are signing to each other over a large meal"
 			"are reading reports over a large meal"
 			"are examining holo projections over a large meal"
+		word
+			"."
+
+
+
+news "remnant comprehensible"
+	location
+		government "Remnant"
+	to show
+		has "remnant: sign studies complete"
+	name
+		word
+			"Spaceport"
+			"Loading dock"
+			"Cafeteria"
+			"Landing pad"
+			"Landing dock"
+			"Spaceport alley"
+			"Spaceport hallway"
+	message
+		phrase
+			"Amount of Remnant"
+		word
+			" sign "
+			" gesture "
+		word
+			"quickly"
+			"calmly"
+			"leisurely"
+			"slowly"
+			"deliberately"
+			"carefully"
+			"precisely"
+			"sharply"
+			"briskly"
+			"sweepingly"
+			"intensively"
+			"meticulously"
+			"at length"
+			"vaguely"
+			"briskly"
+			"hurriedly"
+			"hastily"
+			"abruptly"
+			"spontaneously"
+		word
+			" to "
+		word
+			"each other"
+			"another Remnant"
+			"other Remnant"
+			"a Remnant at the information desk"
+			"a dockworker"
+			"something or someone you can't see"
+		word
+			". "
+		word
+			"From this angle, "
+			"Without them facing you, "
+		word
+			"all you can "
+			"what you can "
+		word
+			"make out"
+			"catch"
+			"see"
+			"discern"
+		word
+			" is that they are "
+		word
+			"discussing a recent salvage operation"
+			"making lunch plans"
+			"arguing about engine efficiencies"
+			"gossiping about a visitor from outside the Ember Waste"
 		word
 			"."

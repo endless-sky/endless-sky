@@ -16,6 +16,8 @@ person "Michael Zahniser"
 		word
 			"I hope you're enjoying the game!"
 	ship Kestrel Kestrel
+		sprite "ship/kestreloriginal"
+		thumbnail "thumbnail/kestreloriginal"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -50,8 +52,6 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		bay "Fighter" -46 106 under
-		bay "Fighter" 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -72,6 +72,8 @@ person "Michael Zahniser"
 		turret 23 14 "Electron Turret"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
+		bay "Fighter" -46 106 under
+		bay "Fighter" 46 106 under
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -443,7 +445,7 @@ ship "Lampyrid-Class Transport"
 		"shields" 5400
 		"hull" 4400
 		"required crew" 5
-		"bunks" 14
+		"bunks" 23
 		"mass" 240
 		"drag" 8.5
 		"heat dissipation" .7
@@ -471,6 +473,18 @@ ship "Lampyrid-Class Transport"
 	engine 0 80 1.8
 	engine 0 100 1.2
 	engine 64 28 0.7
+	"reverse engine" -64.5 -31.5 0.7
+	"reverse engine" 64.5 -31.5 0.7
+	"steering engine" -64.5 -31.5 0.7
+		angle -180
+		left
+	"steering engine" 64 28 0.7
+		left
+	"steering engine" -64 28 0.7
+		right
+	"steering engine" 64.5 -31.5 0.7
+		angle -180
+		right
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -621,7 +635,7 @@ ship "Modified Osprey"
 		"Tactical Scanner"
 		"Wanderer Ramscoop"
 		
-		"Afterburner"
+		"Volcano Afterburner"
 		`"Bufaer" Atomic Thruster`
 		"Ionic Afterburner" 5
 		"Type 4 Radiant Thruster"
@@ -769,7 +783,7 @@ ship "Ursa Polaris"
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
-		"outfit space" 1768	
+		"outfit space" 1768
 		"weapon capacity" 861
 		"engine capacity" 301
 		weapon
@@ -899,7 +913,7 @@ person "Prototype B3-CC4"
 		word
 			"<"
 		word
-			"Unauthorised"
+			"Unauthorized"
 			"Unknown"
 		word
 			" "
@@ -990,6 +1004,7 @@ ship "Shooting Star"
 		"Floating Crystal"
 		"Tree Skeleton Key Stone"
 	gun 0 0
+		over
 	turret 0 0
 	turret 0 0
 	turret 0 0
@@ -1093,6 +1108,79 @@ person "Rais Iris XVIII"
 	phrase
 		phrase
 			"friendly author"
+	phrase
+		word
+			"Remember, overkill is underrated."
+			"When in doubt, add more flammenwerfer."
+			"Why settle for something reasonable, when you can have something completely bonkers?"
+			"Bactrian Gaming."
+			"His Union's Qi Pianist."
+			"I'm basically a computer gynecologist."
+			"Your ship looks like it came out of a liquidizer!"
+			"Look at me. I am the Captain now."
+			`Pronounce "Wrzlprnft." You have 5 seconds.`
+			"Everything you see here has been created by volunteers. You can join us if you want!"
+
+			"To this day, I can still hear the Teeworlds title music."
+			"I am a light sleeper; but I am a heavy dreamer." # Owl City
+			"Did you know Viggo broke his toe?" # LoTR
+			"Meet me at the Prancing Pony." # LoTR
+			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
+			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
+			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGPGrey
+			"Do not greed for the Thrumbo horns." # RimWorld
+
+			# Walter Moers: The Mugg's Code of Conduct
+			"Honor thy muggroom."
+			"If thou seest two sticks lying one on top of the other, thou shalt walk backwards over them with thy left foot first, not with thy right. Moreover, thou shalt not devour them."
+			"Should a vulture's shadow fall across a fire that has gone out, thou shalt rekindle it three times or a great misfortune will ensue."
+			"If thou cross the path of a white cockerel seated on two superimposed sticks, thou shalt not strike it, nor shalt thou address it by name nor partake of the said sticks."
+			"Thou shalt not finkle backwards."
+			"Thou shalt not finkle forwards."
+
+			# SovietWomble
+			"Get the doomsday rounds."
+			`I wouldn't recommend shooting at me, because your gun goes "pew pew," but my gun goes BBBRRRRRRR!`
+			"Ramming speed!"
+
+			# videogamedonkey
+			"Tony. Get the boulder."
+			"Not even close!"
+			"Knack II, baby!"
+
+			# League of Legends
+			"Damnit Skaarl, did you hide my mushroom juice again?"
+			"Stand still! My eyes are on the side of my head!"
+			"One, two, three, four, two, two, three, four."
+			"Luck is failure that failed."
+			"If you want a weapon, here's a weapon. If you want conversation - here's a weapon."
+			"Working with you is almost like working alone. Almost."
+			"I will go over there. It looks quiet. It will be nice."
+
+			# Star Wars
+			"Yes, using Parsecs as measurement of speed does make sense."
+			"Hello there."
+			"I'm just a simple man trying to make my way in the universe."
+			"Did you ever hear the tragedy of Darth Plagueis the wise?"
+			"Congratulations, you are being rescued. Please do not resist."
+			"I'll be there for you. Cassian said I had to."
+
+	phrase
+		word
+			"We all serve "
+			"Praise be upon "
+			"I'm definitely not being held hostage by "
+		word
+			"the "
+		word
+			"barmy bronc."
+			"crazy colt."
+			"daft dobbin."
+			"foolish filly."
+			"scatty stallion."
+			"potty pony."
+			"mental mustang."
+
 	ship "Marauder Bactrian" "Rais Iris XVIII"
 		"never disabled"
 
@@ -1120,7 +1208,7 @@ ship "Marauder Bactrian"
 			"blast radius" 260
 			"shield damage" 2600
 			"hull damage" 1300
-			"hit force" 3900		
+			"hit force" 3900
 	outfits
 		"Dual Sunbeam Turret" 7
 		"Point Defense Turret"
@@ -1279,3 +1367,108 @@ person "Zitchas"
 	ship "Tern" "Shadow Flight 22"
 	ship "Tern" "Shadow Flight 23"
 	ship "Tern" "Shadow Flight 24"
+
+
+
+person "Brick"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"If sticks and stones break bones, then bricks should work wonders."
+			"The red coloring in bricks is caused by rust or iron oxide in the clay prior to baking."
+			"Bricks and blenders make monsters."
+			"I have no idea what I'm doing."
+	ship "Modified Boxwing" "Quarg Block"
+		"never disabled"
+	ship "Modified Boxwing" "Hai Block"
+		"never disabled"
+	ship "Modified Boxwing" "Remnant Block"
+		"never disabled"
+
+ship "Modified Boxwing"
+	sprite "ship/modified boxwing"
+	thumbnail "thumbnail/modified boxwing"
+	attributes
+		category "Interceptor"
+		cost 3690000
+		"shields" 8000
+		"hull" 8000
+		"required crew" 1
+		"bunks" 3
+		"mass" 60
+		"drag" 2.59
+		"heat dissipation" .27
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 350
+		"weapon capacity" 130
+		"engine capacity" 100
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Electron Beam" 2
+		"Heavy Laser" 2
+		"Beam Laser" 2
+
+		"Quarg Anti-Missile"
+
+		"Asteroid Scanner"
+		"Fuel Processor"
+		"Water Coolant System"
+		"Luxury Accommodations"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Scram Drive"
+
+	gun -3 -44.5 "Beam Laser"
+	gun 3 -44.5 "Beam Laser"
+	gun -8.5 -43 "Heavy Laser"
+	gun 8.5 -43 "Heavy Laser"
+	gun -15 -39 "Electron Beam"
+	gun 15 -39 "Electron Beam"
+	turret 0 7.5 "Quarg Anti-Missile"
+	engine -5 42
+		zoom 1
+	engine 5 42
+		zoom 1
+	engine -12 44
+		zoom 1
+	engine 12 44
+		zoom 1
+	engine -21.5 35
+		zoom 0.75
+	engine 21.5 35
+		zoom 0.75
+	engine -26 2
+		zoom 0.5
+	engine 26 2
+		zoom 0.5
+	"steering engine" -26.5 2
+		zoom 0.5
+		right
+	"steering engine" 26.5 2
+		zoom 0.5
+		left
+	"steering engine" -21.5 35
+		zoom 0.5
+		right
+	"steering engine" 21.5 35
+		zoom 0.5
+		left
+	leak "leak" 70 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `No matter how maligned, every ship has someone out there that loves it.`
+	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophagus. It is still terribly cramped, but at least it is luxurious and shiny!`

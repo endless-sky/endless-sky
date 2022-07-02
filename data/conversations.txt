@@ -12,7 +12,7 @@
 conversation "flight check: no energy!"
 	scene "scene/engine2"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
-	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that your generator does not produce enough power to power them. You'll have to either install some batteries, or switch to a more powerful generator.`	
+	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that your generator does not produce enough power to power them. You'll have to either install some batteries, or switch to a more powerful generator.`
 	
 conversation "flight check: no thruster!"
 	scene "scene/engine2"

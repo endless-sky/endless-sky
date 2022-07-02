@@ -62,12 +62,16 @@ fleet "Heliarch"
 		"Heliarch Breacher (Scrappy)"
 	variant 2
 		"Heliarch Interdictor (Bombardment)"
+	variant 12
+		"Heliarch Interdictor (Burst Fire)"
 	variant 8
 		"Heliarch Interdictor (Ions)"
 	variant 1
 		"Heliarch Interdictor (Missile)"
 	variant 1
 		"Heliarch Interdictor (Scrappy)"
+	variant 10
+		"Heliarch Hunter (Burst Fire)"
 	variant 2
 		"Heliarch Hunter (Interdicting)"
 	variant 2
@@ -76,6 +80,8 @@ fleet "Heliarch"
 		"Heliarch Hunter (Missile)"
 	variant 4
 		"Heliarch Hunter (Scrappy)"
+	variant 10
+		"Heliarch Punisher (Burst Fire)"
 	variant 1
 		"Heliarch Punisher (Interdicting)"
 	variant 7
@@ -266,6 +272,7 @@ fleet "Large Saryd"
 
 outfitter "Coalition Basics"
 	"Small Collector Module"
+	"Small Cogeneration Module"
 	"Small Battery Module"
 	"Small Shield Module"
 	"Small Repair Module"
@@ -276,13 +283,15 @@ outfitter "Coalition Basics"
 	"Outfits Expansion"
 	"Small Bunk Room"
 	"Bunk Room"
-	"Fuel Pod"
+	"Fuel Module"
 	"Hyperdrive"
 	"Local Map"
 
 outfitter "Coalition Advanced"
 	"Small Collector Module"
 	"Large Collector Module"
+	"Small Cogeneration Module"
+	"Large Cogeneration Module"
 	"Small Battery Module"
 	"Large Battery Module"
 	"Small Shield Module"
@@ -299,7 +308,7 @@ outfitter "Coalition Advanced"
 	"Luxury Accommodations"
 	"Small Bunk Room"
 	"Bunk Room"
-	"Fuel Pod"
+	"Fuel Module"
 	"Hyperdrive"
 	"Local Map"
 
@@ -1103,7 +1112,7 @@ phrase "hostile disabled heliarch"
 		" "
 	word
 		", you are"
-		"at the mercy of, I can not believe I am"
+		"at the mercy of, I cannot believe I am"
 	word
 		"."
 		"!"

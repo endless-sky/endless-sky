@@ -1,0 +1,146 @@
+# Copyright (c) 2022 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+mission "Remnant: Visit to Paradise 1"
+	name "Hoverboarding with Taely"
+	description "Take Taely to visit <stopovers>, then return to <planet>."
+	minor
+	source
+		government "Remnant"
+	destination "Caelian"
+	stopover "Vail"
+	to offer
+		has "event: remnant: cognizance calm"
+		or
+			and
+				random < 70
+				not "Remnant: Visit to Paradise 1: defer"
+			and
+				random < 30
+				has "Remnant: Visit to Paradise 1: defer"
+	on offer
+		conversation
+			`	You are just settling down at a table in the cafeteria when Taely slides onto the bench opposite you. "Greetings, <first>. How is life as an adventurer?"`
+			choice
+				`	"Exciting as always."`
+				`	"I am taking a break right now."`
+			`	She nods sympathetically. "Things have been a bit hectic lately, what with dimensional pockets and mysterious new aliens. I can understand wanting to slow down a bit. With the launch of two new ships in such a short time, I know I feel like I need to just relax a bit." She sighs. "It makes me feel guilty, honestly. I have accomplished so much, and there are so many things to be grateful for, but I even have more projects in development to focus on." She looks lost in thought for a moment.`
+			`	Taely looks up at you. "Could I ask you something about life back in ancestral space?"`
+			choice
+				`	"Sure."`
+					goto askquestion
+				`	"Not right now."`
+			label vaillater
+			`	"Oh, maybe some other time, then." She looks disappointed, and settles in to eat.`
+				defer
+			label askquestion
+			`	"I have been reading through the history archive you brought back, and I came across a mention of Vail." She shakes her head in amusement. "The idea of an entire planet devoted to hoverboarding and leisure activities seems so extravagant... Well, I am curious to visit it. Now, this is not a mission we are asking you to do, so I cannot offer any logistics compensation. I could, however, show you some of our history in exchange. Are you interested?"`
+			choice
+				`	"Yes, that sounds fun."`
+					goto vailfun
+				`	"Sure, I have done a bit of hoverboarding myself."`
+				`	"Maybe later."`
+					goto vaillater
+			apply
+				set "remnant: hoverboarding"
+			`	"Really? The description sounded useful for exploration, and it looked challenging." Her commlink shifts to display a hologram of a hoverboarder executing a jump with an artistic poof of snow around them. "Anyway, I think this trip should be a good diversion for us both. I will meet you onboard the <ship> shortly."`
+				accept
+			label vailfun
+			`	"Excellent. I will meet you onboard the <ship> shortly."`
+				accept
+	on defer
+		set "Remnant: Visit to Paradise 1: defer"
+	on stopover
+		conversation
+			branch science
+				has "Research Laboratory"
+			`As you approach, your navigation system picks up the beacons designating the approach path, and before long you are automatically guided to a landing pad on the outskirts of the main spaceport.`
+				goto vaillanding
+			label science
+			`As you approach Vail, the specialized sensors from your Remnant research laboratory detect parts of the weather control network tasked with increasing the amount of snowfall on the planet. Your navigation system picks up the beacons designating the approach path, and before too long you are automatically guided down to a landing pad on the outskirts of the main spaceport.`
+			label vaillanding
+			`	Looking outside the ship, you can see a multitude of tourist-oriented facilities overwhelming the normal spaceport functions. You can pick out a small sign off to the side that indicates professional commodity and banking facilities, but otherwise the area is dominated by businesses offering mountain touring, sports classes, and vehicle rentals. Next to you, Taely alternates between peering out at the signs and reading brochures on a new commlink. "Here, <first>. This one sounds more interested in providing a challenge and less pampering. What do you think?"`
+			choice
+				`	"Looks good to me."`
+				`	"Alright, should be good."`
+			branch havehoverboarded
+				has "remnant: hoverboarding"
+			`	The resort in question is a more exclusive facility, and is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where both you and Taely eventually develop sufficient skill to graduate from the easy runs up to the medium difficulty. You both fall repeatedly, but Taely's good humor is contagious as she takes the inevitable facefuls of snow in stride.`
+				goto vailheadhome
+			label havehoverboarded
+			`	The resort in question is a more exclusive facility, and is located away from the main train lines. You rent a hovercar from one of the rental companies and make the short trek out to the resort. The rest of the day is spent out on the slopes, where you teach Taely the basics of hoverboarding. By the end of the day Taely has impressed you with her quick learning and you finish off with a few runs down some of the more challenging slopes. Taely spills a few times, but she takes her failures in good humor, and never seems to make the same mistake twice.`
+			label vailheadhome
+			`	Heading back to the spaceport after a day of hoverboarding, Taely surprises you by pulling the hood open on the hovercar and spending almost an hour going over the internal systems before closing it up with a nod. "Well, that was interesting. The hovercar, I mean." She gestures at it with her commlink. "So many different manufacturers were involved in making this vehicle. Sometimes I wonder if humanity appreciates the luxury such diversity affords them." She looks thoughtful, then gestures toward the ship. "Well, <first>, I promised you a tour of a historic Remnant district. Caelian has perhaps the best example of one, so I would recommend we go there."`
+	on complete
+		conversation
+			`Taely directs you to a landing pad on the outskirts of the main spaceport, in an area that seems mostly filled with Gulls and Pelicans shifting larger quantities of products. Disembarking from the <ship>, she leads you down a large series of escalators that branch off in several directions, occasionally connecting with large ramps filled with steady stream of cargo traffic. After a few minutes they deposit you on a large platform.`
+			`	Approaching the edge of the platform, Taely puts out her arm to stop you from advancing any farther. "Watch out for the barrier," she says as she puts a hand out and touches something in mid-air in front of you. As she leans on it you can see faint ripples around her hand. "They are an essential safety feature, but they can still hurt if you run into them." She gestures to easily recognizable hazard markings on the floor. "With time you will learn to notice the faint shield ripples in the air, but meanwhile, just remember that anywhere that has the 'stand-back' lines on the floor likely has shields above it most of the time."`
+			`	Moments later, you see why the barriers are in place as a large train whooshes into the station at high speed before quickly coming to a stop. The barrier vanishes, and Taely leads you onto the train. Looking up and down the length of it, you can see hundreds, maybe even thousands of Remnant entering and exiting the train. Within moments the doors close, and the train starts moving again as you are pressed back into your seat. You see a few lights flicker past outside the window, but soon there is nothing outside but a monotonous dark blur.`
+			`	Taely notices your gaze. "Sorry, but there will not be much to see out there. The entire train line is quite far underground. Far enough to simply pass under terrain obstacles like rivers, valleys, or chasms." She nods to herself in satisfaction. "This will not be a long trip: we will only spend a few minutes at top speed before we start decelerating near our destination. I would recommend buckling into the harness."`
+			choice
+				`	"I am looking forward to seeing where we are going."`
+					goto ourdestination
+				`	"How fast does this go?"`
+			`	"The C3-L0 Maglev has a maximum rated velocity of 11D.E78 meters per second, and can sustain that almost indefinitely so long as the track remains powered. In practice, it rarely maintains that velocity for more than a few minutes at a time, as it is a local transport train. We do have some that go faster, but the amount of acceleration required to make use of them on short tracks is not terribly practical." She looks wistful. "Many people are working on solving the inertia problem, but Embers only know when that will result in something practical."`
+			choice
+				`	"Interesting. How long until we arrive?"`
+					goto ourdestination
+				`	"Why is that number so precise?"`
+				`	"That sounds like the speed of light."`
+			`	Taely smiles. "After all the safety factors, margins for error, and assorted other adjustments were taken into account, someone noticed that coefficient of the rated value was calculated to be 1.1DE79, a fraction above the coefficient of the speed of light in a vacuum, so they adjusted the rated maximum velocity down only slightly so that they would match."`
+			choice
+				`	"Thanks for the explanation."`
+					goto ourdestination
+				`	"What is a coefficient?"`
+			`	"Here, I will switch to base 10 to make it easier for you to understand." She pulls up a hologram with 299,792,458 m/s on it. As she speaks, the number shifts to 2.99792458x10^8 m/s. "When we write out a number such as the speed of light, it is typical to break it into parts. This is generally referred to as scientific notation. This is done to facilitate comparing and working with large numbers. The first part, 2.99792458 in this case, would be called the coefficient. The second part, x10, specifies the base; and the third part, ^8 is the exponent." The display shifts again to show 1.1DE784Ax16^7 m/s. "So this would be how we typically write the speed of light when we are using it in our research. So, 1.1DE78 is the coefficient of both the speed of light and the speed of the train, just with a different exponent." She pauses, then vanishes the display. "We will be arriving momentarily, so I should probably stop there."`
+			label ourdestination
+			`	After several minutes, the lights in the train car suddenly pulse several times, and the train starts to decelerate heavily. You can feel yourself pushing into the harness as the train slows and comes to a stop. Unbuckling, Taely leads you out onto the platform, and then up a long escalator to the surface. Emerging into the sunlight, you find yourself looking around at a scene that seems almost anachronistic.`
+			scene "scene/remnant remote spaceport"
+			`	Taely looks around with pride, and then watches your reaction with amusement.`
+			choice
+				`	"I do not know what to make of this."`
+				`	"This is a spaceport?"`
+			`	She nods, and guides you amongst the stream of camel-drawn hovercarts heading for the gate. "This is one of our earliest spaceports, before we learned new techniques better suited to our new home. Our founding ships brought as much as they could, of course, but as it turns out, the earliest phases of expansion look much the same, whether one is looking at historic pre-flight eras or modern settlement efforts."`
+			scene "scene/remnant remote spaceport"
+			label questionloop
+			choice
+				`	"It still seems odd to see camels pulling levitating platforms."`
+					goto camelcart
+				`	"Stone walls seem like an odd thing to build."`
+					goto stonewalls
+				`	"Are those wind turbines?"`
+					goto windturbine
+				`	"All these wood products seem surprising."`
+				`	"I think I have seen enough."`
+					goto mainreturn
+			label woodproducts
+			scene "scene/remnant remote spaceport"
+			`	Taely picks up a board from a nearby pile. "We were fortunate that Caelian had some vegetation that could be used like this. The native vegetation is biologically quite different from the trees of Earth, but they have similar structural characteristics and grow plentifully in many areas." She offers you the board. "The decision was made early on that anything that could be made from locally sourced materials, should be sourced locally. We wanted to conserve our limited supplies of metals and other rare resources for things that required it." She taps on a barrel. "These are a prime example - a few metal straps enable the wood to hold a significant amount of liquid. It is much the same as how a comparatively small amount of bone in our bodies can provide the necessary structure for a large volume of soft tissues and organs to function."`
+				goto questionloop
+			label camelcart
+			scene "scene/remnant remote spaceport"
+			`	"Is that so? The engineering advantages are quite simple: with the mechanics of the cart focused entirely on supporting the load and the camel providing horizontal motion, the cart can support much larger masses than it could if it had to split the forces." She looks wistful. "In truth, I am somewhat envious of the industrial capacity the ancestral worlds contain - we have accomplished much, but we have had to make choices, and one of those was the decision as to where to spend our industrial capacity. We chose, obviously, to focus on spacecraft and heavy industrial applications. We have no cars, no personal vehicles at all, really. Even these hovercarts are basically the repulsor systems from our spacecraft that have been repurposed to carry massive loads."`
+			`	Taely gestures out through the gate at the distant landscape. "It is ironic that, in many respects, the distant stars are more accessible to us than the metaphorical far side of the mountain. Those of us who explore our worlds often resort to long expeditions with camel trains to carry all their scientific equipment. Spending months away from friends or family while on a project is commonplace, even for those who never leave the surface of our planets. Many of our explorers, in fact, live nomadic lifestyles - moving every couple of weeks to a new research location as they study, document, and analyze the world." Her gestures take on a reverent tone. "Many of our most important discoveries can be attributed to these explorers."`
+			`	Her tone shifts to one of amusement. "We were lucky, though. Our camels were able to sustain themselves on several categories of local vegetation right from the start. It took quite a bit of experimentation with bacterial cultures, however, before we were able to enable them to really forage properly. Now they thrive here. Some experts suspect that, if we were to ever leave, the camels would probably continue to survive here for millennia to come.`
+				goto questionloop
+			label stonewalls
+			scene "scene/remnant remote spaceport"
+			`	Taely's expression becomes mournful as she leads you over to the walls. "We discovered soon after we arrived here that this planet was not as safe as it appeared. It had a variety of natural predators, including swarms of predatory creatures that were very aggressive in hunting us. They preferred darkness, and while they had excellent eyesight, their hearing was even sharper. A swarm could triangulate the position of a person from a single spoken word at great distances."`
+			`	She gestures up at the edge of the wall. "Fortunately, we discovered that while they were quite competent climbers, they could not navigate overhangs. So while such lips are generally considered a structural vulnerability when defending against modern weapons, they are indispensable for containing local wildlife. These walls served as well later on, too, when we had to deal with Korath ground attacks and other more complex threats."`
+				goto questionloop
+			label windturbine
+			scene "scene/remnant remote spaceport"
+			`	"They are indeed wind turbines." She steps through the gate to a spot with a better view. You can see that while the ones on the wall are are only a couple of meters tall, the ones on top of the towers are significantly bigger. "Our ancestors rightly guessed that anywhere that had sufficient atmosphere to dispense with pressure suits would also have wind. The vertical style also has the advantage that it handles high wind speeds and rapid variation in direction much better than some of the shapes that were more traditional at the time of the exodus. It seems to be a good precaution, as it has enabled these to survive the harsh windstorms that can sweep across the continent. While they have been repaired and improved over the centuries, these wind turbines still provide sufficient power for much of the agricultural uses out here, so we let them continue. They are also useful to remind us from where we have come."`
+				goto questionloop
+			label mainreturn
+			`	Taely leads you around the area for a few more hours, pointing out historical features, places where they resurrected trades and skills from before the advent of flight, and other interesting things. Eventually she heads back to the train station, which deposits you back in the main spaceport.`
+			`	"I hope you enjoyed the tour, <first>. It was interesting to see our history through fresh eyes." She smiles micheviously. "And I enjoyed the hoverboarding, too. Maybe we can do it again sometime." She pauses for a moment, focusing on something you cannot see. "Looks like duty calls. Embers guide your way, Captain <last>." She waves, and heads off into the crowd.`

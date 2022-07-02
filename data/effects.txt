@@ -51,6 +51,49 @@ effect "slowing spark"
 	"random spin" 30
 	"random velocity" .1
 
+# Needs unique graphics.
+effect "discharge spark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+# Needs unique graphics.
+effect "corrosion spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+# Needs unique graphics.
+effect "leakage spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
+# Needs unique graphics.
+effect "burning spark"
+	sprite "effect/nano spark"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.005
+
 
 effect "flame"
 	sprite "effect/flame"
@@ -269,7 +312,7 @@ effect "bolide"
 effect "pug tiny explosion"
 	sprite "effect/explosion/pug/tiny"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 27
 	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
@@ -281,7 +324,7 @@ effect "pug tiny explosion"
 effect "pug small explosion"
 	sprite "effect/explosion/pug/small"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 22
 	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
@@ -293,7 +336,7 @@ effect "pug small explosion"
 effect "pug medium explosion"
 	sprite "effect/explosion/pug/medium"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 19
 	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
@@ -305,7 +348,7 @@ effect "pug medium explosion"
 effect "pug large explosion"
 	sprite "effect/explosion/pug/large"
 		"no repeat"
-		"frame rate" 15
+		"frame rate" 17
 	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360

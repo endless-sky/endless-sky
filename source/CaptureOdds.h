@@ -32,7 +32,7 @@ public:
 	// Calculate odds that the first given ship can capture the second, assuming
 	// the first ship always attacks and the second one always defends.
 	CaptureOdds(const Ship &attacker, const Ship &defender);
-	
+
 	// Get the odds of the attacker winning if the two ships have the given
 	// number of crew members remaining.
 	double Odds(int attackingCrew, int defendingCrew) const;
@@ -40,29 +40,29 @@ public:
 	// the two ships have the given number of crew remaining.
 	double AttackerCasualties(int attackingCrew, int defendingCrew) const;
 	double DefenderCasualties(int attackingCrew, int defendingCrew) const;
-	
+
 	// Get the total power (inherent crew power plus bonuses from hand to hand
 	// weapons) for each ship when they have the given number of crew remaining.
 	double AttackerPower(int attackingCrew) const;
 	double DefenderPower(int defendingCrew) const;
-	
-	
+
+
 private:
 	// Generate the lookup table.
 	void Calculate();
 	// Map crew numbers into an index in the lookup table.
 	int Index(int attackingCrew, int defendingCrew) const;
-	
+
 	// Calculate attack or defense power for each number of crew members up to
 	// the given ship's full complement.
 	static std::vector<double> Power(const Ship &ship, bool isDefender);
-	
-	
+
+
 private:
 	// Attacker and defender power lookup tables.
 	std::vector<double> powerA;
 	std::vector<double> powerD;
-	
+
 	// Capture odds lookup table.
 	std::vector<double> capture;
 	// Expected casualties lookup table.

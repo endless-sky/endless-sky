@@ -1,5 +1,5 @@
 /* Weather.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength)
+Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -62,27 +62,9 @@ int Weather::Period() const
 
 
 
-// What the hazard's damage is multiplied by given the current weather strength.
-double Weather::DamageMultiplier() const
+const Point &Weather::Origin() const
 {
-	// If a hazard deviates, then the damage is multiplied by the square root of the
-	// strength. This is so that as the strength of a hazard increases, it gets both
-	// more likely to impact the ships in the system and each impact hits harder.
-	if(hazard->Deviates())
-	{
-		// If the square root of the strength is greater than the period, then Period()
-		// will return 1. Given this, we need to multiply the amount of strength
-		// going toward the damage by some corrective factor. Figure out what the "true
-		// period" is (without it bottoming out at 1) and divide that with the current
-		// period in order to correctly scale the damage so that the DPS of the hazard
-		// will always scale properly with the strength.
-		// This also fixes some precision lost by the fact that the period is an integer.
-		double truePeriod = hazard->Period() / sqrtStrength;
-		double multiplier = max(1, static_cast<int>(truePeriod)) / truePeriod;
-		return sqrtStrength * multiplier;
-	}
-	else
-		return currentStrength;
+	return origin;
 }
 
 
@@ -91,10 +73,10 @@ double Weather::DamageMultiplier() const
 void Weather::Step(vector<Visual> &visuals)
 {
 	// Environmental effects are created by choosing a random angle and distance from
-	// the system center, then creating the effect there.
+	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
-	
+
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
 	int totalAmount = 0;
@@ -102,16 +84,16 @@ void Weather::Step(vector<Visual> &visuals)
 		totalAmount += effect.second;
 	totalAmount *= currentStrength;
 	visuals.reserve(visuals.size() + totalAmount);
-	
+
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		for(int i = 0; i < effect.second * currentStrength; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = (minRange + magnitude) * angle;
+			Point pos = origin + (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
-	
+
 	if(--lifetimeRemaining <= 0)
 		shouldBeRemoved = true;
 }
@@ -135,8 +117,41 @@ void Weather::CalculateStrength()
 
 
 
+// Get information on how this hazard impacted a ship.
+Weather::ImpactInfo Weather::GetInfo() const
+{
+	return ImpactInfo(*hazard, origin, DamageMultiplier());
+}
+
+
+
 // Check if this object is marked for removal from the game.
 bool Weather::ShouldBeRemoved() const
 {
 	return shouldBeRemoved;
+}
+
+
+
+// What the hazard's damage is multiplied by given the current weather strength.
+double Weather::DamageMultiplier() const
+{
+	// If a hazard deviates, then the damage is multiplied by the square root of the
+	// strength. This is so that as the strength of a hazard increases, it gets both
+	// more likely to impact the ships in the system and each impact hits harder.
+	if(hazard->Deviates())
+	{
+		// If the square root of the strength is greater than the period, then Period()
+		// will return 1. Given this, we need to multiply the amount of strength
+		// going toward the damage by some corrective factor. Figure out what the "true
+		// period" is (without it bottoming out at 1) and divide that with the current
+		// period in order to correctly scale the damage so that the DPS of the hazard
+		// will always scale properly with the strength.
+		// This also fixes some precision lost by the fact that the period is an integer.
+		double truePeriod = hazard->Period() / sqrtStrength;
+		double multiplier = max(1, static_cast<int>(truePeriod)) / truePeriod;
+		return sqrtStrength * multiplier;
+	}
+	else
+		return currentStrength;
 }
