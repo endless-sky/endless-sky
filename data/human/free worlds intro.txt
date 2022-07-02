@@ -140,7 +140,7 @@ mission "Pact Recon 3"
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
 	source
-		has "Pact Recon 1: done"
+		attributes "dirt belt" "near earth" "rim" "south"
 		not government "Pirate"
 	destination "Glaze"
 	waypoint "Boral"
@@ -648,7 +648,7 @@ mission "FW Escort 1"
 		has "chosen sides"
 	on offer
 		conversation
-			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevelant piracy is in this region, and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
+			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region, and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
 			`	Shortly after you arrive, the convoy is ready to go and charts a course for <destination>.`
 				accept
 	
