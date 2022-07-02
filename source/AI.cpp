@@ -89,12 +89,17 @@ namespace {
 	// ship. Carried escorts are waited for in AI::Step.
 	bool EscortsReadyToJump(const Ship &ship)
 	{
-		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
+		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
 		{
-			shared_ptr<const Ship> locked = escort.lock();
-			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
-					&& locked->GetSystem() == ship.GetSystem()
-					&& locked->JumpFuel() && !locked->IsReadyToJump(true))
+			shared_ptr<const Ship> escort = ptr.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort() || gov->IsEnemy(escort->GetGovernment()))))
+				continue;
+			if(!escort->IsDisabled() && !escort->CanBeCarried()
+					&& escort->GetSystem() == ship.GetSystem()
+					&& escort->JumpFuel() && !escort->IsReadyToJump(true))
 				return false;
 		}
 		return true;
