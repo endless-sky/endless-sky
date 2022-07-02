@@ -131,7 +131,7 @@ outfit "Systems Core (Small)"
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small amount of hull-welding microbots that can make minor repairs to the ship's outer armor while in flight.`
+	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small amount of hull-swarming microbots that can make minor repairs while in flight.`
 
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
