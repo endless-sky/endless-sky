@@ -16,11 +16,11 @@ event "ember waste label"
 
 event "remnant: change hail"
 	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 	government "Remnant (Research)"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 
 
 
@@ -94,6 +94,9 @@ event "remnant: scanning tolerance"
 		"penalty for"
 			scan 0
 		"provoked on scan" 0
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
 
 
 

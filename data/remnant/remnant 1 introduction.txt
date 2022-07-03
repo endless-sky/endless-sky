@@ -127,12 +127,14 @@ mission "First Contact: Remnant"
 
 
 
-# Compatibility patch for those who made contact with the Remnant prior to v0.9.15:
-mission "Remnant: Blood Test Patch"
+# Compatibility patch for those who made contact with the Remnant prior to v0.9.15
+# v2 has been added to force those on continuous who already have the patch to get it again so that they get the post-scanning hostility/tolerance hail changes
+mission "Remnant: Blood Test Patch v2"
 	landing
 	invisible
 	to offer
 		has "event: ember waste label"
+		not "Remnant: Scanning Tolerances: done"
 	on offer
 		set "remnant: blood test pure"
 		event "remnant: change hail"
