@@ -49,8 +49,8 @@ public:
 	// Copying a mission instance isn't allowed.
 	Mission(const Mission &) = delete;
 	Mission &operator=(const Mission &) = delete;
-	Mission(Mission &&) noexcept = default;
-	Mission &operator=(Mission &&) noexcept = default;
+	Mission(Mission &&) = default;
+	Mission &operator=(Mission &&) = default;
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
