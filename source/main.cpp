@@ -66,6 +66,7 @@ void PrintShipTable();
 void PrintTestsTable();
 void PrintWeaponTable();
 void PrintEngineTable();
+void PrintPowerTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -87,6 +88,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printWeapons = false;
 	bool printEngines = false;
+	bool printPower = false;
 	string testToRunName = "";
 
 	for(const char *const *it = argv + 1; *it; ++it)
@@ -118,12 +120,14 @@ int main(int argc, char *argv[])
 			printWeapons = true;
 		else if(arg == "-e" || arg == "--engines")
 			printEngines = true;
+		else if(arg == "--power")
+			printPower = true;
 	}
 	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines;
+		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines || printPower;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -137,7 +141,7 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 
-		if(printShips || printTests || printWeapons || printEngines)
+		if(printShips || printTests || printWeapons || printEngines || printPower)
 		{
 			if(printShips)
 				PrintShipTable();
@@ -147,6 +151,8 @@ int main(int argc, char *argv[])
 				PrintWeaponTable();
 			if(printEngines)
 				PrintEngineTable();
+			if(printPower)
+				PrintPowerTable();
 			return 0;
 		}
 
@@ -654,6 +660,31 @@ void PrintEngineTable()
 	}
 	cout.flush();
 }
+
+
+
+void PrintPowerTable()
+{
+	cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
+		<< "energy gen" << ',' << "heat gen" << ',' << "energy cap" << '\n';
+	for(auto &it : GameData::Outfits())
+	{
+		// Ship non-power.
+		if(it.second.Category() != "Power")
+			continue;
+
+		const Outfit &outfit = it.second;
+		cout << it.first << ',';
+		cout << outfit.Cost() << ',';
+		cout << outfit.Mass() << ',';
+		cout << outfit.Get("outfit space") << ',';
+		cout << outfit.Get("energy generation") << ',';
+		cout << outfit.Get("heat generation") << ',';
+		cout << outfit.Get("energy capacity") << '\n';
+	}
+	cout.flush();
+}
+
 
 
 
