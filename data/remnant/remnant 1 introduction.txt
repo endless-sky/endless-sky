@@ -2449,6 +2449,7 @@ mission "Remnant: Scanning Tolerances"
 		has "license: Remnant Capital"
 		not "remnant untrusted"
 		not "Deep: Remnant 3: Revealed: done"
+		"reputation: Remnant" > 1
 		random < 30
 	on offer
 		conversation
