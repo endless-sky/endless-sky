@@ -3714,7 +3714,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
 			choice
 				`	"Yes."`
-					goto  stormcontinue
+					goto stormcontinue
 				`	"How does that work?"`
 			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
 			label stormcontinue
