@@ -1168,7 +1168,6 @@ Files:
  images/outfit/firestorm*
  images/outfit/korath?heaver*
  images/outfit/*korath reverser*
- images/outfit/shunt-strike*
  images/projectile/expeller*
  images/projectile/heaver*
  images/projectile/korath?digger*
@@ -1516,12 +1515,14 @@ Comment: Based on public domain sounds taken from freesound.org, edit done by Sa
 Files:
  images/hardpoint/blaze-pike*
  images/hardpoint/korath?inferno*
+ images/hardpoint/shunt-strike*
  images/icon/firelight*
  images/outfit/blaze?pike*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
  images/outfit/korath?inferno*
+ images/outfit/shunt-strike*
  images/planet/station4c*
  images/planet/station5c*
  images/planet/station6c*
