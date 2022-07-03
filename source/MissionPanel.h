@@ -86,6 +86,8 @@ private:
 	double acceptedScroll = 0.;
 	double availableEscortsScroll = 0.;
 
+	int originalAvailableSize = 0;
+
 	int dragSide = 0;
 	WrappedText wrap;
 };

@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -121,6 +122,8 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableEscortsIt(player.AvailableJobs().begin())
 {
+	originalAvailableSize = available.size();
+
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
@@ -167,6 +170,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	originalAvailableSize = available.size();
 	// In this view, always color systems based on player reputation.
 	commodity = SHOW_REPUTATION;
 
@@ -236,23 +240,27 @@ void MissionPanel::Draw()
 		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 
 	Point pos = DrawPanel(
-		Screen::TopLeft() + Point(0., -availableScroll - availableEscortsScroll),
+		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:",
 		available.size() + availableEscorts.size() + 1);
 	DrawList(available, pos, availableIt);
 
-	// Draw the Heading for the Escorts
-	const Color &unselected = *GameData::Colors().Get("medium");
-	const Color &selected = *GameData::Colors().Get("bright");
-	Point size(SIDE_WIDTH, 20 * available.size() + 40);
-	const Font &font = FontSet::Get(14);
-	font.Draw("Escorts available here:", pos + Point(0., 19. + (available.size() * 20) + ((20. - font.Height()) * .5)), selected);
-	FillShader::Fill(
-		pos + Point(.5 * size.X() - 5., 15.) + Point(0., 19. + (available.size() * 20) + ((20. - font.Height()) * .5)),
-		Point(size.X() - 10., 1.),
-		unselected);
+	// Draw this only if there are escorts available
+	if(availableEscorts.size() > 0)
+	{
+		// Draw the Heading for the Escorts
+		const Color &unselected = *GameData::Colors().Get("medium");
+		const Color &selected = *GameData::Colors().Get("bright");
+		Point size(SIDE_WIDTH, 20 * originalAvailableSize + 40);
+		const Font &font = FontSet::Get(14);
+		font.Draw("Escorts available here:", pos + Point(0., 19. + (originalAvailableSize * 20) + ((20. - font.Height()) * .5)), selected);
+		FillShader::Fill(
+			pos + Point(.5 * size.X() - 5., 15.) + Point(0., 19. + (originalAvailableSize * 20) + ((20. - font.Height()) * .5)),
+			Point(size.X() - 10., 1.),
+			unselected);
 
-	DrawList(availableEscorts, pos + Point(0., (available.size() + 1) * 20), availableEscortsIt);
+		DrawList(availableEscorts, pos + Point(0., (originalAvailableSize + 1) * 20), availableEscortsIt);
+	}
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
