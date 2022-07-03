@@ -1066,6 +1066,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ image/effect/firestorm?ring*
+Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
+License: CC0 (Creative Commons Zero)/Public-Domain
+
+Files:
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1147,6 +1152,12 @@ Files:
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/outskirts?gauger*
+Copyright: Arachi-Lover
+License: CC-BY-SA-4.0
+Comment: Derived from works by Zachary Siple and Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
@@ -1402,6 +1413,7 @@ Files:
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/ship/surveillance?drone*
  images/thumbnail/auxiliary*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
@@ -1410,6 +1422,7 @@ Files:
  images/thumbnail/gunboat*
  images/thumbnail/lance*
  images/thumbnail/rainmaker*
+ images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
@@ -1417,6 +1430,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
+ images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -1438,10 +1452,21 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sounds/remnant?afterburner*
+Copyright: Saugia <https://github.com/Saugia>
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
  images/icon/firelight*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
+ images/planet/station4c*
+ images/planet/station5c*
+ images/planet/station6c*
+ images/planet/station7c*
+ images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
 Copyright: Saugia <https://github.com/Saugia>
@@ -1449,8 +1474,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
 Files:
- images/ship/raiderxlii*
- images/thumbnail/raiderxlii*
+ images/ship/raider?xlii*
+ images/thumbnail/raider?xlii*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
