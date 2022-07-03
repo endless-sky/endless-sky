@@ -30012,7 +30012,7 @@ planet "Periaxle Circuit"
 	description `	Completed dozens of centuries before the war, the structure's original plating failed to last the test of time unscathed, unlike the Quarg's own, and is in a constant need of replacement to prevent the miniature ring's integrity from being compromised. Every so often, maintenance crafts can be seen conducting repairs on some outer section of the ring.`
 	spaceport `Having very little in the form of windows to look out into the system, and not much to gaze at the small, barren planet it encompasses, the station sees very few visitors--mostly cargo haulers bringing in supplies for the crew staffed here or the occasional university groups coming to visit the particle accelerator and deepen their knowledge.`
 	"required reputation" 15
-  
+
 planet "Philosopher's Paradise"
 	attributes "whispering void"
 	landscape land/space2

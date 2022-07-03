@@ -68,7 +68,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		conversation
 			`When you return to Hai-home, you are directed to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
 			branch buildingdeferred
-				"Building Mountaintop Deferred" >0
+				"Building Mountaintop Deferred" > 0
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now you would appear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
 			`	Now that she mentions it, all of the stations in Hai space do seem to be very, very old.`
