@@ -1671,7 +1671,7 @@ mission "Saryd University Lecture"
 			label knowunfettered
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
 			label sorry
-			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
+			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
 			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
