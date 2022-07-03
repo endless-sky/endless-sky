@@ -3253,32 +3253,32 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	if(activeCommands.Has(Command::NEAREST))
 	{
-		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
+		// Find the nearest enemy ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
-		int closeState = 0;
+		bool foundActive = false;
 		bool found = false;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
-				// Sort ships into one of three priority states:
-				// 0 = friendly, 1 = disabled enemy, 2 = active enemy.
-				int state = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+				bool enemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 				// Do not let "target nearest" select a friendly ship, so that
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if((!state && !shift) || other->IsYours())
+				if((!enemy && !shift) || other->IsYours())
 					continue;
 
-				state += state * !other->IsDisabled();
+				// Sort ships by active or disabled:
+				// Prefer targeting an active ship over a disabled one
+				bool active = !other->IsDisabled();
 
 				double d = other->Position().Distance(ship.Position());
 
-				if(state > closeState || (state == closeState && d < closest))
+				if((!foundActive && active) || (foundActive == active && d < closest))
 				{
 					ship.SetTargetShip(other);
 					closest = d;
-					closeState = state;
+					foundActive = active;
 					found = true;
 				}
 			}
