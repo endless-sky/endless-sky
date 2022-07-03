@@ -297,7 +297,7 @@ outfit "Small Biochemical Cell"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
-	cost 287500
+	cost 230000
 	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
@@ -310,7 +310,7 @@ outfit "Large Biochemical Cell"
 	category "Power"
 	licenses
 		"Wanderer Outfits"
-	cost 1175000
+	cost 940000
 	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
