@@ -3924,7 +3924,7 @@ void Ship::AddEscort(Ship &ship)
 void Ship::RemoveEscort(const Ship &ship)
 {
 	// When removing the slowest escort, we need to determine the new "speed limit."
-	shared_ptr<Ship> slowest = escorts.slowest.lock();
+	shared_ptr<const Ship> slowest = escorts.slowest.lock();
 	const bool findSlowest = (!slowest || (&ship == slowest.get()));
 	if(findSlowest)
 	{
@@ -3959,7 +3959,7 @@ void Ship::RemoveEscort(const Ship &ship)
 void Ship::TuneForEscorts()
 {
 	// If the cached slowest escort is still ours, we don't need to re-find one.
-	shared_ptr<Ship> slowest = escorts.slowest.lock();
+	shared_ptr<const Ship> slowest = escorts.slowest.lock();
 	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
 		return;
 
