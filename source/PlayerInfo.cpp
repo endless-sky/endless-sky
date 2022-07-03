@@ -1850,7 +1850,7 @@ int64_t PlayerInfo::escortCostsCalculate()
 			else
 				allCosts += oneCost;
 		}
-	}	
+	}
 	return allCosts;
 }
 

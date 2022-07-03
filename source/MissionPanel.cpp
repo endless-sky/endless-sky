@@ -793,7 +793,7 @@ bool MissionPanel::CanAccept() const
 void MissionPanel::Accept()
 {
 	const Mission &toAccept = availableIt != available.end() ? *availableIt : *availableEscortsIt;
-		
+
 	int cargoToSell = 0;
 	if(toAccept.CargoSize())
 		cargoToSell = toAccept.CargoSize() - player.Cargo().Free();

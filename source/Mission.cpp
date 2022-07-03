@@ -529,7 +529,7 @@ bool Mission::IsMinor() const
 
 
 
-// Check if this mission is an player escort. If yes it will be handled 
+// Check if this mission is an player escort. If yes it will be handled
 // different than normal missions.
 bool Mission::IsPlayerEscort() const
 {
