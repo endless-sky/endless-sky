@@ -1071,6 +1071,7 @@ Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
 License: CC0 (Creative Commons Zero)/Public-Domain
 
 Files:
+ images/outfit/expeller*
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
  images/ship/bulk?freighter*
@@ -1159,12 +1160,10 @@ Files:
  images/effect/heaver*
  images/effect/korath?digger*
  images/effect/shunt*
- images/hardpoint/expeller*
  images/hardpoint/firestorm*
  images/hardpoint/korath?heaver*
  images/icon/firestorm?torpedo*
  images/icon/korath?heaver*
- images/outfit/expeller*
  images/outfit/firestorm*
  images/outfit/korath?heaver*
  images/outfit/*korath reverser*
