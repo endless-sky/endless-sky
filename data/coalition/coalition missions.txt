@@ -2852,3 +2852,258 @@ mission "Coalition: Expeditions Past 10"
 				payment 50000000
 			`	When you go back inside your ship, you're notified that more credits have been transferred to your account. It seems to be from the Heliarch government, giving you an extra 25,000,000 credits and thanking you for helping recover the data of the sixth expedition. You decide to take some time to rest in your ship, after all that's happened, but not an hour passes before your ship is hailed by the local authorities, asking you to please open your hatch.`
 			`	You comply, and one of the Heliarch consuls from earlier, a Saryd, comes in. "Hello, Captain," he greets you with a somewhat shaky voice. "Just going over the findings, we were..." he struggles at finding words, eyes fixated on the ground. "Caught our attention the most, the report on Ancient Light has. The report about the 'Sheragi' and the ruins on a nearby world." He pauses, and pulls out a device similar to the one Sedlitaris used to transfer you your payment. "Finished the journey of ancient Saryd inspectors, humanity's efforts, your efforts, have. For that, hope to compensate you and the girl enough, the council cannot." He inputs a few commands, and you look to see you've received another 15,000,000 credits. "Sent her to die, we had. I had. And with answers to secrets our ancestors dreamed of unveiling, she returned." His eyes finally come up, meeting yours. "Glad I am, that proud of at least one of us, they can be." He looks away again, gives you a nod, and leaves your ship.`
+
+
+
+mission "Coalition: Long Lost Property 1"
+	minor
+	name "Long Lost Property"
+	description "Head to the <system> system to recover House Idriss' satellite, or try to learn what happened to it, if it isn't there."
+	to offer
+		has "Coalition: First Contact: done"
+		random < 75
+	source "Ablub's Invention"
+	destination "Darkstone"
+	on offer
+		conversation
+			`You notice a pair of Arachi, who you assume to be spaceport workers due to their uniforms, talking while pointing to your ship. One of them is slightly shorter than most Arach you've seen, while the other is a good bit taller. They approach you after they see you noticed them, and the larger of them speaks up. "Excuse us you must, Captain, but in need of your help, we are."`
+			`	"Work at House Idriss, we do, and looking to recover some lost property, the House is," the shorter one explains. "Accompany us to our headquarters, could you? Meet up with you, our boss-"`
+			`	"President," the other one interrupts him.`
+			`	"Our president will."`
+			choice
+				`	"I've got some time. Lead the way."`
+					goto proposal
+				`	"What is it that you lost?"`
+				`	"Sorry, I'm not interested."`
+					decline
+			`	"Umm... confidential information, that is," the taller one says. "If wish to learn more, you do, accompany us, you should."`
+			choice
+				`	"Alright then, show me the way."`
+				`	"This seems a bit shady. I'll pass."`
+					decline
+			label proposal
+			`	They bring you to a dead end street not far from the spaceport surrounded by various older buildings. A wide hole is at the end, almost like a subway entrance, with stairs leading dozens of meters underground. You follow them down the stairs to find something similar to a customs area, where some Arachi and Kimek in uniforms ready their stations once they see you three.`
+			`	You continue after some waiting, as the operators insist on manually inspecting every last bit of your electronic devices. Inside, you see a few dozen workers at their computers, with one occasionally heading to the back and taking an elevator somewhere. They seldom talk, so the only sound you can make out is that of some machinery working below you. Eventually, you're greeted by an Arach in some manner of tuxedo, or at least their equivalent to one, a blueish fabric dotted with black buttons. "Ah, Captain <last>, you must be!" she greets you. "To our corporate headquarters, I welcome you."`
+			`	She urges you to follow her to her office, and you go along with the two Arachi who guided you here. Once you're in the office, a modest, spacious room made to accommodate the Arachi, she introduces herself. "Flopug, you may call me. Acting president of House Idriss, I am. Now, told about what we need your services for, were you?"`
+			choice
+				`	"These two told me House Idriss lost something."`
+				`	"No, not really."`
+			`	"Nearly nine thousand years ago, before even formed, the Coalition was, launched a... probe of sorts, for a long term experiment, that time's House Idriss had," she explains. "Sent to a nearby system where a habitable planet could be, it was, accelerating to approximately half the speed of light." She taps somewhere on the desk with one of her legs, and a screen appears at the top, showing a map of the local star systems. "Recognize this one, do you?" she asks, pointing to one of the systems. "A system currently inhabited by humans, we believe it is. Arrive there, the probe soon should, if arrived already, it hasn't."`
+			`	Upon further inspection, you piece together the systems in the screen, and realize the system she's pointing to is <system>, just one jump away.`
+			choice
+				`	"I haven't heard news of any probes entering Han."`
+				`	"So what do you want me to do?"`
+					goto do
+			`	"No? Well, the destination for the probe, that system was. Hmm... maybe delaying itself for some extra data..." She goes quiet, lost in thought for a while.`
+			label do
+			`	"Need someone to retrieve the probe, we do. Designed, it was, with an artificial intelligence that would learn during the trip, so even if terribly outdated, the equipment is, possibly invaluable, the data it gathered by observing starlight could be. Or simply mildly amusing, but hoping for the former, we are."`
+			choice
+				`	"Alright, I'll go look for it."`
+					goto accept
+				`	"What if I can't find it in the system? If it hasn't arrived, would I need to wait a long time for it to get there?"`
+					goto wait
+				`	"What's in it for me?"`
+			`	"Pay you handsomely for the retrieval, House Idriss would," she answers. "Also, if of any use, the data is, adapted to deep space, the artificial intelligence may have done. New technologies, this could provide us, and to you we would share such a prize."`
+				goto accept
+			label wait
+			`	"Not too long," the short Arach answers. "Minor changes in its speed, the probe might have had, but delay its arrival for more than a few weeks, it could not. One week from now, the absolute limit date for its arrival is."`
+			`	"If locate it immediately, you do not, maybe ask the local humans you could," the taller one adds. "Newsworthy in most systems, such an event would be."`
+			label accept
+			`	They show you an image of the probe, which looks pretty much like an ordinary satellite, and say they'll work on your ship's scanning system to pick up the object's signature easier. Flopug says goodbye and tells you she must continue working, but has the two Arachi bring you back to your ship and adjust your scanners. They wish you good luck once they're done, and leave your ship.`
+				accept
+	on enter "Han"
+		dialog `You let your scanners work for a few minutes, but they don't manage to locate House Idriss' probe. It might not yet have arrived in the system, but it would be best to look for information on Darkstone.`
+
+mission "Coalition: Long Lost Property 2"
+	landing
+	name "Lost and Found"
+	description "Head to <planet>, base of the pirate who scavenged House Idriss' probe, and try to get it back from him."
+	to offer
+		has "Coalition: Long Lost Property 1: done"
+	source "Darkstone"
+	destination "Greenrock"
+	on offer
+		conversation
+			`After looking up the recent local news, you feel relieved as you won't need to wait for the probe to arrive: average headlines like "Unidentified Object Enters Han" or more sensationalist ones like "Doomsday Drone! What YOU Can Do In the Face of Impending Doom" were all the rage a few weeks ago, when the probe first arrived. None of them detail what happened to it, though, so you decide to ask the planet's inhabitants.`
+			`	The spaceport workers you ask don't seem to know much more than the fact that it entered the system weeks ago, and some of the locals seem to have believed the more dramatic headlines, getting worried when you bring it up. When you reach the local produce market, one of the farmers you ask sheds some light on the issue. "A band of pirates passed by here just a few days after I watched the news about that machine. They were here for the usual, getting food from us as tribute. Must've read the news while they were here. One of them asked me about it, if we had seen it do anything dangerous. I said no, and he muttered something about selling it in a junkyard."`
+			choice
+				`	"Did you catch his name?"`
+					goto name
+				`	"Do you know where he went to sell it?"`
+			`	"No, but I'd guess <planet>. It's the biggest hub for their kind of activity around these parts."`
+				goto accept
+			label name
+			`	He snickers lightly, shaking his head. "I don't keep a list of their names. It's rare enough that any of them come around more than once, most get blown out of the sky before they get the chance. It's a short life they lead, those gangs from <planet>."`
+			label accept
+			`	You thank him for the information, and decide to head to <destination> to see if you can find the pirate who scavenged the probe, or the junkyard he sold it to.`
+				accept
+	to complete
+		never
+	to fail
+		has "Coalition: Long Lost Property 3: active"
+
+mission "Coalition: Long Lost Property 3"
+	landing
+	name "Reclaim the Probe"
+	description "Search around pirate systems outside the South, and find the fleet that stole the probe. When you find it, bring it back to <destination>."
+	to offer
+		has "Coalition: Long Lost Property 2: active"
+	source "Greenrock"
+	destination "Ablub's Invention"
+	on offer
+		conversation
+			`When you ask one of the market organizers about a local pirate returning with an alien probe, you find out he already sold it. You are then pointed to a large, surprisingly well-kept junkyard, which is something of a miniature shipyard: a few crews work on their ships in the vicinity, adding or switching parts for those they just bought. The junkyard itself is surrounded by half a dozen concrete buildings, with defensive turrets on top. A few excavators and bulldozers move ship pieces and other components around, trying to keep everything organized.`
+			`	You tell one of the workers you're looking for the probe, and they leave for a few minutes, heading inside the gray building by the entrance.`
+			branch money
+				"credits" > 1000000
+			`	They come back alone, saying, "Boss has looked you up, and found your pockets a bit empty. If you want that kind of information, come back when you're ready to pay."`
+				defer
+			label money
+			`	When they come back, they beckon you to go inside, bringing you to a simple office where a middle-aged, balding man is waiting. "So, I hear you're looking for my latest big acquisition? Mind telling me what has you so interested in it?"`
+			choice
+				`	"I was hired to get it for someone."`
+				`	"No reason."`
+			`	He grins. "Well, you're out of luck, it was sold the day after I got it. Damn shame I couldn't make more advertisement out of it, but the offer was too good." He gets up from his chair, and leans on the table, looking at you. "Now, I like to keep business organized around here, so of course, I know a thing or two about who the buyers were. I can't just tell you, though, I deal with dangerous people at times. One day I tell you where they are, the other there's a fleet ready to tear down my business here. If I had, say, a million credits to hire some helpers in case that happened..."`
+			choice
+				`	"When I'm done they won't have a fleet to come here. A hundred thousand should be enough of a tip for pointing me their way."`
+				`	"Fine, just tell me already."`
+					goto bribe
+			branch "convince" "fail"
+				random < 20
+			label convince
+			apply
+				payment -100000
+			`	He stares at you for a few seconds, and lets out a laugh. "Well, it was worth a try. Alright, a hundred thousand it is."`
+				goto where
+			label fail
+			`	"Now I can't just trust you to get every last one of their ships, can I?" he replies. "If you want to make it worth for me, it's a million. If you're not interested, there's nothing I can do about it."`
+			
+# For the mission NPCs to work properly, this needs to force an accept at this point.
+# Add a choice to defer once some sort of "on board" child of "npc" exists and allows for all NPCs to be defined in just this mission.
+			
+			choice
+				`	"Fine, just tell me already."`
+			label bribe
+			apply
+				payment -1000000
+			`	"Thank you for your patronage," he says, and sits back down.`
+			label where
+			`	"The men who approached me for the machine are pirates, though I imagine you already had that figured out," he begins. "They aren't from the south though, I could tell you that much. Older, better dressed. Said they had read the reports about the 'unknown probe' entering Han, and wanted it for their business. I asked how they intended to use it, nobody here had figured how it worked, but they said they'd find a way to make use of it, have it serve as some kind of surveillance equipment, or something like that."`
+			choice
+				`	"What do you think they meant by that?"`
+					goto meant
+				`	"Did you catch their names?"`
+			`	"Did they tell me their names? Yes. Their real ones? Doubt it. They seemed organized enough that they wanted to keep that information hidden. I did get a look at their ships while we were loading the product into one of them, though."`
+				goto ships
+			label meant
+			`	He shrugs, "My guess is their base is behind some bottleneck, so they wanted something that could tell them in advance if any Navy or bounty hunter was coming for them. I did get to look at their ships, seemed very well equipped for running away, if they knew someone was coming."`
+			label ships
+			`	He tells you the ship the probe was loaded onto was a Quicksilver, heavily modified to make for a stronger warship. You walk out of the junkyard with the information, and prepare your ship to look for the pirates.`
+				accept
+	on enter "Persian"
+		dialog `Entering the system, your scanners catch a trio of heavily modified Quicksilvers. They also inform you that the probe is in the system, though it fails at giving you its exact location, as if something is causing interference. The Quicksilvers notice you and ready their guns.`
+	npc board
+		personality staying nemesis target
+		government "Bounty"
+		system "Persian"
+		ship "Marauder Quicksilver (Engines) (Safe)" "Cohen"
+		conversation
+			apply
+				set "idriss probe recovered"
+			`The pirates are waiting for you when you board their Quicksilver, and you exchange shots for a while. Once you've cleared the entrance, you explore the ship, and find what should be the probe - it matches what you were shown by House Idriss' workers, if with a lot of extra wiring wrapped around it. The pirates must have tinkered with it in attempts to use it as a warning system about incoming fleets. You remove the wires, free the probe from its attachments to the ship, and let it loose into the void. You then hurry back to your ship, and catch the drifting probe into your hold. Now you need only bring it back to House Idriss.`
+				launch
+	to complete
+		has "idriss probe recovered"
+	on complete
+		clear "idriss probe recovered"
+		payment 500000
+		conversation
+			`After you land, you head to the underground base of House Idriss, where Flopug meets with you again. "Arrange for the probe to be brought here at once, I will," she says, dispatching some workers to where your ship is. After a few minutes, she is informed that it's secured in the "lower levels," and heads there herself to take a look at what data it gathered.`
+			`	When she returns, followed by the Arach duo who brought you here the first time, she hands you <payment>. "Registers of some attempts at breaching the probe's security, there are, but compromised the data, thankfully none of them have. A most curious path, its AI took," she says. "As fine-tuned as our current systems, it is not, but developed its algorithms to better determine the current status of distant stars, it has. Still going over the data, we are, so how accurate it became, we don't yet know."`
+			`	The other Arachi tell you they'll meet you in the spaceport once they finish checking the data, as they'd like you to check a system personally in order to compare it with what the probe's information. They accompany you to the staircase leading back to the street, then head back to continue analyzing the data.`
+
+# Replace the below two missions once some sort of "on board" child of "npc" exists.
+mission "Coalition: Long Lost Property 3A"
+	invisible
+	landing
+	to offer
+		has "Coalition: Long Lost Property 2: active"
+		"credits" > 1000000
+	source "Greenrock"
+	npc board
+		personality staying nemesis target
+		government "Bounty"
+		system "Persian"
+		ship "Marauder Quicksilver (Safe)" "Coven"
+		conversation
+			`You fight you way through the ship, but after you search the cargo hold and outfits in the Quicksilver, you realize the probe must be in another ship.`
+				launch
+	to complete
+		never
+	to fail
+		has "Coalition: Long Lost Property 3: done"
+
+mission "Coalition: Long Lost Property 3B"
+	invisible
+	landing
+	to offer
+		has "Coalition: Long Lost Property 2: active"
+		"credits" > 1000000
+	source "Greenrock"
+	npc board
+		personality staying nemesis target
+		government "Bounty"
+		system "Persian"
+		ship "Marauder Quicksilver (Weapons) (Safe)" "Conan"
+		conversation
+			`After walking in the oddly empty vessel for a while, you hear an alarm sound and see pirates rushing to you from a door they blast open. You head back to your ship, avoiding what shots come your way as best as you can, and quickly close off the entrance on your side. When you look at the Quicksilver again, you see its self-destruction sequence is starting.`
+				launch
+	to complete
+		never
+	to fail
+		has "Coalition: Long Lost Property 3: done"
+
+mission "Coalition: Long Lost Property 4"
+	name "Comparing Binaries"
+	description "Head to <waypoints> to gather data on the binary stars, so that House Idriss may compare it with their probe's own predictions."
+	to offer
+		has "Coalition: Long Lost Property 3: done"
+	source "Ablub's Invention"
+	waypoint "Alnasl"
+	on offer
+		conversation
+			`The Arach duo greet you in the spaceport and ask you to bring them inside your ship to talk. They look to the sides and behind them every other moment, as if watching out for something. When you're inside your ship's command room, the taller one speaks. "Compared the probe's prediction with its last reading of the system of arrival, we have. A very good approximation to real conditions, it reached. Though incredibly outdated, its hardware is, an ingenious program, what my ancestors-"`
+			`	"Our ancestors," the short one interrupts him.`
+			`	"What our ancestors created is."`
+			`	They show you a device with a map on screen, depicting nearby star systems, and the short Arach starts explaining. "Intrigued as to just how accurate its predictions have become, we are, so to verify its data about a star deeper in human space, the next step is." He points to a system at the edge of the map. "Have humans discovered this system, Captain? Interested in comparing the probe's data on far away binary stars, the president is."`
+			`	You look at the screen and at your own map for a moment, and recognize the system as <waypoints>. "Settled it is, then. Head to that system, you should," the taller one speaks again. "Still with our adjustments, your scanners are, so just tinker them a bit to gather the needed data, we will."`
+			`	Once they're done with your scanners a few minutes later, they leave your ship and wish you good luck.`
+				accept
+	on enter "Alnasl"
+		dialog `One of your monitors brings up various sets of data written in the Arach language when you enter the system, and your scanners begin gathering the data House Idriss wants. A few minutes pass until a loading bar comes up. When it reaches the end, another one appears, and the process repeats a few more times. After about an hour, your monitor goes back to normal.`
+	on complete
+		event "outskirts gauger ready" 157 342
+		payment 250000
+		conversation
+			`Flopug is waiting by the landing bays for you, with the Arach duo beside her. They come inside your ship when you've landed, and start checking the data, after Flopug pays you <payment>.`
+			`	"Umm... more errors with this one, the probe committed," the taller Arach says. "Gotten a good deal right, it still did, but a shame it is, that deal with that much more of a distance, it couldn't."`
+			`	"Not distance, the cause of errors was," the short Arach responds. "Confused with the binaries' signatures, it got. Refined to account for binary star systems and their oddities, its algorithms had to be."`
+			`	"At any rate, happy to call the probe's voyage a success, I am," Flopug cuts them off. "Expected it to have developed this well, we hadn't, when notified of its existence by... I mean, when remember about the approaching date of its arrival to that system, we did."`
+			`	They turn your scanners back to normal, telling you that they'll work on using the data to develop a new piece of scanning equipment. They also tell you that they will let you know about it when it's ready, the next time you're on <origin>, though it may be many months before they're ready. After thanking you for your help once again, the three Arachi leave your ship.`
+
+event "outskirts gauger ready"
+
+mission "Coalition: Outskirts Gauger Ready"
+	landing
+	invisible
+	to offer
+		has "event: outskirts gauger ready"
+	source "Ablub's Invention"
+	on offer
+		outfit "Outskirts Gauger" 1
+		conversation
+			`When you leave your ship, you're greeted by Flopug of House Idriss. "Completed the work on our newest set of scanners, we have. Since helped us with recovering the probe and its data, you have, only fair, it is, that gifted a copy of the equipment, you are."`
+			`	She asks to come in your ship, and tells you to take off, guiding you to a factory complex on another region of the planet. As the <ship> touches down on the hangar, the platform loudly moves gears and chains, and soon starts bringing the ship, and you, deep down into the facility, with hangar doors closing above you shortly. When the elevator stops, you and Flopug step out into what's something of a mix between a Coalition outfitter, and House Idriss' headquarters. Several Arachi work on their stations, most of them tending to a large amalgam of antennae dishes and sensors. "Our gift to you, that is," Flopug says as she signals to the Arachi to start installing the scanner into your ship. "The Outskirts Gauger, we've named it."`
+			`	While the Arachi work on the outfit, she explains that they used the probe's algorithms to have the scanners excel at finding basic energy signatures, such as heat or energy levels of other ships. "Made to check for complex machinery like outfits, or recognize specific cargo types, it was not, but still find uses for its current form, I'm sure you will."`
+			`	When everything's ready, you two head back inside your ship, and the elevator brings you back up. You fly back to the main landing area, and she pulls close to you just before you open your hatch. "Now, still... experimental, the outfit is, and provide the Heliarchs with a potentially faulty product, we do not wish. So, naturally, not yet registered it with them, we have. Provide you with more copies, we cannot, so careful not to lose this one, you should be." She thanks you again for helping out, and leaves for her workplace.`
+				decline

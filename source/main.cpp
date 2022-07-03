@@ -226,6 +226,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
+	int testDebugUIDelay = 3 * 60;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -328,12 +329,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			auto mainPanel = gamePanels.Root().get();
 			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
 				mainPanel->SetTestContext(testContext);
+			else if(debugMode && testDebugUIDelay > 0)
+				--testDebugUIDelay;
 			else
 			{
 				// The command will be ignored, since we only support commands
 				// from within the engine at the moment.
 				Command ignored;
 				runningTest->Step(testContext, player, ignored);
+				// Reset the visual delay.
+				testDebugUIDelay = 3 * 60;
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.
