@@ -103,6 +103,7 @@ outfit "Large Battery Module"
 	"energy capacity" 18000
 	description "This battery pack stores enough power to allow a Coalition ship to continue maneuvering even when its solar panels are only producing a fraction of their peak output."
 
+
 outfit "Small Shield Module"
 	category "Systems"
 	licenses
