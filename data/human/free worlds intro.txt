@@ -1452,7 +1452,7 @@ mission "FW Escort 1"
 				accept
 	
 	on accept
-		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently, and the Free Worlds don't have many ships to spare defending them."
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys recently, and the Free Worlds don't have many ships to spare defending them."
 	
 	npc accompany save
 		government "Merchant"
@@ -1549,8 +1549,7 @@ mission "FW Escort 1B"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
-		dialog
-			`Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
+		dialog `Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
 
 
 
@@ -1669,8 +1668,7 @@ mission "FW Escort 2B"
 	on complete
 		fail "FW Escort: Escorts"
 		payment 400000
-		dialog
-			`Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
+		dialog `Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 
 
 
