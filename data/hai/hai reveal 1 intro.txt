@@ -72,20 +72,20 @@ event "hai secret leaks"
 conversation "hai reveal free worlds news"
 	`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show - not something you specifically pay attention to, but apparently quite a popular one out of Tarazed.`
 	`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
-	`	"So now in our surprise segment, let me introduce you to Ronald. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
+	`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
 	`	The host stresses the word 'had' so much his voice squeaks, but the audience's attention has certainly been gained.`
 	`	"But first, let's take a look at a clip."`
 	`	You raise an eyebrow with surprise.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
-	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
+	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept
 	label "hai knowledge"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
-	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
+	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	You suspect it might be time to go visit your Hai friends again.`
 		accept
 
@@ -511,6 +511,7 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 			`	"Fantastic," she says, though her tone is much more business like than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
+			`	She hands you an officially branded box containing what appears to be a diplomatic ID, which appears to both identify you in human standard and, from context, in Hai.`
 			choice
 				`	"Various? We only have two governments."`
 			`	"Oh," she says, "we've treated the Syndicate as a de facto government for many decades now; with the amount of influence they have it was the only prudent thing to do."`
@@ -535,7 +536,7 @@ mission "Hai Leaks Response 2"
 		event "pirates respond to leaks"
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
-			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you doesn't hurt either.`
+			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override fast-tracking the process from the quoted "two to three business days" to "2 hours after landing."`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
 			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a hero of the Pug crisis such as yourself."`
 			choice

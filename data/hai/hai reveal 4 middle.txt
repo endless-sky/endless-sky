@@ -104,12 +104,9 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
 			`	"This technology is clearly not of human or Hai origin. It has similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these is significantly beyond our science, and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology; we're looking for one that has mastered miniaturized technology and is comfortable with its principles."`
 			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
-			branch "saved geocoris"
-				has "00 Hai Leaks Response 4B: declined"
-					goto skip
-			label "saved geocoris"
+			branch questions
+				not "00 Hai Leaks Response 4B: declined"
 			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
-			label skip
 				goto questions
 			label patterns
 			`	Teeneep explains, "I head a large civil rights activist organization; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances."`
@@ -130,8 +127,8 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	"While the crime in Hai space is rather more manageable, the same lack of evidence makes it hard for the Elders to justify a dedicated task force when more visible priorities still dominate the news feeds. They tell me that if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything."`
 			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access."`
 				goto questions
-			label help precious opinions  
-			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the microtransceivers. I know the humans gave you a Jump Drive; I need you to use it to deliver the microtransceivers."`
+			label help
+			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the microtransceivers. I know the humans gave you a jump drive; I need you to use it to deliver the microtransceivers."`
 			`	She hands you a data card. "This has some info on it that you might find useful. Right now though, the Quarg in Korath space might eliminate some leads and add new ones. Follow the leads. Once you have proof the kidnappings are an organized effort, return here, and we will pay you 2,000,000 credits."`
 			choice
 				`	"I'll start right away."`
