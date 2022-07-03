@@ -20,15 +20,14 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Korath Banisher"
 		"Korath Warder" 2
 		
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
+		"Liquid Sodium Cooler"
 		"Fuel Processor" 2
-		"Systems Core (Medium)"
+		"Systems Core (Large)"
 		"Triple Plasma Core"
 		"Korath Repeater Rifle" 206
 		"Microbot Defense Station" 8
 		
-		"Afterburner (Comet Class)"
+		"Afterburner (Asteroid Class)"
 		"Steering (Planetary Class)"
 		"Reverser (Lunar Class)"
 		"Thruster (Planetary Class)"
@@ -52,12 +51,13 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt"
-		"Small Heat Shunt" 6
+		"Small Heat Shunt" 4
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
-		"Bow Drive (Meteor Class)"
+		"Reverser (Lunar Class)"
 		"Steering (Lunar Class)"
+		"Steering (Asteroid Class)"
 		"Thruster (Lunar Class)"
 		"Thruster (Asteroid Class)"
 		"Hyperdrive"
@@ -162,14 +162,13 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 		"Korath Warder" 3
 
 		"Double Plasma Core"
-		"Plasma Core"
+		"Generator (Furnace Class)"
 		"Large Heat Shunt"
-		"Small Heat Shunt"
-		"Fuel Processor" 3
+		"Systems Core (Large)"
+		"Fuel Processor" 5
 		"Korath Repeater Rifle" 190
 
 		"Reverser (Asteroid Class)"
-		"Afterburner (Lunar Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
