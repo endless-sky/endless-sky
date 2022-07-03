@@ -190,7 +190,6 @@ mission "Remnant: Shattered Light 2"
 		conversation
 			`Your arrival in the starport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher." `
-			
 			`Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty doing the best with that which the Embers blessed me, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
 			`	Ruach's gestures take on a more precise cadence. "Taely tells me that you have spotted a strange 'ghost' in Caeculus that bears a resemblance to ancestral ships. Could you take me to do a scan of it please?"`
 			choice
@@ -225,7 +224,7 @@ mission "Remnant: Shattered Light 3"
 		dialog `It is on a crash course for Far Monad!" exclaims Ruach. "Quick, land there!`
 	on offer
 		conversation
-			`A group of people huddled around a hologram catches your attention, drawing your eyes to Rauch who gestures for you to join them. She introduces you to each person, before thanking you: "I would just like to start- blah blah blah I don't care about the dialogue part, blah- pick this up as early as you did." She gestures to the hologram of the ship floating in front of you. "Other scouts report- you spotted it first."`
+			`A group of people huddled around a hologram catches your attention, drawing your eyes to Rauch who gestures for you to join them. She introduces you to each person, before thanking you: "I would just like to start by offering our thanks for your assistance, Captain <first>. You have sharp eyes to pick this up as early as you did." She gestures to the hologram of the ship floating in front of you. "Other scouts reported it shortly thereafter, but you spotted it first."`
 			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the oldest mysteries here is what has happened to it, and what we should do about it."`
 			`	Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
 			`	"As such, our proposition is to use the same equipment we used for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronicity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
@@ -292,7 +291,7 @@ mission "Remnant: Shattered Light 4"
 		clear "Remnant: Shattered Light 3b: failed"
 		set "Remnant: Shattered Light 3b: done"
 		conversation
-			`	The Shattered Light is so massive that traffic control directs your ships to a large valley next to the spaceport, where you discover that a section of the chasm has been covered to create a semi-enclosed area. Judging from the equipment and stacks of freight, this area looks like it is predominantly used by bulk freight shipments and little else. Now, however, as the Shattered Light slowly moves in, a flock of Pelicans scatter in front of it looking like nothing more than a flock of plovers in front of an approaching camel.`
+			`	The Shattered Light is so massive that traffic control directs you to a large valley next to the spaceport, where you discover that a section of the chasm has been covered to create a semi-enclosed area. Judging from the equipment and stacks of freight, this area looks like it is predominantly used by bulk freight shipments and little else. Now, however, as the Shattered Light slowly moves in, a flock of Pelicans scatter in front of it looking like nothing more than a flock of plovers in front of an approaching camel.`
 			`	Down on the ground, you see Ruach and her team exit an airlock on the side of the Shattered Light and jump down to the ground. They gather around, giving hugs. "<first>!" exclaims Ruach. "We have recovered a lost piece of Remnant history. Thank you for helping. I do not know what this will mean for us in the long term, but it will be a lot of careful examination for the next few weeks."`
 			choice
 				`	"I have things to do, so just let me know if I can help."`
@@ -316,10 +315,14 @@ mission "Remnant: Shattered Light 4"
 
 mission "Remnant: Shattered Light 5"
 	name "Brilliant Energy"
-	description "Retrieve equipment from <destination> to help research the Shattered Light."
+	description "Retrieve a team with their equipment from <destination> to help research the Shattered Light."
 	landing
 	source "Viminal"
 	destination "Caelian"
+	to offer
+		has "Remnant: Shattered Light 4: done"
+	on offer
+		conversation
 
 
 
