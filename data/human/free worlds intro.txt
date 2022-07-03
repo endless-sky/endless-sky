@@ -32,7 +32,7 @@ mission "Pact Recon 0"
 				`	(Approach them and find out what happened.)`
 				`	(Ignore them.)`
 					decline
-			`	You overhear enough of the conversation to figure out that the freighter was attacked by pirates, and the militia are helping to get the freighter in working condition again. "A little spit shine and it'll look as good as new," the militia officer says, but the captain of the ship doesn't look convinced.`
+			`	You overhear enough of the conversation to figure out that the freighter was attacked by pirates, and the militia are helping to get the freighter in working condition again. "A little spit shine and it'll look as good as new," the officer says, but the captain of the ship doesn't look convinced, and walks up to his ship to work on it alongside the crew.`
 			`	The militia officer glances over her shoulder and, having spotted you listening in, waves you over. "No need to be shy," she says. "I'm guessing you're not from around here."`
 			choice
 				`	"How can you tell?"`
@@ -1157,66 +1157,66 @@ mission "FW Katya 1"
 			`Wandering through the spaceport, you have stopped for a moment to read the menu posted in front of a restaurant, when your thoughts are interrupted by the click of a gun being cocked right behind your head, and a woman's voice saying, "Think fast, Captain."`
 			choice
 				`	(Do this karate move I saw in a video one time.)`
-					goto `karate`
+					goto karate
 				`	(Raise my hands slowly into the air and find out what she wants.)`
-	
+			
 			`	"Good choice," she says. "Now, turn around, slowly, and don't try any funny business. I've got a semiautomatic pistol pointed right at your head."`
 			choice
 				`	(Now, try that karate move.)`
-					goto `karate`
+					goto karate
 				`	(Turn around slowly.)`
-	
+			
 			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few backcountry rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
 			choice
 				`	"You mean this was some sort of test? You're not trying to mug me?"`
-					goto `explanation`
+					goto explanation
 				`	(Try that karate move, just for kicks.)`
-	
+			
 			`	You make a grab for the gun. A second later she's got your arm twisted behind your back, using just enough force to make it clear that things could get really painful if you continue to struggle. "Smart, and playful too," she says, "I like that. But, it'll be a cold day in hell before a kid like you gets the drop on me. Now, shall we talk?" She lets go of you, and you shake out your arm gingerly.`
-	
-			label `explanation`
+			
+			label explanation
 			`	"I need a civilian for some courier work," she says. "Nothing illegal, at least nothing the Republic can pin on you. It just needs to be done by a ship that isn't flying our colors, and by a captain who isn't going to scream, 'Death to all tyrants!' and go in with guns blazing the first time your cargo gets scanned. What do you say?"`
 			choice
 				`	"I'm not sure I'm ready to pick sides in this war, yet."`
 				`	"Okay, tell me more."`
-					goto `more`
-	
+					goto more
+			
 			`	"Look, kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
 			choice
 				`	"That sounds fair. I'll hear you out."`
 				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`
 					decline
-	
-			label `more`
+			
+			label more
 			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyway. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
 			choice
 				`	"I like the way you think. Count me in."`
-					goto `details`
+					goto details
 				`	"Sorry, it sounds a bit too shady for my liking. Please don't offer me any work in the future."`
-	
+			
 			`	"Shucks," she says, "I liked you. I was looking forward to having you on my team." She looks genuinely crestfallen. "But fair is fair. You're free to go, and I'll tell my colleagues that you're not interested in working for us."`
 				decline
-	
-			label `details`
+			
+			label details
 			`	"Great," she says, grinning even more broadly. "My name's Katya Reynolds, by the way. Glad we'll be working together." She starts to walk away, then seems to remember something. "One last thing - some friends of mine on <planet>, tourists, need a lift off that rock, and I owe them a favor. Would you mind saving two bunks for them?"`
 			choice
 				`	"Sure, no problem."`
-	
+			
 			`	"Excellent. I'm looking forward to doing business with you, Captain."`
 				accept
-	
-			label `karate`
+			
+			label karate
 			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
 			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
 			choice
 				`	(Let her go.)`
 					decline
 				`	"Oh yeah? Well you ARE a girl!"`
-	
+			
 			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don't fight like one," she says. "I... fight like a she-badger."`
 			choice
 				`	"A she... badger?"`
-	
+			
 			`	"Fearsome creatures." She walks away, leaving you even more confused.`
 				decline
 	
@@ -1285,11 +1285,9 @@ mission "FW Katya 1C"
 				`	(Let them in.)`
 					goto enter
 				`	(Attack them.)`
-					goto attack
 				`	(Shut the hatch and escape into space.)`
 					goto flee
 			
-			label attack
 			`	You draw your gun. The officer shouts in alarm and dives out of the way. His companions, who turn out to be wearing body armor, open fire. You die quickly. Katya will be very disappointed.`
 				die
 			
@@ -1302,13 +1300,11 @@ mission "FW Katya 1C"
 			`	The Navy officer says, "Would you mind telling us what's in these crates?"`
 			choice
 				`	"Just medical supplies. Surgical gear, mostly."`
-					goto medical
 				`	"Just some secret illegal things."`
 					goto illegal
 				`	"I've never seen those crates before in my life. I don't know where they came from."`
 					goto denial
 			
-			label medical
 			`	"Any biological material or restricted medications?" he asks.`
 			`	"No, sir," you say.`
 				goto search
@@ -1326,14 +1322,12 @@ mission "FW Katya 1C"
 			`	"I'm sorry," says the officer, "we must have been responding to a bad tip. I'm very sorry for this invasion of your privacy, Captain."`
 			choice
 				`	"Never mind, I know you're just doing your job."`
-					goto gracious
 				`	"Since when has the Republic gotten so heavy handed about searching civilian ships?"`
 					goto angry
-	
-			label gracious
+			
 			`	"You are very gracious, Captain. We will not detain you any longer." They leave.`
 				decline
-	
+			
 			label angry
 			`	"I am sorry, Captain. Since the terrorist attacks everyone has been on edge. I hope you won't think badly of us." They leave.`
 				decline
@@ -1432,17 +1426,14 @@ mission "FW Katya 2B"
 			`As soon as you land and open your ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
 			choice
 				`	(Draw my weapon to defend myself against him.)`
-					goto weapon
 				`	(Quickly shut the hatch and find out if he is okay.)`
 					goto okay
 			
-			label weapon
 			`	You shut the hatch to keep anyone else from boarding your ship uninvited, then confront him. "Who are you and what are you doing on my ship?" you ask.`
 				goto name
 			
 			label okay
 			`	You shut the hatch to keep anyone else from boarding your ship, then turn around to find out who your visitor is. "My name is <first>," you say. "How can I help you?"`
-				goto name
 			
 			label name
 			`	"I'm Ijs Springborn," he says, pronouncing the name like "Eyes." He takes off the glasses and hat. "Councilor Reynolds told me to meet you here."`
@@ -1462,11 +1453,9 @@ mission "FW Katya 2B"
 			`	"Isn't it obvious?" he says. "We're going to hunt down certain naughty people who have been developing nuclear weapons, and the Free Worlds will turn them over to the Republic. Then the Republic will know that the Free Worlds weren't behind the attacks, and we'll stop this whole mess before it devolves into a civil war."`
 			choice
 				`	"So, you're convinced that the Free Worlds are innocent?"`
-					goto convinced
 				`	"Okay, what's our plan to do that?"`
 					goto plan
 			
-			label convinced
 			`	"Absolutely," he says. "It makes no sense. First of all, that attack hurt their cause more than it helped it. And second, I've known Katerina and her friends in the Free Worlds for a long time. There's no way they would agree to such a thing. So, whoever is responsible is out there somewhere, and the Free Worlds will bring them to justice."`
 			choice
 				`	"Well, then, what's our plan?"`
@@ -1534,31 +1523,25 @@ mission "FW Katya 3"
 			`	Eyes glances at her, sees her expression, and says, "No, Councilor, don't even think of it. That's a horrible idea."`
 			`	"No," she says, "it's brilliant. Captain <last>, are you familiar with the Dereliction and Salvage Act of 2976?"`
 			choice
-				`	"Of course. I read parliamentary proceedings every night when I'm trying to fall asleep."`
-					goto yes
 				`	"No, I've never heard of it."`
 					goto no
+				`	"Of course. I read parliamentary proceedings every night when I'm trying to fall asleep."`
 			
-			label yes
 			`	"Well then," she says, "you'll probably agree that legally speaking, Navy surveillance drones count as abandoned goods the moment their owners have left the system."`
 				goto response
 			
 			label no
 			`	"Well," she says, "it started when the Syndicate began experimenting with fully automated mining facilities on uninhabitable planets. Pirates started raiding the mines to steal equipment, and the Syndicate claimed that these installations were 'colonies' and it was the Navy's job to defend them. The Act was Parliament's response, stating that taking goods from a human being is piracy, but if the owner or some living representative of theirs is not present in the system, taking those goods is a legal salvage operation. The point was to keep the Navy from being obligated to defend every equipment cache or abandoned station in the galaxy. But by the same law, those Navy surveillance drones become abandoned goods the moment their motherships leave the system."`
-				goto response
 			
 			label response
 			choice
 				`	"Yup. That makes perfect sense to me."`
 					goto agree
 				`	"That sounds like a terrible idea."`
-					goto disagree
 			
-			label disagree
 			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "That would be a big disappointment."`
 			choice
 				`	"Fine, I'll do it. But I still think it's an unwise idea."`
-					goto agree
 				`	"I'm sorry, but this is a bit farther than I'm willing to go. Count me out."`
 					decline
 			
@@ -1636,17 +1619,14 @@ mission "FW Katya 5"
 			`You land on <origin>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes. "Guess we should move on."`
 			choice
 				`	"Are we just going to search every planet in this sector? Won't that take months?"`
-					goto months
 				`	"Are there any other ships helping us search, or is it just us?"`
 					goto search
 			
-			label months
 			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here."`
 				goto pirates
 			
 			label search
 			`	"No," says Eyes, "we've tried to keep this search a secret so the terrorists won't know we're looking for them. If they turn out to be Free Worlds sympathizers, and I assume they are, we'll have a better chance of infiltrating them if they think we're on their side."`
-				goto pirates
 			
 			label pirates
 			`	Katya says, "What we need is some leads to follow. I bet we could buy information on Greenrock. Whenever anyone is doing something illegal in this sector, there's a good chance the pirates are helping them."`
@@ -1657,15 +1637,12 @@ mission "FW Katya 5"
 				`	"Sure, sounds like fun."`
 					accept
 				`	"You guys have interesting friends. How do you know these monks?"`
-					goto friends
 				`	"Sounds boring. Can't we go shoot down more surveillance drones instead?"`
 					goto shoot
 			
-			label friends
 			`	"When I grew up and left the Paradise sector, as a young idealist," says Eyes, "I decided I wanted to take a vow of poverty, so I came to live with the Brothers. But it turns out they also wanted me to take a vow of obedience. And chastity. Not so much my cup of tea." He winks at Katya.`
 			`	"Are the monks really as boring as Katya says?" you ask.`
-				goto shoot
-						
+			
 			label shoot
 			`	"Sorry kid," says Eyes. "Take it from me, working for justice is not always exciting."`
 			choice
@@ -1704,11 +1681,9 @@ mission "FW Katya 5B"
 			`	As you are waiting, Eyes explains, "Brother Greg is in charge of the monastery's outreach and ministry to pirate crew members."`
 			choice
 				`	"That sounds even odder than being a vigilante nuclear inspector."`
-					goto odd
 				`	"Why would anyone want to reach out to pirates?"`
 					goto outreach
 			
-			label odd
 			`	Eyes laughs. "Yes, the monks were a big influence in helping me to think creatively about my own vocation."`
 			
 			label outreach
@@ -1721,9 +1696,7 @@ mission "FW Katya 5B"
 				`	"Sure, I'd be glad to."`
 					goto prayer
 				`	"Sorry, I've got some other stuff to get done tonight."`
-					goto excuse
 			
-			label excuse
 			`	"No problem," he says. "See you in the morning."`
 				goto morning
 			
@@ -1871,6 +1844,7 @@ mission "FW Katya 7"
 					decline
 			`	"I appreciate your help, Captain <last>," says Katya.`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1896,17 +1870,14 @@ mission "FW Katya 7B"
 			`	Mr. Eyes packs up his instruments, and then you walk outside and find her sitting on the landing pad near your ship, watching the moon rise over the ocean. She seems much calmer.`
 			choice
 				`	(Sit down next to her and try to comfort her.)`
-					goto sit
 				`	(Ask what she wants to do next.)`
 					goto ask
 			
-			label sit
 			`	You sit on one side of her, and Eyes sits on the other. "It's really admirable, what you're doing," you say. "You're trying to work for peace, and for justice. It's valuable work. Don't lose heart."`
 				goto last
 			
 			label ask
 			`	"What should we do now?" you ask.`
-				goto last
 			
 			label last
 			`	"One more try," she says. "One last world, and then we give up. I want you to take me... there." She points at the moon, hanging just above the horizon.`
@@ -1917,6 +1888,7 @@ mission "FW Katya 7B"
 					decline
 			`	"I promise it will be the last one," says Katya.`
 				accept
+	
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -2028,18 +2000,15 @@ mission "Rescue Katya 1"
 			`	"None," says Tomek. "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
 			choice
 				`	"Was Katya still there? We need to rescue her!"`
-					goto rescue
 				`	"We can't allow them to do that. We should gather our fleets and attack."`
 					goto attack
 			
-			label rescue
 			`	"Indeed," says Freya. "That should be our first priority."`
 				goto help
 			
 			label attack
 			`	JJ says, "Calm down, Captain. Combat is our last option, not our first. And if their claim is correct, they were justified in taking the system."`
 			`	Freya says, "Uniting the militias could take weeks. A much more pressing issue is that Katya is still on Clink, unless anyone has heard otherwise from her."`
-				goto help
 			
 			label help
 			`	"Well," says Alondo, "it's a good thing we haven't yet publicly announced that Captain <last> is working for us. Captain, we have one final mission for you as an independent merchant captain. We need you to stop on Clink, locate Katya, and bring her safely to Longjump without being stopped by the Navy."`
@@ -2072,7 +2041,6 @@ mission "Rescue Katya 2"
 			`The mining outpost on Clink is swarming with Navy officers; you would guess that they in fact outnumber the miners. You are not sure how you are going to get in there and contact Katya without the Navy noticing.`
 			choice
 				`	(Wait in my ship and see if she approaches.)`
-					goto wait
 				`	(Check if she is waiting for me out by the test site.)`
 					goto site
 				`	(Make some excuse to enter the outpost.)`
@@ -2082,7 +2050,6 @@ mission "Rescue Katya 2"
 			`	You wait on the landing pad for several hours. Katya does not show up. Navy officers in pressure suits walk by your ship about every fifteen minutes, no doubt wondering what you are doing here.`
 			choice
 				`	(Check if she is waiting for me out by the test site.)`
-					goto site
 				`	(Make some excuse to enter the outpost.)`
 					goto enter
 				`	(Give up and report my failure to the Council.)`
@@ -2094,7 +2061,6 @@ mission "Rescue Katya 2"
 				`	(Wait on the landing pad and see if she approaches.)`
 					goto wait
 				`	(Make some excuse to enter the outpost.)`
-					goto enter
 				`	(Give up and report my failure to the Council.)`
 					goto fail
 			
@@ -2162,7 +2128,6 @@ mission "Defend Sabik"
 				"Frigate" 2
 				"Gunboat" 3
 				"Rainmaker" 3
-			
 	npc evade
 		government "Republic"
 		personality heroic
