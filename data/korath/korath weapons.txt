@@ -576,3 +576,116 @@ effect "slicer impact"
 	"random spin" 2
 	"random velocity" .1
 	"velocity scale" -.002
+
+outfit "Firelight Storage Rack"
+	category "Ammunition"
+	cost 27400
+	thumbnail "outfit/firelight rack"
+	"mass" 3.3
+	"outfit space" -6
+	"firelight missile capacity" 9
+	ammo "Firelight Missile"
+	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
+
+outfit "Firelight Missile"
+	category "Ammunition"
+	cost 7600
+	thumbnail "outfit/firelight"
+	"mass" 0.3
+	"firelight missile capacity" -1
+	"energy generation" 0.02
+	"heat generation" 0.1
+	description `The reactor element inside a Firelight missile must be kept minimally active in order to ensure it is ready for launch. Although terribly inefficient, it nonetheless produces a trickle of power that can be tapped into when properly installed.`
+
+outfit "Firelight Missile Bank"
+	category "Secondary Weapons"
+	cost 1937000
+	thumbnail "outfit/firelight bank"
+	"mass" 22.6
+	"outfit space" -28
+	"weapon capacity" -28
+	"gun ports" -1
+	"energy capacity" 700
+	"firelight missile capacity" 18
+	weapon
+		ammo "Firelight Missile"
+		sprite "projectile/firelight"
+		icon "icon/firelight"
+		"hit effect" "firelight ring" 20
+		"burst reload" 30
+		"burst count" 3
+		"reload" 120
+		stream
+		submunition "Firelight Turning"
+		sound "firelight"
+		"firing energy" 211
+		"firing heat" 151
+		"velocity override" 16
+		"lifetime" 10
+		"velocity" 4
+		"acceleration" 0.6
+		"drag" .1
+		"infrared tracking" .7
+		"optical tracking" .9
+		"homing" 4
+		"trigger radius" 30
+		"blast radius" 60
+		"hit force" 100
+		"missile strength" 60
+	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
+	description "Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
+
+
+outfit "Firelight Turning"
+	weapon
+		sprite "projectile/firelight"
+			"frame rate" 12
+		"hit effect" "firelight ring" 20
+		"die effect" "piercer fire"
+		"velocity" 0.1
+		"acceleration" -0.1
+		"lifetime" 20
+		"turn" 4.6
+		"homing" 4
+		"submunition" "Firelight Activated"
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 30
+		"blast radius" 60
+		"hit force" 60
+		"missile strength" 60
+
+outfit "Firelight Activated"
+	weapon
+		sprite "projectile/firelight active"
+			"frame rate" 12
+		"hit effect" "firelight ring" 20
+		"die effect" "small explosion"
+		"velocity" 3
+		"lifetime" 140
+		"acceleration" 1.6
+		"turn" 2
+		"drag" .1
+		"homing" 4
+		"infrared tracking" .5
+		"optical tracking" .7
+		"trigger radius" 30
+		"blast radius" 60
+		"shield damage" 950
+		"hull damage" 950
+		"heat damage" 1800
+		"burn damage" 10
+		"corrosion damage" 2
+		"hit force" 400
+		"missile strength" 60
+
+effect "firelight ring"
+	sprite "effect/firestorm ring"
+		"scale" 0.5
+		"no repeat"
+		"frame rate" 14
+	"lifetime" 50
+	sound "firelight hit"
+	"random angle" 360
+	"random velocity" 2
+	"velocity scale" 0.1
