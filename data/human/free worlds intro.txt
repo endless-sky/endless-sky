@@ -527,619 +527,6 @@ mission "FW Recon 3B"
 
 
 
-mission "FW Escort 0"
-	autosave
-	minor
-	name "Free Worlds Escort"
-	description "Head to <destination> to meet up with a convoy of Free Worlds freighters."
-	source
-		government "Free Worlds"
-		near "Sabik" 1 100
-	destination "Longjump"
-	to offer
-		random < 20 * "assisted free worlds"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`As you are walking through the spaceport, a man in a militia uniform approaches you. Judging by the markings on his uniform, you suspect that he is very highly ranked within the militia.`
-			`	"Captain <last>?" he asks. You nod. "Glad to finally meet you. I'm Tomek Voigt, commanding officer of the Free miltiias. I have friends and officers who have spoken very highly of you. They tell me that you've gone to great lengths to help us. I thank you for that."`
-			choice
-				`	"Oh, it was nothing. Just helping people out where I can."`
-					goto humble
-				`	"I've gone to great lengths because I believe you have a great cause."`
-					goto cause
-				`	"I'm just looking to get paid, and the Free Worlds pays well."`
-			`	Tomek raises an eyebrow. "A no nonsense captain, I see. Well if it's pay you're looking for, I have another job for you on behalf of the Free Worlds.`
-				goto mission
-			label humble
-			`	Tomek smiles. "A humble captain, I see. Well, if you're just looking to help people out, I have another job for you on behalf of the Free Worlds.`
-				goto mission
-			label cause
-			`	Tomek grins. "Ah, a fellow freedom fighter. Always glad to see more captains joining the cause. I have another job for you on behalf of the Free Worlds.`
-			label mission
-			`	"We're looking for ships to help escort a freighter convoy that is traveling to Tarazed to pick up supplies. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. We already have a few captains on the job, but we could always use more help. Are you interested?"`
-			choice
-				`	"Sure, I'd be glad to assist in the escort."`
-					goto accept
-				`	"What sort of supplies?"`
-				`	"Sorry, but that's not the type of work I'm looking for."`
-					decline
-			
-			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacture of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
-			choice
-				`	"Well then I'd be glad to help."`
-				`	"Sorry, but that's not the type of work I'm looking for."`
-					decline
-			
-			label accept
-			`	"Great!" he says. "The convoy will start at <destination> once all the escorts have arrived. I suggest you head there immediately."`
-				accept
-
-
-
-mission "FW Escort: Escorts"
-	landing
-	invisible
-	to offer
-		has "FW Escort 0: done"
-	to complete
-		never
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		system "Sabik"
-		fleet
-			cargo 0
-			names "free worlds small"
-			variant
-				"Hawk"
-				"Sparrow" 3
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		system "Sabik"
-		to despawn
-			has "FW Escort 1B: done"
-		fleet
-			cargo 0
-			names "free worlds small"
-			variant
-				"Hawk"
-				"Sparrow" 2
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		system "Tarazed"
-		to spawn
-			has "FW Escort 1: done"
-		to despawn
-			has "FW Escort 1B: done"
-		fleet
-			cargo 0
-			names "free worlds capital"
-			variant
-				"Falcon"
-	npc
-		government "Free Worlds"
-		personality heroic escort
-		system "Sabik"
-		to spawn
-			has "FW Escort 1B: done"
-		fleet
-			cargo 0
-			names "free worlds small"
-			variant
-				"Fury" 3
-
-
-
-mission "FW Escort 1"
-	autosave
-	landing
-	name "Free Worlds Escort"
-	description "Escort a Free Worlds supply convoy safely to <destination>."
-	source "Longjump"
-	destination "Wayfarer"
-	to offer
-		has "FW Escort 0: done"
-	to fail
-		has "chosen sides"
-	on offer
-		conversation
-			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region, and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
-			`	Shortly after you arrive, the convoy is ready to go and charts a course for <destination>.`
-				accept
-	
-	on accept
-		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently, and the Free Worlds don't have many ships to spare defending them."
-	
-	npc accompany save
-		government "Merchant"
-		personality escort timid
-		ship "Freighter" "F.S. Raleigh"
-		ship "Freighter" "F.S. Scott"
-		ship "Freighter" "F.S. Hudson"
-		ship "Freighter" "F.S. Drake"
-		ship "Freighter" "F.S. Magellan"
-		ship "Freighter" "F.S. Franklin"
-	npc
-		government "Pirate"
-		personality plunders entering
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Alpha Arae"
-		fleet "Large Southern Pirates"
-	npc
-		personality plunders staying
-		government "Pirate"
-		system "Lesath"
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders waiting
-		system "Tarazed"
-		fleet "Large Southern Pirates" 2
-	
-	on abort
-		# The mission was aborted, not failed; take no action.
-	on fail
-		set "fw intro escort failed"
-		fail "FW Escort: Escorts"
-	on visit
-		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
-
-
-
-mission "FW Escort 1B"
-	autosave
-	landing
-	name "Free Worlds Escort"
-	description "Escort the supply convoy safely to <destination> back in Free Worlds territory."
-	source "Wayfarer"
-	destination "Longjump"
-	to offer
-		has "FW Escort 1: done"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The escort of interceptors was just enough to hold them off. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds.`
-			`	Before you leave, a Free Worlds militia officer who you didn't arrive with approaches you, saying that he's finished doing business with the Tarazed Corporation and will join the convoy back to <planet>. The officer is commanding a Falcon, a much more formidable warship than your group of interceptors. But of course, now that the freighters are carrying much more valuable cargo, the pirate attacks are likely to get even worse...`
-				accept
-	
-	npc accompany save
-		government "Merchant"
-		personality escort timid
-		ship Freighter "F.S. Raleigh"
-		ship Freighter "F.S. Scott"
-		ship Freighter "F.S. Hudson"
-		ship Freighter "F.S. Drake"
-		ship Freighter "F.S. Magellan"
-		ship Freighter "F.S. Franklin"
-	npc
-		government "Pirate"
-		personality plunders entering
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Alpha Arae"
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Lesath"
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders waiting
-		system "Sabik"
-		fleet "Large Southern Pirates" 2
-	
-	on abort
-		# The mission was aborted, not failed; take no action.
-	on fail
-		set "fw intro escort failed"
-		fail "FW Escort: Escorts"
-	on visit
-		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
-	on complete
-		payment 400000
-		dialog
-			`Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
-
-
-
-mission "FW Escort 2"
-	autosave
-	name "Free Worlds Escort"
-	description "Escort a Free Worlds supply convoy safely to <destination>."
-	source "Longjump"
-	destination "Wayfarer"
-	to offer
-		has "FW Escort 1B: done"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`A few of the escort pilots, yourself included, have stuck around for another mission, and luckily a few new faces have joined in as well. Tomek meets you in the spaceport and says, "You know the drill. Escort the freighters to <planet> and back. 400,000 credits for your troubles. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
-			choice
-				`	(Volunteer.)`
-				`	(Go find some other work to do.)`
-					decline
-			
-			`	"Great!" says Tomek. "Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
-				accept
-	
-	on decline
-		fail "FW Escort: Escorts"
-	
-	npc accompany save
-		government "Merchant"
-		personality escort timid
-		ship Freighter "F.S. Raleigh"
-		ship Freighter "F.S. Scott"
-		ship Freighter "F.S. Hudson"
-		ship Freighter "F.S. Drake"
-		ship Freighter "F.S. Magellan"
-		ship Freighter "F.S. Franklin"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Alpha Arae"
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Lesath"
-		fleet "Large Southern Pirates"
-	npc
-		government "Pirate"
-		personality plunders waiting
-		system "Tarazed"
-		fleet "Large Southern Pirates" 3
-	
-	on abort
-		# The mission was aborted, not failed; take no action.
-	on fail
-		set "fw intro escort failed"
-		fail "FW Escort: Escorts"
-	on visit
-		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
-
-
-
-mission "FW Escort 2B"
-	autosave
-	landing
-	name "Free Worlds Escort"
-	description "Escort a Free Worlds supply convoy safely to <destination>."
-	source "Wayfarer"
-	destination "Longjump"
-	to offer
-		has "FW Escort 2: done"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. But unfortunately, there's no militia officer with a warship here to reinforce you this time. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
-				accept
-	
-	npc accompany save
-		government "Merchant"
-		personality escort timid
-		ship Freighter "F.S. Raleigh"
-		ship Freighter "F.S. Scott"
-		ship Freighter "F.S. Hudson"
-		ship Freighter "F.S. Drake"
-		ship Freighter "F.S. Magellan"
-		ship Freighter "F.S. Franklin"
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Alpha Arae"
-		fleet "Large Southern Pirates" 2
-		fleet "Small Southern Pirates" 2
-	npc
-		government "Pirate"
-		personality plunders staying
-		system "Lesath"
-		fleet "Large Southern Pirates" 2
-		fleet "Small Southern Pirates" 2
-	npc
-		government "Pirate"
-		personality plunders waiting
-		system "Sabik"
-		fleet "Large Southern Pirates"
-		fleet "Small Southern Pirates" 2
-	
-	on abort
-		# The mission was aborted, not failed; take no action.
-	on fail
-		set "fw intro escort failed"
-		fail "FW Escort: Escorts"
-	on visit
-		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
-	on complete
-		fail "FW Escort: Escorts"
-		payment 400000
-		dialog
-			`Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
-
-
-
-mission "FW Escort 3"
-	autosave
-	name "Stranded Freighter"
-	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
-	source "Longjump"
-	waypoint "Lesath"
-	to offer
-		has "FW Escort 2B: done"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`When you walk into the bar, Tomek looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
-			choice
-				`	"Sure!"`
-				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
-					decline
-		
-			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if the pirates board them before you get there, so get moving quickly."`
-				accept
-	
-	npc accompany save
-		government "Merchant"
-		personality escort derelict timid
-		system "Lesath"
-		ship "Freighter" "F.S. Shackleton"
-	
-	on abort
-		# The mission was aborted, not failed; take no action.
-	on fail
-		set "fw intro escort failed"
-	on visit
-		dialog `You've returned to <planet>, but the <npc> is not with you. If you have not repaired it yet, travel to <waypoints> to do so, or wait for it to arrive in the system if you already have.`
-	on complete
-		payment 200000
-		"assisted free worlds" ++
-		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
-		conversation
-			`Tomek is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the rest of the Council know how helpful you have been, and I pray we can call on you in the future."`
-			choice
-				`	"I'll be ready to answer the call whenever it comes."`
-					decline
-				`	"What exactly is the Council?"`
-			
-			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact. We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds, but with the Free Worlds having declared itself as a formal government, the militias are now obligated to answer to the Council, who now answers to the Free Worlds Senate, as opposed to the prior agreement where worlds could refuse to answer to the Pact if for whatever reason they chose not to.`
-			`	"Does that answer your question?" Tomek asks.`
-			`	"It does," you say. "Thank you."`
-
-
-
-mission "FW Escort Second Chance"
-	minor
-	name "Second Chance"
-	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
-	source
-		near "Sabik" 1 100
-		government "Free Worlds"
-	destination "Longjump"
-	to offer
-		has "fw intro escort failed"
-		not "chosen sides"
-		"assisted free worlds" == 2
-		has "FW Katya 7C: done"
-	to fail
-		has "chosen sides"
-	
-	on offer
-		conversation
-			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds Council. Katya speaks so highly of you that I would like to see you officially join us as a part of the Free Worlds militia, even though you messed up that escort mission that was given to you."`
-			choice
-				`	"Yes, I'm very sorry about that."`
-				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
-					decline
-			
-			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`
-				accept
-	
-	on complete
-		conversation
-			`Nervously, you contact Tomek and ask if he would be willing to meet with you. After a long pause, he says, "Okay. Meet me at the cantina in fifteen minutes." You wait for about twenty minutes before he finally shows up and says, without preamble, "Now, what do you have to say for yourself?"`
-			choice
-				`	"I take full responsibility for the loss of that freighter. I'm sorry."`
-					goto responsible
-				`	"There was really nothing I could have done against so many pirates."`
-				`	"I'm sorry for what happened. It won't happen again."`
-			`	He doesn't look entirely satisfied with that response. "I had to write letters to five different families telling them why their son or daughter or husband had been killed on a routine cargo mission. You promised to keep them safe, and you failed. You understand that, right?"`
-			choice
-				`	"Well, space is a dangerous place. Bad things happen. I can't stop that."`
-				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
-					goto responsible
-			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
-				decline
-			
-			label responsible
-			`	"If we offer you a mission in the future," he says, "we have to be able to trust that you will complete it. No excuses, no second tries. Do you understand?" You nod. "Fine," he says, with a long sigh. "Katya said she trusted you, and Jean-Jacques as well, so I'll recommend that they give you a chance. But please try to be more responsible in the future, okay?"`
-			choice
-				`	"I will. Thank you for giving me a second chance, sir."`
-				`	"I'll try my best."`
-			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
-			apply
-				"assisted free worlds" ++
-
-
-
-mission "FW Bounty 1"
-	minor
-	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "<npc>" who have been attacking freighters in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
-	source
-		government "Free Worlds"
-	to offer
-		"combat rating" > 200
-		not "chosen sides"
-		random < 20 + 5 * "assisted free worlds" * "assisted free worlds"
-	
-	on offer
-		conversation
-			`As you walk through the spaceport, a woman in a militia uniform approaches you. "Are you Captain <last>?" she asks. You nod. "I'm the commander of the local militia," she says. "There's a pirate fleet that has attacked freighters in this sector several times in the last few months, but now it seems they've moved outside of Free space. I'd like to strike at them before they return and do more damage here, but right now the Free Worlds Council won't allow militia ships to be used for preemptive attacks, so we're looking to enlist the help of a merchant captain, and I was told that you're a formidable pilot who has helped us before."`
-			choice
-				`	"Well, I'd be glad to destroy them for you."`
-					goto accept
-				`	"How powerful of a fleet do these pirates have?"`
-				`	"How much will you be paying me to take out this fleet?"`
-					goto payment
-				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
-					decline
-			
-			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships."`
-			choice
-				`	"Just a group of interceptors? That should be no problem for me to destroy."`
-				`	"If you can't take them out then I don't know how I will. You're on your own."`
-					decline
-			
-			label payment
-			`	"Since these pirates have been particularly troublesome, we've placed a bounty of <payment> on their heads. Take them out for us and those credits are all yours."`
-			choice
-				`	"That sounds reasonable enough. Okay, I'll destroy them for you."`
-				`	"Only <payment>? You're going to need to find someone else for the job."`
-					decline
-			
-			label accept
-			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named '<npc>.' They were last seen in the Seginus system, just northeast of Free space. Thank you in advance for your help."`
-				accept
-	
-	on accept
-		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
-	
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			near "Seginus" 1 2
-		ship "Hawk (Rocket)" "Cluny"
-		ship "Hawk (Speedy)" "Ferret"
-		ship "Berserker (Afterburner)" "Weasel"
-		ship "Wasp (Proton)" "Vixen"
-		ship "Fury (Laser)" "Stoat"
-		ship "Sparrow" "Rat"
-		dialog `The "Rat Pack" has been eliminated. You can claim the bounty payment by returning to <destination>.`
-	
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 200000
-		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you the bounty of <payment> and says she'll tell other militia leaders how helpful you were.`
-
-
-
-mission "FW Bounty 2"
-	name "Free Worlds Bounty Hunting"
-	description `A Free Worlds militia officer from <destination> asked you to hunt down the Moonless Night, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
-	source
-		government "Free Worlds"
-	to offer
-		has "FW Bounty 1: done"
-		not "chosen sides"
-		random < 25 + 5 * "assisted free worlds" * "assisted free worlds"
-	
-	on offer
-		conversation
-			`A Free Worlds officer waves to you as you are walking through the spaceport. "Hello Captain <last>," he says. "I've heard you've helped us in the past to deal with pirate threats. Interested in another bounty hunting mission?"`
-			choice
-				`	"What will it be this time?"`
-				`	"Sure, I do love destroying pirates!"`
-					goto accept
-				`	"Sorry, I'm way too busy right now."`
-					defer
-			
-			`	"There's a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
-			choice
-				`	"Sounds like this shouldn't be too difficult. I'm in."`
-				`	"I could handle a group of interceptors, but this sounds like too much for me. Go find someone else."`
-					decline
-			
-			`	He grins. "Glad to hear you're on board. Good luck, Captain."`
-				accept
-			
-			label accept
-			`	He grins. "Your target is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
-				accept
-	
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system
-			near "Delta Sagittarii" 1 2
-		ship "Behemoth (Speedy)" "Moonless Night"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 300000
-		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
-
-
-
-mission "FW Bounty 3"
-	name "Free Worlds Bounty Hunting"
-	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a powerful pirate ship last seen in the Shaula system.`
-	source
-		government "Free Worlds"
-	to offer
-		has "FW Bounty 2: done"
-		not "chosen sides"
-		random < 30 + 5 * "assisted free worlds" * "assisted free worlds"
-	
-	on offer
-		conversation
-			`Once again, as you are walking through the spaceport a Free Worlds officer flags you down. "We've got another bounty hunting mission for you," he says. "This one is a bit more dangerous; this pirate ship has weapons we've never seen before, that may be alien in origin. Interested in helping us to destroy it?"`
-			choice
-				`	"Yes, I'm sure my ship will be up to the challenge."`
-					goto accept
-				`	"Alien in origin? What sort of weapons does it have?"`
-				`	"Sorry, I'm not interested in giving the Free Worlds more assistance."`
-					decline
-			
-			`	"It has a pair of strange cannons that seem to interfere with a ship's electrical systems, draining its power and causing its weapons to malfunction. It's similar to those lasers the Quarg have, which is why we think the weapons are alien technology."`
-			choice
-				`	"Well you came to the right person. I'll take it out for you."`
-				`	"Sorry, but that sounds like a job for someone else."`
-					decline
-			
-			label accept
-			`	"Great," he says. "Your target is named the <npc>. After we nearly destroyed it, we think it went to the Shaula system to hide out, which means that you'll probably have to deal with other pirates at the same time. Good luck, Captain."`
-				accept
-	
-	npc kill
-		government "Bounty"
-		personality heroic staying nemesis target
-		system "Shaula"
-		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 500000
-		"assisted free worlds" ++
-		log "Earned a good reputation with the Free Worlds militia by taking on missions to hunt down some dangerous pirates."
-		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
-
-
-
 mission "FW Katya 1"
 	minor
 	name "Assist the Free Worlds"
@@ -1936,6 +1323,619 @@ mission "FW Katya 7C"
 				`	"I had no idea."`
 				`	"Wow, she really is dedicated to this work, isn't she?"`
 			`	"She's a unique woman," says Eyes. "I pray we see her again soon. Goodbye for now, <first>."`
+
+
+
+mission "FW Escort 0"
+	autosave
+	minor
+	name "Free Worlds Escort"
+	description "Head to <destination> to meet up with a convoy of Free Worlds freighters."
+	source
+		government "Free Worlds"
+		near "Sabik" 1 100
+	destination "Longjump"
+	to offer
+		random < 20 * "assisted free worlds"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a man in a militia uniform approaches you. Judging by the markings on his uniform, you suspect that he is very highly ranked within the militia.`
+			`	"Captain <last>?" he asks. You nod. "Glad to finally meet you. I'm Tomek Voigt, commanding officer of the Free miltiias. I have friends and officers who have spoken very highly of you. They tell me that you've gone to great lengths to help us. I thank you for that."`
+			choice
+				`	"Oh, it was nothing. Just helping people out where I can."`
+					goto humble
+				`	"I've gone to great lengths because I believe you have a great cause."`
+					goto cause
+				`	"I'm just looking to get paid, and the Free Worlds pays well."`
+			`	Tomek raises an eyebrow. "A no nonsense captain, I see. Well if it's pay you're looking for, I have another job for you on behalf of the Free Worlds.`
+				goto mission
+			label humble
+			`	Tomek smiles. "A humble captain, I see. Well, if you're just looking to help people out, I have another job for you on behalf of the Free Worlds.`
+				goto mission
+			label cause
+			`	Tomek grins. "Ah, a fellow freedom fighter. Always glad to see more captains joining the cause. I have another job for you on behalf of the Free Worlds.`
+			label mission
+			`	"We're looking for ships to help escort a freighter convoy that is traveling to Tarazed to pick up supplies. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. We already have a few captains on the job, but we could always use more help. Are you interested?"`
+			choice
+				`	"Sure, I'd be glad to assist in the escort."`
+					goto accept
+				`	"What sort of supplies?"`
+				`	"Sorry, but that's not the type of work I'm looking for."`
+					decline
+			
+			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacture of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
+			choice
+				`	"Well then I'd be glad to help."`
+				`	"Sorry, but that's not the type of work I'm looking for."`
+					decline
+			
+			label accept
+			`	"Great!" he says. "The convoy will start at <destination> once all the escorts have arrived. I suggest you head there immediately."`
+				accept
+
+
+
+mission "FW Escort: Escorts"
+	landing
+	invisible
+	to offer
+		has "FW Escort 0: done"
+	to complete
+		never
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		system "Sabik"
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Sparrow" 3
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		system "Sabik"
+		to despawn
+			has "FW Escort 1B: done"
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Sparrow" 2
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		system "Tarazed"
+		to spawn
+			has "FW Escort 1: done"
+		to despawn
+			has "FW Escort 1B: done"
+		fleet
+			cargo 0
+			names "free worlds capital"
+			variant
+				"Falcon"
+	npc
+		government "Free Worlds"
+		personality heroic escort
+		system "Sabik"
+		to spawn
+			has "FW Escort 1B: done"
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Fury" 3
+
+
+
+mission "FW Escort 1"
+	autosave
+	landing
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source "Longjump"
+	destination "Wayfarer"
+	to offer
+		has "FW Escort 0: done"
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region, and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
+			`	Shortly after you arrive, the convoy is ready to go and charts a course for <destination>.`
+				accept
+	
+	on accept
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently, and the Free Worlds don't have many ships to spare defending them."
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship "Freighter" "F.S. Raleigh"
+		ship "Freighter" "F.S. Scott"
+		ship "Freighter" "F.S. Hudson"
+		ship "Freighter" "F.S. Drake"
+		ship "Freighter" "F.S. Magellan"
+		ship "Freighter" "F.S. Franklin"
+	npc
+		government "Pirate"
+		personality plunders entering
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates"
+	npc
+		personality plunders staying
+		government "Pirate"
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Tarazed"
+		fleet "Large Southern Pirates" 2
+	
+	on abort
+		# The mission was aborted, not failed; take no action.
+	on fail
+		set "fw intro escort failed"
+		fail "FW Escort: Escorts"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+
+
+
+mission "FW Escort 1B"
+	autosave
+	landing
+	name "Free Worlds Escort"
+	description "Escort the supply convoy safely to <destination> back in Free Worlds territory."
+	source "Wayfarer"
+	destination "Longjump"
+	to offer
+		has "FW Escort 1: done"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The escort of interceptors was just enough to hold them off. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds.`
+			`	Before you leave, a Free Worlds militia officer who you didn't arrive with approaches you, saying that he's finished doing business with the Tarazed Corporation and will join the convoy back to <planet>. The officer is commanding a Falcon, a much more formidable warship than your group of interceptors. But of course, now that the freighters are carrying much more valuable cargo, the pirate attacks are likely to get even worse...`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
+	npc
+		government "Pirate"
+		personality plunders entering
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Sabik"
+		fleet "Large Southern Pirates" 2
+	
+	on abort
+		# The mission was aborted, not failed; take no action.
+	on fail
+		set "fw intro escort failed"
+		fail "FW Escort: Escorts"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+	on complete
+		payment 400000
+		dialog
+			`Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
+
+
+
+mission "FW Escort 2"
+	autosave
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source "Longjump"
+	destination "Wayfarer"
+	to offer
+		has "FW Escort 1B: done"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`A few of the escort pilots, yourself included, have stuck around for another mission, and luckily a few new faces have joined in as well. Tomek meets you in the spaceport and says, "You know the drill. Escort the freighters to <planet> and back. 400,000 credits for your troubles. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
+			choice
+				`	(Volunteer.)`
+				`	(Go find some other work to do.)`
+					decline
+			
+			`	"Great!" says Tomek. "Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
+				accept
+	
+	on decline
+		fail "FW Escort: Escorts"
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Tarazed"
+		fleet "Large Southern Pirates" 3
+	
+	on abort
+		# The mission was aborted, not failed; take no action.
+	on fail
+		set "fw intro escort failed"
+		fail "FW Escort: Escorts"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+
+
+
+mission "FW Escort 2B"
+	autosave
+	landing
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source "Wayfarer"
+	destination "Longjump"
+	to offer
+		has "FW Escort 2: done"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. But unfortunately, there's no militia officer with a warship here to reinforce you this time. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Alpha Arae"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Lesath"
+		fleet "Large Southern Pirates" 2
+		fleet "Small Southern Pirates" 2
+	npc
+		government "Pirate"
+		personality plunders waiting
+		system "Sabik"
+		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates" 2
+	
+	on abort
+		# The mission was aborted, not failed; take no action.
+	on fail
+		set "fw intro escort failed"
+		fail "FW Escort: Escorts"
+	on visit
+		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
+	on complete
+		fail "FW Escort: Escorts"
+		payment 400000
+		dialog
+			`Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
+
+
+
+mission "FW Escort 3"
+	autosave
+	name "Stranded Freighter"
+	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
+	source "Longjump"
+	waypoint "Lesath"
+	to offer
+		has "FW Escort 2B: done"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`When you walk into the bar, Tomek looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
+			choice
+				`	"Sure!"`
+				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
+					decline
+		
+			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if the pirates board them before you get there, so get moving quickly."`
+				accept
+	
+	npc accompany save
+		government "Merchant"
+		personality escort derelict timid
+		system "Lesath"
+		ship "Freighter" "F.S. Shackleton"
+	
+	on abort
+		# The mission was aborted, not failed; take no action.
+	on fail
+		set "fw intro escort failed"
+	on visit
+		dialog `You've returned to <planet>, but the <npc> is not with you. If you have not repaired it yet, travel to <waypoints> to do so, or wait for it to arrive in the system if you already have.`
+	on complete
+		payment 200000
+		"assisted free worlds" ++
+		log "Helped rescue a Free Worlds freighter that had been disabled by pirates. Earned the gratitude of Tomek Voigt, the Council member in charge of the supply convoys."
+		conversation
+			`Tomek is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the rest of the Council know how helpful you have been, and I pray we can call on you in the future."`
+			choice
+				`	"I'll be ready to answer the call whenever it comes."`
+					decline
+				`	"What exactly is the Council?"`
+			
+			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact. We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds, but with the Free Worlds having declared itself as a formal government, the militias are now obligated to answer to the Council, who now answers to the Free Worlds Senate, as opposed to the prior agreement where worlds could refuse to answer to the Pact if for whatever reason they chose not to.`
+			`	"Does that answer your question?" Tomek asks.`
+			`	"It does," you say. "Thank you."`
+
+
+
+mission "FW Escort Second Chance"
+	minor
+	name "Second Chance"
+	description "Return to <destination> to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
+	source
+		near "Sabik" 1 100
+		government "Free Worlds"
+	destination "Longjump"
+	to offer
+		has "fw intro escort failed"
+		not "chosen sides"
+		"assisted free worlds" == 2
+		has "FW Katya 7C: done"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds Council. Katya speaks so highly of you that I would like to see you officially join us as a part of the Free Worlds militia, even though you messed up that escort mission that was given to you."`
+			choice
+				`	"Yes, I'm very sorry about that."`
+				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
+					decline
+			
+			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`
+				accept
+	
+	on complete
+		conversation
+			`Nervously, you contact Tomek and ask if he would be willing to meet with you. After a long pause, he says, "Okay. Meet me at the cantina in fifteen minutes." You wait for about twenty minutes before he finally shows up and says, without preamble, "Now, what do you have to say for yourself?"`
+			choice
+				`	"I take full responsibility for the loss of that freighter. I'm sorry."`
+					goto responsible
+				`	"There was really nothing I could have done against so many pirates."`
+				`	"I'm sorry for what happened. It won't happen again."`
+			`	He doesn't look entirely satisfied with that response. "I had to write letters to five different families telling them why their son or daughter or husband had been killed on a routine cargo mission. You promised to keep them safe, and you failed. You understand that, right?"`
+			choice
+				`	"Well, space is a dangerous place. Bad things happen. I can't stop that."`
+				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
+					goto responsible
+			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
+				decline
+			
+			label responsible
+			`	"If we offer you a mission in the future," he says, "we have to be able to trust that you will complete it. No excuses, no second tries. Do you understand?" You nod. "Fine," he says, with a long sigh. "Katya said she trusted you, and Jean-Jacques as well, so I'll recommend that they give you a chance. But please try to be more responsible in the future, okay?"`
+			choice
+				`	"I will. Thank you for giving me a second chance, sir."`
+				`	"I'll try my best."`
+			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
+			apply
+				"assisted free worlds" ++
+
+
+
+mission "FW Bounty 1"
+	minor
+	name "Free Worlds Bounty Hunting"
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "<npc>" who have been attacking freighters in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
+	source
+		government "Free Worlds"
+	to offer
+		"combat rating" > 200
+		not "chosen sides"
+		random < 20 + 5 * "assisted free worlds" * "assisted free worlds"
+	
+	on offer
+		conversation
+			`As you walk through the spaceport, a woman in a militia uniform approaches you. "Are you Captain <last>?" she asks. You nod. "I'm the commander of the local militia," she says. "There's a pirate fleet that has attacked freighters in this sector several times in the last few months, but now it seems they've moved outside of Free space. I'd like to strike at them before they return and do more damage here, but right now the Free Worlds Council won't allow militia ships to be used for preemptive attacks, so we're looking to enlist the help of a merchant captain, and I was told that you're a formidable pilot who has helped us before."`
+			choice
+				`	"Well, I'd be glad to destroy them for you."`
+					goto accept
+				`	"How powerful of a fleet do these pirates have?"`
+				`	"How much will you be paying me to take out this fleet?"`
+					goto payment
+				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
+					decline
+			
+			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships."`
+			choice
+				`	"Just a group of interceptors? That should be no problem for me to destroy."`
+				`	"If you can't take them out then I don't know how I will. You're on your own."`
+					decline
+			
+			label payment
+			`	"Since these pirates have been particularly troublesome, we've placed a bounty of <payment> on their heads. Take them out for us and those credits are all yours."`
+			choice
+				`	"That sounds reasonable enough. Okay, I'll destroy them for you."`
+				`	"Only <payment>? You're going to need to find someone else for the job."`
+					decline
+			
+			label accept
+			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named '<npc>.' They were last seen in the Seginus system, just northeast of Free space. Thank you in advance for your help."`
+				accept
+	
+	on accept
+		log "Hunting down a fleet of pirates called the Rat Pack, who have been giving the Free Worlds trouble lately."
+	
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			near "Seginus" 1 2
+		ship "Hawk (Rocket)" "Cluny"
+		ship "Hawk (Speedy)" "Ferret"
+		ship "Berserker (Afterburner)" "Weasel"
+		ship "Wasp (Proton)" "Vixen"
+		ship "Fury (Laser)" "Stoat"
+		ship "Sparrow" "Rat"
+		dialog `The "Rat Pack" has been eliminated. You can claim the bounty payment by returning to <destination>.`
+	
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
+	on complete
+		payment 200000
+		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you the bounty of <payment> and says she'll tell other militia leaders how helpful you were.`
+
+
+
+mission "FW Bounty 2"
+	name "Free Worlds Bounty Hunting"
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the Moonless Night, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
+	source
+		government "Free Worlds"
+	to offer
+		has "FW Bounty 1: done"
+		not "chosen sides"
+		random < 25 + 5 * "assisted free worlds" * "assisted free worlds"
+	
+	on offer
+		conversation
+			`A Free Worlds officer waves to you as you are walking through the spaceport. "Hello Captain <last>," he says. "I've heard you've helped us in the past to deal with pirate threats. Interested in another bounty hunting mission?"`
+			choice
+				`	"What will it be this time?"`
+				`	"Sure, I do love destroying pirates!"`
+					goto accept
+				`	"Sorry, I'm way too busy right now."`
+					defer
+			
+			`	"There's a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
+			choice
+				`	"Sounds like this shouldn't be too difficult. I'm in."`
+				`	"I could handle a group of interceptors, but this sounds like too much for me. Go find someone else."`
+					decline
+			
+			`	He grins. "Glad to hear you're on board. Good luck, Captain."`
+				accept
+			
+			label accept
+			`	He grins. "Your target is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
+				accept
+	
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			near "Delta Sagittarii" 1 2
+		ship "Behemoth (Speedy)" "Moonless Night"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 300000
+		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
+
+
+
+mission "FW Bounty 3"
+	name "Free Worlds Bounty Hunting"
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a powerful pirate ship last seen in the Shaula system.`
+	source
+		government "Free Worlds"
+	to offer
+		has "FW Bounty 2: done"
+		not "chosen sides"
+		random < 30 + 5 * "assisted free worlds" * "assisted free worlds"
+	
+	on offer
+		conversation
+			`Once again, as you are walking through the spaceport a Free Worlds officer flags you down. "We've got another bounty hunting mission for you," he says. "This one is a bit more dangerous; this pirate ship has weapons we've never seen before, that may be alien in origin. Interested in helping us to destroy it?"`
+			choice
+				`	"Yes, I'm sure my ship will be up to the challenge."`
+					goto accept
+				`	"Alien in origin? What sort of weapons does it have?"`
+				`	"Sorry, I'm not interested in giving the Free Worlds more assistance."`
+					decline
+			
+			`	"It has a pair of strange cannons that seem to interfere with a ship's electrical systems, draining its power and causing its weapons to malfunction. It's similar to those lasers the Quarg have, which is why we think the weapons are alien technology."`
+			choice
+				`	"Well you came to the right person. I'll take it out for you."`
+				`	"Sorry, but that sounds like a job for someone else."`
+					decline
+			
+			label accept
+			`	"Great," he says. "Your target is named the <npc>. After we nearly destroyed it, we think it went to the Shaula system to hide out, which means that you'll probably have to deal with other pirates at the same time. Good luck, Captain."`
+				accept
+	
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system "Shaula"
+		ship "Osprey (Alien Weapons)" "Silverhawk"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 500000
+		"assisted free worlds" ++
+		log "Earned a good reputation with the Free Worlds militia by taking on missions to hunt down some dangerous pirates."
+		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
 
 
 
