@@ -2588,6 +2588,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	};
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "ships: ", "ships:!");
+	clearRange(conditions, "flagship model: ", "flagship model:!");
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
@@ -2598,6 +2599,8 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
+	if(flagship)
+		++conditions["flagship model: " + flagship->ModelName()];
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).

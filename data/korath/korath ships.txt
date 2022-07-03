@@ -221,7 +221,6 @@ ship "Korath Raider"
 
 
 ship "Korath Raider" "Korath Raider (Ember)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -253,7 +252,6 @@ ship "Korath Raider" "Korath Raider (Ember)"
 
 
 ship "Korath Raider" "Korath Raider (Hyperdrive)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -285,12 +283,11 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 
 
 ship "Korath Raider" "Korath Raider (Crippled)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
-		"Firelight Missile Bank" 1
+		"Firelight Missile Bank"
 		"Firelight Missile" 9
 		
 		"Triple Plasma Core"
@@ -315,8 +312,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 
 
 ship "Korath Raider Mark XLII"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
+	sprite "ship/raider xlii"
+	thumbnail "thumbnail/raider xlii"
 	attributes
 		category "Medium Warship"
 		"cost" 22895000
@@ -426,8 +423,6 @@ ship "Korath Raider Mark XLII"
 
 
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
-	sprite "ship/raiderxlii"
-	thumbnail "thumbnail/raiderxlii"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70
