@@ -321,8 +321,6 @@ mission "Remnant: Shattered Light 5"
 	destination "Caelian"
 	to offer
 		has "Remnant: Shattered Light 4: done"
-	on offer
-		conversation
 
 
 
