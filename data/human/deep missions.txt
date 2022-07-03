@@ -2714,7 +2714,7 @@ mission "Stone of our Fathers 5"
 				goto drinkandbemerry
 			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about half an hour before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
-			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize.  It is covered with filled with letters and images that are unfamiliar to you.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
 			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
@@ -3652,7 +3652,7 @@ mission "Home for Skadenga 9"
 					goto prenext
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
 			branch buffboi
-				"combat rating" >  8104
+				"combat rating" > 8104
 			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag.`
 			label prenext
 			`	"If it wasn't the Allen boys who sent you, who do you work for? The Leshinskis? Mad Mikkel's Gang? Or maybe the Hanovarian?" Hroar pauses. "Nah, not his style. So who?"`
