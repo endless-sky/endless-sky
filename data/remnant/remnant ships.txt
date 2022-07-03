@@ -711,7 +711,7 @@ ship "Merganser"
 	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
 
 
-ship "Merganser" "Merganser II"
+ship "Merganser" "Merganser (II)"
 	outfits
 		"Inhibitor Cannon" 2
 		"Teciimach Pod"
@@ -1000,7 +1000,7 @@ ship "Peregrine"
 	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
 	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
 	
-ship "Peregrine" "Peregrine II"
+ship "Peregrine" "Peregrine (II)"
 	outfits
 		"Thrasher Cannon" 4
 		"Teciimach Bay" 1
