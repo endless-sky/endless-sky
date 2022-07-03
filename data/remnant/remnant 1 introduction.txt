@@ -2464,7 +2464,7 @@ mission "Remnant: Scanning Tolerances"
 				`	"Sorry, not right now."`
 					defer
 			label questioning
-			`	"A data archive with the latest briefings and analysis. Heavily shielded and encrypted, of course, so no need to worry about it being accidentally showing up on a scanner. It does have to get there by <date> So, could you do it?" They hold out a small case with a data crystal visible through the window.`
+			`	"A data archive with the latest briefings and analysis. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
 			choice
 				`	"Yes, I can."`
 					goto agreement
@@ -2485,7 +2485,7 @@ mission "Remnant: Scanning Tolerances"
 				`	"You have been watching me?"`
 			`	"Yes. There is very little that goes on in our worlds that is not observed by someone, and sometimes it garners more attention than others." He looks at you. "You are one such. As a stranger among us, you were subject to much attention, although you probably did not notice most of it. Some felt it was too risky to trust you as far as we did, but the consensus was that you are worth the trust. Now," he gestures towards the console again. "place your licenses there please."`
 			label comply
-			`	He slots several things that look similar to but different from your licenses into slots on his side of the table and taps several controls. "You are not yet one of us, but this is one step closer to being such. Your IFF signature has been updated, and our ship's databases will be updated within a day." He removes the licenses and hands yours back to you with a relieved expression. "We are a curious people, and we fully understand the search for knowledge and to learn more about one's surroundings. But we also know how important it is to maintain our secrets.`
+			`	He inserts several things that look similar to but different from your licenses into slots on his side of the table and taps several controls. "You are not yet one of us, but this brings you one step closer. Your IFF signature has been updated, and our ships' databases will be updated within a day." He removes the licenses and hands yours back to you with a relieved expression. "We are a curious people, and we fully understand the search for knowledge and to learn more about one's surroundings. But we also know how important it is to maintain our secrets.`
 			`	"Going forward, you are now authorized to scan Remnant ships, and we encourage you to do so, although you should wait a day or two for the update to propagate through our fleet." He looks amused by something, but his serious expression returns. "Scanning each other is, after all, a valuable form of security that gives us opportunities to spot infiltrators and unknown contaminants on returning ships. Scans are uploaded to our databases for signature matching via the Quantum Entangled Communicator built into the IFF mechanism onboard your ship, and we will return information such as alien outfit identification and tactical scan readouts whenever possible to help you."`
 			`	He gives a tired sigh. "While I would enjoy answering a few of your questions, I should get back to supervising the operation." He gestures at the display, which has resumed showing the tactical movements of troops. "Thanks again for all your help, <first>!"`
 
