@@ -81,6 +81,7 @@ conversation "hai reveal free worlds news"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
 	`	When it's finished the young man, who is very well presented but clearly has a bit of the paranoid about him that is plain to see even through a screen, is encouraged to talk about where he got the footage. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept
 	label "hai knowledge"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
@@ -101,6 +102,7 @@ conversation "hai reveal republic or syndicate news"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept	
 	label "hai knowledge"
 	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
@@ -146,7 +148,8 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 		decline
 
 
-# Six possibilities for origin and destination, to work around bug 1938
+# Six possibilities for origin and destination, which works around bug 1938 - but also has coherency advantages.
+# When other campaigns get added there will be even more possible combinations. As such the objective here is to matrix it out, so that all geographic starting points are defined by the missions - and then the conversations handle the combination of branches required for each campaign in a given geographic area. This makes it clearer and easier to work on and expand in the future when required.
 # Symbols RS=Republic or Syndicate FW = Free Worlds
 # H=met Hai, U=met Unfettered
 
@@ -301,7 +304,7 @@ mission "Trader Directions to Hai Space"
 			has "ZZ Event Hai Secret Leaks: FW: done"
 	on offer
 		conversation
-			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Syndicate corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
+			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Megaparsec corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
 			`	The endless cycle of both news and government propaganda displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
 			`	Casting around the room, you pick out a merchant who looks like she's been around the block a few times. In addition to looking like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. After the captain is briskly sent away, you make your way over. Her glare falters in a flash of recognition before subsiding to a reserved scowl.`
 			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention, hey?"`
@@ -565,29 +568,7 @@ mission "Hai Leaks Response 2"
 		dialog phrase "generic stopover on visit"
 	on complete
 		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to rout pirates hoping to benefit from the chaos while they work on a solution.`
-		conversation
-			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
-			`	You get down to business when Sayari inquires how your journey went.`
-			choice
-				`	"I don't recall there being nearly so many pirates before."`
-			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
-			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
-			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
-			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
-			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
-			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
-			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
-			choice
-				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
-			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
-			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
-			choice
-				`	"I'll do what I can."`
-					decline
 
-#If a republic/syndicate campaign gets added this on complete text will need variants.
 	
 	
 event "pirates respond to leaks"
@@ -663,6 +644,7 @@ mission "Hai Leaks Response 2C"
 				decline
 
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
+#No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
 mission "Hai Leaks Response 3"
 	name "Meet with Security Forces on Allhome"
 	description "Meet with the Security Forces on <destination> to fight pirates."
@@ -671,6 +653,30 @@ mission "Hai Leaks Response 3"
 	destination "Allhome"
 	to offer
 		has "Hai Leaks Response 2: done"
+	on offer
+		conversation
+			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
+			`	You get down to business when Sayari inquires how your journey went.`
+			choice
+				`	"I don't recall there being nearly so many pirates before."`
+			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`
+			`	"Of course," she says, "some of the pirates were aware of us, and we were aware of them being aware of us. We had a quiet arrangement with a select few where we rewarded them for keeping the secret well contained within their own circles."`
+			`	Alondo looks surprised, but Mr. Yang and Ms. Adrianopolous both merely nod.`
+			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
+			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
+			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
+			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
+			choice
+				`	"Would that be so bad?"`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
+			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
+			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
+			choice
+				`	"I'll do what I can."`
+					decline
+#If a republic/syndicate campaign gets added this text will need variants.
+
 
 #Go kill pirates mission with chat on Allhome.
 mission "Hai Leaks Response 4"
@@ -777,8 +783,9 @@ mission "Hai Leaks Response 4A"
 		system "Waypoint"
 		ship "Geodesic Geocoris (Phylactery)" "Phylactery"
 		dialog `After successfully boarding the Geocoris and defeating its pirate crews, you are greeted by the relieved captive Hai. You promise to escort their ship safely to Allhome. (You will need to swap the Geocoris to your flagship, and depart and land again in order to progress the missions properly.)`
-	on fail
-		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
+#	on fail
+#		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
+#Too hand-holdy for present implementation and content.
 
 # Must be able to resolve earlier than the rest in this set.
 #The Geodesic Geocoris may become available to purchase specially later on.

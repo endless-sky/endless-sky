@@ -12,6 +12,27 @@
 
 # Part 4: Search Korath and human space for the missing researchers
 
+#Timer trigger runs off Reveal 2 events, and ensures a minimum time between events if you do Reveal 3 events very quickly.
+mission "Hai Rescue [A00] Darkwaste Timer"
+	landing
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		not attributes "uninhabited"
+		not planet Darkwaste
+	destination Darkwaste
+	to offer
+		"hai slave prereq" >= 3
+		"combat rating" > 3000
+		has "Hai Leaks Response 6: done"
+	on offer
+		event "hai rescue: teeneep message" 20 30
+		fail
+
+
+event "hai rescue: teeneep message"
+
+
 mission "Hai Rescue [A01] Visit Darkwaste"
 	landing
 	name "Missing Researchers"
@@ -96,8 +117,8 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	"A disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are gifted researchers in their field, but not prominent enough for the field to be crippled by their absence. The same is happening in human space. In research institutions, people are occasionally disappearing. The patterns are exactly the same. We believe someone is collecting researchers."`
 				goto questions
 			label kidnappings
-			`	Teeneep answers, "In human space, we don't know, but in Hai space, it dates back to about a year after we made contact with the humans."`
-			`	"From the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans."`
+			`	Teeneep answers, "In human space, we don't know, but in Hai space it dates back to about a year after we made contact with the humans, though it doesn't seem to have been entirely consistent in either time or method of operation. This of course means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
+			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans."`
 				goto questions
 			label know
 			`	Teeneep explains, "The civil rights organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`

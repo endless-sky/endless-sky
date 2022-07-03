@@ -46,15 +46,12 @@ mission "Hai Rescue: Yeertle Family"
 	source Prime
 	destination Icelake
 	passengers 5
-	repeat 3
 	to offer
 		"combat rating" > 50
 		has "First Contact: Hai: offered"
 		not "event: hai-human treaty signed"
-		"Hai Rescue: Yeertle Family (offer count)" < 3
-		not "Hai Rescue: Yeertle Family: offered"
+		"Hai Rescue: Yeertle Family (defer count)" < 3
 	on offer
-		"Hai Rescue: Yeertle Family (offer count)" ++
 		conversation
 			`A few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			`	Do you want to talk to him?`
@@ -93,6 +90,8 @@ mission "Hai Rescue: Yeertle Family"
 			`	The whole family cheers and it turns out they were already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors. Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all computers within twenty meters. Fortunately, your ship is outside that range.`
 			`	The six of you run to your ship as quickly as possible. You look back and see the men were not following you; they were running to their own ships.`
 				launch
+	on defer
+		"Hai Rescue: Yeertle Family (defer count)" ++
 	on complete
 		log `Found a Hai family that had been locked up by some crooked merchants meant to be providing transport. A lively bunch, returned them to <destination>.`
 		payment 350000
@@ -464,23 +463,3 @@ mission "Hai Rescue: Gipeep"
 		personality plunders disables unconstrained
 		fleet "Large Northern Pirates" 1
 		fleet "Small Northern Pirates" 1
-
-
-mission "Hai Rescue [A00] Darkwaste Timer"
-	landing
-	invisible
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
-		not attributes "uninhabited"
-		not planet Darkwaste
-	destination Darkwaste
-	to offer
-		"hai slave prereq" >= 3
-		"combat rating" > 3000
-		has "Hai Leaks Response 6: done"
-	on offer
-		event "hai rescue: teeneep message" 20 30
-		fail
-
-
-event "hai rescue: teeneep message"

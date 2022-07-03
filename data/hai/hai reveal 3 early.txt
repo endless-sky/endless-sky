@@ -67,6 +67,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 	on offer
 		conversation
 			`When you return to Hai-home, you are directed to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
+			branch buildingdeferred
+				"Building Mountaintop Deferred" >0
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now you would appear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "in the light of the recent civil war your species has had, some of the Elders are less than keen on allowing a partisan observer to see the inner workings of a station in its earliest phases, especially when we haven't built one in so, so long."`
 			`	Now that she mentions it, all of the stations in Hai space do seem to be very, very old.`
@@ -84,6 +86,9 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"Of course, that's natural."`
 					goto main
 			`	Sayari explains, "The Hai are ruled by an elected council of elders. They are not responsible for every administrative decision that occurs, but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
+				goto main
+			label buildingdeferred
+			`	Xilin addresses you, "Not a great deal of progress has been made in your absence. We have maintained our position, so the other diplomats and the Elders still accept that you might be a viable solution to this impasse. It is unavoidable though that the Elders must speak with you first."`
 			label main
 			`	"If you're willing, there will be a council meeting in an hour, and I can put you first on the agenda. Will you do this?" asks Sayari.`
 			choice
@@ -143,6 +148,8 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	When you meet Sayari afterwards, a touch of her usual enthusiasm returns as you share the news.`
 			`	"This is fantastic news. Now all that remains to be done is for you to escort the construction fleet from <stopovers> to Ultima Thule and observe the initial stages. They'll be waiting for your arrival."`
 				accept
+	on defer
+		"Building Mountaintop Deferred" ++
 	on accept
 		event "role-play station before construction"
 		log `The diplomats have elected to double-down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
