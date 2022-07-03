@@ -455,7 +455,6 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
- images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -463,7 +462,6 @@ Files:
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
- images/thumbnail/dredger*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -1075,7 +1073,9 @@ Files:
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
  images/ship/bulk?freighter*
+ images/ship/dredger*
  images/thumbnail/bulk?freighter*
+ images/thumbnail/dredger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).

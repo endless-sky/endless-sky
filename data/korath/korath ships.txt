@@ -57,21 +57,29 @@ ship "Korath Dredger"
 	turret 0 -153 "Korath Grab-Strike"
 	turret -37.5 -152.5 "Korath Digger Turret"
 	turret 37.5 -152.5 "Korath Grab-Strike"
-	turret -42 -28 "Korath Warder"
-	turret 42 -28 "Korath Digger Turret"
-	turret -86 128.5 "Korath Digger Turret"
-	turret 86 128.5 "Korath Banisher"
+	turret -45 -27.5 "Korath Warder"
+	turret 45 -27.5 "Korath Digger Turret"
+	turret -85.5 128 "Korath Digger Turret"
+	turret 85.5 128 "Korath Banisher"
 	engine 0 179
 	engine -32 164 .7
 	engine 32 164 .7
-	"reverse engine" -93.5 -65 0.7
-	"reverse engine" 93.5 -65 0.7
-	"reverse engine" -79 80.5 0.7
-	"reverse engine" 79 80.5 0.7
-	bay "Fighter" -93.5 -20.5
-	bay "Fighter" 93.5 -20.5
-	bay "Fighter" -87 128.5
-	bay "Fighter" 87 128.5
+	"reverse engine" -116 -68
+		zoom 0.6
+	"reverse engine" 116 -68
+		zoom 0.6
+	"reverse engine" -80.5 73
+		over
+		zoom 0.7
+	"reverse engine" 80.5 73
+		over
+		zoom 0.7
+	bay "Fighter" -93.5 -61
+	bay "Fighter" 93.5 -61
+	bay "Fighter" -84 174
+		back
+	bay "Fighter" 84 174
+		back
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
