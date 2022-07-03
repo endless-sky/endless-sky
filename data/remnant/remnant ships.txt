@@ -341,19 +341,20 @@ ship "Dromedary" "Dromedary Ghost"
 			"hull damage" 1300
 			"hit force" 3900
 		"Automaton" 1
+		inscrutable 1
+		"quantum keystone" 1
+		"burn protection" 100
+		"corrosion protection" 100
+		"discharge protection" 1
 		"disruption protection" 100
 		"force protection" 100
 		"fuel protection" 100
 		"hull protection" 100
 		"ion protection" 1
+		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
 		"slowing protection" 1
-		"discharge protection" 1
-		"corrosion protection" 100
-		"leak protection" 100
-		"burn protection" 100
-		inscrutable 1
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -418,19 +419,20 @@ ship "Dromedary" "Dromedary Specter"
 			"hull damage" 1300
 			"hit force" 3900
 		"Automaton" 1
+		inscrutable 1
+		"quantum keystone" 1
+		"burn protection" 100
+		"corrosion protection" 100
+		"discharge protection" 1
 		"disruption protection" 100
 		"force protection" 100
 		"fuel protection" 100
 		"hull protection" 100
 		"ion protection" 1
+		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
 		"slowing protection" 1
-		"discharge protection" 1
-		"corrosion protection" 100
-		"leak protection" 100
-		"burn protection" 100
-		inscrutable 1
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
@@ -481,7 +483,6 @@ ship "Dromedary" "Dromedary Wreck"
 		"fuel capacity" 900
 		"cargo space" 550
 		"outfit space" 740
-		"quantum keystone" 1
 		"weapon capacity" 270
 		"engine capacity" 195
 		"outfit scan power" 15
@@ -489,11 +490,12 @@ ship "Dromedary" "Dromedary Wreck"
 		"tactical scan power" 25
 		"asteroid scan power" 42
 		"atmosphere scan" 100
+		"burn protection" 100
+		"quantum keystone" 1
+		"discharge protection" 1
 		"hull protection" 1
 		"ion protection" 1
 		"slowing protection" 1
-		"discharge protection" 1
-		"burn protection" 100
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
