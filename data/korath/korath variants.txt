@@ -454,7 +454,52 @@ ship "Korath Chaser" "Korath Chaser (World-Ship)"
 
 
 
-ship "Korath World-Ship" "Korath World-Ship A (Jump)"
+ship "Korath Conveyor" "Korath World-Ship"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	
+	engine -37 343 .8
+	engine 0 343 .9
+	engine 37 343 .8
+	turret -76 -157 "Korath Grab-Strike"
+	turret 76 -157 "Korath Banisher"
+	turret -59 -135 "Korath Warder"
+	turret 59 -135 "Korath Grab-Strike"
+	turret -61 -6 "Korath Banisher"
+	turret 61 -6 "Korath Warder"
+	turret -66 210 "Korath Warder"
+	turret 66 210 "Korath Banisher"
+
+
+ship "Korath Conveyor" "Korath World-Ship A (Jump)"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
@@ -482,8 +527,48 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 
 
 
-ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
-	sprite "ship/world-ship b"
+ship "Korath Conqueror" "Korath World-Ship B"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
+
+
+ship "Korath Conqueror" "Korath World-Ship B (Crippled)"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
 	outfits
 		"Korath Banisher" 3
 		"Korath Warder"
@@ -509,8 +594,15 @@ ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	turret 0 277 "Korath Banisher"
 
 
-ship "Korath World-Ship" "Korath World-Ship B (Ember)"
-	sprite "ship/world-ship b"
+ship "Korath Conqueror" "Korath World-Ship B (Ember)"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
@@ -539,8 +631,15 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	turret 0 277 "Korath Banisher"
 
 
-ship "Korath World-Ship" "Korath World-Ship B (Jump)"
-	sprite "ship/world-ship b"
+ship "Korath Conqueror" "Korath World-Ship B (Jump)"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3
@@ -568,8 +667,34 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 
 
 
-ship "Korath World-Ship" "Korath World-Ship C (Jump)"
-	sprite "ship/world-ship c"
+ship "Korath Tanker" "Korath World-Ship C"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
+
+
+ship "Korath Tanker" "Korath World-Ship C (Jump)"
+	attributes
+		"required crew" 794
+		"bunks" 1492
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 165
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 3

@@ -1093,9 +1093,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
- images/ship/chaser*
- images/thumbnail/chaser*
  images/effect/korath?afterburner*
+ images/ship/chaser*
+ images/ship/world-ship*
+ images/thumbnail/chaser*
+ images/thumbnail/world-ship*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)

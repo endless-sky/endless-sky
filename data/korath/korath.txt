@@ -243,6 +243,13 @@ fleet "Korath Civilian Miners"
 		"Korath Dredger (Civilian)"
 		"Korath Chaser (Expeller)" 2
 		"Korath Chaser (Digger)" 2
+	variant 3
+		"Korath Conveyor"
+		"Korath Chaser (Digger)" 3
+	variant 1
+		"Korath Herder"
+		"Korath Chaser (Digger)" 5
+		"Korath Chaser (Expeller)" 4
 
 fleet "Korath Home"
 	government "Korath"
@@ -252,11 +259,19 @@ fleet "Korath Home"
 	personality
 		timid opportunistic
 	variant 7
-		"Korath World-Ship"
+		"Korath Conveyor"
+		"Korath Chaser" 3
 	variant 22
-		"Korath World-Ship B"
+		"Korath Conqueror"
 	variant 7
-		"Korath World-Ship C"
+		"Korath Tanker"
+		"Korath Chaser" 3
+	variant 14
+		"Korath Traveller"
+		"Korath Chaser" 3
+	variant 7
+		"Korath Herder"
+		"Korath Chaser" 9
 	variant 3
 		"Korath Dredger"
 		"Korath Chaser" 2
@@ -314,6 +329,16 @@ fleet "Korath Ember Waste Raid"
 	variant 2
 		"Korath Dredger (Shunt)"
 		"Korath Chaser" 4
+	variant 1
+		"Korath Conqueror"
+		"Korath Dredger (Heaver)"
+		"Korath Raider (Ember)" 3
+		"Korath Chaser" 10
+	variant 1
+		"Korath Herder"
+		"Korath Dredger (Heaver)"
+		"Korath Raider (Ember)" 3
+		"Korath Chaser" 19
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
@@ -327,11 +352,23 @@ fleet "Korath Civilian Large"
 		"Korath Chaser (Digger)" 4
 		"Korath Chaser (Expeller)" 4
 	variant 12
-		"Korath World-Ship"
+		"Korath Conveyor"
+		"Korath Chaser (Expeller)" 3
 	variant 6
-		"Korath World-Ship B"
+		"Korath Conqueror"
 	variant 18
-		"Korath World-Ship C"
+		"Korath Tanker"
+		"Korath Chaser (Expeller)" 3
+	variant 22
+		"Korath Traveller"
+		"Korath Chaser (Expeller)" 3
+	variant 2
+		"Korath Herder"
+		"Korath Chaser" 9
+	variant 12
+		"Korath Habitat"
+		"Korath Raider" 2
+		"Korath Chaser" 4
 	variant 1
 		"Korath Chaser (World-Ship)"
 
