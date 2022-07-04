@@ -1051,7 +1051,13 @@ mission "FW Senate 1B"
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		conversation
+			branch fast
+				has "FW Senate Timer: active"
 			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
+				goto next
+			label fast
+			`You drop off Senator Huygens, who appears uncharacteristically pleased, "Good work Captain <last>, I see we made good time. It seems you're far more reliable than most captains I work with." she says before walking off.`
+			label next
 			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
 			choice
 				`	"You too. What brings you to Bourne?"`
@@ -1075,6 +1081,13 @@ mission "FW Senate 1B"
 			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
 
 
+mission "FW Senate Timer"
+	invisible
+	landing
+	source "Mere"
+	deadline 7
+	to offer
+		has "FW Senate 1: done"
 
 mission "FW Pirates 2"
 	landing
