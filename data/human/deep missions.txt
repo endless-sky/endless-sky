@@ -3949,6 +3949,7 @@ mission "Stones of Skadenga 1"
 			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
 				accept
 	on complete
+		payment 65000
 		event "skadenga mourners" 90
 		dialog
 			`The Skadenga are gladdened to be home. Something about being on <planet> lifts their spirits, and they thank you for your help.`
