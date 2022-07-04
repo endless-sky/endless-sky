@@ -218,7 +218,11 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		{
 			auto tradeState = player.GetBestTradeState(selectedSystem);
 			if(tradeState)
-				player.BuyBestTrade(*selectedSystem, tradeState);
+			{
+				int commodity = player.BuyBestTrade(*selectedSystem, tradeState);
+				if(commodity >= 0)
+					SetCommodity(commodity);
+			}
 			else if(key == 't' && player.Cargo().CommoditiesSize())
 				player.SellCommodities();
 		}
@@ -244,7 +248,11 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			{
 				// The player clicked on the button to auto-trade
 				if(tradeState)
-					player.BuyBestTrade(*selectedSystem, tradeState);
+				{
+					int commodity = player.BuyBestTrade(*selectedSystem, tradeState);
+					if(commodity >= 0)
+						SetCommodity(commodity);
+				}
 				else
 					player.SellCommodities();
 				return true;

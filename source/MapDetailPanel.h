@@ -64,7 +64,6 @@ private:
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
 
-	// Whether to show the auto-trade button
 	bool CanTrade();
 
 	// Y-indices of the selected system's "info displays" that feature its planets' names and basic information.

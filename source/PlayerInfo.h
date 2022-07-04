@@ -176,10 +176,10 @@ public:
 	// POOR: You can't afford to buy a ton.
 	enum BestTradeState {NONE, FLEET, SHIP, POOR};
 	BestTradeState GetBestTradeState(const System *destination);
-	void BuyBestTrade(const System &destination, BestTradeState state = FLEET, bool sellFirst = true);
-	std::string BestTradeType(const System &destination);
+	int BuyBestTrade(const System &destination, BestTradeState state = FLEET, bool sellFirst = true);
+	int BestTradeCommodity(const System &destination);
 	void MessageAutoTrade();
-	void SellCommodities(const std::string& exclude = "");
+	void SellCommodities(const int exclude = -1);
 	void AddProfit(int64_t profitAdd, int tonsSoldAdd);
 
 	// Get or add to pilot's playtime.
@@ -348,8 +348,8 @@ private:
 	int64_t profit = 0;
 	int tonsSold = 0;
 	// Keep track of commodities bought by auto-selector
-	std::string autoBoughtType;
-	std::string autoBoughtDestination;
+	int autoBoughtCommodity;
+	const System* autoBoughtDestination;
 	int64_t autoBoughtPrice;
 	int64_t autoBoughtAmount;
 	int64_t profitAuto = 0;

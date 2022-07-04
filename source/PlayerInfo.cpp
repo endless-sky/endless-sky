@@ -1558,17 +1558,17 @@ PlayerInfo::BestTradeState PlayerInfo::GetBestTradeState(const System *destinati
 	if(!landable)
 		return NONE;
 
-	string type = BestTradeType(*destination);
-	if(type.empty())
+	int trade = BestTradeCommodity(*destination);
+	if(trade == -1)
 		return NONE;
 
 	int sizeForCommodities = cargo.Size()
-		- cargo.OutfitsSize() - cargo. MissionCargoSize() - cargo.Get(type);
+		- cargo.OutfitsSize() - cargo. MissionCargoSize() - cargo.Get(GameData::Commodities()[trade].name);
 
 	if(sizeForCommodities <= 0)
 		return NONE;
 
-	if(system->Trade(autoBoughtType) > Accounts().Credits())
+	if(system->Trade(GameData::Commodities()[autoBoughtCommodity].name) > Accounts().Credits())
 		return POOR;
 
 	if(sizeForCommodities <= Flagship()->Cargo().Size())
@@ -1580,12 +1580,12 @@ PlayerInfo::BestTradeState PlayerInfo::GetBestTradeState(const System *destinati
 
 
 // What is the best commodity to trade from the current system to the destination
-string PlayerInfo::BestTradeType(const System &destination)
+int PlayerInfo::BestTradeCommodity(const System &destination)
 {
 	int64_t bestProfit = 0;
-	string type;
-
-	for(const Trade::Commodity &commodity : GameData::Commodities())
+	int bestCommodity = -1;
+	int i = 0;
+	for(const auto &commodity : GameData::Commodities())
 	{
 		int64_t sellPrice = destination.Trade(commodity.name);
 		int64_t purcPrice = system->Trade(commodity.name);
@@ -1593,35 +1593,36 @@ string PlayerInfo::BestTradeType(const System &destination)
 		if(profit > bestProfit)
 		{
 			bestProfit = profit;
-			type = commodity.name;
+			bestCommodity = i;
 		}
+		i++;
 	}
 
-	return type;
+	return bestCommodity;
 }
 
 
 
 // Purchase commodities that make the most profit when sold at destination
-void PlayerInfo::BuyBestTrade(const System &destination, BestTradeState state, bool sellFirst)
+int PlayerInfo::BuyBestTrade(const System &destination, BestTradeState state, bool sellFirst)
 {
 	if(state == POOR)
-		return;
+		return -1;
 
-	string oldType = autoBoughtType;
-	autoBoughtType = BestTradeType(destination);
+	int oldType = autoBoughtCommodity;
+	autoBoughtCommodity = BestTradeCommodity(destination);
 
-	if(oldType != autoBoughtType)
+	if(oldType != autoBoughtCommodity)
 		autoBoughtAmount = 0;
 
-	if(autoBoughtType.empty())
-		return;
+	if(autoBoughtCommodity == -1)
+		return -1;
 
 	if(sellFirst)
 	{
 		int64_t profitSave = profit;
 		int tonsSoldSave = tonsSold;
-		SellCommodities(autoBoughtType);
+		SellCommodities(autoBoughtCommodity);
 		profitAuto += profit - profitSave;
 		tonsSoldAuto += tonsSold - tonsSoldSave;
 		profit = profitSave;
@@ -1635,19 +1636,22 @@ void PlayerInfo::BuyBestTrade(const System &destination, BestTradeState state, b
 		amount -= flagship->Cargo().Free();
 
 	if(amount <= 0)
-		return;
+		return autoBoughtCommodity;
 
-	int64_t price = system->Trade(autoBoughtType);
+	const string &type = GameData::Commodities()[autoBoughtCommodity].name;
+	int64_t price = system->Trade(type);
 
 	amount = min(amount, Accounts().Credits() / price);
-	AdjustBasis(autoBoughtType, amount * price);
-	amount = cargo.Add(autoBoughtType, amount);
+	AdjustBasis(type, amount * price);
+	amount = cargo.Add(type, amount);
 	Accounts().AddCredits(-amount * price);
-	GameData::AddPurchase(*system, autoBoughtType, amount);
+	GameData::AddPurchase(*system, type, amount);
 
-	autoBoughtDestination = destination.Name();
+	autoBoughtDestination = &destination;
 	autoBoughtPrice = price;
 	autoBoughtAmount += amount;
+
+	return autoBoughtCommodity;
 }
 
 
@@ -1659,7 +1663,7 @@ void PlayerInfo::MessageAutoTrade()
 		// Report if you sold things to make room for auto-selected trade.
 		string message = "You sold " + to_string(tonsSoldAuto)
 			+ (tonsSoldAuto == 1 ? " ton" : " tons")
-			+ " of cargo to make room for " + autoBoughtType;
+			+ " of cargo to make room for " + GameData::Commodities()[autoBoughtCommodity].name;
 
 		if(profitAuto < 0)
 			message += " at a loss of " + Format::Credits(-profitAuto) + " credits.";
@@ -1678,9 +1682,9 @@ void PlayerInfo::MessageAutoTrade()
 	{
 		// Report if commodities were auto-selected and bought.
 		string message = "You bought " + to_string(autoBoughtAmount)
-			+ (autoBoughtAmount == 1 ? " ton" : " tons") + " of " + autoBoughtType + " "
+			+ (autoBoughtAmount == 1 ? " ton" : " tons") + " of " + GameData::Commodities()[autoBoughtCommodity].name + " "
 			+ "for " + Format::Credits(autoBoughtPrice * autoBoughtAmount) + " credits, to be sold at "
-			+ autoBoughtDestination;
+			+ autoBoughtDestination->Name();
 
 		Messages::Add(message, Messages::Importance::High);
 
@@ -1700,16 +1704,18 @@ void PlayerInfo::AddProfit(int64_t profitAdd, int tonsSoldAdd)
 
 
 // Sell all commodities - track profit and tons sold for message
-void PlayerInfo::SellCommodities(const string& exclude)
+void PlayerInfo::SellCommodities(int exclude)
 {
-	if(exclude != autoBoughtType)
+	if(exclude != autoBoughtCommodity)
 		autoBoughtAmount = 0;
 
+	int i = 0;
 	for(const auto &it : GameData::Commodities())
 	{
-		const string& name = it.name;
-		if(name == exclude)
+		if(exclude == i++)
 			continue;
+
+		const string& name = it.name;
 
 		int64_t amount = cargo.Get(name);
 		int64_t price = system->Trade(name);
