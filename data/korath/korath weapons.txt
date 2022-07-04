@@ -249,7 +249,7 @@ outfit "Korath Blaze-Pike"
 		sprite "projectile/blaze-pike"
 			"frame rate" 20
 		"hardpoint sprite" "hardpoint/blaze-pike"
-		sound "fire-lance"
+		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
 		"turret turn" 3.7
