@@ -535,7 +535,7 @@ mission "Scientists at the Pub after a Conference"
 		random < 1
 	on offer
 		conversation
-			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading  "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics." The group takes their seats at a long table near to you.`
+			`As you take a break after a long journey and a longer-feeling landing procedure, you notice a group of people enter the pub where you're sitting, streaming in from the conference complex across the street. They vary in age, dress, and accent, but most have an identical badge dangling from a lanyard around their necks. You notice one badge that's been dropped on the floor, reading "Attendee - 35th Annual Pan-galactic Conference on Interstellar Microbial Genomics and Population Dynamics." The group takes their seats at a long table near to you.`
 			choice
 				`	(Order a meal and listen in to their conversation.)`
 					goto "overheard scientists 1"
