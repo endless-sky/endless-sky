@@ -1054,10 +1054,10 @@ mission "FW Senate 1B"
 			branch fast
 				has "FW Senate Timer: active"
 			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
-				goto next
+				goto waiting
 			label fast
 			`You drop off Senator Huygens, who appears uncharacteristically pleased. "Good work Captain <last>, I see we made good time. It seems you're far more reliable than most captains I work with," she says before walking off.`
-			label next
+			label waiting
 			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
 			choice
 				`	"You too. What brings you to Bourne?"`
