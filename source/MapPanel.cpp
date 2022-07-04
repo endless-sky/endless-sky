@@ -540,12 +540,16 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-void MapPanel::UpdateColor(double color)
+double MapPanel::MinColor()
 {
-	if(color > maxColor)
-		maxColor = color;
-	else if(color >= 0 && color < minColor)
-		minColor = color;
+	return minColor;
+}
+
+
+
+double MapPanel::MaxColor()
+{
+	return maxColor;
 }
 
 
@@ -877,7 +881,10 @@ void MapPanel::UpdateCache()
 				else
 				{
 					value = SystemValue(&system);
-					UpdateColor(value);
+					if(value > maxColor)
+						maxColor = value;
+					else if(value >= 0 && value < minColor)
+						minColor = value;
 				}
 
 				if(colorSystem)

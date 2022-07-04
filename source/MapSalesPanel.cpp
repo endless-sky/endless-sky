@@ -240,6 +240,8 @@ void MapSalesPanel::DrawKey() const
 		pos.Y() += 20.;
 	}
 
+	double maxColor = MaxColor();
+	double minColor = MinColor();
 	if(maxColor > 1. || minColor < 1.)
 	{
 		const Color &medium = *GameData::Colors().Get("medium");

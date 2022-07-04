@@ -86,8 +86,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	// Change the colors for the dynamic price legend if needed.
-	static void UpdateColor(double color);
+	static double MinColor();
+	static double MaxColor();
 
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -154,9 +154,6 @@ protected:
 	const System *hoverSystem = nullptr;
 	std::string tooltip;
 	WrappedText hoverText;
-	// Minimum and maximum color ranges used by mapColor.
-	static double minColor;
-	static double maxColor;
 
 
 private:
@@ -177,6 +174,9 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
+	// Minimum and maximum color ranges used by mapColor.
+	static double minColor;
+	static double maxColor;
 
 	class Node {
 	public:

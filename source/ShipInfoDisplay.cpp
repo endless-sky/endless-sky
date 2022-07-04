@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Table.h"
 
 #include <algorithm>
+#include <cassert>
 #include <map>
 #include <sstream>
 
@@ -33,10 +34,9 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day, const PlayerInfo &player) : ItemInfoDisplay(player)
 {
 	Update(ship, depreciation, day);
-	SetPlayerInfo(player);
 }
 
 
@@ -130,6 +130,9 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day)
 {
+	const PlayerInfo *player = GetPlayer();
+	assert(player);
+
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
 	attributeHeaderLabels.clear();
@@ -389,7 +392,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 	}
 
 
-	int64_t totalCost = depreciation.Value(ship, day, player);
+	int64_t totalCost = depreciation.Value(ship, day, GetPlayer());
 	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.ModelName()), day);
 	saleLabels.clear();
 	saleValues.clear();

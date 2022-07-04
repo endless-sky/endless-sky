@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <map>
 #include <set>
@@ -197,10 +198,9 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell) : ItemInfoDisplay(player)
 {
 	Update(outfit, canSell);
-	SetPlayerInfo(player);
 }
 
 
@@ -233,6 +233,8 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, bool canSell)
 {
+	const PlayerInfo *player = GetPlayer();
+	assert(player);
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;

@@ -229,8 +229,8 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
-		// Because this function is only called in flight it makes no sense to use any local modifiers to outfit prices.
-		// Also the result from this should not fluctuate with local conditions, given it is used to calculate bank allowance etc.
+		// The values used are not dependant on the system the player is in; 
+		// given it is used to calculate bank allowance etc.
 		value += Value(it.first, day, nullptr, it.second);
 	return value;
 }
