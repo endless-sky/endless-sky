@@ -119,6 +119,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
 {
+	// Re-do job sorting since something could have changed
+	player.SortAvailable();
+
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
@@ -163,6 +166,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Re-do job sorting since something could have changed
+	player.SortAvailable();
+
 	// In this view, always color systems based on player reputation.
 	commodity = SHOW_REPUTATION;
 

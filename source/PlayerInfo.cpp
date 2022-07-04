@@ -2770,9 +2770,6 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
-
-	// Sort missions on the job board.
-	SortAvailable();
 }
 
 

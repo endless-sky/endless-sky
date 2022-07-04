@@ -191,6 +191,7 @@ public:
 	void ToggleSortSeparateDeadline();
 	const bool ShouldSortSeparatePossible() const;
 	void ToggleSortSeparatePossible();
+	void SortAvailable();
 
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
@@ -302,7 +303,6 @@ private:
 	// New missions are generated each time you land on a planet.
 	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
-	void SortAvailable();
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
