@@ -1114,7 +1114,7 @@ Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
 Files:
- images/projectile/korath digger*
+ images/projectile/korath?digger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by NomadicVolcano (public domain).
@@ -1160,13 +1160,10 @@ Files:
  images/effect/heaver*
  images/effect/korath?digger*
  images/effect/shunt*
- images/hardpoint/firestorm*
  images/hardpoint/korath?heaver*
- images/icon/firestorm?torpedo*
  images/icon/korath?heaver*
- images/outfit/firestorm*
  images/outfit/korath?heaver*
- images/outfit/*korath reverser*
+ images/outfit/*korath?reverser*
  images/projectile/expeller*
  images/projectile/heaver*
  images/projectile/korath?digger*
