@@ -632,8 +632,8 @@ outfit "Firelight Missile Bank"
 		"blast radius" 60
 		"hit force" 100
 		"missile strength" 60
-	description "As the Firestorm torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to further scale down the reactor element to fit in a missile casing for use on and against smaller vessels."
-	description "Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as an Expeller gun."
+	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
+	description "Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
 outfit "Firelight Turning"
