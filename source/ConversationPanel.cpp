@@ -71,9 +71,16 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = ship->Name();
 	else if(player.Flagship())
 		subs["<ship>"] = player.Flagship()->Name();
-	
+
 	// Begin at the start of the conversation.
 	Goto(0);
+}
+
+
+
+void ConversationPanel::SetCallback(function<void(int)> fun)
+{
+	callback = std::move(fun);
 }
 
 
@@ -83,7 +90,7 @@ void ConversationPanel::Draw()
 {
 	// Dim out everything outside this panel.
 	DrawBackdrop();
-	
+
 	// Draw the panel itself, stretching from top to bottom of the screen on
 	// the left side. The edge sprite contains 10 pixels of the margin; the rest
 	// of the margin is included in the filled rectangle drawn here:
@@ -93,7 +100,7 @@ void ConversationPanel::Draw()
 		Point(Screen::Left() + .5 * boxWidth, 0.),
 		Point(boxWidth, Screen::Height()),
 		back);
-	
+
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
 	if(edgeSprite->Height())
 	{
@@ -105,23 +112,23 @@ void ConversationPanel::Draw()
 		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
 			SpriteShader::Draw(edgeSprite, pos);
 	}
-	
+
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
-	const Color &grey = *GameData::Colors().Get("medium");
+	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dark = *GameData::Colors().Get("dark");
-	
+
 	// Figure out where we should start drawing.
 	Point point(
 		Screen::Left() + MARGIN,
 		Screen::Top() + MARGIN + scroll);
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
-		point = it.Draw(point, grey);
-	
+		point = it.Draw(point, gray);
+
 	// Draw whatever choices are being presented.
 	if(node < 0)
 	{
@@ -131,7 +138,7 @@ void ConversationPanel::Draw()
 		int height = font.Height();
 		Point off(Screen::Left() + MARGIN + WIDTH - width, point.Y());
 		font.Draw(done, off, bright);
-		
+
 		// Handle clicks on this button.
 		AddZone(Rectangle::FromCorner(off, Point(width, height)), [this](){ this->Exit(); });
 	}
@@ -150,7 +157,7 @@ void ConversationPanel::Draw()
 				AddZone(Rectangle(center, fieldSize), [this, side](){ this->ClickName(side); });
 				continue;
 			}
-			
+
 			// Color selected text box, or flicker if user attempts an error.
 			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
 			if(flickerTime)
@@ -161,13 +168,13 @@ void ConversationPanel::Draw()
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
 		}
-		
+
 		font.Draw("First name:", point + Point(40, 0), dim);
-		font.Draw({firstName, layout}, point + Point(120, 0), choice ? grey : bright);
-		
+		font.Draw({firstName, layout}, point + Point(120, 0), choice ? gray : bright);
+
 		font.Draw("Last name:", point + Point(270, 0), dim);
-		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : grey);
-		
+		font.Draw({lastName, layout}, point + Point(350, 0), choice ? bright : gray);
+
 		// Draw the OK button, and remember its location.
 		static const string ok = "[ok]";
 		int width = font.Width(ok);
@@ -185,21 +192,29 @@ void ConversationPanel::Draw()
 		for(const Paragraph &it : choices)
 		{
 			++label[0];
-		
+
 			Point center = point + it.Center();
 			Point size(WIDTH, it.Height());
-		
+
+			auto zone = Rectangle::FromCorner(point, size);
+			// If the mouse is hovering over this choice then we need to highlight it.
+			if(isHovering && zone.Contains(hoverPoint))
+				choice = index;
+
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
-			AddZone(Rectangle::FromCorner(point, size), [this, index](){ this->ClickChoice(index); });
+			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
-		
+
 			font.Draw(label, point + Point(-15, 0), dim);
 			point = it.Draw(point, bright);
 		}
 	}
 	// Store the total height of the text.
 	maxScroll = min(0., Screen::Top() - (point.Y() - scroll) + font.Height() + 15.);
+
+	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
+	isHovering = false;
 }
 
 
@@ -208,8 +223,9 @@ void ConversationPanel::Draw()
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// Map popup happens when you press the map key, unless the name text entry
-	// fields are currently active.
-	if(command.Has(Command::MAP) && !choices.empty())
+	// fields are currently active. The name text entry fields are active if
+	// choices is empty and we aren't at the end of the conversation.
+	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 		GetUI()->Push(new MapDetailPanel(player, system));
 	if(node < 0)
 	{
@@ -259,19 +275,19 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			// Display the name the player entered.
 			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
 			text.emplace_back(name);
-			
+
 			player.SetName(firstName, lastName);
 			subs["<first>"] = player.FirstName();
 			subs["<last>"] = player.LastName();
-			
+
 			Goto(node + 1);
 		}
 		else
 			return false;
-		
+
 		return true;
 	}
-	
+
 	// Let the player select choices by using the arrow keys and then pressing
 	// return, or by pressing a number key.
 	if(key == SDLK_UP && choice > 0)
@@ -286,7 +302,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		Goto(conversation.NextNode(node, key - SDLK_KP_1), key - SDLK_KP_1);
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -296,7 +312,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 bool ConversationPanel::Drag(double dx, double dy)
 {
 	scroll = min(0., max(maxScroll, scroll + dy));
-	
+
 	return true;
 }
 
@@ -310,15 +326,25 @@ bool ConversationPanel::Scroll(double dx, double dy)
 
 
 
+// Handle selecting choices by hovering with the mouse.
+bool ConversationPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	isHovering = true;
+	return true;
+}
+
+
+
 // The player just selected the given choice.
-void ConversationPanel::Goto(int index, int choice)
+void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	if(index)
 	{
 		// Add the chosen option to the text.
-		if(choice >= 0 && choice < static_cast<int>(choices.size()))
-			text.splice(text.end(), choices, next(choices.begin(), choice));
-		
+		if(selectedChoice >= 0 && selectedChoice < static_cast<int>(choices.size()))
+			text.splice(text.end(), choices, next(choices.begin(), selectedChoice));
+
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
 		{
@@ -327,7 +353,7 @@ void ConversationPanel::Goto(int index, int choice)
 				scroll -= it.Height();
 		}
 	}
-	
+
 	// We'll need to reload the choices from whatever new node we arrive at.
 	choices.clear();
 	node = index;
@@ -340,16 +366,14 @@ void ConversationPanel::Goto(int index, int choice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Branch(node).Test(player.Conditions());
 		}
-		else if(conversation.IsApply(node))
+		else if(conversation.IsAction(node))
 		{
-			// Apply nodes alter the player's condition variables but do not
-			// display any conversation text of their own.
-			player.SetReputationConditions();
-			conversation.Conditions(node).Apply(player.Conditions());
-			// Update any altered government reputations.
-			player.CheckReputationConditions();
+			// Action nodes are able to perform various actions, e.g. changing
+			// the player's conditions, granting payments, triggering events,
+			// and more. They are not allowed to spawn additional UI elements.
+			conversation.GetAction(node).Do(player, nullptr);
 		}
 		else
 		{
@@ -424,7 +448,7 @@ ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene,
 	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
-	
+
 	wrap.Wrap(text);
 }
 

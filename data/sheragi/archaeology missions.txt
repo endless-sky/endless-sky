@@ -212,19 +212,45 @@ mission "Deep Archaeology 5"
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
 			`	"I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			branch pug
+				or
+					has "FWC Pug 2: offered"
+					has "FW Pug 3: offered"
 			choice
 				`	"For what purpose?"`
 					goto purpose
 				`	"What aliens? The Quarg?"`
 					goto aliens
+			label pug
+			choice
+				`	"For what purpose?"`
+					goto purpose
+				`	"Do you think it was the Pug?"`
+					goto surprise
 			label purpose
 			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
 				goto end
 			label aliens
 			`	"There are popular folk tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
 			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
+				goto end
+			label surprise
+			`	Albert and John give confused looks at each other for a second before Albert says, "The aliens that invaded human space?"`
+			`	John appears to think hard on the subject before saying, "That's certainly an interesting connection. I don't know how we didn't think of it. From the descriptions that I've heard about them, they almost exactly match the folk tales in the Deep about 'elves.'"`
+			`	"Thin, pale, and blue blooded, yes? Well, I think you may have figured something out, Captain <last>," replies Albert.`
+			choice
+				`	"That's great, but what does it mean for us?"`
+					goto dangerous
+				`	"From what I understand, they've been around for a while, and have mentioned past interference in the Deep."`
+			`	"Well then, if the Pug have admitted to 'interfering' with the Deep in the past then we have good reason to believe they fit into our current knowledge of the timeline here," Albert replies. "Unfortunately we can't just ask the Pug exactly what they've done or when they did it, but simply knowing of their presence here aids in our research."`
+				goto final
+			label dangerous
+			`	"Nothing immediately," says John, "but nevertheless, it is at least useful to know the timeline of events here."`
+			`	"Indeed," replies Albert, "simply knowing of their presence here aids in our research."`
+				goto final
 			label end
 			`	Albert continues, "What I think is that an unknown alien species has been involved in events in the Deep since the beginning, and is perhaps still involved there today. I think this is known to at least some of the Deep's inhabitants."`
+			label final
 			choice
 				`	"So, what do we do now?"`
 				`	"How can we find out more information?"`
@@ -675,7 +701,7 @@ mission "Sheragi Archaeology: The Box 2"
 	on complete
 		payment 500000
 		event "cube stolen" 20 30
-		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and tell you when it's done.`
+		log `Took a mysterious Sheragi data cube that Albert Foster dug up on Zug to a trusted friend on Vinci. John will take some time to see how exactly it works, and send a message when it's done.`
 		conversation
 			`You arrive on Vinci and carry the cube to the address Foster gave you. You find that John has been waiting for you. "So, Foster is up to no good again, huh?" He laughs as he lets you into his lab.`
 			choice
@@ -873,7 +899,7 @@ mission "Sheragi Archaeology: The Box 4"
 			`	You slide the credit chips to Mammon, but they decline it, grinning with their sharp teeth.`
 			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the credits in the future, when I desire.`
 			`	"Now that we're done with that, the artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
-			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border betwen the Deep and the Dirt Belt.`
+			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border between the Deep and the Dirt Belt.`
 			`	"They have kept the artifact for themselves to sell on the black market, and their base of operations is right... here. Algieba."`
 			`	The hologram zooms further in on Watcher, one of the system's moons, and continues until it finally stops over a large forest.`
 			`	"You will find them on this uninhabited moon. They are hiding out in this forest, and the artifact is with them. The exact coordinates will be forwarded to your ship. Expect hostilities."`
@@ -1078,7 +1104,7 @@ mission "Sheragi Archaeology: The Box 7b"
 			choice
 				`	(Continue into the Sheragi room.)`
 			`	What you see here is much richer than what Albert Foster's little museum could ever hope to display. There are pictures of Sheragi military officials of the time, as well as their names and roles. Details on their culture, their biology, and their apparent conflicts with the Hai are provided as well. There is a huge statue of a bipedal dragon at the center of the room, around 8 meters tall, so large that the ceiling had to be raised. The inscription on the plaque at its feet indicates it is a reproduction of a life-sized Sheragi. A smaller interactive holographic display of one shows details on their biology and behavior. Samples of culture are scarce, but it indicates that they lived under a military meritocracy that valued strength and leadership above all else.`
-			`	You see pictures and rough blueprints of their ships, some depiciting fearsome fleets of massive warships. They had angular, multi-layered armor that rivaled the strength of modern Hai vessels by sheer mass. If your measurement conversions are correct, their ships were bigger than anything else in human space, dwarfing even the Navy Carrier. A few of them display equally impressive spinal cannons of unknown capability, with grim descriptions suggesting that they were responsible for the extinction of the Sheragi - weapons of mass destruction in the hands of a warlike and immature species that used them carelessly.`
+			`	You see pictures and rough blueprints of their ships, some depicting fearsome fleets of massive warships. They had angular, multi-layered armor that rivaled the strength of modern Hai vessels by sheer mass. If your measurement conversions are correct, their ships were bigger than anything else in human space, dwarfing even the Navy Carrier. A few of them display equally impressive spinal cannons of unknown capability, with grim descriptions suggesting that they were responsible for the extinction of the Sheragi - weapons of mass destruction in the hands of a warlike and immature species that used them carelessly.`
 			`	While you are looking around the room, one of the curators approaches you, speaking your own language, albeit with a heavy accent.`
 			`	"Sad, isn't it? I don't think they ever had a peaceful time in their spacefaring history."`
 			choice
@@ -1160,7 +1186,7 @@ mission "Sheragi Archaeology: The Box 8"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50
-		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
+		log "People" "Desyo" `A brilliant Hai xenoprogramming expert, Desyo specializes in Sheragi code and software. She is more interested in technology and electronics than people and often coordinates the work in the Hai archaeologist team, despite her introversion and lack of hierarchy. Her dedication is the grease that keeps that machine running.`
 		log "People" "Rakei" `Rakei is an engineering expert specializing in archaeological artifacts, but also very interested in new and unusual technology, often nerding out with Desyo over the latest scientific papers. She is part of the Hai archaeologist team tasked to uncover the mystery of the Sheragi black box.`
 		log "People" "Eyama" `Uncaring about formalities and seriousness, you wouldn't guess Eyama is an accomplished linguist specializing in Sheragi language. She also has an interest in culture and sociology in general, and has a lot more knowledge about human culture than you would expect from a Hai, or even most humans. Her work with the Hai archaeologist team is invaluable to deciphering Sheragi mysteries and maintaining their relationship with human partners.`
 		conversation
@@ -1338,7 +1364,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto rakei
 				`	(Look for Desyo to see what she's doing.)`
 					goto desyo
-				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
 			apply
@@ -1553,7 +1579,7 @@ mission "Sheragi Archaeology: Epilogue"
 			`	While in one of the rooms, Eyama spots a young Sheragi skeleton laying on the ground that looks like they were reaching out for something when they died. Eyama kneels down next to the skeleton and reaches out to touch its hand. "Don't," Foster says from across the room, stopping Eyama from moving. "We need to leave this place undisturbed. We've done enough already by taking the ship." Eyama gets up without speaking, but gives a look of understanding to Foster.`
 			`	After spending enough time among the ruins, you return to the ships with Foster and Eyama.`
 			label end
-			`	The final repairs on the Emerald Sword take up nearly an entire day with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, a Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is get the ship in orbit and return to <planet>.`
+			`	The final repairs on the Emerald Sword take up nearly an entire day with the crew working in shifts to get the job done. Once the ship is patched up and all the systems are functional, the jump drive is installed. While the Emerald Sword was being worked on, Rakei was able to get a group to retrieve the final fighter and return it to the ship. All that is left to do now is get the ship in orbit and return to <planet>.`
 				accept
 	on visit
 		dialog `You have reached <planet>, but not all of the archaeology equipment made it back! Better depart and wait for your escorts to arrive in this star system.`
@@ -1568,7 +1594,7 @@ mission "Sheragi Archaeology: Epilogue"
 				`	"I wonder how it works."`
 					goto works
 				`	"That's what she said."`
-			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies-"`
+			`	Desyo doesn't understand, but Eyama bursts into laughter. "Classic human joke. You see, it implies--"`
 			`	"God, don't explain it," Albert interrupts. "That was terrible. She's right though, that isn't something you see every day. Do you have any idea how it works?"`
 			label works
 			`	Rakei, who is more knowledgeable in this area, responds. "It's a fusion-pumped gamma-ray laser, or GRASER for short. The device is simple in concept, but the cost involved and the proportion of everything makes it impractical to develop, not to mention that to use it would probably be considered a war crime in many civilizations, thus making R&D not worth it. It's essentially using a nuclear flash to power a laser beam that penetrates and melts everything. Fascinating, but I'm hoping you'll only use it for peacekeeping purposes."`
