@@ -482,7 +482,7 @@ outfit "Pug Biodefenses"
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
-	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe. However, it is still recommended that any new crew be given a temporary vaccine before being allowed onboard."
+	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe."
 
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
