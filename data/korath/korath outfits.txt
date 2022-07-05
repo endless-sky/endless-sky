@@ -102,7 +102,6 @@ outfit "Liquid Sodium Cooler"
 	"cooling energy" 6
 	"active cooling" 151
 	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the hottest ship systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
-	description "	As a side effect of this, the system actually produces heat when idling. This raises the base operating heat of the ship, but the efficiency benefits at high heat levels are well-realized."`
 
 
 outfit "Systems Core (Tiny)"
