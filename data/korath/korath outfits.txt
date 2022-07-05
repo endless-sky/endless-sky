@@ -147,7 +147,7 @@ outfit "Systems Core (Medium)"
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	description `Systems cores house a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
+	description `The Systems core houses a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
