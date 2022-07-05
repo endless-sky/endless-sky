@@ -219,7 +219,7 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner energy" 0.616
 	"afterburner heat" 6.26
 	"afterburner fuel" 0.03
-	"afterburner effect" "korath afterburner"
+	"afterburner effect" "korath afterburner tiny"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 	description "The smallest of afterburners is as much fuel processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrastellar ships and dispense with conventional thrusters entirely."
 
@@ -235,7 +235,7 @@ outfit "Afterburner (Comet Class)"
 	"afterburner energy" 2.24
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.1
-	"afterburner effect" "korath afterburner"
+	"afterburner effect" "korath afterburner small"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
 
@@ -251,7 +251,7 @@ outfit "Afterburner (Lunar Class)"
 	"afterburner energy" 3.92
 	"afterburner heat" 41.65
 	"afterburner fuel" 0.18
-	"afterburner effect" "korath afterburner"
+	"afterburner effect" "korath afterburner medium"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, you can't help but feel concerned about the safety of installing one."
 
@@ -267,7 +267,7 @@ outfit "Afterburner (Planetary Class)"
 	"afterburner energy" 7.12
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.32
-	"afterburner effect" "korath afterburner"
+	"afterburner effect" "korath afterburner large"
 	"heat capacity" 500
 	"heat dissipation" 0.02
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
@@ -285,7 +285,7 @@ outfit "Afterburner (Stellar Class)"
 	"afterburner energy" 12.64
 	"afterburner heat" 148
 	"afterburner fuel" 0.58
-	"afterburner effect" "korath afterburner"
+	"afterburner effect" "korath afterburner huge"
 	"heat capacity" 900
 	"cooling energy" 0.4
 	"active cooling" 8
@@ -293,10 +293,23 @@ outfit "Afterburner (Stellar Class)"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
 
-effect "korath afterburner"
+effect "korath afterburner tiny"
+	sprite "effect/korath afterburner"
+		scale 0.8
+		"no repeat"
+		"frame rate" 90
+	sound "korath afterburner"
+	"lifetime" 7
+	"random angle" 15
+	"random spin" 360
+	"random frame rate" 5
+	"random velocity" 1.
+	"velocity scale" 1
+
+effect "korath afterburner small"
 	sprite "effect/korath afterburner"
 		"no repeat"
-		"frame rate" 55
+		"frame rate" 60
 	sound "korath afterburner"
 	"lifetime" 10
 	"random angle" 15
@@ -304,6 +317,46 @@ effect "korath afterburner"
 	"random frame rate" 5
 	"random velocity" 1.
 	"velocity scale" 1
+
+effect "korath afterburner medium"
+	sprite "effect/korath afterburner"
+		scale 1.2
+		"no repeat"
+		"frame rate" 45
+	sound "korath afterburner"
+	"lifetime" 12
+	"random angle" 15
+	"random spin" 360
+	"random frame rate" 5
+	"random velocity" 1.
+	"velocity scale" 1
+
+effect "korath afterburner large"
+	sprite "effect/korath afterburner"
+		scale 1.4
+		"no repeat"
+		"frame rate" 30
+	sound "korath afterburner"
+	"lifetime" 14
+	"random angle" 15
+	"random spin" 360
+	"random frame rate" 5
+	"random velocity" 1.
+	"velocity scale" 1
+
+effect "korath afterburner huge"
+	sprite "effect/korath afterburner"
+		scale 1.6
+		"no repeat"
+		"frame rate" 20
+	sound "korath afterburner"
+	"lifetime" 16
+	"random angle" 15
+	"random spin" 360
+	"random frame rate" 5
+	"random velocity" 1.
+	"velocity scale" 1
+
 
 outfit "Engine (Meteor Class)"
 	plural "Engine (Meteor Class)"
