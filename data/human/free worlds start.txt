@@ -1087,6 +1087,7 @@ mission "FW Senate Timer"
 	source "Mere"
 	deadline 7
 	to offer
+		"passenger space" > 0
 		has "FW Senate 1: done"
 
 mission "FW Pirates 2"
