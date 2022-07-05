@@ -101,7 +101,8 @@ outfit "Liquid Sodium Cooler"
 	"energy consumption" 2
 	"cooling energy" 6
 	"active cooling" 151
-	description "This active cooling system pumps liquid sodium through the hottest parts of the ship. A secondary temperature control system draws a moderate amount of power in order to keep the sodium from freezing when the system is inactive."
+	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the hottest ship systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
+	description "	As a side effect of this, the system actually produces heat when idling. This raises the base operating heat of the ship, but the efficiency benefits at high heat levels are well-realized."`
 
 
 outfit "Systems Core (Tiny)"
@@ -132,7 +133,7 @@ outfit "Systems Core (Small)"
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small microbot swarm that can make minor repairs to the ship while in flight.`
+	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, reserve power, and a small reservoir which stores, produces and recycles a small microbot swarm that can make minor repairs to the ship while in flight.`
 
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
@@ -147,7 +148,7 @@ outfit "Systems Core (Medium)"
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	description `The Systems core houses a powerful computer, shield generators, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull.`
+	description `The Systems Core houses a powerful computer, shield generators, reserve power, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull. The reservoir it has for storing, producing and recycling microbots is capable of supporting a significant swarm.`
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
@@ -162,7 +163,7 @@ outfit "Systems Core (Large)"
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2
-	description `This massive bank of computers, shield generators, and repair microbot stations holds everything needed to keep the very largest of Korath ships in working condition.`
+	description `This massive bank of computers, shield generators, capacitors and repair microbot reservoirs holds everything needed to keep the very largest of Korath ships in working condition.`
 
 
 outfit "Fuel Processor"
