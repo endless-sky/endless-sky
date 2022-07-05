@@ -1083,6 +1083,8 @@ mission "FW Senate 1B"
 
 event "fw senate timer"
 
+
+
 mission "FW Pirates 2"
 	landing
 	name "Southern Patrol"
