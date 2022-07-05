@@ -303,6 +303,9 @@ fleet "Korath Ember Waste Raid"
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
 	variant 3
+		"Korath Raider (Ember Blaze)"
+		"Korath Chaser" 2
+	variant 3
 		"Korath Raider (Ember Shunt)"
 		"Korath Chaser" 2
 	variant 2

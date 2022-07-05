@@ -278,24 +278,57 @@ ship "Korath Raider" "Korath Raider (Ember)"
 	turret "Korath Warder"
 
 
+ship "Korath Raider" "Korath Raider (Ember Blaze)"
+	outfits
+		"Korath Blaze-Pike" 4
+		"Korath Digger Turret"
+		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Storage Rack"
+		"Firelight Missile" 45
+		
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Systems Core (Medium)"
+		"Fuel Processor"
+		"Outfits Expansion" 2
+		"Korath Repeater Rifle" 196
+		
+		"Reverser (Asteroid Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+		"Hyperdrive"
+	
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Blaze-Pike"
+	turret "Korath Digger Turret"
+	turret "Korath Warder"
+
+
 ship "Korath Raider" "Korath Raider (Ember Shunt)"
 	outfits
 		"Korath Shunt-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
+		"Firelight Storage Rack"
+		"Firelight Missile" 45
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
-		"Systems Core (Tiny)"
+		"Systems Core (Small)"
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Outfits Expansion"
 		"Korath Repeater Rifle" 196
 		
-		"Reverser (Lunar Class)"
+		"Reverser (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
