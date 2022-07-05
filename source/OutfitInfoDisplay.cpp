@@ -319,7 +319,7 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	if(IsNotRequirement(label))
 		return;
 
-	// Special case for 'crew required' - use positive values as a requirement.
+	// Special case for 'required crew' - use positive values as a requirement.
 	if(label == "required crew")
 	{
 		label = "crew";
