@@ -667,6 +667,35 @@ ship "Korath Conqueror" "Korath World-Ship B (Jump)"
 
 
 
+ship "Korath Tanker" "Korath Tanker (Jump Firestorm)"
+	outfits
+		"Firestorm Turret" 2
+		"Firestorm Torpedo Rack"
+		"Firestorm Torpedo" 140
+		"Korath Grab-Strike"
+		"Korath Warder" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 3
+		"Korath Repeater Rifle" 380
+		"Microbot Defense Station" 30
+
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Afterburner (Lunar Class)"
+		"Jump Drive"
+	turret "Korath Grab-Strike"
+	turret "Firestorm Turret"
+	turret "Korath Warder"
+	turret
+	turret "Firestorm Turret"
+	turret
+	turret
+	turret "Korath Warder"
+
+
 ship "Korath Tanker" "Korath World-Ship C"
 	attributes
 		"required crew" 794
@@ -719,7 +748,6 @@ ship "Korath Tanker" "Korath World-Ship C (Jump)"
 	turret 70 53 "Korath Banisher"
 	turret -91 286 "Korath Banisher"
 	turret 91 286 "Korath Warder"
-
 
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"

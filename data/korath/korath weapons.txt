@@ -1006,3 +1006,83 @@ effect "firelight ring"
 	"random angle" 360
 	"random velocity" 2
 	"velocity scale" 0.1
+
+
+outfit "Firestorm Torpedo"
+	plural "Firestorm Torpedoes"
+	category "Ammunition"
+	cost 19800
+	thumbnail "outfit/firestorm torpedo"
+	"mass" 0.7
+	"firestorm torpedo capacity" -1
+	"energy generation" 0.06
+	"heat generation" 0.3
+	description `Ammo for the Firestorm Turret.`
+
+outfit "Firestorm Torpedo Rack"
+	plural "Firestorm Torpedo Racks"
+	category "Ammunition"
+	cost "135000"
+	thumbnail "outfit/firestorm torpedo rack"
+	"mass" 6
+	"outfit space" -20
+	"firestorm torpedo capacity" 20
+	ammo "Firestorm Torpedo"
+	description "This appears to be a modified Korath Mine Rack, designed to carry Firestorm Torpedoes."
+
+outfit "Firestorm Turret"
+	category "Secondary Weapons"
+	cost 2383000
+	thumbnail "outfit/firestorm turret"
+	"mass" 20
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"required crew" 1
+	"firestorm torpedo capacity" 40
+	"energy capacity" 1300
+	weapon
+		sprite "projectile/firestorm torpedo"
+			"frame rate" 2
+			"no repeat"
+		"hardpoint sprite" "hardpoint/firestorm turret"
+		sound "firestorm"
+		ammo "Firestorm Torpedo"
+		"turret turn" 2.7
+		icon "icon/firestorm torpedo"
+		"hit effect" "firestorm ring" 40
+		"die effect" "small explosion"
+		stream
+		"reload" 210
+		"firing energy" 635
+		"firing heat" 451
+		"inaccuracy" 3
+		"lifetime" 1900
+		"velocity" 6.6
+		"acceleration" .6
+		"drag" .12
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 40
+		"blast radius" 95
+		"shield damage" 2760
+		"hull damage" 2760
+		"heat damage" 5320
+		"burn damage" 40
+		"corrosion damage" 5
+		"hit force" 4000
+		"missile strength" 115
+	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion of heat and force, pushing ships away and even melting hulls."
+	description `	Though the warhead is a simple Korath design, the torpedo casing and launcher are distinctly not Korath in style. This may be a device they discovered and learned to reproduce.`
+
+effect "firestorm ring"
+	sprite "effect/firestorm ring"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 30
+	sound "firestorm hit"
+	"random angle" 360
+	"random velocity" 4
+	"velocity scale" 0.1

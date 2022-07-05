@@ -1170,14 +1170,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/effect/firestorm*
  images/effect/heaver*
  images/effect/korath?digger*
  images/effect/shunt*
  images/hardpoint/korath?heaver*
  images/icon/korath?heaver*
+ images/outfit/firestorm*
  images/outfit/korath?heaver*
  images/outfit/*korath?reverser*
  images/projectile/expeller*
+ images/projectile/firestorm*
  images/projectile/heaver*
  images/projectile/korath?digger*
  images/projectile/shunt-strike*
