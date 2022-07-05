@@ -356,9 +356,7 @@ mission "Transport Workers B"
 	minor
 	source
 		attributes "dirt belt"
-	destination
-		government "Syndicate"
-		attributes "factory"
+	destination "Maker"
 	to offer
 		random < 5
 	passengers 1
@@ -400,6 +398,7 @@ mission "Transport Workers B"
 	on complete
 		payment
 		payment 10000
+		log `Transported a teenage boy to Maker so that he can work to marry his girlfriend.`
 		dialog `You drop off the young man from <origin> who is hoping to find work and save enough money for his girlfriend to join him. "Good luck," you say. "Be wise. Don't let yourself get into debt." He thanks you, and pays you <payment>.`
 
 
@@ -3131,7 +3130,7 @@ mission "Pirate Duel"
 			label end
 			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
 			choice
-				`	(Ready your ship for the battle with the Esca.)`
+				`	(Ready my ship for the battle with the Esca.)`
 					accept
 				`	(Ignore the invitation.)`
 					decline
@@ -3584,13 +3583,13 @@ mission "Mafia Extortion"
 					goto draws
 				`	(Mock the man further.)`
 					goto draws
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			label draws
 			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
 				`	"Ha, ha, you really are a failure of a goon."`
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
@@ -3598,9 +3597,9 @@ mission "Mafia Extortion"
 			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
 			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
-				`	(Run towards your ship and leave immediately.)`
+				`	(Run towards my ship and leave immediately.)`
 					goto leave
-				`	(Put away your sidearm and pretend nothing happened.)`
+				`	(Put away my sidearm and pretend nothing happened.)`
 			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
@@ -3835,3 +3834,248 @@ mission "Spaceport Reminder"
 			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
 				decline
 
+
+
+mission "Fumbling Mugger Patch"
+	landing
+	invisible
+	to offer
+		has "Transport Workers B: done"
+	on offer
+		event "fumbling mugger timer" 60
+		fail
+
+
+event "fumbling mugger timer"
+
+
+mission "Fumbling Mugger"
+	name "Transport to <planet>"
+	description "Bring a young woman who threatened you on <origin> to <destination>."
+	minor
+	source
+		attributes "dirt belt"
+	destination "Maker"
+	passengers 1
+	to offer
+		random < 45
+		has "event: fumbling mugger timer"
+	on offer
+		conversation
+			`Your exploration of the spaceport leads you to a dark alley where the number of working lights are far outnumbered by the number of broken ones. The contents of steel bins lining the walls overflow onto the pavement, attracting swarms of flies to them. On the surfaces that are illuminated, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A dark crimson stains the bottom half of a broken window.`
+			`	Suddenly, you feel a cold object pushed against your back as a woman speaks softly. "Hands where I can see them, Captain."`
+			choice
+				`	(Lift my hands up and slowly turn.)`
+					goto peaceful
+				`	(Spin around and fire.)`
+				`	(Try a fancy acrobatic move and disarm the attacker.)`
+					goto flip
+			
+			action
+				set "fumbling mugger shot"
+			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label flip
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			choice
+				`	(Put my hands up.)`
+					goto handsup
+				`	(Draw my gun and fire.)`
+			action
+				set "fumbling mugger shot"
+			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label peaceful
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen.`
+			label handsup
+			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
+			choice
+				`	"And if I don't take you there?"`
+				`	"Are you going to pay me?"`
+					goto payment
+				`	"Why do you want to go there?"`
+					goto why
+			
+			`	She scoffs. "What do you think? How else might an encounter involving a gun pointed-"`
+				goto fail
+			label payment
+			`	She scoffs. "Payment? If I wanted to pay you, I wouldn't be in this alley pointing-"`
+				goto fail
+			label why
+			`	She scoffs. "All you need to know is that I've got a gun pointed-"`
+			
+			label fail
+			`	The attacker's speech is interrupted by a click as her shotgun swings open. She takes a step back as her eyes widen with panic.`
+			label choice
+			choice
+				`	(Threaten her with my gun.)`
+					goto threaten
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label threaten
+			`	You take out your gun and aim it at the woman's head. "Drop the gun," you say, "or I'll shoot."`
+			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
+			choice
+				`	"Why do you want to go to <planet>?"`
+					goto why2
+				`	"Get out of my sight, and I'll let you go."`
+					goto freedom
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label freedom
+			`	She nods her head and backs away from you, hands still held up. When she disappears around a corner, you holster your gun and walk back to a safer portion of the spaceport.`
+				decline
+			
+			label why2
+			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
+			`	"Just humor me for a moment," you reply.`
+			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
+			choice
+				`	"I can take you there."`
+				`	"I can't transport you."`
+					goto decline
+			`	"Really?" she says. "You realize that I can't pay you in any way, right?"`
+			choice
+				`	"You don't need to pay me."`
+					goto accept
+				`	"You can pay me later."`
+				`	"Actually, I can't take you there without payment."`
+					goto decline
+			action
+				set "Fumbling Mugger: future payment"
+			label accept
+			`	The woman's eyes light up. "I can't thank you enough for this." The two of you head out of the alleys and back to the landing pads, and you show her to an empty bunk on your ship.`
+				accept
+			
+			label decline
+			`	"I understand." She shuffles away with her head hung, and you head back to a brighter area of the spaceport.`
+				decline
+	
+	on abort
+		conversation
+			`As you tell the woman about the change in travel plans, she sighs with resignation. "I suppose that I shouldn't expect anything after how I treated you." You recall that she doesn't even have a single credit to her name, and without any money, it is unlikely that she will survive for long.`
+			branch poor
+				"credits" < 15000
+			choice
+				`	(Wish her good luck.)`
+					goto leave
+				`	(Give her 15,000 credits before dropping her off.)`
+					goto gift
+			label poor
+			choice
+				`	(Wish her good luck.)`
+			label leave
+			`	She nods in response. "I'll try my best," she says solemnly as she prepares to depart your ship.`
+				decline
+			label gift
+			action
+				payment -15000
+				set "gifted money to mugger"
+				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to pay for her transport anyway.`
+			`	She is almost incredulous at your gift. "I really can't thank you enough for helping me out." The two of you say your farewells as she gets ready to depart your ship.`
+	
+	on complete
+		event "fumbling mugger followup timer" 365
+		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to take her there anyway.`
+		dialog `The hooded woman prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'm sorry for threatening you back on <origin>, Captain. I'll try to find some way to repay you." She walks off into the bustling spaceport to find her lover.`
+
+
+event "fumbling mugger followup timer"
+
+
+
+mission "Laborer"
+	minor
+	name "Out of Work"
+	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
+	passengers 1
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		attributes "mining"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		attributes "mining"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
+			choice
+				`	(Go see what the laborer is arguing about.)`
+				`	(Ignore them.)`
+					decline
+			`	The man is nearly shouting. "Lady, I'm not trying to low-ball you here! I don't have the money! That's the whole point!"`
+			`	"I appreciate your conundrum," replies the woman, her voice clipped. "However, my policy is cash upfront. Good day."`
+			`	She turns and walks away briskly, and the man slumps down into a chair.`
+			choice
+				`	"What was that all about?"`
+				`	(Leave before he notices you.)`
+					decline
+			`	He gives you a once-over, and you see a spark of hope in his eyes. "You're a captain? Please, I need to get to <destination>. Work has dried up here, and I need a fresh start."`
+			choice
+				`	"What are you able to pay me?"`
+					goto offer
+				`	"Work dried up on the whole planet?"`
+			`	"This planet is messed up. Everybody likes to talk behind your back. I did a job for one of the big mining companies here, but my boss had it out for me. Told everybody I did it wrong, even though they never gave me any training at all. Then he went and put me on the permanent record. So yeah, sooner I get off this dump, the better."`
+			`	"What are you able to pay me?" you ask.`
+			label offer
+			`	His eyes drop. "I can pay you after I earn the money. I've just gotta get to <planet> to get work, and then I'll send the money. I just want to earn a living, same as anyone."`
+			choice
+				`	"Okay, I can take you to <planet>."`
+					goto accept
+				`	"How do I know you'll pay?"`
+					goto question
+				`	"Sorry, money up front."`
+					goto decline
+			label question
+			`	"You don't trust me? Just keep walking, then, if you're gonna be like that."`
+			choice
+				`	"Sorry, money up front."`
+					goto decline
+				`	"Fine, I can take you to <planet>."`
+			label accept
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+				accept
+			label decline
+			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
+				decline
+	on complete
+		event "laborer payment" 400
+		conversation
+			`The worker you picked up from <origin> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You stopped paying attention to what he was saying after a while as he went on for what felt like forever, often repeating himself.`
+			`	Upon arriving, he carries his bags to the lowered ramp, then turns back before disembarking. "Thanks for the lift. You're one of the good ones, you know?"`
+			choice
+				`	"You're welcome. Better luck on this world."`
+					goto luck
+				`	"You have my bank address, right?"`
+			`	He shoots you a look of thinly masked annoyance. "Yeah. I'll send you the credits when I have them. Bye, now."`
+				decline
+			label luck
+			`	He bobs his head at you in farewell. "I promise I'll send you the payment when I have it. Bye, now."`
+
+event "laborer payment"
+
+mission "Laborer Payment"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+	to offer
+		has "event: laborer payment"
+	on offer
+		payment 17000
+		conversation
+			`You receive a payment of <payment> from the down-on-his-luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and make me come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
+				decline

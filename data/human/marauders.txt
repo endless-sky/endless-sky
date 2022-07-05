@@ -145,7 +145,7 @@ ship "Marauder Bounder"
 		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 		
 	engine -12 44
@@ -766,6 +766,11 @@ ship "Marauder Quicksilver"
 	description "This Megaparsec Quicksilver is a bit of a hotrod, being a little faster, with extra shield projectors, hull plating, and an extra bunk. This aftermarket model also features a turret mount, perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
 
 
+ship "Marauder Quicksilver" "Marauder Quicksilver (Safe)"
+	add attributes
+		"self destruct" -.25
+
+
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	thumbnail "thumbnail/mquicksilvere"
@@ -792,6 +797,33 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating, and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
 
 
+ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
+	sprite "ship/mquicksilvere"
+	thumbnail "thumbnail/mquicksilvere"
+	add attributes
+		"engine capacity" 40
+		"self destruct" -.25
+	outfits
+		"Pulse Cannon" 2
+		"Anti-Missile Turret"
+		
+		"Fission Reactor"
+		"S-270 Regenerator"
+		"LP036a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 2
+		"Laser Rifle" 5
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	
+	engine -16 52
+	engine 0 52
+	engine 16 52
+	description "This Quicksilver has even more space available for engine use - and even another thruster port! It's also got a few extra shield projectors, more hull plating, and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
+
+
 ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
 	thumbnail "thumbnail/mquicksilverw"
@@ -815,6 +847,32 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	gun -6 -52.5 "Heavy Laser"
 	gun 6 -52.5 "Heavy Laser"
 	turret 0 26 "Heavy Laser Turret"
+	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to a fight in more menacing mimicry of Lionheart's Headhunter."
+
+
+ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons) (Safe)"
+	sprite "ship/mquicksilverw"
+	thumbnail "thumbnail/mquicksilverw"
+	add attributes
+		"weapon capacity" 15
+		"self destruct" -.25
+	outfits
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"S-270 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 4
+		"Laser Rifle"
+		
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	
+	engine -17 54
+	engine 17 54
 	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to a fight in more menacing mimicry of Lionheart's Headhunter."
 
 
@@ -855,7 +913,7 @@ ship "Marauder Raven"
 		
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Afterburner"
+		"Volcano Afterburner"
 		"Hyperdrive"
 	
 	engine -9.5 63

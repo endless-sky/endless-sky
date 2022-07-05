@@ -85,6 +85,14 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 
+// Construct and Load() at the same time.
+Conversation::Conversation(const DataNode &node, const string &missionName)
+{
+	Load(node, missionName);
+}
+
+
+
 // Load a conversation from file.
 void Conversation::Load(const DataNode &node, const string &missionName)
 {
