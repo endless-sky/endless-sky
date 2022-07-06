@@ -313,20 +313,20 @@ ship "Korath Conveyor"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
-		category "Utility"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 237
-		"bunks" 449
-		"mass" 1735
-		"drag" 21
+		category "Heavy Freighter"
+		cost 28650000
+		shields 46000
+		hull 33600
+		"required crew" 494
+		"bunks" 813
+		"mass" 1795
+		"drag" 22.4
 		"heat dissipation" .4
-		"fuel capacity" 900
+		"fuel capacity" 1000
 		"cargo space" 963
-		"outfit space" 1108
-		"weapon capacity" 366
-		"engine capacity" 207
+		"outfit space" 859
+		"weapon capacity" 314
+		"engine capacity" 180
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -388,19 +388,19 @@ ship "Korath Conqueror"
 	thumbnail "thumbnail/world-ship b"
 	attributes
 		category "Heavy Warship"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 272
-		"bunks" 688
-		"mass" 1795
-		"drag" 20
-		"heat dissipation" .35
-		"fuel capacity" 900
-		"cargo space" 234
-		"outfit space" 982
-		"weapon capacity" 306
-		"engine capacity" 170
+		cost 29640000
+		shields 51000
+		hull 32500
+		"required crew" 619
+		"bunks" 972
+		"mass" 1735
+		"drag" 22.5
+		"heat dissipation" .42
+		"fuel capacity" 1000
+		"cargo space" 191
+		"outfit space" 1277
+		"weapon capacity" 366
+		"engine capacity" 165
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -474,17 +474,17 @@ ship "Korath Tanker"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
-		shields 47000
+		shields 45000
 		hull 34000
-		"required crew" 272
-		"bunks" 688
-		"mass" 1795
-		"drag" 20
-		"heat dissipation" .35
-		"fuel capacity" 2700
-		"cargo space" 234
-		"outfit space" 982
-		"weapon capacity" 306
+		"required crew" 414
+		"bunks" 651
+		"mass" 1815
+		"drag" 21.8
+		"heat dissipation" .38
+		"fuel capacity" 32700
+		"cargo space" 734
+		"outfit space" 839
+		"weapon capacity" 284
 		"engine capacity" 170
 		weapon
 			"blast radius" 400
@@ -545,19 +545,19 @@ ship "Korath Traveller"
 	thumbnail "thumbnail/world-ship d"
 	attributes
 		category "Transport"
-		cost 27690000
+		cost 29640000
 		shields 47000
-		hull 34000
-		"required crew" 272
+		hull 34800
+		"required crew" 538
 		"bunks" 1492
-		"mass" 1795
-		"drag" 20
-		"heat dissipation" .35
-		"fuel capacity" 900
-		"cargo space" 234
-		"outfit space" 982
-		"weapon capacity" 306
-		"engine capacity" 170
+		"mass" 1857
+		"drag" 22.3
+		"heat dissipation" .39
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 779
+		"weapon capacity" 314
+		"engine capacity" 175
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -618,19 +618,19 @@ ship "Korath Herder"
 	thumbnail "thumbnail/world-ship e"
 	attributes
 		category "Heavy Warship"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 308
-		"bunks" 499
-		"mass" 1815
-		"drag" 22
-		"heat dissipation" .45
-		"fuel capacity" 900
-		"cargo space" 353
-		"outfit space" 1406
-		"weapon capacity" 535
-		"engine capacity" 222
+		cost 33590000
+		shields 50000
+		hull 39400
+		"required crew" 794
+		"bunks" 1037
+		"mass" 2105
+		"drag" 26
+		"heat dissipation" .41
+		"fuel capacity" 1000
+		"cargo space" 228
+		"outfit space" 999
+		"weapon capacity" 314
+		"engine capacity" 190
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -705,19 +705,19 @@ ship "Korath Habitat"
 	thumbnail "thumbnail/world-ship f"
 	attributes
 		category "Transport"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 272
-		"bunks" 1800
-		"mass" 1795
-		"drag" 20
-		"heat dissipation" .35
-		"fuel capacity" 900
-		"cargo space" 234
-		"outfit space" 982
-		"weapon capacity" 306
-		"engine capacity" 170
+		cost 42290000
+		shields 44000
+		hull 49600
+		"required crew" 543
+		"bunks" 1837
+		"mass" 2650
+		"drag" 32
+		"heat dissipation" .43
+		"fuel capacity" 600
+		"cargo space" 1052
+		"outfit space" 1138
+		"weapon capacity" 314
+		"engine capacity" 185
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
