@@ -93,23 +93,28 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 		maxRange = newMax;
 	}
 
-	// Estimate the number of visuals to be generated this frame.
-	// MAYBE: create only a subset of possible effects per frame.
-	int totalAmount = 0;
-	for(auto &&effect : hazard->EnvironmentalEffects())
-		totalAmount += effect.second;
-	totalAmount *= effectMultiplier;
-	visuals.reserve(visuals.size() + totalAmount);
+	// Don't draw effects if a system-wide hazard moved the max range to 
+	// be less than the min range.
+	if(minRange <= maxRange)
+	{
+		// Estimate the number of visuals to be generated this frame.
+		// MAYBE: create only a subset of possible effects per frame.
+		int totalAmount = 0;
+		for(auto &&effect : hazard->EnvironmentalEffects())
+			totalAmount += effect.second;
+		totalAmount *= effectMultiplier;
+		visuals.reserve(visuals.size() + totalAmount);
 
-	for(auto &&effect : hazard->EnvironmentalEffects())
-		for(int i = 0; i < effect.second * effectMultiplier; ++i)
-		{
-			Point angle = Angle::Random().Unit();
-			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = (hazard->SystemWide() ? center : origin)
-				+ (minRange + magnitude) * angle;
-			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
-		}
+		for(auto &&effect : hazard->EnvironmentalEffects())
+			for(int i = 0; i < effect.second * effectMultiplier; ++i)
+			{
+				Point angle = Angle::Random().Unit();
+				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
+				Point pos = (hazard->SystemWide() ? center : origin)
+					+ (minRange + magnitude) * angle;
+				visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
+			}
+	}
 
 	if(--lifetimeRemaining <= 0)
 		shouldBeRemoved = true;
