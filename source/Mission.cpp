@@ -630,6 +630,7 @@ int Mission::Cost() const
 }
 
 
+
 // The mission must be completed by this deadline (if there is a deadline).
 const Date &Mission::Deadline() const
 {
