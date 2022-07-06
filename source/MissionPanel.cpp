@@ -226,7 +226,7 @@ void MissionPanel::Draw()
 		system = next;
 	}
 
-	// Highlight systems with active or available miisions.
+	// Highlight systems with active or available missions.
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
