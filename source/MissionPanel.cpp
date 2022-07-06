@@ -405,7 +405,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			DoScroll(availableEscorts, availableEscortsIt, availableEscortsScroll, false);
 			return true;
 		}
-
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
