@@ -81,7 +81,7 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
-	// Check if this mission is an player escort. If yes it will be handled
+	// Check if this mission is a player escort. If yes it will be handled
 	// different than normal missions.
 	bool IsPlayerEscort() const;
 
