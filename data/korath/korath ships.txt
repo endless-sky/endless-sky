@@ -325,8 +325,8 @@ ship "Korath Conveyor"
 		"fuel capacity" 1000
 		"cargo space" 963
 		"outfit space" 859
-		"weapon capacity" 314
-		"engine capacity" 180
+		"weapon capacity" 321
+		"engine capacity" 177
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -399,8 +399,8 @@ ship "Korath Conqueror"
 		"fuel capacity" 1000
 		"cargo space" 191
 		"outfit space" 1277
-		"weapon capacity" 366
-		"engine capacity" 165
+		"weapon capacity" 633
+		"engine capacity" 213
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -484,8 +484,8 @@ ship "Korath Tanker"
 		"fuel capacity" 32700
 		"cargo space" 734
 		"outfit space" 839
-		"weapon capacity" 284
-		"engine capacity" 170
+		"weapon capacity" 321
+		"engine capacity" 201
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -556,8 +556,8 @@ ship "Korath Traveller"
 		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 779
-		"weapon capacity" 314
-		"engine capacity" 175
+		"weapon capacity" 321
+		"engine capacity" 201
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -629,8 +629,8 @@ ship "Korath Herder"
 		"fuel capacity" 1000
 		"cargo space" 228
 		"outfit space" 999
-		"weapon capacity" 314
-		"engine capacity" 190
+		"weapon capacity" 367
+		"engine capacity" 217
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -716,8 +716,8 @@ ship "Korath Habitat"
 		"fuel capacity" 600
 		"cargo space" 1052
 		"outfit space" 1138
-		"weapon capacity" 314
-		"engine capacity" 185
+		"weapon capacity" 321
+		"engine capacity" 201
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -780,7 +780,7 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 779
+		"outfit space" 873
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon

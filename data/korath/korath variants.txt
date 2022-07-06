@@ -567,7 +567,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	turret 66 210 "Korath Banisher"
 
 
-ship "Korath  World-Ship" "Korath World-Ship B (Jump)"
+ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	outfits
