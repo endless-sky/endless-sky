@@ -1840,7 +1840,7 @@ int64_t PlayerInfo::escortCostsCalculate()
 	{
 		if(mission.IsPlayerEscort())
 		{
-			oneCost = mission.Cost();
+			oneCost = mission.EscortSalary();
 			if(allCosts + oneCost > accounts.Credits())
 			{
 				FailMission(mission);

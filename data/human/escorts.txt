@@ -5,8 +5,7 @@
 #	description "This Captain will Escort you for 200 credits per day."
 #	repeat
 #	job
-#	playerescort
-#	cost 200
+#	escortCost 200
 #	source
 #		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 #	to complete

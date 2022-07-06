@@ -101,7 +101,7 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
-	int Cost() const;
+	int EscortSalary() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -196,7 +196,6 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
-	bool isPlayerEscort = false;
 	Date deadline;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
@@ -218,7 +217,7 @@ private:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
 	// Escort payment
-	int cost = 0;
+	int escortSalary = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toComplete;

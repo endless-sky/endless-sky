@@ -185,16 +185,14 @@ void Mission::Load(const DataNode &node)
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
-		else if(child.Token(0) == "cost" && child.Size() >= 2)
-			cost = child.Value(1);
+		else if(child.Token(0) == "escortSalary" && child.Size() >= 2)
+			escortSalary = child.Value(1);
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
-		else if(child.Token(0) == "playerescort")
-			isPlayerEscort = true;
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -336,10 +334,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
-		if(isPlayerEscort)
-			out.Write("playerescort");
-		if(cost)
-			out.Write("cost", cost);
+		if(escortSalary)
+			out.Write("escortSalary", escortSalary);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -533,7 +529,7 @@ bool Mission::IsMinor() const
 // different than normal missions.
 bool Mission::IsPlayerEscort() const
 {
-	return isPlayerEscort;
+	return escortSalary != 0;
 }
 
 
@@ -624,9 +620,9 @@ int Mission::Passengers() const
 
 
 
-int Mission::Cost() const
+int Mission::EscortSalary() const
 {
-	return cost;
+	return escortSalary;
 }
 
 
@@ -1151,8 +1147,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
-	result.isPlayerEscort = isPlayerEscort;
-	result.cost = cost;
+	result.escortSalary = escortSalary;
 	result.autosave = autosave;
 	result.location = location;
 	result.repeat = repeat;

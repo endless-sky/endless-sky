@@ -137,7 +137,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance, int6
 	bool missedPayment = false;
 
 	credits -= escortCosts;
-	out << "You paid " << escortCosts << " credits for escorts. ";
+	if(escortCosts != 0)
+		out << "You paid " << escortCosts << " credits for escorts. ";
 
 	// Crew salaries take highest priority.
 	int64_t salariesPaid = salariesOwed;
