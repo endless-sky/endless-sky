@@ -72,7 +72,7 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
+void Weather::Step(vector<Visual> &visuals, const Point &center)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
@@ -97,7 +97,7 @@ void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = ((hazard->SystemWide() && effectCenter) ? *effectCenter : origin)
+			Point pos = (hazard->SystemWide() ? center : origin)
 				+ (minRange + magnitude) * angle;
 			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
 		}
