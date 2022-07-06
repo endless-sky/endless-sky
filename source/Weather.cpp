@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Hazard.h"
-#include "pi.h"
 #include "Screen.h"
 #include "Visual.h"
 #include "Random.h"
@@ -77,23 +76,33 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
-	// If it is systemwide, only draw around the flagship.
-	double maxRange = hazard->SystemWide() ? 2. * (Screen::Width() > Screen::Height() ?
-		Screen::Width() : Screen::Height()) : hazard->MaxRange();
+	double maxRange = hazard->MaxRange();
+	double effectMultiplier = currentStrength;
 
-	// Calculate how many squares of 1000x1000 fit into the circle we're going to draw in.
-	double sizeMultiplier = 2. * PI * maxRange * maxRange / (1000. * 1000.);
+	// If a hazard is system-wide, the max range becomes the edge of the screen,
+	// and the number of effects drawn is scaled accordingly.
+	if(hazard->SystemWide())
+	{
+		// Find the larger of the two screen dimensions, and use that as our new
+		// max range.
+		double newMax = 2. * max(Screen::Width(), Screen::Height());
+		// Maintain the same density of effects by dividing the new area
+		// by the old. (The pis cancel out and therefore need not be taken
+		// into account.)
+		effectMultiplier *= (newMax * newMax) / (maxRange * maxRange);
+		maxRange = newMax;
+	}
+
 	// Estimate the number of visuals to be generated this frame.
 	// MAYBE: create only a subset of possible effects per frame.
 	int totalAmount = 0;
 	for(auto &&effect : hazard->EnvironmentalEffects())
 		totalAmount += effect.second;
-	totalAmount *= currentStrength * sizeMultiplier;
+	totalAmount *= effectMultiplier;
 	visuals.reserve(visuals.size() + totalAmount);
 
 	for(auto &&effect : hazard->EnvironmentalEffects())
-		// The amount of the effect is specified for a square of 1000x1000.
-		for(int i = 0; i < effect.second * currentStrength * sizeMultiplier; ++i)
+		for(int i = 0; i < effect.second * effectMultiplier; ++i)
 		{
 			Point angle = Angle::Random().Unit();
 			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
