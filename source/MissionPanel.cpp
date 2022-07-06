@@ -152,7 +152,6 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
 
-
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, true);
 }
