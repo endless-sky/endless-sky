@@ -93,7 +93,7 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 		maxRange = newMax;
 	}
 
-	// Don't draw effects if a system-wide hazard moved the max range to 
+	// Don't draw effects if a system-wide hazard moved the max range to
 	// be less than the min range.
 	if(minRange <= maxRange)
 	{
