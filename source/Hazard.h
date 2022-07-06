@@ -37,7 +37,9 @@ public:
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
-	// Checks if this applies in the same way on the entire system.
+	// Whether this hazard affects every ship in the system irrespective of its distance from the
+	// hazard origin. It will be shown around it, in a circle encompassing the whole visible screen.
+	// The minRange will still be taken into consideration.
 	bool SystemWide() const;
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
@@ -56,7 +58,8 @@ private:
 	double maxStrength = 1.;
 	double minRange = 0.;
 	// Hazards without a given range have an effect on the entire system.
-	double maxRange = -1.;
+	double maxRange = 10000.;
+	bool systemWide = false;
 	bool deviates = true;
 
 	std::map<const Effect *, int> environmentalEffects;

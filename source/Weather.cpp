@@ -93,7 +93,7 @@ void Weather::Step(vector<Visual> &visuals, const Point *effectCenter)
 	visuals.reserve(visuals.size() + totalAmount);
 
 	for(auto &&effect : hazard->EnvironmentalEffects())
-		// The amount of the effect is specified by 1000x1000 distance
+		// The amount of the effect is specified for a square of 1000x1000.
 		for(int i = 0; i < effect.second * currentStrength * sizeMultiplier; ++i)
 		{
 			Point angle = Angle::Random().Unit();
