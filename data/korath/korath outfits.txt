@@ -652,7 +652,55 @@ outfit "Steering (Stellar Class)"
 		"frame rate" 6
 	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
-	
+
+outfit "Medium Grav-Thruster"
+	plural "Medium Grav-Thrusters"
+	category "Engines"
+	"cost" 249000
+	thumbnail "outfit/medium grav-thruster"
+	"mass" 48
+	"outfit space" -48
+	"engine capacity" -48
+	"thrust" 58.2
+	"thrusting energy" 7.9
+	"thrusting heat" 6
+	"flare sprite" "effect/efreti flare/medium"
+		"frame rate" 7.5
+	"flare sound" "ion small"
+	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
+
+outfit "Large Grav-Thruster"
+	plural "Large Grav-Thrusters"
+	category "Engines"
+	"cost" 539000
+	thumbnail "outfit/large grav-thruster"
+	"mass" 72
+	"outfit space" -72
+	"engine capacity" -72
+	"thrust" 87.3
+	"thrusting energy" 11.8
+	"thrusting heat" 9
+	"flare sprite" "effect/efreti flare/large"
+		"frame rate" 7
+	"flare sound" "ion medium"
+	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
+
+outfit "Huge Grav-Thruster"
+	plural "Huge Grav-Thrusters"
+	category "Engines"
+	"cost" 1216000
+	thumbnail "outfit/huge grav-thruster"
+	"mass" 108
+	"outfit space" -108
+	"engine capacity" -108
+	"thrust" 130.95
+	"thrusting energy" 17.7
+	"thrusting heat" 13.5
+	"flare sprite" "effect/efreti flare/huge"
+		"frame rate" 6.5
+	"flare sound" "ion large"
+	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
+
 outfit "Korath Repeater Rifle"
 	category "Hand to Hand"
 	cost 53000

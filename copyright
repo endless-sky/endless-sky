@@ -1398,6 +1398,7 @@ Files:
  images/effect/burning?spark/*
  images/effect/coalition?flare/*
  images/effect/corrosion?spark/*
+ images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
@@ -1416,6 +1417,7 @@ Files:
  images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
  images/outfit/finisher?maegrolain*
+ images/outfit/*grav-thruster*
  images/outfit/nuke*
  images/outfit/plasma?core*
  images/outfit/red?sun*

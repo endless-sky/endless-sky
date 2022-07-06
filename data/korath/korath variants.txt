@@ -474,7 +474,7 @@ ship "Korath Conveyor" "Korath World-Ship"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
-		"Thruster (Planetary Class)"
+		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
 	
@@ -512,7 +512,7 @@ ship "Korath Conveyor" "Korath World-Ship A (Jump)"
 		"Korath Repeater Rifle" 150
 		"Microbot Defense Station" 20
 		
-		"Thruster (Planetary Class)"
+		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
@@ -547,7 +547,7 @@ ship "Korath Conqueror" "Korath World-Ship B"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
-		"Thruster (Planetary Class)"
+		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
 		"Hyperdrive"
 	turret -76 -219 "Korath Grab-Strike"
@@ -652,7 +652,7 @@ ship "Korath Conqueror" "Korath World-Ship B (Jump)"
 		"Korath Repeater Rifle" 150
 		"Microbot Defense Station" 20
 		
-		"Thruster (Planetary Class)"
+		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
@@ -705,6 +705,21 @@ ship "Korath Tanker" "Korath World-Ship C"
 		"outfit space" 779
 		"weapon capacity" 314
 		"engine capacity" 165
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		"Microbot Defense Station" 20
+		
+		"Huge Grav-Thruster"
+		"Steering (Planetary Class)"
+		"Jump Drive"
 	turret -45 -243 "Korath Warder"
 	turret 45 -243 "Korath Grab-Strike"
 	turret -47 -136 "Korath Grab-Strike"
@@ -736,7 +751,7 @@ ship "Korath Tanker" "Korath World-Ship C (Jump)"
 		"Korath Repeater Rifle" 150
 		"Microbot Defense Station" 20
 		
-		"Thruster (Planetary Class)"
+		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 	
