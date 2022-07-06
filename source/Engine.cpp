@@ -2108,23 +2108,15 @@ void Engine::DoWeather(Weather &weather)
 	{
 		const Hazard *hazard = weather.GetHazard();
 		const DamageProfile damage(weather.GetInfo());
-
-		if(hazard->SystemWide())
+		// Get all ship bodies that are touching a ring defined by the hazard's min
+		// and max ranges at the hazard's origin. Any ship touching this ring takes
+		// hazard damage.
+		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
+			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
 		{
-			const System *system = player.GetSystem();
-			for(shared_ptr<Ship> ship: ships)
-				if(ship->GetSystem() == system)
-					ship->TakeDamage(visuals, damage.CalculateDamage(*ship.get()), nullptr);
+			Ship *hit = reinterpret_cast<Ship *>(body);
+			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
 		}
-		else
-			// Get all ship bodies that are touching a ring defined by the hazard's min
-			// and max ranges at the hazard's origin. Any ship touching this ring takes
-			// hazard damage.
-			for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
-			{
-				Ship *hit = reinterpret_cast<Ship *>(body);
-				hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);
-			}
 	}
 }
 
