@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Hazard;
-class Ship;
 class Visual;
 class Weapon;
 
@@ -40,7 +39,7 @@ public:
 
 public:
 	Weather() = default;
-	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point flagshipPosition);
+	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
 
 	// The hazard that is associated with this weather event.
 	const Hazard *GetHazard() const;

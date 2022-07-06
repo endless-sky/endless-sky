@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Hazard.h"
 #include "pi.h"
 #include "Screen.h"
-#include "Ship.h"
 #include "Visual.h"
 #include "Random.h"
 
