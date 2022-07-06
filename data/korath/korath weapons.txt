@@ -252,7 +252,7 @@ outfit "Korath Blaze-Pike"
 		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
-		"turret turn" 3.7
+		"turret turn" 2.8
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -290,7 +290,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 2.7
+		"turret turn" 2
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
