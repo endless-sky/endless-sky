@@ -2764,7 +2764,7 @@ mission "Coalition: Expeditions Past 9"
 	to fail
 		has "Coalition: Expeditions Past 10: offered"
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+		dialog `You haven't yet found the sixth expedition's last pylon. Try searching for it on a route from this system to Ablub.`
 
 mission "Coalition: Expeditions Past 10"
 	landing
@@ -2940,7 +2940,9 @@ mission "Coalition: Long Lost Property 2"
 	to complete
 		never
 	to fail
-		has "Coalition: Long Lost Property 3: active"
+		or
+			has "Coalition: Long Lost Property 3: active"
+			has "Coalition: Long Lost Property 3: done"
 
 mission "Coalition: Long Lost Property 3"
 	landing
