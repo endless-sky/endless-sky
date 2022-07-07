@@ -78,10 +78,15 @@ private:
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
+	const std::list<Mission> &availableEscorts;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator acceptedIt;
+	std::list<Mission>::const_iterator availableEscortsIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
+	double availableEscortsScroll = 0.;
+
+	int originalAvailableSize = 0;
 
 	int dragSide = 0;
 	WrappedText wrap;

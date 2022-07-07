@@ -52,16 +52,13 @@ namespace {
 		static const size_t BUF_SIZE = 24;
 		char buf[BUF_SIZE];
 
-#ifdef _WIN32
-		tm date;
-		localtime_s(&date, &timestamp);
-		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
-#else
 		const tm *date = localtime(&timestamp);
+#ifdef _WIN32
+		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
+#else
 		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
 #endif
+		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
 	}
 
 	// Extract the date from this pilot's most recent save.

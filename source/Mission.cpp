@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <sstream>
 
+
 using namespace std;
 
 namespace {
@@ -184,6 +185,8 @@ void Mission::Load(const DataNode &node)
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
+		else if(child.Token(0) == "escortSalary" && child.Size() >= 2)
+			escortSalary = child.Value(1);
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
 		else if(child.Token(0) == "priority")
@@ -331,6 +334,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
+		if(escortSalary)
+			out.Write("escortSalary", escortSalary);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -520,6 +525,16 @@ bool Mission::IsMinor() const
 
 
 
+// Check if this mission is an player escort. If yes it will be handled
+// different than normal missions.
+bool Mission::IsPlayerEscort() const
+{
+	return escortSalary != 0;
+}
+
+
+
+
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);
@@ -601,6 +616,13 @@ bool Mission::FailIfDiscovered() const
 int Mission::Passengers() const
 {
 	return passengers;
+}
+
+
+
+int Mission::EscortSalary() const
+{
+	return escortSalary;
 }
 
 
@@ -1125,6 +1147,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
+	result.escortSalary = escortSalary;
 	result.autosave = autosave;
 	result.location = location;
 	result.repeat = repeat;

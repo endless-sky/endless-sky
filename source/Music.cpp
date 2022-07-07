@@ -254,7 +254,7 @@ void Music::Decode()
 					break;
 
 				// We'll alternate what channel we read from each time through the loop.
-				bool channel = false;
+				int channel = 0;
 				for(unsigned i = 0; i < 2 * synth.pcm.length; ++i)
 				{
 					// Read the next sample from the next channel.

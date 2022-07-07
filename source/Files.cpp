@@ -21,12 +21,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#else
+#endif
+
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <utime.h>
-#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -483,9 +483,7 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	FILE *file = nullptr;
-	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
-	return file;
+	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif

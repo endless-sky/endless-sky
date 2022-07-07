@@ -181,9 +181,10 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+	const std::list<Mission> &AvailableEscorts() const;
 	const Mission *ActiveBoardingMission() const;
 	void UpdateMissionNPCs();
-	void AcceptJob(const Mission &mission, UI *ui);
+	void AcceptJob(const Mission &mission, UI *ui, bool acceptEscort = false);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
@@ -202,6 +203,8 @@ public:
 	void FailMission(const Mission &mission);
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
+	// Calculate escort cost and remove escorts that cant be payed.
+	int64_t escortCostsCalculate();
 
 	// Access the "condition" flags for this player.
 	int64_t GetCondition(const std::string &name) const;
@@ -338,6 +341,7 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
+	std::list<Mission> availableEscorts;
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;

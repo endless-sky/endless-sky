@@ -49,8 +49,8 @@ public:
 	// Copying a mission instance isn't allowed.
 	Mission(const Mission &) = delete;
 	Mission &operator=(const Mission &) = delete;
-	Mission(Mission &&) = default;
-	Mission &operator=(Mission &&) = default;
+	Mission(Mission &&) noexcept = default;
+	Mission &operator=(Mission &&) noexcept = default;
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
@@ -81,6 +81,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	// Check if this mission is a player escort. If yes it will be handled
+	// different than normal missions.
+	bool IsPlayerEscort() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
@@ -98,6 +101,7 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
+	int EscortSalary() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -212,6 +216,8 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
+	// Escort payment
+	int escortSalary = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toComplete;
