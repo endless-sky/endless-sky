@@ -83,9 +83,9 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 	// and the number of effects drawn is scaled accordingly.
 	if(hazard->SystemWide())
 	{
-		// Find the larger of the two screen dimensions, and use that as our new
-		// max range.
-		double newMax = 2. * max(Screen::Width(), Screen::Height());
+		// Find the farthest possible point from the screen center and use that as
+		// our new max range. Multiply by 2 to account for the max view zoom level.
+		double newMax = 2. * Screen::Dimensions().Length();
 		// Maintain the same density of effects by dividing the new area
 		// by the old. (The pis cancel out and therefore need not be taken
 		// into account.)
