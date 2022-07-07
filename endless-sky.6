@@ -1,0 +1,56 @@
+.TH endless\-sky 6 "15 Sep 2021" "ver. 0.9.15-alpha" "Endless Sky"
+
+.SH NAME
+endless\-sky \- a space exploration and combat game.
+
+.SH SYNOPSIS
+\fBendless\-sky\fR [\-h] [\-\-help] [\-v] [\-\-version] [\-s] [\-\-ships] [\-w] [\-\-weapons] [\-t] [\-\-talk] [\-r] [\-\-resources] [\-c] [\-\-config] [\-p] [\-\-parse\-save] [\-\-test]
+
+.SH DESCRIPTION
+\fBEndless Sky\fR is a space exploration and combat game combining action and role playing elements.
+
+Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own.
+
+For keyboard controls, click the "Preferences" button on the title screen. You can pause and return to the title screen at any point in the game by pressing <escape>.
+
+Most of the controls should be self\-explanatory. Your ship has no reverse thrusters, so as with a real spacecraft, the only way to slow down is to turn your ship around and accelerate in the opposite direction from your current heading. To assist with some tricky maneuvers, your ship has an autopilot which engages when you press 'L' to land or 'J' to enter hyperspace; the autopilot disengages if you press any of the movement keys. The autopilot will also automatically aim your ship if you are firing a weapon and have a target selected.
+
+For a manual and other information, visit https://endless\-sky.github.io
+
+When run from the command line, if a resource directory is not specified, the program will check to see if the current directory contains directories named "data" and "images" and files named "keys.txt" and "credits.txt"; if so it will read resources from the current directory. Otherwise it will use /usr/local/share/games/endless\-sky if it exists, or /usr/share/games/endless\-sky/ otherwise.
+
+.SH OPTIONS
+.IP \fB\-h,\ \-\-help
+prints a short help message.
+
+.IP \fB\-v,\ \-\-version
+prints the software version.
+
+.IP \fB\-s,\ \-\-ships
+prints (to STDOUT) a table showing primary characteristics of all ships in the game, to aid in balancing. This option prevents the game from launching.
+
+.IP \fB\-w,\ \-\-weapons
+prints (to STDOUT) a table of characteristics of all the available weapons. This option prevents the game from launching.
+
+.IP \fB\-t,\ \-\-talk
+reads a data file from STDIN and looks for a "conversation" node at the root level (i.e. not indentated). If it finds one, that conversation is displayed in a pop\-up dialog. This is for testing conversations in a new mission you are developing.
+
+.IP \fB\-r,\ \-\-resources\ <directory>
+sets the directory from which game resources (images, etc.) will be loaded.
+
+.IP \fB\-c,\ \-\-config\ <directory>
+sets the directory where preferences and saved games will be stored.
+
+.IP \fB\-p,\ \-\-parse\-save
+prints any content or whitespace\-formatting errors found while loading data files and the most recent saved game. This option prevents the game from launching.
+
+.IP \fB\-\-test\ <name>
+execute the test case with the given name
+
+.IP \fB\-\-tests
+prints (to STDOUT) a table of available tests, usable for automatic test runs. This option prevents the game from launching.
+
+.SH AUTHOR
+Michael Zahniser (mzahniser@gmail.com)
+
+This is free software; you can redistribute it and/or modify it under the terms of the GPL.

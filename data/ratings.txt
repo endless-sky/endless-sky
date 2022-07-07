@@ -1,0 +1,59 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+rating "combat"
+	"harmless"
+	"mostly harmless"
+	"not entirely helpless"
+	"borderline competent"
+	"almost dangerous"
+	"moderately intimidating"
+	"not to be trifled with"
+	"seasoned fighter"
+	"respected enemy"
+	"force to be reckoned with"
+	"fearsome scrapper"
+	"formidable adversary"
+	"dread warrior"
+	"veteran battle-lord"
+	"legendary foe"
+	"war-hungry lunatic"
+	"absurdly bloodthirsty"
+	"terror of the galaxy"
+	"inconceivably destructive"
+	"agent of mass extinction"
+	"genocidal maniac"
+	"destroyer of worlds"
+
+
+
+rating "cargo attractiveness"
+	"minimal"
+	"slim pickings"
+	"fair amount"
+	"profitable"
+	"quite valuable"
+	"abundant"
+	"bountiful"
+	"tons of plunder"
+	"copious wealth"
+	"untold riches"
+
+rating "armament deterrence"
+	"sitting duck"
+	"minimal weaponry"
+	"puny defenses"
+	"somewhat vulnerable"
+	"well-protected"
+	"reasonably dangerous"
+	"heavily armed"
+	"serious threat"
+	"deadly armament"
+	"unassailable"

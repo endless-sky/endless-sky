@@ -1,0 +1,19 @@
+#Example of an escort definition:
+#
+#mission "Escort"
+#	name "Escort"
+#	description "This Captain will Escort you for 200 credits per day."
+#	repeat
+#	job
+#	escortCost 200
+#	source
+#		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+#	to complete
+#		never
+#	npc accompany save
+#		government "Merchant"
+#		personality escort heroic
+#		fleet
+#			names "civilian"
+#			variant
+#				"Interceptor"

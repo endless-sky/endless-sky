@@ -1,0 +1,82 @@
+# Copyright (c) 2020 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+phrase "quarg"
+	word
+		"Quar"
+		"Mer"
+		"Ban"
+		"Koor"
+		"Plog"
+		"Flum"
+		"Krak"
+		"Grok"
+		"Merak"
+	word
+		"-"
+		"ala"
+		"gor"
+		"o"
+		"i"
+		"oni"
+		"lam"
+		"tim"
+		"ee"
+		"shee"
+	word
+		"lim"
+		"kor"
+		"far"
+		"mor"
+		"lup"
+		"plug"
+		"trum"
+		"ruk"
+		"rook"
+
+# From the "Southern Television broadcast interruption."
+phrase "hostile quarg"
+	word
+		"All your weapons of evil must be destroyed."
+		"You have only a short time to learn to live together in peace."
+		"You must live in peace... or leave the galaxy."
+
+fleet "Quarg"
+	government "Quarg"
+	names "quarg"
+	cargo 3
+	personality
+		forbearing opportunistic
+	variant
+		"Quarg Skylark"
+	variant
+		"Quarg Wardragon"
+
+fleet "Large Quarg"
+	government "Quarg"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 2
+		"Quarg Skylark" 2
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Wardragon" 2
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 2
+		"Quarg Wardragon" 2
+	variant
+		"Quarg Wardragon" 3
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 3
+		"Quarg Wardragon"
