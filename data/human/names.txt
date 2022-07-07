@@ -959,7 +959,7 @@ phrase "female names"
 		"Cassiopeia"
 
 # Only used in news items, not ship names yet.
-phrase "human family names"
+phrase "family names"
 	word
 		"Aaberg"
 		"Abbott"
