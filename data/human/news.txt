@@ -9,6 +9,19 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
+phrase "merchant names"
+	word
+		"Freelance"
+		"Merchant"
+		"Spacecraft"
+		"Spaceship"
+		"Starship"
+	word
+		" "
+	word
+		"captain"
+		"pilot"
+
 
 news "human merchant anywhere"
 	location
@@ -17,17 +30,8 @@ news "human merchant anywhere"
 			government "Quarg"
 			not attributes "human"
 	name
-		word
-			"Merchant"
-			"Starship"
-			"Spacecraft"
-			"Spaceship"
-			"Freelance"
-		word
-			" "
-		word
-			"pilot"
-			"captain"
+		phrase
+			"merchant names"
 	message
 		word
 			`"`
@@ -57,17 +61,8 @@ news "human merchant in human space"
 			government "Quarg"
 			not attributes "human"
 	name
-		word
-			"Merchant"
-			"Starship"
-			"Spacecraft"
-			"Spaceship"
-			"Freelance"
-		word
-			" "
-		word
-			"pilot"
-			"captain"
+		phrase
+			"merchant names"
 	message
 		word
 			`"`
@@ -185,7 +180,7 @@ news "human mining"
 			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
 			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
-			"I've heard that miners who work on Clink are thirteen orders of magnitude more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
+			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
 			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
 		word
 			`"`
@@ -261,7 +256,7 @@ news "grifter"
 			"I know a guy who can do plastic surgery real cheap. Not to imply that you need it, of course."
 			"A single spray of this nanotech perfume will make you irresistible to any prospective partners! Just don't use it when close to a dog. Or any other animal."
 			"Can I offer you a lucky playing card deck? You're guaranteed to get perfect hands in every game you play! What? No! It's not just a pile of 52 aces!"
-			"This laser razor never needs sharpening! Just remember to take some iodine before using it."
+			"This laser razor never needs sharpening! Achieve a smoking hot look every time!"
 		word
 			`"`
 
@@ -370,6 +365,7 @@ phrase "small trash item"
 		"cooling duct"
 		"radar jammer"
 		"fuel pod"
+
 
 news "waste collector"
 	location
@@ -1531,6 +1527,14 @@ news "human republic reporter in pirate space"
 			`"`
 
 
+
+phrase "culinary venue"
+	word
+		"pub"
+		"restaurant"
+		"cafe"
+
+
 phrase "restaurant names"
 	word
 		"The "
@@ -1556,7 +1560,7 @@ news "syndicate pa system"
 			"Attention: baggage should not be left unattended. Any unattended baggage will be auctioned within days."
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
-			"Dear traveler: we recommend you to have dinner in our local restaurant '${restaurant names}'. You will not be disappointed."
+			"Dear traveler: we recommend you to have dinner in our local ${culinary venue} '${restaurant names}'. You will not be disappointed."
 		word
 			`"`
 
@@ -1605,7 +1609,7 @@ news "tourist pa system"
 			"Dear travelers: the spaceport is a strictly no-smoking zone. Thank you for your consideration."
 			"Dear travelers: welcome to our planet. Please remember to synchronize your personal clocks to the local time and night/day cycle duration."
 			"Please stand clear of the doors when the shuttle train is departing."
-			"This is the final boarding call for passengers ${tourist names}, ${tourist names}, and ${tourist names} ${tourist names}. Please proceed to platform ${platform number} for immediate boarding."
+			"This is the final boarding call for passengers ${tourist names}, ${tourist names}, and ${tourist names} ${family names}. Please proceed to platform ${platform number} for immediate boarding."
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
@@ -1615,18 +1619,18 @@ news "tourist pa system"
 phrase "republic motto graffiti"
 	word
 		`` 2
-		`Underneath are the words "PEACE AMONG THE STARS".` 2
-		`Underneath are the words "DEATH AMONG THE STARS".`
-		`Underneath are the words "TYRANNY AMONG THE STARS".`
-		`Underneath are the words "POVERTY AMONG THE STARS".`
-		`Underneath are the words "PEACE AMONG THE PARADISE WORLDS".`
+		`Underneath are the words "PEACE AMONG THE STARS."` 2
+		`Underneath are the words "DEATH AMONG THE STARS."`
+		`Underneath are the words "TYRANNY AMONG THE STARS."`
+		`Underneath are the words "POVERTY AMONG THE STARS."`
+		`Underneath are the words "PEACE AMONG THE PARADISE WORLDS."`
 
 phrase "deep motto graffiti"
 	word
 		`` 2
-		`Underneath are the words "Peace, Prosperity, Progress".` 2
-		`Underneath are the words "Power, Poverty, Pride".`
-		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky".`
+		`Underneath are the words "Peace, Prosperity, Progress."` 2
+		`Underneath are the words "Power, Poverty, Pride."`
+		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
 
 news "graffiti on spaceport wall"
 	location
