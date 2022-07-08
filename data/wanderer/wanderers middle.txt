@@ -303,7 +303,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 	on offer
 		conversation
 			`You watch the work crews unload the cargo by uncrating the repulsor lifts in the hold. They then use them to move the crates of shelving and supplies into the prefabricated shell that stands on what was formerly an empty field. The spaceport tent has been moved and you can see a new line of stakes where the spaceport building itself will be.`
-			`	Clearly other supplies are coming in as well since you can see three Deep Rivers being unloaded and containers of equipment and construction materials being stacked in a massive yard near the outfitter building.`
+			`	Clearly other supplies are coming in as well; you can see three Deep Rivers being unloaded and containers of equipment and construction materials being stacked in a massive yard near the outfitter building.`
 			`	The construction supervisor is shouting into some kind of bull horn to one of the work crews, trying to be heard over the heavy equipment. When he notices you, he stops and flutter-walks over to you.`
 			`"Captain! It is [exciting, nerve-wracking] to see that the equipment is here. We have a [fleet, convoy] of freighters to be loaded with outfits at <stopovers>. If you can escort them, we will have everything we need to open at least a minimal outfitter."`
 			
