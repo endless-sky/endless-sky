@@ -21,8 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
+#else
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
