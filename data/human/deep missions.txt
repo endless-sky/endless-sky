@@ -3932,10 +3932,14 @@ mission "Homecoming to Skadenga"
 	on complete
 		payment 50000
 		event "hjlod waits" 360
+		conversation
+			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
+			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment> credits, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
 
 
 
 mission "Stones of Skadenga 1"
+	landing
 	name "Stones of Skadenga"
 	source "Nifel"
 	passengers 5
@@ -3943,11 +3947,6 @@ mission "Stones of Skadenga 1"
 	description "Return the Skadenga mourners to <destination>."
 	to offer
 		has "Homecoming to Skadenga: done"
-	on offer
-		conversation
-			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
-			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
-				accept
 	on complete
 		event "skadenga mourners" 90
 		dialog

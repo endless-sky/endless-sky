@@ -156,10 +156,15 @@ Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 Files:
  images/outfit/jump?drive?(broken)*
  images/outfit/plasma?repeater*
- images/scene/plasma?scene*
 Copyright: Darcy Manoel <Darcman00@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/scene/plasma?scene*
+Copyright: 1010todd <1010todd3d@gmail>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/land/enceladus_1*
