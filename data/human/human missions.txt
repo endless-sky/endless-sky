@@ -4118,8 +4118,8 @@ mission "Hai Wormhole Warning"
 			label what
 			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
 			label frigate
-			`	The man puts a hand on your shoulder and begins walking you toward the Frigate. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
-			`	You enter the Frigate with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area of the ship. "Please, have a seat," he says.`
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area of the ship. "Please, have a seat," he says.`
 			choice
 				`	(Take a seat.)`
 					goto seat
