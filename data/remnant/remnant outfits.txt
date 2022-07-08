@@ -280,7 +280,7 @@ outfit "EMP Torpedo Bay"
 
 
 outfit "Teciimach Canister"
-	plural "EMP Torpedoes"
+	plural "Teciimach Canisters"
 	category "Ammunition"
 	licenses
 		Remnant
@@ -292,6 +292,7 @@ outfit "Teciimach Canister"
 	description "Unlike the previous generation of 'EMP torpedoes', the Teciimach torpedoes synchronize themselves with their mothership in order to avoid impacting their allies."
 
 outfit "Teciimach Canister Rack"
+	plural "Teciimach Canister Racks"
 	category "Ammunition"
 	licenses
 		Remnant
@@ -306,6 +307,7 @@ outfit "Teciimach Canister Rack"
 	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
 
 outfit "Teciimach Bay"
+	plural "Teciimach Bays"
 	category "Secondary Weapons"
 	licenses
 		Remnant

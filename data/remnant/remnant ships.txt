@@ -234,8 +234,8 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Inhibitor Cannon" 5
 		"Teciimach Bay" 2
 		"Point Defense Turret" 3
-		"EMP Torpedo" 39
-		"EMP Torpedo Storage Bay" 3
+		"Teciimach Canister" 45
+		"Teciimach Canister Rack" 3
 
 		"Aeon Cell"
 		"Epoch Cell"
@@ -378,7 +378,7 @@ ship "Gull" "Gull (Support II)"
 		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"Teciimach Canister" 16
+		"Teciimach Canister" 18
 		"Teciimach Canister Rack"
 
 		"Epoch Cell"
@@ -1006,7 +1006,7 @@ ship "Peregrine" "Peregrine (II)"
 		"Teciimach Bay" 1
 		"Point Defense Turret"
 		"Thrasher Turret"
-		"EMP Torpedo" 9
+		"Teciimach Canister" 9
 		
 		"Aeon Cell"
 		"Crystal Capacitor" 2
