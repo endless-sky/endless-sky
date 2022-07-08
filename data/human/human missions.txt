@@ -4137,33 +4137,38 @@ mission "Hai Wormhole Warning"
 				`	"Perhaps. Why do you ask?"`
 					goto maybe
 				`	"Aliens? I don't know of any aliens up there."`
-			`	"Don't play coy with me, Captain. We are aware that you've made contact with the Hai.`
+			`	"Don't play coy with me, <last>. We are aware that you've made contact with the Hai.`
 				goto secret
 			label maybe
 			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' We are aware that you've made contact with the Hai.`
 				goto secret
 			label yes
-			`	"There is no problem, Captain, but we are aware that you've made contact with the Hai.`
+			`	"There is no problem, <last>, but we are aware that you've made contact with the Hai.`
 			label secret
-			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; we do not disallow captains such as yourself from stumbling upon them, but we do not allow this existence to be widely shared."`
+			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; we do not disallow captains such as yourself from stumbling upon them, but we will not allow this existence to be widely shared."`
 			choice
 				`	"Why are you telling me this?"`
 					goto why
+				`	"An arrangement between the Republic and Hai? When did that happen?"`
+					goto arrangement
 				`	"So you're threatening me to stay quiet?"`
 			`	"No threats, only a... warning, so to say.`
 				goto chaos
 			label why
 			`	"I'm telling you this as something of a... warning, so to say.`
+				goto chaos
+			label arrangement
+			`	"The details of the arrangement are none of your concern. All you need to know is that we provide a... warning, so to say, to those who know of the Hai that they keep them secret.`
 			label chaos
 			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for us and for the Hai, chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this as our little secret."`
 			choice
 				`	"Alright. I won't let anyone know."`
 					goto ok
 				`	"And if I don't?"`
-			`	The officer leans back in his chair. "As I said, I'm giving you a warning that things could end badly for you, so you may want to think twice about revealing such information. Now, if you'll please depart my ship so that I can be on my way."`
+			`	The officer leans back in his chair. "As I said, <last>, I'm giving you a warning that things could end badly for you. We are not the only ones who work hard to maintain this secrecy, so you may want to think twice about revealing such information. Now, if you'll please depart my ship so that I can be on my way."`
 				goto end
 			label ok
-			`	"That's good to hear," the officer responds. "Thank you for your cooperation. Now, if you'll please depart my ship so that I can be on my way."`
+			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
 			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
