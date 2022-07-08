@@ -1080,9 +1080,9 @@ outfit "Firestorm Turret"
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
 		"no repeat"
-		"frame rate" 12
-	"lifetime" 30
+		"frame rate" 7
+	"lifetime" 110
 	sound "firestorm hit"
 	"random angle" 360
-	"random velocity" 4
+	"random velocity" 3
 	"velocity scale" 0.1

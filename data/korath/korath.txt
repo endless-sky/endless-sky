@@ -386,12 +386,23 @@ fleet "Kor Efret Home"
 	cargo 3
 	personality
 		timid
+	variant 5
+		"Korath World-Ship (Efreti)"
 	variant 3
-		"Korath World-Ship"
+		"Korath Dredger (Efreti)"
 	variant 1
-		"Korath World-Ship B"
-	variant 2
-		"Korath World-Ship C"
+		"Korath Raider (Efreti)"
+
+
+fleet "Kor Efret Miners"
+	government "Kor Efret"
+	names "korath"
+	fighters "korath"
+	cargo 0
+	personality
+		timid disables plunders frugal mining harvests
+	variant
+		"Korath Raider (Efreti)"
 
 
 fleet "Small Kor Sestor"
