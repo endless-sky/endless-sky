@@ -378,7 +378,7 @@ ship "Gull" "Gull (Support II)"
 		"Teciimach Bay"
 		"Inhibitor Cannon" 2
 		"Point Defense Turret"
-		"Teciimach Canister" 16
+		"Teciimach Canister" 18
 		"Teciimach Canister Rack"
 
 		"Epoch Cell"
