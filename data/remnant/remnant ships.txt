@@ -1077,8 +1077,8 @@ ship "Smew"
 		
 		"Anvil-Class Engine"
 
-	gun 0 -47.5
 	engine 0 48.5
+	gun 0 -47.5
 	leak "remnant leak sparkle" 22 3
 	explode "tiny explosion" 35
 	explode "small explosion" 24
