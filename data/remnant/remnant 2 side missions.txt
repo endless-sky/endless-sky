@@ -188,7 +188,7 @@ mission "Remnant: Teciimach Deployment"
 		fleet
 			names "remnant"
 			variant
-				"Merganser II" 3
+				"Merganser (II)" 3
 	npc
 		government "Remnant"
 		personality staying uninterested disables plunders
