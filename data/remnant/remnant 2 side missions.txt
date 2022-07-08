@@ -151,6 +151,7 @@ mission "Remnant: Teciimach Deployment"
 	name "Watch the new EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
 	landing
+	invisible
 	minor
 	source
 		attributes "has shipyard" remnant
@@ -195,7 +196,7 @@ mission "Remnant: Teciimach Deployment"
 		fleet "Small Remnant"
 	npc evade
 		government "Korath"
-		personality heroic plunders harvests target
+		personality heroic plunders harvests staying
 		fleet "Korath Ember Waste Raid"
 	on complete
 		dialog
