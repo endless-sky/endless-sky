@@ -4165,5 +4165,5 @@ mission "Hai Wormhole Warning"
 			label ok
 			`	"That's good to hear," the officer responds. "Thank you for your cooperation. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
-			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate taking off, without having seen any crew board the ship.`
+			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
