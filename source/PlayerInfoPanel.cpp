@@ -275,7 +275,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		Scroll((LINES_PER_PAGE - 2) * direction);
 	}
 	else if(key == SDLK_HOME)
-		Scroll(-player.Ships().size());
+		Scroll(-static_cast<int>(player.Ships().size()));
 	else if(key == SDLK_END)
 		Scroll(player.Ships().size());
 	else if(key == SDLK_UP || key == SDLK_DOWN)
