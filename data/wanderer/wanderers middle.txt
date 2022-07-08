@@ -369,7 +369,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 5"
 					accept
 				`	"It's too dangerous to transport Wanderer dignitaries here."`
 					decline
-			`	"You are much like us," she says. "You carry seeds from place to place and some take root and grow and over thousands of years transform worlds.`
+			`	"You are [much like, similar to] us," she says. "You carry seeds from place to place and some take root and grow and over thousands of years transform worlds.`
 			`	You just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to to <stopovers>.`
 
 	on decline
