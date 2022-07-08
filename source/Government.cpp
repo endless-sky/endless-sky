@@ -61,7 +61,17 @@ void Government::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "display name" && child.Size() >= 2)
+		bool add = child.Token(0) == "add";
+		if(child.Token(0) == "clear")
+		{
+			if(child.Token(1) == "illegals")
+				illegals.clear();
+			else if(child.Token(1) == "atrocities")
+				atrocities.clear();
+			else
+				child.PrintTrace("Unrecognized clear of government attributes:");
+		}
+		else if(child.Token(0) == "display name" && child.Size() >= 2)
 			displayName = child.Token(1);
 		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
 			swizzle = child.Value(1);
@@ -115,17 +125,44 @@ void Government::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
-		else if(child.Token(0) == "illegal")
+		else if(child.Token(0) == "illegal" || add && child.Token(0) == "illegal")
 		{
+			if(!add)
+				illegals.clear();
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
+				{
+					if(grand.Token(0) == "remove" || grand.Token(0) == "ignore")
+					{
+						const Outfit *outfit = GameData::Outfits().Get(grand.Token(1));
+						const auto &illegal = illegals.find(outfit);
+						if(illegal != illegals.end())
+							illegal->second = -1;
+						else
+							illegals.emplace(outfit, -1);
+					}
+					else
 						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
+				}
 		}
-		else if(child.Token(0) == "atrocities")
+		else if(child.Token(0) == "atrocities" || add && child.Token(1) == "illegal")
 		{
+			if(!add)
+				atrocities.clear();
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 1)
-						atrocities.emplace(GameData::Outfits().Get(grand.Token(0)));
+			{
+				if(grand.Size() >= 2 && (grand.Token(0) == "remove" || grand.Token(0) == "ignore"))
+				{
+					const Outfit *outfit = GameData::Outfits().Get(grand.Token(1));
+					const auto &atrocity = atrocities.find(outfit);
+					if(atrocity != atrocities.end())
+						atrocity->second = false;
+					else
+						atrocities.emplace(outfit, false);
+				}
+				else
+					atrocities.emplace(GameData::Outfits().Get(grand.Token(0)), true);
+			}
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);
@@ -374,17 +411,24 @@ string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double
 
 bool Government::Condemns(const Outfit *outfit) const
 {
-	return atrocities.find(outfit) != atrocities.cend();
+	const auto isAtrocity = atrocities.find(outfit);
+	bool found = isAtrocity != atrocities.cend();
+	return (found && isAtrocity->second) || (!found && outfit->Get("atrocity") > 0.);
 }
 
 
 
 int Government::Fines(const Outfit *outfit) const
 {
+	// If this government doesn't fine anything it won't fine this outfit.
+	if(!fine)
+		return 0;
+
 	for(const auto& it : illegals)
 		if(it.first == outfit)
-			return it.second;
-	return -1;
+			// If it is negative it means we ignore any global fines on the outfit.
+			return it.second <= 0 ? 0 : outfit->Get("illegal");
+	return 0;
 }
 
 

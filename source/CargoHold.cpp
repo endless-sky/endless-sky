@@ -573,11 +573,10 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 		if(!it.second)
 			continue;
 
-		int govFine = government->Fines(it.first);
-		int fine = govFine >= 0 ? govFine : it.first->Get("illegal");
+		int fine = government->Fines(it.first);
 		if(government->Condemns(it.first))
 			return -1;
-		if(fine > 0)
+		if(fine < 0)
 			return fine;
 		totalFine = max(totalFine, fine / 2);
 	}
