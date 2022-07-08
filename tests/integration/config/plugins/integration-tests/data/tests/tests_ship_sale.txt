@@ -36,7 +36,7 @@ test "Sell 1 ship"
 				"ships: Medium Warship" == 1
 				"flagship model: Finch" == 1
 				"flagship model: Bactrian" == 0
-		
+
 
 test "Sell 2 ships"
 	status active
