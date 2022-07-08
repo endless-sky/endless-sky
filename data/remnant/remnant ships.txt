@@ -1045,17 +1045,17 @@ ship "Smew"
 		"cost" 1641000
 		"shields" 1200
 		"hull" 2800
-		"cargo space" 90
-		"fuel capacity" 100
-		"ramscoop" 0.8
 		"required crew" 1
 		"bunks" 9
 		"mass" 60
 		"drag" 1.75
 		"heat dissipation" .65
+		"fuel capacity" 100
+		"cargo space" 90
 		"outfit space" 92
 		"weapon capacity" 10
 		"engine capacity" 46
+		"ramscoop" 0.8
 		"shield generation" 0.48
 		"shield energy" 0.32
 		"hull repair rate" 0.9
