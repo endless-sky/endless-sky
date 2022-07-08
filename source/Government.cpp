@@ -125,7 +125,7 @@ void Government::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
-		else if(child.Token(0) == "illegal" || add && child.Token(0) == "illegal")
+		else if(child.Token(0) == "illegal" || (add && child.Token(0) == "illegal"))
 		{
 			if(!add)
 				illegals.clear();
@@ -145,7 +145,7 @@ void Government::Load(const DataNode &node)
 						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
 				}
 		}
-		else if(child.Token(0) == "atrocities" || add && child.Token(1) == "illegal")
+		else if(child.Token(0) == "atrocities" || (add && child.Token(1) == "illegal"))
 		{
 			if(!add)
 				atrocities.clear();
