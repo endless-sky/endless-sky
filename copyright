@@ -1529,8 +1529,9 @@ Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 
-Files: images/thumbnail/smew
-Files: images/ship/smew
+Files:
+ images/thumbnail/smew*
+ images/ship/smew*
 Copyright: Dschiltt
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by MZ (under the same license), and contributions by Zoura, Kitteh, Ejo Thims, and Saugia.
