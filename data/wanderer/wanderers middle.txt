@@ -223,7 +223,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3a"
 		event "wanderers: spera anatrusk colony" 30
 
 	on complete
-		dialog "A team of workers unload the <cargo> while the foreman checks the manifest before handing you a credit chip for <payment>. He tells you to [attend, meet] the construction supervisor once all the jobs are complete."
+		dialog "A team of workers unload the <cargo> while the foreman checks the manifest before handing you a credit chip for <payment>. He tells you to meet the construction supervisor once all the jobs are complete."
 		payment 200000 2
 
 mission "Wanderers: Spera Anatrusk Outfitter 3b"
