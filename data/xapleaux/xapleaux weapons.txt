@@ -81,7 +81,7 @@ outfit "Terpenoid Trajectile Launcher"
 		"hull damage" 220
 		"hit force" 5
 		"missile strength" 18
-	description "The Terpenoid Trajectile was developed after brief exposure to the Korath Disruptor before it all fell apart and they stopped bothering to raid Xapleaux space. The secrets of how the disruptor work were never understood, but under the right circumstances fuel mixed with certain volatiles can be stimulated to produce a similar effect. Once assembled and fired the concoction will naturally decay explosively after a period of time."
+	description "The Terpenoid Trajectile was developed after brief exposure to the Korath Disruptor before the Korath stopped bothering to raid Xapleaux space. The secrets of how the disruptor worked were never understood, but under the right circumstances fuel mixed with certain volatiles can be stimulated to produce a similar effect. Once assembled and fired the concoction will naturally decay explosively after a period of time."
 	description "	Although not a powerful missile, it is very fast and very hard to dodge, and capable of rendering the shields of an enemy vessel thoroughly obsolete under repeated bombardment. The explosive cocktail it carries is not particularly damaging to shields, despite its disruptive effect, but is quite destructive against most hull materials."
 
 
