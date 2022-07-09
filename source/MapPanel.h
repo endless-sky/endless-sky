@@ -86,11 +86,11 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	static double MinColor();
-	static double MaxColor();
+	double MinColor() const;
+	double MaxColor() const;
 
 	// Get the color mapping for various system attributes.
-	static Color MapColor(double value);
+	Color MapColor(double value) const;
 	static Color CommodityColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
@@ -175,8 +175,8 @@ private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
 	// Minimum and maximum color ranges used by mapColor.
-	static double minColor;
-	static double maxColor;
+	double minColor = 1.;
+	double maxColor = 1.;
 
 	class Node {
 	public:

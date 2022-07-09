@@ -143,8 +143,6 @@ const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
-double MapPanel::minColor = 1.;
-double MapPanel::maxColor = 1.;
 
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
@@ -540,21 +538,21 @@ bool MapPanel::Scroll(double dx, double dy)
 
 
 
-double MapPanel::MinColor()
+double MapPanel::MinColor() const
 {
 	return minColor;
 }
 
 
 
-double MapPanel::MaxColor()
+double MapPanel::MaxColor() const
 {
 	return maxColor;
 }
 
 
 
-Color MapPanel::MapColor(double value)
+Color MapPanel::MapColor(double value) const
 {
 	if(std::isnan(value))
 		return UninhabitedColor();
