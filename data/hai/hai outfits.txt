@@ -150,18 +150,19 @@ outfit "Ionic Blaster Prototype"
 			"frame rate" 5
 		sound "ion"
 		"hit effect" "ion impact" 2
-		"inaccuracy" 1
-		"velocity" 16
-		"lifetime" 45
+		"inaccuracy" 4
+		"velocity" 18
+		"lifetime" 40
 		"reload" 50
-		"firing energy" 155
+		"firing energy" 165
 		"firing force" 20
-		"firing heat" 220
-		"hit force" 60
-		"shield damage" 155
+		"firing heat" 225
+		"hit force" 120
+		"shield damage" 150
 		"hull damage" 45
-		"ion damage" 2.5
-	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
+		"ion damage" 1.5
+	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations."
+	description "The main focus they had in mind when developping the weapon was making sure they could fill shield beetles with them, unlike the bigger ion cannon. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -179,19 +180,19 @@ outfit "Ionic Turret Prototype"
 		"hardpoint offset" 16.
 		sound "ion"
 		"hit effect" "ion impact" 2
-		"inaccuracy" 1
-		"turret turn" 2.6
-		"velocity" 16
-		"lifetime" 45
-		"reload" 25
-		"firing energy" 155
-		"firing force" 20
-		"firing heat" 220
+		"inaccuracy" 2
+		"turret turn" 2.5
+		"velocity" 12
+		"lifetime" 50
+		"reload" 30
+		"firing energy" 200
+		"firing force" 10
+		"firing heat" 180
 		"hit force" 60
-		"shield damage" 155
+		"shield damage" 100
 		"hull damage" 45
-		"ion damage" 2.5
-	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own."
+		"ion damage" 3
+	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own. However, they refined the ion in the shots to be more coherent and thus apply more disruption, at the cost of damage. This weapon quickly disables any small ships that lack power generation."
 
 
 outfit "Railgun Slug"
