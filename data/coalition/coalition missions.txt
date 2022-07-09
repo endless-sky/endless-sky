@@ -2940,7 +2940,9 @@ mission "Coalition: Long Lost Property 2"
 	to complete
 		never
 	to fail
-		has "Coalition: Long Lost Property 3: active"
+		or
+			has "Coalition: Long Lost Property 3: active"
+			has "Coalition: Long Lost Property 3: done"
 
 mission "Coalition: Long Lost Property 3"
 	landing
