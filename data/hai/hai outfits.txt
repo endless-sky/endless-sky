@@ -132,7 +132,7 @@ effect "ion impact"
 
 outfit "True Unfettered License"
 	category "Special"
-	thumbnail "outfit/true unfettered license"
+	thumbnail "outfit/true unfettered license" #missing currently!
 	"capture attack" 10
 	"capture defense" 10
 	description "This sword may be bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
@@ -738,14 +738,6 @@ outfit "Pulse Rifle"
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
 
-outfit "Dual Pulse Pistols"
-	category "Hand to Hand"
-	cost 77777
-	thumbnail "outfit/dual pulse pistols"
-	"capture attack" 2.0
-	"capture defense" 1.4
-	"unplunderable" 1
-	description "A pair of modified heavy pulse pistols favored by some Unfettered and the occasional pirate captain. Dual wielding them adds another gun during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
 outfit "Shield Beetle Pendant"
 	category "Special"
