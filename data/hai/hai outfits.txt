@@ -56,6 +56,31 @@ outfit "Pulse Turret"
 		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
+outfit "Tripulse Shredder"
+	category "Guns"
+	cost 130000
+	thumbnail "outfit/tripulse shredder"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"gun ports" -1
+	weapon
+		sprite "projectile/pulse"
+		sound "pulse"
+		"hit effect" "pulse impact"
+		"inaccuracy" 5
+		"velocity" 15
+		"lifetime" 30
+		"reload" 6
+		"burst count" 36
+		"burst reload" 4
+		"cluster"
+		"firing energy" 25
+		"firing heat" 60
+		"shield damage" 45
+		"hull damage" 34
+	description "An early stage in the development of better and faster weaponry to rival that of the Wanderers, the Tripulse Shredder is still essentially just three Pulse Cannons in one single larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power, but the quicker firing speed still generates much more total heat in the same time. Additionally, the single shared housing results in a much less stable firing pattern."
+
 effect "pulse impact"
 	sprite "effect/pulse impact"
 		"no repeat"
@@ -103,6 +128,70 @@ effect "ion impact"
 	"random spin" 30
 	"random velocity" 2
 	"velocity scale" -.05
+
+
+outfit "True Unfettered License"
+	category "Special"
+	thumbnail "outfit/true unfettered license"
+	"capture attack" 10
+	"capture defense" 10
+	description "This sword may be bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
+
+outfit "Ionic Blaster Prototype"
+	category "Guns"
+	cost 530000
+	thumbnail "outfit/hai ionic blaster"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion bolt"
+			"frame rate" 5
+		sound "ion"
+		"hit effect" "ion impact" 2
+		"inaccuracy" 1
+		"velocity" 16
+		"lifetime" 45
+		"reload" 50
+		"firing energy" 155
+		"firing force" 20
+		"firing heat" 220
+		"hit force" 60
+		"shield damage" 155
+		"hull damage" 45
+		"ion damage" 2.5
+	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
+
+outfit "Ionic Turret Prototype"
+	category "Turrets"
+	cost 1260000
+	thumbnail "outfit/hai ionic turret"
+	"mass" 49
+	"outfit space" -49
+	"weapon capacity" -49
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/ion bolt"
+			"frame rate" 5
+		"hardpoint sprite" "hardpoint/hai ionic turret"
+		"hardpoint offset" 16.
+		sound "ion"
+		"hit effect" "ion impact" 2
+		"inaccuracy" 1
+		"turret turn" 2.6
+		"velocity" 16
+		"lifetime" 45
+		"reload" 25
+		"firing energy" 155
+		"firing force" 20
+		"firing heat" 220
+		"hit force" 60
+		"shield damage" 155
+		"hull damage" 45
+		"ion damage" 2.5
+	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own."
 
 
 outfit "Railgun Slug"
@@ -345,6 +434,14 @@ outfit "Hai Williwaw Cooling"
 	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
+outfit "Hai Zephyr Cooling"
+	category "Systems"
+	cost 38000
+	thumbnail "outfit/hai zephyr"
+	"mass" 14
+	"outfit space" -14
+	"cooling" 21
+	description `This advanced cooling system was developed by the Unfettered with significant help from Korath scientists, who apparently laughed at the "primitive" old design the Hai had developed, and which they had found sufficient until then.`
 
 outfit "Quantum Keystone"
 	category "Systems"
@@ -355,6 +452,16 @@ outfit "Quantum Keystone"
 	"quantum keystone" 1
 	description "This chunk of rock from the mountains on the Hai homeworld is apparently nothing more than a good luck charm, but the Hai have decorated their ships with them since the height of their empire. More superstitious Hai claim that the stones somehow reduce the nausea induced by hyperspace jumps by making travel between star systems easier, and many wealthy Hai refuse to book passage on a ship without one."
 
+outfit "Value Detector"
+	category "Systems"
+	cost 260000
+	thumbnail "outfit/value detector"
+	"mass" 3
+	"outfit space" -3
+	"cargo scan power" 33
+	"cargo scan speed" 4
+	"tactical scan power" 15
+	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often try new technologies on their victims in order to test their effectiveness."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
@@ -631,6 +738,14 @@ outfit "Pulse Rifle"
 	"unplunderable" 1
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
 
+outfit "Dual Pulse Pistols"
+	category "Hand to Hand"
+	cost 77777
+	thumbnail "outfit/dual pulse pistols"
+	"capture attack" 2.0
+	"capture defense" 1.4
+	"unplunderable" 1
+	description "A pair of modified heavy pulse pistols favored by some Unfettered and the occasional pirate captain. Dual wielding them adds another gun during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
 outfit "Shield Beetle Pendant"
 	category "Special"

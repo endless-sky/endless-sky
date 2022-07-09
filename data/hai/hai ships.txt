@@ -411,6 +411,82 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 
+ship "Sea Scorpion"
+	sprite "ship/hai sea scorpion"
+	thumbnail "thumbnail/hai sea scorpion"
+	attributes
+		category "Medium Warship"
+		"cost" 2950000
+		"shields" 11300
+		"hull" 4300
+		"required crew" 14
+		"bunks" 36
+		"mass" 360
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 50
+		"outfit space" 510
+		"weapon capacity" 168
+		"engine capacity" 104
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Hai Tracker Pod" 4
+		"Chameleon Anti-Missile" 2
+		"Tracker Storage Pod" 4
+		"Hai Tracker" 392
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
+	engine -28.5 68.5
+	engine 28.5 68.5
+	"steering engine" 64.5 23.5
+		zoom 0.8
+		angle -90
+		left
+	"steering engine" -64.5 23.5
+		zoom 0.8
+		angle 90
+		right
+	gun -13 -77.5
+	gun 13 -77.5
+	gun -27 -56
+	gun 27 -56
+	turret -35.5 24.5
+	turret 35.5 24.5
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "Most of the ships the Unfettered had when they splintered from the rest of the Hai weren't usable as missile boats, so they had to rely heavily on pulse weapons instead. Only after several decades of hard work on a unique design were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price and high number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
+
+ship "Sea Scorpion" "Sea Scorpion (Pulse)"
+	outfits
+		"Pulse Cannon" 4
+		"Pulse Turret" 2
+		"Boulder Reactor"
+		"Hai Williwaw Cooling" 2
+		"Hai Ravine Batteries"
+		"Supercapacitor" 5
+		"Hai Diamond Regenerator" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 15
+
 
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
@@ -734,6 +810,67 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
+ship "Shield Beetle Prototype"
+	sprite "ship/hai shield beetle prototype"
+	thumbnail "thumbnail/hai shield beetle prototype"
+	attributes
+		category "Heavy Warship"
+		"cost" 25400000
+		"shields" 40600
+		"hull" 10600
+		"required crew" 59
+		"bunks" 78
+		"mass" 720
+		"drag" 9.1
+		"heat dissipation" .35
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 849
+		"weapon capacity" 354
+		"engine capacity" 140
+		weapon
+			"blast radius" 500
+			"shield damage" 4500
+			"hull damage" 2200
+			"hit force" 3600
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Ionic Turret Prototype" 2
+		"Chameleon Anti-Missile"
+		"Boulder Reactor" 2
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator" 3
+		"Hai Zephyr Cooling" 3
+		"Outfits Expansion" 2
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+		"Quantum Keystone"
+	engine -45 123
+	engine 45 123
+	gun -22 -103
+	gun 22 -103
+	gun -34.5 -68 "Hai Tracker Pod"
+	gun 34.5 -68 "Hai Tracker Pod"
+	gun -48 -53.5
+	gun 48 -53.5
+	gun -61.5 -23 "Hai Tracker Pod"
+	gun 61.5 -23 "Hai Tracker Pod"
+	turret 0 5 "Chameleon Anti-Missile"
+	turret -55.5 74.5
+	turret 55.5 74.5
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "This is a prototype build by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, at the cost of stability and heat."
 
 
 ship "Solifuge"
@@ -742,7 +879,7 @@ ship "Solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"Unfettered Militia"
+			"True Unfettered"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
