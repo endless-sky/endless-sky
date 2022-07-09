@@ -466,8 +466,6 @@ Files:
  images/scene/penguinscene*
  images/ship/dredger*
  images/ship/hai?sea?scorpion*
- images/ship/hai?marauder?shield?beetle*
- images/ship/hai?shield?beetle?prototype*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -1079,11 +1077,6 @@ Files:
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
-
-Files:
- images/outfit/gold bars*
-Copyright: Red-57 (github.com/Red-57)
-License: CC-BY-SA-4.0
 
 Files:
  image/effect/firestorm?ring*
