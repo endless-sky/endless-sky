@@ -154,9 +154,9 @@ outfit "Ionic Blaster Prototype"
 		"velocity" 18
 		"lifetime" 40
 		"reload" 50
-		"firing energy" 165
+		"firing energy" 170
 		"firing force" 20
-		"firing heat" 225
+		"firing heat" 220
 		"hit force" 120
 		"shield damage" 150
 		"hull damage" 45
@@ -189,9 +189,9 @@ outfit "Ionic Turret Prototype"
 		"firing force" 10
 		"firing heat" 180
 		"hit force" 60
-		"shield damage" 100
+		"shield damage" 80
 		"hull damage" 45
-		"ion damage" 3
+		"ion damage" 4
 	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own. However, they refined the ion in the shots to be more coherent and thus apply more disruption, at the cost of damage. This weapon quickly disables any small ships that lack power generation."
 
 
