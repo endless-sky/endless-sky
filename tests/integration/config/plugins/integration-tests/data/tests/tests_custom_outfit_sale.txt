@@ -71,7 +71,7 @@ test-data "Custom Sale Price"
 					"Pulse Cannon" 500
 				offset
 					"Pulse Cannon" 1 %
-				
+
 			planet Mars
 				add outfitter "Nuke"
 # we need to add an outfitter for the outfitter panel to be available
@@ -165,7 +165,7 @@ test-data "Custom Sale Import"
 				location "Mars"
 
 				"Pulse Cannon"
-			
+
 			planet Mars
 				add outfitter "Nuke"
 
@@ -258,7 +258,7 @@ test-data "Custom Sale Hidden"
 
 				"Pulse Cannon" 1000
 				"Energy Blaster" 5000
-			
+
 			planet Mars
 				add outfitter "Nuke"
 
@@ -355,7 +355,7 @@ test-data "Custom Sale Conditions"
 				location "Mars"
 
 				"Pulse Cannon" 1
-			
+
 			planet Mars
 				add outfitter "Nuke"
 
@@ -450,7 +450,7 @@ test-data "Custom Sale Conditions not applied"
 				location "Mars"
 
 				"Pulse Cannon" 1
-			
+
 			planet Mars
 				add outfitter "Nuke"
 
@@ -541,7 +541,7 @@ test-data "Custom Sale Outfitter Price"
 				location "Mars"
 
 				"Hai Basics" 2
-			
+
 			planet Mars
 				add outfitter "Nuke"
 
@@ -633,10 +633,10 @@ test-data "Custom Sale Price Priorities 0"
 				location "Mars"
 
 				"Hai Basics" 2
-			
+
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
-				
+
 				"Pulse Cannon" 1000
 
 			planet Mars
@@ -728,9 +728,9 @@ test-data "Custom Sale Price Priorities 1"
 		changes
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
-				
+
 				"Pulse Cannon" 1000
-			
+
 			pricing outfits "importing pulses"
 				import
 				location "Mars"
@@ -829,9 +829,9 @@ test-data "Custom Sale Price Priorities 2"
 		changes
 			pricing outfits "1000 pulse cannon"
 				location "Mars"
-				
+
 				"Pulse Cannon" 1000
-			
+
 			pricing outfits "importing pulses"
 				location "Mars"
 
