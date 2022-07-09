@@ -3411,7 +3411,7 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 	sprite "ship/hai marauder shield beetle"
 	thumbnail "thumbnail/hai marauder shield beetle"
 	add attributes
-		"hull" 5200
+		"hull" 1000
 		"spinal mount" 1
 		"cloak" .01
 		"cloaking energy" 10

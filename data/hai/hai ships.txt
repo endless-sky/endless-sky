@@ -816,8 +816,8 @@ ship "Shield Beetle Prototype"
 	attributes
 		category "Heavy Warship"
 		"cost" 25400000
-		"shields" 40600
-		"hull" 10600
+		"shields" 40000
+		"hull" 10000
 		"required crew" 59
 		"bunks" 78
 		"mass" 720
