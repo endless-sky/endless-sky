@@ -1591,9 +1591,9 @@ void PlayerInfo::UpdateMissionNPCs()
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission, UI *ui, bool acceptEscort)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui, bool isEscortJob)
 {
-	if(!acceptEscort)
+	if(!isEscortJob)
 	{
 		for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 			if(&*it == &mission)
