@@ -52,13 +52,16 @@ namespace {
 		static const size_t BUF_SIZE = 24;
 		char buf[BUF_SIZE];
 
-		const tm *date = localtime(&timestamp);
 #ifdef _WIN32
+		tm date;
+		localtime_s(&date, &timestamp);
 		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
+		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
 #else
+		const tm *date = localtime(&timestamp);
 		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-#endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+#endif
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -213,11 +216,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
-	else if(key == 'D' && !selectedPilot.empty())
+	else if(key == 'd' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
-				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)"));
+			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
+				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
+				+ "Confirm the name of the pilot you want to delete.",
+				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
@@ -421,7 +426,7 @@ void LoadPanel::UpdateLists()
 		sort(it.second.begin(), it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
-				return a.second > b.second;
+				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
 		);
 
@@ -496,8 +501,7 @@ void LoadPanel::LoadCallback()
 
 	player.Load(loadedInfo.Path());
 
-	GetUI()->Pop(this);
-	GetUI()->Pop(GetUI()->Root().get());
+	GetUI()->PopThrough(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));
 	// It takes one step to figure out the planet panel should be created, and
 	// another step to actually place it. So, take two steps to avoid a flicker.
@@ -507,7 +511,7 @@ void LoadPanel::LoadCallback()
 
 
 
-void LoadPanel::DeletePilot()
+void LoadPanel::DeletePilot(const string &)
 {
 	loadedInfo.Clear();
 	if(selectedPilot == player.Identifier())

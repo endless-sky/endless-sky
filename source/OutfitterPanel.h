@@ -45,6 +45,7 @@ public:
 
 protected:
 	virtual int TileSize() const override;
+	virtual int VisiblityCheckboxesSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
@@ -60,14 +61,16 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
+	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
+
+
 
 
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
-	bool HasMapped(int mapSize) const;
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
 	std::string LicenseName(const std::string &name) const;
@@ -80,12 +83,12 @@ private:
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown. If turned
-	// off, only outfits in the currently selected ships are shown.
+	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
-	// Remember what ships are selected if the player switches to cargo.
-	Ship *previousShip = nullptr;
-	std::set<Ship *> previousShips;
+	// Allow toggling whether stored outfits are shown.
+	bool showStorage = true;
+	// Allow toggling whether outfits in cargo are shown.
+	bool showCargo = true;
 
 	Sale<Outfit> outfitter;
 

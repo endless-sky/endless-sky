@@ -45,6 +45,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 
 #include <cassert>
+#include <future>
 #include <stdexcept>
 #include <string>
 
@@ -86,7 +87,6 @@ int main(int argc, char *argv[])
 	bool printWeapons = false;
 	string testToRunName = "";
 
-	Files::Init(argv);
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -115,17 +115,17 @@ int main(int argc, char *argv[])
 		else if(arg == "-w" || arg == "--weapons")
 			printWeapons = true;
 	}
+	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons;
-		GameData::BeginLoad(isConsoleOnly, debugMode);
+		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now. (Sprites and sounds can safely be deferred.)
 		if(isConsoleOnly || !testToRunName.empty())
-			while(!GameData::IsDataLoaded())
-				this_thread::yield();
+			dataLoading.wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
@@ -218,9 +218,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, gamePanels, dataFinishedLoading));
-	if(!conversation.IsEmpty())
-		menuPanels.Push(new ConversationPanel(player, conversation));
+	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;
@@ -228,6 +226,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	FrameTimer timer(frameRate);
 	bool isPaused = false;
 	bool isFastForward = false;
+	int testDebugUIDelay = 3 * 60;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
 	int skipFrame = 0;
@@ -327,15 +326,19 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// When flying around, all test processing must be handled in the
 			// thread-safe section of Engine. When not flying around (and when no
 			// Engine exists), then it is safe to execute the tests from here.
-			auto mainPanel = gamePanels.Root().get();
+			auto mainPanel = gamePanels.Root();
 			if(!isPaused && inFlight && menuPanels.IsEmpty() && mainPanel)
 				mainPanel->SetTestContext(testContext);
+			else if(debugMode && testDebugUIDelay > 0)
+				--testDebugUIDelay;
 			else
 			{
 				// The command will be ignored, since we only support commands
 				// from within the engine at the moment.
 				Command ignored;
 				runningTest->Step(testContext, player, ignored);
+				// Reset the visual delay.
+				testDebugUIDelay = 3 * 60;
 			}
 			// Skip drawing 29 out of every 30 in-flight frames during testing to speedup testing (unless debug mode is set).
 			// We don't skip UI-frames to ensure we test the UI code more.
@@ -633,11 +636,26 @@ void InitConsole()
 		return;
 
 	// Perform console redirection.
-	if(redirectStdout && freopen("CONOUT$", "w", stdout))
-		setvbuf(stdout, nullptr, _IOFBF, 4096);
-	if(redirectStderr && freopen("CONOUT$", "w", stderr))
-		setvbuf(stderr, nullptr, _IOLBF, 1024);
-	if(redirectStdin && freopen("CONIN$", "r", stdin))
-		setvbuf(stdin, nullptr, _IONBF, 0);
+	if(redirectStdout)
+	{
+		FILE *fstdout = nullptr;
+		freopen_s(&fstdout, "CONOUT$", "w", stdout);
+		if(fstdout)
+			setvbuf(stdout, nullptr, _IOFBF, 4096);
+	}
+	if(redirectStderr)
+	{
+		FILE *fstderr = nullptr;
+		freopen_s(&fstderr, "CONOUT$", "w", stderr);
+		if(fstderr)
+			setvbuf(stderr, nullptr, _IOLBF, 1024);
+	}
+	if(redirectStdin)
+	{
+		FILE *fstdin = nullptr;
+		freopen_s(&fstdin, "CONIN$", "r", stdin);
+		if(fstdin)
+			setvbuf(stdin, nullptr, _IONBF, 0);
+	}
 }
 #endif

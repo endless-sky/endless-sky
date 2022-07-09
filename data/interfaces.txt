@@ -17,7 +17,13 @@ color "inactive" .25 .25 .25 0.
 color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
+color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
+
+# Colors used for drawing ship list in player info panel.
+color "flagship" .5 .5 .1 0.
+color "disabled" .5 .3 .1 0.
+color "dead" .4 0. 0. 0.
 
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
@@ -126,8 +132,13 @@ interface "menu background"
 
 
 interface "main menu"
+	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
+	box "credits"
+		from -470 -165
+		to -250 115
+
 	sprite "_menu/side panel"
 		center 360 0
 	
@@ -301,7 +312,7 @@ interface "load menu"
 		center -420 155
 		dimensions 120 30
 	active if "pilot selected"
-	button D "Delete"
+	button d "_Delete"
 		center -285 155
 		dimensions 90 30
 	
@@ -1134,6 +1145,12 @@ interface "info panel"
 		center 145 305
 	button A "Unpark All"
 		center 145 305
+		dimensions 90 30
+	visible if "show save order"
+	sprite "ui/wide button"
+		center -195 305
+	button v "Sa_ve Order"
+		center -195 305
 		dimensions 90 30
 
 

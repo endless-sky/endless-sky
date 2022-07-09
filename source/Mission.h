@@ -49,8 +49,8 @@ public:
 	// Copying a mission instance isn't allowed.
 	Mission(const Mission &) = delete;
 	Mission &operator=(const Mission &) = delete;
-	Mission(Mission &&) noexcept = default;
-	Mission &operator=(Mission &&) noexcept = default;
+	Mission(Mission &&) = default;
+	Mission &operator=(Mission &&) = default;
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
@@ -61,6 +61,8 @@ public:
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
+	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
+	void NeverOffer();
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
@@ -115,6 +117,7 @@ public:
 	// into account, so before actually offering a mission you should also check
 	// if the player has enough space.
 	bool CanOffer(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	bool CanAccept(const PlayerInfo &player) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;

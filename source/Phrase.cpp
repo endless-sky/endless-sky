@@ -20,6 +20,13 @@ using namespace std;
 
 
 
+Phrase::Phrase(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Phrase::Load(const DataNode &node)
 {
 	// Set the name of this phrase, so we know it has been loaded.
@@ -28,7 +35,7 @@ void Phrase::Load(const DataNode &node)
 	// may not be used in a Phrase's name.
 	if(name.find("${") != string::npos || name.find('}') != string::npos)
 	{
-		node.PrintTrace("Phrase names may not contain '${' or '}':");
+		node.PrintTrace("Error: Phrase names may not contain '${' or '}':");
 		return;
 	}
 
@@ -36,7 +43,7 @@ void Phrase::Load(const DataNode &node)
 	if(sentences.back().empty())
 	{
 		sentences.pop_back();
-		node.PrintTrace("Skipping unparsable node:");
+		node.PrintTrace("Error: Unable to parse node:");
 	}
 }
 
@@ -108,8 +115,6 @@ Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)
 	if(node.HasChildren())
 		node.begin()->PrintTrace("Skipping unrecognized child node:");
 
-	weight = max<int>(1, node.Size() >= 2 ? node.Value(1) : 1);
-
 	if(isPhraseName)
 	{
 		emplace_back(string{}, GameData::Phrases().Get(node.Token(0)));
@@ -176,13 +181,13 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 
 		if(child.Token(0) == "word")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(grand);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand);
 		else if(child.Token(0) == "phrase")
 			for(const DataNode &grand : child)
-				part.choices.emplace_back(grand, true);
+				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
-				part.replacements.emplace_back(grand.Token(0), grand.Size() >= 2 ? grand.Token(1) : string{});
+				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 
@@ -192,7 +197,7 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 			for(auto &element : choice)
 				if(element.second && element.second->ReferencesPhrase(parent))
 				{
-					child.PrintTrace("Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
+					child.PrintTrace("Warning: Replaced recursive '" + element.second->Name() + "' phrase reference with \"\":");
 					element.second = nullptr;
 				}
 

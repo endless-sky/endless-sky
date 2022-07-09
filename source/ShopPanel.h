@@ -51,6 +51,7 @@ protected:
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
+	virtual int VisiblityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
@@ -68,6 +69,7 @@ protected:
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
 	virtual void ToggleForSale();
+	virtual void ToggleStorage();
 	virtual void ToggleCargo();
 
 	// Only override the ones you need; the default action is to return false.
@@ -164,6 +166,8 @@ protected:
 
 private:
 	bool DoScroll(double dy);
+	bool SetScrollToTop();
+	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();

@@ -35,6 +35,16 @@ namespace {
 
 
 
+Angle Projectile::Inaccuracy(double value)
+{
+	Angle inaccuracy;
+	if(value)
+		inaccuracy = Angle::Random(value) - Angle::Random(value);
+	return inaccuracy;
+}
+
+
+
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
@@ -48,11 +58,9 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget)
 		targetGovernment = cachedTarget->GetGovernment();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -69,18 +77,13 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	targetGovernment = parent.targetGovernment;
 
 	cachedTarget = TargetPtr().get();
-	double inaccuracy = weapon->Inaccuracy();
-	if(inaccuracy)
-	{
-		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->Acceleration())
-		{
-			// Move in this new direction at the same velocity.
-			double parentVelocity = parent.weapon->Velocity();
-			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
-		}
-	}
-	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+
+	// Given that submunitions inherit the velocity of the parent projectile,
+	// it is often the case that submunitions don't add any additional velocity.
+	// But we still want inaccuracy to have an effect on submunitions. Because of
+	// this, we tilt the velocity of submunitions in the direction of the inaccuracy.
+	dV = this->angle.Unit() * (parent.dV.Length() + weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	velocity += dV - parent.dV;
 
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
@@ -113,7 +116,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
-					projectiles.emplace_back(*this, it.offset, it.facing, it.weapon);
+					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy()), it.weapon);
 		}
 		MarkForRemoval();
 		return;
@@ -242,12 +245,19 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	if(accel)
 	{
-		velocity *= 1. - weapon->Drag();
-		velocity += accel * angle.Unit();
+		double d = 1. - weapon->Drag();
+		Point a = accel * angle.Unit();
+		velocity *= d;
+		velocity += a;
+		dV *= d;
+		dV += a;
 	}
 
 	position += velocity;
-	distanceTraveled += velocity.Length();
+	// Only measure the distance that this projectile traveled under its own
+	// power, as opposed to including any velocity that came from the firing
+	// ship.
+	distanceTraveled += dV.Length();
 
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
@@ -262,7 +272,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	clip = intersection;
-	distanceTraveled += velocity.Length() * intersection;
+	distanceTraveled += dV.Length() * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
@@ -302,6 +312,14 @@ int Projectile::MissileStrength() const
 const Weapon &Projectile::GetWeapon() const
 {
 	return *weapon;
+}
+
+
+
+// Get information on how this projectile impacted a ship.
+Projectile::ImpactInfo Projectile::GetInfo() const
+{
+	return ImpactInfo(*weapon, position, distanceTraveled);
 }
 
 

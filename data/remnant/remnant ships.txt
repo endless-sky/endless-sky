@@ -128,7 +128,6 @@ ship "Albatross" "Albatross (Turret)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor"
-		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		"Quantum Key Stone"
 		"Outfits Expansion" 2
@@ -154,7 +153,6 @@ ship "Albatross" "Albatross (Heavy)"
 		"Epoch Cell"
 		"Millennium Cell"
 		"Crystal Capacitor" 2
-		"Quantum Key Stone"
 		"Thermoelectric Cooler" 3
 		"Quantum Key Stone"
 		"Outfits Expansion" 4
@@ -186,7 +184,6 @@ ship "Albatross" "Albatross (Shield)"
 
 		"Aeon Cell"
 		"Millennium Cell"
-		"Quantum Key Stone"
 		"Thermoelectric Cooler" 2
 		"Quantum Key Stone"
 		"Outfits Expansion" 6
@@ -410,12 +407,14 @@ ship "Heron"
 		"ion resistance" 0.3
 		"slowing resistance" 3
 		"remnant node" 11
+		"spinal mount" 1
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
 			"hull damage" 700
 			"hit force" 2100
 	outfits
+		"Ember Tear"
 		"Inhibitor Turret" 6
 		"Point Defense Turret" 3
 
@@ -441,7 +440,7 @@ ship "Heron"
 	engine -52 274 1.5
 	engine 52 274 1.5
 	engine 0 328 1.5
-	gun 0 -325
+	gun 0 -325 "Ember Tear"
 	gun -23.5 -302.5
 	gun 23.5 -302.5
 	turret -34.5 -134.5 "Inhibitor Turret"
@@ -578,6 +577,85 @@ ship "Ibis"
 
 
 
+ship "Merganser"
+	sprite "ship/merganser"
+	thumbnail "thumbnail/merganser"
+	attributes
+		category "Interceptor"
+		licenses
+			Remnant
+		"cost" 6830000
+		"shields" 3000
+		"hull" 5000
+		"required crew" 1
+		"bunks" 3
+		"cargo space" 11
+		"fuel capacity" 600
+		"ramscoop" 1
+		"mass" 30
+		"drag" 1.5
+		"heat dissipation" .9
+		"gaslining" 1
+		"outfit space" 219
+		"shield generation" 2.8
+		"shield energy" 1.2
+		"hull repair rate" 1.8
+		"hull energy" 0.6
+		"cloak" .04
+		"cloaking energy" 2
+		"cloaking fuel" .05
+		"atmosphere scan" 100
+		"outfit scan power" 12
+		"outfit scan speed" 1
+		"tactical scan power" 26
+		"ion resistance" 0.1
+		"ion resistance energy" -0.05
+		"thrust" 5.0
+		"turn" 60.0
+		"reverse thrust" 5.0
+		"flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"flare sound" "plasma tiny"
+		"steering flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"steering flare sound" "plasma tiny"
+		"reverse flare sprite" "effect/remnant flare/small"
+			"frame rate" 5
+		"reverse flare sound" "plasma tiny"
+		"weapon capacity" 85
+		"engine capacity" 70
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Inhibitor Cannon" 2
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Anvil-Class Engine"
+		"Bellows-Class Afterburner"
+		"Scram Drive"
+		
+	gun 0 -48.5
+	gun -6 -41 "Inhibitor Cannon"
+	gun 6 -41 "Inhibitor Cannon"
+	turret 0 0
+	engine 0 45
+	engine -10 49
+	engine 10 49
+	explode "tiny explosion" 30
+	explode "small explosion" 20
+	description "The Merganser is the first production ship the Remnant deem to be truly alive, and are considered to be equivalent to dolphins in reasoning tests. These interceptors, deemed for short range operations by Remnant standards, are designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems."
+	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
+
+
+
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
@@ -705,6 +783,7 @@ ship "Penguin"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
+		"remnant node" 1
 		weapon
 			"blast radius" 20
 			"shield damage" 260
@@ -768,30 +847,33 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 15400
-		"hull" 8600
+		"shields" 16400
+		"hull" 10600
 		"required crew" 9
 		"bunks" 25
 		"mass" 350
 		"drag" 4.3
 		"heat dissipation" 0.85
-		"fuel capacity" 900
+		"fuel capacity" 1100
 		"ramscoop" 2.5
-		"cargo space" 49
+		"cargo space" 59
 		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
-		"shield generation" 3.9
+		"shield generation" 4.9
 		"shield energy" 3.0
-		"hull repair rate" 1.5
+		"hull repair rate" 2.5
 		"hull energy" 0.90
-		"cloak" .03
-		"cloaking energy" 3
+		"cloak" .04
+		"cloaking energy" 2.5
 		"cloaking fuel" .05
+		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan speed" 1
-		"tactical scan power" 39
-		"remnant node" 3
+		"tactical scan power" 50
+		"ion protection" 0.25
+		"slowing protection" 0.25
+		"remnant node" 5
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
@@ -836,7 +918,7 @@ ship "Peregrine"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Peregrine is the first warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
+	description "The Peregrine is the first capital warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
 	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
 	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
 
@@ -897,6 +979,7 @@ ship "Petrel"
 	explode "small explosion" 20
 	description "The Petrel is a multi-role mining/wing leader fightercraft designed to provide support for flights of lighter Terns in high-risk environments. The ship's design originated as an urban mobile gun platform that flitted around structures and natural terrain, but proved easy to adapt into a spacecraft."
 	description "	The Remnant are loath to sacrifice pilots and crew from the comparatively small pool they are drawn from. As such, their fighters are equipped with medium-range weaponry designed to strike enemies from afar."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1161,3 +1244,4 @@ ship "Tern"
 	explode "small explosion" 20
 	description "The Tern is a small, hardy drone developed to plunge into the atmosphere of nearby gas giants for collecting valuable resources. These thick-shelled craft are also surprisingly effective when pressed into service as screening ships when enemies intrude into Remnant space."
 	description "	Unlike most spacefaring nations, the Remnant do not have enough people to pilot fighter wings in waves likely to sustain significant casualties. As such, they frequently use these hardy drones to fulfill similar screening roles in their home systems, allowing manned craft to focus on more specialized tasks."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."

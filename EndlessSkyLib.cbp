@@ -79,6 +79,8 @@
 		<Unit filename="source/BatchDrawList.h" />
 		<Unit filename="source/BatchShader.cpp" />
 		<Unit filename="source/BatchShader.h" />
+		<Unit filename="source/Bitset.cpp" />
+		<Unit filename="source/Bitset.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
@@ -103,6 +105,9 @@
 		<Unit filename="source/ConversationPanel.h" />
 		<Unit filename="source/CoreStartData.cpp" />
 		<Unit filename="source/CoreStartData.h" />
+		<Unit filename="source/DamageDealt.h" />
+		<Unit filename="source/DamageProfile.cpp" />
+		<Unit filename="source/DamageProfile.h" />
 		<Unit filename="source/DataFile.cpp" />
 		<Unit filename="source/DataFile.h" />
 		<Unit filename="source/DataNode.cpp" />
@@ -129,12 +134,15 @@
 		<Unit filename="source/EscortDisplay.h" />
 		<Unit filename="source/EsUuid.cpp" />
 		<Unit filename="source/EsUuid.h" />
+		<Unit filename="source/ExclusiveItem.h" />
 		<Unit filename="source/File.cpp" />
 		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
 		<Unit filename="source/Files.h" />
 		<Unit filename="source/FillShader.cpp" />
 		<Unit filename="source/FillShader.h" />
+		<Unit filename="source/FireCommand.cpp" />
+		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
 		<Unit filename="source/Flotsam.cpp" />
@@ -169,6 +177,8 @@
 		<Unit filename="source/ImageBuffer.h" />
 		<Unit filename="source/ImageSet.cpp" />
 		<Unit filename="source/ImageSet.h" />
+		<Unit filename="source/InfoPanelState.cpp" />
+		<Unit filename="source/InfoPanelState.h" />
 		<Unit filename="source/Information.cpp" />
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
@@ -199,6 +209,8 @@
 		<Unit filename="source/Mask.h" />
 		<Unit filename="source/MaskManager.cpp" />
 		<Unit filename="source/MaskManager.h" />
+		<Unit filename="source/MenuAnimationPanel.cpp" />
+		<Unit filename="source/MenuAnimationPanel.h" />
 		<Unit filename="source/MenuPanel.cpp" />
 		<Unit filename="source/MenuPanel.h" />
 		<Unit filename="source/Messages.cpp" />
@@ -261,6 +273,7 @@
 		<Unit filename="source/Radar.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
+		<Unit filename="source/RandomEvent.h" />
 		<Unit filename="source/Rectangle.cpp" />
 		<Unit filename="source/Rectangle.h" />
 		<Unit filename="source/RingShader.cpp" />
@@ -323,6 +336,8 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/UniverseObjects.cpp" />
 		<Unit filename="source/UniverseObjects.h" />
+		<Unit filename="source/Variant.cpp" />
+		<Unit filename="source/Variant.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />
@@ -334,6 +349,8 @@
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/comparators/ByGivenOrder.h" />
+		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />

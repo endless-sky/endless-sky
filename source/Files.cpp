@@ -21,11 +21,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
+#else
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <utime.h>
+#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -430,6 +431,18 @@ void Files::Copy(const string &from, const string &to)
 	CopyFileW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), false);
 #else
 	Write(to, Read(from));
+	// Preserve the timestamps of the original file.
+	struct stat buf;
+	if(stat(from.c_str(), &buf))
+		LogError("Error: Cannot stat \"" + from + "\".");
+	else
+	{
+		struct utimbuf times;
+		times.actime = buf.st_atime;
+		times.modtime = buf.st_mtime;
+		if(utime(to.c_str(), &times))
+			LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
+	}
 #endif
 }
 
@@ -470,7 +483,9 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	FILE *file = nullptr;
+	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif

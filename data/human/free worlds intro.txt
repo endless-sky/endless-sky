@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Pact Recon 0"
+	minor
 	name "Pirate Reconnaissance"
 	description "Fly through the <waypoints> systems, then report to <destination> so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
 	waypoint "Alniyat"
@@ -491,7 +492,7 @@ mission "FW Katya 1"
 					goto `karate`
 				`	(Turn around slowly.)`
 	
-			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few back country rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
+			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few backcountry rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
 			choice
 				`	"You mean this was some sort of test? You're not trying to mug me?"`
 					goto `explanation`
@@ -858,7 +859,7 @@ mission "FW Katya 3"
 				goto response
 			
 			label no
-			`	"Well," she says, "it started when the Syndicate began experimenting with fully automated mining facilities on uninhabitable planets. Pirates started raiding the mines to steal equipment, and the Syndicate claimed that these installations were 'colonies' and it was the Navy's job to defend them. The Act was Parliament's response, stating that taking goods from a human being is piracy, but if the owner or some living representative of theirs is not present in system, taking those goods is a legal salvage operation. The point was to keep the Navy from being obligated to defend every equipment cache or abandoned station in the galaxy. But by the same law, those Navy surveillance drones become abandoned goods the moment their motherships leave the system."`
+			`	"Well," she says, "it started when the Syndicate began experimenting with fully automated mining facilities on uninhabitable planets. Pirates started raiding the mines to steal equipment, and the Syndicate claimed that these installations were 'colonies' and it was the Navy's job to defend them. The Act was Parliament's response, stating that taking goods from a human being is piracy, but if the owner or some living representative of theirs is not present in the system, taking those goods is a legal salvage operation. The point was to keep the Navy from being obligated to defend every equipment cache or abandoned station in the galaxy. But by the same law, those Navy surveillance drones become abandoned goods the moment their motherships leave the system."`
 				goto response
 			
 			label response
@@ -1168,9 +1169,12 @@ mission "FW Katya 7"
 			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... Deep." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
 			choice
 				`	"Sounds like a good possibility. Let's give it a try!"`
-					accept
+					goto thanks
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
+			label thanks
+			`	"I appreciate your help, Captain <last>," says Katya.`
+				accept
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1212,9 +1216,12 @@ mission "FW Katya 7B"
 			`	Eyes says, "Mining world. Dusty atmosphere. Frequent meteorite impacts. You could set off a nuke on the far side of that world and the miners would probably sleep right through it."`
 			choice
 				`	"Okay, I'll take you to this one last world, and then we're done."`
-					accept
+					goto thanks
 				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
+			label thanks
+			`	"I promise it will be the last one," says Katya.`
+				accept
 	on visit
 		dialog `You land on <planet>, but you realize that Katya and Mr. Eyes are on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -1327,7 +1334,7 @@ mission "FW Escort 1"
 				accept
 	
 	on accept
-		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys, recently."
+		log "Serving as an escort for a Free Worlds supply convoy to Tarazed. It sounds like pirates have been specifically targeting their convoys recently."
 	
 	on abort
 		# No action, the player just silently walks away from this mission(chain)
@@ -1760,6 +1767,7 @@ mission "FW Bounty 3"
 
 
 mission "FW Commitment"
+	minor
 	landing
 	name "Join the Free Worlds"
 	description "If you want to join the Free Worlds, report to their headquarters on <destination>."
@@ -1780,7 +1788,7 @@ mission "FW Commitment"
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
 			`Dear Captain <last>,`
-			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	The Free Worlds Council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 1,100 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean-Jacques Soleau`
@@ -1915,7 +1923,7 @@ mission "Defend Sabik"
 	
 	on offer
 		set "license: Militia"
-		"salary: Free Worlds" = 300
+		"salary: Free Worlds" = 1100
 		event "start of hostilities"
 		event "joined the free worlds"
 		conversation

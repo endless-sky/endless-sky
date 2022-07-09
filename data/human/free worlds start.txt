@@ -179,9 +179,9 @@ mission "FW Prisoner Parole"
 	npc accompany save
 		government "Free Worlds"
 		personality timid escort
-		ship "Falcon (Heavy)" "F.S. Starry Warrior"
-		ship "Blackbird" "Flight of Fancy"
-		ship "Blackbird" "Southern Luxury"
+		ship "Falcon (Prisoner Transport)" "F.S. Starry Warrior"
+		ship "Blackbird (Prisoner Transport)" "Flight of Fancy"
+		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -219,9 +219,9 @@ mission "FW Prisoner Parole 2"
 	npc accompany save
 		government "Free Worlds"
 		personality timid escort
-		ship "Falcon (Heavy)" "F.S. Starry Warrior"
-		ship "Blackbird" "Flight of Fancy"
-		ship "Blackbird" "Southern Luxury"
+		ship "Falcon (Prisoner Transport)" "F.S. Starry Warrior"
+		ship "Blackbird (Prisoner Transport)" "Flight of Fancy"
+		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
@@ -604,8 +604,8 @@ mission "FW Hope Recon 1C"
 					goto destroy
 				`	(Kill the landing crew, then steal their ship.)`
 					goto steal
-				`	(Spare the crew, and chase their ship out of this system.)`
-					goto spare
+				`	(Accept the crew's surrender.)`
+					goto accept
 			
 			label destroy
 			`	It turns out you made the right choice: someone is indeed onboard the Gunboat still, because the moment you open fire it raises shields and starts powering up its engines and weapons. But, your initial shots must have damaged some critical systems, because it only manages to fire a few shots at you and to lift off about thirty meters into the air before crashing back down onto the ice and exploding. You quickly pick off the landing crew as well; they have no place to hide on the broad, flat glacial expanse.`
@@ -616,10 +616,16 @@ mission "FW Hope Recon 1C"
 			`	The landing crew has absolutely nowhere to hide in this glacial field; you pick them off easily. There is no response from the ship, so you land beside it and prepare to board it. But, the moment you open your hatch, the other ship roars to life, powering up its engines and beating a hasty retreat while firing a few parting shots at you from its turret. You fire up your own engines and pursue it...`
 				launch
 			
-			label spare
+			label accept
 			apply
 				karma ++
-			`	Most ships are equipped with external speakers for exactly this sort of situation. Speaking through them, you tell the Navy crew below, "Return to your ship and leave this system immediately." They beat a hasty retreat and fire up their engines. You follow their ship into orbit to make sure it truly does leave the system...`
+				set "fw accepted Susquehanna's word of honor"
+			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
+			`	"Crew of the <npc>, this is Captain <last> of the Free Worlds ship <ship>," you announce. "I accept your surrender, but will you each give me your word of honor that you will take no further part in fighting the Free Worlds?"`
+			`	The soldiers appear to think for a brief moment before one of them holds their hand high in from of them, giving you a thumbs-up sign. The rest of the soldiers quickly follow suit without any hesitation.`
+			`	"Thank you," you reply. "You may return to your ship and fly back to Republic space."`
+			`	The Navy soldiers exchange looks, apparently surprised, but they recover quickly. One of them snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The <npc>'s crew fall into formation, march back to their ship, fire up their engines, and take off. Their weapon systems remain unarmed and inactive, as far as your sensors can tell.`
+			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship.`
 				launch
 	
 	
@@ -781,7 +787,7 @@ mission "FW Plasma Testing 1B"
 		log "Assisted a Kraz Cybernetics engineer known as Barmy Edward with a test of a new and extremely powerful plasma cannon turret."
 		conversation
 			scene "scene/loc7"
-			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
+			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers is looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
 			choice
 				`	"Very impressive. I want a few of those on my own ship."`
 					goto impressive
@@ -868,7 +874,7 @@ mission "FW Supply Convoy 1"
 					accept
 			
 			label cattle
-			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a head count when you arrive in each system."`
+			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a headcount when you arrive in each system."`
 			choice
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept
@@ -926,11 +932,11 @@ mission "FW Pirates 1"
 			
 			label agree
 			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
-			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 800 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
+			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
 	on accept
-		"salary: Free Worlds" = 800
+		"salary: Free Worlds" = 2100
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
@@ -1024,6 +1030,7 @@ mission "FW Senate 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "fw senate timer" 8
 		log "People" "Ijs Springborn" `Ijs is now working to found the Conservatory, a publicly funded Free Worlds university that will have a particular focus on terraforming technology. Their goal is to make terraforming methods efficient enough that even Dirt Belt worlds will be able to afford them.`
 		conversation
 			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
@@ -1045,7 +1052,13 @@ mission "FW Senate 1B"
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		conversation
+			branch slow
+				has "event: fw senate timer"
+			`You drop off Senator Huygens, who appears uncharacteristically pleased. "Good work Captain <last>, I see we made good time. It seems you're far more reliable than most captains I work with," she says before walking off.`
+				goto waiting
+			label slow
 			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
+			label waiting
 			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
 			choice
 				`	"You too. What brings you to Bourne?"`
@@ -1067,6 +1080,8 @@ mission "FW Senate 1B"
 				`	"So you're here to talk to the senators?"`
 				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
 			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
+
+event "fw senate timer"
 
 
 

@@ -80,7 +80,6 @@ ship "Korath Dredger"
 	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and Raiders lacked the cargo capacity. The Dredger was born as an answer to this problem, featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Raiders."
 
 
-
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	sprite "ship/dredger"
 	outfits
@@ -130,11 +129,33 @@ ship "Korath Dredger" "Korath Dredger (Hyperdrive)"
 		"Jump Drive (Broken)"
 
 
+ship "Korath Dredger" "Korath Dredger (Ground Assault)"
+	"crew" 470
+	outfits
+		"Korath Banisher" 2
+		"Korath Warder" 2
+		
+		"Outfits Expansion" 6
+		"Systems Core (Large)"
+		"Double Plasma Core"
+		"Bunk Room" 19
+		"Large Heat Shunt" 2
+		"Small Bunk Room"
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 475
+		
+		"Steering (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Hyperdrive"
+		"Jump Drive"
+
+
 ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
@@ -145,8 +166,8 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 721
-		"weapon capacity" 284
+		"outfit space" 781
+		"weapon capacity" 339
 		"engine capacity" 159
 		weapon
 			"blast radius" 250
@@ -157,11 +178,13 @@ ship "Korath Raider"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
 		
@@ -175,6 +198,10 @@ ship "Korath Raider"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
+	gun 32.5 -1 "Firelight Missile Bank"
+		angle 60
+	gun -32.5 -1 "Firelight Missile Bank"
+		angle 300
 	turret -10 -143 "Korath Grab-Strike"
 	turret 10 -143 "Korath Grab-Strike"
 	turret -36 -141 "Korath Grab-Strike"
@@ -189,14 +216,17 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Korath Raider is their warship of choice for plundering neighboring species."
+	description "Successive Raider designs have been the Korath warship of choice for plundering neighboring species for generations."
+	description "This model, like all Exile ships, has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for the ship's easy replacement, facilitating continued raids of nearby systems."
+
 
 ship "Korath Raider" "Korath Raider (Ember)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -211,6 +241,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -218,12 +250,14 @@ ship "Korath Raider" "Korath Raider (Ember)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
 ship "Korath Raider" "Korath Raider (Hyperdrive)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -238,6 +272,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -245,12 +281,14 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
 ship "Korath Raider" "Korath Raider (Crippled)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank"
+		"Firelight Missile" 9
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
@@ -263,12 +301,162 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun
+	gun "Firelight Missile Bank"
 	turret
 	turret
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Banisher"
 	turret "Korath Warder"
+
+
+ship "Korath Raider Mark XLII"
+	sprite "ship/raider xlii"
+	thumbnail "thumbnail/raider xlii"
+	attributes
+		category "Medium Warship"
+		"cost" 22895000
+		"shields" 29500
+		"hull" 11000
+		"required crew" 157
+		"bunks" 250
+		"mass" 952
+		"drag" 15
+		"heat dissipation" .6
+		"heat protection" 0.1
+		"hull protection" 0.1
+		"fuel capacity" 700
+		"cargo space" 163
+		"outfit space" 871
+		"weapon capacity" 377
+		"engine capacity" 212
+		weapon
+			"blast radius" 250
+			"shield damage" 3700
+			"hull damage" 1900
+			"hit force" 5500
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Fire-Lance"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	engine -20 132
+		over
+	engine 20 132
+		over
+	engine 0 142
+		over
+	"reverse engine" -9 -154
+		zoom 0.7
+	"reverse engine" 9 -154
+		zoom 0.7
+	"steering engine" -89 33.5
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 89 33.5
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -82.5 30
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 82.5 30
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -69.5 -103.5
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 69.5 -103.5
+		zoom 0.3
+		angle -38
+		left
+	"steering engine" -76 -106
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 76 -106
+		zoom 0.3
+		angle -38
+		left
+	gun -45 -150 "Korath Fire-Lance"
+	gun 32.5 -1 "Firelight Missile Bank"
+		angle 60
+	gun -32.5 -1 "Firelight Missile Bank"
+		angle 300
+	turret -10 -143 "Korath Grab-Strike"
+	turret 10 -143 "Korath Grab-Strike"
+	turret -36 -141 "Korath Grab-Strike"
+	turret 36 -141 "Korath Grab-Strike"
+	turret 0 41 "Korath Banisher"
+	turret 0 94 "Korath Warder"
+	bay "Fighter" -80 151 back
+	bay "Fighter" 80 151 back
+	bay "Fighter" 28.5 145 back
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation caused by a life in exile."
+	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
+
+
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
+	add attributes
+		"cargo space" -70
+		"outfit space" 70
+	outfits 
+		"Korath Grab-Strike" 2
+		"Korath Disruptor" 2
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Detainer"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Banisher"
+
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
@@ -306,6 +494,7 @@ ship "Korath Chaser"
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -366,6 +555,7 @@ ship "Korath World-Ship"
 	"final explode" "final explosion large"
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
+
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
@@ -378,6 +568,7 @@ ship "Korath World-Ship" "Korath World-Ship B"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
+
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
@@ -389,6 +580,7 @@ ship "Korath World-Ship" "Korath World-Ship C"
 	turret 70 57 "Korath Banisher"
 	turret -91 290 "Korath Banisher"
 	turret 91 290 "Korath Warder"
+
 
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits
@@ -414,6 +606,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	turret 61 -6 "Korath Warder"
 	turret -66 210 "Korath Warder"
 	turret 66 210 "Korath Banisher"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	sprite "ship/world-ship b"
@@ -441,6 +634,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
 
+
 ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 	sprite "ship/world-ship c"
 	outfits
@@ -466,6 +660,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 	turret 70 53 "Korath Banisher"
 	turret -91 286 "Korath Banisher"
 	turret 91 286 "Korath Warder"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	sprite "ship/world-ship b"
@@ -494,6 +689,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Ember)"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
+
 
 ship "Korath World-Ship" "Korath World-Ship B (Crippled)"
 	sprite "ship/world-ship b"
@@ -531,6 +727,7 @@ ship "Kar Ik Vot 349"
 		"shields" 57200
 		"hull" 65400
 		"automaton" 1
+		"crew equivalent" 150
 		"mass" 1350
 		"drag" 16.8
 		"heat dissipation" .5
@@ -587,6 +784,7 @@ ship "Kar Ik Vot 349"
 	"final explode" "final explosion large"
 	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
 
+
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
@@ -615,6 +813,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	turret "Korath Repeater Turret"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
+
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
@@ -645,6 +844,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 	turret "Korath Warder"
+
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	outfits
@@ -679,6 +879,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	turret
 
 
+
 ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	thumbnail "thumbnail/tek far 71 lek"
@@ -688,6 +889,7 @@ ship "Tek Far 71 - Lek"
 		"shields" 25400
 		"hull" 29500
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 610
 		"drag" 9.6
 		"heat dissipation" .6
@@ -747,6 +949,7 @@ ship "Tek Far 71 - Lek"
 	"final explode" "final explosion large"
 	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
 
+
 ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -772,6 +975,7 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	turret "Korath Repeater Turret"
 
 
+
 ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
@@ -781,6 +985,7 @@ ship "Tek Far 78 - Osk"
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 690
 		"drag" 10.2
 		"heat dissipation" .55
@@ -841,6 +1046,7 @@ ship "Tek Far 78 - Osk"
 	"final explode" "final explosion large"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
+
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -864,6 +1070,7 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	turret "Korath Warder"
 
 
+
 ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	thumbnail "thumbnail/tek far 109"
@@ -873,6 +1080,7 @@ ship "Tek Far 109"
 		"shields" 17900
 		"hull" 15800
 		"automaton" 1
+		"crew equivalent" 100
 		"mass" 540
 		"drag" 9.1
 		"heat dissipation" .65
@@ -935,6 +1143,7 @@ ship "Tek Far 109"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
+
 ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
@@ -944,6 +1153,7 @@ ship "Met Par Tek 53"
 		"shields" 15100
 		"hull" 22200
 		"automaton" 1
+		"crew equivalent" 25
 		"mass" 420
 		"drag" 5.7
 		"heat dissipation" .8
@@ -993,6 +1203,7 @@ ship "Met Par Tek 53"
 	"final explode" "final explosion medium"
 	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
 
+
 ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	outfits
 		"Korath Detainer"
@@ -1024,6 +1235,7 @@ ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
 	turret
 
 
+
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	thumbnail "thumbnail/far lek 14"
@@ -1033,6 +1245,7 @@ ship "Far Lek 14"
 		"shields" 900
 		"hull" 1600
 		"automaton" 1
+		"crew equivalent" 1
 		"mass" 26
 		"drag" .8
 		"heat dissipation" 1.1
@@ -1060,6 +1273,8 @@ ship "Far Lek 14"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
 
 
 ship "Far Osk 27"
@@ -1071,6 +1286,7 @@ ship "Far Osk 27"
 		"shields" 1500
 		"hull" 2400
 		"automaton" 1
+		"crew equivalent" 2
 		"mass" 34
 		"drag" 1.1
 		"heat dissipation" 1.0
@@ -1099,6 +1315,7 @@ ship "Far Osk 27"
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description "Because it is piloted by a computer and has no need for a cockpit or life support systems, the FS27 fighter is able to carry far more weaponry than any comparable human ship."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1111,6 +1328,7 @@ ship "Model 8"
 		"shields" 5450
 		"hull" 3320
 		"automaton" 1
+		"crew equivalent" 5
 		"mass" 110
 		"drag" 3.2
 		"heat dissipation" 1.5
@@ -1148,6 +1366,7 @@ ship "Model 8"
 	description "The primary role of the smallest Kor Mereti drones is asteroid mining, but their lasers can also be employed as offensive weapons when necessary."
 
 
+
 ship "Model 16"
 	sprite "ship/model 16"
 	thumbnail "thumbnail/model 16"
@@ -1157,6 +1376,7 @@ ship "Model 16"
 		"shields" 15700
 		"hull" 9800
 		"automaton" 1
+		"crew equivalent" 10
 		"mass" 250
 		"drag" 6.9
 		"heat dissipation" 1.3
@@ -1201,6 +1421,7 @@ ship "Model 16"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
 
 
+
 ship "Model 32"
 	sprite "ship/model 32"
 	thumbnail "thumbnail/model 32"
@@ -1210,6 +1431,7 @@ ship "Model 32"
 		"shields" 27900
 		"hull" 13400
 		"automaton" 1
+		"crew equivalent" 25
 		"mass" 370
 		"drag" 9.0
 		"heat dissipation" 1.3
@@ -1255,6 +1477,7 @@ ship "Model 32"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
 
+
 ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
@@ -1264,6 +1487,7 @@ ship "Model 64"
 		"shields" 41700
 		"hull" 18000
 		"automaton" 1
+		"crew equivalent" 50
 		"mass" 580
 		"drag" 11.1
 		"heat dissipation" 1.1
@@ -1311,6 +1535,7 @@ ship "Model 64"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
 
 
+
 ship "Model 128"
 	sprite "ship/model 128"
 	thumbnail "thumbnail/model 128"
@@ -1320,6 +1545,7 @@ ship "Model 128"
 		"shields" 57000
 		"hull" 23100
 		"automaton" 1
+		"crew equivalent" 75
 		"mass" 780
 		"drag" 13.2
 		"heat dissipation" 1.0
@@ -1368,6 +1594,7 @@ ship "Model 128"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
 
+
 ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
@@ -1377,6 +1604,7 @@ ship "Model 256"
 		"shields" 71700
 		"hull" 28700
 		"automaton" 1
+		"crew equivalent" 100
 		"mass" 970
 		"drag" 15.3
 		"heat dissipation" .9
@@ -1427,6 +1655,7 @@ ship "Model 256"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
 
 
+
 ship "Model 512"
 	sprite "ship/model 512"
 	thumbnail "thumbnail/model 512"
@@ -1436,6 +1665,7 @@ ship "Model 512"
 		"shields" 86400
 		"hull" 34200
 		"automaton" 1
+		"crew equivalent" 150
 		"mass" 1150
 		"drag" 17.4
 		"heat dissipation" .8

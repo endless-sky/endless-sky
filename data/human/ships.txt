@@ -49,15 +49,15 @@ ship "Aerie"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -10 91
-	engine 10 91
-	gun -13 -79 "Sidewinder Missile Launcher"
-	gun 13 -79 "Sidewinder Missile Launcher"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	turret -17 14 "Heavy Laser Turret"
-	turret 17 14 "Heavy Laser Turret"
-	bay "Fighter" -42 -2
-	bay "Fighter" 42 2
+	engine 15 97
+	engine -15 97
+	gun -12 -78 "Sidewinder Missile Launcher"
+	gun 12 -78 "Sidewinder Missile Launcher"
+	turret 0 1.5 "Heavy Anti-Missile Turret"
+	turret -31 15.5 "Heavy Laser Turret"
+	turret 31 15.5 "Heavy Laser Turret"
+	bay "Fighter" -43.5 2
+	bay "Fighter" 43.5 2
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -107,6 +107,7 @@ ship "Argosy"
 		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -25 91 0.6
@@ -211,7 +212,7 @@ ship "Auxiliary"
 			"hit force" 4200
 	outfits
 		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -227,18 +228,18 @@ ship "Auxiliary"
 		"X1700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Scram Drive"
-	engine -40.5 175 0.45
-	engine 40.5 175 0.45
-	gun -12 -186
-	gun 12.5 -186
-	turret 0 -77.5 "Heavy Anti-Missile Turret"
-	turret 0 -22
-	turret 0 28
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -77.5
-	bay "Fighter" 0 -22
-	bay "Fighter" 0 28
-	bay "Fighter" 0 79
+	engine -41. 180.5 0.45
+	engine 41. 180.5 0.45
+	gun -12.5 -182
+	gun 12.5 -182
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 32
+	turret 0 83 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 30 30
@@ -260,14 +261,14 @@ ship "Auxiliary" "Auxiliary (Cargo)"
 		"cargo space" 200
 	gun -12 -186
 	gun 12.5 -186
-	turret 0 -76.5 "Heavy Anti-Missile Turret"
-	turret 0 -24
-	turret 0 28
-	turret 0 79 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -76.5
-	bay "Fighter" 0 -24
-	bay "Fighter" 0 28
-	bay "Fighter" 0 79
+	turret 0 -72 "Heavy Anti-Missile Turret"
+	turret 0 -20
+	turret 0 32
+	turret 0 83 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 
 ship "Auxiliary" "Auxiliary (Transport)"
 	plural "Auxiliaries"
@@ -278,14 +279,14 @@ ship "Auxiliary" "Auxiliary (Transport)"
 		"cargo space" -200
 	gun -12 -186
 	gun 12.5 -186
-	turret 0 -77.5 "Heavy Anti-Missile Turret"
-	turret 0 -22
-	turret 0 16.5
-	turret 0 73 "Heavy Anti-Missile Turret"
-	bay "Fighter" 0 -77.5
-	bay "Fighter" 0 -22
-	bay "Fighter" 0 16.5
-	bay "Fighter" 0 73
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 20
+	turret 0 78 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 78
 
 
 
@@ -333,21 +334,21 @@ ship "Bactrian"
 		"X5200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -18 230
-	engine 18 230
-	gun -15 -226 "Torpedo Launcher"
-	gun 15 -226 "Torpedo Launcher"
-	gun -40 -133 "Sidewinder Missile Launcher"
-	gun -45 -128 "Sidewinder Missile Launcher"
-	turret -22 -148 "Heavy Laser Turret"
-	turret 26 -80 "Heavy Anti-Missile Turret"
-	turret -41 -20 "Heavy Laser Turret"
-	turret 32 -7 "Heavy Laser Turret"
-	turret 53 82 "Heavy Laser Turret"
-	turret -37 186 "Heavy Anti-Missile Turret"
-	bay "Fighter" -38 -26
-	bay "Fighter" 35 36
-	bay "Fighter" -47 97
+	engine 18.5 232
+	engine -15 232
+	gun -9 -231.5 "Torpedo Launcher"
+	gun 13.5 -231.5 "Torpedo Launcher"
+	gun 36.5 -197 "Sidewinder Missile Launcher"
+	gun 42 -193 "Sidewinder Missile Launcher"
+	turret 37 -132.5 "Heavy Anti-Missile Turret"
+	turret -39 -39 "Heavy Laser Turret"
+	turret 31.5 -26 "Heavy Laser Turret"
+	turret -42.5 75 "Heavy Laser Turret"
+	turret 32.5 132 "Heavy Laser Turret"
+	turret -33.5 192.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -43.5 -125
+	bay "Fighter" 53 -72.5
+	bay "Fighter" -50 103.5
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -400,6 +401,7 @@ ship "Barb"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -421,6 +423,7 @@ ship "Barb" "Barb (Proton)"
 	gun -7.5 -24.5 "Proton Gun"
 	leak "leak" 60 50
 	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -523,6 +526,7 @@ ship "Behemoth"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster" 2
 		"Scram Drive"
 		
 	engine -34 143 0.8
@@ -735,7 +739,8 @@ ship "Boxwing"
 	leak "flame" 50 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing," the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 ship "Bulk Freighter"
@@ -743,16 +748,16 @@ ship "Bulk Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
+		"cost" 11100000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 6
-		"bunks" 18
+		"required crew" 12
+		"bunks" 21
 		"mass" 870
-		"drag" 15.8
-		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 600
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 900
+		"cargo space" 640
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -774,6 +779,7 @@ ship "Bulk Freighter"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -22 198
@@ -888,18 +894,18 @@ ship "Class C Freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
 		category "Heavy Warship"
-		"cost" 11400000
+		"cost" 13400000
 		"shields" 13500
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 810
-		"drag" 16.4
-		"heat dissipation" .5
-		"fuel capacity" 600
+		"mass" 880
+		"drag" 14
+		"heat dissipation" .4
+		"fuel capacity" 900
 		"cargo space" 20
-		"outfit space" 400
-		"weapon capacity" 140
+		"outfit space" 410
+		"weapon capacity" 150
 		"engine capacity" 85
 		weapon
 			"blast radius" 200
@@ -907,24 +913,36 @@ ship "Class C Freighter"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"Heavy Laser Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Proton Turret"
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
 		
-		"Fission Reactor"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Laser Rifle" 5
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"Supercapacitor"
+		"Water Coolant System"
+		"Cooling Ducts"
+		"S-970 Regenerator"
+		"Laser Rifle" 18
+		"Brig"
+		"Interference Plating"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
 		"Scram Drive"
 		
 	engine -20 195.5
 	engine 20 195.5
-	turret -12 -155 "Heavy Laser Turret"
+	gun -20 -175 "Meteor Missile Launcher"
+	gun 20 -175 "Meteor Missile Launcher"
+	turret -12 -155 "Quad Blaster Turret"
 	turret 12 -155 "Heavy Anti-Missile Turret"
-	turret 30 175 "Heavy Laser Turret"
-	turret -30 175 "Heavy Anti-Missile Turret"
+	turret 0 5 "Proton Turret"
+	turret 30 175 "Quad Blaster Turret"
+	turret -30 175 "Anti-Missile Turret"
 	bay "Drone" -66 -115 left
 	bay "Drone" -66 -65 left
 	bay "Drone" -66 -15 left
@@ -945,7 +963,8 @@ ship "Class C Freighter"
 	explode "large explosion" 35
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has all been converted into drone bays, allowing it to carry a dozen combat drones.`
+	description `The Class C "Freighter" is a Q-ship, a stealth warship designed by the Syndicate for baiting pirates with the offer of what appears to be a helpless, ordinary bulk freighter.`
+	description `	Inside, a layer of interference plating hides its military-grade equipment and a dozen combat drones secreted away in its converted cargo holds, while its faux gearing conceals extra shield emitters.`
 
 
 
@@ -1031,11 +1050,12 @@ ship "Combat Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -8.5 28 0.9
-	engine 8.5 28 0.9
-	gun 0 -25.5 "Beam Laser"
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
@@ -1044,16 +1064,16 @@ ship "Container Transport"
 	thumbnail "thumbnail/container transport"
 	attributes
 		category "Heavy Freighter"
-		"cost" 9400000
-		"shields" 4000
-		"hull" 7600
+		"cost" 9200000
+		"shields" 3500
+		"hull" 8000
 		"required crew" 6
 		"bunks" 18
-		"mass" 870
-		"drag" 15.8
-		"heat dissipation" .5
+		"mass" 880
+		"drag" 17.6
+		"heat dissipation" .6
 		"fuel capacity" 600
-		"cargo space" 600
+		"cargo space" 550
 		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
@@ -1075,6 +1095,7 @@ ship "Container Transport"
 		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1141,14 +1162,14 @@ ship "Corvette"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -11 118
-	engine 11 118
-	gun -12 -68 "Heavy Laser"
-	gun 12 -68 "Heavy Laser"
-	gun -14 -60 "Sidewinder Missile Launcher"
-	gun 14 -60 "Sidewinder Missile Launcher"
-	turret 0 -11 "Heavy Laser Turret"
-	turret 0 74 "Anti-Missile Turret"
+	engine -11.5 119
+	engine 11.5 119
+	gun -11.5 -68.5 "Heavy Laser"
+	gun 11.5 -68.5 "Heavy Laser"
+	gun -26 -8 "Sidewinder Missile Launcher"
+	gun 26 -8 "Sidewinder Missile Launcher"
+	turret 0 -10 "Heavy Laser Turret"
+	turret 0 76 "Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -1280,6 +1301,7 @@ ship "Dagger"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1393,6 +1415,7 @@ ship "Dropship"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another area often rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1503,6 +1526,7 @@ ship "Finch"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the blindingly fast Finch bears strong resemblance to its hyperspace-faring cousin."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1593,11 +1617,13 @@ ship "Flivver"
 		"Meteor Missile" 14
 		
 		"nGVF-BB Fuel Cell"
-		"LP036a Battery Pack"
+		"KP-6 Photovoltaic Panel" 3
+		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16 27
@@ -1638,12 +1664,13 @@ ship "Freighter"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		
-		"nGVF-EE Fuel Cell"
-		"LP036a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
+		"X1100 Ion Reverse Thruster"
 		"Scram Drive"
 		
 	engine -7.5 92
@@ -1871,6 +1898,7 @@ ship "Hauler"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 122.5
@@ -1917,8 +1945,9 @@ ship "Hauler II"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1930,6 +1959,7 @@ ship "Hauler II"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -1976,8 +2006,9 @@ ship "Hauler III"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 59
+		"Meteor Missile Box" 3
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
@@ -1989,6 +2020,7 @@ ship "Hauler III"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -2128,7 +2160,7 @@ ship "Heavy Shuttle"
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 130
-		"weapon capacity" 15
+		"weapon capacity" 16
 		"engine capacity" 65
 		weapon
 			"blast radius" 12
@@ -2196,6 +2228,7 @@ ship "Lance"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -2420,15 +2453,15 @@ ship "Mule"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 123
-	engine 12 123
-	gun -9 -119 "Sidewinder Missile Launcher"
-	gun 9 -119 "Sidewinder Missile Launcher"
-	turret 22 -65 "Heavy Anti-Missile Turret"
-	turret -37 -21 "Heavy Laser Turret"
-	turret 39 35 "Heavy Laser Turret"
-	turret -9 59 "Heavy Anti-Missile Turret"
-	bay "Fighter" -16 -9
+	engine 11 128
+	engine -8 128
+	gun -11 -125 "Sidewinder Missile Launcher"
+	gun 11 -125 "Sidewinder Missile Launcher"
+	turret -22 -53.5 "Heavy Laser Turret"
+	turret 19.5 -39 "Heavy Anti-Missile Turret"
+	turret 20 33 "Heavy Laser Turret"
+	turret -20.5 103.5 "Heavy Anti-Missile Turret"
+	bay "Fighter" -25 -25
 	leak "leak" 50 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2497,7 +2530,7 @@ ship "Nest"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
+	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F," Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
 
 
 
@@ -2540,16 +2573,16 @@ ship "Osprey"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45.5 62.5 .8
-	engine 45.5 62.5 .8
+	engine -42.5 62.5 .8
+	engine 42.5 62.5 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun -6.5 -100 "Plasma Cannon"
-	gun 6.5 -100 "Plasma Cannon"
-	gun -26.5 -54 "Plasma Cannon"
-	gun 26.5 -54 "Plasma Cannon"
-	turret -13 -17 "Quad Blaster Turret"
-	turret 13 -17 "Heavy Anti-Missile Turret"
+	gun -25 -49.5 "Plasma Cannon"
+	gun 25 -49.5 "Plasma Cannon"
+	gun -9.5 -95.5 "Plasma Cannon"
+	gun 9.5 -95.5 "Plasma Cannon"
+	turret -15.5 -12 "Quad Blaster Turret"
+	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
 	leak "flame" 80 80
 	leak "big leak" 80 30
@@ -2568,8 +2601,8 @@ ship "Protector"
 	attributes
 		category "Heavy Warship"
 		"cost" 5500000
-		"shields" 9500
-		"hull" 6500
+		"shields" 10000
+		"hull" 7800
 		"required crew" 30
 		"bunks" 69
 		"mass" 500
@@ -2577,8 +2610,8 @@ ship "Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 570
-		"weapon capacity" 220
+		"outfit space" 590
+		"weapon capacity" 230
 		"engine capacity" 100
 		weapon
 			"blast radius" 160
@@ -2586,9 +2619,9 @@ ship "Protector"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
-		"Quad Blaster Turret" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Quad Blaster Turret" 6
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
@@ -2604,14 +2637,16 @@ ship "Protector"
 		
 	engine -12 122.5
 	engine 12 122.5
-	gun -17.5 -101 "Sidewinder Missile Launcher"
-	gun 17.5 -101 "Sidewinder Missile Launcher"
-	turret -48.5 -48 "Quad Blaster Turret"
-	turret 48.5 -48 "Quad Blaster Turret"
-	turret -68.5 0.5 "Quad Blaster Turret"
-	turret 68.5 0.5 "Quad Blaster Turret"
-	turret -48.5 48.5 "Heavy Anti-Missile Turret"
-	turret 48.5 48.5 "Heavy Anti-Missile Turret"
+	gun -17.5 -101 "Meteor Missile Launcher"
+	gun 17.5 -101 "Meteor Missile Launcher"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
+	turret -48.5 -48.5 "Quad Blaster Turret"
+	turret 48.5 -48.5 "Quad Blaster Turret"
+	turret -68.5 0 "Quad Blaster Turret"
+	turret 68.5 0 "Quad Blaster Turret"
+	turret -48.5 48.5 "Quad Blaster Turret"
+	turret 48.5 48.5 "Quad Blaster Turret"
+	turret 0 30 "Heavy Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
@@ -2619,7 +2654,7 @@ ship "Protector"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion large"
-	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than eight turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
 
 
 
@@ -2658,10 +2693,10 @@ ship "Quicksilver"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -17 54
-	engine 17 54
-	gun -6 -38 "Particle Cannon"
-	gun 6 -38 "Particle Cannon"
+	engine -15.5 54
+	engine 15.5 54
+	gun -6 -39.5 "Particle Cannon"
+	gun 6 -39.5 "Particle Cannon"
 	leak "leak" 50 50
 	explode "tiny explosion" 12
 	explode "small explosion" 16
@@ -2711,14 +2746,14 @@ ship "Rainmaker"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8.5 45.5 0.4
-	engine 8.5 45.5 0.4
-	gun -11 -30.5 "Energy Blaster"
-	gun 11 -30.5 "Energy Blaster"
-	gun -28.5 3.5 "Meteor Missile Launcher"
-	gun 28.5 3.5 "Meteor Missile Launcher"
-	gun -21.5 3.5 "Meteor Missile Launcher"
-	gun 21.5 3.5 "Meteor Missile Launcher"
+	engine -11.5 44.5 0.4
+	engine 11.5 44.5 0.4
+	gun -7.5 -36.5 "Energy Blaster"
+	gun 7.5 -36.5 "Energy Blaster"
+	gun -27 8 "Meteor Missile Launcher"
+	gun 27 8 "Meteor Missile Launcher"
+	gun -22 8 "Meteor Missile Launcher"
+	gun 22 8 "Meteor Missile Launcher"
 	leak "leak" 50 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -2766,12 +2801,12 @@ ship "Raven"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 43
-	engine 12 43
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Torpedo Launcher"
-	gun 16 -28 "Torpedo Launcher"
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Heavy Laser"
+	gun 13.5 -35.5 "Heavy Laser"
+	gun -21 -28 "Torpedo Launcher"
+	gun 21 -28 "Torpedo Launcher"
 	leak "leak" 60 50
 	leak "flame" 50 80
 	explode "medium explosion" 24
@@ -2843,7 +2878,7 @@ ship "Roost"
 	explode "medium explosion" 30
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
-	description `Southbound Shipyards' new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed the "Roost" to continue the theme.`
+	description `Southbound Shipyards' new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest," "Hauler II: Type F" was quickly dubbed the "Roost" to continue the theme.`
 
 
 
@@ -2884,11 +2919,11 @@ ship "Scout"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -8 46
-	engine 8 46
-	gun -20 -7 "Energy Blaster"
-	gun 20 -7 "Energy Blaster"
-	turret 0 -7 "Anti-Missile Turret"
+	engine -7 40
+	engine 7 40
+	gun -18.5 -6 "Energy Blaster"
+	gun 18.5 -6 "Energy Blaster"
+	turret 0 -2.5 "Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -2971,20 +3006,21 @@ ship "Skein"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 29
+		"Meteor Missile Box"
 		"Quad Blaster Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator" 4
-		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -3009,7 +3045,7 @@ ship "Skein"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
 
 
 
@@ -3098,13 +3134,13 @@ ship "Splinter"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -15 115
-	engine 15 115
-	gun -15 -80 "Proton Gun"
-	gun 15 -80 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Anti-Missile Turret"
-	turret 17 -28 "Blaster Turret"
+	engine -15.5 115
+	engine 15.5 115
+	gun -12 -93 "Proton Gun"
+	gun 12 -93 "Proton Gun"
+	turret -13 42 "Blaster Turret"
+	turret 0 9 "Anti-Missile Turret"
+	turret 13 42 "Blaster Turret"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	leak "big leak" 90 30
@@ -3252,10 +3288,11 @@ ship "Surveillance Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -5 29
-	engine 5 29
+	engine -3 29
+	engine 3 29
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 

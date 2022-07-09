@@ -120,7 +120,7 @@ mission "FW Reconciliation 1B"
 	on offer
 		event "fw empty gienah"
 		conversation
-			`The moment you land Katya is eager to visit the Conservatory and find Ijs. In the time that he has been here, it has grown into a small but bustling community, with crowds of students walking from building to building carrying backpacks and wrapped in thick coats. You find Ijs's office; Katya knocks and says, "Professor Springborn, are you having office hours right now?"`
+			`The moment you land Katya is eager to visit the Conservatory and find Ijs. In the time that he has been here, it has grown into a small but bustling community, with crowds of students walking from building to building carrying backpacks and wrapped in thick coats. You find Ijs' office; Katya knocks and says, "Professor Springborn, are you having office hours right now?"`
 			`	He recognizes her voice immediately and comes running out of the office to hug her. "Katya! You're free! Is the war over?"`
 			`	"Not quite," she says, "but we've found the bombers. Apparently the whole thing was sponsored by the Syndicate. Do you still have those isotopic fingerprints we collected back when this whole thing began?"`
 			`	Ijs quickly finds the data and collects his equipment. "I'll just have to let them know I need a substitute for a while," he says.`
@@ -973,6 +973,8 @@ mission "FW Pug 1"
 	on enter "Ascella"
 		dialog
 			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+	on waypoint
+		set "fw pug 1: visited waypoints"
 
 
 
@@ -1011,6 +1013,7 @@ mission "FW Pug 1 Return"
 	to offer
 		has "FW Pug 1: active"
 		has "event: pug invasion 4"
+		has "fw pug 1: visited waypoints"
 	
 	on offer
 		conversation
@@ -1383,7 +1386,7 @@ mission "FW Pug 2C: Side"
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Well," says Alondo, "they didn't attack us when we jumped in to this system. Perhaps we should go to their home system and see what they have to say for themselves."`
+			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
 
 
@@ -1465,7 +1468,7 @@ mission "FW Pug 3: Deep"
 		log "The governor of Valhalla, in the Deep, says that the Pug secretly assisted the people of the Deep to fight against the Alphas centuries ago, during the Alpha Wars. He thinks that the Pug have humanity's best interests at heart, but agrees that they can't be allowed to overthrow the Republic."
 		log "Factions" "Pug" `It is possible that the Pug secretly assisted the humans of the Deep centuries ago by providing them with weapons that helped to turn the tide of the Alpha Wars.`
 		conversation
-			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
+			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had dealt with the Deep in the past. Do you know anything about that?"`
 			`	Edrick says, "Can you describe what these aliens look like?"`
 			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
 			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha Wars. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
@@ -1593,11 +1596,11 @@ mission "FW Pug 3B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		"salary: Free Worlds" = 6000
+		"salary: Free Worlds" = 17000
 		conversation
 			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your assault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
 			`	"I guess that makes sense," says Alondo.`
-			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be six thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
+			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be 17 thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
 			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the two Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
 				accept
 	
@@ -2551,23 +2554,50 @@ mission "FW Syndicate Extremists 1C"
 		log "Factions" "Syndicate" `It was exposed that the bombings of Gemini and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000
 		event "stack core for sale"
+		"salary: Free Worlds" = 8900
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds reconciliation"
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
+			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens."`
+			`	As you walk out, you find Alondo, JJ, and Katya sitting in the courtyard of Parliament. When they spot you walking towards them, JJ waves and says, "<first> and Freya! Am I glad to see the two of you still in one piece! What brings you to Earth?"`
+			choice
+				`	"I received a commendation from Parliament."`
+				`	"Parliament wanted to interrogate us on what happened with the Pug and the Syndicate."`
+					goto know
+				`	"We just needed to deal with some boring administrative stuff."`
+					goto bureaucratic
+			`	"And I'm sure that it was very well deserved," says Katya with a smirk.`
+				goto next
+			
+			label know
+			`	"I hope that they were nicer questioning you than they were to me," Katya says with a grin.`
+				goto next
+			
+			label bureaucratic
+			`	"Well," Katya says while smirking, "You'll be glad to know that you aren't alone in grappling with the bureaucracy."`
+			
+			label next
+			`	"What have you three been doing?" Freya asks.`
 			
 			branch good
 				has "event: navy out of rastaban"
-			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Navy will begin pulling out of any occupied systems, and that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+			`	Alondo says, "We've been talking to Parliament, and they're finally beginning to let off of us. They have signed a treaty with the Free Worlds, agreeing that the Navy will begin pulling out of any occupied systems, and that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, our war against the Republic is officially over."`
 				goto end
 			
 			label good
-			`	You discover that Parliament has made a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, your war against the Republic is officially over.`
+			`	Alondo says, "We've been talking to Parliament, and they're finally beginning to let off of us. They have signed a treaty with the Free Worlds, agreeing that the Free Worlds will be allowed autonomy in the region they currently control as long as they do not seek to expand their territory further. As of now, our war against the Republic is officially over."`
 			
 			label end
-			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens, and to help you integrate back into civilian life."`
-			`	The war is over; your work for the Free Worlds is at an end. What you do next is up to you...`
+			`	"What about you two?" says JJ. "How did fighting the Pug go?"`
+			`	You and Freya explain to the rest of the Council how the Pug were defeated, as well as the truth behind the Syndicate starting the war. When you finish, Katya says, "Vanishing aliens, prophetic supercomputers starting wars, Alphas pulling strings in the Syndicate's ranks; if I hadn't seen events just as unbelievable over the last few months, I would write what you're saying off as a bad conspiracy theory."`
+			`	"Well, it looks like the Council is all together again," says JJ, "for the last time, as it so happens. Now that the war has ended, and the Pug have been defeated, the Senate has voted to dissolve the Council, leaving us free to return to civilian life. However, they've also agreed to pay you, <first>, a reduced salary in gratitude of your service. So, what do you think you will do next?"`
+			choice
+				`	"Build a merchant fleet and live a safe, quiet life."`
+				`	"See if folks in the fringe worlds need any help against the pirates."`
+				`	"Use my jump drive to explore beyond human space."`
+			`	"Well, we all wish you the best of luck," says Freya. "We would never have gotten this far without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`
 
 
 

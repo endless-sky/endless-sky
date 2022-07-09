@@ -467,7 +467,7 @@ phrase "friendly remnant"
 	word
 		" by having "
 	word
-		"a cloaking device along"
+		"cloaking functionality"
 		"a secret weapon"
 		"fast engines"
 		"a last resort every Remnant should have"
@@ -589,7 +589,7 @@ phrase "remnant thrasher cannon"
 
 phrase "remnant emp torpedo bay"
 	word
-		"an EMP Torpedo Bay.  "
+		"an EMP Torpedo Bay. "
 	word
 		"With a single shot, it"
 		"Firing one"
@@ -794,6 +794,11 @@ shipyard "Remnant"
 shipyard "Remnant Puffin"
 	"Puffin"
 
+shipyard "Remnant Salvage Ships"
+	"Korath Chaser"
+
+
+
 outfitter "Remnant"
 	"Inhibitor Cannon"
 	"Thrasher Cannon"
@@ -826,6 +831,20 @@ outfitter "Remnant"
 	"Fuel Pod"
 	"Cargo Scanner"
 	"Outfit Scanner"
+	"Tuning Rifle"
+	"Salvage Scanner"
+
+outfitter "Remnant Core"
+	"Crystal Capacitor"
+	"Millennium Cell"
+	"Thermoelectric Cooler"
+	"Emergency Ramscoop"
+	"Quantum Key Stone"
+	"Anvil-Class Engine"
+	"Crucible-Class Thruster"
+	"Crucible-Class Steering"
+	"Hyperdrive"
+	"Fuel Pod"
 	"Tuning Rifle"
 	"Salvage Scanner"
 

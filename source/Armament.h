@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <vector>
 
-class Command;
+class FireCommand;
 class Outfit;
 class Point;
 class Projectile;
@@ -45,7 +45,7 @@ public:
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
 	// remove a weapon, just pass a negative value here.
-	void Add(const Outfit *outfit, int count = 1);
+	int Add(const Outfit *outfit, int count = 1);
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
@@ -63,12 +63,12 @@ public:
 	int TurretCount() const;
 
 	// Adjust the aim of the turrets.
-	void Aim(const Command &command);
+	void Aim(const FireCommand &command);
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	void Fire(int index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.
-	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
+	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals, bool jammed);
 
 	// Update the reload counters.
 	void Step(const Ship &ship);

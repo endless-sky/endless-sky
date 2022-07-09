@@ -73,11 +73,13 @@ void NPC::Load(const DataNode &node)
 			mustAccompany = true;
 			failIf |= ShipEvent::DESTROY;
 		}
+		else
+			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
 
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
-		node.PrintTrace("Warning: conflicting NPC mission objective to save and destroy or capture.");
+		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
 		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
 
@@ -119,7 +121,7 @@ void NPC::Load(const DataNode &node)
 			if(hasValue && child.Token(1) == "phrase")
 			{
 				if(!child.HasChildren() && child.Size() == 3)
-					stockDialogPhrase = GameData::Phrases().Get(child.Token(2));
+					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
 				else
 					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
@@ -127,7 +129,7 @@ void NPC::Load(const DataNode &node)
 			{
 				const DataNode &firstGrand = (*child.begin());
 				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-					dialogPhrase.Load(firstGrand);
+					dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
 				else
 					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
@@ -135,9 +137,9 @@ void NPC::Load(const DataNode &node)
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
-			conversation.Load(child);
+			conversation = ExclusiveItem<Conversation>(Conversation(child));
 		else if(child.Token(0) == "conversation" && child.Size() > 1)
-			stockConversation = GameData::Conversations().Get(child.Token(1));
+			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "spawn")
@@ -166,7 +168,7 @@ void NPC::Load(const DataNode &node)
 			}
 			else
 			{
-				string message = "Skipping unsupported use of a ship token and child nodes: ";
+				string message = "Error: Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
 					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else
@@ -178,7 +180,7 @@ void NPC::Load(const DataNode &node)
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(child);
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
 				if(child.Size() >= 2)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -187,10 +189,14 @@ void NPC::Load(const DataNode &node)
 						fleets.push_back(fleets.back());
 				}
 			}
-			else if(child.Size() >= 3 && child.Value(2) > 1.)
-				stockFleets.insert(stockFleets.end(), child.Value(2), GameData::Fleets().Get(child.Token(1)));
 			else if(child.Size() >= 2)
-				stockFleets.push_back(GameData::Fleets().Get(child.Token(1)));
+			{
+				auto fleet = ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1)));
+				if(child.Size() >= 3 && child.Value(2) > 1.)
+					fleets.insert(fleets.end(), child.Value(2), fleet);
+				else
+					fleets.push_back(fleet);
+			}
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -273,8 +279,8 @@ void NPC::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(!conversation.IsEmpty())
-			conversation.Save(out);
+		if(!conversation->IsEmpty())
+			conversation->Save(out);
 
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -318,19 +324,16 @@ string NPC::Validate(bool asTemplate) const
 			return "planet \"" + planet->TrueName() + "\"";
 
 		// If a stock phrase or conversation is given, it must not be empty.
-		if(stockDialogPhrase && stockDialogPhrase->IsEmpty())
+		if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
 			return "stock phrase";
-		if(stockConversation && stockConversation->IsEmpty())
+		if(conversation.IsStock() && conversation->IsEmpty())
 			return "stock conversation";
 
 		// NPC fleets, unlike stock fleets, do not need a valid government
 		// since they will unconditionally inherit this NPC's government.
 		for(auto &&fleet : fleets)
-			if(!fleet.IsValid(false))
-				return "custom fleet";
-		for(auto &&fleet : stockFleets)
 			if(!fleet->IsValid(false))
-				return "stock fleet";
+				return fleet.IsStock() ? "stock fleet" : "custom fleet";
 	}
 
 	// Ships must always be valid.
@@ -450,8 +453,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
-		if(!conversation.IsEmpty())
-			ui->Push(new ConversationPanel(player, conversation, nullptr, ship));
+		if(!conversation->IsEmpty())
+			ui->Push(new ConversationPanel(player, *conversation, nullptr, ship));
 		else if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
@@ -599,9 +602,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
 	}
-	for(const Fleet &fleet : fleets)
-		fleet.Place(*result.system, result.ships, false);
-	for(const Fleet *fleet : stockFleets)
+	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
@@ -629,16 +630,12 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 		subs["<npc>"] = result.ships.front()->Name();
 
 	// Do string replacement on any dialog or conversation.
-	string dialogText = stockDialogPhrase ? stockDialogPhrase->Get()
-		: (!dialogPhrase.Name().empty() ? dialogPhrase.Get()
-		: this->dialogText);
+	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
 
-	if(stockConversation)
-		result.conversation = stockConversation->Instantiate(subs);
-	else if(!conversation.IsEmpty())
-		result.conversation = conversation.Instantiate(subs);
+	if(!conversation->IsEmpty())
+		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
 }
