@@ -551,7 +551,7 @@ ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 20
+		"Microbot Defense Station" 19
 		
 		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
@@ -580,7 +580,7 @@ ship "Korath World-Ship" "Korath World-Ship B (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 20
+		"Microbot Defense Station" 19
 		
 		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
@@ -609,7 +609,7 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 20
+		"Microbot Defense Station" 19
 		
 		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"

@@ -798,7 +798,7 @@ ship "Korath World-Ship"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 20
+		"Microbot Defense Station" 19
 		
 		"Huge Grav-Thruster"
 		"Steering (Planetary Class)"
@@ -866,9 +866,9 @@ ship "Korath World-Ship (Efreti)"
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 805
+		"outfit space" 823
 		"weapon capacity" 314
-		"engine capacity" 165
+		"engine capacity" 196
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -910,7 +910,7 @@ ship "Korath World-Ship (Efreti)"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis."
 
 ship "Korath Dredger (Efreti)"
 #currentlydredgerstats
@@ -969,7 +969,7 @@ ship "Korath Dredger (Efreti)"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and Raiders lacked the cargo capacity. The Dredger was born as an answer to this problem, featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Raiders."
+	description "This ship features an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support."
 
 ship "Korath Raider (Efreti)"
 #currentlyraiderstats
@@ -1024,7 +1024,7 @@ ship "Korath Raider (Efreti)"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Korath Raider is their warship of choice for plundering neighboring species."
+	description "This is the ship of choice for mining nearby asteroids."
 
 ship "Korath Haven"
 	sprite "ship/korath haven"
