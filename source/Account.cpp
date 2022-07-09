@@ -127,7 +127,7 @@ void Account::PayExtra(int mortgage, int64_t amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance, int64_t escortCosts)
+string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance, int64_t escortSalaries)
 {
 	ostringstream out;
 
@@ -136,9 +136,9 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance, int6
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
-	credits -= escortCosts;
-	if(escortCosts != 0)
-		out << "You paid " << escortCosts << " credits for escorts. ";
+	credits -= escortSalaries;
+	if(escortSalaries != 0)
+		out << "You paid " << escortSalaries << " credits for escorts. ";
 
 	// Crew salaries take highest priority.
 	int64_t salariesPaid = salariesOwed;
