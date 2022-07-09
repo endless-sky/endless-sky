@@ -595,7 +595,7 @@ void PlayerInfo::IncrementDate()
 		assets += ship->Cargo().Value(system);
 
 	// Check if escorts will leave the player due to a lack of money.
-	int64_t costs = calculateEscortCosts();
+	int64_t costs = escortCostsCalculate();
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -1831,7 +1831,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 
-int64_t PlayerInfo::calculateEscortCosts()
+int64_t PlayerInfo::escortCostsCalculate()
 {
 	int64_t allCosts = 0;
 	int64_t oneCost = 0;
