@@ -522,15 +522,17 @@ void PrintShipTable()
 		const Ship &ship = it.second;
 		cout << it.first << ',';
 
-		const Outfit &attributes = ship.Attributes();
+		const Outfit &attributes = ship.BaseAttributes();
 		cout << attributes.Category() << ',';
-		cout << ship.Cost() << ',';
+		//cout << ship.Cost() << ',';
+		cout << ship.ChassisCost() << ',';
+
 		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 		cout << attributes.Get("shields") << ',';
 		cout << attributes.Get("hull") << ',';
 		cout << mass << ',';
 		cout << attributes.Get("drag") << ',';
-		cout << ship.HeatDissipation() << ',';
+		cout << ship.HeatDissipation() * 1000.<< ',';
 		cout << attributes.Get("required crew") << ',';
 		cout << attributes.Get("bunks") << ',';
 		cout << attributes.Get("cargo space") << ',';
