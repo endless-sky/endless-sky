@@ -121,11 +121,11 @@ news "human merchant in human space"
 			"Romantic Matchmaking as organized by the Syndicate is garbage; the Syndicate laws don't allow differentiating on gender, so there is a 50% chance that the match they find for you is the wrong gender."
 			"I once got married, but my partner didn't allow me to fly further than 5 systems away from her. Guess what? I'm now more than 5 systems away from my ex-partner."
 			"I once married somebody with no credits, and I lost half of my fleet when we divorced."
-			"I really found my true love in one of those Romantic Match Making programs; my love always joins me on every flight I do and we are a great team."
-			"I often join those Syndicate Romantic Matchmaking programs; they are a great source to pick-up crew members that work for free, at least until they find out. Then I dump them on whatever planet I'm visiting."
+			"I really found my true love in one of those Romantic Matchmaking programs; my love always joins me on every flight I'm on. We're a great team."
+			"I often join those Syndicate Romantic Matchmaking programs; they're a great source to pick-up crew members that work for free, at least until they find out. Then I dump them on whatever planet I'm visiting."
 			"Truck drivers in the old days were required by law to take a break every 2 hours. Can you imagine that in our business? Stopping our ships every 2 hours to take a rest?"
-			"I once had some Flat Earthers as passengers, they claimed that the planets we saw are 2 dimensional circles instead of 3 dimensional spheres."
-			"Some Flat Earthers accused me of playing propaganda videos on the ships viewports when they looked out of the ship while we were in orbit."
+			"I once had some Flat Earthers as passengers. They claimed that the planets we saw are 2 dimensional circles instead of 3 dimensional spheres."
+			"Some Flat Earthers accused me of playing propaganda videos on the ship's viewports when they looked out of the ship while we were in orbit."
 		word
 			`"`
 
@@ -314,11 +314,11 @@ news "parent"
 		word
 			`"`
 		word
-			"My kids make me so proud. They are doing so well; one is doctor and one is a lawyer. I'm so happy that none of them choose a job like becoming a spaceship captain."
-			"I'm sad that I'm not a grandparent yet; my kids are more busy with flying spaceships than with extending the family line."
-			"I'm so ashamed that my boy only graduated with great honor. The daughter of the neighbors graduated with highest honor, what should I say to the neighbors when I meet them again?"
+			"My kids make me so proud. They are doing so well; one is doctor and one is a lawyer. I'm so happy that none of them chose a job like becoming a spaceship captain."
+			"I'm sad that I'm not a grandparent yet; my kids are too busy flying spaceships to extend the family line."
+			"I'm so ashamed that my boy only graduated with great honors. Our neighbors' daughter graduated with highest honors. What should I say to them when I meet them again?"
 			"Do you want to see a picture of our newborn baby? We are so happy!"
-			"Don't you hate it when parents only talk about their kids and nothing else? I really try to avoid that ... although I do have really nice kids. Do you want to hear about them?"
+			"Don't you hate it when parents only talk about their kids and nothing else? I really try to avoid that... although I do have really nice kids. Do you want to hear about them?"
 		word
 			`"`
 
@@ -600,7 +600,7 @@ news "hyperspace relay engineer"
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
 			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
 			"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
-			"Do you know the DRQ of the HSBE for the North hyperlane? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space."
+			"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space."
 		word
 			`"`
 
@@ -803,7 +803,7 @@ news "human ship salesperson"
 			`"`
 		word
 			"When one hatch closes, another one opens. Other than that it's a pretty good spaceship."
-			"First I tell my customers how very durable my ships are. And after they buy, then I tell them about all the fragile parts to convince them to also buy extended warranty."
+			"First I tell my customers how very durable my ships are. And after they buy, I tell them about all the fragile parts to convince them to also buy an extended warranty."
 			"Like new, low mileage, previously owned by an elderly lady."
 			"Hey, you there! I have the perfect ship for you."
 			"One of my ships has a fuel leak? No way, it's... sweat from the all the hard work it does."
@@ -1037,8 +1037,8 @@ news "chef"
 			"Eating fancy dishes is great, but sometimes there's nothing you want more than a good old sandwich."
 			"Last week my dish was completely ruined; somebody had calibrated my kitchen scale with the gravity settings of another planet."
 			"There is only one thing worse than finding a worm in an apple you're eating: finding half a worm in that apple."
-			"We can bake the most delicious fluffy cakes in space, but our trade-union said we shouldn't call them spacecakes."
-			"Hey, don't just hang around over there! Help me load this stuff; those 50 catering-containers aren't going to move themselves."
+			"We can bake the most delicious fluffy cakes in space, but our trade union said we shouldn't call them spacecakes."
+			"Hey, don't just hang around over there! Help me load this stuff; these 50 catering containers aren't going to move themselves."
 			"Be careful what you transport; another chef once tried to poison my supplies during transport. Both that chef and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
 			"If you ever start a restaurant near a spaceport, then don't call it `The Space Bar`. You might think you're funny, but so did hundreds of other new restaurant owners before you."
@@ -1193,13 +1193,13 @@ news "human syndicate manager"
 			"Those union guys wanted to rally on a planet nearby, but unionising is forbidden on that planet, so we could stop them easily by closing the spaceport there for known criminals!"
 			"My employees are angry when they need to do unpaid overtime in exceptional situations. They should have realized that working for me is exceptional every day."
 			"Patience is a virtue, but why is 'just hurry up' not also a virtue? Hurrying up works much better in the factory."
-			"When everything is under control, then we are not going fast enough. Except of course in your business, where people typically die due to explosions or due to the vacuum of space when things go out of control."
+			"When everything is under control, then we are not going fast enough. Except of course in your business, where people typically die due to explosions or the vacuum of space when things go out of control."
 			"I allow people to go home when they are no longer productive, even if it is 3 PM. Who are we kidding if we just steer on being present instead of steering on being productive?"
 			"We used to give our top performers shuttles, but they flew away faster than we could hire. Now we give them apartments and many are settling here and starting families."
 			"I'm really fed up with employees that have a 'can do' attitude. Just do your job, without the attitude."
 			"I'm actively recruiting people with a 9-to-5 mentality, because I know how important it is to have a good work/life balance."
 			"We used to advertise our food products with 100% organic ingredients, but nobody believed us. Now we are advertising with 60% organic ingredients and sales are sky high."
-			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done,' and that really caught on."
+			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done', and that really caught on."
 			"We hired a marketing agency and they came up with the sloppy slogan 'Just what's needed to get the job done'. Can you believe we spent huge amounts of money on that garbage?"
 		word
 			`"`
@@ -1429,7 +1429,7 @@ news "human republic soldier"
 			"I hope I don't get posted to fighter duty next week. Those things are deathtraps. By the time you get close enough to fire your lasers, you've already lost half your shields!"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
 			"While it seems pointless to have the Bactrian locked behind a license, don't forget that it's one of the oldest designs in human space. It was the Navy Carrier of its time - and it's still comparable to one."
-			"We recently went to full alert, because somebody screamed `It's scrambled!`. Turns out some rookie in the galley was enthusiastic about making scrambled eggs."
+			"We recently went to full alert, because somebody screamed 'It's scrambled!'. Turns out some rookie in the galley was enthusiastic about making scrambled eggs."
 		word
 			`"`
 
@@ -1605,7 +1605,7 @@ news "human republic reporter in pirate space"
 			"Look at this! 'Top Ten Pirates Hector Barbarossa is Too Afraid to Cross!'"
 			"Read this! 'Twenty Pirates with the Highest IQs - You'll Never Guess Who's Number One!'"
 			"Check this out! 'Telltale Signs Your Spouse is Secretly a Pirate - Number Five Says it All!'"
-			"Read my column on how to identify pirates in disguise! ... Or just look around at this planet, that also works."
+			"Read my column on how to identify pirates in disguise!... Or just look around at this planet, that also works."
 		word
 			`"`
 
@@ -1621,8 +1621,8 @@ news "spaceport video advertisement"
 		word
 			"You see a video of stuntmen making a jump from the edge of space. The 'do not try this at home', 'illegal on many planets', and 'high risk/deadly' warnings at the end of the video suggest that this might become quite a popular sport."
 			"A video of fast spaceships racing over some 3 dimensional track in space is shown on the screen, interwoven with videos of very luxurious ships where people appear to be watching the race."
-			"An action-packed advertisement about joining the navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
-			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what is needed to get the job done'."
+			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
+			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done'."
 
 
 
@@ -1719,7 +1719,7 @@ news "graffiti on spaceport wall"
 			"What do you get when you cross a rhetorical question with a joke?"
 			"Spacing out in space is never funny."
 			"Don't put graffiti on the wall here."
-			"Slow spaceships slowdown speedy shipping."
+			"Slow spaceships slow down speedy shipping."
 			"Fast Flivvers; ferociously ferrying famous families fast and friendly."
 			"Veni, vidi, hyperjumped away."
 			"Those who dance will be called fools by those who cannot hear the music."
