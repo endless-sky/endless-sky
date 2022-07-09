@@ -888,8 +888,7 @@ ship "Korath World-Ship (Efreti)"
 		"Korath Repeater Rifle" 150
 		
 		"Huge Grav-Thruster"
-		"Steering (Lunar Class)"
-		"Reverser (Lunar Class)"
+		"Huge Grav-Thrust Steering"
 		"Hyperdrive"
 
 	"reverse engine" -31 -290
@@ -950,8 +949,7 @@ ship "Korath Dredger (Efreti)"
 		"Korath Repeater Rifle" 190
 		
 		"Large Grav-Thruster"
-		"Steering (Lunar Class)"
-		"Reverser (Lunar Class)"
+		"Large Grav-Thrust Steering"
 		"Hyperdrive"
 
 	engine 19.5 189.5
@@ -1011,7 +1009,7 @@ ship "Korath Raider (Efreti)"
 		"Hyperdrive"
 		
 		"Medium Grav-Thruster"
-		"Steering (Lunar Class)"
+		"Medium Grav-Thrust Steering"
 
 	engine -17.5 139.5
 	engine 17.5 139.5
