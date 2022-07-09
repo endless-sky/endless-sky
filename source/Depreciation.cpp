@@ -211,7 +211,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 // Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) const
+int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, const PlayerInfo *player) const
 {
 	map<const Ship *, int> shipCount;
 	map<const Outfit *, int> outfitCount;
@@ -229,9 +229,8 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 	for(const auto &it : shipCount)
 		value += Value(it.first, day, it.second);
 	for(const auto &it : outfitCount)
-		// The values used are not dependant on the system the player is in;
-		// given it is used to calculate bank allowance etc.
-		value += Value(it.first, day, nullptr, it.second);
+		// Only use the values of the local outfitter if the player is actually landed.
+		value += Value(it.first, day, (player && player->GetPlanet()) ? player : nullptr, it.second);
 	return value;
 }
 

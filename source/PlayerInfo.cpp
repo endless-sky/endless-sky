@@ -589,7 +589,7 @@ void PlayerInfo::IncrementDate()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch(), this);
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cargo().Value(system);
 
