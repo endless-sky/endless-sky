@@ -94,7 +94,7 @@ outfit "Korath Shunt-Strike"
 		"blast radius" 30
 		"safe"
 		"missile strength" 80
-	description "This weapon fires homing balls of microbots that pass through a target's shields and attempt to convert its hull into raw materials or useful items such as heat shunts. They inevitably fail, as Exile microbots cannot sustain themselves without a Systems Core, but not before wreaking havoc on the ship."
+	description "This weapon fires homing balls of microbots that pass through a target's shields and attempt to convert its hull into raw materials or useful items such as heat shunts. As Exile microbots contain safety circuits that prevent them from becoming independent of their Systems Core, they will fail after a short time, but not before wreaking havoc on the ship."
 	description "Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it is never used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
 
 effect "shunt-strike hit"
@@ -262,7 +262,7 @@ outfit "Korath Blaze-Pike"
 		"hull damage" 3.1
 		"heat damage" 18
 		"burn damage" 0.45
-	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely double the gun's effect, but rather magnify it exponentially."
+	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely create two lances of fire, doubling the gun's effect. Rather, they begin to form a gestalt -- a single, longer, hotter, and almost hypnotic column of fire."
 
 effect "blaze-pike hit"
 	sprite "effect/blaze-pike hit"
