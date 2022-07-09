@@ -434,15 +434,6 @@ outfit "Hai Williwaw Cooling"
 	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
-outfit "Hai Zephyr Cooling"
-	category "Systems"
-	cost 38000
-	thumbnail "outfit/hai zephyr"
-	"mass" 14
-	"outfit space" -14
-	"cooling" 21
-	description `This advanced cooling system was developed by the Unfettered with significant help from Korath scientists, who apparently laughed at the "primitive" old design the Hai had developed, and which they had found sufficient until then.`
-
 outfit "Quantum Keystone"
 	category "Systems"
 	cost 12000
