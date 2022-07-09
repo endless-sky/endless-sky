@@ -326,9 +326,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == SDLK_DOWN && !SelectAnyMission())
 	{
-		// Keyed "Down," and didn't auto-select the first mission on a side,
-		// so update the existing selected mission.
-		if(availableIt != available.end())
+		if(SelectAnyMission())
+		{
+			// A mission was just auto-selected. Nothing else to do here.
+		}
+		else if(availableIt != available.end())
 		{
 			++availableIt;
 			if(availableIt == available.end())
