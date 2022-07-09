@@ -324,7 +324,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN && !SelectAnyMission())
+	else if(key == SDLK_DOWN)
 	{
 		if(SelectAnyMission())
 		{
