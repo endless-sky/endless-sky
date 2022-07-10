@@ -200,8 +200,8 @@ mission "Remnant: Shattered Light 2"
 	on complete
 		payment 50000
 		conversation
-			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. Taely copied her actions a few moments later, taking her time as you make preparations to follow them. You can see Ruach has a hologram of the spectral ship by the time you arrive, floating in the air between them. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach mused.`
-			`	"Sorry for leaving you behind, but this is just such an exciting discovery. This ship you found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions to be answered! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
+			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. A few moments later, Taely drops out of them, greeting Ruach warmly. By the time you join them, Ruach has a hologram of the spectral ship floating in the air. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach muses as you arrive.`
+			`	"Sorry for leaving you behind, <first>, but this is just such an exciting discovery. This ship you found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions to be answered! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
 			
 
 
