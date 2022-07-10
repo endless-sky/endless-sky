@@ -150,6 +150,7 @@ mission "Remnant: Visit to Paradise 1"
 mission "Remnant: Shattered Light 1"
 	name "Shattered Light - Contact"
 	invisible
+	landing
 	source
 		government "Remnant"
 	destination "Viminal"
@@ -242,7 +243,13 @@ mission "Remnant: Shattered Light 3"
 		conversation
 			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
 			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity, we can handle the rest."`
+			branch livingship
+				has "flagship model: Peregrine"
+			`	Moments later you spot a gaping hole on the ship. Focusing on it, you fly the <ship> down and hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
+				goto dropsuccess
+			label livingship
 			`	Moments later your ship pings a point on the ship indicating a gaping hole on the ship. Nodding your assent, the <ship> swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
+			label dropsuccess
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
 
