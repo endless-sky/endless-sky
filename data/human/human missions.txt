@@ -4119,7 +4119,7 @@ mission "Hai Wormhole Warning"
 			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
 			label frigate
 			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
-			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area of the ship. "Please, have a seat," he says.`
+			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
 			choice
 				`	(Take a seat.)`
 					goto seat
@@ -4130,22 +4130,23 @@ mission "Hai Wormhole Warning"
 			`	You choose a table to sit at and the officer sits across from you.`
 			label questioning
 			`	"So what is it that you brought me here for?" you ask.`
-			`	The officer folds his hands together. "It has come to the Republic's attention that you've made contact with an alien species located to the north of the Republic. Is this correct?"`
+			`	The officer folds his hands together. "It has come to the Republic's attention that you've made contact with an alien species located to the north. Is this correct?"`
 			choice
 				`	"It is. Is that a problem?"`
 					goto yes
 				`	"Perhaps. Why do you ask?"`
 					goto maybe
 				`	"Aliens? I don't know of any aliens up there."`
-			`	"Don't play coy with me, <last>. We are aware that you've made contact with the Hai.`
+				`	"Hey! That's no way to talk about the pirates in the Far North."`
+			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai.`
 				goto secret
 			label maybe
-			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' We are aware that you've made contact with the Hai.`
+			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
 				goto secret
 			label yes
-			`	"There is no problem, <last>, but we are aware that you've made contact with the Hai.`
+			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
 			label secret
-			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; we do not disallow captains such as yourself from stumbling upon them, but we will not allow this existence to be widely shared."`
+			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; we do not disallow captains such as yourself from stumbling upon them, but we will not allow this existence to be widely publicized."`
 			choice
 				`	"Why are you telling me this?"`
 					goto why
@@ -4160,7 +4161,7 @@ mission "Hai Wormhole Warning"
 			label arrangement
 			`	"The details of the arrangement are none of your concern. All you need to know is that we provide a... warning, so to say, to those who know of the Hai that they keep them secret.`
 			label chaos
-			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for us and for the Hai, chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this as our little secret."`
+			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for us and for the Hai. Chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this as our little secret."`
 			choice
 				`	"Alright. I won't let anyone know."`
 					goto ok
