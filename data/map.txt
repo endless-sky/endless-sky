@@ -22794,6 +22794,7 @@ system "Silver Bell"
 				scale 0.5
 			distance 99.5
 			period 503.253
+			offset 180
 	object "Chosen Nexus"
 		sprite planet/cloud3
 		distance 1500
