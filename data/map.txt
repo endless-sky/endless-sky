@@ -8390,7 +8390,7 @@ system Dokdobaru
 	object "Korati Efreti"
 		sprite planet/station1k
 		distance 680
-		period 268.086
+		period 349.820
 	object
 		sprite planet/lava3-b
 		distance 812
