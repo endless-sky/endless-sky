@@ -4130,7 +4130,7 @@ mission "Hai Wormhole Warning"
 			`	You choose a table to sit at and the officer sits across from you.`
 			label questioning
 			`	"So what is it that you brought me here for?" you ask.`
-			`	The officer folds his hands together. "It has come to the Republic's attention that you've made contact with an alien species located to the north. Is this correct?"`
+			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
 			choice
 				`	"It is. Is that a problem?"`
 					goto yes
@@ -4153,10 +4153,10 @@ mission "Hai Wormhole Warning"
 				`	"An arrangement between the Republic and Hai? When did that happen?"`
 					goto arrangement
 				`	"So you're threatening me to stay quiet?"`
-			`	"No threats, only a... warning, so to say.`
+			`	"No threats. I only provide a... warning, so to say, that you should keep the Hai a secret.`
 				goto chaos
 			label why
-			`	"I'm telling you this as something of a... warning, so to say.`
+			`	"I'm telling you this as something of a... warning, so to say, that you should keep the Hai a secret.`
 				goto chaos
 			label arrangement
 			`	"The details of the arrangement are none of your concern. All you need to know is that I am providing a... warning, so to say, that you should keep the Hai a secret.`
