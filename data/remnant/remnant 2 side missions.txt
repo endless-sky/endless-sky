@@ -258,10 +258,9 @@ mission "Remnant: Shattered Light 3"
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
 			`	With their confirmation, you quickly pull away from the approaching wreck and retreat to a safe distance.`
-				goto end
+				accept
 			label livingclear
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
-			label end
 
 
 
