@@ -544,7 +544,7 @@ phrase "remnant scan"
 	word
 		"my ship."
 		"our ships."
-		"everything in the Ember Waste"
+		"everything in the Ember Waste."
 
 phrase "remnant scan"
 	word
@@ -600,7 +600,7 @@ phrase "remnant secrecy"
 		"Kindly keep your knowledge of us to yourself."
 		"Secrecy is the best defense."
 		"If anyone asks, there is no-one out here."
-		"If anyone asks, nothing out here of interest."
+		"If anyone asks, there is nothing of interest out here."
 
 phrase "remnant outfit recommendations"
 	word
@@ -637,7 +637,7 @@ phrase "remnant outfit recommendations"
 		"equipping"
 		"getting"
 		"installing"
-		"outfitting"
+		"outfitting your ship with"
 	word
 		" "
 	phrase
@@ -687,7 +687,7 @@ phrase "remnant outfit recommendations (trusted)"
 		"equipping"
 		"getting"
 		"installing"
-		"outfitting"
+		"outfitting your ship with"
 	word
 		" "
 	phrase
