@@ -253,7 +253,15 @@ mission "Remnant: Shattered Light 3"
 			`	Moments later the <ship> pings a point on the Shattered Light indicating a gaping hole on the ship. Nodding your assent, your ship swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into the hole on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
 			label dropsuccess
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
+			branch livingclear
+				or
+					has "flagship model: Peregrine"
+					has "flagship model: Merganser"
+			`	With their confirmation, you quickly pull away from the approaching wreck and retreat to a safe distance.`
+				goto end
+			label livingclear
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
+			label end
 
 
 
