@@ -161,7 +161,7 @@ mission "Remnant: Shattered Light 1"
 		personality uninterested waiting staying mute
 		system Caeculus
 		ship "Dromedary Ghost" "???"
-		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it."
+		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it. You should probably look for Taely on Viminal."
 	on complete
 		conversation
 			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
@@ -224,7 +224,7 @@ mission "Remnant: Shattered Light 3"
 		dialog `It is on a crash course for Far Monad!" exclaims Ruach. "Quick, land there!`
 	on offer
 		conversation
-			`A group of people huddled around a hologram catches your attention, drawing your eyes to Rauch who gestures for you to join them. She introduces you to each person, before thanking you: "I would just like to start by offering our thanks for your assistance, Captain <first>. You have sharp eyes to pick this up as early as you did." She gestures to the hologram of the ship floating in front of you. "Other scouts reported it shortly thereafter, but you spotted it first."`
+			`A group of people huddled around a hologram catches your attention, drawing your eyes to Ruach who gestures for you to join them. She introduces you to each person, before thanking you: "I would just like to start by offering our thanks for your assistance, Captain <first>. You have sharp eyes to pick this up as early as you did." She gestures to the hologram of the ship floating in front of you. "Other scouts reported it shortly thereafter, but you spotted it first."`
 			`	"We have confirmed that this matches all available records of the Shattered Light, although it appears to have suffered considerable damage. One of the oldest mysteries here is what has happened to it, and what we should do about it."`
 			`	Another Remnant steps forward and the hologram changes to show a scene from a cave with a large object. Other Remnant appear to aim some equipment at it, and after a moment or two, the object expands to several times its original size. "These are recordings from our explorations of the ruins, demonstrating the decompression of a Maudrakoi artifact. While not identical, these artifacts generate similar readings to those recorded during your scan of the Shattered Light.`
 			`	"As such, our proposition is to use the same equipment we used for decompression to stabilize the Shattered Light's weft field, and, if possible, bring it fully into synchronicity once again." She nods firmly, clapping her hands together to make the hologram vanish.`
@@ -233,7 +233,7 @@ mission "Remnant: Shattered Light 3"
 				`	"Looks good. Start loading the <ship>!"`
 					accept
 				`	"Wait, 'Maudrakoi'?"`
-			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." They look around the room, then gesture and their hologram shifts to show a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
+			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She look around the room, then gesture and the hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
 			`	"We do not have time for an in-depth presentation; but the short version is this: The Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
@@ -250,7 +250,7 @@ mission "Remnant: Shattered Light 3"
 
 mission "Remnant: Shattered Light 3b"
 	name "Remnant: Ghost Touch"
-	description "Help the Remnant experiment on the Shattered Light."
+	description "Help the Remnant experiment on the Shattered Light. It was last seen in the Coluber system. Track it down and carry out an outfit scan."
 	source "Viminal"
 	destination "Viminal"
 	waypoint "Coluber"
