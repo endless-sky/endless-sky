@@ -1409,7 +1409,7 @@ mission "Coalition: Alpha Encounter"
 		random < 1
 	source
 		government "Coalition"
-		not attributes "station"
+		not attributes "coalition station"
 		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
 	on offer
 		event "alitis freed" 1095
