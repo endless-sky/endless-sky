@@ -1140,7 +1140,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"No? I believe that place just doesn't exist."
-		"Even the Earth government couldn't confirm that it exists."
+		"Even the Republic government couldn't confirm that it exists."
 		"That place is not real, it is just an illusion."
 		"It's a conspiracy by aliens, who use the university there as a disguise for their spaceship."
 		"'They' want to make us believe the place actually exists."
