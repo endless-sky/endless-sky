@@ -54,7 +54,7 @@ effect "grab-strike impact"
 	"velocity scale" -.1
 
 
-outfit "Korath Shunt-Strike"
+outfit "Shunt-Strike Turret"
 	category "Turrets"
 	cost 821000
 	thumbnail "outfit/shunt-strike"
@@ -140,7 +140,7 @@ outfit "Korath Banisher"
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
 
-outfit "Korath Expeller"
+outfit "Expeller Grav-Ray"
 	category "Guns"
 	cost 819000
 	thumbnail "outfit/expeller"
@@ -236,7 +236,7 @@ effect "fire-lance impact"
 	"random angle" 360
 	"velocity scale" 0.
 
-outfit "Korath Blaze-Pike"
+outfit "Blaze-Pike Turret"
 	category "Turrets"
 	cost 1970000
 	thumbnail "outfit/blaze-pike"
@@ -738,7 +738,7 @@ effect "slicer impact"
 	"velocity scale" -.002
 
 
-outfit "Korath Digger Turret"
+outfit "Digger Mining Turret"
 	category "Turrets"
 	cost 509000
 	thumbnail "outfit/korath digger turret"
@@ -767,7 +767,7 @@ outfit "Korath Digger Turret"
 		"disruption damage" .08
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient but robust design. The mild shield disruption effect makes it somewhat useful in combat if required.`
 
-outfit "Korath Digger"
+outfit "Digger Mining Beam"
 	category "Guns"
 	cost 419000
 	thumbnail "outfit/korath digger"
@@ -802,7 +802,7 @@ effect "korath digger hit"
 	"velocity scale" .005
 
 
-outfit "Korath Heaver"
+outfit "Langrage Hyper-Heaver"
 	category "Secondary Weapons"
 	cost 3450000
 	thumbnail "outfit/korath heaver"
@@ -832,7 +832,8 @@ outfit "Korath Heaver"
 		"firing heat" 190
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
-	description `Korath Heavers raise to a fine art the age-old warfare method of throwing rocks at one's enemy until they die. A small Banisher throws asteroids or other debris into an unstable hyperspace window. At close range, this merely pushes the enemy, but after the debris exits hyperspace, it becomes a rapidly-expanding cloud of deadly projectiles.`
+	description `Langrage Hyper-Heavers raise the use of improvised ammunition to a fine art. A small Banisher propels scrap metal, nearby asteroids, compressed garbage, or other debris into an unstable hyperspace window.`
+	description `At close range, the jumping langrage merely forces the enemy back. Further along, being forced to hyper transforms it into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"

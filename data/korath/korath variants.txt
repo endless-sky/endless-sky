@@ -14,9 +14,9 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 	add attributes
 		"atmosphere scan" 1
 	outfits
-		"Korath Digger Turret" 2
-		"Korath Shunt-Strike"
-		"Korath Heaver"
+		"Digger Mining Turret" 2
+		"Shunt-Strike Turret"
+		"Langrage Hyper-Heaver"
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -33,11 +33,11 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 		"Thruster (Planetary Class)"
 		"Scram Drive"
 	
-	turret "Korath Digger Turret"
-	turret "Korath Shunt-Strike"
-	turret "Korath Digger Turret"
+	turret "Digger Mining Turret"
+	turret "Shunt-Strike Turret"
+	turret "Digger Mining Turret"
 	turret "Korath Warder"
-	turret "Korath Heaver"
+	turret "Langrage Hyper-Heaver"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
@@ -45,7 +45,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 ship "Korath Dredger" "Korath Dredger (Crippled)"
 	outfits
 		"Korath Banisher"
-		"Korath Digger Turret"
+		"Digger Mining Turret"
 		"Korath Grab-Strike"
 		"Korath Warder"
 		
@@ -64,7 +64,7 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 		"Jump Drive (Broken)"
 		
 	turret
-	turret "Korath Digger Turret"
+	turret "Digger Mining Turret"
 	turret
 	turret "Korath Grab-Strike"
 	turret
@@ -74,7 +74,7 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 
 ship "Korath Dredger" "Korath Dredger (Digger)"
 	outfits
-		"Korath Digger Turret" 5
+		"Digger Mining Turret" 5
 		"Korath Warder"
 		"Korath Banisher"
 		
@@ -92,18 +92,18 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 		"Jump Drive"
 		"Scram Drive"
 	
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
 	turret "Korath Banisher"
 	turret "Korath Warder"
-	turret "Korath Digger Turret"
-	turret "Korath Digger Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
 
 
 ship "Korath Dredger" "Korath Dredger (Shunt)"
 	outfits
-		"Korath Shunt-Strike" 4
+		"Shunt-Strike Turret" 4
 		"Korath Banisher"
 		"Korath Warder" 2
 		
@@ -119,11 +119,11 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 		"Jump Drive"
 		"Scram Drive"
 	
-	turret "Korath Shunt-Strike"
-	turret "Korath Shunt-Strike"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
 	turret "Korath Warder"
-	turret "Korath Shunt-Strike"
-	turret "Korath Shunt-Strike"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
@@ -158,7 +158,7 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 
 ship "Korath Dredger" "Korath Dredger (Heaver)"
 	outfits
-		"Korath Heaver" 4
+		"Langrage Hyper-Heaver" 4
 		"Korath Warder" 3
 
 		"Double Plasma Core"
@@ -174,18 +174,18 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 		"Jump Drive"
 
 	turret "Korath Warder"
-	turret "Korath Heaver"
-	turret "Korath Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
 	turret "Korath Warder"
 	turret "Korath Warder"
-	turret "Korath Heaver"
-	turret "Korath Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
 
 
 ship "Korath Raider" "Korath Raider (Blaze)"
 	outfits
-		"Korath Blaze-Pike" 4
-		"Korath Digger Turret" 1
+		"Blaze-Pike Turret" 4
+		"Digger Mining Turret" 1
 		"Korath Warder"
 		"Firelight Missile Bank" 2
 		"Firelight Missile" 36
@@ -204,11 +204,11 @@ ship "Korath Raider" "Korath Raider (Blaze)"
 	
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Digger Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Digger Mining Turret"
 	turret "Korath Warder"
 
 
@@ -280,8 +280,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 
 ship "Korath Raider" "Korath Raider (Ember Blaze)"
 	outfits
-		"Korath Blaze-Pike" 4
-		"Korath Digger Turret"
+		"Blaze-Pike Turret" 4
+		"Digger Mining Turret"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack"
@@ -302,17 +302,17 @@ ship "Korath Raider" "Korath Raider (Ember Blaze)"
 	
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Blaze-Pike"
-	turret "Korath Digger Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Digger Mining Turret"
 	turret "Korath Warder"
 
 
 ship "Korath Raider" "Korath Raider (Ember Shunt)"
 	outfits
-		"Korath Shunt-Strike" 4
+		"Shunt-Strike Turret" 4
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
@@ -336,10 +336,10 @@ ship "Korath Raider" "Korath Raider (Ember Shunt)"
 	
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
-	turret "Korath Shunt-Strike"
-	turret "Korath Shunt-Strike"
-	turret "Korath Shunt-Strike"
-	turret "Korath Shunt-Strike"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
@@ -416,7 +416,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 
 ship "Korath Chaser" "Korath Chaser (Expeller)"
 	outfits
-		"Korath Expeller"
+		"Expeller Grav-Ray"
 		
 		"Generator (Candle Class)"
 		"Systems Core (Tiny)"
@@ -428,7 +428,7 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 
 ship "Korath Chaser" "Korath Chaser (Digger)"
 	outfits
-		"Korath Digger"
+		"Digger Mining Beam"
 		
 		"Generator (Candle Class)"
 		"Systems Core (Tiny)"

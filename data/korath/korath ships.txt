@@ -39,7 +39,7 @@ ship "Korath Dredger"
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 1
 		"Korath Warder" 1
-		"Korath Digger Turret" 3
+		"Digger Mining Turret" 3
 		
 		"Systems Core (Large)"
 		"Triple Plasma Core"
@@ -55,11 +55,11 @@ ship "Korath Dredger"
 		"Jump Drive"
 		
 	turret 0 -153 "Korath Grab-Strike"
-	turret -37.5 -152.5 "Korath Digger Turret"
+	turret -37.5 -152.5 "Digger Mining Turret"
 	turret 37.5 -152.5 "Korath Grab-Strike"
 	turret -45 -27.5 "Korath Warder"
-	turret 45 -27.5 "Korath Digger Turret"
-	turret -85.5 128 "Korath Digger Turret"
+	turret 45 -27.5 "Digger Mining Turret"
+	turret -85.5 128 "Digger Mining Turret"
 	turret 85.5 128 "Korath Banisher"
 	engine 0 179
 	engine -32 164 .7
