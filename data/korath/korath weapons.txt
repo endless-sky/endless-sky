@@ -95,7 +95,7 @@ outfit "Korath Shunt-Strike"
 		"safe"
 		"missile strength" 80
 	description "This weapon fires homing balls of microbots that pass through a target's shields and attempt to convert its hull into raw materials or useful items such as heat shunts. As Exile microbots contain safety circuits that prevent them from becoming independent of their Systems Core, they will fail after a short time, but not before wreaking havoc on the ship."
-	description "Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it is never used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
+	description "Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it should never be used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
 
 effect "shunt-strike hit"
 	sprite "effect/shunt-strike-hit"
