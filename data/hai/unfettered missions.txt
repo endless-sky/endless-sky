@@ -402,7 +402,7 @@ mission "Unfettered: Neutral With The Hai"
 		has "Unfettered Jump Drive 3: offered"
 	on offer
 		conversation
-			`Whilst wandering near the spaceport you find an Unfettered Chief who chastises you as a father would to a misbehaving child. "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you. "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
+			`While wandering near the spaceport you find an Unfettered Chief who chastises you as a father would to a misbehaving child. "What have you done to anger our brethren?" You begin to answer, but he immediately interrupts you. "Never mind, it matters not. What matters is that you settle this petty dispute you have with the Elders right now! Or, in the future, cooperation with us will become difficult."`
 			choice
 				`	(Accept.)`
 					goto agree
@@ -443,7 +443,7 @@ mission "Unfettered: Neutral With The Hai"
 			``
 				accept
 			label death
-			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence whilst everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
+			`	The leaders gasp, and then, in a moment that seems to last forever, there is silence while everyone is looking at you. The silence is shattered when the guards start shooting. They probably did not intend to kill you outright, but apparently they see you as enough of a threat that the result is the same.`
 				die
 			label emptypromise
 			`	An elder marches forward, "That is not enough." They clearly expect more of you.`
@@ -809,7 +809,7 @@ mission "Unfettered: Prove Your Strength 2"
 				`	"Okay... That just seems too good to be true. What is the catch?"`
 				`	"If this is your mission you just do it yourself."`
 					decline
-			`	"Well... The name of the world is 'Freedom', and whilst it may sound nice, it is a unfettered human world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned, this is not a mission for the light hearted."`
+			`	"Well... The name of the world is 'Freedom', and while it may sound nice, it is a unfettered human world and is thus dangerous. That is why I need your ship for transportation trough Hai space. You will also need to have cargo space available for 4 jump drives. You should be warned, this is not a mission for the light hearted."`
 			choice
 				`	"Let's go then!"`
 					goto leave
@@ -878,20 +878,21 @@ mission "Unfettered: Jump Drive Retrieval"
 					goto moremen
 				`	(No time for talking.)`
 					goto outsideship
-			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger whilst we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
+			`	"That is an information I cannot trust anyone with, not even you, and especially not here. I do not want the owner of this cache to be in danger while we need jump drives to expand. Assume it is owned by unfettered humans, or pirates as I think you call them, and that we are ready to face them," he tells you.`
 				goto outsideship
 			label moremen
-			`	"We are trying to be discrete here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
+			`	"We are trying to be discreet here, not to draw attention! The more we are the more we will attract to attack us, we want them to think we have no value, not that we are rich fellows treasure hunting." Judging from his tone, this was a stupid question.`
 			label outsideship
 			`	Before exiting, he warns you, "Whatever happens, do not try anything stupid, and stay behind me at all times."`
-			`	Once outside you head for the mountains with him. He moves at a quick enough pace that you have difficulties following him, especially with the hard terrain. He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy though, and you surmise the suit must have been crafted specifically for him in order to be so discrete. He depresses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path; in case of an ambush that would be easy to set up in the mountains. You go by a small local town that seems pretty recent, though it is built with metal and other scraps they could gather, and is as deprecated as it gets.`
+			`	Once outside you head for the mountains with him. He moves at a quick pace, and you have difficulties following him, especially with the terrain. He seems worried and keeps looking around furtively, making as little sound as possible with his suit. He is impressively stealthy all things considered, and you surmise the suit must have been crafted specifically for him in order to be so discreet. He depresses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path; in case of an ambush that would be easy to set up in the mountains.
+			`	You quickly arrive by a small local town that seems pretty recent, though it is built with metal and other scraps they could gather, and is as deprecated as it gets.`
 			choice
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache is well hidden."`
 				`	(Keep walking, ready to reach for my gun.)`
-					goto discrete
+					goto discreet
 			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
-			label discrete
+			label discreet
 			`	You both seem to be heading to a quite far away mountain, where you assume the cache is. At one time you spot a local that appeared to have gotten lost from the village, though you get the distinctive impression that something is odd about him, without being able to pinpoint what. As you get closer, more and more you get the impression that it is no simple, small depot. You pass several security turrets and assume that even more defenses are hidden.  You wonder why these turrets would be in plain sight around a "hidden" depot. You start entering a ridge, and you notice some of your surroundings look... weird, like if the mountain had only been affected by the elements at some places and not others. Suddenly, the Hai stops, and raises a hand high up, palm open. Recognizing the sign, you stop.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be the access codes. By the look on his face, it does not seem to be working very well, though... "Someone else has had access to the vault. This was not expected," he hisses as his grip tightens on his weapon and he dons his helmet. "Stay here, I will take care of it."`
 			choice
@@ -920,14 +921,14 @@ mission "Unfettered: Jump Drive Retrieval"
 				die
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. He was evidently trained for this as he is already on the ground and sighting his rifle. You are impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but still your armored companion fires three more times.`
-			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you, whilst he takes care of the security systems.`
+			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you, while he takes care of the security systems.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
 					goto vault
-			`	"We needed to act discretely so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defences against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets."`
+			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defences against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets."`
 				goto ship
 			label vault
 			`	"We needed to make sure there was not any malfunctions with them, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses."`
@@ -1051,7 +1052,7 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(Its nothing, probably just a rat).`
 					goto lostbars
 				`(Go investigate).`
-			`You pull out your sidearm and approach the bay as discretely as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
+			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
 			choice
 				`(Ask if someone is there).`
 					goto hello
@@ -1141,7 +1142,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				decline
 			label escape
-			`You tighten the traitor's hold, and tell your marine to keep a watch on them until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. The ex crew member would have been killed if they had returned without the gold bars, so I let them take a few. You should quit this whilst you still can."`
+			`You tighten the traitor's hold, and tell your marine to keep a watch on them until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. The ex crew member would have been killed if they had returned without the gold bars, so I let them take a few. You should quit this while you still can."`
 				goto lostbars
 
 mission "Unfettered: Bar Selling"
@@ -1669,19 +1670,19 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
 	name `Find and capture the Alpha Auxiliary`
-	description `You found out that the Auxiliary has a leak, try and find traces of fuel around the system you last saw it in, then capture it.`
+	description `You found out that the Auxiliary has a problem with its jump drive, try and find the traces Taer-Fi pointed out around the system you last saw it in, then capture it.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`Taer-Fi is expecting you, and comes to your ship right away. She is eager to give you the intel, and hopefully it will help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
+			`Taer-Fi is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
 			choice
 				`	"Get to the point, where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of this chemical, it should lead you to them. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it!" You remember it had also fighters accompanying it. It will probably be a tough fight.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of this chemical, it should lead you to them. Their jump drive is malfunctionning, and leaving it behind. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it!" You remember it had also fighters accompanying it.`
 				goto agree
 			label damage
 			`	"Some kind of beam weapon, and a very strong one at that, it looks like it only got partially deflected by the shields. I wonder what kind of weapon can do that." She looks intrigued.`
@@ -1698,37 +1699,37 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"You should have asked me to do an outfit scan, earlier..."`
 			`	"Maybe, but it could have provoked them further, they apparently very much like to keep hold of their secrets. I only wanted to know about the structure of the ship. I have to grand you that knowing more about those weapons would be uesfull. Now, back to the damage on their ship."`
 			label information
-			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire, however there are still some microfractures, which should in theory be big enough for the ship to lose some hyperdrive fuel wherever it goes. Just follow the fuel trail."`
+			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out a energy reading on her pad. "An Unfettered captain has found weird particles in that same system. Looking more at it, I think it means a shot got trough and did some damage to one of the jump drives they are carrying, maybe even the one they use to jump. We once had damage to one fighting the aliens up north, and altough it could still function, it left this behind. I can't begin to understand it, my best guess would be that when the ship jumped the hole it left behind did not close as quickly as it should, and anti-matter came from the other side, and left these peculiar particles when being annihilated by contact with matter. I suspect that they would have gone back to their base to repair it, so there should be traces leading to it."`
 			label agree
-			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering these marks on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars."`
+			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars either."`
 				accept
 	
 	waypoint "Hi Yahr"
 	on waypoint
-		dialog `You indeed notice the fuel traces as you come back in the system where you found the Auxiliary. You figure they probably went to the East next with their jump drive, avoiding Hai territory.`
+		dialog `You indeed notice the traces as you come back in the system where you found the Auxiliary. You figure they probably went to the East next with their jump drive, avoiding Hai territory.`
 	on enter "Celeborim"
-		dialog `You are on the right track, there are small traces of fuel here as well.`
+		dialog `You are on the right track, there are small traces here as well.`
 	on enter "Asikafarnut"
 		dialog `You are still on the right path, you even find small debris of ships. They probably had to stay here a bit longer to fight them off.`
 	on enter "Makferuti" "Sobarati"
-		dialog `There are no traces of fuel here, they probably went to another system, looking for refuge from the hostile drones.`
+		dialog `There are no traces here, they probably went to another system, looking for refuge from the hostile drones.`
 	on enter "Silikatakfar" "Eneremprukt"
-		dialog `You cannot find any traces of fuel here. This is not the right direction.`
+		dialog `You cannot find any traces here. This is not the right direction.`
 	on enter "Mesuket"
-		dialog `There is plenty of traces of fuel here given the canarge going on, but you figure the Alphas would not have passed by this system given how dangerous it is.`
+		dialog `This system looks dangerous, there are too many interferences from the debris to pick up the traces but you figure they would try to avoid this system.`
 	on enter "Persitar"
 		dialog `This does not look like a good hiding spot...`
 	on enter "Ferukistek"
-		dialog `You spot one system with no hyperspace links north-east of here, it seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
+		dialog `There are traces here indeed. You spot one system with no hyperspace links north-east of here, it seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
-		dialog `You arrive in the system, expecting to find a vault, but it looks like it's a trap! Either that or the same auxiliary as earlier has just come back to resupply. Whatever the case it probably has the jump drives on board. You should capture the ship, as asked by the Unfettered. You notice a lot of drones flying around. This may indeed be a trap.`
+		dialog `You arrive in the system, expecting to find a vault and the ship repairing, but it looks like it's a trap! Either that or the same auxiliary as earlier has just finished repairing, but it looks like it is waiting for you. Whatever the case it probably has the jump drives on board, or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. You notice a lot of drones flying around. This may indeed be a trap.`
 	
 	npc capture
 		government "Alpha"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `Whilst capturing the ship you noticed that only very few of the crew were actually Alphas, some were probably mercenaries. There was no doubt who was in command of this vessel though. However, you cannot find the jump drives here. You should head to the Alpha base to see if you can find those or anything else of interest.`
+		dialog `While capturing the ship you noticed that only very few of the crew were actually Alphas, some were probably mercenaries. There was no doubt who was in command of this vessel though. However, you cannot find the jump drives here. You should head to the Alpha base to see if you can find those or anything else of interest.`
 	npc
 		government "Alpha"
 		system "Host"
@@ -2099,7 +2100,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 mission "Unfettered: The Word Has Spread"
 	name `Gather the true Hai`
-	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, whilst most cower in fear. Bring Hai back from most worlds, to <destination>.`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from most worlds, to <destination>.`
 	source "Firelode"
 	passengers 138
 	blocked `You need <bunks> passenger space for the next Unfettered mission.`
@@ -2329,7 +2330,7 @@ mission "Unfettered: Hai Intel"
 
 mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 	name `Gather intel on Hai shipyards`
-	description `Go to <stopovers> and try to discretely learn how their ships are produced.`
+	description `Go to <stopovers> and try to discreetly learn how their ships are produced.`
 	source "Darkcloak"
 	stopover "Hai-home"
 	cargo "food" 34
@@ -2365,7 +2366,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	"If you want to help us and get access to our mighty Shield Beetles, go to <destination> where they make most if not all of their big ships and gather intel on how they mass produce them." The Hai will probably not approve if they learn about this, but who needs their approval if you can buy Shield Beetles here instead?`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a permission? Discretely land in an isolated region, whilst nobody is looking. If they detect you, just pretend you have a navigation issue." What he is proposing appears to be a very bold plan, maybe even too bold to succeed.`	
+			`	"Why would you need a permission? discreetly land in an isolated region, while nobody is looking. If they detect you, just pretend you have a navigation issue." What he is proposing appears to be a very bold plan, maybe even too bold to succeed.`	
 			choice
 				`	"I have a better idea: I will tell them I come to collect tribute."`
 				`	"This seems like it could easily go wrong, I am not interested."`
@@ -2416,7 +2417,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
 	on offer
 		conversation
-			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They probably do not suspect anything. While they load up your ship, you pretend to go to the shipyard to consider buying a new ship, and a big one at that. 'Unfortunately', you get lost and start looking at the place where they build the Geocoris, but also the Shield Beetles. There is only so much you can learn by looking, so you start discretely scanning the place. A Hai engineer seems to notice you and comes your way, "Hi, how may I help you," he asks. Maybe he did not notice anything.`
+			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They probably do not suspect anything. While they load up your ship, you pretend to go to the shipyard to consider buying a new ship, and a big one at that. 'Unfortunately', you get lost and start looking at the place where they build the Geocoris, but also the Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way, "Hi, how may I help you," he asks. Maybe he did not notice anything.`
 			choice
 				`	"Do not mind me, I am just admiring the shipyard, it is so well... optimized, compared to human standards. (Pretend to move on and go scan another area.)"`
 				`	"Actually I am here to buy a ship."`
@@ -2691,7 +2692,7 @@ mission "Unfettered: Special Cargo"
 				`	"How will I know which warlord it is?"`
 				`	"This seems too risky for me."`
 					decline
-			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and his ship is the 'Degenerate', you may have to bring it down in order to complete the mission. He may accept a payment instead, but do remember, we are not willing to pay a fortune for this item so if you cannot face him you may have to debourse quite a large sum of your own money. The warlord, Mari, got the item from another warlord. Also you need not worry about how to identify said item, it is... unique, you will understand once you see it. Once you have it, bring it back to my master, you have been given access to his war room, on <planet>." Mari sounds like the name of a woman to you, it is impressive she has managed to rise so high in power, among a pirate culture that is. But maybe you have misjudged them.`
+			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and his ship is the 'Degenerate', you may have to bring it down in order to complete the mission. He may accept a payment instead, but do remember, we are not willing to pay a fortune for this item so if you cannot face him you may have to debourse quite a large sum of your own money. The warlord, Mhairi, got the item from another warlord. Also you need not worry about how to identify said item, it is... unique, you will understand once you see it. Once you have it, bring it back to my master, you have been given access to his war room, on <planet>." Mhairi sounds like the name of a woman to you, it is impressive she has managed to rise so high in power, among a pirate culture that is. But maybe you have misjudged them.`
 			choice
 				`	"I will depart as soon as I can."`
 					accept
@@ -2718,13 +2719,13 @@ mission "Unfettered: Special Cargo"
 		personality staying target
 		to despawn
 			has "Unfettered: Special Cargo 1B: active"
-		government "Mari's Legion"
+		government "Mhairi's Legion"
 		system "Alcyone"
 		ship "Leviathan (Cube)" "Degenerate"
-		dialog `You have managed to disable and board Mari's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
+		dialog `You have managed to disable and board Mhairi's flagship. The item that fits best the description given is without any doubt the Mystery Cube. Bring it back to <destination>.`
 	npc
 		personality coward plunders vindictive staying
-		government "Mari's Legion"
+		government "Mhairi's Legion"
 		system "Alcyone"
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 5
@@ -2763,7 +2764,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	Threatening him with your gun, you manage to take him hostage, and he seems to have understood the threat pretty well. He does not try to call for help. However, it is hard to force him to move around, given his stature. Then you go and ask for the special item and all pirates laugh at your face before shooting you. It does not seem like they care the least in the world about any other pirate.`
 				die
 			label steal
-			`	You manage to enter the ship discretely, some people will always notice but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord into a fight to get the item, in space.`
+			`	You manage to enter the ship discreetly, some people will always notice but you try to pose as a spaceport worker there to assist with the repairs, using equipment you find lying around. You should be able to go pretty much anywhere on the ship. You do not have any expertise in actual ship repairs though, so your cover could easily be blown. There is no going back now, except maybe if you choose to provoke the warlord into a fight to get the item, in space.`
 			choice
 				`	(Search the lower decks.)`
 				`	(Search close to the weapons stations.)`
@@ -2787,7 +2788,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	This bridge is very luxurious, you see that this warlord likes comfort, for herself at least. But you cannot find anything that looks unique at all.`
 				goto caught
 			label cargo
-			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discretely, but you can drop them off the ship and then go take them once you are out, hoping nobody will notice. Looking through a porthole you do not see anyone around at the moment, conveniently, there is even some sand on the ground there, so the bars should sink in it, partially hidden under it.`
+			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There is no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go take them once you are out, hoping nobody will notice. Looking through a porthole you do not see anyone around at the moment, conveniently, there is even some sand on the ground there, so the bars should sink in it, partially hidden under it.`
 			branch knowsbars
 				has "Unfettered: I Shall Go Unpunished: offered"
 			`It may not be what you are looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterwards, and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
@@ -2838,7 +2839,7 @@ mission "Unfettered: Special Cargo 1B"
 			action
 				outfit "Gold Bars" 5
 			label dropbars
-			`	You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discretely with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
+			`	You drop the bars and then come out of the ship without too much worry, as you do not carry any items on you. Afterwards you go around the ship to the location where they are partially buried in the sand, and take them discreetly with some members of your crew. You have to silence one or two curious pirates but that is about it, and you can now head back to your ship. As expected they have noticed the theft, as you notice them launching before you can do so yourself. This will be a bumpy ride.`
 				flee
 			
 			label caught
@@ -2882,7 +2883,7 @@ mission "Unfettered: Special Cargo 1B"
 			label leaveinpeace
 			action
 				set "Unfettered: brokered deal"
-				"reputation: Mari's Legion" >?= 1
+				"reputation: Mhairi's Legion" >?= 1
 			``
 				accept
 			label challenge
@@ -2933,7 +2934,7 @@ mission "Unfettered: Special Cargo 2"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will alleviate the cost. Next time try to show more strength, it is all that Unfettered in general respect. Thankfully money is not really much of an issue to us."`
 			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered," he gestures to the mystery cube, "somewhere on the surface, discretely. It doesn't matter where as long as no one noticed. You'll also need to be able to tell me exactly where it is, so it can be retrieved later."`
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered," he gestures to the mystery cube, "somewhere on the surface, discreetly. It doesn't matter where as long as no one noticed. You'll also need to be able to tell me exactly where it is, so it can be retrieved later."`
 			choice
 				`	"Is this the real reason for my trip, like with the shipyard?"`
 			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my tactics when there is no need?"`
@@ -2948,7 +2949,7 @@ mission "Unfettered: Special Cargo 2"
 				`	"Why this particular world?"`
 				`	"I will do it."`
 					accept
-			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we do not want to bring too much heat on you. As you know, that is where most of their big ships are made, and ships that get produced there are sent to the worlds which border us. Also because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet movements, in order to be able to react in time, should the worst arrive: our lessers could attack us when we seem weak. Of course, we need something discrete to do it, else our operatives could get caught, whilst still collecting every single detail there is to know about the rate at which they produce ships, how, and so on."`
+			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we do not want to bring too much heat on you. As you know, that is where most of their big ships are made, and ships that get produced there are sent to the worlds which border us. Also because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet movements, in order to be able to react in time, should the worst arrive: our lessers could attack us when we seem weak. Of course, we need something discreet to do it, else our operatives could get caught, while still collecting every single detail there is to know about the rate at which they produce ships, how, and so on."`
 			choice
 				`	"You could just have me place the cube in orbit if it is so sensible to movement all over the system."`
 				`	"I will do it."`
@@ -3053,7 +3054,7 @@ mission "Unfettered: Close Quarter"
 			`	"Fun that it is! This practice is part of the life of most Unfettered, we must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
 				goto speak
 			label lost
-			`	"Oh well I got distracted near the end, so I would not know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so, even if we do not overlook other studies whilst doing so. You may not have won the fight, but you have won something else."`
+			`	"Oh well I got distracted near the end, so I would not know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so, even if we do not overlook other studies while doing so. You may not have won the fight, but you have won something else."`
 			choice
 				`	"And what is that?"`
 				`	"Can I help you with anything?"`
@@ -3334,7 +3335,7 @@ mission "Unfettered: Bring Detainer"
 				`	"Sure, I will go and bring it back for you."`
 					accept
 				`	"I doubt I have the strength to face the automata."`
-			`	"If you cannot get that weapon, then you do not deserve this device. But you do not worry, there should be other ways to get it than brute force, just loot it off a ship whilst the others are looking away. You do not have to dedicate a whole fleet to this, it may get lost, also you may have other tools at your disposal for doing this discretely. So what do you say?"`
+			`	"If you cannot get that weapon, then you do not deserve this device. But you do not worry, there should be other ways to get it than brute force, just loot it off a ship while the others are looking away. You do not have to dedicate a whole fleet to this, it may get lost, also you may have other tools at your disposal for doing this discreetly. So what do you say?"`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
@@ -3572,7 +3573,7 @@ mission "Unfettered: Start Of The War"
 			`	"As you have probably noticed, the hull is not in the standard Hai colors. It is, partly, a matter of taste for discretion but the biggest reason is that this ship was built out of the wreck of an old Korath warship. Those materials are more sturdy than normal Hai ones, which is why this ship is so resilient to hull damage."`
 				goto questions
 			label cloak
-			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then diseapear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and strategic advantage. But it was no real ghost, everyone has a weakness. His weakness was that whilst we could not see it, it did not mean that it was not there anymore."`
+			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then diseapear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and strategic advantage. But it was no real ghost, everyone has a weakness. His weakness was that while we could not see it, it did not mean that it was not there anymore."`
 			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared they stopped shooting like usual, and made him overconfident, doing confused movements, dropping part of their cargo as if they were in distress. So he reappeared He saw the other ships coming in but did not react to them in time and got close - too close - to the convoy. Once the fleet arrived, he disappeared but it was too late for him and his limited agility. One of the convoy ships near him rammed him, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead we built a ship based on that wreckage's materials, and the cloaking device is a part of it."`
 			branch "gave cloak"
 				has "Unfettered: Cloaking Interest: done"

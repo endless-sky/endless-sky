@@ -453,7 +453,7 @@ government "Marauder"
 	"fine" 0
 	"hostile hail" "hostile pirate"
 
-government "Mari's Legion"
+government "Mhairi's Legion"
 	swizzle 6
 	color .78 0 0
 	"player reputation" -1000
