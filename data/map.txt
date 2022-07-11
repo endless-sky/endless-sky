@@ -33097,7 +33097,7 @@ planet "Sies Upi"
 planet Siedi
 	landscape land/forest5
 	description "The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capitalized on for their nearby worlds."
-	spaceport "The spaceport is haphazardly build inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely mining for materials than improvements to the structure itself."
+	spaceport "The spaceport is haphazardly build inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely because the Vi are mining for materials here rather than making improvements to the structure itself."
 	government "Gegno Vi"
 	"required reputation" 1
 	bribe 0
