@@ -1027,18 +1027,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += max(0., .4 * sqrt(ship->Attributes().Get("cargo space")) - 1.8);
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetOutfit())
-			{
-				const Outfit *weapon = hardpoint.GetOutfit();
-				if(weapon->Ammo() && !ship->OutfitCount(weapon->Ammo()))
-					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage()
-					+ (weapon->RelativeShieldDamage() * ship->Attributes().Get("shields"))
-					+ (weapon->RelativeHullDamage() * ship->Attributes().Get("hull"));
-				deterrence += .12 * damage / weapon->Reload();
-			}
+		attraction += ship.Attraction();
+		deterrance += ship.Deterance();
 	}
 
 	return make_pair(attraction, deterrence);

@@ -1078,6 +1078,39 @@ int64_t Ship::ChassisCost() const
 
 
 
+int64_t Ship::Strength() const
+{
+	return Cost() * Deterrence();
+}
+
+
+
+double Ship::Attraction() const
+{
+	return max(0., .4 * sqrt(Attributes().Get("cargo space")) - 1.8);
+}
+
+
+
+double Ship::Deterrence() const
+{
+	double deterrence = 0.;
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetOutfit())
+		{
+			const Outfit *weapon = hardpoint.GetOutfit();
+			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
+				continue;
+			double strength = weapon->ShieldDamage() + weapon->HullDamage()
+				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
+				+ (weapon->RelativeHullDamage() * attributes.Get("hull"))
+				+ weapon->AntiMissile();
+			deterrence += .12 * strength / weapon->Reload();
+		}
+	return deterrence;
+}
+
+
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 vector<string> Ship::FlightCheck() const
