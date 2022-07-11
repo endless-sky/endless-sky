@@ -16,8 +16,8 @@ ship "Korath Dredger"
 	attributes
 		category "Heavy Freighter"
 		"cost" 29370000
-		"shields" 27000
-		"hull" 22000
+		"shields" 32500
+		"hull" 16500
 		"required crew" 137
 		"bunks" 357
 		"crew" 315
@@ -34,7 +34,6 @@ ship "Korath Dredger"
 			"shield damage" 4600
 			"hull damage" 2300
 			"hit force" 5900
-
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 1
