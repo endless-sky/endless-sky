@@ -750,269 +750,6 @@ ship "Korath Habitat"
 	description "When the Korath were exiled, it was on these gargantuan 'world-ships' they first fled and lived on. Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids."
 
 
-
-ship "Korath World-Ship"
-	sprite "ship/world-ship a"
-	thumbnail "thumbnail/world-ship a"
-	attributes
-		category "Heavy Freighter"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 794
-		"bunks" 1492
-		"mass" 1735
-		"drag" 21
-		"heat dissipation" .4
-		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 873
-		"weapon capacity" 314
-		"engine capacity" 165
-		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
-	outfits
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 3
-		"Korath Warder" 3
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
-		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 19
-		
-		"Huge Grav-Thruster"
-		"Steering (Planetary Class)"
-		"Hyperdrive"
-	
-	engine -37 333 .8
-	engine 0 333 .9
-	engine 37 333 .8
-	turret -76 -157 "Korath Grab-Strike"
-	turret 76 -157 "Korath Banisher"
-	turret -59 -135 "Korath Warder"
-	turret 59 -135 "Korath Grab-Strike"
-	turret -61 -6 "Korath Banisher"
-	turret 61 -6 "Korath Warder"
-	turret -66 210 "Korath Warder"
-	turret 66 210 "Korath Banisher"
-	explode "tiny explosion" 30
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 50
-	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis."
-
-
-ship "Korath World-Ship" "Korath World-Ship B"
-	sprite "ship/world-ship d"
-	thumbnail "thumbnail/world-ship d"
-	turret -45 -253 "Korath Grab-Strike"
-	turret 45 -253 "Korath Grab-Strike"
-	turret -73 -116 "Korath Banisher"
-	turret 73 -116 "Korath Banisher"
-	turret -87 -83 "Korath Warder"
-	turret 87 -83 "Korath Warder"
-	turret -48 274 "Korath Warder"
-	turret 48 274 "Korath Banisher"
-
-
-ship "Korath World-Ship" "Korath World-Ship C"
-	sprite "ship/world-ship c"
-	thumbnail "thumbnail/world-ship c"
-	turret -45 -243 "Korath Warder"
-	turret 45 -243 "Korath Grab-Strike"
-	turret -47 -136 "Korath Grab-Strike"
-	turret 47 -136 "Korath Banisher"
-	turret -70 57 "Korath Warder"
-	turret 70 57 "Korath Banisher"
-	turret -91 290 "Korath Banisher"
-	turret 91 290 "Korath Warder"
-
-
-ship "Korath World-Ship (Efreti)"
-#currentlyworldshipstats
-	sprite "ship/kws-efreti"
-	thumbnail "thumbnail/kws-efreti"
-	attributes
-		category "Heavy Freighter"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 794
-		"bunks" 1492
-		"mass" 2442
-		"drag" 27
-		"heat dissipation" .4
-		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 823
-		"weapon capacity" 314
-		"engine capacity" 196
-		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
-	outfits
-		"Korath Fire-Lance" 2
-		"Expeller Grav-Ray" 2
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 
-		"Korath Warder" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
-		"Korath Repeater Rifle" 150
-		
-		"Huge Grav-Thruster"
-		"Huge Grav-Thrust Steering"
-		"Hyperdrive"
-
-	"reverse engine" -31 -290
-	"reverse engine" 31 -290
-	engine -69 230
-	engine 69 230
-	turret 0 -166 "Korath Grab-Strike"
-	turret -41 -69 "Korath Grab-Strike"
-	turret 41 -69 "Korath Warder"
-	turret -41.5 264 "Korath Warder"
-	turret 41.5 264 "Korath Banisher"
-	gun -75 -250 "Expeller Grav-Ray"
-	gun 75 -250 "Expeller Grav-Ray"
-	gun -60 -214.5 "Korath Fire-Lance" 2
-	gun 60 -214.5 "Korath Fire-Lance" 2
-	explode "tiny explosion" 30
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 50
-	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis."
-
-ship "Korath Dredger (Efreti)"
-#currentlydredgerstats
-	sprite "ship/dredger-efreti"
-	thumbnail "thumbnail/dredger-efreti"
-	attributes
-		category "Heavy Freighter"
-		"cost" 29370000
-		"shields" 39000
-		"hull" 16000
-		"required crew" 201
-		"bunks" 395
-		"mass" 1503
-		"drag" 17
-		"heat dissipation" .65
-		"fuel capacity" 900
-		"cargo space" 605
-		"outfit space" 827
-		"weapon capacity" 297
-		"engine capacity" 181
-		
-		weapon
-			"blast radius" 300
-			"shield damage" 4600
-			"hull damage" 2300
-			"hit force" 5900
-	outfits
-		"Korath Banisher" 1
-		"Expeller Grav-Ray" 2
-		"Korath Warder" 2
-		
-		"Systems Core (Large)"
-		"Triple Plasma Core"
-		"Large Heat Shunt" 3
-		"Fuel Processor"
-		"Korath Repeater Rifle" 190
-		
-		"Large Grav-Thruster"
-		"Large Grav-Thrust Steering"
-		"Hyperdrive"
-
-	engine 19.5 189.5
-	engine -19.5 189.5
-	engine 46 170 0.7
-	engine -46 170 0.7
-	"reverse engine" 14.5 -187.5
-	"reverse engine" -14.5 -187.5
-	turret 0 -119.5 "Korath Warder"
-	turret 0 42 "Korath Banisher"
-	turret 0 138.5 "Korath Warder"
-	gun -37.5 -187 "Expeller Grav-Ray"
-	gun 37.5 -187 "Expeller Grav-Ray"
-	explode "tiny explosion" 120
-	explode "small explosion" 60
-	explode "medium explosion" 70
-	explode "large explosion" 50
-	explode "huge explosion" 15
-	"final explode" "final explosion large"
-	description "This ship features an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support."
-
-ship "Korath Raider (Efreti)"
-#currentlyraiderstats
-	sprite "ship/raider-efreti"
-	thumbnail "thumbnail/raider-efreti"
-	attributes
-		category "Transport"
-		"cost" 16570000
-		"shields" 27000
-		"hull" 9000
-		"required crew" 145
-		"bunks" 250
-		"mass" 720
-		"drag" 11
-		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 175
-		"outfit space" 721
-		"weapon capacity" 284
-		"engine capacity" 159
-		weapon
-			"blast radius" 250
-			"shield damage" 3600
-			"hull damage" 1800
-			"hit force" 5400
-	outfits
-		"Korath Fire-Lance" 2
-		"Expeller Grav-Ray"
-		"Korath Warder" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Medium)"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt"
-		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		"Hyperdrive"
-		
-		"Medium Grav-Thruster"
-		"Medium Grav-Thrust Steering"
-
-	engine -17.5 139.5
-	engine 17.5 139.5
-	turret 0 -35 "Korath Warder"
-	turret 0 97 "Korath Warder"
-	gun 0 -118 "Expeller Grav-Ray"
-	gun -16.5 -114.5 "Korath Fire-Lance"
-	gun 16.5 -114.5 "Korath Fire-Lance"
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-	description "This is the ship of choice for mining nearby asteroids."
-
-
 ship "Korath Haven"
 	sprite "ship/korath haven"
 	thumbnail "thumbnail/korath haven"
@@ -1221,6 +958,271 @@ ship "Korath Haven"
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
 	description "Korath Havens are massive nomadic habitats that hold much of their remaining population."
+
+
+
+ship "Korath World-Ship"
+	sprite "ship/world-ship a"
+	thumbnail "thumbnail/world-ship a"
+	attributes
+		category "Heavy Freighter"
+		cost 27690000
+		shields 47000
+		hull 34000
+		"required crew" 794
+		"bunks" 1492
+		"mass" 1735
+		"drag" 21
+		"heat dissipation" .4
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 873
+		"weapon capacity" 314
+		"engine capacity" 165
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		"Microbot Defense Station" 19
+		
+		"Huge Grav-Thruster"
+		"Steering (Planetary Class)"
+		"Hyperdrive"
+	
+	engine -37 333 .8
+	engine 0 333 .9
+	engine 37 333 .8
+	turret -76 -157 "Korath Grab-Strike"
+	turret 76 -157 "Korath Banisher"
+	turret -59 -135 "Korath Warder"
+	turret 59 -135 "Korath Grab-Strike"
+	turret -61 -6 "Korath Banisher"
+	turret 61 -6 "Korath Warder"
+	turret -66 210 "Korath Warder"
+	turret 66 210 "Korath Banisher"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis."
+
+
+ship "Korath World-Ship" "Korath World-Ship B"
+	sprite "ship/world-ship d"
+	thumbnail "thumbnail/world-ship d"
+	turret -45 -253 "Korath Grab-Strike"
+	turret 45 -253 "Korath Grab-Strike"
+	turret -73 -116 "Korath Banisher"
+	turret 73 -116 "Korath Banisher"
+	turret -87 -83 "Korath Warder"
+	turret 87 -83 "Korath Warder"
+	turret -48 274 "Korath Warder"
+	turret 48 274 "Korath Banisher"
+
+
+ship "Korath World-Ship" "Korath World-Ship C"
+	sprite "ship/world-ship c"
+	thumbnail "thumbnail/world-ship c"
+	turret -45 -243 "Korath Warder"
+	turret 45 -243 "Korath Grab-Strike"
+	turret -47 -136 "Korath Grab-Strike"
+	turret 47 -136 "Korath Banisher"
+	turret -70 57 "Korath Warder"
+	turret 70 57 "Korath Banisher"
+	turret -91 290 "Korath Banisher"
+	turret 91 290 "Korath Warder"
+
+
+ship "Korath World-Ship (Efreti)"
+#currentlyworldshipstats
+	sprite "ship/kws-efreti"
+	thumbnail "thumbnail/kws-efreti"
+	attributes
+		category "Heavy Freighter"
+		cost 27690000
+		shields 47000
+		hull 34000
+		"required crew" 794
+		"bunks" 1492
+		"mass" 2442
+		"drag" 27
+		"heat dissipation" .4
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 823
+		"weapon capacity" 314
+		"engine capacity" 196
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Korath Fire-Lance" 2
+		"Expeller Grav-Ray" 2
+		"Korath Grab-Strike" 2
+		"Korath Banisher" 
+		"Korath Warder" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 150
+		
+		"Huge Grav-Thruster"
+		"Huge Grav-Thrust Steering"
+		"Hyperdrive"
+
+	"reverse engine" -31 -290
+	"reverse engine" 31 -290
+	engine -69 230
+	engine 69 230
+	turret 0 -166 "Korath Grab-Strike"
+	turret -41 -69 "Korath Grab-Strike"
+	turret 41 -69 "Korath Warder"
+	turret -41.5 264 "Korath Warder"
+	turret 41.5 264 "Korath Banisher"
+	gun -75 -250 "Expeller Grav-Ray"
+	gun 75 -250 "Expeller Grav-Ray"
+	gun -60 -214.5 "Korath Fire-Lance" 2
+	gun 60 -214.5 "Korath Fire-Lance" 2
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis."
+
+
+ship "Korath Dredger (Efreti)"
+#currentlydredgerstats
+	sprite "ship/dredger-efreti"
+	thumbnail "thumbnail/dredger-efreti"
+	attributes
+		category "Heavy Freighter"
+		"cost" 29370000
+		"shields" 39000
+		"hull" 16000
+		"required crew" 201
+		"bunks" 395
+		"mass" 1503
+		"drag" 17
+		"heat dissipation" .65
+		"fuel capacity" 900
+		"cargo space" 605
+		"outfit space" 827
+		"weapon capacity" 297
+		"engine capacity" 181
+		
+		weapon
+			"blast radius" 300
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
+	outfits
+		"Korath Banisher" 1
+		"Expeller Grav-Ray" 2
+		"Korath Warder" 2
+		
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		"Large Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 190
+		
+		"Large Grav-Thruster"
+		"Large Grav-Thrust Steering"
+		"Hyperdrive"
+
+	engine 19.5 189.5
+	engine -19.5 189.5
+	engine 46 170 0.7
+	engine -46 170 0.7
+	"reverse engine" 14.5 -187.5
+	"reverse engine" -14.5 -187.5
+	turret 0 -119.5 "Korath Warder"
+	turret 0 42 "Korath Banisher"
+	turret 0 138.5 "Korath Warder"
+	gun -37.5 -187 "Expeller Grav-Ray"
+	gun 37.5 -187 "Expeller Grav-Ray"
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large"
+	description "This ship features an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support."
+
+
+ship "Korath Raider (Efreti)"
+#currentlyraiderstats
+	sprite "ship/raider-efreti"
+	thumbnail "thumbnail/raider-efreti"
+	attributes
+		category "Transport"
+		"cost" 16570000
+		"shields" 27000
+		"hull" 9000
+		"required crew" 145
+		"bunks" 250
+		"mass" 720
+		"drag" 11
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 175
+		"outfit space" 721
+		"weapon capacity" 284
+		"engine capacity" 159
+		weapon
+			"blast radius" 250
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Korath Fire-Lance" 2
+		"Expeller Grav-Ray"
+		"Korath Warder" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		"Hyperdrive"
+		
+		"Medium Grav-Thruster"
+		"Medium Grav-Thrust Steering"
+
+	engine -17.5 139.5
+	engine 17.5 139.5
+	turret 0 -35 "Korath Warder"
+	turret 0 97 "Korath Warder"
+	gun 0 -118 "Expeller Grav-Ray"
+	gun -16.5 -114.5 "Korath Fire-Lance"
+	gun 16.5 -114.5 "Korath Fire-Lance"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "This is the ship of choice for mining nearby asteroids."
 
 
 
