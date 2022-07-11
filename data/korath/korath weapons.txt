@@ -859,7 +859,6 @@ outfit "Heaver Shard"
 		"inaccuracy" 4
 		"hit force" 20
 		"hit effect" "heaver shard hit" 5
-		"missile strength" 12
 
 outfit "Heaver Splinter"
 	weapon
@@ -874,7 +873,6 @@ outfit "Heaver Splinter"
 		"inaccuracy" 5
 		"hit force" 6.66
 		"hit effect" "heaver splinter hit" 3
-		"missile strength" 12
 
 effect "heaver shard hit"
 	sprite "effect/heaver shard hit"
