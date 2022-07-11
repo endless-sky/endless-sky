@@ -353,16 +353,13 @@ ship "Korath Conveyor"
 	engine 0 333 .8
 	engine 37 333 .8
 	"reverse engine" -19 -303 0.5
-	"reverse engine" -19 -303 0.5
 		over
-	"reverse engine" 0 -303 0.5
 	"reverse engine" 0 -303 0.5
 		over
 	"reverse engine" 19 -303 0.5
-	"reverse engine" 19 -303 0.5
 		over
-	gun -47 -254 "Digger Mining Beam"
-	gun 47 -254 "Digger Mining Beam"
+	gun -47 -244 "Digger Mining Beam"
+	gun 47 -244 "Digger Mining Beam"
 	turret -73 -159 "Digger Mining Turret"
 	turret 73 -159 "Digger Mining Turret"
 	turret -56 -137 "Korath Warder"
@@ -434,12 +431,9 @@ ship "Korath Conqueror"
 	engine -55 323 .4
 	engine 55 323 .4
 	"reverse engine" -19 -303 0.5
-	"reverse engine" -19 -303 0.5
 		over
 	"reverse engine" 0 -303 0.5
-	"reverse engine" 0 -303 0.5
 		over
-	"reverse engine" 19 -303 0.5
 	"reverse engine" 19 -303 0.5
 		over
 	gun -75 -112 "Korath Fire-Lance"
@@ -449,16 +443,16 @@ ship "Korath Conqueror"
 		angle 110
 	gun -42 90 "Firelight Missile Bank"
 		angle 250
-	turret -53 -253 "Korath Warder"
-	turret 53 -253 "Korath Banisher"
-	turret -69 -220 "Korath Inferno"
-	turret 69 -220 "Korath Inferno"
-	turret -53 -187 "Korath Grab-Strike"
-	turret 53 -187 "Korath Grab-Strike"
-	turret -80 164 "Blaze-Pike Turret"
-	turret 80 164 "Blaze-Pike Turret"
-	turret -63 194 "Korath Banisher"
-	turret 63 194 "Korath Warder"
+	turret -56 -254 "Korath Warder"
+	turret 56 -254 "Korath Banisher"
+	turret -73.5 -221 "Korath Inferno"
+	turret 73.5 -221 "Korath Inferno"
+	turret -56 -186.5 "Korath Grab-Strike"
+	turret 56 -186.5 "Korath Grab-Strike"
+	turret -83 163.5 "Blaze-Pike Turret"
+	turret 83 163.5 "Blaze-Pike Turret"
+	turret -68 195 "Korath Banisher"
+	turret 68 195 "Korath Warder"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -512,25 +506,22 @@ ship "Korath Tanker"
 	engine 0 333 .8
 	engine 37 333 .8
 	"reverse engine" -19 -303 0.5
-	"reverse engine" -19 -303 0.5
 		over
 	"reverse engine" 0 -303 0.5
-	"reverse engine" 0 -303 0.5
 		over
-	"reverse engine" 19 -303 0.5
 	"reverse engine" 19 -303 0.5
 		over
 	fighter -70 51 back
 	fighter 0 51 back
 	fighter 70 51 back
-	turret -46 -81 "Korath Banisher"
-	turret 46 -81 "Korath Warder"
-	turret -50 -49 "Korath Warder"
-	turret 50 -49 "Korath Banisher"
-	turret -51 55 "Langrage Hyper-Heaver"
-	turret 51 55 "Langrage Hyper-Heaver"
-	turret -74 281 "Korath Banisher"
-	turret 74 281 "Korath Warder"
+	turret -52.5 -80.5 "Korath Banisher"
+	turret 52.5 -80.5 "Korath Warder"
+	turret -57 -50.5 "Korath Warder"
+	turret 57.5 -50.5 "Korath Banisher"
+	turret -56.5 55 "Langrage Hyper-Heaver"
+	turret 56.5 55 "Langrage Hyper-Heaver"
+	turret -80 283 "Korath Banisher"
+	turret 80 283 "Korath Warder"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -585,12 +576,9 @@ ship "Korath Traveller"
 	engine 0 333 .8
 	engine 37 333 .8
 	"reverse engine" -19 -303 0.5
-	"reverse engine" -19 -303 0.5
 		over
 	"reverse engine" 0 -303 0.5
-	"reverse engine" 0 -303 0.5
 		over
-	"reverse engine" 19 -303 0.5
 	"reverse engine" 19 -303 0.5
 		over
 	fighter -90 160 back
@@ -598,12 +586,12 @@ ship "Korath Traveller"
 	fighter 90 160 back
 	gun -45 -253 "Korath Fire-Lance"
 	gun 45 -253 "Korath Fire-Lance"
-	turret -73 -116 "Shunt-Strike Turret"
-	turret 73 -116 "Shunt-Strike Turret"
+	turret -77 -116.5 "Shunt-Strike Turret"
+	turret 77 -116.5 "Shunt-Strike Turret"
 	turret -87 -83 "Korath Banisher"
 	turret 87 -83 "Korath Warder"
-	turret -48 274 "Korath Warder"
-	turret 48 274 "Korath Banisher"
+	turret -51 276.5 "Korath Warder"
+	turret 51 276.5 "Korath Banisher"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -657,10 +645,8 @@ ship "Korath Herder"
 	engine -42 343 .6
 	engine -22 343 .6
 	engine -22 343 .6
-		over
 	engine 22 343 .6
 	engine 22 343 .6
-		over
 	engine 42 343 .6
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
@@ -669,28 +655,28 @@ ship "Korath Herder"
 	fighter -100 -169
 	fighter 0 -169
 	fighter 100 -169
-	fighter -98 -156 back
-	fighter 98 -156 back
+	fighter -98 156 back
+	fighter 98 156 back
 	fighter -50 303 back
 	fighter -50 303 back
 	fighter 50 303 back
 	fighter 50 303 back
 	drone -100 -169
 	drone 100 -169
-	drone -98 -156 back
-	drone 98 -156 back
+	drone -98 156 back
+	drone 98 156 back
 	drone -50 303 back
 	drone 50 303 back
 	gun -71 -209 "Korath Fire-Lance"
 	gun 0 -209 "Korath Fire-Lance"
 	gun 71 -209 "Korath Fire-Lance"
-	turret -49 -294 "Korath Banisher"
-	turret 49 -294 "Korath Warder"
-	turret -100 -12 "Korath Grab-Strike"
-	turret 0 -12 "Korath Grab-Strike"
-	turret 100 -12 "Korath Grab-Strike"
-	turret -78 190 "Korath Warder"
-	turret 78 190 "Korath Banisher"
+	turret -52 -295 "Korath Banisher"
+	turret 52 -295 "Korath Warder"
+	turret -104 -13 "Korath Grab-Strike"
+	turret 0 -13 "Korath Grab-Strike"
+	turret 104 -13 "Korath Grab-Strike"
+	turret -80.5 191.5 "Korath Warder"
+	turret 80.5 191.5 "Korath Banisher"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -747,14 +733,14 @@ ship "Korath Habitat"
 	"reverse engine" 16 -336 0.9
 	"reverse engine" 0 -303 0.5
 		over
-	turret -75 -233 "Korath Banisher"
-	turret 75 -233 "Korath Warder"
-	turret -76 9 "Korath Grab-Strike"
-	turret 75 9 "Korath Grab-Strike"
-	turret -71 40 "Korath Banisher"
-	turret 71 40 "Korath Warder"
-	turret -76 232 "Korath Warder"
-	turret 76 232 "Korath Banisher"
+	turret -78 -233.5 "Korath Banisher"
+	turret 78 -233.5 "Korath Warder"
+	turret -78 9.5 "Korath Grab-Strike"
+	turret 78 9.5 "Korath Grab-Strike"
+	turret -73.5 41 "Korath Banisher"
+	turret 73.5 41 "Korath Warder"
+	turret -78 231.5 "Korath Warder"
+	turret 78 231.5 "Korath Banisher"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -1025,6 +1011,7 @@ ship "Korath Raider (Efreti)"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "This is the ship of choice for mining nearby asteroids."
+
 
 ship "Korath Haven"
 	sprite "ship/korath haven"

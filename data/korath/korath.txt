@@ -362,9 +362,6 @@ fleet "Korath Civilian Large"
 	variant 12
 		"Korath Tanker"
 		"Korath Chaser (Expeller)" 3
-	variant 6
-		"Korath Tanker (Jump Firestorm)"
-		"Korath Chaser (Expeller)" 3
 	variant 22
 		"Korath Traveller"
 		"Korath Chaser (Expeller)" 3

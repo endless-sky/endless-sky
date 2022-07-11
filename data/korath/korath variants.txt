@@ -510,36 +510,6 @@ ship "Korath Conqueror" "Korath Conqueror (Ember)"
 
 
 
-ship "Korath Tanker" "Korath Tanker (Jump Firestorm)"
-	outfits
-		"Firestorm Turret" 2
-		"Firestorm Torpedo Rack"
-		"Firestorm Torpedo" 140
-		"Korath Grab-Strike"
-		"Korath Warder" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Liquid Sodium Cooler"
-		"Small Heat Shunt" 3
-		"Korath Repeater Rifle" 380
-		"Microbot Defense Station" 30
-
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Afterburner (Lunar Class)"
-		"Jump Drive"
-	turret "Korath Grab-Strike"
-	turret "Firestorm Turret"
-	turret "Korath Warder"
-	turret
-	turret "Firestorm Turret"
-	turret
-	turret
-	turret "Korath Warder"
-
-
-
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits
 		"Korath Grab-Strike" 2
