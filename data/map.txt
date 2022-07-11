@@ -8387,14 +8387,15 @@ system Dokdobaru
 	object
 		sprite star/g3
 		period 10
-	object "Korati Efreti"
-		sprite planet/station1k
-		distance 680
-		period 268.086
 	object
 		sprite planet/lava3-b
 		distance 812
 		period 349.820
+		object "Korati Efreti"
+			sprite planet/station1k
+			distance 132
+			period 349.820
+			offset 180
 	object
 		sprite "planet/ringworld left"
 		distance 812
