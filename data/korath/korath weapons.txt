@@ -262,7 +262,7 @@ outfit "Blaze-Pike Turret"
 		"hull damage" 3.1
 		"heat damage" 18
 		"burn damage" 0.45
-	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely create twin lances of fire: Rather, they begin to form a gestalt -- a single, longer, hotter, and almost hypnotic column of fire."
+	description "The seeming reverence the Korath have for fire appears embodied in this weapon. This pair of Fire-Lances mounted together in a turret do not merely create twin lances of fire: Rather, they begin to form a gestalt - a single, longer, hotter, and almost hypnotic column of fire."
 
 effect "blaze-pike hit"
 	sprite "effect/blaze-pike hit"
