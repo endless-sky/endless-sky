@@ -633,9 +633,14 @@ mission "Unfettered: Bring Medical Supplies"
 	to offer
 		has "Unfettered: Bring Hai: done"
 		has "reputation: Hai" >= 0
+	substitutions
+		<prioritymessage> "but unfortunately it is in Hai so you can only guess meaning out of it. It has to be pretty important, and you can recognize the words for Hai disease, uncontrolled as well as numbers in the hundreads."
+			not "language: Wanderer"
+		<prioritymessage> `"Assistance requested from all available pilots. Local outbreak of broiling sickness has spread catastrophically and has now been classified as an uncontrolled [epidemic, plague]. Hundreds are already critically ill and hospitals have declared an emergency situation, fearing the consequences of current [medical, treatments] supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return."`
+			has "language: Wanderer"
 	on offer
 		conversation
-			`When you land, there is a message repeating on priority channels in Hai standard. It is tagged with the information for one of the hospitals nearby, but unfortunately it is in Hai so you can only guess meaning out of it. It has to be pretty important, and you can recognize the words for Hai disease, uncontrolled as well as numbers in the hundreads. Unsure whether they would accept your assistance as an outsider, and given the message is in Hai, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
+			`When you land, there is a message repeating on priority channels in Hai standard. It is tagged with the information for one of the hospitals nearby, <prioritymessage> Unsure whether they would accept your assistance as an outsider, and given the message is in Hai, you decide to go take a closer look and ask. After all, it is unlikely that a Hai disease would be any risk to you.`
 			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered are all around, various vehicles coming and going frequently to bring the wounded to the hospital. The hospital itself looks different than the rest of the Unfettered structures, it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards, or at least it has that appearance. One part of it looks to have been grafted onto the rest though, it is probably a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you here, you're not sure you'll be able to leave at least being accosted for your assistance with this.`
 			choice
@@ -999,7 +1004,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			
 			label ship
 			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and simply transfer the jump drives in cargo or rather install them directly on your ship if possible, to be able to flee more swifly.`
-			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
+			`	A bit later the Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess that if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirm his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
 				launch
 	on accept
 		"outfit" "Jump Drive" 4
@@ -1648,7 +1653,7 @@ mission "Unfettered: Pirate Help"
 				`	"You mean you want me to help these pirates?"`
 					goto help
 				`	"Are you planning an offensive on the Hai?"`
-			`	"Absolutely not, but as you know, we are planning an offensive to the North of our space, and it would be better if we did not have to leave too many ships behind, on the border with the Hai." This does indeed make sense tactically, the warlord must have been forced to justify his position in order to convince Sha-Ri to do such a thing, which may result in casualties on the Hai side.`
+			`	"Absolutely not, but as you know, we are planning an offensive to the north of our space, and it would be better if we did not have to leave too many ships behind, on the border with the Hai." This does indeed make sense tactically, the warlord must have been forced to justify his position in order to convince Sha-Ri to do such a thing, which may result in casualties on the Hai side.`
 				goto next
 			label help
 			`	"Indeed. We need you to find some way to help them, so they can disrupt the Hai operations even more. This way, we do not have to keep too many of our ships on the Hai border."`
