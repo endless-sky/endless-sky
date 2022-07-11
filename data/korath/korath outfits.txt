@@ -117,7 +117,7 @@ outfit "Systems Core (Tiny)"
 	"hull repair rate" 0.1
 	"hull energy" 0.1
 	"hull heat" 0.15
-	description `Most Korath pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Few are willing to sacrifice enough firepower to mount this shield generator, capacitor, swarm of repair microbots, and computer to control them.`
+	description `Most Korath fighter pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Usually, only civilian small craft operators are willing to sacrifice enough firepower to mount this shield generator, capacitor, swarm of repair microbots, and computer to control them.`
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
