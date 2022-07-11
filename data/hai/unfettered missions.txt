@@ -485,21 +485,21 @@ mission "Unfettered: Bring Hai"
 		set "Unfettered: offered bring hai"
 	substitutions
 		# they're speaking Hai but so are the Wanderers
-		<first group speaking> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the childs are."
+		<firstgroup> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the childs are."
 			not "language: Wanderer"
-		<first group speaking> `and you connect your translation device to understand what they say. Indeed, the Wanderers speak Hai, like they do here. "... and we fear the next season will be even more [rough, hard, taxing]. We need foundings to restore the lands, nothing grows on them anymore!"`
+		<firstgroup> `and you connect your translation device to understand what they say. Indeed, the Wanderers speak Hai, like they do here. "... and we fear the next season will be even more [rough, hard, taxing]. We need foundings to restore the lands, nothing grows on them anymore!"`
 			has "language: Wanderer"
-		<second group speaking> "He does not seem pleased at all, and appears to speak with contained anger. It appears he demands something of the council."
+		<secondgroup> "He does not seem pleased at all, and appears to speak with contained anger. It appears he demands something of the council."
 			not "language: Wanderer"
-		<second group speaking> `"Things are going bad. In all my life never has it been more [rough, insupportable], never has there been so many in need. Never so little [food, crops], [housing, sanitation]... Something needs to be done, and quickly. We, as a race, are dying."`
+		<secondgroup> `"Things are going bad. In all my life never has it been more [rough, insupportable], never has there been so many in need. Never so little [food, crops], [housing, sanitation]... Something needs to be done, and quickly. We, as a race, are dying."`
 			has "language: Wanderer"
-		<third group speaking> "The Chief seems hard broken by this little one's request. After speaking it up for all to hear, he explains something to the Hai."
+		<thirdgroup> "The Chief seems hard broken by this little one's request. After speaking it up for all to hear, he explains something to the Hai."
 			not "language: Wanderer"
-		<third group speaking> `"He asks if he can go to Hai [space, territories]," the Chief conveys, and then responds. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Would anyone be willing to do that?"`
+		<thirdgroup> `"He asks if he can go to Hai [space, territories]," the Chief conveys, and then responds. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Would anyone be willing to do that?"`
 			has "language: Wanderer"
-		<fourth group speaking> "Once again they demand something, but this Hai does not seem to be malnourished at all. Whatever it is he asked, the Chiefs seem bothered by this request."
+		<fourthgroup> "Once again they demand something, but this Hai does not seem to be malnourished at all. Whatever it is he asked, the Chiefs seem bothered by this request."
 			not "language: Wanderer"
-		<fourth group speaking> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic]?" This seems to bother the Chiefs, and they answer briefly, "We will contact [True, authentic] ship captains to ask them if they can, but I fear they are indeed [busy, overworked] these days, which is why the prices have gone up."`
+		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic]?" This seems to bother the Chiefs, and they answer briefly, "We will contact [True, authentic] ship captains to ask them if they can, but I fear they are indeed [busy, overworked] these days, which is why the prices have gone up."`
 			has "language: Wanderer"
 		<closing> "judging from the fact everyone is now leaving, you figure he closed the event."
 			not "language: Wanderer"
@@ -513,8 +513,8 @@ mission "Unfettered: Bring Hai"
 				`	(Go to the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you head towards the stadium, moving with the crowd, you can start to hear words being spoken loudly, and probably amplified by some kind of device. You wait outside but the temple is well open and thus you can see what is going on, trough the crowd, given the Hai are naturally quite small. A couple with 4 children is speaking, begging even, <first group speaking>. The "Chiefs" speak together, and then do a sign that you assume means they granted them their request, given the relief on their face.`
-			`	Then, the next one in line comes. He seems quite old, but he is moving around proudly, as if not limited by his age at all. <second group speaking>. Clearly this soldier has a special status or has done some things that earned him respect, for him to speak this way. Or maybe it is just the way of the Unfettered that they bow to no one.`
+			`	As you head towards the stadium, moving with the crowd, you can start to hear words being spoken loudly, and probably amplified by some kind of device. You wait outside but the temple is well open and thus you can see what is going on, trough the crowd, given the Hai are naturally quite small. A couple with 4 children is speaking, begging even, <firstgroup>. The "Chiefs" speak together, and then do a sign that you assume means they granted them their request, given the relief on their face.`
+			`	Then, the next one in line comes. He seems quite old, but he is moving around proudly, as if not limited by his age at all. <secondgroup>. Clearly this soldier has a special status or has done some things that earned him respect, for him to speak this way. Or maybe it is just the way of the Unfettered that they bow to no one.`
 			`	The soldier moves away, and there seems to be a bit of a pause, the Chiefs speak together and so does the crowd. This seems to be a very debated subject. As it happens, you can see some pointing you out, as if you do not belong here. One Hai comes to you, she seems quite young, and is probably an adolescent judging by her colors. She speaks to you, softly, in your language, "Hi, I have noticed you easily amongst Hai. Do you want me to help translate what they say?"`
 			choice
 				`	"Yes, thank you."`
@@ -537,11 +537,20 @@ mission "Unfettered: Bring Hai"
 			action
 				log "People" "Merora" "A young adolescent that came to Unfettered space after she lost her parents to pirates. It seems that she handles that loss very well, at least on the surface."
 			`	"Alright. I am Merora, by the way. I came here after I lost my parents to pirates, a few weeks ago. I have not yet integrated well, so I know what its like to feel isolated." You then present yourself to her, and right after that the procedings resume. It is now the turn of a child to come, and he speaks very quietly, as if effrayed. He appears lost. One of the Chief comes close to him and reassures him, before speaking up his request. Merora then translates it to you, "The child wishes to return home, to Hai space. However he cannot do that alone, and the Chief is asking for someone to escort him, and find him a suitable transport. All Hai captains, even those who do not sympathise with our cause, would easily accept taking a child back to Hai space, without asking anything in return. It only needs to be arranged by someone, indeed the child does not know who to turn to." Progressively, every single Hai stands up, and say what you're pretty sure means "I do" in Hai. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He then designates someone, and the child goes to him.`
-			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. One Hai then arrives, he is probably the last one to pass today. Merora tells you, "he made a simple request, which bothers the Chiefs quite a bit, as he is not asking for a child to be transported, but for a full family, and not into Hai space but here, and there are not as many captains ready to do that. The Chief said that currently noone is available for that. They will most probably go and ask captains if it can be arranged, later." Then the Chiefs rise up, and one speaks to the crowd. Merora speaks, once again, "It is over, goodbye. I hope we meet again, <first>." At this, the crowd, including the young girl, leave, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
+			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. One Hai then arrives, he is probably the last one to pass today. Merora tells you, "he made a simple request, which bothers the Chiefs quite a bit, as he is not asking for a child to be transported, but for a full family, and not into Hai space but here, and there are not as many captains ready to do that. The Chief said that currently noone is available for that. They will most probably go and ask captains if it can be arranged, later." Then the Chiefs rise up, and one speaks to the crowd. Merora speaks, once again, "It is over, goodbye. I hope we meet again, <first>."`
+			choice
+				`	"Could you help me translate some other times?"`
+				`	(Let her leave.)`
+					goto leave
+			`	"I am not even sure I will stay in Unfettered space, but if we meet again, maybe. I do not want to lose any status I might acquire by speaking with you, some among us are not fan of humans."`
+			label leave
+			`	The crowd, including the young girl, leave, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
+				goto next
 			label continue
-			`	It is now the turn of a child to come, and he speaks very quietly, as if effrayed. He appears lost. One of the Chief comes close to him and reassures him, before speaking up his request. <third group speaking> Progressively, every single Hai stands up, and say what you're pretty sure means "I do" in Hai. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He then designates someone, and the child goes to him.`
-			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. <fourth group speaking>. Then they rise up, and one speaks to the crowd, <closing> At this, the crowd, including the young girl, leave, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
-			`	The same Chief is now moving towards you. He seems to be lost in his thoughts and is mumbling something about you. "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus. "Sorry, I was just thinking out loud! Well, you are here anyway, so maybe you could help us?"`
+			`	It is now the turn of a child to come, and he speaks very quietly, as if effrayed. He appears lost. One of the Chief comes close to him and reassures him, before speaking up his request. <thirdgroup> Progressively, every single Hai stands up, and say what you're pretty sure means "I do" in Hai. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He then designates someone, and the child goes to him.`
+			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. <fourthgroup>. Then they rise up, and one speaks to the crowd, <closing> At this, the crowd, including the young girl, leave, as do the Chiefs later on. You notice one of them looking at you, pensive, as he has just noticed your presence.`
+			label next
+			`	The Chief is now moving towards you. He seems to be lost in his thoughts and is mumbling something about you. "We do not get alien visitors often here. There has to be a reason for your presence..." When he speaks again, directly to you, it is with more focus. "Sorry, I was just thinking out loud! Well, you are here anyway, so maybe you could help us?"`
 			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help a friend, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he says, apparently a bit desperate, considering he knows very little if anything at all about you.`
 			choice
 				`	"Of course, what do you need me to do?"`
