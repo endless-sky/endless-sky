@@ -335,8 +335,8 @@ ship "Korath Conveyor"
 	outfits
 		"Korath Banisher" 2
 		"Korath Warder" 3
-		"Korath Digger Turret" 3
-		"Korath Digger" 2
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -361,15 +361,15 @@ ship "Korath Conveyor"
 	"reverse engine" 19 -303 0.5
 	"reverse engine" 19 -303 0.5
 		over
-	gun -47 -254 "Korath Digger"
-	gun 47 -254 "Korath Digger"
-	turret -73 -159 "Korath Digger Turret"
-	turret 73 -159 "Korath Digger Turret"
+	gun -47 -254 "Digger Mining Beam"
+	gun 47 -254 "Digger Mining Beam"
+	turret -73 -159 "Digger Mining Turret"
+	turret 73 -159 "Digger Mining Turret"
 	turret -56 -137 "Korath Warder"
 	turret 56 -137 "Korath Warder"
 	turret -58 -6 "Korath Banisher"
 	turret 58 -6 "Korath Banisher"
-	turret -58 25 "Korath Digger Turret"
+	turret -58 25 "Digger Mining Turret"
 	turret 58 25 "Korath Warder"
 	fighter -72 294 back
 	fighter 0 294 back
@@ -412,7 +412,7 @@ ship "Korath Conqueror"
 		"Korath Warder" 2
 		"Korath Fire-Lance" 3
 		"Korath Inferno" 2
-		"Korath Blaze-Pike" 2
+		"Blaze-Pike Turret" 2
 		"Firelight Missile Bank" 2
 		"Firelight Missile" 36
 		
@@ -455,8 +455,8 @@ ship "Korath Conqueror"
 	turret 69 -220 "Korath Inferno"
 	turret -53 -187 "Korath Grab-Strike"
 	turret 53 -187 "Korath Grab-Strike"
-	turret -80 164 "Korath Blaze-Pike"
-	turret 80 164 "Korath Blaze-Pike"
+	turret -80 164 "Blaze-Pike Turret"
+	turret 80 164 "Blaze-Pike Turret"
 	turret -63 194 "Korath Banisher"
 	turret 63 194 "Korath Warder"
 	explode "tiny explosion" 30
@@ -492,7 +492,7 @@ ship "Korath Tanker"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Heaver" 2
+		"Langrage Hyper-Heaver" 2
 		"Korath Banisher" 3
 		"Korath Warder" 3
 		
@@ -527,8 +527,8 @@ ship "Korath Tanker"
 	turret 46 -81 "Korath Warder"
 	turret -50 -49 "Korath Warder"
 	turret 50 -49 "Korath Banisher"
-	turret -51 55 "Korath Heaver"
-	turret 51 55 "Korath Heaver"
+	turret -51 55 "Langrage Hyper-Heaver"
+	turret 51 55 "Langrage Hyper-Heaver"
 	turret -74 281 "Korath Banisher"
 	turret 74 281 "Korath Warder"
 	explode "tiny explosion" 30
@@ -564,7 +564,7 @@ ship "Korath Traveller"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Shunt-Strike" 2
+		"Shunt-Strike Turret" 2
 		"Korath Banisher" 2
 		"Korath Warder" 2
 		"Korath Fire-Lance" 2
@@ -598,8 +598,8 @@ ship "Korath Traveller"
 	fighter 90 160 back
 	gun -45 -253 "Korath Fire-Lance"
 	gun 45 -253 "Korath Fire-Lance"
-	turret -73 -116 "Korath Shunt-Strike"
-	turret 73 -116 "Korath Shunt-Strike"
+	turret -73 -116 "Shunt-Strike Turret"
+	turret 73 -116 "Shunt-Strike Turret"
 	turret -87 -83 "Korath Banisher"
 	turret 87 -83 "Korath Warder"
 	turret -48 274 "Korath Warder"
@@ -876,7 +876,7 @@ ship "Korath World-Ship (Efreti)"
 			"hit force" 12000
 	outfits
 		"Korath Fire-Lance" 2
-		"Korath Expeller" 2
+		"Expeller Grav-Ray" 2
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 
 		"Korath Warder" 2
@@ -900,8 +900,8 @@ ship "Korath World-Ship (Efreti)"
 	turret 41 -69 "Korath Warder"
 	turret -41.5 264 "Korath Warder"
 	turret 41.5 264 "Korath Banisher"
-	gun -75 -250 "Korath Expeller"
-	gun 75 -250 "Korath Expeller"
+	gun -75 -250 "Expeller Grav-Ray"
+	gun 75 -250 "Expeller Grav-Ray"
 	gun -60 -214.5 "Korath Fire-Lance" 2
 	gun 60 -214.5 "Korath Fire-Lance" 2
 	explode "tiny explosion" 30
@@ -939,7 +939,7 @@ ship "Korath Dredger (Efreti)"
 			"hit force" 5900
 	outfits
 		"Korath Banisher" 1
-		"Korath Expeller" 2
+		"Expeller Grav-Ray" 2
 		"Korath Warder" 2
 		
 		"Systems Core (Large)"
@@ -961,8 +961,8 @@ ship "Korath Dredger (Efreti)"
 	turret 0 -119.5 "Korath Warder"
 	turret 0 42 "Korath Banisher"
 	turret 0 138.5 "Korath Warder"
-	gun -37.5 -187 "Korath Expeller"
-	gun 37.5 -187 "Korath Expeller"
+	gun -37.5 -187 "Expeller Grav-Ray"
+	gun 37.5 -187 "Expeller Grav-Ray"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
@@ -997,7 +997,7 @@ ship "Korath Raider (Efreti)"
 			"hit force" 5400
 	outfits
 		"Korath Fire-Lance" 2
-		"Korath Expeller"
+		"Expeller Grav-Ray"
 		"Korath Warder" 2
 		
 		"Triple Plasma Core"
@@ -1015,7 +1015,7 @@ ship "Korath Raider (Efreti)"
 	engine 17.5 139.5
 	turret 0 -35 "Korath Warder"
 	turret 0 97 "Korath Warder"
-	gun 0 -118 "Korath Expeller"
+	gun 0 -118 "Expeller Grav-Ray"
 	gun -16.5 -114.5 "Korath Fire-Lance"
 	gun 16.5 -114.5 "Korath Fire-Lance"
 	explode "tiny explosion" 20
@@ -1053,7 +1053,7 @@ ship "Korath Haven"
 			"hit force" 12000
 	outfits
 		"Korath Banisher" 7
-		"Korath Heaver" 3
+		"Langrage Hyper-Heaver" 3
 		"Korath Inferno" 4
 		"Korath Warder" 7
 		"Firelight Missile Bank" 4
@@ -1143,19 +1143,19 @@ ship "Korath Haven"
 	turret 178 -332 "Korath Banisher"
 	turret -186 -285.5 "Korath Banisher"
 	turret 186 -285.5 "Korath Warder"
-	turret -131.5 -173.5 "Korath Heaver"
+	turret -131.5 -173.5 "Langrage Hyper-Heaver"
 	turret 131.5 -173.5 "Korath Inferno"
 	turret -131.5 -156 "Korath Inferno"
 	turret 131.5 -156 "Korath Warder"
 	turret 46 -12 "Korath Warder"
 	turret -16.5 16 "Korath Banisher"
-	turret 62 128 "Korath Heaver"
+	turret 62 128 "Langrage Hyper-Heaver"
 	turret -75.5 162.5 "Firestorm Turret"
 	turret -204.5 200 "Korath Banisher"
 	turret 204.5 200 "Korath Warder"
 	turret -192.5 257.5 "Korath Warder"
 	turret 192.5 257.5 "Korath Banisher"
-	turret -72.5 338.5 "Korath Heaver"
+	turret -72.5 338.5 "Langrage Hyper-Heaver"
 	turret 72.5 338.5 "Korath Inferno"
 	turret -95.5 365.5 "Korath Inferno"
 	turret 95.5 365.5 "Korath Banisher"
