@@ -1741,15 +1741,15 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`Taer-Fi is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway."`
+			`Taer-Fi is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But not to worry that auxiliary cannot be going very far before some serious repairs, not with the kind of damage it suffered anyway." You have not seen her often before, so are not really able to gauge her reaction, but she seems somewhere else, as if disturbed by something.`
 			choice
 				`	"Get to the point, where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of this chemical, it should lead you to them. Their jump drive is malfunctionning, and leaving it behind. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it!" You remember it had also fighters accompanying it.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles, it should lead you to them. I assume that their jump drive is malfunctionning, and leaving it behind, but in truth I have no idea what caused this. But this auxiliary is no joke, it can field more than 100 people on it, be sure to have what it takes to capture it! You could always disable it and then come back later to board them, but in that case make sure to be quick enough, else the Alphas could repair it." You remember it had also fighters accompanying it.`
 				goto agree
 			label damage
-			`	"Some kind of beam weapon, and a very strong one at that, it looks like it only got partially deflected by the shields. I wonder what kind of weapon can do that." She looks intrigued.`
+			`	"Some kind of beam weapon, and a very strong one at that, it looks like it only got partially deflected by the shields, if at all. I wonder what kind of weapon can do that." She looks intrigued, and pauses to think about it, then continues, "that would explain why it is forbidden for us to venture east with a jump drives, we lack any hull repair capabilities, and well to be honnest with you, our hull is not much more resilient than the one of some human ships, like that Auxiliary."`
 			choice
 				`	"They seemed to be using the same weapon against me."`
 					goto logs
@@ -1761,11 +1761,12 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
 				`	"You should have asked me to do an outfit scan, earlier..."`
-			`	"Maybe, but it could have provoked them further, they apparently very much like to keep hold of their secrets. I only wanted to know about the structure of the ship. I have to grand you that knowing more about those weapons would be uesfull. Now, back to the damage on their ship."`
+			`	"Maybe, but it could have provoked them further, they apparently very much like to keep hold of their secrets. I only wanted to know about the structure of the ship. I have to grand you that knowing more about those weapons would be usefull. Now, back to the damage on their ship."`
 			label information
-			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out a energy reading on her pad. "An Unfettered captain has found weird particles in that same system. Looking more at it, I think it means a shot got trough and did some damage to one of the jump drives they are carrying, maybe even the one they use to jump. We once had damage to one fighting the aliens up north, and although it could still function, it left this behind. I can't begin to understand it, my best guess would be that when the ship jumped the hole it left behind did not close as quickly as it should, and anti-matter came from the other side, and left these peculiar particles when being annihilated by contact with matter. I suspect that they would have gone back to their base to repair it, so there should be traces leading to it."`
+			`	"Obviously, this amount of damage has consequences, it looks like they have quickly patched it up so it will not affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you havent seen before. "A captain has found weird particles in that same system. We have never found traces of those particles before, but then our jump drives were not ever damaged by the automata's weapons. No ships that went east returned... I guess it could mean a shot got trough and did some damage to one of the jump drives they are carrying, maybe even the one they use to jump. One thing is certain, that is not left by normal human ships, or Hai for that matter. I can't begin to understand it, my best guess would be that when the ship jumped the hole it left behind did not close as quickly as it should, and anti-matter came from the other side, and left these peculiar particles when being annihilated by contact with matter. Or maybe the particles just came trough the opening in space?"`
+			`	"It does not matter much anyway, I suspect that they would have gone back to their base to repair it, so there should be traces leading to it. Something bothers me though, from our experience, jump drives either work or explode, without any in between. Maybe it is the fact that the jump drive is not actually being used, and only leaking particles passively, that makes this possible?... Or maybe the damage done by these weapons is really special, after all they are more advanced than what we have or what the aliens up north possess. Only Quargs have a similar level of technology, and they invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
-			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars either."`
+			`	You were ready to go but she seems to have something more to say, "Oh and one last thing before you leave, the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary mean you will probably not have much time to wait to fuel up from the local stars either. And be prepared for a fight in space, and on the ship itself, to claim it."`
 				accept
 	
 	waypoint "Hi Yahr"
@@ -1786,7 +1787,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 	on enter "Ferukistek"
 		dialog `There are traces here indeed. You spot one system with no hyperspace links north-east of here, it seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
-		dialog `You arrive in the system, expecting to find a vault and the ship repairing, but it looks like it's a trap! Either that or the same auxiliary as earlier has just finished repairing, but it looks like it is waiting for you. Whatever the case it probably has the jump drives on board, or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. You notice a lot of drones flying around. This may indeed be a trap.`
+		dialog `You arrive in the system, expecting to find a vault and the ship repairing, but it looks like it's a trap! The Auxiliary from earlier is indeed here but it is not damaged at all, and it looks like it is waiting for you, with quite a few drones. Whatever the case it probably has the jump drives on board, or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Weirdly, you do not find a single trace of the particles in this system.`
 	
 	npc capture
 		government "Alpha"
@@ -1873,28 +1874,32 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
 	landing
 	source "Avalon"
+	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: active"
 	on offer
 		outfit "Alpha Pirate Crew" -1
 		conversation
-			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. It seems to be too deep or at least shielded from scans in some way. You will have to go blind in it.`
+			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. You cannot retrieve any information, it seems to either be too deep or at least shielded from scans in some way. You will have to go blind in it.`
 			`	Weirdly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here it is probably a skeleton crew. You exit your ship but cannot find anyone. They could be hidden so you go carrefully with your crew, looking for the jump drive vault, which can not be far. On the way you hear sounds... Sounds that definitely did not originate from humans. Heading that way you find a brig with Koraths in itm and a very peculiar symbol over it, that looks like a lizard's head. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
 			`	You find the jump drives easily enough, close to the hangar, there are 10 of them and you load them unto your ship.`
 			choice
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
-					decline
+					accept
 			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries but the details are so well encrypted there is no hope learning more any time soon. You do find their captain's most recent log; apparently they had indeed been waiting here to ambush you on arrival.`
 			choice
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
-					decline
-			`	You find out the leak was created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs, as a primitive way of encryption, on top of the more serious encryptions used for sensitive information.`
+					accept
+			`	You find out the particles were created deliberately as a lure to draw you into the ambush here, so they could be done with you. Thankfully you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs, as a primitive way of encryption, on top of the more serious encryptions used for sensitive information.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base, and for bringing jump drives to the Unfettered. So maybe you did indeed find the Alpha base, after all! These logs probably contain indications of where they have been getting the Jump Drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they seemed to spend quite some time near the Korath Exiles' territory. It is now time to leave the planet and go see the Chiefs.`
 			action
 				set "Unfettered: alpha logs"
 		outfit "Jump Drive" 10
+
+	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
+		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Taer-Fi, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, obviously hoping I would tell you to go after those. I am not going to pretend I had no idea, it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently. It appears jump drive either explode or work, without any in between."`
 
 
 
