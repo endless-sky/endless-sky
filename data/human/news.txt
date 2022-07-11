@@ -1041,7 +1041,7 @@ news "chef"
 			"Hey, don't just hang around over there! Help me load this stuff; these 50 catering containers aren't going to move themselves."
 			"Be careful what you transport; another chef once tried to poison my supplies during transport. Both that chef and the transporting captain are in jail now."
 			"A customer recently ordered a cheeseburger without the meat. Funny way to order a cheese sandwich."
-			"If you ever start a restaurant near a spaceport, then don't call it `The Space Bar`. You might think you're funny, but so did hundreds of other new restaurant owners before you."
+			"If you ever start a restaurant near a spaceport, then don't call it 'The Space Bar'. You might think you're funny, but so did hundreds of other new restaurant owners before you."
 		word
 			`"`
 
