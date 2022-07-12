@@ -130,20 +130,13 @@ effect "ion impact"
 	"velocity scale" -.05
 
 
-outfit "True Unfettered License"
-	category "Special"
-	thumbnail "outfit/true unfettered license" #missing currently!
-	"capture attack" 10
-	"capture defense" 10
-	description "This sword may be bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
-
 outfit "Ionic Blaster Prototype"
 	category "Guns"
 	cost 530000
 	thumbnail "outfit/hai ionic blaster"
-	"mass" 21
-	"outfit space" -21
-	"weapon capacity" -21
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion bolt"
@@ -160,7 +153,7 @@ outfit "Ionic Blaster Prototype"
 		"hit force" 120
 		"shield damage" 150
 		"hull damage" 45
-		"ion damage" 1.5
+		"ion damage" 3
 	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations."
 	description "The main focus they had in mind when developping the weapon was making sure they could fill shield beetles with them, unlike the bigger ion cannon. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
 
@@ -169,8 +162,8 @@ outfit "Ionic Turret Prototype"
 	cost 1260000
 	thumbnail "outfit/hai ionic turret"
 	"mass" 49
-	"outfit space" -49
-	"weapon capacity" -49
+	"outfit space" -56
+	"weapon capacity" -56
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -191,7 +184,7 @@ outfit "Ionic Turret Prototype"
 		"hit force" 60
 		"shield damage" 80
 		"hull damage" 45
-		"ion damage" 4
+		"ion damage" 6
 	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own. However, they refined the ion in the shots to be more coherent and thus apply more disruption, at the cost of damage. This weapon quickly disables any small ships that lack power generation."
 
 
