@@ -1356,7 +1356,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 	}
 	else if(type == Orders::COLLECT)
 	{
-		if(DoHarvesting(ship, command))
+		if(ship.Cargo().Free() && DoHarvesting(ship, command))
 		{
 			ship.SetCommands(command);
 			ship.SetCommands(firingCommands);
