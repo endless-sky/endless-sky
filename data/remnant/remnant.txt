@@ -467,7 +467,7 @@ phrase "friendly remnant"
 	word
 		" by having "
 	word
-		"a cloaking device along"
+		"cloaking functionality"
 		"a secret weapon"
 		"fast engines"
 		"a last resort every Remnant should have"
@@ -589,7 +589,7 @@ phrase "remnant thrasher cannon"
 
 phrase "remnant emp torpedo bay"
 	word
-		"an EMP Torpedo Bay.  "
+		"an EMP Torpedo Bay. "
 	word
 		"With a single shot, it"
 		"Firing one"

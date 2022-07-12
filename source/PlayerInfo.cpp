@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <ctime>
+#include <functional>
 #include <iterator>
 #include <limits>
 #include <sstream>
@@ -2550,14 +2551,13 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored.
-	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
-	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
-	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
+	auto mit = stable_partition(missions.begin(), missions.end(), mem_fn(&Mission::IsValid));
 	if(mit != missions.end())
 		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
 
 	// Invalid available jobs or missions are erased (since there is no guarantee
 	// the player will be on the correct planet when a plugin is re-added).
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
 }
@@ -2588,6 +2588,7 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 	};
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	clearRange(conditions, "ships: ", "ships:!");
+	clearRange(conditions, "flagship model: ", "flagship model:!");
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
@@ -2598,6 +2599,8 @@ void PlayerInfo::UpdateAutoConditions(bool isBoarding)
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 			++conditions["ships: " + ship->Attributes().Category()];
 		}
+	if(flagship)
+		++conditions["flagship model: " + flagship->ModelName()];
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).

@@ -88,6 +88,10 @@ private:
 
 	// Remaining "hull" strength of the object, before it is destroyed.
 	double hull = 1000.;
+	// The hull value that this object starts at.
+	double maxHull = 1000.;
+	// A random amount of hull that gets added to the object.
+	double randomHull = 0.;
 	// Material released when this object is destroyed. Each payload item only
 	// has a 25% chance of surviving, meaning that usually the yield is much
 	// lower than the defined limit but occasionally you get quite lucky.

@@ -224,6 +224,16 @@ outfit "Scanning Module"
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 
+outfit "Outskirts Gauger"
+	category "Systems"
+	cost 1406000
+	thumbnail "outfit/outskirts gauger"
+	"mass" 8
+	"outfit space" -8
+	"tactical scan power" 169
+	"energy consumption" .2
+	description "Completed with the data from one of their long-lost satellites, the newest scanner of House Idriss excels at reading various energy signatures across vast distances."
+	description "	Constantly running its calculations about every little thing it detects within its impressive range, the gauger needs a steady supply of energy to function."
 
 outfit "Small Thrust Module"
 	category "Engines"
@@ -238,7 +248,7 @@ outfit "Small Thrust Module"
 	"thrusting energy" 0.46
 	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"flare sound" "atomic tiny"
 	description "This tiny thruster produces a considerable amount of thrust... but also a considerable amount of heat."
 
@@ -255,9 +265,45 @@ outfit "Large Thrust Module"
 	"thrusting energy" 1.7
 	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
+
+outfit "Small Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 66000
+	thumbnail "outfit/small reverse module"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"reverse thrust" 6.6
+	"reverse thrusting energy" 0.46
+	"reverse thrusting heat" 3
+	"reverse flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"reverse flare sound" "atomic tiny"
+	description "Placing this tiny thruster in the front of a freighter or transport allows Coalition merchants to considerably improve their energy efficiency, which is of great benefit when relying on solar power."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "Large Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 292000
+	thumbnail "outfit/large reverse module"
+	"mass" 32
+	"outfit space" -32
+	"weapon capacity" -32
+	"reverse thrust" 26.2
+	"reverse thrusting energy" 1.7
+	"reverse thrusting heat" 11
+	"reverse flare sprite" "effect/coalition flare/large"
+		"frame rate" 7
+	"reverse flare sound" "atomic small"
+	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use large thrust modules to rapidly slow their ships, allowing them to save both time and energy."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "Small Steering Module"
 	category "Engines"
@@ -272,7 +318,7 @@ outfit "Small Steering Module"
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
-		"frame rate" 4.8
+		"frame rate" 10
 	"steering flare sound" "atomic tiny"
 	description "Despite its high efficiency, this module is not sufficient for any but the tiniest of ships. Instead, the modules are designed with the expectation that ships may use two or three of them in tandem."
 
@@ -289,7 +335,7 @@ outfit "Large Steering Module"
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
-		"frame rate" 3.5
+		"frame rate" 7
 	"steering flare sound" "atomic small"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 
