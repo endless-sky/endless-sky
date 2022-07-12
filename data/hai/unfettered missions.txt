@@ -499,7 +499,7 @@ mission "Unfettered: Bring Hai"
 			has "language: Wanderer"
 		<fourthgroup> "Once again they demand something, but this Hai does not seem to be malnourished at all. Whatever it is he asked, the Chiefs seem bothered by this request."
 			not "language: Wanderer"
-		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic]?" This seems to bother the Chiefs, and they answer briefly, "We will contact [True, authentic] ship captains to ask them if they can, but I fear they are indeed [busy, overworked] these days, which is why the prices have gone up."`
+		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic]?" This seems to bother the Chiefs, and they answer briefly, "We will contact [True, unaltered] ship captains to ask them if they can, but I fear they are indeed [busy, overworked] these days, which is why the prices have gone up."`
 			has "language: Wanderer"
 		<closing> "judging from the fact everyone is now leaving, you figure he closed the event."
 			not "language: Wanderer"
