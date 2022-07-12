@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cmath>
 #include <ctime>
+#include <functional>
 #include <iterator>
 #include <limits>
 #include <sstream>
@@ -2550,14 +2551,13 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate the missions that were loaded. Active-but-invalid missions are removed from
 	// the standard mission list, effectively pausing them until necessary data is restored.
-	missions.sort([](const Mission &lhs, const Mission &rhs) noexcept -> bool { return lhs.IsValid(); });
-	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
-	auto mit = find_if(missions.begin(), missions.end(), isInvalidMission);
+	auto mit = stable_partition(missions.begin(), missions.end(), mem_fn(&Mission::IsValid));
 	if(mit != missions.end())
 		inactiveMissions.splice(inactiveMissions.end(), missions, mit, missions.end());
 
 	// Invalid available jobs or missions are erased (since there is no guarantee
 	// the player will be on the correct planet when a plugin is re-added).
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
 }
