@@ -104,6 +104,9 @@ tip "cloaking shield:"
 tip "cloaking shield delay:"
 	`This ship is unable to regenerate shields whilst cloaked, instead its shield regeneration will suffer a delay that will grow the longer it is cloaked`
 
+tip "cloaking hull:"
+	`Hull consumed per second while cloaked.`
+
 tip "cloaking hull delay:"
 	`This ship is unable to regenerate hull whilst cloaked, instead its hull regeneration will suffer a delay that will grow the longer it is cloaked.`
 
