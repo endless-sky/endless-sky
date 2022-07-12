@@ -143,29 +143,29 @@ namespace {
 		return lhs->RequiredCrew() < rhs->RequiredCrew();
 	}
 
-	template <InfoPanelState::ShipComparator *F>
+	// A helper function for reversing the arguments of the given function F.
+	template <InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return F(rhs, lhs);
 	}
 
-	InfoPanelState::ShipComparator *GetReverseCompareFrom(InfoPanelState::ShipComparator *f)
+	// Reverses the argument order of the given comparator function.
+	InfoPanelState::ShipComparator &GetReverseCompareFrom(InfoPanelState::ShipComparator &f)
 	{
 		if(f == &CompareName)
-			return &ReverseCompare<&CompareName>;
+			return ReverseCompare<CompareName>;
 		else if(f == &CompareModelName)
-			return &ReverseCompare<&CompareModelName>;
+			return ReverseCompare<CompareModelName>;
 		else if(f == &CompareSystem)
-			return &ReverseCompare<&CompareSystem>;
+			return ReverseCompare<CompareSystem>;
 		else if(f == &CompareShields)
-			return &ReverseCompare<&CompareShields>;
+			return ReverseCompare<CompareShields>;
 		else if(f == &CompareHull)
-			return &ReverseCompare<&CompareHull>;
+			return ReverseCompare<CompareHull>;
 		else if(f == &CompareFuel)
-			return &ReverseCompare<&CompareFuel>;
-		else if(f == &CompareRequiredCrew)
-			return &ReverseCompare<&CompareRequiredCrew>;
-		return nullptr;
+			return ReverseCompare<CompareFuel>;
+		return ReverseCompare<CompareRequiredCrew>;
 	}
 }
 
@@ -794,7 +794,7 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 {
 	// Clicking on a sort column twice reverses the comparison.
 	if(panelState.CurrentSort() == shipComparator)
-		shipComparator = GetReverseCompareFrom(shipComparator);
+		shipComparator = GetReverseCompareFrom(*shipComparator);
 
 	// Save selected ships to preserve selection after sort.
 	multiset<shared_ptr<Ship>, InfoPanelState::ShipComparator *> selectedShips(shipComparator);
