@@ -80,6 +80,7 @@ trade
 		"purified water"
 		"quinoa"
 		"raisins"
+		"ramen"
 		"ready-to-eat meals"
 		"rice"
 		"salt"

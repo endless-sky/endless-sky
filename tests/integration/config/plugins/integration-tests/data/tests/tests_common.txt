@@ -378,14 +378,14 @@ test-data "Fighters and Carriers and Escorts"
 				"Sidewinder Missile Rack" 2
 				"Heavy Laser Turret" 2
 				"Heavy Anti-Missile Turret"
-				
+
 				"NT-200 Nucleovoltaic"
 				"KP-6 Photovoltaic Panel" 2
 				"LP072a Battery Pack"
 				"D41-HY Shield Generator"
 				"Large Radar Jammer"
 				"Laser Rifle" 3
-				
+
 				"X3700 Ion Thruster"
 				"X3200 Ion Steering"
 				"Hyperdrive"
@@ -393,7 +393,7 @@ test-data "Fighters and Carriers and Escorts"
 			fuel 500
 			shields 5700
 			hull 1900
-			position 0 0				
+			position 0 0
 			engine -10 91
 			engine 10 91
 			gun -13 -79 "Sidewinder Missile Launcher"

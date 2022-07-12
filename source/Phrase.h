@@ -27,6 +27,10 @@ class DataNode;
 // Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
+	Phrase() = default;
+	// Construct and Load() at the same time.
+	Phrase(const DataNode &node);
+
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
 

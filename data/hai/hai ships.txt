@@ -271,7 +271,7 @@ ship "Grasshopper"
 		"drag" 1.5
 		"heat dissipation" .85
 		"fuel capacity" 300
-		"cargo space"  29
+		"cargo space" 29
 		"outfit space" 169
 		"weapon capacity" 38
 		"engine capacity" 61
@@ -807,7 +807,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
