@@ -2622,7 +2622,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. || 
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. ||
 		(cloak == 1. && attributes.Get("cloaking targetability") > 0.)) && hull >= 0. && hyperspaceCount < 70);
 }
 
@@ -2680,7 +2680,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || 
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
 		((cloak == 1. && !attributes.Get("cloaked action")) || (cloak != 1. && cloak)));
 }
 

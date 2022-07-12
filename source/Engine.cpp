@@ -754,7 +754,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. || 
+		if(target->GetSystem() == player.GetSystem() && (target->Cloaking() < 1. ||
 				target->Attributes().Get("cloaking targetability")))
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
@@ -2085,7 +2085,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
-				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()) && 
+				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()) &&
 						(ship->Cloaking() < 1. || ship->Attributes().Get("cloaking invulnerability") <= 0.))
 					continue;
 
