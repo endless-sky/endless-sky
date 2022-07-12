@@ -357,7 +357,7 @@ outfit "ion hail"
 		"hit force" 1
 		"shield damage" 12
 		"hull damage" 5
-		"ion damage" .32
+		"ion damage" .64
 
 
 outfit "Ion Rain Gun"
@@ -386,7 +386,7 @@ outfit "Ion Rain Gun"
 		"firing heat" 4
 		"shield damage" 12
 		"hull damage" 5
-		"ion damage" .32
+		"ion damage" .64
 	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
 
 effect "ion rain impact"

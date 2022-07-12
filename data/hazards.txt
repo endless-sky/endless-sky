@@ -21,7 +21,7 @@ hazard "Ember Waste Base Storm"
 	"range" 10000
 	"environmental effect" "ion hazard" 20
 	weapon
-		"ion damage" 0.5
+		"ion damage" 1
 		"shield damage" 5
 		"hull damage" 0.01
 

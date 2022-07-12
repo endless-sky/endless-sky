@@ -55,7 +55,7 @@ outfit "Quarg Skylance"
 		"firing heat" 10
 		"shield damage" 50
 		"hull damage" 40
-		"ion damage" .1
+		"ion damage" .2
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 effect "skylance impact"
