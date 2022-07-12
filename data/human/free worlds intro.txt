@@ -565,13 +565,29 @@ mission "FW Katya 1"
 			`	"I need a civilian for some courier work," she says. "Nothing illegal, at least nothing the Republic can pin on you. It just needs to be done by a ship that isn't flying our colors, and by a captain who isn't going to scream, 'Death to all tyrants!' and go in with guns blazing the first time your cargo gets scanned. What do you say?"`
 			choice
 				`	"I'm not sure I'm ready to pick sides in this war, yet."`
+				`	"Why would I help a group of terrorists?"`
+					goto terrorists
 				`	"Okay, tell me more."`
 					goto more
 			
-			`	"Look, kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
+			`	"Look, kid," she says. "When I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
 			choice
 				`	"That sounds fair. I'll hear you out."`
-				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`
+					goto more
+				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
+					decline
+			
+			label terrorists
+			`	"Look, kid," she says. "I know the situation looks bad, but I'm telling the truth when I say that the Free Worlds aren't the ones who dropped those nukes, and we don't know who did, either. So I'll proudly be called treasonous for separating from the Republic, but I will not tolerate being called a terrorist."`
+			choice
+				`	"And what reason do I have to believe you?"`
+				`	"I'm not convinced. You'll need to find some other sucker to do your dirty work for you."`
+					decline
+			
+			`	Katya pauses for a moment. "You don't have a reason," she says with a sigh. "Sometimes you just need to take things on faith."`
+			choice
+				`	"Alright, I'm willing to hear you out."`
+				`	"Well I don't have a lot of faith in people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
 					decline
 			
 			label more
@@ -675,7 +691,7 @@ mission "FW Katya 1C"
 				`	(Shut the hatch and escape into space.)`
 					goto flee
 			
-			`	You draw your gun. The officer shouts in alarm and dives out of the way. His companions, who turn out to be wearing body armor, open fire. You die quickly. Katya will be very disappointed.`
+			`	You draw your gun while screaming "Death to all tyrants!" The officer shouts in alarm and dives out of the way. His companions, who turn out to be wearing body armor, open fire. You die quickly. Katya will be very disappointed.`
 				die
 			
 			label flee
@@ -785,7 +801,7 @@ mission "FW Katya 2"
 				`	"Sorry, but I've decided working for the Free Worlds just isn't worth the risk."`
 					decline
 			
-			`	"Great!" she says. "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
+			`	"Great!" she says. "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt planetary governments, though."`
 				accept
 	
 	on visit
@@ -924,9 +940,16 @@ mission "FW Katya 3"
 			choice
 				`	"Yup. That makes perfect sense to me."`
 					goto agree
+				`	"So first you have me smuggling people across the galaxy, and now you want me to attack Navy ships? Next you'll ask me to start taking prisoners."`
 				`	"That sounds like a terrible idea."`
+					goto terrible
 			
+			`	Eyes laughs, spitting out his milkshake in the process. "We don't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't to anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
+				goto decision
+			
+			label terrible
 			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "That would be a big disappointment."`
+			label decision
 			choice
 				`	"Fine, I'll do it. But I still think it's an unwise idea."`
 				`	"I'm sorry, but this is a bit farther than I'm willing to go. Count me out."`
@@ -1009,16 +1032,16 @@ mission "FW Katya 5"
 				`	"Are there any other ships helping us search, or is it just us?"`
 					goto search
 			
-			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here."`
+			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here. Without any additonal information, we're looking for a needle in a galaxy-sized haystack."`
 				goto pirates
 			
 			label search
-			`	"No," says Eyes, "we've tried to keep this search a secret so the terrorists won't know we're looking for them. If they turn out to be Free Worlds sympathizers, and I assume they are, we'll have a better chance of infiltrating them if they think we're on their side."`
+			`	"No," says Eyes, "we've tried to keep this search a secret so the terrorists won't know we're looking for them. Any group with the resources to develop nuclear weapons likely has the resources to also cover their tracks, and if they know we're coming for them they could make our job even harder than it already is."`
 			
 			label pirates
 			`	Katya says, "What we need is some leads to follow. I bet we could buy information on Greenrock. Whenever anyone is doing something illegal in this sector, there's a good chance the pirates are helping them."`
 			`	Mr. Eyes says, "Unless you've got boatloads of money to give the pirates, we need someone who's friendly with them, who can convince them to talk for free. We should go to the Brothers on Harmony."`
-			`	"That's not a bad idea," says Katya, "as long as they don't make me sit through one of their church services. I always fall asleep."`
+			`	"That's not a bad idea," says Katya, "as long as they don't make me sit through one of their church services. I'm usually all for service, but theirs always makes me fall asleep."`
 			`	"What do you say, Captain?" asks Eyes. "Want to visit a monastery?"`
 			choice
 				`	"Sure, sounds like fun."`
@@ -1064,7 +1087,7 @@ mission "FW Katya 5B"
 				`	"I'm <first>. Pleased to meet you."`
 			
 			`	Katya asks, "Is Brother Greg here?"`
-			`	"Sure," says David. "Come inside." The monastery building is a stone and brick structure that looks like pictures you have seen of ancient Earth. He leads you down a long hallway and into a sitting room with furniture that looks equally antique, and then leaves.`
+			`	"He is," says David. "Come inside." The monastery building is a stone and brick structure that looks like pictures you have seen of ancient Earth. He leads you down a long hallway and into a sitting room with furniture that looks equally antique, and then leaves.`
 			`	As you are waiting, Eyes explains, "Brother Greg is in charge of the monastery's outreach and ministry to pirate crew members."`
 			choice
 				`	"That sounds even odder than being a vigilante nuclear inspector."`
@@ -1088,7 +1111,7 @@ mission "FW Katya 5B"
 				goto morning
 			
 			label prayer
-			`	"Evening prayer" turns out to be a lengthy church service that apparently begins with the monks listing every bad thing they can possibly imagine and praying that it would not happen: "From lightning and tempest; from earthquake, fire, and flood; from plague, pestilence, and famine, good Lord, deliver us. From all oppression, conspiracy, and rebellion; from violence, battle, and murder; and from dying suddenly and unprepared, good Lord, deliver us..." It's very monotonous.`
+			`	"Evening prayer" turns out to be a lengthy church service that apparently begins with the monks listing every bad thing they can possibly imagine and praying that it would not happen: "From lightning and tempest; from earthquake, fire, and flood; from plague, pestilence, and famine, good Lord, deliver us. From all oppression, conspiracy, and rebellion; from violence, battle, murder, and war; and from dying suddenly and unprepared, good Lord, deliver us..." It's very monotonous.`
 			`	At some point, they switch to praying for different people: for the Parliament of the Republic, and everyone in authority; for the governor of <origin>, their world; for the Quarg and all sentient species; for prisoners, for the homeless and poor, for orphans, for pregnant women and young children, for travelers, for starship crews and captains, for miners and oil crews, for mill and factory workers; for the abused; for the mentally ill; for pirates and street gangs; for all creatures and planets vulnerable to exploitation or ecological destruction. (Eyes, who is sitting next to you, responds to that last petition with a fervent "Amen!") The litany is so detailed and specific that you find it both exhausting and fascinating.`
 			`	When the service ends, the monks depart for their rooms in silence, and Eyes, with a brief nod to you, does the same.`
 			
@@ -1149,13 +1172,23 @@ mission "FW Katya 6"
 	
 	on offer
 		conversation
-			`You find Katya and Mr. Eyes sitting at a table in the corner of a small cafe, talking in hushed voices and examining a galactic map that is spread out in front of them. Several of the nearby systems are circled. Katya says, "Hello again, Captain. We've picked three planets that we think are our best options. It should only take a few weeks to visit all of them. What do you say?"`
+			`You find Katya and Mr. Eyes sitting at a table in the corner of a small cafe, talking in hushed voices and examining a galactic map that is spread out in front of them. Several of the nearby systems are circled. Katya says, "Hello again, Captain. We've picked three planets that we think are our best options: <planet>, Hopper, and New Iceland. It should only take a few weeks to visit all of them. What do you say?"`
 			choice
 				`	"Sure, I definitely want to help solve this case!"`
+					goto sure
+				`	"Why these worlds specifically? Why not check worlds in Free space if the Republic thinks you did it?"`
 				`	"Sorry, I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
 					decline
 			
-			`	"Great!" says Katya. "We'll stop on <planet> first, then swing by Hopper and on to New Iceland. If we still haven't found anything by that point, we'll start working our way up the Rim."`
+			`	"I suppose that showing a lack of evidence for nuclear testing done on Free planets would be circumstantial evidence for us," Eyes says, "but we're specifically hunting for the culrpit, so these are our best bets as far as nearby mining worlds go. And searching these three worlds would be quicker than searching all of Free space."`
+			`	"Another thing we have to keep in mind is that we may not be able to operate outside of Free space forever," Katya responds. "I pray that we find answers before it comes to it, but war between the Free Worlds and Republic would cut us off from freely searching most of the galaxy."`
+			choice
+				`	"Okay, I'll help you search these worlds."`
+				`	"Sorry, but I don't think this is the best course of action. You'll have to find someone else to help you with this."`
+					decline
+			
+			label sure
+			`	"Great!" says Katya. "We'll stop on <destination> first, then swing by Hopper and on to New Iceland. If we still haven't found anything by that point, we'll start working our way up the Rim."`
 				accept
 	
 	on visit
@@ -1224,12 +1257,23 @@ mission "FW Katya 7"
 		conversation
 			`<origin> turns out no differently than the previous two. "We need a change in strategy," says Katya. "We've been talking about something while we were in transit."`
 			`	Eyes says, "It occurred to me that underwater testing might be even easier than underground: no need to dig or find a mine shaft. And, the Navy's sensors are for atmosphere, not oceans. But I've still got my old test kits with me for seawater."`
-			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... Deep." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
+			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... <planet>." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
 			choice
 				`	"Sounds like a good possibility. Let's give it a try!"`
+					goto agree
+				`	"But <planet> is part of the Free Worlds. What happens if we do find evidence there?"`
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
-			`	"I appreciate your help, Captain <last>," says Katya.`
+			
+			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that should hopefully lead us to the culprits. Even if it turns out that someone connected to the Free Worlds is responsible, they'll be turned over to the Republic."`
+			`	"I pray that no one within the Free Worlds is a part of this, though," Katya says quietly. "I'm almost hoping we find nothing."`
+			choice
+				`	"Fair enough. Let's give it a try."`
+				`	"The Free Worlds is looking guiltier the more we look. I'm out of here."`
+					decline
+			
+			label agree
+			`	"I appreciate your help, Captain <last>," says Katya. "Let's get going."`
 				accept
 	
 	on visit
@@ -1253,18 +1297,15 @@ mission "FW Katya 7B"
 		conversation
 			`After landing, you go for a walk along the beach with Katya and Eyes. They both go barefoot, walking in the surf. Eyes is collecting pebbles and shells from under the water, and at one point instead of grabbing a pebble he surreptitiously reaches down and fills a small vial with seawater.`
 			`	Back at your ship he runs his tests, with you and Katya watching eagerly. He looks at the results, frowns, and then repeats the whole procedure with a second test kit. Finally he sighs. "Nothing," he says.`
-			`	Katya shouts in frustration and bangs her fists against the bulkheads. "I was so certain this would be the right system," she says. "Forget it, I'm going for a walk." She leaves your ship.`
+			`	Katya shouts in frustration and bangs her fists against the bulkheads. "We're never going to find anything," she says. "Forget it, I'm going for a walk." She leaves your ship.`
 			`	Mr. Eyes packs up his instruments, and then you walk outside and find her sitting on the landing pad near your ship, watching the moon rise over the ocean. She seems much calmer.`
 			choice
 				`	(Sit down next to her and try to comfort her.)`
-				`	(Ask what she wants to do next.)`
-					goto ask
+				`	"What should we do now?"`
+					goto last
 			
 			`	You sit on one side of her, and Eyes sits on the other. "It's really admirable, what you're doing," you say. "You're trying to work for peace, and for justice. It's valuable work. Don't lose heart."`
 				goto last
-			
-			label ask
-			`	"What should we do now?" you ask.`
 			
 			label last
 			`	"One more try," she says. "One last world, and then we give up. I want you to take me... there." She points at the moon, hanging just above the horizon.`
@@ -1300,15 +1341,22 @@ mission "FW Katya 7C"
 			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
 			`	He cycles the airlock and comes back inside. "Let's fly around and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
 			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes. "Just before the attacks happened."`
-			`	"It makes no sense," says Katya. "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
+			`	"It makes no sense," says Katya. "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment."
 			choice
-				`	(Check what my computer says.)`
+				`	"What do we do now that we've found the test site?"`
+					goto now
+				`	"So the Free Worlds is behind this! This is one of your planets!"`
 			
+			`	"Yes, this a Free planet, but this evidence was far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds is being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
+			`	"I swear before God when I say that the Free Worlds has nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
+			
+			label now
+			`	Katya thinks for a moment. "Captain, is the outpost reporting any job openings?"`
 			`	You check your computer. "One job opening, for a janitor in the mess hall."`
 			`	She grimaces. "Okay, it's better than nothing. I'll take the job to go undercover and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds Council. I'll find a way to send you a message once I've found the perpetrators."`
-			`	"Katerina," says Eyes, "this is way too dangerous."`
+			`	"Katerina," says Eyes, "this is way too dangerous. As I said, if we were able to detect this then so can the Navy, and they probably already have. They could decide to occupy Clink at any moment, and you'd be trapped here with no way out."`
 			`	"There's no other way," she says. "We have no time to lose. I'm willing to risk it."`
-			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
+			`	With deep reservations, you drop her off at the outpost. Katya ruffles her hair and rubs some moon dust onto her face so that she isn't recognized and is quickly offered the job after asking. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
 				accept
 	
 	on visit
@@ -1763,6 +1811,8 @@ mission "FW Escort Second Chance"
 				`	"Well, space is a dangerous place. Bad things happen. I can't stop that."`
 				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
 					goto responsible
+			action
+				set "fw escort: mistrusted"
 			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
 				decline
 			
@@ -1986,14 +2036,25 @@ mission "Rescue Katya 1"
 	
 	on offer
 		conversation
-			`You are on Bourne, the capital of the Free Worlds. Do you take them up on their job offer and volunteer to officially join them?`
+			`You are on Bourne, the capital of the Free Worlds. Do you take them up on their job offer and volunteer to officially join them? With tensions between the Free Worlds and Republic so high it's not unthinkable that they could go to war with one another, so it would be a good idea to have a warship and some spare funds before siding with the Free Worlds.`
 			choice
 				`	(Yes.)`
 				`	(Not yet.)`
 					defer
 			
+			branch mistrust
+				has "fw escort: mistrusted"
+			
 			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "I'm so glad you've agreed to join us, Captain <last>," he says.`
-			`	That night you are introduced to the rest of the Council, and they take you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
+				goto next
+			
+			label mistrust
+			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "Captain <last>," he says with a stern glare. "If it were up to me alone you would not be standing in front of me today, but it would appear that your continued help has earned you enough good will to surpass my mistrust of you.`
+			`	"But I'm a reasonable man," he continues, his expression changing to a smile. "If my friends trust you, then I will give you a second chance, even if it is against my better judgement. Now please, join us."`
+			
+			label next
+			`	That night you are introduced to the rest of the Council: Alondo Gruyere, the Council's chief diplomat, Freya Winters, an adept engineer and the Council's head of logistics, and Jean-Jacques "JJ" Soleau, an ex-Navy officer who now leads the training of the Free Worlds miltias. Katya Reynolds, the final member of the Council, is not present.`
+			`	They take you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
 			`	After a long silence, JJ asks, "How many casualties?"`
 			`	"None," says Tomek. "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
 			choice
@@ -2017,7 +2078,7 @@ mission "Rescue Katya 1"
 		event "capture of Kornephoros"
 		log "People" "Alondo Gruyere" `Alondo grew up on Bourne, the relatively prosperous planet on the edge of the Rim that is now the capital of the Free Worlds. He served as a Republic diplomat for years before becoming convinced that Parliament was just using him to "pacify" the less developed worlds in the South with empty promises. He joined the Southern Defense Pact in the early days, before it became the Free Worlds, and is now a member of the Council.`
 		log "People" "Tomek Voigt" `Tomek is a young and ambitious militia commander. His brilliant tactical leadership and charismatic personality gained him quite a following in the Dirt Belt region even before the Free Worlds came into existence. He was asked to join the Council in part because of his popularity with the local militias throughout the region.`
-		log "People" "Freya Winters" `Freya is an engineer, specializing in surveillance equipment but with a wide range of talents. She organized the "thousand eyes" program run by the Southern Defense Pact, which was an attempt to reduce the power of the pirate fleets in the region by tracking their fleet movements. Despite her relative lack of interest in politics, she was asked to join the Free Worlds Council because of her expertise in optimizing the distribution and management of resources.`
+		log "People" "Freya Winters" `Freya is an engineer, specializing in surveillance equipment but with a wide range of talents. She organized the "Thousand Eyes" program run by the Southern Defense Pact, which was an attempt to reduce the power of the pirate fleets in the region by tracking their fleet movements. Despite her relative lack of interest in politics, she was asked to join the Free Worlds Council because of her expertise in optimizing the distribution and management of resources.`
 		log "People" "Jean-Jacques Soleau" `Known to most people simply as "JJ," Jean-Jacques grew up in the Dirt Belt and served in the Navy for years before quitting in frustration over the fact that the Navy was no longer defending his home region of space. He now serves on the Free Worlds Council, where he is tasked with coordinating actions between the local militias and shaping them into a single fighting force that can act in concert with each other.`
 
 
@@ -2104,10 +2165,10 @@ mission "Defend Sabik"
 			
 			label paint
 			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
-			`	Tomek stands by, silently, until you finish, and then approaches you with an outstretched arm holding onto a license. "Here. You're going to need this.`
-			`	"I'm sure your assistance will be invaluable to our cause," he says as you accept the militia license. After a brief silence, he continues. "Now let's hit the bar. I need a drink."`
-			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
-			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
+			`	Tomek stands by, silently, until you finish, and then approaches you with an outstretched arm holding onto a license. "Here. You're going to need this. I'm sure your assistance will be invaluable to our cause," he says as you accept the militia license. "Now if you'll excuse me, I must gather the militia for the coming battle."`
+			`	You find that the militia are collecting at the spaceport bar. Some congratulate you on joining the Free Worlds, but most are standing around quietly, waiting for something to happen. More gather as time goes to the point that the bar becomes overcrowded and militia are waiting in the streets outside the building.`
+			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapon fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!`
+			`	"And if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do. Now go! Your worlds need you!" You hurry to join all the other ships taking off to defend the system.`
 				launch
 	
 	on accept
@@ -2200,7 +2261,7 @@ mission "Defend Sabik"
 			names "free worlds small"
 			variant
 				"Hawk" 2
-				"Sparrow" 1
+				"Sparrow"
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
