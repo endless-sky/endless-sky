@@ -1032,7 +1032,7 @@ mission "FW Katya 5"
 				`	"Are there any other ships helping us search, or is it just us?"`
 					goto search
 			
-			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here. Without any additonal information, we're looking for a needle in a galaxy-sized haystack."`
+			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here. Without any additional information, we're looking for a needle in a galaxy-sized haystack."`
 				goto pirates
 			
 			label search
@@ -2050,7 +2050,7 @@ mission "Rescue Katya 1"
 			
 			label mistrust
 			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "Captain <last>," he says with a stern glare. "If it were up to me alone you would not be standing in front of me today, but it would appear that your continued help has earned you enough good will to surpass my mistrust of you.`
-			`	"But I'm a reasonable man," he continues, his expression changing to a smile. "If my friends trust you, then I will give you a second chance, even if it is against my better judgement. Now please, join us."`
+			`	"But I'm a reasonable man," he continues, his expression changing to a smile. "If my friends trust you, then I will give you a second chance, even if it is against my better judgment. Now please, join us."`
 			
 			label next
 			`	That night you are introduced to the rest of the Council: Alondo Gruyere, the Council's chief diplomat, Freya Winters, an adept engineer and the Council's head of logistics, and Jean-Jacques "JJ" Soleau, an ex-Navy officer who now leads the training of the Free Worlds miltias. Katya Reynolds, the final member of the Council, is not present.`
