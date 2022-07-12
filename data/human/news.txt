@@ -118,7 +118,7 @@ news "human merchant in human space"
 			"I once put 50,000 rifles and 150,000 grenades into my armory. One grenade became embedded in the floor due to the weight of all the other weaponry on top of it and I could no longer sell that grenade."
 			"I felt lonely, so I participated in Romantic Matchmaking on a Syndicate planet, but that was a big scam! They never asked anything about the type of partner I was looking for, they only asked questions about what I wanted to buy in the next 10 years."
 			"I once joined Romantic Matchmaking organized by the Syndicate, but they couldn't tell me anything about my true love due to privacy concerns. Can you believe that?"
-			"Romantic Matchmaking as organized by the Syndicate is garbage; they don't even differentiate on gender, so there is a 50% chance that the match they find for you is the wrong gender."
+			"Romantic Matchmaking as organized by the Syndicate is garbage; they don't even differentiate on gender, while many of their customers are not bisexual."
 			"I once got married, but my partner didn't allow me to fly further than 5 systems away from her. Guess what? I'm now more than 5 systems away from my ex-partner."
 			"I once married somebody with no credits, and I lost half of my fleet when we divorced."
 			"I really found my true love in one of those Romantic Matchmaking programs; my love always joins me on every flight I'm on. We're a great team."
@@ -348,7 +348,7 @@ news "unemployed youth"
 			"I hate working on spaceships, but 100 credits per day is 100 credits per day."
 			"I will work for food."
 			"I will work for transport out of this place."
-			"I might be least today, but I will not be last; just wait until my ship comes in."
+			"I barely have any money today, but that will change; just wait until my ship comes in."
 		word
 			`"`
 
@@ -532,7 +532,7 @@ news "tour guide"
 			"Before the hyperdrive, rich people paid large sums of credits to be very visible going into space. Nowadays they pay large sums of credits to be invisible on-planet."
 			"Antigrav boards for rent! You break it, you pay."
 			"I sometimes misread 'wine tasting' as 'time wasting'. The worst part is that nobody's noticed so far."
-			"Contact me if you are looking for some special company. No questions asked, no strings attached."
+			"Looking for some company for tonight? No questions asked, no strings attached. Just contact me if you need anything."
 		word
 			`"`
 
@@ -794,10 +794,14 @@ news "human mechanic"
 news "human ship salesperson"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
 	name
 		word
 			"Used Spaceship Salesman"
 			"Used Spaceship Saleswoman"
+			"Used Spaceship Salesperson"
+			"Used Spaceship Seller"
+			"Used Spaceship Dealer"
 	message
 		word
 			`"`
