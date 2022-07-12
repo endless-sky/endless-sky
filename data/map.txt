@@ -8387,14 +8387,15 @@ system Dokdobaru
 	object
 		sprite star/g3
 		period 10
-	object "Korati Efreti"
-		sprite planet/station1k
-		distance 680
-		period 268.086
 	object
 		sprite planet/lava3-b
 		distance 812
 		period 349.820
+		object "Korati Efreti"
+			sprite planet/station1k
+			distance 132
+			period 349.820
+			offset 180
 	object
 		sprite "planet/ringworld left"
 		distance 812
@@ -22784,6 +22785,17 @@ system "Silver Bell"
 		sprite planet/tethys
 		distance 1195.71
 		period 503.253
+		object
+			sprite planet/station7c
+				scale 0.5
+			distance 0
+			period 503.253
+		object "Periaxle Circuit"
+			sprite planet/station7cb
+				scale 0.5
+			distance 99.5
+			period 503.253
+			offset 180
 	object "Chosen Nexus"
 		sprite planet/cloud3
 		distance 1500
@@ -22800,16 +22812,6 @@ system "Silver Bell"
 			sprite planet/dust4
 			distance 346
 			period 16.4391
-	object
-		sprite planet/station7c
-			scale 0.5
-		distance 1195.71
-		period 503.253
-	object "Periaxle Circuit"
-		sprite planet/station7cb
-			scale 0.5
-		distance 1096
-		period 503.253
 
 system "Silver String"
 	pos -1022.59 517.051
