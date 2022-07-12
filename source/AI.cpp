@@ -1963,6 +1963,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 }
 
 
+
 void AI::Swarm(Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
