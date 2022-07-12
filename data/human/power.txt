@@ -84,7 +84,7 @@ outfit "KP-6 Photovoltaic Array"
 
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
-	cost 40000
+	cost 35000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
 	"outfit space" -20

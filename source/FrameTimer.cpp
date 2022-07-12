@@ -14,6 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <thread>
 
+#ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 using namespace std;
 
 
@@ -56,7 +62,14 @@ void FrameTimer::Wait()
 		if(now + step + maxLag < next)
 			next = now + step;
 
+		// The Winpthreads implementation of sleep on MinGW > 8 is inaccurate when
+		// compared to the native Windows Sleep function.
+		// See the thread starting with https://sourceforge.net/p/mingw-w64/mailman/message/37013810/.
+#ifdef _WIN32
+		Sleep(chrono::duration_cast<chrono::milliseconds>(next - now).count());
+#else
 		this_thread::sleep_until(next);
+#endif
 		now = chrono::steady_clock::now();
 	}
 	// If the lag is too high, don't try to do catch-up.
