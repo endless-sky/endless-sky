@@ -654,6 +654,70 @@ ship "Korath Tanker" "Korath Tanker (Jump)"
 
 
 
+ship "Korath Conveyor" "Korath Conveyor (Digger)"
+	outfits
+		"Korath Banisher" 2
+		"Korath Warder" 3
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Fuel Processor" 2
+		"Korath Repeater Rifle" 237
+		"Microbot Defense Station" 17
+		
+		"Afterburner (Comet Class)"
+		"Reverser (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Digger Mining Turret"
+	turret "Korath Warder"
+
+
+ship "Korath Conveyor" "Korath Conveyor (Ember)"
+	outfits
+		"Digger Mining Beam" 2
+		"Korath Banisher" 2
+		"Korath Warder" 4
+		"Shunt-Strike Turret" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Korath Repeater Rifle" 246
+		"Microbot Defense Station" 17
+		"Scram Drive"
+
+		"Reverser (Asteroid Class)"
+		"Reverser (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Shunt-Strike Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Shunt-Strike Turret"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+
+
 ship "Korath Herder" "Korath Herder (Digger)"
 	outfits
 		"Digger Mining Beam" 3
