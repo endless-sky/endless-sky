@@ -391,7 +391,7 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) * 
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) *
 			(target.IsCloaked() ? target.Attributes().Get("cloaking targetability") : 1.);
 		hasLock |= Check(probability, base);
 	}
@@ -411,7 +411,7 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
-		double probability = weapon->RadarTracking() / (1. + radarJamming) * 
+		double probability = weapon->RadarTracking() / (1. + radarJamming) *
 			(target.IsCloaked() ? target.Attributes().Get("cloaking shows on radar") : 1.);
 		hasLock |= Check(probability, base);
 	}
