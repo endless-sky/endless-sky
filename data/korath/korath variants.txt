@@ -860,7 +860,7 @@ ship "Korath Haven" "Korath Haven (Strike)"
 		"Firelight Missile" 162
 		"Firelight Storage Rack" 10
 		"Firestorm Turret" 2
-		"Firestorm Torpedo" 66
+		"Firestorm Torpedo" 39
 		"Firestorm Torpedo Rack" 2
 
 		"Triple Plasma Core" 3
@@ -915,11 +915,8 @@ ship "Korath Haven" "Korath Haven (Special)"
 		"Shunt-Strike Turret" 2
 
 		"Firelight Missile Bank" 4
-		"Firelight Missile" 162
-		"Firelight Storage Rack" 10
-		"Firestorm Turret" 2
-		"Firestorm Torpedo" 66
-		"Firestorm Torpedo Rack" 2
+		"Firelight Missile" 108
+		"Firelight Storage Rack" 4
 
 		"Triple Plasma Core" 3
 		"Systems Core (Large)" 2

@@ -785,7 +785,7 @@ ship "Korath Haven"
 		"Firelight Missile Bank" 4
 		"Firelight Storage Rack" 4
 		"Firelight Missile" 108
-		"Firestorm Torpedo" 62
+		"Firestorm Torpedo" 13
 		"Firestorm Turret" 1
 
 		"Triple Plasma Core" 3

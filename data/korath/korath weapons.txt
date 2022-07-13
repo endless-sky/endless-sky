@@ -1026,7 +1026,7 @@ outfit "Firestorm Torpedo Rack"
 	thumbnail "outfit/firestorm torpedo rack"
 	"mass" 6
 	"outfit space" -20
-	"firestorm torpedo capacity" 20
+	"firestorm torpedo capacity" 13
 	ammo "Firestorm Torpedo"
 	description "This appears to be a modified Korath Mine Rack, designed to carry Firestorm Torpedoes."
 
