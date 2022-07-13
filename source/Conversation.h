@@ -54,6 +54,9 @@ public:
 	static bool RequiresLaunch(int outcome);
 
 public:
+	Conversation() = default;
+	// Construct and Load() at the same time.
+	Conversation(const DataNode &node, const std::string &missionName = "");
 	// Read or write to files.
 	void Load(const DataNode &node, const std::string &missionName = "");
 	void Save(DataWriter &out) const;

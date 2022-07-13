@@ -192,6 +192,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
+	const double MAX_FUEL_DISPLAY = 5000.;
 }
 
 
@@ -430,8 +431,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 void Engine::Wait()
 {
 	unique_lock<mutex> lock(swapMutex);
-	while(calcTickTock != drawTickTock)
-		condition.wait(lock);
+	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	drawTickTock = calcTickTock;
 }
 
 
@@ -503,6 +504,13 @@ void Engine::Step(bool isActive)
 	wasActive = isActive;
 	Audio::Update(center);
 
+	// Update the zoom value now that the calculation thread is paused.
+	if(nextZoom)
+	{
+		// TODO: std::exchange
+		zoom = nextZoom;
+		nextZoom = 0.;
+	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
@@ -517,9 +525,9 @@ void Engine::Step(bool isActive)
 
 			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
 			if(zoom < zoomTarget)
-				zoom = min(zoomTarget, zoom * (1. + zoomRatio));
+				nextZoom = min(zoomTarget, zoom * (1. + zoomRatio));
 			else if(zoom > zoomTarget)
-				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+				nextZoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
 		}
 	}
 
@@ -655,8 +663,13 @@ void Engine::Step(bool isActive)
 	info.SetString("date", player.GetDate().ToString());
 	if(flagship)
 	{
-		info.SetBar("fuel", flagship->Fuel(),
-			flagship->Attributes().Get("fuel capacity") * .01);
+		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		// If the flagship has a large amount of fuel, display a solid bar.
+		// Otherwise, display a segment for every 100 fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", flagship->Fuel());
 		info.SetBar("energy", flagship->Energy());
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
@@ -880,7 +893,8 @@ void Engine::Go()
 	{
 		unique_lock<mutex> lock(swapMutex);
 		++step;
-		drawTickTock = !drawTickTock;
+		calcTickTock = !calcTickTock;
+		hasFinishedCalculating = false;
 	}
 	condition.notify_all();
 }
@@ -1309,8 +1323,7 @@ void Engine::ThreadEntryPoint()
 	{
 		{
 			unique_lock<mutex> lock(swapMutex);
-			while(calcTickTock == drawTickTock && !terminate)
-				condition.wait(lock);
+			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
 
 			if(terminate)
 				break;
@@ -1321,7 +1334,7 @@ void Engine::ThreadEntryPoint()
 
 		{
 			unique_lock<mutex> lock(swapMutex);
-			calcTickTock = drawTickTock;
+			hasFinishedCalculating = true;
 		}
 		condition.notify_one();
 	}
@@ -1332,6 +1345,11 @@ void Engine::ThreadEntryPoint()
 void Engine::CalculateStep()
 {
 	FrameTimer loadTimer;
+
+	// If there is a pending zoom update then use it
+	// because the zoom will get updated in the main thread
+	// as soon as the calculation thread is finished.
+	const double zoom = nextZoom ? nextZoom : this->zoom;
 
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step, zoom);
@@ -1855,7 +1873,7 @@ void Engine::HandleKeyboardInputs()
 	// restore any autopilot commands still being requested.
 	if(!keyHeld.Has(manueveringCommands) && oldHeld.Has(manueveringCommands))
 	{
-		activeCommands |= keyHeld.And(Command::JUMP | Command::BOARD | Command::LAND);
+		activeCommands |= keyHeld.And(Command::JUMP | Command::FLEET_JUMP | Command::BOARD | Command::LAND);
 
 		// Do not switch landing targets when restoring autopilot.
 		landKeyInterval = landCooldown;
@@ -1877,6 +1895,9 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
+	// Translate shift+JUMP to FLEET_JUMP.
+	else if(keyHeld.Has(Command::JUMP) && keyHeld.Has(Command::SHIFT))
+		activeCommands |= Command::FLEET_JUMP;
 }
 
 

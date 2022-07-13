@@ -37,6 +37,8 @@ namespace {
 
 	const map<string, int> SCALE = {
 		{"active cooling", 0},
+		{"afterburner shields", 0},
+		{"afterburner hull", 0},
 		{"afterburner energy", 0},
 		{"afterburner fuel", 0},
 		{"afterburner heat", 0},
@@ -77,7 +79,11 @@ namespace {
 		{"leak resistance energy", 0},
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
+		{"overheat damage rate", 0},
+		{"reverse thrusting shields", 0},
+		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
+		{"reverse thrusting fuel", 0},
 		{"reverse thrusting heat", 0},
 		{"scram drive", 0},
 		{"shield generation", 0},
@@ -89,15 +95,53 @@ namespace {
 		{"slowing resistance heat", 0},
 		{"solar collection", 0},
 		{"solar heat", 0},
+		{"thrusting shields", 0},
+		{"thrusting hull", 0},
 		{"thrusting energy", 0},
+		{"thrusting fuel", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
+		{"turning shields", 0},
+		{"turning hull", 0},
 		{"turning energy", 0},
+		{"turning fuel", 0},
 		{"turning heat", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
+
+		{"afterburner discharge", 2},
+		{"afterburner corrosion", 2},
+		{"afterburner ion", 2},
+		{"afterburner leakage", 2},
+		{"afterburner burn", 2},
+		{"afterburner slowing", 2},
+		{"afterburner disruption", 2},
+
+		{"reverse thrusting discharge", 2},
+		{"reverse thrusting corrosion", 2},
+		{"reverse thrusting ion", 2},
+		{"reverse thrusting leakage", 2},
+		{"reverse thrusting burn", 2},
+		{"reverse thrusting slowing", 2},
+		{"reverse thrusting disruption", 2},
+
+		{"thrusting discharge", 2},
+		{"thrusting corrosion", 2},
+		{"thrusting ion", 2},
+		{"thrusting leakage", 2},
+		{"thrusting burn", 2},
+		{"thrusting slowing", 2},
+		{"thrusting disruption", 2},
+
+		{"turning discharge", 2},
+		{"turning corrosion", 2},
+		{"turning ion", 2},
+		{"turning leakage", 2},
+		{"turning burn", 2},
+		{"turning slowing", 2},
+		{"turning disruption", 2},
 
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
@@ -117,6 +161,7 @@ namespace {
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
+		{"overheat damage threshold", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -203,7 +248,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -324,6 +369,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
+		{"minable damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
@@ -336,6 +382,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
+		{"% minable damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -361,6 +408,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.MinableDamage() != outfit.HullDamage() ? outfit.MinableDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
@@ -373,6 +421,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BurnDamage() * 100.,
 		outfit.RelativeShieldDamage() * 100.,
 		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeMinableDamage() != outfit.RelativeHullDamage() ? outfit.RelativeMinableDamage() * 100. : 0.,
 		outfit.RelativeFuelDamage() * 100.,
 		outfit.RelativeHeatDamage() * 100.,
 		outfit.RelativeEnergyDamage() * 100.,
