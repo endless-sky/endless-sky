@@ -733,11 +733,11 @@ ship "Korath Herder" "Korath Herder (Digger)"
 		"Large Heat Shunt"
 		"Fuel Processor" 2
 		"Asteroid Scanner"
-		"Cargo Expansion" 5
+		"Cargo Expansion" 4
 		"Korath Repeater Rifle" 308
 		"Jump Drive"
+		"Microbot Defense Station" 16
 
-		"Afterburner (Lunar Class)"
 		"Reverser (Lunar Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -773,9 +773,9 @@ ship "Korath Herder" "Korath Herder (Automata)"
 		"Control Transceiver"
 		"Korath Repeater Rifle" 308
 		"Jump Drive"
-		"Microbot Defense Station" 9
+		"Microbot Defense Station" 13
 
-		"Afterburner (Lunar Class)"
+		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"

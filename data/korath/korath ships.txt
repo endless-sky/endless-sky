@@ -635,9 +635,10 @@ ship "Korath Herder"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Security Station" 11
+		"Microbot Defense Station" 16
 		"Korath Repeater Rifle" 308
 		
+		"Reveresr (Lunar Class)"
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
