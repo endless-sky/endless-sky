@@ -2536,9 +2536,8 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	if(CannotAct())
 		return false;
-	double cloakActionCost = attributes.Get("cloaked action");
-	if(cloak && cloakActionCost)
-		cloak -= cloakActionCost;
+	if(cloak)
+		cloak -= attributes.Get("cloaked action");
 
 	antiMissileRange = 0.;
 
