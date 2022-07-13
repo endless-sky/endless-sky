@@ -243,7 +243,7 @@ fleet "Korath Civilian Miners"
 		"Korath Dredger (Civilian)"
 		"Korath Chaser (Expeller)" 2
 		"Korath Chaser (Digger)" 2
-	variant 3
+	variant 2
 		"Korath Conveyor (Digger)"
 		"Korath Chaser (Digger)" 3
 	variant 1
@@ -272,7 +272,7 @@ fleet "Korath Home"
 	variant 7
 		"Korath Herder"
 		"Korath Chaser" 9
-	variant 3
+	variant 9
 		"Korath Dredger"
 		"Korath Chaser" 2
 		"Korath Chaser (Expeller)" 2
@@ -339,6 +339,11 @@ fleet "Korath Ember Waste Raid"
 		"Korath Dredger (Heaver)"
 		"Korath Raider (Ember)" 3
 		"Korath Chaser" 19
+	variant 1
+		"Korath Conveyor (Ember)"
+		"Korath Raider (Ember Shunt)"
+		"Korath Raider (Ember Blaze)" 2
+		"Korath Chaser" 9
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
@@ -359,7 +364,7 @@ fleet "Korath Civilian Large"
 	variant 12
 		"Korath Tanker"
 		"Korath Chaser (Expeller)" 3
-	variant 22
+	variant 19
 		"Korath Traveller"
 		"Korath Chaser (Expeller)" 3
 	variant 2
@@ -369,6 +374,9 @@ fleet "Korath Civilian Large"
 		"Korath Habitat"
 		"Korath Raider" 2
 		"Korath Chaser" 4
+	variant 10
+		"Korath Traveller (Grab)"
+		"Korath Chaser (Expeller)" 3
 	variant 1
 		"Korath Chaser (World-Ship)"
 
