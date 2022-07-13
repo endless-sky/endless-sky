@@ -849,6 +849,117 @@ ship "Korath Traveller" "Korath Traveller (Troop Transport)"
 	turret 51 276.5 "Korath Warder"
 
 
+ship "Korath Haven" "Korath Haven (Strike)"
+	outfits
+		"Korath Banisher" 7
+		"Korath Grab-Strike" 4
+		"Korath Warder" 5
+		"Shunt-Strike Turret" 4
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 162
+		"Firelight Storage Rack" 10
+		"Firestorm Turret" 2
+		"Firestorm Torpedo" 66
+		"Firestorm Torpedo Rack" 2
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 7
+		"Liquid Sodium Cooler" 2
+		"Korath Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Scram Drive"
+
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Shunt-Strike Turret"
+	turret "Firestorm Turret"
+	turret "Firestorm Turret"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Grab-Strike"
+	turret "Shunt-Strike Turret"
+	turret "Korath Banisher"
+	turret "Korath Grab-Strike"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
+ship "Korath Haven" "Korath Haven (Special)"
+	outfits
+		"Korath Banisher" 4
+		"Digger Mining Turret" 6
+		"Korath Warder" 5
+		"Langrage Hyper-Heaver" 5
+		"Shunt-Strike Turret" 2
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 162
+		"Firelight Storage Rack" 10
+		"Firestorm Turret" 2
+		"Firestorm Torpedo" 66
+		"Firestorm Torpedo Rack" 2
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 11
+		"Liquid Sodium Cooler" 2
+		"Korath Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Luxury Accomodations"
+		"Brig"
+		"Cargo Expansion" 8
+		"Scram Drive"
+
+	turret "Langrage Hyper-Heaver"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Langrage Hyper-Heaver"
+	turret "Langrage Hyper-Heaver"
+	turret "Korath Banisher"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Korath Warder"
+	turret "Shunt-Strike Turret"
+	turret "Shunt-Strike Turret"
+	turret "Korath Warder"
+	turret "Langrage Hyper-Heaver"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Langrage Hyper-Heaver"
+	turret "Korath Warder"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Korath Warder"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
 		"Korath Piercer Launcher" 4
