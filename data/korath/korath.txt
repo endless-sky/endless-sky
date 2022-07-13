@@ -381,12 +381,11 @@ fleet "Kor Efret Home"
 	personality
 		timid
 	variant 5
-		"Korath World-Ship (Efreti)"
+		"Cesmip'tlad"
 	variant 3
 		"Korath Dredger (Efreti)"
 	variant 1
 		"Korath Raider (Efreti)"
-
 
 fleet "Kor Efret Miners"
 	government "Kor Efret"
