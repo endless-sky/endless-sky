@@ -651,8 +651,6 @@ ship "Korath Herder"
 	engine 42 343 .6
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
-	"reverse engine" 0 -303 0.5
-		over
 	fighter -100 -169
 	fighter 0 -169
 	fighter 100 -169
