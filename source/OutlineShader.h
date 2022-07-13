@@ -25,7 +25,7 @@ class Sprite;
 class OutlineShader {
 public:
 	static void Init();
-	
+
 	static void Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit = Point(0., -1.), float frame = 0.f);
 };
 

@@ -43,20 +43,24 @@ double StellarObject::Radius() const
 	double radius = -1.;
 	if(HasSprite())
 		radius = .5 * min(Width(), Height());
-	
+
 	// Special case: stars may have a huge cloud around them, but only count the
 	// core of the cloud as part of the radius.
 	if(isStar)
 		radius = min(radius, 80.);
-	
+
 	return radius;
 }
 
 
 
-// If it is possible to land on this planet, this returns the Planet
-// objects that gives more information about it. Otherwise, this
-// function will just return nullptr.
+bool StellarObject::HasValidPlanet() const
+{
+	return planet && planet->IsValid();
+}
+
+
+
 const Planet *StellarObject::GetPlanet() const
 {
 	return planet;
@@ -80,7 +84,7 @@ const string &StellarObject::LandingMessage() const
 	// Check if there's a custom message for this sprite type.
 	if(GameData::HasLandingMessage(GetSprite()))
 		return GameData::LandingMessage(GetSprite());
-	
+
 	static const string EMPTY;
 	return (message ? *message : EMPTY);
 }
@@ -102,7 +106,7 @@ int StellarObject::RadarType(const Ship *ship) const
 		return Radar::FRIENDLY;
 	else if(!planet->GetGovernment()->IsEnemy())
 		return Radar::UNFRIENDLY;
-	
+
 	return Radar::HOSTILE;
 }
 
@@ -144,4 +148,11 @@ int StellarObject::Parent() const
 double StellarObject::Distance() const
 {
 	return distance;
+}
+
+
+
+const vector<RandomEvent<Hazard>> &StellarObject::Hazards() const
+{
+	return hazards;
 }

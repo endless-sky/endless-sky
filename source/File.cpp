@@ -25,15 +25,14 @@ File::File(const string &path, bool write)
 
 
 
-File::File(File &&other)
-	: file(other.file)
+File::File(File &&other) noexcept
 {
-	other.file = nullptr;
+	swap(file, other.file);
 }
 
 
 
-File::~File()
+File::~File() noexcept
 {
 	if(file)
 		fclose(file);
@@ -41,10 +40,10 @@ File::~File()
 
 
 
-File &File::operator=(File &&other)
+File &File::operator=(File &&other) noexcept
 {
-	this->file = std::move(other.file);
-	other.file = nullptr;
+	if(this != &other)
+		swap(file, other.file);
 	return *this;
 }
 

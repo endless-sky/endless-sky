@@ -92,9 +92,11 @@ mission "Han Sizer Month [0]"
 	stopover
 		distance 2 4
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 5 10
 		attributes "rim"
+		not attributes "station"
 	on complete
 		payment 10000 170
 		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
@@ -114,12 +116,15 @@ mission "Han Sizer Month [1]"
 	stopover
 		distance 2 3
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 3 4
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 5 10
 		attributes "rim"
+		not attributes "station"
 	on complete
 		payment 15000 170
 		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
@@ -139,15 +144,19 @@ mission "Han Sizer Month [2]"
 	stopover
 		distance 2 3
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 3 4
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 4 5
 		attributes "rim"
+		not attributes "station"
 	stopover
 		distance 5 10
 		attributes "rim"
+		not attributes "station"
 	on complete
 		payment 20000 170
 		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`

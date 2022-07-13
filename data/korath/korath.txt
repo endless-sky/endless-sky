@@ -201,16 +201,20 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 
+
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
 	cargo 1
+	commodities Food Metal Plastic "Heavy Metals"
+	outfitters "Korath Basics" "Korath Exiles"
 	personality
 		disables plunders opportunistic harvests
 	variant
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
+
 
 fleet "Korath Home"
 	government "Korath"
@@ -225,6 +229,9 @@ fleet "Korath Home"
 		"Korath World-Ship B"
 	variant 12
 		"Korath World-Ship C"
+	variant 12
+		"Korath Dredger"
+		"Korath Chaser" 4
 
 
 fleet "Kor Efret Home"
@@ -592,3 +599,33 @@ outfitter "Korath Basics"
 	"Outfits Expansion"
 	"Cargo Expansion"
 	"Local Map"
+
+outfitter "Korath Exiles"
+	"Korath Banisher"
+	"Korath Fire-Lance"
+	"Korath Grab-Strike"
+	"Korath Warder"
+	"Steering (Asteroid Class)"
+	"Steering (Lunar Class)"
+	"Steering (Planetary Class)"
+	"Thruster (Asteroid Class)"
+	"Thruster (Comet Class)"
+	"Thruster (Planetary Class)"
+	"Generator (Furnace Class)"
+	"Triple Plasma Core"
+	"Small Heat Shunt"
+	"Large Heat Shunt"
+	"Command Center"
+	"Hyperdrive"
+	"Jump Drive"
+	"Jump Drive (Broken)"
+	"Small Bunk Room"
+	"Bunk Room"
+	"Fuel Processor"
+	"Systems Core (Small)"
+	"Systems Core (Medium)"
+	"Systems Core (Large)"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Local Map"
+	"Korath Repeater Rifle"

@@ -8,6 +8,18 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Wanderers: Pre-Colony"
+	landing
+	source "Spera Anatrusk"
+	to offer
+		has "event: wanderers: the eye opens"
+		not "event: wanderers: spera anatrusk colony"
+	on offer
+		conversation
+			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
+				decline
+
 mission "Wanderers: Surveying 1"
 	landing
 	name "Wanderer Surveying"
@@ -264,8 +276,7 @@ mission "Wanderers: First Mereti Attack"
 			`	You return as quickly as possible to your ship and prepare to join the other defenders...`
 				launch
 	on visit
-		dialog
-			`There are still Kor Mereti drones circling overhead. You should help the Wanderers to drive them off.`
+		dialog `There are still Kor Mereti drones circling overhead. You should help the Wanderers to drive them off.`
 	npc evade
 		government "Kor Mereti"
 		system Kaliptari
@@ -715,7 +726,7 @@ mission "Wanderers: Kor Efret 3"
 		event "wanderers: kashikt battle begins"
 		conversation
 			`With Rek's help, you make contact with the team of Korath engineers, and Rek explains the Wanderer plan to hack into the Kor Mereti network. Her speech is slower than before, and she has to keep asking questions; clearly the conversation involves technical jargon that she is not yet familiar with. When she is done explaining, the Korath are silent for a minute, then one of them answers quite loudly, almost shouting, gesturing in your direction as if pushing you away.`
-			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ...unless it is proven to be beneficial."`
+			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ... unless it is proven to be beneficial."`
 			choice
 				`	"But perhaps the Wanderers could succeed where the Korath have failed."`
 				`	"What about the Kor Sestor? Do they have any hope of taking over those drones?"`
@@ -1052,15 +1063,6 @@ mission "Wanderers: Mind 5"
 
 
 
-government " Kor Mereti "
-	"display name" "Kor Mereti"
-	swizzle 5
-	language "Korath"
-	"attitude toward"
-		"Wanderer" -.01
-		"Kor Mereti" -.01
-	"player reputation" -1000
-
 event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
@@ -1072,7 +1074,7 @@ event "wanderers: kor mereti friendly"
 		"attitude toward"
 			"Kor Mereti" 0
 	"reputation: Kor Mereti" >?= 1
-	"reputation:  Kor Mereti " = -1000
+	"reputation: Kor Mereti (Hostile)" = -1000
 	planet "Rekat Moraski"
 		"required reputation" 1000
 
@@ -1111,7 +1113,7 @@ mission "Wanderers: Mind 6"
 	on enter
 		dialog `This star system is in utter chaos. A vast number of Mereti drones are here. Some are attacking each other. Others are attacking the Wanderers. And still others, sadly, seem intent on attacking you. You'll have to hold them off as long as you can, while trying to stay on the good side of the drones that now seem to be defending you.`
 	npc disable
-		government " Kor Mereti "
+		government "Kor Mereti (Hostile)"
 		personality staying heroic
 		fleet
 			names "kor mereti"
@@ -1296,6 +1298,8 @@ mission "Wanderers: Mentors 2"
 		government "Wanderer"
 		personality escort
 		ship "Riptide" "Green Talon"
+	on visit
+		dialog `You've reached <planet>, but you left the Wanderer ship behind. Better depart and wait for it to arrive.`
 
 
 
@@ -1392,7 +1396,7 @@ mission "Wanderers: Tour 2"
 			`	Rek talks with them for a while, then explains to you, "They want to be in control of their own journey, rather than being no more than 'living cargo' aboard an alien ship. It sounds like this is a matter of honor." Since it seems like the only option, you agree to let them follow you to <planet> in their own ship.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1421,7 +1425,7 @@ mission "Wanderers: Tour 3"
 			`	You agree to escort the Kor Efret ship on a journey through the wormhole to <planet>.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1443,7 +1447,7 @@ mission "Wanderers: Tour 4"
 			`	The Korath are eager to see more places of natural beauty like this one, and the Wanderer leaders suggest that they travel to <planet> next, to see how the Wanderers have built farms that will produce rich crops year after year without depleting the soil.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1472,7 +1476,7 @@ mission "Wanderers: Tour 5"
 			`	You agree to escort the Korath ship to <planet>. Hopefully they won't be blown to bits by an Unfettered fleet; that would be quite a diplomatic disaster.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1501,7 +1505,7 @@ mission "Wanderers: Tour 6"
 			`	Rek tries to assure them that in their own territory, they will be working and living side by side with the Wanderers, in joint control of their worlds. It's not clear if they believe her. "We have seen enough," says the same Korath. "We will return to our world now." You agree to escort them back through the Eye and to make sure they reach <planet> safely.`
 				accept
 	on visit
-		dialog "You've reached your destination, but the Korath ship is not here yet."
+		dialog `You've reached <planet>, but the Korath ship isn't here yet. Better depart and wait for it to arrive.`
 	npc accompany save
 		government "Kor Efret"
 		personality escort
@@ -1875,7 +1879,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint in the Alnitak system. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1883,7 +1887,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 					
 			label where
-			`	"Well," the pilot says, "we were doing a large cargo run to Farpoint in the Alnitak system, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system."`
+			`	"Well," the pilot says, "we were on a deadline to do a large cargo run to Farpoint, when two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. I had to jump the ship in atmosphere to stop us from getting shredded by their strange melting weaponry. I immediately reported the attack to a desk clerk at the Navy base in the neighboring system Saiph, but their servers show no logs of any unidentified ships beyond Farpoint, so I guess they turned around after scouting out the Alnitak system. Just my luck to be in the system the moment those things entered, too, because I missed the delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1891,7 +1895,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -2028,6 +2032,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2050,6 +2055,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2057,6 +2063,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2216,6 +2223,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate"
@@ -2235,6 +2243,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)"
@@ -2242,6 +2251,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2532,13 +2542,13 @@ event "bombed zenith"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2548,7 +2558,7 @@ event "bombed zenith"
 		object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2558,11 +2568,11 @@ event "bombed zenith"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2582,13 +2592,13 @@ event "zenith cooling"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2598,7 +2608,7 @@ event "zenith cooling"
 		object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2608,11 +2618,11 @@ event "zenith cooling"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2757,6 +2767,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
@@ -2764,6 +2775,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
+			variant
 				"Carrier"
 				"Lance" 4
 				"Combat Drone" 6
@@ -2861,8 +2873,8 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		has "Wanderers: Sestor Alt: Alnilam 2: done"
 	on offer
 		conversation
-			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying cement mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
-			`	As the Navy troops begin pouring the cement, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
+			`Danforth's troops set up a defensive circle around the entrance to the Alpha base. It appears that they have achieved the element of surprise: the Alphas did not know that the Navy had already located their base, and were probably counting on having a longer time to evacuate. The troop transports were carrying concrete mixers and mining drills; apparently their plan is to seal the Alphas underground and then drill down through the ice and bedrock to bomb and collapse the bunker.`
+			`	As the Navy troops begin pouring the concrete, the massive gate to the tunnel bursts open and more Alphas than you have ever seen in one place come flooding out, several dozen of them. But even these superhuman soldiers cannot survive the concentrated firepower of hundreds of Navy troops. The air fills with explosions and smoke and powdered snow, but as far as you can tell not one of the Alphas escapes alive.`
 			`	When the battle is over, the Navy troops explore the bunker, hoping to find prisoners, but they find no one alive. They seal up the entrance and collapse the bunker, and prepare to travel back with you to <planet>.`
 				accept
 	npc accompany save
@@ -3107,7 +3119,7 @@ mission "Wanderers: Sestor: Factory 1"
 		has "Wanderers: Sestor: Exiles 3: done"
 	on offer
 		conversation
-			`Rek brings the Korath to meet with the Wanderer leaders. After the meeting ends, she and Tele'ek meet up with you. "That was a strange meeting," says Tele'ek. "It did not feel like a peace summit, but like a child's play at a peace summit, as if negotiating for peace is a skill they are only just beginning to learn. And the terms they asked for were minimal; I would have preferred to offer them far more. But they are taking steps toward becoming a peaceful society, and for that we can be grateful."`
+			`Rek brings the Korath to meet with the Wanderer leaders. After the meeting ends, she and Tele'ek meet up with you. "That was a strange meeting," says Rek. "It did not feel like a peace summit, but like a child's play at a peace summit, as if negotiating for peace is a skill they are only just beginning to learn. And the terms they asked for were minimal; I would have preferred to offer them far more. But they are taking steps toward becoming a peaceful society, and for that we can be grateful."`
 			choice
 				`	"So, what do we do now?"`
 					goto next
@@ -3411,6 +3423,15 @@ mission "Wanderers: Sestor: Patch"
 		event "wanderers: sestor planets unrestricted"
 		fail
 
+mission "Wanderers: Sestor: Patch 2"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers taking jobs from kor efreti" 5
+		fail
+
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
@@ -3430,3 +3451,23 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+
+event "wanderers taking jobs from kor efreti"
+	system "Sumprast"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Sevrelect"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kashikt"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Dokdobaru"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Furmeliki"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Meftarkata"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Skeruto"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Kaliptari"
+		add fleet "Wanderer Kor Efret Traders" 1500
+	system "Solifar"
+		add fleet "Wanderer Kor Efret Traders" 1500

@@ -1,4 +1,3 @@
-
 # Copyright (c) 2017 by Michael Zahniser
 # Copyright (c) 2018 by Nate Graham
 #
@@ -202,7 +201,9 @@ mission "Instruct Novice Pilot"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
 		not government "Pirate"
-		attributes "frontier" "outfitter"
+		attributes "frontier"
+		attributes "outfitter"
+		attributes "spaceport"
 		distance 3 7
 	on stopover
 		dialog "After a smooth landing, you guide your student through an especially rough part of the spaceport, full of trash, homeless drifters, and poorly-lit alleyways. You explain the ins and outs of avoiding pickpockets, keeping out of bar fights, and how to spot a lousy deal at an outfitter's shop. After a few hours in one of the seedier parts of the galaxy, both of you are eager to return to <origin>."
@@ -247,9 +248,9 @@ mission "Small Pirate gambling"
 		conversation
 			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
 			choice
-				`(Join their game.)`
+				`	(Join their game.)`
 					goto gamble
-				`(Ignore them and leave quickly.)`
+				`	(Ignore them and leave quickly.)`
 					defer
 
 			label gamble
@@ -264,9 +265,9 @@ mission "Small Pirate gambling"
 			label "bad luck"
 			`	You're starting to bleed money, with more than 10,000 credits in losses already.`
 			choice
-				`(Call them out on their cheating.)`
+				`	(Call them out on their cheating.)`
 					goto call
-				`(Say nothing and continue playing.)`
+				`	(Say nothing and continue playing.)`
 					goto lose
 
 			label lose
@@ -277,11 +278,11 @@ mission "Small Pirate gambling"
 			`	You confront them on their blatant cheating when the meanest-looking one growls at you, "We're just playin' a game here, see? You'd better shut your big mouth if you know what's good for you! We can make this ugly real fast."`
 			`	The thugs stare at you menacingly and start to reach for their guns.`
 			choice
-				`(Shoot first!)`
+				`	(Shoot first!)`
 					goto shoot
-				`(Grab the pot and run!)`
+				`	(Grab the pot and run!)`
 					goto run
-				`(Let them fleece you.)`
+				`	(Let them fleece me.)`
 					goto lose
 
 			label shoot
@@ -289,12 +290,12 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "shoot and die"
-			`	Unfortunately they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
+			`	Unfortunately, they're faster than you. Your mutilated corpse hits the floor with a wet thump.`
 				die
 
 			label "shoot and run"
 			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. You draw the weapon and fire at the pirate who just threatened you. The slug punches a hole in the center of his chest, and he collapses to the ground. His shocked comrades fumble in horror for their weapons, but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the credits on the table on the way out!`
-			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
+			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
 				launch
 
 			label run
@@ -307,7 +308,7 @@ mission "Small Pirate gambling"
 
 			label "grab and run"
 			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as bullets fly past you and tear chips out of the walls. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
-			`	You dash toward the hangar bay and blast of in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
+			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
 				launch
 
 	on decline

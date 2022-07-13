@@ -12,7 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
-#include "Format.h"
+#include "comparators/ByName.h"
+#include "CoreStartData.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -22,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <cmath>
@@ -81,9 +84,9 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 const string &MapOutfitterPanel::KeyLabel(int index) const
 {
 	static const string MINE = "Mine this here";
-	if(index == 2 && selected && selected->Get("installable") < 0)
+	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
-	
+
 	static const string LABEL[3] = {
 		"Has no outfitter",
 		"Has outfitter",
@@ -123,20 +126,21 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system)
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
-	
+
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
 	for( ; it != player.Harvested().end() && it->first == system; ++it)
 		if(it->second == selected)
 			return 1.;
-	
+
 	if(!system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
-	
+
+	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
-		if(object.GetPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
@@ -171,6 +175,8 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
+	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	for(const string &category : categories)
@@ -178,18 +184,23 @@ void MapOutfitterPanel::DrawItems()
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
-		
+
 		// Draw the header. If this category is collapsed, skip drawing the items.
 		if(DrawHeader(corner, category))
 			continue;
-		
+
 		for(const Outfit *outfit : it->second)
 		{
 			string price = Format::Credits(outfit->Cost()) + " credits";
-			
+
 			string info;
-			if(outfit->Get("installable") < 0.)
+			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
+			else if(outfit->Get("installable") < 0.)
+			{
+				double space = outfit->Mass();
+				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+			}
 			else
 			{
 				double space = -outfit->Get("outfit space");
@@ -201,23 +212,41 @@ void MapOutfitterPanel::DrawItems()
 				else
 					info += " of outfit space";
 			}
-			
+
 			bool isForSale = true;
-			if(selectedSystem && player.HasVisited(selectedSystem))
+			unsigned storedInSystem = 0;
+			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
+				const auto &storage = player.PlanetaryStorage();
+
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.GetPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+				{
+					if(!object.HasSprite() || !object.HasValidPlanet())
+						continue;
+
+					const Planet &planet = *object.GetPlanet();
+					const auto pit = storage.find(&planet);
+					if(pit != storage.end())
+						storedInSystem += pit->second.Get(outfit);
+					if(planet.Outfitter().Has(outfit))
 					{
 						isForSale = true;
 						break;
 					}
+				}
 			}
-			if(!isForSale && onlyShowSoldHere)
+			if(!isForSale && !storedInSystem && onlyShowSoldHere)
 				continue;
-			
-			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
-				outfit->Name(), price, info);
+
+			const std::string storage_details =
+				storedInSystem == 0
+				? ""
+				: storedInSystem == 1
+				? "1 unit in storage"
+				: Format::Number(storedInSystem) + " units in storage";
+			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
+				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}
@@ -230,22 +259,35 @@ void MapOutfitterPanel::Init()
 {
 	catalog.clear();
 	set<const Outfit *> seen;
-	for(const auto &it : GameData::Planets())
-		if(player.HasVisited(it.second.GetSystem()))
+
+	// Add all outfits sold by outfitters of visited planets.
+	for(auto &&it : GameData::Planets())
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
 				}
+
+	// Add outfits in storage
+	for(const auto &it : player.PlanetaryStorage())
+		for(const auto &oit : it.second.Outfits())
+			if(!seen.count(oit.first))
+			{
+				catalog[oit.first->Category()].push_back(oit.first);
+				seen.insert(oit.first);
+			}
+
+	// Add all known minables.
 	for(const auto &it : player.Harvested())
 		if(!seen.count(it.second))
 		{
 			catalog[it.second->Category()].push_back(it.second);
 			seen.insert(it.second);
 		}
-	
+
+	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
+		sort(it.second.begin(), it.second.end(), ByName<Outfit>());
 }

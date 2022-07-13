@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Depreciation.h"
-#include "Format.h"
+#include "text/Format.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 
@@ -34,18 +34,32 @@ namespace {
 		make_pair(100., ""),
 		make_pair(1. / 60., "")
 	};
-	
+
 	const map<string, int> SCALE = {
 		{"active cooling", 0},
+		{"afterburner shields", 0},
+		{"afterburner hull", 0},
 		{"afterburner energy", 0},
 		{"afterburner fuel", 0},
 		{"afterburner heat", 0},
+		{"burn resistance energy", 0},
+		{"burn resistance fuel", 0},
+		{"burn resistance heat", 0},
 		{"cloak", 0},
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
+		{"corrosion resistance energy", 0},
+		{"corrosion resistance fuel", 0},
+		{"corrosion resistance heat", 0},
+		{"discharge resistance energy", 0},
+		{"discharge resistance fuel", 0},
+		{"discharge resistance heat", 0},
+		{"disruption resistance energy", 0},
+		{"disruption resistance fuel", 0},
+		{"disruption resistance heat", 0},
 		{"energy consumption", 0},
 		{"energy generation", 0},
 		{"fuel consumption", 0},
@@ -58,30 +72,85 @@ namespace {
 		{"hull energy", 0},
 		{"hull fuel", 0},
 		{"hull heat", 0},
+		{"ion resistance energy", 0},
+		{"ion resistance fuel", 0},
+		{"ion resistance heat", 0},
 		{"jump speed", 0},
+		{"leak resistance energy", 0},
+		{"leak resistance fuel", 0},
+		{"leak resistance heat", 0},
+		{"overheat damage rate", 0},
+		{"reverse thrusting shields", 0},
+		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
+		{"reverse thrusting fuel", 0},
 		{"reverse thrusting heat", 0},
 		{"scram drive", 0},
 		{"shield generation", 0},
 		{"shield energy", 0},
 		{"shield fuel", 0},
 		{"shield heat", 0},
+		{"slowing resistance energy", 0},
+		{"slowing resistance fuel", 0},
+		{"slowing resistance heat", 0},
 		{"solar collection", 0},
 		{"solar heat", 0},
+		{"thrusting shields", 0},
+		{"thrusting hull", 0},
 		{"thrusting energy", 0},
+		{"thrusting fuel", 0},
 		{"thrusting heat", 0},
 		{"turn", 0},
+		{"turning shields", 0},
+		{"turning hull", 0},
 		{"turning energy", 0},
+		{"turning fuel", 0},
 		{"turning heat", 0},
-		
+
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
-		
+
+		{"afterburner discharge", 2},
+		{"afterburner corrosion", 2},
+		{"afterburner ion", 2},
+		{"afterburner leakage", 2},
+		{"afterburner burn", 2},
+		{"afterburner slowing", 2},
+		{"afterburner disruption", 2},
+
+		{"reverse thrusting discharge", 2},
+		{"reverse thrusting corrosion", 2},
+		{"reverse thrusting ion", 2},
+		{"reverse thrusting leakage", 2},
+		{"reverse thrusting burn", 2},
+		{"reverse thrusting slowing", 2},
+		{"reverse thrusting disruption", 2},
+
+		{"thrusting discharge", 2},
+		{"thrusting corrosion", 2},
+		{"thrusting ion", 2},
+		{"thrusting leakage", 2},
+		{"thrusting burn", 2},
+		{"thrusting slowing", 2},
+		{"thrusting disruption", 2},
+
+		{"turning discharge", 2},
+		{"turning corrosion", 2},
+		{"turning ion", 2},
+		{"turning leakage", 2},
+		{"turning burn", 2},
+		{"turning slowing", 2},
+		{"turning disruption", 2},
+
 		{"ion resistance", 2},
 		{"disruption resistance", 2},
 		{"slowing resistance", 2},
-		
+		{"discharge resistance", 2},
+		{"corrosion resistance", 2},
+		{"leak resistance", 2},
+		{"burn resistance", 2},
+
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -91,23 +160,37 @@ namespace {
 		{"shield energy multiplier", 3},
 		{"shield fuel multiplier", 3},
 		{"shield heat multiplier", 3},
-    
+		{"threshold percentage", 3},
+		{"overheat damage threshold", 3},
+
+		{"burn protection", 4},
+		{"corrosion protection", 4},
+		{"discharge protection", 4},
 		{"disruption protection", 4},
+		{"energy protection", 4},
 		{"force protection", 4},
 		{"fuel protection", 4},
 		{"heat protection", 4},
 		{"hull protection", 4},
 		{"ion protection", 4},
+		{"leak protection", 4},
 		{"piercing protection", 4},
 		{"shield protection", 4},
-		{"slowing protection", 4}
+		{"slowing protection", 4},
+
+		{"repair delay", 5},
+		{"disabled repair delay", 5},
+		{"shield delay", 5},
+		{"depleted shield delay", 5}
 	};
-	
+
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "This outfit cannot be plundered."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
-		{"jump drive", "Lets you jump to any nearby system."}
+		{"jump drive", "Lets you jump to any nearby system."},
+		{"minable", "This item is mined from asteroids."},
+		{"atrocity", "This outfit is considered an atrocity."}
 	};
 }
 
@@ -126,7 +209,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, b
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
 	UpdateRequirements(outfit, player, canSell);
 	UpdateAttributes(outfit);
-	
+
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }
 
@@ -151,12 +234,12 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
-	
+
 	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
-	
+
 	if(buyValue == cost)
 		requirementLabels.push_back("cost:");
 	else
@@ -165,9 +248,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
-	
+
 	if(canSell && sellValue != buyValue)
 	{
 		if(sellValue == cost)
@@ -181,14 +264,14 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementValues.push_back(Format::Credits(sellValue));
 		requirementsHeight += 20;
 	}
-	
+
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
 		requirementValues.emplace_back(Format::Number(outfit.Mass()));
 		requirementsHeight += 20;
 	}
-	
+
 	bool hasContent = true;
 	static const vector<string> NAMES = {
 		"", "",
@@ -225,7 +308,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 20;
-	
+
 	bool hasNormalAttributes = false;
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
@@ -234,13 +317,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		};
 		if(SKIP.count(it.first))
 			continue;
-		
+
 		auto sit = SCALE.find(it.first);
 		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
 		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
-		
+
 		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
-		if(bit != BOOLEAN_ATTRIBUTES.end()) 
+		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
 			attributeValues.emplace_back(" ");
@@ -254,10 +337,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		hasNormalAttributes = true;
 	}
-	
+
 	if(!outfit.IsWeapon())
 		return;
-	
+
 	// Insert padding if any normal attributes were listed above.
 	if(hasNormalAttributes)
 	{
@@ -265,7 +348,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back();
 		attributesHeight += 10;
 	}
-	
+
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
@@ -278,37 +361,89 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributesHeight += 20;
 		}
 	}
-	
+
 	attributeLabels.emplace_back("range:");
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
-	
-	static const vector<string> VALUE_NAMES = {
-		"shield damage",
-		"hull damage",
-		"fuel damage",
-		"heat damage",
-		"ion damage",
-		"slowing damage",
-		"disruption damage",
-		"firing energy",
-		"firing heat",
-		"firing fuel"
+
+	static const vector<pair<string, string>> VALUE_NAMES = {
+		{"shield damage", ""},
+		{"hull damage", ""},
+		{"minable damage", ""},
+		{"fuel damage", ""},
+		{"heat damage", ""},
+		{"energy damage", ""},
+		{"ion damage", ""},
+		{"slowing damage", ""},
+		{"disruption damage", ""},
+		{"discharge damage", ""},
+		{"corrosion damage", ""},
+		{"leak damage", ""},
+		{"burn damage", ""},
+		{"% shield damage", "%"},
+		{"% hull damage", "%"},
+		{"% minable damage", "%"},
+		{"% fuel damage", "%"},
+		{"% heat damage", "%"},
+		{"% energy damage", "%"},
+		{"firing energy", ""},
+		{"firing heat", ""},
+		{"firing fuel", ""},
+		{"firing hull", ""},
+		{"firing shields", ""},
+		{"firing ion", ""},
+		{"firing slowing", ""},
+		{"firing disruption", ""},
+		{"firing discharge", ""},
+		{"firing corrosion", ""},
+		{"firing leak", ""},
+		{"firing burn", ""},
+		{"% firing energy", "%"},
+		{"% firing heat", "%"},
+		{"% firing fuel", "%"},
+		{"% firing hull", "%"},
+		{"% firing shields", "%"}
 	};
-	
+
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.MinableDamage() != outfit.HullDamage() ? outfit.MinableDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
+		outfit.EnergyDamage(),
 		outfit.IonDamage() * 100.,
 		outfit.SlowingDamage() * 100.,
 		outfit.DisruptionDamage() * 100.,
+		outfit.DischargeDamage() * 100.,
+		outfit.CorrosionDamage() * 100.,
+		outfit.LeakDamage() * 100.,
+		outfit.BurnDamage() * 100.,
+		outfit.RelativeShieldDamage() * 100.,
+		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeMinableDamage() != outfit.RelativeHullDamage() ? outfit.RelativeMinableDamage() * 100. : 0.,
+		outfit.RelativeFuelDamage() * 100.,
+		outfit.RelativeHeatDamage() * 100.,
+		outfit.RelativeEnergyDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
-		outfit.FiringFuel()
+		outfit.FiringFuel(),
+		outfit.FiringHull(),
+		outfit.FiringShields(),
+		outfit.FiringIon() * 100.,
+		outfit.FiringSlowing() * 100.,
+		outfit.FiringDisruption() * 100.,
+		outfit.FiringDischarge() * 100.,
+		outfit.FiringCorrosion() * 100.,
+		outfit.FiringLeak() * 100.,
+		outfit.FiringBurn() * 100.,
+		outfit.RelativeFiringEnergy() * 100.,
+		outfit.RelativeFiringHeat() * 100.,
+		outfit.RelativeFiringFuel() * 100.,
+		outfit.RelativeFiringHull() * 100.,
+		outfit.RelativeFiringShields() * 100.
 	};
-	
+
 	// Add any per-second values to the table.
 	double reload = outfit.Reload();
 	if(reload)
@@ -317,12 +452,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < values.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload));
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
+				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
-	
+
 	bool isContinuous = (reload <= 1);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
@@ -330,7 +465,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
-	
+
 	double turretTurn = outfit.TurretTurn() * 60.;
 	if(turretTurn)
 	{
@@ -374,12 +509,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
-	
+
 	// Pad the table.
 	attributeLabels.emplace_back();
 	attributeValues.emplace_back();
 	attributesHeight += 10;
-	
+
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
 	if(!isContinuous)
@@ -388,12 +523,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
 			if(values[i])
 			{
-				attributeLabels.emplace_back(VALUE_NAMES[i] + PER_SHOT);
-				attributeValues.emplace_back(Format::Number(values[i]));
+				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
+				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
-	
+
 	static const vector<string> OTHER_NAMES = {
 		"inaccuracy:",
 		"blast radius:",
@@ -406,7 +541,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
-	
+
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)
 		if(otherValues[i])
 		{

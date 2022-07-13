@@ -20,7 +20,7 @@ using namespace std;
 
 
 
-Point::Point()
+Point::Point() noexcept
 #ifdef __SSE3__
 	: v(_mm_setzero_pd())
 #else
@@ -31,7 +31,7 @@ Point::Point()
 
 
 
-Point::Point(double x, double y)
+Point::Point(double x, double y) noexcept
 #ifdef __SSE3__
 	: v(_mm_set_pd(y, x))
 #else
@@ -42,39 +42,15 @@ Point::Point(double x, double y)
 
 
 
-Point::Point(const Point &point)
-#ifdef __SSE3__
-	: v(point.v)
-#else
-	: x(point.x), y(point.y)
-#endif
-{
-}
-
-
-
-Point &Point::operator=(const Point &point)
-{
-#ifdef __SSE3__
-	v = point.v;
-#else
-	x = point.x;
-	y = point.y;
-#endif
-	return *this;
-}
-
-
-
 // Check if the point is anything but (0, 0).
-Point::operator bool() const
+Point::operator bool() const noexcept
 {
 	return !!*this;
 }
 
 
 
-bool Point::operator!() const
+bool Point::operator!() const noexcept
 {
 	return (!x & !y);
 }

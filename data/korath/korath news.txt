@@ -54,7 +54,7 @@ news "kor efret local"
 	message
 		word
 			"A ball chased by a young Korath rolls up to your feet. You pick it up, and the youth pauses and stares at you for a moment before gesturing in thanks and accepting the ball. It runs back to a grown Korath who holds both its hands up with palms toward you."
-			"A local Korath gestures toward a building you've never been inside before. Out of curiousity, you poke your head inside to see the reptilian aliens conversing and sharing drinks: it's a bar. Some things never change, no matter where you are in the galaxy."
+			"A local Korath gestures toward a building you've never been inside before. Out of curiosity, you poke your head inside to see the reptilian aliens conversing and sharing drinks: it's a bar. Some things never change, no matter where you are in the galaxy."
 			"You pass by one of the abandoned buildings and hear a door open and close rapidly behind you. You turn back and see a Korath dressed in rags quickly walking the other direction."
 
 news "kor efret scientist"
@@ -72,7 +72,7 @@ news "kor efret scientist"
 			"A Kor Efret pushes a cart filled with strange chemicals and bits of technology past you."
 			"A Korath walks through the spaceport reading numbers off a device and inputting them onto another one. It looks like it's taking samples of the air quality."
 			
-news "kor efret station friendly"		
+news "kor efret station friendly"
 	location
 		government "Kor Efret"
 	name
@@ -87,3 +87,26 @@ news "kor efret station friendly"
 			"A Kor Efret near your ship is speaking with a worker, gradually increasing its volume until it's doing some strange mix of shouting and hissing. Suddenly, it turns and stalks away with its chest puffed out."
 			"A Korath is studying you intently from a distance. You guess it's never seen a human face to face before."
 			"A local greets you by holding its hands up with its palms facing toward you."
+			
+news "wanderer at kor efret spaceport"
+	to show
+		has "Wanderers: Sestor: Final: done"
+	location
+		government "Kor Efret"
+		not attributes "station"
+	name
+		word
+			"Wanderer"
+			"Wanderer captain"
+			"Wanderer trader"
+	message
+		word
+			`"`
+		word
+			"The Kor Efret worlds are littered with [stark, serious] environmental problems. I have seen nothing of this [magnitude, scale] before."
+			"The Kor Efreti are a very [prideful, honorable] people. I offered a favor to one free of charge, and it seemed insulted."
+			"This planet must undergo significant [renovation, changes] before progress can be made. It will take a long time for it to be fully [restored, reborn]."
+			"I [received, accepted] a job from a terminal earlier. The Kor Efreti are indeed putting them to good use."
+			"It is [disheartening, upsetting] to see how damaged this world is, but I take comfort knowing we will work to [restore, rebirth] it."
+		word
+			`"`

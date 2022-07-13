@@ -46,6 +46,7 @@ mission "Corporate retreat from <origin>"
 		government "Syndicate"
 	stopover
 		attributes "quarg" "volcanic" "frontier" "north" "south"
+		not attributes "station"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
@@ -191,6 +192,8 @@ mission "Syndicate target practice [0]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -225,6 +228,8 @@ mission "Syndicate target practice [1]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -259,6 +264,8 @@ mission "Syndicate target practice [2]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
@@ -292,6 +299,8 @@ mission "Syndicate target practice [3]"
 		dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
 	on visit
 		dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+	on abort
+		# No penalty
 	on fail
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
