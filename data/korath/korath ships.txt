@@ -419,10 +419,11 @@ ship "Korath Conqueror"
 		"Fuel Processor"
 		"Brig"
 		"Security Station" 7
-		"Korath Repeater Rifle" 272
+		"Microbot Defense Station" 19
+		"Korath Repeater Rifle" 359
 		
 		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
 		"Jump Drive"
 	
 	engine -37 333 .7

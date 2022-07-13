@@ -512,13 +512,17 @@ ship "Korath Conqueror" "Korath Conqueror (Ember)"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
+		"Liquid Sodium Cooler"
+		"Large Heat Shunt"
+		"Fuel Processor" 2
 		"Korath Repeater Rifle" 150
-		"Microbot Defense Station" 18
+		"Microbot Defense Station" 19
+		"Security Station" 7
 		"Outfits Expansion"
 		
-		"Thruster (Planetary Class)"
+		"Afterburner (Lunar Class)"
+		"Reverser (Planetary Class)"
+		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Hyperdrive"
