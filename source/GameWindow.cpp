@@ -151,7 +151,7 @@ bool GameWindow::Init()
 	// Initialize GLEW.
 #if !defined(__APPLE__) && !defined(ES_GLES)
 	glewExperimental = GL_TRUE;
-	GLenum err = glewInit(); 
+	GLenum err = glewInit();
 #ifdef GLEW_ERROR_NO_GLX_DISPLAY
 	if(err != GLEW_OK && err != GLEW_ERROR_NO_GLX_DISPLAY)
 #else
@@ -428,4 +428,3 @@ void GameWindow::ExitWithError(const string& message, bool doPopUp)
 
 	GameWindow::Quit();
 }
-
