@@ -561,16 +561,14 @@ ship "Korath Conqueror" "Korath Conqueror (Mereti)"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 272
-		"Microbot Defense Station" 7
+		"Microbot Defense Station" 17
 		"Outfits Expansion"
 		"Reasoning Node"
 		"Brig"
 		
 		"Afterburner (Comet Class)"
-		"Bow Drive (Meteor Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Lunar Class)"
 		"Jump Drive"
 		
 	gun "Korath Slicer"
@@ -609,7 +607,7 @@ ship "Korath Conqueror" "Korath Conqueror (Sestor)"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 272
-		"Microbot Defense Station" 7
+		"Microbot Defense Station" 17
 		"Outfits Expansion" 3
 		"Control Transceiver"
 		"Brig"
@@ -617,7 +615,6 @@ ship "Korath Conqueror" "Korath Conqueror (Sestor)"
 		"Afterburner (Comet Class)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Steering (Lunar Class)"
 		"Jump Drive"
 		
 	gun "Korath Detainer"
