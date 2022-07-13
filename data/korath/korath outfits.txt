@@ -653,139 +653,140 @@ outfit "Steering (Stellar Class)"
 	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
 
+#placeholder name and desc
 outfit "Tiny Grav-Thruster"
-#placeholder stats derived from large size
 	plural "Tiny Grav-Thrusters"
 	category "Engines"
-	"cost" 113000
-	thumbnail "outfit/small grav-thruster"
-	"mass" 12
-	"outfit space" -12
-	"engine capacity" -12
-	"thrust" 14.2
-	"thrusting energy" 2
-	"thrusting heat" 1.5
+	"cost" 165000
+	thumbnail "outfit/tiny grav-thruster"
+	"mass" 17
+	"outfit space" -17
+	"engine capacity" -17
+	"thrust" 13
+	"thrusting energy" 2.1
+	"thrusting heat" 2.4
 	"flare sprite" "effect/efreti flare/tiny"
-		"frame rate" 8.5
+		"frame rate" 8
 	"flare sound" "ion tiny"
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
-outfit "Medium Grav-Thruster"
-#placeholder stats derived from large size
-	plural "Medium Grav-Thrusters"
+#placeholder name and desc
+outfit "Small Grav-Thruster"
+	plural "Small Grav-Thrusters"
 	category "Engines"
-	"cost" 249000
-	thumbnail "outfit/medium grav-thruster"
-	"mass" 36
-	"outfit space" -36
-	"engine capacity" -36
-	"thrust" 43.6
-	"thrusting energy" 5.9
-	"thrusting heat" 4.5
-	"flare sprite" "effect/efreti flare/medium"
+	"cost" 405000
+	thumbnail "outfit/small grav-thruster"
+	"mass" 33
+	"outfit space" -33
+	"engine capacity" -33
+	"thrust" 31
+	"thrusting energy" 4.8
+	"thrusting heat" 5.6
+	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
-	"flare sound" "ion medium"
+	"flare sound" "ion small"
 	description "While this thruster's power is offset by its energy requirements, its incoporation of gravitic propulsion moderates its heat output."
 
+#placeholder name and desc
+outfit "Medium Grav-Thruster"
+	plural "Medium Grav-Thrusters"
+	category "Engines"
+	"cost" 883000
+	thumbnail "outfit/medium grav-thruster"
+	"mass" 57
+	"outfit space" -57
+	"engine capacity" -57
+	"thrust" 62
+	"thrusting energy" 8.9
+	"thrusting heat" 10.8
+	"flare sprite" "effect/efreti flare/medium"
+		"frame rate" 7
+	"flare sound" "ion medium"
+	description "The Efreti, after generations of living under Quarg protection, have begun to incorporate gravitic propulsion into their thruster designs."
+
+#placeholder name and desc
 outfit "Large Grav-Thruster"
 	plural "Large Grav-Thrusters"
 	category "Engines"
-	"cost" 539000
+	"cost" 1649000
 	thumbnail "outfit/large grav-thruster"
-	"mass" 63
-	"outfit space" -63
-	"engine capacity" -63
-	"thrust" 76.3
-	"thrusting energy" 10.3
-	"thrusting heat" 7.8
-	"flare sprite" "effect/efreti flare/large"
-		"frame rate" 7
-	"flare sound" "ion large"
-	description "The Efreti, after generations of living under Quarg protection, have begun to incorporate gravitic propulsion into their thruster designs."
-
-outfit "Huge Grav-Thruster"
-#placeholder stats derived from large size
-	plural "Huge Grav-Thrusters"
-	category "Engines"
-	"cost" 1216000
-	thumbnail "outfit/huge grav-thruster"
-	"mass" 110
-	"outfit space" -110
-	"engine capacity" -110
-	"thrust" 133.6
-	"thrusting energy" 18
-	"thrusting heat" 13.6
-	"flare sprite" "effect/efreti flare/huge"
-		"frame rate" 6.5
-	"flare sound" "ion huge"
-	description "The Quarg, who do all things efficiently, view Efreti propulsion systems with some amusement."
-
-outfit "Tiny Grav-Thrust Steering"
-#placeholder stats
-	plural "Tiny Grav-Thrust Steerings"
-	category "Engines"
-	"cost" 95000
-	thumbnail "outfit/small grav-steering"
-	"mass" 9
-	"outfit space" -9
-	"engine capacity" -9
-	"turn" 271.4
-	"turning energy" 2
-	"turning heat" 1.5
-	"steering flare sprite" "effect/efreti flare/tiny"
-		"frame rate" 8
-	"steering flare sound" "ion tiny"
-	description "The Korath use these steering systems only in the very smallest of their ships."
-
-outfit "Medium Grav-Thrust Steering"
-#placeholder stats
-	plural "Medium Grav-Thrust Steerings"
-	category "Engines"
-	"cost" 473000
-	thumbnail "outfit/medium grav-steering"
-	"mass" 29
-	"outfit space" -29
-	"engine capacity" -29
-	"turn" 1023.5
-	"turning energy" 5.9
-	"turning heat" 4.5
-	"steering flare sprite" "effect/efreti flare/medium"
-		"frame rate" 7
-	"steering flare sound" "ion medium"
-	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
-
-outfit "Large Grav-Thrust Steering"
-#placeholder stats
-	plural "Large Grav-Thrust Steerings"
-	category "Engines"
-	"cost" 1077000
-	thumbnail "outfit/large grav-steering"
-	"mass" 50
-	"outfit space" -50
-	"engine capacity" -50
-	"turn" 2005.9
-	"turning energy" 10.3
-	"turning heat" 7.8
-	"steering flare sprite" "effect/efreti flare/large"
-		"frame rate" 6.5
-	"steering flare sound" "ion large"
-	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
-
-outfit "Huge Grav-Thrust Steering"
-#placeholder stats
-	plural "Grav-Thrust Steerings"
-	category "Engines"
-	"cost" 2435000
-	thumbnail "outfit/huge grav-steering"
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
-	"turn" 3881.8
-	"turning energy" 18
-	"turning heat" 13.6
-	"steering flare sprite" "effect/efreti flare/huge"
-		"frame rate" 6
-	"steering flare sound" "ion huge"
+	"thrust" 105
+	"thrusting energy" 14
+	"thrusting heat" 18
+	"flare sprite" "effect/efreti flare/large"
+		"frame rate" 6.5
+	"flare sound" "ion large"
+	description "The Quarg, who do all things efficiently, view Efreti propulsion systems with some amusement."
+
+#placeholder name and desc
+outfit "Tiny Grav-Steering"
+	plural "Tiny Grav-Thrust Steerings"
+	category "Engines"
+	"cost" 131000
+	thumbnail "outfit/small grav-steering"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"turn" 257
+	"turning energy" 1
+	"turning heat" 1.1
+	"steering flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"steering flare sound" "ion tiny"
+	description "The Efreti use these steering systems only in the very smallest of their ships."
+
+#placeholder name and desc
+outfit "Small Grav-Steering"
+	plural "Small Grav-Steerings"
+	category "Engines"
+	"cost" 413000
+	thumbnail "outfit/small grav-steering"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 789
+	"turning energy" 2.8
+	"turning heat" 3.3
+	"steering flare sprite" "effect/efreti flare/small"
+		"frame rate" 7.5
+	"steering flare sound" "ion small"
+	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
+
+#placeholder name and desc
+outfit "Medium Grav-Steering"
+	plural "Medium Grav-Steerings"
+	category "Engines"
+	"cost" 833000
+	thumbnail "outfit/medium grav-steering"
+	"mass" 48
+	"outfit space" -48
+	"engine capacity" -48
+	"turn" 1462
+	"turning energy" 4.9
+	"turning heat" 6
+	"steering flare sprite" "effect/efreti flare/medium"
+		"frame rate" 7
+	"steering flare sound" "ion medium"
+	description "Efreti engines can be fitted into just about any ship, but unless accompanied by some Korath power systems as well, their energy consumption will often be more than the ship can handle."
+
+#placeholder name and desc
+outfit "Large Grav-Steering"
+	plural "Large Grav-Steerings"
+	category "Engines"
+	"cost" 1439000
+	thumbnail "outfit/large grav-steering"
+	"mass" 67
+	"outfit space" -67
+	"engine capacity" -67
+	"turn" 2261
+	"turning energy" 6.5
+	"turning heat" 8.3
+	"steering flare sprite" "effect/efreti flare/large"
+		"frame rate" 6.5
+	"steering flare sound" "ion large"
 	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Korath Repeater Rifle"
