@@ -315,15 +315,15 @@ ship "Korath Conveyor"
 	attributes
 		category "Heavy Freighter"
 		cost 28650000
-		shields 46000
-		hull 33600
-		"required crew" 494
-		"bunks" 813
+		shields 35700
+		hull 23600
+		"required crew" 234
+		"bunks" 453
 		"mass" 1795
 		"drag" 22.4
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 963
+		"cargo space" 1375
 		"outfit space" 859
 		"weapon capacity" 321
 		"engine capacity" 177
@@ -387,7 +387,7 @@ ship "Korath Conqueror"
 		category "Heavy Warship"
 		cost 29640000
 		shields 51000
-		hull 32500
+		hull 39500
 		"required crew" 619
 		"bunks" 972
 		"mass" 1735
@@ -395,7 +395,7 @@ ship "Korath Conqueror"
 		"heat dissipation" .42
 		"fuel capacity" 1000
 		"cargo space" 191
-		"outfit space" 1277
+		"outfit space" 1278
 		"weapon capacity" 633
 		"engine capacity" 213
 		weapon
@@ -468,10 +468,10 @@ ship "Korath Tanker"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
-		shields 45000
-		hull 34000
-		"required crew" 414
-		"bunks" 651
+		shields 39750
+		hull 26100
+		"required crew" 314
+		"bunks" 551
 		"mass" 1815
 		"drag" 21.8
 		"heat dissipation" .38
@@ -607,11 +607,11 @@ ship "Korath Herder"
 	attributes
 		category "Heavy Warship"
 		cost 33590000
-		shields 50000
-		hull 39400
+		shields 45000
+		hull 31400
 		"required crew" 794
 		"bunks" 1037
-		"mass" 2105
+		"mass" 1865
 		"drag" 26
 		"heat dissipation" .41
 		"fuel capacity" 1000
@@ -634,7 +634,6 @@ ship "Korath Herder"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Asteroid Scanner"
 		"Security Station" 11
 		"Korath Repeater Rifle" 308
 		

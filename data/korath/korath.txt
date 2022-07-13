@@ -217,7 +217,7 @@ fleet "Korath Ember Waste Raid"
 	variant 7
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
-	variant 1
+	variant 3
 		"Korath Raider (Ember Shunt)"
 		"Korath Chaser" 2
 
@@ -239,7 +239,7 @@ fleet "Korath Civilian Miners"
 	cargo 0
 	personality
 		heroic disables frugal mining harvests coward
-	variant
+	variant 5
 		"Korath Dredger (Civilian)"
 		"Korath Chaser (Expeller)" 2
 		"Korath Chaser (Digger)" 2
@@ -247,7 +247,7 @@ fleet "Korath Civilian Miners"
 		"Korath Conveyor"
 		"Korath Chaser (Digger)" 3
 	variant 1
-		"Korath Herder"
+		"Korath Herder (Digger)"
 		"Korath Chaser (Digger)" 5
 		"Korath Chaser (Expeller)" 4
 
@@ -265,9 +265,6 @@ fleet "Korath Home"
 		"Korath Conqueror"
 	variant 4
 		"Korath Tanker"
-		"Korath Chaser" 3
-	variant 3
-		"Korath Tanker (Jump Firestorm)"
 		"Korath Chaser" 3
 	variant 14
 		"Korath Traveller"
@@ -333,7 +330,7 @@ fleet "Korath Ember Waste Raid"
 		"Korath Dredger (Shunt)"
 		"Korath Chaser" 4
 	variant 1
-		"Korath Conqueror"
+		"Korath Conqueror (Ember)"
 		"Korath Dredger (Heaver)"
 		"Korath Raider (Ember)" 3
 		"Korath Chaser" 10
