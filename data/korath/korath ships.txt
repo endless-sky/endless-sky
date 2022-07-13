@@ -694,14 +694,14 @@ ship "Korath Habitat"
 		shields 44000
 		hull 49600
 		"required crew" 543
-		"bunks" 1837
+		"bunks" 186s7
 		"mass" 2650
 		"drag" 24
 		"heat dissipation" .43
 		"fuel capacity" 600
 		"cargo space" 1052
-		"outfit space" 1138
-		"weapon capacity" 321
+		"outfit space" 1038
+		"weapon capacity" 331
 		"engine capacity" 251
 		weapon
 			"blast radius" 400
@@ -716,14 +716,17 @@ ship "Korath Habitat"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
-		"Fuel Processor"
+		"Fuel Processor" 2
 		"Brig"
-		"Security Station" 7
-		"Korath Repeater Rifle" 272
+		"Luxury Accommodations"
+		"Microbot Defense Station" 23
+		"Korath Repeater Rifle" 372
 		
-		"Thruster (Planetary Class)"
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Scram Drive"
 	
 	engine -37 343 .8
 	engine 0 343 .9
