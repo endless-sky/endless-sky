@@ -144,7 +144,7 @@ namespace {
 			return false;
 
 		// Make sure this ship is able to send a hail.
-		if(ship->IsDisabled() || !ship->Crew() || (ship->IsCloaked() && 
+		if(ship->IsDisabled() || !ship->Crew() || (ship->IsCloaked() &&
 				!ship->Attributes().Get("cloaked action")) || ship->GetPersonality().IsMute())
 			return false;
 
@@ -2085,7 +2085,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
-				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()) || ship->Phases())
+				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases())
 					continue;
 
 				// Only directly targeted ships get provoked by blast weapons.
