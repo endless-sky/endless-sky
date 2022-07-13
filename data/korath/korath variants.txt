@@ -473,7 +473,6 @@ ship "Korath Conveyor" "Korath Conveyor (Jump)"
 		"Jump Drive"
 
 
-
 ship "Korath Conqueror" "Korath Conqueror (Crippled)"
 	outfits
 		"Korath Banisher" 3
