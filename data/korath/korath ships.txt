@@ -317,16 +317,16 @@ ship "Korath Conveyor"
 		cost 28650000
 		shields 35700
 		hull 23600
-		"required crew" 234
+		"required crew" 334
 		"bunks" 453
-		"mass" 1795
-		"drag" 22.4
+		"mass" 1731
+		"drag" 19
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 1375
 		"outfit space" 859
 		"weapon capacity" 321
-		"engine capacity" 177
+		"engine capacity" 237
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -389,15 +389,15 @@ ship "Korath Conqueror"
 		shields 51000
 		hull 39500
 		"required crew" 619
-		"bunks" 972
-		"mass" 1735
-		"drag" 22.5
-		"heat dissipation" .42
+		"bunks" 794
+		"mass" 1691
+		"drag" 21
+		"heat dissipation" .48
 		"fuel capacity" 1000
 		"cargo space" 191
 		"outfit space" 1278
 		"weapon capacity" 633
-		"engine capacity" 213
+		"engine capacity" 263
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -472,14 +472,14 @@ ship "Korath Tanker"
 		hull 26100
 		"required crew" 314
 		"bunks" 551
-		"mass" 1815
-		"drag" 21.8
-		"heat dissipation" .38
+		"mass" 1749
+		"drag" 17
+		"heat dissipation" .35
 		"fuel capacity" 32700
 		"cargo space" 734
 		"outfit space" 839
 		"weapon capacity" 321
-		"engine capacity" 201
+		"engine capacity" 241
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -541,14 +541,14 @@ ship "Korath Traveller"
 		hull 34800
 		"required crew" 538
 		"bunks" 1492
-		"mass" 1857
-		"drag" 22.3
-		"heat dissipation" .39
+		"mass" 1773
+		"drag" 18
+		"heat dissipation" .37
 		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 779
 		"weapon capacity" 321
-		"engine capacity" 201
+		"engine capacity" 241
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -612,13 +612,13 @@ ship "Korath Herder"
 		"required crew" 794
 		"bunks" 1037
 		"mass" 1865
-		"drag" 26
+		"drag" 27
 		"heat dissipation" .41
 		"fuel capacity" 1000
 		"cargo space" 228
 		"outfit space" 999
-		"weapon capacity" 367
-		"engine capacity" 217
+		"weapon capacity" 407
+		"engine capacity" 277
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -696,13 +696,13 @@ ship "Korath Habitat"
 		"required crew" 543
 		"bunks" 1837
 		"mass" 2650
-		"drag" 32
+		"drag" 24
 		"heat dissipation" .43
 		"fuel capacity" 600
 		"cargo space" 1052
 		"outfit space" 1138
 		"weapon capacity" 321
-		"engine capacity" 201
+		"engine capacity" 251
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -1044,31 +1044,30 @@ ship "Korath World-Ship" "Korath World-Ship C"
 	turret -91 290 "Korath Banisher"
 	turret 91 290 "Korath Warder"
 
-
+#placehorder name
 ship "Korath World-Ship (Efreti)"
-#currentlyworldshipstats
 	sprite "ship/kws-efreti"
 	thumbnail "thumbnail/kws-efreti"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 794
-		"bunks" 1492
-		"mass" 2442
-		"drag" 27
+		shields 39000
+		hull 27000
+		"required crew" 243
+		"bunks" 972
+		"mass" 1535
+		"drag" 21
 		"heat dissipation" .4
-		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 823
-		"weapon capacity" 314
+		"fuel capacity" 600
+		"cargo space" 734
+		"outfit space" 721
+		"weapon capacity" 285
 		"engine capacity" 196
 		weapon
-			"blast radius" 400
-			"shield damage" 8000
-			"hull damage" 4000
-			"hit force" 12000
+			"blast radius" 1000
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
 	outfits
 		"Korath Fire-Lance" 2
 		"Expeller Grav-Ray" 2
@@ -1076,10 +1075,9 @@ ship "Korath World-Ship (Efreti)"
 		"Korath Banisher" 
 		"Korath Warder" 2
 		
-		"Triple Plasma Core"
+		"Double Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
+		"Large Heat Shunt"
 		"Korath Repeater Rifle" 150
 		
 		"Huge Grav-Thruster"
