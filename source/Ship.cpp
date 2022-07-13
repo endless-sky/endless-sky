@@ -2693,6 +2693,20 @@ double Ship::Cloaking() const
 
 
 
+bool Ship::IsCloaked() const
+{
+	return Cloaking() == 1.;
+}
+
+
+
+bool Ship::Phases() const
+{
+	return IsCloaked() && attributes.Get("cloaking phasing") >= Random::Real();
+}
+
+
+
 bool Ship::IsEnteringHyperspace() const
 {
 	return hyperspaceSystem;
@@ -3328,8 +3342,7 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	// A "phasing ship" cannot take damage.
-	if(cloak == 1. && attributes.Get("cloaking invulnerability") >= 0.)
+	if(cloak == 1. && attributes.Get("cloaking invulnerability") >= Random::Real())
 		return 0;
 
 	bool wasDisabled = IsDisabled();

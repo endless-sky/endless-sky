@@ -117,7 +117,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
 					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy() +
-						(cachedTarget && cachedTarget->Cloaking() == 1. ? (1. - cachedTarget->Attributes().Get("cloaking targetability")) * 5.: 0.)), it.weapon);
+						(cachedTarget && cachedTarget->IsCloaked() ? (1. - cachedTarget->Attributes().Get("cloaking targetability")) * 5.: 0.)), it.weapon);
 		}
 		MarkForRemoval();
 		return;
@@ -366,7 +366,7 @@ void Projectile::CheckLock(const Ship &target)
 	double base = hasLock ? 1. : .15;
 	// If the target has a cloaking device, it can lower the chances of hitting it,
 	// instead of being completely undetectable.
-	double cloakJamming = target.Cloaking() == 1. ? target.Attributes().Get("cloaking targetability") : 1.;
+	double cloakJamming = target.IsCloaked() ? target.Attributes().Get("cloaking targetability") : 1.;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
@@ -379,7 +379,7 @@ void Projectile::CheckLock(const Ship &target)
 	{
 		double weight = target.Mass() * target.Mass();
 		double probability = weapon->OpticalTracking() * weight / (150000. + weight) *
-			(target.Cloaking() == 1. ? (1. - target.Attributes().Get("cloaking visibility")) : 1.);
+			(target.IsCloaked() ? (1. - target.Attributes().Get("cloaking visibility")) : 1.);
 		hasLock |= Check(probability, base);
 	}
 

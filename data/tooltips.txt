@@ -111,13 +111,16 @@ tip "cloaking hull delay:"
 	`This ship is unable to regenerate hull whilst cloaked, instead its hull regeneration will suffer a delay that will grow the longer it is cloaked.`
 
 tip "cloaking invulnerability:"
-	`How vulnerable this cloaking device is. If this value is negative then it will trigger proximity mines and missiles. If it is positive this device phases through matter, and nothing may hit it.`
+	`How resistant this cloaking device is to damage.`
+
+tip "cloaking phasing"
+	`Weapons cannot affect this ship, and pass right trough.`
 
 tip "cloaking visibility:"
 	`This cloaking device has flaws, and as a result you can still be partially seen by enemies. This number represents the maximum amount of cloaking you can reach; up to 1.`
 
 tip "cloaking targetability:"
-	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you the higher it is, but ships will still be able to keep a lock on you.`
+	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you if it is low enough, but ships will still be able to keep a lock on you anyway.`
 
 tip "cloaking show on radar:"
 	`This cloaking device does not hide you from radars.`

@@ -236,6 +236,8 @@ public:
 	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
+	bool IsCloaked() const;
+	bool Phases() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
