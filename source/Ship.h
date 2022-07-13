@@ -274,6 +274,8 @@ public:
 	double TransferFuel(double amount, Ship *to);
 	// Mark this ship as property of the given ship.
 	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Clear all orders and targets this ship has (after capture or transfer of control).
+	void ClearTargetsAndOrders();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -353,9 +355,6 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
-	// Change whether this ship can be carried. If false, the ship cannot be
-	// carried. If true, the ship can be carried if its category allows it.
-	void AllowCarried(bool allowCarried);
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
