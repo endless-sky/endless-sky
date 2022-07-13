@@ -546,7 +546,7 @@ ship "Korath Traveller"
 		"heat dissipation" .37
 		"fuel capacity" 1000
 		"cargo space" 264
-		"outfit space" 779
+		"outfit space" 856
 		"weapon capacity" 321
 		"engine capacity" 241
 		weapon
@@ -565,12 +565,12 @@ ship "Korath Traveller"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Brig"
-		"Security Station" 7
+		"Microbot Defense Station" 15
 		"Korath Repeater Rifle" 272
 		
-		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Scram Drive"
 	
 	engine -37 333 .8
 	engine 0 333 .8

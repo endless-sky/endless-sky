@@ -686,6 +686,66 @@ ship "Korath Herder" "Korath Herder (Automata)"
 	turret "Korath Warder"
 
 
+ship "Korath Traveller" "Korath Traveller (Grab)"
+	outfits
+		"Grab-Strike Turret" 2
+		"Korath Banisher" 2
+		"Korath Warder" 2
+		"Korath Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Brig"
+		"Microbot Defense Station" 15
+		"Korath Repeater Rifle" 272
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	gun -45 -253 "Korath Fire-Lance"
+	gun 45 -253 "Korath Fire-Lance"
+	turret -77 -116.5 "Shunt-Strike Turret"
+	turret 77 -116.5 "Shunt-Strike Turret"
+	turret -87 -83 "Korath Warder"
+	turret 87 -83 "Korath Banisher"
+	turret -51 276.5 "Korath Banisher"
+	turret 51 276.5 "Korath Warder"
+
+
+ship "Korath Traveller" "Korath Traveller (Troop Transport)"
+	outfits
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		"Korath Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Brig"
+		"Microbot Defense Station" 15
+		"Security Station" 7
+		"Korath Repeater Rifle" 493
+		
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	gun -45 -253 "Korath Fire-Lance"
+	gun 45 -253 "Korath Fire-Lance"
+	turret -77 -116.5 "Korath Banisher"
+	turret 77 -116.5 "Korath Warder"
+	turret -87 -83 "Korath Warder"
+	turret 87 -83 "Korath Banisher"
+	turret -51 276.5 "Korath Banisher"
+	turret 51 276.5 "Korath Warder"
+
+
 ship "Korath World-Ship" "Korath World-Ship A (Jump)"
 	outfits
 		"Korath Grab-Strike" 2
