@@ -364,9 +364,6 @@ void Projectile::BreakTarget()
 void Projectile::CheckLock(const Ship &target)
 {
 	double base = hasLock ? 1. : .15;
-	// If the target has a cloaking device, it can lower the chances of hitting it,
-	// instead of being completely undetectable.
-	double cloakJamming = target.IsCloaked() ? target.Attributes().Get("cloaking targetability") : 1.;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
@@ -394,7 +391,8 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) * cloakJamming;
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) * 
+			(target.IsCloaked() ? target.Attributes().Get("cloaking targetability") : 1.);
 		hasLock |= Check(probability, base);
 	}
 
@@ -413,7 +411,8 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
-		double probability = weapon->RadarTracking() / (1. + radarJamming) * cloakJamming;
+		double probability = weapon->RadarTracking() / (1. + radarJamming) * 
+			(target.IsCloaked() ? target.Attributes().Get("cloaking shows on radar") : 1.);
 		hasLock |= Check(probability, base);
 	}
 }
