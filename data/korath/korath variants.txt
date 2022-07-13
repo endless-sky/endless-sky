@@ -794,7 +794,7 @@ ship "Korath Herder" "Korath Herder (Automata)"
 
 ship "Korath Traveller" "Korath Traveller (Grab)"
 	outfits
-		"Grab-Strike Turret" 2
+		"Korath Grab-Strike" 2
 		"Korath Banisher" 2
 		"Korath Warder" 2
 		"Korath Fire-Lance" 2
