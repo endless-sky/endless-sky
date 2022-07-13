@@ -962,7 +962,6 @@ ship "Korath Haven"
 	description "Korath Havens are massive nomadic habitats that hold much of their remaining population."
 
 
-
 ship "Cesmip'tlad"
 	sprite "ship/kws-efreti"
 	thumbnail "thumbnail/kws-efreti"
