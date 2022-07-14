@@ -498,7 +498,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	bool canEnter = (source != nullptr && any_of(system.Links().begin(), system.Links().end(),
 		[&ship, unconstrained](const System *link) noexcept -> bool
 		{
-			return !unconstrained && ship.GetGovernment()->AllowJumpingTo(*link); 
+			return !unconstrained && ship.GetGovernment()->AllowJumpingTo(*link);
 		}
 	));
 
