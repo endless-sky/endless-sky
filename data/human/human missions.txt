@@ -3921,5 +3921,4 @@ mission "Kindred Spirit 5"
 		conversation
 			`	"Alright," Charlie tells you, "I'm going to go visit my folks. If you ever want to travel together again, check back at the spaceport. See you!"`
 
-mission "Kindred Spirit 6"
 	
