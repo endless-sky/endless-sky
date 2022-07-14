@@ -312,7 +312,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->Attributes().Get("hyperdrive"))
 				hasHyper = true;
 		}
-		bool unconstrained = personality.IsUnconstrained();
+		const bool unconstrained = personality.IsUnconstrained();
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		if(hasJump || hasHyper)
@@ -495,7 +495,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
 	bool unconstrained = ship.GetPersonality().IsUnconstrained();
-	bool canEnter = (source != nullptr && any_of(system.Links().begin(), system.Links().end(),
+	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
 		[&ship, unconstrained](const System *link) noexcept -> bool
 		{
 			return !unconstrained && ship.GetGovernment()->AllowJumpingTo(*link);

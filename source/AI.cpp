@@ -1371,7 +1371,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	// NPCs should not be beyond the "fence" unless their target is
 	// fairly close to it (or they are intended to be there).
-	bool unconstrained = ship.GetPersonality().IsUnconstrained();
+	const bool unconstrained = ship.GetPersonality().IsUnconstrained();
 	if(!ship.IsYours() && !unconstrained)
 	{
 		if(target)
