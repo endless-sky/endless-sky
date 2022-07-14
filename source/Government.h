@@ -120,7 +120,7 @@ public:
 
 	// Get if ships from this government can go to that system or planet.
 	bool AllowJumpingTo(const System &system) const;
-	bool AllowLandingOn(const Planet &planet) const;
+	bool AllowsLandingOn(const Planet &planet) const;
 
 
 private:

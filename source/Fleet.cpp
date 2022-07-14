@@ -336,7 +336,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& government->AllowLandingOn(*object.GetPlanet())
+						&& (personality.IsUnconstrained() || government->AllowsLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 
@@ -347,7 +347,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && government->AllowLandingOn(*object.GetPlanet())
+				if(object.HasValidPlanet()
+						&& (personality.IsUnconstrained() || government->AllowsLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();

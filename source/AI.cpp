@@ -1471,7 +1471,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-					&& object.GetPlanet()->CanLand(ship) && gov->AllowLandingOn(*object.GetPlanet()))
+					&& object.GetPlanet()->CanLand(ship) &&
+					(ship.GetPersonality().IsUnconstrained() || gov->AllowsLandingOn(*object.GetPlanet())))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -1481,7 +1482,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship)
-					&& gov->AllowLandingOn(*object.GetPlanet()))
+					&& (ship.GetPersonality().IsUnconstrained() || gov->AllowsLandingOn(*object.GetPlanet())))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
