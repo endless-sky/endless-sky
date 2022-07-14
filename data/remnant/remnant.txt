@@ -526,7 +526,7 @@ phrase "remnant no scan"
 
 phrase "remnant scan"
 	word
-		"Please"
+		"It would be appreciated if"
 		"It would be helpful if"
 	word
 		" "

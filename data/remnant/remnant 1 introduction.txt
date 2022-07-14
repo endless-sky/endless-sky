@@ -2464,7 +2464,7 @@ mission "Remnant: Scanning Tolerances"
 				`	"Sorry, not right now."`
 					defer
 			label questioning
-			`	"A data archive with the latest briefings and analysis. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
+			`	"A data archive with the latest briefings and analyses. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
 			choice
 				`	"Yes, I can."`
 					goto agreement
