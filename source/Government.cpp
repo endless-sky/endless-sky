@@ -61,11 +61,11 @@ void Government::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		const bool remove = (child.Token(0) == "clear" || child.Token(0) == "remove");
-		const bool add = (child.Token(0) == "add");
+		const bool remove = child.Token(0) == "remove";
+		const bool add = child.Token(0) == "add";
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
-		bool hasValue = (child.Size() > valueIndex);
+		bool hasValue = child.Size() > valueIndex;
 
 		if(remove)
 		{

@@ -312,6 +312,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->Attributes().Get("hyperdrive"))
 				hasHyper = true;
 		}
+		bool unconstrained = personality.IsUnconstrained();
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		if(hasJump || hasHyper)
@@ -319,7 +320,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
-				if(!government->AllowJumpingTo(*neighbor))
+				if(!unconstrained && !government->AllowJumpingTo(*neighbor))
 					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -336,7 +337,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& (personality.IsUnconstrained() || government->AllowsLandingOn(*object.GetPlanet()))
+						&& (unconstrained || government->AllowsLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 
@@ -348,7 +349,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet()
-						&& (personality.IsUnconstrained() || government->AllowsLandingOn(*object.GetPlanet()))
+						&& (unconstrained || government->AllowsLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
@@ -493,10 +494,13 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool canEnter = (source != nullptr);
-	if(!canEnter && any_of(system.Links().begin(), system.Links().end(),
-			[ship](const System *link) noexcept -> bool { return ship.GetGovernment()->AllowJumpingTo(*link); }))
-		canEnter = true;
+	bool unconstrained = ship.GetPersonality().IsUnconstrained();
+	bool canEnter = (source != nullptr && any_of(system.Links().begin(), system.Links().end(),
+		[&ship, unconstrained](const System *link) noexcept -> bool
+		{
+			return !unconstrained && ship.GetGovernment()->AllowJumpingTo(*link); 
+		}
+	));
 
 	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
@@ -511,7 +515,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		int totalWeight = 0;
 		for(const System *link : system.Links())
 		{
-			bool access = ship.GetGovernment()->AllowJumpingTo(*link);
+			bool access = unconstrained || ship.GetGovernment()->AllowJumpingTo(*link);
 			systemWeights.emplace_back(access);
 			totalWeight += access;
 		}
@@ -519,7 +523,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		int choice = Random::Int(totalWeight);
 		for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 		{
-			if(!ship.GetGovernment()->AllowJumpingTo(*(*it)))
+			if(!unconstrained && !ship.GetGovernment()->AllowJumpingTo(*(*it)))
 				continue;
 			choice -= systemWeights[i];
 			if(choice < 0)
