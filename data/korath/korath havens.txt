@@ -28,7 +28,7 @@ fleet "Korath Havens"
 		"Korath Chaser" 5
 	variant
 		"Korath Haven (Blaze)"
-		"Korath Chaser (Expeller) 15
+		"Korath Chaser (Expeller)" 15
 		"Korath Chaser" 9
 
 mission "North Korath Havens (Natural)"
