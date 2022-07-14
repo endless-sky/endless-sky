@@ -3536,6 +3536,7 @@ void Ship::UnloadBays()
 			carriedMass -= bay.ship->Mass();
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
+			bay.ship->UnmarkForRemoval();
 			bay.ship.reset();
 		}
 }
