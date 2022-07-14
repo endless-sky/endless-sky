@@ -63,6 +63,7 @@ public:
 	bool IsMining() const;
 	bool Harvests() const;
 	bool IsSwarming() const;
+	bool IsSecretive() const;
 
 	// Special flags:
 	bool IsEscort() const;
