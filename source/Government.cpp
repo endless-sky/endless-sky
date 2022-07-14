@@ -87,6 +87,25 @@ void Government::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else if(child.Token(0) == "clear" && child.Token(1) == "trusted")
+			trusted.clear();
+		else if(child.Token(0) == "trusted")
+		{
+			for(const DataNode &grand : child)
+			{
+				bool remove = grand.Token(0) == "remove";
+				const Government *gov = GameData::Governments().Get(grand.Token(remove));
+				if(gov)
+				{
+					if(remove)
+						trusted.erase(gov);
+					else
+						trusted.emplace(gov);
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized government:");
+			}
+		}
 		else if(child.Token(0) == "penalty for")
 		{
 			for(const DataNode &grand : child)
@@ -239,6 +258,13 @@ double Government::GetBribeFraction() const
 double Government::GetFineFraction() const
 {
 	return fine;
+}
+
+
+
+bool Government::Trusts(const Government *government) const
+{
+	return trusted.count(government);
 }
 
 

@@ -2668,7 +2668,7 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 	shared_ptr<Ship> scanningShip;
 	// Figure out if any ship is currently scanning us. If that is the case, move away from it.
 	for(auto otherShip : GetShipsList(ship, false))
-		if(otherShip->GetGovernment() != ship.GetGovernment() &&
+		if(!ship.GetGovernment()->Trusts(otherShip->GetGovernment()) &&
 				otherShip->Commands().Has(Command::SCAN) &&
 				otherShip->GetTargetShip() == ship.shared_from_this() &&
 				!otherShip->IsDisabled() && !otherShip->IsDestroyed())

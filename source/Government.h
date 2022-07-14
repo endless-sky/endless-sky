@@ -68,6 +68,7 @@ public:
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
+	bool Trusts(const Government *other) const;
 	// A government might not exercise the ability to perform scans or fine
 	// the player in every system.
 	bool CanEnforce(const System *system) const;
@@ -127,6 +128,7 @@ private:
 	Color color;
 
 	std::vector<double> attitudeToward;
+	std::set<const Government *> trusted;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
 	double bribe = 0.;
