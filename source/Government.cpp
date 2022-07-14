@@ -94,7 +94,10 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				bool remove = grand.Token(0) == "remove";
-				const Government *gov = GameData::Governments().Get(grand.Token(remove));
+				bool add = grand.Token(0) == "add";
+				if(!add)
+					trusted.clear();
+				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
 				if(gov)
 				{
 					if(remove)
