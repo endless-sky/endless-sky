@@ -264,7 +264,7 @@ double Government::GetFineFraction() const
 
 bool Government::Trusts(const Government *government) const
 {
-	return trusted.count(government);
+	return government == this || trusted.count(government);
 }
 
 
