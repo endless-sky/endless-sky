@@ -924,7 +924,7 @@ ship "Korath Haven" "Korath Haven (Special)"
 		"Liquid Sodium Cooler" 2
 		"Korath Repeater Rifle" 1954
 		"Microbot Defense Station" 214
-		"Luxury Accomodations"
+		"Luxury Accommodations"
 		"Brig"
 		"Cargo Expansion" 8
 		"Scram Drive"
@@ -950,6 +950,60 @@ ship "Korath Haven" "Korath Haven (Special)"
 	turret "Korath Warder"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
+	turret "Korath Warder"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+
+
+ship "Korath Haven" "Korath Haven (Blaze)"
+	outfits
+		"Korath Banisher" 4
+		"Korath Grab-Strike" 2
+		"Korath Warder" 8
+		"Blaze-Pike Turret" 6
+		"Korath Inferno" 2
+
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 108
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Fuel Processor" 7
+		"Liquid Sodium Cooler" 2
+		"Korath Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		"Scram Drive"
+
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	turret "Blaze-Pike Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Korath Warder"
+	turret "Korath Inferno"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Inferno"
+	turret "Korath Banisher"
+	turret "Blaze-Pike Turret"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
 	turret "Korath Warder"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
