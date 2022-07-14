@@ -713,7 +713,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			it->SetCommands(firingCommands);
 			continue;
 		}
-		
+
 		if(isPresent && personality.IsSecretive() && !isStranded)
 		{
 			if(DoSecretive(*it, command))
