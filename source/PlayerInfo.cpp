@@ -822,6 +822,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				flightChecks.emplace(ship, checks);
 
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
+			// Ensure bayCount has an entry for this category for the special case
+			// where we have no bays at all available for this type of ship.
+			if(ship->CanBeCarried())
+				bayCount[ship->Attributes().Category()];
+
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
 
