@@ -540,6 +540,48 @@ ship "Korath Conqueror" "Korath Conqueror (Ember)"
 	turret "Blaze-Pike Turret"
 
 
+ship "Korath Conqueror" "Korath Conqueror (Storm)"
+	outfits
+		"Blaze-Pike Turret" 2
+		"Korath Fire-Lance" 3
+		"Korath Inferno" 2
+		"Korath Warder" 2
+		"Shunt-Strike Turret" 2
+		"Firelight Missile" 36
+		"Firelight Missile Bank" 2
+		"Firestorm Torpedo" 26
+		"Firestorm Turret" 2
+
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Microbot Defense Station" 21
+		"Korath Repeater Rifle" 359
+
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Fire-Lance"
+	gun "Korath Fire-Lance"
+	gun "Korath Fire-Lance"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Inferno"
+	turret "Korath Warder"
+	turret "Shunt-Strike Turret"
+	turret "Korath Inferno"
+	turret "Korath Warder"
+	turret "Shunt-Strike Turret"
+	turret "Firestorm Turret"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Firestorm Turret"
+
+
 ship "Korath Conqueror" "Korath Conqueror (Mereti)"
 	outfits
 		"Korath Slicer" 3
@@ -746,6 +788,38 @@ ship "Korath Herder" "Korath Herder (Digger)"
 	turret "Digger Mining Turret"
 	turret "Korath Warder"
 	turret "Korath Warder"
+
+
+ship "Korath Herder" "Korath Herder (Storm)"
+outfits
+		"Blaze-Pike Turret" 2
+		"Korath Warder" 3
+		"Korath Fire-Lance" 3
+		"Firestorm Torpedo" 26
+		"Firestorm Turret" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 308
+		"Microbot Defense Station" 18
+
+		"Reverser (Lunar Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Jump Drive"
+	
+	gun "Korath Fire-Lance"
+	gun "Korath Fire-Lance"
+	gun "Korath Fire-Lance"
+	turret "Blaze-Pike Turret"
+	turret "Blaze-Pike Turret"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Firestorm Turret"
+	turret "Firestorm Turret"
 
 
 ship "Korath Herder" "Korath Herder (Automata)"
