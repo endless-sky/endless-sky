@@ -1027,8 +1027,8 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += ship.Attraction();
-		deterrence += ship.Deterence();
+		attraction += ship->Attraction();
+		deterrence += ship->Deterrence();
 	}
 
 	return make_pair(attraction, deterrence);
