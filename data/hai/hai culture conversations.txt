@@ -223,7 +223,7 @@ mission "Academy Motto"
 		conversation
 			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
 			choice
-				`	(Play games on your ship.)`
+				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
 					goto fieldtrip
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
@@ -247,7 +247,7 @@ mission "Academy Motto"
 			choice
 				`	(Ask them about it.)`
 					goto question
-				`	(Keep your thoughts to yourself.)`
+				`	(Keep my thoughts to myself.)`
 			`	The staff member takes your plate and wishes you a lovely day.`
 				decline
 			label question
@@ -276,7 +276,7 @@ mission "Robotic Musical 1"
 			`	No sooner do you slow your step to give it your attention though, than the pile of crates immediately springs to life.`
 			branch translator
 				has "language: Wanderer"
-			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from  at least one robot, before they immediately clamber back into the crates.`
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from at least one robot, before they immediately clamber back into the crates.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
 			apply
 				set roboticconfusion
@@ -284,7 +284,7 @@ mission "Robotic Musical 1"
 			`	Now that you think about it, you're not sure they all climbed back into the same boxes they came out of.`
 				decline
 			label translator
-			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules". It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions. Your translator struggles to keep up as they run through a rapid-fire string of presumably witty wordplay jokes that don't translate well. The humor appears to be improvisational at first, but the illusion is so good that the realization of the impossibility of robots improvising only catches up with you after the fact. The entire thing is set to a musical score, with beat rests at various points where the animatronic Hai keep turning away from each other to 'look' at the audience and wink. Holoprojected banners and glyphs flicker through a series of displays informing you that this is an advertisement for a fully robotic comedy musical called "The Grandmother's Rules." It claims to be complete with interactive heckling responses and provides a list of dates and venues, all in the far future, where it will be showing.`
 			`	At the end each one of the robots strikes a pose and invites a different demographic to come along and "have the time of a decade," with ticket prices starting from 73 credits, before the entire cohort finish up and immediately clamber back into the crates. You're not sure they all climbed back into the same boxes they came out of.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though.`
 			`	One middle aged Hai in the crowd with racoon-like gray around his eyes wears the type of attire typical of their merchant captains. He eyes you curiously and steps over to you. "Well well Captain, that's a remarkable box you have there. Didn't know they'd started making live translator devices! Did it keep up alright?"`
