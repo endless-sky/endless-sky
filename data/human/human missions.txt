@@ -4277,7 +4277,7 @@ mission "Kindred Spirit 2"
 	cargo "Industrial Materials" 120
 	source 
 		government "Republic" "Syndicate"
-			not attributes "station"
+		not attributes "station"
 		category "Interceptor" "Light Warship" "Heavy Warship"
 	destination
 		attributes "research"
@@ -4356,7 +4356,7 @@ mission "Kindred Spirit 3"
 	description "Convince Charlie to return home."
 	source
 		government "Syndicate"
-			not attributes "station"
+		not attributes "station"
 	to offer
 		has "Kindred Spirit 2: done"
 		random < 15
