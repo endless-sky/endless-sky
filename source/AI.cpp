@@ -334,7 +334,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	
 	if(!flagship || flagship->IsDestroyed())
 		return;
-	
 	if(activeCommands.Has(Command::STOP))
 		Messages::Add("Coming to a stop.");
 	
@@ -379,7 +378,6 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 		newOrders.target = player.FlagshipPtr();
 		IssueOrders(player, newOrders, "gathering around your flagship.");
 	}
-	
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
@@ -1660,7 +1658,6 @@ void AI::Refuel(Ship &ship, Command &command)
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
 		ship.SetTargetStellar(GetRefuelLocation(ship));
-	
 	if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
@@ -1797,7 +1794,6 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition, const
 	
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
-	
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp));
@@ -3800,7 +3796,6 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 	// If this is a move command, make sure the fleet is bunched together
 	// enough that each ship takes up no more than about 30,000 square pixels.
 	double maxSquadOffset = sqrt(10000. * squadCount);
-	
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
 	bool isValidTarget = !newTarget || (newTarget && player.Flagship() &&
@@ -3822,7 +3817,6 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			
 			gaveOrder = true;
 			hasMismatch |= !orders.count(ship);
-			
 			Orders &existing = orders[ship];
 			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
 			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
