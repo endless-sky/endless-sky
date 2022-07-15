@@ -729,7 +729,6 @@ ship "Korath Habitat"
 		"Scram Drive"
 	
 	engine -37 343 .8
-	engine 0 343 .9
 	engine 37 343 .8
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
