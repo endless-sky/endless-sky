@@ -1441,7 +1441,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		else if(cloakingSpeed)
 		{
-			cloak = max(0., cloak - cloakingSpeed);
+			cloak = max(attributes.Get("default cloak"), cloak - cloakingSpeed);
 			// If you're trying to cloak but are unable to (too little energy or
 			// fuel) you're forced to decloak fully for one frame before you can
 			// engage cloaking again.

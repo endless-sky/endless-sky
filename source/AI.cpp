@@ -1057,8 +1057,8 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 {
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
-			|| ((helper.GetGovernment() != ship.GetGovernment() &&
-				helper.IsCloaked() && !helper.Attributes().Get("cloaked action")))
+			|| helper.GetGovernment() != ship.GetGovernment()
+			|| (!helper.IsCloaked() || helper.Attributes().Get("cloaked action"))
 			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
 		return false;
 
