@@ -3471,7 +3471,8 @@ bool Ship::CanCarry(const Ship &ship) const
 			continue;
 		if(escort == ship.shared_from_this())
 			break;
-		if(escort->attributes.Category() == category && !escort->IsDestroyed() && (!IsYours() || (IsYours() && escort->IsYours())))
+		if(escort->attributes.Category() == category && !escort->IsDestroyed() &&
+				(!IsYours() || (IsYours() && escort->IsYours())))
 			--free;
 		if(!free)
 			break;
