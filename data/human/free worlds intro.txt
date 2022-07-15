@@ -584,7 +584,7 @@ mission "FW Katya 1"
 				`	"I'm not convinced. You'll need to find some other sucker to do your dirty work for you."`
 					decline
 			
-			`	Katya pauses for a moment. "You don't have a reason," she says with a sigh. "Sometimes you just need to take things on faith."`
+			`	She pauses for a moment. "You don't have a reason," she says with a sigh. "Sometimes you just need to take things on faith."`
 			choice
 				`	"Alright, I'm willing to hear you out."`
 				`	"Well I don't have a lot of faith in people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
