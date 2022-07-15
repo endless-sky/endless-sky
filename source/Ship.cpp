@@ -1103,8 +1103,7 @@ double Ship::Deterrence() const
 				continue;
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ (weapon->RelativeHullDamage() * attributes.Get("hull"))
-				+ weapon->AntiMissile();
+				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
 			deterrence += .12 * strength / weapon->Reload();
 		}
 	return deterrence;
