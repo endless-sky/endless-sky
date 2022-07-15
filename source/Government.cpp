@@ -139,6 +139,9 @@ void Government::Load(const DataNode &node)
 			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else if(child.Token(0) == "provoked on scan")
 			provokedOnScan = true;
+		else if(child.Token(0) == "remove" && child.Size() >= 2
+				&& child.Token(1) == "provoked on scan")
+			provokedOnScan = false;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}

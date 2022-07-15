@@ -93,7 +93,7 @@ event "remnant: scanning tolerance"
 	government "Remnant"
 		"penalty for"
 			scan 0
-		"provoked on scan" 0
+		remove "provoked on scan"
 		"friendly hail" "remnant trusting"
 	government "Remnant (Research)"
 		"friendly hail" "remnant trusting"
