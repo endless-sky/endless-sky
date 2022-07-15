@@ -2476,7 +2476,7 @@ int Ship::Scan()
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
 				, Messages::Importance::Low);
 
-		if(target->GetPersonality().IsSecretive())
+		if(target->GetPersonality().IsSecretive() && target->GetGovernment()->IsProvokedOnScan())
 			Messages::Add("Please refrain from scanning us or we will be forced to take action.",
 				Messages::Importance::Highest);
 	}
