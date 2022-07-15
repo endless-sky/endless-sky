@@ -237,6 +237,9 @@ public:
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
 	bool IsCloaked() const;
+	// The amount of cloaking this ship can do, per frame.
+	double CloakingSpeed() const;
+	// If this ship should be immune to the next damage caused.
 	bool Phases() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;

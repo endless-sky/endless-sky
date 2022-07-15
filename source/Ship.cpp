@@ -1424,7 +1424,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(!cloak)
 			cloakDisruption = max(0., cloakDisruption - 1.);
 
-		double cloakingSpeed = attributes.Get("cloak");
+		double cloakingSpeed = CloakingSpeed();
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= attributes.Get("cloaking fuel")
 			&& energy >= attributes.Get("cloaking energy"));
@@ -2695,6 +2695,13 @@ double Ship::Cloaking() const
 bool Ship::IsCloaked() const
 {
 	return Cloaking() == 1.;
+}
+
+
+
+double Ship::CloakingSpeed() const
+{
+	return attributes.Get("cloak") + attributes.Get("cloak by mass") / Mass();
 }
 
 
