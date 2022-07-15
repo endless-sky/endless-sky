@@ -999,8 +999,8 @@ ship "Cesmip'tlad"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 150
 		
-		"Large Grav-Thruster"
-		"Large Grav-Steering"
+		"Large GP Hybrid Thruster"
+		"Large GP Hybrid Steering"
 		"Hyperdrive"
 
 	"reverse engine" -31 -290
@@ -1062,8 +1062,8 @@ ship "Korath Dredger (Efreti)"
 		"Fuel Processor"
 		"Korath Repeater Rifle" 190
 		
-		"Medium Grav-Thruster"
-		"Medium Grav-Steering"
+		"Medium GP Hybrid Thruster"
+		"Medium GP Hybrid Steering"
 		"Hyperdrive"
 
 	engine 19.5 189.5
@@ -1124,8 +1124,8 @@ ship "Korath Raider (Efreti)"
 		"Korath Repeater Rifle" 196
 		"Hyperdrive"
 		
-		"Small Grav-Thruster"
-		"Small Grav-Steering"
+		"Small GP Hybrid Thruster"
+		"Small GP Hybrid Steering"
 
 	engine -17.5 139.5
 	engine 17.5 139.5
