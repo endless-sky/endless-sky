@@ -2548,8 +2548,10 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	{
 		// Never cloak if it will cause you to be stranded.
 		const Outfit &attributes = ship.Attributes();
-		double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption") - attributes.Get("fuel generation");
-		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+		double cloakingFuel = attributes.Get("cloaking fuel");
+		double fuelCost = cloakingFuel
+			+ attributes.Get("fuel consumption")- attributes.Get("fuel generation");
+		if(cloakingFuel && !attributes.Get("ramscoop"))
 		{
 			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
 			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));

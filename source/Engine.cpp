@@ -2026,7 +2026,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& (!ship->IsCloaked() || ship->Attributes().Get("cloaking targetability") > 0.)))
+						&& (!ship->IsCloaked() || ship->Attributes().Get("cloaking targetability"))))
 				{
 					closestHit = 0.;
 					break;
