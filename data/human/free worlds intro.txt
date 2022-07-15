@@ -1180,7 +1180,7 @@ mission "FW Katya 6"
 				`	"Sorry, I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
 					decline
 			
-			`	"I suppose that showing a lack of evidence for nuclear testing done on Free planets would be circumstantial evidence for us," Eyes says, "but we're specifically hunting for the culrpit, so these are our best bets as far as nearby mining worlds go. And searching these three worlds would be quicker than searching all of Free space."`
+			`	"I suppose that showing a lack of evidence for nuclear testing done on Free planets would be circumstantial evidence for us," Eyes says, "but we're specifically hunting for the culprit, so these are our best bets as far as nearby mining worlds go. And searching these three worlds would be quicker than searching all of Free space."`
 			`	"Another thing we have to keep in mind is that we may not be able to operate outside of Free space forever," Katya responds. "I pray that we find answers before it comes to it, but war between the Free Worlds and Republic would cut us off from freely searching most of the galaxy."`
 			choice
 				`	"Okay, I'll help you search these worlds."`
