@@ -443,6 +443,9 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
+	double CalculateAttraction();
+	double CalculateDeterrence();
+
 
 private:
 	/* Protected member variables of the Body class:
@@ -496,6 +499,9 @@ private:
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+
+	double attraction = 0.;
+	double deterrence = 0.;
 
 	Command commands;
 	FireCommand firingCommands;

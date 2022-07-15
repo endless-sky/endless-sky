@@ -721,6 +721,10 @@ void Ship::FinishLoading(bool isNewInstance)
 		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
 		attributes.Set("drag", 100.);
 	}
+
+	attraction = CalculateAttraction();
+	deterrence = CalculateDeterrence();
+
 	if(!warning.empty())
 	{
 		// This check is mostly useful for variants and stock ships, which have
@@ -1087,27 +1091,16 @@ int64_t Ship::Strength() const
 
 double Ship::Attraction() const
 {
-	return max(0., .4 * sqrt(Attributes().Get("cargo space")) - 1.8);
+	return attraction;
 }
 
 
 
 double Ship::Deterrence() const
 {
-	double deterrence = 0.;
-	for(const Hardpoint &hardpoint : Weapons())
-		if(hardpoint.GetOutfit())
-		{
-			const Outfit *weapon = hardpoint.GetOutfit();
-			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
-				continue;
-			double strength = weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
-			deterrence += .12 * strength / weapon->Reload();
-		}
 	return deterrence;
 }
+
 
 
 // Check if this ship is configured in such a way that it would be difficult
@@ -3701,10 +3694,16 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		attributes.Add(*outfit, count);
 		if(outfit->IsWeapon())
+		{
 			armament.Add(outfit, count);
+			CalculateDeterrence();
+		}
 
 		if(outfit->Get("cargo space"))
+		{
 			cargo.SetSize(attributes.Get("cargo space"));
+			CalculateAttraction();
+		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
 		// If the added or removed outfit is a jump drive, recalculate
@@ -3791,6 +3790,8 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
+		if(!OutfitCount(ammo))
+			CalculateDeterrence();
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -4088,4 +4089,31 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+double Ship::CalculateAttraction()
+{
+	attraction = max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
+	return attraction;
+}
+
+
+
+double Ship::CalculateDeterrence()
+{
+	deterrence = 0.;
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetOutfit())
+		{
+			const Outfit *weapon = hardpoint.GetOutfit();
+			if(weapon->Ammo() && !OutfitCount(weapon->Ammo()))
+				continue;
+			double strength = weapon->ShieldDamage() + weapon->HullDamage()
+				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
+				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
+			deterrence += .12 * strength / weapon->Reload();
+		}
+	return deterrence;
 }

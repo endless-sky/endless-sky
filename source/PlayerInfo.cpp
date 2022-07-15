@@ -1028,7 +1028,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 			continue;
 
 		attraction += ship.Attraction();
-		deterrance += ship.Deterance();
+		deterrence += ship.Deterence();
 	}
 
 	return make_pair(attraction, deterrence);
