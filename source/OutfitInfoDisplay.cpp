@@ -46,6 +46,7 @@ namespace {
 		{"burn resistance fuel", 0},
 		{"burn resistance heat", 0},
 		{"cloak", 0},
+		{"cloak by mass", 0},
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
