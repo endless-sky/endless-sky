@@ -791,7 +791,7 @@ ship "Korath Herder" "Korath Herder (Digger)"
 
 
 ship "Korath Herder" "Korath Herder (Storm)"
-outfits
+	outfits
 		"Blaze-Pike Turret" 2
 		"Korath Warder" 3
 		"Korath Fire-Lance" 3
