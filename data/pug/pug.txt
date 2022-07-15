@@ -590,8 +590,8 @@ ship "Pug Enfolta"
 	engine -10 63.5
 	gun -12.5 -94 "Pug Zapper"
 	gun 12.5 -94 "Pug Zapper"
-	gun -12.5 -94 "Pug Zapper"
-	gun 12.5 -94 "Pug Zapper"
+	gun -12.5 -94 "Pug Seeker"
+	gun 12.5 -94 "Pug Seeker"
 	turret 0 11 "Pug Zapper Turret"
 	explode "pug tiny explosion" 5
 	explode "pug small explosion" 20
