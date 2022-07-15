@@ -376,7 +376,6 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 	turret "Korath Warder"
 
 
-
 ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	add attributes
 		"cargo space" -70
@@ -411,7 +410,6 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	turret "Korath Grab-Strike"
 	turret "Korath Disruptor"
 	turret "Korath Banisher"
-
 
 
 ship "Korath Chaser" "Korath Chaser (Expeller)"
@@ -451,7 +449,6 @@ ship "Korath Chaser" "Korath Chaser (World-Ship)"
 		"Steering (Asteroid Class)"
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
-
 
 
 ship "Korath Conveyor" "Korath Conveyor (Jump)"
@@ -1105,7 +1102,6 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	turret
 
 
-
 ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -1131,7 +1127,6 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	turret "Korath Repeater Turret"
 
 
-
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	outfits
 		"Korath Detainer"
@@ -1153,7 +1148,6 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
-
 
 
 ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
