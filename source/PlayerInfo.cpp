@@ -225,8 +225,6 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "available job")
 			availableJobs.emplace_back(child);
-		else if(child.Token(0) == "available escort")
-			availableEscorts.emplace_back(child);
 		else if(child.Token(0) == "available mission")
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
@@ -1261,7 +1259,6 @@ bool PlayerInfo::TakeOff(UI *ui)
 
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
-	availableEscorts.clear();
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
@@ -1566,14 +1563,6 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
-// Get the list of escorts that are available on the job board.
-const list<Mission> &PlayerInfo::AvailableEscorts() const
-{
-	return availableEscorts;
-}
-
-
-
 // Return a pointer to the mission that was most recently accepted while in-flight.
 const Mission *PlayerInfo::ActiveBoardingMission() const
 {
@@ -1592,34 +1581,18 @@ void PlayerInfo::UpdateMissionNPCs()
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission, UI *ui, bool isEscortJob)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
-	if(!isEscortJob)
-	{
-		for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
-			if(&*it == &mission)
-			{
-				cargo.AddMissionCargo(&mission);
-				it->Do(Mission::OFFER, *this);
-				it->Do(Mission::ACCEPT, *this, ui);
-				auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
-				missions.splice(spliceIt, availableJobs, it);
-				break;
-			}
-	}
-	else
-	{
-		for(auto it = availableEscorts.begin(); it != availableEscorts.end(); ++it)
-			if(&*it == &mission)
-			{
-				cargo.AddMissionCargo(&mission);
-				it->Do(Mission::OFFER, *this);
-				it->Do(Mission::ACCEPT, *this, ui);
-				auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
-				missions.splice(spliceIt, availableJobs, it);
-				break;
-			}
-	}
+	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
+		if(&*it == &mission)
+		{
+			cargo.AddMissionCargo(&mission);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
+			missions.splice(spliceIt, availableJobs, it);
+			break;
+		}
 }
 
 
@@ -1828,31 +1801,6 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
-}
-
-
-
-int64_t PlayerInfo::escortCostsCalculate()
-{
-	int64_t allCosts = 0;
-	int64_t oneCost = 0;
-
-	for(Mission &mission : missions)
-	{
-		if(mission.IsPlayerEscort())
-		{
-			oneCost = mission.EscortSalary();
-			if(allCosts + oneCost > accounts.Credits())
-			{
-				FailMission(mission);
-				string message = "An escort has left you because you do not have enough money.";
-				Messages::Add(message, Messages::Importance::High);
-			}
-			else
-				allCosts += oneCost;
-		}
-	}
-	return allCosts;
 }
 
 
@@ -2614,7 +2562,6 @@ void PlayerInfo::ValidateLoad()
 	// the player will be on the correct planet when a plugin is re-added).
 	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
-	availableEscorts.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
 }
 
@@ -2715,8 +2662,7 @@ void PlayerInfo::CreateMissions()
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions = 
-					it.second.IsPlayerEscort() ? (it.second.IsAtLocation(Mission::JOB) ? availableEscorts : availableMissions) :
-					(it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions);
+					it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
@@ -2761,12 +2707,7 @@ void PlayerInfo::CreateMissions()
 	// Sort missions on the job board alphabetically.
 	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
 	{
-		return lhs.Name() < rhs.Name();
-	});
-
-	availableEscorts.sort([](const Mission &lhs, const Mission &rhs)
-	{
-		return lhs.Name() < rhs.Name();
+		return lhs.IsService() ? (rhs.IsService() ? lhs.Name() < rhs.Name() : true) : lhs.Name() < rhs.Name();
 	});
 }
 
@@ -3022,8 +2963,6 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out);
 	for(const Mission &mission : availableJobs)
 		mission.Save(out, "available job");
-	for(const Mission &mission : availableEscorts)
-		mission.Save(out, "available escort");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
 

@@ -186,8 +186,6 @@ void Mission::Load(const DataNode &node)
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
-		else if(child.Token(0) == "escortSalary" && child.Size() >= 2)
-			escortSalary = child.Value(1);
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
 		else if(child.Token(0) == "priority")
@@ -213,6 +211,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
+		else if(child.Token(0) == "service")
+			isService = true;
 		else if(child.Token(0) == "failed")
 			hasFailed = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
@@ -336,8 +336,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("priority");
 		if(isMinor)
 			out.Write("minor");
-		if(escortSalary)
-			out.Write("escortSalary", escortSalary);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -355,6 +353,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(!hasFullClearance)
 			out.Write("infiltrating");
+		if(isService)
+			out.Write("service");
 		if(hasFailed)
 			out.Write("failed");
 		if(repeat != 1)
@@ -527,16 +527,6 @@ bool Mission::IsMinor() const
 
 
 
-// Check if this mission is an player escort. If yes it will be handled
-// different than normal missions.
-bool Mission::IsPlayerEscort() const
-{
-	return escortSalary != 0;
-}
-
-
-
-
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);
@@ -622,13 +612,6 @@ int Mission::Passengers() const
 
 
 
-int Mission::EscortSalary() const
-{
-	return escortSalary;
-}
-
-
-
 // The mission must be completed by this deadline (if there is a deadline).
 const Date &Mission::Deadline() const
 {
@@ -677,6 +660,13 @@ const string &Mission::ClearanceMessage() const
 bool Mission::HasFullClearance() const
 {
 	return hasFullClearance;
+}
+
+
+
+bool Mission::IsService() const
+{
+	return isService;
 }
 
 
@@ -1149,7 +1139,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
 	result.isMinor = isMinor;
-	result.escortSalary = escortSalary;
 	result.autosave = autosave;
 	result.location = location;
 	result.repeat = repeat;
@@ -1418,6 +1407,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.blocked = Format::Replace(blocked, subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
+	result.isService = isService;
 
 	result.hasFailed = false;
 	return result;

@@ -81,9 +81,6 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
-	// Check if this mission is a player escort. If yes it will be handled
-	// different than normal missions.
-	bool IsPlayerEscort() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
@@ -101,7 +98,6 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
-	int EscortSalary() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -115,6 +111,7 @@ public:
 	// Check whether we have full clearance to land and use the planet's
 	// services, or whether we are landing in secret ("infiltrating").
 	bool HasFullClearance() const;
+	bool IsService() const;
 
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space
@@ -202,6 +199,7 @@ private:
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+	bool isService = false;
 
 	int repeat = 1;
 	std::string cargo;
@@ -216,8 +214,6 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
-	// Escort payment
-	int escortSalary = 0;
 
 	ConditionSet toOffer;
 	ConditionSet toComplete;
