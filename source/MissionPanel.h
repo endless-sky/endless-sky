@@ -62,7 +62,7 @@ private:
 	void DrawMissionInfo();
 
 	bool CanAccept() const;
-	void Accept();
+	void Accept(bool force = false);
 	void MakeSpaceAndAccept();
 	void AbortMission();
 
