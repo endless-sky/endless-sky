@@ -98,7 +98,7 @@ namespace {
 			case Mission::Trigger::WAYPOINT:
 				return "on waypoint";
 			case Mission::Trigger::DAILY:
-				return "on daily";
+				return "on every day";
 			default:
 				return "unknown trigger";
 		}
@@ -287,7 +287,7 @@ void Mission::Load(const DataNode &node)
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
 				{"waypoint", WAYPOINT},
-				{"daily", DAILY}
+				{"every day", DAILY}
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
