@@ -640,7 +640,7 @@ void Engine::Step(bool isActive)
 				continue;
 
 			Point pos = object.Position() - center;
-			if(pos.Length() - object.Radius() < 600. / zoom)
+			if(pos.Length() - object.Radius() < 800. / zoom)
 				labels.emplace_back(pos, object, currentSystem, zoom);
 		}
 	}
