@@ -549,7 +549,7 @@ void PlayerInfo::IncrementDate()
 		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
 				, Messages::Importance::Highest);
-	
+
 	// Do on daily mission events.
 	for(Mission &mission : missions)
 		mission.Do(Mission::DAILY, *this);
