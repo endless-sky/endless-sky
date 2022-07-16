@@ -551,6 +551,10 @@ void PlayerInfo::IncrementDate()
 		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
 				, Messages::Importance::Highest);
+	
+	// Do on daily missio events.
+	for(Mission &mission : missions)
+		mission.Do(Mission::DAILY, *this);
 
 	// Check what salaries and tribute the player receives.
 	auto GetIncome = [&](string prefix) {
@@ -592,14 +596,11 @@ void PlayerInfo::IncrementDate()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
-
-	// Check if escorts will leave the player due to a lack of money.
-	int64_t costs = escortCostsCalculate();
+		assets += ship->Cargo().Value(system);		
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts, costs);
+	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
 	if(!message.empty())
 		Messages::Add(message, Messages::Importance::High);
 
@@ -2611,6 +2612,7 @@ void PlayerInfo::ValidateLoad()
 
 	// Invalid available jobs or missions are erased (since there is no guarantee
 	// the player will be on the correct planet when a plugin is re-added).
+	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableEscorts.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
