@@ -550,7 +550,7 @@ void PlayerInfo::IncrementDate()
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
 				, Messages::Importance::Highest);
 	
-	// Do on daily missio events.
+	// Do on daily mission events.
 	for(Mission &mission : missions)
 		mission.Do(Mission::DAILY, *this);
 
@@ -2704,7 +2704,7 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
-	// Sort missions on the job board alphabetically.
+	// Sort missions on the job board alphabetically, with the service missions at the end.
 	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
 	{
 		return lhs.IsService() ? (rhs.IsService() ? lhs.Name() < rhs.Name() : false) : lhs.Name() < rhs.Name();
