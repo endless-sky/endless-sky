@@ -594,7 +594,7 @@ void PlayerInfo::IncrementDate()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);		
+		assets += ship->Cargo().Value(system);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -2661,8 +2661,8 @@ void PlayerInfo::CreateMissions()
 
 		if(it.second.CanOffer(*this))
 		{
-			list<Mission> &missions = 
-					it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+			list<Mission> &missions =
+				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
