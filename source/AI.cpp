@@ -1150,7 +1150,7 @@ bool AI::HasHelper(const Ship &ship, const bool needsFuel)
 
 // Pick a new target for the given ship.
 shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
-{	
+{
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
