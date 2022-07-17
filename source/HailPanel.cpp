@@ -54,7 +54,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone") || ship->GetPersonality().IsEvasive();
 	hasLanguage = !isMute && (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
-	if(isMute || ship->GetPersonality().IsEvasive())
+	if(isMute)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
