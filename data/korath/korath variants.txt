@@ -538,7 +538,7 @@ ship "Korath Conqueror" "Korath Conqueror (Grab)"
 		"Outfits Expansion" 3
 		"Korath Repeater Rifle" 359
 		"Microbot Defense Station" 23
-        
+
 	"Afterburner (Planetary Class)"
 	"Steering (Stellar Class)"
 	"Thruster (Planetary Class)"
