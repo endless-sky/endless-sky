@@ -422,7 +422,7 @@ ship "Korath Conqueror"
 		"Microbot Defense Station" 19
 		"Korath Repeater Rifle" 359
 		
-		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
