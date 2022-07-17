@@ -629,12 +629,10 @@ void MapDetailPanel::DrawOrbits()
 	{
 		double distance = object.Distance();
 		int activeParent = object.Parent();
-		bool hasParent = activeParent >= 0;
-		while(hasParent)
+		while(activeParent >= 0)
 		{
 			distance += selectedSystem->Objects()[activeParent].Distance();
 			activeParent = selectedSystem->Objects()[activeParent].Parent();
-			hasParent = activeParent >= 0;
 		}
 		maxDistance = max(maxDistance, distance);
 	}
