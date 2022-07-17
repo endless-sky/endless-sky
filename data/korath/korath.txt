@@ -263,6 +263,10 @@ fleet "Korath Home"
 		"Korath Chaser" 3
 	variant 22
 		"Korath Conqueror"
+	variant 12
+		"Korath Conqueror (Grab)"
+	variant 2
+		"Korath Conqueror (Storm)"
 	variant 4
 		"Korath Tanker"
 		"Korath Chaser" 3
@@ -361,6 +365,8 @@ fleet "Korath Civilian Large"
 		"Korath Chaser (Expeller)" 3
 	variant 6
 		"Korath Conqueror"
+	variant 4
+		"Korath Conqueror (Grab)"
 	variant 12
 		"Korath Tanker"
 		"Korath Chaser (Expeller)" 3

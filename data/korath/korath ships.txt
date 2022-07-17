@@ -315,8 +315,8 @@ ship "Korath Conveyor"
 	attributes
 		category "Heavy Freighter"
 		cost 28650000
-		shields 35700
-		hull 23600
+		shields 32700
+		hull 29600
 		"required crew" 334
 		"bunks" 453
 		"mass" 1731
