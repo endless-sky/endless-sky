@@ -498,9 +498,9 @@ ship "Korath Conqueror" "Korath Conqueror (Crippled)"
 
 ship "Korath Conqueror" "Korath Conqueror (Ember)"
 	outfits
-		"Shunt-Strike Turret" 4
+		"Shunt-Strike Turret" 5
 		"Blaze-Pike Turret" 2
-		"Korath Banisher" 2
+		"Korath Banisher" 1
 		"Korath Warder" 2
 		"Korath Fire-Lance" 3
 		"Firelight Missile Bank" 2
