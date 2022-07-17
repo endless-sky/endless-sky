@@ -418,8 +418,7 @@ ship "Korath Conqueror"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Brig"
-		"Security Station" 7
-		"Microbot Defense Station" 19
+		"Microbot Defense Station" 23
 		"Korath Repeater Rifle" 359
 		
 		"Thruster (Stellar Class)"
