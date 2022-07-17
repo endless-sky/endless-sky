@@ -53,7 +53,6 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone") || ship->GetPersonality().IsEvasive();
 	hasLanguage = !isMute && (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
-	
 	if(isMute)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
