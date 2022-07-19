@@ -153,6 +153,7 @@ public:
 	// connected provider).
 	int64_t Get(const std::string &name) const;
 	bool Has(const std::string &name) const;
+	std::pair<bool, int64_t> HasGet(const std::string &name) const;
 	bool empty() const;
 	// Add a value to a condition, set a value for a condition or erase a
 	// condition completely. Returns true on success, false on failure.

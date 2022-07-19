@@ -163,12 +163,15 @@ namespace {
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{
-				bool tempHas = created.Has(str);
-				bool permHas = conditions.Has(str);
-				if(tempHas)
-					value = created.Get(str);
-				else if(permHas)
-					value = conditions.Get(str);
+				const auto temp = created.HasGet(str);
+				if(temp.first)
+					value = temp.second;
+				else
+				{
+					const auto perm = conditions.HasGet(str);
+					if(perm.first)
+						value = perm.second;
+				}
 			}
 			result.emplace_back(value);
 		}

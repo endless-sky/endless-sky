@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 
+#include <utility>
+
 using namespace std;
 
 
@@ -286,6 +288,27 @@ bool ConditionsStore::Has(const string &name) const
 		return true;
 
 	return ce->provider->hasFunction(name);
+}
+
+
+
+// Returns a pair where the boolean indicates if the game has this condition set,
+// and an int64_t which contains the value if the condition was set.
+pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
+{
+	const ConditionEntry *ce = GetEntry(name);
+	if(!ce)
+		return make_pair(false, 0);
+
+	if(!ce->provider)
+		return make_pair(true, ce->value);
+
+	bool has = ce->provider->hasFunction(name);
+	int64_t val = 0;
+	if(has)
+		val = ce->provider->getFunction(name);
+
+	return make_pair(has, val);
 }
 
 
