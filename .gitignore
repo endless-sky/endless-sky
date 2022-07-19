@@ -30,7 +30,7 @@ scons-local*
 test-report.xml
 
 # User-installed plugins
-plugins/
+/plugins/
 
 # OS-specific generated files
 .DS_Store
