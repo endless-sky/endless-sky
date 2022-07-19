@@ -143,7 +143,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
 	auto store = ConditionsStore{};
 	REQUIRE( primarySize(store) == 0 );
-	REQUIRE( store.empty() );
 
 	GIVEN( "an empty ConditionSet" ) {
 		const auto emptySet = ConditionSet{};

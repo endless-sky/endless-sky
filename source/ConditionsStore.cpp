@@ -313,13 +313,6 @@ pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
 
 
 
-bool ConditionsStore::empty() const
-{
-	return storage.empty();
-}
-
-
-
 // Add a value to a condition. Returns true on success, false on failure.
 bool ConditionsStore::Add(const string &name, int64_t value)
 {
