@@ -2524,42 +2524,42 @@ void PlayerInfo::RegisterDerivedConditions()
 {
 	// Read-only date functions.
 	auto &&dayProvider = conditions.GetProviderNamed("day");
-	dayProvider.SetGetFun([this](const string &name) { return date.Day(); });
+	dayProvider.SetGetFunction([this](const string &name) { return date.Day(); });
 
 	auto &&monthProvider = conditions.GetProviderNamed("month");
-	monthProvider.SetGetFun([this](const string &name) { return date.Month(); });
+	monthProvider.SetGetFunction([this](const string &name) { return date.Month(); });
 
 	auto &&yearProvider = conditions.GetProviderNamed("year");
-	yearProvider.SetGetFun([this](const string &name) { return date.Year(); });
+	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
-	netWorthProvider.SetGetFun([this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); });
+	netWorthProvider.SetGetFunction([this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); });
 
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
-	creditsProvider.SetGetFun([this](const string &name) { return min(limit, accounts.Credits()); });
+	creditsProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.Credits()); });
 
 	auto &&unpaidMortgagesProvider = conditions.GetProviderNamed("unpaid mortgages");
-	unpaidMortgagesProvider.SetGetFun([this](const string &name) { return min(limit, accounts.TotalDebt("Mortgage")); });
+	unpaidMortgagesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.TotalDebt("Mortgage")); });
 
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
-	unpaidFinesProvider.SetGetFun([this](const string &name) { return min(limit, accounts.TotalDebt("Fine")); });
+	unpaidFinesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.TotalDebt("Fine")); });
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
-	unpaidSalariesProvider.SetGetFun([this](const string &name) { return min(limit, accounts.SalariesOwed()); });
+	unpaidSalariesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.SalariesOwed()); });
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
-	unpaidMaintenanceProvider.SetGetFun([this](const string &name) { return min(limit, accounts.MaintenanceDue()); });
+	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.MaintenanceDue()); });
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
-	creditScoreProvider.SetGetFun([this](const string &name) { return accounts.CreditScore(); });
+	creditScoreProvider.SetGetFunction([this](const string &name) { return accounts.CreditScore(); });
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
-	flagshipCrewProvider.SetGetFun([this](const string &name) -> int64_t
+	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship)
 		{
@@ -2569,7 +2569,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
-	flagshipRequiredCrewProvider.SetGetFun([this](const string &name) -> int64_t
+	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship)
 		{
@@ -2579,7 +2579,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
-	flagshipBunksProvider.SetGetFun([this](const string &name) -> int64_t
+	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship)
 		{
@@ -2590,13 +2590,13 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
-	cargoAttractivenessProvider.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().first; });
+	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t { return RaidFleetFactors().first; });
 
 	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
-	armamentDeterrence.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
+	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
 
 	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
-	pirateAttractionProvider.SetGetFun([this](const string &name) -> int64_t
+	pirateAttractionProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		auto rff = RaidFleetFactors();
 		return rff.first - rff.second;
@@ -2607,7 +2607,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
 	auto &&cargoSpaceProvider = conditions.GetProviderNamed("cargo space");
-	cargoSpaceProvider.SetGetFun([this](const string &name) -> int64_t
+	cargoSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship && !boardingMissions.empty())
 			return flagship->Cargo().Free();
@@ -2619,7 +2619,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	auto &&passengerSpaceProvider = conditions.GetProviderNamed("passenger space");
-	passengerSpaceProvider.SetGetFun([this](const string &name) -> int64_t
+	passengerSpaceProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		if(flagship && !boardingMissions.empty())
 			return flagship->Cargo().BunksFree();
@@ -2633,7 +2633,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// The number of active ships the player has of the given category
 	// (e.g. Heavy Warships).
 	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships: ");
-	shipTypesProvider.SetGetFun([this](const string &name) -> int64_t
+	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
@@ -2651,8 +2651,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship system: " + flagship->GetSystem()->Name();
 	};
-	flagshipSystemProvider.SetHasFun(flagshipSystemFun);
-	flagshipSystemProvider.SetGetFun(flagshipSystemFun);
+	flagshipSystemProvider.SetHasFunction(flagshipSystemFun);
+	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
 	auto &&flagshipPlanetProvider = conditions.GetProviderPrefixed("flagship planet: ");
 	auto flagshipPlanetFun = [this](const string &name) -> bool
@@ -2661,18 +2661,18 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship planet: " + flagship->GetPlanet()->TrueName();
 	};
-	flagshipPlanetProvider.SetHasFun(flagshipPlanetFun);
-	flagshipPlanetProvider.SetGetFun(flagshipPlanetFun);
+	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
+	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	auto &&reputationProvider = conditions.GetProviderPrefixed("reputation: ");
-	reputationProvider.SetHasFun([](const string &name) -> bool
+	reputationProvider.SetHasFunction([](const string &name) -> bool
 	{
 		string govName = name.substr(strlen("reputation: "));
 		return GameData::Governments().Has(govName);
 	});
-	reputationProvider.SetGetFun([](const string &name) -> int64_t
+	reputationProvider.SetGetFunction([](const string &name) -> int64_t
 	{
 		string govName = name.substr(strlen("reputation: "));
 		auto gov = GameData::Governments().Get(govName);
@@ -2680,7 +2680,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		return gov->Reputation();
 	});
-	reputationProvider.SetSetFun([](const string &name, int64_t value) -> bool
+	reputationProvider.SetSetFunction([](const string &name, int64_t value) -> bool
 	{
 		string govName = name.substr(strlen("reputation: "));
 		auto gov = GameData::Governments().Get(govName);

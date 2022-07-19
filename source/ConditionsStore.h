@@ -47,10 +47,10 @@ public:
 
 	public:
 		// Functions to set the lambda functions for accessing the conditions.
-		void SetGetFun(std::function<int64_t(const std::string &)> newGetFun);
-		void SetHasFun(std::function<bool(const std::string &)> newHasFun);
-		void SetSetFun(std::function<bool(const std::string &, int64_t)> newSetFun);
-		void SetEraseFun(std::function<bool(const std::string &)> newEraseFun);
+		void SetGetFunction(std::function<int64_t(const std::string &)> newGetFun);
+		void SetHasFunction(std::function<bool(const std::string &)> newHasFun);
+		void SetSetFunction(std::function<bool(const std::string &, int64_t)> newSetFun);
+		void SetEraseFunction(std::function<bool(const std::string &)> newEraseFun);
 
 	public:
 		// This is intented as a private constructor, only to be called from within
@@ -64,10 +64,10 @@ public:
 
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
-		std::function<int64_t(const std::string &)> getFun = [](const std::string &name) { return 0; };
-		std::function<bool(const std::string &)> hasFun = [](const std::string &name) { return true; };
-		std::function<bool(const std::string &, int64_t)> setFun = [](const std::string &name, int64_t value) { return false; };
-		std::function<bool(const std::string &)> eraseFun = [](const std::string &name) { return false; };
+		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
+		std::function<bool(const std::string &)> hasFunction = [](const std::string &name) { return true; };
+		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) { return false; };
+		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
 	};
 
 

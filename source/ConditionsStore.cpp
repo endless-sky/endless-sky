@@ -26,30 +26,30 @@ ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPre
 
 
 
-void ConditionsStore::DerivedProvider::SetGetFun(function<int64_t(const string &)> newGetFun)
+void ConditionsStore::DerivedProvider::SetGetFunction(function<int64_t(const string &)> newGetFun)
 {
-	getFun = std::move(newGetFun);
+	getFunction = std::move(newGetFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetHasFun(function<bool(const string &)> newHasFun)
+void ConditionsStore::DerivedProvider::SetHasFunction(function<bool(const string &)> newHasFun)
 {
-	hasFun = std::move(newHasFun);
+	hasFunction = std::move(newHasFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetSetFun(function<bool(const string &, int64_t)> newSetFun)
+void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string &, int64_t)> newSetFun)
 {
-	setFun = std::move(newSetFun);
+	setFunction = std::move(newSetFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetEraseFun(function<bool(const string &)> newEraseFun)
+void ConditionsStore::DerivedProvider::SetEraseFunction(function<bool(const string &)> newEraseFun)
 {
-	eraseFun = std::move(newEraseFun);
+	eraseFunction = std::move(newEraseFun);
 }
 
 
@@ -60,7 +60,7 @@ ConditionsStore::ConditionEntry::operator int64_t() const
 		return value;
 
 	const string &key = fullKey.empty() ? provider->name : fullKey;
-	return provider->getFun(key);
+	return provider->getFunction(key);
 }
 
 
@@ -72,7 +72,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator=(int6
 	else
 	{
 		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFun(key, val);
+		provider->setFunction(key, val);
 	}
 	return *this;
 }
@@ -86,7 +86,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator++()
 	else
 	{
 		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFun(key, provider->getFun(key) + 1);
+		provider->setFunction(key, provider->getFunction(key) + 1);
 	}
 	return *this;
 }
@@ -100,7 +100,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator--()
 	else
 	{
 		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFun(key, provider->getFun(key) - 1);
+		provider->setFunction(key, provider->getFunction(key) - 1);
 	}
 	return *this;
 }
@@ -114,7 +114,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator+=(int
 	else
 	{
 		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFun(key, provider->getFun(key) + val);
+		provider->setFunction(key, provider->getFunction(key) + val);
 	}
 	return *this;
 }
@@ -128,7 +128,7 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 	else
 	{
 		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFun(key, provider->getFun(key) - val);
+		provider->setFunction(key, provider->getFunction(key) - val);
 	}
 	return *this;
 }
@@ -271,7 +271,7 @@ int64_t ConditionsStore::Get(const string &name) const
 	if(!ce->provider)
 		return ce->value;
 
-	return ce->provider->getFun(name);
+	return ce->provider->getFunction(name);
 }
 
 
@@ -285,7 +285,7 @@ bool ConditionsStore::Has(const string &name) const
 	if(!ce->provider)
 		return true;
 
-	return ce->provider->hasFun(name);
+	return ce->provider->hasFunction(name);
 }
 
 
@@ -323,7 +323,7 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 		ce->value = value;
 		return true;
 	}
-	return ce->provider->setFun(name, value);
+	return ce->provider->setFunction(name, value);
 }
 
 
@@ -341,7 +341,7 @@ bool ConditionsStore::Erase(const string &name)
 		storage.erase(name);
 		return true;
 	}
-	return ce->provider->eraseFun(name);
+	return ce->provider->eraseFunction(name);
 }
 
 

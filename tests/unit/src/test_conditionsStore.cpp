@@ -57,22 +57,22 @@ public:
 	void SetROPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
 		auto &&conditionsProvider = store.GetProviderPrefixed(prefix);
-		conditionsProvider.SetHasFun([this, prefix](const std::string &name)
+		conditionsProvider.SetHasFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFun([this, prefix](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([this, prefix](const std::string &name, int64_t value)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return false;
 		});
-		conditionsProvider.SetEraseFun([this, prefix](const std::string &name)
+		conditionsProvider.SetEraseFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return false;
 		});
-		conditionsProvider.SetGetFun([this, prefix](const std::string &name)
+		conditionsProvider.SetGetFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return getFromMapOrZero(values, name);
@@ -81,24 +81,24 @@ public:
 	void SetRWPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
 		auto &&conditionsProvider = store.GetProviderPrefixed(prefix);
-		conditionsProvider.SetHasFun([this, prefix](const std::string &name)
+		conditionsProvider.SetHasFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFun([this, prefix](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([this, prefix](const std::string &name, int64_t value)
 		{
 			verifyAndStripPrefix(prefix, name);
 			values[name] = value;
 			return true;
 		});
-		conditionsProvider.SetEraseFun([this, prefix](const std::string &name)
+		conditionsProvider.SetEraseFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			values.erase(name);
 			return true;
 		});
-		conditionsProvider.SetGetFun([this, prefix](const std::string &name)
+		conditionsProvider.SetGetFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
 			return getFromMapOrZero(values, name);
@@ -107,22 +107,22 @@ public:
 	void SetRONamedProvider(ConditionsStore &store, const std::string &named)
 	{
 		auto &&conditionsProvider = store.GetProviderNamed(named);
-		conditionsProvider.SetHasFun([this, named](const std::string &name)
+		conditionsProvider.SetHasFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFun([this, named](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([this, named](const std::string &name, int64_t value)
 		{
 			verifyName(named, name);
 			return false;
 		});
-		conditionsProvider.SetEraseFun([this, named](const std::string &name)
+		conditionsProvider.SetEraseFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			return false;
 		});
-		conditionsProvider.SetGetFun([this, named](const std::string &name)
+		conditionsProvider.SetGetFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			return getFromMapOrZero(values, name);
@@ -131,24 +131,24 @@ public:
 	void SetRWNamedProvider(ConditionsStore &store, const std::string &named)
 	{
 		auto &&conditionsProvider = store.GetProviderNamed(named);
-		conditionsProvider.SetHasFun([this, named](const std::string &name)
+		conditionsProvider.SetHasFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			return isInMap(values, name);
 		});
-		conditionsProvider.SetSetFun([this, named](const std::string &name, int64_t value)
+		conditionsProvider.SetSetFunction([this, named](const std::string &name, int64_t value)
 		{
 			verifyName(named, name);
 			values[name] = value;
 			return true;
 		});
-		conditionsProvider.SetEraseFun([this, named](const std::string &name)
+		conditionsProvider.SetEraseFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			values.erase(name);
 			return true;
 		});
-		conditionsProvider.SetGetFun([this, named](const std::string &name)
+		conditionsProvider.SetGetFunction([this, named](const std::string &name)
 		{
 			verifyName(named, name);
 			return getFromMapOrZero(values, name);
