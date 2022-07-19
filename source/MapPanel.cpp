@@ -1054,7 +1054,7 @@ void MapPanel::DrawWormholes()
 		const Planet &p = *it.second.GetPlanet();
 		if(!p.IsValid() || !player.HasVisited(p) || !it.second.IsMappable())
 			continue;
-		
+
 		for(auto &&link : it.second.Links())
 			if(p.IsInSystem(link.first)
 					&& player.HasVisited(*link.first) && player.HasVisited(*link.second))

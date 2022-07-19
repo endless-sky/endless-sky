@@ -42,13 +42,13 @@ void Wormhole::Load(const DataNode &node)
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
-		
+
 		// Get the key and value (if any).
 		const string &key = child.Token((add || remove) ? 1 : 0);
 		int valueIndex = (add || remove) ? 2 : 1;
 		bool hasValue = (child.Size() > valueIndex);
 		const string &value = child.Token(hasValue ? valueIndex : 0);
-		
+
 		// Check for conditions that require clearing this key's current value.
 		// "remove <key>" means to clear the key's previous contents.
 		// "remove <key> <value>" means to remove just that value from the key.
@@ -65,7 +65,7 @@ void Wormhole::Load(const DataNode &node)
 			links.clear();
 			seenLinkAttribute = true;
 		}
-		
+
 		// Handle the attributes which can be "removed."
 		if(key == "link" && child.Size() > valueIndex + 1)
 		{

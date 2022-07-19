@@ -118,7 +118,7 @@ void UniverseObjects::FinishLoading()
 {
 	for(auto &&it : planets)
 		it.second.FinishLoading(wormholes);
-	
+
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
 	// neighbor distances to be updated.
