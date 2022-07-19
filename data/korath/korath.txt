@@ -198,8 +198,8 @@ fleet "Korath Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant
-		"Korath Raider"
-		"Korath Chaser" 2
+		"Vertsipmo"
+		"Rekaniz" 2
 
 
 fleet "Korath Ember Waste Raid"
@@ -212,8 +212,8 @@ fleet "Korath Ember Waste Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant
-		"Korath Raider (Ember)"
-		"Korath Chaser" 2
+		"Vertsipmo (Ember)"
+		"Rekaniz" 2
 
 
 fleet "Korath Home"
@@ -230,8 +230,8 @@ fleet "Korath Home"
 	variant 12
 		"Korath World-Ship C"
 	variant 12
-		"Korath Dredger"
-		"Korath Chaser" 4
+		"Kaoakst"
+		"Rekaniz" 4
 
 
 fleet "Kor Efret Home"
@@ -589,8 +589,8 @@ fleet "Kor Mereti Miners"
 
 
 outfitter "Korath Basics"
-	"Korath Piercer Rack"
-	"Korath Mine Rack"
+	"Piercer Missile Rack"
+	"Cluster Mine Rack"
 	"Command Center"
 	"Hyperdrive"
 	"Small Bunk Room"
@@ -601,10 +601,10 @@ outfitter "Korath Basics"
 	"Local Map"
 
 outfitter "Korath Exiles"
-	"Korath Banisher"
-	"Korath Fire-Lance"
-	"Korath Grab-Strike"
-	"Korath Warder"
+	"Banisher Grav-Turret"
+	"Fire-Lance"
+	"Grab-Strike Turret"
+	"Warder Anti-Missile"
 	"Steering (Asteroid Class)"
 	"Steering (Lunar Class)"
 	"Steering (Planetary Class)"
@@ -628,4 +628,4 @@ outfitter "Korath Exiles"
 	"Outfits Expansion"
 	"Cargo Expansion"
 	"Local Map"
-	"Korath Repeater Rifle"
+	"Thermal Repeater Rifle"

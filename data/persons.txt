@@ -617,11 +617,11 @@ ship "Modified Osprey"
 			"hit force" 30000
 	outfits
 		"Nuclear Missile"
-		"Korath Slicer" 4
+		"Husk-Slice" 4
 		"Korath Detainer" 4
 		"Finisher Pod" 2
 		"Finisher Torpedo" 200
-		"Korath Disruptor" 2
+		"Shield Disruptor Turret" 2
 		"Heliarch Repulsor" 2
 		"Point Defense Turret" 3
 		
@@ -648,10 +648,10 @@ ship "Modified Osprey"
 	engine -16.5 105 .6
 	engine 16.5 105 .6
 	gun 0 -114 "Nuclear Missile"
-	gun -6.5 -100 "Korath Slicer"
-	gun 6.5 -100 "Korath Slicer"
-	gun -14 -91 "Korath Slicer"
-	gun 14 -91 "Korath Slicer"
+	gun -6.5 -100 "Husk-Slice"
+	gun 6.5 -100 "Husk-Slice"
+	gun -14 -91 "Husk-Slice"
+	gun 14 -91 "Husk-Slice"
 	gun -19 -59 "Korath Detainer"
 	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
@@ -659,8 +659,8 @@ ship "Modified Osprey"
 	gun -67 -1.5 "Finisher Pod"
 	gun 67 -1.5 "Finisher Pod"
 	turret 0 -91.5 "Point Defense Turret"
-	turret -13.5 -15.5 "Korath Disruptor"
-	turret 13.5 -15.5 "Korath Disruptor"
+	turret -13.5 -15.5 "Shield Disruptor Turret"
+	turret 13.5 -15.5 "Shield Disruptor Turret"
 	turret -49.5 20 "Heliarch Repulsor"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
@@ -795,13 +795,13 @@ ship "Ursa Polaris"
 		"Quarg Skylance"
 		"LG Gridfire Turret" 3
 		"Plasma Turret"
-		"Korath Disruptor" 5
+		"Shield Disruptor Turret" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
-		"Korath Repeater Rifle" 600
+		"Thermal Repeater Rifle" 600
 		"Thruster (Stellar Class)"
 		"Smelter-Class Thruster"
 		`"Basrem" Atomic Thruster`
@@ -812,19 +812,19 @@ ship "Ursa Polaris"
 	engine -106.5 80.5 0.4
 	turret 27 -162 "Quarg Anti-Missile"
 	turret 27 -162 "Quarg Skylance"
-	turret 27 -162 "Korath Disruptor"
+	turret 27 -162 "Shield Disruptor Turret"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
 	turret 94.5 -52.5 "LG Gridfire Turret"
-	turret 94.5 -52.5 "Korath Disruptor"
+	turret 94.5 -52.5 "Shield Disruptor Turret"
 	turret 80.5 53 "Quarg Anti-Missile"
 	turret 80.5 53 "LG Gridfire Turret"
-	turret 80.5 53 "Korath Disruptor"
+	turret 80.5 53 "Shield Disruptor Turret"
 	turret 21 25.5 "Quarg Anti-Missile"
 	turret 21 25.5 "LG Gridfire Turret"
-	turret 21 25.5 "Korath Disruptor"
+	turret 21 25.5 "Shield Disruptor Turret"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
-	turret -69.5 -43 "Korath Disruptor"
+	turret -69.5 -43 "Shield Disruptor Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50

@@ -795,7 +795,7 @@ shipyard "Remnant Puffin"
 	"Puffin"
 
 shipyard "Remnant Salvage Ships"
-	"Korath Chaser"
+	"Rekaniz"
 
 
 
@@ -856,4 +856,4 @@ outfitter "Remnant Salvage"
 	"Thruster (Planetary Class)"
 	"Steering (Asteroid Class)"
 	"Steering (Planetary Class)"
-	"Korath Fire-Lance"
+	"Fire-Lance"
