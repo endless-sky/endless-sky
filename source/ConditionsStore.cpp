@@ -346,7 +346,7 @@ bool ConditionsStore::Erase(const string &name)
 
 
 
-ConditionsStore::ConditionEntry &ConditionsStore::operator[](const std::string &name)
+ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 {
 	// Search for an exact match and return it if it exists.
 	auto it = storage.find(name);
