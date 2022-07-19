@@ -152,7 +152,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		for(const auto &it : payload)
 		{
-			if(it.second < 0)
+			if(it.second < 1)
 				continue;
 
 			// Each payload object has a 25% chance of surviving. This creates
