@@ -26,28 +26,28 @@ ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPre
 
 
 
-void ConditionsStore::DerivedProvider::SetGetFun(std::function<int64_t(const std::string&)> newGetFun)
+void ConditionsStore::DerivedProvider::SetGetFun(std::function<int64_t(const std::string &)> newGetFun)
 {
 	getFun = std::move(newGetFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetHasFun(std::function<bool(const std::string&)> newHasFun)
+void ConditionsStore::DerivedProvider::SetHasFun(std::function<bool(const std::string &)> newHasFun)
 {
 	hasFun = std::move(newHasFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetSetFun(std::function<bool(const std::string&, int64_t)> newSetFun)
+void ConditionsStore::DerivedProvider::SetSetFun(std::function<bool(const std::string &, int64_t)> newSetFun)
 {
 	setFun = std::move(newSetFun);
 }
 
 
 
-void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std::string&)> newEraseFun)
+void ConditionsStore::DerivedProvider::SetEraseFun(std::function<bool(const std::string &)> newEraseFun)
 {
 	eraseFun = std::move(newEraseFun);
 }
@@ -176,14 +176,14 @@ ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator+
 
 
 // Equation operators, we can just compare the upstream iterators.
-bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator& rhs) const
+bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator &rhs) const
 {
 	return condMapIt == rhs.condMapIt;
 }
 
 
 
-bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator& rhs) const
+bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator &rhs) const
 {
 	return condMapIt != rhs.condMapIt;
 }
@@ -426,7 +426,7 @@ void ConditionsStore::Clear()
 ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
-	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore*>(this)->GetEntry(name));
+	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
 }
 
 

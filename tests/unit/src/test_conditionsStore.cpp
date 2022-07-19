@@ -43,7 +43,7 @@ int primarySize(const ConditionsStore &store)
 {
 	int size = 0;
 	auto it = store.PrimariesBegin();
-	while (it != store.PrimariesEnd())
+	while(it != store.PrimariesEnd())
 	{
 		++it;
 		++size;
@@ -52,40 +52,107 @@ int primarySize(const ConditionsStore &store)
 }
 
 
-class MockConditionsProvider
-{
+class MockConditionsProvider {
 public:
 	void SetROPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
 		auto &&conditionsProvider = store.GetProviderPrefixed(prefix);
-		conditionsProvider.SetHasFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); return isInMap(values, name); });
-		conditionsProvider.SetSetFun([this, prefix] (const std::string &name, int64_t value) { verifyAndStripPrefix(prefix, name); return false; });
-		conditionsProvider.SetEraseFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); return false; });
-		conditionsProvider.SetGetFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); return getFromMapOrZero(values, name); });
+		conditionsProvider.SetHasFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return isInMap(values, name);
+		});
+		conditionsProvider.SetSetFun([this, prefix](const std::string &name, int64_t value)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return false;
+		});
+		conditionsProvider.SetEraseFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return false;
+		});
+		conditionsProvider.SetGetFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return getFromMapOrZero(values, name);
+		});
 	}
 	void SetRWPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
 		auto &&conditionsProvider = store.GetProviderPrefixed(prefix);
-		conditionsProvider.SetHasFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); return isInMap(values, name); });
-		conditionsProvider.SetSetFun([this, prefix] (const std::string &name, int64_t value) { verifyAndStripPrefix(prefix, name); values[name] = value; return true; });
-		conditionsProvider.SetEraseFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); values.erase(name); return true; });
-		conditionsProvider.SetGetFun([this, prefix] (const std::string &name) { verifyAndStripPrefix(prefix, name); return getFromMapOrZero(values, name); });
+		conditionsProvider.SetHasFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return isInMap(values, name);
+		});
+		conditionsProvider.SetSetFun([this, prefix](const std::string &name, int64_t value)
+		{
+			verifyAndStripPrefix(prefix, name);
+			values[name] = value;
+			return true;
+		});
+		conditionsProvider.SetEraseFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			values.erase(name);
+			return true;
+		});
+		conditionsProvider.SetGetFun([this, prefix](const std::string &name)
+		{
+			verifyAndStripPrefix(prefix, name);
+			return getFromMapOrZero(values, name);
+		});
 	}
 	void SetRONamedProvider(ConditionsStore &store, const std::string &named)
 	{
 		auto &&conditionsProvider = store.GetProviderNamed(named);
-		conditionsProvider.SetHasFun([this, named] (const std::string &name) { verifyName(named, name); return isInMap(values, name); });
-		conditionsProvider.SetSetFun([this, named] (const std::string &name, int64_t value) { verifyName(named, name); return false; });
-		conditionsProvider.SetEraseFun([this, named] (const std::string &name) { verifyName(named, name); return false; });
-		conditionsProvider.SetGetFun([this, named] (const std::string &name) { verifyName(named, name); return getFromMapOrZero(values, name); });
+		conditionsProvider.SetHasFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			return isInMap(values, name);
+		});
+		conditionsProvider.SetSetFun([this, named](const std::string &name, int64_t value)
+		{
+			verifyName(named, name);
+			return false;
+		});
+		conditionsProvider.SetEraseFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			return false;
+		});
+		conditionsProvider.SetGetFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			return getFromMapOrZero(values, name);
+		});
 	}
 	void SetRWNamedProvider(ConditionsStore &store, const std::string &named)
 	{
 		auto &&conditionsProvider = store.GetProviderNamed(named);
-		conditionsProvider.SetHasFun([this, named] (const std::string &name) { verifyName(named, name); return isInMap(values, name); });
-		conditionsProvider.SetSetFun([this, named] (const std::string &name, int64_t value) { verifyName(named, name); values[name] = value; return true; });
-		conditionsProvider.SetEraseFun([this, named] (const std::string &name) { verifyName(named, name); values.erase(name); return true; });
-		conditionsProvider.SetGetFun([this, named] (const std::string &name) { verifyName(named, name); return getFromMapOrZero(values, name); });
+		conditionsProvider.SetHasFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			return isInMap(values, name);
+		});
+		conditionsProvider.SetSetFun([this, named](const std::string &name, int64_t value)
+		{
+			verifyName(named, name);
+			values[name] = value;
+			return true;
+		});
+		conditionsProvider.SetEraseFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			values.erase(name);
+			return true;
+		});
+		conditionsProvider.SetGetFun([this, named](const std::string &name)
+		{
+			verifyName(named, name);
+			return getFromMapOrZero(values, name);
+		});
 	}
 
 public:
@@ -98,20 +165,27 @@ public:
 
 
 // #region unit tests
-SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
-	GIVEN( "A ConditionStore" ) {
-		WHEN( "it is just default initalized" ) {
+SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
+{
+	GIVEN( "A ConditionStore" )
+	{
+		WHEN( "it is just default initalized" )
+		{
 			const auto store = ConditionsStore();
-			THEN( "the store is empty" ) {
+			THEN( "the store is empty" )
+			{
 				REQUIRE( primarySize(store) == 0 );
 			}
-			THEN( "two begin iterators should be equal" ) {
+			THEN( "two begin iterators should be equal" )
+			{
 				REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
 			}
-			THEN( "two end iterators should be equal" ) {
+			THEN( "two end iterators should be equal" )
+			{
 				REQUIRE( store.PrimariesEnd() == store.PrimariesEnd() );
 			}
-			THEN( "the begin and end iterators should be equal" ) {
+			THEN( "the begin and end iterators should be equal" )
+			{
 				REQUIRE( store.PrimariesBegin() == store.PrimariesEnd() );
 				REQUIRE( store.PrimariesEnd() == store.PrimariesBegin() );
 				auto it = store.PrimariesBegin();
@@ -122,15 +196,18 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 				REQUIRE( store.PrimariesBegin() == it );
 			}
 		}
-		WHEN( "initialized using an initalizer list" ) {
-			const auto store = ConditionsStore{{"hello world", 100}, {"goodbye world", 404}};
-			THEN( "given primary conditions are in the Store" ) {
+		WHEN( "initialized using an initalizer list" )
+		{
+			const auto store = ConditionsStore{ { "hello world", 100 }, { "goodbye world", 404 } };
+			THEN( "given primary conditions are in the Store" )
+			{
 				REQUIRE( store.Get("hello world") == 100 );
 				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( primarySize(store) == 2 );
 			}
-			THEN( "not given conditions return the default value" ) {
+			THEN( "not given conditions return the default value" )
+			{
 				REQUIRE( 0 == store.Get("ungreeted world") );
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.Get("ungreeted world") == 0 );
@@ -140,39 +217,45 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 				REQUIRE( store.Get("hi world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
 			}
-			THEN( "two iterators to the same position should be equal") {
+			THEN( "two iterators to the same position should be equal" )
+			{
 				REQUIRE( store.PrimariesBegin() == store.PrimariesBegin() );
 				REQUIRE( store.PrimariesEnd() == store.PrimariesEnd() );
 			}
-			THEN( "iterating over the conditions should return all initial values") {
+			THEN( "iterating over the conditions should return all initial values" )
+			{
 				auto it = store.PrimariesBegin();
-				REQUIRE( it != store.PrimariesEnd());
-				REQUIRE( it->first == "goodbye world");
+				REQUIRE( it != store.PrimariesEnd() );
+				REQUIRE( it->first == "goodbye world" );
 				REQUIRE( it->second == 404 );
 				++it;
-				REQUIRE( it->first == "hello world");
+				REQUIRE( it->first == "hello world" );
 				REQUIRE( it->second == 100 );
 				it++;
-				REQUIRE( it == store.PrimariesEnd());
+				REQUIRE( it == store.PrimariesEnd() );
 			}
-			THEN( "doing lower_bound finds should return values above the bound") {
-				auto it = store.PrimariesLowerBound("ha");
-				REQUIRE( it != store.PrimariesEnd());
-				REQUIRE( it->first == "hello world");
+			THEN( "doing lower_bound finds should return values above the bound" )
+			{
+				auto it = store.PrimariesLowerBound("ha" );
+				REQUIRE( it != store.PrimariesEnd() );
+				REQUIRE( it->first == "hello world" );
 				REQUIRE( it->second == 100 );
 				++it;
-				REQUIRE( it == store.PrimariesEnd());
+				REQUIRE( it == store.PrimariesEnd() );
 			}
 		}
-		WHEN( "initialized using an initializer map" ) {
-			const std::map<std::string, int64_t> initmap {{"hello world", 100}, {"goodbye world", 404}};
-			const auto store = ConditionsStore(initmap);
-			THEN( "given primary conditions are in the Store" ) {
+		WHEN( "initialized using an initializer map" )
+		{
+			const std::map<std::string, int64_t> initmap{ { "hello world", 100 }, { "goodbye world", 404 } };
+			const auto store = ConditionsStore(initmap );
+			THEN( "given primary conditions are in the Store" )
+			{
 				REQUIRE( store.Get("hello world") == 100 );
 				REQUIRE( store.Get("goodbye world") == 404 );
 				REQUIRE( primarySize(store) == 2 );
 			}
-			THEN( "not given conditions return the default value" ) {
+			THEN( "not given conditions return the default value" )
+			{
 				REQUIRE( store.Get("ungreeted world") == 0 );
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.Get("ungreeted world") == 0 );
@@ -183,9 +266,11 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 				REQUIRE( primarySize(store) == 2 );
 			}
 		}
-		WHEN( "initialized with a long initializer list" ) {
-			const auto store = ConditionsStore{{"a", 1}, {"b", 2}, {"d", 4}, {"c", 3}, {"g", 7}, {"f", 6}, {"e", 5}};
-			THEN( "iterating from the beginning should pass all conditions and reach the end")
+		WHEN( "initialized with a long initializer list" )
+		{
+			const auto store = ConditionsStore{ { "a", 1 }, { "b", 2 }, { "d", 4 }, { "c", 3 }, { "g", 7 },
+				{ "f", 6 }, { "e", 5 } };
+			THEN( "iterating from the beginning should pass all conditions and reach the end" )
 			{
 				auto it = store.PrimariesBegin();
 				REQUIRE( (it->first == "a" && it->second == 1) );
@@ -202,26 +287,31 @@ SCENARIO( "Creating a ConditionsStore" , "[ConditionsStore][Creation]" ) {
 				it++;
 				REQUIRE( (it->first == "g" && it->second == 7) );
 				it++;
-				REQUIRE( it == store.PrimariesEnd());
+				REQUIRE( it == store.PrimariesEnd() );
 			}
 		}
 	}
 }
 
-SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]" ) {
-	GIVEN( "An empty conditionsStore" ) {
+SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]" )
+{
+	GIVEN( "An empty conditionsStore" )
+	{
 		auto store = ConditionsStore();
 		REQUIRE( primarySize(store) == 0 );
-		WHEN( "a condition is set" ) {
+		WHEN( "a condition is set" )
+		{
 			REQUIRE( store.Set("myFirstVar", 10) == true );
-			THEN( "stored condition is present and can be retrieved" ) {
+			THEN( "stored condition is present and can be retrieved" )
+			{
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store.Has("myFirstVar") == true );
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store["myFirstVar"] == 10 );
 			}
-			THEN( "erasing the condition will make it disappear again" ) {
+			THEN( "erasing the condition will make it disappear again" )
+			{
 				REQUIRE( store.Has("myFirstVar") == true );
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
@@ -234,15 +324,18 @@ SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]"
 				REQUIRE( primarySize(store) == 0 );
 			}
 		}
-		WHEN( "non-existing conditions are queried" ) {
-			THEN( "defaults are returned and queried conditions are not stored" ) {
+		WHEN( "non-existing conditions are queried" )
+		{
+			THEN( "defaults are returned and queried conditions are not stored" )
+			{
 				REQUIRE( store.Get("mySecondVar") == 0 );
 				REQUIRE( primarySize(store) == 0 );
 				REQUIRE( store.Has("mySecondVar") == false );
 				REQUIRE( store.Get("mySecondVar") == 0 );
 				REQUIRE( primarySize(store) == 0 );
 			}
-			THEN( "they get created when accessed through square brackets" ) {
+			THEN( "they get created when accessed through square brackets" )
+			{
 				REQUIRE( store["mySecondVar"] == 0 );
 				REQUIRE( primarySize(store) == 1 );
 			}
@@ -250,14 +343,18 @@ SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]"
 	}
 }
 
-SCENARIO( "Adding and removing on condition values", "[ConditionStore][ConditionArithmetic]" ) {
-	GIVEN( "A conditionsStore with 1 condition" ) {
-		auto store = ConditionsStore{{"myFirstVar", 10}};
+SCENARIO( "Adding and removing on condition values", "[ConditionStore][ConditionArithmetic]" )
+{
+	GIVEN( "A conditionsStore with 1 condition" )
+	{
+		auto store = ConditionsStore{ { "myFirstVar", 10 } };
 		REQUIRE( store.Get("myFirstVar") == 10 );
 		REQUIRE( primarySize(store) == 1 );
-		WHEN( "adding to the existing primary condition" ) {
+		WHEN( "adding to the existing primary condition" )
+		{
 			REQUIRE( store.Add("myFirstVar", 10) == true );
-			THEN( "the condition gets the new value" ) {
+			THEN( "the condition gets the new value" )
+			{
 				REQUIRE( store.Get("myFirstVar") == 20 );
 				REQUIRE( store.Add("myFirstVar", -15) == true );
 				REQUIRE( store.Get("myFirstVar") == 5 );
@@ -280,9 +377,11 @@ SCENARIO( "Adding and removing on condition values", "[ConditionStore][Condition
 				REQUIRE( store.Get("myFirstVar") == 7 );
 			}
 		}
-		WHEN( "adding to another non-existing (primary) condition sets the new value" ) {
+		WHEN( "adding to another non-existing (primary) condition sets the new value" )
+		{
 			REQUIRE( store.Add("mySecondVar", -30) == true );
-			THEN( "the new condition exists with the new value" ) {
+			THEN( "the new condition exists with the new value" )
+			{
 				REQUIRE( store.Get("mySecondVar") == -30 );
 				REQUIRE( primarySize(store) == 2 );
 				REQUIRE( store.Has("mySecondVar") == true );
@@ -294,11 +393,13 @@ SCENARIO( "Adding and removing on condition values", "[ConditionStore][Condition
 	}
 }
 
-SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" ) {
-	GIVEN( "A conditionsStore, a prefixed provider and a named provider" ) {
+SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" )
+{
+	GIVEN( "A conditionsStore, a prefixed provider and a named provider" )
+	{
 		auto mockProvPrefixA = MockConditionsProvider();
 		auto mockProvNamed = MockConditionsProvider();
-		auto store = ConditionsStore{{"myFirstVar", 10}};
+		auto store = ConditionsStore{ { "myFirstVar", 10 } };
 		mockProvNamed.SetRWNamedProvider(store, "named1");
 		mockProvPrefixA.SetRWPrefixProvider(store, "prefixA: ");
 		REQUIRE( store.Add("named1", -30) == true );
@@ -312,8 +413,10 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 		REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 		REQUIRE( mockProvNamed.values.size() == 1 );
 		REQUIRE( primarySize(store) == 1 );
-		WHEN( "adding to an existing primary condition" ) {
-			THEN( "the add should work as-is" ) {
+		WHEN( "adding to an existing primary condition" )
+		{
+			THEN( "the add should work as-is" )
+			{
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store.Add("myFirstVar", 10) == true );
 				REQUIRE( store.Get("myFirstVar") == 20 );
@@ -330,8 +433,10 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store["myFirstVar"] == 1 );
 			}
 		}
-		WHEN( "adding to an non-existing primary condition" ) {
-			THEN( "such condition should be set properly" ) {
+		WHEN( "adding to an non-existing primary condition" )
+		{
+			THEN( "such condition should be set properly" )
+			{
 				REQUIRE( store.Add("mySecondVar", -30) == true );
 				REQUIRE( store.Get("mySecondVar") == -30 );
 				REQUIRE( primarySize(store) == 2 );
@@ -341,18 +446,21 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( primarySize(store) == 2 );
 			}
 		}
-		WHEN( "iterating over primary conditions" ) {
+		WHEN( "iterating over primary conditions" )
+		{
 			auto it = store.PrimariesBegin();
-			THEN( "only the stored primary condition should be returned" ) {
+			THEN( "only the stored primary condition should be returned" )
+			{
 				REQUIRE( it->first == "myFirstVar" );
 				REQUIRE( it->second == 10 );
 				++it;
 				REQUIRE( it == store.PrimariesEnd() );
 			}
-			THEN( "primary-lowerBound should only search in primary conditions" ) {
-				it = store.PrimariesLowerBound("n");
+			THEN( "primary-lowerBound should only search in primary conditions" )
+			{
+				it = store.PrimariesLowerBound("n" );
 				REQUIRE( it == store.PrimariesEnd() );
-				it = store.PrimariesLowerBound("l");
+				it = store.PrimariesLowerBound("l" );
 				REQUIRE( it != store.PrimariesEnd() );
 				REQUIRE( it->first == "myFirstVar" );
 				REQUIRE( it->second == 10 );
@@ -360,9 +468,11 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( it == store.PrimariesEnd() );
 			}
 		}
-		WHEN( "adding on a named derived condition" ) {
+		WHEN( "adding on a named derived condition" )
+		{
 			REQUIRE( store.Add("named1", -30) == true );
-			THEN( "effects of adding should be on the named condition" ) {
+			THEN( "effects of adding should be on the named condition" )
+			{
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
 				REQUIRE( store.Add("named1", -20) == true );
@@ -381,8 +491,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("myFirstVar") == 11 );
 				REQUIRE( store.Get("mySecondVar") == 0 );
 			}
-			THEN( "readonly providers should reject the add and don't change values" ) {
-				mockProvNamed.SetRONamedProvider(store, "named1");
+			THEN( "readonly providers should reject the add and don't change values" )
+			{
+				mockProvNamed.SetRONamedProvider(store, "named1" );
 				REQUIRE( store.Add("named1", -20) == false );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
@@ -398,8 +509,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("named1") == -60 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
-			THEN( "readonly providers should not perform erase actions" ) {
-				mockProvNamed.SetRONamedProvider(store, "named1");
+			THEN( "readonly providers should not perform erase actions" )
+			{
+				mockProvNamed.SetRONamedProvider(store, "named1" );
 				REQUIRE( store.Erase("named1") == false );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
@@ -408,14 +520,17 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store.Has("named1") == true );
 			}
-			THEN( "not given conditions (that almost match the named condition) should not exist" ) {
+			THEN( "not given conditions (that almost match the named condition) should not exist" )
+			{
 				REQUIRE( store.Has("named") == false );
 				REQUIRE( store.Has("named11") == false );
 			}
 		}
-		WHEN( "adding on a prefixed derived condition" ) {
+		WHEN( "adding on a prefixed derived condition" )
+		{
 			REQUIRE( store.Add("prefixA: test", -30) == true );
-			THEN( "derived prefixed conditions should be set properly" ) {
+			THEN( "derived prefixed conditions should be set properly" )
+			{
 				REQUIRE( primarySize(store) == 1 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
@@ -434,8 +549,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store["prefixA: test"] == -70 );
 				REQUIRE( primarySize(store) == 1 );
 			}
-			THEN( "read-only prefixed provider should reject further updates" ) {
-				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
+			THEN( "read-only prefixed provider should reject further updates" )
+			{
+				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
 				REQUIRE( store.Add("prefixA: test", -20) == false );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
@@ -446,8 +562,9 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("prefixA: test") == -60 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
-			THEN( "read-only prefixed provider should reject erase" ) {
-				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
+			THEN( "read-only prefixed provider should reject erase" )
+			{
+				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
 				REQUIRE( store.Erase("prefixA: test") == false );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
 				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
@@ -459,7 +576,8 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Has("prefixA: ") == false );
 				REQUIRE( store.Has("prefixA:") == false );
 			}
-			THEN( "prefixed values from within provider should be available" ) {
+			THEN( "prefixed values from within provider should be available" )
+			{
 				mockProvPrefixA.values["prefixA: "] = 22;
 				mockProvPrefixA.values["prefixA:"] = 21;
 				REQUIRE( store.Has("prefixA: test") == true );
@@ -472,19 +590,21 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store["prefixA: test"] == -60 );
 				REQUIRE( store["prefixA: "] == 22 );
 			}
-			AND_GIVEN( "more derived condition providers are added" ) {
+			AND_GIVEN( "more derived condition providers are added" )
+			{
 				auto mockProvPrefix = MockConditionsProvider();
-				mockProvPrefix.SetRWPrefixProvider(store, "prefix: ");
+				mockProvPrefix.SetRWPrefixProvider(store, "prefix: " );
 				auto mockProvPrefixB = MockConditionsProvider();
-				mockProvPrefixB.SetRWPrefixProvider(store, "prefixB: ");
-				THEN( "derived prefixed conditions should be set properly" ) {
+				mockProvPrefixB.SetRWPrefixProvider(store, "prefixB: " );
+				THEN( "derived prefixed conditions should be set properly" )
+				{
 					REQUIRE( primarySize(store) == 1 );
 					REQUIRE( store.Add("prefixA: test", 30) == true );
 					REQUIRE( primarySize(store) == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( store.Get("prefixA: test") == -30 );
 					REQUIRE( store.Get("myFirstVar") == 10 );
-					mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
+					mockProvPrefixA.SetROPrefixProvider(store, "prefixA: " );
 					REQUIRE( store.Add("prefixA: test", -20) == false );
 					REQUIRE( mockProvPrefixA.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
@@ -508,7 +628,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 					REQUIRE( mockProvPrefix.values.size() == 0 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
 					REQUIRE( mockProvPrefixB.values.size() == 0 );
-					mockProvPrefixA.SetRWPrefixProvider(store, "prefixA: ");
+					mockProvPrefixA.SetRWPrefixProvider(store, "prefixA: " );
 					REQUIRE( store.Set("prefix: beginning", 42) == true );
 					REQUIRE( mockProvPrefix.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values.size() == 3 );
@@ -544,34 +664,37 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 }
 
 
-SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMultiple]" ) {
-	GIVEN( "A conditionsStore and a prefixed provider" ) {
+SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMultiple]" )
+{
+	GIVEN( "A conditionsStore and a prefixed provider" )
+	{
 		auto store = ConditionsStore();
 		auto mockProvPrefixShips = MockConditionsProvider();
-		mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
-		WHEN( "adding variables with similar names" ) {
-			REQUIRE ( store.Add("ships: A", 20) == true );
+		mockProvPrefixShips.SetRWPrefixProvider(store, "ships: " );
+		WHEN( "adding variables with similar names" )
+		{
+			REQUIRE( store.Add("ships: A", 20) == true );
 			REQUIRE( mockProvPrefixShips.values.size() == 1 );
 			REQUIRE( mockProvPrefixShips.values["ships: A"] == 20 );
-			REQUIRE ( store.Add("ships: AB", 30) == true );
+			REQUIRE( store.Add("ships: AB", 30) == true );
 			REQUIRE( mockProvPrefixShips.values.size() == 2 );
 			REQUIRE( mockProvPrefixShips.values["ships: AB"] == 30 );
-			REQUIRE ( store.Add("ships: C", 40) == true );
+			REQUIRE( store.Add("ships: C", 40) == true );
 			REQUIRE( mockProvPrefixShips.values.size() == 3 );
 			REQUIRE( mockProvPrefixShips.values["ships: C"] == 40 );
-			THEN ( "the values should be retrieved as set" ) {
-				REQUIRE (store.Get("ships: AB") == 30);
-				REQUIRE (store["ships: AB"] == 30);
-				REQUIRE (store.Get("ships: C") == 40);
-				REQUIRE (store["ships: C"] == 40);
-				REQUIRE (store.Get("ships: A") == 20);
-				REQUIRE (store["ships: A"] == 20);
+			THEN( "the values should be retrieved as set" )
+			{
+				REQUIRE( store.Get("ships: AB") == 30 );
+				REQUIRE( store["ships: AB"] == 30 );
+				REQUIRE( store.Get("ships: C") == 40 );
+				REQUIRE( store["ships: C"] == 40 );
+				REQUIRE( store.Get("ships: A") == 20 );
+				REQUIRE( store["ships: A"] == 20 );
 				REQUIRE( mockProvPrefixShips.values.size() == 3 );
 			}
 		}
 	}
 }
-
 // #endregion unit tests
 
 

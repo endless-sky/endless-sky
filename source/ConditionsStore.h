@@ -41,16 +41,16 @@ public:
 
 	// Class for DerivedProviders, the (lambda) functions that provide access
 	// to the derived conditions are registered in this class.
-	class DerivedProvider
-	{
-	friend ConditionsStore;
-	friend ConditionEntry;
+	class DerivedProvider {
+		friend ConditionsStore;
+		friend ConditionEntry;
+
 	public:
 		// Functions to set the lambda functions for accessing the conditions.
-		void SetGetFun(std::function<int64_t(const std::string&)> newGetFun);
-		void SetHasFun(std::function<bool(const std::string&)> newHasFun);
-		void SetSetFun(std::function<bool(const std::string&, int64_t)> newSetFun);
-		void SetEraseFun(std::function<bool(const std::string&)> newEraseFun);
+		void SetGetFun(std::function<int64_t(const std::string &)> newGetFun);
+		void SetHasFun(std::function<bool(const std::string &)> newHasFun);
+		void SetSetFun(std::function<bool(const std::string &, int64_t)> newSetFun);
+		void SetEraseFun(std::function<bool(const std::string &)> newEraseFun);
 
 	public:
 		// This is intented as a private constructor, only to be called from within
@@ -64,18 +64,18 @@ public:
 
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
-		std::function<int64_t(const std::string&)> getFun = [](const std::string &name) { return 0; };
-		std::function<bool(const std::string&)> hasFun = [](const std::string &name) { return true; };
-		std::function<bool(const std::string&, int64_t)> setFun = [](const std::string &name, int64_t value) { return false; };
-		std::function<bool(const std::string&)> eraseFun = [](const std::string &name) { return false; };
+		std::function<int64_t(const std::string &)> getFun = [](const std::string &name) { return 0; };
+		std::function<bool(const std::string &)> hasFun = [](const std::string &name) { return true; };
+		std::function<bool(const std::string &, int64_t)> setFun = [](const std::string &name, int64_t value) { return false; };
+		std::function<bool(const std::string &)> eraseFun = [](const std::string &name) { return false; };
 	};
 
 
 	// Storage entry for a condition. Can act as a int64_t proxy when operator[] is used for access
 	// to conditions in the ConditionsStore.
-	class ConditionEntry
-	{
-	friend ConditionsStore;
+	class ConditionEntry {
+		friend ConditionsStore;
+
 	public:
 		// int64_t proxy helper functions. Those functions allow access to the conditions
 		// using `operator[]` on ConditionsStore.
@@ -99,8 +99,7 @@ public:
 	// Input_iterator helper class to iterate over primary conditions.
 	// This can be used when saving primary conditions to savegames and/or
 	// for displaying some data based on primary conditions.
-	class PrimariesIterator
-	{
+	class PrimariesIterator {
 		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
 
 	public:
@@ -110,16 +109,16 @@ public:
 		using iterator_category = std::input_iterator_tag;
 		using value_type = std::pair<const std::string, int64_t>;
 		using difference_type = void;
-		using pointer = const std::pair<const std::string, int64_t>*;
+		using pointer = const std::pair<const std::string, int64_t> *;
 		using reference = std::pair<const std::string, int64_t>;
 
 		// Default input_iterator operations.
 		std::pair<std::string, int64_t> operator*() const;
-		const std::pair<std::string, int64_t>* operator->();
-		PrimariesIterator& operator++();
+		const std::pair<std::string, int64_t> *operator->();
+		PrimariesIterator &operator++();
 		PrimariesIterator operator++(int);
-		bool operator== (const PrimariesIterator& rhs) const;
-		bool operator!= (const PrimariesIterator& rhs) const;
+		bool operator==(const PrimariesIterator &rhs) const;
+		bool operator!=(const PrimariesIterator &rhs) const;
 
 
 	public:

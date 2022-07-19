@@ -36,7 +36,7 @@ int primarySize(const ConditionsStore &store)
 {
 	int size = 0;
 	auto it = store.PrimariesBegin();
-	while (it != store.PrimariesEnd())
+	while(it != store.PrimariesEnd())
 	{
 		++it;
 		++size;
@@ -118,7 +118,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
 			const auto conditionList = ConditionsStore{
-				{"event: war begins", 1},
+				{ "event: war begins", 1 },
 			};
 			THEN( "the ConditionSet is satisfied" ) {
 				REQUIRE( emptySet.Test(conditionList) );
@@ -131,7 +131,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
 			const auto listWithNever = ConditionsStore{
-				{"never", 1},
+				{ "never", 1 },
 			};
 			THEN( "the ConditionSet is not satisfied" ) {
 				REQUIRE_FALSE( neverSet.Test(listWithNever) );

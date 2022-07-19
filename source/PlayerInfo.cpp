@@ -2559,13 +2559,34 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
-	flagshipCrewProvider.SetGetFun([this](const string &name) -> int64_t { if(flagship) { return flagship->Crew(); } return 0; });
+	flagshipCrewProvider.SetGetFun([this](const string &name) -> int64_t
+	{
+		if(flagship)
+		{
+			return flagship->Crew();
+		}
+		return 0;
+	});
 
 	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
-	flagshipRequiredCrewProvider.SetGetFun([this](const string &name) -> int64_t { if(flagship) { return flagship->RequiredCrew(); } return 0; });
+	flagshipRequiredCrewProvider.SetGetFun([this](const string &name) -> int64_t
+	{
+		if(flagship)
+		{
+			return flagship->RequiredCrew();
+		}
+		return 0;
+	});
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
-	flagshipBunksProvider.SetGetFun([this](const string &name) -> int64_t { if(flagship) { return flagship->Attributes().Get("bunks"); } return 0; });
+	flagshipBunksProvider.SetGetFun([this](const string &name) -> int64_t
+	{
+		if(flagship)
+		{
+			return flagship->Attributes().Get("bunks");
+		}
+		return 0;
+	});
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
@@ -2575,7 +2596,11 @@ void PlayerInfo::RegisterDerivedConditions()
 	armamentDeterrence.SetGetFun([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
 
 	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
-	pirateAttractionProvider.SetGetFun([this](const string &name) -> int64_t { auto rff = RaidFleetFactors(); return rff.first - rff.second; });
+	pirateAttractionProvider.SetGetFun([this](const string &name) -> int64_t
+	{
+		auto rff = RaidFleetFactors();
+		return rff.first - rff.second;
+	});
 
 	// Special conditions for cargo and passenger space.
 	// If boarding a ship, missions should not consider the space available
