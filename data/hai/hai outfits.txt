@@ -169,14 +169,6 @@ outfit "rslug"
 		"ion damage" .3
 		"hit force" 15
 
-effect "bullet impact"
-	sprite "effect/bullet impact"
-		"no repeat"
-		"frame rate" 60
-	"lifetime" 8
-	"random angle" 40
-	"velocity scale" -.05
-
 effect "rail sparks"
 	sprite "effect/railspark"
 		"random start frame"
@@ -476,7 +468,7 @@ outfit `"Baellie" Atomic Engines`
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
-	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
+	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie."`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"

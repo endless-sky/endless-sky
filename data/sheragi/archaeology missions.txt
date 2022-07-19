@@ -1364,7 +1364,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto rakei
 				`	(Look for Desyo to see what she's doing.)`
 					goto desyo
-				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
 			apply

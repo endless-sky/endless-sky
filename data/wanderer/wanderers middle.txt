@@ -726,7 +726,7 @@ mission "Wanderers: Kor Efret 3"
 		event "wanderers: kashikt battle begins"
 		conversation
 			`With Rek's help, you make contact with the team of Korath engineers, and Rek explains the Wanderer plan to hack into the Kor Mereti network. Her speech is slower than before, and she has to keep asking questions; clearly the conversation involves technical jargon that she is not yet familiar with. When she is done explaining, the Korath are silent for a minute, then one of them answers quite loudly, almost shouting, gesturing in your direction as if pushing you away.`
-			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ...unless it is proven to be beneficial."`
+			`	Rek says, "He said, 'Do you think we are idiots? Do you think we have not attempted that?'" The Korath leader follows up with another long statement that Rek hesitantly translates. "The Mereti... consciousness? It is impossible to subvert. It has a sort of... immune system? Like a living creature. Any foreign influence that impinges on its network is sequestered and analyzed. It does not become part of the... gestalt? ... unless it is proven to be beneficial."`
 			choice
 				`	"But perhaps the Wanderers could succeed where the Korath have failed."`
 				`	"What about the Kor Sestor? Do they have any hope of taking over those drones?"`
@@ -2542,13 +2542,13 @@ event "bombed zenith"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2558,7 +2558,7 @@ event "bombed zenith"
 		object "Zenith"
 			sprite "planet/zenith hot"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2568,11 +2568,11 @@ event "bombed zenith"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
@@ -2592,13 +2592,13 @@ event "zenith cooling"
 		object
 			sprite planet/desert1
 			distance 224.69
-			period 32.5315
+			period 32.5314
 		object
-			sprite planet/gas7
+			sprite planet/gas7-b
 			distance 966.7
 			period 290.312
 			object
-				sprite planet/miranda
+				sprite planet/miranda-b
 				distance 220
 				period 10.5884
 			object
@@ -2608,7 +2608,7 @@ event "zenith cooling"
 		object "Zenith"
 			sprite "planet/zenith cold"
 			distance 1776.59
-			period 723.284
+			period 723.283
 			object
 				sprite planet/ice8
 				distance 136
@@ -2618,11 +2618,11 @@ event "zenith cooling"
 			distance 2758.68
 			period 1399.52
 			object
-				sprite planet/dust1
+				sprite planet/dust1-b
 				distance 200
 				period 12.5708
 			object
-				sprite planet/lava0
+				sprite planet/lava0-b
 				distance 330
 				period 26.6433
 			object
