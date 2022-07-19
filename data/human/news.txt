@@ -418,7 +418,7 @@ news "dock worker"
 			"I use the knowledge I gain from this job to invest in stocks. You can always tell what companies are on the move from the products that pass through here."
 			"I got a raise today. Only two credits more than my previous salary. Ridiculous!"
 			"Found a bomb in a crate the other day. Turns out I probably saved a very important diplomat from being blown to pieces."
-			"Apparently, the spaceports in the Deep have fully automated loading systems. Could you imagine that!"
+			"Apparently, the spaceports in the Deep have fully automated loading systems. Imagine that!"
 		word
 			`"`
 
