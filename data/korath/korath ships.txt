@@ -960,6 +960,7 @@ ship "Korath Haven"
 	description "Korath Havens are massive nomadic habitats that hold much of their remaining population."
 
 
+
 ship "Cesmip'tlad"
 	sprite "ship/kws-efreti"
 	thumbnail "thumbnail/kws-efreti"
@@ -1141,6 +1142,7 @@ ship "Efreti Transport"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "This is the most recently produced Efreti vessel and is found taking up various roles in their space. While some are used for primarily transport, others are used in local mining to assist in the Efreti's never ending need for supplies. In combination with Quarg-inspired engine tech, the ship's smaller size allows it to carry out its tasks more nimbly than other Korath ships." 
+
 
 
 ship "Kar Ik Vot 349"
