@@ -81,7 +81,7 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 
 	// If a hazard is system-wide, the max range becomes the edge of the screen,
 	// and the number of effects drawn is scaled accordingly.
-	if(hazard->SystemWide())
+	if(hazard->SystemWide() && maxRange > 0.)
 	{
 		// Find the farthest possible point from the screen center and use that as
 		// our new max range. Multiply by 2 to account for the max view zoom level.
