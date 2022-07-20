@@ -67,7 +67,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 
 	on complete
 		conversation
-			`As you land at the spaceport, you're sure you see a few of the ships you saw on <planet> with various outfits stacked for installation. It's hard to find anyone who speaks Hai, but you find your way to the main spaceport office and hand over the chip. The person at the desk chitters excitedly and calls someone over. They quickly enter information into their systems and then hand the chip back to you. After a few moments of confusion where you end up making your Hai ear gesture, they call up an app and speak into it. Your translator picks up "Job board. Job board." Hopefully everything has been booked for you.`
+			`As you land at the spaceport, you're sure you see a few of the ships you saw on <planet> with various outfits stacked for installation. It's hard to find anyone who speaks Hai, but you find your way to the main spaceport office and hand over the chip. The person at the desk chitters excitedly and calls someone over. They quickly enter information into their systems and then hand the chip back to you. After a few moments of confusion where you end up making your Hai ear gesture, they access a device and speak into it. Your translator picks up "Job board. Job board." Hopefully everything has been booked for you.`
 
 mission "Wanderers: Spera Anatrusk Outfitter 2a"
 	landing
@@ -211,7 +211,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3a"
 		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
 
 	on stopover
-		dialog `Each crate has a message of some sort on the side. It translates to "[Wonderful, Auspicious] hope for the Fortunate Ones on our new worlds."`
+		dialog `Each crate has a message of some sort on the side. One of the workers translates it as "[Wonderful, Auspicious] hope for the Fortunate Ones on our new worlds."`
 		
 	on visit
 		dialog "You've arrived at <planet> but the escort carrying the <cargo> hasn't landed. You realize you need to depart and wait for it."
