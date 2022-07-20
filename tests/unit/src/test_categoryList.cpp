@@ -41,7 +41,7 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 		// A manually sorted list to compare against.
 		std::vector<std::string> sorted;
 		// A helper function for determining if a string is equal to a Category's name.
-		auto equal = [](const std::string &s, const CategoryList::Category &c) noexcept -> bool { return s == c.Name() };
+		auto equal = [](const std::string &s, const CategoryList::Category &c) noexcept -> bool { return s == c.Name(); };
 
 		WHEN( "sorted contents are given to the list without precedence" ) {
 			list.Load(AsDataNode("category test\n\tfirst\n\tsecond\n\tthird"));
