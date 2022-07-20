@@ -3696,13 +3696,13 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		if(outfit->IsWeapon())
 		{
 			armament.Add(outfit, count);
-			CalculateDeterrence();
+			deterrence = CalculateDeterrence();
 		}
 
 		if(outfit->Get("cargo space"))
 		{
 			cargo.SetSize(attributes.Get("cargo space"));
-			CalculateAttraction();
+			attraction = CalculateAttraction();
 		}
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
@@ -3791,7 +3791,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		if(!OutfitCount(ammo))
-			CalculateDeterrence();
+			deterrence = CalculateDeterrence();
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -4093,17 +4093,16 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 
 
 
-double Ship::CalculateAttraction()
+double Ship::CalculateAttraction() const
 {
-	attraction = max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
-	return attraction;
+	return max(0., .4 * sqrt(attributes.Get("cargo space")) - 1.8);
 }
 
 
 
-double Ship::CalculateDeterrence()
+double Ship::CalculateDeterrence() const
 {
-	deterrence = 0.;
+	double tempDeterrence = 0.;
 	for(const Hardpoint &hardpoint : Weapons())
 		if(hardpoint.GetOutfit())
 		{
@@ -4113,7 +4112,7 @@ double Ship::CalculateDeterrence()
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
 				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
-			deterrence += .12 * strength / weapon->Reload();
+			tempDeterrence += .12 * strength / weapon->Reload();
 		}
-	return deterrence;
+	return tempDeterrence;
 }

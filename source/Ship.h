@@ -443,8 +443,8 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
-	double CalculateAttraction();
-	double CalculateDeterrence();
+	double CalculateAttraction() const;
+	double CalculateDeterrence() const;
 
 
 private:
