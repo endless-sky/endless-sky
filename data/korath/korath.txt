@@ -397,9 +397,9 @@ fleet "Kor Efret Home"
 	variant 5
 		"Cesmip'tlad"
 	variant 3
-		"Efreti Freighter"
+		"Akumikid"
 	variant 1
-		"Efreti Transport"
+		"Iberinos"
 
 
 fleet "Kor Efret Miners"
@@ -410,7 +410,7 @@ fleet "Kor Efret Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Efreti Transport"
+		"Iberinos"
 
 
 fleet "Small Kor Sestor"

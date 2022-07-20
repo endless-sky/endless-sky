@@ -962,8 +962,8 @@ ship "Korath Haven"
 
 
 ship "Cesmip'tlad"
-	sprite "ship/kws-efreti"
-	thumbnail "thumbnail/kws-efreti"
+	sprite "ship/cesmiptlad"
+	thumbnail "thumbnail/cesmiptlad"
 	attributes
 		category "Heavy Freighter"
 		cost 27690000
@@ -985,8 +985,7 @@ ship "Cesmip'tlad"
 			"hull damage" 2000
 			"hit force" 6000
 	outfits
-		"Korath Fire-Lance" 2
-		"Expeller Grav-Ray" 2
+		"Digger Mining Beam" 4
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 
 		"Korath Warder" 2
@@ -1011,23 +1010,22 @@ ship "Cesmip'tlad"
 	turret 41 -69 "Korath Warder"
 	turret -41.5 264 "Korath Warder"
 	turret 41.5 264 "Korath Banisher"
-	gun -75 -250 "Korath Fire-Lance"
-	gun 75 -250 "Korath Fire-Lance"
-	gun -60 -214.5 "Expeller Grav-Ray"
-	gun 60 -214.5 "Expeller Grav-Ray"
+	gun -75 -250 "Digger Mining Beam"
+	gun 75 -250 "Digger Mining Beam"
+	gun -60 -214.5 "Digger Mining Beam"
+	gun 60 -214.5 "Digger Mining Beam"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the World-Ships of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts."
+	description `The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts.`
 
 
-#placeholder name
-ship "Efreti Freighter"
-	sprite "ship/dredger-efreti"
-	thumbnail "thumbnail/dredger-efreti"
+ship "Akumikid"
+	sprite "ship/akumikid"
+	thumbnail "thumbnail/akumikid"
 	attributes
 		category "Heavy Freighter"
 		"cost" 29370000
@@ -1054,7 +1052,7 @@ ship "Efreti Freighter"
 			"hit force" 5900
 	outfits
 		"Korath Banisher" 1
-		"Expeller Grav-Ray" 2
+		"Digger Mining Beam" 2
 		"Korath Warder" 2
 		
 		"Systems Core (Medium)"
@@ -1076,20 +1074,21 @@ ship "Efreti Freighter"
 	turret 0 -119.5 "Korath Warder"
 	turret 0 42 "Korath Banisher"
 	turret 0 138.5 "Korath Warder"
-	gun -37.5 -187 "Expeller Grav-Ray"
-	gun 37.5 -187 "Expeller Grav-Ray"
+	gun -37.5 -187 "Digger Mining Beam"
+	gun 37.5 -187 "Digger Mining Beam"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "Having to adjust to their new life under different circumstances, the Efreti designed this freighter to be able to support their ongoing needs of civilian and cargo transportation. While not as bulky or powerful as its exile counterparts, this design is much faster at making runs back and forth while still holding a defensive loadout to protect itself."
+	description "Although they do not effectively provide for their own defense, the Efreti remain responsible for the day-to-day needs of civilian and cargo transportation. While not as bulky or powerful as other Korath designs, this freighter is much faster at making runs back and forth between the Efreti's handful of remaining planets, while still holding enough defensive loadout to ward off the odd Mereti drone that slips past the Quarg."
 
-#placeholder name
-ship "Efreti Transport"
-	sprite "ship/raider-efreti"
-	thumbnail "thumbnail/raider-efreti"
+
+ship "Iberinos"
+	plural "Iberinoi"
+	sprite "ship/iberinos"
+	thumbnail "thumbnail/iberinos"
 	attributes
 		category "Transport"
 		"cost" 16570000
@@ -1114,9 +1113,9 @@ ship "Efreti Transport"
 			"hull damage" 1800
 			"hit force" 5400
 	outfits
-		"Korath Fire-Lance" 2
-		"Expeller Grav-Ray"
-		"Korath Warder" 2
+		"Digger Mining Beam" 3
+		"Korath Warder"
+		"Korath Banisher"
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -1131,17 +1130,17 @@ ship "Efreti Transport"
 	engine -17.5 139.5
 	engine 17.5 139.5
 	turret 0 -35 "Korath Warder"
-	turret 0 97 "Korath Warder"
-	gun 0 -118 "Expeller Grav-Ray"
-	gun -16.5 -114.5 "Korath Fire-Lance"
-	gun 16.5 -114.5 "Korath Fire-Lance"
+	turret 0 97 "Korath Banisher"
+	gun 0 -118 "Digger Mining Beam"
+	gun -16.5 -114.5 "Digger Mining Beam"
+	gun 16.5 -114.5 "Digger Mining Beam"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This is the most recently produced Efreti vessel and is found taking up various roles in their space. While some are used for primarily transport, others are used in local mining to assist in the Efreti's never ending need for supplies. In combination with Quarg-inspired engine tech, the ship's smaller size allows it to carry out its tasks more nimbly than other Korath ships." 
+	description "A recent design, this Efreti multi-role vessel is found taking up many jobs previously relegated to a now scrapped fleet of early-model raiders. While some are used primarily for passenger transport, others are used in local mining to satiate the Efreti's perpetual demand for ores. Incorporating Quarg-inspired structural elements, its light frame allows it to complete tasks more nimbly than any other independent Korath ship." 
 
 
 

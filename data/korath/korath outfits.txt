@@ -653,7 +653,6 @@ outfit "Steering (Stellar Class)"
 	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
 
-#placeholder name and desc
 outfit "Tiny GP Hybrid Thruster"
 	plural "Tiny GP Hybrid Thrusters"
 	category "Engines"
@@ -668,9 +667,9 @@ outfit "Tiny GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"flare sound" "ion tiny"
+#placeholder desc
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
-#placeholder name and desc
 outfit "Small GP Hybrid Thruster"
 	plural "Small GP Hybrid Thrusters"
 	category "Engines"
@@ -685,9 +684,9 @@ outfit "Small GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"flare sound" "ion small"
+#placeholder desc
 	description "While this thruster's power is offset by its energy requirements, its incoporation of gravitic propulsion moderates its heat output."
 
-#placeholder name and desc
 outfit "Medium GP Hybrid Thruster"
 	plural "Medium GP Hybrid Thrusters"
 	category "Engines"
@@ -702,9 +701,9 @@ outfit "Medium GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"flare sound" "ion medium"
+#placeholder desc
 	description "The Efreti, after generations of living under Quarg protection, have begun to incorporate gravitic propulsion into their thruster designs."
 
-#placeholder name and desc
 outfit "Large GP Hybrid Thruster"
 	plural "Large GP Hybrid Thrusters"
 	category "Engines"
@@ -719,9 +718,9 @@ outfit "Large GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"flare sound" "ion large"
+#placeholder desc
 	description "The Quarg, who do all things efficiently, view Efreti propulsion systems with some amusement."
 
-#placeholder name and desc
 outfit "Tiny GP Hybrid Steering"
 	plural "Tiny GP Hybrid Steerings"
 	category "Engines"
@@ -736,9 +735,9 @@ outfit "Tiny GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "ion tiny"
+#placeholder desc
 	description "The Efreti use these steering systems only in the very smallest of their ships."
 
-#placeholder name and desc
 outfit "Small GP Hybrid Steering"
 	plural "Small GP Hybrid Steerings"
 	category "Engines"
@@ -753,9 +752,9 @@ outfit "Small GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
+#placeholder desc
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
-#placeholder name and desc
 outfit "Medium GP Hybrid Steering"
 	plural "Medium GP Hybrid Steerings"
 	category "Engines"
@@ -770,9 +769,9 @@ outfit "Medium GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
+#placeholder desc
 	description "Efreti engines can be fitted into just about any ship, but unless accompanied by some Korath power systems as well, their energy consumption will often be more than the ship can handle."
 
-#placeholder name and desc
 outfit "Large GP Hybrid Steering"
 	plural "Large GP Hybrid Steerings"
 	category "Engines"
@@ -787,6 +786,7 @@ outfit "Large GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"steering flare sound" "ion large"
+#placeholder desc
 	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Korath Repeater Rifle"

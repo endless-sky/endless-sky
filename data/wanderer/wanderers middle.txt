@@ -760,8 +760,8 @@ mission "Wanderers: Kor Efret 3"
 			names "korath"
 			variant
 				"Cesmip'tlad"
-				"Efreti Freighter" 2
-				"Efreti Transport" 4
+				"Akumikid" 2
+				"Iberinos" 4
 	npc
 		government "Kor Efret"
 		personality heroic
@@ -769,8 +769,8 @@ mission "Wanderers: Kor Efret 3"
 			names "korath"
 			variant
 				"Cesmip'tlad"
-				"Efreti Freighter" 2
-				"Efreti Transport" 4
+				"Akumikid" 2
+				"Iberinos" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
