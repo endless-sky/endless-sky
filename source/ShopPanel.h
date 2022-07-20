@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
@@ -154,7 +155,7 @@ protected:
 	std::vector<ClickZone<std::string>> categoryZones;
 
 	std::map<std::string, std::set<std::string>> catalog;
-	const std::vector<std::string> &categories;
+	const CategoryList &categories;
 	std::set<std::string> &collapsed;
 
 	ShipInfoDisplay shipInfo;

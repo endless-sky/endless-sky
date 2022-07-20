@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sale.h"
 #include "Set.h"
 
+#include "CategoryList.h"
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
@@ -121,7 +122,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
-	std::map<CategoryType, std::vector<std::string>> categories;
+	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

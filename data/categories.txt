@@ -10,31 +10,31 @@
 
 # Ships of these types can be purchased and also used as mission sources.
 category "ship"
-	"Transport"
-	"Light Freighter"
-	"Heavy Freighter"
-	"Interceptor"
-	"Light Warship"
-	"Medium Warship"
-	"Heavy Warship"
-	"Fighter"
-	"Drone"
+	"Transport" 10
+	"Light Freighter" 20
+	"Heavy Freighter" 30
+	"Interceptor" 40
+	"Light Warship" 50
+	"Medium Warship" 60
+	"Heavy Warship" 70
+	"Fighter" 80
+	"Drone" 90
 
 
 # Ships of these types are able to be carried by other ships.
 category "bay type"
-	"Drone"
-	"Fighter"
+	"Drone" 10
+	"Fighter" 20
 
 
 # Outfits of these types can be bought and sold via the outfitter.
 category "outfit"
-	"Guns"
-	"Turrets"
-	"Secondary Weapons"
-	"Ammunition"
-	"Systems"
-	"Power"
-	"Engines"
-	"Hand to Hand"
-	"Special"
+	"Guns" 10
+	"Turrets" 20
+	"Secondary Weapons" 30
+	"Ammunition" 40
+	"Systems" 50
+	"Power" 60
+	"Engines" 70
+	"Hand to Hand" 80
+	"Special" 90

@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Color;
 class Conversation;
 class DataNode;
@@ -145,7 +146,7 @@ public:
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Strings for ship, bay type, and outfit categories.
-	static const std::vector<std::string> &Category(const CategoryType type);
+	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
