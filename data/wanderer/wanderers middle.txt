@@ -241,7 +241,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3b"
 		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
 
 	on stopover
-		dialog "One of the outfitter staff has been learning some Hai and asks you endless questions about the Hai and the worlds beyond the Eye. You look at all the travel bags and boxes and wonder if anyone warned them about how primitive their new home is."
+		dialog "One of the outfitter staff has been learning a bit of the Hai language. You can tell because they ask you endless questions about the Hai and the worlds beyond the Eye. You look at all the travel bags and boxes and wonder if anyone warned them about how primitive their new home is."
 
 	on visit
 		dialog "You've arrived at <planet> but the escort carrying the outfitter staff hasn't landed. You realize you need to depart and wait for them to arrive."
