@@ -44,7 +44,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 					
 			label investigate
 			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
-			`	You walk up to the Wanderer they were all shouting at. He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment and then says, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He holds up a taloned hand and continues before you can say anything, "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and no one is [available, willing] to do transport work."`
+			`	You walk up to the Wanderer they were all shouting at. He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment before saying, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He holds up a taloned hand and continues before you can say anything. "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and no one is [available, willing] to do transport work."`
 			choice
 				`	"Tell me what you need and I'll handle it."`
 					goto handle
@@ -53,7 +53,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 
 			label handle
 			`	"[Truly? Honestly?]" he asks. When you nod your head he hands you a data chip and says, "Take this to Vara K'chrai and they will make the arrangements. We need construction equipment, materials, and workers. I can't request them directly since communications don't work through the wormhole.`
-			`	You turn to go as a group of Wanderers with surveying equipment walks up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to discuss with the surveyors. As you walk off, the translator just picks up. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
+			`	You turn to go as a group of Wanderers with surveying equipment walks up. They are all dressed in hard hats and safety gear. The construction supervisor you've been speaking to pulls up a hologram of the site to discuss with the surveyors. As you walk off, the translator just picks up, and you hear him muttering to himself. "The Eye opens and we are getting help from the [alien, stranger] and not our own flock."`
 				accept
 
 	on decline
@@ -271,7 +271,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 3c"
 		has "Wanderers: Spera Anatrusk Outfitter 3: offered"
 
 	on stopover
-		dialog "The repair techs seem more concerned about making sure that their tools are securely stored than about speculating about the Eye, though you do have to chase a few out of the engineering section as they poke around to see how the <ship> is outfitted."
+		dialog "The repair techs seem more concerned about making sure that their tools are securely stored than about speculating on the Eye, though you do have to chase a few out of the engineering section as they poke around to see how the <ship> is outfitted."
 
 	on visit
 		dialog "You've arrived at <planet> but the escort with the repair technicians hasn't landed. You realize you need to depart and make sure they arrive safely."
@@ -324,7 +324,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 		event "wanderers: spera anatrusk colony" 20
 
 	on stopover
-		dialog "The dock workers seem eager to load the massive freighters. They are excited to be part of the Migration. They stand together and salute the flight crew when they board for departure."
+		dialog "The dock workers seem eager to load the massive freighters. It looks like they are excited to be part of the Migration. They stand together and salute the flight crew when they board for departure."
 	
 	on visit
 		dialog "You've arrived at <planet> but not all the freighters have landed. You realize you need to depart and make sure they arrive safely."
@@ -361,7 +361,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 5"
 		
 	on offer
 		conversation
-			`The spaceport building is taking shape, with all the foundations set and the walls of the main hall in place. It probably helps that the Wanderers are able to fly about all levels of the structure without needing to traverse ladders, but it's more their teamwork and dedication at work. It's like a human barn raising but on a larger scale.`
+			`The spaceport building is taking shape, with all the foundations set and the walls of the main hall in place. It probably helps that the Wanderers are able to fly about all levels of the structure without needing to traverse ladders, but their teamwork and dedication is the real driver of the spaceport's development. It's like a human barn raising but on a larger scale.`
 			`	The manager you brought over a few weeks ago to open the outfitter flaps down and lands beside you. You both watch the construction for a moment and then she says, "The [Leader, Director] of Spaceports has said that we must have a full outfitter here to support the [Trek, Migration]. We are sending another convoy to pick up the more advanced outfits and some dignitaries to officially [inaugurate, open] the outfitter. They said it would be [appropriate, fitting] for you to escort them.`
 			
 			choice
@@ -370,7 +370,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 5"
 				`	"It's too dangerous to transport Wanderer dignitaries here."`
 					decline
 			`	"You are [much like, similar to] us," she says. "You carry seeds from place to place and some take root and grow and over thousands of years transform worlds.`
-			`	You just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to to <stopovers>.`
+			`	You just nod and smile. After a moment, she heads back to the outfitter and you prepare to travel to <stopovers>.`
 
 	on decline
 		event "wanderers: spera anatrusk colony" 10
