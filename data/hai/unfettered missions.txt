@@ -670,7 +670,7 @@ mission "Unfettered: Bring Medical Supplies"
 				`	"What is a 'Heshi'?"`
 				`	"Glad to have prevented a disaster then."`
 					decline
-			`	"Oh it is a great predator ruling the sees on our homeworld. It is swift and nimble, you do not see it coming and when you do it is already too late. They have a tongue with a spine at its end that extends to catch its prey, but are not that big so they often hunt in groups. You would translate it as 'sea scorpion', I believe."`
+			`	"The Heshi is a great predator ruling the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They often hunt in groups because they are not that big. You would translate it as 'sea scorpion', I believe."`
 				decline
 			label soldiers
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way, in truth quite a few of us would like to be artists! It is a shame we have to fight for our right to live another way than the one the Hai allow, to break out of the prison they have cast next to our systems! Our soldiers indeed suffer the most from that fight."`
@@ -877,7 +877,7 @@ mission "Unfettered: Prove Your Strength 2"
 			choice
 				`	"Let's go then!"`
 					goto leave
-				`	"Why can you not just use a jump drive and go there yourself?"`
+				`	"Why can't you just use a jump drive and go there yourself?"`
 				`	"What will my cut be?"`
 					goto cut
 				`	"Sorry I will not risk my ship by going anywhere close to these pirates."`
@@ -1045,7 +1045,7 @@ fleet "Marauders"
 	variant 1
 		"Marauder Raven" 2
 		
-mission "Unfettered: Stop of the Hunt"
+mission "Unfettered: End of the Hunt"
 	invisible
 	repeat
 	landing
@@ -2756,7 +2756,7 @@ mission "Unfettered: Special Cargo"
 		conversation
 			`You are starting to get quite used to Unfettered spaceports, and strangely you are not even surprised by the amount of damage there is around on different non essentials structures anymore. At least the shipyards, hospitals and the stadium of the council are all in perfect shape, that is what matters most after all.`
 			`	You want a change of scenery, so wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
-			`	Your thoughts are interrupted by a local Unfettered, he seems to have a very important mission to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess he is referring to a pirate leader. "Said warlord can be found in <waypoints>, we want you to go and retrieve that item right now, in whatever way you deem fit."`
+			`	Your thoughts are interrupted by a local Unfettered, who seems to have a very important message to give you, given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an Unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now, by any means at your discretion."`
 			choice
 				`	"How will I know which warlord it is?"`
 				`	"This seems too risky for me."`
@@ -2912,7 +2912,7 @@ mission "Unfettered: Special Cargo 1B"
 				flee
 			
 			label caught
-			`	You do not manage to find the item here, however you have attracted way too much suspicions by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
+			`	You do not manage to find the item here. However, you've attracted way too much suspicion by looking and opening crates everywhere you could. One local worker asks you something about mechanics. Being no engineer yourself, you cannot make any sense of what he says, even less formulate a correct response, and he denounces you. You are captured and sold as a slave.`
 				die
 			label found
 			choice
@@ -2928,12 +2928,12 @@ mission "Unfettered: Special Cargo 1B"
 				goto caught
 
 			label bargain
-			`	You ask around and find the first mate of the warlord, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "I think I know of which item you speak, indeed the old warlord was aware of it and orderer it delivered to him, something Kira knows not of yet... She does not need to. Indeed that item is very mysterious, which sells well on the black market. Also I do not know you, so you would have to give quite a large sum if you really want it, especially because you cannot just go and speak to my boss as if you knew her." He thinks a bit, looking at what kind of things you are wearing, estimating how much you would be willing to pay, he also looks on his pad, probably for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
+			`	You ask around and find the first mate, Mip. He seems intrigued by your request for a small and precious item that their boss has just acquired. "Yeah, I think I know what you're talking about - matter o' fact, the old boss knew about it and ordered it delivered to him. Kira doesn't know about it yet - I guess she doesn't need to know. That item is a bit mysterious, which adds some value on the black market. Also, 'cause I don't know you, you'd have to pony up some serious moolah if you really want it, especially since you can't just go and talk to the boss about it." He thinks a bit, assessing your appearance and clothing to estimate how much you might be willing to pay. He also checks his pad, probably searching for records of your ship and fleet. "10 million credits," he says in a definitive tone.`
 			choice
 				`	"That low? Well here you go mate."`
-				`	"I do not have that kind of money, perhaps we could negotiate?"`
+				`	"I don't have that kind of money. Maybe we could negotiate?"`
 					goto negotiate
-				`	"There is no way I am paying so much for an item I have not even seen! I challenge your warlord to a fight."`
+				`	"There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight."`
 					goto challenge
 			`	He seems disappointed and wishing he had asked for more, but he shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
@@ -2944,7 +2944,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	"I can cut it down by... 2 million. Last chance, boy. 8 million credits, what do you say?"`
 			choice
 				`	"Deal!"`
-				`	"There is no way I am paying so much for an item I have not even seen! I challenge your warlord to a fight."`
+				`	""There's no way I'm paying so much for an item I haven't even seen! I challenge your warlord to a fight.""`
 					goto challenge
 			`	He seems disappointed to have only 8 million credits but you feel like he still had the upper hand in that trade. He shows you to the item, which is a little cube, and you bring it back to your ship without any trouble. He also signaled the local warships belonging to the warlord to land to let you leave without trouble.`
 			action
@@ -3612,7 +3612,8 @@ mission "Unfettered: Start Of The War"
 		clear "unfettered: defeated Si-Ra"
 		#"reputation: Wanderer" <?= -1000
 		conversation
-			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape... "We will notify you once you may be of help to the war effort. In the mean time, we have increased your salary to 5000 so you can muster an even larger fleet. Also from now on you will officially have the permission, nay, the obligation to proudly wear our colors. We have signaled this change of colors to the Hai meaning they will not change their behavior with you, recognizing your signature. We cannot say the same for the Wanderers though so be careful."`
+			`He Yi rejoins you on your ship after having parked his, which looks like it is not in the best shape.`
+			`"We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can muster an even larger fleet. Also, from now on, you will officially have the permission, nay, the obligation to proudly wear our colors. We have informed the Hai of your new colors so that they will recognize you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
 			`	He then draws his long sword, that has the same appearance as keystone. You stand back, worried he might attack you for some reason but instead he hands it to you. "You have also deserved the right to have this. It is a proof of our trust towards you and means you will be able to buy all of our ships. Whenever a warlord is defeated in battle he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
 			action
 				"Unfettered: questions" = -1
@@ -3642,7 +3643,7 @@ mission "Unfettered: Start Of The War"
 			`	"As you have probably noticed, the hull is not in the standard Hai colors. It is, partly, a matter of taste for discretion but the biggest reason is that this ship was built out of the wreck of an old Korath warship. Those materials are more sturdy than normal Hai ones, which is why this ship is so resilient to hull damage."`
 				goto questions
 			label cloak
-			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then diseapear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and strategic advantage. But it was no real ghost, everyone has a weakness. His weakness was that while we could not see it, it did not mean that it was not there anymore."`
+			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys and then disappear without a trace, without even jumping out, nothing. Then once the warships would get away he came back, always harassing us. The Ghost managed to take on a lot of convoys and escorts without issues, using its superior technology and tactical advantages. But it was no real ghost. Everyone has a weakness. His weakness was that while we could not see it, it did not mean that it was not there anymore."`
 			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared they stopped shooting like usual, and made him overconfident, doing confused movements, dropping part of their cargo as if they were in distress. So he reappeared He saw the other ships coming in but did not react to them in time and got close - too close - to the convoy. Once the fleet arrived, he disappeared but it was too late for him and his limited agility. One of the convoy ships near him rammed him, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead we built a ship based on that wreckage's materials, and the cloaking device is a part of it."`
 			branch "gave cloak"
 				has "Unfettered: Cloaking Interest: done"
@@ -3654,7 +3655,7 @@ mission "Unfettered: Start Of The War"
 			label weapon
 			branch helped
 				has "Unfettered: Bring Detainer: done"
-			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the automated killing machines to the East, I went looking for such weapon, under the safety of my cloak. I expected to have to fight somewhat to get it but in fact the killing machines are fighting other killing machines. I just looked at them battle from a distance and then swifly looted a ship... Except it exploded on my face. Disturbed, I looked for another one, and that one did not explode so I took the weapon and came home, victorious. I had barely enough space in my cargo hold for it."`
+			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the automated killing machines to the east, I went looking for such weapon, under the safety of my cloak. I expected to have to fight a bit to get it but in fact the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it exploded in my face. So I looked for another one, and that one did not explode so I took the weapon and came home, victorious. I had barely enough space in my cargo hold for it."`
 				goto otherweapons
 			label helped
 			`	"Well as you know you brought the detainer to me in exchange for the translation device."`
