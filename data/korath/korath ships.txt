@@ -1020,29 +1020,31 @@ ship "Cesmip'tlad"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel.  Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the World-Ships of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the World-Ships of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts."
 
 
 #placeholder name
-ship "Korath Dredger (Efreti)"
-#placeholder stats copied from dredger
+ship "Efreti Freighter"
 	sprite "ship/dredger-efreti"
 	thumbnail "thumbnail/dredger-efreti"
 	attributes
 		category "Heavy Freighter"
 		"cost" 29370000
-		"shields" 39000
-		"hull" 16000
-		"required crew" 201
-		"bunks" 395
-		"mass" 1503
-		"drag" 17
-		"heat dissipation" .65
-		"fuel capacity" 900
-		"cargo space" 605
-		"outfit space" 827
-		"weapon capacity" 297
-		"engine capacity" 181
+		"shields" 21800
+		"hull" 19300
+		"required crew" 89
+		"bunks" 158
+		"mass" 927
+		"drag" 14.9
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 635
+		"outfit space" 582
+		"weapon capacity" 193
+		"engine capacity" 147
+		"disruption resistance" 0.35
+		"disruption resistance energy" 7
+		"disruption resistance heat" 3.5
 		
 		weapon
 			"blast radius" 300
@@ -1054,13 +1056,13 @@ ship "Korath Dredger (Efreti)"
 		"Expeller Grav-Ray" 2
 		"Korath Warder" 2
 		
-		"Systems Core (Large)"
+		"Systems Core (Medium)"
 		"Triple Plasma Core"
-		"Large Heat Shunt" 3
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 190
 		
-		"Medium GP Hybrid Thruster"
+		"Large GP Hybrid Thruster"
 		"Medium GP Hybrid Steering"
 		"Hyperdrive"
 
@@ -1081,29 +1083,30 @@ ship "Korath Dredger (Efreti)"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "This ship features an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support."
-
+	description "Having to adjust to their new life under different circumstances, the Efreti designed this freighter to be able to support their ongoing needs of civilian and cargo transportation. While not as bulky or powerful as its exile counterparts, this design is much faster at making runs back and forth while still holding a defensive loadout to protect itself."
 
 #placeholder name
-ship "Korath Raider (Efreti)"
-#placeholder stats copied from raider
+ship "Efreti Transport"
 	sprite "ship/raider-efreti"
 	thumbnail "thumbnail/raider-efreti"
 	attributes
 		category "Transport"
 		"cost" 16570000
-		"shields" 27000
-		"hull" 9000
-		"required crew" 145
-		"bunks" 250
-		"mass" 720
-		"drag" 11
-		"heat dissipation" .5
-		"fuel capacity" 600
-		"cargo space" 175
-		"outfit space" 721
-		"weapon capacity" 284
-		"engine capacity" 159
+		"shields" 19700
+		"hull" 15200
+		"required crew" 103
+		"bunks" 281
+		"mass" 575
+		"drag" 8.5
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 194
+		"outfit space" 569
+		"weapon capacity" 153
+		"engine capacity" 171
+		"disruption resistance" 0.3
+		"disruption resistance energy" 6
+		"disruption resistance heat" 3
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
@@ -1119,11 +1122,10 @@ ship "Korath Raider (Efreti)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 196
-		"Hyperdrive"
 		
-		"Small GP Hybrid Thruster"
-		"Small GP Hybrid Steering"
+		"Large GP Hybrid Thruster"
+		"Medium GP Hybrid Steering"
+		"Hyperdrive"
 
 	engine -17.5 139.5
 	engine 17.5 139.5
@@ -1138,8 +1140,7 @@ ship "Korath Raider (Efreti)"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "This is the ship of choice for mining nearby asteroids."
-
+	description "This is the most recently produced Efreti vessel and is found taking up various roles in their space. While some are used for primarily transport, others are used in local mining to assist in the Efreti's never ending need for supplies. In combination with Quarg-inspired engine tech, the ship's smaller size allows it to carry out its tasks more nimbly than other Korath ships." 
 
 
 ship "Kar Ik Vot 349"

@@ -730,9 +730,9 @@ outfit "Tiny GP Hybrid Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 257
-	"turning energy" 1
-	"turning heat" 1.1
+	"turn" 323
+	"turning energy" 1.2
+	"turning heat" 1.225
 	"steering flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "ion tiny"
@@ -744,12 +744,12 @@ outfit "Small GP Hybrid Steering"
 	category "Engines"
 	"cost" 413000
 	thumbnail "outfit/small grav-steering"
-	"mass" 30
-	"outfit space" -30
-	"engine capacity" -30
-	"turn" 789
-	"turning energy" 2.8
-	"turning heat" 3.3
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"turn" 737
+	"turning energy" 2.5
+	"turning heat" 2.75
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
@@ -761,12 +761,12 @@ outfit "Medium GP Hybrid Steering"
 	category "Engines"
 	"cost" 833000
 	thumbnail "outfit/medium grav-steering"
-	"mass" 48
-	"outfit space" -48
-	"engine capacity" -48
-	"turn" 1462
-	"turning energy" 4.9
-	"turning heat" 6
+	"mass" 42
+	"outfit space" -42
+	"engine capacity" -42
+	"turn" 1400
+	"turning energy" 4.325
+	"turning heat" 5.15
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
@@ -781,9 +781,9 @@ outfit "Large GP Hybrid Steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
-	"turn" 2261
-	"turning energy" 6.5
-	"turning heat" 8.3
+	"turn" 2500
+	"turning energy" 7
+	"turning heat" 9
 	"steering flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"steering flare sound" "ion large"
