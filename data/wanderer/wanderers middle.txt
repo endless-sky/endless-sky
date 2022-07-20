@@ -769,8 +769,8 @@ mission "Wanderers: Kor Efret 3"
 			names "korath"
 			variant
 				"Cesmip'tlad"
-				"Korath Dredger (Efreti)" 2
-				"Korath Raider (Efreti)" 4
+				"Efreti Freighter" 2
+				"Efreti Transport" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
