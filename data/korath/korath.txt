@@ -397,9 +397,10 @@ fleet "Kor Efret Home"
 	variant 5
 		"Cesmip'tlad"
 	variant 3
-		"Korath Dredger (Efreti)"
+		"Efreti Freighter"
 	variant 1
-		"Korath Raider (Efreti)"
+		"Efreti Transport"
+
 
 fleet "Kor Efret Miners"
 	government "Kor Efret"
@@ -409,7 +410,7 @@ fleet "Kor Efret Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Korath Raider (Efreti)"
+		"Efreti Transport"
 
 
 fleet "Small Kor Sestor"
