@@ -658,7 +658,7 @@ outfit "Tiny GP Hybrid Thruster"
 	plural "Tiny GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 165000
-	thumbnail "outfit/tiny grav-thruster"
+	thumbnail "outfit/tiny efreti thruster"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -675,7 +675,7 @@ outfit "Small GP Hybrid Thruster"
 	plural "Small GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 405000
-	thumbnail "outfit/small grav-thruster"
+	thumbnail "outfit/small efreti thruster"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
@@ -692,7 +692,7 @@ outfit "Medium GP Hybrid Thruster"
 	plural "Medium GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 883000
-	thumbnail "outfit/medium grav-thruster"
+	thumbnail "outfit/medium efreti thruster"
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
@@ -709,7 +709,7 @@ outfit "Large GP Hybrid Thruster"
 	plural "Large GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 1649000
-	thumbnail "outfit/large grav-thruster"
+	thumbnail "outfit/large efreti thruster"
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
@@ -726,7 +726,7 @@ outfit "Tiny GP Hybrid Steering"
 	plural "Tiny GP Hybrid Steerings"
 	category "Engines"
 	"cost" 131000
-	thumbnail "outfit/tiny grav-steering"
+	thumbnail "outfit/tiny efreti steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -743,7 +743,7 @@ outfit "Small GP Hybrid Steering"
 	plural "Small GP Hybrid Steerings"
 	category "Engines"
 	"cost" 413000
-	thumbnail "outfit/small grav-steering"
+	thumbnail "outfit/small efreti steering"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -760,7 +760,7 @@ outfit "Medium GP Hybrid Steering"
 	plural "Medium GP Hybrid Steerings"
 	category "Engines"
 	"cost" 833000
-	thumbnail "outfit/medium grav-steering"
+	thumbnail "outfit/medium efreti steering"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
@@ -777,7 +777,7 @@ outfit "Large GP Hybrid Steering"
 	plural "Large GP Hybrid Steerings"
 	category "Engines"
 	"cost" 1439000
-	thumbnail "outfit/large grav-steering"
+	thumbnail "outfit/large efreti steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
