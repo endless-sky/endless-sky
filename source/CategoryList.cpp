@@ -60,5 +60,5 @@ bool CategoryList::Contains(const string &name) const
 {
 	const auto it = find_if(list.begin(), list.end(),
 		[&name](const Category &c) noexcept -> bool { return name == c.name; });
-	return it != list.end(); 
+	return it != list.end();
 }

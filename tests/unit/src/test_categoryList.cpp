@@ -95,7 +95,7 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 				// sorted = second, third, first
 				CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
 			}
-			
+
 			AND_WHEN( "a list is loaded again without precedence" ) {
 				list.Load(AsDataNode("category test\n\tfourth\n\tfifth"));
 

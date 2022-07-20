@@ -296,7 +296,7 @@ bool LocationFilter::IsValid() const
 	{
 		// At least one desired category must be valid.
 		set<string> categoriesSet;
-		for(const auto category : GameData::GetCategory(CategoryType::SHIP))
+		for(const auto &category : GameData::GetCategory(CategoryType::SHIP))
 			categoriesSet.insert(category.Name());
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;

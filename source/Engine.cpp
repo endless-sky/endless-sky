@@ -371,7 +371,6 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				
 				for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
 				{
 					const string &bayType = cat.Name();
