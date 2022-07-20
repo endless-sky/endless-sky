@@ -223,7 +223,7 @@ mission "Academy Motto"
 		conversation
 			`On this particular day, the spaceport is crowded beyond belief by some arcane confluence of chance and logistics. Despite having resolved the bulk of your business the port authorities have informed you that there is no safe departure slot open for at least seven hours (and even that's not a promise). This leaves you alone to fill in your unexpected bit of time in the early morning.`
 			choice
-				`	(Play games on your ship.)`
+				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
 					goto fieldtrip
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
@@ -247,7 +247,7 @@ mission "Academy Motto"
 			choice
 				`	(Ask them about it.)`
 					goto question
-				`	(Keep your thoughts to yourself.)`
+				`	(Keep my thoughts to myself.)`
 			`	The staff member takes your plate and wishes you a lovely day.`
 				decline
 			label question
@@ -276,7 +276,7 @@ mission "Robotic Musical 1"
 			`	No sooner do you slow your step to give it your attention though, than the pile of crates immediately springs to life.`
 			branch translator
 				has "language: Wanderer"
-			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from  at least one robot, before they immediately clamber back into the crates.`
+			`	Music plays and some half dozen robotic caricatures of Hai in exaggerated dress spring forth from various crates and begin to caper about in a series of interactions presumably intended to be comedic, at least judging by how they keep turning away from each other to "look" at the audience and wink. Holoprojected banners and glyphs, presumably advertisement information, flicker through a series of displays as it goes through a cycle before the entire cohort appear to finish up; each onlooker the recipient of some kind of entreaty from at least one robot, before they immediately clamber back into the crates.`
 			`	Throughout this a handful of Hai have stopped to watch, and a couple of them let out small chuckles at the conclusion before continuing on their way. Most of them simply roll their eyes and move on though. One child wanders too close as their parents steer around it and a little red holographic warning sign briefly flashes at them. No one seems keen to explain what you just saw, and for the moment the crates remain resolutely closed.`
 			apply
 				set roboticconfusion

@@ -1892,7 +1892,7 @@ mission "Wanderers Invaded 3C (Pug)"
 			choice
 				`	(Return to my ship.)`
 					decline
-				`	(Keep insisting that they listen to you.)`
+				`	(Keep insisting that they listen.)`
 			`	With a somewhat contemptuous gesture, the Pug points the staff toward your face and a wave of wonderful rainbow light washes over you and bathes the whole world in iridescent sparkles that leap nimbly from the whiskers of things and nuzzle into your contented consciousness like flashing minnows of pure joy. You caper off to chase a trail of floating soapy baubles that burst with the sound of wind chimes and distant trumpets as you touch each one and the smell of ripe peaches fills the air until you stagger through your airlock and throw up in a corner.`
 			`	It may be time to leave this planet.`
 				decline

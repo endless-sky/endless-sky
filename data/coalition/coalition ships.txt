@@ -39,6 +39,7 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2		
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -85,7 +86,9 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2		
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -136,7 +139,9 @@ ship "Arach Hulk"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -191,7 +196,9 @@ ship "Arach Spindle"
 		"Cooling Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 1
 		"Hyperdrive"
@@ -241,6 +248,7 @@ ship "Arach Transport"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -439,6 +447,32 @@ ship "Heliarch Hunter"
 	"final explode" "final explosion large" 1
 	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
 
+ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 160
+		
+		"Large Reactor Module"
+		"Small Battery Module" 2
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion"
+		"Enforcer Riot Staff" 12
+		"Enforcer Confrontation Gear" 35
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 4
+		"Scram Drive"
+		
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
 		"Finisher Pod" 2
@@ -612,6 +646,28 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 200
+		
+		"Large Reactor Module"
+		"Small Battery Module" 4
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 20
+		"Enforcer Confrontation Gear" 63
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -1001,7 +1057,7 @@ ship "Heliarch Punisher"
 		"fuel capacity" 600
 		"cargo space" 94
 		"outfit space" 885
-		"weapon capacity" 324
+		"weapon capacity" 352
 		"engine capacity" 187
 		weapon
 			"blast radius" 400
@@ -1048,6 +1104,36 @@ ship "Heliarch Punisher"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
+
+ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 4
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 320
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
+		"Scanning Module"
+		"Outfits Expansion" 4
+		"Enforcer Riot Staff" 29
+		"Enforcer Confrontation Gear" 113
+		
+		"Large Thrust Module" 3
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+	
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	gun
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1426,6 +1512,7 @@ ship "Kimek Spire"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1478,7 +1565,9 @@ ship "Kimek Thistle"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1527,6 +1616,7 @@ ship "Kimek Thorn"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -1572,6 +1662,7 @@ ship "Saryd Runabout"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
 		
@@ -1617,7 +1708,9 @@ ship "Saryd Sojourner"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1671,7 +1764,9 @@ ship "Saryd Traveler"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module"
+		"Small Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1724,6 +1819,7 @@ ship "Saryd Visitor"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module"
 		"Hyperdrive"
 		
