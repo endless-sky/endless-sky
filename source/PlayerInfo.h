@@ -280,6 +280,8 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
+	Angle MouseAngle() const;
+	void SetMouseAngle(Angle mouse);
 
 
 private:
@@ -387,6 +389,9 @@ private:
 
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
+
+	// Player mouse angle relative to flagship.
+	Angle mouseAngle = 0;
 };
 
 

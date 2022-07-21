@@ -1365,7 +1365,7 @@ void Engine::CalculateStep()
 		activeCommands.Set(Command::MOUSETURNING);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player, activeCommands, mouseAngle, rightMouseButtonHeld);
+	ai.Step(player, activeCommands);
 
 	// Clear the active players commands, they are all processed at this point.
 	activeCommands.Clear();
@@ -2139,6 +2139,7 @@ void Engine::DoWeather(Weather &weather)
 
 
 
+// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	if(activeCommands.Has(Command::MOUSETURNING))
@@ -2146,23 +2147,25 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		isMouseTurningEnabled = !isMouseTurningEnabled;
 		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	}
-	if(isMouseTurningEnabled)
-	{
-		int mousePosX;
-		int mousePosY;
-		if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-			rightMouseButtonHeld = true;
-		else
-			rightMouseButtonHeld = false;
-		double relx = mousePosX - Screen::RawWidth() / 2;
-		double rely = mousePosY - Screen::RawHeight() / 2;
-		if(relx == 0)
-			mouseAngle = 90;
-		else
-			mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
-		if(relx < 0)
-			mouseAngle += 180;
-	}
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relx = mousePosX - Screen::RawWidth() / 2;
+	double rely = mousePosY - Screen::RawHeight() / 2;
+	Angle mouseAngle = 0;
+	if(relx == 0)
+		mouseAngle = 90;
+	else
+		mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
+	if(relx < 0)
+		mouseAngle += 180;
+	player.SetMouseAngle(mouseAngle);
+
+	// Activate firing command.
+	if(isMouseTurningEnabled && rightMouseButtonHeld)
+		activeCommands.Set(Command::PRIMARY);
 }
 
 

@@ -75,6 +75,7 @@ const Command Command::SHIFT(1uL << 29, "");
 const Command Command::MOUSETURNING(1uL << 30, "Toggle mouse-turning");
 
 
+
 // In the given text, replace any instances of command names (in angle brackets)
 // with key names (in quotes).
 string Command::ReplaceNamesWithKeys(const string &text)

@@ -179,9 +179,7 @@ private:
 	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
-	bool rightMouseButtonHeld = false;
 	bool isMouseTurningEnabled = false;
-	Angle mouseAngle = 0;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
