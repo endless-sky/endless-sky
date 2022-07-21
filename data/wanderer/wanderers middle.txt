@@ -44,7 +44,7 @@ mission "Wanderers: Spera Anatrusk Outfitter 1"
 					
 			label investigate
 			`	The argument seems to be breaking up, with unhappy captains heading back to their ships. You see a few Tempests powering up for departure.`
-			`	You walk up to the Wanderer they were all shouting at. He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment before saying, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He holds up a taloned hand and continues before you can say anything. "This spaceport isn't even begun. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and no one is [available, willing] to do transport work."`
+			`	You walk up to the Wanderer they were all shouting at. He looks at you warily as you greet him in Hai. He is briefly startled and cocks his head and regards you for a moment before saying, "Ah. You are the [lost, lonely] one from from the worlds beyond the Hai." He holds up a taloned hand and continues before you can say anything. "Spaceport construction hasn't even started. I don't have any Thunderheads. I don't have any parts. I don't have any fuel. If you need something, you have to go back to <destination>. I don't know when it will get better because everyone is [dithering, flying around] and no one is [available, willing] to do transport work."`
 			choice
 				`	"Tell me what you need and I'll handle it."`
 					goto handle
@@ -309,10 +309,10 @@ mission "Wanderers: Spera Anatrusk Outfitter 4"
 			
 			choice
 				`	"I'd be glad to."`
-					accept
 				`	"I'm not willing to risk the Mereti ships for the freighters."`
 					decline
 			`	The supervisor nods his head and then turns back to the construction site. He lifts his bull horn and starts shouting at the workers. He gets two sentences out before he remembers to stop speaking Hai.`
+					accept
 
 	on decline
 		event "wanderers: spera anatrusk colony" 20
