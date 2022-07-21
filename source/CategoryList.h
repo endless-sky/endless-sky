@@ -55,7 +55,9 @@ public:
 	// Determine if the CategoryList contains a Category with the given name.
 	bool Contains(const std::string &name) const;
 
+	typename std::vector<Category>::iterator begin() noexcept { return list.begin(); }
 	typename std::vector<Category>::const_iterator begin() const noexcept { return list.begin(); }
+	typename std::vector<Category>::iterator end() noexcept { return list.end(); }
 	typename std::vector<Category>::const_iterator end() const noexcept { return list.end(); }
 
 
