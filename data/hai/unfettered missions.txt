@@ -1168,10 +1168,10 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				defer
 			label wait
-			`You patiently wait for the intruder to come, and hit them in the back with your pistol. Then you proceed to attach them, and, after reuniting with a marine you hired a long time ago, and trust, wait for answers. He proceeds to search her first, and for a second you wonder if you really want to know about this.`
+			`You patiently wait for the intruder to come, and hit them in the back with your pistol. Then you proceed to attach them. Given it is a member of your crew that betrayed you, you decide not to involve anyone else into it, as they could be complicit of it. You firstly remove the weapon they are carrying. After doing a torough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this. `
 			choice
 				`(Ignorance is bliss).`
-				`(I prefer not to stay in the dark).`
+				`(I prefer not to stay in the dark. Wake them).`
 					goto light
 			label bliss
 			`You leave the traitor here on this world after awakening them, and they seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
@@ -1180,24 +1180,20 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				defer
 			label light
-			`After doing his torough search, the marine shows you the distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. He addresses you, with a serious look you never expected from him, "Sir, if you will pardon my language, I do know about it, but this is the deepest shit I could think of. This sign, here, means that this person holds her life to someone, and has to do one task, any task, to repay them. I guess there is something here of the highest importance to some men... Best not to keep it on board in that case? Whatever you choose, sir, with respect, I am retiring. This is too dangerous, even for me."`
-			choice
-				`(I am already involved, may as well know all about it. Wake them).`
-				`(Ignorance is bliss).`
-					goto bliss
-			`You were readying to slap the traitor a bit to bring her back, but he stops you, "I will do this for you, but then nothing else." He goes to take a bucket of water to wake her up. the crew member seems to recognize the hopelessness of their situation, and is willing to bargain, "I will tell you the truth, but then you will let me go and we will never see each others again. But let me be clear, I will not speak, under any circumstances other than those. I also seriously doubt your competences as a torturer so please, spare me any threats."`
+			`You throw a bucket of water on the crew member. They then wake up, and at first refuse to tell you anything, but showing them the sign they agree to reveal something to you. They seem to recognize the hopelessness of their situation, and maybe willing to bargain, "This sign means that I holds my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`You nod and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each others again. But let me be clear, I will not speak, under any circumstances other than those."`
 			choice
 				`(This is it. I want to know all).`
 				`(Ignorance is bliss).`
 					goto bliss
-			`She takes a deep breath, "An important organization wants these gold bars you have on boards. They are not just normal gold. If you were to sell them to me I could give you a good price, and you would not be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have all of them. I may have told you too much for them to allow me to live, already."`
+			`They takes a deep breath, "An important organization wants these gold bars you have on boards. They are not just normal gold. If you were to sell them to me I could give you a good price, and you would not be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have all of them. I may have told you too much for them to allow me to live, already."`
 			choice
 				`(Sell the bars).`
-				`(Keep them, and drop that traitor on the planet).`
+				`(Keep the bars, and drop that traitor on the planet).`
 					goto bliss
 				`(Keep the crew member for further interrogating).`
 					goto escape
-			`The soon to be gone traitor nods, "this is the right choice you are making, captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters we will easily get our hands on it, so it is no problem to us but you would only be payed the price of brute gold for it."`
+			`The soon to be gone traitor nods, "This is the right choice you are making, captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters we will easily get our hands on it, so it is no problem to us but you would only be payed the price of brute gold for it."`
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
@@ -1206,7 +1202,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				decline
 			label escape
-			`You tighten the traitor's hold, and tell your marine to keep a watch on them until you can find someone else of trust, but when you come back later, they are both gone. There is a little word on the spot where some gold bars where. It is written by your marine, and says, "<first>. I am very sorry to break your trust, but trust me, this is for your own good. The ex crew member would have been killed if they had returned without the gold bars, so I let them take a few. You should quit this while you still can."`
+			`You tighten the traitor's hold, but whilst doing so feel a hit in the back of your head, and lose consciousness. When you surface, there is a little word on the spot where some gold bars where, written by yet another member of  your crew, "<first>. I am very sorry to break your trust like they did, but trust me, this is for your own good. The ex crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
 				goto lostbars
 
 mission "Unfettered: Bar Selling"
