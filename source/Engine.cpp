@@ -22,9 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -38,7 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -61,6 +57,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "pi.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -2139,23 +2139,23 @@ void Engine::DoWeather(Weather &weather)
 
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	if (activeCommands.Has(Command::MOUSETURNING))
+	if(activeCommands.Has(Command::MOUSETURNING))
 		isMouseTurningEnabled = !isMouseTurningEnabled;
-	if (isMouseTurningEnabled)
+	if(isMouseTurningEnabled)
 	{
 		int mousePosX;
 		int mousePosY;
-		if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 			rightMouseButtonHeld = true;
 		else
 			rightMouseButtonHeld = false;
-		double relx = mousePosX - Screen::RawWidth()/2;
-		double rely = mousePosY - Screen::RawHeight()/2;
-		if (relx == 0)
+		double relx = mousePosX - Screen::RawWidth() / 2;
+		double rely = mousePosY - Screen::RawHeight() / 2;
+		if(relx == 0)
 			mouseAngle = 90;
 		else
-			mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
-		if (relx < 0)
+			mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
+		if(relx < 0)
 			mouseAngle += 180;
 	}
 }

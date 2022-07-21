@@ -3518,14 +3518,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			&& !isMouseTurningEnabled)
 		AutoFire(ship, firingCommands, false);
 
-	if (activeCommands.Has(Command::MOUSETURNING)) {
+	if(activeCommands.Has(Command::MOUSETURNING))
+	{
 		isMouseTurningEnabled = !isMouseTurningEnabled;
 	}
 
-	if (isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing())
+	if(isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing())
 	{
 		Angle shipAngle = ship.Facing();
-		if (rightMouseButtonHeld)
+		if(rightMouseButtonHeld)
 		{
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
@@ -3537,7 +3538,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		}
 
 		double angDiff = mouseAngle.Degrees() - shipAngle.Degrees();
-		if (abs(angDiff) > 1)
+		if(abs(angDiff) > 1)
 			command.SetTurn((angDiff / abs(angDiff)) * pow(-1, (floor(abs(angDiff) / 180))));
 		else
 			command.SetTurn(0);
@@ -3586,8 +3587,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
-				|| ship.GetTargetAsteroid())
+			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& !isMouseTurningEnabled)
 	{
