@@ -148,7 +148,7 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
 				}
 
-				THEN( "the categories with the same precedence become alphabetically ordered" ) {
+				THEN( "after sorting, the categories with the same precedence become alphabetically ordered" ) {
 					sorted[2] = "fifth"; // Precedence = 7
 					sorted[3] = "first"; // Precedence = 7
 					sorted[4] = "fourth"; // Precedence = 7
@@ -159,14 +159,22 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 			}
 
 			AND_WHEN( "a list is loaded again with a category that already exists but with a different precedence" ) {
-				list.Load(AsDataNode("category test\n\tfirst 1"));
-				sorted[0] = "first"; // Precedence = 1
-				sorted[1] = "second"; // Precedence = 2
-				sorted[2] = "third"; // Precedence = 4
+				list.Load(AsDataNode("category test\n\tthird 1"));
 
-				THEN( "the duplicate category has its precedence changed instead of appearing twice" ) {
+				THEN( "the duplicate category's position is unchanged but its precedence is updated" ) {
+					sorted[0] = "second"; // Precedence = 2
+					sorted[1] = "third"; // Precedence = 1
+					sorted[2] = "first"; // Precedence = 6
+					// sorted = second, third, first
+					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+				}
+
+				THEN( "after sorting, the duplicate category's position is corrected" ) {
+					sorted[0] = "third"; // Precedence = 1
+					sorted[1] = "second"; // Precedence = 2
+					sorted[2] = "first"; // Precedence = 6
 					list.Sort();
-					// sorted = first, second, third
+					// sorted = third, second, first
 					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
 				}
 			}
