@@ -2802,7 +2802,7 @@ bool Ship::IsEscortsFullOfFuel() const
 bool Ship::IsOutOfEnergy() const
 {
 	bool closeToParent = false;
-	bool outOfEnergy = GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.  && GetIdleEnergyPerFrame() < 0.;
+	bool outOfEnergy = GetCurrentEnergy() <= 0. && GetMovingEnergyPerFrame() > 0.  && GetIdleEnergyPerFrame() <= 0.;
 	if(canBeCarried && outOfEnergy)
 	{
 		if(GetParent())
