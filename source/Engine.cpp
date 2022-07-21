@@ -1361,6 +1361,8 @@ void Engine::CalculateStep()
 		return;
 
 	// Handle the mouse input of the mouse navigation
+	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
+		activeCommands.Set(Command::MOUSETURNING);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands, mouseAngle, rightMouseButtonHeld);
@@ -2140,7 +2142,10 @@ void Engine::DoWeather(Weather &weather)
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	if(activeCommands.Has(Command::MOUSETURNING))
+	{
 		isMouseTurningEnabled = !isMouseTurningEnabled;
+		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+	}
 	if(isMouseTurningEnabled)
 	{
 		int mousePosX;
