@@ -1958,7 +1958,7 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(isRightClick)
+	else if(isRightClick && !isMouseTurningEnabled)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 	else if(flagship->Attributes().Get("asteroid scan power"))
 	{
