@@ -94,88 +94,85 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 				list.Sort();
 				// sorted = second, third, first
 				CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
-			}
 
-			AND_WHEN( "a list is loaded again without precedence" ) {
-				list.Load(AsDataNode("category test\n\tfourth\n\tfifth"));
+				AND_WHEN( "a list is loaded again without precedence" ) {
+					list.Load(AsDataNode("category test\n\tfourth\n\tfifth"));
 
-				THEN( "the new categories are at the end of the list in the order they were added" ) {
-					sorted.push_back("fourth"); // Precedence = 5, as the last used precedence was 4.
-					sorted.push_back("fifth"); // Precedence = 6
-					// sorted = second, third, first, fourth, fifth
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					THEN( "the new categories are at the end of the list in the order they were added" ) {
+						sorted.push_back("fourth"); // Precedence = 5, as the last used precedence was 4.
+						sorted.push_back("fifth"); // Precedence = 6
+						// sorted = second, third, first, fourth, fifth
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
+
+					THEN( "sorting the list moves the new categories into the correct positions" ) {
+						sorted[2] = "fourth"; // Precedence = 5, as the last used precedence was 4.
+						sorted.push_back("fifth"); // Precedence = 6
+						sorted.push_back("first"); // Precedence = 7
+						// sorted = second, third, fourth, fifth, first
+						list.Sort();
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
 				}
 
-				THEN( "sorting the list moves the new categories into the correct positions" ) {
-					sorted[2] = "fourth"; // Precedence = 5, as the last used precedence was 4.
-					sorted.push_back("fifth"); // Precedence = 6
-					sorted.push_back("first"); // Precedence = 7
-					// sorted = second, third, fourth, fifth, first
-					list.Sort();
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+				AND_WHEN( "a list is loaded again with precedence" ) {
+					list.Load(AsDataNode("category test\n\tfourth 1\n\tfifth 3"));
+
+					THEN( "the new categories are at the end of the list in the order they were added" ) {
+						sorted.push_back("fourth"); // Precedence = 1
+						sorted.push_back("fifth"); // Precedence = 3
+						// sorted = second, third, first, fourth, fifth
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
+
+					THEN( "sorting the list moves the new categories into the correct positions" ) {
+						sorted[0] = "fourth"; // Precedence = 1
+						sorted[1] = "second"; // Precedence = 2
+						sorted[2] = "fifth"; // Precedence = 3
+						sorted.push_back("third"); // Precedence = 4
+						sorted.push_back("first"); // Precedence = 7
+						list.Sort();
+						// sorted = fourth, second, fifth, third, first
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
 				}
-			}
+				
+				AND_WHEN( "a list is loaded again with two categories of the same precedence" ) {
+					list.Load(AsDataNode("category test\n\tfourth 7\n\tfifth 7"));
 
-			AND_WHEN( "a list is loaded again with precedence" ) {
-				list.Load(AsDataNode("category test\n\tfourth 1\n\tfifth 3"));
+					THEN( "the new categories are at the end of the list in the order they were added" ) {
+						sorted.push_back("fourth"); // Precedence = 7
+						sorted.push_back("fifth"); // Precedence = 7
+						// sorted = second, third, first, fourth, fifth
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
 
-				THEN( "the new categories are at the end of the list in the order they were added" ) {
-					sorted.push_back("fourth"); // Precedence = 1
-					sorted.push_back("fifth"); // Precedence = 3
-					// sorted = second, third, first, fourth, fifth
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
-				}
-
-				THEN( "sorting the list moves the new categories into the correct positions" ) {
-					sorted[0] = "fourth"; // Precedence = 1
-					sorted[1] = "second"; // Precedence = 2
-					sorted[2] = "fifth"; // Precedence = 3
-					sorted.push_back("third"); // Precedence = 4
-					sorted.push_back("first"); // Precedence = 7
-					list.Sort();
-					// sorted = fourth, second, fifth, third, first
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
-				}
-			}
-
-			AND_WHEN( "a list is loaded again with two categories of the same precedence" ) {
-				list.Load(AsDataNode("category test\n\tfourth 7\n\tfifth 7"));
-
-				THEN( "the new categories are at the end of the list in the order they were added" ) {
-					sorted.push_back("fourth"); // Precedence = 7
-					sorted.push_back("fifth"); // Precedence = 7
-					// sorted = second, third, first, fourth, fifth
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
-				}
-
-				THEN( "after sorting, the categories with the same precedence become alphabetically ordered" ) {
-					sorted[2] = "fifth"; // Precedence = 7
-					sorted.push_back("first"); // Precedence = 7
-					sorted.push_back("fourth"); // Precedence = 7
-					list.Sort();
-					// sorted = second, third, fifth, first, fourth
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
-				}
-			}
-
-			AND_WHEN( "a list is loaded again with a category that already exists but with a different precedence" ) {
-				list.Load(AsDataNode("category test\n\tthird 1"));
-
-				THEN( "the duplicate category's position is unchanged but its precedence is updated" ) {
-					sorted.push_back("second"); // Precedence = 2
-					sorted.push_back("third"); // Precedence = 1
-					sorted.push_back("first"); // Precedence = 6
-					// sorted = second, third, first
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					THEN( "after sorting, the categories with the same precedence become alphabetically ordered" ) {
+						sorted[2] = "fifth"; // Precedence = 7
+						sorted.push_back("first"); // Precedence = 7
+						sorted.push_back("fourth"); // Precedence = 7
+						list.Sort();
+						// sorted = second, third, fifth, first, fourth
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
 				}
 
-				THEN( "after sorting, the duplicate category's position is corrected" ) {
-					sorted.push_back("third"); // Precedence = 1
-					sorted.push_back("second"); // Precedence = 2
-					sorted.push_back("first"); // Precedence = 6
-					list.Sort();
-					// sorted = third, second, first
-					CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+				AND_WHEN( "a list is loaded again with a category that already exists but with a different precedence" ) {
+					list.Load(AsDataNode("category test\n\tthird 1"));
+
+					THEN( "the duplicate category's position is unchanged but its precedence is updated" ) {
+						// sorted = second, third, first
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
+
+					THEN( "after sorting, the duplicate category's position is corrected" ) {
+						sorted[0] = "third"; // Precedence = 1
+						sorted[1] = "second"; // Precedence = 2
+						sorted[2] = "first"; // Precedence = 6
+						list.Sort();
+						// sorted = third, second, first
+						CHECK( std::equal(sorted.begin(), sorted.end(), list.begin(), equal) );
+					}
 				}
 			}
 		}
