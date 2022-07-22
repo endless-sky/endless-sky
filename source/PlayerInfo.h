@@ -126,6 +126,11 @@ public:
 	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 	FleetBalance MaintenanceAndReturns() const;
 
+	// Access to the licenses the player owns.
+	bool HasLicense(std::string name) const;
+	std::set<std::string> &Licenses();
+	const std::set<std::string> &Licenses() const;
+
 	// Access the flagship (the first ship in the list). This returns null if
 	// the player does not have any ships that can be a flagship.
 	const Ship *Flagship() const;
@@ -212,6 +217,10 @@ public:
 	void SetReputationConditions();
 	void CheckReputationConditions();
 	std::map<std::string, std::string> GetSubstitutions() const;
+
+	// Get and set the "tribute" that the player receives from dominated planets.
+	void SetTribute(const Planet * planet, int64_t payment);
+	const std::map<const Planet *, int64_t> GetTribute() const;
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
@@ -320,6 +329,8 @@ private:
 	double playTime = 0.;
 
 	Account accounts;
+	// The licenses that the player owns.
+	std::set<std::string> licenses;
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
@@ -366,6 +377,7 @@ private:
 
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
+	std::map<const Planet *, int64_t> tributeReceived;
 	std::list<DataNode> dataChanges;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:

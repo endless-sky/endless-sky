@@ -46,6 +46,14 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	{
 		if(child.Token(0) == "credits" && child.Size() >= 2)
 			credits = child.Value(1);
+		else if(child.Token(0) == "salaries income")
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping incomplete salary income:");
+				else
+					salariesIncome[node.Token(0)] = node.Value(1);
+			}
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
 			crewSalariesOwed = child.Value(1);
 		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
@@ -57,6 +65,8 @@ void Account::Load(const DataNode &node, bool clearFirst)
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
+		else
+			node.PrintTrace("Skipping unrecognized account item:");
 	}
 }
 
@@ -69,6 +79,16 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
+		if(salariesIncome.size() > 0)
+		{
+			out.Write("salaries income");
+			out.BeginChild();
+			{
+				for(const auto &income : salariesIncome)
+					out.Write(income.first, income.second);
+			}
+			out.EndChild();
+		}
 		if(crewSalariesOwed)
 			out.Write("salaries", crewSalariesOwed);
 		if(maintenanceDue)
@@ -274,6 +294,26 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 			out << creditString(finesPaid) << " in fines.";
 	}
 	return out.str();
+}
+
+
+
+const map<string, int64_t> &Account::SalariesIncome() const
+{
+	return salariesIncome;
+}
+
+
+
+// TODO: Setup 2-way sync for SalariesIncome with the relevant conditions (where those salaries are currently stored)
+// TODO: Switch from internally using conditions for SalariesIncome to those functions
+// TODO: Add some tests for those new functions
+void Account::SetSalaryIncome(string name, int64_t ammount)
+{
+	if(ammount == 0)
+		salariesIncome.erase(name);
+	else
+		salariesIncome[name] = ammount;
 }
 
 

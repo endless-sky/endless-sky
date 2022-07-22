@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mortgage.h"
 
 #include <cstdint>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -39,6 +40,10 @@ public:
 
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
+
+	// Structural income.
+	const std::map<std::string, int64_t> &SalariesIncome() const;
+	void SetSalaryIncome(std::string name, int64_t ammount);
 
 	// Overdue crew salaries:
 	int64_t CrewSalariesOwed() const;
@@ -67,6 +72,8 @@ private:
 
 private:
 	int64_t credits = 0;
+	// Regular income from salaries paid to the player.
+	std::map<std::string, int64_t> salariesIncome;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
 	int64_t crewSalariesOwed = 0;

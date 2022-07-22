@@ -174,7 +174,12 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
-
+		else if(child.Token(0) == "tribute received")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
+		}
 		// Records of things you own:
 		else if(child.Token(0) == "ship")
 		{
@@ -196,6 +201,11 @@ void PlayerInfo::Load(const string &path)
 							CargoHold &storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
 							storage.Load(grandGrand);
 						}
+		}
+		else if(child.Token(0) == "licenses")
+		{
+			for(const DataNode &grand : child)
+				licenses.insert(grand.Token(0));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child, true);
@@ -754,6 +764,29 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 			}
 		}
 	return b;
+}
+
+
+
+bool PlayerInfo::HasLicense(string name) const
+{
+	return licenses.find(name) != licenses.end();
+}
+
+
+
+// TODO: Setup 1 or 2-way sync for Licenses with the relevant conditions (where those salaries are currently stored)
+// TODO: Switch from internally using conditions for Licenses to those functions
+set<string> &PlayerInfo::Licenses()
+{
+	return licenses;
+}
+
+
+
+const set<string> &PlayerInfo::Licenses() const
+{
+	return licenses;
 }
 
 
@@ -1871,6 +1904,33 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 
 
+// TODO: Setup 2-way sync for Tribute with the relevant conditions (where those salaries are currently stored)
+// TODO: Switch from internally using conditions for Tribute to those functions
+// TODO: Properly connect this function to the dominated property of planets
+void PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
+{
+	// Set the tribute both in tribute storage as well as in the conditions.
+	if(payment > 0)
+	{
+		tributeReceived[planet] = payment;
+		conditions["tribute: " + planet->TrueName()] = payment;
+	}
+	else
+	{
+		tributeReceived.erase(planet);
+		conditions.erase("tribute: " + planet->TrueName());
+	}
+}
+
+
+
+const map<const Planet *, int64_t> PlayerInfo::GetTribute() const
+{
+	return tributeReceived;
+}
+
+
+
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
@@ -2881,6 +2941,14 @@ void PlayerInfo::Save(const string &path) const
 	}
 	out.EndChild();
 
+	out.Write("tribute received");
+	out.BeginChild();
+	{
+		for(const auto &it : tributeReceived)
+			if(it.second > 0)
+				out.Write((it.first)->TrueName(), it.second);
+	}
+	out.EndChild();
 
 	// Records of things you own:
 	out.Write();
@@ -2909,6 +2977,18 @@ void PlayerInfo::Save(const string &path) const
 					}
 					out.EndChild();
 				}
+		}
+		out.EndChild();
+	}
+	if(!licenses.empty())
+	{
+		out.Write("licenses");
+		out.BeginChild();
+		{
+			for(const string &license : licenses)
+			{
+				out.Write(license);
+			}
 		}
 		out.EndChild();
 	}
