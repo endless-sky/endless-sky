@@ -35,7 +35,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	if(clearFirst)
 	{
 		credits = 0;
-		salariesOwed = 0;
+		crewSalariesOwed = 0;
 		maintenanceDue = 0;
 		creditScore = 400;
 		mortgages.clear();
@@ -47,7 +47,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 		if(child.Token(0) == "credits" && child.Size() >= 2)
 			credits = child.Value(1);
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
-			salariesOwed = child.Value(1);
+			crewSalariesOwed = child.Value(1);
 		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
 			maintenanceDue = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
@@ -69,8 +69,8 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
-		if(salariesOwed)
-			out.Write("salaries", salariesOwed);
+		if(crewSalariesOwed)
+			out.Write("salaries", crewSalariesOwed);
 		if(maintenanceDue)
 			out.Write("maintenance", maintenanceDue);
 		out.Write("score", creditScore);
@@ -132,28 +132,28 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	salariesOwed += salaries;
+	crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
-	int64_t salariesPaid = salariesOwed;
-	if(salariesOwed)
+	int64_t salariesPaid = crewSalariesOwed;
+	if(crewSalariesOwed)
 	{
-		if(salariesOwed > credits)
+		if(crewSalariesOwed > credits)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
 			salariesPaid = max<int64_t>(credits, 0);
-			salariesOwed -= salariesPaid;
+			crewSalariesOwed -= salariesPaid;
 			credits -= salariesPaid;
 			missedPayment = true;
 			out << "You could not pay all your crew salaries.";
 		}
 		else
 		{
-			credits -= salariesOwed;
-			salariesOwed = 0;
+			credits -= crewSalariesOwed;
+			crewSalariesOwed = 0;
 		}
 	}
 
@@ -217,7 +217,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets - salariesOwed - maintenanceDue);
+	history.push_back(credits + assets - crewSalariesOwed - maintenanceDue);
 
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -278,18 +278,18 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 
 
 
-int64_t Account::SalariesOwed() const
+int64_t Account::CrewSalariesOwed() const
 {
-	return salariesOwed;
+	return crewSalariesOwed;
 }
 
 
 
 void Account::PaySalaries(int64_t amount)
 {
-	amount = min(min(amount, salariesOwed), credits);
+	amount = min(min(amount, crewSalariesOwed), credits);
 	credits -= amount;
-	salariesOwed -= amount;
+	crewSalariesOwed -= amount;
 }
 
 

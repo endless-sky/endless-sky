@@ -41,7 +41,7 @@ public:
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
 	// Overdue crew salaries:
-	int64_t SalariesOwed() const;
+	int64_t CrewSalariesOwed() const;
 	void PaySalaries(int64_t amount);
 	// Overdue maintenance costs:
 	int64_t MaintenanceDue() const;
@@ -69,7 +69,7 @@ private:
 	int64_t credits = 0;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
-	int64_t salariesOwed = 0;
+	int64_t crewSalariesOwed = 0;
 	int64_t maintenanceDue = 0;
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
