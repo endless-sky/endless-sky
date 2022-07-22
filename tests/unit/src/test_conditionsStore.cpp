@@ -670,7 +670,7 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 	{
 		auto store = ConditionsStore();
 		auto mockProvPrefixShips = MockConditionsProvider();
-		mockProvPrefixShips.SetRWPrefixProvider(store, "ships: " );
+		mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
 		WHEN( "adding variables with similar names" )
 		{
 			REQUIRE( store.Add("ships: A", 20) == true );
