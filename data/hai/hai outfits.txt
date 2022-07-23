@@ -139,9 +139,9 @@ outfit "Ionic Blaster Prototype"
 	"weapon capacity" -28
 	"gun ports" -1
 	weapon
-		sprite "projectile/ion bolt"
+		sprite "projectile/ion blast"
 			"frame rate" 5
-		sound "ion"
+		sound "ion blast"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 4
 		"velocity" 18
@@ -167,11 +167,11 @@ outfit "Ionic Turret Prototype"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/ion bolt"
+		sprite "projectile/ion blast"
 			"frame rate" 5
 		"hardpoint sprite" "hardpoint/hai ionic turret"
 		"hardpoint offset" 16.
-		sound "ion"
+		sound "ion blast"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 2
 		"turret turn" 2.5
