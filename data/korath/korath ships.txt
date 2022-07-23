@@ -151,12 +151,11 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 		"Jump Drive"
 
 
-
 ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Heavy Warship"
+		category "Medium Warship"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
@@ -167,8 +166,8 @@ ship "Korath Raider"
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
-		"outfit space" 721
-		"weapon capacity" 284
+		"outfit space" 781
+		"weapon capacity" 339
 		"engine capacity" 159
 		weapon
 			"blast radius" 250
@@ -179,6 +178,8 @@ ship "Korath Raider"
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -197,6 +198,10 @@ ship "Korath Raider"
 		zoom 0.7
 	"reverse engine" 9 -154
 		zoom 0.7
+	gun 32.5 -1 "Firelight Missile Bank"
+		angle 60
+	gun -32.5 -1 "Firelight Missile Bank"
+		angle 300
 	turret -10 -143 "Korath Grab-Strike"
 	turret 10 -143 "Korath Grab-Strike"
 	turret -36 -141 "Korath Grab-Strike"
@@ -211,15 +216,17 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Korath Raider is their warship of choice for plundering neighboring species."
+	description "Successive Raider designs have been the Korath warship of choice for plundering neighboring species for generations."
+	description "This model, like all Exile ships, has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for the ship's easy replacement, facilitating continued raids of nearby systems."
 
 
 ship "Korath Raider" "Korath Raider (Ember)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -234,6 +241,8 @@ ship "Korath Raider" "Korath Raider (Ember)"
 		"Jump Drive"
 		"Hyperdrive"
 
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -243,11 +252,12 @@ ship "Korath Raider" "Korath Raider (Ember)"
 
 
 ship "Korath Raider" "Korath Raider (Hyperdrive)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -262,6 +272,8 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -271,11 +283,12 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 
 
 ship "Korath Raider" "Korath Raider (Crippled)"
-	sprite "ship/raider"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
 		"Korath Warder"
+		"Firelight Missile Bank"
+		"Firelight Missile" 9
 		
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
@@ -288,6 +301,8 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 
+	gun
+	gun "Firelight Missile Bank"
 	turret
 	turret
 	turret "Korath Grab-Strike"
@@ -295,6 +310,152 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Banisher"
 	turret "Korath Warder"
 
+
+ship "Korath Raider Mark XLII"
+	sprite "ship/raider xlii"
+	thumbnail "thumbnail/raider xlii"
+	attributes
+		category "Medium Warship"
+		"cost" 22895000
+		"shields" 29500
+		"hull" 11000
+		"required crew" 157
+		"bunks" 250
+		"mass" 952
+		"drag" 15
+		"heat dissipation" .6
+		"heat protection" 0.1
+		"hull protection" 0.1
+		"fuel capacity" 700
+		"cargo space" 163
+		"outfit space" 871
+		"weapon capacity" 377
+		"engine capacity" 212
+		weapon
+			"blast radius" 250
+			"shield damage" 3700
+			"hull damage" 1900
+			"hit force" 5500
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Fire-Lance"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	
+	engine -20 132
+		over
+	engine 20 132
+		over
+	engine 0 142
+		over
+	"reverse engine" -9 -154
+		zoom 0.7
+	"reverse engine" 9 -154
+		zoom 0.7
+	"steering engine" -89 33.5
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 89 33.5
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -82.5 30
+		zoom 0.3
+		angle 126
+		left
+	"steering engine" 82.5 30
+		zoom 0.3
+		angle -126
+		right
+	"steering engine" -69.5 -103.5
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 69.5 -103.5
+		zoom 0.3
+		angle -38
+		left
+	"steering engine" -76 -106
+		zoom 0.3
+		angle 38
+		right
+	"steering engine" 76 -106
+		zoom 0.3
+		angle -38
+		left
+	gun -45 -150 "Korath Fire-Lance"
+	gun 32.5 -1 "Firelight Missile Bank"
+		angle 60
+	gun -32.5 -1 "Firelight Missile Bank"
+		angle 300
+	turret -10 -143 "Korath Grab-Strike"
+	turret 10 -143 "Korath Grab-Strike"
+	turret -36 -141 "Korath Grab-Strike"
+	turret 36 -141 "Korath Grab-Strike"
+	turret 0 41 "Korath Banisher"
+	turret 0 94 "Korath Warder"
+	bay "Fighter" -80 151 back
+	bay "Fighter" 80 151 back
+	bay "Fighter" 28.5 145 back
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation caused by a life in exile."
+	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
+
+
+ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
+	add attributes
+		"cargo space" -70
+		"outfit space" 70
+	outfits 
+		"Korath Grab-Strike" 2
+		"Korath Disruptor" 2
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Detainer"
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
+		
+		"Triple Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor"
+		"Korath Repeater Rifle" 196
+		
+		"Thruster (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Grab-Strike"
+	turret "Korath Disruptor"
+	turret "Korath Banisher"
 
 
 ship "Korath Chaser"

@@ -69,6 +69,7 @@ void CollisionSet::Clear(int step)
 	added.clear();
 	sorted.clear();
 	counts.clear();
+	all.clear();
 	// The counts vector starts with two sentinel slots that will be used in the
 	// course of performing the radix sort.
 	counts.resize(CELLS * CELLS + 2u, 0u);
@@ -96,6 +97,9 @@ void CollisionSet::Add(Body &body)
 			++counts[gy * CELLS + gx + 2];
 		}
 	}
+
+	// Also save a pointer to this object irrespective of its grid location.
+	all.emplace_back(&body);
 }
 
 
@@ -364,4 +368,11 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 		}
 	}
 	return result;
+}
+
+
+
+const vector<Body *> &CollisionSet::All() const
+{
+	return all;
 }

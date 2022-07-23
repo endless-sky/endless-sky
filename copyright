@@ -156,10 +156,15 @@ Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
 Files:
  images/outfit/jump?drive?(broken)*
  images/outfit/plasma?repeater*
- images/scene/plasma?scene*
 Copyright: Darcy Manoel <Darcman00@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/scene/plasma?scene*
+Copyright: 1010todd <1010todd3d@gmail>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
  images/land/enceladus_1*
@@ -703,25 +708,25 @@ License: public-domain
 Files:
  images/land/station8*
 Copyright: MTA of the State of New York
-Licence: CC BY 2.0
+License: CC BY 2.0
 Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
 
 Files:
  images/land/station27*
 Copyright: Sebastian Sinisterra
-Licence: CC BY 2.0
+License: CC BY 2.0
 Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
 
 Files:
  images/land/station28*
 Copyright: mwewering
-Licence: Pixabay License
+License: Pixabay License
 Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
 
 Files:
  images/land/station15*
 Copyright: mikecook
-Licence: Pixabay License
+License: Pixabay License
 Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
 
 Files:
@@ -756,6 +761,7 @@ License: public-domain
 Comment: Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
 
 Files: sounds/torpedo?hit.wav
+Copyright: Public Domain
 License: public-domain
 
 Files: sounds/meteor.wav
@@ -764,6 +770,7 @@ License: CC-BY-SA-3.0
 Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
 
 Files: sounds/sidewinder.wav
+Copyright: Copyright "NHMWretched"
 License: public-domain
 Comment: Taken from https://freesound.org/people/NHMWretched/sounds/151858/
 
@@ -775,6 +782,7 @@ Comment: Taken from http://soundbible.com/1151-Grenade.html
 Files:
  sounds/asteroid crunch small.wav
  sounds/asteroid crunch medium.wav
+Copyright: Copyright AlanCat
 License: public-domain
 Comment: Derived from https://freesound.org/people/AlanCat/sounds/381645/
 
@@ -1071,6 +1079,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license)
 
 Files:
+ image/effect/firestorm?ring*
+Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
+License: CC0 (Creative Commons Zero)/Public-Domain
+
+Files:
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1083,6 +1096,13 @@ Files:
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
+
+Files:
+ images/ship/chaser*
+ images/thumbnail/chaser*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence)
 
 Files:
  images/outfit/torpedopod*
@@ -1145,6 +1165,12 @@ Files:
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/outskirts?gauger*
+Copyright: Arachi-Lover
+License: CC-BY-SA-4.0
+Comment: Derived from works by Zachary Siple and Michael Zahniser (under the same license).
 
 Files:
  images/effect/dragonflame*
@@ -1343,13 +1369,17 @@ Files:
  images/outfit/bright?cloud*
  images/outfit/caldera?afterburner*
  images/outfit/dark?storm*
+ images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
+ images/outfit/finisher?maegrolain*
  images/outfit/nuke*
+ images/outfit/plasma?core*
  images/outfit/red?sun*
  images/outfit/sunbeam*
  images/outfit/sunbeam?turret*
  images/outfit/thunderhead?launcher*
  images/outfit/thunderhead?storage*
+ images/outfit/triple?plasma?core*
  images/outfit/wanderer?anti-missile*
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
@@ -1399,6 +1429,7 @@ Files:
  images/ship/gunboat*
  images/ship/lance*
  images/ship/rainmaker*
+ images/ship/surveillance?drone*
  images/thumbnail/auxiliary*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
@@ -1407,11 +1438,13 @@ Files:
  images/thumbnail/gunboat*
  images/thumbnail/lance*
  images/thumbnail/rainmaker*
+ images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -1433,9 +1466,33 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- sounds/remnant afterburner.wav
+ sounds/remnant?afterburner*
+Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ images/icon/firelight*
+ images/outfit/firelight*
+ images/outfit/firelight?bank*
+ images/outfit/firelight?rack*
+ images/planet/station4c*
+ images/planet/station5c*
+ images/planet/station6c*
+ images/planet/station7c*
+ images/planet/station7cb*
+ images/projectile/firelight*
+ images/projectile/firelight?active*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
+
+Files:
+ images/ship/raider?xlii*
+ images/thumbnail/raider?xlii*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
 
 Files:
  images/ship/kestrel*
@@ -1451,6 +1508,19 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Anarchist2.
+
+Files:
+ sounds/remnant?afterburner.wav
+Copyright: Public Domain
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
+
+Files:
+ sounds/firelight.wav
+ sounds/firelight?hit.wav
+Copyright: Public Domain
+License: public-domain
+Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia and Lia Gerty.
 
 Files:
  images/effect/ember?tear/ember?tear?fire*
