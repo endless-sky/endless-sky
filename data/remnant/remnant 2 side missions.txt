@@ -162,7 +162,7 @@ mission "Remnant: Celebration 1"
 		"day" = 7
 	on offer
 		conversation
-			`You stop by the starport just in time to see a large group of Remnant heading off together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
+			`You stop by the starport just in time to see a large number of Remnant heading going somewhere together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
 			`	"Well met, <first>. We were just going to the monthly Celebration of Remembrance. Would you like to accompany us?"`
 			choice
 				`	"Yes, I would."`
@@ -180,7 +180,153 @@ mission "Remnant: Celebration 1"
 				`	"No thanks."`
 					goto celebrationdeclined
 			label celebrationattendance
-			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary
+			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary if you like like, but it is more about feeling than doing anything specific. Just to provide you with some context, this is a free-form dance mixed with singing and music. You are welcome to participate, just try not to be disruptive, such as getting in the way of people dancing."`
+			choice
+				`	"No, that is alright. I will just experience it."`
+				`	"Yes, that would be appreciated."`
+					goto celebrationannotated
+			`	The flow of people you are a part of joins with other streams of people, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
+			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
+			`	Suddenly you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	"Thump."`
+			`	"Thump."`
+			`	"Thump."`
+			`	"Thump."`
+			choice
+				`	Look around the room.`
+				`	Move in time with the beat.`
+			`	The beat echoes in the cavern, but you quickly manage to locate the source: An elderly Remnant using her hands to thump on a polished stalagmite. Judging by the resonance, it appears that it must be hollow. As you watch, a child steps up next to her and starts hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
+			`	"...6...5...4...Ignition...2...1...Liftoff"`
+			choice
+				`	Look around with anticipation.`
+					goto countdown
+				`	Look around nervously.`
+			`	Taely notices your anxiety and gestures reassuringly "All is well."`
+			label countdown
+			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
+			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
+			choice
+				`	Stand still and absorb the moment.`
+				`	Look around to see what is happening next.`
+			`	Around you, everyone stands still. Most look exhausted, some are sitting on the floor or leaning against the wall. A few people look like they have been crying, with those nearby hugging them or touching their shoulder. Most of the people you can see have reverent and joyful expressions. After what feels like several minutes the doors open and people start to leave, and in short order the cave is nearly empty.`
+				goto celebrationend
+			label celebrationannotated
+			`	The flow of people you are a part of joins with other streams of people, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
+			`	Taely gestures quietly to you. "It will start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
+			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
+			`	Suddenly you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	"Thump."`
+			`	"Thump."`
+			`	"Thump."`
+			`	"Thump."`
+			choice
+				`	Look around the room.`
+				`	Move in time with the beat.`
+			`	At your side, Taely gestures again. "Existence starts with the patterns of the universe, and our story starts with life."`
+			`	The beat echoes in the cavern, but you quickly manage to locate the source: An elderly Remnant using her hands to thump on a polished stalagmite. Judging by the resonance, it appears that it must be hollow. As you watch, a child steps up next to her and starts hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	"Thump-thump."`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
+			`	"...6...5...4...Ignition...2...1...Liftoff"`
+			choice
+				`	Look around with anticipation.`
+					goto countdown
+				`	Look around nervously.`
+			`	Taely notices your anxiety and gestures reassuringly "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
+			label countdown
+			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
+			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
+			`	Through it all, Taely offers a running commentary commenting on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
+			choice
+				`	Stand still and absorb the moment.`
+				`	Look around to see what is happening next.`
+			`	Around you, everyone stands still. Most look exhausted, some are sitting on the floor or leaning against the wall. A few people look like they have been crying, with those nearby hugging them or touching their shoulder. Most of the people you can see have reverent and joyful expressions. After what feels like several minutes the doors open and people start to leave, and in short order the cave is nearly empty.`
+			label celebrationend
+			`	"I always find these Celebrations of Remembrance to be invigorating. What did you think of it, <first>?"`
+			choice
+				`	"I think I will have to get back to you on that later."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+					goto askcrying
+				`	"Who leads these ceremonies?"`
+					goto ceremonyleader
+				`	"That seemed both well rehearsed and very disorganized."`
+			label celebrationrehearsed
+			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, with the expectation that people attend no more than one of them. So most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation is up to them, and so the details and feel of each celebration are unique every time." She makes a gesture you have come to realize amounts to "If you have more questions, ask them."`
+			choice
+				`	"I think that is all for now."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+					goto askcrying
+				`	"Who leads these ceremonies?"`
+			label ceremonyleader
+			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present. Whether we are talking about our connection with society; or our connection to the Universe; We must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could take the lead for one of the segments."`
+			choice
+				`	"I think that is all for now."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+					goto askcrying
+				`	"That seemed both well rehearsed and very disorganized."`
+					goto celebrationrehearsed
+				`	"You said 'virtually.' Who is omitted?"`
+			`	Taely scowls a bit at this. "Only those of guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
+			choice
+				`	"I think that is all for now."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+					goto askcrying
+				`	"That seemed both well rehearsed and very disorganized."`
+					goto celebrationrehearsed
+				`	"What constitutes your most serious crimes?"`
+			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective wellbeing is the single most destructive and senseless acts someone can do."`
+			choice
+				`	"I think that is all for now."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+				`	"That seemed both well rehearsed and very disorganized."`
+					goto celebrationrehearsed
+			label askcrying
+			`	Taely gestures gently. "Those were crew members of a ship that was destroyed while studying a black hole. They acquired ground breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
+			choice
+				`	"I think that is all for now."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+				`	"Who leads these ceremonies?"`
+					goto ceremonyleader
+				`	"That seemed both well rehearsed and very disorganized."`
+					goto celebrationrehearsed
+			label awestruck
+			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
+			choice
+				`	"I think I will have to get back to you on that later."`
+					goto celebrationrequest
+				`	"That was awe-inspiring."`
+					goto awestruck
+				`	"Why were some of the people crying?`
+					goto askcrying
+				`	"Who leads these ceremonies?"`
+					goto ceremonyleader
+				`	"That seemed both well rehearsed and very disorganized."`
+					goto celebrationrehearsed
 	on complete
 		conversation
 			``
