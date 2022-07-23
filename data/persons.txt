@@ -898,7 +898,7 @@ person "Prototype B3-CC4"
 			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
 			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
 			"I am the only thing in the universe capable of beating the power of friendship."
-			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
+			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The macOS workflow run was not successful.'"
 	phrase
 		word
 			"What are you looking at?"
