@@ -462,6 +462,7 @@ system "12 Autumn Above"
 		period 1227.05
 		object "Station Cian"
 			sprite planet/station3c
+				scale 0.5
 			distance 392.805
 			period 251.263
 	object
@@ -2687,6 +2688,7 @@ system Aldhibain
 		period 1942.58
 		object "Charon Station"
 			sprite planet/station14
+				scale 0.5
 			distance 211
 			period 13.622
 
@@ -2945,6 +2947,7 @@ system Algorel
 		period 1667.55
 		object "Hydra Station"
 			sprite planet/station13
+				scale 0.5
 			distance 277
 			period 12.3693
 
@@ -3005,6 +3008,7 @@ system Alheka
 		period 1117.99
 		object "Triton Station"
 			sprite planet/station2
+				scale 0.5
 			distance 261
 			period 11.3132
 
@@ -5058,6 +5062,7 @@ system Avior
 		period 1340.66
 		object "Fenrir Station"
 			sprite planet/station3
+				scale 0.5
 			distance 212
 			period 15.2148
 
@@ -5986,6 +5991,7 @@ system "Bote Asu"
 		period 616.804
 		object Everhope
 			sprite planet/stationh-ancient2
+				scale 0.5
 			distance 380
 			period 31.6482
 	object
@@ -6414,6 +6420,7 @@ system Caph
 		period 1028.41
 		object "Kraken Station"
 			sprite planet/station10
+				scale 0.5
 			distance 278
 			period 10.5056
 	object
@@ -6803,6 +6810,7 @@ system Chikatip
 		period 352.250
 		object "Selefkar Refinery"
 			sprite planet/station3k
+				scale 0.5
 			distance 279.557
 			period 19.97
 	object
@@ -6881,6 +6889,7 @@ system Chimitarp
 		period 847.206
 		object "Rekat Moraski"
 			sprite planet/station1k
+				scale 0.5
 			distance 355.513
 			period 17.1217
 	object
@@ -6985,6 +6994,7 @@ system Chornifath
 		period 412.405
 		object
 			sprite planet/station1kd
+				scale 0.5
 			distance 150.27
 			period 20.2555
 	object
@@ -7425,6 +7435,7 @@ system "Da Ent"
 		period 705.482
 		object Violetwake
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -7433,6 +7444,7 @@ system "Da Ent"
 		period 1332.80
 		object Darkrest
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -7502,6 +7514,7 @@ system "Da Lest"
 		period 581.731
 		object Eldergrasp
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -7821,16 +7834,19 @@ system Delia
 		period 10
 	object
 		sprite planet/dyson1
+			scale 0.5
 		distance 160.21
 		period 36.6434
 		offset 217.144
 	object
 		sprite planet/dyson2
+			scale 0.5
 		distance 160.21
 		period 36.6434
 		offset 181.163
 	object
 		sprite planet/dyson3
+			scale 0.5
 		distance 160.21
 		period 36.6434
 		offset 294.239
@@ -7848,6 +7864,7 @@ system Delia
 		period 1939.71
 		object
 			sprite planet/station3bd
+				scale 0.5
 			distance 255
 			period 13.4304
 		object
@@ -8393,66 +8410,79 @@ system Dokdobaru
 		period 349.820
 		object "Korati Efreti"
 			sprite planet/station1k
+				scale 0.5
 			distance 132
 			period 349.820
 			offset 180
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -30
 	object "Kuwaru Efreti"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -50
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -70
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -90
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 40
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 60
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 80
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 130
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 150
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 220
@@ -8646,6 +8676,7 @@ system "Due Yoot"
 		period 887.598
 		object Greenview
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -9127,141 +9158,169 @@ system Ekuarik
 		period 349.820
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 30
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 50
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 75
 	object "Ring of Wisdom"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 95
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 115
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 150
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 170
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object "Ring of Wisdom"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 220
 	object "Ring of Wisdom"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 240
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 260
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 280
 	object "Ring of Wisdom"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 300
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 320
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 82
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 90
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 99
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 112
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 207
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 216
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 225
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 234
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 221
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 239
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 253
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 281
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 298
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 312
@@ -9329,6 +9388,7 @@ system Elnath
 		period 3157.63
 		object "Carbuncle Station"
 			sprite planet/station9
+				scale 0.5
 			distance 253
 			period 12.546
 
@@ -9491,51 +9551,61 @@ system Enif
 		period 349.820
 	object Lagrange
 		sprite planet/station0
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -30
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -50
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -70
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -90
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset -110
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 40
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 60
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 80
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 100
@@ -9736,6 +9806,7 @@ system Eshkoshtar
 		period 898.531
 		object
 			sprite planet/station2kd
+				scale 0.5
 			distance 237.94
 			period 12.1054
 	object
@@ -10010,6 +10081,7 @@ system "Fah Soom"
 		period 569.720
 		object Firefall
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -10255,6 +10327,7 @@ system Farbutero
 		period 1073.38
 		object
 			sprite planet/station2kd
+				scale 0.5
 			distance 227.081
 			period 18.0122
 	object
@@ -10401,6 +10474,7 @@ system Faronektu
 		period 610.741
 		object "Fara Skaeruti"
 			sprite planet/station2k
+				scale 0.5
 			distance 270.911
 			period 19.0508
 	object
@@ -10523,6 +10597,7 @@ system Fearis
 		period 1621.68
 		object Letis'sei
 			sprite planet/station4bd
+				scale 0.5
 			distance 282
 			period 11.83
 	object "Graveyard Wormhole (Stable)"
@@ -10699,6 +10774,7 @@ system Fereti
 			period 25.6804
 	object Parii'het
 		sprite planet/station2b
+			scale 0.5
 		distance 1687.04
 		period 459.091
 	object
@@ -10792,6 +10868,7 @@ system Feroteri
 		period 1257.39
 		object "Esperaktu Station"
 			sprite planet/station1k
+				scale 0.5
 			distance 265.206
 			period 22.7339
 
@@ -11081,6 +11158,7 @@ system Fornarep
 		period 139.449
 		object
 			sprite planet/station1kd
+				scale 0.5
 			distance 182.94
 			period 22.5265
 	object
@@ -11207,6 +11285,7 @@ system Furmeliki
 		period 330.869
 		object
 			sprite planet/station2kd
+				scale 0.5
 			distance 202.089
 			period 27.0214
 	object
@@ -11607,6 +11686,7 @@ system Giribea
 		period 160.808
 	object Seli'het
 		sprite planet/station1b
+			scale 0.5
 		distance 950.019
 		period 276.071
 	object
@@ -12149,6 +12229,7 @@ system Hadar
 		period 2071.34
 		object "Typhon Station"
 			sprite planet/station4
+				scale 0.5
 			distance 226
 			period 13.7068
 
@@ -12451,6 +12532,7 @@ system "Heia Due"
 		period 184.727
 		object Sandsnap
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 	object Allhome
@@ -12523,6 +12605,7 @@ system Hesselpost
 		period 675.607
 		object
 			sprite planet/station3kd
+				scale 0.5
 			distance 157.941
 			period 25.4596
 	object
@@ -12580,90 +12663,108 @@ system "Hevru Hai"
 		period 10
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 40
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 60
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 80
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 100
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 120
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 220
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 240
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 260
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 280
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 300
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 320
 	object "Alta Hai"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 340
@@ -13180,6 +13281,7 @@ system "Imo Dep"
 		period 380.303
 		object Bluerun
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object Stonebreak
@@ -13312,6 +13414,7 @@ system "Io Lowe"
 		period 760.291
 		object Greymoon
 			sprite planet/stationh-ancient2
+				scale 0.5
 			distance 380
 			period 31.6482
 	object
@@ -13400,6 +13503,7 @@ system "Io Mann"
 			period 14.8772
 		object Thornlight
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 422
 			period 28.5
 	object
@@ -13600,6 +13704,7 @@ system Izar
 		period 1132.89
 		object "Wyvern Station"
 			sprite planet/station8
+				scale 0.5
 			distance 201
 			period 12.6652
 
@@ -13924,6 +14029,7 @@ system Kashikt
 		period 462.858
 		object "Tefkar Ret"
 			sprite planet/station2k
+				scale 0.5
 			distance 127
 			period 16.3315
 	object
@@ -14147,176 +14253,211 @@ system "Ki War Ek"
 		period 349.820
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 65
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 85
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 100
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 120
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object "Ring of Power"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object "Ring of Power"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object "Ring of Power"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object "Ring of Power"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 220
 	object "Ring of Power"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 240
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 260
 	object
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 280
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 300
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 122
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 138
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 148
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 157
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 164
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 171
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 189
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 204
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 214
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 226
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 240
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 258
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 145
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 163
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 178
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 185
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 191
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 200
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 218
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 228
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 245
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 250
@@ -14602,6 +14743,7 @@ system "Kor En'lakfar"
 		period 310.303
 		object "Kessel Sepret"
 			sprite planet/station3k
+				scale 0.5
 			distance 205.008
 			period 25.4803
 	object
@@ -14665,6 +14807,7 @@ system "Kor Fel'tar"
 		period 279.537
 		object "Septar Lorku"
 			sprite planet/station1k
+				scale 0.5
 			distance 166.029
 			period 25.8519
 	object
@@ -14745,6 +14888,7 @@ system "Kor Men"
 		period 782.025
 		object "Gresku Fodar"
 			sprite planet/station2k
+				scale 0.5
 			distance 200.046
 			period 22.7597
 	object
@@ -14803,6 +14947,7 @@ system "Kor Nor'peli"
 		period 681.429
 		object "Safaresk Enlai"
 			sprite planet/station2k
+				scale 0.5
 			distance 230
 			period 18.3607
 	object
@@ -14857,6 +15002,7 @@ system "Kor Tar'bei"
 		period 202.462
 		object "Sessiliki Far"
 			sprite planet/station1k
+				scale 0.5
 			distance 190.355
 			period 21.1261
 	object
@@ -14927,6 +15073,7 @@ system "Kor Zena'i"
 		period 993.004
 		object "Separa Tiklar"
 			sprite planet/station3k
+				scale 0.5
 			distance 282.71
 			period 25.0213
 
@@ -15725,6 +15872,7 @@ system "Lom Tahr"
 		period 1146.17
 		object Iritoroost
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 
@@ -16123,6 +16271,7 @@ system Markeb
 		period 1569.88
 		object Alexandria
 			sprite planet/station7
+				scale 0.5
 			distance 178.482
 			period 29.3849
 	object
@@ -16587,6 +16736,7 @@ system Mekislepti
 		period 1284.87
 		object "Merask Fortuno"
 			sprite planet/station1k
+				scale 0.5
 			distance 334.445
 			period 30.4733
 
@@ -16654,6 +16804,7 @@ system Men
 		period 2677.74
 		object "Smuggler's Den"
 			sprite planet/station15
+				scale 0.5
 			distance 302
 			period 14.0811
 
@@ -16783,6 +16934,7 @@ system Menkar
 		period 1343.91
 		object "Oberon Station"
 			sprite planet/station5
+				scale 0.5
 			distance 246
 			period 13.6082
 	object
@@ -16965,6 +17117,7 @@ system Mesuket
 		period 188.353
 		object
 			sprite planet/station1kd
+				scale 0.5
 			distance 159.426
 			period 25.3047
 	object
@@ -16973,6 +17126,7 @@ system Mesuket
 		period 679.814
 		object
 			sprite planet/station3kd
+				scale 0.5
 			distance 341.722
 			period 26.9888
 	object
@@ -18226,6 +18380,7 @@ system Nona
 		period 213.615
 		object
 			sprite planet/station3bd
+				scale 0.5
 			distance 174
 			period 23.9139
 	object
@@ -18983,6 +19138,7 @@ system Pelubta
 		period 302.371
 		object "Pelubta Station"
 			sprite planet/station2c
+				scale 0.5
 			distance 303
 			period 13.4719
 	object
@@ -19747,10 +19903,12 @@ system Polerius
 		period 1075.45
 		object Ceilia'sei
 			sprite planet/station3b
+				scale 0.5
 			distance 253
 			period 14.3157
 		object
 			sprite planet/station3bd
+				scale 0.5
 			distance 403
 			period 28.7798
 
@@ -19915,6 +20073,7 @@ system Postverta
 		period 1445.41
 	object "Ssil Vida"
 		sprite planet/sheragi_postverta
+			scale 0.5
 		distance 1408
 		period 1818.85
 
@@ -20195,260 +20354,312 @@ system Quaru
 		period 10
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 40
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 60
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 80
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 100
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 120
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 220
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 240
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 260
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 280
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 300
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 320
 	object "Ring of Friendship"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 340
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 21
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 32
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 44
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 53
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 62
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 66
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 73
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 87
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 95
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 104
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 116
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 125
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 134
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 149
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 29
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 38
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 42
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 55
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 64
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 78
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 92
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 106
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 120
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 132
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 145
 	object
 		sprite planet/panels1
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 185
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 197
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 207
 	object
 		sprite planet/panels5
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 218
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 231
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 800
 		period 342.094
 		offset 244
 	object
 		sprite planet/panels2
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 198
 	object
 		sprite planet/panels3
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 212
 	object
 		sprite planet/panels4
+			scale 0.5
 		distance 830
 		period 361.516
 		offset 237
@@ -20735,6 +20946,7 @@ system "Rati Cal"
 		period 1994.11
 		object Limejog
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 
@@ -21720,6 +21932,7 @@ system Salipastart
 		period 531.748
 		object
 			sprite planet/station3kd
+				scale 0.5
 			distance 209.245
 			period 18.3399
 	object
@@ -21988,6 +22201,7 @@ system Scheat
 		period 1683.91
 		object "Charybdis Station"
 			sprite planet/station17
+				scale 0.5
 			distance 281
 			period 13.1034
 
@@ -22302,6 +22516,7 @@ system Sepetrosk
 		period 1084.16
 		object "Esek Stovar"
 			sprite planet/station2k
+				scale 0.5
 			distance 257.436
 			period 21.742
 	object
@@ -22359,6 +22574,7 @@ system Sepriaptu
 		period 591.549
 		object
 			sprite planet/station3kd
+				scale 0.5
 			distance 273.55
 			period 41.1893
 	object
@@ -22415,6 +22631,7 @@ system Sevrelect
 		period 2539.74
 		object
 			sprite planet/station3kd
+				scale 0.5
 			distance 326
 			period 15.4601
 
@@ -22730,6 +22947,7 @@ system Silikatakfar
 		period 796.409
 		object "Sebra Skira"
 			sprite planet/station3k
+				scale 0.5
 			distance 293.717
 			period 30.5006
 
@@ -22945,6 +23163,7 @@ system Similisti
 			period 14.5545
 		object "Mereti Station"
 			sprite planet/station3k
+				scale 0.5
 			distance 329.088
 			period 31.4243
 
@@ -23054,6 +23273,7 @@ system Skeruto
 		period 617.382
 		object
 			sprite planet/station1kd
+				scale 0.5
 			distance 197.726
 			period 28.4644
 	object
@@ -23178,6 +23398,7 @@ system Sobarati
 		period 829.875
 		object "Devru Kaska"
 			sprite planet/station1k
+				scale 0.5
 			distance 311.851
 			period 16.139
 
@@ -23418,6 +23639,7 @@ system "Sol Kimek"
 		period 343.812
 		object "Starting Rubin"
 			sprite planet/station1c
+				scale 0.5
 			distance 194.851
 			period 27.367
 	object
@@ -24018,6 +24240,7 @@ system Suhail
 		period 670.077
 		object "Leviathan Station"
 			sprite planet/station6
+				scale 0.5
 			distance 252
 			period 15.4109
 	object Helheim
@@ -24418,6 +24641,7 @@ system Tarazed
 		period 935.834
 		object "Arachne Station"
 			sprite planet/station11
+				scale 0.5
 			distance 228
 			period 16.9693
 
@@ -24935,6 +25159,7 @@ system "Ula Mon"
 		period 584.389
 		object Goldcrawl
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -24943,6 +25168,7 @@ system "Ula Mon"
 		period 1185.03
 		object Ironfirth
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -25259,6 +25485,7 @@ system "Uwa Fahn"
 		period 694.638
 		object Swiftsong
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object
@@ -25626,6 +25853,7 @@ system "Wah Oh"
 		period 35.7401
 		object Ochrescoop
 			sprite planet/stationh-ancient2
+				scale 0.5
 			distance 240
 			period 35.7401
 	object
@@ -25967,6 +26195,7 @@ system Wezen
 		period 135.279
 		object "Phoenix Station"
 			sprite planet/station1
+				scale 0.5
 			distance 257
 			period 12.3538
 	object
@@ -26011,50 +26240,60 @@ system "World's End"
 		period 10
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 50
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 70
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object
 		sprite "planet/ringworld right"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 270
 	object
 		sprite "planet/ringworld left"
+			scale 0.5
 		distance 812
 		period 349.820
 		offset 290
@@ -26129,6 +26368,7 @@ system "Ya Hai"
 			period 26.1298
 		object Mahoganybox
 			sprite planet/stationh-ancient1
+				scale 0.5
 			distance 440
 			period 47.5
 	object
@@ -26446,6 +26686,7 @@ system Zosma
 		period 1249.53
 		object "Huginn Station"
 			sprite planet/station16
+				scale 0.5
 			distance 286
 			period 13.4547
 	object
@@ -26454,6 +26695,7 @@ system Zosma
 		period 4048.87
 		object "Muninn Station"
 			sprite planet/station12
+				scale 0.5
 			distance 272
 			period 12.9498
 
@@ -26522,6 +26764,7 @@ system "Zuba Zub"
 		period 1583.58
 		object Redwatch
 			sprite planet/stationh-ancient0
+				scale 0.5
 			distance 240
 			period 17.5
 	object

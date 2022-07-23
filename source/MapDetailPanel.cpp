@@ -626,8 +626,16 @@ void MapDetailPanel::DrawOrbits()
 	// Figure out what the largest orbit in this system is.
 	double maxDistance = 0.;
 	for(const StellarObject &object : selectedSystem->Objects())
-		maxDistance = max(maxDistance, object.Position().Length() + object.Radius());
-
+	{
+		double distance = object.Distance();
+		int activeParent = object.Parent();
+		while(activeParent >= 0)
+		{
+			distance += selectedSystem->Objects()[activeParent].Distance();
+			activeParent = selectedSystem->Objects()[activeParent].Parent();
+		}
+		maxDistance = max(maxDistance, distance);
+	}
 	// 2400 -> 120.
 	scale = .03;
 	maxDistance *= scale;
