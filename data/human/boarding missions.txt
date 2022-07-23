@@ -370,7 +370,7 @@ mission "Pirate Ambush"
 		not attributes "automaton"
 	on offer
 		conversation
-			`You board the <origin>, but find no crew aboard. When you reach the cockpit of the ship, you look out into space to see an escape pod floating away. The <origin> is emitting a distress signal to nearby pirates, and a self destruct sequence has been activated! You run back to your ship and get ready to fight.`
+			`You board the <origin>, but find no crew aboard. When you reach the cockpit of the ship, you look out into space to see an escape pod floating away. The <origin> is emitting a distress signal to nearby pirates, and a self-destruct sequence has been activated! You run back to your ship and get ready to fight.`
 				launch
 	destination "Earth"
 	npc kill
