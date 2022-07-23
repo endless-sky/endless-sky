@@ -458,7 +458,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				goto "get to work"
 
 			label "crew missing"
-			`	Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess.`
+			`	Tarquin laughs heartily. "That lot? They're a bunch of simple peasants I picked up on New India, off hiding in their quarters right now. The bumpkins are unaccustomed to this kind of danger, and don't have a lot of technical skills. My fault for being too cheap to hire good help, I suppose. I'm definitely going to pick up some more experienced and reliable crewmen after we get out of this mess."`
 
 			label "get to work"
 			`	"Can we get to work now?"`
