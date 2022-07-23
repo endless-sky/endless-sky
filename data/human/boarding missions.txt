@@ -480,7 +480,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone, and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
@@ -646,7 +646,7 @@ mission "Slave Crew Rescue (Brig Variant)"
 					goto "attack but tarquin is prepared"
 
 			label coward
-			`	"Yes, let's do that," replies Tarquin. However his friendly attitude is gone and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
+			`	"Yes, let's do that," replies Tarquin. However, his friendly attitude is gone, and he remains as tense as a steel cable. You work in stony silence and awkwardly collect your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
