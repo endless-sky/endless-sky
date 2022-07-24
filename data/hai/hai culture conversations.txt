@@ -197,7 +197,7 @@ mission "Gambling Judgment"
 			choice
 				`	"Some would say poker is more about skill than chance."`
 				`	"Surely if it's just a game though, there's no harm in it?"`
-			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult."`
+			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult.`
 			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
