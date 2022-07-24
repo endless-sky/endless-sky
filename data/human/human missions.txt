@@ -4406,11 +4406,11 @@ mission "Kindred Spirit 3"
 			choice
 				`	"I think you should give it some time. At least pay off your debts first. You don't want to return to your parents in this condition."`
 					goto easyresponse
-				`	"I think you should let them know you're okay. It's not too late, they're your family. They're probably worried sick about you."`
+				`	"I think you should let them know you're okay. It's not too late, and they're your family. They're probably worried sick about you."`
 					goto goodresponse
 				`	"I think you would feel better if you talked to them. This is eating you up. I'm sure they'll understand."`
 					goto goodresponse
-				`	"I don't think there's any rush. Keep exploring space, this is your life's dream. It's not like your family is going anywhere."`
+				`	"I don't think there's any rush. Keep exploring space; this is your life's dream! It's not like your family is going anywhere."`
 					goto easyresponse
 			label goodresponse
 			apply
