@@ -949,7 +949,7 @@ outfit "Firelight Missile Bank"
 		"missile strength" 60
 		submunition "Firelight Turning"
 		"stream"
-	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
+	description "As the Firestorm torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to further scale down the reactor element to fit in a missile casing for use on and against smaller vessels." 
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
@@ -1075,7 +1075,6 @@ outfit "Firestorm Turret"
 		"hit force" 4000
 		"missile strength" 115
 	description "This torpedo contains an augmented Korath Plasma Core reactor element, with no protective casing. When it activates, there is a tremendous explosion of heat and force, pushing ships away and even melting hulls."
-	description `	Though the warhead is a simple Korath design, the torpedo casing and launcher are distinctly not Korath in style. This may be a device they discovered and learned to reproduce.`
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
