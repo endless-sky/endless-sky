@@ -4278,11 +4278,17 @@ mission "Kindred Spirit 2"
 	source 
 		government "Republic" "Syndicate"
 		not attributes "station"
-		category "Interceptor" "Light Warship" "Heavy Warship"
 	destination
 		attributes "research"
 		distance 5 12
 	to offer
+		or
+			has "ships: Interceptor"
+			has "ships: Drone"
+			has "ships: Fighter"
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+			has "ships: Heavy Warship"
 		has "Kindred Spirit: done"
 		random < 15
 		credits >= 300000
