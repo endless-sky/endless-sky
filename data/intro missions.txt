@@ -267,7 +267,7 @@ mission "Intro [2 Freighter]"
 			`	He pauses for a moment to think, then says, "Unless you want to do something really risky like hunting pirates, your best bet is to work with the Navy, or the Syndicate, or one of the local militias. Any of those would be a decent choice, although they've each got their own problems. If any of them offer you a mission, go ahead and take it; that's a good way to build connections and get to know the lay of the land."`
 				goto end
 			label career
-			`	"Well," he says, "Back when I was a bit older than you, I piloted a Firebird for a while, escorting merchant convoys up and down the Rim. I used to hope we'd get attacked; I'd disable the pirate ships and rob them blind. Turnabout is fair play, after all."`
+			`	"Well," he says, "Back when I was a bit older than you, I piloted a Firebird for a while, escorting merchant convoys up and down the Rim. I used to hope we'd get attacked; I'd disable the pirate ships and rob them blind. Turnabout is fair play, after all.`
 			`	"Then one day I got a bit too greedy and thought I'd try to capture a pirate ship or two, to add more firepower to my fleet. We boarded their ship, and I sent my crew through the airlock to kill off the pirates. And it turns out the pirates had grenades. Four of my men were dead before I even realized what was happening. We had to retreat, and then limp back to port without even enough crew left uninjured to pilot the ship right. After that I decided to stick to less risky jobs."`
 				goto end
 			label end
