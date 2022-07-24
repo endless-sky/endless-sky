@@ -39,6 +39,9 @@ phrase "generic cargo delivery payment"
 phrase "generic cargo on visit"
 	word
 		`You have reached <planet>, but not all of the cargo is in the system! Better depart and wait for your escorts to arrive in this star system.`
+phrase "generic cargo with stopover on visit"
+	word
+		`You have arrived at <planet>, but you are missing the cargo. Either you have not picked it up yet, or the escort carrying it is not in the system.`
 
 phrase "generic passenger dropoff payment"
 	word
