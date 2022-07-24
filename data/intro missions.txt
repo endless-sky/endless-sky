@@ -483,7 +483,7 @@ conversation "end of intro missions"
 		goto more
 	
 	label trade
-	`	"One of the most reliable trade routes is to bring food from the Dirt Belt to Earth or the other urban worlds around it. There are billions of mouths to feed on those worlds, and the Dirt Belt sells food for cheap, so it's a great place to get started. Just remember though that if you use the same trade route for too long, you might end up causing the prices to stabilize. The Dirt Belt can only produce food and people can only eat it so fast, so change up your trade routes if you notice the return getting worse."`
+	`	"One of the most reliable trade routes is to bring food from the Dirt Belt to Earth or the other urban worlds around it. There are billions of mouths to feed on those worlds, and the Dirt Belt sells food for cheap, so it's a great place to get started. Just remember though that if you use the same trade route for too long, you might end up causing the prices to stabilize. The Dirt Belt can only produce food and people can only eat it so fast, so change up your trade routes if you notice the return getting worse.`
 		goto more
 	
 	label jobs
