@@ -201,7 +201,7 @@ mission "Lagrange Ring: Cargo"
 				`	"Are those other Captains also doing this? What do you need so much cargo for?"`
 				`	"I'm not looking for any more cargo jobs right now, sorry."`
 					decline
-			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered."`
+			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered.`
 			`	"Our ringworld, under construction around the star of <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
 			choice
 				`	"Alright, I'm interested. Where should I go to pick up the cargo?"`
