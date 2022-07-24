@@ -287,7 +287,7 @@ void Mission::Load(const DataNode &node)
 				{"visit", VISIT},
 				{"stopover", STOPOVER},
 				{"waypoint", WAYPOINT},
-				{"every day", DAILY}
+				{"daily", DAILY}
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
