@@ -4434,7 +4434,7 @@ mission "Kindred Spirit 4"
 	on offer
 		conversation
 			`	A familiar face greets you at the spaceport. "<first>!" Charlie calls, mauling you with an enthusiastic hug.`
-			`	"Thank you so much for telling me to visit my folks," he says sincerely. "I was in a bad place; I really needed someone to convince me to come back here. Mom and Pops were relieved at first, then mad, but they got over that, and now they're helping me figure out my financial stuff. You should totally come say hi at some point! Or, are you planning to go back to space soon? Because I'd be happy to travel with you for a while. What do you say?"`
+			`	"Thank you so much for telling me to visit my folks," he says sincerely. "I was in a bad place; I really needed someone to convince me to come back here. Ma and Pops were relieved at first, then mad, but they got over that, and now they're helping me figure out my financial stuff. You should totally come say hi at some point! Or, are you planning to go back to space soon? Because I'd be happy to travel with you for a while. What do you say?"`
 			choice
 				`	"I'd love to visit your family."`
 					goto parents
