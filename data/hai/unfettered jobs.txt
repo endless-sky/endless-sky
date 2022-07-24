@@ -351,7 +351,9 @@ mission "Unfettered Challenge [2]"
 
 
 
-phrase "jump drive or stopover" `You have a mission to bring a jump drive here on <planet>, from <stopovers>. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+phrase "jump drive or stopover"
+	word
+		`You have a mission to bring a jump drive here on <planet>, from <stopovers>. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
 
 mission "Get Jump Drives(1)"
 	name `Collect a jump drive`
