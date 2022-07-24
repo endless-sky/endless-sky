@@ -759,18 +759,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Cesmip'tlad"
-				"Akumikid" 2
-				"Iberinos" 4
+				"Nacasairot"
+				"Ikrikopespeb" 2
+				"Haspebrafa" 4
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Cesmip'tlad"
-				"Akumikid" 2
-				"Iberinos" 4
+				"Nacasairot"
+				"Ikrikopespeb" 2
+				"Haspebrafa" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1400,7 +1400,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Cesmip'tlad" "Asikimi Ko Cheska"
+		ship "Nacasairot" "Asikimi Ko Cheska"
 
 
 
@@ -1429,7 +1429,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Cesmip'tlad" "Asikimi Ko Cheska"
+		ship "Nacasairot" "Asikimi Ko Cheska"
 
 
 
@@ -1451,7 +1451,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Cesmip'tlad" "Asikimi Ko Cheska"
+		ship "Nacasairot" "Asikimi Ko Cheska"
 
 
 
@@ -1480,7 +1480,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Cesmip'tlad" "Asikimi Ko Cheska"
+		ship "Nacasairot" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1509,7 +1509,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Cesmip'tlad" "Asikimi Ko Cheska"
+		ship "Nacasairot" "Asikimi Ko Cheska"
 
 
 

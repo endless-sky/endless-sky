@@ -395,11 +395,11 @@ fleet "Kor Efret Home"
 	personality
 		timid
 	variant 5
-		"Cesmip'tlad"
+		"Nacasairot"
 	variant 3
-		"Akumikid"
+		"Ikrikopespeb"
 	variant 1
-		"Iberinos"
+		"Haspebrafa"
 
 
 fleet "Kor Efret Miners"
@@ -410,7 +410,7 @@ fleet "Kor Efret Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Iberinos"
+		"Haspebrafa"
 
 
 fleet "Small Kor Sestor"

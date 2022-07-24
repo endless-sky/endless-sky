@@ -961,7 +961,7 @@ ship "Korath Haven"
 
 
 
-ship "Cesmip'tlad"
+ship "Nacasairot"
 	sprite "ship/cesmiptlad"
 	thumbnail "thumbnail/cesmiptlad"
 	attributes
@@ -1023,9 +1023,9 @@ ship "Cesmip'tlad"
 	description `The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts.`
 
 
-ship "Akumikid"
-	sprite "ship/akumikid"
-	thumbnail "thumbnail/akumikid"
+ship "Ikrikopespeb"
+	sprite "ship/Ikrikopespeb"
+	thumbnail "thumbnail/Ikrikopespeb"
 	attributes
 		category "Heavy Freighter"
 		"cost" 29370000
@@ -1085,10 +1085,9 @@ ship "Akumikid"
 	description "Although they do not effectively provide for their own defense, the Efreti remain responsible for the day-to-day needs of civilian and cargo transportation. While not as bulky or powerful as other Korath designs, this freighter is much faster at making runs back and forth between the Efreti's handful of remaining planets, while still holding enough defensive loadout to ward off the odd Mereti drone that slips past the Quarg."
 
 
-ship "Iberinos"
-	plural "Iberinoi"
-	sprite "ship/iberinos"
-	thumbnail "thumbnail/iberinos"
+ship "Haspebrafa"
+	sprite "ship/Haspebrafa"
+	thumbnail "thumbnail/Haspebrafa"
 	attributes
 		category "Transport"
 		"cost" 16570000
