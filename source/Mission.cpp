@@ -98,7 +98,7 @@ namespace {
 			case Mission::Trigger::WAYPOINT:
 				return "on waypoint";
 			case Mission::Trigger::DAILY:
-				return "on every day";
+				return "on daily";
 			default:
 				return "unknown trigger";
 		}
