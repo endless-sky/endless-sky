@@ -425,7 +425,7 @@ mission "Unfettered Tribute 1"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -448,7 +448,7 @@ mission "Unfettered Tribute 2"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -471,7 +471,7 @@ mission "Unfettered Tribute 3"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
