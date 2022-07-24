@@ -795,7 +795,7 @@ shipyard "Remnant Puffin"
 	"Puffin"
 
 shipyard "Remnant Salvage Ships"
-	"Rekaniz"
+	"Olohfec"
 
 
 

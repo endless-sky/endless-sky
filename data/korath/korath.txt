@@ -198,8 +198,8 @@ fleet "Korath Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant
-		"Vertsipmo"
-		"Rekaniz" 2
+		"Palavreb"
+		"Olohfec" 2
 
 
 fleet "Korath Ember Waste Raid"
@@ -212,8 +212,8 @@ fleet "Korath Ember Waste Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant
-		"Vertsipmo (Ember)"
-		"Rekaniz" 2
+		"Palavreb (Ember)"
+		"Olohfec" 2
 
 
 fleet "Korath Home"
@@ -230,8 +230,8 @@ fleet "Korath Home"
 	variant 12
 		"Korath World-Ship C"
 	variant 12
-		"Kaoakst"
-		"Rekaniz" 4
+		"Ratolenred"
+		"Olohfec" 4
 
 
 fleet "Kor Efret Home"

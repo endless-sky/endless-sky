@@ -13,7 +13,7 @@
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled Vertsipmo Bounty"
+	name "Crippled Palavreb Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -32,7 +32,7 @@ mission "Remnant: Bounty"
 			names "korath"
 			cargo 3
 			variant
-				"Vertsipmo (Crippled)"
+				"Palavreb (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -45,7 +45,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome Vertsipmo Bounty"
+	name "Troublesome Palavreb Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -64,7 +64,7 @@ mission "Remnant: Bounty 2"
 			names "korath"
 			cargo 3
 			variant
-				"Vertsipmo (Hyperdrive)"
+				"Palavreb (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -130,7 +130,7 @@ mission "Remnant: Expanded Horizons Astral job"
 mission "Remnant: Bounty 3"
 	job
 	repeat
-	name "Damaged Kaoakst Bounty"
+	name "Damaged Ratolenred Bounty"
 	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -150,7 +150,7 @@ mission "Remnant: Bounty 3"
 			names "korath"
 			cargo 3
 			variant
-				"Kaoakst (Crippled)"
+				"Ratolenred (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -163,7 +163,7 @@ mission "Remnant: Bounty 3"
 mission "Remnant: Bounty 4"
 	job
 	repeat
-	name "Marauding Kaoakst Bounty"
+	name "Marauding Ratolenred Bounty"
 	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -179,7 +179,7 @@ mission "Remnant: Bounty 4"
 			names "korath"
 			cargo 3
 			variant
-				"Kaoakst"
+				"Ratolenred"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -213,8 +213,8 @@ mission "Remnant: Bounty 5"
 			names "korath"
 			cargo 3
 			variant
-				"Kaoakst (Ground Assault)"
-				"Rekaniz" 4
+				"Ratolenred (Ground Assault)"
+				"Olohfec" 4
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
