@@ -48,6 +48,10 @@ mission "Unfettered Aid [0]"
 	on complete
 		payment 5000 1600
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -73,6 +77,10 @@ mission "Unfettered Aid [1]"
 	on complete
 		payment 6000 1800
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -98,6 +106,10 @@ mission "Unfettered Aid [2]"
 	on complete
 		payment 7000 2000
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 phrase "unfettered tribute payment dialog"
