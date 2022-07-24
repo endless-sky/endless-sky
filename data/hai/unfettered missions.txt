@@ -605,7 +605,7 @@ mission "Unfettered: Bring Hai"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog phrase "generic passenger on visit"
+		dialog phrase "generic missing stopover or passengers"
 	on complete
 		clear "Unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
@@ -652,12 +652,12 @@ mission "Unfettered: Bring Medical Supplies"
 					accept
 				`	(I do not have time for this.)`
 			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You probably also shouldn't stay landed here too long in case they decide to follow you.`
-	on visit
-		dialog phrase "generic cargo on visit"
 	on stopover
 		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and once they are done one of them addresses you, "Tell our brothers and sisters to stay strong, hopefully it is not too late," he says with determination.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. A local administrator takes the time to track you down and give you <payment>.`
@@ -2222,7 +2222,7 @@ mission "Unfettered: The Word Has Spread"
 				accept
 
 	on visit
-		dialog phrase "generic stopover on visit"
+		dialog phrase "generic missing stopover or passengers"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -2689,6 +2689,8 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 
 	on stopover
 		dialog `You find your cargo waiting for you, without anyone nearby as planned and take it without asking questions or losing time.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -3032,6 +3034,8 @@ mission "Unfettered: Special Cargo 2"
 	on stopover
 		outfit "Mystery Cube" -1
 		dialog `You land and the Hai start loading their food onto your ship. You pretend to want to go outside a bit because you have been crammed in a spaceship for too long (which is actually kind of true), and they do not appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot. And then come back to your ship.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
