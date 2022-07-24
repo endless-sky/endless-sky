@@ -653,8 +653,8 @@ outfit "Steering (Stellar Class)"
 	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
 
-outfit "Tiny GP Hybrid Thruster"
-	plural "Tiny GP Hybrid Thrusters"
+outfit "Arkrof GP Hybrid Thruster"
+	plural "Arkrof GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 165000
 	thumbnail "outfit/tiny efreti thruster"
@@ -670,8 +670,8 @@ outfit "Tiny GP Hybrid Thruster"
 #placeholder desc
 	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
-outfit "Small GP Hybrid Thruster"
-	plural "Small GP Hybrid Thrusters"
+outfit "Farves GP Hybrid Thruster"
+	plural "Farves GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 405000
 	thumbnail "outfit/small efreti thruster"
@@ -687,8 +687,8 @@ outfit "Small GP Hybrid Thruster"
 #placeholder desc
 	description "While this thruster's power is offset by its energy requirements, its incoporation of gravitic propulsion moderates its heat output."
 
-outfit "Medium GP Hybrid Thruster"
-	plural "Medium GP Hybrid Thrusters"
+outfit "Gaktem GP Hybrid Thruster"
+	plural "Gaktem GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 883000
 	thumbnail "outfit/medium efreti thruster"
@@ -704,8 +704,8 @@ outfit "Medium GP Hybrid Thruster"
 #placeholder desc
 	description "The Efreti, after generations of living under Quarg protection, have begun to incorporate gravitic propulsion into their thruster designs."
 
-outfit "Large GP Hybrid Thruster"
-	plural "Large GP Hybrid Thrusters"
+outfit "Nelmeb GP Hybrid Thruster"
+	plural "Nelmeb GP Hybrid Thrusters"
 	category "Engines"
 	"cost" 1649000
 	thumbnail "outfit/large efreti thruster"
@@ -721,8 +721,8 @@ outfit "Large GP Hybrid Thruster"
 #placeholder desc
 	description "The Quarg, who do all things efficiently, view Efreti propulsion systems with some amusement."
 
-outfit "Tiny GP Hybrid Steering"
-	plural "Tiny GP Hybrid Steerings"
+outfit "Arkrof GP Hybrid Steering"
+	plural "Arkrof GP Hybrid Steerings"
 	category "Engines"
 	"cost" 131000
 	thumbnail "outfit/tiny efreti steering"
@@ -738,8 +738,8 @@ outfit "Tiny GP Hybrid Steering"
 #placeholder desc
 	description "The Efreti use these steering systems only in the very smallest of their ships."
 
-outfit "Small GP Hybrid Steering"
-	plural "Small GP Hybrid Steerings"
+outfit "Farves GP Hybrid Steering"
+	plural "Farves GP Hybrid Steerings"
 	category "Engines"
 	"cost" 413000
 	thumbnail "outfit/small efreti steering"
@@ -755,8 +755,8 @@ outfit "Small GP Hybrid Steering"
 #placeholder desc
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
-outfit "Medium GP Hybrid Steering"
-	plural "Medium GP Hybrid Steerings"
+outfit "Gaktem GP Hybrid Steering"
+	plural "Gaktem GP Hybrid Steerings"
 	category "Engines"
 	"cost" 833000
 	thumbnail "outfit/medium efreti steering"
@@ -772,8 +772,8 @@ outfit "Medium GP Hybrid Steering"
 #placeholder desc
 	description "Efreti engines can be fitted into just about any ship, but unless accompanied by some Korath power systems as well, their energy consumption will often be more than the ship can handle."
 
-outfit "Large GP Hybrid Steering"
-	plural "Large GP Hybrid Steerings"
+outfit "Nelmeb GP Hybrid Steering"
+	plural "Nelmeb GP Hybrid Steerings"
 	category "Engines"
 	"cost" 1439000
 	thumbnail "outfit/large efreti steering"

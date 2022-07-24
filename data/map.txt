@@ -29032,7 +29032,6 @@ planet "Laki Nemparu"
 	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
 	outfitter "Korath Basics"
-	outfitter "Kor Efret"
 
 planet Letis'sei
 	attributes ka'het uninhabited
