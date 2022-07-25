@@ -50,11 +50,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Move the flagship to the start of your list of ships. It does not make
-	// sense that the flagship would change if you are reunited with a different
-	// ship that was higher up the list. This function should not be used while
-	// other functions have direct references to the shared_pointer elements in
-	// this list.
+	// Move the flagship to the start of your list of ships. It does not make sense
+	// that the flagship would change if you are reunited with a different ship that
+	// was higher up the list.
+	// This function should not be used while other functions have direct references
+	// to the shared_pointer elements in this list.
 	void MoveFlagshipBegin(vector<shared_ptr<Ship>> &ships, const shared_ptr<Ship> &flagship)
 	{
 		if(flagship)
