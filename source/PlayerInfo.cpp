@@ -815,10 +815,6 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 
 
-
-
-
-
 // Set the flagship (on departure or during flight).
 void PlayerInfo::SetFlagship(Ship &other)
 {
