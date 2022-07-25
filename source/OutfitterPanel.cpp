@@ -57,15 +57,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		catalog[it.second.Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
-	{
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
-
-		/*catalog.erase(it.first);
-		set<string, BySeriesAndIndex<Outfit>> orderedOutfits;
-		for(const string outfitName : it.second)
-			orderedOutfits.insert(outfitName);
-		catalog.insert(pair<const string, set<string, BySeriesAndIndex<Outfit>>>(it.first, orderedOutfits));*/
-	}
 
 	// Add owned licenses
 	const string PREFIX = "license: ";

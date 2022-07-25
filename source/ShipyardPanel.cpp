@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipyardPanel.h"
 
 #include "text/alignment.hpp"
+#include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -34,6 +35,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+
+#include <algorithm>
 
 class System;
 
@@ -84,6 +87,9 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
+
+	for(pair<const string, vector<string>> &it : catalog)
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
