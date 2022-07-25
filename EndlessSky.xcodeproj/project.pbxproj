@@ -227,6 +227,7 @@
 		1578F882250B5F8A00D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanelState.h; path = source/InfoPanelState.h; sourceTree = "<group>"; };
 		19184B47B496B414EC9CE671 /* DamageProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamageProfile.h; path = source/DamageProfile.h; sourceTree = "<group>"; };
 		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
+		1BC64A0181FB6E7EAE04AB9E /* BySeriesAndIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BySeriesAndIndex.h; path = source/comparators/BySeriesAndIndex.h; sourceTree = "<group>"; };
 		210C41C0BA33F71A694D5F98 /* Bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitset.h; path = source/Bitset.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
@@ -878,6 +879,7 @@
 				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
 				02F347B587CDABE97B0D83C6 /* CategoryList.cpp */,
 				D2084096AA5EA5209C647493 /* CategoryList.h */,
+				1BC64A0181FB6E7EAE04AB9E /* BySeriesAndIndex.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
