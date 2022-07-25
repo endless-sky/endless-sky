@@ -154,7 +154,7 @@ protected:
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
-	std::map<std::string, std::set<std::string>> catalog;
+	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
 

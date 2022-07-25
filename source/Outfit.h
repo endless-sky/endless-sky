@@ -51,6 +51,8 @@ public:
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
+	const std::string &Series() const;
+	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -100,6 +102,8 @@ private:
 	std::string name;
 	std::string pluralName;
 	std::string category;
+	std::string series;
+	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;

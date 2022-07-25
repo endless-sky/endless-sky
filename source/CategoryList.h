@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CATEGORY_LIST_H_
 
 #include <iterator>
+#include <map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -36,11 +37,14 @@ public:
 	public:
 		Category(std::string name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
+		const bool operator<(Category other) const { return SortHelper(*this, other); }
+		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
 
 	private:
 		friend class CategoryList;
 		std::string name;
 		int precedence = 0;
+		const bool SortHelper(const Category &a, const Category &b) const;
 	};
 
 public:
@@ -55,6 +59,8 @@ public:
 	// Determine if the CategoryList contains a Category with the given name.
 	bool Contains(const std::string &name) const;
 
+	const Category GetCategory(const std::string &name) const;
+
 	typename std::vector<Category>::iterator begin() noexcept { return list.begin(); }
 	typename std::vector<Category>::const_iterator begin() const noexcept { return list.begin(); }
 	typename std::vector<Category>::iterator end() noexcept { return list.end(); }
@@ -63,6 +69,7 @@ public:
 
 private:
 	std::vector<Category> list;
+	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };
 

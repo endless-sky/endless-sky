@@ -15,8 +15,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 
 #include <algorithm>
+#include <limits>
 
 using namespace std;
+
+
+
+const bool CategoryList::Category::SortHelper(const CategoryList::Category &a, const CategoryList::Category &b) const
+{
+	if(a.precedence == b.precedence)
+		return a.name < b.name;
+	return a.precedence < b.precedence;
+}
 
 
 
@@ -36,7 +46,11 @@ void CategoryList::Load(const DataNode &node)
 		if(it != list.end())
 			it->precedence = cat.precedence;
 		else
+		{
 			list.push_back(cat);
+			byName.insert(pair<const string, Category>(cat.name, cat));
+		}
+
 	}
 }
 
@@ -46,11 +60,7 @@ void CategoryList::Load(const DataNode &node)
 //  share the same precedence then they are sorted alphabetically.
 void CategoryList::Sort()
 {
-	sort(list.begin(), list.end(),
-		[](const Category &a, Category &b) noexcept -> bool
-		{
-			return (a.precedence == b.precedence) ? a.name < b.name : a.precedence < b.precedence;
-		});
+	sort(list.begin(), list.end());
 }
 
 
@@ -61,4 +71,13 @@ bool CategoryList::Contains(const string &name) const
 	const auto it = find_if(list.begin(), list.end(),
 		[&name](const Category &c) noexcept -> bool { return name == c.name; });
 	return it != list.end();
+}
+
+
+
+const CategoryList::Category CategoryList::GetCategory(const string &name) const
+{
+	if(byName.count(name))
+		return byName.at(name);
+	return Category("", numeric_limits<int>::max());
 }

@@ -83,7 +83,7 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 	: ShopPanel(player, false), modifier(0)
 {
 	for(const auto &it : GameData::Ships())
-		catalog[it.second.Attributes().Category()].insert(it.first);
+		catalog[it.second.Attributes().Category()].push_back(it.first);
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();

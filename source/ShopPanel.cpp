@@ -415,7 +415,7 @@ void ShopPanel::DrawMain()
 	for(const auto &cat : categories)
 	{
 		const string &category = cat.Name();
-		map<string, set<string>>::const_iterator it = catalog.find(category);
+		map<string, vector<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 
