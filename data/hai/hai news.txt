@@ -407,12 +407,12 @@ news "hai joining unfettered"
 			`"`
 		word
 			"Apparently our brothers and sisters to the north are in need of help. I may go there someday."
-			"Some very big things are going to happen in Unfettered space, and I wish to be part of that!"
-			"I have lost... Everything, I knew I should not have taken that big loan. I will be heading for unfettered space for a new life now."
-			"The ship carrying my family got attacked by pirates. I guess I may as well be joining the Unfettered now, I have nothing to lose."
-			"I come from unfettered space, the Hai there are quite dynamic, and friendly once you get to know them. But I could not stand the new living conditions."
+			"Some very big things are going to happen in Unfettered space, and I wish to be part of them!"
+			"I have lost everything... I knew I should not have taken that big loan. I will be heading for Unfettered space for a new life now."
+			"The ship carrying my family was attacked by pirates. I guess I may as well be joining the Unfettered now, I have nothing to lose."
+			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the new living conditions."
 			"Have you heard? The art in Unfettered space is very dynamic. I wish there would be more interactions with the Unfettered."
-			"My music is not appreciated here, I guess I'll be going to Unfettered space, to see how they like it. I heard their taste is more... developed."
+			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed."
 		word
 			`"`
 
@@ -421,7 +421,7 @@ news "hai joining unfettered"
 		government "Hai (Unfettered)"
 	name
 		word
-			"Hai merchant (sympathiser)"
+			"Hai merchant"
 	to show
 		has "Unfettered Jump Drive 1: done"
 		random < 30
@@ -429,12 +429,12 @@ news "hai joining unfettered"
 		word
 			`"`
 		word
-			"So many people need relocation. I have made it my job to carry them around, asking for little if anything. Some are Hai going into unfettered space because they have lost themselves."
-			"With the new rumours of action soon in the north the demand in transport here have risen up, I cannot possibly transport all of them. Time to buy a new ship I guess."
-			"Many of those who transport Hai here ask for little. Too little, have you seen the increase in demand? I am going to raise my price, I cannot be transporting people around all day for nothing."
-			"Once I am done transporting people I will stay here and be a part of the action."
-			"I have just finished transporting Hai and now I have to transport others? Maybe you could help us, captain."
-			"Is it just me or are there less merchants transporting Hai here?"
+			"So many people need relocation. I have made it my job to carry them around, asking for little if anything. Some are Hai going into Unfettered space because they have lost themselves."
+			"With the rumors of action soon in the north, the demand in transport here has greatly increased. I cannot possibly fit all of them. Time to buy a new ship, I guess."
+			"Many of those who transport Hai here ask for little - too little. Have you seen the increase in demand? I'm going to raise my price; I can't be transporting people around all day for nothing."
+			"Once I'm done transporting people, I will stay here and be a part of the action."
+			"I've just finished transporting Hai, and now I have to transport others? Maybe you could help us, captain."
+			"Is it just me, or are there less merchants transporting Hai here?"
 		word
 			`"`
 

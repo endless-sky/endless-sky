@@ -57,7 +57,7 @@ mission "First Contact: Wanderer"
 			``
 				goto tryunderstand
 			label forunfettered
-			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know you worked with the Unfettered.`
+			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know that you've worked with the Unfettered.`
 			choice
 				`	"I come to learn more about you, on behalf of the Unfettered."`
 			

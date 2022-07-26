@@ -471,7 +471,7 @@ ship "Sea Scorpion"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "Most of the ships the Unfettered had when they splintered from the rest of the Hai weren't usable as missile boats, so they had to rely heavily on pulse weapons instead. Only after several decades of hard work on a unique design were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price and high number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
+	description "Most Unfettered ships aren't usable as missile boats, so they previously relied on pulse weapons instead. Only after several decades of hard work were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price and large number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -870,7 +870,7 @@ ship "Shield Beetle Prototype"
 	explode "large explosion" 53
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
-	description "This is a prototype build by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, at the cost of stability and heat."
+	description "This is a prototype build created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
 
 
 ship "Solifuge"
