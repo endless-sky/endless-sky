@@ -48,6 +48,10 @@ mission "Unfettered Aid [0]"
 	on complete
 		payment 5000 1600
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -73,6 +77,10 @@ mission "Unfettered Aid [1]"
 	on complete
 		payment 6000 1800
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -98,6 +106,10 @@ mission "Unfettered Aid [2]"
 	on complete
 		payment 7000 2000
 		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 phrase "unfettered tribute payment dialog"
@@ -129,7 +141,7 @@ mission "Unfettered Tribute 1"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -152,7 +164,7 @@ mission "Unfettered Tribute 2"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -175,7 +187,7 @@ mission "Unfettered Tribute 3"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -249,9 +261,9 @@ mission "Unfettered Medicals"
 		government "Hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
-		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies on your ship.`
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies onto your ship.`
 	on complete
 		payment 10000 4000
 		dialog `The local health specialists are relieved that you have managed to bring the needed medical supplies back in time.`
@@ -339,7 +351,11 @@ mission "Unfettered Challenge [2]"
 
 
 
-mission "Get Jump Drives (1)"
+phrase "jump drive or stopover"
+	word
+		`You have a mission to bring a jump drive here on <planet>, from <stopovers>. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+
+mission "Get Jump Drives(1)"
 	name `Collect a jump drive`
 	description `Go to the pirate world of <stopovers> to recover a jump drive from a vault, then bring it to <destination> for <payment>.`
 	job
@@ -357,7 +373,7 @@ mission "Get Jump Drives (1)"
 		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
 		outfit "Jump Drive"
 	on visit
-		dialog `You have a mission to bring a jump drive here. You may have left your escort allocated to carrying the jump drive behind, in which case you better launch and wait for it.`
+		dialog phrase "jump drive or stopover"
 	on complete
 		payment 500000
 		outfit "Jump Drive" -1
@@ -378,7 +394,7 @@ mission "Get Jump Drives (2)"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
+		dialog phrase "jump drive or stopover"
 		outfit "Jump Drive" 2
 	on visit
 		dialog `You have a mission to bring a jump drive here. You may have left your escort carrying the jump drive behind, in which case you better launch and wait for it.`
@@ -403,7 +419,7 @@ mission "Get Jump Drives (3)"
 		dialog `You manage to land and retrieve the jump drive without too much trouble. Do not rely on luck too long though - you should depart quickly!`
 		outfit "Jump Drive" 3
 	on visit
-		dialog `You have a mission to bring a jump drive here. You may have left your escort carrying the jump drive behind, in which case you better launch and wait for it.`
+		dialog phrase "jump drive or stopover"
 	on complete
 		payment 1500000
 		outfit "Jump Drive" -3
@@ -430,6 +446,8 @@ mission "Bring True Hai"
 		attributes "spaceport"
 	on stopover
 		dialog `You have picked up all <bunks> Hai. Now all that is left is to bring them to <destination>.`
+	on visit
+		dialog phrase "generic missing stopover or passengers"
 	on complete
 		payment
 		payment 150000
@@ -444,7 +462,7 @@ mission "Darkcloak Ship Materials"
 	repeat
 	deadline 15 1
 	source `Darkcloak`
-	cargo "ship materials" 50 15 .015 
+	cargo "ship materials" 50 15 .015
 	to offer
 		random < 50
 		has "Unfettered Jump Drive 3: done"
@@ -455,7 +473,7 @@ mission "Darkcloak Ship Materials"
 	on stopover
 		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 50000 7000
 		dialog `The Unfettered promise you many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems good to you.`
