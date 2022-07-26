@@ -111,7 +111,6 @@ public:
 	// Check whether we have full clearance to land and use the planet's
 	// services, or whether we are landing in secret ("infiltrating").
 	bool HasFullClearance() const;
-	bool IsService() const;
 
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space
@@ -199,7 +198,6 @@ private:
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
-	bool isService = false;
 
 	int repeat = 1;
 	std::string cargo;

@@ -211,8 +211,6 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "infiltrating")
 			hasFullClearance = false;
-		else if(child.Token(0) == "service")
-			isService = true;
 		else if(child.Token(0) == "failed")
 			hasFailed = true;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
@@ -353,8 +351,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(!hasFullClearance)
 			out.Write("infiltrating");
-		if(isService)
-			out.Write("service");
 		if(hasFailed)
 			out.Write("failed");
 		if(repeat != 1)
@@ -660,13 +656,6 @@ const string &Mission::ClearanceMessage() const
 bool Mission::HasFullClearance() const
 {
 	return hasFullClearance;
-}
-
-
-
-bool Mission::IsService() const
-{
-	return isService;
 }
 
 
@@ -1407,7 +1396,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.blocked = Format::Replace(blocked, subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
-	result.isService = isService;
 
 	result.hasFailed = false;
 	return result;
