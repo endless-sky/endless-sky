@@ -193,15 +193,15 @@ mission "Proud Unfettered Boarded"
 		category "Heavy Warship"
 	on offer
 		conversation
-			`As you board the <origin> you immediately notice something is wrong: the ship is starting to explode! The captain sends you a message. "This is not a fair fight. Better to die with my crew standing, than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
+			`As you board the <origin> you immediately notice something is wrong: the ship is starting to explode! The captain sends you a message. "This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
 				flee
 	destination "Darkcloak"
 
 
 
 mission "Unfettered Silicon Asteroid Mining"
-	name `Gather silicon from asteroids`
-	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot and then bring them back to <destination> for <payment>.`
+	name `Gather silicon`
+	description `Mine and then collect 50 tons of silicon from the asteroid field in Wah Yoot, and then bring them back to <destination> for <payment>.`
 	job
 	repeat
 	source "Darkcloak"
@@ -210,7 +210,7 @@ mission "Unfettered Silicon Asteroid Mining"
 		random < 60
 	on complete
 		payment 250000
-		dialog `The Unfettered unloading the materials you mined seem enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practice, you know, but most find it dull and too easy to fight an enemy that does not shoot or react in any other way." they tell you as they hand over your payment of <payment> credits.`
+		dialog `The group of Unfettered unloading the materials you mined seems enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practice, you know, but most find it dull and too easy to fight an enemy that does not shoot or react in any other way," one tells you as it hands over your payment of <payment> credits.`
 		outfit "Silicon" -50
 
 mission "Unfettered Silver Asteroid Mining"
@@ -226,7 +226,7 @@ mission "Unfettered Silver Asteroid Mining"
 		random < 60
 	on complete
 		payment 400000
-		dialog `The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are, most of them try to get the resources from enemy ships, but this is a safer wayy to do it." they tell you as they hand over your payment of <payment> credits.`
+		dialog `The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it." One tells you as it hands over your payment of <payment> credits.`
 		outfit "Silver" -15
 
 
@@ -251,16 +251,16 @@ mission "Unfettered Medicals"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on stopover
-		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong,"	they ask while loading the supplies on your ship.`
+		dialog `You are surprised to see the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies on your ship.`
 	on complete
 		payment 10000 4000
-		dialog `The local health specialists seem relieved that you have managed to bring the needed medical supplies back in time.`
+		dialog `The local health specialists are relieved that you have managed to bring the needed medical supplies back in time.`
 
 
 
 mission "Unfettered Challenge [0]"
-	name `Defeat the young captain`
-	description `A young Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
+	name `Defeat young Unfettered captain`
+	description `A young Unfettered captain has provoked you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
 	source
@@ -284,8 +284,8 @@ mission "Unfettered Challenge [0]"
 				decline
 
 mission "Unfettered Challenge [1]"
-	name `Defeat the captain`
-	description `An Unfettered captain has provoked you in a duel. Disable his ship for <payment>.`
+	name `Defeat Unfettered captain`
+	description `An Unfettered captain has provoked you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
 	source
@@ -310,7 +310,7 @@ mission "Unfettered Challenge [1]"
 				decline
 
 mission "Unfettered Challenge [2]"
-	name `Defeat the experienced captain`
+	name `Defeat experienced Unfettered captain`
 	description `An experienced Unfettered captain has provoked you into a duel. Disable his ship for <payment>.`
 	job
 	repeat
@@ -339,9 +339,9 @@ mission "Unfettered Challenge [2]"
 
 
 
-mission "Get Jump Drives(1)"
+mission "Get Jump Drives (1)"
 	name `Collect a jump drive`
-	description `Go to the pirate world of <stopovers> and recover a jump drive from a vault, then bring to <destination> for <payment>.`
+	description `Go to the pirate world of <stopovers> to recover a jump drive from a vault, then bring it to <destination> for <payment>.`
 	job
 	repeat
 	source
@@ -363,7 +363,7 @@ mission "Get Jump Drives(1)"
 		outfit "Jump Drive" -1
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
-mission "Get Jump Drives(2)"
+mission "Get Jump Drives (2)"
 	name `Collect 2 jump drives`
 	description `Go to the pirate world of <stopovers> and recover 2 jump drives from a vault, then bring to <destination> for <payment>.`
 	job
@@ -387,7 +387,7 @@ mission "Get Jump Drives(2)"
 		outfit "Jump Drive" -2
 		dialog `The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo.`
 
-mission "Get Jump Drives(3)"
+mission "Get Jump Drives (3)"
 	name `Collect 3 jump drives`
 	description `Go to the pirate world of <stopovers> and recover 3 jump drives from a vault, then bring to <destination> for <payment>.`
 	job
@@ -439,7 +439,7 @@ mission "Bring True Hai"
 
 mission "Darkcloak Ship Materials"
 	name `Ship materials from <stopovers>`
-	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get the materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
+	description `The shipyards of <origin> are in grave need of raw materials. Go to the pirate world of <stopovers> to get <tons> of materials for building new ships, and bring them back to <destination> by <date> for <payment>.`
 	job
 	repeat
 	deadline 15 1
@@ -453,7 +453,7 @@ mission "Darkcloak Ship Materials"
 		distance 12 18
 		government "Pirate"
 	on stopover
-		dialog `After some searching you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. Now head back to <origin> to deliver them.`
+		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete

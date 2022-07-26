@@ -79,7 +79,7 @@ outfit "Tripulse Shredder"
 		"firing heat" 60
 		"shield damage" 45
 		"hull damage" 34
-	description "An early stage in the development of better and faster weaponry to rival that of the Wanderers, the Tripulse Shredder is still essentially just three Pulse Cannons in one single larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power, but the quicker firing speed still generates much more total heat in the same time. Additionally, the single shared housing results in a much less stable firing pattern."
+	description "An early stage in the development of better and faster weaponry to rival that of the Wanderers, the Tripulse Shredder is essentially just three Pulse Cannons in one single, larger housing. Integrating advances in cooling capabilities has reduced the heat production per shot significantly at the cost of drawing just a touch more power. The quicker firing speed, however, still generates much more total heat in the same time. Additionally, the single shared housing results in a less stable firing pattern."
 
 effect "pulse impact"
 	sprite "effect/pulse impact"
@@ -135,7 +135,7 @@ outfit "True Unfettered License"
 	thumbnail "outfit/true unfettered license"
 	"capture attack" 10
 	"capture defense" 10
-	description "This sword may be bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too, to the point that legends even say it allows the most skilled users to phase through matter for a short period of time."
+	description "This sword may be a bit of a strange license, but its intention is to inspire pride to the wearer, and when the Unfettered see it they show respect. This was given by one of their warlords as a sign of trust. It is quite handy in fights too. Legends even say it allows the most skilled users to phase through matter for a short period of time."
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"
@@ -161,7 +161,7 @@ outfit "Ionic Blaster Prototype"
 		"shield damage" 155
 		"hull damage" 45
 		"ion damage" 2.5
-	description "Since the start of the war with the rest of the Hai, the Unfettered have tried to gain a technological edge so that they could more efficiently plunder ships using their limited resources. To that goal, they started developing the Ionic Blaster, which not only does considerable ion damage that disables the target but also does enough raw damage to be useful in all situations. The only problem is that until now they have lacked the resources to mass produce them, so it is only a prized possession of a lucky few."
+	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which not only deals considerable ion damage but also enough raw damage to be useful in all situations. The Unfettered lack the resources to mass produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -191,7 +191,7 @@ outfit "Ionic Turret Prototype"
 		"shield damage" 155
 		"hull damage" 45
 		"ion damage" 2.5
-	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed completely on their own."
+	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed independently."
 
 
 outfit "Railgun Slug"
@@ -441,7 +441,7 @@ outfit "Hai Zephyr Cooling"
 	"mass" 14
 	"outfit space" -14
 	"cooling" 21
-	description `This advanced cooling system was developed by the Unfettered with significant help from Korath scientists, who apparently laughed at the "primitive" old design the Hai had developed, and which they had found sufficient until then.`
+	description `This advanced cooling system has been developed by the Unfettered with significant help from Korath scientists, who were apparently amused at the "primitive" design the Hai had developed and found sufficient until then.`
 
 outfit "Quantum Keystone"
 	category "Systems"
@@ -461,7 +461,7 @@ outfit "Value Detector"
 	"cargo scan power" 33
 	"cargo scan speed" 4
 	"tactical scan power" 15
-	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often try new technologies on their victims in order to test their effectiveness."
+	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often test the effectiveness of new technologies on their victims."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
@@ -745,7 +745,7 @@ outfit "Dual Pulse Pistols"
 	"capture attack" 2.0
 	"capture defense" 1.4
 	"unplunderable" 1
-	description "A pair of modified heavy pulse pistols favored by some Unfettered and the occasional pirate captain. Dual wielding them adds another gun during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
+	description "A pair of modified heavy pulse pistols favored by some Unfettered and the occasional pirate captain. Dual wielding them adds more firepower during short raids against a ship's defenders. Individually, they lose their energy charge more quickly than a pulse rifle, making them a poor choice for holding a defensive position during a long siege."
 
 outfit "Shield Beetle Pendant"
 	category "Special"
