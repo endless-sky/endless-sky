@@ -2098,7 +2098,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		government "Pirate"
 		system "Sumar"
 		personality derelict staying target
-		ship "Behemoth (Mamoth)" "Mamoth"
+		ship "Behemoth (Mammoth)" "Mammoth"
 	npc evade
 		government "Pirate"
 		personality plunders disables staying
@@ -2571,7 +2571,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 			`	They speak very quickly, and the translator can barely follow. They don't seem to pause when speaking. "'Ter' will 'Ak' speak about it to 'Mer' which 'Ter' do 'Ak' trust insist and 'Ter' will 'Mah' you into nutrigel 'Ter' 'Me' only the brood master could 'Mahem.'" It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. They start speaking together even faster than before, and the translator cannot make any sense out of it.`
 				goto objective
 			label wait
-			`	The Korath eventually notice you and begin staring. Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the 'Mer' who saved 'Ter' why is it 'Terah' to see 'Ter' did it expect 'Ter' would all 'Fel'?" You realize they've probably noticed you're suprised to see them here.`
+			`	The Korath eventually notice you and begin staring. Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the 'Mer' who saved 'Ter' why is it 'Terah' to see 'Ter' did it expect 'Ter' would all 'Fel'?" You realize they've probably noticed you're surprised to see them here.`
 			choice
 				`	"I didn't expect you to be back to working so soon."`
 					goto working
@@ -3577,7 +3577,7 @@ mission "Unfettered: Start Of The War"
 			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, Captain."`
 			`	Sa-Ri then speaks. "Next time it will not be so easy, Captain!"`
 			label train
-			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have alo given you access to our mighty Shield Beetles, should you need it."`
+			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
