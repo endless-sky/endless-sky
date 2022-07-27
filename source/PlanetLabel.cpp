@@ -60,7 +60,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		color = Color(.3f, .3f, .3f, 1.f);
 		government = "(No government)";
 	}
-	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - radius) * .001 * zoom)));
+	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 
 	if(!system)

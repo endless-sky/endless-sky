@@ -4002,9 +4002,11 @@ mission "Laborer"
 	name "Out of Work"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
-	source 
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer
 		random < 15

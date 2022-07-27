@@ -1409,7 +1409,7 @@ mission "Coalition: Alpha Encounter"
 		random < 1
 	source
 		government "Coalition"
-		not attributes "station"
+		not attributes "coalition station"
 		not planet "Secret Sky" "Remote Blue" "Bloptab's Furnace" "Ahr"
 	on offer
 		event "alitis freed" 1095
@@ -1671,7 +1671,7 @@ mission "Saryd University Lecture"
 			label knowunfettered
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
 			label sorry
-			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights.  Aelbris meets up with you outside, bubbling with excitement.`
+			`	The crowd's mood dampens a bit, but everyone is still quite exuberant as you leave the building. It is now night, and your eyes take a moment to adjust from the lecture hall's bright lights. Aelbris meets up with you outside, bubbling with excitement.`
 			`	"Thank you, captain! Expanded our knowledge greatly, you have." He leans in, quieter this time. "Strict with knowledge of humans, the Heliarchs are. Unbiased sources of information, rare they are. Hope to see you again, I do. Safe travels!"`
 			`	After he shakes your hand, you say your goodbyes and board your ship.`
 				decline
@@ -2764,7 +2764,7 @@ mission "Coalition: Expeditions Past 9"
 	to fail
 		has "Coalition: Expeditions Past 10: offered"
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
+		dialog `You haven't yet found the sixth expedition's last pylon. Try searching for it on a route from this system to Ablub.`
 
 mission "Coalition: Expeditions Past 10"
 	landing
@@ -2940,7 +2940,9 @@ mission "Coalition: Long Lost Property 2"
 	to complete
 		never
 	to fail
-		has "Coalition: Long Lost Property 3: active"
+		or
+			has "Coalition: Long Lost Property 3: active"
+			has "Coalition: Long Lost Property 3: done"
 
 mission "Coalition: Long Lost Property 3"
 	landing
