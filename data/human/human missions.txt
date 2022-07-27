@@ -4272,10 +4272,10 @@ mission "Riley"
 			`	You hold Riley as she silently weeps. Time goes by, but neither of you pay it any mind.`
 			label close
 			`	You take a seat, feeling the emotion of the moment wash over you as Riley silently weeps. Minutes go by, unnoticed.`
-				goto continue
+				goto voice
 			label let
 			`	You stay at a distance as you allow Riley to process the death of her father. She silently weeps as time passes without either of you noticing.`
-			label continue
+			label voice
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
 			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I didn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
 			choice
