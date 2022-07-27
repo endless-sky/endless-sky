@@ -53,6 +53,9 @@ public:
 	// centered at the given point.
 	const std::vector<Body *> &Ring(const Point &center, double inner, double outer) const;
 
+	// Get all objects within this collision set.
+	const std::vector<Body *> &All() const;
+
 
 private:
 	class Entry {
@@ -80,6 +83,7 @@ private:
 	int step;
 
 	// Vectors to store the objects in the collision set.
+	std::vector<Body *> all;
 	std::vector<Entry> added;
 	std::vector<Entry> sorted;
 	// After Finish(), counts[index] is where a certain bin begins.
