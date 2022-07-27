@@ -238,7 +238,7 @@ fleet "Korath Civilian Miners"
 	fighters "korath"
 	cargo 0
 	personality
-		heroic disables frugal mining harvests coward forbearing
+		heroic disables frugal mining harvests coward
 	variant
 		"Korath Dredger (Civilian)"
 		"Korath Chaser (Expeller)" 2

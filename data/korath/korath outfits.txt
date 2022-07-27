@@ -216,15 +216,15 @@ outfit "Afterburner (Asteroid Class)"
 	"fuel capacity" 100
 	"ramscoop" 0.25
 	"afterburner thrust" 19.2
-	"afterburner energy" 0.616
-	"afterburner heat" 6.26
+	"afterburner energy" 0.6
+	"afterburner heat" 6.25
 	"afterburner fuel" 0.03
 	"afterburner effect" "korath afterburner tiny"
 	description "Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
 	description "The smallest of afterburners is as much fuel processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
 
 outfit "Afterburner (Comet Class)"
-	plural "Afterburner (Comet Class)"
+	plural "Afterburners (Comet Class)"
 	category "Engines"
 	"cost" 299000
 	thumbnail "outfit/small korath afterburner"
@@ -232,7 +232,7 @@ outfit "Afterburner (Comet Class)"
 	"outfit space" -19
 	"engine capacity" -19
 	"afterburner thrust" 78
-	"afterburner energy" 2.24
+	"afterburner energy" 2.25
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.1
 	"afterburner effect" "korath afterburner small"
@@ -248,7 +248,7 @@ outfit "Afterburner (Lunar Class)"
 	"outfit space" -32
 	"engine capacity" -32
 	"afterburner thrust" 148.8
-	"afterburner energy" 3.92
+	"afterburner energy" 3.9
 	"afterburner heat" 41.65
 	"afterburner fuel" 0.18
 	"afterburner effect" "korath afterburner medium"
@@ -264,7 +264,7 @@ outfit "Afterburner (Planetary Class)"
 	"outfit space" -55
 	"engine capacity" -55
 	"afterburner thrust" 288
-	"afterburner energy" 7.12
+	"afterburner energy" 7.1
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.32
 	"afterburner effect" "korath afterburner large"
@@ -282,7 +282,7 @@ outfit "Afterburner (Stellar Class)"
 	"outfit space" -94
 	"engine capacity" -94
 	"afterburner thrust" 552
-	"afterburner energy" 12.64
+	"afterburner energy" 12.65
 	"afterburner heat" 148
 	"afterburner fuel" 0.58
 	"afterburner effect" "korath afterburner huge"
@@ -359,7 +359,7 @@ effect "korath afterburner huge"
 
 
 outfit "Engine (Meteor Class)"
-	plural "Engine (Meteor Class)"
+	plural "Engines (Meteor Class)"
 	category "Engines"
 	"cost" 187000
 	thumbnail "outfit/tiny korath engine"
@@ -367,7 +367,7 @@ outfit "Engine (Meteor Class)"
 	"outfit space" -18
 	"engine capacity" -18
 	"thrust" 9
-	"thrusting energy" 1.36
+	"thrusting energy" 1.35
 	"thrusting heat" 2.9
 	"turn" 240
 	"turning energy" 0.65
@@ -393,7 +393,7 @@ outfit "Bow Drive (Meteor Class)"
 	"turning energy" 0.65
 	"turning heat" 1.95
 	"reverse thrust" 9
-	"reverse thrusting energy" 1.36
+	"reverse thrusting energy" 1.35
 	"reverse thrusting heat" 2.9
 	"steering flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
@@ -404,7 +404,7 @@ outfit "Bow Drive (Meteor Class)"
 	description "This modification of the Meteor Class engines acts as a reverser, allowing a full range of mobility for small craft when paired with more powerful base thrusters."
 
 outfit "Reverser (Asteroid Class)"
-	plural "Reverser (Asteroid Class)"
+	plural "Reversers (Asteroid Class)"
 	category "Engines"
 	"cost" 113000
 	thumbnail "outfit/tiny korath reverser"
