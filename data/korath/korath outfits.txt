@@ -98,10 +98,10 @@ outfit "Liquid Sodium Cooler"
 	thumbnail "outfit/liquid sodium"
 	"mass" 34
 	"outfit space" -34
-	"heat capacity" 1600
-	"energy consumption" 4
-	"cooling energy" 4
-	"active cooling" 75
+	"heat capacity" 680
+	"energy consumption" 2.4
+	"cooling energy" 5.2
+	"active cooling" 116
 	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the ship's hottest systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
 
 
