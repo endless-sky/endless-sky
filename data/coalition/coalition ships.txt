@@ -1635,7 +1635,7 @@ ship "Saryd Runabout"
 	sprite "ship/saryd runabout"
 	thumbnail "thumbnail/saryd runabout"
 	attributes
-		category "Light Freighter"
+		category "Transport"
 		licenses
 			Coalition
 		"cost" 942000
@@ -1736,7 +1736,7 @@ ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
 	attributes
-		category "Heavy Freighter"
+		category "Transport"
 		licenses
 			Coalition
 		"cost" 3385000
