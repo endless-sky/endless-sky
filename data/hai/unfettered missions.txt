@@ -2230,7 +2230,7 @@ mission "Unfettered: Greenbloom"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			`These 17 Hai calmly enter your ship. Most of them do not look like warriors. You see one of them drop a drawing without noticiing.`
+			`These 17 Hai calmly enter your ship. Most of them do not look like warriors. You see one of them drop a drawing without noticing.`
 			choice
 				`	(Pick it up.)`
 					goto take
@@ -2664,7 +2664,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"I will cover whatever distance necessary."`
 				`	"I don't want to do long distance cargo missions. Screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <stopover> and take the materials there.. Don't stay too long, and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major extracting operations, so we can easily arrange for you to acquire supplies from there."`
+			`	"Good, then go to <stopovers> and take the materials there.. Don't stay too long, and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major extracting operations, so we can easily arrange for you to acquire supplies from there."`
 			choice
 				`	"Time to go then."`
 					accept	
@@ -3346,7 +3346,7 @@ mission "Unfettered: Know Your Enemy"
 	waypoint "Es'sprak'ai"
 
 	on waypoint
-		dialog `You have scouted all of the Wanderer's systems. If you can speak Hai already, it's time to come back to <destination> for your reward. Otherwise, go to <stopover>.`
+		dialog `You have scouted all of the Wanderer's systems. If you can speak Hai already, it's time to come back to <destination> for your reward. Otherwise, go to <stopovers>.`
 	to complete
 		has "language: Wanderer"
 	on complete
