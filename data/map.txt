@@ -17643,7 +17643,7 @@ system Misam
 	fleet "Large Syndicate" 20000
 	fleet "Korath Miners" 15000
 	object
-		sprite star/g-giant
+		sprite star/f5-old
 		distance 50
 		period 10
 	object

@@ -541,7 +541,7 @@ fleet "Small Kor Mereti"
 	variant 3
 		"Model 64"
 		"Model 32" 2
-		"Model 16" 1
+		"Model 16"
 	variant 1
 		"Model 32"
 		"Model 16" 5

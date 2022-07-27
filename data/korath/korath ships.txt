@@ -35,8 +35,8 @@ ship "Korath Dredger"
 			"hit force" 5900
 	outfits
 		"Korath Grab-Strike" 2
-		"Korath Banisher" 1
-		"Korath Warder" 1
+		"Korath Banisher"
+		"Korath Warder"
 		"Digger Mining Turret" 3
 		
 		"Systems Core (Large)"
@@ -115,13 +115,13 @@ ship "Korath Raider"
 		"Korath Banisher"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
-		"Firelight Storage Rack" 1
-		"Firelight Missile" 45
+		"Firelight Storage Rack"
+		"Firelight Missile" 50
 		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
 		"Systems Core (Medium)"
-		"Large Heat Shunt" 1
+		"Large Heat Shunt"
 		"Small Heat Shunt" 3
 		"Fuel Processor"
 		"Korath Repeater Rifle" 196
@@ -190,7 +190,7 @@ ship "Korath Raider Mark XLII"
 		"Korath Warder"
 		"Korath Fire-Lance"
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
+		"Firelight Missile" 40
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"

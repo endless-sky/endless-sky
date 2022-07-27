@@ -95,7 +95,7 @@ outfit "Shunt-Strike Turret"
 		"safe"
 		"missile strength" 80
 	description "This weapon fires homing balls of microbots that pass through a target's shields and attempt to convert its hull into raw materials or useful items such as heat shunts. As Exile microbots contain safety circuits that prevent them from becoming independent of their Systems Core, they will fail after a short time, but not before wreaking havoc on the ship."
-	description "Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it should never be used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
+	description "	Because the same property that allows the microbots through a target's shields disrupts the shields of the ship firing them, it should never be used without an appropriately large Systems Core. Given adequate shield generation, however, the microbots make fantastic miners."
 
 effect "shunt-strike hit"
 	sprite "effect/shunt-strike-hit"
@@ -835,7 +835,7 @@ outfit "Langrage Hyper-Heaver"
 		"firing fuel" 12.5
 		"inaccuracy" 0.5
 	description `Langrage Hyper-Heavers raise the use of improvised ammunition to a fine art. A small Banisher propels scrap metal, nearby asteroids, compressed garbage, or other debris into an unstable hyperspace window.`
-	description `At close range, the jumping langrage merely forces the enemy back. Further along, being forced to hyper transforms it into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
+	description `	At close range, the jumping langrage merely forces the enemy back. Further along, being forced to hyper transforms it into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -898,9 +898,9 @@ outfit "Firelight Storage Rack"
 	category "Ammunition"
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 3.3
+	"mass" 3
 	"outfit space" -6
-	"firelight missile capacity" 9
+	"firelight missile capacity" 10
 	ammo "Firelight Missile"
 	description "This rack stores additional Firelight missiles to feed into a Firelight Bank."
 
@@ -918,12 +918,12 @@ outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 22.6
+	"mass" 22
 	"outfit space" -28
 	"weapon capacity" -28
 	"gun ports" -1
 	"energy capacity" 700
-	"firelight missile capacity" 18
+	"firelight missile capacity" 20
 	weapon
 		ammo "Firelight Missile"
 		sprite "projectile/firelight"
@@ -950,7 +950,7 @@ outfit "Firelight Missile Bank"
 		"hit force" 100
 		"missile strength" 60
 	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
-	description "Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
+	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
 outfit "Firelight Turning"
