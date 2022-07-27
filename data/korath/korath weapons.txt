@@ -278,7 +278,7 @@ outfit "Korath Inferno"
 	category "Turrets"
 	cost 2670000
 	thumbnail "outfit/korath inferno"
-	"mass" 77
+	"mass" 86
 	"outfit space" -77
 	"weapon capacity" -77
 	"turret mounts" -1
@@ -742,9 +742,9 @@ outfit "Digger Mining Turret"
 	category "Turrets"
 	cost 509000
 	thumbnail "outfit/korath digger turret"
-	"mass" 14
+	"mass" 16
 	"outfit space" -16
-	"weapon capacity" -16
+	"weapon capacity" -14
 	"asteroid scan power" 15
 	"turret mounts" -1
 	"required crew" 1
@@ -773,7 +773,7 @@ outfit "Digger Mining Beam"
 	thumbnail "outfit/korath digger"
 	"mass" 10
 	"outfit space" -10
-	"weapon capacity" -10
+	"weapon capacity" -8
 	"asteroid scan power" 10
 	"gun ports" -1
 	weapon
@@ -820,6 +820,8 @@ outfit "Langrage Hyper-Heaver"
 		icon "icon/korath heaver"
 		velocity 30
 		lifetime 8
+		"shield damage" -342
+		"hull damage" -342
 		"hit force" 3600
 		"hit effect" "heaver hyperspace hit"
 		sound "heaver"
@@ -854,8 +856,6 @@ outfit "Heaver Shard"
 		"lifetime" 20
 		"random lifetime" 7.5
 		submunition "Heaver Splinter" 3
-		"shield damage" 17
-		"hull damage" 17
 		"inaccuracy" 4
 		"hit force" 20
 		"hit effect" "heaver shard hit" 5
@@ -868,10 +868,10 @@ outfit "Heaver Splinter"
 			scale 0.33
 		"lifetime" 20
 		"random lifetime" 7.5
-		"shield damage" 5.66
-		"hull damage" 5.66
+		"shield damage" 5.7
+		"hull damage" 5.7
 		"inaccuracy" 5
-		"hit force" 6.66
+		"hit force" 6.7
 		"hit effect" "heaver splinter hit" 3
 
 effect "heaver shard hit"

@@ -4960,12 +4960,12 @@ system Atik
 		distance 150
 		period 4.4
 	object
-		sprite star/b3
+		sprite star/a3
 		distance 300
 		period 4.4
 		offset 180
 	object
-		sprite star/b-dwarf
+		sprite star/f-dwarf
 		distance 350
 		period 300
 	object
