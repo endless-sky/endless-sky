@@ -4262,4 +4262,3 @@ mission "Dangerous Games 1"
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
-      
