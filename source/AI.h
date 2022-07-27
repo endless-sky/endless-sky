@@ -65,7 +65,7 @@ template <class Type>
 	// but not when they jump from one system to another.
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
-	void Step(const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld);
+	void Step(const PlayerInfo &player, Command &activeCommands);
 
 	// Get the in-system strength of each government's allies and enemies.
 	int64_t AllyStrength(const Government *government);
@@ -135,7 +135,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld);
+	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
 
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;

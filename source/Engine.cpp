@@ -22,9 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
@@ -38,7 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -61,6 +57,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TestContext.h"
 #include "Visual.h"
 #include "Weather.h"
+#include "pi.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -1361,9 +1361,11 @@ void Engine::CalculateStep()
 		return;
 
 	// Handle the mouse input of the mouse navigation
+	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
+		activeCommands.Set(Command::MOUSETURNING);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player, activeCommands, mouseAngle, rightMouseButtonHeld);
+	ai.Step(player, activeCommands);
 
 	// Clear the active players commands, they are all processed at this point.
 	activeCommands.Clear();
@@ -1958,7 +1960,7 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(isRightClick)
+	else if(isRightClick && !isMouseTurningEnabled)
 		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 	else if(flagship->Attributes().Get("asteroid scan power"))
 	{
@@ -2137,27 +2139,33 @@ void Engine::DoWeather(Weather &weather)
 
 
 
+// Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	if (activeCommands.Has(Command::MOUSETURNING))
-		isMouseTurningEnabled = !isMouseTurningEnabled;
-	if (isMouseTurningEnabled)
+	if(activeCommands.Has(Command::MOUSETURNING))
 	{
-		int mousePosX;
-		int mousePosY;
-		if ((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-			rightMouseButtonHeld = true;
-		else
-			rightMouseButtonHeld = false;
-		double relx = mousePosX - Screen::RawWidth()/2;
-		double rely = mousePosY - Screen::RawHeight()/2;
-		if (relx == 0)
-			mouseAngle = 90;
-		else
-			mouseAngle = (180/PI)*(atan(rely/relx)) + 90;
-		if (relx < 0)
-			mouseAngle += 180;
+		isMouseTurningEnabled = !isMouseTurningEnabled;
+		Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
 	}
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relx = mousePosX - Screen::RawWidth() / 2;
+	double rely = mousePosY - Screen::RawHeight() / 2;
+	Angle mouseAngle = 0;
+	if(relx == 0)
+		mouseAngle = 90;
+	else
+		mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
+	if(relx < 0)
+		mouseAngle += 180;
+	player.SetMouseAngle(mouseAngle);
+
+	// Activate firing command.
+	if(isMouseTurningEnabled && rightMouseButtonHeld)
+		activeCommands.Set(Command::PRIMARY);
 }
 
 

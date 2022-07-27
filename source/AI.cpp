@@ -497,7 +497,7 @@ void AI::ClearOrders()
 
 
 
-void AI::Step(const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld)
+void AI::Step(const PlayerInfo &player, Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
@@ -540,7 +540,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands, Angle mouseAngl
 		{
 			// Player cannot do anything if the flagship is landing.
 			if(!flagship->IsLanding())
-				MovePlayer(*it, player, activeCommands, mouseAngle, rightMouseButtonHeld);
+				MovePlayer(*it, player, activeCommands);
 			continue;
 		}
 
@@ -3153,7 +3153,7 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands, Angle mouseAngle, bool rightMouseButtonHeld)
+void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands)
 {
 	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size());
@@ -3514,30 +3514,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::Has("Automatic firing") && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
-			&& (!target || target->GetGovernment()->IsEnemy())
-			&& !isMouseTurningEnabled)
+			&& (!target || target->GetGovernment()->IsEnemy()))
 		AutoFire(ship, firingCommands, false);
 
-	if (activeCommands.Has(Command::MOUSETURNING)) {
-		isMouseTurningEnabled = !isMouseTurningEnabled;
-	}
-
-	if (isMouseTurningEnabled && !ship.IsBoarding() && !ship.IsReversing())
+	if(Preferences::Has("alt-mouse turning") && !ship.IsBoarding() && !ship.IsReversing())
 	{
 		Angle shipAngle = ship.Facing();
-		if (rightMouseButtonHeld)
-		{
-			int index = 0;
-			for(const Hardpoint &hardpoint : ship.Weapons())
-			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
-					firingCommands.SetFire(index);
-				++index;
-			}
-		}
 
-		double angDiff = mouseAngle.Degrees() - shipAngle.Degrees();
-		if (abs(angDiff) > 1)
+		double angDiff = player.MouseAngle().Degrees() - shipAngle.Degrees();
+		if(abs(angDiff) > 1)
 			command.SetTurn((angDiff / abs(angDiff)) * pow(-1, (floor(abs(angDiff) / 180))));
 		else
 			command.SetTurn(0);
@@ -3547,7 +3532,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		if(activeCommands.Has(Command::FORWARD))
 			command |= Command::FORWARD;
-		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !isMouseTurningEnabled)
+		if(activeCommands.Has(Command::RIGHT | Command::LEFT) && !Preferences::Has("alt-mouse turning"))
 			command.SetTurn(activeCommands.Has(Command::RIGHT) - activeCommands.Has(Command::LEFT));
 		if(activeCommands.Has(Command::BACK))
 		{
@@ -3588,8 +3573,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
-			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
-			&& !isMouseTurningEnabled)
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
