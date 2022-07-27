@@ -2160,7 +2160,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 mission "Unfettered: The Word Has Spread"
 	name `Gather the true Hai`
-	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from most worlds, to <destination>.`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>.`
 	source "Firelode"
 	passengers 138
 	blocked `You need <bunks> passenger space for the next Unfettered mission.`
@@ -2184,7 +2184,7 @@ mission "Unfettered: The Word Has Spread"
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 	on offer
 		conversation
-			`The recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Sha-Ri, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
+			`Even before exiting your ship, you notice that the recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Sha-Ri, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
 			choice
 				`	"Sure!"`
 					accept
