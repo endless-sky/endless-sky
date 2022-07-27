@@ -39,6 +39,7 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2		
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -85,7 +86,9 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2		
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -136,7 +139,9 @@ ship "Arach Hulk"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -191,7 +196,9 @@ ship "Arach Spindle"
 		"Cooling Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 1
 		"Hyperdrive"
@@ -241,6 +248,7 @@ ship "Arach Transport"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1504,6 +1512,7 @@ ship "Kimek Spire"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1556,7 +1565,9 @@ ship "Kimek Thistle"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1605,6 +1616,7 @@ ship "Kimek Thorn"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -1650,6 +1662,7 @@ ship "Saryd Runabout"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
 		
@@ -1695,7 +1708,9 @@ ship "Saryd Sojourner"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1749,7 +1764,9 @@ ship "Saryd Traveler"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module"
+		"Small Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1802,6 +1819,7 @@ ship "Saryd Visitor"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module"
 		"Hyperdrive"
 		
