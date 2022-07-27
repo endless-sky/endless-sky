@@ -66,11 +66,11 @@ mission "Kestrel Testing"
 					goto no
 			
 			label yes
-			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Glad to hear it," he says. "Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label no
-			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass producing this ship. What changes would you recommend?"`
+			`	"Oh well," he says, "you are the infamous <first> <last>, after all, so I suppose any single warship will be little threat to you. Now, we have the opportunity to make a few tweaks before we start mass-producing this ship. What changes would you recommend?"`
 				goto changes
 			
 			label changes
