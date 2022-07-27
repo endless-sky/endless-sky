@@ -296,7 +296,7 @@ ship "Bactrian"
 	attributes
 		licenses
 			City-Ship
-		category "Heavy Warship"
+		category "Utility"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
@@ -2415,7 +2415,7 @@ ship "Mule"
 	sprite "ship/mule"
 	thumbnail "thumbnail/mule"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 4080000
 		"shields" 5400
 		"hull" 4400
