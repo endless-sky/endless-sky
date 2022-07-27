@@ -4079,14 +4079,15 @@ mission "Laborer Payment"
 				decline
 
 
+
 mission "Riley"
 	name "Visiting Home"
 	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
 	minor
 	passengers 1
 	source
-		attributes deep 
-		attributes urban
+		attributes "deep"
+		attributes "urban"
 	deadline
 	destination "Memory"
 	to offer
@@ -4099,7 +4100,7 @@ mission "Riley"
 				`	(Ignore her.)`
 					decline
 			`	You approach the woman and ask her if she is looking to hire a pilot.`
-			`	"I need to get to <destination> to see my father. He's dying. I have <payment> credits to pay for the journey; please, will you help me? I need to be there in <deadline> days, at the most."`
+			`	"I need to get to <destination> to see my father. He's dying. I have 13,000 credits to pay for the journey; please, will you help me? I need to be there by <day>, at the most."`
 			`	Her eyelids are baggy, her clothes wrinkled, and she holds herself rigidly; signs of desperation, stress, and sleep deprivation.`
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
@@ -4118,7 +4119,7 @@ mission "Riley"
 			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
 			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding on a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
 			`	She didn't mention it, but it's clear that she was concerned that she'd arrive too late to say goodbye.`
-			`	As you neared <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <source> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
+			`	As you neared <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <origin> and had a break in her touring schedule, so she made contact and they met halfway. They spent most of a week together, reliving old times.`
 			`	He'd cried when it was time to leave, and she had, too, but life went on, and it was years before she heard from him again. His message nearly broke her. "Ri, please come as soon as you can. I may not have long, and wish to hold your hand one more time. All love, Dad."`
 			`	Riley directs you to a pad near her old home, and you land the ship. She starts toward the door, then pauses and turns around with a self-conscious, but oddly sad, chuckle.`
 			`	"Right - your payment. <payment>, as I promised."`
@@ -4157,7 +4158,7 @@ mission "Riley"
 			`	"Ri," he says, face lighting up. "My love. You cannot know how happy it makes me to see you. And you have company, I see. My name's Church."`
 			choice
 				`	"Riley chartered a flight here aboard my ship. I heard so much about you on the way, it's a pleasure to meet you."`
-				`	Riley and I have gotten to know each other on the long flight here. You've raised an incredible woman."`
+				`	"Riley and I have gotten to know each other on the long flight here. You've raised an incredible woman."`
 			`	"<first> was the only captain willing to fly here from <origin>. I wouldn't be here without them," she says.`
 			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
 			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
@@ -4174,7 +4175,7 @@ mission "Riley"
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
 			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I didn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
 			choice
-				`	(Stay silent)."`
+				`	(Stay silent.)"`
 					goto continue
 				`	"Is this... legal?"`
 			`	"Well, no," he replies. "Not under Republic law. I assure you that my only intention is to continue my work; nothing more."`
@@ -4187,13 +4188,14 @@ mission "Riley"
 			choice
 				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
 					goto suggest
-				`	(Say goodbye).`
+				`	(Say goodbye.)`
 					goto goodbye
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
 			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
 			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
+				decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
@@ -4203,9 +4205,9 @@ mission "Riley"
 			label bounty
 			action
 				payment 100000
-			`	You say your goodbyes and leave. From across the street, you make a call to the local government office, and watch as their forces descend on the house.`
-			`	Your bank account notifies you that <payment> have been added to your account. Turning away, you head back to your ship.`
+			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep Security office, and watch as their forces descend on the house.`
+			`	Your bank account notifies you that 100,000 credits have been added to your account. Turning away, you head back to your ship.`
 				decline
 			label end
-				You say your goodbyes, leaving to your ship and returning to the stars.`
+			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
