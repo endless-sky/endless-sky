@@ -10,9 +10,11 @@
 
 # Ships of these types can be purchased and also used as mission sources.
 category "ship"
-	"Transport"
 	"Light Freighter"
 	"Heavy Freighter"
+	"Transport"
+	"Space Liner"
+	"Utility"
 	"Interceptor"
 	"Light Warship"
 	"Medium Warship"
