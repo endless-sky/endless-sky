@@ -825,7 +825,7 @@ ship "Shield Beetle Prototype"
 		"heat dissipation" .35
 		"fuel capacity" 600
 		"cargo space" 80
-		"outfit space" 849
+		"outfit space" 855
 		"weapon capacity" 354
 		"engine capacity" 140
 		weapon
@@ -870,7 +870,7 @@ ship "Shield Beetle Prototype"
 	explode "large explosion" 53
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
-	description "This is a prototype build created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
+	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
 
 ship "Solifuge"
 	sprite "ship/hai solifuge"
