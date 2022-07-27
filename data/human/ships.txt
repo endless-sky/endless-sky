@@ -189,7 +189,7 @@ ship "Auxiliary"
 	sprite "ship/auxiliaryh"
 	thumbnail "thumbnail/auxiliaryh"
 	attributes
-		category "Transport"
+		category "Utility"
 		licenses
 			"Navy Auxiliary"
 		"cost" 13720000
@@ -3202,7 +3202,7 @@ ship "Star Queen"
 	sprite "ship/star queen"
 	thumbnail "thumbnail/star queen"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
