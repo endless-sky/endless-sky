@@ -1509,6 +1509,8 @@ Files:
  images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
+ images/projectile/ion?blast*
+ sounds/ion?blast*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).

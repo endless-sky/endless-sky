@@ -417,15 +417,15 @@ ship "Sea Scorpion"
 	attributes
 		category "Medium Warship"
 		"cost" 2950000
-		"shields" 11300
-		"hull" 4300
+		"shields" 13500
+		"hull" 4900
 		"required crew" 14
 		"bunks" 36
 		"mass" 360
 		"drag" 4.7
-		"heat dissipation" .8
+		"heat dissipation" .7
 		"fuel capacity" 500
-		"cargo space" 50
+		"cargo space" 45
 		"outfit space" 510
 		"weapon capacity" 168
 		"engine capacity" 104
@@ -471,7 +471,7 @@ ship "Sea Scorpion"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "Most Unfettered ships aren't usable as missile boats, so they previously relied on pulse weapons instead. Only after several decades of hard work were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price and large number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
+	description "Most Unfettered ships aren't usable as missile boats, so they previously relied on pulse weapons instead. Only after several decades of hard work were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price, agility and large number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -871,7 +871,6 @@ ship "Shield Beetle Prototype"
 	explode "huge explosion" 22
 	"final explode" "final explosion large"
 	description "This is a prototype build created by the Unfettered. They have upgraded its shield matrix as well as pretty much everything else they could, but this process has sacrificed stability and increased heat generation."
-
 
 ship "Solifuge"
 	sprite "ship/hai solifuge"
