@@ -2156,10 +2156,17 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	double rely = mousePosY - Screen::RawHeight() / 2;
 	Angle mouseAngle = 0;
 	if(relx == 0)
+		// When relx is 0 mouseAngle is given a fixed value of 90
+		// to avoid zero division error
 		mouseAngle = 90;
 	else
+		// The slope of the vector (relx, rely) is calculated and
+		// converted to degrees from radians
 		mouseAngle = (180 / PI) * (atan(rely / relx)) + 90;
 	if(relx < 0)
+		// The range of atan is (-PI/2, PI/2) so when relx is
+		// negetive 180(in degrees) is added to keep the final
+		// angle between [0, 360)
 		mouseAngle += 180;
 	player.SetMouseAngle(mouseAngle);
 
