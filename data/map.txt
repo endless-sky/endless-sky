@@ -33117,7 +33117,7 @@ planet Enbi
 
 planet "Oup Je"
 	landscape land/canyon4
-	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Lower down below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
+	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
 	spaceport "The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface to be, most likely in the mines. They seem quite interested in you compared to other Gegno being that a majority of their days involve seeing mostly materials and machinery."
 	government "Gegno Scin"
 	"required reputation" 1
