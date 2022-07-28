@@ -319,7 +319,7 @@ mission "FW Wolf Pack 1B"
 	on complete
 		payment 250000
 		dialog
-			`You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass producing the new ramscoops. I hope they will be useful in the conflict ahead."`
+			`You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass-producing the new ramscoops. I hope they will be useful in the conflict ahead."`
 		event "fw gets catalytic ramscoop" 24
 		log "Helped the Free Worlds gain access to new ramscoop technology that has been developed in the Deep. This should make it significantly easier to travel long distances through unfriendly systems."
 
