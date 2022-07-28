@@ -465,7 +465,7 @@ mission "Masquerade Hanging"
 		random < 1
 	on offer
 		conversation
-			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
+			`The smell of burning gunpowder wafts about in the air as you enter a town square, watching as a body is rolled off of a raised platform. Cries and screams fill the air as a masked man drags a lady across the platform and onto the central dias, an old-fashioned pistol to her head as he asks her something you can't make out. Thankfully, the man doesn't shoot, taking his gun off her temple before subsequently knocking her out with his weapon.`
 			`	Moments later the small crowd allows him to depart opposite your viewpoint, without incident and without explanation. You aren't quite sure what to make of this scene as the bodies are swiftly dragged away.`
 				decline
 
