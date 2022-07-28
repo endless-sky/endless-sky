@@ -31902,7 +31902,7 @@ planet "Dueitch Ae"
 
 planet Graede
 	landscape land/forest2
-	description "Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Acres of forestry spread across relatively low mountain ranges, and a variety of small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. "
+	description "Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Acres of forestry are spread across relatively low mountain ranges, and a variety of small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. "
 	spaceport "The structure you're parked at seems to be just a section of a much larger rectilinear building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory."
 	spaceport "	You often find yourself lost in the beauty of a world still untouched by the rest of its industry, occasionally distracting you from the many distasteful looks given to you from the Vi here. It's clear that they do not have the same attitude towards you as you have towards their planet, and would likely blast your brains out if they cared enough to do so."
 	government "Gegno Vi"
