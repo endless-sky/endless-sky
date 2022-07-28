@@ -4002,9 +4002,11 @@ mission "Laborer"
 	name "Out of Work"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
-	source 
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer
 		random < 15
@@ -4076,4 +4078,100 @@ mission "Laborer Payment"
 		payment 17000
 		conversation
 			`You receive a payment of <payment> from the down-on-his-luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and make me come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
+				decline
+
+
+
+mission "Block Hai Wormhole Warning"
+	landing
+	invisible
+	to offer
+		or
+			has "First Contact: Hai"
+			has "First Contact: Unfettered"
+		has "chosen sides"
+		not "main plot completed"
+	on offer
+		fail
+
+mission "Hai Wormhole Warning"
+	minor
+	source
+		government "Republic"
+		not attributes "deep"
+	to offer
+		or
+			has "First Contact: Hai"
+			has "First Contact: Unfettered"
+		not "Block Hai Wormhole Warning: offered"
+		not "Wanderers: Alpha Surveillance E: offered"
+	on offer
+		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
+		conversation
+			`Upon entering the spaceport, you're stopped by a Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			choice
+				`	"What about?"`
+					goto what
+				`	"Okay."`
+					goto frigate
+				`	"Sorry, I'm really busy right now."`
+			`	"No, I'm sorry, but this isn't a matter of whether you're busy or not right now. Come with me."`
+				goto frigate
+			label what
+			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
+			label frigate
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
+			choice
+				`	(Take a seat.)`
+					goto seat
+				`	"No, I like to stand."`
+			`	"Suit yourself," the officer says with a shrug while taking a seat himself.`
+				goto questioning
+			label seat
+			`	You choose a table to sit at and the officer sits across from you.`
+			label questioning
+			`	"So what is it that you brought me here for?" you ask.`
+			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
+			choice
+				`	"It is. Is that a problem?"`
+					goto yes
+				`	"Perhaps. Why do you ask?"`
+					goto maybe
+				`	"Aliens? I don't know of any aliens up there."`
+				`	"Hey! That's no way to talk about the pirates in the Far North."`
+			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai.`
+				goto secret
+			label maybe
+			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
+				goto secret
+			label yes
+			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
+			label secret
+			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; they do not disallow captains such as yourself from stumbling upon them, but they will not allow this existence to be widely publicized."`
+			choice
+				`	"Why are you telling me this?"`
+					goto why
+				`	"An arrangement between the Republic and Hai? When did that happen?"`
+					goto arrangement
+				`	"So you're threatening me to stay quiet?"`
+			`	"No threats. I only provide a... warning, so to say, that you should keep the Hai a secret.`
+				goto chaos
+			label why
+			`	"I'm telling you this as something of a... warning, so to say, that you should keep the Hai a secret.`
+				goto chaos
+			label arrangement
+			`	"The details of the arrangement are none of your concern. All you need to know is that I am providing a... warning, so to say, that you should keep the Hai a secret.`
+			label chaos
+			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for the Republic and for the Hai. Chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this knowledge a secret."`
+			choice
+				`	"Alright. I won't let anyone know."`
+					goto ok
+				`	"And if I don't?"`
+			`	The officer leans back in his chair. "As I said, <last>, I'm giving you a warning that things could end badly for you. The Republic are not the only ones who work hard to maintain this secrecy, so you may want to think twice about revealing such information. Now, if you'll please depart my ship so that I can be on my way."`
+				goto end
+			label ok
+			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
+			label end
+			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline

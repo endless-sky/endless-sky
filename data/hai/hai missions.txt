@@ -549,6 +549,10 @@ mission "Unfettered returning home"
 		dialog
 			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 
 
 
@@ -1253,6 +1257,10 @@ mission "Pirate Troubles [1]"
 		has "Pirate Troubles [0]: done"
 	on offer
 		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
 		conversation
 			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai elder approaches you. "We have heard from the humans here that you are considered a seasoned fighter among your people. May you lend your combat prowess to us to resolve this issue?"`
 			choice
@@ -1536,6 +1544,10 @@ mission "Pirate Troubles [4]"
 			has "accepted scar's legion tribute"
 	on offer
 		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
 		payment 2500000
 		conversation
 			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders, the elected ruling body of the Hai, to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
@@ -1576,6 +1588,10 @@ mission "Pirate Troubles [4]"
 	
 	on decline
 		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
 	
 	npc save accompany
 		government "Hai (Wormhole Access)"
@@ -1594,6 +1610,10 @@ mission "Pirate Troubles [4]"
 	
 	on complete
 		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
 		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
 

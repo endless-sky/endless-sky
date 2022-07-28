@@ -651,7 +651,7 @@ ship "Merganser"
 	engine 10 49
 	explode "tiny explosion" 30
 	explode "small explosion" 20
-	description "The Merganser is the first production ship the Remnant deem to be truly alive, and are considered to be equivalent to dolphins in reasoning tests. These interceptors, deemed for short range operations by Remnant standards, are designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit and run attacks on threats in nearby systems."
+	description "The Merganser is the first production ship the Remnant deem to be truly alive, and are considered to be equivalent to dolphins in reasoning tests. These interceptors, deemed for short range operations by Remnant standards, are designed to patrol the upper atmosphere of gas giants and use their decisive speed advantage to conduct hit-and-run attacks on threats in nearby systems."
 	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
 
 

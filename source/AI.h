@@ -191,7 +191,7 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	// General firing command for ships. This is a data member to avoid
-	// thrashing the heap, since we can reuse the the storage for
+	// thrashing the heap, since we can reuse the storage for
 	// each ship.
 	FireCommand firingCommands;
 

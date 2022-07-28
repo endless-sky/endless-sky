@@ -21,7 +21,7 @@ category "ship"
 	"Drone"
 
 
-# Ships of these types are able to be carried by other ships.
+# Ships of these types can be carried by other ships.
 category "bay type"
 	"Drone"
 	"Fighter"
