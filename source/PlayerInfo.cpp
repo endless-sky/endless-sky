@@ -2704,7 +2704,7 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
-	// Sort missions on the job board alphabetically, with the service missions at the end.
+	// Sort missions on the job board alphabetically.
 	availableJobs.sort([](const Mission &lhs, const Mission &rhs)
 	{
 		return lhs.Name() < rhs.Name();
