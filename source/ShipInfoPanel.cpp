@@ -186,13 +186,13 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
 		{
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::DumpPlunder,
-				"How many tons of " + Format::LowerCase(selectedPlunder->DisplayName())
+				"How many tons of " + Format::LowerCase(selectedPlunder->Name())
 					+ " do you want to jettison?", plunderAmount));
 		}
 		else if(plunderAmount == 1)
 		{
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
+				"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
 		}
 		else if(plunderAmount > 1)
 		{
@@ -381,7 +381,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 			}
 
 			// Draw the outfit name and count.
-			table.DrawTruncatedPair(outfit->DisplayName(), dim,
+			table.DrawTruncatedPair(outfit->Name(), dim,
 				to_string(ship.OutfitCount(outfit)), bright, Truncate::BACK, false);
 		}
 		// Add an extra gap in between categories.
@@ -465,7 +465,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	{
 		string name = "[empty]";
 		if(hardpoint.GetOutfit())
-			name = hardpoint.GetOutfit()->DisplayName();
+			name = hardpoint.GetOutfit()->Name();
 
 		bool isRight = (hardpoint.GetPoint().X() >= 0.);
 		bool isTurret = hardpoint.IsTurret();
@@ -507,7 +507,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	if(draggingIndex >= 0)
 	{
 		const Outfit *outfit = ship.Weapons()[draggingIndex].GetOutfit();
-		string name = outfit ? outfit->DisplayName() : "[empty]";
+		string name = outfit ? outfit->Name() : "[empty]";
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);

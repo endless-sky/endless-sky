@@ -54,7 +54,7 @@ namespace {
 
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->DisplayName() : outfit->PluralName());
+		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
 

@@ -190,17 +190,13 @@ void Outfit::Load(const DataNode &node)
 	{
 		name = node.Token(1);
 		displayName = name;
-		pluralName = displayName + 's';
 	}
 	isDefined = true;
 
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
-		{
 			displayName = child.Token(1);
-			pluralName = displayName + 's';
-		}
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
@@ -292,6 +288,9 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	if(pluralName.empty())
+		pluralName = displayName + 's';
+
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
@@ -340,14 +339,14 @@ bool Outfit::IsDefined() const
 
 // When writing to the player's save, the reference name is used even if this
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
-const string &Outfit::Name() const
+const string &Outfit::TrueName() const
 {
 	return name;
 }
 
 
 
-const string &Outfit::DisplayName() const
+const string &Outfit::Name() const
 {
 	return displayName;
 }
