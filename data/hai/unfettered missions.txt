@@ -2443,7 +2443,7 @@ ship "Corvette" "Corvette (Harpy)"
 
 mission "Unfettered: Newhome"
 	name "Family Hunt"
-	description "A Hai family has been on a pirate ship labelled as a Merchant, thinking it was their due transport. Find it and board it to save them."
+	description "A Hai family has been on a pirate ship labeled as a Merchant, thinking it was their due transport. Find it and board it to save them."
 	landing
 	source "Newhome"
 	destination "Firelode"
