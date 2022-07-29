@@ -13,7 +13,7 @@ if [[ ${isVersion} -eq 0 ]]; then
     replacement=$1
 elif [[ $1 =~ ^[0-9A-Fa-f]+$ ]]; then
     replacement="($1)"
-    perl -p -i -e "s|(COMMIT_ID = \").*?\"|$1${replacement}\"|ig" source/Version.h
+    perl -p -i -e "s|(COMMIT_ID = \").*?\"|\$1${replacement}\"|ig" source/Version.h
     perl -p -i -e "s|\".*?\" \"(ver\. .*)\" \"|\"$(date '+%d %b %Y')\" \"\$1 ${replacement}\" \"|ig" endless-sky.6
     isVersion=2
 else
@@ -22,7 +22,7 @@ fi
 
 if [[ ${isVersion} -ne 2 ]]; then
     # Update Version.h
-    perl -p -i -e "s|(GAME_VERSION = \").*?\"|$1${replacement}\"|ig" source/Version.h
+    perl -p -i -e "s|(GAME_VERSION = \").*?\"|\$1${replacement}\"|ig" source/Version.h
     # Update endless-sky.6
     perl -p -i -e "s|\".*?\" \"ver\. .+?\"|\"$(date '+%d %b %Y')\" \"${replacement}\"|ig" endless-sky.6
 fi
