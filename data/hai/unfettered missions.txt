@@ -2470,7 +2470,7 @@ mission "Unfettered: Family Hunt From Newhome"
 				payment 250000
 			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins, and learning more about them (you assume they refer to the Unfettered.)`
 			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
-				decline`
+				decline
 
 	on fail
 		conversation
