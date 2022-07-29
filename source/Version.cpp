@@ -21,7 +21,7 @@ namespace {
 
 
 
-const string Version::GetString()
+string Version::GetString()
 {
 	if(COMMIT_ID.empty())
 		return GAME_VERSION;

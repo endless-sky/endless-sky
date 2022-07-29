@@ -19,7 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // the latest commit hash for non-release version.
 class Version {
 public:
-	static const std::string GetString();
+	static std::string GetString();
 };
 
 #endif

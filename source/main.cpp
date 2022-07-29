@@ -70,6 +70,8 @@ void PrintWeaponTable();
 void InitConsole();
 #endif
 
+
+
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
