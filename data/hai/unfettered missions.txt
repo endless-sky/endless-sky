@@ -2374,7 +2374,7 @@ mission "Unfettered: The Word Has Spread South"
 		"unfettered: startdays south" = day + month * 30 + year * 365
 
 	to complete
-		not "Unfettered: Newhome: active"
+		not "Unfettered: Family Hunt From Newhome: active"
 	on complete
 		conversation
 			branch "reduced payment"
@@ -2441,7 +2441,7 @@ ship "Corvette" "Corvette (Harpy)"
 		outfits
 			"Gold Bars" 15
 
-mission "Unfettered: Newhome"
+mission "Unfettered: Family Hunt From Newhome"
 	name "Family Hunt"
 	description "A Hai family has been on a pirate ship labeled as a Merchant, thinking it was their due transport. Find it and board it to save them."
 	landing
@@ -2451,24 +2451,21 @@ mission "Unfettered: Newhome"
 		has "Unfettered: The Word Has Spread: active"
 	on offer
 		conversation
-			branch "too late"
-				"unfettered: days" - "unfettered: startdays south" > random
-			`You find a Hai family waiting for you at the spaceport. They excitedly board your ship. They say they're looking forward to learning more about their cousins (you assume they refer to the Unfettered.)`
-				decline
-			label "too late"
-			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is "The Harpy", and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that ship is as fast as light itself.`
+			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that ship is as fast as light itself.`
 				launch
 
 	npc board
 		government "Bounty (Disguised)"
-		personality uninterested
+		personality coward uninterested
 		system
 			distance 1 2
 		ship "Corvette (Harpy)" "The Harpy"
 		conversation
 			action
 				payment 250000
-			`You manage to find the Hai family, thankfully no harm has come to them. They seem to be in shock and give you all that they have, <payment>, to thank you.`
+			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins, and learning more about them (you assume they refer to the Unfettered.)`
+			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
+				decline`
 
 	on fail
 		conversation
