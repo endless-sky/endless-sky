@@ -57,14 +57,14 @@ namespace {
 	// to the shared_pointer elements in this list.
 	void MoveFlagshipBegin(vector<shared_ptr<Ship>> &ships, const shared_ptr<Ship> &flagship)
 	{
-		if(flagship)
+		if(!flagship)
+			return;
+
+		auto it = find(ships.begin(), ships.end(), flagship);
+		if(it != ships.begin() && it != ships.end())
 		{
-			auto it = find(ships.begin(), ships.end(), flagship);
-			if(it != ships.begin() && it != ships.end())
-			{
-				ships.erase(it);
-				ships.insert(ships.begin(), flagship);
-			}
+			move_backward(ships.begin(), prev(it), it);
+			ships[0] = flagship;
 		}
 	}
 }
