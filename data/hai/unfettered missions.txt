@@ -2016,6 +2016,7 @@ ship "Behemoth" "Behemoth (Mammoth)"
 	cargo
 		outfits
 			"Loot" 400
+			"Gold Bars" 15
 
 mission "Unfettered: Loot: Ion Cannon Materials"
 	name `Loot cargo ship`
@@ -2093,7 +2094,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				decline
 			label words
 			`	"Those will be your last words, scum. Should've chosen better ones!"`
-	
+
 	npc board
 		government "Pirate"
 		system "Sumar"
@@ -2105,7 +2106,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		system "Sumar"
 		fleet "Small Northern Pirates" 6
 		ship "Firebird" "Valkiry"
-	
+
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -2159,35 +2160,19 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 
 mission "Unfettered: The Word Has Spread"
-	name `Gather the true Hai`
-	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>.`
+	invisible
 	source "Firelode"
-	passengers 138
-	blocked `You need <bunks> passenger space for the next Unfettered mission.`
-	
-	stopover "Cloudfire"
-	stopover "Snowfeather"
-	stopover "Darkmetal"
-	stopover "Makerplace"
-	stopover "Mirrorlake"
-	stopover "Icelake"
-	stopover "Newhome"
-	stopover "Greenbloom"
-	stopover "Greenwater"
-	stopover "Stonebreak"
-	stopover "Mahoganybox"
-	stopover "Greymoon"
-	on stopover
-		dialog `You have gathered all the Hai that had been assigned to you, time to bring them to <destination>.`
-	
+
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
+		has "passenger space" >= 66
+
 	on offer
 		conversation
 			`Even before exiting your ship, you notice that the recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Sha-Ri, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
 			choice
 				`	"Sure!"`
-					accept
+					goto details
 				`	"Why do they want to join you?"`
 				`	"What battle are you talking about?"`
 					goto battle
@@ -2197,29 +2182,300 @@ mission "Unfettered: The Word Has Spread"
 			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
 			choice
 				`	"Let's gather the Hai then."`
-					accept
+					goto details
 				`	"What battle are you talking about?"`
 				`	"No way. I'm not helping in your crusade."`
 					decline
 			label battle
 			`	"The only battle there is! The one you have helped us plan for so long: the reconquest of our lost glory and lost worlds, up north." The fire in his eyes proves he truly believes what he's telling you.`
 			choice
+				`	"Let's gather the Hai then."`
+					goto details
 				`	"Sure! I will join this battle."`
 				`	"Why would they want to join you?"`
 					goto why
 				`	"No way. I'm not helping your crusade."`
 					decline
-			`	"I like your enthusiasm, but all things most come in good time. First, you need to bring these people back to their new home."`
+			`	"I like your enthusiasm, but all things most come in good time. First, you need to bring these people to their new home."`
+			label details
+			`	You were readying to leave but he stops you, "Oh and before I forget, we have divided the contract in two for practical reasons, you may choose to first get the Hai South, or North. You could even do both at the same time, provided you have enough bunks for that. Be mindfull that some could be impatient, don't keep them waiting too long else they may take the services of another captain, or worse, change their minds about joining us! They should at least wait a month or two, but if for some reason, some of them do not return to us, you will only be payed part of the price."`
 				accept
 
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		has "Unfettered: The Word Has Spread North: done"
+		has "Unfettered: The Word Has Spread South: done"
 	on complete
 		log `Gathered all the Hai who wanted to join the Unfettered that I could find.`
-		payment 5000000
-		dialog `The Hai are all excited to join the Unfettered. You receive your payment of <payment>.`
+		clear "unfettered: days"
+
+mission "Unfettered: Refresh The Clock"
+	invisible
+	repeat
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		"unfettered: days" = day + month * 30 + year * 365
+
+mission "Unfettered: The Word Has Spread North"
+	name `Gather the true Hai North`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>.`
+	source "Firelode"
+	passengers 72
+	blocked `You need <bunks> passenger space for the next Unfettered mission.`
+
+	stopover "Cloudfire"
+	stopover "Snowfeather"
+	stopover "Mirrorlake"
+	stopover "Mahoganybox"
+	stopover "Makerplace"
+	stopover "Darkmetal"
+	stopover "Stonebreak"
+
+	on stopover
+		dialog `You have gathered all the Hai that had been assigned to you for the North part of Hai space, time to bring them to <destination>.`
+
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+
+	on offer
+		"unfettered: startdays north" = day + month * 30 + year * 365
+	on complete
+		conversation
+			branch "reduced payment"
+				"unfettered: missing northern hai" > 1
+			action
+				payment 3000000
+			`The Hai from up North are all excited to join the Unfettered. You receive your payment of <payment>.`
+				decline
+			label "reduced payment"
+			branch "very reduced payment"
+				"unfettered: missing northern hai" > 2
+			action
+				payment 2000000
+			``
+				goto pay
+			label "very reduced payment"
+			branch "no payment"
+				"unfettered: missing northern hai" > 3
+			action
+				payment 1000000
+			label pay
+			`The Hai from up North are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai as accounted for.`
+			label "no payment"
+			`There are so many missing Hai that the Unfettered refuse to pay you anything for what little amount of Northern Hai come join them with you.`
+		clear "unfettered: startdays north"
+		clear "unfettered: missing northern hai"
+
+
+mission "Unfettered: Darkmetal"
+	invisible
+	landing
+	source "Darkmetal"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			`These Hai appear to be desperate, and tell you they are looking to start a new life with their brethren.`
+				decline
+
+
+mission "Unfettered: Snowfeather"
+	invisible
+	landing
+	source "Snowfeather"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			branch "too late"
+				"unfettered: days" - "unfettered: startdays north" > 60 + random
+			`Five Hai are waiting for you on the spaceport. They tell you that they're artists, looking for inspiration and purpose.`
+				decline
+			label "too late"
+			`You cannot find any traces of the Hai you were sent to find here. Looking at the details it seems they were artists... You go to the local authorities to ask of the whereabouts of these individuals, and learn they left in another transport. You most have been too slow, and now will probably lose some money on the final payment if you don't rush things.`
+			action
+				"unfettered: missing northern hai" ++
+
+mission "Unfettered: Mirrorlake"
+	invisible
+	landing
+	source "Mirrorlake"
+	destination "Firelode"
+	cargo "supplies" 15
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			`These 14 Hai seem to be ready for war, you see great determination in their eyes. Although you were told they would not be bringing any belongings, they arrive with several crates to board onto your ship.`
+			choice
+				`	(Bring the crates with them.)`
+					accept
+				`	"You weren't supposed to bring any belongings with you."`
+			branch "too late"
+				"unfettered: days" - "unfettered: startdays north" > 90 + random
+			action
+				payment -10000
+			`	They look surprised - maybe they didn't get the word. Whatever the case, they agree to leave their belongings here, negotiating a small change in the fee they were asked to prepare for you.`
+				decline
+			label "too late"
+			`	They are angry, and one of them, the smallest of the bunch, comes forward to shout at you, "First we have to accept being transported by a human, then he is late, and on top of that he will not even allow us to take luggage with us?? The Unfettered are not what they used to be, we will not dedicate ourselves to such a cause. Do not expect any form of compensation from us, either."`
+			action
+				"unfettered: missing northern hai" += 2
+	on complete
+		payment 100000
+		dialog `The Hai bringing the supplies apparently learned now that it was not part of the original deal, and insist on giving you <payment>.`
+
+mission "Unfettered: Makerplace"
+	invisible
+	landing
+	source "Makerplace"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			branch "too late"
+				"unfettered: days" - "unfettered: startdays north" > 30 + random
+			`The Hai you were sent to collect here are late. You wait a few hours before they finally arrive, in no rush whatsoever.`
+				decline
+			label "too late"
+			`After leaving your ship, you quickly see which Hai are the ones you are supposed to pick up here, the spaceport seems mostly empty at this time. They complain to you about the time it took for you to arrive, but still agree to come on your ship, provided you agree to give them a small compensation.`
+			choice
+				`	(Give them 10000 and be done with it.)`
+					decline
+				`	(Refuse to pay. They can find themselves another ship.)`
+			action
+				"unfettered: missing northern hai" ++
+
+
+mission "Unfettered: The Word Has Spread South"
+	name `Gather the true Hai South`
+	description `Now that the Hai know of the Unfettered plan, a lot of them are eager to join them, while most cower in fear. Bring Hai back from <stopovers>, to <destination>. You will only get payed once the full transport is done, North and South.`
+	source "Firelode"
+	passengers 66
+	blocked `You need <bunks> passenger space for the next Unfettered mission.`
+
+	stopover "Icelake"
+	stopover "Newhome"
+	stopover "Greymoon"
+	stopover "Greenbloom"
+	stopover "Greenwater"
+
+	on stopover
+		dialog `You have gathered all the Hai that had been assigned to you for the South part of Hai space, time to bring them to <destination>.`
+
+	to offer
+		has "Unfettered: Solifuge 5: Materials For Ships: done"
+
+	on offer
+		"unfettered: startdays south" = day + month * 30 + year * 365
+
+	to complete
+		not "Unfettered: Newhome: active"
+	on complete
+		conversation
+			branch "reduced payment"
+				"unfettered: missing southern hai" > 1
+			action
+				payment 3000000
+			`The Hai from down South are all excited to join the Unfettered. You receive your payment of <payment>.`
+				decline
+			label "reduced payment"
+			branch "very reduced payment"
+				"unfettered: missing southern hai" > 2
+			action
+				payment 2000000
+			``
+				goto pay
+			label "very reduced payment"
+			action
+				payment 1000000
+			label pay
+			`The Hai from down South are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai as accounted for.`
+		clear "unfettered: startdays south"
+		clear "unfettered: missing southern hai"
+
+
+mission "Unfettered: Icelake"
+	invisible
+	landing
+	source "Icelake"
+	destination "Firelode"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			`You only find very few Hai here, and they look hesitant to come. One of them asks you, "If we change our mind about joining the Unfettered, could you bring us back?"`
+			choice
+				`	"Sure. It only makes sense for you to have a choice."`
+					accept
+				`	"Sorry, but I have other things to do."`
+			branch "too late"
+				"unfettered: days" - "unfettered: startdays south" > 150 + random
+			`	They talk for a bit, and after a while still decide to come with you, for better or worse.`
+				decline
+			label "too late"
+			action
+				"unfettered: missing southern hai" ++
+			`	They talk for a bit, and after a while decide not to come with you, given the time they had to wait for you to come here and pick them up.`
+
+ship "Corvette" "Corvette (Harpy)"
+	outfits
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 112
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Cooling Ducts"
+		"Bunk Room"
+		"Pulse Rifle" 3
+		"Brig" 2
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+	cargo
+		outfits
+			"Gold Bars" 15
+
+mission "Unfettered: Newhome"
+	name "Family Hunt"
+	description "A Hai family has been on a pirate ship labelled as a Merchant, thinking it was their due transport. Find it and board it to save them."
+	landing
+	source "Newhome"
+	destination "Firelode"
+	to offer
+		has "Unfettered: The Word Has Spread: active"
+	on offer
+		conversation
+			branch "too late"
+				"unfettered: days" - "unfettered: startdays south" > random
+			`You find a Hai family waiting for you at the spaceport. They excitedly board your ship. They say they're looking forward to learning more about their cousins (you assume they refer to the Unfettered.)`
+				decline
+			label "too late"
+			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is "The Harpy", and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that ship is as fast as light itself.`
+				launch
+
+	npc board
+		government "Bounty (Disguised)"
+		personality uninterested
+		system
+			distance 1 2
+		ship "Corvette (Harpy)" "The Harpy"
+		conversation
+			action
+				payment 250000
+			`You manage to find the Hai family, thankfully no harm has come to them. They seem to be in shock and give you all that they have, <payment>, to thank you.`
+
+	on fail
+		conversation
+			`The Unfettered will not be happy about the loss of these young Hai, as they care a lot for their reputation on the Hai side. It will probably be deduced from your payment.`
+			action
+				"unfettered: missing southern hai" += 2
+
 
 mission "Unfettered: Greenbloom"
 	invisible
@@ -2248,88 +2504,6 @@ mission "Unfettered: Greenbloom"
 			`	You take the drawing and give it back to the Hai. He seems happy and gives you <payment> as thanks.`
 				accept
 
-mission "Unfettered: Mirrorlake"
-	invisible
-	landing
-	source "Mirrorlake"
-	destination "Firelode"
-	cargo "supplies" 15
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`These 14 Hai seem to be ready for war, you see great determination in their eyes. Although you were told they would not be bringing any belongings, they arrive with several crates to board onto your ship.`
-			choice
-				`	(Bring the crates with them.)`
-					accept
-				`	"You weren't supposed to bring any belongings with you."`
-			action
-				payment -10000
-			`	They look surprised - maybe they didn't get the word. Whatever the case, they agree to leave their belongings here, negotiating a small change in the fee they were asked to prepare for you.`
-	on complete
-		payment 100000
-		dialog `The Hai bringing the supplies apparently learned now that it was not part of the original deal, and insist on giving you <payment>.`
-
-mission "Unfettered: Makerplace"
-	invisible
-	landing
-	source "Makerplace"
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`The Hai you were sent to collect here are late. You wait a few hours before they finally arrive, in no rush whatsoever.`
-				decline
-
-mission "Unfettered: Newhome"
-	invisible
-	landing
-	source "Newhome"
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`You find a Hai family waiting for you at the spaceport. They excitedly board your ship. They say they're looking forward to learning more about their cousins (you assume they refer to the Unfettered.)`
-				decline
-
-mission "Unfettered: Darkmetal"
-	invisible
-	landing
-	source "Darkmetal"
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`These Hai appear to be desperate, and tell you they are looking to start a new life with their brethren.`
-				decline
-
-mission "Unfettered: Snowfeather"
-	invisible
-	landing
-	source "Snowfeather"
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`Five Hai are waiting for you on the spaceport. They tell you that they're artists, looking for inspiration and purpose.`
-				decline
-
-mission "Unfettered: Icelake"
-	invisible
-	landing
-	source "Icelake"
-	destination "Firelode"
-	to offer
-		has "Unfettered: The Word Has Spread: active"
-	on offer
-		conversation
-			`You only find very few Hai here, and they look hesitant to come. One of them asks you, "If we change our mind about joining the Unfettered, could you bring us back?"`
-			choice
-				`	"Sure. It only makes sense for you to have a choice."`
-					accept
-				`	"Sorry, but I have other things to do."`
-			`	They talk for a bit, and after a while still decide to come with you, for better or worse.`
-				decline
 
 mission "Unfettered: Changed Their Mind"
 	name `Return Hai`
@@ -2381,6 +2555,7 @@ mission "Unfettered: Hai Intel"
 		has "Unfettered: The Word Has Spread: done"
 	on offer
 		dialog `The Unfettered warlords would like to know if you can bring them your sensor logs of all Hai systems you visited while gathering the Hai to <destination>.`
+	on complete
 		payment 50000
 		dialog `The Unfettered give you <payment> for the intel.`
 
@@ -2405,7 +2580,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 					defer
 			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. "It looks like even the monkeys cannot resist the attraction of these ships," he says.`
 			choice
-				`	"Are these Shield Beetles? That's the only Hai ship I've that's as large as these."`
+				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Just curious: Why do you call me monkey? Have I not earned your respect yet?"`
 					goto curious
 			`	"Not at all. They're something much more powerful, something so strong it would contend with even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful existence." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
@@ -2421,7 +2596,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			label curious
 			`	He was about to say something, but instead ignores your question.`
 			label mighty
-			`	"If you want to help us and get access to our mighty Shield Beetles, go to <destination>. The Hai's main shipyard is located there, and we need intel on how they mass produce them."`
+			`	"If you want to help us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need intel on how they mass produce them."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
 			`	"Why would you need a permission? Discreetly land in an isolated region, while nobody is looking. If they detect you, just pretend you have a navigation issue." This plan seems very risky to you.`
@@ -2449,15 +2624,15 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				payment 1000000
 			`	"You had to pay a ship? Clever way to remove suspicion. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more detailed that what I even asked for."`
 			label noboughtship
-			choice	
+			choice
 				`	"Does this mean I can buy Shield Beetles now?"`
-				`	"What about my pay?"`
+				`	"What about my pay, for the tribute?"`
 					goto tribute
 			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much capacity to build ships. But that will come soon - I first have to do some managing." He may have exaggerated how quickly you will get access to Shield Beetles.`
 			choice
 				`	(Go.)`
 					decline
-				`	"What about my pay?"`
+				`	"What about my pay, for the tribute?"`
 			label tribute
 			action
 				payment 250000
@@ -2648,10 +2823,21 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on offer
 		conversation
 			`You see the Unfettered warlord you brought intel to near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
+			branch "has access to hai SB"
+				"reputation: Hai" >= 100
 			choice
 				`	(Sure, I want my Shield Beetles!)`
+					goto gosee
 				`	(Later.)`
 					defer
+			label "has access to hai SB"
+			choice
+				`	(I don't care much for Shield Beetles, but he promised some better ships too.)`
+				`	(I can already buy Shield Beetles from the Hai, why bother?)`
+					decline
+				`	(Later.)`
+					defer
+			label gosee
 			`	He does not seem very surprised to see you. "Coming for more big ships?" You feel like him asking this is just a formality. He already knows your answer.`
 			choice
 				`	"Yeah. Just tell me what to do to help."`
@@ -2667,7 +2853,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 			`	"Good, then go to <stopovers> and take the materials there.. Don't stay too long, and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major extracting operations, so we can easily arrange for you to acquire supplies from there."`
 			choice
 				`	"Time to go then."`
-					accept	
+					accept
 				`	"I don't want to do long distance cargo missions. Screw the Unfettered and your big ships."`
 					decline
 	on stopover
@@ -2686,7 +2872,7 @@ event "Unfettered: shield beetle mass production"
 	planet "Darkcloak"
 		add outfitter "Unfettered"
 
-mission "Unfettered: Shield Beetles Available"
+mission "Unfettered: Improved Production"
 	landing
 	source
 		attributes "unfettered"
@@ -2695,7 +2881,7 @@ mission "Unfettered: Shield Beetles Available"
 	on offer
 		log "People" "He Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management.`
 		conversation
-			`You receive a message from the Unfettered warlord, who finally gives you his name: He Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+			`You receive a message from the Unfettered warlord, who finally gives you his name: He Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
 				decline
 
 
@@ -3594,7 +3780,7 @@ mission "Unfettered: Start Of The War"
 				"Unfettered: questions" = -1
 			label questions
 			action
-				"Unfettered: questions"++
+				"Unfettered: questions" ++
 			branch enough
 				"Unfettered: questions" > 3
 			choice
