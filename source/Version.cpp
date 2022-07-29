@@ -12,14 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Version.h"
 
-namespace {
-	const std::string GAME_VERSION = "0.9.15-alpha";
-	const std::string COMMIT_ID = "";
-}
-
 using namespace std;
 
-static const string Version::GetString();
+namespace {
+	const string GAME_VERSION = "0.9.15-alpha";
+	const string COMMIT_ID = "";
+}
+
+
+
+const string Version::GetString()
 {
 	if(COMMIT_ID.empty())
 		return GAME_VERSION;
