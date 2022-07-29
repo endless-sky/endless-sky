@@ -2170,12 +2170,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const Outfit *outfit = flotsam.OutfitType();
 		if(outfit->Get("minable") > 0.)
 		{
-			commodity = outfit->Name();
+			commodity = outfit->DisplayName();
 			player.Harvest(outfit);
 		}
 		else
 			message = name + to_string(amount) + " "
-				+ (amount == 1 ? outfit->Name() : outfit->PluralName()) + ".";
+				+ (amount == 1 ? outfit->DisplayName() : outfit->PluralName()) + ".";
 	}
 	else
 		commodity = flotsam.CommodityType();

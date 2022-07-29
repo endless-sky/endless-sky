@@ -663,10 +663,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
-			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
+			warning += ": outfit \"" + outfit->DisplayName() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
-			warning += " \"" + outfit->Name() + "\"";
+			warning += " \"" + outfit->DisplayName() + "\"";
 			Files::LogError(warning);
 		}
 	}

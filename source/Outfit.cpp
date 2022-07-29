@@ -189,12 +189,18 @@ void Outfit::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		name = node.Token(1);
-		pluralName = name + 's';
+		displayName = name;
+		pluralName = displayName + 's';
 	}
 	isDefined = true;
 
 	for(const DataNode &child : node)
 	{
+		if(child.Token(0) == "display name" && child.Size() >= 2)
+		{
+			displayName = child.Token(1);
+			pluralName = displayName + 's';
+		}
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
@@ -337,6 +343,13 @@ bool Outfit::IsDefined() const
 const string &Outfit::Name() const
 {
 	return name;
+}
+
+
+
+const string &Outfit::DisplayName() const
+{
+	return displayName;
 }
 
 

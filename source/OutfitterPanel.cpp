@@ -242,7 +242,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	if(selectedOutfit)
 	{
 		outfitInfo.Update(*selectedOutfit, player, CanSell());
-		selectedItem = selectedOutfit->Name();
+		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
@@ -888,7 +888,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	SpriteShader::Draw(thumbnail, center);
 
 	// Draw the outfit name.
-	const string &name = outfit.Name();
+	const string &name = outfit.DisplayName();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
