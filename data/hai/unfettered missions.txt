@@ -2201,10 +2201,6 @@ mission "Unfettered: The Word Has Spread"
 			`	You were readying to leave but he stops you, "Oh and before I forget, we have divided the contract in two for practical reasons, you may choose to first get the Hai South, or North. You could even do both at the same time, provided you have enough bunks for that. Be mindfull that some could be impatient, don't keep them waiting too long else they may take the services of another captain, or worse, change their minds about joining us! They should at least wait a month or two, but if for some reason, some of them do not return to us, you will only be payed part of the price."`
 				accept
 
-	on visit
-		dialog phrase "generic missing stopover or passengers"
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		has "Unfettered: The Word Has Spread North: done"
 		has "Unfettered: The Word Has Spread South: done"
@@ -2243,6 +2239,11 @@ mission "Unfettered: The Word Has Spread North"
 
 	on offer
 		"unfettered: startdays north" = day + month * 30 + year * 365
+	
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		conversation
 			branch "reduced payment"
@@ -2271,7 +2272,7 @@ mission "Unfettered: The Word Has Spread North"
 		clear "unfettered: missing northern hai"
 
 
-mission "Unfettered: Darkmetal"
+mission "Unfettered: The Word Has Spread North: Darkmetal"
 	invisible
 	landing
 	source "Darkmetal"
@@ -2283,7 +2284,7 @@ mission "Unfettered: Darkmetal"
 				decline
 
 
-mission "Unfettered: Snowfeather"
+mission "Unfettered: The Word Has Spread North: Snowfeather"
 	invisible
 	landing
 	source "Snowfeather"
@@ -2300,7 +2301,7 @@ mission "Unfettered: Snowfeather"
 			action
 				"unfettered: missing northern hai" ++
 
-mission "Unfettered: Mirrorlake"
+mission "Unfettered: The Word Has Spread North: Mirrorlake"
 	invisible
 	landing
 	source "Mirrorlake"
@@ -2329,7 +2330,7 @@ mission "Unfettered: Mirrorlake"
 		payment 100000
 		dialog `The Hai bringing the supplies apparently learned now that it was not part of the original deal, and insist on giving you <payment>.`
 
-mission "Unfettered: Makerplace"
+mission "Unfettered: The Word Has Spread North: Makerplace"
 	invisible
 	landing
 	source "Makerplace"
@@ -2373,6 +2374,10 @@ mission "Unfettered: The Word Has Spread South"
 	on offer
 		"unfettered: startdays south" = day + month * 30 + year * 365
 
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
 		not "Unfettered: Family Hunt From Newhome: active"
 	on complete
@@ -2399,7 +2404,7 @@ mission "Unfettered: The Word Has Spread South"
 		clear "unfettered: missing southern hai"
 
 
-mission "Unfettered: Icelake"
+mission "Unfettered: The Word Has Spread South: Icelake"
 	invisible
 	landing
 	source "Icelake"
@@ -2474,7 +2479,7 @@ mission "Unfettered: Family Hunt From Newhome"
 				"unfettered: missing southern hai" += 2
 
 
-mission "Unfettered: Greenbloom"
+mission "Unfettered: The Word Has Spread South: Greenbloom"
 	invisible
 	landing
 	source "Greenbloom"
