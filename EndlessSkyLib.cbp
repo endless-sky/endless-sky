@@ -338,6 +338,7 @@
 		<Unit filename="source/UniverseObjects.h" />
 		<Unit filename="source/Variant.cpp" />
 		<Unit filename="source/Variant.h" />
+		<Unit filename="source/Version.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />

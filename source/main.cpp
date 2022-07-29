@@ -38,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 #include "TestContext.h"
 #include "UI.h"
+#include "Version.h"
 
 #include <chrono>
 #include <iostream>
@@ -68,8 +69,6 @@ void PrintWeaponTable();
 #ifdef _WIN32
 void InitConsole();
 #endif
-
-
 
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
@@ -430,7 +429,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.15-alpha" << endl;
+	cerr << "Endless Sky ver. " << Version::GetVersionString() << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

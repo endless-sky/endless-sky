@@ -37,6 +37,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Version.h"
 
 #include <algorithm>
 #include <cmath>
@@ -2822,9 +2823,7 @@ void PlayerInfo::Save(const string &path) const
 
 
 	// Current game version:
-	string version = Format::Split(Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n")[1], " ")[1];
-	version = version.substr(0, version.length() - 1);
-	out.Write("version", version);
+	out.Write("version", Version::GetVersionString());
 
 	// Basic player information and persistent UI settings:
 
