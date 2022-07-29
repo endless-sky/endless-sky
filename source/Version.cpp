@@ -1,4 +1,4 @@
-/* Version.h
+/* Version.cpp
 Copyright (c) 2022 by warp-core
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,14 +10,18 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include "Version.h"
 
-// A class to get a string with the game version and
-// the latest commit hash for non-release version.
-class Version {
-public:
-	static const std::string GetString()
-};
+namespace {
+	const std::string GAME_VERSION = "0.9.15-alpha";
+	const std::string COMMIT_ID = "";
+}
 
-#endif
+using namespace std;
+
+static const string Version::GetString()
+{
+	if(COMMIT_ID.empty())
+		return GAME_VERSION;
+	return GAME_VERSION + " " + COMMIT_ID;
+}
