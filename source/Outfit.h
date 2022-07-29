@@ -99,7 +99,7 @@ public:
 private:
 	bool isDefined = false;
 	std::string name;
-	std::string displayName; 
+	std::string displayName;
 	std::string pluralName;
 	std::string category;
 	std::string description;
