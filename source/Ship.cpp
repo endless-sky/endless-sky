@@ -2965,6 +2965,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 void Ship::ClearTargetsAndOrders()
 {
 	commands.Clear();
+	firingCommands.Clear();
 	SetTargetShip(shared_ptr<Ship>());
 	SetTargetStellar(nullptr);
 	SetTargetSystem(nullptr);
