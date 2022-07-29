@@ -19,7 +19,7 @@ namespace {
 
 using namespace std;
 
-static const string Version::GetString()
+static const string Version::GetString();
 {
 	if(COMMIT_ID.empty())
 		return GAME_VERSION;
