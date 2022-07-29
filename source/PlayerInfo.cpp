@@ -63,7 +63,7 @@ namespace {
 		auto it = find(ships.begin(), ships.end(), flagship);
 		if(it != ships.begin() && it != ships.end())
 		{
-			move_backward(ships.begin(), prev(it), it);
+			move_backward(ships.begin(), it, next(it));
 			ships[0] = flagship;
 		}
 	}
