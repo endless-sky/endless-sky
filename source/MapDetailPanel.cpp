@@ -543,17 +543,6 @@ void MapDetailPanel::DrawInfo()
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2. + startingY / 2.),
 		size + Point(0., startingY), back);
 
-	// Edges:
-	Point pos(Screen::Left(), Screen::Top() + startingY);
-	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-	Point edgePos = pos + Point(.5 * size.X(), size.Y());
-	Point bottomOff(-25., .5 * bottom->Height());
-	SpriteShader::Draw(bottom, edgePos + bottomOff);
-
-	const Sprite *right = SpriteSet::Get("ui/right edge");
-	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
-	SpriteShader::Draw(right, edgePos + rightOff);
-
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top() + startingY);
 
@@ -611,6 +600,17 @@ void MapDetailPanel::DrawInfo()
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
+
+	// Edges:
+	Point pos(Screen::Left(), Screen::Top() + startingY);
+	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+	Point edgePos = pos + Point(.5 * size.X(), size.Y());
+	Point bottomOff(-25., .5 * bottom->Height());
+	SpriteShader::Draw(bottom, edgePos + bottomOff);
+
+	const Sprite *right = SpriteSet::Get("ui/right edge");
+	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
+	SpriteShader::Draw(right, edgePos + rightOff);
 
 	const double relativeTradeY = mapInterface->GetValue("relative trade Y after planet");
 	uiPoint = Point(Screen::Left() + startingX, edgePos.Y() + relativeTradeY);
