@@ -20,6 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Version {
 public:
 	static std::string GetString();
+	static const std::string &GetVersion();
+	static const std::string &GetCommit();
 };
 
 #endif

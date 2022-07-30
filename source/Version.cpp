@@ -27,3 +27,17 @@ string Version::GetString()
 		return GAME_VERSION;
 	return GAME_VERSION + " " + COMMIT_ID;
 }
+
+
+
+const string &Version::GetVersion()
+{
+	return GAME_VERSION;
+}
+
+
+
+const string &Version::GetCommit()
+{
+	return COMMIT_ID;
+}
