@@ -547,7 +547,7 @@ void MapDetailPanel::DrawInfo()
 	Point pos(Screen::Left(), Screen::Top() + startingY);
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
-	Point bottomOff(-30., .5 * bottom->Height());
+	Point bottomOff(-25., .5 * bottom->Height());
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
 
 	const Sprite *right = SpriteSet::Get("ui/right edge");
