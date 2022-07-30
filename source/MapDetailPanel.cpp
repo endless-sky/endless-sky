@@ -605,11 +605,11 @@ void MapDetailPanel::DrawInfo()
 	Point pos(Screen::Left(), Screen::Top() + startingY);
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
 	Point edgePos = pos + Point(.5 * size.X(), size.Y());
-	Point bottomOff(-25., .5 * bottom->Height());
+	Point bottomOff(-26., .5 * bottom->Height() - 1);
 	SpriteShader::Draw(bottom, edgePos + bottomOff);
 
 	const Sprite *right = SpriteSet::Get("ui/right edge");
-	Point rightOff(.5 * (size.X() + right->Width()), -right->Height() / 2.);
+	Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
 	SpriteShader::Draw(right, edgePos + rightOff);
 
 	const double relativeTradeY = mapInterface->GetValue("relative trade Y after planet");
