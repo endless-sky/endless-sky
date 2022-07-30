@@ -153,8 +153,7 @@ mission "Remnant: Celebration 1"
 	minor
 	source
 		government "Remnant"
-	destination
-		government "Remnant"
+	destination Postverta
 	to offer
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
@@ -306,7 +305,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label askcrying
-			`	Taely gestures gently. "Those were crew members of a ship that was destroyed while studying a black hole. They acquired ground breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
+			`	Taely gestures gently. "Those were friends of the crew of a ship that was destroyed while studying a black hole. They acquired ground breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -319,7 +318,6 @@ mission "Remnant: Celebration 1"
 			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
 			choice
 				`	"I think I will have to get back to you on that later."`
-					goto celebrationrequest
 				`	"That was awe-inspiring."`
 					goto awestruck
 				`	"Why were some of the people crying?`
@@ -328,9 +326,17 @@ mission "Remnant: Celebration 1"
 					goto ceremonyleader
 				`	"That seemed both well rehearsed and very disorganized."`
 					goto celebrationrehearsed
+			label celebrationrequest
+			`	Taely strides over to a console near the door and retrieves a crystal from a compartment within the console. She slips it into a case and turns to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present can experience it too. This recording is destined for those working on Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
+			action set "Remnant: Attended Celebration of Remembrance with Taely"
+			choice
+				`	"Yes."`
+					accept
+				`	"No."`
+			`	She looks disappointed, but merely shrugs and pockets the crystal. "I will find someone else to transport this, then."`
+				decline
 	on complete
+		payment 50000
 		conversation
-			``
-# Multiple different celebrations
-# Have a few 'conversations' with different characters that only occur once.
-#
+			`When you arrive on Postverta there is a small group of Remnant waiting at the landing bay for you. As they accept the crystal from you one gestures "Thank you for bringing this to me, Captain <first>. Being able to join in the Remembrance will help me to remember and celebrate those who have gone on before." They head off into the depths of the station, leaving you in the bay.`
+			`	Taely never mentioned anything about compensation, but as soon as the Remnant left your commlink notifies you that you have been assigned <payment>.`
