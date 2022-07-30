@@ -153,7 +153,7 @@ mission "Remnant: Celebration 1"
 	minor
 	source
 		government "Remnant"
-	destination Postverta
+	destination "Ssil Vida"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
@@ -238,10 +238,10 @@ mission "Remnant: Celebration 1"
 			`	"...6...5...4...Ignition...2...1...Liftoff"`
 			choice
 				`	Look around with anticipation.`
-					goto countdown
+					goto countdownannotated
 				`	Look around nervously.`
 			`	Taely notices your anxiety and gestures reassuringly "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
-			label countdown
+			label countdownannotated
 			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
 			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
 			`	Through it all, Taely offers a running commentary commenting on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
