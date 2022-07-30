@@ -157,7 +157,7 @@ mission "Remnant: Celebration 1"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
-		random < 25
+		# random < 25
 		"day" = 7
 	on offer
 		conversation
@@ -272,7 +272,7 @@ mission "Remnant: Celebration 1"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 			label ceremonyleader
-			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present. Whether we are talking about our connection with society; or our connection to the Universe; We must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could take the lead for one of the segments.`
+			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present: Whether we are talking about our connection with society; or our connection to the Universe; We must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
 			`	"As a result, each celebration takes on a different feel: After all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to it. Memories of friends and family who are no longer with us are common."`
 			choice
 				`	"I think that is all for now."`
@@ -317,9 +317,8 @@ mission "Remnant: Celebration 1"
 			label awestruck
 			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
 			choice
-				`	"I think I will have to get back to you on that later."`
-				`	"That was awe-inspiring."`
-					goto awestruck
+				`	"I think that is all for now."`
+					goto celebrationrequest
 				`	"Why were some of the people crying?`
 					goto askcrying
 				`	"Who leads these ceremonies?"`
