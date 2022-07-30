@@ -212,7 +212,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const double width = planetCardInterface->GetValue("width");
 
 	FillShader::Fill(Point(Screen::Left() + width / 2. - 5., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("faint"));
+		Point(width, availableSpace), Color(0.f, .3f));
 }
 
 
