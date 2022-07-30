@@ -3450,21 +3450,19 @@ mission "Unfettered: Non Lethal Weapons Hint"
 	name `Learn more about the Pug.`
 	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He Yi.`
 	minor
-	source
-		attributes "unfettered"
 	destination "Farpoint"
 	to offer
 		has "event: looking for a gun"
 		has "Unfettered: Close Quarter: active"
 	on offer
 		conversation
-			`As you land on this Unfettered planet, you think back of the peculiar request He Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
+			`As you land on this planet, you think back of the peculiar request He Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
 	to fail
 		has "Unfettered: Close Quarter: done"
 	on complete
 		conversation
-			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathbreaker sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
+			`You cannot find Admiral Danforth, and wager he's probably busy with the pirates above. You think of disturbing him, but another Oathkeeper sees you and asks what you're looking for. You start speaking with him of the Pug war, and recognizing you, he seems eager to share his experience.`
 			`	"I was a simple soldier fighting with the rest of the fleet, in the Republic, at that time. We managed to find an isolated and disabled Pug ship. That by itself seemed like an opportunity too good to let go. Given we were in a Cruiser, we did not fear the crew of such a small ship. But we were wrong: as soon as we boarded said ship, we knew something was wrong. But we were committed, so we went in anyway. Being a soldier, I was on the frontline, and I saw things... Things you do not want to see, trust me. I saw people falling for no apparent reason. But that was not the worst of it. As you can see, I have survived, and that by itself is terrifying. They shot me! They shot me, and yet I lived."`
 			`	You thank him for telling you this story and then think to yourself. This means there is a good chance the Pug have the non-lethal weapons you are looking for. Now you just have to find the Pug, but they'll probably not give you these weapons willingly...`
 
@@ -3584,6 +3582,17 @@ mission "Unfettered: Bring Detainer"
 		outfit "Korath Detainer" -1
 		set "language: Wanderer"
 		dialog `He Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
+
+mission "Unfettered: Found Detainer"
+	boarding
+	invisible
+	to offer
+		has "Unfettered: Bring Detainer: active"
+	source
+		outfits "Detainer"
+	on offer
+		conversation
+			`"The 'Detainer' on this ship matches He Yi's description perfectly! Quickly, grab it and get out of here."`
 
 
 
