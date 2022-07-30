@@ -3501,7 +3501,7 @@ mission "Unfettered: Know Your Enemy"
 				has "reputation: Wanderer" >= 0
 			choice
 				`	"But I am at war with them already."`
-			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now. You need to make the Hai see this new alien race as an ambassador between our races. The Hai would not believe anything if it came from us. We don't want to drag our brethren into a conflict that is ours. We are the warriors, not them. But they still need to see how weak the birds are."`
+			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now. Once you have introduced yourself to the birds, and finished this mission for us, you will need to bring the Hai to this new alien race, as an ambassador. The Hai would not believe anything if it came from us. We don't want to drag our brethren into a conflict that is ours, so they need to be properly introduced, and they will certainly choose to remain neutral in it. We are the warriors, not them. But they still need to see how weak the birds are."`
 			action
 				"reputation: Wanderer" = 0
 			label neutral
@@ -3589,7 +3589,7 @@ mission "Unfettered: Found Detainer"
 	to offer
 		has "Unfettered: Bring Detainer: active"
 	source
-		outfits "Detainer"
+		outfits "Korath Detainer"
 	on offer
 		conversation
 			`"The 'Detainer' on this ship matches He Yi's description perfectly! Quickly, grab it and get out of here."`
