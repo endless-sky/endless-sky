@@ -125,14 +125,10 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// If some categories do not fit above we need to draw the last ones at the place where the first ones where.
 		double textStartingPosition = textStart - (categories - categoriesFit) * categorySize;
 
-		// We have more leasure at the top if the government sprite is drawn over this element.
+		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-		const double governmentY = mapInterface->GetValue("government top Y");
-		const double planetStartingY = mapInterface->GetValue("planet starting Y");
-		const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
 		const double planetLowestY = (textStartingPosition - textStart) + height / 2.;
-		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. &&
-				availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
+		if(availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
 				uiPoint.Y() + planetLowestY), spriteScale);
 
@@ -203,12 +199,19 @@ const Planet *MapPlanetCard::GetPlanet() const
 
 
 
+void MapPlanetCard::Select(bool select)
+{
+	isSelected = select;
+}
+
+
+
 void MapPlanetCard::Highlight(double availableSpace) const
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
+	FillShader::Fill(Point(Screen::Left() + width / 2. - 5., yCoordinate + availableSpace / 2.),
 		Point(width, availableSpace), *GameData::Colors().Get("faint"));
 }
 

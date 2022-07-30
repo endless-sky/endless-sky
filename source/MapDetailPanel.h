@@ -70,6 +70,9 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
+	// Wether or not the trade panel is selected, or the planet view (and should be affected by up and down keys).
+	bool tradeSelected = true;
+
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;
 	static double scroll;
