@@ -351,10 +351,10 @@ phrase "remnant uncontacted"
 	word
 		"(They sent you a hail consisting of a sign language you don't understand.)"
 		"(You hear a short song about how scanning them will be considered a hostile action.)"
-		"If you value the continued survival of humanity, do not scan our ships."
-		"If you value your continued survival, do not scan our ships."
-		"We value our privacy, and will respond to scanning with deadly force."
-		"Do not scan our ships."
+		`"If you value the continued survival of humanity, do not scan our ships," a strangely melodic voice says.`
+		`"If you value your continued survival, do not scan our ships." The voice speaks with a tone reminiscent of singing.`
+		`"We value our privacy, and will respond to scanning with deadly force." The voice is strangely melodic.`
+		`"Do not scan our ships," someone sings to you.`
 
 phrase "remnant uncontacted"
 	word
