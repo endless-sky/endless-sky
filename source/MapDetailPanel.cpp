@@ -251,7 +251,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
-	bool yInPlanetCards = (y < tradeY && y > governmentY);
+	bool yInPlanetCards = (y < tradeY && y > governmentY + 20);
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	if(x < Screen::Left() + 160 && !yInPlanetCards)
