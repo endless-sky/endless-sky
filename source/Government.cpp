@@ -148,13 +148,14 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine" && hasValue)
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "enforces")
+		else if(key == "enforces" && child.HasChildren())
 		{
 			if(!add)
 				enforcementZones.clear();
-			if(child.HasChildren())
-				enforcementZones.emplace_back(child);
+			enforcementZones.emplace_back(child);
 		}
+		else if(key == "enforces" && hasValue && child.Token(valueIndex) == "all")
+			enforcementZones.clear();
 		else if(key == "death sentence" && hasValue)
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail" && hasValue)
