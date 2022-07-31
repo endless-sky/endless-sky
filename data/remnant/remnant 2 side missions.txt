@@ -179,7 +179,7 @@ mission "Remnant: Celebration 1"
 				`	"No thanks."`
 					goto celebrationdeclined
 			label celebrationattendance
-			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary if you like like, but it is more about feeling than doing anything specific. Just to provide you with some context, this is a free-form dance mixed with singing and music. You are welcome to participate, just try not to be disruptive, such as getting in the way of people dancing."`
+			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary if you like, but it is more about feeling than doing anything specific. Just to provide you with some context, this is a free-form dance mixed with singing and music. You are welcome to participate. Just try not to be disruptive, such as getting in the way of people dancing."`
 			choice
 				`	"No, that is alright. I will just experience it."`
 				`	"Yes, that would be appreciated."`
@@ -192,8 +192,8 @@ mission "Remnant: Celebration 1"
 			`	"Thump."`
 			`	"Thump."`
 			choice
-				`	Look around the room.`
-				`	Move in time with the beat.`
+				`	(Look around the room.)`
+				`	(Move in time with the beat.)`
 			`	The beat echoes in the cavern, but you quickly manage to locate the source: An elderly Remnant using her hands to thump on a polished stalagmite. Judging by the resonance, it appears that it must be hollow. As you watch, a child steps up next to her and starts hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
@@ -201,15 +201,15 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
-			`	"...6...5...4...Ignition...2...1...Liftoff"`
+			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
 				`	Look around with anticipation.`
 					goto countdown
 				`	Look around nervously.`
-			`	Taely notices your anxiety and gestures reassuringly "All is well."`
+			`	Taely notices your anxiety and gestures reassuringly. "All is well."`
 			label countdown
 			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
-			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
+			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady, almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
 			choice
 				`	Stand still and absorb the moment.`
 				`	Look around to see what is happening next.`
@@ -225,8 +225,8 @@ mission "Remnant: Celebration 1"
 			`	"Thump."`
 			`	"Thump."`
 			choice
-				`	Look around the room.`
-				`	Move in time with the beat.`
+				`	(Look around the room.)`
+				`	(Move in time with the beat.)`
 			`	At your side, Taely gestures again. "Existence starts with the patterns of the universe, and our story starts with life."`
 			`	The beat echoes in the cavern, but you quickly manage to locate the source: An elderly Remnant using her hands to thump on a polished stalagmite. Judging by the resonance, it appears that it must be hollow. As you watch, a child steps up next to her and starts hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
 			`	"Thump-thump."`
@@ -235,16 +235,16 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
-			`	"...6...5...4...Ignition...2...1...Liftoff"`
+			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
-				`	Look around with anticipation.`
+				`	(Look around with anticipation.)`
 					goto countdownannotated
-				`	Look around nervously.`
-			`	Taely notices your anxiety and gestures reassuringly "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
+				`	(Look around nervously.)`
+			`	Taely notices your anxiety and gestures reassuringly. "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
 			label countdownannotated
 			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
-			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
-			`	Through it all, Taely offers a running commentary commenting on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
+			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady, almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
+			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
 			choice
 				`	Stand still and absorb the moment.`
 				`	Look around to see what is happening next.`
@@ -272,8 +272,8 @@ mission "Remnant: Celebration 1"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 			label ceremonyleader
-			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present: Whether we are talking about our connection with society; or our connection to the Universe; We must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
-			`	"As a result, each celebration takes on a different feel: After all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to it. Memories of friends and family who are no longer with us are common."`
+			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
+			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to it. Memories of friends and family who are no longer with us are common."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -305,7 +305,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label askcrying
-			`	Taely gestures gently. "Those were friends of the crew of a ship that was destroyed while studying a black hole. They acquired ground breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
+			`	Taely gestures gently. "Those were friends of the crew of a ship that was destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -331,7 +331,7 @@ mission "Remnant: Celebration 1"
 			choice
 				`	"Yes."`
 					accept
-				`	"No."`
+				`	"Sorry, I'm not headed that way."`
 			`	She looks disappointed, but merely shrugs and pockets the crystal. "I will find someone else to transport this, then."`
 				decline
 	on complete
