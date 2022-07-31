@@ -491,7 +491,7 @@ mission "Unfettered: Bring Hai"
 		# they're speaking Hai but so are the Wanderers
 		<firstgroup> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the children are."
 			not "language: Wanderer"
-		<firstgroup> `and you connect your translation device to understand what they say. Indeed, the Wanderers speak Hai, like they do here. "... and we fear the next season will be even more [rough, hard, taxing]. We need foundings to restore the lands; nothing grows on them anymore!"`
+		<firstgroup> `and you connect your translation device to understand what they say. Indeed, the Wanderers speak Hai, like they do here. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; nothing grows on them anymore!"`
 			has "language: Wanderer"
 		<secondgroup> "He does not seem pleased at all, and appears to speak with contained anger. It appears he demands something of the council."
 			not "language: Wanderer"
@@ -692,7 +692,7 @@ mission "Unfettered: Bring Medical Supplies"
 			`	"I do not view any of the Hai as 'soldiers' or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others."`
 				decline
 			label raiders
-			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. We could not all just drop our weapons, so if our brothers would not at least be ready for further attacks, we will be if they ever need us."`
+			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. Even if our brothers do, we cannot lay down our arms. If these raiders returned, someone has to protect all of us."`
 				decline
 		log `Brought medial supplies to Darkcloak to prevent an epidemic.`
 		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
@@ -736,7 +736,7 @@ mission "Unfettered: Prove Your Strength"
 		conversation
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they are ready for action at any time. You are happy to no longer be their enemy, at least for now.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"This is the monkey you speak so highly of? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you.`
+			`	"This is the monkey you speak so highly of? The one who fears not to come into our space, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised he knows your own language this well.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
@@ -755,7 +755,7 @@ mission "Unfettered: Prove Your Strength"
 			label provoke
 			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
-			`	Time for him to learn a lesson. But then it occurs to you that perhaps you are the one who needs to learn humility.`
+			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
 			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "You and me, in battle, alone, a battle of flagships. Meet me in the skies, above the tallest trees, when you are ready. Except, of course, if you lack the courage to fight me. But rest assured, this is not to be a fight to the death, monkey."`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
@@ -894,7 +894,7 @@ mission "Unfettered: Prove Your Strength 2"
 			label cut
 			`	"You humans always seem obsessed with money... It is a large sum. I will only take one quarter of it, and you know how much my people value jump drives."`
 			label leave
-			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance to seeing me on your ship." You accompany him to your ship, and he admits to quite liking the interior of it, as well as general look of it. Your ship "is adequate for a warrior," he says.`
+			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance considering you have some association with us." You accompany him to your ship, and he admits to quite liking the interior of it, as well as general look of it. Your ship "is adequate for a warrior," he says.`
 				accept
 	on visit
 		dialog `You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it.`
@@ -1177,7 +1177,7 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(I prefer not to stay in the dark. Wake them.)`
 					goto light
 			label bliss
-			`You leave the traitor here on this world after awakening them, and they seems thankful, but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
+			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
 			action
 				set "unfettered: knows about bars"
 			``
@@ -1205,7 +1205,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			``
 				decline
 			label escape
-			`You tighten the traitor's hold, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small word on the spot where some gold bars were, written by yet another member of  your crew. "<first>. I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
+			`You tighten the traitor's hold, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of  your crew. "<first>. I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
 				goto lostbars
 
 mission "Unfettered: Bar Selling"
@@ -1429,7 +1429,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"What kind of ship are we talking about?"`
 				`	"Wait, you mean they could shoot me? No way, I'm out!"`
 					decline
-			`	She seems anxious to tell you. "I's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
+			`	She seems anxious to tell you. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
 			choice
 				`	"I'm not worried about any one ship. I'll do it."`
 					accept
@@ -1916,7 +1916,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				`	"What kind of materials do you need?"`
 				`	(Leave. I'm not interested.)`
 					decline
-			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead, friends, it is useless for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
+			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead, friends. It is useless, for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
 			choice
 				`	(I know how and where to mine asteroids. Better get going.)`
 					accept
@@ -1936,7 +1936,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 				`	"Sorry, but I'm no miner."`
 					decline
 			label where
-			`	It looks like she is done speaking to the others, now she comes to you and says, "Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work! Now back about your question, it is quite simple, silicon can be found right over our heads and silver in Ehma Ti. The silicon asteroid look similar to copper but they are bigger, but you can also just differentiate them with an asteroid scanner. Silver is easy to recognize with it's very small size, and natural resistance."`
+			`	It looks like she is done speaking to the others, now she comes to you and says, "Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work! Now back about your question: it's quite simple: silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural resistance."`
 			choice
 				`	"I have no more questions, see you soon."`
 					accept
@@ -2037,7 +2037,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				`	(I don't have time for this now.)`
 					defer
 			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
-			`	As you enter, you notice he's speaking in your language, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
+			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks. When he sees you, he starts shouting. "This is my friend, Captain <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
 			choice
 				`	"Old ship? You don't have it any more?"`
 					goto ship
@@ -2198,7 +2198,7 @@ mission "Unfettered: The Word Has Spread"
 					decline
 			`	"I like your enthusiasm, but all things most come in good time. First, you need to bring these people to their new home."`
 			label details
-			`	You were readying to leave but he stops you, "Oh and before I forget, we have divided the contract in two for practical reasons, you may choose to first get the Hai South, or North. You could even do both at the same time, provided you have enough bunks for that. Be mindfull that some could be impatient, don't keep them waiting too long else they may take the services of another captain, or worse, change their minds about joining us! They should at least wait a month or two, but if for some reason, some of them do not return to us, you will only be payed part of the price."`
+			`	"Oh and before I forget," he adds, "we have divided the contract in two for practical reasons: you may choose to first get the Southern Hai, or the Northern section You could even do both at the same time, provided you have enough bunks for that. Be mindful that some could be impatient. Don't keep them waiting too long, else they may take the services of another captain, or worse, change their minds about joining us! They should at least wait a month or two, but if for some reason some of them do not return to us, you will only be paid part of the price."`
 				accept
 
 	to complete
@@ -2265,7 +2265,7 @@ mission "Unfettered: The Word Has Spread North"
 			action
 				payment 1000000
 			label pay
-			`The Hai from up North are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai as accounted for.`
+			`The Hai from up North are all excited to join the Unfettered. You only receive <payment> as a payment because not all Hai are accounted for.`
 			label "no payment"
 			`There are so many missing Hai that the Unfettered refuse to pay you anything for what little amount of Northern Hai come join them with you.`
 		clear "unfettered: startdays north"
