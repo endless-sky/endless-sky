@@ -14,6 +14,8 @@ ship Ascomy
 	uncapturable
 	attributes
 		category "Heavy Warship"
+		licenses
+			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -30,6 +32,8 @@ ship Ascomy
 		"solar collection" 88.4
 		"weapon capacity" 385
 		"X Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 1
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
@@ -93,7 +97,9 @@ ship Blastoc
 	thumbnail "Heavy Freighter"
 	uncapturable
 	attributes
-		category "Heavy Warship"
+		category "Heavy Freighter"
+		licenses
+			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -110,6 +116,8 @@ ship Blastoc
 		"solar collection" 88.4
 		"weapon capacity" 385
 		"I Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 2
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
@@ -156,6 +164,8 @@ ship Basidio
 	uncapturable
 	attributes
 		category Transport
+		licenses
+			Xapleaux
 		cost 42140000
 		mass 945
 		bunks 138
@@ -172,6 +182,8 @@ ship Basidio
 		"solar collection" 88.4
 		"weapon capacity" 385
 		"I Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 1
 		weapon
 			"blast radius" 450
 			"shield damage" 6400

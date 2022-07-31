@@ -10,6 +10,8 @@
 
 outfit "String Drive"
 	category Systems
+	licenses
+		Xapleaux
 	cost 3500000
 	mass 15
 	thumbnail "outfit/string drive"
@@ -23,7 +25,7 @@ outfit "String Drive"
 outfit "Cryo-Arithmetic Engine"
 	category "Systems"
 	licenses
-		Remnant
+		Xapleaux
 	cost 12500
 	thumbnail "outfit/cryo-arithmetic engine"
 	mass -.01
@@ -34,9 +36,38 @@ outfit "Cryo-Arithmetic Engine"
 	description `Although called an "engine" on account of using heat to perform work, most pilots would typically call this hand-sized device a cooler, since that is what it actually does. Little more than a heatsink, a quantum processor, and a variety of contact connectors; this device takes a trickle of power to set running a completely hard-coded program on a repeating loop. Through the algorithmic superposition of quantum states, run nearly a million times per second, it quite simply deletes a small amount of heat using the sheer power of mathematics. Or at least, the heat goes... somewhere else.`
 	description `	Installing one requires cutting a hole and inserting it directly into the plating of a ship's hull - as such relying on these will both lighten and weaken the hull. As a side benefit, all that quantum trickery in the hull confers a passive kind of stealth on the vessel - interfering with attempts to scan it.`
 
+outfit "Small MOF Crystal Capacitor"
+	category "Power"
+	licenses
+		Xapleaux
+	cost 48000
+	thumbnail "outfit/crystal capacitor"
+	"mass" 8
+	"outfit space" -8
+	"energy capacity" 9800
+	"energy consumption" .5
+	"ion resistance" 0.01
+	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
+	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
+
+outfit "Piezoelectric Shaft"
+	category "Systems"
+	cost 1660000
+	thumbnail "outfit/piezoelectric shaft"
+	"Spar Core Shaft" -1
+#	#
+#	### Values NOT Final - indicative only
+	"mass" 134
+	"outfit space" -134
+	"heat capacity" 2420
+	"cooling energy" -5.2
+	"active cooling" 76
+	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the ship's hottest systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
 
 outfit `Type X "Coleo" Engine`
 	category Engines
+	licenses
+		Xapleaux
 	cost 1610000
 	mass 88
 	thumbnail "outfit/type x engine"
@@ -68,6 +99,8 @@ outfit `Type X "Coleo" Engine`
 
 outfit `Type I "Lepido" Engine`
 	category Engines
+	licenses
+		Xapleaux
 	cost 1480000
 	mass 178
 	thumbnail "outfit/type i engine"
@@ -99,6 +132,8 @@ outfit `Type I "Lepido" Engine`
 
 outfit `Type V "Strepsip" Engine`
 	category Engines
+	licenses
+		Xapleaux
 	cost 438000
 	mass 22
 	thumbnail "outfit/type v engine"
