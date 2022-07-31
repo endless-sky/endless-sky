@@ -269,7 +269,7 @@ outfit "Afterburner (Planetary Class)"
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.32
 	"afterburner effect" "korath afterburner large"
-	"heat capacity" 500
+	"heat capacity" 150
 	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 
@@ -286,7 +286,7 @@ outfit "Afterburner (Stellar Class)"
 	"afterburner heat" 148
 	"afterburner fuel" 0.58
 	"afterburner effect" "korath afterburner huge"
-	"heat capacity" 900
+	"heat capacity" 150
 	"cooling energy" 0.4
 	"active cooling" 8
 	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
@@ -461,8 +461,8 @@ outfit "Reverser (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath reverser"
-	"mass" 69
-	"outfit space" -69
+	"mass" 68
+	"outfit space" -68
 	"engine capacity" -34
 	"weapon capacity" -34
 	"reverse thrust" 80.0
@@ -546,9 +546,9 @@ outfit "Thruster (Planetary Class)"
 	category "Engines"
 	"cost" 1216000
 	thumbnail "outfit/large korath thruster"
-	"mass" 69
-	"outfit space" -69
-	"engine capacity" -69
+	"mass" 68
+	"outfit space" -68
+	"engine capacity" -68
 	"thrust" 80.0
 	"thrusting energy" 8.9
 	"thrusting heat" 22.7
