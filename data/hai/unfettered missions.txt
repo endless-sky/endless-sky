@@ -1093,7 +1093,7 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 		not "unfettered: sold bars"
 		random < 1
 	on offer
-		require "Gold Bars"
+		require "Gold Bars" 20
 	npc disable
 		government "Mercenaries"
 		system
