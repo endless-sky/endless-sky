@@ -35,6 +35,7 @@ namespace {
 		// Attributes which are present and map to zero may have any value.
 		{"cooling energy", 0.},
 		{"cloaking shield", 0.},
+		{"cloaked action", 0.},
 		{"shield generation", 0,},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
