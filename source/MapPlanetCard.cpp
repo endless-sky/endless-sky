@@ -255,9 +255,9 @@ double MapPlanetCard::AvailableTopSpace() const
 double MapPlanetCard::AvailableBottomSpace() const
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double maxBottomY = mapInterface->GetValue("planet max bottom Y");
+	double maxTopY = mapInterface->GetValue("planet panel height");
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	double height = planetCardInterface->GetValue("height");
 
-	return min(height, max(0., (Screen::Bottom() - maxBottomY) - yCoordinate));
+	return min(height, max(0., (Screen::Top() + maxTopY) - yCoordinate));
 }

@@ -141,8 +141,7 @@ bool MapDetailPanel::Hover(int x, int y)
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	isHovered = (x < Screen::Left() + planetCardInterface->GetValue("width")
-		&& y > Screen::Top() + mapInterface->GetValue("planet starting Y")
-		&& y < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"));
+		&& y < Screen::Top() + mapInterface->GetValue("planet panel height"));
 
 	return isHovered ? true : MapPanel::Hover(x, y);
 }
@@ -347,14 +346,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	if(y < tradeY && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
-		bool clickedArrow = (maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10);
-		if(clickedArrow)
+		if(maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
 		{
 			const double planetCardHeight = planetCardInterface->GetValue("height");
-			bool arrowUp = (y < Screen::Top() + planetCardHeight / 4. && !planetCards.front().IsShown());
-			const double bottomY = planetCardInterface->GetValue("planet max bottom Y");
-			bool arrowDown = (!arrowUp && y < Screen::Bottom() - bottomY - planetCardHeight
-				&& !planetCards.back().IsShown());
+			// The arrows are of size 10.
+			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
+			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset && !planetCards.front().IsShown());
+			const double topY = planetCardInterface->GetValue("planet panel height");
+			bool arrowDown = (!arrowUp && y > Screen::Top() + topY - arrowVerticalOffset && !planetCards.back().IsShown());
 			scroll += (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.);
 		}
 		else
@@ -607,12 +606,12 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double bottomY = mapInterface->GetValue("planet max bottom Y");
+	double topY = mapInterface->GetValue("planet panel height");
 
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	Point size(planetWidth, min((Screen::Height() - bottomY),
+	Point size(planetWidth, min(topY,
 		(hasVisited ? planetCards.size() : 0.) * planetHeight));
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -689,7 +688,7 @@ void MapDetailPanel::DrawInfo()
 				Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, medium);
 		if(!planetCards.back().IsShown())
 			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Bottom() - arrowOffsetY - bottomY), Point(0., 1.), 10.f, 10.f, 5.f, medium);
+				Screen::Top() - arrowOffsetY + topY), Point(0., 1.), 10.f, 10.f, 5.f, medium);
 	}
 
 	// Trade sprite goes after at the bottom.
