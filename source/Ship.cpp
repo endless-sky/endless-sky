@@ -2536,8 +2536,6 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	if(CannotAct())
 		return false;
-	if(cloak)
-		cloak -= attributes.Get("cloaked action");
 
 	antiMissileRange = 0.;
 
@@ -2561,7 +2559,11 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
+			{
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+				if(cloak)
+					cloak -= attributes.Get("cloaked action");
+			}
 		}
 	}
 
@@ -2622,7 +2624,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. ||
-		(cloak == 1. && attributes.Get("cloaking targetability") > 0.)) && hull >= 0. && hyperspaceCount < 70);
+		(cloak == 1. && attributes.Get("cloaking targetability"))) && hull >= 0. && hyperspaceCount < 70);
 }
 
 
