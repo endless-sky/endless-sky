@@ -4252,13 +4252,13 @@ mission "Dangerous Games 1"
 			`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, Captain." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
 			choice
 				`	"To the Dragonriders!"`
-				`	"To our fallen friends!"`
+				`	"To our fallen friend!"`
 				`	"I'm good, thanks."`
-			`	Karengo gives you an unreadable look, lowers his glass, and says, "Your payment, plus Bolek and Jarek's signup fees: <payment>."`
+			`	Karengo gives you an unreadable look, lowers his glass, and says, "Your payment, plus Jarek's signup fees: <payment>."`
 			choice
 				`	"Thanks."`
 					goto end
-				`	I can't accept their money. It's not right."`
+				`	I can't accept his money. It's not right."`
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
