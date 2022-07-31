@@ -4247,7 +4247,7 @@ mission "Riley"
 			label choice1
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
-				`	"Thank you, and good luck."`
+				`	"Good luck."`
 					goto end
 			label father
 			`	She is taken aback at first, but agrees to let you join, and you wind your way away from the landing pads, across rural, wooded countryside, and finally to a modest house nestled along a valley edge. Riley knocks, and a nurse lets you in.`
