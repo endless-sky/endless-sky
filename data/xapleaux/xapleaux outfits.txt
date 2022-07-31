@@ -20,6 +20,21 @@ outfit "String Drive"
 	"scram drive" 1.5
 	description "A string drive constantly hums with the frequency of space-time in its vicinity. By constantly remaining attuned to the threads that link one system to the next it has no need to slow down enough to 'search' for a path to follow. Simply by aligning in the correct direction it can claw its way along any hyperthread in its vicinity even if your ship is traveling at a very significant speed. Consequently it needs very little fuel to initiate the process and is smaller as a result. However, this comes at a cost of continuously draining quite a bit of energy to power the attunement apparatus."
 
+outfit "Cryo-Arithmetic Engine"
+	category "Systems"
+	licenses
+		Remnant
+	cost 12500
+	thumbnail "outfit/cryo-arithmetic engine"
+	mass -.01
+	hull -10
+	"active cooling" .05
+	"cooling energy" .002
+	"scan interference" .04
+	description `Although called an "engine" on account of using heat to perform work, most pilots would typically call this hand-sized device a cooler, since that is what it actually does. Little more than a heatsink, a quantum processor, and a variety of contact connectors; this device takes a trickle of power to set running a completely hard-coded program on a repeating loop. Through the algorithmic superposition of quantum states, run nearly a million times per second, it quite simply deletes a small amount of heat using the sheer power of mathematics. Or at least, the heat goes... somewhere else.`
+	description `	Installing one requires cutting a hole and inserting it directly into the plating of a ship's hull - as such relying on these will both lighten and weaken the hull. As a side benefit, all that quantum trickery in the hull confers a passive kind of stealth on the vessel - interfering with attempts to scan it.`
+
+
 outfit `Type X "Coleo" Engine`
 	category Engines
 	cost 1610000
