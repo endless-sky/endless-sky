@@ -88,7 +88,7 @@ void Government::Load(const DataNode &node)
 			else if(key == "language")
 				language = "";
 			else
-				child.PrintTrace("Skipping unrecognized remove of attribute:");
+				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		}
 		else if(key == "display name" && hasValue)
 			displayName = child.Token(valueIndex);
@@ -148,18 +148,13 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine" && hasValue)
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(add && key == "enforces" && child.HasChildren())
+		else if(key == "enforces")
 		{
-			enforcementZones.clear();
-			enforcementZones.emplace_back(child);
+			if(!add)
+				enforcementZones.clear();
+			if(child.HasChildren())
+				enforcementZones.emplace_back(child);
 		}
-		else if(key == "enforces" && child.HasChildren())
-		{
-			enforcementZones.clear();
-			enforcementZones.emplace_back(child);
-		}
-		else if(key == "enforces" && child.Size() == 2 && child.Token(1) == "all")
-			enforcementZones.clear();
 		else if(key == "death sentence" && hasValue)
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail" && hasValue)
