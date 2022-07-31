@@ -4000,7 +4000,7 @@ event "fumbling mugger followup timer"
 mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
-	description "The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
+	description "The adventurer Karengo and eight others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
 	source 
 		attributes "frontier" "pirate" "rim"
 	destination Poseidos
