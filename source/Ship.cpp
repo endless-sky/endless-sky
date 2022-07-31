@@ -1428,9 +1428,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= attributes.Get("cloaking fuel")
 			&& energy >= attributes.Get("cloaking energy"));
+		double defaultCloak = attributes.Get("default cloak");
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
-			cloak = min(1., cloak + cloakingSpeed);
+			cloak = min(1., max(defaultCloak, cloak + cloakingSpeed));
 			fuel -= attributes.Get("cloaking fuel");
 			energy -= attributes.Get("cloaking energy");
 			shields -= attributes.Get("cloaking shield");
@@ -1441,7 +1442,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		else if(cloakingSpeed)
 		{
-			cloak = max(attributes.Get("default cloak"), cloak - cloakingSpeed);
+			cloak = max(defaultCloak, cloak - cloakingSpeed);
 			// If you're trying to cloak but are unable to (too little energy or
 			// fuel) you're forced to decloak fully for one frame before you can
 			// engage cloaking again.
