@@ -4332,7 +4332,6 @@ mission "Saving Artifacts 4"
 				has "Saving Artifacts 2: done"
 				not "Duel Lokust"
 	landing
-
 	on complete
 		payment 1800000
 		conversation

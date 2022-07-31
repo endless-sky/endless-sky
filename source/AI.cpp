@@ -160,7 +160,7 @@ namespace {
 				if(isCandidate(ship) && ship.get() != player.Flagship())
 					(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 
-		// If any ships were not yet ordered to deployed, deploy them.
+		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
 			for(Ship *ship : toDeploy)
