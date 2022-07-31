@@ -2559,34 +2559,14 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
-	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(flagship)
-		{
-			return flagship->Crew();
-		}
-		return 0;
-	});
+	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Crew() : 0; });
 
 	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
-	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(flagship)
-		{
-			return flagship->RequiredCrew();
-		}
-		return 0;
-	});
+	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->RequiredCrew() : 0; });
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
-	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t
-	{
-		if(flagship)
-		{
-			return flagship->Attributes().Get("bunks");
-		}
-		return 0;
-	});
+	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Attributes().Get("bunks") : 0; });
+
 	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
 	{

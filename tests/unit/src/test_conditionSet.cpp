@@ -34,6 +34,7 @@ using Conditions = std::map<std::string, int64_t>;
 
 int primarySize(const ConditionsStore &store)
 {
+	// TODO: use std::distance instead of the while loop
 	int size = 0;
 	auto it = store.PrimariesBegin();
 	while(it != store.PrimariesEnd())

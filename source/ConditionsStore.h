@@ -109,7 +109,9 @@ public:
 		using iterator_category = std::input_iterator_tag;
 		using value_type = std::pair<const std::string, int64_t>;
 		using difference_type = void;
+		// TODO: this should point to something that actually works.
 		using pointer = const std::pair<const std::string, int64_t> *;
+		// TODO: this should be a reference.
 		using reference = std::pair<const std::string, int64_t>;
 
 		// Default input_iterator operations.
