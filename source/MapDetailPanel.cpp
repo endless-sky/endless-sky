@@ -299,6 +299,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	const double arrowOffset = mapInterface->GetValue("arrow x offset");
 	if(x > Screen::Left() + 160)
 	{
 		// Clicking the system name activates the view of the player's reputation with various governments.
@@ -326,16 +328,15 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 20)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
-	if(y < tradeY && x < Screen::Left() + planetCardWidth)
+	if(y < tradeY && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
-		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-		bool clickedArrow = (maxScroll && x > Screen::Left() + planetCardWidth - mapInterface->GetValue("arrow x offset") - 5.);
+		bool clickedArrow = (maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10);
 		if(clickedArrow)
 		{
 			const double planetCardHeight = planetCardInterface->GetValue("height");
 			bool arrowUp = (y < Screen::Top() + planetCardHeight / 4. && !planetCards.front().IsShown());
 			const double bottomY = planetCardInterface->GetValue("planet max bottom Y");
-			bool arrowDown = (!arrowUp && y > Screen::Height() - bottomY - planetCardHeight
+			bool arrowDown = (!arrowUp && y < Screen::Bottom() - bottomY - planetCardHeight
 				&& !planetCards.back().IsShown());
 			scroll += (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.);
 		}
@@ -672,7 +673,7 @@ void MapDetailPanel::DrawInfo()
 		if(!planetCards.back().IsShown())
 			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Bottom() - arrowOffsetY - bottomY), Point(0., 1.), 10.f, 10.f, 5.f, medium);
-	}	
+	}
 
 	// Trade sprite goes after at the bottom.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
