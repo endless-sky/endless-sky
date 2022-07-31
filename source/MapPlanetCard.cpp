@@ -116,52 +116,59 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 		const double textStart = planetCardInterface->GetValue("text start");
 
-		const double availableTopSpace = AvailableTopSpace();
 		const double availableBottomSpace = AvailableBottomSpace();
 		const double categorySize = planetCardInterface->GetValue("category size");
 		const double categories = planetCardInterface->GetValue("categories");
-		const double categoriesFit = (availableTopSpace - textStart * 2.) / categorySize;
-
-		// If some categories do not fit above we need to draw the last ones at the place where the first ones where.
-		double textStartingPosition = textStart - (categories - categoriesFit) * categorySize;
 
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-		const double planetLowestY = (textStartingPosition - textStart) + height / 2.;
-		if(availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
-			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
-				uiPoint.Y() + planetLowestY), spriteScale);
+		const double planetMiddleY = height / 2.;
 
-		const auto FitsCategory = [availableTopSpace, availableBottomSpace, textStart, categorySize, height]
+		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
+			uiPoint.Y() + planetMiddleY), spriteScale);
+		float clip = 1.f;
+		double planetBottomY = planetMiddleY + spriteScale * sprite->Height() / 2.;
+		// Calculate the correct clip on the bottom of the sprite if necessary.
+		if(availableBottomSpace <= planetBottomY)
+			clip = 1.f + (availableBottomSpace - planetBottomY) / (spriteScale * sprite->Height());
+
+		spriteItem.clip = clip;
+		spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
+		spriteItem.transform[3] *= clip;
+
+		SpriteShader::Bind();
+		SpriteShader::Add(spriteItem);
+		SpriteShader::Unbind();
+
+		const auto FitsCategory = [availableBottomSpace, categorySize, height]
 			(double number)
 		{
-			return availableTopSpace >= textStart + categorySize * number &&
-				availableBottomSpace >= height - (categorySize * number);
+			return availableBottomSpace >= height - (categorySize * number);
 		};
 
 		if(FitsCategory(5.))
-			font.Draw({ planetName, alignLeft }, uiPoint + Point(0., textStartingPosition), isSelected ? medium : dim);
+			font.Draw({ planetName, alignLeft }, uiPoint + Point(0, textStart), isSelected ? medium : dim);
 
 		const double margin = mapInterface->GetValue("text margin");
 		if(FitsCategory(4.))
-			font.Draw(reputationLabel, uiPoint + Point(margin, textStartingPosition + categorySize),
+			font.Draw(reputationLabel, uiPoint + Point(margin, textStart + categorySize),
 				hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
-			font.Draw("Shipyard", uiPoint + Point(margin, textStartingPosition + categorySize * 2.),
+			font.Draw("Shipyard", uiPoint + Point(margin, textStart + categorySize * 2.),
 				hasShipyard ? medium : faint);
 		if(FitsCategory(2.))
-			font.Draw("Outfitter", uiPoint + Point(margin, textStartingPosition + categorySize * 3.),
+			font.Draw("Outfitter", uiPoint + Point(margin, textStart + categorySize * 3.),
 				hasOutfitter ? medium : faint);
 		if(FitsCategory(1.))
 			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-				uiPoint + Point(margin, textStartingPosition + categorySize * 4.), dim);
+				uiPoint + Point(margin, textStart + categorySize * 4.), dim);
 
 		if(FitsCategory(categories - (selectedCategory + 1.)))
-			PointerShader::Draw(uiPoint + Point(margin, textStartingPosition + 8. + (selectedCategory + 1) * categorySize),
+			PointerShader::Draw(uiPoint + Point(margin, textStart + 8. + (selectedCategory + 1) * categorySize),
 				Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		if(isSelected)
-			Highlight(min(availableBottomSpace, availableTopSpace));
+			Highlight(availableBottomSpace);
 	}
 	else
 		yCoordinate = Screen::Bottom();
@@ -211,7 +218,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2. - 5., yCoordinate + availableSpace / 2.),
+	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
 		Point(width, availableSpace), Color(0.f, .3f));
 }
 
@@ -221,7 +228,6 @@ double MapPlanetCard::AvailableTopSpace() const
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double height = planetCardInterface->GetValue("height");
-
 	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
 }
 
