@@ -4283,7 +4283,7 @@ mission "Saving Artifacts 2"
 			`	He looks almost disappointed. "Alright, here's the statues. Don't forget to tell any friends that might be redecorating about our low prices."`
 				decline
 
-mission "Saving Artifacts 3"  # Duel branch
+mission "Saving Artifacts 3"
 	description "Defeat Lokust as part of a bargain to acquire the stolen statues."
 	source "Greenrock"
 	landing  # This has no offer convo as the choice is handled in mission 2
@@ -4321,7 +4321,7 @@ mission "Saving Artifacts 3"  # Duel branch
 			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
 			`	You load up the statues, taking care not to attract unwanted attention as well as attempting to avoid creating any new damage. From what you can tell, they're in remarkable condition considering that they were in the hands of a pirate warlord just a few hours ago.`
 
-mission "Saving Artifacts 4"  # Pay branch / once you've defeated Lockust
+mission "Saving Artifacts 4"
 	description "Bring the statues back to <planet>"
 	source "Greenrock"
 	destination "Alexandria"
