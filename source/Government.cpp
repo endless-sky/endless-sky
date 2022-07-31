@@ -61,19 +61,48 @@ void Government::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "display name" && child.Size() >= 2)
-			displayName = child.Token(1);
-		else if(child.Token(0) == "swizzle" && child.Size() >= 2)
-			swizzle = child.Value(1);
-		else if(child.Token(0) == "color" && child.Size() >= 4)
-			color = Color(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
-			initialPlayerReputation = child.Value(1);
-		else if(child.Token(0) == "crew attack" && child.Size() >= 2)
-			crewAttack = max(0., child.Value(1));
-		else if(child.Token(0) == "crew defense" && child.Size() >= 2)
-			crewDefense = max(0., child.Value(1));
-		else if(child.Token(0) == "attitude toward")
+		const bool remove = child.Token(0) == "remove";
+		const bool add = child.Token(0) == "add";
+		const string &key = child.Token((add || remove) ? 1 : 0);
+		int valueIndex = (add || remove) ? 2 : 1;
+		bool hasValue = child.Size() > valueIndex;
+
+		if(remove)
+		{
+			if(key == "provoked on scan")
+				provokedOnScan = false;
+			else if(key == "raid")
+				raidFleet = nullptr;
+			else if(key == "display name")
+				displayName = name;
+			else if(key == "death sentence")
+				deathSentence = nullptr;
+			else if(key == "friendly hail")
+				friendlyHail = nullptr;
+			else if(key == "friendly disabled hail")
+				friendlyDisabledHail = nullptr;
+			else if(key == "hostile hail")
+				hostileHail = nullptr;
+			else if(key == "hostile disabled hail")
+				hostileDisabledHail = nullptr;
+			else if(key == "language")
+				language = "";
+			else
+				child.PrintTrace("Skipping unrecognized remove of attribute:");
+		}
+		else if(key == "display name" && hasValue)
+			displayName = child.Token(valueIndex);
+		else if(key == "swizzle" && hasValue)
+			swizzle = child.Value(valueIndex);
+		else if(key == "color" && child.Size() >= 3 + valueIndex)
+			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else if(key == "player reputation" && hasValue)
+			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "crew attack" && hasValue)
+			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
+		else if(key == "crew defense" && hasValue)
+			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
+		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
 			{
@@ -87,7 +116,7 @@ void Government::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(child.Token(0) == "penalty for")
+		else if(key == "penalty for")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -115,29 +144,37 @@ void Government::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
-		else if(child.Token(0) == "bribe" && child.Size() >= 2)
-			bribe = child.Value(1);
-		else if(child.Token(0) == "fine" && child.Size() >= 2)
-			fine = child.Value(1);
-		else if(child.Token(0) == "enforces" && child.HasChildren())
-			enforcementZones.emplace_back(child);
-		else if(child.Token(0) == "enforces" && child.Size() == 2 && child.Token(1) == "all")
+		else if(key == "bribe" && hasValue)
+			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "fine" && hasValue)
+			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(add && key == "enforces" && child.HasChildren())
+		{
 			enforcementZones.clear();
-		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
-			deathSentence = GameData::Conversations().Get(child.Token(1));
-		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
-			friendlyHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "friendly disabled hail" && child.Size() >= 2)
-			friendlyDisabledHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
-			hostileHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "hostile disabled hail" && child.Size() >= 2)
-			hostileDisabledHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "language" && child.Size() >= 2)
-			language = child.Token(1);
-		else if(child.Token(0) == "raid" && child.Size() >= 2)
-			raidFleet = GameData::Fleets().Get(child.Token(1));
-		else if(child.Token(0) == "provoked on scan")
+			enforcementZones.emplace_back(child);
+		}
+		else if(key == "enforces" && child.HasChildren())
+		{
+			enforcementZones.clear();
+			enforcementZones.emplace_back(child);
+		}
+		else if(key == "enforces" && child.Size() == 2 && child.Token(1) == "all")
+			enforcementZones.clear();
+		else if(key == "death sentence" && hasValue)
+			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
+		else if(key == "friendly hail" && hasValue)
+			friendlyHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "friendly disabled hail" && hasValue)
+			friendlyDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "hostile hail" && hasValue)
+			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "hostile disabled hail" && hasValue)
+			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "language" && hasValue)
+			language = child.Token(valueIndex);
+		else if(key == "raid" && hasValue)
+			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
+		else if(key == "provoked on scan")
 			provokedOnScan = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
