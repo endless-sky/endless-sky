@@ -1485,7 +1485,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Taer Fi. "Can I speak to you about your scans? I really am intrigued about that ship."`
+			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Taer-Fi. "Can I speak to you about your scans? I really am intrigued about that ship."`
 			choice
 				`	"I won't discuss those things with you."`
 					decline
@@ -2881,9 +2881,9 @@ mission "Unfettered: Improved Production"
 	to offer
 		has "event: Unfettered: shield beetle mass production"
 	on offer
-		log "People" "He Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management.`
+		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management.`
 		conversation
-			`You receive a message from the Unfettered warlord, who finally gives you his name: He Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+			`You receive a message from the Unfettered warlord, who finally gives you his name: He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
 				decline
 
 
@@ -2918,7 +2918,7 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 
 mission "Unfettered: Special Cargo"
 	name `Mystery item`
-	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He Yi on <planet>.`
+	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. His ship is the Degenerate. Then bring the item to He-Yi on <planet>.`
 	to offer
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 		has "reputation: Hai" >= 0
@@ -2928,7 +2928,7 @@ mission "Unfettered: Special Cargo"
 	on offer
 		conversation
 			`You are starting to get quite used to Unfettered spaceports: the dilapidation of different non-essential structures is beginning to feel normal. You feel like a change of scenery, so you wander to a side of the spaceport you have not explored before, but it turns out not to be very different.`
-			`	Your thoughts are interrupted by a local Unfettered, who seems to have a very important message to give you given how fast he is speaking. "He Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - 'by any means,' he says."`
+			`	Your thoughts are interrupted by a local Unfettered, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - 'by any means,' he says."`
 			choice
 				`	"How will I know which warlord it is?"`
 				`	"This seems too risky for me."`
@@ -2946,7 +2946,7 @@ mission "Unfettered: Special Cargo"
 				`	"This seems too risky for me."`
 					decline
 			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those north to learn from this. They would surely be able to decrypt it.`
-			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He Yi's request.`
+			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
 					accept
@@ -2972,7 +2972,7 @@ mission "Unfettered: Special Cargo"
 		fleet "Small Northern Pirates" 5
 	
 	on visit
-		dialog `You don't have the item He Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
+		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -3090,7 +3090,7 @@ mission "Unfettered: Special Cargo 1B"
 				`	(Take an alien skull.)`
 					goto wrongitem
 				`	(Take a weird-looking small cube.)`
-			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you depart the atmosphere.`
+			`	Surprisingly, you appear to have found what you were looking for: a small cube, completely regular and seemingly alien in design. Maybe the warlord was not aware of its value, considering she placed it here, without much protection or even trying to hide it. This has to be the item that He-Yi wants, so you take it with you. Its small size makes it easy to conceal as you make your way off the ship and back to your own. This probably will not go unnoticed for long however, so you launch as soon as you can. The original pirate fleet is already heading your way as you depart the atmosphere.`
 				launch
 			label stupid
 			`	You try to disassemble the torpedo, but you do not have enough time to do so.`
@@ -3160,7 +3160,7 @@ mission "Unfettered: Special Cargo 2"
 			action
 				log `Bought a mystery cube off pirates for the Unfettered. Price tag was large.`
 			label afterlog
-			`You find He Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big payment once the mission is completed."`
+			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big payment once the mission is completed."`
 			branch nodeal
 				not "Unfettered: brokered deal"
 			action
@@ -3204,7 +3204,7 @@ mission "Unfettered: Special Cargo 2"
 	on complete
 		log `Placed a mysterious cube in a clearing on Mirrorlake. It should give intel on Hai ship movements to the Unfettered.`
 		payment 5000000
-		dialog `He Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
+		dialog `He-Yi is more than happy to see you in his throne room, and gives you a generous payment of <payment>.`
 
 
 
@@ -3226,7 +3226,7 @@ mission "Unfettered: Close Quarter"
 				`	(Of course.)`
 				`	(Not now.)`
 					defer
-			`	You see where all the Unfettered were going, and come across a large field where they seem to be practicing close-quarters combat, grouped in circles of different sizes. You don't understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He Yi is standing in the biggest of them all.`
+			`	You see where all the Unfettered were going, and come across a large field where they seem to be practicing close-quarters combat, grouped in circles of different sizes. You don't understand all that is going on, but it seems like the bigger the circle, the more opponents you have to fight. He-Yi is standing in the biggest of them all.`
 			choice
 				`	(Go closer to see what's going on.)`
 				`	(Leave. This doesn't seem interesting.)`
@@ -3236,7 +3236,7 @@ mission "Unfettered: Close Quarter"
 				`	(Join the fight!)`
 					goto fight
 				`	(Keep looking.)`
-			`	You keep looking around and are eventually attracted toward the bigger fight, the one He Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
+			`	You keep looking around and are eventually attracted toward the bigger fight, the one He-Yi is in. He seems to be handling 6 younger Unfettered all by himself, and you most admit he is doing quite a good job at it.`
 			choice
 				`	(Challenge him.)`
 					goto challenge
@@ -3280,7 +3280,7 @@ mission "Unfettered: Close Quarter"
 			label ready
 			`	You try to shoot him, but h's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including He Yi. He comes to speak to you. "That was a nice fight, especially considering this must be your first!"`
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a nice fight, especially considering this must be your first!"`
 			choice
 				`	"Can I help you with something?"`
 					goto speak
@@ -3301,14 +3301,14 @@ mission "Unfettered: Close Quarter"
 			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however, and he comes to speak to you.`
 				goto speak
 			label nope
-			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
+			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He-Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			label speak
 			`	"As you may have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too enthusiastic... They shoot one too many times to make sure to hit. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even stronger than ours."`
 			choice
 				`	"Yes, I think I do."`
 					goto idea
 				`	"I have no idea, sorry."`
-			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He Yi muses.`
+			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
 			label idea
 			`	"If you ever find any weapon that's less risky than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird territory. I would not have expected them to use weapons at all, but maybe they too have Unfettered people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, fifty of them?"`
 			choice
@@ -3318,8 +3318,6 @@ mission "Unfettered: Close Quarter"
 					decline
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
-	on visit
-		dialog `You have not yet brought any kinds of non-lethal weapons to Ya Hi. Look harder!`
 	to complete
 		or
 			has "Bring Pug Staves: done"
@@ -3329,7 +3327,7 @@ mission "Unfettered: Close Quarter"
 		clear "Unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
 		conversation
-			`You go see He Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
+			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
 			choice
 				`	"How can a few better-trained troops make a difference?"`
 				`	"Glad I could make a difference then."`
@@ -3353,7 +3351,7 @@ mission "Bring Pug Staves"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Pug Peacekeeping Staff" 50
-		dialog `Do you want to sell 50 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you <payment> for it.`
+		dialog `Do you want to sell 50 Pug Peacekeeping Staves to the Unfettered? He Yi says they can give you 2500000 for it.`
 	on accept
 		payment 2500000
 		outfit "Pug Peacekeeping Staff" -50
@@ -3367,14 +3365,14 @@ mission "Bring Coalition Weapons"
 		has "Unfettered: Close Quarter: offered"
 	on offer
 		require "Enforcer Riot Staff" 50
-		dialog `Do you want to sell 50 Enforcer Riot Staves to the Unfettered? He Yi says they can give you <payment> for it.`
+		dialog `Do you want to sell 50 Enforcer Riot Staves to the Unfettered? He Yi says they can give you 4000000 for it.`
 	on accept
 		payment 4000000
 		outfit "Enforcer Riot Staff" -50
 		dialog `The Unfettered thank you for bringing these 50 staves to them. They give you <payment>.`
 
 conversation "more staves"
-	`As you wonder in the spaceport, you see He Yi's herald. He seems interested to know your progress in acquiring weapons.`
+	`As you wonder in the spaceport, you see He-Yi's herald. He seems interested to know your progress in acquiring weapons.`
 	choice
 		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
 		`	"It's going fine, thank you for asking."`
@@ -3420,12 +3418,12 @@ mission "Bring Void Rifle"
 	on offer
 		require "Void Rifle" 1
 		conversation
-			`He Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
+			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
 			choice
 				`	"Sorry, this is one of a kind."`
 			`	"I can cancel the exchange then, if it is precious to your eyes."`
 			choice
-				`	"<payment> is much more precious, thank you."`
+				`	"10000000 is much more precious, thank you."`
 				`	"Yes, I have changed my mind. Cancel the exchange."`
 					decline
 			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
@@ -3448,15 +3446,16 @@ event "looking for a gun"
 
 mission "Unfettered: Non Lethal Weapons Hint"
 	name `Learn more about the Pug.`
-	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He Yi.`
+	description `Go to <destination> to see if you can ask Admiral Danforth or the Oathkeepers about what kind of weapons the Pug used, which may be of interest to He-Yi.`
 	minor
 	destination "Farpoint"
 	to offer
 		has "event: looking for a gun"
 		has "Unfettered: Close Quarter: active"
 	on offer
+		require "Pug Peacekeeping Staff" 0
 		conversation
-			`As you land on this planet, you think back of the peculiar request He Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
+			`As you land on this planet, you think back of the peculiar request He-Yi made to you: bring back non-deadly weapons. After thinking a while about it, you remember tales about the Pug having special weapons that could easily knock people out. Maybe you should go to <destination> and speak to the Oathkeepers about this.`
 				accept
 	to fail
 		has "Unfettered: Close Quarter: done"
@@ -3470,7 +3469,7 @@ mission "Unfettered: Non Lethal Weapons Hint"
 
 mission "Unfettered: Know Your Enemy"
 	name `Acquire a translator`
-	description `You should use your pseudo-independence from the Unfettered to scan Wanderer space. Also, you need to obtain a translator. First go meet the Wanderers, and then go to <stopovers> to see if He Yi managed to find one.`
+	description `You should use your pseudo-independence from the Unfettered to scan Wanderer space. Also, you need to obtain a translator. First go meet the Wanderers, and then go to <stopovers> to see if He-Yi managed to find one.`
 	source "Firelode"
 	stopover "Warfeed"
 	to offer
@@ -3496,7 +3495,7 @@ mission "Unfettered: Know Your Enemy"
 					goto translator
 			`	"Well to be frank, we don't have to ability to teach all of its nuances to you in time. However, we believe that our brethren do have some way of doing that, given how apt they are with languages and how keen they are to meet new races."`
 			label translator
-			`	"We think our Hai brethren may indeed have what we need, but we need a way to obtain it. In the meantime, you should go and meet the aliens up North and speak with them. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He Yi about that translator."`
+			`	"We think our Hai brethren may indeed have what we need, but we need a way to obtain it. In the meantime, you should go and meet the aliens up North and speak with them. They may not allow you to land on most of their planets. They may have grown distrusful of newcomers - probably because of our own actions. Go and see how pathethic these birds are, and then you should go to He-Yi about that translator."`
 			branch neutral
 				has "reputation: Wanderer" >= 0
 			choice
@@ -3546,7 +3545,7 @@ mission "Unfettered: Know Your Enemy"
 mission "Unfettered: Bring Detainer"
 	landing
 	name `Recover a detainer`
-	description `He Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around Kor Sestor space.`
+	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around Kor Sestor space.`
 	source "Warfeed"
 	to offer
 		has "Unfettered: Know Your Enemy: active"
@@ -3554,7 +3553,7 @@ mission "Unfettered: Bring Detainer"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`You go find He Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north."`
+			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north."`
 			`	You nod.`
 			`	"Well, that's not our way. We do not ask. We take. Things need to be earned, in battle or otherwise, or they have no value. I have obtained a device that is able to translate your backwards language into ours. Because these birds speak Hai, you will be able to communicate with them later.`
 			`	"If you want this translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would neutralize one's engines. Such a weapon would be a very nice addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned this translator."`
@@ -3577,11 +3576,11 @@ mission "Unfettered: Bring Detainer"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You do not yet have the weapon He Yi asked for. Investigate the battles of the Korath automata and you may see it in action.`
+		dialog `You do not yet have the weapon He-Yi asked for. Investigate the battles of the Korath automata and you may see it in action.`
 	on complete
 		outfit "Korath Detainer" -1
 		set "language: Wanderer"
-		dialog `He Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
+		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
 mission "Unfettered: Found Detainer"
 	boarding
@@ -3592,7 +3591,7 @@ mission "Unfettered: Found Detainer"
 		outfits "Korath Detainer"
 	on offer
 		conversation
-			`"The 'Detainer' on this ship matches He Yi's description perfectly! Quickly, grab it and get out of here."`
+			`"The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here."`
 
 
 
@@ -3606,12 +3605,12 @@ mission "Unfettered: Cloaking Interest"
 	on offer
 		require "Cloaking Device"
 		conversation
-			`A herald tells you He Yi wants to see you again in his war room for a very generous proposition. He also mentions it's not urgent, so you can come back later if you're busy.`
+			`A herald tells you He-Yi wants to see you again in his war room for a very generous proposition. He also mentions it's not urgent, so you can come back later if you're busy.`
 			choice
 				`	(Comply with the request.)`
 				`	(Later.)`
 					defer
-			`	You arrive to He Yi standing proudly in front of a statue in his war room. "I had no idea you were a disciple of Tejolis as well."`
+			`	You arrive to He-Yi standing proudly in front of a statue in his war room. "I had no idea you were a disciple of Tejolis as well."`
 			choice
 				`	"What do you mean?"`
 				`	(Let him continue speaking.)`
@@ -3627,9 +3626,9 @@ mission "Unfettered: Cloaking Interest"
 	on accept
 		payment 50000000
 		outfit "Cloaking Device" -1
-		log `Gave my cloaking device to He Yi for a very big sum. It should keep him safe.`
+		log `Gave my cloaking device to He-Yi for a very big sum. It should keep him safe.`
 	on decline
-		log `He Yi asked me to sell him my cloaking device. I refused.`
+		log `He-Yi asked me to sell him my cloaking device. I refused.`
 
 
 
@@ -3785,7 +3784,7 @@ mission "Unfettered: Start Of The War"
 		clear "unfettered: defeated Si-Ra"
 		#"reputation: Wanderer" <?= -1000
 		conversation
-			`He Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can muster an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our colors. We have informed the Hai of your new colors so that they will recognize you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
+			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can muster an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our colors. We have informed the Hai of your new colors so that they will recognize you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
 			action
 				"Unfettered: questions" = -1
