@@ -117,6 +117,30 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 
+interface "map detail panel"
+	value "planet starting Y" 90
+	value "planet max bottom Y" 340
+	value "relative trade Y after planet" 135
+	value "planet scroll speed" 25
+	value "starting X" 100
+	value "starting Y" 45
+	value "government top Y" 45
+	value "text margin" 15
+	value "trade height" 190
+	value "arrow offset" 10
+
+
+
+interface "map planet card"
+	value "text start" 13
+	value "category size" 20
+	value "height" 130
+	value "width" 230
+	value "planet icon max size" 100
+	value "categories" 5
+
+
+
 interface "menu background"
 	sprite "_menu/g5"
 		center 0 -280
