@@ -164,12 +164,12 @@ mission "Remnant: Teciimach Deployment"
 			`You note a disturbance in the shipyards before the <ship> even touches the ground. Every pad is filled with ships, camels pulling wagon trains loaded with canisters trundle out of the outfitter heading for ships, and technicians clamber everywhere. As you step out of your ship, Taely slides down the side of a Merganser resting next to you.`
 			`	"Good timing, Captain! We just rolled out an upgrade to some of our oldest equipment, and our Mergansers finally have something to carry as first-strike weapon. Interested in taking a look?"`
 			choice
-				`	"Yes"`
-				`	"No"`
+				`	"Yes."`
+				`	"Sorry, but I'm a bit busy at the moment."`
 					goto empno
 			`	She turns and heads towards a nearby lift where another crew of Remnant had just moved several EMP torpedo canisters into place. "Well, you have probably seen us use EMP torpedoes now and then, right? Well, as you probably noticed, they have a few tactical issues. They are slow, they often hit our ships almost as much as our targets, and they take up space we could otherwise be using for more important things like laboratories or scanners." She taps a few commands into the console, and the lift begins raising the canisters towards the waiting ship.`
-			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focusing on the torpedoes themselves, others focusing on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole works. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
-			`	She looks at you and nods contemplatively. "One thing worth noting: You are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
+			`	"Over the past decades we have had a few teams working on improving them from different angles. Some focused on the torpedoes themselves, others focused on the launcher. The surprising development, however, was from a team working down in the Warren. They figured out a way to shave a few cubic meters off the systems that assemble the torpedoes, and compress the whole works. Very impressive work, and the results should be in the outfitter for you in the next day or two."`
+			`	She looks at you and nods contemplatively. "One thing worth noting - you are making great strides in learning our language, so new items that appear in our outfitter will be listed under their proper name instead of substitutes from the ancestral tongue."`
 			choice
 				`	"Whatever makes things easier for everyone."`
 					goto empno
