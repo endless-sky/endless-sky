@@ -164,7 +164,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 
 
 
-// Get the list of mainable asteroids.
+// Get the list of minable asteroids.
 const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 {
 	return minables;

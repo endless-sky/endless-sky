@@ -74,25 +74,22 @@ hazard "Core Shadow Passing"
 		"relative heat damage" -0.002
 
 
-
 hazard "Ember Waste Base Heat"
 	"duration" 1 200
 	"strength" 0.25 1.75
-	"range" 20000
+	"system-wide"
 	weapon
 		"relative heat damage" 0.00035
 
 hazard "Ember Waste Base Storm"
 	"duration" 300 1500
 	"strength" 1 3
-	"range" 10000
+	"system-wide"
 	"environmental effect" "ion hazard" 20
 	weapon
 		"ion damage" 0.5
 		"shield damage" 5
 		"hull damage" 0.01
-
-
 
 effect "ion hazard"
 	sprite "effect/spark"
@@ -102,3 +99,4 @@ effect "ion hazard"
 	"random lifetime" 60
 	"random spin" 10
 	"random velocity" 2
+

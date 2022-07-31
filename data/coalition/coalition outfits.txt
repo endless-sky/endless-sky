@@ -359,7 +359,7 @@ outfit "Enforcer Riot Staff"
 	"capture attack" 2.0
 	"capture defense" 3.5
 	"unplunderable" 1
-	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
 outfit "Coalition License"
 	category "Special"
