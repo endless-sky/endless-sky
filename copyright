@@ -1595,6 +1595,31 @@ Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
 
+Files:
+ images/ship/ascomy*
+ images/ship/basidio*
+ images/ship/blastoc*
+ images/ship/neocalli*
+ images/thumbnail/ascomy*
+ images/thumbnail/basidio*
+ images/thumbnail/blastoc*
+ images/thumbnail/neocalli*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (github.com/wrzlprnft) (under the same license).
+
+Files:
+ images/outfit/cryo-arithmetic?engine*
+ images/outfit/piezoelectric?shaft*
+ images/outfit/small?mof?crystal?capacitor*
+ images/outfit/large?mof?crystal?capacitor*
+ images/outfit/string?drive*
+ images/outfit/type?x?engine*
+ images/outfit/type?i?engine*
+ images/outfit/type?v?engine*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

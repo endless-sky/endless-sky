@@ -47,8 +47,8 @@ outfit "Small MOF Crystal Capacitor"
 	"energy capacity" 9800
 	"energy consumption" .5
 	"ion resistance" 0.01
-	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
-	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
+	description `These capacitors are derived from a strange crystal formation that was discovered near the "weird end" of the Brilliance. Over time the Xapleaux managed to work out what part of the crystal formation did what they found useful, and how to grow refined versions of them artificially.`
+	description `	These capacitors leak small amounts of energy, but the native crystal heat conversion was refined out of them, such that it instead leaks out as a form of ionization. This leaking of ionization and the associated design elements incorporated to handle that also provides some resistance to other external forms of ionization, granting ships with these crystals some resistance against natural or artificial ionic phenomena.`
 
 outfit "Piezoelectric Shaft"
 	category "Systems"
@@ -62,7 +62,7 @@ outfit "Piezoelectric Shaft"
 	"heat capacity" 2420
 	"cooling energy" -5.2
 	"active cooling" 76
-	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the ship's hottest systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
+	description "This single massive crystal, festooned in conductive strain contacts and a wealth of monitoring equipment, is capable of converting heat into power through the piezoelectric effect. As one end of the crystal is made hot on the heatsink, the mechanical stress generated from the heat expansion of only one end of the crystal is bled off along its length into power for the ship. This also maintains the temperature gradient, so for as long as new heat is added - the strain can be harnessed for energy."
 
 outfit `Type X "Coleo" Engine`
 	category Engines
@@ -162,7 +162,6 @@ outfit `Type V "Strepsip" Engine`
 	"steering flare sound" ""
 	description "This thruster pair is designed somewhat abnormally to the rest of the Xapleaux engine models. While it does retain the reversible thrust elements, it has been designed for use with the Neocalli which was designed to mimic the flight behavior of the local swarming fauna. As such, the reversing thrust is not used for steering unless it happens to be performing a braked turn. The effect is somewhat unsettling to watch, but it allows them to keep up with the wildlife that they are predominantly deployed against."
 	description "	Despite their unconventional mounting, their mass is still distributed between otherwise unusable engine space and supporting systems according to the Xapleaux's common design philosophy, and only a ship with a specialized V Ring Cradle can mount this engine."
-	
-	
-	
-	
+
+
+
