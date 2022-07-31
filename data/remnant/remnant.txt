@@ -589,7 +589,7 @@ phrase "remnant thrasher cannon"
 
 phrase "remnant emp torpedo bay"
 	word
-		"an EMP Torpedo Bay.  "
+		"an EMP Torpedo Bay. "
 	word
 		"With a single shot, it"
 		"Firing one"
