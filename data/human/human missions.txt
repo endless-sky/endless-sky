@@ -4200,24 +4200,34 @@ mission "Dangerous Games 1"
 				`	(Go listen to the man.)`
 				`	(Leave.)`
 					decline
-			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all; who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
-			`	You've heard the stories of the dragons flying through Skymoot's skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. Skymoot is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
-			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells, "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
+			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all: who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
+			`	You've heard the stories of the dragons flying through <planet>'s skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. <planet> is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
+			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells. "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
 			choice
 				`	"Captain <last>, at your service. We leave at dawn!"`
 					goto accept
+				`	"Am I getting paid?"`
+					goto money
 				`	(Stay silent.)`
 			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
-			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to Skymoot." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to <planet>." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
 				decline
 			label accept
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
+			label money
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation."`
+			choice
+				`	"Works for me. We leave tomorrow."`
+					goto accept
+				`	"<payment> won't be enough. I'm out."`
+			`	You're treated to some jeering and rude looks as you leave the bar.`
+				decline
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
 	on stopover
 		conversation
-			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech and your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
+			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech as your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
 			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the eight men, or "Dragonriders," as they creatively branded themselves during the first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
 			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
 			`	The dragons of Skymoot you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are faster than you thought possible, or perhaps the ones on the show had been drugged to make them easier to film.`
@@ -4241,7 +4251,7 @@ mission "Dangerous Games 1"
 				decline
 			label leave
 			`	You turn on the external speakers. "We are leaving," you blast to the survivors. "Get on board."`
-			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him, when a flicker of motion on a monitor catches your eye.`
+			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him when a flicker of motion on a monitor catches your eye.`
 			`	Karengo is riding a dragon, gripping the ridge of scales around its neck. The dragon frantically tries to get him off, but deft application of his jetpack keeps him on top of the beast for now. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
 			`	You activate your engines, and the ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
 	on complete
