@@ -592,7 +592,7 @@ mission "Sol-Bound Shuttle"
 		random < 1
 	on offer
 		conversation
-			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you notice that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
+			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
 			choice
 				`	"Where's your hyperdrive?"`
 				`	"How are you going to travel anywhere with that ship?"`
