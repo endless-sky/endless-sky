@@ -61,18 +61,20 @@ mission "Xapleaux: First Contact"
 			`	It patiently repeats the same series of gestures, very firmly.`
 				goto firm
 			label peace
-			`	The lead alien approaches you, while the other two hang back a little. Slowly, and deliberately, it reaches into a satchel hung from a strap above its shortest arms and draws out a flat, matte purple tile. As it is turned upwards it suddenly springs to life, revealing itself to be a tablet-style screen which briefly flicks up a scan of the alien's eyes and then resolves into an interface you cannot make heads or tales of.`
-			`	Some moments later it shows you an animation depicting a ship landing, an empty box, an alien approaching with a hose, the box filling up, and the ship taking off again. After this it opens its beak very slightly and makes two sharp whistling sounds, inhaling and exhaling, while pointing at the ship, and then a low trill, pointing at itself and taking a step back. You're fairly sure your best attempt at the latter would be a chuckle.`
+			`	The lead alien approaches you, while the other two hang back a little. Slowly, and deliberately, it reaches into a satchel hung from a strap above its shortest arms and draws out a flat, matte purple tile. As it is turned upwards it suddenly springs to life, revealing itself to be a tablet-style screen which briefly flicks up a scan of the alien's eyes and then resolves into an interface you cannot make heads or tails of.`
+			`	Some moments later it shows you an animation depicting a ship landing, an empty box, an alien approaching with a hose, the box filling up, and the ship taking off again. After this it opens its beak very slightly and makes two sharp whistling sounds, inhaling and exhaling as it points at the ship. Then it gives a low trill, pointing at itself and taking a step back. You're fairly sure your best attempt at the latter would be a chuckle.`
+
 			choice
 				`	(Make two noises and nod.)`
 					goto refuel
 				`	(Chuckle and refuse.)`
 			`	It's very hard to assume that you have any idea what emotion looks like on these aliens, but you feel that the click it makes has a decidedly disappointed vibe to it.`
-			`	After several seconds have passed and no one seems likely to move any further or give any direction you realize that refusing might have been considered rude, either that or your chuckle really wasn't interpreted successfully.`
+			`	After several seconds have passed and no one seems likely to move any further or give any direction you realize that refusing might have been considered rude. Either that or your chuckle really wasn't interpreted successfully.`
+
 			label refuel
 			`	You inhale and exhale, whistling the air between your teeth to make two sharp sounds. It makes a click that seems pleased and shows you the tablet with a new animation.`
 			`	This time the tablet depicts a ship being burned on the exterior, landing, and then a number of aliens coming forward and spraying something onto damaged parts before allowing it to take off again. The same question is posed to you and, realizing that you don't actually know how to say 'no' at this point, you make the same two sharp sounds again.`
-			`	The alien gives another click of apparent satisfaction and turns a little to those waiting nearby. All six of its arms come to life and you are granted the unsettling realization that it's beak, which you thought had only two parts, actually had four parts - two of which now unfolded into articulated mandibles which click and snap rapidly back and forth in, out, and around a mouth full of grotesque moving parts too difficult to name in the moment. Its entire being seems to simply suddenly be in motion as it emits a rapid series of clicks, trills, shrieks and whistles, gestures in a complex sequence with all of its arms, and seems to alternately inflate, deflate, or wiggle as the fronds of 'foliage' dance and sway in a pattern clearly independent of what its arms and head are doing.`
+			`	The alien gives another click of apparent satisfaction and turns a little to those waiting nearby. All six of its arms come to life and you are granted the unsettling realization that its beak, which you thought had only two parts, actually had four - two of which now unfolded into articulated mandibles which click and snap rapidly back and forth in, out, and around a mouth full of grotesque moving parts too difficult to name in the moment. Its entire being seems to simply suddenly be in motion as it emits a rapid series of clicks, trills, shrieks and whistles, gestures in a complex sequence with all of its arms, and seems to alternately inflate, deflate, or wiggle as the fronds of 'foliage' dance and sway in a pattern clearly independent of what its arms and head are doing.`
 			choice
 				`	(Panic and punch it.)`
 				`	(Take a step back and a deep breath.)`
@@ -96,7 +98,8 @@ mission "Xapleaux: First Contact"
 			`	It points at itself, makes two sharp whistles and nods again. It looks at a nearby alien who also makes two sharp whistles and nods, and before you know it every alien in the vicinity seems to be making two sharp whistles and nodding to each other in fascination.`
 			action
 				
-			`	When the cacophony has settled the first alien looks at you, holds up its upper arms peaceably, and points to your ship with one of it's middle arms. It would seem that, while you are certainly welcome here to some extent, for now your stay is firmly over.`
+			`	When the cacophony has settled the first alien looks at you, holds up its upper arms peaceably, and points to your ship with one of its middle arms. It would seem that, while you are certainly welcome here to some extent, for now your stay is firmly over.`
+
 				depart
 			label revisit
 			`	Upon disembarking your ship you make sure you have your pink crystal token to hand, and your ship is immediately set upon by the various aliens doing refuelling and maintenance with the rapid-paced manner of communication that seems to be typical for them.`
@@ -106,13 +109,16 @@ mission "Xapleaux: First Contact"
 			`	When they are finished, one of them approaches you, points at your ship, and gives to sharp whistles and a nod. Time to go.`
 				depart
 			label automata
-			`	After a little while of them going over your ship you notice that the one appearing to be in charge is in intense conversation with one of those doing maintenance. At length it retrieves a tablet from the worker and approaches you with it. It points at your ship and then shows you what is shown on the screen.`
+			`	After a little while of them going over your ship you notice that the one appearing to be in charge is in intense conversation with one of those doing maintenance. At length it retrieves a tablet from the worker and approaches you with it. It points at your ship and then shows you what is on the screen.`
+
 			`	To your surprise it shows a small diagram of your ship, with a spot highlighted and what looks like an energy signature. More interestingly though, below that it shows in absolutely crystal clear clarity an image of what is unmistakably a Korath Repeater.`
-			`	When it sees that you recognize the weapon it makes a complicated series of clicks and gestures and proceeds to navigate the tablet for a moment before revealing it to show an unfamiliar ship. As you examine the ship shown it does look vaguely like a Korath vessel, it bears some similarities to those that you've seen, but it isn't one you'd know.`
+			`	When it sees that you recognize the weapon it makes a complicated series of clicks and gestures and proceeds to navigate the tablet for a moment before revealing it to show an unfamiliar ship. As you examine the ship shown it does look vaguely like a Korath vessel, and it bears some similarities to those that you've seen, but it isn't one you'd know.`
+
 			`	It returns to navigating the tablet and then shows you a new vessel. This one you recognize instantly. Before you, in remarkably clear detail, is a Remnant Albatross - one equipped with looted Repeaters.`
 			`	Your surprise is such that before you could consider pretending not to recognize it the alien has already seized on the moment. It knows that you know what that ship is.`
 			`	It launches into a long string of chirps, whistles, clicks, and trills, accompanied by an intensely complex series of gestures, which it repeats several times. Suddenly, as the sun rising on an airless moon, it dawns on you that whatever language these aliens use, it is clearly at least half some kind of gesture-based sign-language.`
-			`	Experimentally you ask, "Is this how you talk?" in Remnant sign. The alien does not reply in any words or gestures that you understand, but the effect is nevertheless very dramatic. The alien verily shrieks, it's entire body quivering in some emotion barely constrained.`
+			`	Experimentally you ask, "Is this how you talk?" in Remnant sign. The alien does not reply in any words or gestures that you understand, but the effect is nevertheless very dramatic. The alien verily shrieks, its entire body quivering in some emotion barely constrained.`
+
 			`	Excitement? Anger? Fascination? Concern?`
 			`	You can't be sure, but it doesn't seem negative as another rushes over from a nearby building and it gestures at you until you repeat the question in sign again. Slowly, and carefully, the two aliens mimic your actions with their middle arms.`
 			`	In an instant you realize that you are well out of your personal depth, but now you know exactly where you need to go next. At length you indicate the signs for 'I' and 'you', and manage to gesture-indicate your way through a sentence to tell them, "I will go, and come back again."`
