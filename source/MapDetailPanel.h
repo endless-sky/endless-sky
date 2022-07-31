@@ -38,8 +38,6 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
-	// Navigate through the shown planets when there are too many, otherwise use the parent function.
-	virtual bool Scroll(double dx, double dy) override;
 
 
 public:
@@ -47,6 +45,11 @@ public:
 
 
 protected:
+	// Navigate through the shown planets panel, and drags them around.
+	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Hover(int x, int y) override;
+
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
 	virtual bool Click(int x, int y, int clicks) override;
@@ -72,6 +75,8 @@ private:
 
 	// Wether or not the trade panel is selected, or the planet view (and should be affected by up and down keys).
 	bool tradeSelected = true;
+
+	bool isHovered = false;
 
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;

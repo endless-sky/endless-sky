@@ -129,31 +129,48 @@ void MapDetailPanel::Draw()
 
 
 
-bool MapDetailPanel::Scroll(double dx, double dy)
+double MapDetailPanel::GetScroll()
 {
-	Point point = UI::GetMouse();
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	if(point.X() < Screen::Left() + planetCardInterface->GetValue("width")
-		&& point.Y() > Screen::Top() + mapInterface->GetValue("planet starting Y")
-		&& point.Y() < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"))
-	{
-		double scrollSpeed = Preferences::ScrollSpeed() * 0.25;
-		if(dy > 0.)
-			SetScroll(scroll - dy * scrollSpeed);
-		else if(dy < 0.)
-			SetScroll(scroll - dy * scrollSpeed);
-
-		return true;
-	}
-	return MapPanel::Scroll(dx, dy);
+	return scroll;
 }
 
 
 
-double MapDetailPanel::GetScroll()
+bool MapDetailPanel::Hover(int x, int y)
 {
-	return scroll;
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	isHovered = (x < Screen::Left() + planetCardInterface->GetValue("width")
+		&& y > Screen::Top() + mapInterface->GetValue("planet starting Y")
+		&& y < Screen::Bottom() - mapInterface->GetValue("planet max bottom Y"));
+
+	return isHovered ? true : MapPanel::Hover(x, y);
+}
+
+
+
+bool MapDetailPanel::Drag(double dx, double dy)
+{
+	if(isHovered)
+	{
+		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.025);
+
+		return true;
+	}
+	return MapPanel::Drag(dx, dy);
+}
+
+
+
+bool MapDetailPanel::Scroll(double dx, double dy)
+{
+	if(isHovered)
+	{
+		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.25);
+
+		return true;
+	}
+	return MapPanel::Scroll(dx, dy);
 }
 
 
