@@ -2682,8 +2682,11 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
+	const double cloakedAction = attributes.Get("cloaked action");
 	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
-		((cloak == 1. && !attributes.Get("cloaked action")) || (cloak != 1. && cloak)));
+		((cloak == 1. && !cloakedAction) |
+		 (cloak != 1. && cloak && !cloakDisruption &&
+		 (!cloakedAction || !attributes.Get("action whilst cloaking")))));
 }
 
 
