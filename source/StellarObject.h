@@ -72,8 +72,7 @@ public:
 	// Find out how far this object is from its parent.
 	double Distance() const;
 
-	// Set and get this object's icon (to be display on the map detail panel).
-	void SetIcon(const Sprite *sprite);
+	// Get this object's icon (to be display on the map).
 	bool HasIcon() const;
 	const Sprite *GetIcon() const;
 

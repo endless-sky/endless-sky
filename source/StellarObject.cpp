@@ -160,21 +160,10 @@ const vector<RandomEvent<Hazard>> &StellarObject::Hazards() const
 
 
 
-// Set and get this object's icon (to be display on the map detail panel).
-void StellarObject::SetIcon(const Sprite *sprite)
-{
-	icon = sprite;
-}
-
-
-
 bool StellarObject::HasIcon() const
 {
 	return icon && icon->Frames();
 }
-
-
-
 const Sprite *StellarObject::GetIcon() const
 {
 	return icon;
