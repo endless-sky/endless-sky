@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Planet;
 class Ship;
+class Sprite;
 
 
 
@@ -71,6 +72,11 @@ public:
 	// Find out how far this object is from its parent.
 	double Distance() const;
 
+	// Set and get this object's icon (to be display on the map detail panel).
+	void SetIcon(const Sprite *sprite);
+	bool HasIcon() const;
+	const Sprite *GetIcon() const;
+
 
 private:
 	const Planet *planet;
@@ -85,6 +91,8 @@ private:
 	bool isStar;
 	bool isStation;
 	bool isMoon;
+
+	const Sprite *icon;
 
 	// Let System handle setting all the values of an Object.
 	friend class System;

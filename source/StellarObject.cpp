@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Radar.h"
+#include "Sprite.h"
 
 #include <algorithm>
 
@@ -28,7 +29,7 @@ using namespace std;
 StellarObject::StellarObject()
 	: planet(nullptr),
 	distance(0.), speed(0.), offset(0.), parent(-1),
-	message(nullptr), isStar(false), isStation(false), isMoon(false)
+	message(nullptr), isStar(false), isStation(false), isMoon(false), icon(nullptr)
 {
 	// Unlike ships and projectiles, stellar objects are not drawn shrunk to half size,
 	// because they do not need to be so sharp.
@@ -155,4 +156,26 @@ double StellarObject::Distance() const
 const vector<RandomEvent<Hazard>> &StellarObject::Hazards() const
 {
 	return hazards;
+}
+
+
+
+// Set and get this object's icon (to be display on the map detail panel).
+void StellarObject::SetIcon(const Sprite *sprite)
+{
+	icon = sprite;
+}
+
+
+
+bool StellarObject::HasIcon() const
+{
+	return icon && icon->Frames();
+}
+
+
+
+const Sprite *StellarObject::GetIcon() const
+{
+	return icon;
 }
