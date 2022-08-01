@@ -317,16 +317,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	if(x > Screen::Left() + 160)
-	{
-		// Clicking the system name activates the view of the player's reputation with various governments.
-		if(y < governmentY)
-			SetCommodity(SHOW_REPUTATION);
-		// Clicking the government name activates the view of system / planet ownership.
-		else if(y >= governmentY && y < governmentY + 20)
-			SetCommodity(SHOW_GOVERNMENT);
-	}
-	else if(x < Screen::Left() + 160)
+	if(x < Screen::Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
@@ -639,10 +630,9 @@ void MapDetailPanel::DrawInfo()
 		}
 	}
 
-	const double startingGovX = mapInterface->GetValue("government X");
 	const double startingGovY = mapInterface->GetValue("government Y");
 	const double textMargin = mapInterface->GetValue("text margin");
-	uiPoint = Point(Screen::Left() + textMargin + startingGovX, Screen::Top() + startingGovY);
+	uiPoint = Point(Screen::Left() + textMargin, Screen::Top() + startingGovY);
 
 	// Draw the information for the government of this system at the top.
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
