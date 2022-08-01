@@ -241,8 +241,8 @@ event "remnant: ssil vida inhabited"
 
 
 event "remnant: cognizance peregrine"
-	shipyard "Remnant"
-		"Peregrine"
+	outfitter "Remnant"
+		"Bellows-Class Afterburner"
 
 
 
