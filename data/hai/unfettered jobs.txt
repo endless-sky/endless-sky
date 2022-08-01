@@ -274,7 +274,7 @@ phrase "unfettered medicals pickup dialog"
 		`The Hai understand the urgency of the situation, and waste no time in talking. They load the supplies on your ship, and wish you a safe trip.`
 		`There is no recitence to give you the medical supplies, it seems like the Hai are not really in need for them. "We prefer to make sure our brothers are not in need, our needs will come later," one says when he is done loading the supplies on your ship.`
 
-mission "Unfettered Medicals"
+mission "Unfettered Small Medicals Rush"
 	name `Express medical supplies to <planet>`
 	description `The Unfettered hospitals on Darkcloak are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	job
@@ -300,7 +300,7 @@ mission "Unfettered Medicals"
 		dialog phrase "unfettered medicals payment dialog"
 
 
-mission "Unfettered Medicals"
+mission "Unfettered Big Medicals Rush"
 	name `Medical supplies to <planet>`
 	description `The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	job
