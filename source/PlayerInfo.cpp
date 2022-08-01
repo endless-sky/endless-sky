@@ -3081,7 +3081,8 @@ void PlayerInfo::Save(const string &path) const
 	startData.Save(out);
 
 	// Write plugins to player's save file for debugging.
-	if(!GameData::PluginAboutText().empty()) {
+	if(!GameData::PluginAboutText().empty())
+	{
 		out.Write();
 		out.WriteComment("Installed plugins:");
 		out.Write("plugins");
