@@ -195,9 +195,9 @@ mission "Unfettered Tribute 3"
 
 phrase "Unfettered Boarded"
 	word
-		"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
-		"This ship is the property of Unfettered, Hai even, but never monkey! We'd rather die than let you have it."
-		"It is truly sad it had to come to this, but we know you will not listen to reason. We have no choice but to destroy our ship."
+		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
+		`"This ship is the property of Unfettered, Hai even, but never monkey! We'd rather die than let you have it."`
+		`"It is truly sad it had to come to this, but we know you will not listen to reason. We have no choice but to destroy our ship."`
 
 mission "Proud Unfettered Boarded"
 	boarding
@@ -212,7 +212,9 @@ mission "Proud Unfettered Boarded"
 	on offer
 		conversation
 			`As you board the <origin> you immediately notice something is wrong: the ship is starting to explode! The captain sends you a message.`
-			phrase "unfettered boarded"
+		dialog phrase "unfettered boarded"
+		conversation
+			`It is no bluff... Best get out of here!`
 				flee
 	destination "Darkcloak"
 
@@ -350,13 +352,12 @@ mission "Unfettered Challenge [0]"
 			names "hai"
 			variant
 				"Sea Scorpion (Pulse)"
+		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 200000
 				"reputation: Hai (Unfettered)" += 15
 				fail "Unfettered Challenge [0]"
-			phrase "unfettered challenger defeated"
-				decline
 
 mission "Unfettered Challenge [1]"
 	name `Defeat Unfettered captain`
@@ -376,13 +377,12 @@ mission "Unfettered Challenge [1]"
 			names "hai"
 			variant
 				"Sea Scorpion (Pulse)" 2
+		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 400000
 				"reputation: Hai (Unfettered)" += 30
 				fail "Unfettered Challenge [1]"
-			phrase "unfettered challenger defeated"
-				decline
 
 mission "Unfettered Challenge [2]"
 	name `Defeat experienced Unfettered captain`
@@ -403,13 +403,12 @@ mission "Unfettered Challenge [2]"
 			variant
 				"Shield Beetle (Pulse)"
 				"Sea Scorpion (Pulse)"
+		dialog phrase "unfettered challenger defeated"
 		conversation
 			action
 				payment 600000
 				"reputation: Hai (Unfettered)" += 60
 				fail "Unfettered Challenge [2]"
-			phrase "unfettered challenger defeated"
-				decline
 
 
 
@@ -422,7 +421,7 @@ phrase "unfettered jump drive pickup dialog"
 		"You manage to land and retrieve the precious cargo without too much trouble. Do not rely on luck too long though - you should depart quickly!"
 		"You find a few pirates in the vault but they are quickly disposed off, and you proceed to pick up the cargo. Do not wait too long, or reinforcements could arrive."
 		"It was easy, almost too easy to pick up the jump drives. Better depart before your luck runs out."
-		"You receive a warning from the vault saying intruders came, but cannot find any trace of them. The cargo is swifly transfered, and you should probably get on your way now."
+		"You receive a warning from the vault saying intruders came, but cannot find any trace of them. The cargo is swifly transferred, and you should probably get on your way now."
 		"The vault is secured and you can easily and safely pick up the jump drives."
 
 phrase "unfettered jump drive payment dialog"
