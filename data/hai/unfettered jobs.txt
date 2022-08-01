@@ -193,7 +193,7 @@ mission "Unfettered Tribute 3"
 
 
 
-phrase "unfettered Boarded"
+phrase "unfettered boarded"
 	word
 		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
 		`"This ship is the property of Unfettered, Hai even, but never monkey! We'd rather die than let you have it."`
