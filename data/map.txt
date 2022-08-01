@@ -6175,7 +6175,7 @@ system Caeculus
 	government Uninhabited
 	attributes "ember waste"
 	arrival 625
-	habitable 100
+	habitable 50000
 	belt 1797
 	haze _menu/haze-red
 	link Stercutus
@@ -11990,7 +11990,7 @@ system Gorvi
 	government Republic
 	attributes "north"
 	arrival 625
-	habitable 100
+	habitable 50000
 	belt 1345
 	haze _menu/haze-133
 	link Mintaka
@@ -23812,7 +23812,7 @@ system Sospi
 	government Republic
 	attributes "north"
 	arrival 625
-	habitable 100
+	habitable 50000
 	belt 1715
 	haze _menu/haze-133
 	link Nihal
