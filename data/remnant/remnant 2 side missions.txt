@@ -262,7 +262,7 @@ mission "Remnant: Celebration 1"
 					goto ceremonyleader
 				`	"That seemed both well rehearsed and very disorganized."`
 			label celebrationrehearsed
-			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, with the expectation that people attend no more than one of them. So most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation is up to them, and so the details and feel of each celebration are unique every time." She makes a gesture you have come to realize amounts to "If you have more questions, ask them."`
+			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, with most people taking part in one every few weeks. So most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation is up to them, and so the details and feel of each celebration are unique every time." She makes a gesture you have come to realize amounts to "If you have more questions, ask them."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
