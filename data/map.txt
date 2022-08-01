@@ -6175,7 +6175,7 @@ system Caeculus
 	government Uninhabited
 	attributes "ember waste"
 	arrival 625
-	habitable 625
+	habitable 100
 	belt 1797
 	haze _menu/haze-red
 	link Stercutus
@@ -6203,7 +6203,7 @@ system Caeculus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr1
+		sprite star/wr
 		period 10
 	object
 		sprite planet/dust6-b
@@ -11990,7 +11990,7 @@ system Gorvi
 	government Republic
 	attributes "north"
 	arrival 625
-	habitable 625
+	habitable 100
 	belt 1345
 	haze _menu/haze-133
 	link Mintaka
@@ -12017,7 +12017,7 @@ system Gorvi
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava0
@@ -13207,7 +13207,10 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/wr0
+		sprite star/carbon
+		period 10
+	object
+		sprite star/carbon-core
 		period 10
 	object
 		sprite planet/ice4-b
@@ -23809,7 +23812,7 @@ system Sospi
 	government Republic
 	attributes "north"
 	arrival 625
-	habitable 625
+	habitable 100
 	belt 1715
 	haze _menu/haze-133
 	link Nihal
@@ -23840,7 +23843,7 @@ system Sospi
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava2-b
