@@ -342,10 +342,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			const double planetCardHeight = planetCardInterface->GetValue("height");
 			// The arrows are of size 10.
 			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
-			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset && !planetCards.front().IsShown());
+			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
 			const double topY = planetCardInterface->GetValue("planet panel height");
-			bool arrowDown = (!arrowUp && y > Screen::Top() + topY - arrowVerticalOffset && !planetCards.back().IsShown());
-			scroll += (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.);
+			bool arrowDown = (!arrowUp && y > Screen::Top() + topY - arrowVerticalOffset);
+			SetScroll(scroll + (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.));
 		}
 		else
 		{
@@ -611,7 +611,6 @@ void MapDetailPanel::DrawInfo()
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
-	bool drawArrows = false;
 	// Draw the basic information for visitable planets in this system.
 	if(hasVisited)
 	{
@@ -621,8 +620,7 @@ void MapDetailPanel::DrawInfo()
 		{
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			// This updates the location of the card so it needs to be called before AvailableSpace().
-			if(!card.DrawIfFits(uiPoint))
-				drawArrows = true;
+			card.DrawIfFits(uiPoint);
 			uiPoint.Y() += planetHeight;
 
 			// Do this all of the time so we can scroll if an element is partially shown.
@@ -668,17 +666,16 @@ void MapDetailPanel::DrawInfo()
 	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
 	tradeY = uiPoint.Y() - tradeHeight / 2.;
 
-	if(drawArrows)
+	if(maxScroll)
 	{
 		const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 		const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
-		// Draw the pointers to go up and down by a planet.
-		if(!planetCards.front().IsShown())
-			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, medium);
-		if(!planetCards.back().IsShown())
-			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-				Screen::Top() - arrowOffsetY + topY), Point(0., 1.), 10.f, 10.f, 5.f, medium);
+		// Draw the pointers to go up and down by a planet at most.
+		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
+			Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
+		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
+			Screen::Top() - arrowOffsetY + topY), Point(0., 1.), 10.f, 10.f, 5.f,
+			(scroll < maxScroll) ? medium : dim);
 	}
 
 	// Trade sprite goes after at the bottom.

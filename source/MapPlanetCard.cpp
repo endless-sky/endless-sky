@@ -84,7 +84,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 				clickAction = ClickAction::SELECTED;
 
 			static const int SHOW[4] = {MapPanel::SHOW_REPUTATION, MapPanel::SHOW_SHIPYARD,
-										MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_GOVERNMENT};
+										MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_VISITED};
 			if(clickAction != ClickAction::SELECTED)
 			{
 				clickAction = static_cast<ClickAction>(SHOW[selectedCategory]);
