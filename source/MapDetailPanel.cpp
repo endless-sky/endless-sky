@@ -329,7 +329,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
-		else if(y < governmentY)
+		else if(y < governmentY && y > governmentY - 20)
 			SetCommodity(SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
