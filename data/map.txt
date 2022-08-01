@@ -13214,7 +13214,7 @@ system Ildaria
 		period 10
 	object
 		sprite planet/ice4-b
-		distance 694.26
+		distance 1094.26
 		period 292.686
 		object
 			sprite planet/ice8
@@ -13222,15 +13222,15 @@ system Ildaria
 			period 16.9135
 	object
 		sprite planet/rock6-b
-		distance 1135.47
+		distance 1435.47
 		period 612.186
 	object
 		sprite planet/rock17-b
-		distance 1893.08
+		distance 2093.08
 		period 1317.87
 	object
 		sprite planet/dust4-b
-		distance 2712.92
+		distance 2812.92
 		period 2260.86
 
 system "Imo Dep"
