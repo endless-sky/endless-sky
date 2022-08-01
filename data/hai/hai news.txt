@@ -411,7 +411,8 @@ news "hai joining unfettered"
 			"I have lost everything... I knew I should not have taken that big loan. I will be heading for Unfettered space for a new life now."
 			"The ship carrying my family was attacked by pirates. I guess I may as well be joining the Unfettered now, I have nothing to lose."
 			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the new living conditions."
-			"Have you heard? The art in Unfettered space is very dynamic. I wish there would be more interactions with the Unfettered."
+			"Have you heard? The art in Unfettered space is ever changing, never dull. I wish I could go there and see it in person."
+			"Art in Unfettered space is very different from here, we could learn a lot from it."
 			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed."
 		word
 			`"`
