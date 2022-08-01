@@ -3088,9 +3088,7 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("plugins");
 		out.BeginChild();
 		for(const auto &plugin : GameData::PluginAboutText())
-		{
 			out.Write(plugin.first);
-		}
 		out.EndChild();
 	}
 }
