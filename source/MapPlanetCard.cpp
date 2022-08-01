@@ -50,7 +50,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 
 	const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
-	spriteScale = min(.5f, min((planetIconMaxSize) / sprite->Width(), (planetIconMaxSize) / sprite->Height()));
+	spriteScale = min(.5f, min(planetIconMaxSize / sprite->Width(), planetIconMaxSize / sprite->Height()));
 }
 
 
@@ -113,9 +113,12 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const Color &faint = *GameData::Colors().Get("faint");
 		const Color &dim = *GameData::Colors().Get("dim");
 		const Color &medium = *GameData::Colors().Get("medium");
-		const auto alignLeft = Layout(140, Truncate::BACK);
 
 		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+		// The maximum possible size for the sprite of the planet.
+		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
+		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - planetIconMaxSize, Truncate::BACK);
+
 		// Height of one MapPlanetCard element.
 		const double height = planetCardInterface->GetValue("height");
 		// Point at which the text starts (after the top margin), at first there is the planet's name,
@@ -130,16 +133,13 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-		const double planetMiddleY = height / 2.;
 
-		// The maximum possible size for the sprite of the planet.
-		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
 		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
-			uiPoint.Y() + planetMiddleY), spriteScale);
+			uiPoint.Y() + height / 2.), spriteScale);
 
 		float clip = 1.f;
 		// Lowest point of the planet sprite.
-		double planetBottomY = planetMiddleY + spriteScale * sprite->Height() / 2.;
+		double planetBottomY = height / 2. + spriteScale * sprite->Height() / 2.;
 		// Calculate the correct clip on the bottom of the sprite if necessary.
 		// It is done by looking at how much space is available,
 		// and the difference between that and the lowest point of the sprite.
