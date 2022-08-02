@@ -1108,6 +1108,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Becca Tomaso (under the same licence).
 
 Files:
+ images/outfit/liquid?sodium*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+Comment: Derived from works by Saugia (under the same licence) and NomadicVolcano (public domain).
+License: CC-BY-SA-4.0
+
+Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+*
@@ -1549,12 +1555,6 @@ Files:
  images/outfit/microbot?defense?station*
 Copyright: Saugia <https://github.com/Saugia>
 Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same licence).
-License: CC-BY-SA-4.0
-
-Files:
- images/outfit/liquid?sodium*
-Copyright: Saugia <https://github.com/Saugia>
-Comment: Derived from works by NomadicVolcano (public domain).
 License: CC-BY-SA-4.0
 
 Files:
