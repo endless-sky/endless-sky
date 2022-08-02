@@ -967,7 +967,7 @@ ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
 	attributes
-		category "Heavy Freighter"
+		category "Light Freighter"
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500
