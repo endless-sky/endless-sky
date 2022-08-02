@@ -2479,6 +2479,7 @@ system Alcyone
 	fleet "Small Core Pirates" 400
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
+	fleet "Korath Large Raid" 50000
 	object
 		sprite star/m5
 		distance 49.6028
@@ -3285,7 +3286,8 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
-	fleet "Korath Raid" 20000
+	fleet "Korath Large Raid" 50000
+	fleet "Korath Miners" 25000
 	object
 		sprite star/k8
 		period 10
@@ -3821,7 +3823,7 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
-	fleet "Korath Raid" 40000
+	fleet "Korath Large Raid" 40000
 	object
 		sprite star/g0
 		distance 23.474
@@ -4926,6 +4928,67 @@ system Aspidiske
 		sprite planet/rhea-b
 		distance 2771.8
 		period 376.788
+
+system Atik
+	pos -66 -52
+	government Uninhabited
+	arrival 5000
+	habitable 27555
+	belt 1240
+	link Durax
+	asteroids "small rock" 36 1.99
+	asteroids "medium rock" 44 1.57
+	asteroids "large rock" 12 1.08
+	asteroids "small metal" 36 1.26
+	asteroids "medium metal" 75 1.92
+	asteroids "large metal" 14 1.35
+	minables platinum 14 2.8
+	minables tungsten 29 2.9
+	minables gold 24 3.6
+	minables uranium 15 3.8
+	trade Clothing 381
+	trade Electronics 632
+	trade Equipment 605
+	trade Food 261
+	trade "Heavy Metals" 958
+	trade Industrial 738
+	trade "Luxury Goods" 1097
+	trade Medical 651
+	trade Metal 327
+	trade Plastic 416
+	fleet "Small Core Pirates" 10000
+	fleet "Large Core Pirates" 18000
+	fleet "Human Miners" 5000
+	fleet "Korath Miners" 15000
+	object
+		sprite star/b-giant
+		distance 150
+		period 4.4
+	object
+		sprite star/a3
+		distance 300
+		period 4.4
+		offset 180
+	object
+		sprite star/f-dwarf
+		distance 350
+		period 300
+	object
+		sprite planet/gas10-hot
+		distance 1350.7
+		period 119.618
+		object
+			sprite planet/desert4-b
+			distance 304
+			period 26.126
+		object
+			sprite planet/desert0
+			distance 481
+			period 38.374
+	object
+		sprite planet/lava1
+		distance 1905.05
+		period 200.363
 
 system Atria
 	pos -551 532
@@ -8412,7 +8475,7 @@ system Dokdobaru
 			sprite planet/station1k
 				scale 0.5
 			distance 132
-			period 349.820
+			period 349.82
 			offset 180
 	object
 		sprite "planet/ringworld left"
@@ -8701,13 +8764,17 @@ system Durax
 	belt 1287
 	haze _menu/haze-133
 	link Alcyone
+	link Atik
+	link Misam
 	asteroids "small rock" 16 8.1744
 	asteroids "medium rock" 4 5.304
 	asteroids "large rock" 6 6.6768
 	asteroids "small metal" 1 9.1728
 	asteroids "medium metal" 11 7.8624
 	asteroids "large metal" 1 8.6736
-	minables lead 9 12.9774
+	minables platinum 13 6.9774
+	minables uranium 11 5.907
+	minables tungsten 8 5.105
 	trade Clothing 381
 	trade Electronics 747
 	trade Equipment 714
@@ -8721,7 +8788,8 @@ system Durax
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
-	fleet "Korath Raid" 5000
+	fleet "Korath Raid" 7000
+	fleet "Korath Miners" 17000
 	object
 		sprite star/g0-old
 		period 10
@@ -14668,6 +14736,8 @@ system "Kor Ak'Mari"
 	trade Metal 217
 	trade Plastic 524
 	fleet "Korath Raid" 2800
+	fleet "Korath Miners" 5000
+	fleet "Korath Large Raid" 2500
 	object
 		sprite star/carbon
 		period 100
@@ -14729,7 +14799,10 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Home" 1800
+	fleet "Korath Home" 2000
+	fleet "Korath Large Raid" 25000
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Civilian Large" 5000
 	object
 		sprite star/g0
 		period 10
@@ -14793,7 +14866,9 @@ system "Kor Fel'tar"
 	trade Metal 256
 	trade Plastic 478
 	fleet "Korath Raid" 1600
-	fleet "Korath Home" 900
+	fleet "Korath Home" 2500
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Civilian Large" 4000
 	object
 		sprite star/k3
 		period 10
@@ -14859,8 +14934,11 @@ system "Kor Men"
 	trade Medical 844
 	trade Metal 240
 	trade Plastic 497
+	fleet "Korath Home" 800
 	fleet "Korath Raid" 1300
-	fleet "Korath Home" 600
+	fleet "Korath Large Raid" 25000
+	fleet "Korath Civilian Large" 1500
+	fleet "Korath Civilian Miners" 10000
 	object
 		sprite star/f5
 		distance 28.0824
@@ -14922,7 +15000,8 @@ system "Kor Nor'peli"
 	trade Medical 850
 	trade Metal 517
 	trade Plastic 423
-	fleet "Korath Raid" 1000
+	fleet "Korath Large Raid" 30000
+	fleet "Korath Ember Waste Raid" 2500
 	fleet "Korath Home" 500
 	object
 		sprite star/k3
@@ -14991,8 +15070,9 @@ system "Kor Tar'bei"
 	trade Medical 817
 	trade Metal 498
 	trade Plastic 402
-	fleet "Korath Raid" 1200
-	fleet "Korath Home" 600
+	fleet "Korath Civilian Miners" 5000
+	fleet "Korath Home" 1000
+	fleet "Korath Civilian Large" 1000
 	object
 		sprite star/m3
 		period 10
@@ -15045,7 +15125,9 @@ system "Kor Zena'i"
 	trade Metal 478
 	trade Plastic 381
 	fleet "Korath Raid" 800
-	fleet "Korath Home" 1100
+	fleet "Korath Home" 1500
+	fleet "Korath Large Raid" 20000
+	fleet "Korath Civilian Large" 1000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -17683,6 +17765,85 @@ system Mirzam
 			distance 215
 			period 12.1447
 
+system Misam
+	pos -9 -80
+	government Pirate
+	arrival 3835
+	habitable 3835
+	belt 1091
+	link Durax
+	asteroids "small rock" 30 2.4918
+	asteroids "medium rock" 65 2.7068
+	asteroids "large rock" 1 2.561
+	asteroids "small metal" 8 1.2002
+	asteroids "medium metal" 10 2.7702
+	asteroids "large metal" 6 2.2562
+	minables copper 22 2.79651
+	minables silver 18 1.38539
+	minables neodymium 14 1.81077
+	trade Clothing 307
+	trade Electronics 741
+	trade Equipment 661
+	trade Food 168
+	trade "Heavy Metals" 851
+	trade Industrial 787
+	trade "Luxury Goods" 1002
+	trade Medical 688
+	trade Metal 288
+	trade Plastic 368
+	fleet "Small Core Pirates" 750
+	fleet "Large Core Pirates" 2000
+	fleet "Korath Raid" 5000
+	fleet "Korath Large Raid" 11000
+	fleet "Human Miners" 10000
+	fleet "Large Syndicate" 20000
+	fleet "Korath Miners" 15000
+	object
+		sprite star/f5-old
+		distance 50
+		period 10
+	object
+		sprite star/k8
+		distance 150
+		period 10
+		offset 180
+	object
+		sprite star/m-dwarf
+		distance 200
+		period 60
+	object
+		sprite planet/cloud8
+		distance 1094.8
+		period 233.980
+		object
+			sprite planet/lava0-b
+			distance 159
+			period 24.2278
+	object "New Tortuga"
+		sprite planet/ocean3-b
+		distance 3010.56
+		period 1066.96
+		object
+			sprite planet/luna
+			distance 166
+			period 21.8962
+	object
+		sprite planet/gas16
+		distance 4328.56
+		period 1839.46
+		object
+			sprite planet/io
+			distance 232
+			period 15.0975
+		object
+			sprite planet/callisto-b
+			distance 350
+			period 27.9753
+		object
+			sprite planet/ganymede
+			distance 498
+			period 47.4807
+
 system Mizar
 	pos -579 184
 	government Republic
@@ -19816,7 +19977,7 @@ system Polaris
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
-	fleet "Korath Raid" 50000
+	fleet "Korath Large Raid" 50000
 	object
 		sprite star/f5
 		period 10
@@ -22730,7 +22891,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
-	fleet "Korath Raid" 30000
+	fleet "Korath Large Raid" 40000
 	object
 		sprite star/f5
 		distance 21.0246
@@ -23006,7 +23167,6 @@ system "Silver Bell"
 		object
 			sprite planet/station7c
 				scale 0.5
-			distance 0
 			period 503.253
 		object "Periaxle Circuit"
 			sprite planet/station7cb
@@ -27035,7 +27195,7 @@ planet Ahr
 	security 0.6
 
 planet Aksaray
-	attributes "moon" uninhabited
+	attributes moon uninhabited
 	landscape land/mountain26
 	description `At first glance, Aksaray appears to be a fairly generic moon formed from eons of dust and debris compressed into a tight ball by constant gravitational pressure. What is not commonplace is the presence of almost perfectly pyramidal piles of regolith scattered across the world. Querying an orbiting Remnant satellite suggests that these are believed to have been remote mining sites for mineral processing.`
 	description `	A brief consultation of your navigational computer's economic database, however, indicates that all the minerals present in this variant of regolith are very common across the galaxy and have an extremely low value.`
@@ -27457,7 +27617,7 @@ planet Canyon
 		fleet "Small Syndicate" 5
 
 planet Capitoline
-	attributes "lava" uninhabited
+	attributes lava uninhabited
 	landscape land/lava8
 	description `The harsh landscape of Capitoline is a demonstration of the forces of nature at work. Lava flows and eruptions are regularly seen, and seismic activity is a daily occurrence. As a result, the surface is of comparatively recent origin. Despite this, you can spot a small survey station in the middle of an old lava field. In response to your landing computer's query, the transponder issues a terse statement about the automated scientific station and a warning that its defense systems are active.`
 	description `	Heeding the warning, you land over the horizon from the station. Stepping out onto the surface, you can feel the rumble of the planet beneath you. Despite the ever-present seismic heaving, it feels like you can pick up a subtle pulse in the vibrations. The impression never goes away, but neither you nor your sensors can determine an actual pattern.`
@@ -29428,6 +29588,34 @@ planet "New Tibet"
 	spaceport `	The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
 	security 0.1
 
+planet "New Tortuga"
+	attributes core "core pirate" factory pirate religious
+	landscape land/fog6
+	description `A planet of violent storms and frequent earthquakes, New Tortuga does not have a lot to offer the average spacefarer. The most significant settlements on the planet are built predominantly underground, far from any fault lines, with only obscure, hardened access areas. Combined with the fortress-like blast doors that blockade the spaceport entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
+	description `	Most of the inhabitants of this planet are Syndicate dissidents who mainly support themselves through manufacturing. The Syndicate often destroys pirate factories at their borders, but their fleets do not find the monetary cost of venturing as far as New Tortuga worth the benefit. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services for the system.`
+	spaceport `As you walk through the spaceport, scattered amidst the bars and black-markets, you notice a surprising number of religious buildings. There are a variety of churches, synagogues, mosques, temples, and others you can't quite remember the names of. Most of the shops are run not by pirates, but by ordinary folk, many wearing religious garb. The citizens here interact with pirates with friendliness and warmth, rather than the hostility and fear you see on other pirate worlds.`
+	spaceport `	The relative peace is frequently broken by a pirate band wandering through the spaceport. While perhaps an auditory nuisance, the pirates here are generally more obedient and disciplined than those seen on other planets. Their ships are more advanced too, judging by the armaments and engines you noticed in the hangar.`
+	shipyard "Basic Ships"
+	shipyard "Core Pirates"
+	shipyard "Advanced Core Pirates"
+	shipyard "Southern Pirates"
+	shipyard "Northern Pirates"
+	shipyard "Megaparsec Basics"
+	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
+	outfitter "Ammo North"
+	outfitter "Ammo South"
+	outfitter "Pirate Outfits"
+	outfitter "Syndicate Basics"
+	outfitter "Syndicate Advanced"
+	"required reputation" -10
+	bribe 0.03
+	security 0
+	tribute 6000
+		threshold 5000
+		fleet "Large Core Pirates" 10
+		fleet "Small Core Pirates" 15
+
 planet "New Wales"
 	attributes "dirt belt" mining
 	landscape land/mountain7
@@ -29785,7 +29973,7 @@ planet "Rekat Moraski"
 	attributes korath station
 	landscape land/station26
 	description `This station is a refinery where ore from asteroids is processed into metal. Larger asteroids are processed where they are; smaller ones are brought into the refinery itself to be mined.`
-	spaceport `This station has several bays large enough that a small asteroid can be steered inside. Tiny harvester robots then work their way into seams of metal in the asteroid, digging deeper and deeper until the asteroid is honeycombed with small tunnels and all the metal-rich veins have been extracted.`
+	spaceport `This station has several bays large enough that a small asteroid can be steered inside. Harvester microbots then work their way into seams of metal in the asteroid, digging deeper and deeper until the asteroid is honeycombed with small tunnels and all the metal-rich veins have been extracted.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -29946,7 +30134,7 @@ planet "Sapira Mereti"
 	attributes korath
 	landscape land/lava11
 	description `This was the seat of government and last military stronghold of the Kor Mereti faction during the Korath civil war. Here they built the factories and shipyards that churned out autonomous warships to prosecute their war against the Kor Sestor. The machines now rule this world alone, and have made it entirely uninhabitable for living creatures as they delve ever deeper into the planet's crust to harvest metal and fuel, and construct more and more factories to build new generations of robotic warships.`
-	spaceport `With no living creatures in sight, the only noises in this refueling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair robots that attach new layers of hull armor and replace weapons and engines that have been destroyed.`
+	spaceport `With no living creatures in sight, the only noises in this refueling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair microbots that lay down new layers of hull armor and rebuild weapons and engines that have been destroyed.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -30075,7 +30263,7 @@ planet Serpens
 		fleet "Large Republic" 3
 
 planet Servian
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa28
 	description `The clouds of Servian swirl in deceptive calmness around the outer limits of the planet, where automated scoop probes don't have any trouble gathering gasses and various exotic elements. Underneath the peaceful exterior, the norm is extreme turbulence and violent storms with lightning thousands of times more powerful than anything observed on nearby planets.`
 	description `	While the Remnant initially sought to discover what was below the storms, they finally ceased their attempts after a lengthy exploration program involving twenty successive probes and three early puffins. Every ship was destroyed before reaching the depths of the planet, but it nonetheless proved a valuable testing ground for their early ship hulls and helped to refine the technology.`
@@ -30570,7 +30758,7 @@ planet Tinker
 		fleet "Large Syndicate" 7
 
 planet Topkapi
-	attributes "moon" uninhabited
+	attributes moon uninhabited
 	landscape land/mars1
 	description `Much like Aksaray, Topkapi is an old moon formed from the smashed remains of countless eons worth of stellar debris. The surface appears to be regularly bombarded by asteroids, although some of the craters show signs of being the site of rather large explosions. Your sensors pick up traces of materials most commonly found in Korath ships.`
 	description `	Topkapi does not appear to have any routine activity, although satellites in orbit indicate that the Remnant monitor it for activity and send ships to investigate asteroid or other impacts on a regular basis.`
@@ -30844,7 +31032,7 @@ planet "Varu Tev'kei"
 	bribe 0
 
 planet Vatican
-	attributes "lava" uninhabited
+	attributes lava uninhabited
 	landscape land/lava10
 	description `Vatican's propensity for constant renewal of the surface has resulted in a flourishing astrogeological academic program. While it has frequently been dismissed as a low priority for Remnant efforts, it has nonetheless received continued support from the defense prefects. Why they would be concerned with the geological formations of an uninhabited planet is unknown, but the research continues.`
 	government Uninhabited
@@ -31009,7 +31197,7 @@ planet "Wyvern Station"
 		fleet "Large Militia" 6
 
 planet Xerolophos
-	attributes "requires: gaslining" "gas giant" uninhabited
+	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
 	description `Although formerly classified as a "Hot Jupiter," Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
 	description `	While it's possible that Xerolophos might have migrated here long ago, the Remnant haven't been able to explain the extreme temperatures of the planet even after years of studies and dispatching dozens of probes.`
