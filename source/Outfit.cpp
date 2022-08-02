@@ -34,6 +34,9 @@ namespace {
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
 		{"cooling energy", 0.},
+		{"cloaking energy", 0.},
+		{"cloaking fuel", 0.},
+		{"cloaking heat", 0.},
 		{"cloaking hull", 0.},
 		{"cloaking hull delay", 0.},
 		{"cloaking shield", 0.},
