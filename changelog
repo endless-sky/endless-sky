@@ -16,6 +16,12 @@ Version 0.9.15:
       * Some Coalition missions are no longer offered on stations. (@Arachi-Lover)
       * Fixed the failure conditions of Earth Day missions to properly fail once Earth Day has passed. (@DownsB)
       * Corrected various uses of concrete vs cement. (@Zitchas)
+      * Changed various mission cargo to lowercase. (@Anarchist2)
+      * Converted a 16-bit linear sprite that rendered strangely to 8-bit sRGB. (@Anarchist2)
+      * Prevented some Hai missions from offering on uninhabited planets. (@Mach565)
+      * Fixed some ships that had more ammo than they could actually hold. (@Hecter94)
+      * Fixed the blending mode on the Remnant afterburner graphics. (@Anarchist)
+      * The first Pact Recon mission is now marked as minor. (@Anarchist2)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -46,9 +52,10 @@ Version 0.9.15:
       * Fixed various issues across Deep jobs and mission. (@Anarchist2)
       * Discharge damage can no longer push a ship's shields negative. (@Amazinite)
       * The landing sound now always plays when starting a new game. (@quyykk)
+      * Fixed incorrect snapshot names on Linux and MacOS. (@quyykk, @sigus)
   * Game content:
     * New content:
-      * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
+      * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
       * Two new civilian Coalition outfits: a fuel pod and a power generation outfit that does not rely on solar power. (@Arachi-Lover)
       * More civilian hails. (@petervdmeer)
       * The Sol system now contains all nine planets. (@ravenshining)
@@ -88,6 +95,8 @@ Version 0.9.15:
       * A new mission chain to investigate the appearance of a mysterious system within the Graveyard. (@beccabunny)
       * A new mission where you speak with a news reporter after the bombings of Geminus and Martini. (@DJF113)
       * A new mission chain where centering on research done by the Kimek. (@Arachi-Lover)
+      * New lower-level bounty jobs to fight and potentially capture smaller Marauder ships more easily. (@Anarchist2)
+      * More names for commodities. (@dorbarker)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -110,6 +119,10 @@ Version 0.9.15:
       * Unwanted Cargo can no trigger anywhere outside of Hai space instead of only in human space. (@Anarchist2)
       * Various minor spaceport missions that previously did not mention their payments now do. (@Anarchist2)
       * The Hauler VI mission no longer offers if you don't have any weapons. (@Anarchist2)
+      * The intro mission now mentions the usefulness of buying local maps. (@Hecter94)
+      * Improved the salaries that you get during the Free Worlds campaign to better cover the ships that you're expected to have at the time. (@Anarchist2)
+      * The final Kestrel mission now displays the thumbnail of the Kestrel you chose. (@Anarchist2)
+      * Increased how much the Coalition pay for Yottrite from 220k per sample to 350k per sample. (@Arachi-Lover)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
@@ -121,17 +134,25 @@ Version 0.9.15:
       * Archons now ramp up significantly in strength when threatened. (@Zitchas)
       * Buffed the Protector to have two more turrets and more HP. (@Amazinite)
       * Rebalanced various human primary weapons, buffing blasters, the proton gun, and the particle cannon, while nerfing lasers. (@Amazinite)
+      * Added an additional Small Heat Shunt to the stock Korath Raider. (@Arachi-Lover)
+      * Rebalanced most engines in the game. Here are some highlights: (@Amazinite)
+        * Afterburners were made 33% smaller while also providing 50% more thrust at 75-80% less fuel, as afterburners have long been considered not worth it to install.
+        * The largest ion and plasma engines were made smaller and easier to install, as these engines were so large that it was almost never feasible to use them.
+        * Ion and plasma engines now provide about 20% more thrust and turn so that atomic engines aren't such a no-brainer upgrade.
+        * Buffed the reverse thrust on Remnant thrusters while reducing their forward thrust to compensate, making Remnant engines more the choice for people who enjoy the reverse thrust instead of being incredibly good for almost everything.
+      * Differentiated the Bulk Freighter and Container Transport. (@ravenshining)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
-      * Remodeled the nuclear missile and afterburner. (@GefullteTaubenbrust2)
+      * Remodeled the nuclear missile, afterburner, and asteroid scanner. (@GefullteTaubenbrust2)
       * Remodeled the Raven, Splinter, and Corvette. (@GefullteTaubenbrust2)
       * Remodeled the Aerie, Bactrian, Mule, and Osprey. (@Saugia)
       * Remodeled the jump drive. (@Scrinarii1337)
       * Added extra detail to differentiate the Kestrel variants. (@Saugia)
       * Added extra detail to the Grab-Strike outfit image and updated its hardpoint sprite. (@ravenshining)
       * Remodeled the Quicksilver and Scout. (@Anarchist)
+      * Remodeled the Enforcer Confrontation Gear outfit. (@1010todd)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -153,6 +174,7 @@ Version 0.9.15:
       * The War Begins conversation no longer refers to ship licensing as being one of the Free Worlds' grievances against the Republic. (@Anarchist2)
       * The on visit dialog for "FW Albatross 2A" now mentions both possible missing objectives. (@Anarchist2)
       * The Strong Wind is now locked by a non-military Wanderer license instead of a military license. (@williaji)
+      * Various human freighters and transports now come stock with reverse thrusters. (@Hecter94)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -179,6 +201,8 @@ Version 0.9.15:
       * Engines can now have all the same costs for firing as weapons can (e.g. fuel, ionization, etc.). (@Ferociousfiend)
       * Weapons can now deal a different hull damage to disabled ships compared to non-disabled ones. (@Amazinite, @ChamEV, @petervdmeer)
       * Outfits and ships can now be given a "heat capacity" attribute which acts like mass in increasing a ship's heat capacity without reducing its accleration and turn rate. (@Ferociousfiend)
+      * Ships can now be given an overheat damage attribute that makes them take damage while overheated. (@10010101001)
+      * Plugins can now optionally disable individual vanilla missions, events, and Person ship spawns. (@tehhowch)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -194,6 +218,7 @@ Version 0.9.15:
       * Weapons with an ammo usage of 0 no longer auto refill that ammunition. (@Amazinite)
       * Improved the behavior of the coward and appeasing ship personalities to more consistently trigger and have an effect. (@Hurleveur)
       * Active missions that you no longer have space for now count as aborted instead of simply failed. (@Amazinite)
+      * Fighters and drones now retreat and redeploy at 50% and 75% health respectively instead of 25% and 35%, increasing their survivability. (@Amazinite)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -223,6 +248,9 @@ Version 0.9.15:
     * The bank now accepts spaces as numeric seperators when inputting a credit amount. (@Hurleveur)
     * Added a new button to the outfitter for toggling the visibility of stored outfits. (@Amacita)
     * The map now shows what outfits you have stored in a system if you hover over it. (@jostephd)
+    * The job marker on systems for available jobs is now drawn before the one for active jobs. (@Jamibaraki)
+    * It is now possible to sort your fleet in the player info panel by model, system, and various other metrics. (@yjhn)
+    * Added a new "fleet jump" command, activated by pressing shift+jump, as an alternative to holding the jump key. Your fleet will jump automatically once every member is ready. (@petervdmeer, @yjhn)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -272,6 +300,8 @@ Version 0.9.15:
     * Standardized various data used by Remnant missions. (@Zitchas)
     * Removed an unnecessary PushOrPop call in the UI class. (@quyykk)
     * Moved the handling of the animation and sound effects when the game starts to a new panel. (@quyykk)
+    * Added VSCode files to the gitignore. (@samrocketman)
+    * Fixed broken --talk launch flag behavior. (@samrocketman)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
