@@ -162,7 +162,7 @@ outfit "Ionic Blaster Prototype"
 		"hull damage" 45
 		"ion damage" 1.5
 	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which does a small amount of ion damage that scrambles the weapons of the target, sometimes disabling it if its power generation is low enough. It also has enough raw damage to be useful in all situations."
-	description "The main focus they had in mind when developping the weapon was making sure they could fill shield beetles with them, unlike the bigger ion cannon. The Unfettered lack the resources to mass produce them, so it is only a prized possession of a lucky few."
+	description "The main focus the Unfettered had in mind when developing the weapon was making sure they could fill all of a Shield Beetle's gun ports with them, unlike the bigger Ion Cannon. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -192,7 +192,7 @@ outfit "Ionic Turret Prototype"
 		"shield damage" 80
 		"hull damage" 45
 		"ion damage" 4.5
-	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed independently. However, they did not stop there, and refined the ion in the shots to be more coherent and thus apply more disruption, at the cost of damage. This weapon quickly disables any small ships that lack power generation, and jamms the weapons of others. It is surprisingly small for a turret, because it requires less cooling to function properly."
+	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed independently. However, they did not stop there - they refined the ion in the shots to be more coherent, and thus apply more disruption, at the cost of dealing less damage. This weapon quickly disables any small ships that lack power generation, and jams the weapons of others. It is surprisingly small for a turret, because it requires less cooling to function properly."
 
 
 outfit "Railgun Slug"
