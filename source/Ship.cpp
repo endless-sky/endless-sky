@@ -1445,10 +1445,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			fuel -= cloakingFuel;
 			energy -= cloakingEnergy;
 			shields -= cloakingShield;
-			shieldDelay += attributes.Get("cloaking shield delay");
 			hull -= cloakingHull;
-			hullDelay += attributes.Get("cloaking hull delay");
 			heat += attributes.Get("cloaking heat");
+			double cloakingShieldDelay = attributes.Get("cloaking shield delay");
+			double cloakingHullDelay = attributes.Get("cloaking hull delay");
+			cloakingShieldDelay = (cloakingShieldDelay < 1.) ?
+				(Random::Real() <= cloakingShieldDelay) : cloakingShieldDelay;
+			cloakingHullDelay = (cloakingHullDelay < 1.) ?
+				(Random::Real() <= cloakingHullDelay) : cloakingHullDelay;
+			shieldDelay += cloakingShieldDelay;
+			hullDelay += cloakingHullDelay;
 		}
 		else if(cloakingSpeed)
 		{
