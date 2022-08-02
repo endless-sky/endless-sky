@@ -155,7 +155,7 @@ outfit "Ionic Blaster Prototype"
 		"hull damage" 45
 		"ion damage" 1.5
 	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which does a small amount of ion damage that scrambles the weapons of the target, sometimes disabling it if its power generation is low enough. It also has enough raw damage to be useful in all situations."
-	description "The main focus the Unfettered had in mind when developing the weapon was making sure they could fill all of a Shield Beetle's gun ports with them, unlike the bigger Ion Cannon. The Unfettered lack the resources to mass produce them, so it is only a prized possession of a lucky few."
+	description "The main focus the Unfettered had in mind when developing the weapon was making sure they could fill all of a Shield Beetle's gun ports with them, unlike the bigger Ion Cannon. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
