@@ -4,7 +4,7 @@ Version 0.9.15:
     * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @McloughlinGuy, @nathan-b, @oo13, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
+      * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -15,6 +15,7 @@ Version 0.9.15:
       * "Defend New Tibet" now has a fail dialog. (@Terin)
       * Some Coalition missions are no longer offered on stations. (@Arachi-Lover)
       * Fixed the failure conditions of Earth Day missions to properly fail once Earth Day has passed. (@DownsB)
+      * Corrected various uses of concrete vs cement. (@Zitchas)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -43,6 +44,8 @@ Version 0.9.15:
       * Haze is now drawn with a slightly different zoom level to avoid premature culling. (@Terin)
       * The current flagship is now always correctly displayed in the load panel. (@Terin)
       * Fixed various issues across Deep jobs and mission. (@Anarchist2)
+      * Discharge damage can no longer push a ship's shields negative. (@Amazinite)
+      * The landing sound now always plays when starting a new game. (@quyykk)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -82,6 +85,9 @@ Version 0.9.15:
       * A new set of missions involving the various Arach houses. (@Arachi-Lover)
       * New jobs and missions in the Deep region to encourage players to stick around and discover more major storylines there. (@MasterOfGrey)
       * Added a new, elusive space creature to the Ember Waste. (@Galaucus)
+      * A new mission chain to investigate the appearance of a mysterious system within the Graveyard. (@beccabunny)
+      * A new mission where you speak with a news reporter after the bombings of Geminus and Martini. (@DJF113)
+      * A new mission chain where centering on research done by the Kimek. (@Arachi-Lover)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -101,6 +107,9 @@ Version 0.9.15:
       * Change the government of some hostile mission NPCs to dummy governments to prevent permanent reputation loss with the main government. (@PeacefulPotato)
       * Hai jobs now grant a small amount of reputation upon completion, allowing access to Hai-home without the need to fight the Unfettered. (@Terin)
       * Moved the defer option in "There Might Be Riots 1" to an earlier point so that information isn't repeated if the player defers multiple times. (@Anarchist2)
+      * Unwanted Cargo can no trigger anywhere outside of Hai space instead of only in human space. (@Anarchist2)
+      * Various minor spaceport missions that previously did not mention their payments now do. (@Anarchist2)
+      * The Hauler VI mission no longer offers if you don't have any weapons. (@Anarchist2)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
@@ -110,17 +119,19 @@ Version 0.9.15:
       * Lowered the offer requirements on more lucrative jobs in human space. (@Terin)
       * Increased the Lampyrid's number of bunks to match the source material. (@Zitchas)
       * Archons now ramp up significantly in strength when threatened. (@Zitchas)
+      * Buffed the Protector to have two more turrets and more HP. (@Amazinite)
+      * Rebalanced various human primary weapons, buffing blasters, the proton gun, and the particle cannon, while nerfing lasers. (@Amazinite)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
-      * Remodeled the nuclear missile. (@GefullteTaubenbrust2)
+      * Remodeled the nuclear missile and afterburner. (@GefullteTaubenbrust2)
       * Remodeled the Raven, Splinter, and Corvette. (@GefullteTaubenbrust2)
       * Remodeled the Aerie, Bactrian, Mule, and Osprey. (@Saugia)
       * Remodeled the jump drive. (@Scrinarii1337)
       * Added extra detail to differentiate the Kestrel variants. (@Saugia)
       * Added extra detail to the Grab-Strike outfit image and updated its hardpoint sprite. (@ravenshining)
-      * Remodeled the Quicksilver. (@Anarchist)
+      * Remodeled the Quicksilver and Scout. (@Anarchist)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -141,6 +152,7 @@ Version 0.9.15:
       * Added ramscoops to the outfitters of some Far North worlds. (@williaji)
       * The War Begins conversation no longer refers to ship licensing as being one of the Free Worlds' grievances against the Republic. (@Anarchist2)
       * The on visit dialog for "FW Albatross 2A" now mentions both possible missing objectives. (@Anarchist2)
+      * The Strong Wind is now locked by a non-military Wanderer license instead of a military license. (@williaji)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -165,6 +177,8 @@ Version 0.9.15:
       * Raised the limit of the number of weapons allowed on a single ship from 32 to effectively unlimited. (@quyykk)
       * Governments can now be made to incur a reputation loss from provoking their ships. (@Terin)
       * Engines can now have all the same costs for firing as weapons can (e.g. fuel, ionization, etc.). (@Ferociousfiend)
+      * Weapons can now deal a different hull damage to disabled ships compared to non-disabled ones. (@Amazinite, @ChamEV, @petervdmeer)
+      * Outfits and ships can now be given a "heat capacity" attribute which acts like mass in increasing a ship's heat capacity without reducing its accleration and turn rate. (@Ferociousfiend)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -207,6 +221,8 @@ Version 0.9.15:
     * Having above 5,000 fuel on your flagship will now render the fuel as a single solid bar instead of adding a dividing line every 100 fuel. (@Ferociousfiend)
     * Improved the ship info display to add units to some attributes and make others more readable. (@stechio, @quyykk)
     * The bank now accepts spaces as numeric seperators when inputting a credit amount. (@Hurleveur)
+    * Added a new button to the outfitter for toggling the visibility of stored outfits. (@Amacita)
+    * The map now shows what outfits you have stored in a system if you hover over it. (@jostephd)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -254,6 +270,8 @@ Version 0.9.15:
     * The custom Set class now has find() and empty() methods. (@petervdmeer)
     * Refactored Ship::TakeDamage to reduce its responsibilities of calculating how much damage was taken and instead calculate that in a new DamageProfile class. (@Amazinite)
     * Standardized various data used by Remnant missions. (@Zitchas)
+    * Removed an unnecessary PushOrPop call in the UI class. (@quyykk)
+    * Moved the handling of the animation and sound effects when the game starts to a new panel. (@quyykk)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
@@ -281,6 +299,7 @@ Version 0.9.15:
     * Added a validation job for Code::Blocks project files. (@quyykk)
     * Invoke integration tests more portably. (@quyykk)
     * Adpot locally defined reusable workflow syntax. (@quyykk)
+    * Added tests for selling ships. (@petervdmeer)
 
 Version 0.9.14:
   * Bug fixes:
