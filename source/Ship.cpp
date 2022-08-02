@@ -2316,7 +2316,8 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
-	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount || cloak))
+	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount ||
+			(cloak && !attributes.Get("cloaked action"))))
 		return;
 
 	for(Bay &bay : bays)
