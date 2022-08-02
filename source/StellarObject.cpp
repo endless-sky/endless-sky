@@ -164,6 +164,9 @@ bool StellarObject::HasIcon() const
 {
 	return icon && icon->Frames();
 }
+
+
+
 const Sprite *StellarObject::GetIcon() const
 {
 	return icon;
