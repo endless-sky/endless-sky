@@ -179,7 +179,7 @@ mission "Remnant: Bounty 4"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger (Hyperdrive)"
+				"Korath Dredger"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
