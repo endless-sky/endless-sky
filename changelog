@@ -131,14 +131,47 @@ Version 0.9.15:
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
+        * +2 bunks
+        * -20 mass
+        * -0.2 drag
+        * +5 cargo space
+        * +10 outfit space
+        * +6 weapon space
+        * +5 engine space
+        * +15,000 cost
       * Buffed the cargo and bunk capacities of civilian Coalition ships to make them more appealing compared to when you're likely to reach them. (@Arachi-Lover)
+        * +10% cargo and bunks on Saryd light freighters
+        * +20% cargo and bunks on Saryd heavy freighters
+        * +50% bunks and +10% cargo space on all Kimek ships
+        * +20% cargo space on Arach light freighters
+        * +40% cargo space on Arach heavy freighters
       * Gave the Sparrow an extra bunk to slightly increase its effectiveness in capturing other interceptors during the early game. (@Terin)
       * Greatly reduced the required crew and bunks on the Rainmaker so that it's no longer tied with the Gunboat as the highest required crew among human light warships, instead having one of the lowest crew requirements. (@Terin)
-      * Lowered the offer requirements on more lucrative jobs in human space. (@Terin)
+        * 7 -> 3 required crew
+        * 14 -> 7 bunks
+      * Lowered the offer requirements on more lucrative jobs in human space, allowing the player to start running them sooner. (@Terin)
       * Increased the Lampyrid's number of bunks to match the source material. (@Zitchas)
-      * Archons now ramp up significantly in strength when threatened. (@Zitchas)
-      * Buffed the Protector to have two more turrets and more HP. (@Amazinite)
-      * Rebalanced various human primary weapons, buffing blasters, the proton gun, and the particle cannon, while nerfing lasers. (@Amazinite)
+      * Archons now ramp up significantly in strength when they feel threatened. (@Zitchas)
+        * 11x normal DPS when threatened
+      * Buffed the Protector. (@Amazinite)
+        * The Protector has long been considered the worst human heavy warship in the game. While there should be some heavy warships which are better than others, the Protector had almost no redeeming factors. These changes seek to make the Protector more of a heavy weapon's platform, slow but able to pack a considerably punch when within range.
+        * 6 -> 8 turrets, going from "a lot" to "tied with the most among all heavy warships in the game."
+        * +500 shields
+        * +1300 hull
+        * +20 outfit space
+        * +10 weapon space
+      * Rebalanced various human primary weapons. Here are some highlights: (@Amazinite)
+        * Lasers have been the overwhelmingly most popular choice among human primary weapons for years due to their high damage but low firing costs, with blasters seeing little use due to their high energy and heat costs but lower damage. These changes seek to bring all human weapons more in line with one another, making choosing a weapon more a matter of what role you need filled than a matter of which weapon is better than all the rest.
+        * Lasers:
+          * Lasers are a pirate's friend, and always will be. Easy to use and great for disabling ships without destroying them, but not necessarily the best at everything.
+          * +33% firing energy and heat
+        * Blasters:
+          * Blasters are the smallest weapons in human space. They are weak and cheap, but are strong in numbers. Put eight quad blaster turrets on a new Protector and have some fun.
+          * -40% firing energy and heat
+          * +10% shield and hull damage
+        * Cannons:
+          * Cannons are the big guns. Powerful, even in small numbers. The weapons you pull out when you want to punch a hole in something.
+          * +20% shield and hull damage on the Particle Cannon and Proton Gun. The Plasma Cannon has been untouched, as its added heat damage is still rather powerful.
       * Added an additional Small Heat Shunt to the stock Korath Raider. (@Arachi-Lover)
       * Rebalanced most engines in the game. Here are some highlights: (@Amazinite)
         * The goal of this was to improve lesser used engines while also making it so that choosing which engines you use is more a matter of what you're looking for instead of there being one best choice for everything.
@@ -234,7 +267,7 @@ Version 0.9.15:
       * Systems can now define multiple asteroid belts. Asteroid belts can be given weights that determine the likelihood of asteroids appearing in that belt. (@Amazinite)
       * Whether an outfit is determined to have been mined from an asteroid is now handled by a positive "minable" attribute instead of being assumed from a negative "installable" attribute. (@Terin)
       * Jobs that have been offered but not yet accepted can no longer be accepted if all of the job's requirements are no longer met (e.g. have the proper outfit(s) installed, have enough credits for any negative payment), instead of only checking for cargo and passenger space. (@quyykk)
-      * Submunitions now more properly inherit the velocity of the parent projectile, and inaccuracy is more accurate applied. (@Amazinite, @DeBlister, @oo13)
+      * Submunitions now more properly inherit the velocity of the parent projectile, and inaccuracy is more accurately applied. (@Amazinite, @DeBlister, @oo13)
       * Weapons with an ammo usage of 0 no longer auto refill that ammunition. (@Amazinite)
       * Improved the behavior of the coward and appeasing ship personalities to more consistently trigger and have an effect. (@Hurleveur)
       * Active missions that you no longer have space for now count as aborted instead of simply failed. (@Amazinite)
