@@ -1424,19 +1424,28 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(!cloak)
 			cloakDisruption = max(0., cloakDisruption - 1.);
 
-		double cloakingSpeed = CloakingSpeed();
+		// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
+		// will result in it being uncloaked.
+		if(hull / attributes.Get("hull") < attributes.Get("minimal hull for cloaking"))
+			cloakDisruption = 1.;
+
+		const double cloakingSpeed = CloakingSpeed();
+		const double cloakingFuel = attributes.Get("cloaking fuel");
+		const double cloakingEnergy = attributes.Get("cloaking energy");
+		const double cloakingHull = attributes.Get("cloaking hull");
+		const double cloakingShield = attributes.Get("cloaking shield");
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-			&& fuel >= attributes.Get("cloaking fuel")
-			&& energy >= attributes.Get("cloaking energy"));
+			&& fuel >= cloakingFuel && energy >= cloakingEnergy
+			&& MinimumHull() > hull - cloakingHull && shields >= cloakingShield);
 		double defaultCloak = attributes.Get("default cloak");
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
 			cloak = min(1., max(defaultCloak, cloak + cloakingSpeed));
-			fuel -= attributes.Get("cloaking fuel");
-			energy -= attributes.Get("cloaking energy");
-			shields -= attributes.Get("cloaking shield");
+			fuel -= cloakingFuel;
+			energy -= cloakingEnergy;
+			shields -= cloakingShield;
 			shieldDelay += attributes.Get("cloaking shield delay");
-			hull -= attributes.Get("cloaking hull");
+			hull -= cloakingHull;
 			hullDelay += attributes.Get("cloaking hull delay");
 			heat += attributes.Get("cloaking heat");
 		}
