@@ -1390,7 +1390,9 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
+ images/effect/burning?spark/*
  images/effect/coalition?flare/*
+ images/effect/corrosion?spark/*
  images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
