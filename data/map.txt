@@ -3252,8 +3252,8 @@ system Almaaz
 		period 338.371
 	object Freedom
 		sprite planet/cloud2
-		distance 5330.93
-		period 2080.51
+		distance 4530.93
+		period 1630.22
 
 system Almach
 	pos -7 232
@@ -5643,12 +5643,12 @@ system Betelgeuse
 		period 710.321
 	object Prime
 		sprite planet/forest2-b
-		distance 4081.98
-		period 1776.05
+		distance 3581.98
+		period 1459.94
 	object
 		sprite planet/gas13-b
-		distance 6080.11
-		period 3228.62
+		distance 5080.11
+		period 2465.81
 		object
 			sprite planet/rock17-b
 			distance 282
@@ -16602,8 +16602,8 @@ system Mebsuta
 			period 16.1817
 	object
 		sprite planet/gas10
-		distance 4725.69
-		period 1662.40
+		distance 3225.69
+		period 937.504
 		object
 			sprite planet/dust3-b
 			distance 195
@@ -16614,8 +16614,8 @@ system Mebsuta
 			period 25.612
 	object Featherweight
 		sprite planet/forest3-b
-		distance 6155.03
-		period 2471.06
+		distance 4155.03
+		period 1370.56
 		object
 			sprite planet/desert4
 			distance 127
