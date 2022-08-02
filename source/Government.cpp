@@ -143,7 +143,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "enforces" && child.HasChildren())
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
-			provokedOnScan = true; 
+			provokedOnScan = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
