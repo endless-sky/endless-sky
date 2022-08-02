@@ -201,7 +201,7 @@ fleet "Korath Raid"
 	variant 4 
 		"Korath Raider"
 		"Korath Chaser" 2
-	variant
+	variant 1
 		"Korath Raider (Blaze)"
 		"Korath Chaser" 2
 
@@ -217,7 +217,7 @@ fleet "Korath Ember Waste Raid"
 	variant 7
 		"Korath Raider (Ember)"
 		"Korath Chaser" 2
-	variant
+	variant 1
 		"Korath Raider (Ember Shunt)"
 		"Korath Chaser" 2
 
@@ -372,13 +372,13 @@ fleet "Small Kor Sestor"
 	variant 5
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 10
-	variant
+	variant 1
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 6
-	variant
+	variant 1
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 4
-	variant
+	variant 1
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 2
 	variant 6
@@ -387,24 +387,24 @@ fleet "Small Kor Sestor"
 	variant 4
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 9
-	variant
+	variant 1
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 7
-	variant
+	variant 1
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 5
-	variant
+	variant 1
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 2
 	variant 3
 		"Tek Far 109"
 		"Far Lek 14" 9
 		"Far Osk 27" 7
-	variant
+	variant 1
 		"Tek Far 109"
 		"Far Lek 14" 6
 		"Far Osk 27" 3
-	variant
+	variant 1
 		"Tek Far 109"
 		"Far Lek 14" 3
 		"Far Osk 27" 2

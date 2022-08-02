@@ -185,7 +185,7 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 ship "Korath Raider" "Korath Raider (Blaze)"
 	outfits
 		"Blaze-Pike Turret" 4
-		"Digger Mining Turret" 1
+		"Digger Mining Turret"
 		"Korath Warder"
 		"Firelight Missile Bank" 2
 		"Firelight Missile" 40

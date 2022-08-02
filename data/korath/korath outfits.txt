@@ -98,10 +98,10 @@ outfit "Liquid Sodium Cooler"
 	thumbnail "outfit/liquid sodium"
 	"mass" 34
 	"outfit space" -34
-	"heat capacity" 680
-	"energy consumption" 2.4
-	"cooling energy" 5.2
 	"active cooling" 116
+	"cooling energy" 5.2
+	"energy consumption" 2.4
+	"heat capacity" 680
 	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the ship's hottest systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
 
 
@@ -286,9 +286,9 @@ outfit "Afterburner (Stellar Class)"
 	"afterburner heat" 148
 	"afterburner fuel" 0.58
 	"afterburner effect" "korath afterburner huge"
-	"heat capacity" 150
-	"cooling energy" 0.4
 	"active cooling" 8
+	"cooling energy" 0.4
+	"heat capacity" 150
 	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
 	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
 
