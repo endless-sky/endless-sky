@@ -4315,7 +4315,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
-
+    
 	on complete
 		conversation
 			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
@@ -4332,7 +4332,6 @@ mission "Saving Artifacts 4"
 				has "Saving Artifacts 2: done"
 				not "Duel Lokust"
 	landing
-
 	on complete
 		payment 1800000
 		conversation
@@ -4435,3 +4434,4 @@ mission "Dangerous Games 1"
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+      
