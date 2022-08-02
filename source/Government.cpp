@@ -93,6 +93,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "enforces")
+				enforcementZones.clear();
 			else
 				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		}
@@ -141,15 +143,9 @@ void Government::Load(const DataNode &node)
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
 		else if(key == "enforces" && child.HasChildren())
-		{
-			if(!add)
-				enforcementZones.clear();
 			enforcementZones.emplace_back(child);
-		}
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
-		else if(key == "enforces" && child.Token(valueIndex) == "all")
-			enforcementZones.clear();
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
@@ -180,6 +176,8 @@ void Government::Load(const DataNode &node)
 			language = child.Token(valueIndex);
 		else if(key == "raid")
 			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
+		else if(key == "enforces" && child.Token(valueIndex) == "all")
+			child.PrintTrace("Error: Skipping unsupported \"enforces all\" syntax:");
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
