@@ -140,13 +140,25 @@ void Government::Load(const DataNode &node)
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
+		else if(key == "enforces" && child.HasChildren())
+			enforcementZones.emplace_back(child);
+		else if(key == "provoked on scan")
+			provokedOnScan = true; 
+		else if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "player reputation")
+			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "crew attack")
+			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
+		else if(key == "crew defense")
+			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
+		else if(key == "bribe")
+			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "fine")
+			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(!add)
 		{
-			if(key == "provoked on scan")
-				provokedOnScan = true;
-			else if(!hasValue)
-				child.PrintTrace("Error: Expected key to have a value:");
-			else if(key == "display name")
+			if(key == "display name")
 				displayName = child.Token(valueIndex);
 			else if(key == "swizzle")
 				swizzle = child.Value(valueIndex);
@@ -166,25 +178,13 @@ void Government::Load(const DataNode &node)
 				language = child.Token(valueIndex);
 			else if(key == "raid")
 				raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
-		}
-		else if(key == "enforces" && child.HasChildren())
-			enforcementZones.emplace_back(child);
-		else if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
-		else if(key == "player reputation")
-			initialPlayerReputation = add ? initialPlayerReputation + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "crew attack")
-			crewAttack = max(0., add ? child.Value(valueIndex) + crewAttack : child.Value(valueIndex));
-		else if(key == "crew defense")
-			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
-		else if(key == "bribe")
-			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "fine")
-			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(key == "enforces" && child.Token(valueIndex) == "all")
-		{
-			enforcementZones.clear();
-			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+			else if(key == "enforces" && child.Token(valueIndex) == "all")
+			{
+				enforcementZones.clear();
+				child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
