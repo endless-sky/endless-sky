@@ -1437,7 +1437,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		const double cloakingShield = attributes.Get("cloaking shield");
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= cloakingFuel && energy >= cloakingEnergy
-			&& MinimumHull() > hull - cloakingHull && shields >= cloakingShield);
+			&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
 		double defaultCloak = attributes.Get("default cloak");
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
