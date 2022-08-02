@@ -4175,3 +4175,166 @@ mission "Hai Wormhole Warning"
 			label end
 			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
+
+
+
+mission "Saving Artifacts 1"
+	description "An Earth museum cannot care for these historical artifacts anymore. Bring them to <destination>, where they will be safe."
+	minor
+	cargo "artifacts" 5
+	to offer
+		random < 10
+		has "fw conservatory founded"
+	source "Earth"
+	destination "Alexandria"
+	on offer
+		conversation
+			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
+			choice
+				`	"Why can't you just bring them to another Earth museum?"`
+				`	"Sorry, I can't take on this job right now. Ask someone else."`
+					decline
+				`	"Sure, I'll take them there."`
+					goto accept
+			`	"These artifacts are extremely delicate. Ancient manuscripts and the like. One needs special equipment to care for them, and all the museums that could possibly provide that care here are underfunded and overloaded. Earth has many items of historical value, but not enough resources to host them. It's not an ideal combination." He sighs. "Alexandria Station has offered to host them, so we of course accepted."`
+			choice
+				`	"Sure, I'll take them there."`
+				`	"Sorry, I can't take on this job right now. Ask someone else."`
+					decline
+			label accept
+			`	"Wonderful!" He claps his hands together. "We'll start loading the cargo onto your ship." He turns and walks away considerably happier than when you found him.`
+	on complete
+		payment
+		conversation
+			`Unloading the cargo takes an excruciatingly long time, as the artifacts must be handled with extreme care. A local librarian comes up to you and thanks you for the transport, paying you <payment>.`
+			branch combat
+				"combat rating" > 500
+			`	"Your help is greatly appreciated," he says, walking off. His attention seems to be fixed more on the artifacts you brought than on yourself.`
+			label combat
+			`	As he hands you the credit chips, he leans in. "According to our sources, you have some considerable combat experience. We have a task that requires that skillset. I promise you that it's a bit more exciting than transporting musty books, and the pay is much higher too. Meet me in the spaceport if you want to learn more."`
+			accept
+
+mission "Saving Artifacts 2"
+	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <source>, where they will be safe."
+	minor
+	source "Alexandria"
+	destination "Greenrock"
+	to offer
+		has "Saving Artifacts 1: done"
+	on offer
+		conversation
+			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally mispellt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
+			label choice
+			choice
+				`	"Why can't you get the Navy involved with this?"`
+				`	"Why should I bring them back to Alexandria? Don't they belong to the Conservatory?"`
+					goto conservatory
+				`	"How am I supposed to find those statues? They could be anywhere on that planet."`
+					goto find
+				`	"I can handle some pirates. I'll get those statues back."`
+					goto accept
+				`	"No way am I risking my life for some hunks of marble. Find someone else."`
+					decline
+			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in  their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
+				goto choice
+			label conservatory
+			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
+				goto choice
+			label find
+			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty'. If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
+				goto choice
+			label accept
+			`	"Excellent. You're doing a service to humanity's cultural memory."`
+				accept
+	on complete
+		conversation
+			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures". Not seeing any better leads, you go in.`
+			`	The inside is damp and poorly lit, but you can make out various paintings, manuscripts, and other expensive-looking items. "How can I help you?" the store clerk asks in a disarmingly friendly voice.`
+			choice
+				`	"You don't happen to know of a local warlord named Lokust, do you?"`
+				`	"Have you had any Greek statues pass by through here?"`
+			`	The clerk laughs. "You're trying to get Alexandria's shipment back, aren't you?" Before you can answer, he continues. "If you want my client Lokust's statues, I'm afraid you're gonna have to pay a pretty penny for them. 500,000 credits is his asking price."`
+			choice
+				`	"Alright, I'll pay."`
+					goto pay
+				`	"Can't we negotiate?"`
+				`	"I can't pay that much!"`
+			`	"Sorry, his price is firm. I'm just the dealer - I don't make those decisions." A smirk begins to crawl across his face, and he leans in. "Look, I have no love for Lokust. Always jacking up his cut of the sale, threatening my customers, you get the idea. Not to mention my debts to him." The last part he says in a less bold tone. "What I'm saying is, I wouldn't mind if someone like you took him out. He's a real wacko, always going on about duels and other bull. If I were you, I'd challenge him to one. If he doesn't accept, call him a coward. That's sure to get him riled up." He wheezes in a way vaguely reminiscent of a laugh. "As a reward, I'll give you the statues for free if you come back, but you gotta take out his whole crew, right? Don't want any of his underlings coming for me."`
+			choice
+				`	"Never mind, I'll pay."`
+					goto pay
+				`	"All right, I'll fight him. `
+			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
+			choice
+				`	"Fight me."`
+				`	"I've heard you're willing to duel over those statues you stole from the Library of Alexandria?"`
+			`	The communicator's audio quality is evidently not the highest, as his laugh is barely more than static. "I don't just throw hands with anyone, you see. That would make me little better than some barroom drunk. I have standards. Why should I waste my time with you?"`
+			choice
+				`	"Oh, I see. You're too cowardly to fight."`
+				`	"I didn't realize 'The Great Lokust' was such a weakling."`
+			`	He becomes visibily enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will use them."`
+			`	The communication cuts off. "He always uses that same line," the clerk says, rolling his eyes.`
+			apply
+				set "Duel Lokust"
+			decline
+			label pay
+			action
+				payment -500000
+			`	He looks almost disappointed. "Alright, here's the statues. Don't forget to tell any friends that might be redecorating about our low prices."`
+				decline
+
+mission "Saving Artifacts 3"
+	description "Defeat Lokust as part of a bargain to acquire the stolen statues."
+	source "Greenrock"
+	landing  # This has no offer convo as the choice is handled in mission 2
+	to offer
+		has "Saving Artifacts 2: done"
+		has "Duel Lokust"
+
+	npc kill 
+		personality heroic nemesis waiting staying
+		government "Pirate"
+		ship "Falcon" "Pestilance"
+	
+	npc kill 
+		personality heroic nemesis waiting staying
+		government "Pirate"
+		ship "Headhunter" "Deth"
+
+	npc kill 
+		personality heroic nemesis waiting staying
+		government "Pirate"
+		ship "Headhunter" "Warr"
+
+	npc kill 
+		personality heroic nemesis waiting staying
+		government "Pirate"
+		ship "Headhunter" "Famin"
+
+	npc kill 
+		personality heroic nemesis waiting staying
+		government "Pirate"
+		ship "Headhunter" "Konkwest"
+	
+	on complete
+		conversation
+			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
+			`	You load up the statues, taking care not to attract unwanted attention as well as attempting to avoid creating any new damage. From what you can tell, they're in remarkable condition considering that they were in the hands of a pirate warlord just a few hours ago.`
+
+mission "Saving Artifacts 4"
+	description "Bring the statues back to <planet>"
+	source "Greenrock"
+	destination "Alexandria"
+	to offer
+		or
+			has "Saving Artifacts 3: done"
+			and
+				has "Saving Artifacts 2: done"
+				not "Duel Lokust"
+	landing
+	
+	on complete
+		payment 1800000
+		conversation
+			`You dock on the station and the librarian from earlier comes to greet you almost immediately. "Get the dockworkers, stat!" he calls, then turns to you. "You did get the statues, right?" He relaxes once he sees you nod. As the cargo is unloaded, the librarian hurries up to inspect your haul and shakes his head. "There's damage, but I suppose it's the best we could've hoped for considering the circumstances." He sighs. "Thank you for your help, Captain <last>. You've provided an invaluable service." After paying you <payment>, he turns back towards the statues, focusing his attention on their safe unloading.`
+				decline
