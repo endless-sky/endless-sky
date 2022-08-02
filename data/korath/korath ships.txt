@@ -767,7 +767,7 @@ ship "Korath Haven"
 		"fuel capacity" 1000
 		"cargo space" 1864
 		"outfit space" 3180
-		"weapon capacity" 1147
+		"weapon capacity" 1148
 		"engine capacity" 480
 		"atmosphere scan" 100
 		weapon
