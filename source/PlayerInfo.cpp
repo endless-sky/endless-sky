@@ -2823,10 +2823,14 @@ void PlayerInfo::Save(const string &path) const
 
 
 	// Current game version:
-	out.Write("version", Version::GetVersion());
+	out.Write("game version", Version::GetVersion());
 	const auto commitId = Version::GetCommit();
 	if(!commitId.empty())
+	{
+		out.BeginChild();
 		out.Write("commit", commitId);
+		out.EndChild();
+	}
 
 	// Basic player information and persistent UI settings:
 
