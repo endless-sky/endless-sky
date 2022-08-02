@@ -155,7 +155,7 @@ ship "Korath Raider"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
@@ -315,7 +315,7 @@ ship "Korath Raider Mark XLII"
 	sprite "ship/raider xlii"
 	thumbnail "thumbnail/raider xlii"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 22895000
 		"shields" 29500
 		"hull" 11000
@@ -502,7 +502,7 @@ ship "Korath World-Ship"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		cost 27690000
 		shields 47000
 		hull 34000
