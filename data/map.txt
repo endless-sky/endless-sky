@@ -17142,7 +17142,7 @@ system "Kor Ak'Mari"
 	fleet "Korath Raid" 2800
 	fleet "Korath Miners" 5000
 	fleet "Korath Large Raid" 2500
- 	hazard "Core Sheltered Heat" 4
+	hazard "Core Sheltered Heat" 4
 	hazard "Core Shadow Passing" 5000
 	object
 		sprite star/carbon
