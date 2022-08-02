@@ -4,7 +4,7 @@ Version 0.9.15:
     * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
+      * Typo fixes. (@alex116, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -53,6 +53,9 @@ Version 0.9.15:
       * Discharge damage can no longer push a ship's shields negative. (@Amazinite)
       * The landing sound now always plays when starting a new game. (@quyykk)
       * Fixed incorrect snapshot names on Linux and MacOS. (@quyykk, @sigus)
+      * Fixed an instance of a value of one displaying as "one" on the map outfitter panel while all other values displayed numerically. (@quyykk)
+      * The projectile velocity is no longer applied to firing effects and sounds, which was causing them to appear out of place when moving at high speeds. (@Ferociousfiend)
+      * The damage dropoff of a projectile, should it have it, is no longer influenced by the velocity of the firing ship. (@Amazinite)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -97,6 +100,7 @@ Version 0.9.15:
       * A new mission chain where centering on research done by the Kimek. (@Arachi-Lover)
       * New lower-level bounty jobs to fight and potentially capture smaller Marauder ships more easily. (@Anarchist2)
       * More names for commodities. (@dorbarker)
+      * Created a "Military" commodities type for use in missions. (@dorbarker)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -123,6 +127,7 @@ Version 0.9.15:
       * Improved the salaries that you get during the Free Worlds campaign to better cover the ships that you're expected to have at the time. (@Anarchist2)
       * The final Kestrel mission now displays the thumbnail of the Kestrel you chose. (@Anarchist2)
       * Increased how much the Coalition pay for Yottrite from 220k per sample to 350k per sample. (@Arachi-Lover)
+      * Updated the prisoner transports in some Free Worlds missions to actually be equipped with brigs. (@AlbertNewton)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
@@ -136,16 +141,28 @@ Version 0.9.15:
       * Rebalanced various human primary weapons, buffing blasters, the proton gun, and the particle cannon, while nerfing lasers. (@Amazinite)
       * Added an additional Small Heat Shunt to the stock Korath Raider. (@Arachi-Lover)
       * Rebalanced most engines in the game. Here are some highlights: (@Amazinite)
+        * The goal of this was to improve lesser used engines while also making it so that choosing which engines you use is more a matter of what you're looking for instead of there being one best choice for everything.
         * Afterburners were made 33% smaller while also providing 50% more thrust at 75-80% less fuel, as afterburners have long been considered not worth it to install.
         * The largest ion and plasma engines were made smaller and easier to install, as these engines were so large that it was almost never feasible to use them.
         * Ion and plasma engines now provide about 20% more thrust and turn so that atomic engines aren't such a no-brainer upgrade.
         * Buffed the reverse thrust on Remnant thrusters while reducing their forward thrust to compensate, making Remnant engines more the choice for people who enjoy the reverse thrust instead of being incredibly good for almost everything.
       * Differentiated the Bulk Freighter and Container Transport. (@ravenshining)
+      * Changed Coalition solar panels to use solar heat instead of heat generation. (@Arachi-Lover)
+      * Buffed ion damage. Ionization now causes a ship's weapons to jam in addition to draining the ship's energy, causing ionization to be a damage debuff. The lower a ship's energy capacity and the higher its ionization, the more likely a weapon is to jam when attempting to fire, capping out at 50%. Jammed weapons must reload before attempting to fire again. (@Amazinite)
+      * Rebalanced most battery outfits in the game. Here are some highlights: (@warp-core, @Zitchas)
+        * The goal of this was to make relying on your batteries more of a viable strategy, as with weaker batteries from past versions, outfitting your ship has been almost always a matter of making sure your reactor produces enough energy for all your systems. With stronger batteries, getting the best energy reactor possible should be less of a requirement as you can now rely on your energy capacity to get you through short bursts of intense combat. Even going so far as to use nothing but batteries with little to no energy generation should also be a possibility as a cheaper but not as combat-capable alternative.
+        * Greatly buffed the energy capacity of most battery outfits.
+          * Most dedicated battery outfits have recieved a 4x buff. 
+          * Some outfits that are batteries as a secondary characteristic, such as Korath System Cores or Wanderer Sun reactors, received a 2x buff. 
+          * Wanderer Small and Large Biochemical Cells received a 25x and 42.8x buff respectively.
+        * Greatly reduced the size of the two largest human and Hai batteries to make them more feasible to use.
+        * Cut the cost of dedicated battery outfits in half.
+      * Added an arrival distance to all systems in the game. The arrival distance is equal to the system's habitable distance, capped to the range of [500, 5000]. This caues ships to generally enter the system farther apart from one another and farther from any inhabited planets in the system, improving the ability for a player to pick and choose their fights. (@Zitchas)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
-      * Remodeled the nuclear missile, afterburner, and asteroid scanner. (@GefullteTaubenbrust2)
+      * Remodeled the nuclear missile, afterburner, asteroid scanner, and Wanderer reactors, shield generators, cooling, and weapons. (@GefullteTaubenbrust2)
       * Remodeled the Raven, Splinter, and Corvette. (@GefullteTaubenbrust2)
       * Remodeled the Aerie, Bactrian, Mule, and Osprey. (@Saugia)
       * Remodeled the jump drive. (@Scrinarii1337)
@@ -175,6 +192,9 @@ Version 0.9.15:
       * The on visit dialog for "FW Albatross 2A" now mentions both possible missing objectives. (@Anarchist2)
       * The Strong Wind is now locked by a non-military Wanderer license instead of a military license. (@williaji)
       * Various human freighters and transports now come stock with reverse thrusters. (@Hecter94)
+      * All fighter and drone descriptions now make it clear that you need a fighter or drone bay to carry them. (@Amazinite)
+      * Reduced the mass of quantum keystones to better match their description instead of being a one-ton stone that people apparently carry around. (@dragonmaus)
+      * The first Wanderer colony in Korath space now comes with an outfitter so that you don't need to travel all the way back to Wanderer space to rearm. (@williaji)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -214,11 +234,13 @@ Version 0.9.15:
       * Systems can now define multiple asteroid belts. Asteroid belts can be given weights that determine the likelihood of asteroids appearing in that belt. (@Amazinite)
       * Whether an outfit is determined to have been mined from an asteroid is now handled by a positive "minable" attribute instead of being assumed from a negative "installable" attribute. (@Terin)
       * Jobs that have been offered but not yet accepted can no longer be accepted if all of the job's requirements are no longer met (e.g. have the proper outfit(s) installed, have enough credits for any negative payment), instead of only checking for cargo and passenger space. (@quyykk)
-      * Submunitions now more properly inherit the velocity of the parent projectile. (@Amazinite, @oo13)
+      * Submunitions now more properly inherit the velocity of the parent projectile, and inaccuracy is more accurate applied. (@Amazinite, @DeBlister, @oo13)
       * Weapons with an ammo usage of 0 no longer auto refill that ammunition. (@Amazinite)
       * Improved the behavior of the coward and appeasing ship personalities to more consistently trigger and have an effect. (@Hurleveur)
       * Active missions that you no longer have space for now count as aborted instead of simply failed. (@Amazinite)
       * Fighters and drones now retreat and redeploy at 50% and 75% health respectively instead of 25% and 35%, increasing their survivability. (@Amazinite)
+      * Ships which are appeasing no longer drop their cargo if there are no hostile ships to drop it for. (@DeBlister)
+      * The inaccuracy of a projectile si now also applied to the firing effect. (@DeBlister)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -251,6 +273,10 @@ Version 0.9.15:
     * The job marker on systems for available jobs is now drawn before the one for active jobs. (@Jamibaraki)
     * It is now possible to sort your fleet in the player info panel by model, system, and various other metrics. (@yjhn)
     * Added a new "fleet jump" command, activated by pressing shift+jump, as an alternative to holding the jump key. Your fleet will jump automatically once every member is ready. (@petervdmeer, @yjhn)
+    * Pressing space or double clicking now pauses and unpauses the scrolling of the credits on the main menu. (@quyykk, @tehhowch)
+    * The Home and End keys can now be used to jump to the top and bottom of various panels. (@MagicMuscleMan)
+    * Outfits that cost 0 credits now display as "free." (@quyykk)
+    * The new "Save Order" button now underlines the "v" when holding the alt key to show hotkeys. (@warp-core)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -302,11 +328,15 @@ Version 0.9.15:
     * Moved the handling of the animation and sound effects when the game starts to a new panel. (@quyykk)
     * Added VSCode files to the gitignore. (@samrocketman)
     * Fixed broken --talk launch flag behavior. (@samrocketman)
+    * Added an Average method to WeightedLists to compute the average of its contents. (@tehhowch)
+    * The correct folder for the AppStream file is now used. (@quyykk)
+    * All unit test and integration test files are now located in dedicated files. (@petervdmeer)
+    * Variant is now its own class instead of being contained within Fleet. (@Amazinite)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
     * Added support for additional integration test actions. (@petervdmeer, @tehhowch, @Terin)
-    * Upgraded catch from 2.13.3 to 2.13.8. (@tehhowch)
+    * Upgraded catch from 2.13.3 to 2.13.9. (@tehhowch)
     * Use approximate matcher instead of direct double equality for testing of text parsing. (@tehhowch)
     * Added unit tests for Format. (@tehhowch)
     * Removed the 60hz speed lock on the game during integration testing. (@petervdmeer)
