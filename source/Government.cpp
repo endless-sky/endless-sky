@@ -177,7 +177,10 @@ void Government::Load(const DataNode &node)
 		else if(key == "raid")
 			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
-			child.PrintTrace("Error: Skipping unsupported \"enforces all\" syntax:");
+		{
+			enforcementZones.clear();
+			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
