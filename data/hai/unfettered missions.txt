@@ -3518,7 +3518,7 @@ mission "Unfettered: Know Your Enemy"
 				`	"I guess I'll try to land on their planets."`
 					accept
 				`	"I am not interested in being able to communicate with them."`
-			`	"Well if you want to work with us, you'll have to set that preferance aside. And don't forget: the translator is for communicating with us as well. Some among the most conversative of us despise speaking in your language. This will be a token of good faith on your part."`
+			`	"Well if you want to work with us, you'll have to set that preference aside. And don't forget: the translator is for communicating with us as well. Some among the most conservative of us despise speaking in your language. This will be a token of good faith on your part."`
 			choice
 				`	"I guess I'll try to land on their planets."`
 					accept
