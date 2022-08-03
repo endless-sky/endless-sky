@@ -3079,6 +3079,18 @@ void PlayerInfo::Save(const string &path) const
 	out.Write();
 	out.WriteComment("How you began:");
 	startData.Save(out);
+
+	// Write plugins to player's save file for debugging.
+	if(!GameData::PluginAboutText().empty())
+	{
+		out.Write();
+		out.WriteComment("Installed plugins:");
+		out.Write("plugins");
+		out.BeginChild();
+		for(const auto &plugin : GameData::PluginAboutText())
+			out.Write(plugin.first);
+		out.EndChild();
+	}
 }
 
 
