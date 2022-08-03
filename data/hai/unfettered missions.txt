@@ -1541,7 +1541,7 @@ mission "Unfettered: Escort Hai Fleet"
 			label busy
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks."`
 			label choose
-			`	"A situation has arised: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to make new buildings, and quick!"`
+			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to make new buildings, and quick!"`
 			choice
 				`	"Sure, let's do it!"`
 				`	"Sorry, I can't do this one for you, find someone else.`
@@ -2166,7 +2166,7 @@ mission "Unfettered: The Word Has Spread"
 				`	"No way. I'm not helping in your crusade."`
 					decline
 			label why
-			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory in the forseeable future. Some also join us as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
+			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory in the foreseeable future. Some also join us as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
 			choice
 				`	"Let's gather the Hai then."`
 					goto details
@@ -2784,7 +2784,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You do not yet have 300 tons of nitrogen human coolers that Taer-Fi requested in your cargo hold or installed on your ships. Unselect your ship with "ctrl+click to load in the cargo hold".`
+		dialog `You do not yet have 300 tons of nitrogen human coolers that Taer-Fi requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them.`
 	on complete
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
@@ -3734,7 +3734,7 @@ mission "Unfettered: Start Of The War"
 			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
 				defer
 			label "came alone"
-			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a retorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
+			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a rhetorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
 			`	Si-Ra comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, Hi-Ye has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
 				`	"I was born ready."`
