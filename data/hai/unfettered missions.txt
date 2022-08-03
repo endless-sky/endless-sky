@@ -539,8 +539,8 @@ mission "Unfettered: Bring Hai"
 			label translate
 			action
 				log "Minor People" "Merora" "A young adolescent that came to Unfettered space after she lost her parents to pirates. It seems that she handles that loss very well, at least on the surface."
-			`	"Alright. I am Merora, by the way. I came to Unfettered space after I lost my parents to pirates, a few weeks ago. I have not yet integrated well, so I know what it like to feel isolated." You then present yourself to her, and right after that the proceedings resume. A child approaches the Chiefs, and he speaks very quietly, as if afraid. He appears lost. One of the Chief comes close to him and reassures him before speaking to his request. Merora then translates it to you, "The child wishes to return home, to Hai space. However he cannot do that alone, and the Chief is asking for someone to escort him and find him a suitable transport. All Hai captains, even those who do not sympathise with our cause, would easily accept taking a child back to Hai space, without asking anything in return. It only needs to be arranged by someone, and the child does not know who to turn to." Progressively, every single Hai stands up and says what you're pretty sure means "I do" in Hai. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He then designates one, and the child goes to them.`
-			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. One Hai then arrives; he is probably the last one to pass today. Merora tells you, "He made a simple request, which bothers the Chiefs quite a bit, as he is not asking for a child to be transported, but for a full family, and not into Hai space but here, and there are not as many captains ready to do that. The Chief said that currently no one is available. They will most probably go and ask captains if it can be arranged, later." Then the Chiefs rise up, and one speaks to the crowd. Merora speaks, once again, "It is over, goodbye. I hope we meet again, <first>."`
+			`	"Alright. I am Merora, by the way. I came to Unfettered space after I lost my parents to pirates, a few weeks ago. I have not yet integrated well, so I know what it like to feel isolated." You then introduce yourself to her, and right after that the proceedings resume. A child approaches the Chiefs, and he speaks very quietly, as if afraid. He appears lost. One of the Chief comes close to him and reassures him before speaking to his request. Merora then translates it to you, "The child wishes to return home, to Hai space. However he cannot do that alone, and the Chief is asking for someone to escort him and find him a suitable transport. All Hai captains, even those who do not sympathise with our cause, would easily accept taking a child back to Hai space, without asking anything in return. It only needs to be arranged by someone, and the child does not know who to turn to." Progressively, every single Hai stands up and says what you're pretty sure means "I do" in Hai. The Chief seems very moved by this, as a parent would be to see his child succeed in life. He then designates one, and the child goes to them.`
+			`	The sun is almost set, and you can see that the Chiefs are growing a bit impatient. One Hai then arrives; he is probably the last one to pass today. Merora tells you, "He made a simple request, which bothers the Chiefs quite a bit, as he is not asking for a child to be transported, but for a full family, and not from here into Hai space, but the opposite. There are not as many captains ready to do that. The Chief said that currently no one is available. They will most probably go and ask captains if it can be arranged, later." Then the Chiefs rise up, and one speaks to the crowd. Merora speaks, once again, "It is over, goodbye. I hope we meet again, <first>."`
 			choice
 				`	"Could you help me translate some other times?"`
 				`	(Let her leave.)`
@@ -768,7 +768,7 @@ mission "Unfettered: Prove Your Strength"
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
-			`	"I guess you ought to know... You are supposed to bring only your flagship, but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ships is disabled, or one of us gives up. You can put it off for later at any given time for a symbolic bribe of 1000. Also, it is sometimes tolerated that the victor plunders the ashamed, but absolutely not that he tries to capture his ship. So, are you ready to fight?"`
+			`	"I guess you ought to know... You are supposed to bring only your flagship, but if it is too weak then more ships can be accepted, so long as it is a fair battle. It will last until either one of our ships is disabled, or one of us gives up. You can put it off for later at any given time for a symbolic bribe of 1000 credits, offered in space before the battle begins. You can even call for a time out that way during the battle if it gets too tough for you, and you want to delay it for when you are truly ready. Finally, it is sometimes tolerated that the victor plunders the ashamed, but absolutely not that he tries to capture his ship. So, are you ready to fight?"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
@@ -955,7 +955,7 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	You quickly arrive by a small local town that seems pretty recent. It's constructed with metal and other scraps the builders could gather, and is as deprecated as it gets.`
 			choice
 				`	"Is everything alright?"`
-				`	"There is no need to be worried, that cache is well hidden."`
+				`	"There is no need to be worried, that cache must be well hidden, right?"`
 				`	(Keep walking, ready to reach for my gun.)`
 					goto discreet
 			`	You are not sure what kind of sign he just did, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
@@ -1141,7 +1141,7 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(Shoot.)`
 					goto shoot
 			label shout
-			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and they escape your ship. Thankfully, they didn't manage to steal anything, only to move a few gold bars.`
+			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				defer
 			label follow
 			`You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take him a while. He hasn't noticed you're following him yet.`
@@ -1156,20 +1156,20 @@ mission "Unfettered: I Shall Go Unpunished"
 			action
 				set "unfettered: knows about bars"
 			``
-				defer
+				decline
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
 			choice
 				`(Head in that direction.)`
 				`(Call for help.)`
 					goto help
-			`You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing.`
+			`You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing, and so are two members of your crew.`
 			label lostbars
 			action
 				outfit "Gold Bars" -5
 				set "unfettered: knows about bars"
 			``
-				defer
+				decline
 			label wait
 			`You patiently wait for the intruder to arrive and hit them in the back with your pistol. Given it is a member of your crew that betrayed you, you decide not to involve anyone else, as they could be complicit. You first remove the weapon they are carrying. After doing a thorough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this.`
 			choice
@@ -1181,7 +1181,7 @@ mission "Unfettered: I Shall Go Unpunished"
 			action
 				set "unfettered: knows about bars"
 			``
-				defer
+				decline
 			label light
 			`You throw a bucket of water on the crew member. He then wakes up, and at first refuses to tell you anything, but once you reveal you're aware of their marking, he agrees to reveal something to you. He seems to recognize the hopelessness of his situation, and maybe willing to bargain. "This sign means that I holds my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
 			`You nod, and he then proceeds, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
@@ -1257,7 +1257,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"You could just ask the Hai that come to you from their space about it."`
 				`	"I don't want to get in trouble with the Hai."`
 					decline
-			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. Also most of the Hai who join us are not warriors, but rather artists, others who want to explore diverse ways of seeing the world, or even simply disagree with the ways of the Elders. So do you agree to do this for us?"`
+			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. So do you agree to do this for us?"`
 			choice
 				`	"It seems easy enough. I'll do it."`
 					goto agree
@@ -1422,7 +1422,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 				`	"Why not just do it yourself?"`
 				`	"Sorry, but this seems too risky for me."`
 					decline
-			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value friendship a lot, and once trust is damaged it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
+			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by an misinterpreted act as simple as this, it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
 			choice
 				`	"Seems good to me. I'll do it."`
 					accept
@@ -1506,7 +1506,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 			`	"Yes, my thoughts exactly! The fighters are too agile to be shot down by fixed weapons, but obviously any guns mounted on a turret should easily take down the small ships. Very good! I was worried that having a ship with fighters would mean it would only have a limited weaponry, but it seems even you humans have found a way to remedy that." She barely finishes her phrase before disappearing back to wherever she came from, even more excited than before.`
 				decline
 			label price
-			`	"Yes, the price part needs to be addressed... But their strength is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independent hyperdrive systems." She seems a bit disappointed, but what you said does not seem to change any big plans for her.`
+			`	"Yes, the price part needs to be addressed... But their strength is still something to be respected. The best advantage is that the fighters enjoy the ride and do not need independent hyperdrive systems." She seems a bit disappointed about your opinions on fighters, but what you said does not seem to change any big plans for her.`
 				decline
 			label stories
 			`	"Indeed, so have I, and for once the stories were not exaggerated compared to the facts! I've heard stories ever since the Carrier was first seen by our people. We compared it to a space station."`
@@ -1516,7 +1516,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 mission "Unfettered: Escort Hai Fleet"
 	landing
 	name `Escort a Hai convoy`
-	description `Escort a Hai convoy from <stopovers> to <destination> before the truce expires by <date>.`
+	description `Escort a Hai convoy from <stopovers> to <destination> before <date>.`
 	source "Warfeed"
 	stopover "Greenbloom"
 	deadline 20
@@ -1533,39 +1533,46 @@ mission "Unfettered: Escort Hai Fleet"
 					goto help
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"I'm talking with all the warlords to make sure nobody tries something stupid, else innocent Hai may get hurt."`
+			`	"I'm talking with all the warlords to make sure nobody tries something stupid, else innocent Hai may get hurt. Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group."`
 				goto busy
 			label help
 			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision."`
 				goto choose
 			label busy
-			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before the end of the truce, in 3 weeks."`
+			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks."`
 			label choose
+			`	"A situation has arised: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to make new buildings, and quick!"`
 			choice
 				`	"Sure, let's do it!"`
-				`	"I don't want to help the Unfettered any more.`
+				`	"Sorry, I can't do this one for you, find someone else.`
 					decline
 			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens. If I understand correctly, a small Hai fleet will accompany you too."`
 				accept
-		event "hai / unfettered truce"
-		event "end of hai / unfettered truce" 20
 
 	on enter "Due Yoot"
 		dialog `The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once.`
 
 	npc accompany save
-		government "Hai"
+		government "Hai Merchant (Sympathizers)"
 		to spawn
 			has "Unfettered: stopped on Greenbloom"
 		personality escort timid launching
 		system "Due Yoot"
-		fleet "Small Hai"
 		fleet
 			names "hai"
 			variant
 				"Centipede"
 				"Geocoris"
 				"Water Bug"
+	
+	npc accompany
+		government "Hai Merchant (Sympathizers)"
+		to spawn
+			has "Unfettered: stopped on Greenbloom"
+		personality escort launching
+		system "Due Yoot"
+		fleet "Small Hai"
+
 	npc evade
 		government "Pirate"
 		to spawn
@@ -1582,26 +1589,6 @@ mission "Unfettered: Escort Hai Fleet"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
 		payment 500000
 		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
-
-event "hai / unfettered truce"
-	government "Hai"
-		"attitude toward"
-			"Hai (Unfettered)" 0
-
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Hai" 0
-			"Merchant" 0
-
-event "end of hai / unfettered truce"
-	government "Hai"
-		"attitude toward"
-			"Hai (Unfettered)" -.1
-
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Hai" -.01
-			"Merchant" -.01
 
 
 
@@ -1836,7 +1823,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`	This seems to trouble them deeply. They are split between those who want to use the Korath for technological opportunities, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. When he stands, you see many scars on his arms, and can only guess what he went through. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raids happened long ago. They could not have been responsible for those. They are victims of that war as much as we are. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers." This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
-			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory."`
+			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then transfer the prisonners out of your ship. At first they are worried, because of their lack of movement, but it seems they only entered a state of deep sleep, to recover from their injuries.`
 			branch logs
 				has "Unfettered: alpha logs"
 			``
@@ -1880,7 +1867,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		outfit "Alpha Pirate Crew" -1
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
-			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then.`
+			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
 			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship.`
 			choice
 				`	(Explore the Auxiliary.)`
@@ -2179,7 +2166,7 @@ mission "Unfettered: The Word Has Spread"
 				`	"No way. I'm not helping in your crusade."`
 					decline
 			label why
-			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory, or as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
+			`	"It depends. Some want to utilize the resources of the new worlds that are ready for the taking. Others seek inspiration by seeing our warriors fight. Others still want to join us as civilians, now that they're convinced the living conditions will not be as bad in our territory in the forseeable future. Some also join us as health specialists to mitigate the loss of life. They want change, and we offer that change. They may have all they could possibly need at home, but that doesn't mean they feel like they have a purpose - or that they are fulfilling it."`
 			choice
 				`	"Let's gather the Hai then."`
 					goto details
@@ -2651,7 +2638,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 		has "Unfettered: Solifuge 6: Shipyard Upgrade: active"
 	on offer
 		conversation
-			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. While they load up your ship, you to go to the shipyard to and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks.`
+			`You land and ask the Hai for the Unfettered tribute, which they then prepare. They don't seem to suspect anything. While they load up your ship, you to go to the shipyard to and act like you're considering buying a new ship, and a big one at that. "Unfortunately", you get lost and end up at the facility where they build the Geocoris and Shield Beetles. There is only so much you can learn by looking, so you start discreetly scanning the place. A Hai engineer seems to notice you and comes your way. "Hi, how may I help you," he asks. You suspect he probably noticed you scanning the area, but he doesn't seem to have reported it to the local authorities, yet.`
 			choice
 				`	"Don't mind me, I'm just admiring the shipyard. It's so well... optimized, compared to human standards." (Pretend to move on and go scan another area.)`
 				`	"Actually, I'm here to buy a ship."`
@@ -2670,6 +2657,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 				decline
 			label buyship
 			`	"Oh, is that so? Well, normally I can't sell ships, but I could make an exception for you... But you do understand I cannot sell you a warship." He may mean you'll have to pay more for said ship. Better prepare your bank account! You think he would probably suspect something if you backed out now. Noticing your hesitation, he adds, "There's no issue if you don't have the money right now. I can offer you a loan of the exact price of the ship, with a small... bonus."`
+			label changedmind
 			choice
 				`	"I would like a Centipede."`
 					goto centipede
@@ -2681,16 +2669,25 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 			``
 				goto suspect
 			label centipede
+			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere <fine>."`
+			choice
+				`	"I'll take it, then."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
 			action
 				give ship "Centipede"
 				fine 12000000
-			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere <fine>."`
+			``
 				goto bought
 			label waterbug
+			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you <fine>."`
+			choice
+				`	"I'll take it, then."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
 			action
 				give ship "Water Bug"
 				fine 13000000
-			`	"A fine ship sir, the best of all the cargo haulers! I can assure you this ship takes a lot more punishment than any human hauler can! And it only costs you <fine>."`
 			label bought
 			action
 				set "Unfettered: bought ship"
@@ -2734,7 +2731,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				`	(Follow him.)`
 				`	"I don't have time right now. I'll come back later."`
 					defer
-			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing. They all look around, seeming excited, and like they can't focus on one thing at a time. Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet.`
+			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They all look around, seeming excited, and like they can't focus on one thing at a time. Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet.`
 			choice
 				`	"Here I am. What do you need me for?"`
 				`	(Wait for them to notice me.)`
@@ -3270,23 +3267,35 @@ mission "Unfettered: Close Quarter"
 				`	(Go for the cover on the right.)`
 			branch lucky
 				random < 20
-			`	You try to head for cover, but he's too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
-				goto heyi
+			`	You try to head for cover, but he's too fast, and you receive a shot on your leg, making you fall. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your leg at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+				goto stories
 			label lucky
 			action
 				outfit "Dual Pulse Pistols" 1
+				set "unfettered: won the duel"
 			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
 				goto heyi
 			label ready
-			`	You try to shoot him, but h's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says. Then he goes back to fight with his friends, seemingly in teams.`
+			`	You try to shoot him, but he's too fast and you too inexperienced. You have made yourself an easy target for him by standing still; you fall as you receive a shot to your shoulder. It hurts, but nothing seems to be broken, and soon after you cannot feel anything in your arm at all. You opponent comes to you and helps you to get up. "Pain is a good teacher sometimes," he says.`
+			label stories
+			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
 			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a nice fight, especially considering this must be your first!"`
+			branch "lost"
+				has "unfettered: won the duel"
+			choice
+				`	"Can I help you with something?"`
+					goto speak
+				`	"It was quite fun. Do you do this often?"`
+					goto fun
+			label "lost"
 			choice
 				`	"Can I help you with something?"`
 					goto speak
 				`	"Well, I lost."`
 					goto lost
 				`	"It was quite fun. Do you do this often?"`
+			label fun
 			`	"Fun, that it is! This practice is part of life for most Unfettered. We must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
 				goto speak
 			label lost
