@@ -480,8 +480,7 @@ bool Conversation::ShouldShowText(const map<string, int64_t> &vars, int node, in
 	const auto &data = nodes[node].elements[element];
 	if(data.conditions.IsEmpty())
 		return true;
-	else
-		return data.conditions.Test(vars);
+	return data.conditions.Test(vars);
 }
 
 
@@ -492,8 +491,7 @@ bool Conversation::NodeIsValid(int node) const
 {
 	if(node < 0)
 		return false;
-	else
-		return static_cast<unsigned>(node) < nodes.size();
+	return static_cast<unsigned>(node) < nodes.size();
 }
 
 
@@ -507,8 +505,7 @@ bool Conversation::ElementIsValid(int node, int element) const
 		return false;
 	else if(element < 0)
 		return false;
-	else
-		return static_cast<unsigned>(element) < nodes[node].elements.size();
+	return static_cast<unsigned>(element) < nodes[node].elements.size();
 }
 
 

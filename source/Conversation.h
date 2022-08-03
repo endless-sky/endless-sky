@@ -95,8 +95,10 @@ public:
 	bool ShouldShowText(const std::map<std::string, int64_t> &vars, int node, int element = 0) const;
 	// Returns true if the given node index is in the range of valid nodes for
 	// this Conversation.
-	// Note: The "outcomes" listed above do *not* refer to nodes *within* the
-	// Conversation, and are therefore considered invalid by this function!
+	// Note: This function only considers actual Conversation nodes to be valid
+	// choices. The negative "outcome" values (ACCEPT, DEFER, etc.) are special
+	// sentinel values, rather than indices of Conversation nodes, and are
+	// therefore considered invalid by this function.
 	bool NodeIsValid(int node) const;
 	// Returns true if the given node index is in the range of valid nodes for
 	// this Conversation *and* the given element index is in the range of valid

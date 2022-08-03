@@ -368,7 +368,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 				// the player's conditions, granting payments, triggering events,
 				// and more. They are not allowed to spawn additional UI elements.
 				conversation.GetAction(node).Do(player, nullptr);
-	       		}
+			}
 			else
 			{
 				// This is an ordinary conversation node. Perform any necessary text
