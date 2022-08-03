@@ -2,9 +2,10 @@ Version 0.9.15:
   * Big changes:
     * Completely redid and improved the graphics for all existing stars and added various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
     * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
+    * Added a massive amount of new content to the Korath Exiles, including two new systems, multiple new ships, over two dozen new weapons and outfits, and improved models for older ships. (@ravenshining, @EjoThims, @GefullteTaubenbrust2, @Saugia)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
+      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @Wedge009, @W1zrad, @warp-core, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -25,6 +26,9 @@ Version 0.9.15:
       * Fixed a Punisher variant with a missing hyperdrive. (@quyykk)
       * "FW Pug 1C Return" now doesn't trigger until after the player has visited the waypoint in "FW Pug 1C". (@Amazinite)
       * Fixed the personality of some Remnant NPCs in mission that should have been staying. (@alextd, @quyykk)
+      * Enforced some writing style changes across the whole game, such as proper nouns which end in "s" becoming "s'" when possessive as opposed to "s's" and action choices always being in first person. (@Amazinite, @Anarchist2, @Zitchas)
+      * Fixed some Remnant ship variants that had accidentally been given extra keystones. (@pilover100)
+      * The Hunted mission that sends bounty hunters after the player now more accurately measures the player's fleet strength. (@Amazinite)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -52,7 +56,7 @@ Version 0.9.15:
       * The graphics for effects are no longer mirrored by the game. (@yjhn)
       * Haze is now drawn with a slightly different zoom level to avoid premature culling. (@Terin)
       * The current flagship is now always correctly displayed in the load panel. (@Terin)
-      * Fixed various issues across Deep jobs and mission. (@Anarchist2)
+      * Fixed various issues across Deep jobs and missions. (@Anarchist2)
       * Discharge damage can no longer push a ship's shields negative. (@Amazinite)
       * The landing sound now always plays when starting a new game. (@quyykk)
       * Fixed incorrect snapshot names on Linux and MacOS. (@quyykk, @sigus)
@@ -67,6 +71,12 @@ Version 0.9.15:
       * Planet labels now more properly move out of the way of other objects in the system at all zoom levels. (@warp-core)
       * Fixed a crash that could occur if outfits were stored on a planet from a plugin, the plugin was removed, and then the map was opened. (@quyykk)
       * The confirmation dialog for deleting a save file now correctly verifies the input against the pilot's name as opposed to the file name, which isn't visible in game and may sometimes differ from the pilot's name. (@pilover100)
+      * Overlays are now always drawn at the proper zoom level, fixing overlays being in the wrong location during transitions between zoom levels. (@quyykk)
+      * All RGB pngs are properly converted to RGBA during loading. (@quyykk)
+      * Fixed a potential crash on older MacOS systems when background music plays. (@EricFromCanada)
+      * Fixed a bug with the new fleet jump mechanic being prevented from working by mission NPCs. (@samrocketman)
+      * We now use Windows' "Sleep" system API for framerate control as MinGW 11's Winpthreads implementation is inaccurate. (@quyykk)
+      * Shift+R now properly selects the nearest ship. (@alextd)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -110,7 +120,7 @@ Version 0.9.15:
       * A new mission where you speak with a news reporter after the bombings of Geminus and Martini. (@DJF113)
       * A new mission chain where centering on research done by the Kimek. (@Arachi-Lover)
       * New lower-level bounty jobs to fight and potentially capture smaller Marauder ships more easily. (@Anarchist2)
-      * More names for commodities. (@dorbarker)
+      * More names for commodities. (@dorbarker, @samrocketman)
       * Created a "Military" commodities type for use in missions. (@dorbarker)
       * The pendant mentioned at the end of the Nanchi mission chain is now gifted as an outfit. (@Arachi-Lover)
       * Added new Hai governments with their own fleets to Hai space, greatly increasing the density of ships in the region to better match its high population density while also reducing the amount of carnage that takes place in Wah Ki. (@MasterOfGrey)
@@ -120,6 +130,13 @@ Version 0.9.15:
       * New Deep ship names. (@dorbarker)
       * A new mission where the player encounters an inexperienced mugger. (@Anarchist2)
       * A unique sound for the Remnant afterburner. (@Saugia)
+      * Hostile planets are a bit more unfriendly when you hail them to land. (@Dschiltt)
+      * A new mission chain where you investigate an old Coalition expedition into human space. (@Arachi-Lover)
+      * Created a larger and more powerful version of the Finisher Pod for some Heliarch ships. (@Arachi-Lover)
+      * Various new superstructures in Coalition space. (@Arachi-Lover, @Saugia)
+      * A new mission chain where you investigate a long lost Coalition satellite sent into human space. (@Arachi-Lover)
+      * A new mission where you can help a laborer down on his luck. (@roadrunner56)
+      * The Coalition now have a set of reverse thrusters. (@Hecter64)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -149,6 +166,9 @@ Version 0.9.15:
       * Updated the prisoner transports in some Free Worlds missions to actually be equipped with brigs. (@AlbertNewton)
       * The Remnant missions that ask you to get a copy of Alexandria's archives now make it clear that you keep a copy for yourself. (@Amazinite)
       * The "Deep: Remnant" missions are no longer required to trigger "Deep: Scientist Rescue", which is the set of missions that unlocks the Bactrian. (@Amazinite)
+      * Improved the dialog in one of the new Remnant missions to make it more understandable. (@alextd)
+      * Rewrote part of "FW Hope Recon 1C" to have the Gunboat join the Oathkeepers should you ask them to surrender. (@jostephd)
+      * The senator in "FW Senate 1B" now commends you if you reach the destination in an impossibly short time. (@Hecter64)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
@@ -227,8 +247,9 @@ Version 0.9.15:
       * Remodeled the Enforcer Confrontation Gear outfit. (@1010todd)
       * Modeled the Tear of Skade for new missions in the Deep. (@Anarchist2)
       * Added unique graphics for Wanderer engine flares and corrosion and burn damage-over-time sparks. (@GefullteTaubenbrust2)
-      * Redid plasma, Coalition, Pug, and Korath engine flares. (@GefullteTaubenbrust2)
+      * Redid plasma, Coalition, Pug, and Korath engine flares and Pug explosion effects. (@GefullteTaubenbrust2)
       * Created models for the upcoming Sunder, Mining Drone, Hailstone, Heavy Gust, and Squall. (@Saugia)
+      * Created a whole new scene for the plasma repeater. (@1010todd)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -255,6 +276,8 @@ Version 0.9.15:
       * Reduced the mass of quantum keystones to better match their description instead of being a one-ton stone that people apparently carry around. (@dragonmaus)
       * The first Wanderer colony in Korath space now comes with an outfitter so that you don't need to travel all the way back to Wanderer space to rearm. (@williaji)
       * Black holes now add fuel to ships within their accretion disk, allowing ships that might have entered the system without any remaining fuel to risk getting torn to shreds in order to escape instead of just being stuck forever. (@Amazinite)
+      * Spaceport news on Wanderer planets no longer refers to them as Wanderers before you learn their name. (@Anarchist2)
+      * Coalition worlds now have varying security levels instead of all having the default. (@Arachi-Lover)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -285,6 +308,7 @@ Version 0.9.15:
       * Plugins can now optionally disable individual vanilla missions, events, and Person ship spawns. (@tehhowch)
       * Weapons can now be given "minable damage" which is used to damage minable asteroids in lieu of using hull damage. (@pilover100)
       * Minables can now be given a random hull value that adds to their base hull. (@quyykk)
+      * Added a new autocondition that allows missions to check what your flagship model is. (@warp-core)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -304,6 +328,8 @@ Version 0.9.15:
       * Ships which are appeasing no longer drop their cargo if there are no hostile ships to drop it for. (@DeBlister)
       * The inaccuracy of a projectile is now also applied to the firing effect. (@DeBlister)
       * Expanded the attribute whitelist to allow more outfit attributes to become negative, such as allowing engines to produce energy while in use. (@Ferociousfiend)
+      * Escorts ordered to leave the system will now ignore hostiles to leave instead of continuing to fight. (@alextd)
+      * Music no longer restarts from the beginning if the track trying to be played is the same as the one already playing. (@samrocketman)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -341,6 +367,7 @@ Version 0.9.15:
     * Outfits that cost 0 credits now display as "free." (@quyykk)
     * The new "Save Order" button now underlines the "v" when holding the alt key to show hotkeys. (@warp-core)
     * The find panel on the map no longer turns fast forward off when the interrupt fast foward preference is active. (@Amazinite)
+    * A help dialog is now shown when attempting to buy more cargo than you have space for. (@alextd)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -396,6 +423,11 @@ Version 0.9.15:
     * The correct folder for the AppStream file is now used. (@quyykk)
     * All unit test and integration test files are now located in dedicated directories. (@petervdmeer)
     * Variant is now its own class instead of being contained within Fleet. (@Amazinite)
+    * Added a wrapper class for the stock and regular item pattern observed across multiple classes. (@Amazinite)
+    * Removed the GenericName key from the .desktop file. (@Pointedstick)
+    * Improved support for system-installed scons. (@CAPTAIN1947)
+    * Removed some unncessary trade nodes. (@Anarchist2)
+    * Various internal code improvements. (@quyykk, @tehhowch)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
@@ -428,6 +460,10 @@ Version 0.9.15:
     * Improved version identification in the credits for continuous versions. (@quyykk)
     * Updated the appveyor image to have the correct test binary location. (@tehhowch)
     * Added the EditorConfig style checker to the CI. (@quyykk)
+    * Updated the XCode checker to account for dasherized filenames. (@tehhowch)
+    * Created a CI job for validating copyright entries. (@quyykk)
+    * Maked Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
+    * Added a three second delay to UI steps when debugging. (@petervdmeer)
 
 Version 0.9.14:
   * Bug fixes:
