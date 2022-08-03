@@ -1372,7 +1372,7 @@ mission "Unfettered: Know Your Enemy"
 				`	"I'm in."`
 					accept
 				`	"Why can't you do it yourselves?"`
-			`	"He-Yi is currently busy, too busy to go do a survey in his personal ship, and he will not let anyone else fly it, including me. That means we have no way to do the scouting ourselves without risking lifes."`
+			`	"He-Yi is currently busy, too busy to go do a survey in his personal ship, and he will not let anyone else fly it, including me. That means we have no way to do the scouting ourselves without risking lives."`
 			choice
 				`	"Got it, you need me. I'll do it then."`
 					accept
