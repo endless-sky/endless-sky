@@ -3281,14 +3281,16 @@ mission "Unfettered: Close Quarter"
 			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
 			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a nice fight, especially considering this must be your first!"`
-			branch "lost"
-				has "unfettered: won the duel"
+			branch "lost fight"
+				not "unfettered: won the duel"
 			choice
 				`	"Can I help you with something?"`
 					goto speak
+				`	"Winning felt good."`
+					goto won
 				`	"It was quite fun. Do you do this often?"`
 					goto fun
-			label "lost"
+			label "lost fight"
 			choice
 				`	"Can I help you with something?"`
 					goto speak
@@ -3297,6 +3299,9 @@ mission "Unfettered: Close Quarter"
 				`	"It was quite fun. Do you do this often?"`
 			label fun
 			`	"Fun, that it is! This practice is part of life for most Unfettered. We must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
+				goto speak
+			label won
+			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that young one a lesson! I have something to ask of you."`
 				goto speak
 			label lost
 			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the fight, but you have won something else."`
@@ -3562,7 +3567,7 @@ mission "Unfettered: Bring Detainer"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north."`
+			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north, in order to complete your mission for us."`
 			`	You nod.`
 			`	"Well, that's not our way. We do not ask. We take. Things need to be earned, in battle or otherwise, or they have no value. I have obtained a device that is able to translate your backwards language into ours. Because these birds speak Hai, you will be able to communicate with them later.`
 			`	"If you want this translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would neutralize one's engines. Such a weapon would be a very nice addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned this translator."`
@@ -3729,19 +3734,15 @@ mission "Unfettered: Start Of The War"
 			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
 				defer
 			label "came alone"
-			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?"`
+			`You find Si-Ra and Hi-Ye waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a retorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
+			`	Si-Ra comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, Hi-Ye has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
-				`	"Not yet. I will come back when I am."`
-					goto later
 				`	"I was born ready."`
-			`	"And may you die ready as well." Si-Ra comes closer and takes you aside to speak to you, privately. "I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, Hi-Ye has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee."`
-			choice
-				`	"You don't scare me."`
 				`	"On second thought, I'll come back later."`
 					goto later
 				`	"Now that it's here I'm starting to realize I don't want to be a part of your way. I'm out.`
 					decline
-			`	"That is good! Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
+			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
 				accept
 			label later
 			`	"Be sure to come back soon. War cannot wait forever."`
@@ -3771,7 +3772,7 @@ mission "Unfettered: Start Of The War"
 				`	"You were overconfident, and that's what let you down."`
 					goto mistake
 				`	"A good fight, but you just had no chance against my superior firepower."`
-				`	"You lacked coordination with each other."`
+				`	"I was easily able to outmanoeuver you."`
 					goto mistake
 				`	"Nothing specific. Well fought to both of you."`
 					goto train
@@ -3794,7 +3795,12 @@ mission "Unfettered: Start Of The War"
 		#"reputation: Wanderer" <?= -1000
 		conversation
 			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can muster an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our colors. We have informed the Hai of your new colors so that they will recognize you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
-			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him. You must be burning with questions about my ship. I am prepared to answer a few."`
+			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
+			choice
+				`	"I would like to ask a few questions, about your ship."`
+				`	"I am honoured, and hope we will fight again, later."`
+					accept
+			`	"Yes, that was to be expected. I am prepared to answer a few."`
 			action
 				"Unfettered: questions" = -1
 			label questions
