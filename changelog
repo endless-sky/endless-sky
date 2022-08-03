@@ -4,7 +4,7 @@ Version 0.9.15:
     * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alex116, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
+      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @Wedge009, @W1zrad, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -22,6 +22,9 @@ Version 0.9.15:
       * Fixed some ships that had more ammo than they could actually hold. (@Hecter94)
       * Fixed the blending mode on the Remnant afterburner graphics. (@Anarchist)
       * The first Pact Recon mission is now marked as minor. (@Anarchist2)
+      * Fixed a Punisher variant with a missing hyperdrive. (@quyykk)
+      * "FW Pug 1C Return" now doesn't trigger until after the player has visited the waypoint in "FW Pug 1C". (@Amazinite)
+      * Fixed the personality of some Remnant NPCs in mission that should have been staying. (@alextd, @quyykk)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -56,11 +59,19 @@ Version 0.9.15:
       * Fixed an instance of a value of one displaying as "one" on the map outfitter panel while all other values displayed numerically. (@quyykk)
       * The projectile velocity is no longer applied to firing effects and sounds, which was causing them to appear out of place when moving at high speeds. (@Ferociousfiend)
       * The damage dropoff of a projectile, should it have it, is no longer influenced by the velocity of the firing ship. (@Amazinite)
+      * Fixed an instance where the player could be fined for outfits that had been put into their cargo hold but were removed. (@quyykk)
+      * Improved synchronization of the calculation and rendering threads. Turns out the game has always been rendering one frame slow before. (@quyykk)
+      * Auto-aiming no longer requires that either auto-fire be active or that the primary fire button be held, meaning that auto-aiming will always work when targeting something. (@Mr-L-oof)
+      * NPCs no longer offer to refuel you if you don't have the ability to jump out of the system. (@quyykk)
+      * The names of ships are now drawn on top of the ship thumbails in the shipyard, avoiding large thumbnails obscuring the ship name. (@Amazinite)
+      * Planet labels now more properly move out of the way of other objects in the system at all zoom levels. (@warp-core)
+      * Fixed a crash that could occur if outfits were stored on a planet from a plugin, the plugin was removed, and then the map was opened. (@quyykk)
+      * The confirmation dialog for deleting a save file now correctly verifies the input against the pilot's name as opposed to the file name, which isn't visible in game and may sometimes differ from the pilot's name. (@pilover100)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
       * Two new civilian Coalition outfits: a fuel pod and a power generation outfit that does not rely on solar power. (@Arachi-Lover)
-      * More civilian hails. (@petervdmeer)
+      * More civilian hails. (@Galaucus, @petervdmeer)
       * The Sol system now contains all nine planets. (@ravenshining)
       * A new devastating but risky weapon for Ka'het drones. (@beccabunny)
       * More Remnant bounty hunting jobs to hunt down the new Korath Dredgers. (@arkhne)
@@ -78,10 +89,10 @@ Version 0.9.15:
       * More civilian and pirate ship names. (@Galaucus, @Pointedstick)
       * A series of worldbuiling missions to the Deep. (@SpearDane)
       * Hai space now contains a series of ancient space stations, some still in use, but some long left dormant, having fulfilled their ancient purpose long ago. (@beccabunny, @MasterOfGrey)
-      * More Republic ship names. (@Corraban2)
+      * More Republic ship names. (@a-random-lemurian, @Corraban2)
       * Three low-level bounty jobs for beginner combat pilots. (@samoja12)
       * Two Wanderer jobs that utilize the brig and luxury accomodations outfits. (@unjown)
-      * A large variety of rare missions intended to highlight the culture of different regions across the galaxy. (@MasterOfGrey, @Arachi-Lover, @ESCelestia, @Galaucus, @TheMarksman-ES)
+      * A large variety of rare missions intended to highlight the culture of different regions across the galaxy. (@Arachi-Lover, @dorbarker, @ESCelestia, @Galaucus, @MasterOfGrey, @TheMarksman-ES, @Zitchas)
       * New disabled hails. (@LepRyot)
       * A mission where the player transports a family from Thrall to Delve. (@Rocketeer456)
       * A mission where the player can get involved in a street scam. (@Rocketeer456)
@@ -101,6 +112,14 @@ Version 0.9.15:
       * New lower-level bounty jobs to fight and potentially capture smaller Marauder ships more easily. (@Anarchist2)
       * More names for commodities. (@dorbarker)
       * Created a "Military" commodities type for use in missions. (@dorbarker)
+      * The pendant mentioned at the end of the Nanchi mission chain is now gifted as an outfit. (@Arachi-Lover)
+      * Added new Hai governments with their own fleets to Hai space, greatly increasing the density of ships in the region to better match its high population density while also reducing the amount of carnage that takes place in Wah Ki. (@MasterOfGrey)
+      * Created a larger human afterburner, the Caldera Afterburner. The old afterburner has been renamed to the Volcanic Afterburner. (@Amazinite, @GefullteTaubenbrust2)
+      * Archons now teleport away when defeated and later respawn. You are not safe. (@Karirawri)
+      * A new set of missions and jobs dealing with Remnant logistics. (@williaji)
+      * New Deep ship names. (@dorbarker)
+      * A new mission where the player encounters an inexperienced mugger. (@Anarchist2)
+      * A unique sound for the Remnant afterburner. (@Saugia)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -120,7 +139,7 @@ Version 0.9.15:
       * Change the government of some hostile mission NPCs to dummy governments to prevent permanent reputation loss with the main government. (@PeacefulPotato)
       * Hai jobs now grant a small amount of reputation upon completion, allowing access to Hai-home without the need to fight the Unfettered. (@Terin)
       * Moved the defer option in "There Might Be Riots 1" to an earlier point so that information isn't repeated if the player defers multiple times. (@Anarchist2)
-      * Unwanted Cargo can no trigger anywhere outside of Hai space instead of only in human space. (@Anarchist2)
+      * Unwanted Cargo can now trigger anywhere outside of Hai space instead of only in human space. (@Anarchist2)
       * Various minor spaceport missions that previously did not mention their payments now do. (@Anarchist2)
       * The Hauler VI mission no longer offers if you don't have any weapons. (@Anarchist2)
       * The intro mission now mentions the usefulness of buying local maps. (@Hecter94)
@@ -128,6 +147,8 @@ Version 0.9.15:
       * The final Kestrel mission now displays the thumbnail of the Kestrel you chose. (@Anarchist2)
       * Increased how much the Coalition pay for Yottrite from 220k per sample to 350k per sample. (@Arachi-Lover)
       * Updated the prisoner transports in some Free Worlds missions to actually be equipped with brigs. (@AlbertNewton)
+      * The Remnant missions that ask you to get a copy of Alexandria's archives now make it clear that you keep a copy for yourself. (@Amazinite)
+      * The "Deep: Remnant" missions are no longer required to trigger "Deep: Scientist Rescue", which is the set of missions that unlocks the Bactrian. (@Amazinite)
     * Balance:
       * Altered the default equation for when a ship becomes disabled to become continuous. The lowest-hull ships still become disabled at about 45% remaining hull, but the highest-hull ships approach a threshold of 10% hull remaining instead of all ships over 4,500 hull becoming disabled at 15%. This results in most human ships becoming disabled slightly earlier while higher health alien ships become disabled slightly later. (@Ferociousfiend)
       * Buffed the Heavy Shuttle while also increasing its price to make it more of a midpoint between the Shuttle and the Scout or Bounder rather than having a massive price gap between the Shuttle and Heavy Shuttle and the aformentioned ships. (@Zitchas)
@@ -185,12 +206,13 @@ Version 0.9.15:
       * Rebalanced most battery outfits in the game. Here are some highlights: (@warp-core, @Zitchas)
         * The goal of this was to make relying on your batteries more of a viable strategy, as with weaker batteries from past versions, outfitting your ship has been almost always a matter of making sure your reactor produces enough energy for all your systems. With stronger batteries, getting the best energy reactor possible should be less of a requirement as you can now rely on your energy capacity to get you through short bursts of intense combat. Even going so far as to use nothing but batteries with little to no energy generation should also be a possibility as a cheaper but not as combat-capable alternative.
         * Greatly buffed the energy capacity of most battery outfits.
-          * Most dedicated battery outfits have recieved a 4x buff. 
-          * Some outfits that are batteries as a secondary characteristic, such as Korath System Cores or Wanderer Sun reactors, received a 2x buff. 
+          * Most dedicated battery outfits have recieved a 4x buff.
+          * Some outfits that are batteries as a secondary characteristic, such as Korath System Cores or Wanderer Sun reactors, received a 2x buff.
           * Wanderer Small and Large Biochemical Cells received a 25x and 42.8x buff respectively.
         * Greatly reduced the size of the two largest human and Hai batteries to make them more feasible to use.
         * Cut the cost of dedicated battery outfits in half.
       * Added an arrival distance to all systems in the game. The arrival distance is equal to the system's habitable distance, capped to the range of [500, 5000]. This caues ships to generally enter the system farther apart from one another and farther from any inhabited planets in the system, improving the ability for a player to pick and choose their fights. (@Zitchas)
+      * Traded some batteries for better engines, weapons, or repairs on Heliarch ships. (@Arachi-Lover)
     * Graphics:
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
@@ -203,6 +225,10 @@ Version 0.9.15:
       * Added extra detail to the Grab-Strike outfit image and updated its hardpoint sprite. (@ravenshining)
       * Remodeled the Quicksilver and Scout. (@Anarchist)
       * Remodeled the Enforcer Confrontation Gear outfit. (@1010todd)
+      * Modeled the Tear of Skade for new missions in the Deep. (@Anarchist2)
+      * Added unique graphics for Wanderer engine flares and corrosion and burn damage-over-time sparks. (@GefullteTaubenbrust2)
+      * Redid plasma, Coalition, Pug, and Korath engine flares. (@GefullteTaubenbrust2)
+      * Created models for the upcoming Sunder, Mining Drone, Hailstone, Heavy Gust, and Squall. (@Saugia)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -228,6 +254,7 @@ Version 0.9.15:
       * All fighter and drone descriptions now make it clear that you need a fighter or drone bay to carry them. (@Amazinite)
       * Reduced the mass of quantum keystones to better match their description instead of being a one-ton stone that people apparently carry around. (@dragonmaus)
       * The first Wanderer colony in Korath space now comes with an outfitter so that you don't need to travel all the way back to Wanderer space to rearm. (@williaji)
+      * Black holes now add fuel to ships within their accretion disk, allowing ships that might have entered the system without any remaining fuel to risk getting torn to shreds in order to escape instead of just being stuck forever. (@Amazinite)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -256,6 +283,8 @@ Version 0.9.15:
       * Outfits and ships can now be given a "heat capacity" attribute which acts like mass in increasing a ship's heat capacity without reducing its accleration and turn rate. (@Ferociousfiend)
       * Ships can now be given an overheat damage attribute that makes them take damage while overheated. (@10010101001)
       * Plugins can now optionally disable individual vanilla missions, events, and Person ship spawns. (@tehhowch)
+      * Weapons can now be given "minable damage" which is used to damage minable asteroids in lieu of using hull damage. (@pilover100)
+      * Minables can now be given a random hull value that adds to their base hull. (@quyykk)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -273,7 +302,8 @@ Version 0.9.15:
       * Active missions that you no longer have space for now count as aborted instead of simply failed. (@Amazinite)
       * Fighters and drones now retreat and redeploy at 50% and 75% health respectively instead of 25% and 35%, increasing their survivability. (@Amazinite)
       * Ships which are appeasing no longer drop their cargo if there are no hostile ships to drop it for. (@DeBlister)
-      * The inaccuracy of a projectile si now also applied to the firing effect. (@DeBlister)
+      * The inaccuracy of a projectile is now also applied to the firing effect. (@DeBlister)
+      * Expanded the attribute whitelist to allow more outfit attributes to become negative, such as allowing engines to produce energy while in use. (@Ferociousfiend)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -310,6 +340,7 @@ Version 0.9.15:
     * The Home and End keys can now be used to jump to the top and bottom of various panels. (@MagicMuscleMan)
     * Outfits that cost 0 credits now display as "free." (@quyykk)
     * The new "Save Order" button now underlines the "v" when holding the alt key to show hotkeys. (@warp-core)
+    * The find panel on the map no longer turns fast forward off when the interrupt fast foward preference is active. (@Amazinite)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -363,7 +394,7 @@ Version 0.9.15:
     * Fixed broken --talk launch flag behavior. (@samrocketman)
     * Added an Average method to WeightedLists to compute the average of its contents. (@tehhowch)
     * The correct folder for the AppStream file is now used. (@quyykk)
-    * All unit test and integration test files are now located in dedicated files. (@petervdmeer)
+    * All unit test and integration test files are now located in dedicated directories. (@petervdmeer)
     * Variant is now its own class instead of being contained within Fleet. (@Amazinite)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
@@ -393,6 +424,10 @@ Version 0.9.15:
     * Invoke integration tests more portably. (@quyykk)
     * Adpot locally defined reusable workflow syntax. (@quyykk)
     * Added tests for selling ships. (@petervdmeer)
+    * Removed multiple calls to hashFiles when only single restore key. (@tehhowch)
+    * Improved version identification in the credits for continuous versions. (@quyykk)
+    * Updated the appveyor image to have the correct test binary location. (@tehhowch)
+    * Added the EditorConfig style checker to the CI. (@quyykk)
 
 Version 0.9.14:
   * Bug fixes:
