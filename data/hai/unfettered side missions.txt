@@ -1400,7 +1400,7 @@ mission "Unfettered: Know Your Enemy"
 	on complete
 		payment 1000000
 		conversation
-			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name."`
+			`The herald is there when you land, apparently waiting for you. "My master could not come to receive the scans himself, but be sure I shall give them to him. Please, accept these <payment> credits in his name. I think you deserve a small explanation as to why these aliens are hostile to us. As you probably already know, we are planning to invade them shortly. But to be fair, we have already started doing a few skirmishes with them, notably for testing their strength, but mostly to get food from them. They have huge ships transporting a thousand tons of cargo"`
 			branch "know about the Pug"
 				has "main plot completed"
 			choice
