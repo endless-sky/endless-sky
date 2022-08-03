@@ -198,7 +198,8 @@ mission "Wanderers: Diplomacy"
 	passengers 1
 	to offer
 		has "First Contact: Wanderer: offered"
-		not "Unfettered: Know Your Enemy: active"
+		not "Unfettered: Speak Hai: active"
+		not "language: Wanderer"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
