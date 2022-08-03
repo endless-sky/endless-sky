@@ -135,8 +135,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
-				nodes.back().elements.emplace_back(grand.Token(0), nodes.size());
-				nodes.back().elements.back().text += '\n';
+				nodes.back().elements.emplace_back(grand.Token(0) + '\n', nodes.size());
 
 				LoadGotos(grand);
 			}

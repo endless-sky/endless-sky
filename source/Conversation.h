@@ -108,11 +108,11 @@ public:
 
 private:
 	// This serves multiple purposes:
-	// - In a regular ole' text node, there's exactly one of these. It contains
-	//   the text data, the index of the next node to unconditionally visit,
-	//   and, optionally, a condition set which, if not met, prevents the text
-	//   from being displayed (without affecting which node is processed next).
-	// - In a choice node, there's one of these for each possible choices,
+	// - In a regular text node, there's exactly one of these. It contains the
+	//   text data, the index of the next node to unconditionally visit, and,
+	//   optionally, a condition set which, if not met, prevents the text from
+	//   being displayed (without affecting which node is processed next).
+	// - In a choice node, there's one of these for each possible choice,
 	//   containing the text to display, the node the choice leads to, and,
 	//   optionally, the conditions under which to offer the choice.
 	// - In a branch node, there's two of these. The first one contains the
