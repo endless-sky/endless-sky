@@ -214,7 +214,7 @@ void Hardpoint::Step()
 
 
 // Adjust this weapon's aim by the given amount, relative to its maximum
-// "turret turn" rate.
+// "turret turn" rate. Up to its' angle limit.
 void Hardpoint::Aim(double amount)
 {
 	if(!outfit)

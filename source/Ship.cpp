@@ -311,11 +311,8 @@ void Ship::Load(const DataNode &node)
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
 						const Angle &base = attributes.baseAngle;
-						if(!base.IsInRange(attributes.arc))
-						{
-							grand.PrintTrace("Warning: Custom base angle is ignored as it is outside the given arc range:");
-							defaultBaseAngle = true;
-						}
+						attributes.arc.first += attributes.baseAngle;
+						attributes.arc.second += attributes.baseAngle;
 					}
 				}
 				if(!attributes.isOmnidirectional && defaultBaseAngle)
