@@ -310,9 +310,12 @@ void Ship::Load(const DataNode &node)
 					
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
-						const Angle &base = attributes.baseAngle;
 						attributes.arc.first += attributes.baseAngle;
 						attributes.arc.second += attributes.baseAngle;
+					}
+					if(attributes.arc.first.Degrees() > attributes.arc.second.Degrees())
+					{
+						grand.PrintTrace("Warning: First limit is higher than second limit. Might not work as expected.");
 					}
 				}
 				if(!attributes.isOmnidirectional && defaultBaseAngle)
