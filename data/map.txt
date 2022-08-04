@@ -4459,15 +4459,15 @@ system Antevorta
 		sprite star/carbon-core
 		period 10
 	object
-		sprite planet/desert8
+		sprite planet/io
 		distance 152.41
 		period 30.1051
 	object
-		sprite planet/io
+		sprite planet/lava7-b
 		distance 449.3
 		period 152.378
 	object
-		sprite planet/lava7-b
+		sprite planet/desert8
 		distance 622.34
 		period 248.405
 	object
@@ -13179,8 +13179,8 @@ system Ildaria
 	pos -702 317
 	government Republic
 	attributes "rim" "wolf-rayet"
-	arrival 625
-	habitable 625
+	arrival 3000
+	habitable 3000
 	belt 1132
 	haze _menu/haze-133
 	link Kochab
@@ -13210,27 +13210,36 @@ system Ildaria
 		sprite star/carbon
 		period 10
 	object
-		sprite star/carbon-core
+		sprite star/nova-core
+			scale 2
 		period 10
 	object
+		sprite star/f-giant
+			scale 0.75
+		period 13
+	object
+		sprite star/k-dwarf
+		distance 790
+		period 420
+	object
+		sprite planet/rock6-b
+		distance 1135.47
+		period 612.186
+	object
+		sprite planet/rock17-b
+		distance 1893.08
+		period 1317.87
+	object
 		sprite planet/ice4-b
-		distance 1094.26
-		period 292.686
+		distance 2294.26
+		period 2092.686
 		object
 			sprite planet/ice8
 			distance 130
 			period 16.9135
 	object
-		sprite planet/rock6-b
-		distance 1435.47
-		period 612.186
-	object
-		sprite planet/rock17-b
-		distance 2093.08
-		period 1317.87
-	object
 		sprite planet/dust4-b
-		distance 2812.92
+		distance 2712.92
 		period 2260.86
 
 system "Imo Dep"
@@ -14651,8 +14660,8 @@ system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
 	attributes "korath" "wolf-rayet"
-	arrival 625
-	habitable 625
+	arrival 3000
+	habitable 3000
 	belt 1606
 	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
@@ -14678,29 +14687,33 @@ system "Kor Ak'Mari"
 		sprite star/carbon-core
 		period 100
 	object
-		sprite planet/lava6
-		distance 179.89
-		period 38.6038
-	object
 		sprite planet/lava0-b
 		distance 492.58
 		period 174.918
 	object
+		sprite star/k-dwarf
+		distance 790
+		period 420
+		object
+			sprite planet/lava6
+			distance 79.89
+			period 38.6038
+	object
+		sprite planet/oberon
+		distance 1807.64
+		period 1048.15
+	object
 		sprite planet/ocean6-b
-		distance 874.19
-		period 413.550
+		distance 2874.19
+		period 1413.550
 		object
 			sprite planet/callisto-b
 			distance 166
 			period 16.2305
 	object
 		sprite planet/ice0-b
-		distance 1777.8
-		period 1199.34
-	object
-		sprite planet/oberon
-		distance 2107.64
-		period 1548.15
+		distance 3777.8
+		period 2199.34
 
 system "Kor En'lakfar"
 	pos -31 -33
