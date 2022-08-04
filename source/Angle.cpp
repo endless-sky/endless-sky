@@ -19,6 +19,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <cstdlib>
 #include <vector>
+#include <utility>
+
+using namespace std;
 
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are

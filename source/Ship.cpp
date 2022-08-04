@@ -328,7 +328,7 @@ void Ship::Load(const DataNode &node)
 			if(key == "gun")
 				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
 			else
-				armament.AddTurret(hardpoint, drawUnder, outfit);
+				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
