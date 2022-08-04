@@ -2802,7 +2802,17 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				double offset = (hardpoint.HarmonizedAngle() - hardpoint.GetAngle()).Degrees();
+				Angle targetAngle = hardpoint.GetIdleAngle();
+				double offset = 0.;
+				if(hardpoint.IsOmnidirectional())
+					offset = (targetAngle - hardpoint.GetAngle()).Degrees();
+				else
+				{
+					const auto arcRange = hardpoint.GetArc();
+					const double targetDegree = (targetAngle - arcRange.first).AbsDegrees();
+					const double currentDegree = (hardpoint.GetAngle() - arcRange.first).AbsDegrees();
+					offset = targetDegree - currentDegree;
+				}
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
@@ -2868,7 +2878,31 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				p += v * rendezvousTime;
 
 				// Determine how much the turret must turn to face that vector.
-				double degrees = (Angle(p) - aim).Degrees();
+				double degrees = 0.0;
+				Angle angleToPoint = Angle(p);
+				if(hardpoint.IsOmnidirectional())
+					degrees = (angleToPoint - aim).Degrees();
+				else
+				{
+					auto range = hardpoint.GetArc();
+					const Angle facing = ship.Facing();
+					range.first += facing;
+					range.second += facing;
+					if(!angleToPoint.IsInRange(range))
+					{
+						// Decrease the priority of the target.
+						rendezvousTime += 2. * weapon->TotalLifetime();
+						
+						// Point to the nearer edge of the arc.
+						const double degree1 = (range.first - angleToPoint).Degrees();
+						const double degree2 = (range.second - angleToPoint).Degrees();
+						if(fabs(degree1) < fabs(degree2))
+							angleToPoint = range.first;
+						else
+							angleToPoint = range.second;
+					}
+					degrees = (angleToPoint - range.first).AbsDegrees() - (aim - range.first).AbsDegrees();
+				}
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// All bodies within weapons range have the same basic
 				// weight. Outside that range, give them lower priority.
