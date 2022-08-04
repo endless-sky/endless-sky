@@ -2830,8 +2830,10 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				if(!previous && (Random::Int(60)))
 					continue;
 
-				Angle centerAngle = Angle(hardpoint.GetPoint());
-				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / 180.;
+				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
+				const auto arcRange = hardpoint.GetArc();
+				const auto arcDegrees = (arcRange.first.AbsDegrees() + arcRange.second.AbsDegrees())/2.;
+				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
 			}
