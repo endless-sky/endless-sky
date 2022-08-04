@@ -2,10 +2,10 @@ Version 0.9.15:
   * Big changes:
     * Completely redid and improved the graphics for all existing stars and added various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
     * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
-    * Added a massive amount of new content to the Korath Exiles, including two new systems, multiple new ships, over two dozen new weapons and outfits, and improved models for older ships. (@ravenshining, @EjoThims, @GefullteTaubenbrust2, @Saugia)
+    * Added a massive amount of new content to the Korath Exiles, including two new systems, multiple new ships, over two dozen new weapons and outfits, and improved models for some older ships and outfits. (@ravenshining, @EjoThims, @GefullteTaubenbrust2, @Saugia)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @Wedge009, @W1zrad, @warp-core, @Zitchas)
+      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @Wedge009, @W1zrad, @warp-core, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -29,6 +29,8 @@ Version 0.9.15:
       * Enforced some writing style changes across the whole game, such as proper nouns which end in "s" becoming "s'" when possessive as opposed to "s's" and action choices always being in first person. (@Amazinite, @Anarchist2, @Zitchas)
       * Fixed some Remnant ship variants that had accidentally been given extra keystones. (@pilover100)
       * The Hunted mission that sends bounty hunters after the player now more accurately measures the player's fleet strength. (@Amazinite)
+      * Fixed reputation changes to the Hai from missions to also apply to all the new Hai governments. (@Hurleveur)
+      * The Unfettered Tribute jobs now mention both possible missing objectives in the on visit dialog. (@Hurleveur)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -77,6 +79,11 @@ Version 0.9.15:
       * Fixed a bug with the new fleet jump mechanic being prevented from working by mission NPCs. (@samrocketman)
       * We now use Windows' "Sleep" system API for framerate control as MinGW 11's Winpthreads implementation is inaccurate. (@quyykk)
       * Shift+R now properly selects the nearest ship. (@alextd)
+      * Selecting a mission on the map using the arrow keys now zooms the map to the mission's destination, just as it does when selecting a mission via other means. (@alextd)
+      * Adjusted how planet labels move from opaque to transparent as you move farther away from them as to not cull too early. (@tibetiroka)
+      * The orbit of moons is not taken into account when determining the scale of system orbits on the map, preventing moons from being drawn outside of the UI panel. (@thvk-net)
+      * Fix a crash caused by minable objects with negative payload values. (@quyykk)
+      * Increased the maximum allowed outfit name length by 3 so that all vanilla outfit names from before name trimming was added fit. (@quyykk)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -137,6 +144,9 @@ Version 0.9.15:
       * A new mission chain where you investigate a long lost Coalition satellite sent into human space. (@Arachi-Lover)
       * A new mission where you can help a laborer down on his luck. (@roadrunner56)
       * The Coalition now have a set of reverse thrusters. (@Hecter64)
+      * The player will now be confronted by Republic personnel upon returning to Republic space from their first time in Hai space. (@Amazinite)
+      * A new set of missions and jobs involving transporting goods and people between planets within Sol. (@roadrunner56)
+      * A new mission chain involving transporting valuable artifacts. (@roadrunner56)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -250,6 +260,7 @@ Version 0.9.15:
       * Redid plasma, Coalition, Pug, and Korath engine flares and Pug explosion effects. (@GefullteTaubenbrust2)
       * Created models for the upcoming Sunder, Mining Drone, Hailstone, Heavy Gust, and Squall. (@Saugia)
       * Created a whole new scene for the plasma repeater. (@1010todd)
+      * Doubled the resolution of all station graphics. (@Anarchist2)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -278,6 +289,9 @@ Version 0.9.15:
       * Black holes now add fuel to ships within their accretion disk, allowing ships that might have entered the system without any remaining fuel to risk getting torn to shreds in order to escape instead of just being stuck forever. (@Amazinite)
       * Spaceport news on Wanderer planets no longer refers to them as Wanderers before you learn their name. (@Anarchist2)
       * Coalition worlds now have varying security levels instead of all having the default. (@Arachi-Lover)
+      * Reworded the description of the Pug Biodefense outfit to not suggest that the Pug don't get affected by it, because they do. (@Hecter64)
+      * Changed the Korati Efreti station to always be located between the planet and the sun in the system as the description suggests. (@warp-core)
+      * Added two new ship categories. Space Liner, for very large transport ships, and Utility, for ships which didn't really fit their previous category because they were a hybrid of multiple categories. (@MasterOfGrey)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -309,6 +323,8 @@ Version 0.9.15:
       * Weapons can now be given "minable damage" which is used to damage minable asteroids in lieu of using hull damage. (@pilover100)
       * Minables can now be given a random hull value that adds to their base hull. (@quyykk)
       * Added a new autocondition that allows missions to check what your flagship model is. (@warp-core)
+      * Effects can now be defined with absolute angle and velocity values instead of inheriting the attribute of the parent. (@Hurleveur)
+      * System hazards can now be defined as being "system-wide", causing them to damage all ships in the system regardless of distance and center environmental effect generation on the center of the screen instead of the origin of the hazard. (@Hurleveur, @Amazinite)
     * Mechanic changes:
       * "hit effect" behavior for hazards has been replaced with "target effect". (@petervdmeer)
       * Committing an atrocity now only affects the reputation of governments friendly to the government that the atrocity was committed against. (@Amazinite)
@@ -368,6 +384,8 @@ Version 0.9.15:
     * The new "Save Order" button now underlines the "v" when holding the alt key to show hotkeys. (@warp-core)
     * The find panel on the map no longer turns fast forward off when the interrupt fast foward preference is active. (@Amazinite)
     * A help dialog is now shown when attempting to buy more cargo than you have space for. (@alextd)
+    * Holding ctrl when accepting a job now automatically makes room for it. (@alextd)
+    * The map UI is now capable of displaying an unlimited number of landable objects in a system, as opposed to before where only three planets could be shown and the fourth would begin to push UI off the screen. (@Hurleveur)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -428,6 +446,8 @@ Version 0.9.15:
     * Improved support for system-installed scons. (@CAPTAIN1947)
     * Removed some unncessary trade nodes. (@Anarchist2)
     * Various internal code improvements. (@quyykk, @tehhowch)
+    * Removed Terminal=false and added PrefersNonDefaultGPU and SingleMainWindow keys to the desktop file. (@Pointedstick)
+    * Save files now record the name of all installed plugins. (@Terin)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
@@ -464,6 +484,7 @@ Version 0.9.15:
     * Created a CI job for validating copyright entries. (@quyykk)
     * Maked Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
     * Added a three second delay to UI steps when debugging. (@petervdmeer)
+    * Moved the tests definitions out of the general data folder. (@quyykk)
 
 Version 0.9.14:
   * Bug fixes:
