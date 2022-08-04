@@ -100,7 +100,7 @@ public:
 	double Inaccuracy() const;
 	double TurretTurn() const;
 	double Arc() const;
-	
+
 	double Tracking() const;
 	double OpticalTracking() const;
 	double InfraredTracking() const;
@@ -250,7 +250,7 @@ private:
 	double inaccuracy = 0.;
 	double turretTurn = 0.;
 	double arc = 360.;
-	
+
 	double tracking = 0.;
 	double opticalTracking = 0.;
 	double infraredTracking = 0.;

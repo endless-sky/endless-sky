@@ -2894,7 +2894,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					{
 						// Decrease the priority of the target.
 						rendezvousTime += 2. * weapon->TotalLifetime();
-						
+
 						// Point to the nearer edge of the arc.
 						const double degree1 = (range.first - angleToPoint).Degrees();
 						const double degree2 = (range.second - angleToPoint).Degrees();

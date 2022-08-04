@@ -43,12 +43,12 @@ public:
 		// (directional turret only)
 		std::pair<Angle, Angle> arc;
 	};
-	
+
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
 		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
-	
+
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
 	// Get the location, relative to the center of the ship, from which
@@ -102,19 +102,19 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
-	
+
 	// Get the attributes that can be used as a parameter of the constructor when cloning this.
 	const BaseAttributes &GetBaseAttributes() const;
-	
-	
+
+
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
-	
+
 	// The arc depends on both the base hardpoint and the installed outfit.
 	void UpdateArc();
-	
-	
+
+
 private:
 	// The weapon installed in this hardpoint.
 	const Outfit *outfit = nullptr;

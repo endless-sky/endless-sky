@@ -219,7 +219,7 @@ void Hardpoint::Aim(double amount)
 {
 	if(!outfit)
 		return;
-	
+
 	const double add = outfit->TurretTurn() * amount;
 	if(isOmnidirectional)
 		angle += add;
@@ -287,7 +287,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	Point offset = projectile.Position() - start;
 	if(offset.Length() > range)
 		return false;
-	
+
 	// Check if the missile is within the arc of fire.
 	Angle aim(offset);
 	if(!IsOmnidirectional())
@@ -298,7 +298,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 		if(!aim.IsInRange(range))
 			return false;
 	}
-	
+
 	// Precompute the number of visuals that will be added.
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
@@ -350,10 +350,10 @@ void Hardpoint::Install(const Outfit *outfit)
 		// Reset all the reload counters.
 		this->outfit = outfit;
 		Reload();
-		
+
 		// Update the arc of fire because of change an outfit.
 		UpdateArc();
-		
+
 		// For fixed weapons and idling turrets, apply "gun harmonization,"
 		// pointing them slightly inward so the projectiles will converge.
 		// Weapons that fire in parallel beams don't get a harmonized angle.
@@ -387,7 +387,7 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
-	
+
 	// Update the arc of fire because of change an outfit.
 	UpdateArc();
 }
@@ -444,10 +444,10 @@ void Hardpoint::UpdateArc()
 	}
 	else
 		arc = attributes.arc;
-	
+
 	if(!outfit)
 		return;
-	
+
 	// The installed weapon restricts the arc of fire.
 	const double hardpointsArc = (arc.second - arc.first).AbsDegrees();
 	const double weaponsArc = outfit->Arc();
@@ -455,7 +455,7 @@ void Hardpoint::UpdateArc()
 	{
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
-		
+
 		// The base angle is placed at center as possible.
 		const Angle &firstAngle = arc.first;
 		const Angle &secondAngle = arc.second;

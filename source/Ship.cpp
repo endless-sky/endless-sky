@@ -307,7 +307,7 @@ void Ship::Load(const DataNode &node)
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
-					
+
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
 						attributes.arc.first += attributes.baseAngle;
