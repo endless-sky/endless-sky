@@ -201,6 +201,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapPlanetCard.cpp" />
+		<Unit filename="source/MapPlanetCard.h" />
 		<Unit filename="source/MapSalesPanel.cpp" />
 		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />

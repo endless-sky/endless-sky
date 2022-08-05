@@ -378,14 +378,14 @@ test-data "Fighters and Carriers and Escorts"
 				"Sidewinder Missile Rack" 2
 				"Heavy Laser Turret" 2
 				"Heavy Anti-Missile Turret"
-				
+
 				"NT-200 Nucleovoltaic"
 				"KP-6 Photovoltaic Panel" 2
 				"LP072a Battery Pack"
 				"D41-HY Shield Generator"
 				"Large Radar Jammer"
 				"Laser Rifle" 3
-				
+
 				"X3700 Ion Thruster"
 				"X3200 Ion Steering"
 				"Hyperdrive"
