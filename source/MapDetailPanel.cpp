@@ -605,7 +605,7 @@ void MapDetailPanel::DrawInfo()
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double maximumSize = Screen::Height() - bottomGovY - systemSprite->Height();
+	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY - systemSprite->Height());
 	Point size(planetWidth, min(min(maximumSize, planetPanelHeight),
 		(hasVisited ? planetCards.size() : 0.) * planetHeight));
 	// This needs to fill from the start of the screen.
