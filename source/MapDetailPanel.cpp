@@ -332,7 +332,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y < governmentY && y > governmentY - 30)
 			SetCommodity(SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
-		else if(y >= governmentY && y < governmentY + 20)
+		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
 	if(y < tradeY && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
@@ -343,8 +343,8 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			// The arrows are of size 10.
 			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
 			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
-			const double topY = planetCardInterface->GetValue("planet panel height");
-			bool arrowDown = (!arrowUp && y > Screen::Top() + topY - arrowVerticalOffset);
+			const double planetPanelHeight = planetCardInterface->GetValue("planet panel height");
+			bool arrowDown = (!arrowUp && y > Screen::Top() + planetPanelHeight - arrowVerticalOffset);
 			SetScroll(scroll + (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.));
 		}
 		else
@@ -597,12 +597,16 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double topY = mapInterface->GetValue("planet panel height");
+	double planetPanelHeight = mapInterface->GetValue("planet panel height");
+
+	const double bottomGovY = mapInterface->GetValue("government Y");
+	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
 
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	Point size(planetWidth, min(topY,
+	const double maximumSize = Screen::Height() - bottomGovY - systemSprite->Height();
+	Point size(planetWidth, min(min(maximumSize, planetPanelHeight),
 		(hasVisited ? planetCards.size() : 0.) * planetHeight));
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -628,12 +632,10 @@ void MapDetailPanel::DrawInfo()
 		}
 	}
 
-	const double startingGovY = mapInterface->GetValue("government Y");
 	const double textMargin = mapInterface->GetValue("text margin");
-	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - startingGovY);
+	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - bottomGovY);
 
-	// Draw the information for the government of this system at the top.
-	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
+	// Draw the information for the government of this system at the top of the trade sprite.
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
 	const Font &font = FontSet::Get(14);
@@ -670,7 +672,7 @@ void MapDetailPanel::DrawInfo()
 		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
 			Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
 		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-			Screen::Top() - arrowOffsetY + topY), Point(0., 1.), 10.f, 10.f, 5.f,
+			Screen::Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
 			(scroll < maxScroll) ? medium : dim);
 	}
 
