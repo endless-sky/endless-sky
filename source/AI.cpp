@@ -2804,15 +2804,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				int index = &hardpoint - &ship.Weapons().front();
 				Angle targetAngle = hardpoint.GetIdleAngle();
 				double offset = 0.;
-				if(hardpoint.IsOmnidirectional())
-					offset = (targetAngle - hardpoint.GetAngle()).Degrees();
-				else
-				{
-					const auto arcRange = hardpoint.GetArc();
-					const double targetDegree = (targetAngle - arcRange.first).AbsDegrees();
-					const double currentDegree = (hardpoint.GetAngle() - arcRange.first).AbsDegrees();
-					offset = targetDegree - currentDegree;
-				}
+				offset = (targetAngle - hardpoint.GetAngle()).Degrees();
 				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
 			}
 		return;
