@@ -121,7 +121,7 @@ interface "map detail panel"
 	value "planet panel height" 460
 	value "starting X" 100
 	value "starting Y" 45
-	value "government Y" 800
+	value "government Y" 522
 	value "text margin" 15
 	value "trade height" 120
 	value "arrow x offset" 3
