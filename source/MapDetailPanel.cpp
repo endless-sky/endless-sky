@@ -630,7 +630,7 @@ void MapDetailPanel::DrawInfo()
 
 	const double startingGovY = mapInterface->GetValue("government Y");
 	const double textMargin = mapInterface->GetValue("text margin");
-	uiPoint = Point(Screen::Left() + textMargin, Screen::Top() + startingGovY);
+	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - startingGovY);
 
 	// Draw the information for the government of this system at the top.
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
