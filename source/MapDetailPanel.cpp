@@ -329,7 +329,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
-		else if(y < governmentY && y > governmentY - 20)
+		else if(y < governmentY && y > governmentY - 30)
 			SetCommodity(SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
@@ -662,10 +662,6 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(right, edgePos + rightOff);
 
 
-	const double tradeHeight = mapInterface->GetValue("trade height");
-	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
-	tradeY = uiPoint.Y() - tradeHeight / 2.;
-
 	if(maxScroll)
 	{
 		const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
@@ -678,9 +674,13 @@ void MapDetailPanel::DrawInfo()
 			(scroll < maxScroll) ? medium : dim);
 	}
 
+	const double tradeHeight = mapInterface->GetValue("trade height");
+	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
+
 	// Trade sprite goes after at the bottom.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
+	tradeY = uiPoint.Y() - tradeSprite->Height() / 2. + 15.;
 
 	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
 	uiPoint.X() -= (tradeSprite->Width() / 2. - textMargin);
