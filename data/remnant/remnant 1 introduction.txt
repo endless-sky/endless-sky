@@ -2439,7 +2439,7 @@ mission "Remnant: Salvage 6"
 
 mission "Remnant: Scanning Tolerances"
 	name "Deliver Data to <planet>"
-	description `Deliver data crystal to the researchers on <destination>.`
+	description `Deliver data crystal to a Remnant named Torza on <destination>.`
 	landing
 	deadline 15
 	source
@@ -2447,6 +2447,7 @@ mission "Remnant: Scanning Tolerances"
 	destination
 		government "Remnant"
 		not distance 0
+		not attribute "remnant station"
 	to offer
 		has "license: Remnant Capital"
 		not "remnant untrusted"
@@ -2472,6 +2473,7 @@ mission "Remnant: Scanning Tolerances"
 					defer
 			label agreement
 			`	"Thank you." They hand you the case. "Take it to <destination> by <date>. Torza will meet you there."`
+				accept
 	on complete
 		event "remnant: scanning tolerance"
 		conversation
