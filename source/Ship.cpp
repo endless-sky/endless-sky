@@ -299,6 +299,10 @@ void Ship::Load(const DataNode &node)
 						attributes.isOmnidirectional = false;
 						attributes.arc = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
 						needToCheckAngles = true;
+						if(attributes.arc.first.Degrees() < attributes.arc.second.Degrees())
+						{
+							grand.PrintTrace("Warning: First limit is higher than second limit. Might not work as expected.");
+						}
 					}
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
@@ -312,10 +316,6 @@ void Ship::Load(const DataNode &node)
 					{
 						attributes.arc.first += attributes.baseAngle;
 						attributes.arc.second += attributes.baseAngle;
-					}
-					if(attributes.arc.first.Degrees() > attributes.arc.second.Degrees())
-					{
-						grand.PrintTrace("Warning: First limit is higher than second limit. Might not work as expected.");
 					}
 				}
 				if(!attributes.isOmnidirectional && defaultBaseAngle)
