@@ -1,7 +1,7 @@
 > copy this template to `docs/rfcs/text/0000-my-feature-name.md and then delete this line.  
 - Feature Name: {{some unique, applicable name}}
 - Affected audience: {{who needs to know about this RFC? e.g. Game Developers, Plugin Authors, Players}}
-- RFC PR: [Update this after opening your PR](https://github.com/EndlessSkyCommunity/endless-sky/pull/0000)
+- RFC PR: [Update this after opening your PR](https://github.com/endless-sky/endless-sky/pull/0000)
 - Relevant Issues/RFCs: {{insert links to associated documents & discussions here}}
 
 # Summary
