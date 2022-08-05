@@ -1,8 +1,10 @@
 Version 0.9.15:
   * Big changes:
-    * Completely redid and improved the graphics for all existing stars and added various new star graphics. Also changed the stars for some systems in human space to match what is known about the real star of the same name. (Matteo "Lead" M., @ravenshining)
-    * Added almost 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
-    * Added a massive amount of new content to the Korath Exiles, including two new systems, multiple new ships, over two dozen new weapons and outfits, and improved models for some older ships and outfits. (@ravenshining, @EjoThims, @GefullteTaubenbrust2, @Saugia)
+    * Over a year's worth of new content and bug fixes! We hope it was worth the wait!
+    * Made a large number of graphical improvements, such as the addition of parallax for planets, stars, and haze, and the remodeling and improvement of various assets. See the graphics section for more details.
+    * Made a variety of sweeping balance changes to various ships and outfits in order to improve lesser used items or strategies and turn certain choices into a question of what fits best for the role you're looking for instead of there being single no-brainer choices as to which ship or outfit is the best. See the balance section of the changelog for more details.
+    * Added over 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
+    * Added a massive amount of new content to the Korath Exiles, including two new systems near the core, multiple new ships, over two dozen new weapons and outfits, and improved models for some older ships and outfits. (@ravenshining, @Dragenhart, @EjoThims, @GefullteTaubenbrust2, @MasterOfGrey, @Saugia, @warp-core)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @Galaucus, @infinitewarp, @McloughlinGuy, @nathan-b, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @Wedge009, @W1zrad, @warp-core, @Zitchas)
@@ -104,7 +106,7 @@ Version 0.9.15:
       * A mission where the player is invited to a Coalition university seminar. (@roadrunner56)
       * A mission where the player transports a human to Hai space. (@roadrunner56)
       * More civilian and pirate ship names. (@Galaucus, @Pointedstick)
-      * A series of worldbuiling missions to the Deep. (@SpearDane)
+      * A series of worldbuiling missions for the Deep. (@SpearDane)
       * Hai space now contains a series of ancient space stations, some still in use, but some long left dormant, having fulfilled their ancient purpose long ago. (@beccabunny, @MasterOfGrey)
       * More Republic ship names. (@a-random-lemurian, @Corraban2)
       * Three low-level bounty jobs for beginner combat pilots. (@samoja12)
@@ -244,6 +246,8 @@ Version 0.9.15:
       * Added an arrival distance to all systems in the game. The arrival distance is equal to the system's habitable distance, capped to the range of [500, 5000]. This caues ships to generally enter the system farther apart from one another and farther from any inhabited planets in the system, improving the ability for a player to pick and choose their fights. (@Zitchas)
       * Traded some batteries for better engines, weapons, or repairs on Heliarch ships. (@Arachi-Lover)
     * Graphics:
+      * Completely redid and improved the graphics for all existing stars. (Matteo "Lead" M., @ravenshining)
+      * Created various new star graphics, including giant and supergiant variants for all star spectral types. (Matteo "Lead" M., @ravenshining)
       * Created a new planet sprite for Saturn. (@ravenshining)
       * Remodeled all Navy ships. (@GefullteTaubenbrust2)
       * Created a new effect for the nuke explosion. (@Karirawri)
@@ -292,6 +296,7 @@ Version 0.9.15:
       * Reworded the description of the Pug Biodefense outfit to not suggest that the Pug don't get affected by it, because they do. (@Hecter64)
       * Changed the Korati Efreti station to always be located between the planet and the sun in the system as the description suggests. (@warp-core)
       * Added two new ship categories. Space Liner, for very large transport ships, and Utility, for ships which didn't really fit their previous category because they were a hybrid of multiple categories. (@MasterOfGrey)
+      * Changed the stars for some systems in human space to match what is known about the real star system of the same name. (@ravenshining)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
