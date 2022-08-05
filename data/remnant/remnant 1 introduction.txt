@@ -2447,7 +2447,7 @@ mission "Remnant: Scanning Tolerances"
 	destination
 		government "Remnant"
 		not distance 0
-		not attribute "remnant station"
+		not attributes "remnant station"
 	to offer
 		has "license: Remnant Capital"
 		not "remnant untrusted"
