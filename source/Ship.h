@@ -231,7 +231,7 @@ public:
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking without "cloaked action", disabled, or under-crewed.)
+	// landing, hyperspacing, cloaking without "cloaking action", disabled, or under-crewed.)
 	bool CannotAct() const;
 	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
 	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...

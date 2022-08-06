@@ -53,7 +53,7 @@ namespace {
 		{"cloaking shield", 0},
 		{"cloaking shield delay", 0},
 		{"cloaking hull delay", 0},
-		{"cloaked action", 0},
+		{"cloaking action", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
 		{"corrosion resistance energy", 0},

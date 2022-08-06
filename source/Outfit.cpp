@@ -41,7 +41,7 @@ namespace {
 		{"cloaking hull delay", 0.},
 		{"cloaking shield", 0.},
 		{"cloaking shield delay", 0.},
-		{"cloaked action", 0.},
+		{"cloaking action", 0.},
 		{"shield generation", 0,},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},

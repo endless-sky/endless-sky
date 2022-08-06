@@ -1438,7 +1438,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
 			&& fuel >= cloakingFuel && energy >= cloakingEnergy
 			&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
-		double defaultCloak = attributes.Get("default cloak");
+		double defaultCloak = attributes.Get("permanent cloak");
 		if(commands.Has(Command::CLOAK) && canCloak)
 		{
 			cloak = min(1., max(defaultCloak, cloak + cloakingSpeed));
@@ -2017,11 +2017,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
-				if(cloak && !attributes.Get("cloaked action"))
+				if(cloak && !attributes.Get("cloaking action"))
 				{
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
-					// not to actually board, if they are cloaked, except if they have "cloaked action".
+					// not to actually board, if they are cloaked, except if they have "cloaking action".
 					if(isYours)
 						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
@@ -2317,7 +2317,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount ||
-			(cloak && !attributes.Get("cloaked action"))))
+			(cloak && !attributes.Get("cloaking action"))))
 		return;
 
 	for(Bay &bay : bays)
@@ -2580,7 +2580,11 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			{
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 				if(cloak)
-					cloak -= attributes.Get("cloaked action");
+				{
+					double cloakingAction = attributes.Get("cloaking action");
+					// Any negative value means this does not take any cloaking action.
+					cloak -= cloakingAction > 0. ? cloakingAction : 0.;
+				}
 			}
 		}
 	}
@@ -2699,11 +2703,10 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	const double cloakedAction = attributes.Get("cloaked action");
+	const double cloakedAction = attributes.Get("cloaking action");
 	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
 		((cloak == 1. && !cloakedAction) ||
-		(cloak != 1. && cloak && !cloakDisruption &&
-		(!cloakedAction || !attributes.Get("action whilst cloaking")))));
+		(cloak != 1. && cloak && !cloakDisruption && !cloakedAction)));
 }
 
 
@@ -3371,9 +3374,6 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
-	if(cloak == 1. && attributes.Get("cloaking invulnerability") >= Random::Real())
-		return 0;
-
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
