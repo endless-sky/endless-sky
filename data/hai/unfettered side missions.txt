@@ -286,7 +286,7 @@ mission "Unfettered: Bar Selling"
 		has "unfettered: sold bars"
 	on offer
 		conversation
-			An operative of the organization you're selling to offers you the usual <payment> for 5 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.
+			`An operative of the organization you're selling to offers you the usual <payment> for 5 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand them over.`
 				decline
 		outfit "Gold Bars" -5
 		payment 5000000
@@ -300,7 +300,7 @@ mission "Unfettered: Bar Selling 2"
 		has "unfettered: sold bars"
 	on offer
 		conversation
-			An operative of the organization you're selling to offers you the usual <payment> for 1 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.
+			`An operative of the organization you're selling to offers you the usual <payment> for 1 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.`
 				decline
 		outfit "Gold Bars" -1
 		payment 1000000
