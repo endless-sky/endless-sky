@@ -1426,7 +1426,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
 		// will result in it being uncloaked.
-		const double minimalHullForCloak = attributes.Get("minimal hull for cloaking");
+		const double minimalHullForCloak = attributes.Get("cloak hull threshold");
 		if(minimalHullForCloak && (hull / attributes.Get("hull") < minimalHullForCloak))
 			cloakDisruption = 1.;
 

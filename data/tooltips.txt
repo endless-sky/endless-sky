@@ -137,7 +137,7 @@ tip "cloaked action:"
 tip "action whilst cloaking:"
 	`This cloaking device does not prevent you from acting whilst it is being turned on or off. This is only relevant if you also have cloaked action.`
 
-tip "minimal hull for cloaking:"
+tip ""cloak hull threshold":"
 	`If you have hull lower than this value (seen as a % between 0 and 1) the cloaking device can no longer operate.`
 
 tip "cooling:"
