@@ -14800,10 +14800,11 @@ system "Kor En'lakfar"
 	trade Metal 236
 	trade Plastic 488
 	fleet "Korath Raid" 600
-	fleet "Korath Home" 2000
-	fleet "Korath Large Raid" 25000
-	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 5000
+	fleet "Korath Home" 900
+	fleet "Korath Large Raid" 15000
+	fleet "Korath Defense" 3500
+	fleet "Korath Civilian Miners" 6000
+	fleet "Korath Civilian Large" 1300
 	object
 		sprite star/g0
 		period 10
@@ -14866,10 +14867,11 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 1600
-	fleet "Korath Home" 2500
+	fleet "Korath Raid" 1900
+	fleet "Korath Home" 1200
+	fleet "Korath Defense" 2600
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 4000
+	fleet "Korath Civilian Large" 1600
 	object
 		sprite star/k3
 		period 10
@@ -14936,10 +14938,11 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 1300
-	fleet "Korath Large Raid" 25000
+	fleet "Korath Raid" 2000
+	fleet "Korath Defense" 2900
+	fleet "Korath Large Raid" 21000
 	fleet "Korath Civilian Large" 1500
-	fleet "Korath Civilian Miners" 10000
+	fleet "Korath Civilian Miners" 8000
 	object
 		sprite star/f5
 		distance 28.0824
@@ -15001,9 +15004,12 @@ system "Kor Nor'peli"
 	trade Medical 850
 	trade Metal 517
 	trade Plastic 423
-	fleet "Korath Large Raid" 30000
-	fleet "Korath Ember Waste Raid" 2500
-	fleet "Korath Home" 500
+	fleet "Korath Defense" 1700
+	fleet "Korath Large Raid" 16000
+	fleet "Korath Ember Waste Raid" 1300
+	fleet "Korath Ember Waste Raid Large" 20000
+	fleet "Korath Civilian Large" 2000
+	fleet "Korath Home" 900
 	object
 		sprite star/k3
 		distance 22.4307
@@ -15074,6 +15080,9 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
+	fleet "Korath Defense" 2600
+	fleet "Korath Ember Waste Raid" 3000
+	fleet "Korath Ember Waste Raid Large" 30000
 	object
 		sprite star/m3
 		period 10
@@ -15125,9 +15134,10 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 800
+	fleet "Korath Raid" 900
 	fleet "Korath Home" 1500
-	fleet "Korath Large Raid" 20000
+	fleet "Korath Defense" 2400
+	fleet "Korath Large Raid" 16000
 	fleet "Korath Civilian Large" 1000
 	object
 		sprite star/g5-old
