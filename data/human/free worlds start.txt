@@ -622,7 +622,7 @@ mission "FW Hope Recon 1C"
 				set "fw accepted Susquehanna's word of honor"
 			`	Most ships are equipped with external speakers for exactly this sort of situation. You target the ship, and your scanners identify it as the <npc>.`
 			`	"Crew of the <npc>, this is Captain <last> of the Free Worlds ship <ship>," you announce. "I accept your surrender, but will you each give me your word of honor that you will take no further part in fighting the Free Worlds?"`
-			`	The soldiers appear to think for a brief moment before one of them holds their hand high in from of them, giving you a thumbs-up sign. The rest of the soldiers quickly follow suit without any hesitation.`
+			`	The soldiers appear to think for a brief moment before one of them holds their hand high in front of them, giving you a thumbs-up sign. The rest of the soldiers quickly follow suit without any hesitation.`
 			`	"Thank you," you reply. "You may return to your ship and fly back to Republic space."`
 			`	The Navy soldiers exchange looks, apparently surprised, but they recover quickly. One of them snaps to attention and salutes you. You return the salute, and then, realizing their captain can't see you, flash your ship's external lights in acknowledgment. The <npc>'s crew fall into formation, march back to their ship, fire up their engines, and take off. Their weapon systems remain unarmed and inactive, as far as your sensors can tell.`
 			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship.`
