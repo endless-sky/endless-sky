@@ -258,14 +258,14 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(This is it. I want to know all.)`
 				`(Ignorance is bliss.)`
 					goto bliss
-			`He takes a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a good price, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
+			`He takes a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
 			choice
 				`(Sell the bars.)`
 				`(Keep the bars, and drop that traitor on the planet.)`
 					goto bliss
 				`(Keep the crew member for further interrogating.)`
 					goto escape
-			`The soon to be gone traitor nods. "This is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on any world. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be payed the price of brute gold for it."`
+			`The soon to be gone traitor nods. "This is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be payed the price of brute gold for it."`
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
@@ -280,10 +280,28 @@ mission "Unfettered: I Shall Go Unpunished"
 mission "Unfettered: Bar Selling"
 	invisible
 	landing
+	minor
 	repeat
 	to offer
 		has "unfettered: sold bars"
 	on offer
+		conversation
+			An operative of the organization you're selling to offers you the usual <payment> for 5 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.
+				decline
+		outfit "Gold Bars" -5
+		payment 5000000
+
+mission "Unfettered: Bar Selling 2"
+	invisible
+	landing
+	minor
+	repeat
+	to offer
+		has "unfettered: sold bars"
+	on offer
+		conversation
+			An operative of the organization you're selling to offers you the usual <payment> for 1 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.
+				decline
 		outfit "Gold Bars" -1
 		payment 1000000
 
