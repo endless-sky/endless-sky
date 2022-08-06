@@ -156,35 +156,32 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
-		else if(!add)
+		else if(add)
+			child.PrintTrace("Error: Unsupported use of add:");
+		else if(key == "display name")
+			displayName = child.Token(valueIndex);
+		else if(key == "swizzle")
+			swizzle = child.Value(valueIndex);
+		else if(key == "color" && child.Size() >= 3 + valueIndex)
+			color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+		else if(key == "death sentence")
+			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
+		else if(key == "friendly hail")
+			friendlyHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "friendly disabled hail")
+			friendlyDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "hostile hail")
+			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "hostile disabled hail")
+			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "language")
+			language = child.Token(valueIndex);
+		else if(key == "raid")
+			raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
+		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
-			if(key == "display name")
-				displayName = child.Token(valueIndex);
-			else if(key == "swizzle")
-				swizzle = child.Value(valueIndex);
-			else if(key == "color" && child.Size() >= 3 + valueIndex)
-				color = Color(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
-			else if(key == "death sentence")
-				deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
-			else if(key == "friendly hail")
-				friendlyHail = GameData::Phrases().Get(child.Token(valueIndex));
-			else if(key == "friendly disabled hail")
-				friendlyDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
-			else if(key == "hostile hail")
-				hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
-			else if(key == "hostile disabled hail")
-				hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
-			else if(key == "language")
-				language = child.Token(valueIndex);
-			else if(key == "raid")
-				raidFleet = GameData::Fleets().Get(child.Token(valueIndex));
-			else if(key == "enforces" && child.Token(valueIndex) == "all")
-			{
-				enforcementZones.clear();
-				child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
-			}
-			else
-				child.PrintTrace("Skipping unrecognized attribute:");
+			enforcementZones.clear();
+			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
