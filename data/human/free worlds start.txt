@@ -23,16 +23,18 @@ mission "Liberate Kornephoros"
 		event "prepare for battle of Kornephoros"
 		conversation
 			`The mood in the spaceport is solemn. No one has had time yet to count up the losses, on both sides of the battle, but it is likely that over a thousand lives were lost. And because the Navy is held in such high regard even here where Parliament and the Paradise Planets are viewed with disgust, many of the militia captains are almost as saddened by the loss of Navy lives as by the loss of some of their own.`
-			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your <ship> holding together?"`
+			`	You find Tomek walking among the fleet, conversing with a large group of captains and crew members and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your <ship> holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
 				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
 			
-			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
-			`	"Indeed," you say.`
-			`	"We have a large fleet of reinforcements coming in from the Rim," he continues, "and a few ships here that are able to fight another battle. I need you to take off with them, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can, destroy them if you must. Understood?"`
+			`	"Glad to hear it," he says before returning to the crowd. "Listen! We need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system for the sake of trade with the rest of the galaxy. And on top of that, if you were not aware, Councilor Katya Reynolds was on Clink when the Navy took the system and needs to be rescued." You hear some chatter coming from the crowd as a result of this news; it seems like Katya's investigation on Clink was not public knowledge. `
+			`	"We have a large fleet of reinforcements coming in from the Rim," Tomek continues, "and a few ships here that are able to fight another battle. I need you all to take off, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can, destroy them if you must. Am I understood?"`
+			`	"Sir yes sir!" the captains respond in unison.`
+			`	"Then move out!" Tomek yells, prompting the captains and crew to scramble for their ships.`
+			`	Tomek returns to you after rousing the militia to action. "Still in this fight with us?"`
 			choice
-				`	"Yes, sir."`
+				`	"Yes, sir. I'll move out immediately."`
 					accept
 				`	"I wish it hadn't come to this."`
 			
@@ -185,8 +187,14 @@ mission "FW Prisoner Parole"
 				`	"No, I'm ready to go."`
 					accept
 				`	"What should we do if they attack us?"`
+				`	"What will be done with the soldiers who didn't swear the oath?"`
+					goto oath
 			
-			`	"If you can, return here without engaging them. No point in losing more lives."`
+			`	"If you can, return here without engaging them. No point in losing more lives. But the Navy are honorable. They will respect the ceasefire, I have no doubt about them. Only if you linger will things become difficult for you. Now get going. Time is limited."`
+				accept
+			
+			label oath
+			`	"They will be transported to a penal facility on Bourne and cared for well, and if at any point they change their minds, they will be allowed leave. Now get going. Time is limited."`
 				accept
 	
 	npc accompany save
@@ -260,6 +268,7 @@ mission "oathkeepers founded"
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
 			`	Furthermore, the leader of the Oathkeepers will be Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
 			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyway, it is a victory that cost them very little.`
+				decline
 
 
 

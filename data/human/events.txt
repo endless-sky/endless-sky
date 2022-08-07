@@ -28,6 +28,7 @@ mission "remembrance day"
 			`	Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
 			`	Since the Alpha War, genetic resequencing technology has been very tightly controlled. Because the Alphas were the product of experimental genetic manipulation rather than natural evolution, it is believed that their genes are less robust than true human beings, and they are almost unable to have viable offspring without access to special technology. Therefore, most Alpha enclaves that have been discovered since the War have had very small populations, no more than a few dozen.`
 			`	In these days when the Navy ensures peace throughout much of the galaxy, on many worlds the Alphas are treated as nothing more than a bogeyman story to frighten children. Because the most striking physical feature of the Alphas was their photosynthetic skin, on some worlds kids even run around wearing green face paint on Remembrance Day, trying to frighten people. But on other worlds, especially on the fringes of space where the Navy seldom patrols, the Alphas are still spoken of with fear.`
+				decline
 
 
 
