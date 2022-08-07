@@ -44,6 +44,7 @@ outfit "Terpenoid Trajectile Template"
 	"terpenoid assembly" 1
 	description "The Terpenoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Terpenoid Launcher. It allows an assembler to build the Terpenoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
 
+#Stats, icons, & effects are all indicative placeholders - they're set up to work, not necessarily be balanced or polished.
 outfit "Terpenoid Trajectile Launcher"
 	category "Secondary Weapons"
 	cost 95000
@@ -58,6 +59,8 @@ outfit "Terpenoid Trajectile Launcher"
 			"frame rate" 2
 			"no repeat"
 		sound "seeker"
+		ammo "Terpenoid Trajectile Template" 0
+#		icon "icon/terpenoid"
 		"fire effect" "tracker fire"
 		"hit effect" "emp spark" 20
 		"hit effect" "tracker impact"
@@ -84,4 +87,82 @@ outfit "Terpenoid Trajectile Launcher"
 	description "The Terpenoid Trajectile was developed after brief exposure to the Korath Disruptor before the Korath stopped bothering to raid Xapleaux space. The secrets of how the disruptor worked were never understood, but under the right circumstances fuel mixed with certain volatiles can be stimulated to produce a similar effect. Once assembled and fired the concoction will naturally decay explosively after a period of time."
 	description "	Although not a powerful missile, it is very fast and very hard to dodge, and capable of rendering the shields of an enemy vessel thoroughly obsolete under repeated bombardment. The explosive cocktail it carries is not particularly damaging to shields, despite its disruptive effect, but is quite destructive against most hull materials."
 
+outfit "Quininoid Trajectile Template"
+	category "Ammunition"
+	cost 379000
+	thumbnail "outfit/terpenoidtemp"
+	"mass" 12
+	"assembly line" -1
+	"quininoid assembly" 1
+	description "The Quininoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Quininoid Launcher. It allows an assembler to build the Quininoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
+
+#Stats, icons, & effects are all indicative placeholders - they're set up to work, not necessarily be balanced or polished.
+outfit "Quininoid Trajectile Launcher"
+	category "Secondary Weapons"
+	cost 73000
+	thumbnail "outfit/quininoid launcher"
+	"mass" 6
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	"quininoid assembly" -1
+	weapon
+		sprite "projectile/quininoid"
+		sound "seeker"
+		ammo "Quininoid Trajectile Template" 0
+		"phasing"
+		"stream"
+#		icon "icon/quininoid"
+		"fire effect" "minelayer fire"
+		"hit effect" "firelight ring" 20
+		"velocity" 0.1
+		"lifetime" 20
+		"reload" 20
+		"firing energy" 2
+		"firing heat" 10
+		"acceleration" -0.1
+		"turn" 9
+		"drag" .1
+		"radar tracking" 1
+		"optical tracking" .9
+		"homing" 5
+		"missile strength" 60
+		submunition "Quininoid Yeeting"
+	description "Functionally the oldest weapon in the Xapleaux arsenal, this three stage weapon launches a Quininoid package - a missile casing with five warheads inside. In its first phase it is slow but incredibly mobile, able to safely position and orient on its target. In its second phase it engages the primary burner and loses most ability to home in on a target as it accelerates with enormous speed before bursting apart in its third phase to release the five carried warheads in a purely ballistic scattering effect."
+	description "	An individual warhead for this weapon is very low yield, but the rate of fire is the key feature. A ship carrying several of these can flood the space between it and the target with an impenetrable wall of projectiles that are particularly effective at keeping swarms of small craft (or wildlife) at bay."
+
+outfit "Quininoid Yeeting"
+	weapon
+		sprite "projectile/quininoid"
+			"frame rate" 12
+		"hit effect" "missile hit"
+		"die effect" "piercer fire"
+		"velocity" 0.1
+		"lifetime" 300
+		"acceleration" 5
+		"turn" 4.6
+		"homing" .5
+		"radar tracking" 1
+#		"trigger radius" 80
+#or should this be "split range" ? Needs to break apart into its submunitions, but ideally needs to do this regardless of whether it has a target/whether that target still exists - when it gets in range of another enemy
+		"piercing" .2
+		"shield damage" 100
+		"hull damage" 125
+		"hit force" 400
+		"missile strength" 60
+		"submunition" "Quin" 5
+
+outfit "Quin"
+	weapon
+		sprite "projectile/quin"
+			"frame rate" 12
+		"hit effect" "missile hit"
+		"die effect" "missile death"
+		"velocity" 3
+		"lifetime" 140
+		"shield damage" 20
+		"hull damage" 25
+		"leak damage" .1
+		"hit force" 80
+		"missile strength" 12
 
