@@ -96,7 +96,7 @@ void Government::Load(const DataNode &node)
 			else if(key == "language")
 				language.clear();
 			else
-				child.PrintTrace("Skipping unrecognized remove of attribute:");
+				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		}
 		else if(key == "attitude toward")
 		{
