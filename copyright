@@ -460,7 +460,6 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
- images/ship/dredger*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -468,7 +467,6 @@ Files:
  images/ship/petrel*
  images/ship/tern*
  images/ship/shooting?star/shooting?star*
- images/thumbnail/dredger*
  images/thumbnail/ibis*
  images/thumbnails/merganser*
  images/thumbnail/penguin*
@@ -1076,8 +1074,13 @@ Copyright: NomadicVolcano (NomadicVolcano@gmail.com).
 License: CC0 (Creative Commons Zero)/Public-Domain
 
 Files:
+ images/outfit/expeller*
  images/outfit/grab-strike*
  images/hardpoint/grab-strike*
+ images/ship/bulk?freighter*
+ images/ship/dredger*
+ images/thumbnail/bulk?freighter*
+ images/thumbnail/dredger*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tomaso (under the same licence).
@@ -1092,6 +1095,7 @@ Comment: Derived from work by Michael Zahniser (under the same licence) and Red-
 Files:
  images/ship/chaser*
  images/thumbnail/chaser*
+ images/effect/korath?afterburner*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)
@@ -1104,11 +1108,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Becca Tomaso (under the same licence).
 
 Files:
- images/ship/bulk?freighter*
- images/thumbnail/bulk?freighter*
+ images/outfit/liquid?sodium*
 Copyright: Lia Gerty (https://github.com/ravenshining)
+Comment: Derived from works by Saugia (under the same licence) and NomadicVolcano (public domain).
 License: CC-BY-SA-4.0
-Comment: Derived from work by Michael Zahniser (under the same licence) and Becca Tommaso (under the same licence).
 
 Files:
  images/_menu/haze-blackbody+*
@@ -1120,6 +1123,12 @@ Files:
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
+
+Files:
+ images/projectile/korath?digger*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by NomadicVolcano (public domain).
 
 Files:
  images/planet/browndwarf-t-rouge*
@@ -1157,6 +1166,37 @@ Files:
 Copyright: Arachi-Lover
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/effect/heaver*
+ images/effect/korath?digger*
+ images/effect/shunt*
+ images/hardpoint/korath?heaver*
+ images/icon/korath?heaver*
+ images/outfit/korath?heaver*
+ images/outfit/*korath?reverser*
+ images/projectile/expeller*
+ images/projectile/heaver*
+ images/projectile/korath?digger*
+ images/projectile/shunt-strike*
+Copyright: None (CC0 Public Domain)
+License: N/A (CC0 Public Domain)
+Comment: Work by Nomadic Volcano (NomadicVolcano@gmail.com) based on textures from texture.ninja
+
+Files:
+ images/hardpoint/digger?turret*
+ images/outfit/korath?digger?turret*
+ images/outfit/korath?digger*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/*/korath*reverser*
+Copyright: Nomadic Volcano (NomadicVolcano@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
 
 Files:
  images/outfit/outskirts?gauger*
@@ -1258,6 +1298,11 @@ Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Original work by Griffin Schutte (theronepic@gmail.com), finished by Becca Tommaso.
 
+Files: images/outfit/tiny?systems?core*
+Copyright: Griffin Schutte (theronepic@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same license).
+
 Files: images/outfit/ka'het?compact?engine*
 Copyright: Griffin Schutte (theronepic@gmail.com)
 License: CC-BY-SA-4.0
@@ -1345,16 +1390,18 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
+ images/effect/burning?spark/*
  images/effect/coalition?flare/*
+ images/effect/corrosion?spark/*
  images/effect/explosion/pug/*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
- images/effect/pug?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
+ images/outfit/*?korath?afterburner*
  images/outfit/afterburner*
  images/outfit/asteroid?scanner*
  images/outfit/blue?sun*
@@ -1376,6 +1423,9 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/projectile/fire-lance*
+ images/projectile/blaze-pike*
+ images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
@@ -1396,6 +1446,12 @@ Files: sounds/ionball*
 Copyright: pluralz
 License: public-domain
 Comment: Taken from https://freesound.org/people/pluralz/sounds/475806/
+
+Files:
+ images/outfit/tiny?korath?engine*
+ images/outfit/korath?bow?drive*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
 
 Files:
  images/planet/stationh-ancient0*
@@ -1436,6 +1492,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ sound/korath?afterburner*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+
+Files:
  images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
@@ -1464,10 +1525,16 @@ License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edit done by Saugia.
 
 Files:
+ images/hardpoint/blaze-pike*
+ images/hardpoint/korath?inferno*
+ images/hardpoint/shunt-strike*
  images/icon/firelight*
+ images/outfit/blaze?pike*
  images/outfit/firelight*
  images/outfit/firelight?bank*
  images/outfit/firelight?rack*
+ images/outfit/korath?inferno*
+ images/outfit/shunt-strike*
  images/planet/station4c*
  images/planet/station5c*
  images/planet/station6c*
@@ -1485,6 +1552,12 @@ Files:
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
+
+Files:
+ images/outfit/microbot?defense?station*
+Copyright: Saugia <https://github.com/Saugia>
+Comment: Derived from work by Griffin Schutte (theronepic@gmail.com) (under same licence).
+License: CC-BY-SA-4.0
 
 Files:
  images/ship/kestrel*
