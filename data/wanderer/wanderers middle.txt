@@ -3065,6 +3065,7 @@ mission "Wanderers: Sestor: Exiles 2"
 
 event "wanderers: exiles peaceful"
 	"reputation: Korath" >?= 1
+	"reputation: Korath (Civilian)" >?= 1
 
 mission "Wanderers: Sestor: Exiles 3"
 	landing
