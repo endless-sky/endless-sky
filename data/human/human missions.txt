@@ -4213,7 +4213,7 @@ mission "Saving Artifacts 1"
 
 mission "Saving Artifacts 2"
 	name "Saving Artifacts"
-	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <source>, where they will be safe."
+	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <origin>, where they will be safe."
 	minor
 	source "Alexandria"
 	destination "Greenrock"
