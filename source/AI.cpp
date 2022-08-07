@@ -3320,11 +3320,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 			bool foundEnemy = false;
 			const auto targetPriority = Preferences::BoardingSetting();
+			const bool costPriority = (targetPriority == "value");
+			const bool distancePriority = (targetPriority == "proximity");
 
 			auto strategy = [&]() noexcept -> function<double(Ship &)>
 			{
 				Point current = ship.Position();
-				if(targetPriority == "cost")
+				if(costPriority)
 				{
 					return [this, &ship](Ship &other) noexcept -> double
 					{
@@ -3333,7 +3335,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							other.Cost() : (other.ChassisCost() * 2.);
 					};
 				}
-				else if(targetPriority == "proximity")
+				else if(distancePriority)
 				{
 					return [current](Ship &other) noexcept -> double
 					{
@@ -3385,9 +3387,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				activeCommands.Clear(Command::BOARD);
 			else
 			{
-				bool costPriority = (targetPriority == "cost");
 				sort(boardable.begin(), boardable.end(),
-					[&ship, costPriority](
+					[&ship, costPriority, distancePriority](
 						const shipValue &lhs, const shipValue &rhs
 					)
 					{
@@ -3395,8 +3396,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 						if(costPriority && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
-						else // The case where distance is the same is very unlikely.
-							return costPriority ? lhs.second > rhs.second :
+						else
+							return distancePriority ? lhs.second > rhs.second :
 								lhs.second < rhs.second;
 					}
 				);
