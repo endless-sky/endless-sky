@@ -161,7 +161,7 @@ mission "Remnant: Shattered Light 1"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
 		system Caeculus
-		ship "Dromedary Ghost" "???"
+		ship "Modified Dromedary Ghost" "???"
 		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it. You should probably look for Taely on Viminal."
 	on complete
 		conversation
@@ -184,7 +184,7 @@ mission "Remnant: Shattered Light 2"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
 		system Levana
-		ship "Dromedary Specter" "???"
+		ship "Modified Dromedary Specter" "???"
 		dialog "This ship seems a bit more solid than it did when you first saw it, but it does not seem to be quite present."
 	on offer
 		require "Research Laboratory"
@@ -221,7 +221,7 @@ mission "Remnant: Shattered Light 3"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
 		system Lucina
-		ship "Dromedary Specter" "???"
+		ship "Modified Dromedary Specter" "???"
 		dialog `It is on a crash course for Far Monad!" exclaims Ruach. "Quick, land there!`
 	on offer
 		conversation
@@ -296,7 +296,7 @@ mission "Remnant: Shattered Light 4"
 		government "Remnant (Research)"
 		personality launching timid escort
 		planet "Far Monad"
-		ship "Dromedary Wreck" "Shattered Light"
+		ship "Modified Dromedary Wreck" "Shattered Light"
 	npc evade
 		government "Korath"
 		personality entering plunders harvests

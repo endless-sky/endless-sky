@@ -231,9 +231,9 @@ ship "Albatross" "Albatross (Ember Shield)"
 
 
 
-ship Dromedary
-	sprite ship/dromedary
-	thumbnail thumbnail/dromedary
+ship "Modified Dromedary"
+	sprite "ship/modified dromedary"
+	thumbnail "thumbnail/modified dromedary"
 	attributes
 		licenses
 			Remnant Capital
@@ -308,9 +308,9 @@ ship Dromedary
 	description "	Unfortunately, since they lack the manufacturing facilities that would normally support a large construction project, it will cost massively more than it would have originally back on Luna."
 
 
-ship "Dromedary" "Dromedary Ghost"
-	sprite "ship/dromedary ghost"
-	thumbnail "thumbnail/dromedary wreck"
+ship "Modified Dromedary" "Modified Dromedary Ghost"
+	sprite "ship/modified dromedary ghost"
+	thumbnail "thumbnail/modified dromedary wreck"
 	"uncapturable"
 	"never disabled"
 	attributes
@@ -386,9 +386,9 @@ ship "Dromedary" "Dromedary Ghost"
 	turret 52.5 143
 		
 
-ship "Dromedary" "Dromedary Specter"
-	sprite "ship/dromedary specter"
-	thumbnail "thumbnail/dromedary wreck"
+ship "Modified Dromedary" "Modified Dromedary Specter"
+	sprite "ship/modified dromedary specter"
+	thumbnail "thumbnail/modified dromedary wreck"
 	"uncapturable"
 	"never disabled"
 	attributes
@@ -464,9 +464,9 @@ ship "Dromedary" "Dromedary Specter"
 	turret 52.5 143
 
 
-ship "Dromedary" "Dromedary Wreck"
-	sprite "ship/dromedary wreck"
-	thumbnail "thumbnail/dromedary wreck"
+ship "Modified Dromedary" "Modified Dromedary Wreck"
+	sprite "ship/modified dromedary wreck"
+	thumbnail "thumbnail/modified dromedary wreck"
 	attributes
 		licenses
 			Remnant Capital

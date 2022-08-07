@@ -1669,16 +1669,16 @@ Copyright: Anarchist2
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/dromedary*
- images/ship/dromedary?wreck*
- images/thumbnail/dromedary*
- images/thumbnail/dromedary?wreck*
+ images/ship/modified?dromedary*
+ images/ship/modified?dromedary?wreck*
+ images/thumbnail/modified?dromedary*
+ images/thumbnail/modified?dromedary?wreck*
 Copyright:  Saugia (https://github.com/Saugia)
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/dromedary?ghost*
- images/ship/dromedary?spectre*
+ images/ship/modified?dromedary?ghost*
+ images/ship/modified?dromedary?spectre*
 Copyright:  Saugia (https://github.com/Saugia)
 License: CC-BY-SA-4.0
 Comment: Transparent materials by scrinarii1337.

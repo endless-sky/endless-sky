@@ -1079,7 +1079,7 @@ event "remnant: cognizance calm"
 
 event "remnant: shattered light"
 	shipyard "Remnant"
-		add "Dromedary"
+		add "Modified Dromedary"
 
 
 
