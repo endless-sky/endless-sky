@@ -634,7 +634,7 @@ void PrintWeaponTable(bool printDeterrence)
 {
 	if(printDeterrence)
 	{
-		cout << "name" << ',' << "deterrence" << '\n';
+		cout << "name" << ',' << "deterrence" << ',' << "outfit" << ',' << "weapon" << '\n';
 		for(auto &it : GameData::Outfits())
 		{
 			// Skip non-weapons and submunitions.
@@ -643,7 +643,7 @@ void PrintWeaponTable(bool printDeterrence)
 			const Outfit &weapon = it.second;
 			double damage = weapon.ShieldDamage() + weapon.HullDamage();
 			double deterrence = .12 * damage / weapon.Reload();
-			cout << it.first << ',' << deterrence << '\n';
+			cout << it.first << ',' << deterrence << ',' << -weapon.Get("outfit space") << ',' << -weapon.Get("weapon capacity") << '\n';
 		}
 		return;
 	}
