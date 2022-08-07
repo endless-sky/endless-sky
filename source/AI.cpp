@@ -583,8 +583,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
-		if(it->IsOverheated())
+		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
+		if(it->IsParalyzed())
 			continue;
 
 		// Special case: if the player's flagship tries to board a ship to
@@ -1007,8 +1007,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				// Disabled, overheated, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
+				// Disabled, paralyzed, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || helper->IsParalyzed() || !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
@@ -1059,7 +1059,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| helper.GetGovernment() != ship.GetGovernment()
 			|| (!helper.IsCloaked() || helper.Attributes().Get("cloaking action"))
-			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsParalyed() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1203,8 +1203,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
 		range += 500. * (foe->Shields() + foe->Hull());
-		// If a target is extremely overheated, focus on ships that can attack back.
-		if(foe->IsOverheated())
+		// If a target is paralyzed, focus on ships that can attack back.
+		if(foe->IsParalyzed())
 			range += 3000. * (foe->Heat() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
