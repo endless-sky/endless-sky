@@ -426,14 +426,14 @@ double Projectile::DistanceTraveled() const
 
 
 
-bool Projectile::Phases(std::weak_ptr<const Ship> ship) const
+bool Projectile::Phases(const Ship &ship) const
 {
-	return phasedShips.count(ship);
+	return phasedShips.count(&ship);
 }
 
 
 
-void Projectile::SetPhases(std::weak_ptr<const Ship> ship)
+void Projectile::SetPhases(const Ship &ship)
 {
-	phasedShips.emplace(ship);
+	phasedShips.emplace(&ship);
 }

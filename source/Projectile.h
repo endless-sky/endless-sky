@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <memory>
+#include <set>
 #include <vector>
 
 class Government;
@@ -100,8 +101,8 @@ public:
 
 	// Once the projectile has come into contact with a phasing device, it
 	// will be decided if it should completely phase trough or make contact.
-	bool Phases(std::weak_ptr<const Ship> ship) const;
-	void SetPhases(std::weak_ptr<const Ship> ship);
+	bool Phases(const Ship &ship) const;
+	void SetPhases(const Ship &ship);
 
 
 private:
@@ -123,7 +124,9 @@ private:
 	double distanceTraveled = 0;
 	bool hasLock = true;
 
-	std::set<std::weak_ptr<const Ship>> phasedShips;
+	// This is safe to keep even if the ships die, because we don't actually call the ship,
+	// we just compare this pointer to other ship pointers.
+	std::set<const Ship *> phasedShips;
 };
 
 
