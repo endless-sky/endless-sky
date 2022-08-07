@@ -3396,7 +3396,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
 						else // The case where distance is the same is very unlikely.
-							return !costPriority ? lhs.second > rhs.second :
+							return costPriority ? lhs.second > rhs.second :
 								lhs.second < rhs.second;
 					}
 				);

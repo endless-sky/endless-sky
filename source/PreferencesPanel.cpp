@@ -166,6 +166,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			else if(zone.Value() == BOARDING_PRIORITY)
+				Preferences::ToggleBoarding();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that

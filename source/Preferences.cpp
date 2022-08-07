@@ -229,16 +229,17 @@ const string &Preferences::VSyncSetting()
 
 
 
-void ToggleBoarding()
+void Preferences::ToggleBoarding()
 {
 	int targetIndex = boardingIndex + 1;
 	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
 		targetIndex = 0;
+	boardingIndex = targetIndex;
 }
 
 
 
-const std::string &BoardingSetting()
+const std::string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
 }
