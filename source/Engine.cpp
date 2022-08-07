@@ -2040,7 +2040,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			if(ship)
 			{
 				// Check if we can hit this.
-				if(ship->IsCloaked() && ship->Phases())
+				if(ship->Phases(projectile))
 					closestHit = 1.;
 				else
 				{

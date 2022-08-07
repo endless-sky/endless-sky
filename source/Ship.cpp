@@ -2748,9 +2748,13 @@ double Ship::CloakingSpeed() const
 
 
 
-bool Ship::Phases() const
+bool Ship::Phases(Projectile projectile) const
 {
-	return IsCloaked() && attributes.Get("cloaking phasing") >= Random::Real();
+	bool phases = IsCloaked() && (projectile.Phases(weak_from_this()) ||
+		attributes.Get("cloaking phasing") >= Random::Real());
+	if(phases)
+		projectile.SetPhases(weak_from_this());
+	return phases;
 }
 
 

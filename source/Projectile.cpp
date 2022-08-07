@@ -423,3 +423,17 @@ double Projectile::DistanceTraveled() const
 {
 	return distanceTraveled;
 }
+
+
+
+bool Projectile::Phases(std::weak_ptr<const Ship> ship) const
+{
+	return phasedShips.count(ship);
+}
+
+
+
+void Projectile::SetPhases(std::weak_ptr<const Ship> ship)
+{
+	phasedShips.emplace(ship);
+}

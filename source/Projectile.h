@@ -98,6 +98,11 @@ public:
 	// Get the distance that this projectile has traveled.
 	double DistanceTraveled() const;
 
+	// Once the projectile has come into contact with a phasing device, it
+	// will be decided if it should completely phase trough or make contact.
+	bool Phases(std::weak_ptr<const Ship> ship) const;
+	void SetPhases(std::weak_ptr<const Ship> ship);
+
 
 private:
 	void CheckLock(const Ship &target);
@@ -117,6 +122,8 @@ private:
 	int lifetime = 0;
 	double distanceTraveled = 0;
 	bool hasLock = true;
+
+	std::set<std::weak_ptr<const Ship>> phasedShips;
 };
 
 
