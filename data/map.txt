@@ -14753,7 +14753,7 @@ system "Kor Ak'Mari"
 		distance 492.58
 		period 79.8388
 	object
-		sprite planet/ocean6-b
+		sprite planet/cloud2-b
 		distance 874.19
 		period 188.759
 		object
@@ -14761,7 +14761,7 @@ system "Kor Ak'Mari"
 			distance 166
 			period 16.2305
 	object
-		sprite planet/ice0-b
+		sprite planet/dust3-b
 		distance 1777.8
 		period 547.423
 	object
