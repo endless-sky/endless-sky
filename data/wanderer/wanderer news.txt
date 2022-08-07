@@ -15,14 +15,40 @@ news "wanderer civilians, no dialog 1"
 		not attributes "evacuation"
 	name
 		word
+			"Individual"
+	message
+		word
+			"Outside the spaceport, you see someone performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
+			"A dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
+
+news "wanderer civilians no dialog 2"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
+			"Group"
+	message
+		word
+			"A crowd has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
+			"On a booth near the spaceport, a group is playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
+
+news "wanderer civilians, no dialog 1, post language"
+	to show
+		has "language: Wanderer"
+	location
+		government "Wanderer"
+		not attributes "evacuation"
+	name
+		word
 			"Wanderer"
 	message
 		word
 			"Many buildings near the spaceport have plants growing on their roofs. An indignant squawk draws your attention to a Wanderer as they rapidly flap away from an automated watering system dousing them where they stood."
-			"Outside the spaceport, you see a Wanderer performing maintenance on some sort of irrigation system. Once they get it working, it begins to water a field of plants."
-			"A Wanderer dockworker unloads complex scientific equipment from a ship. More surprising, however, is the fact that they unload several bags of fertilizer from it as well."
 
-news "wanderer civilian's no dialog 2"
+news "wanderer civilians no dialog 2, post language"
+	to show
+		has "language: Wanderer"
 	location
 		government "Wanderer"
 		not attributes "evacuation"
@@ -32,10 +58,8 @@ news "wanderer civilian's no dialog 2"
 	message
 		word
 			"While walking through the spaceport, you see several Wanderers flying through the air, about to land. They do not notice you, and you duck to avoid them."
-			"A crowd of Wanderers has formed around an object. Upon closer inspection, it appears to be some sort of technological device."
 			"As you walk by a group of Wanderers, they begin to coo and chitter at you. Evidently they have not seen something like you before."
 			"A group of Wanderer children appear to be playing a game similar to hopscotch, but instead of hopping they fly to their spots."
-			"On a booth near the spaceport, a group of Wanderers are playing on objects that look vaguely like wooden flutes. Their music is quiet and lacks a discernible melody."
 			"Two Wanderers are at a table. They appear to be playing some sort of board game using shell pieces."
 			"A crowd of Wanderer children follow an adult through the spaceport. The adult talks to them as they follow, as the children take notes."
 
