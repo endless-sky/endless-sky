@@ -458,8 +458,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			}
 	}
 
-	bool isContinuous = (reload <= 1. && outfit.TotalLifetime() == 1.);
-	bool isContinuousBurst = (outfit.BurstCount() > 1 && outfit.BurstReload() <= 1. && outfit.TotalLifetime() == 1.);
+	bool oneFrame = (outfit.TotalLifetime() == 1.);
+	bool isContinuous = (reload <= 1. && oneFrame);
+	bool isContinuousBurst = (outfit.BurstCount() > 1 && outfit.BurstReload() <= 1. && oneFrame);
 	attributeLabels.emplace_back("shots / second:");
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
