@@ -199,11 +199,11 @@ fleet "Korath Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant 4 
-		"Korath Raider"
-		"Korath Chaser" 2
+		"Palavret"
+		"Olofek" 2
 	variant 1
-		"Korath Raider (Blaze)"
-		"Korath Chaser" 2
+		"Palavret (Blaze)"
+		"Olofek" 2
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -215,11 +215,11 @@ fleet "Korath Ember Waste Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant 7
-		"Korath Raider (Ember)"
-		"Korath Chaser" 2
+		"Palavret (Ember)"
+		"Olofek" 2
 	variant 1
-		"Korath Raider (Ember Shunt)"
-		"Korath Chaser" 2
+		"Palavret (Ember Shunt)"
+		"Olofek" 2
 
 fleet "Korath Miners"
 	government "Korath"
@@ -229,8 +229,8 @@ fleet "Korath Miners"
 	personality
 		timid disables plunders frugal mining harvests
 	variant
-		"Korath Dredger (Digger)"
-		"Korath Chaser (Digger)" 4
+		"Ranolenrek (Digger)"
+		"Olofek (Digger)" 4
 
 fleet "Korath Civilian Miners"
 	government "Korath (Civilian)"
@@ -240,9 +240,9 @@ fleet "Korath Civilian Miners"
 	personality
 		heroic disables frugal mining harvests coward
 	variant
-		"Korath Dredger (Civilian)"
-		"Korath Chaser (Expeller)" 2
-		"Korath Chaser (Digger)" 2
+		"Ranolenrek (Civilian)"
+		"Olofek (Expeller)" 2
+		"Olofek (Digger)" 2
 
 fleet "Korath Home"
 	government "Korath"
@@ -258,21 +258,21 @@ fleet "Korath Home"
 	variant 7
 		"Korath World-Ship C"
 	variant 3
-		"Korath Dredger"
-		"Korath Chaser" 2
-		"Korath Chaser (Expeller)" 2
+		"Ranolenrek"
+		"Olofek" 2
+		"Olofek (Expeller)" 2
 	variant 1
-		"Korath Dredger (Shunt)"
-		"Korath Chaser" 2
-		"Korath Chaser (Expeller)" 2
+		"Ranolenrek (Shunt)"
+		"Olofek" 2
+		"Olofek (Expeller)" 2
 	variant 1
-		"Korath Dredger (Heaver)"
-		"Korath Chaser" 4
+		"Ranolenrek (Heaver)"
+		"Olofek" 4
 	variant 1
-		"Korath Dredger"
-		"Korath Raider (Blaze)"
-		"Korath Chaser" 4
-		"Korath Chaser (Expeller)" 2
+		"Ranolenrek"
+		"Palavret (Blaze)"
+		"Olofek" 4
+		"Olofek (Expeller)" 2
 
 fleet "Korath Large Raid"
 	government "Korath"
@@ -282,15 +282,15 @@ fleet "Korath Large Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant 5
-		"Korath Raider" 2
-		"Korath Chaser"  4
+		"Palavret" 2
+		"Olofek"  4
 	variant 5
-		"Korath Raider (Blaze)" 2
-		"Korath Chaser" 4
+		"Palavret (Blaze)" 2
+		"Olofek" 4
 	variant 2
-		"Korath Dredger"
-		"Korath Raider (Blaze)"
-		"Korath Chaser" 6
+		"Ranolenrek"
+		"Palavret (Blaze)"
+		"Olofek" 6
 
 fleet "Korath Ember Waste Raid"
 	government "Korath"
@@ -300,20 +300,20 @@ fleet "Korath Ember Waste Raid"
 	personality
 		disables plunders opportunistic harvests
 	variant 15
-		"Korath Raider (Ember)"
-		"Korath Chaser" 2
+		"Palavret (Ember)"
+		"Olofek" 2
 	variant 3
-		"Korath Raider (Ember Blaze)"
-		"Korath Chaser" 2
+		"Palavret (Ember Blaze)"
+		"Olofek" 2
 	variant 3
-		"Korath Raider (Ember Shunt)"
-		"Korath Chaser" 2
+		"Palavret (Ember Shunt)"
+		"Olofek" 2
 	variant 2
-		"Korath Dredger"
-		"Korath Chaser" 4
+		"Ranolenrek"
+		"Olofek" 4
 	variant 2
-		"Korath Dredger (Shunt)"
-		"Korath Chaser" 4
+		"Ranolenrek (Shunt)"
+		"Olofek" 4
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
@@ -323,9 +323,9 @@ fleet "Korath Civilian Large"
 	personality
 		frugal opportunistic disables forbearing
 	variant 5
-		"Korath Dredger (Civilian)" 2
-		"Korath Chaser (Digger)" 4
-		"Korath Chaser (Expeller)" 4
+		"Ranolenrek (Civilian)" 2
+		"Olofek (Digger)" 4
+		"Olofek (Expeller)" 4
 	variant 12
 		"Korath World-Ship"
 	variant 6
@@ -333,7 +333,7 @@ fleet "Korath Civilian Large"
 	variant 18
 		"Korath World-Ship C"
 	variant 1
-		"Korath Chaser (World-Ship)"
+		"Olofek (World-Ship)"
 
 
 fleet "Kor Efret Home"

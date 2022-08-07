@@ -10,7 +10,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-ship "Korath Dredger"
+ship "Ranolenrek"
 	sprite "ship/dredger"
 	thumbnail "thumbnail/dredger"
 	attributes
@@ -84,10 +84,11 @@ ship "Korath Dredger"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and Raiders lacked the cargo capacity. The Dredger was born as an answer to this problem, featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Raiders."
+	description "After the Korath were exiled from their homelands, efficient resource collection became a priority. World-ships were too precious to risk on dangerous forays, and raiders lacked enough cargo capacity. The Ranolenrek-class Asteroid Dredging Ship, named for a respected civilian politician and economist, was born as an answer to this problem."
+	description "	Featuring an abundance of cargo and passenger space, with formidable defensive armament. With such a complement, these bulky ships can also offer potent support for frontline Palavrets."
 
 
-ship "Korath Raider"
+ship "Palavret"
 	sprite "ship/raider"
 	thumbnail "thumbnail/raider"
 	attributes
@@ -155,11 +156,11 @@ ship "Korath Raider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "Successive Raider designs have been the Korath warship of choice for plundering neighboring species for generations."
-	description "This model, like all Exile ships, has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for the ship's easy replacement, facilitating continued raids of nearby systems."
+	description "Successive raider designs have been the Korath warship of choice for plundering neighboring species for generations. Named for a celebrated captain who gave her life to ensure her crippled vessel made it back to port with its desperately needed cargo of stolen fish, the Palavret-Class Raiding Ship continues that grim tradition."
+	description "	Like all Exile ships, the Palavret has been adapted to house as many Korath as possible, as comfortably as possible, inflating its size beyond similarly classed warships. The spaceborne construction techniques employed allow for the ship's easy replacement, facilitating continued raids of nearby systems."
 
 
-ship "Korath Raider Mark XLII"
+ship "Tubfalem"
 	sprite "ship/raider xlii"
 	thumbnail "thumbnail/raider xlii"
 	attributes
@@ -266,11 +267,11 @@ ship "Korath Raider Mark XLII"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The venerable Raider has long been a mainstay of the Korath raiding fleet, designed before the era of shortages and desperation caused by a life in exile."
-	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
+	description "The venerable Palavret has been a mainstay of the Korath raiding fleet, elements of its design dating back from before the era of shortages and desperation caused by a life in exile. Over forty generations of raiders have terrorised neighboring systems over the centuries."
+	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets.  The Tubfalem-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory.`
 
 
-ship "Korath Chaser"
+ship "Olofek"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
 	attributes
@@ -305,7 +306,7 @@ ship "Korath Chaser"
 	engine 7 23
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
-	description "The Korath Chaser is a fighter carried by most of their capital ships."
+	description "The Olofek-Class Carried Chaser, named for a renowned artist who painted their visions of ancient hunts, is a fighter carried by most Exile capital ships."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 

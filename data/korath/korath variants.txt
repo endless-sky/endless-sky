@@ -10,7 +10,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-ship "Korath Dredger" "Korath Dredger (Civilian)"
+ship "Ranolenrek" "Ranolenrek (Civilian)"
 	add attributes
 		"atmosphere scan" 1
 	outfits
@@ -42,7 +42,7 @@ ship "Korath Dredger" "Korath Dredger (Civilian)"
 	turret "Korath Warder"
 
 
-ship "Korath Dredger" "Korath Dredger (Crippled)"
+ship "Ranolenrek" "Ranolenrek (Crippled)"
 	outfits
 		"Korath Banisher"
 		"Digger Mining Turret"
@@ -72,7 +72,7 @@ ship "Korath Dredger" "Korath Dredger (Crippled)"
 	turret "Korath Banisher"
 
 
-ship "Korath Dredger" "Korath Dredger (Digger)"
+ship "Ranolenrek" "Ranolenrek (Digger)"
 	outfits
 		"Digger Mining Turret" 5
 		"Korath Warder"
@@ -101,7 +101,7 @@ ship "Korath Dredger" "Korath Dredger (Digger)"
 	turret "Digger Mining Turret"
 
 
-ship "Korath Dredger" "Korath Dredger (Shunt)"
+ship "Ranolenrek" "Ranolenrek (Shunt)"
 	outfits
 		"Shunt-Strike Turret" 4
 		"Korath Banisher"
@@ -128,7 +128,7 @@ ship "Korath Dredger" "Korath Dredger (Shunt)"
 	turret "Korath Warder"
 
 
-ship "Korath Dredger" "Korath Dredger (Ground Assault)"
+ship "Ranolenrek" "Ranolenrek (Ground Assault)"
 	"crew" 449
 	outfits
 		"Korath Banisher" 2
@@ -156,7 +156,7 @@ ship "Korath Dredger" "Korath Dredger (Ground Assault)"
 	turret "Korath Banisher"
 
 
-ship "Korath Dredger" "Korath Dredger (Heaver)"
+ship "Ranolenrek" "Ranolenrek (Heaver)"
 	outfits
 		"Langrage Hyper-Heaver" 4
 		"Korath Warder" 3
@@ -182,7 +182,7 @@ ship "Korath Dredger" "Korath Dredger (Heaver)"
 	turret "Langrage Hyper-Heaver"
 
 
-ship "Korath Raider" "Korath Raider (Blaze)"
+ship "Palavret" "Palavret (Blaze)"
 	outfits
 		"Blaze-Pike Turret" 4
 		"Digger Mining Turret"
@@ -212,7 +212,7 @@ ship "Korath Raider" "Korath Raider (Blaze)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Crippled)"
+ship "Palavret" "Palavret (Crippled)"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher"
@@ -244,7 +244,7 @@ ship "Korath Raider" "Korath Raider (Crippled)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Ember)"
+ship "Palavret" "Palavret (Ember)"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -278,7 +278,7 @@ ship "Korath Raider" "Korath Raider (Ember)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Ember Blaze)"
+ship "Palavret" "Palavret (Ember Blaze)"
 	outfits
 		"Blaze-Pike Turret" 4
 		"Digger Mining Turret"
@@ -310,7 +310,7 @@ ship "Korath Raider" "Korath Raider (Ember Blaze)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Ember Shunt)"
+ship "Palavret" "Palavret (Ember Shunt)"
 	outfits
 		"Shunt-Strike Turret" 4
 		"Korath Banisher"
@@ -344,7 +344,7 @@ ship "Korath Raider" "Korath Raider (Ember Shunt)"
 	turret "Korath Warder"
 
 
-ship "Korath Raider" "Korath Raider (Hyperdrive)"
+ship "Palavret" "Palavret (Hyperdrive)"
 	outfits
 		"Korath Grab-Strike" 4
 		"Korath Banisher"
@@ -377,7 +377,7 @@ ship "Korath Raider" "Korath Raider (Hyperdrive)"
 
 
 
-ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
+ship "Tubfalem" "Tubfalem (Crippler)"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70
@@ -414,7 +414,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 
 
 
-ship "Korath Chaser" "Korath Chaser (Expeller)"
+ship "Olofek" "Olofek (Expeller)"
 	outfits
 		"Expeller Grav-Ray"
 		
@@ -426,7 +426,7 @@ ship "Korath Chaser" "Korath Chaser (Expeller)"
 		"Bow Drive (Meteor Class)"
 
 
-ship "Korath Chaser" "Korath Chaser (Digger)"
+ship "Olofek" "Olofek (Digger)"
 	outfits
 		"Digger Mining Beam"
 		
@@ -439,7 +439,7 @@ ship "Korath Chaser" "Korath Chaser (Digger)"
 		"Engine (Meteor Class)"
 
 
-ship "Korath Chaser" "Korath Chaser (World-Ship)"
+ship "Olofek" "Olofek (World-Ship)"
 	add attributes
 		"atmosphere scan" 1
 	outfits
