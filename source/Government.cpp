@@ -188,7 +188,7 @@ void Government::Load(const DataNode &node)
 					if(atrocity != atrocities.end())
 					{
 						if(remove)
-							atrocity.erase(atrocity);
+							atrocities.erase(atrocity);
 						else
 							atrocity->second = false;
 					}
