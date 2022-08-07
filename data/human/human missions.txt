@@ -4179,12 +4179,13 @@ mission "Hai Wormhole Warning"
 
 
 mission "Saving Artifacts 1"
+	name "Saving Artifacts"
 	description "An Earth museum cannot care for these historical artifacts anymore. Bring them to <destination>, where they will be safe."
 	minor
 	cargo "artifacts" 5
 	to offer
 		random < 10
-		has "fw conservatory founded"
+		has "event: fw conservatory founded"
 	source "Earth"
 	destination "Alexandria"
 	on offer
@@ -4203,19 +4204,16 @@ mission "Saving Artifacts 1"
 					decline
 			label accept
 			`	"Wonderful!" He claps his hands together. "We'll start loading the cargo onto your ship." He turns and walks away considerably happier than when you found him.`
+				accept
 	on complete
 		payment
 		conversation
 			`Unloading the cargo takes an excruciatingly long time, as the artifacts must be handled with extreme care. A local librarian comes up to you and thanks you for the transport, paying you <payment>.`
-			branch combat
-				"combat rating" > 500
-			`	"Your help is greatly appreciated," he says, walking off. His attention seems to be fixed more on the artifacts you brought than on yourself.`
-			label combat
 			`	As he hands you the credit chips, he leans in. "According to our sources, you have some considerable combat experience. We have a task that requires that skillset. I promise you that it's a bit more exciting than transporting musty books, and the pay is much higher too. Meet me in the spaceport if you want to learn more."`
-			accept
 
 mission "Saving Artifacts 2"
-	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <source>, where they will be safe."
+	name "Saving Artifacts"
+	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <origin>, where they will be safe."
 	minor
 	source "Alexandria"
 	destination "Greenrock"
@@ -4274,45 +4272,45 @@ mission "Saving Artifacts 2"
 				`	"I didn't realize 'The Great Lokust' was such a weakling."`
 			`	He becomes visibily enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will use them."`
 			`	The communication cuts off. "He always uses that same line," the clerk says, rolling his eyes.`
-			apply
-				set "Duel Lokust"
-			decline
+				decline
 			label pay
 			action
 				payment -500000
+				set "Bought Off Artifacts"
 			`	He looks almost disappointed. "Alright, here's the statues. Don't forget to tell any friends that might be redecorating about our low prices."`
 				decline
 
 mission "Saving Artifacts 3"
+	name "Duel Lokust"
 	description "Defeat Lokust as part of a bargain to acquire the stolen statues."
 	source "Greenrock"
 	landing  # This has no offer convo as the choice is handled in mission 2
 	to offer
 		has "Saving Artifacts 2: done"
-		has "Duel Lokust"
+		not "Bought Off Artifacts"
 
 	npc kill 
-		personality heroic nemesis waiting staying
+		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
 	
 	npc kill 
-		personality heroic nemesis waiting staying
+		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Deth"
 
 	npc kill 
-		personality heroic nemesis waiting staying
+		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Warr"
 
 	npc kill 
-		personality heroic nemesis waiting staying
+		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Famin"
 
 	npc kill 
-		personality heroic nemesis waiting staying
+		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
 	
@@ -4322,17 +4320,20 @@ mission "Saving Artifacts 3"
 			`	You load up the statues, taking care not to attract unwanted attention as well as attempting to avoid creating any new damage. From what you can tell, they're in remarkable condition considering that they were in the hands of a pirate warlord just a few hours ago.`
 
 mission "Saving Artifacts 4"
-	description "Bring the statues back to <planet>"
+	landing
+	name "Saving Artifacts"
+	description "Bring the statues back to <planet>."
 	source "Greenrock"
 	destination "Alexandria"
 	to offer
+		has "Saving Artifacts 2: done"
+	to complete
 		or
+			has "Bought Off Artifacts"
 			has "Saving Artifacts 3: done"
-			and
-				has "Saving Artifacts 2: done"
-				not "Duel Lokust"
-	landing
 	
+	on visit
+		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
 	on complete
 		payment 1800000
 		conversation
