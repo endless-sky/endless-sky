@@ -3333,7 +3333,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							other.Cost() : (other.ChassisCost() * 2.);
 					};
 				}
-				else if(targetPriority == "distance")
+				else if(targetPriority == "proximity")
 				{
 					return [current](Ship &other) noexcept -> double
 					{
