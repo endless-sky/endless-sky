@@ -521,7 +521,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
-	if(!(isContinuous || isContinuousBurst))
+	if(!isContinuous && !isContinuousBurst)
 	{
 		static const string PER_SHOT = " / shot:";
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
