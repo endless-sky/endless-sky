@@ -50,6 +50,21 @@ outfit "Small MOF Crystal Capacitor"
 	description `These capacitors are derived from a strange crystal formation that was discovered near the "weird end" of the Brilliance. Over time the Xapleaux managed to work out what part of the crystal formation did what they found useful, and how to grow refined versions of them artificially.`
 	description `	These capacitors leak small amounts of energy, but the native crystal heat conversion was refined out of them, such that it instead leaks out as a form of ionization. This leaking of ionization and the associated design elements incorporated to handle that also provides some resistance to other external forms of ionization, granting ships with these crystals some resistance against natural or artificial ionic phenomena.`
 
+outfit "Large MOF Crystal Capacitor"
+	category "Power"
+	licenses
+		Xapleaux
+	cost 96000
+	thumbnail "outfit/crystal capacitor"
+	"mass" 16
+	"outfit space" -16
+	"energy capacity" 19600
+	"energy consumption" 1
+	"ion resistance" 0.02
+	description `This larger capacitor is about the maximum size of crystal that can be readily grown without setting up a kind of resonance inside that causes the power leakage effects to compound upon themselves and negate the benefit of having it in the first place. However, at this size the amount of luminescence that is produced as the crystal leaks power makes it quite popular among Xapleaux captains who can channel its unique spectra through their ships with refractory crystals to improve morale.`
+	description `	These capacitors leak small amounts of energy and ionization. The design elements incorporated to handle that also provide some resistance to other external forms of ionization, granting ships with these crystals some resistance against natural or artificial ionic phenomena.`
+
+
 outfit "Piezoelectric Shaft"
 	category "Systems"
 	cost 1660000
