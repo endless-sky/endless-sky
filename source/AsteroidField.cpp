@@ -61,7 +61,7 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<System::Belt> &belts)
+void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
@@ -71,7 +71,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, belts.Get().Radius());
+		minables.back()->Place(energy, belts.Get());
 	}
 }
 
@@ -164,7 +164,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 
 
 
-// Get the list of mainable asteroids.
+// Get the list of minable asteroids.
 const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 {
 	return minables;
