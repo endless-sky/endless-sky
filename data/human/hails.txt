@@ -2560,7 +2560,7 @@ phrase "friendly pirate"
 		" horrendous "
 		" atrocious "
 		" horrid "
-		""
+		" "
 	word
 		"bad blue"
 		"booster"
