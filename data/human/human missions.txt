@@ -356,9 +356,7 @@ mission "Transport Workers B"
 	minor
 	source
 		attributes "dirt belt"
-	destination
-		government "Syndicate"
-		attributes "factory"
+	destination "Maker"
 	to offer
 		random < 5
 	passengers 1
@@ -400,6 +398,7 @@ mission "Transport Workers B"
 	on complete
 		payment
 		payment 10000
+		log `Transported a teenage boy to Maker so that he can work to marry his girlfriend.`
 		dialog `You drop off the young man from <origin> who is hoping to find work and save enough money for his girlfriend to join him. "Good luck," you say. "Be wise. Don't let yourself get into debt." He thanks you, and pays you <payment>.`
 
 
@@ -3131,7 +3130,7 @@ mission "Pirate Duel"
 			label end
 			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
 			choice
-				`	(Ready your ship for the battle with the Esca.)`
+				`	(Ready my ship for the battle with the Esca.)`
 					accept
 				`	(Ignore the invitation.)`
 					decline
@@ -3584,13 +3583,13 @@ mission "Mafia Extortion"
 					goto draws
 				`	(Mock the man further.)`
 					goto draws
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			label draws
 			`	The man manages to draw a weapon! You brace for impact, but after a few seconds of waiting, you realize his weapon is only making a clicking sound when he tries to shoot.`
 			choice
 				`	"Ha, ha, you really are a failure of a goon."`
-				`	(Draw your sidearm and shoot the man.)`
+				`	(Draw my sidearm and shoot the man.)`
 					goto shoot
 			`	As you finish talking, you see a flash of light come from the muzzle of the man's weapon as a bullet hits you between the eyes. You die almost instantly, but you do have a few microseconds to reflect on the wisdom of mocking a man that is trying to fire a gun at you.`
 				die
@@ -3598,9 +3597,9 @@ mission "Mafia Extortion"
 			`	Your bullet hits the man right between the eyes; he dies instantly, and a crowd starts to form around you.`
 			`	Most bystanders are surprised, but you also notice an angry sentiment brewing in the (not unarmed) crowd. It might be wise to leave quickly.`
 			choice
-				`	(Run towards your ship and leave immediately.)`
+				`	(Run towards my ship and leave immediately.)`
 					goto leave
-				`	(Put away your sidearm and pretend nothing happened.)`
+				`	(Put away my sidearm and pretend nothing happened.)`
 			`	You walk away nonchalantly, but you don't get far before multiple laser blasts slice through you.`
 				die
 			label leave
@@ -3835,3 +3834,508 @@ mission "Spaceport Reminder"
 			`	He pleasantly smiles and nods. "Well, I wish you the best in your travels." He walks away, leaving you free to explore the rest of <origin>'s facilities.`
 				decline
 
+
+
+mission "Fumbling Mugger Patch"
+	landing
+	invisible
+	to offer
+		has "Transport Workers B: done"
+	on offer
+		event "fumbling mugger timer" 60
+		fail
+
+
+event "fumbling mugger timer"
+
+
+mission "Fumbling Mugger"
+	name "Transport to <planet>"
+	description "Bring a young woman who threatened you on <origin> to <destination>."
+	minor
+	source
+		attributes "dirt belt"
+	destination "Maker"
+	passengers 1
+	to offer
+		random < 45
+		has "event: fumbling mugger timer"
+	on offer
+		conversation
+			`Your exploration of the spaceport leads you to a dark alley where the number of working lights are far outnumbered by the number of broken ones. The contents of steel bins lining the walls overflow onto the pavement, attracting swarms of flies to them. On the surfaces that are illuminated, you can see a mess of black scrawlings upon bare, cracked concrete, and the few windows present on the towering walls surrounding you are either boarded up or shattered. A dark crimson stains the bottom half of a broken window.`
+			`	Suddenly, you feel a cold object pushed against your back as a woman speaks softly. "Hands where I can see them, Captain."`
+			choice
+				`	(Lift my hands up and slowly turn.)`
+					goto peaceful
+				`	(Spin around and fire.)`
+				`	(Try a fancy acrobatic move and disarm the attacker.)`
+					goto flip
+			
+			action
+				set "fumbling mugger shot"
+			`	You turn around as swiftly as you can as your hand grasps for your pistol. Due to surprise, or perhaps nervousness, the woman threatening you fails to fire the shotgun she's holding in the second you spend turning. You manage to land a shot, and your quarry falls while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label flip
+			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
+			choice
+				`	(Put my hands up.)`
+					goto handsup
+				`	(Draw my gun and fire.)`
+			action
+				set "fumbling mugger shot"
+			`	You hand darts for your gun, and you somehow manage to aim and fire before the woman does. She collapses on the ground while a cry escapes from her body. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label peaceful
+			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen.`
+			label handsup
+			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
+			choice
+				`	"And if I don't take you there?"`
+				`	"Are you going to pay me?"`
+					goto payment
+				`	"Why do you want to go there?"`
+					goto why
+			
+			`	She scoffs. "What do you think? How else might an encounter involving a gun pointed-"`
+				goto fail
+			label payment
+			`	She scoffs. "Payment? If I wanted to pay you, I wouldn't be in this alley pointing-"`
+				goto fail
+			label why
+			`	She scoffs. "All you need to know is that I've got a gun pointed-"`
+			
+			label fail
+			`	The attacker's speech is interrupted by a click as her shotgun swings open. She takes a step back as her eyes widen with panic.`
+			label choice
+			choice
+				`	(Threaten her with my gun.)`
+					goto threaten
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	Before she can move a muscle, you whip out your pistol and fire, watching as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label threaten
+			`	You take out your gun and aim it at the woman's head. "Drop the gun," you say, "or I'll shoot."`
+			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
+			choice
+				`	"Why do you want to go to <planet>?"`
+					goto why2
+				`	"Get out of my sight, and I'll let you go."`
+					goto freedom
+				`	(Shoot her.)`
+			
+			action
+				set "fumbling mugger shot"
+			`	You pull the trigger and watch as the woman collapses onto the ground with a cry. As you walk away, her body fades into the darkness, blending with the garbage bags around it.`
+				decline
+			
+			label freedom
+			`	She nods her head and backs away from you, hands still held up. When she disappears around a corner, you holster your gun and walk back to a safer portion of the spaceport.`
+				decline
+			
+			label why2
+			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
+			`	"Just humor me for a moment," you reply.`
+			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
+			choice
+				`	"I can take you there."`
+				`	"I can't transport you."`
+					goto decline
+			`	"Really?" she says. "You realize that I can't pay you in any way, right?"`
+			choice
+				`	"You don't need to pay me."`
+					goto accept
+				`	"You can pay me later."`
+				`	"Actually, I can't take you there without payment."`
+					goto decline
+			action
+				set "Fumbling Mugger: future payment"
+			label accept
+			`	The woman's eyes light up. "I can't thank you enough for this." The two of you head out of the alleys and back to the landing pads, and you show her to an empty bunk on your ship.`
+				accept
+			
+			label decline
+			`	"I understand." She shuffles away with her head hung, and you head back to a brighter area of the spaceport.`
+				decline
+	
+	on abort
+		conversation
+			`As you tell the woman about the change in travel plans, she sighs with resignation. "I suppose that I shouldn't expect anything after how I treated you." You recall that she doesn't even have a single credit to her name, and without any money, it is unlikely that she will survive for long.`
+			branch poor
+				"credits" < 15000
+			choice
+				`	(Wish her good luck.)`
+					goto leave
+				`	(Give her 15,000 credits before dropping her off.)`
+					goto gift
+			label poor
+			choice
+				`	(Wish her good luck.)`
+			label leave
+			`	She nods in response. "I'll try my best," she says solemnly as she prepares to depart your ship.`
+				decline
+			label gift
+			action
+				payment -15000
+				set "gifted money to mugger"
+				log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to pay for her transport anyway.`
+			`	She is almost incredulous at your gift. "I really can't thank you enough for helping me out." The two of you say your farewells as she gets ready to depart your ship.`
+	
+	on complete
+		event "fumbling mugger followup timer" 365
+		log `Was held up by a woman who wanted transport to Maker. Managed to gain the upper hand in the engagement, but decided to take her there anyway.`
+		dialog `The hooded woman prepares to disembark your ship. Just before she steps off, she turns to look at you. "I'm sorry for threatening you back on <origin>, Captain. I'll try to find some way to repay you." She walks off into the bustling spaceport to find her lover.`
+
+
+event "fumbling mugger followup timer"
+
+
+
+mission "Laborer"
+	minor
+	name "Out of Work"
+	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
+	passengers 1
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		attributes "mining"
+	destination
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		attributes "mining"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Upon entering the spaceport, you see a young man in laborer's clothing is arguing with a woman in a flight suit.`
+			choice
+				`	(Go see what the laborer is arguing about.)`
+				`	(Ignore them.)`
+					decline
+			`	The man is nearly shouting. "Lady, I'm not trying to low-ball you here! I don't have the money! That's the whole point!"`
+			`	"I appreciate your conundrum," replies the woman, her voice clipped. "However, my policy is cash upfront. Good day."`
+			`	She turns and walks away briskly, and the man slumps down into a chair.`
+			choice
+				`	"What was that all about?"`
+				`	(Leave before he notices you.)`
+					decline
+			`	He gives you a once-over, and you see a spark of hope in his eyes. "You're a captain? Please, I need to get to <destination>. Work has dried up here, and I need a fresh start."`
+			choice
+				`	"What are you able to pay me?"`
+					goto offer
+				`	"Work dried up on the whole planet?"`
+			`	"This planet is messed up. Everybody likes to talk behind your back. I did a job for one of the big mining companies here, but my boss had it out for me. Told everybody I did it wrong, even though they never gave me any training at all. Then he went and put me on the permanent record. So yeah, sooner I get off this dump, the better."`
+			`	"What are you able to pay me?" you ask.`
+			label offer
+			`	His eyes drop. "I can pay you after I earn the money. I've just gotta get to <planet> to get work, and then I'll send the money. I just want to earn a living, same as anyone."`
+			choice
+				`	"Okay, I can take you to <planet>."`
+					goto accept
+				`	"How do I know you'll pay?"`
+					goto question
+				`	"Sorry, money up front."`
+					goto decline
+			label question
+			`	"You don't trust me? Just keep walking, then, if you're gonna be like that."`
+			choice
+				`	"Sorry, money up front."`
+					goto decline
+				`	"Fine, I can take you to <planet>."`
+			label accept
+			`	"I'll be on board. There's no rush, honestly. I need a break from all this stress." He takes his luggage into your ship as you prepare for the trip.` 
+				accept
+			label decline
+			`	"I knew it. You're just like everyone else." He storms off, not waiting for a response.`
+				decline
+	on complete
+		event "laborer payment" 400
+		conversation
+			`The worker you picked up from <origin> spent every possible moment of the voyage telling his story. He's had a tough life, full of unlucky setbacks, unfair treatment, and outright persecution from others. You stopped paying attention to what he was saying after a while as he went on for what felt like forever, often repeating himself.`
+			`	Upon arriving, he carries his bags to the lowered ramp, then turns back before disembarking. "Thanks for the lift. You're one of the good ones, you know?"`
+			choice
+				`	"You're welcome. Better luck on this world."`
+					goto luck
+				`	"You have my bank address, right?"`
+			`	He shoots you a look of thinly masked annoyance. "Yeah. I'll send you the credits when I have them. Bye, now."`
+				decline
+			label luck
+			`	He bobs his head at you in farewell. "I promise I'll send you the payment when I have it. Bye, now."`
+
+event "laborer payment"
+
+mission "Laborer Payment"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+	to offer
+		has "event: laborer payment"
+	on offer
+		payment 17000
+		conversation
+			`You receive a payment of <payment> from the down-on-his-luck laborer that you transported a while back, along with a message. "Hello <last>. Not sure if you remember me. I'm the one that had to deal with my boss bad-talking me to everyone on my home planet. I've been doing better, but my new boss keeps trying to rip me off and make me come in for overtime." He goes into detail about the sordid working conditions in his new job, but you stop reading after the third paragraph.`
+				decline
+
+
+
+mission "Block Hai Wormhole Warning"
+	landing
+	invisible
+	to offer
+		or
+			has "First Contact: Hai"
+			has "First Contact: Unfettered"
+		has "chosen sides"
+		not "main plot completed"
+	on offer
+		fail
+
+mission "Hai Wormhole Warning"
+	minor
+	source
+		government "Republic"
+		not attributes "deep"
+	to offer
+		or
+			has "First Contact: Hai"
+			has "First Contact: Unfettered"
+		not "Block Hai Wormhole Warning: offered"
+		not "Wanderers: Alpha Surveillance E: offered"
+	on offer
+		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
+		conversation
+			`Upon entering the spaceport, you're stopped by a Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			choice
+				`	"What about?"`
+					goto what
+				`	"Okay."`
+					goto frigate
+				`	"Sorry, I'm really busy right now."`
+			`	"No, I'm sorry, but this isn't a matter of whether you're busy or not right now. Come with me."`
+				goto frigate
+			label what
+			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
+			label frigate
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
+			choice
+				`	(Take a seat.)`
+					goto seat
+				`	"No, I like to stand."`
+			`	"Suit yourself," the officer says with a shrug while taking a seat himself.`
+				goto questioning
+			label seat
+			`	You choose a table to sit at and the officer sits across from you.`
+			label questioning
+			`	"So what is it that you brought me here for?" you ask.`
+			`	The officer folds his hands together. "You've made contact with an alien species located to the north. Is this correct?"`
+			choice
+				`	"It is. Is that a problem?"`
+					goto yes
+				`	"Perhaps. Why do you ask?"`
+					goto maybe
+				`	"Aliens? I don't know of any aliens up there."`
+				`	"Hey! That's no way to talk about the pirates in the Far North."`
+			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai.`
+				goto secret
+			label maybe
+			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
+				goto secret
+			label yes
+			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
+			label secret
+			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; they do not disallow captains such as yourself from stumbling upon them, but they will not allow this existence to be widely publicized."`
+			choice
+				`	"Why are you telling me this?"`
+					goto why
+				`	"An arrangement between the Republic and Hai? When did that happen?"`
+					goto arrangement
+				`	"So you're threatening me to stay quiet?"`
+			`	"No threats. I only provide a... warning, so to say, that you should keep the Hai a secret.`
+				goto chaos
+			label why
+			`	"I'm telling you this as something of a... warning, so to say, that you should keep the Hai a secret.`
+				goto chaos
+			label arrangement
+			`	"The details of the arrangement are none of your concern. All you need to know is that I am providing a... warning, so to say, that you should keep the Hai a secret.`
+			label chaos
+			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for the Republic and for the Hai. Chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this knowledge a secret."`
+			choice
+				`	"Alright. I won't let anyone know."`
+					goto ok
+				`	"And if I don't?"`
+			`	The officer leans back in his chair. "As I said, <last>, I'm giving you a warning that things could end badly for you. The Republic are not the only ones who work hard to maintain this secrecy, so you may want to think twice about revealing such information. Now, if you'll please depart my ship so that I can be on my way."`
+				goto end
+			label ok
+			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
+			label end
+			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
+				decline
+
+
+
+mission "Saving Artifacts 1"
+	name "Saving Artifacts"
+	description "An Earth museum cannot care for these historical artifacts anymore. Bring them to <destination>, where they will be safe."
+	minor
+	cargo "artifacts" 5
+	to offer
+		random < 10
+		has "event: fw conservatory founded"
+	source "Earth"
+	destination "Alexandria"
+	on offer
+		conversation
+			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
+			choice
+				`	"Why can't you just bring them to another Earth museum?"`
+				`	"Sorry, I can't take on this job right now. Ask someone else."`
+					decline
+				`	"Sure, I'll take them there."`
+					goto accept
+			`	"These artifacts are extremely delicate. Ancient manuscripts and the like. One needs special equipment to care for them, and all the museums that could possibly provide that care here are underfunded and overloaded. Earth has many items of historical value, but not enough resources to host them. It's not an ideal combination." He sighs. "Alexandria Station has offered to host them, so we of course accepted."`
+			choice
+				`	"Sure, I'll take them there."`
+				`	"Sorry, I can't take on this job right now. Ask someone else."`
+					decline
+			label accept
+			`	"Wonderful!" He claps his hands together. "We'll start loading the cargo onto your ship." He turns and walks away considerably happier than when you found him.`
+				accept
+	on complete
+		payment
+		conversation
+			`Unloading the cargo takes an excruciatingly long time, as the artifacts must be handled with extreme care. A local librarian comes up to you and thanks you for the transport, paying you <payment>.`
+			`	As he hands you the credit chips, he leans in. "According to our sources, you have some considerable combat experience. We have a task that requires that skillset. I promise you that it's a bit more exciting than transporting musty books, and the pay is much higher too. Meet me in the spaceport if you want to learn more."`
+
+mission "Saving Artifacts 2"
+	name "Saving Artifacts"
+	description "A pirate warlord has captured a collection of ancient statues from Winter. Go to <destination> in order to bring them to <origin>, where they will be safe."
+	minor
+	source "Alexandria"
+	destination "Greenrock"
+	to offer
+		has "Saving Artifacts 1: done"
+	on offer
+		conversation
+			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally mispellt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
+			label choice
+			choice
+				`	"Why can't you get the Navy involved with this?"`
+				`	"Why should I bring them back to Alexandria? Don't they belong to the Conservatory?"`
+					goto conservatory
+				`	"How am I supposed to find those statues? They could be anywhere on that planet."`
+					goto find
+				`	"I can handle some pirates. I'll get those statues back."`
+					goto accept
+				`	"No way am I risking my life for some hunks of marble. Find someone else."`
+					decline
+			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in  their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
+				goto choice
+			label conservatory
+			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
+				goto choice
+			label find
+			`	"Lucky for you, Lokust does not seem particularly attached to his 'booty'. If you must, offer him a large sum of money, and he will most likely be willing to part with them. However, if there is something you can do to get those statues back without allowing your money to fall into the hands of a criminal, I would suggest that course of action instead."`
+				goto choice
+			label accept
+			`	"Excellent. You're doing a service to humanity's cultural memory."`
+				accept
+	on complete
+		conversation
+			`You hustle through the crowded markets, pistol by your side, looking for any sign of the statues. After a while you come across a storefront with a crudely painted sign that reads "Fine Art and Cultural Treasures". Not seeing any better leads, you go in.`
+			`	The inside is damp and poorly lit, but you can make out various paintings, manuscripts, and other expensive-looking items. "How can I help you?" the store clerk asks in a disarmingly friendly voice.`
+			choice
+				`	"You don't happen to know of a local warlord named Lokust, do you?"`
+				`	"Have you had any Greek statues pass by through here?"`
+			`	The clerk laughs. "You're trying to get Alexandria's shipment back, aren't you?" Before you can answer, he continues. "If you want my client Lokust's statues, I'm afraid you're gonna have to pay a pretty penny for them. 500,000 credits is his asking price."`
+			choice
+				`	"Alright, I'll pay."`
+					goto pay
+				`	"Can't we negotiate?"`
+				`	"I can't pay that much!"`
+			`	"Sorry, his price is firm. I'm just the dealer - I don't make those decisions." A smirk begins to crawl across his face, and he leans in. "Look, I have no love for Lokust. Always jacking up his cut of the sale, threatening my customers, you get the idea. Not to mention my debts to him." The last part he says in a less bold tone. "What I'm saying is, I wouldn't mind if someone like you took him out. He's a real wacko, always going on about duels and other bull. If I were you, I'd challenge him to one. If he doesn't accept, call him a coward. That's sure to get him riled up." He wheezes in a way vaguely reminiscent of a laugh. "As a reward, I'll give you the statues for free if you come back, but you gotta take out his whole crew, right? Don't want any of his underlings coming for me."`
+			choice
+				`	"Never mind, I'll pay."`
+					goto pay
+				`	"All right, I'll fight him. `
+			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
+			choice
+				`	"Fight me."`
+				`	"I've heard you're willing to duel over those statues you stole from the Library of Alexandria?"`
+			`	The communicator's audio quality is evidently not the highest, as his laugh is barely more than static. "I don't just throw hands with anyone, you see. That would make me little better than some barroom drunk. I have standards. Why should I waste my time with you?"`
+			choice
+				`	"Oh, I see. You're too cowardly to fight."`
+				`	"I didn't realize 'The Great Lokust' was such a weakling."`
+			`	He becomes visibily enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will use them."`
+			`	The communication cuts off. "He always uses that same line," the clerk says, rolling his eyes.`
+				decline
+			label pay
+			action
+				payment -500000
+				set "Bought Off Artifacts"
+			`	He looks almost disappointed. "Alright, here's the statues. Don't forget to tell any friends that might be redecorating about our low prices."`
+				decline
+
+mission "Saving Artifacts 3"
+	name "Duel Lokust"
+	description "Defeat Lokust as part of a bargain to acquire the stolen statues."
+	source "Greenrock"
+	landing  # This has no offer convo as the choice is handled in mission 2
+	to offer
+		has "Saving Artifacts 2: done"
+		not "Bought Off Artifacts"
+
+	npc kill 
+		personality heroic nemesis waiting staying target
+		government "Pirate"
+		ship "Falcon" "Pestilance"
+	
+	npc kill 
+		personality heroic nemesis waiting staying target
+		government "Pirate"
+		ship "Headhunter" "Deth"
+
+	npc kill 
+		personality heroic nemesis waiting staying target
+		government "Pirate"
+		ship "Headhunter" "Warr"
+
+	npc kill 
+		personality heroic nemesis waiting staying target
+		government "Pirate"
+		ship "Headhunter" "Famin"
+
+	npc kill 
+		personality heroic nemesis waiting staying target
+		government "Pirate"
+		ship "Headhunter" "Konkwest"
+	
+	on complete
+		conversation
+			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
+			`	You load up the statues, taking care not to attract unwanted attention as well as attempting to avoid creating any new damage. From what you can tell, they're in remarkable condition considering that they were in the hands of a pirate warlord just a few hours ago.`
+
+mission "Saving Artifacts 4"
+	landing
+	name "Saving Artifacts"
+	description "Bring the statues back to <planet>."
+	source "Greenrock"
+	destination "Alexandria"
+	to offer
+		has "Saving Artifacts 2: done"
+	to complete
+		or
+			has "Bought Off Artifacts"
+			has "Saving Artifacts 3: done"
+	
+	on visit
+		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
+	on complete
+		payment 1800000
+		conversation
+			`You dock on the station and the librarian from earlier comes to greet you almost immediately. "Get the dockworkers, stat!" he calls, then turns to you. "You did get the statues, right?" He relaxes once he sees you nod. As the cargo is unloaded, the librarian hurries up to inspect your haul and shakes his head. "There's damage, but I suppose it's the best we could've hoped for considering the circumstances." He sighs. "Thank you for your help, Captain <last>. You've provided an invaluable service." After paying you <payment>, he turns back towards the statues, focusing his attention on their safe unloading.`
+				decline

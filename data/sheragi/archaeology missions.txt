@@ -1139,6 +1139,10 @@ mission "Sheragi Archaeology: The Box 7b"
 
 	on complete
 		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
 			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the discovery of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
@@ -1364,7 +1368,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto rakei
 				`	(Look for Desyo to see what she's doing.)`
 					goto desyo
-				`	(Return to your ship and wait until the Emerald Sword is operational.)`
+				`	(Return to my ship and wait until the Emerald Sword is operational.)`
 					goto end
 			
 			apply
