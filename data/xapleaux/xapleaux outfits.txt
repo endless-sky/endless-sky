@@ -20,7 +20,7 @@ outfit "String Drive"
 	"jump fuel" 50
 	"outfit space" -15
 	"scram drive" 1.5
-	description "A string drive constantly hums with the frequency of space-time in its vicinity. By constantly remaining attuned to the threads that link one system to the next it has no need to slow down enough to 'search' for a path to follow. Simply by aligning in the correct direction it can claw its way along any hyperthread in its vicinity even if your ship is traveling at a very significant speed. Consequently it needs very little fuel to initiate the process and is smaller as a result. However, this comes at a cost of continuously draining quite a bit of energy to power the attunement apparatus."
+	description "A string drive continuously hums with the frequency of space-time in its vicinity. By constantly remaining attuned to the threads that link one system to the next it has no need to slow down enough to 'search' for a path to follow. Simply by aligning in the correct direction it can claw its way along any hyperthread in its vicinity even if your ship is traveling at a very significant speed. Consequently it needs very little fuel to initiate the process and is smaller as a result. However, this comes at a cost of continuously draining quite a bit of energy to power the attunement apparatus."
 
 outfit "Cryo-Arithmetic Engine"
 	category "Systems"
@@ -127,7 +127,7 @@ outfit `Type I "Lepido" Engine`
 	"flare sound" ""
 	"reverse flare sound" ""
 	"steering flare sound" ""
-	description "This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the powerful Coleo or space efficient Haltere engines the Lepido is incredibly massive and produces very little thrust per tonne. However, this 'caterpillar' style drive uses its much more significant, multi-staged turbine length to produce thrust extremely efficiently with low power requirements and little waste heat. For this reason it is popular on civilian ships that can afford to run it on solar power alone."
+	description `This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the powerful Coleo or space efficient Haltere engines the Lepido is incredibly massive and produces very little thrust per tonne. However, this "caterpillar"-style drive uses its much more significant, multi-staged turbine length to produce thrust extremely efficiently with low power requirements and little waste heat. For this reason it is popular on civilian ships that can afford to run it on solar power alone.`
 	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass, though vessels which utilize this engine often have spars so thick that the definition holds only tenuously. The reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized I Ring Cradle can mount this engine."
 
 outfit `Type V "Strepsip" Engine`
