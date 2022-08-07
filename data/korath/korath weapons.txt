@@ -184,7 +184,7 @@ outfit "Warder Anti-Missile"
 	weapon
 		"hardpoint sprite" "hardpoint/warder"
 		"hardpoint offset" 3.
-		"hit effect" "Warder Anti-Missile"
+		"hit effect" "korath warder"
 		"anti-missile" 10
 		"velocity" 350
 		"lifetime" 1
@@ -193,7 +193,7 @@ outfit "Warder Anti-Missile"
 		"firing heat" 10
 	description "This anti-missile system helps defend Korath warships from long-range attacks."
 
-effect "Warder Anti-Missile"
+effect "korath warder"
 	sprite "effect/warder"
 		"no repeat"
 		"frame rate" 6
