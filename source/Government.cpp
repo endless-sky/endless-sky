@@ -156,6 +156,13 @@ void Government::Load(const DataNode &node)
 			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
+		else if(key == "restricted")
+		{
+			if(add)
+				travelRestrictions.Load(child);
+			else
+				travelRestrictions = LocationFilter(child);
+		}
 		else if(add)
 			child.PrintTrace("Error: Unsupported use of add:");
 		else if(key == "display name")
