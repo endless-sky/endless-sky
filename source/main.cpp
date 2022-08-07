@@ -62,9 +62,9 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
-void PrintShipTable();
+void PrintShipTable(bool printDeterrence);
 void PrintTestsTable();
-void PrintWeaponTable();
+void PrintWeaponTable(bool printDeterrence);
 void PrintEngineTable();
 void PrintPowerTable();
 #ifdef _WIN32
@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
 	bool printEngines = false;
 	bool printPower = false;
 	string testToRunName = "";
+	bool printDeterrence = false;
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -122,6 +123,11 @@ int main(int argc, char *argv[])
 			printEngines = true;
 		else if(arg == "--power")
 			printPower = true;
+		if(*++it)
+		{
+			string arg2 = *it;
+			printDeterrence = (arg2 == "--deterrence");
+		}
 	}
 	Files::Init(argv);
 
@@ -144,11 +150,11 @@ int main(int argc, char *argv[])
 		if(printShips || printTests || printWeapons || printEngines || printPower)
 		{
 			if(printShips)
-				PrintShipTable();
+				PrintShipTable(printDeterrence);
 			if(printTests)
 				PrintTestsTable();
 			if(printWeapons)
-				PrintWeaponTable();
+				PrintWeaponTable(printDeterrence);
 			if(printEngines)
 				PrintEngineTable();
 			if(printPower)
@@ -423,7 +429,9 @@ void PrintHelp()
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
 	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
+	cerr << "    -s --deterrence: print a table of ships and corresponding armament deterrence values." << endl;
 	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
+	cerr << "    -w --deterrance: prints a table of weapons and their deterrence values." << endl;
 	cerr << "    -e, --engines: print table of engines statistics, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
@@ -503,8 +511,33 @@ void PrintTestsTable()
 
 
 
-void PrintShipTable()
+void PrintShipTable(bool printDeterrence)
 {
+	if(printDeterrence)
+	{
+		cout << "model" << ',' << "deterrence" << '\n';
+		for(auto &it : GameData::Ships())
+		{
+			//if(it.second.ModelName() != it.first)
+				//continue;
+
+			const Ship &ship = it.second;
+			double deterrence = 0;
+			for(const Hardpoint &hardpoint : ship.Weapons())
+				if(hardpoint.GetOutfit())
+				{
+					const Outfit *weapon = hardpoint.GetOutfit();
+					if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
+						continue;
+					double damage = weapon->ShieldDamage() + weapon->HullDamage()
+						+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
+						+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+					deterrence += .12 * damage / weapon->Reload();
+				}
+			cout << it.first << ',' << deterrence << '\n';
+		}
+		return;
+	}
 	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
 		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dis" << ','
 		<< "crew" << ',' << "bunks" << ',' << "cargo" << ',' << "fuel" << ','
@@ -597,8 +630,24 @@ void PrintShipTable()
 
 
 
-void PrintWeaponTable()
+void PrintWeaponTable(bool printDeterrence)
 {
+	if(printDeterrence)
+	{
+		cout << "name" << ',' << "deterrence" << '\n';
+		for(auto &it : GameData::Outfits())
+		{
+			// Skip non-weapons and submunitions.
+			if(!it.second.IsWeapon() || it.second.Category().empty())
+				continue;
+			const Outfit &weapon = it.second;
+			double damage = weapon.ShieldDamage() + weapon.HullDamage();
+			double deterrence = .12 * damage / weapon.Reload();
+			cout << it.first << ',' << deterrence << '\n';
+		}
+		return;
+	}
+
 	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
 		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ','
 		<< "shield/s" << ',' << "hull/s" << ',' << "heatdmg/s" << ',' << "push/s" << ','
