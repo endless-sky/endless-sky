@@ -774,7 +774,7 @@ tip "% firing shields / second:"
 	`Relative shields loss when this weapon is fired, converted to loss per second to allow easy comparisons between different weapons.`
 
 tip "shots / second:"
-	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation is higher than the weapon's energy consumption.`
+	`How many projectiles per second this weapon fires. Weapons that fire continuously do not require batteries if the ship's energy generation per second is higher than the weapon's firing energy per second. Some continuous fire weapons only fire a fraction of the time, in which case the ship's energy production must be higher than the weapon's firing energy divided by the firing time to not require batteries.`
 
 tip "turret turn rate:"
 	`How fast this turret turns to track its targets, in degrees per second.`
