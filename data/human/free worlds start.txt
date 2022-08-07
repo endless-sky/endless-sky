@@ -9,10 +9,10 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Liberate Kornephoros"
-	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
 	autosave
-	source Longjump
-	destination Deep
+	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
+	source "Longjump"
+	destination "Deep"
 	clearance
 	to offer
 		has "Defend Sabik: done"
@@ -20,6 +20,7 @@ mission "Liberate Kornephoros"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "prepare for battle of Kornephoros"
 		conversation
 			`The mood in the spaceport is solemn. No one has had time yet to count up the losses, on both sides of the battle, but it is likely that over a thousand lives were lost. And because the Navy is held in such high regard even here where Parliament and the Paradise Planets are viewed with disgust, many of the militia captains are almost as saddened by the loss of Navy lives as by the loss of some of their own.`
 			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your <ship> holding together?"`
@@ -38,11 +39,10 @@ mission "Liberate Kornephoros"
 			`	"We all do," he says. "No one wanted this. Not us, certainly not the Navy. But if they attack us to take our freedom, we must defend ourselves in order to keep it. Understood?"`
 			`	"Yes, sir," you say. "I'll prepare my ship for another battle."`
 				accept
-		event "prepare for battle of Kornephoros"
 	
 	npc
-		personality heroic disables
 		government "Free Worlds"
+		personality heroic disables
 		fleet
 			names "free worlds capital"
 			variant
@@ -54,11 +54,11 @@ mission "Liberate Kornephoros"
 			variant
 				"Argosy (Blaster)"
 				"Hawk" 2
-				"Hawk (Rocket)" 1
+				"Hawk (Rocket)"
 	npc
-		personality heroic disables
 		government "Free Worlds"
-		system Zubenelgenubi
+		personality heroic disables
+		system "Zubenelgenubi"
 		fleet
 			names "free worlds capital"
 			variant
@@ -95,9 +95,9 @@ mission "Liberate Kornephoros"
 				"Fury" 6
 	
 	npc evade
+		government "Republic"
 		personality staying heroic
-		government Republic
-		system Kornephoros
+		system "Kornephoros"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -126,8 +126,8 @@ mission "Liberate Kornephoros"
 	
 	on visit
 		dialog "There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea."
-	
 	on complete
+		event "recapture of Kornephoros"
 		log "The Free Worlds have retaken the Kornephoros system, with heavy losses on both sides. And unfortunately, there is no sign of Katya; she may have been taken prisoner by the Navy."
 		conversation
 			`The last of the Navy vessels in orbit has been subdued. As you land, you find that several Free Worlds troop transports have already set down in the spaceport and corralled the remaining Navy officers into a small circle. You would estimate that there are several hundred Navy prisoners. Another transport lands, carrying more prisoners: the Navy troops who had been guarding the mines on Clink.`
@@ -155,7 +155,6 @@ mission "Liberate Kornephoros"
 			`	Tomek takes the man's hands, looks him in the eyes, and asks, "Do you swear before God and these witnesses to take no further part in military actions against the Free Worlds?"`
 			`	"I do," says the officer. Several of the other prisoners stand up, and before long all but a handful have sworn the oath.`
 			`	After they finish, Tomek turns to you and a few other captains. "Emily, Marco, <first>, Sarah, please meet me in the spaceport cafe when you are ready." He walks off.`
-		event "recapture of Kornephoros"
 
 
 
@@ -168,13 +167,27 @@ event "prepare for battle of Kornephoros"
 mission "FW Prisoner Parole"
 	name "Prisoner Parole"
 	description "Escort a fleet of transports carrying prisoners of war to <planet>. The temporary ceasefire will end on <date>."
-	deadline 7
 	source "Deep"
 	destination "New Tibet"
+	deadline 7
 	to offer
 		has "Liberate Kornephoros: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		"reputation: Republic" = 1
+		event "temporary ceasefire"
+		event "start of hostilities" 8
+		conversation
+			`When you have all gathered in the cafe, Tomek explains the situation to you. "Alondo has arranged for a one-week ceasefire to return the prisoners who have given us their parole," he says. "That gives you just enough time to transport them to New Tibet and return here. If you encounter Republic ships, do not engage them. Just drop off the prisoners and return. Any questions?"`
+			choice
+				`	"No, I'm ready to go."`
+					accept
+				`	"What should we do if they attack us?"`
+			
+			`	"If you can, return here without engaging them. No point in losing more lives."`
+				accept
 	
 	npc accompany save
 		government "Free Worlds"
@@ -185,21 +198,6 @@ mission "FW Prisoner Parole"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
-	
-	on offer
-		conversation
-			`When you have all gathered in the cafe, Tomek explains the situation to you. "Alondo has arranged for a one-week ceasefire to return the prisoners who have given us their parole," he says. "That gives you just enough time to transport them to New Tibet and return here. If you encounter Republic ships, do not engage them. Just drop off the prisoners and return. Any questions?"`
-			choice
-				`	"No, I'm ready to go."`
-					accept
-				`	"What should we do if they attack us?"`
-			
-			`	"If you can, return here without engaging them. No point in losing more lives."`
-				accept
-		"reputation: Republic" = 1
-		event "temporary ceasefire"
-		event "start of hostilities" 8
-	
 	on complete
 		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
 
@@ -227,6 +225,8 @@ mission "FW Prisoner Parole 2"
 		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	on complete
+		"reputation: Republic" <?= -1000
+		event "oathkeepers founded" 50
 		log "Returned some Navy prisoners of war, after they gave their parole and promised not to take part in any future battles against the Free Worlds."
 		conversation
 			`Tomek seems very relieved to see you all back in one piece. "Thank you for your service," he says. "Please report to your local militia commanders for your next orders. Captain <last>, remain here."`
@@ -243,17 +243,15 @@ mission "FW Prisoner Parole 2"
 			
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
-		"reputation: Republic" <?= -1000
-		event "oathkeepers founded" 50
 
 
 
 mission "oathkeepers founded"
 	landing
-	to offer
-		has "event: oathkeepers founded"
 	source
 		government "Free Worlds"
+	to offer
+		has "event: oathkeepers founded"
 	on offer
 		log "Apparently the paroled Navy prisoners from the battle for Kornephoros plan to keep their promise to not fight against the Free Worlds. They've formed a new Navy regiment guarding the far north of human space."
 		log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
@@ -266,17 +264,17 @@ mission "oathkeepers founded"
 
 
 mission "FW Syndicate Diplomacy 1"
+	autosave
 	name "Syndicate Diplomacy"
 	description "Transport Alondo Gruyere to the Syndicate headquarters on <planet>."
-	autosave
 	source "Deep"
 	destination "Hephaestus"
-	to offer
-		has "FW Prisoner Parole 2: done"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
 	blocked `Alondo contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
+	to offer
+		has "FW Prisoner Parole 2: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -290,7 +288,7 @@ mission "FW Syndicate Diplomacy 1"
 					goto evil
 			
 			label fight
-			`	"Certainly not," says Alondo. "But they are very interested in maximizing their profits, so I hope we can arrange to purchase ship materials from them. And if nothing else, I hope they at least will promise not to hire out their security forces as mercenaries to the Republic."`
+			`	"Certainly not," says Alondo. "But they are very interested in maximizing their profits, so I pray we can arrange to purchase ship materials from them. And if nothing else, I pray they at least will promise not to hire out their security forces as mercenaries to the Republic."`
 				goto time
 			
 			label evil
@@ -319,6 +317,7 @@ mission "FW Syndicate Diplomacy 1"
 			choice
 				`	"Okay. Let's get going!"`
 					accept
+	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -330,19 +329,13 @@ mission "FW Syndicate Diplomacy 1B"
 	description "Transport Alondo Gruyere to <planet> to negotiate with Tarazed Corporation."
 	source Hephaestus
 	destination Wayfarer
-	to offer
-		has "FW Syndicate Diplomacy 1: done"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
+	to offer
+		has "FW Syndicate Diplomacy 1: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	npc
-		personality heroic
-		government Republic
-		system Sol
-		fleet "Small Republic" 3
 	
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
@@ -387,6 +380,13 @@ mission "FW Syndicate Diplomacy 1B"
 			label katya
 			`	"We'll have to talk that over with the Council when we get back. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
 				accept
+	
+	npc
+		government "Republic"
+		personality heroic
+		system "Sol"
+		fleet "Small Republic" 3
+	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -396,23 +396,18 @@ mission "FW Syndicate Diplomacy 1C"
 	landing
 	name "Poisonwood Diplomacy"
 	description "Travel to <planet> with Alondo Gruyere, to make one final diplomatic visit."
-	source Wayfarer
-	destination Poisonwood
-	to offer
-		has "FW Syndicate Diplomacy 1B: done"
+	source "Wayfarer"
+	destination "Poisonwood"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt" "south"
 	passengers 1
+	to offer
+		has "FW Syndicate Diplomacy 1B: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
-	npc
-		personality heroic
-		government Republic
-		system Rutilicus
-		fleet "Small Republic" 3
 	
 	on offer
+		event "Tarazed neutrality"
 		conversation
 			`You are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is in fact currently run by a female CEO, Emily Lane.`
 			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
@@ -421,7 +416,13 @@ mission "FW Syndicate Diplomacy 1C"
 			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral.`
 			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
 				accept
-		event "Tarazed neutrality"
+	
+	npc
+		government "Republic"
+		personality heroic
+		system "Rutilicus"
+		fleet "Small Republic" 3
+	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	
@@ -431,11 +432,11 @@ mission "FW Syndicate Diplomacy 1D"
 	landing
 	name "Return to <planet>"
 	description "Return to <planet> with Alondo, to report on the outcome of your diplomatic mission."
-	source Poisonwood
-	destination Longjump
+	source "Poisonwood"
+	destination "Longjump"
+	passengers 1
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
-	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -515,15 +516,15 @@ mission "FW Syndicate Diplomacy 1D"
 
 
 mission "FW Hope Recon 1"
+	autosave
 	name "Early Warning Systems"
 	description "Land on the abandoned planet <destination> and place sensors there to monitor Navy fleet activity in the system."
-	autosave
-	source Longjump
-	destination Hope
-	to offer
-		has "FW Syndicate Diplomacy 1D: done"
+	source "Longjump"
+	destination "Hope"
 	cargo "sensors" 10
 	blocked `Freya contacts you and says, "<first>, you're going to need ten tons of cargo space for this next mission." You should return here after freeing up <capacity>.`
+	to offer
+		has "FW Syndicate Diplomacy 1D: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -535,6 +536,7 @@ mission "FW Hope Recon 1"
 			choice
 				`	"No, sounds good."`
 					accept
+	
 	on visit
 		dialog phrase "generic cargo on visit"
 
@@ -574,16 +576,11 @@ ship "Gunboat" "Gunboat (Bunks)"
 mission "FW Hope Recon 1C"
 	landing
 	invisible
-	source Hope
+	source "Hope"
 	to offer
 		has "FW Hope Recon 1: done"
 	to fail
 		has "FW Hope Recon 1B: done"
-	
-	npc
-		personality fleeing uninterested timid
-		government Republic
-		ship "Gunboat (Bunks)" "R.N.S. Susquehanna"
 	
 	on offer
 		log "Planted some sensors on the abandoned world of Hope, as an early warning system for Navy raids on Free Worlds space. The Navy appears to be doing something on this world, as well."
@@ -628,14 +625,19 @@ mission "FW Hope Recon 1C"
 			`	Your mission on this planet done, you launch into space too, monitoring the Navy ship.`
 				launch
 	
+	npc
+		government "Republic"
+		personality fleeing uninterested timid
+		ship "Gunboat (Bunks)" "R.N.S. Susquehanna"
+	
 	
 	
 mission "FW Hope Recon 1D"
 	landing
 	name "Destroy Sensors"
 	description "Travel back to <destination> and destroy any Republic sensors you find there."
-	source Longjump
-	destination Hope
+	source "Longjump"
+	destination "Hope"
 	to offer
 		has "FW Hope Recon 1B: done"
 	
@@ -672,9 +674,9 @@ mission "FW Hope Recon 1D"
 				accept
 	
 	npc
-		system Wei
+		government "Republic"
 		personality staying
-		government Republic
+		system "Wei"
 		fleet "Large Republic"
 	
 	on complete
@@ -688,8 +690,8 @@ mission "FW Plasma Testing 1"
 	landing
 	name "Weapons Testing"
 	description "Report to <destination> to assist in some experimental weapons testing."
-	source Longjump
-	destination Rust
+	source "Longjump"
+	destination "Rust"
 	to offer
 		has "FW Hope Recon 1B: done"
 	on fail
@@ -698,30 +700,16 @@ mission "FW Plasma Testing 1"
 
 
 mission "FW Plasma Testing 1B"
+	autosave
 	landing
 	name "Weapons Testing"
 	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
-	autosave
 	source "Rust"
+	waypoint "Ildaria"
 	to offer
 		has "FW Plasma Testing 1: done"
-	waypoint "Ildaria"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	npc accompany save
-		government "Free Worlds"
-		personality heroic escort
-		ship "Falcon (Plasma)" "Walloping Window-Blind"
-	npc kill
-		government "Pirate"
-		personality plunders staying target
-		system "Ildaria"
-		ship "Leviathan (Heavy)" "Red Nile"
-		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
-	
-	on visit
-		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
 	
 	on offer
 		log "People" "Edward Tivrusky" `Barmy Edward is the Chief Offensive Engineer at Kraz Cybernetics, known for his inventive and sometimes impractical weapon designs. Supposedly, his engineers gave him the "Barmy" sobriquet after an incident where an experimental epoxy cannon he was working on exploded and glued him to the ceiling.`
@@ -781,6 +769,19 @@ mission "FW Plasma Testing 1B"
 			`	"One of those antiques from Betelgeuse," he says. "Shouldn't give you any bother. Meet us back here when you're done."`
 				accept
 	
+	npc accompany save
+		government "Free Worlds"
+		personality heroic escort
+		ship "Falcon (Plasma)" "Walloping Window-Blind"
+	npc kill
+		government "Pirate"
+		personality plunders staying target
+		system "Ildaria"
+		ship "Leviathan (Heavy)" "Red Nile"
+		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
+	
+	on visit
+		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
 	on complete
 		payment 200000
 		event "plasma turret available" 50
@@ -846,11 +847,11 @@ mission "plasma turret available"
 
 
 mission "FW Supply Convoy 1"
+	autosave
 	name "Escort Supply Convoy"
 	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
-	autosave
-	source Rust
-	destination Longjump
+	source "Rust"
+	destination "Longjump"
 	to offer
 		has "FW Plasma Testing 1B: done"
 	on fail
@@ -887,16 +888,14 @@ mission "FW Supply Convoy 1"
 			names "civilian"
 			variant
 				"Star Barge (Armed)" 10
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
-	
 	npc
 		government "Pirate"
 		personality plunders staying
 		system "Sabik"
 		fleet "Small Southern Pirates" 2
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	on complete
 		dialog
 			`You make sure that all ten Star Barges have landed safely, then report to the quartermaster. He thanks you for your work, and mentions that Tomek has asked to see you in the spaceport bar.`
@@ -919,7 +918,7 @@ mission "FW Pirates 1"
 	on offer
 		log "Tomek, from the Free Worlds Council, is trying to decide how to best deal with the threat of the pirates to the south of Free Worlds space."
 		conversation
-			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I hope whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
+			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I pray whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
 			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
 			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and plus if we could do something about them, it would gain us a whole lot of support in the nearby systems that have not yet joined us."`
 			choice
@@ -1022,10 +1021,10 @@ mission "FW Senate 1B"
 	description "Transport Senator Arianna Huygens to <destination>."
 	source Mere
 	destination Bourne
-	to offer
-		has "FW Senate 1: done"
 	passengers 1
 	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
+	to offer
+		has "FW Senate 1: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1086,11 +1085,12 @@ event "fw senate timer"
 
 
 mission "FW Pirates 2"
+	autosave
 	landing
 	name "Southern Patrol"
 	description "Lead a patrol through the Free Worlds systems on the Southern Rim, driving off any pirates you encounter, then meet up with Tomek on <destination>."
-	autosave
 	source "Bourne"
+	destination "Longjump"
 	waypoint "Yed Prior"
 	waypoint "Beta Lupi"
 	waypoint "Kappa Centauri"
@@ -1099,7 +1099,6 @@ mission "FW Pirates 2"
 	waypoint "Dschubba"
 	waypoint "Han"
 	waypoint "Atria"
-	destination "Longjump"
 	to offer
 		has "FW Senate 1B: done"
 	on fail
@@ -1152,8 +1151,8 @@ mission "FW Pirates 2"
 				accept
 	
 	npc
-		personality heroic escort
 		government "Free Worlds"
+		personality heroic escort
 		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds"
 	
@@ -1167,25 +1166,24 @@ mission "FW Pirates 2"
 mission "FW Pirates 3"
 	name "Pirate Diplomacy"
 	description "Following the Senate's orders, travel to <destination> and negotiate with the ruling authorities. Don't fight pirates if you don't have to, and don't let your escort be destroyed."
-	source Longjump
-	destination Thule
+	source "Longjump"
+	destination "Thule"
 	clearance
 	to offer
 		has "FW Pirates 2: done"
 	to fail
 		has "fw pirates: disobeyed senate"
 	
-	npc accompany save
-		personality timid escort
-		government "Free Worlds"
-		ship "Falcon" "F.S. Terebinth"
-	
 	on offer
 		log "Given orders by the Free Worlds Senate to escort a diplomatic mission to the anarchist planet Thule. Tomek is not happy about bargaining with the pirates instead of fighting them."
 	
+	npc accompany save
+		government "Free Worlds"
+		personality timid escort
+		ship "Falcon" "F.S. Terebinth"
+	
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
-	
 	on complete
 		karma ++
 
@@ -1194,31 +1192,14 @@ mission "FW Pirates 3"
 mission "FW Pirates 3.1"
 	name "Attack Antares"
 	description "Instead of following the Senate's orders, launch a Free Worlds attack on <system> and suppress any Pirate opposition, then land on <planet>."
-	source Longjump
-	destination Bloodsea
+	source "Longjump"
+	destination "Bloodsea"
 	clearance
 	to offer
 		has "FW Pirates 2: done"
 		not "fw pirate suggestion: greenrock"
 	to fail
 		has "FW Pirates 3: done"
-	
-	npc
-		personality heroic staying
-		government "Free Worlds"
-		system Antares
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds" 2
-	
-	npc kill
-		personality plunders staying
-		government "Pirate"
-		system Antares
-		fleet "Small Southern Pirates" 2
-		fleet "Small Northern Pirates"
-		fleet "Large Southern Pirates" 2
-		fleet "Large Core Pirates"
-		fleet "Large Northern Pirates"
 	
 	on offer
 		conversation
@@ -1252,6 +1233,23 @@ mission "FW Pirates 3.1"
 			`	"Never mind," he says, "I guess you're as weak-willed as the rest of them." He walks back into the bar and leaves you alone.`
 				accept
 	
+	npc
+		government "Free Worlds"
+		personality heroic staying
+		system "Antares"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds" 2
+	
+	npc kill
+		government "Pirate"
+		personality plunders staying
+		system "Antares"
+		fleet "Small Southern Pirates" 2
+		fleet "Small Northern Pirates"
+		fleet "Large Southern Pirates" 2
+		fleet "Large Core Pirates"
+		fleet "Large Northern Pirates"
+	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
 	on complete
@@ -1265,8 +1263,8 @@ mission "FW Pirates 3.1"
 mission "FW Pirates 3.2"
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
-	source Longjump
-	destination Trinket
+	source "Longjump"
+	destination "Trinket"
 	to offer
 		has "FW Pirates 2: done"
 		has "fw pirate suggestion: greenrock"
@@ -1295,7 +1293,7 @@ mission "FW Pirates 3.2"
 					goto leave
 				`	"So, we're not going to attack the pirates?"`
 			`	Tomek says, "No, we're just going to let them sit there waiting to stab us in the back at the first opportunity."`
-			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the democratic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
+			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the democratic process even when we don't like the decisions they make. Captain, I pray your mission to Thule is a success."`
 			label leave
 			`	As you stand up to leave the bar, Tomek says, "Remember what we talked about, <first>."`
 				accept
@@ -1306,8 +1304,8 @@ mission "FW Pirates 3.2A"
 	landing
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, launch an all-out attack on the pirate world of <destination>, then land there."
-	source Trinket
-	destination Greenrock
+	source "Trinket"
+	destination "Greenrock"
 	clearance
 	to offer
 		has "FW Pirates 3.2: done"
@@ -1328,15 +1326,15 @@ mission "FW Pirates 3.2A"
 		set "fw pirates: disobeyed senate"
 	
 	npc
-		personality heroic escort
 		government "Free Worlds"
+		personality heroic escort
 		fleet "Small Free Worlds" 3
 		fleet "Large Free Worlds" 3
 	
 	npc kill
-		personality plunders staying
 		government "Pirate"
-		system Shaula
+		personality plunders staying
+		system "Shaula"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Southern Pirates" 3
 		fleet "Small Core Pirates" 2
@@ -1356,8 +1354,8 @@ mission "FW Pirates 3.1B"
 	landing
 	name "Report to Tomek"
 	description "Return to Longjump to report to Tomek that <origin> has been pacified."
-	source Bloodsea
-	destination Longjump
+	source "Bloodsea"
+	destination "Longjump"
 	to offer
 		has "FW Pirates 3.1: done"
 	on fail
@@ -1377,8 +1375,8 @@ mission "FW Pirates 3.2B"
 	landing
 	name "Report to Tomek"
 	description "Return to Longjump to report to Tomek that <origin> has been pacified."
-	source Greenrock
-	destination Longjump
+	source "Greenrock"
+	destination "Longjump"
 	to offer
 		has "FW Pirates 3.2A: done"
 	on fail
@@ -1395,51 +1393,19 @@ mission "FW Pirates 3.2B"
 
 
 mission "FW Pirates 4"
+	autosave
 	landing
 	name "Defend Thule"
 	description "Destroy the pirate fleet that is attacking the spaceport on Thule. Free Worlds reinforcements ought to be on their way."
-	autosave
-	source Thule
+	source "Thule"
 	clearance
 	to offer
 		has "FW Pirates 3: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
-	npc evade
-		personality plunders
-		government Pirate
-		ship "Leviathan" "Dire Rain"
-	
-	npc evade
-		personality plunders entering
-		government Pirate
-		ship "Leviathan (Heavy)" "Red Dawn"
-		ship "Leviathan (Laser)" "Bleak Omen"
-	
-	npc
-		personality heroic
-		government "Free Worlds"
-		system Pherkad
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-	
-	npc
-		personality heroic
-		government "Free Worlds"
-		system Alniyat
-		fleet "Small Free Worlds" 2
-		fleet "Large Free Worlds" 4
-	
-	npc
-		personality heroic
-		government "Free Worlds"
-		system Sabik
-		ship "Falcon (Plasma)" "F.S. White Oak"
-		ship "Falcon (Plasma)" "F.S. Larch"
-		ship "Falcon (Plasma)" "F.S. Ironwood"
-	
 	on offer
+		event "battle for Thule"
 		conversation
 			`One of the first people to step off the Terebinth when it lands is Alondo, the Free Worlds diplomat. You ask him what the plan is, now.`
 			`	"Well," he says, "the people I'll be meeting with here are tribal elders, of a sort. But the tribes are separated not so much by ethnicity, as by geography and ideology. I can't claim to understand all the intricacies, really, but in matters affecting the entire planet they have authority to make consensus decisions. Of course, there are hundreds of independent settlements and groups that may or may not abide by that decision."`
@@ -1451,8 +1417,39 @@ mission "FW Pirates 4"
 			`	The captain of the Terebinth, who is standing next to you, stares slack-jawed at his ship for a second before jumping into action. "Captain <last>," he says, "fire up your ship immediately and go after whoever is attacking us. I'll call for backup, but you will need to keep the attackers distracted until they arrive."`
 				launch
 	
-	on accept
-		event "battle for Thule"
+	npc evade
+		government "Pirate"
+		personality plunders
+		ship "Leviathan" "Dire Rain"
+	
+	npc evade
+		government "Pirate"
+		personality plunders entering
+		ship "Leviathan (Heavy)" "Red Dawn"
+		ship "Leviathan (Laser)" "Bleak Omen"
+	
+	npc
+		government "Free Worlds"
+		personality heroic
+		system "Pherkad"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+	
+	npc
+		government "Free Worlds"
+		personality heroic
+		system "Alniyat"
+		fleet "Small Free Worlds" 2
+		fleet "Large Free Worlds" 4
+	
+	npc
+		government "Free Worlds"
+		personality heroic
+		system "Sabik"
+		ship "Falcon (Plasma)" "F.S. White Oak"
+		ship "Falcon (Plasma)" "F.S. Larch"
+		ship "Falcon (Plasma)" "F.S. Ironwood"
+	
 	on visit
 		dialog phrase "generic pirate fleet battle on visit"
 
@@ -1465,24 +1462,16 @@ event "battle for Thule"
 
 
 mission "FW Pirates 4B"
-	name "Return to Longjump"
-	description "Escort the newly repaired F.S. Terebinth back to the Free Worlds base on <destination>."
 	autosave
 	landing
-	source Thule
-	destination Longjump
+	name "Return to Longjump"
+	description "Escort the newly repaired F.S. Terebinth back to the Free Worlds base on <destination>."
+	source "Thule"
+	destination "Longjump"
 	to offer
 		has "FW Pirates 4: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	npc accompany save
-		personality timid escort
-		government "Free Worlds"
-		ship "Falcon" "F.S. Terebinth"
-	
-	on visit
-		dialog phrase "generic arrived-without-npc dialog"
 	
 	on offer
 		log "The elders on Thule do not want to join the Free Worlds, but they have agreed to crack down on pirate activity in their system and to welcome Free Worlds visitors to their planet."
@@ -1502,6 +1491,14 @@ mission "FW Pirates 4B"
 			`	"So, what do we do next?" you ask.`
 			`	"Well, the Terebinth is patched up, but they could use an escort back to <planet>. After that, you'll have to see what the Senate or the Council want you to do."`
 				accept
+	
+	npc accompany save
+		government "Free Worlds"
+		personality timid escort
+		ship "Falcon" "F.S. Terebinth"
+	
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 
@@ -1518,6 +1515,7 @@ mission "FW Pirates 4.1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		clear "salary: Free Worlds"
 		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
 			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "you're a goddamn hero. Now, what exactly were you planning on doing next?"`
@@ -1544,7 +1542,6 @@ mission "FW Pirates 4.1"
 			`	JJ says, "You are temporarily suspended from your service to the Free Worlds, and commanded to report to Bourne for a Senate hearing within the next two weeks. If you do not report for your hearing, your service will be terminated. And given your reputation, I doubt you will be able to find any meaningful employment elsewhere in human space."`
 			`	"I'm very disappointed in you," says Freya, as she and JJ leave.`
 				accept
-		clear "salary: Free Worlds"
 	
 	on complete
 		event "navy occupying the south" 50
@@ -1592,12 +1589,12 @@ mission "FW Pirates 4.1"
 
 
 mission "FW Refinery 1"
+	autosave
 	landing
 	name "Smuggler's Den Repairs"
 	description "Travel to Tundra and pick up a shipment of equipment for repairing the refinery on Smuggler's Den."
-	autosave
-	source Longjump
-	destination Tundra
+	source "Longjump"
+	destination "Tundra"
 	clearance
 	to offer
 		has "FW Pirates 4B: done"
@@ -1653,12 +1650,12 @@ mission "FW Refinery 1A"
 	landing
 	name "Smuggler's Den Repairs"
 	description "Bring a shipment of special refinery equipment to Smuggler's Den."
-	source Tundra
+	source "Tundra"
 	destination "Smuggler's Den"
-	to offer
-		has "FW Refinery 1: done"
 	cargo "refinery equipment" 10
 	blocked "You have reached <origin>, but you do not have ten tons of cargo space free for the equipment. Return here when you have made more space available."
+	to offer
+		has "FW Refinery 1: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1670,8 +1667,8 @@ mission "FW Refinery 1A"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		set "fw first chapter done"
+		event "navy occupying the south" 8
 		log "Brought supplies to Smuggler's Den to help upgrade the station into a working deuterium refinery. No further orders from the Free Worlds, so this might be a good time to find ways to earn more money on the side."
 		dialog
 			`After unloading the supplies, you send Freya and JJ a message letting them know that you arrived safely. You're a bit surprised when they don't immediately send you a message back. Something else must be going on that is occupying their attention. After months of just traveling around following other people's orders, it feels odd to be left to your own devices for a change.`
-		set "fw first chapter done"
-		event "navy occupying the south" 8
