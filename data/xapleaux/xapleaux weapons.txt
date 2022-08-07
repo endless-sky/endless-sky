@@ -166,3 +166,44 @@ outfit "Quin"
 		"hit force" 80
 		"missile strength" 12
 
+
+outfit "Repulsor Wave Turret"
+	category "Turrets"
+	licenses
+		Xapleaux
+	cost 1838000
+	thumbnail "outfit/repulsor wave turret"
+	"mass" 56
+	"outfit space" -56
+	"weapon capacity" -56
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/repulsor wave"
+			"frame rate" 3.2
+			"random start frame"
+		"hardpoint sprite" "hardpoint/repulsor wave turret"
+		"hardpoint offset" 9.
+		sound "repulsor wave turret"
+		"hit effect" "repulsor wave impact"
+		"inaccuracy" 4
+		"turret turn" 7
+		"velocity" 560
+		"lifetime" 90
+		"reload" 15
+		"firing energy" 4
+		"firing heat" 1.4
+		"hit force" 60
+	description "This pulse wave turret imparts functionally no damage on a target but is very effective at keeping fauna native to The Brilliance from posing a hazard to civilian ships. As it does no damage it is not a military weapon at all, but does avoid angering swarms or otherwise breaking apart hazardous objects. As such it is frequently deployed by both military and civilians alike for general security purposes."
+
+#TBD
+#effect "repulsor wave impact"
+#	sprite "effect/repulsor wave impact"
+#		"no repeat"
+#		"frame rate" 10
+#	"lifetime" 20
+#	"random angle" 360
+#	"random spin" 10
+#	"random velocity" 4
+#	"velocity scale" .01
+
