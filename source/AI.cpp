@@ -1059,7 +1059,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| helper.GetGovernment() != ship.GetGovernment()
 			|| (!helper.IsCloaked() || helper.Attributes().Get("cloaking action"))
-			|| helper.IsDisabled() || helper.IsParalyed() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsParalysed() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
