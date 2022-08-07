@@ -19,7 +19,7 @@ outfit "Small Collector Module"
 	"solar collection" .8
 	"solar heat" .4
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overhetead, solar panels continue to work at a reduced efficiency."
+	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Large Collector Module"
 	category "Power"
@@ -32,7 +32,7 @@ outfit "Large Collector Module"
 	"solar collection" 3.3
 	"solar heat" 1.5
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overhetead, solar panels continue to work at a reduced efficiency."
+	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Small Reactor Module"
 	category "Power"
