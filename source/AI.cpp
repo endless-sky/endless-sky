@@ -3319,13 +3319,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				ship.SetTargetShip(shared_ptr<Ship>());
 
 			bool foundEnemy = false;
-			bool boardClosest = Preferences::Has("Board target");
+			const auto targetPriority = Preferences::BoardingSetting();
 
 			auto strategy = [&]() noexcept -> function<double(Ship &)>
 			{
 				Point current = ship.Position();
-				// If "board target" is set to false, value priority is used.
-				if(!boardClosest)
+				if(targetPriority == "cost")
 				{
 					return [this, &ship](Ship &other) noexcept -> double
 					{
@@ -3334,11 +3333,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 							other.Cost() : (other.ChassisCost() * 2.);
 					};
 				}
-				// Default to distance-based strategy.
-				return [current](Ship &other) noexcept -> double
+				else if(targetPriority == "distance")
 				{
-					return current.DistanceSquared(other.Position());
-				};
+					return [current](Ship &other) noexcept -> double
+					{
+						return current.DistanceSquared(other.Position());
+					};
+				} // Default to mixed strategy.
+				else
+				{
+					return [this, &ship, current](Ship &other) noexcept -> double
+					{
+						// Use the exact cost if the ship was scanned, otherwise use an estimation.
+						double cost = this->Has(ship, other.shared_from_this(), ShipEvent::SCAN_OUTFITS) ?
+							other.Cost() : (other.ChassisCost() * 2.);
+						return cost * cost / current.DistanceSquared(other.Position());
+					};
+				}
 			}();
 
 			using shipValue = pair<Ship *, double>;
@@ -3374,17 +3385,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				activeCommands.Clear(Command::BOARD);
 			else
 			{
+				bool costPriority = (targetPriority == "cost");
 				sort(boardable.begin(), boardable.end(),
-					[&ship, boardClosest](
+					[&ship, costPriority](
 						const shipValue &lhs, const shipValue &rhs
 					)
 					{
 						// If their cost is the same, prefer the closest ship.
-						if(!boardClosest && lhs.second == rhs.second)
+						if(costPriority && lhs.second == rhs.second)
 							return lhs.first->Position().DistanceSquared(ship.Position()) >
 								rhs.first->Position().DistanceSquared(ship.Position());
-						else
-							return boardClosest ? lhs.second > rhs.second : lhs.second < rhs.second;
+						else // The case where distance is the same is very unlikely.
+							return !costPriority ? lhs.second > rhs.second :
+								lhs.second < rhs.second;
 					}
 				);
 

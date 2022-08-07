@@ -40,6 +40,9 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
+	int boardingIndex = 0;
 }
 
 
@@ -65,7 +68,6 @@ void Preferences::Load()
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
-	settings["Board target"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -78,6 +80,8 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
+		else if(node.Token(0) == "boarding target")
+			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() -1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -97,6 +101,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("boarding target", boardingIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 
@@ -219,4 +224,21 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+
+void ToggleBoarding()
+{
+	int targetIndex = boardingIndex + 1;
+	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
+		targetIndex = 0;
+}
+
+
+
+const std::string &BoardingSetting()
+{
+	return BOARDING_SETTINGS[boardingIndex];
 }

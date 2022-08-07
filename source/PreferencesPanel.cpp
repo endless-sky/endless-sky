@@ -57,7 +57,6 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
-	const string BOARDING_PRIORITY = "Board target";
 }
 
 
@@ -535,7 +534,7 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == BOARDING_PRIORITY)
 		{
 			isOn = true;
-			text = Preferences::Has(BOARDING_PRIORITY) ? "proximity" : "value";
+			text = Preferences::BoardingSetting();
 		}
 		else if(setting == REACTIVATE_HELP)
 		{

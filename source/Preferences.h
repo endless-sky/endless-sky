@@ -51,6 +51,10 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// Boarding target setting, either "proximity", "value" or "mixed".
+	static void ToggleBoarding();
+	static const std::string &BoardingSetting();
 };
 
 
