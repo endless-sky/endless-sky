@@ -197,13 +197,13 @@ outfit "Repulsor Wave Turret"
 	description "This pulse wave turret imparts functionally no damage on a target but is very effective at keeping fauna native to The Brilliance from posing a hazard to civilian ships. As it does no damage it is not a military weapon at all, but does avoid angering swarms or otherwise breaking apart hazardous objects. As such it is frequently deployed by both military and civilians alike for general security purposes."
 
 #TBD
-#effect "repulsor wave impact"
-#	sprite "effect/repulsor wave impact"
-#		"no repeat"
-#		"frame rate" 10
-#	"lifetime" 20
-#	"random angle" 360
-#	"random spin" 10
-#	"random velocity" 4
-#	"velocity scale" .01
+effect "repulsor wave impact"
+	sprite "effect/repulsor wave impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 20
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 4
+	"velocity scale" .01
 
