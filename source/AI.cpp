@@ -3388,25 +3388,25 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					}
 				);
 
-				// If there is no valid target (it could be exploding).
+				// If there is no valid target, pick a new one (it could be exploding).
 				if(!target || !CanBoard(ship, *target))
 					ship.SetTargetShip((boardable.back().first->shared_from_this()));
 				// The WAIT command means we go to the next ship in the list relative to the one currently selected.
 				else if(activeCommands.Has(Command::WAIT))
 				{
 					auto boardingTarget = find_if(boardable.begin(), boardable.end(),
-						[&target](const pair<const Ship *, double> &lhs)
+						[&target](const shipValue &lhs)
 						{
 							return lhs.first == target.get();
 						}
 					);
 
-					if(boardingTarget != boardable.cend())
+					if(boardingTarget != boardable.end())
 					{
-						if(boardingTarget == boardable.cbegin())
-							ship.SetTargetShip((const_cast<Ship *>(boardable.back().first)->shared_from_this()));
+						if(boardingTarget == boardable.begin())
+							ship.SetTargetShip(boardable.back().first->shared_from_this());
 						else
-							ship.SetTargetShip((const_cast<Ship *>((--boardingTarget)->first)->shared_from_this()));
+							ship.SetTargetShip((--boardingTarget)->first->shared_from_this());
 					}
 				}
 			}
