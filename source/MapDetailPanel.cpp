@@ -85,6 +85,7 @@ namespace {
 }
 
 double MapDetailPanel::scroll = 0.;
+double MapDetailPanel::planetPanelHeight = 0.;
 
 
 
@@ -132,6 +133,13 @@ void MapDetailPanel::Draw()
 double MapDetailPanel::GetScroll()
 {
 	return scroll;
+}
+
+
+
+double MapDetailPanel::PlanetPanelHeight()
+{
+	return planetPanelHeight;
 }
 
 
@@ -343,7 +351,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			// The arrows are of size 10.
 			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
 			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
-			const double planetPanelHeight = planetCardInterface->GetValue("planet panel height");
 			bool arrowDown = (!arrowUp && y > Screen::Top() + planetPanelHeight - arrowVerticalOffset);
 			SetScroll(scroll + (arrowUp ? -planetCardHeight : arrowDown ? planetCardHeight : 0.));
 		}
@@ -597,7 +604,7 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double planetPanelHeight = mapInterface->GetValue("planet panel height");
+	double defaultPlanetPanelHeight = mapInterface->GetValue("planet panel height");
 
 	const double bottomGovY = mapInterface->GetValue("government Y");
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
@@ -606,8 +613,9 @@ void MapDetailPanel::DrawInfo()
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
 	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY - systemSprite->Height());
-	Point size(planetWidth, min(min(maximumSize, planetPanelHeight),
-		(hasVisited ? planetCards.size() : 0.) * planetHeight));
+	planetPanelHeight = hasVisited ? min(min(maximumSize, defaultPlanetPanelHeight),
+		(planetCards.size()) * planetHeight) : 0.;
+	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
 		size, back);

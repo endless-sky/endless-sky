@@ -42,6 +42,7 @@ public:
 
 public:
 	static double GetScroll();
+	static double PlanetPanelHeight();
 
 
 protected:
@@ -88,6 +89,7 @@ private:
 	// The system currently displayed, it should be the same as the system selected at all times.
 	const System *shownSystem = nullptr;
 
+	static double planetPanelHeight;
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
