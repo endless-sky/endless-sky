@@ -134,6 +134,11 @@ int main(int argc, char *argv[])
 			PrintData::Print(argv);
 			return 0;
 		}
+		if(printTests)
+		{
+			PrintTestsTable();
+			return 0;
+		}
 
 		PlayerInfo player;
 		if(loadOnly)
