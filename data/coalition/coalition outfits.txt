@@ -19,6 +19,7 @@ outfit "Small Collector Module"
 	"solar collection" .8
 	"solar heat" .4
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
+	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Large Collector Module"
 	category "Power"
@@ -31,6 +32,7 @@ outfit "Large Collector Module"
 	"solar collection" 3.3
 	"solar heat" 1.5
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
+	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Small Reactor Module"
 	category "Power"
@@ -194,7 +196,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is overheated."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -269,6 +271,42 @@ outfit "Large Thrust Module"
 	"flare sound" "atomic small"
 	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. This thruster is quite efficient, but large ships will need several of them stacked together to produce sufficient thrust."
 
+outfit "Small Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 66000
+	thumbnail "outfit/small reverse module"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"reverse thrust" 6.6
+	"reverse thrusting energy" 0.46
+	"reverse thrusting heat" 3
+	"reverse flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"reverse flare sound" "atomic tiny"
+	description "Placing this tiny thruster in the front of a freighter or transport allows Coalition merchants to considerably improve their energy efficiency, which is of great benefit when relying on solar power."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+outfit "Large Reverse Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 292000
+	thumbnail "outfit/large reverse module"
+	"mass" 32
+	"outfit space" -32
+	"weapon capacity" -32
+	"reverse thrust" 26.2
+	"reverse thrusting energy" 1.7
+	"reverse thrusting heat" 11
+	"reverse flare sprite" "effect/coalition flare/large"
+		"frame rate" 7
+	"reverse flare sound" "atomic small"
+	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use large thrust modules to rapidly slow their ships, allowing them to save both time and energy."
+	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
 outfit "Small Steering Module"
 	category "Engines"
 	licenses
@@ -323,7 +361,7 @@ outfit "Enforcer Riot Staff"
 	"capture attack" 2.0
 	"capture defense" 3.5
 	"unplunderable" 1
-	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
+	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
 outfit "Coalition License"
 	category "Special"
