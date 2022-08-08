@@ -345,6 +345,8 @@ void Engine::Place()
 	ships.splice(ships.end(), newShips);
 
 	player.SetPlanet(nullptr);
+	asteroidsScanned.clear();
+	isAsteroidCatalogComplete = false;
 }
 
 
@@ -725,10 +727,6 @@ void Engine::Step(bool isActive)
 	{
 		target = flagship->GetTargetShip();
 		targetAsteroid = flagship->GetTargetAsteroid();
-		// Record that the player knows this type of asteroid is available here.
-		if(targetAsteroid)
-			for(const auto &it : targetAsteroid->Payload())
-				player.Harvest(it.first);
 	}
 	if(!target)
 		targetSwizzle = -1;
@@ -870,9 +868,29 @@ void Engine::Step(bool isActive)
 	// Draw crosshairs on any minables in range of the flagship's scanners.
 	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
 	if(flagship && scanRange && !flagship->IsHyperspacing())
+	{
+		// Decide before looping whether or not to catalog asteroids.  This
+		// results in cataloging in-range asteroids roughly 3 times a second.
+		bool shouldCatalogAsteroids = !Random::Int(20);
+		shouldCatalogAsteroids &= !isAsteroidCatalogComplete;
+		bool scanComplete = true;
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
 			Point offset = minable->Position() - center;
+
+			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
+			if(shouldCatalogAsteroids)
+			{
+				if(!Random::Int(10) && (minable->Position() - flagship->Position()).Length() <= scanRange)
+				{
+					asteroidsScanned.insert(minable->Name());
+					for(const auto &it : minable->Payload())
+						player.Harvest(it.first);
+				}
+				if(!asteroidsScanned.count(minable->Name()))
+					scanComplete = false;
+			}
+
 			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
 				continue;
 
@@ -883,6 +901,9 @@ void Engine::Step(bool isActive)
 				minable == flagship->GetTargetAsteroid() ? Radar::SPECIAL : Radar::INACTIVE,
 				3});
 		}
+		if(shouldCatalogAsteroids && scanComplete)
+			isAsteroidCatalogComplete = true;
+	}
 }
 
 
