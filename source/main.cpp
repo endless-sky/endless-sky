@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		else if(arg == "-h" || arg == "--help")
+		if(arg == "-h" || arg == "--help")
 		{
 			PrintHelp();
 			return 0;
