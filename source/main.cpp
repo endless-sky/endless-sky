@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Sale.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteSet.h"
@@ -67,6 +68,7 @@ void PrintTestsTable();
 void PrintWeaponTable(bool printDeterrence);
 void PrintEngineTable();
 void PrintPowerTable();
+void PrintOutfitList(bool printOutfitters);
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -89,8 +91,10 @@ int main(int argc, char *argv[])
 	bool printWeapons = false;
 	bool printEngines = false;
 	bool printPower = false;
+	bool printOutfits = false;
 	string testToRunName = "";
 	bool printDeterrence = false;
+	bool printOutfitters = false;
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -123,17 +127,16 @@ int main(int argc, char *argv[])
 			printEngines = true;
 		else if(arg == "--power")
 			printPower = true;
-		if(*++it)
-		{
-			string arg2 = *it;
-			printDeterrence = (arg2 == "--deterrence");
-		}
+		else if(arg == "-o" || arg == "--outfits")
+			printOutfits = true;
+		printDeterrence = (arg == "--deterrence");
+		printOutfitters = (arg == "--outfitters");
 	}
 	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines || printPower;
+		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines || printPower || printOutfits;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -147,7 +150,7 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 
-		if(printShips || printTests || printWeapons || printEngines || printPower)
+		if(printShips || printTests || printWeapons || printEngines || printPower || printOutfits)
 		{
 			if(printShips)
 				PrintShipTable(printDeterrence);
@@ -159,6 +162,8 @@ int main(int argc, char *argv[])
 				PrintEngineTable();
 			if(printPower)
 				PrintPowerTable();
+			if(printOutfits)
+				PrintOutfitList(printOutfitters);
 			return 0;
 		}
 
@@ -433,6 +438,7 @@ void PrintHelp()
 	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
 	cerr << "    -w --deterrance: prints a table of weapons and their deterrence values." << endl;
 	cerr << "    -e, --engines: print table of engines statistics, then exit." << endl;
+	cerr << "    -o, --outfits: print list of outfit names, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
@@ -744,6 +750,36 @@ void PrintPowerTable()
 		cout << outfit.Get("energy capacity") << '\n';
 	}
 	cout.flush();
+}
+
+
+
+void PrintOutfitList(bool printOutfitters)
+{
+	if(!printOutfitters)
+	{
+		cout << "outfit name" << '\n';
+		for(auto &it : GameData::Outfits())
+			cout << it.first << '\n';
+		return;
+	}
+	map<string, set<string>> outfits;
+	for(auto &it : GameData::Outfitters())
+	{
+		for(auto &it2 : it.second)
+		{
+			outfits[it2->Name()].insert(it.first);
+		}
+	}
+	for(auto &it : outfits)
+	{
+		cout << it.first;
+		for(auto &it2 : it.second)
+		{
+			cout << ',' << it2;
+		}
+		cout << '\n';
+	}
 }
 
 
