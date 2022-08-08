@@ -485,7 +485,7 @@ outfit "NDR-114 Android"
 	"energy consumption" 0.017
 	unplunderable 1
 	description "While these were once considered cutting edge outfits, their lack of autonomous capabilities and economic benefit soon led to their commercial failure and disappearance from the market several centuries ago."
-	description	"	Despite these obstacles, some captains preferred replacing one of their crew members with a robotic counterpart, and considered the reduced bunk capacity a fair trade. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the decision making capability to captain a ship or take part in boarding actions."
+	description "	Despite these obstacles, some captains preferred replacing one of their crew members with a robotic counterpart, and considered the reduced bunk capacity a fair trade. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the decision making capability to captain a ship or take part in boarding actions."
 
 outfit "Research Laboratory"
 	category "Systems"
