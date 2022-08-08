@@ -152,6 +152,9 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		for(const auto &it : payload)
 		{
+			if(it.second < 1)
+				continue;
+
 			// Each payload object has a 25% chance of surviving. This creates
 			// a distribution with occasional very good payoffs.
 			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= Flotsam::TONS_PER_BOX)
