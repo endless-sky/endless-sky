@@ -1,8 +1,6 @@
 /* PrintData.cpp
 Copyright (c) 2022 by warp-core
 
-Main function for Endless Sky, a space exploration and combat RPG.
-
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.

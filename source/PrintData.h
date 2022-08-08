@@ -1,8 +1,6 @@
 /* PrintData.h
 Copyright (c) 2022 by warp-core
 
-Main function for Endless Sky, a space exploration and combat RPG.
-
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.
@@ -15,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PRINT_DATA_H_
 #define PRINT_DATA_H_
 
+// A class containing methods used to print ship and outfit stats to the console.
 class PrintData {
 public:
 	static void Print(char *argv[]);
