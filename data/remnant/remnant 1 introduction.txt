@@ -1,5 +1,6 @@
 # Copyright (c) 2017 by Michael Zahniser
 # Copyright (c) 2018 by Zitchas
+# Copyright (c) 2022 by williaji
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -266,7 +267,7 @@ mission "Remnant: Defense 1"
 		fleet "Large Remnant"
 	npc evade
 		government "Korath"
-		personality heroic plunders harvests target
+		personality staying heroic plunders harvests target
 		fleet "Korath Ember Waste Raid" 6
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
@@ -2164,7 +2165,7 @@ conversation "taely cultural data"
 			defer
 	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand.") "... the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 	choice
 		`	"Yes. What can I do to help?"`
 		`	"Sorry, not interested."`
@@ -2228,7 +2229,7 @@ mission "Remnant: Salvage 1B"
 		has "Remnant: Salvage 1: done"
 	on offer
 		conversation
-			`After having traveled clear across the galaxy, you finally have arrived at the archives of human history. On the direction of the librarians you locate the gift shop and buy a "souvenir copy" of the archive. You idly wonder if you should buy a couple spare copies just in case, but decide against it.`
+			`After having traveled clear across the galaxy, you finally arrive at the archives of human history. Upon asking a librarian where you could get a copy of the station's archives, you're surprised to have them point you to a gift shop. There you find a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Taely.`
 				accept
 
 
@@ -2273,7 +2274,7 @@ mission "Remnant: Salvage 2"
 		conversation
 			`As some ships maintain orbital sentry positions, most ships return to their berths. Mechanics are soon swarming over the ships, and what you suppose are ambulances are waiting at the ramps to collect the injured. Farther back, flatbed tractor units wait to pick up any salvage that has been collected.`
 			`	Eventually a tired but pleased-looking prefect stops by your ship. He starts chanting, "Do you understand our language, or do I need to sing?" He looks relieved when you reply that you can understand most of what is said so long as he signs slowly. "Thank you for your assistance during the raid. The sensors you placed in Parca picked up the fleet coming in and gave us sufficient warning to get everyone ready."`
-			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He hands you a credit chip with <payment> on it. "Thank you, I will make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
+			`	He is silent for a moment, with the air of someone who is enjoying not having to run for the first time in a while. "Oh, Taely said that you might have some historical records for us?" You hand over the copy of the archive in response, telling him that it is probably the best available. He copies the archive onto a data pad, then returns it to you alongside a credit chip with <payment> on it. "Thank you, I will make sure this gets where it needs to go. In the meantime, we could use your help in the spaceport."`
 
 
 
@@ -3713,7 +3714,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
 			choice
 				`	"Yes."`
-					goto  stormcontinue
+					goto stormcontinue
 				`	"How does that work?"`
 			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
 			label stormcontinue
@@ -3741,4 +3742,64 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks at you quizzically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
 			label stormend
 			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
-			
+
+
+
+mission "Remnant: Logistics 1"
+	name "Rush delivery to <planet>"
+	description `Deliver <cargo> to <destination> by <date>.`
+	source "Caelian"
+	destination "Viminal"
+	cargo "Generator (Furnace Class)" 39
+	deadline 2
+	to offer
+		has "remnant: blood test pure"
+		has "Remnant: Defense 1: done"
+	on offer
+		conversation
+			`You step out of the <ship> amidst the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
+			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us."`
+			`	It is typical for people to gawk at you, so you respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
+			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
+			choice
+				`	"Certainly!"`
+					goto willdo
+				`	"Sorry, it is not."`
+					goto notinterested
+			label willdo
+			`	"Excellent," she responds in a full alto, "I will let the project manager know the cargo will arrive promptly." She signs what you think is a farewell and turns to address someone else who has stepped up.`
+			`	You manage to chant and point your way through the cafeteria line, and you are aware of the flurry of signs around you. There doesn't seem to be a way to pay, so you find a table and sit alone until your commlink chimes to let you know that the <ship> has been refueled and the mystery cargo loaded.`
+				accept
+			label notinterested
+			`	"That is unfortunate," she sings as she makes a notation on her terminal. "But there will be others who are willing to help."`
+				decline
+	on complete
+		payment
+		conversation
+			`You step off the <ship> on <planet> to see a man wandering around your ship taking video with a datapad and softly dictating some running commentary. He dodges around the dock workers unloading and refueling, seemingly intent on recording every aspect of your ship.`
+			`	"Cousin!" he sings with excitement when you walk up to him. "It is good to meet you and to see your wonderful ship. It excites me to be able to examine something I have only seen in entertainments based on our scouting reports." He holds up the datapad facing you and says, "I am making a video for my companion. He will not believe me unless I have proof, and maybe not even then!" he laughs. You wave at the camera and he stops recording.`
+			`	"I hope I have not offended you. I get carried away looking at ships." He runs his hand along the landing strut but then seems to collect himself and turn back to you. "I am named Eon," he says. "Would you have time to talk about logistics support?"`
+			choice
+				`	"Yes, I've been looking for more work with the Remnant."`
+				`	"Yes, there haven't been many opportunities so far."`
+			`Eon leads you to the bustling cafeteria, chattering about ship design since the Alpha Wars. He orders a couple of hot drinks and leads you to a quiet table overlooking the docks. You try your drink. It's strongly flavored but a bit odd, like someone's memory of what coffee should taste like, reconstituted from local foods.`
+			`	Eon leaves his untouched as he launches into conversation. "Those of us in logistics have noticed that you are spending time in our systems, and we wanted to see if you would be available to pick up work for us. It would be delivery work like the generator you brought for the housing project."`
+			choice
+				`	(Nod)`
+					goto delivery
+				`	"You put starship radiothermals in your houses?"`
+			`	"You do not?" he responds playfully. "Well, 'generators in each community' would be more accurate. We maintain a decentralized power grid so we have more resiliency in the event of an attack or natural disaster. It also makes use of the power plants we salvage from the Korath and ones we recover from our own damaged ships. Besides, widely deploying the technology ensures that we have expertise to maintain and repair it all across the Remnant. But," he signs a pushing motion, "civil engineering is another subject. I hope you are more interested in how we move our various cargoes."`
+				goto delivery
+			label delivery
+			`	"That generator was originally scheduled for delivery 30 days from now, but it was ready earlier and the project can install it now. So, by bringing it over, you have enabled us to move the project forward and free up delivery capacity next month."`
+			`	"So, why did you offer this work to me?" you ask, trying to mimic the gestures you've seen that you think refer to one's self.`
+			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no... what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
+			choice
+				`	"Thanks for the opportunity."`
+					goto thanks
+				`	"Will your pilots be upset at the competition?"`
+			`	Eon smiles at the question. "You should talk to the other pilots and see, but I think the ancestral approach is different. We work more like a military: the ships are owned by the Remnant, but each captain is responsible for the ship, the crew, and the transport work that needs to be done. I think they will be happy to see new homes being built, and freeing up more time for them and their crews to spend within the community."`
+				goto thanks
+			label thanks
+			`	Before you can ask more about transport jobs, Eon takes out his commlink and taps on it for a few minutes. "You now have access to the logistics job board. You should be able to see our current job list for each system when you check."`
+			`	You continue to chat with Eon as you sip your drink. When you finish, his commlink chirps. As he stands, he signs what you think means "goodbye" as he says he has to leave for another meeting. He walks off quickly with his head down looking at the datapad. Your commlink notifies you that <payment> have been added to your account.`

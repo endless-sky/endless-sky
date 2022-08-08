@@ -89,12 +89,17 @@ namespace {
 	// ship. Carried escorts are waited for in AI::Step.
 	bool EscortsReadyToJump(const Ship &ship)
 	{
-		for(const weak_ptr<Ship> &escort : ship.GetEscorts())
+		bool shipIsYours = ship.IsYours();
+		const Government *gov = ship.GetGovernment();
+		for(const weak_ptr<Ship> &ptr : ship.GetEscorts())
 		{
-			shared_ptr<const Ship> locked = escort.lock();
-			if(locked && !locked->IsDisabled() && !locked->CanBeCarried()
-					&& locked->GetSystem() == ship.GetSystem()
-					&& locked->JumpFuel() && !locked->IsReadyToJump(true))
+			shared_ptr<const Ship> escort = ptr.lock();
+			// Skip escorts which are not player-owned and not escort mission NPCs.
+			if(!escort || (shipIsYours && !escort->IsYours() && (!escort->GetPersonality().IsEscort() || gov->IsEnemy(escort->GetGovernment()))))
+				continue;
+			if(!escort->IsDisabled() && !escort->CanBeCarried()
+					&& escort->GetSystem() == ship.GetSystem()
+					&& escort->JumpFuel() && !escort->IsReadyToJump(true))
 				return false;
 		}
 		return true;
@@ -155,7 +160,7 @@ namespace {
 				if(isCandidate(ship) && ship.get() != player.Flagship())
 					(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 
-		// If any ships were not yet ordered to deployed, deploy them.
+		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
 			for(Ship *ship : toDeploy)
@@ -577,8 +582,8 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
-		if(it->IsOverheated())
+		// Paralyzed ships are effectively disabled, and cannot fire, cloak, etc.
+		if(it->IsParalyzed())
 			continue;
 
 		// Special case: if the player's flagship tries to board a ship to
@@ -1001,8 +1006,8 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			const System *system = ship.GetSystem();
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
-				// Disabled, overheated, or otherwise untargetable ships pose no threat.
-				bool harmless = helper->IsDisabled() || (helper->IsOverheated() && helper->Heat() >= 1.1) || !helper->IsTargetable();
+				// Disabled, paralyzed, or otherwise untargetable ships pose no threat.
+				bool harmless = helper->IsDisabled() || helper->IsParalyzed() || !helper->IsTargetable();
 				hasEnemy |= (system == helper->GetSystem() && !harmless);
 				if(hasEnemy)
 					break;
@@ -1052,7 +1057,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsParalyzed() || helper.IsHyperspacing())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1196,8 +1201,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		range -= 1000 * Has(*foe, gov, ShipEvent::BOARD);
 		// Focus on nearly dead ships.
 		range += 500. * (foe->Shields() + foe->Hull());
-		// If a target is extremely overheated, focus on ships that can attack back.
-		if(foe->IsOverheated())
+		// If a target is paralyzed, focus on ships that can attack back.
+		if(foe->IsParalyzed())
 			range += 3000. * (foe->Heat() - .9);
 		if((isPotentialNemesis && !hasNemesis) || range < closest)
 		{
@@ -1334,7 +1339,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		SelectRoute(ship, it->second.targetSystem);
 
 		// Travel there even if your parent is not planning to travel.
-		if(ship.GetTargetSystem())
+		if((ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar())
 			MoveIndependent(ship, command);
 		else
 			return false;
@@ -1393,14 +1398,24 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 
 	bool friendlyOverride = false;
+	bool ignoreTargetShip = false;
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.target.lock() == target)
-			friendlyOverride = (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF);
+		if(it != orders.end())
+		{
+			if(it->second.type == Orders::MOVE_TO)
+				ignoreTargetShip = (ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar();
+			else if(it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF)
+				friendlyOverride = it->second.target.lock() == target;
+		}
 	}
 	const Government *gov = ship.GetGovernment();
-	if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
+	if(ignoreTargetShip)
+	{
+		// Do not move to attack, scan, or assist the target ship.
+	}
+	else if(target && (gov->IsEnemy(target->GetGovernment()) || friendlyOverride))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -3238,32 +3253,32 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 	if(activeCommands.Has(Command::NEAREST))
 	{
-		// Find the nearest ship to the flagship. If `Shift` is held, consider friendly ships too.
+		// Find the nearest enemy ship to the flagship. If `Shift` is held, consider friendly ships too.
 		double closest = numeric_limits<double>::infinity();
-		int closeState = 0;
+		bool foundActive = false;
 		bool found = false;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
-				// Sort ships into one of three priority states:
-				// 0 = friendly, 1 = disabled enemy, 2 = active enemy.
-				int state = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+				bool enemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 				// Do not let "target nearest" select a friendly ship, so that
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if((!state && !shift) || other->IsYours())
+				if((!enemy && !shift) || other->IsYours())
 					continue;
 
-				state += state * !other->IsDisabled();
+				// Sort ships by active or disabled:
+				// Prefer targeting an active ship over a disabled one
+				bool active = !other->IsDisabled();
 
 				double d = other->Position().Distance(ship.Position());
 
-				if(state > closeState || (state == closeState && d < closest))
+				if((!foundActive && active) || (foundActive == active && d < closest))
 				{
 					ship.SetTargetShip(other);
 					closest = d;
-					closeState = state;
+					foundActive = active;
 					found = true;
 				}
 			}
@@ -3549,7 +3564,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	if(Preferences::Has("Automatic aiming") && !command.Turn() && !ship.IsBoarding()
-			&& (Preferences::Has("Automatic firing") || activeCommands.Has(Command::PRIMARY))
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
 				|| ship.GetTargetAsteroid())
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
@@ -3630,7 +3644,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
-			
+
 			// Don't jump yet if the player is holding jump key or fleet jump is active and
 			// escorts are not ready to jump yet.
 			if(activeCommands.Has(Command::WAIT) || (autoPilot.Has(Command::FLEET_JUMP) && !EscortsReadyToJump(ship)))

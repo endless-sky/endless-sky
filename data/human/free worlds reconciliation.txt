@@ -120,7 +120,7 @@ mission "FW Reconciliation 1B"
 	on offer
 		event "fw empty gienah"
 		conversation
-			`The moment you land Katya is eager to visit the Conservatory and find Ijs. In the time that he has been here, it has grown into a small but bustling community, with crowds of students walking from building to building carrying backpacks and wrapped in thick coats. You find Ijs's office; Katya knocks and says, "Professor Springborn, are you having office hours right now?"`
+			`The moment you land Katya is eager to visit the Conservatory and find Ijs. In the time that he has been here, it has grown into a small but bustling community, with crowds of students walking from building to building carrying backpacks and wrapped in thick coats. You find Ijs' office; Katya knocks and says, "Professor Springborn, are you having office hours right now?"`
 			`	He recognizes her voice immediately and comes running out of the office to hug her. "Katya! You're free! Is the war over?"`
 			`	"Not quite," she says, "but we've found the bombers. Apparently the whole thing was sponsored by the Syndicate. Do you still have those isotopic fingerprints we collected back when this whole thing began?"`
 			`	Ijs quickly finds the data and collects his equipment. "I'll just have to let them know I need a substitute for a while," he says.`
@@ -973,6 +973,8 @@ mission "FW Pug 1"
 	on enter "Ascella"
 		dialog
 			`The Ascella system used to be linked to Rasalhague and Zeta Aquilae, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+	on waypoint
+		set "fw pug 1: visited waypoints"
 
 
 
@@ -1011,6 +1013,7 @@ mission "FW Pug 1 Return"
 	to offer
 		has "FW Pug 1: active"
 		has "event: pug invasion 4"
+		has "fw pug 1: visited waypoints"
 	
 	on offer
 		conversation

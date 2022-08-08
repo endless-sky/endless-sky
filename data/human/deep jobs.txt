@@ -792,7 +792,7 @@ mission "Deep Consultants"
 			`	After drawing in a deep breath, she stands up straighter and gestures to someone some distance away. "Captain, I'm sorry, but my colleague Julie and I are in dire need of urgent transport. Can you help?"`
 			`	As she catches her breath some more, her older colleague hustles over, bags in tow.`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"Where do you need to go?"`
 				`	"Why is it so urgent?"`

@@ -248,7 +248,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		out << "cost (" << (100 * buyValue) / cost << "%):";
 		requirementLabels.push_back(out.str());
 	}
-	requirementValues.push_back(Format::Credits(buyValue));
+	requirementValues.push_back(buyValue ? Format::Credits(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
@@ -372,6 +372,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
+		{"minable damage", ""},
 		{"fuel damage", ""},
 		{"heat damage", ""},
 		{"energy damage", ""},
@@ -384,6 +385,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{"burn damage", ""},
 		{"% shield damage", "%"},
 		{"% hull damage", "%"},
+		{"% minable damage", "%"},
 		{"% fuel damage", "%"},
 		{"% heat damage", "%"},
 		{"% energy damage", "%"},
@@ -409,6 +411,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	vector<double> values = {
 		outfit.ShieldDamage(),
 		outfit.HullDamage(),
+		outfit.MinableDamage() != outfit.HullDamage() ? outfit.MinableDamage() : 0.,
 		outfit.FuelDamage(),
 		outfit.HeatDamage(),
 		outfit.EnergyDamage(),
@@ -421,6 +424,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BurnDamage() * 100.,
 		outfit.RelativeShieldDamage() * 100.,
 		outfit.RelativeHullDamage() * 100.,
+		outfit.RelativeMinableDamage() != outfit.RelativeHullDamage() ? outfit.RelativeMinableDamage() * 100. : 0.,
 		outfit.RelativeFuelDamage() * 100.,
 		outfit.RelativeHeatDamage() * 100.,
 		outfit.RelativeEnergyDamage() * 100.,
@@ -457,13 +461,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			}
 	}
 
-	bool isContinuous = (reload <= 1);
+	bool oneFrame = (outfit.TotalLifetime() == 1.);
+	bool isContinuous = (reload <= 1. && oneFrame);
+	bool isContinuousBurst = (outfit.BurstCount() > 1 && outfit.BurstReload() <= 1. && oneFrame);
 	// Don't show anything if continuous range is 0.
 	if(outfit.Range() > 0 || !isContinuous)
 	{
 		attributeLabels.emplace_back("shots / second:");
 		if(isContinuous)
 			attributeValues.emplace_back("continuous");
+		else if(isContinuousBurst)
+			attributeValues.emplace_back("continuous (" + Format::Number(lround(outfit.BurstReload() * 100. / reload)) + "%)");
 		else
 			attributeValues.emplace_back(Format::Number(60. / reload));
 		attributesHeight += 20;
@@ -520,7 +528,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	// Add per-shot values to the table. If the weapon fires continuously,
 	// the values have already been added.
-	if(!isContinuous)
+	if(!isContinuous && !isContinuousBurst)
 	{
 		static const string PER_SHOT = " / shot:";
 		for(unsigned i = 0; i < VALUE_NAMES.size(); ++i)
