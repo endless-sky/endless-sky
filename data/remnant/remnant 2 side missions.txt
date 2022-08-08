@@ -201,7 +201,7 @@ mission "Remnant: Shattered Light 2"
 	on complete
 		payment 50000
 		conversation
-			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. A few moments later, Taely drops out of them, greeting Ruach warmly. By the time you join them, Ruach has a hologram of the spectral ship floating in the air. "It is lacking the confirmation codes or identification info, but I am confident that this is it." Ruach muses as you arrive.`
+			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. A few moments later, Taely drops out of them, greeting Ruach warmly. By the time you join them, Ruach has a hologram of the spectral ship floating in the air. "It is lacking the confirmation codes or identification info, but I am confident that this is it," muses Ruach as you arrive.`
 			`	"Sorry for leaving you behind, <first>, but this is just such an exciting discovery. This ship you found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions to be answered! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
 			
 
@@ -307,8 +307,8 @@ mission "Remnant: Shattered Light 4"
 		clear "Remnant: Shattered Light 3b: failed"
 		set "Remnant: Shattered Light 3b: done"
 		conversation
-			`	The Shattered Light is so massive that traffic control directs you to a large valley next to the spaceport, where you discover that a section of the chasm has been covered to create a semi-enclosed area. Judging from the equipment and stacks of freight, this area looks like it is predominantly used by bulk freight shipments and little else. Now, however, as the Shattered Light slowly moves in, a flock of Pelicans scatter in front of it looking like nothing more than a flock of plovers in front of an approaching camel.`
-			`	Down on the ground, you see Ruach and her team exit an airlock on the side of the Shattered Light and jump down to the ground. They gather around, giving hugs. "<first>!" exclaims Ruach. "We have recovered a lost piece of Remnant history. Thank you for helping. I do not know what this will mean for us in the long term, but it will be a lot of careful examination for the next few weeks."`
+			`	The Shattered Light is so massive that traffic control directs you to a large valley next to the spaceport, where you discover that a section of the chasm has been covered to create a semi-enclosed area. Judging from the equipment and stacks of cargo, this area looks like it is predominantly used by bulk freight shipments and little else. Now, however, as the Shattered Light slowly moves in, a flock of Pelicans scatter in front of it looking like nothing more than a flock of plovers in front of an approaching camel.`
+			`	Down on the ground, you see Ruach and her team exit an airlock on the side of the Shattered Light and jump down to the ground. They gather around, giving hugs. "<first>!" exclaims Ruach. "We have recovered a lost piece of Remnant history. Thank you for helping. I do not know what this will mean for us in the long term, but there will be a lot of careful examination for the next few weeks."`
 			choice
 				`	"I have things to do, so just let me know if I can help."`
 					goto shatteredhelp
@@ -355,7 +355,7 @@ mission "Remnant: Shattered Light 6"
 		conversation
 			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
 			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd of people is gathered around them in animated conversation. They spot you and the crowd start waving their goodbyes as the group pick up their bags and head towards you.`
-			`	"Ah, <first>! Thank you for transport us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
+			`	"Ah, <first>! Thank you for transporting us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 				accept
 	on complete
 		event "remnant: shattered light"
