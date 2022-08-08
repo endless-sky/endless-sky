@@ -25,15 +25,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "GameWindow.h"
 #include "GameLoadingPanel.h"
-#include "Hardpoint.h"
 #include "MenuPanel.h"
-#include "Outfit.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
-#include "Sale.h"
+#include "PrintData.h"
 #include "Screen.h"
-#include "Ship.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "Test.h"
@@ -63,12 +60,7 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
-void PrintShipTable(bool printDeterrence);
 void PrintTestsTable();
-void PrintWeaponTable(bool printDeterrence);
-void PrintEngineTable();
-void PrintPowerTable();
-void PrintOutfitList(bool printOutfitters);
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -86,20 +78,16 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	bool printShips = false;
 	bool printTests = false;
-	bool printWeapons = false;
-	bool printEngines = false;
-	bool printPower = false;
-	bool printOutfits = false;
+	bool printData = false;
 	string testToRunName = "";
-	bool printDeterrence = false;
-	bool printOutfitters = false;
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-h" || arg == "--help")
+		if(printData)
+			continue;
+		else if(arg == "-h" || arg == "--help")
 		{
 			PrintHelp();
 			return 0;
@@ -119,24 +107,14 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
-		else if(arg == "-s" || arg == "--ships")
-			printShips = true;
-		else if(arg == "-w" || arg == "--weapons")
-			printWeapons = true;
-		else if(arg == "-e" || arg == "--engines")
-			printEngines = true;
-		else if(arg == "--power")
-			printPower = true;
-		else if(arg == "-o" || arg == "--outfits")
-			printOutfits = true;
-		printDeterrence = (arg == "--deterrence");
-		printOutfitters = (arg == "--outfitters");
+		else if(arg == "--printdata")
+			printData = true;
 	}
 	Files::Init(argv);
 
 	try {
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printShips || printTests || printWeapons || printEngines || printPower || printOutfits;
+		bool isConsoleOnly = loadOnly || printTests || printData;
 		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -150,20 +128,9 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 
-		if(printShips || printTests || printWeapons || printEngines || printPower || printOutfits)
+		if(printData)
 		{
-			if(printShips)
-				PrintShipTable(printDeterrence);
-			if(printTests)
-				PrintTestsTable();
-			if(printWeapons)
-				PrintWeaponTable(printDeterrence);
-			if(printEngines)
-				PrintEngineTable();
-			if(printPower)
-				PrintPowerTable();
-			if(printOutfits)
-				PrintOutfitList(printOutfitters);
+			PrintData::Print(argv);
 			return 0;
 		}
 
@@ -433,17 +400,12 @@ void PrintHelp()
 	cerr << "Command line options:" << endl;
 	cerr << "    -h, --help: print this help message." << endl;
 	cerr << "    -v, --version: print version information." << endl;
-	cerr << "    -s, --ships: print table of ship statistics, then exit." << endl;
-	cerr << "    -s --deterrence: print a table of ships and corresponding armament deterrence values." << endl;
-	cerr << "    -w, --weapons: print table of weapon statistics, then exit." << endl;
-	cerr << "    -w --deterrance: prints a table of weapons and their deterrence values." << endl;
-	cerr << "    -e, --engines: print table of engines statistics, then exit." << endl;
-	cerr << "    -o, --outfits: print list of outfit names, then exit." << endl;
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "    --printdata <args>: prints data about ships or outfits. Use '--printdata -h' for more info." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory" << endl;
 	cerr << endl;
@@ -514,274 +476,6 @@ void PrintTestsTable()
 	}
 	cout.flush();
 }
-
-
-
-void PrintShipTable(bool printDeterrence)
-{
-	if(printDeterrence)
-	{
-		cout << "model" << ',' << "deterrence" << '\n';
-		for(auto &it : GameData::Ships())
-		{
-			//if(it.second.ModelName() != it.first)
-				//continue;
-
-			const Ship &ship = it.second;
-			double deterrence = 0;
-			for(const Hardpoint &hardpoint : ship.Weapons())
-				if(hardpoint.GetOutfit())
-				{
-					const Outfit *weapon = hardpoint.GetOutfit();
-					if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
-						continue;
-					double damage = weapon->ShieldDamage() + weapon->HullDamage()
-						+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-						+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
-					deterrence += .12 * damage / weapon->Reload();
-				}
-			cout << it.first << ',' << deterrence << '\n';
-		}
-		return;
-	}
-	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dis" << ','
-		<< "crew" << ',' << "bunks" << ',' << "cargo" << ',' << "fuel" << ','
-		<< "outfit" << ',' << "weapon" << ',' << "engine" << ','
-		/*<< "accel" << ',' << "turn" << ','
-		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
-		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','*/
-		<< "gun mounts" << ',' << "turret mounts" << '\n';
-	for(auto &it : GameData::Ships())
-	{
-		// Skip variants and unnamed / partially-defined ships.
-		if(it.second.ModelName() != it.first)
-			continue;
-
-		const Ship &ship = it.second;
-		cout << it.first << ',';
-
-		const Outfit &attributes = ship.BaseAttributes();
-		cout << attributes.Category() << ',';
-		//cout << ship.Cost() << ',';
-		cout << ship.ChassisCost() << ',';
-
-		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-		cout << attributes.Get("shields") << ',';
-		cout << attributes.Get("hull") << ',';
-		cout << mass << ',';
-		cout << attributes.Get("drag") << ',';
-		cout << ship.HeatDissipation() * 1000.<< ',';
-		cout << attributes.Get("required crew") << ',';
-		cout << attributes.Get("bunks") << ',';
-		cout << attributes.Get("cargo space") << ',';
-		cout << attributes.Get("fuel capacity") << ',';
-
-		cout << ship.BaseAttributes().Get("outfit space") << ',';
-		cout << ship.BaseAttributes().Get("weapon capacity") << ',';
-		cout << ship.BaseAttributes().Get("engine capacity") << ',';
-		//cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
-		//cout << 3600. * attributes.Get("thrust") / mass << '\t';
-		//cout << 60. * attributes.Get("turn") / mass << '\t';
-
-		/*double energyConsumed = attributes.Get("energy consumption")
-			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-			+ attributes.Get("turning energy")
-			+ attributes.Get("afterburner energy")
-			+ attributes.Get("fuel energy")
-			+ (attributes.Get("hull energy") * (1 + attributes.Get("hull energy multiplier")))
-			+ (attributes.Get("shield energy") * (1 + attributes.Get("shield energy multiplier")))
-			+ attributes.Get("cooling energy")
-			+ attributes.Get("cloaking energy");*/
-
-		/*double heatProduced = attributes.Get("heat generation") - attributes.Get("cooling")
-			+ max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
-			+ attributes.Get("turning heat")
-			+ attributes.Get("afterburner heat")
-			+ attributes.Get("fuel heat")
-			+ (attributes.Get("hull heat") * (1 + attributes.Get("hull heat multiplier")))
-			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
-			+ attributes.Get("solar heat")
-			+ attributes.Get("cloaking heat");*/
-
-		/*for(const auto &oit : ship.Outfits())
-			if(oit.first->IsWeapon() && oit.first->Reload())
-			{
-				double reload = oit.first->Reload();
-				energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
-				heatProduced += oit.second * oit.first->FiringHeat() / reload;
-			}*/
-
-		/*cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << '\t';
-		cout << 60. * energyConsumed << '\t';
-		cout << attributes.Get("energy capacity") << '\t';
-		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << '\t';
-		cout << 60. * heatProduced << '\t';
-		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';*/
-
-		int numTurrets = 0;
-		int numGuns = 0;
-		for(auto &hardpoint : ship.Weapons())
-		{
-			if(hardpoint.IsTurret())
-				++numTurrets;
-			else
-				++numGuns;
-		}
-		cout << numGuns << ',' << numTurrets << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintWeaponTable(bool printDeterrence)
-{
-	if(printDeterrence)
-	{
-		cout << "name" << ',' << "deterrence" << ',' << "outfit" << ',' << "weapon" << '\n';
-		for(auto &it : GameData::Outfits())
-		{
-			// Skip non-weapons and submunitions.
-			if(!it.second.IsWeapon() || it.second.Category().empty())
-				continue;
-			const Outfit &weapon = it.second;
-			double damage = weapon.ShieldDamage() + weapon.HullDamage();
-			double deterrence = .12 * damage / weapon.Reload();
-			cout << it.first << ',' << deterrence << ',' << -weapon.Get("outfit space") << ',' << -weapon.Get("weapon capacity") << '\n';
-		}
-		return;
-	}
-
-	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ','
-		<< "shield/s" << ',' << "hull/s" << ',' << "heatdmg/s" << ',' << "push/s" << ','
-		<< "homing" << ',' << "strength" << ',';
-	for(auto &it : GameData::Outfits())
-	{
-		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || it.second.Category().empty())
-			continue;
-
-		const Outfit &outfit = it.second;
-		cout << it.first << ',';
-		cout << outfit.Cost() << ',';
-		cout << -outfit.Get("weapon capacity") << ',';
-
-		cout << outfit.Range() << ',';
-
-		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
-		cout << energy << ',';
-		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
-		cout << heat << ',';
-		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
-		cout << firingforce << ',';
-
-		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
-		cout << shield << ',';
-		double hull = outfit.HullDamage() * 60. / outfit.Reload();
-		cout << hull << ',';
-		double heatDmg = outfit.HeatDamage() * 60. / outfit.Reload();
-		cout << heatDmg << ',';
-		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
-		cout << hitforce << ',';
-
-		cout << outfit.Homing() << ',';
-		double strength = outfit.MissileStrength() + outfit.AntiMissile();
-		cout << strength << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintEngineTable()
-{
-	cout << "name" << '\t' << "cost" << '\t' << "mass" << '\t' << "outfit space" << '\t'
-		<< "engine capacity" << '\t' << "thrust/s" << '\t' << "thrust energy/s" << '\t'
-		<< "thrust heat/s" << '\t' << "turn/s" << '\t' << "turn energy/s" << '\t'
-		<< "turn heat/s" << '\t' << "reverse thrust/s" << '\t' << "reverse energy/s" << '\t'
-		<< "reverse heat/s" << '\n';
-	for(auto &it : GameData::Outfits())
-	{
-		// Ship non-engines.
-		if(it.second.Category() != "Engines")
-			continue;
-
-		const Outfit &outfit = it.second;
-		cout << it.first << ',';
-		cout << outfit.Cost() << ',';
-		cout << outfit.Mass() << ',';
-		cout << outfit.Get("outfit space") << ',';
-		cout << outfit.Get("engine capacity") << ',';
-		cout << outfit.Get("thrust") * 3600. << ',';
-		cout << outfit.Get("thrusting energy") * 60. << ',';
-		cout << outfit.Get("thrusting heat") * 60. << ',';
-		cout << outfit.Get("turn") * 60. << ',';
-		cout << outfit.Get("turning energy") * 60. << ',';
-		cout << outfit.Get("turning heat") * 60. << ',';
-		cout << outfit.Get("reverse thrust") * 3600. << ',';
-		cout << outfit.Get("reverse thrusting energy") * 60. << ',';
-		cout << outfit.Get("reverse thrusting heat") * 60. << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintPowerTable()
-{
-	cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-		<< "energy gen" << ',' << "heat gen" << ',' << "energy cap" << '\n';
-	for(auto &it : GameData::Outfits())
-	{
-		// Ship non-power.
-		if(it.second.Category() != "Power")
-			continue;
-
-		const Outfit &outfit = it.second;
-		cout << it.first << ',';
-		cout << outfit.Cost() << ',';
-		cout << outfit.Mass() << ',';
-		cout << outfit.Get("outfit space") << ',';
-		cout << outfit.Get("energy generation") << ',';
-		cout << outfit.Get("heat generation") << ',';
-		cout << outfit.Get("energy capacity") << '\n';
-	}
-	cout.flush();
-}
-
-
-
-void PrintOutfitList(bool printOutfitters)
-{
-	if(!printOutfitters)
-	{
-		cout << "outfit name" << '\n';
-		for(auto &it : GameData::Outfits())
-			cout << it.first << '\n';
-		return;
-	}
-	map<string, set<string>> outfits;
-	for(auto &it : GameData::Outfitters())
-	{
-		for(auto &it2 : it.second)
-		{
-			outfits[it2->Name()].insert(it.first);
-		}
-	}
-	for(auto &it : outfits)
-	{
-		cout << it.first;
-		for(auto &it2 : it.second)
-		{
-			cout << ',' << it2;
-		}
-		cout << '\n';
-	}
-}
-
 
 
 
