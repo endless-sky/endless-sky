@@ -85,8 +85,6 @@ int main(int argc, char *argv[])
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(printData)
-			continue;
 		else if(arg == "-h" || arg == "--help")
 		{
 			PrintHelp();
@@ -108,7 +106,10 @@ int main(int argc, char *argv[])
 		else if(arg == "--tests")
 			printTests = true;
 		else if(arg == "--printdata")
+		{
 			printData = true;
+			break;
+		}
 	}
 	Files::Init(argv);
 
