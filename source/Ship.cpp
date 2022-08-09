@@ -1116,7 +1116,7 @@ vector<string> Ship::FlightCheck(const bool docked) const
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
-	{	
+	{
 		if(energy <= 0.)
 			checks.emplace_back("no energy?");
 		if(!thrust && !afterburner && !reverseThrust)
