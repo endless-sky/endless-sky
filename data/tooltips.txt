@@ -938,11 +938,20 @@ tip "no thruster!"
 tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
 
+tip "no energy?"
+	`This ship does not have any source of energy to power its systems. Although it can take off while docked on an other ship, it will not function once deployed.`
+
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 
 tip "reverse only?"
 	`This ship has a reverse thruster but no forward thruster, which could make it very difficult to maneuver.`
+
+tip "no thruster?"
+	`This ship does not have any sort of thruster installed. Although it can take off while docked on an other ship, it would be unable to move once deployed.`
+
+tip "no steering?"
+	`This ship does not have any steering systems installed. Although it can take off while docked on an other ship, it would be unable to turn once deployed.`
 
 tip "battery only?"
 	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`

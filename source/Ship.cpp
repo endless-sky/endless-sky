@@ -1080,7 +1080,8 @@ int64_t Ship::ChassisCost() const
 
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
-vector<string> Ship::FlightCheck() const
+// Docked ships may have different requirements for flight checks.
+vector<string> Ship::FlightCheck(const bool docked) const
 {
 	auto checks = vector<string>{};
 
@@ -1104,22 +1105,28 @@ vector<string> Ship::FlightCheck() const
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
-	else if(energy <= 0.)
+	else if(energy <= 0. && !docked)
 		checks.emplace_back("no energy!");
-	else if((energy - consuming <= 0.) && (fuel <= 0.))
+	else if((energy - consuming <= 0.) && (fuel <= 0.) && !docked)
 		checks.emplace_back("no fuel!");
-	else if(!thrust && !reverseThrust && !afterburner)
+	else if(!thrust && !reverseThrust && !afterburner && !docked)
 		checks.emplace_back("no thruster!");
-	else if(!turn)
+	else if(!turn && !docked)
 		checks.emplace_back("no steering!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
-	{
-		if(!thrust && !reverseThrust)
+	{	
+		if(energy <= 0.)
+			checks.emplace_back("no energy?");
+		if(!thrust && !reverseThrust && afterburner)
 			checks.emplace_back("afterburner only?");
-		if(!thrust && !afterburner)
+		if(!thrust && !afterburner && reverseThrust)
 			checks.emplace_back("reverse only?");
+		if(!thrust && !afterburner && !reverseThrust)
+			checks.emplace_back("no thruster?");
+		if(!turn)
+			checks.emplace_back("no steering?");
 		if(!generation && !solar && !consuming)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
