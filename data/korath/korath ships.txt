@@ -961,7 +961,8 @@ ship "Korath Haven"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath Havens are massive nomadic habitats that hold much of their remaining population."
+	description "Korath Havens are massive nomadic habitats that hold much of their remaining population.  True flying cities, they could be self-contained miniature worlds were it not for their heavy defensive armament and reliance on unsustainable materials, methods, and sources of power."
+	description "  Commission of new Havens is an intensely resource-demanding, labour-intensive, painstaking process fraught with political intrigue. Navarchs fight with the civilian goverment for resources and yard time they would rather devote to building raiding and defensive fleets, civilians vie with each other for a place on the next ship, and planning committees argue with engineers over what methods and technologies to use. This leads to construction delays, corner-cutting, and over-militarisation of the design at best, and violent feuds at worst."
 
 
 
