@@ -167,7 +167,7 @@ mission "Remnant: Shattered Light 1"
 		conversation
 			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
 			`	"Well met, <first>, how goes your travels? Found anything interesting?`
-			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the starport."`
+			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
 
 
 
@@ -189,7 +189,7 @@ mission "Remnant: Shattered Light 2"
 	on offer
 		require "Research Laboratory"
 		conversation
-			`Your arrival in the starport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
+			`Your arrival in the spaceport finds Taely in deep conversation with an elderly Remnant, empty food trays cluttering the table before them. They both turn when you approach, breaking off their conversation.`
 			`	"Thank you for coming, Captain <last>. I would like to introduce you to Ruach. She was a shipyard engineering prefect for many decades, but now spends most of her time as a teacher." `
 			`Ruach gives a polite bow. "Taely lays too many compliments on me," she gestures with amusement. "I fulfilled my duty doing the best with that which the Embers blessed me, nothing more, nothing less. But it has been rewarding watching someone take everything I taught them and fly with it to heights I could only dream of."`
 			`	Ruach's gestures take on a more precise cadence. "Taely tells me that you have spotted a strange 'ghost' in Caeculus that bears a resemblance to ancestral ships. Could you take me to do a scan of it please?"`
@@ -210,7 +210,7 @@ mission "Remnant: Shattered Light 3"
 	invisible
 	name "Ghost Touch"
 	description "Help the Remnant experiment on the Shattered Light."
-	blocked "As you approach the starport your commlink chimes with a message from Ruach requesting that you make space for 13 people as well as 19 cargo."
+	blocked "As you approach the starport your commlink chimes with a message from Ruach requesting that you make space for 13 people as well as 19 tons of cargo."
 	cargo "equipment" 19
 	passengers 13
 	source "Viminal"
@@ -247,10 +247,10 @@ mission "Remnant: Shattered Light 3"
 				or
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
-			`	Moments later you spot a gaping hole on the ship. Focusing on it, you fly the <ship> down and hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
+			`	Moments later you spot a gaping hole on the ship. Focusing on it, you fly the <ship> down and hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock. Your exterior cameras show the equipment falling into it on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
 				goto dropsuccess
 			label livingship
-			`	Moments later the <ship> pings a point on the Shattered Light indicating a gaping hole on the ship. Nodding your assent, your ship swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock.  Your exterior cameras show the equipment falling into the hole on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
+			`	Moments later the <ship> pings a point on the Shattered Light indicating a gaping hole on the ship. Nodding your assent, your ship swoops to a hold position just above it. A glance at your cargo hold display shows the Remnant vanishing out the back lock. Your exterior cameras show the equipment falling into the hole on repulsor pallets while the Remnant drop alongside it. A final message appears on your console.`
 			label dropsuccess
 			`	"Drop success. Get clear of the arrival zone and pick us up after the dust settles."`
 			branch livingclear
@@ -313,7 +313,7 @@ mission "Remnant: Shattered Light 4"
 				`	"I have things to do, so just let me know if I can help."`
 					goto shatteredhelp
 				`	"So, what happened?"`
-			`	The team of Remnant are almost too excited for you to understand their gestures, but one calms down enough that their gestures are comprehensible. "To be honest, we were expecting this to be the first of several trips doing detailed scans and trying out different sorts of synchronization fields. But when we saw that it was heading to the planet..." She trails off, and another one continues. "We already had the sensors running as we approached, so we jumped and triggered the fields as soon as we got a reasonable match."`
+			`	The team of Remnant are almost too excited for you to understand their gestures, but one calms down enough that their signing is comprehensible. "To be honest, we were expecting this to be the first of several trips doing detailed scans and trying out different sorts of synchronization fields. But when we saw that it was heading to the planet..." She trails off, and another one continues. "We already had the sensors running as we approached, so we jumped and triggered the fields as soon as we got a reasonable match."`
 			`	He frowns a bit "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the primary weft, so now we have time to work on it and figure out what happened to it.`
 			choice
 				`	"I think I get the picture. Let me know if I can help."`
@@ -343,7 +343,7 @@ mission "Remnant: Shattered Light 5"
 mission "Remnant: Shattered Light 6"
 	name "Shattered Light"
 	description "Ferry the team and their gear back to <destination>"
-	blocked "From your count at the information desk, you estimate that you need space for 11 people as well as 18 cargo."
+	blocked "From your count at the information desk, you estimate that you need space for 11 people as well as 18 tons of cargo."
 	cargo "equipment" 18
 	passengers 11
 	landing
@@ -382,6 +382,6 @@ mission "Remnant: Shattered Light 6"
 			label shatteredhelp
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho Crater... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
