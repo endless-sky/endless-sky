@@ -950,6 +950,14 @@ event "oathkeepers founded"
 
 
 
+# TODO: Expand this event to other Dirt Belt systems.
+# TODO: Create Syndicate freighter fleets.
+event "syndicate convoys to Tarazed"
+	system "Tarazed"
+		add fleet "Small Syndicate" 5000
+
+
+
 event "Tarazed neutrality"
 	system "Tarazed"
 		government "Neutral"
@@ -959,6 +967,38 @@ event "Tarazed neutrality"
 		government "Neutral"
 	system "Girtab"
 		government "Neutral"
+	planet "Wayfarer"
+		outfitter "Syndicate Assistance"
+
+
+
+# TODO: Expand this event to other Dirt Belt systems.
+# TODO: Create specific patrol fleets.
+event "fw dirt belt patrols"
+	system "Tarazed"
+		add fleet "Small Free Worlds" 5000
+
+
+
+event "syndicate assistance"
+	planet "Bourne"
+		outfitter "Syndicate Assistance"
+	planet "Glaze"
+		outfitter "Syndicate Assistance"
+	planet "Rust"
+		outfitter "Syndicate Assistance"
+	planet "Solace"
+		outfitter "Syndicate Assistance"
+	planet "Zug"
+		outfitter "Syndicate Assistance"
+
+
+
+# TODO: Expand this event to other Dirt Belt systems.
+# TODO: Create Republic fleets neutral to FW patrols.
+event "unofficial ceasefire"
+	system "Tarazed"
+		add fleet "Small Republic" 5000
 
 
 

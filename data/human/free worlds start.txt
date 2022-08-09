@@ -137,17 +137,14 @@ mission "Liberate Kornephoros"
 			`	He pulls you aside and asks you, "How are things going here?"`
 			choice
 				`	"Very quiet. They haven't given us any trouble."`
-					goto quiet
 				`	"The battle was brutal. I hope we don't have to keep doing that."`
 					goto brutal
 			
-			label quiet
 			`	"Glad to hear it," he says.`
 				goto speech
 			
 			label brutal
 			`	"I hope so too," he says. "Maybe we can make a start in that direction right now."`
-				goto speech
 			
 			label speech
 			`	Tomek climbs up onto the hull of a nearby ship and addresses the prisoners. "Hello," he says. A few of the Navy officers respond, warily. "My name is Tomek Voigt," he says. "Our militia is very loosely organized, but I'm the one in charge of organizing it." That gets a few laughs from the Free Worlds guards. "As such, I am responsible for deciding your fate."`
@@ -243,14 +240,12 @@ mission "FW Prisoner Parole 2"
 				`	"So, what do we do now?"`
 					goto next
 				`	"I wish we'd known that a few days earlier. We could have arranged a prisoner exchange."`
-					goto exchange
 			
-			label exchange
 			`	"I know," he says. "That's what a lot of our people are saying now. But what we did, a pure good-faith gesture with nothing demanded in return - we may come to be glad of that. My hope was to set a precedent, to shape the character of whatever conflict comes out of this, and I still think that was the right thing to do."`
 			`	"So, what do we do now?" you ask.`
 			
 			label next
-			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
+			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to transport Alondo for a set of diplomatic missions. Meet us in the spaceport when you are ready."`
 
 
 
@@ -289,20 +284,17 @@ mission "FW Syndicate Diplomacy 1"
 	
 	on offer
 		conversation
-			`You meet Tomek and Alondo in the spaceport. "We've decided that now would be a good time for a diplomatic mission to the Syndicate," says Alondo. "We've proven that we are a force to reckon with, but also that we are open to working for peace. And a relationship with the Syndicate would be a significant advantage for us."`
+			`You meet Tomek and Alondo in the spaceport. "We've decided that now would be a good time for diplomatic missions," says Alondo. "We've proven that we are a force to reckon with, but also that we are open to working for peace. We'll start with the Syndicate, as a relationship with the Syndicate would be a significant advantage for us."`
 			choice
 				`	"Do you think they will fight on our side?"`
-					goto fight
 				`	"Wait, isn't the Syndicate an evil megacorporation?"`
 					goto evil
 			
-			label fight
-			`	"Certainly not," says Alondo. "But they are very interested in maximizing their profits, so I pray we can arrange to purchase ship materials from them. And if nothing else, I pray they at least will promise not to hire out their security forces as mercenaries to the Republic."`
+			`	"Certainly not," says Alondo. "Unlike us, the Syndicate have few grievances with the Republic. While the Navy does not patrol the Core, the Syndicate fund their own private security for the region. I don't see what they'd gain from joining the fight on our side. But they are very interested in maximizing their profits, so I pray we can arrange to purchase ship materials from them. And if nothing else, I pray they at least will promise not to hire out their security forces as mercenaries to the Republic."`
 				goto time
 			
 			label evil
-			`	"Well, they do have a long record of environmental and human rights violations. But they are also the single largest employer in the galaxy, and a main reason for the stability the Republic has enjoyed for the last few centuries. So, I wouldn't call them 'evil.' It's more complicated than that."`
-				goto time
+			`	"Well, they do have a long record of environmental and human rights violations. But they are also the single largest employer in the galaxy, and a main reason for the stability the Republic has enjoyed for the last few centuries. The Syndicate is also not a monolith. There are at least some good people within the Syndicate. I... use to know one," Alondo says with some apprehension. "So, I wouldn't call the Syndicate 'evil.' It's more complicated than that."`
 			
 			label time
 			`	"Reaching Syndicate space could be difficult once the Navy has time to regroup," says Tomek. "This may be the last window of opportunity we get for a while to meet with them in person."`
@@ -310,19 +302,18 @@ mission "FW Syndicate Diplomacy 1"
 			choice
 				`	"Sounds good! Let's do it!"`
 					accept
-				`	"Why meet in person? How do we know this is not a trap?"`
-					goto trap
+				`	"Why meet in person? How do we know this isn't a trap?"`
 				`	"What should we do if we encounter Navy ships?"`
 					goto navy
 			
-			label trap
-			`	"It's a risk, but not a large one. The Syndicate is driven by greed, and they want us as a customer."`
+			`	"While data moves through the hyperspace network faster than ships, having any substantial back and forth would take longer than if we simply showed up in person. The Syndicate are also often driven by greed, and we're worth more as customers of the Syndicate than as prisoners of the Republic. If nothing else, showing up in person is a sign of good faith. It puts our trust in the Syndicate, trust that they'd be unlikely to betray given the risk they'd see us taking simply to meet with them."`
 			choice
 				`	"I hope you're right! Let's get going."`
 					accept
 			
 			label navy
-			`	"Evade them. Destroy them. Whatever you want. From a diplomatic perspective, I'd rather let them live, but Tomek might think otherwise."`
+			`	"I would suggest evading them," Alondo says. "From a diplomatic perspective, I'd rather let them live, but Tomek might think otherwise."`
+			`	"No," Tomek responds. "I agree. Just as you say there are good people within the Syndicate, there are good people within the Navy as well. It's one thing to fight during a battle, but we're not looking to invade Republic territory, only pass through it. Save your energy and only defend yourself if you must."`
 			choice
 				`	"Okay. Let's get going!"`
 					accept
@@ -336,8 +327,8 @@ mission "FW Syndicate Diplomacy 1B"
 	landing
 	name "Tarazed Diplomacy"
 	description "Transport Alondo Gruyere to <planet> to negotiate with Tarazed Corporation."
-	source Hephaestus
-	destination Wayfarer
+	source "Hephaestus"
+	destination "Wayfarer"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
@@ -349,45 +340,80 @@ mission "FW Syndicate Diplomacy 1B"
 	on offer
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
 		log "People" "Katya Reynolds" `Katya was on Clink when the Navy invaded the Kornephoros system, and was taken captive by them and imprisoned as a war criminal.`
+		log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public affairs, and he seemed to help get the Free Worlds a better deal with the Syndicate than they might have otherwise received. He and Alondo seem to have a history together, although it is one that neither will discuss in detail.`
+		event "syndicate convoys to Tarazed"
 		conversation
 			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
 			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
-			`	"We are always open to new business opportunities," says one of the men, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
+			`	A man who introduced himself as Samuel Remington, who appears much younger than the others, responds. "Hearing that representatives of the Free Worlds were on their way was certainly a surprise. I apologize that CEO Korban could not meet with us today. He sent me in his stead to ensure that this meeting was handled with the upmost excellency. So, what might it be that brings you here?"`
+			`	"We would like to secure the purchase of construction materials for new ships," says Alondo. "As well as ask that the Syndicate refrain from joining the war as mercenaries. Our grievance is with the Republic, not the Syndicate."`
+			`	"We are always open to new business opportunities," says another man, Lopez, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
 			choice
-				`	(Try to explain what Katya was doing in that system.)`
-					goto explain
 				`	(Let Alondo handle this.)`
 					goto alondo
+				`	(Try to explain what Katya was doing in that system.)`
 			
-			label explain
 			`	"She was there trying to find the terrorists. She wasn't one of them," you say.`
+			`	Alondo side eyes you, looking very pale.`
 				goto ijs
 			
 			label alondo
 			`	Alondo has turned very pale, but finally he says, "They have not announced this publicly."`
-			`	"No," says the man, "they have only shared it with certain... trusted friends of the Republic."`
+			`	"No," says Lopez, "they have only shared it with certain... trusted friends of the Republic."`
 			`	Alondo says, "They haven't announced anything because they know she was innocent. She was hunting the terrorists, not helping them."`
-				goto ijs
 			
 			label ijs
-			`	"That may be true," says the man. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be alive today if you had not given him a reason to leave this sector of space, where he is... universally despised. Regardless, we cannot sell weapons to enemies of the Republic."`
+			`	"That may be true," says a third man, Badenoch. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be in as safe a position today if you had not given him a reason to leave this sector of space, where he is... universally despised. Regardless, we cannot sell supplies to enemies of the Republic."`
 			`	"Piracy is on the rise in the Dirt Belt," says Alondo. "And I know you have customers there. Such as the Tarazed Corporation. If we can count you among our friends, we could ensure that your convoys reach Tarazed unmolested."`
-			`	"And you would no doubt immediately purchase said weapons from Tarazed," says the man.`
-			`	An older man sitting next to him says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
-			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. You thank the Syndicate leaders, and return to your ship.`
-			`	"That was disgusting," says Alondo.`
+			`	"And you would no doubt immediately purchase said supplies from Tarazed," says Badenoch.`
+			`	A much older man sitting next to him, Akihito, says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
+			`	"No," Remington says, surprising some of the other men at the table. "No markups necessary." None of the other men argue with Remington over this.`
+			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter within the Dirt Belt in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. In addition, Remington suggested that you might find some "extra goodies" among the Syndicate convoys heading to Tarazed specifically. You thank the Syndicate leaders, and begin the trip back to your ship.`
+			`	Alondo is silent. As you're about to leave the spaceport for the landing pads, you hear someone shout behind you. "No need to be a stranger, Gruyere. Can't stick around for a drink?" You turn to look at who it is, but Alondo keeps walking. You find Samuel Remington approaching, paying you no mind. "Playing hard to get as usual, Gruyere?" he says`
 			choice
-				`	"I thought it went pretty well."`
+				`	(Stand in Remington's way.)`
+					goto stand
+				`	(Don't engage.)`
+			
+			`	Remington stops a few paces past you as Alondo boards your ship. Remington shakes his head before looking back to you. "I guess a guy can't talk to an old friend."`
+				goto remington
+			
+			label stand
+			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder`
+			label remington
+			choice
+				`	"He's clearly not interested"`
+					goto interested
+				`	"You know Alondo?"`
+			
+			`	"More than most," Remington says with a chuckle. "He was never one to show gratitude for gifts. I hope you enjoy the new toys in those shipments I just secured more than he does."`
+				goto alondo
+			
+			label interested
+			`	"As if that's ever stopped me before," Remington says with a chuckle. "He was never one to show gratitude for gifts. I hope you enjoy the new toys in those shipments I just secured more than he does."`
+			
+			label alondo
+			`	"What new toys?" you ask.`
+			`	"You'll see," he says, turning back to the spaceport and leaving you.`
+			`	You join Alondo on your ship and find him solemnly staring out a window.`
+			choice
+				`	"It seems like the negotiations went pretty well."`
 					goto well
+				`	"What was that all about?"`
+					goto that
 				`	"What do we do about Katya?"`
 					goto katya
 			
+			label that
+			`	"Samuel and I have... a history. One I'd rather not discuss," Alondo responds. "Anyway, we must continue with our mission. Time for us to make a visit to Tarazed. Let's get going."`
+				accept
+			
 			label well
-			`	"It did. What disgusts me is how those greedy old men were practically salivating at the thought of how much profit they are going to make from this conflict. Anyway, time for us to make a visit to Tarazed."`
+			`	"They did. Although it feels like it was almost too easy." Alondo pauses for a moment. "Anyway, we must continue with our mission. Time for us to make a visit to Tarazed."`
 				accept
 			
 			label katya
-			`	"We'll have to talk that over with the Council when we get back. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
+			`	"I'll have to talk that over with the Council when we get back. But if she is a prisoner of the Intelligence Bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission. Time for us to make a visit to Tarazed."`
 				accept
 	
 	npc
@@ -417,13 +443,19 @@ mission "FW Syndicate Diplomacy 1C"
 	
 	on offer
 		event "Tarazed neutrality"
+		log "The extra Syndicate supplies have begun arriving at Tarazed, and they include weaponry and outfits not normally shipped to the South. Spoke with Emily Lane, the CEO of the Tarazed Corporation. She is suspicious of this supposed gesture of good will from the Syndicate, and suggests remaining vigilant of the Syndicate's actions."
 		conversation
-			`You are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is in fact currently run by a female CEO, Emily Lane.`
+			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, Proton Guns, and other Syndicate products.`
+			`	Upon contacting the Tarazed Corporation, you and Alondo are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is currently run by a female CEO, Emily Lane.`
 			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
-			`	"Thank you," says Alondo, "although for the time being the best way to support us, may be for you to remain neutral in this conflict." He explains the idea of Tarazed being a go-between with the Syndicate.`
+			`	"Thank you," says Alondo, "although for the time being the best way to support us may be for you to remain neutral in this conflict." He explains the negotiations with the Syndicate and the idea of Tarazed being a go-between for Syndicate supplies.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
-			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral.`
-			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
+			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it."`
+			`	"Perhaps not," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad Blaster Turrets. Proton Guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate do not normally sell. Is this all for the Free Worlds?"`
+			`	Alondo pauses. "I have... an old friend within the Syndicate. He was a part of the negotiations, and mentioned that there would be 'extra goodies' within the coming convoys. We haven't been on speaking terms for years, and I suppose this is his attempt to get back on my good side."`
+			`	"I doubt that supplies in these amounts are just an attempt at old friends trying to get back together," says Emily. "The Syndicate do not play games like this without having something to gain from it. I would suggest not taking this good gesture too highly."`
+			`	They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral, although the intentions of the Syndicate remain in question.`
+			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet <planet> has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
 				accept
 	
 	npc
@@ -459,7 +491,6 @@ mission "FW Syndicate Diplomacy 1D"
 			`	"Indeed," she says, grimacing. They talk for a while, but it is clear she does not think her people would ever support even a treaty of neutrality with the "rebellion." Finally, she changes the subject. "Captain <last>," she says, "what do you believe is the greatest threat that humanity faces today?"`
 			choice
 				`	"Corrupt government."`
-					goto government
 				`	"Powerful corporations and unbridled capitalism."`
 					goto corporations
 				`	"The return of the Alphas, or something like them."`
@@ -469,7 +500,6 @@ mission "FW Syndicate Diplomacy 1D"
 				`	"Alien invasion."`
 					goto aliens
 			
-			label government
 			`	She laughs. "A typical Free Worlds answer. I will confess, I am none too fond of Parliament, ordering the Navy to spend its time up in the paradise sector assisting snobby rich pilots who've run out of fuel instead of down here defending against the very real threats that lurk on the pirate worlds."`
 				goto threat
 			
@@ -492,7 +522,6 @@ mission "FW Syndicate Diplomacy 1D"
 			
 			label threat
 			`	"What sort of threat?" you ask.`
-				goto story
 			
 			label story
 			`	"Our world was enslaved for nearly a decade," she says. "Most of my childhood. We had been little more than an anarchist colony ourselves before that, though, so the Republic did nothing to aid us. Until the Disappearance."`
@@ -515,12 +544,20 @@ mission "FW Syndicate Diplomacy 1D"
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		payment 200000
+		event "fw dirt belt patrols"
+		event "syndicate assistance" 30
+		event "unofficial ceasefire" 120
 		conversation
-			`You meet Tomek and Freya at the spaceport, and the entire Council quickly convenes. Alondo outlines the results of your diplomatic mission, which he believes has been a success. "There is one other thing," he says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
+			`You meet Tomek, Freya, and JJ at the spaceport, and the entire Council quickly convenes. Given that you were Alondo's transportation during his mission, you are included in the meeting. Alondo outlines the results of the diplomatic mission, which he believes has been a success. Upon hearing about the extra supplies heading to Tarazed, Tomek suggests increasing patrols in the Dirt Belt to the east in order to help defend Syndicate convoys and begin moving supplies from Tarazed to various Free planets.`
+			`	"We're still healing from the last set of battles," says JJ. "An increased Free Worlds presence outside of our declared territory could be seen as a provocation."`
+			`	"No doubt it will, but we need to uphold our end of the bargain with the Syndicate if we want to keep them as a tentative ally," Tomek responds. After further discussion on the matter, the Council approves the increased patrols, although JJ remains somewhat apprehensive.`
+			`	"There is one other thing," Alondo says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
 			`	The news is a shock to everyone. "I had begun to worry that was the case," says Freya.`
+			`	"My contacts within the Navy have heard rumors, but I suppose this confirms it," says JJ.`
 			`	"Why have they not announced it publicly?" asks Tomek.`
 			`	"I suspect it's because they know she is innocent," says Alondo. "They say it is impossible to tell a lie to the Questioners, and in this case that will work in her favor."`
-			`	You talk for a while longer, and then Tomek says, "Meet me in the spaceport when you are ready for your next assignment. Also, the Council approved a bonus for you." He gives you <payment>.`
+			`	After some more discussion, the Council dismisses you as they move on to other topics that don't directly concern you.`
+			`	A while later, after the Council meeting is adjourned, Tomek approaches you and says, "Meet me in the spaceport when you are ready for your next assignment. Also," he gives you <payment>, "the Council has approved a bonus for you. Excellent work, Captain."`
 
 
 
@@ -555,8 +592,8 @@ mission "FW Hope Recon 1B"
 	landing
 	name "Early Warning Systems"
 	description "Report back to Freya on <planet>."
-	source Hope
-	destination Longjump
+	source "Hope"
+	destination "Longjump"
 	to offer
 		has "FW Hope Recon 1: done"
 	on fail
@@ -1028,8 +1065,8 @@ mission "FW Senate 1B"
 	landing
 	name "Senator Huygens"
 	description "Transport Senator Arianna Huygens to <destination>."
-	source Mere
-	destination Bourne
+	source "Mere"
+	destination "Bourne"
 	passengers 1
 	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
 	to offer
