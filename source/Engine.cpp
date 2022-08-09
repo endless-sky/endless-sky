@@ -864,7 +864,8 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+	// Do not use the sqrt here or for the length.
+	double scanRange = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 	if(flagship && scanRange && !flagship->IsHyperspacing())
 	{
 		// Decide before looping whether or not to catalog asteroids.  This
@@ -875,7 +876,8 @@ void Engine::Step(bool isActive)
 		{
 			// In this case, center is the flagship's position.
 			Point offset = minable->Position() - center;
-			bool inRange = offset.Length() <= scanRange;
+			// Use the squared length, as we used the squared scan range.
+			bool inRange = offset.LengthSquared() <= scanRange;
 
 			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
 			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->Name()))
