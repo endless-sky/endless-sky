@@ -16,8 +16,11 @@ event "ember waste label"
 
 event "remnant: change hail"
 	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+	government "Remnant (Research)"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 
 
 
@@ -83,6 +86,17 @@ event "remnant salvage available"
 		outfitter "Remnant Salvage"
 	planet "Viminal"
 		outfitter "Remnant Salvage"
+
+
+
+event "remnant: scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		remove "provoked on scan"
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
 
 
 
