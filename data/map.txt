@@ -31832,7 +31832,10 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables gold 2 9
+	minables aluminum 6 1.5
+	minables gold 11 3.2
+	minables yottrite 5 2.1
+	minables iron 15 1.7
 	fleet "Vi Warfleet" 500
 	fleet "Scin Warfleet" 500
 	object
