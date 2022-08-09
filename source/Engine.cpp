@@ -873,13 +873,15 @@ void Engine::Step(bool isActive)
 		bool scanComplete = true;
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
+			// In this case, center is the flagship's position.
 			Point offset = minable->Position() - center;
+			bool inRange = offset.Length() <= scanRange;
 
 			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
 			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->Name()))
 			{
 				scanComplete = false;
-				if(!Random::Int(10) && (minable->Position() - flagship->Position()).Length() <= scanRange)
+				if(!Random::Int(10) && inRange)
 				{
 					asteroidsScanned.insert(minable->Name());
 					for(const auto &it : minable->Payload())
@@ -887,7 +889,7 @@ void Engine::Step(bool isActive)
 				}
 			}
 
-			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
+			if(!inRange && flagship->GetTargetAsteroid() != minable)
 				continue;
 
 			targets.push_back({
