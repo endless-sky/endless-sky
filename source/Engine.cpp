@@ -876,16 +876,15 @@ void Engine::Step(bool isActive)
 			Point offset = minable->Position() - center;
 
 			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
-			if(shouldCatalogAsteroids)
+			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->Name()))
 			{
+				scanComplete = false;
 				if(!Random::Int(10) && (minable->Position() - flagship->Position()).Length() <= scanRange)
 				{
 					asteroidsScanned.insert(minable->Name());
 					for(const auto &it : minable->Payload())
 						player.Harvest(it.first);
 				}
-				if(!asteroidsScanned.count(minable->Name()))
-					scanComplete = false;
 			}
 
 			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
