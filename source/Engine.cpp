@@ -864,7 +864,8 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	double scanRange = flagship ? 100. * sqrt(flagship->Attributes().Get("asteroid scan power")) : 0.;
+	// Do not use the sqrt here or for the length.
+	double scanRange = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 	if(flagship && scanRange && !flagship->IsHyperspacing())
 	{
 		// Decide before looping whether or not to catalog asteroids.  This
@@ -873,13 +874,16 @@ void Engine::Step(bool isActive)
 		bool scanComplete = true;
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
+			// In this case, center is the flagship's position.
 			Point offset = minable->Position() - center;
+			// Use the squared length, as we used the squared scan range.
+			bool inRange = offset.LengthSquared() <= scanRange;
 
 			// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
 			if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->Name()))
 			{
 				scanComplete = false;
-				if(!Random::Int(10) && (minable->Position() - flagship->Position()).Length() <= scanRange)
+				if(!Random::Int(10) && inRange)
 				{
 					asteroidsScanned.insert(minable->Name());
 					for(const auto &it : minable->Payload())
@@ -887,7 +891,7 @@ void Engine::Step(bool isActive)
 				}
 			}
 
-			if(offset.Length() > scanRange && flagship->GetTargetAsteroid() != minable)
+			if(!inRange && flagship->GetTargetAsteroid() != minable)
 				continue;
 
 			targets.push_back({
