@@ -317,14 +317,14 @@ ship "Korath Conveyor"
 		cost 28650000
 		shields 32700
 		hull 29600
-		"required crew" 334
+		"required crew" 234
 		"bunks" 453
 		"mass" 1915
 		"drag" 19
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 1375
-		"outfit space" 873
+		"outfit space" 883
 		"weapon capacity" 338
 		"engine capacity" 237
 		weapon
@@ -475,6 +475,7 @@ ship "Korath Tanker"
 		"mass" 1899
 		"drag" 17
 		"heat dissipation" .35
+		"solar collection" 3.8
 		"fuel capacity" 32700
 		"cargo space" 734
 		"outfit space" 839
@@ -544,6 +545,7 @@ ship "Korath Traveller"
 		"mass" 1900
 		"drag" 18
 		"heat dissipation" .37
+		"solar collection" 5.6
 		"fuel capacity" 1000
 		"cargo space" 264
 		"outfit space" 856
@@ -607,7 +609,7 @@ ship "Korath Herder"
 	attributes
 		category "Heavy Warship"
 		cost 33590000
-		shields 45000
+		shields 48000
 		hull 31400
 		"required crew" 794
 		"bunks" 1037
@@ -697,6 +699,7 @@ ship "Korath Habitat"
 		"mass" 2105
 		"drag" 24
 		"heat dissipation" .43
+		"solar collection" 12.7
 		"fuel capacity" 600
 		"cargo space" 1052
 		"outfit space" 1038
@@ -764,6 +767,7 @@ ship "Korath Haven"
 		"mass" 12000
 		"drag" 84
 		"heat dissipation" .22
+		"solar collection" 4.2
 		"fuel capacity" 1000
 		"cargo space" 1864
 		"outfit space" 3180
