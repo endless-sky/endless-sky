@@ -808,19 +808,22 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Returns a mapping of ships to the reason their flight check failed.
 map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 {
+	// Stores the relations between ships and docks.
+	// True: The ship is docked
+	// False: The ship requires a dock but is not docked
+	// Missing: The ship doesn't require a dock, and is therefore not docked
+	auto dockedShips = map<shared_ptr<Ship>,bool>{};
 	// Count of all bay types in the active fleet.
 	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
 	auto categoryCount = map<string, vector<shared_ptr<Ship>>>{};
-
+	// Flight check issues.
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
+
+	// Mock docking ships in bays
 	for(const auto &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
 		{
-			auto checks = ship->FlightCheck();
-			if(!checks.empty())
-				flightChecks.emplace(ship, checks);
-
 			categoryCount[ship->Attributes().Category()].emplace_back(ship);
 			if(ship->CanBeCarried() || !ship->HasBays())
 				continue;
@@ -833,10 +836,10 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				{
 					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
+					dockedShips[bay.ship]=true;
 				}
 			}
 		}
-
 	// Identify transportable ships that cannot jump and have no bay to be carried in.
 	for(auto &bayType : bayCount)
 	{
@@ -851,20 +854,28 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			}
 			// This ship requires a bay to travel between systems.
 			else if(bayType.second > 0)
-				--bayType.second;
-			else
 			{
-				// Include the lack of bay availability amongst any other
-				// warnings for this carriable ship.
-				auto it = flightChecks.find(carriable);
-				string warning = "no bays?";
-				if(it != flightChecks.end())
-					it->second.emplace_back(warning);
-				else
-					flightChecks.emplace(carriable, vector<string>{warning});
+				--bayType.second;
+				dockedShips[carriable]=true;
 			}
+			else
+				dockedShips[carriable]=false;
 		}
 	}
+
+	for(const auto &ship : ships)
+		if(ship->GetSystem() == system && !ship->IsDisabled() && !ship->IsParked())
+		{
+			// Check if ship is docked
+			auto it = dockedShips.find(ship);
+			auto checks = ship->FlightCheck(it!=dockedShips.end() && it->second);
+			// Include the lack of bay availability amongst any other
+			// warnings for this carriable ship.
+			if(it!=dockedShips.end() && !it->second)
+				checks.emplace_back("no bays?");
+			if(!checks.empty())
+				flightChecks.emplace(ship, checks);
+		}
 	return flightChecks;
 }
 
