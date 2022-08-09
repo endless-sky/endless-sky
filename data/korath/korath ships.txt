@@ -14,7 +14,7 @@ ship "Korath Dredger"
 	sprite "ship/dredger"
 	thumbnail "thumbnail/dredger"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		"cost" 29370000
 		"shields" 32500
 		"hull" 16500
@@ -536,7 +536,7 @@ ship "Korath Traveller"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		cost 29640000
 		shields 47000
 		hull 34800
@@ -690,7 +690,7 @@ ship "Korath Habitat"
 	sprite "ship/world-ship f"
 	thumbnail "thumbnail/world-ship f"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		cost 42290000
 		shields 44000
 		hull 49600
@@ -758,7 +758,7 @@ ship "Korath Haven"
 	thumbnail "thumbnail/korath haven"
 	"uncapturable"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		cost 27690000
 		shields 196420
 		hull 320690
@@ -970,7 +970,7 @@ ship "Nacasairot"
 	sprite "ship/nacasairot"
 	thumbnail "thumbnail/nacasairot"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		cost 27690000
 		shields 39000
 		hull 27000
@@ -1094,7 +1094,7 @@ ship "Haspebrafa"
 	sprite "ship/haspebrafa"
 	thumbnail "thumbnail/haspebrafa"
 	attributes
-		category "Transport"
+		category "Utility"
 		"cost" 16570000
 		"shields" 19700
 		"hull" 15200
