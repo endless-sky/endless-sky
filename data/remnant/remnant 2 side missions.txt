@@ -174,7 +174,7 @@ mission "Remnant: Shattered Light 1"
 mission "Remnant: Shattered Light 2"
 	name "Searching for Ghosts"
 	description "Take Ruach to find and scan the ghostly ship."
-	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory as well as 2 cargo space and 1 free bunk."
+	blocked "Your commlink chimes with a note that this mission requires a Research Laboratory as well as 2 tons of cargo space and 1 free bunk."
 	cargo "equipment" 2
 	passengers 1
 	source "Viminal"
@@ -235,7 +235,7 @@ mission "Remnant: Shattered Light 3"
 					accept
 				`	"Wait, 'Maudrakoi'?"`
 			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like point defense turrets.`
-			`	"We do not have time for an in-depth presentation, but the short version is this: The Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
+			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
@@ -289,7 +289,7 @@ mission "Remnant: Shattered Light 4"
 		fail "Remnant: Shattered Light 3b"
 		conversation
 			`Eventually, you find a good vantage point, several kilometers away, where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse by the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air explode out from it, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
-			`	The dust and debris settle within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is; everything that one could need to lay the foundations for a new colony is packed into a single ship. You note large gashes in the hull, massive sensor arrays and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
+			`	The dust and debris settle within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is; everything that one could need to lay the foundations for a new colony is packed into a single ship. You note large gashes in the hull, massive sensor arrays, and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
 			`	As you slow to a hover alongside the ship, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the primary weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
 				accept
 	npc accompany
@@ -314,7 +314,7 @@ mission "Remnant: Shattered Light 4"
 					goto shatteredhelp
 				`	"So, what happened?"`
 			`	The team of Remnant are almost too excited for you to understand their gestures, but one calms down enough that their signing is comprehensible. "To be honest, we were expecting this to be the first of several trips doing detailed scans and trying out different sorts of synchronization fields. But when we saw that it was heading to the planet..." She trails off, and another one continues. "We already had the sensors running as we approached, so we jumped and triggered the fields as soon as we got a reasonable match."`
-			`	He frowns a bit "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the primary weft, so now we have time to work on it and figure out what happened to it.`
+			`	He frowns a bit. "It worked, although not perfectly. There are chunks missing, some of which seriously impair its functionality. But it is back in the primary weft, so now we have time to work on it and figure out what happened to it.`
 			choice
 				`	"I think I get the picture. Let me know if I can help."`
 					goto shatteredhelp
