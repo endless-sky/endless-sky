@@ -1120,7 +1120,7 @@ mission "Remnant: Cognizance 24"
 				`	"What did the Remnant get?"`
 					goto remnantgain
 				`	"What leverage did the Remnant use to bargain?"`
-			`	Gavriil smiles. "Well, it seems that the captain of that ship found it distressing that we could pinpoint and detail them and their crew with sufficient data that we could use their own appearance as fake video in our transmissions, not to mention that we successfully identified  them among the rest of the crew on board the ship. And it was doubly distressing for them that, despite their impressive scanner arrays, they were not able to even catch the slightest emission that might hint at where or who we were." Gavriil pauses as they palm open a door to pull the loaded lift through, then continues. "They blustered initially, but when we started listing off precise defects and wear present on their various computer systems they decided it was better to make a deal."`
+			`	Gavriil smiles. "Well, it seems that the captain of that ship found it distressing that we could pinpoint and detail them and their crew with sufficient data that we could use their own appearance as fake video in our transmissions, not to mention that we successfully identified them among the rest of the crew on board the ship. And it was doubly distressing for them that, despite their impressive scanner arrays, they were not able to even catch the slightest emission that might hint at where or who we were." Gavriil pauses as they palm open a door to pull the loaded lift through, then continues. "They blustered initially, but when we started listing off precise defects and wear present on their various computer systems they decided it was better to make a deal."`
 			choice
 				`	"Clever!"`
 					goto movingon
