@@ -34084,4 +34084,4 @@ system Empeles
 
 planet Vigales
 	landscape land/desert5
-	description "This hot desert world is home to several species of large underground animals, which most often resemble reptilian and amphibious-like creatures such as salamanders or lizards. It is believed that the Vort of Gegno space have originated from this world, or are descendants of an ancestral species that once inhabited it. "
+	description "This hot desert world is home to several species of large underground animals, which most often resemble reptilian and amphibious-like creatures such as salamanders or lizards. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it. "
