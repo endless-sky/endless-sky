@@ -1048,25 +1048,7 @@ event "Thule becomes independent"
 
 
 
-event "fw suppressed Bloodsea"
-	system "Antares"
-		government "Free Worlds"
-		fleet "Small Free Worlds" 800
-		fleet "Large Free Worlds" 1600
-		fleet "Small Southern Pirates" 4000
-		fleet "Large Southern Pirates" 8000
-
-
-
-event "fw abandoned Bloodsea"
-	system "Antares"
-		government "Pirate"
-		fleet "Small Southern Pirates" 1000
-		fleet "Large Southern Pirates" 2000
-		fleet "Large Militia" 5000
-
-
-
+# Update event to reduce piracy in various systems.
 event "fw suppressed Greenrock"
 	system "Shaula"
 		government "Free Worlds"
@@ -1077,6 +1059,7 @@ event "fw suppressed Greenrock"
 
 
 
+# Update event to increase piracy in systems where it was reduced.
 event "fw abandoned Greenrock"
 	system "Shaula"
 		government "Pirate"
