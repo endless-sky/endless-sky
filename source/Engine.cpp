@@ -869,8 +869,7 @@ void Engine::Step(bool isActive)
 	{
 		// Decide before looping whether or not to catalog asteroids.  This
 		// results in cataloging in-range asteroids roughly 3 times a second.
-		bool shouldCatalogAsteroids = !Random::Int(20);
-		shouldCatalogAsteroids &= !isAsteroidCatalogComplete;
+		bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
 		bool scanComplete = true;
 		for(const shared_ptr<Minable> &minable : asteroids.Minables())
 		{
