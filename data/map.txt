@@ -31822,7 +31822,7 @@ system Vesvii
 	pos 700.7 24
 	government Uninhabited
 	habitable 2560
-	belt 676
+	belt 976
 	haze _menu/haze-133
 	link Eebu
 	link Kneirc
@@ -31833,9 +31833,9 @@ system Vesvii
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
 	minables aluminum 6 1.5
-	minables gold 11 3.2
-	minables yottrite 5 2.1
-	minables iron 15 1.7
+	minables gold 7 3.2
+	minables yottrite 3 2.1
+	minables iron 9 1.7
 	fleet "Vi Warfleet" 500
 	fleet "Scin Warfleet" 500
 	object
