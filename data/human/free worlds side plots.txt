@@ -13,8 +13,8 @@
 mission "FW Conservatory 1"
 	name "Take Ijs to Winter"
 	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
-	source Bourne
-	destination Winter
+	source "Bourne"
+	destination "Winter"
 	passengers 3
 	to offer
 		has "FW Senate 1B: done"
@@ -24,16 +24,14 @@ mission "FW Conservatory 1"
 	
 	on offer
 		conversation
-			branch "not met andersons"
+			branch andersons
 				not "FW Katya 1: done"
 			
-			label "met andersons"
 			`When you meet Ijs in the spaceport, he has Lynn and Henry Anderson with him, the friends of Katya who you transported from Glory months ago. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
 				goto continue
 			
-			label "not met andersons"
+			label andersons
 			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
-				goto continue
 			
 			label continue
 			`	"A somewhat run-down community center," adds Henry.`
@@ -60,8 +58,8 @@ mission "FW Conservatory 1"
 mission "FW Conservatory 2"
 	name "Escort to Wayfarer"
 	description "Escort this Free Worlds convoy to Wayfarer, to trade for terraforming equipment provided by Tarazed and the Syndicate."
-	source Winter
-	destination Wayfarer
+	source "Winter"
+	destination "Wayfarer"
 	to offer
 		has "FW Conservatory 1: done"
 		not "fw bloodsea done"
@@ -77,21 +75,20 @@ mission "FW Conservatory 2"
 				defer
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		ship "Argosy" "F.M.S. Daybreak"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
-	
 	npc
-		government Pirate
+		government "Pirate"
 		personality plunders
 		system Tarazed
 		fleet "Small Southern Pirates"
 		fleet "Large Southern Pirates"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -99,8 +96,8 @@ mission "FW Conservatory 2B"
 	landing
 	name "Escort to Winter"
 	description "Escort this Free Worlds convoy of terraforming equipment back to Winter."
-	source Wayfarer
-	destination Winter
+	source "Wayfarer"
+	destination "Winter"
 	to offer
 		has "FW Conservatory 2: done"
 		not "fw bloodsea done"
@@ -111,33 +108,32 @@ mission "FW Conservatory 2B"
 				accept
 	
 	npc accompany save
-		government Merchant
+		government "Merchant"
 		personality escort timid
 		ship "Argosy" "F.M.S. Daybreak"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
-	
 	npc
-		government Pirate
+		government "Pirate"
 		personality plunders
 		system "Yed Prior"
 		fleet "Small Southern Pirates" 2
 		fleet "Large Southern Pirates" 2
-	
 	npc
-		government Pirate
+		government "Pirate"
 		personality plunders
 		system "Pherkad"
 		fleet "Small Southern Pirates" 2
 		fleet "Large Southern Pirates" 2
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	on complete
 		payment 300000
+		event "fw conservatory founded" 30
+		log "Helped to transport some items for building a public university and terraforming research center on Winter. Ijs Springborn will be one of the professors."
 		conversation
-			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I hope you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
+			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I pray you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
 			choice
 				`	"No, none at all."`
 				`	"A few pirates, nothing I couldn't handle."`
@@ -150,8 +146,6 @@ mission "FW Conservatory 2B"
 			label next
 			`	"Is there anything else you need me to do?" you ask.`
 			`	"Not at the moment," he says. "I'll send you a message when we do. Thanks for your help, and if you hear any more news about Katya, please let me know."`
-		event "fw conservatory founded" 30
-		log "Helped to transport some items for building a public university and terraforming research center on Winter. Ijs Springborn will be one of the professors."
 
 
 
@@ -161,7 +155,7 @@ mission "FW Flamethrower 1"
 	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
 	source
 		near Kraz 1 100
-	destination Rust
+	destination "Rust"
 	to offer
 		has "event: plasma turret available"
 		random < 15
@@ -177,7 +171,7 @@ mission "FW Flamethrower 2"
 	landing
 	name "Weapon Testing"
 	description "A test ship with new weaponry is in orbit around <planet>. Fight and disable it (but do not board or destroy it!) and then land to give Barmy Edward feedback on its performance."
-	source Rust
+	source "Rust"
 	to offer
 		has "FW Flamethrower 1: done"
 	
@@ -251,13 +245,13 @@ ship "Fury" "Doombat"
 
 
 mission "FW Wolf Pack 1"
+	minor
 	name "Ramscoop Technology"
 	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
 	source
 		government "Free Worlds"
 	destination "Memory"
 	clearance
-	minor
 	to offer
 		has "event: catalytic ramscoop available"
 		random < 30
@@ -296,12 +290,12 @@ mission "FW Wolf Pack 1B"
 	name "Ramscoop Technology"
 	description "Return to Free space with the plans for a new, more efficient ramscoop, and deliver them to Delta V Corporation on <destination>."
 	destination "Solace"
+	cargo "Ramscoop Data Card" 0
 	to offer
 		has "FW Wolf Pack 1: done"
 		not "event: fw armistice"
 	to fail
 		has "event: fw armistice"
-	cargo "Ramscoop Data Card" 0
 	
 	on offer
 		conversation
@@ -318,10 +312,9 @@ mission "FW Wolf Pack 1B"
 	
 	on complete
 		payment 250000
-		dialog
-			`You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass producing the new ramscoops. I hope they will be useful in the conflict ahead."`
 		event "fw gets catalytic ramscoop" 24
 		log "Helped the Free Worlds gain access to new ramscoop technology that has been developed in the Deep. This should make it significantly easier to travel long distances through unfriendly systems."
+		dialog `You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier." She hands you a credit chip worth <payment>, and says, "We'll contact you when we've begun mass producing the new ramscoops. I pray they will be useful in the conflict ahead."`
 
 
 
@@ -404,7 +397,6 @@ mission "FW Wolf Pack 2A"
 		ship "Freighter" "Autumn Twilight"
 		ship "Freighter" "Bounty Harvest"
 		dialog "You have destroyed all the target freighters. Time to report back to the Wolf Pack on Solace."
-	
 	npc
 		government "Republic"
 		system "Sarin"
@@ -415,12 +407,11 @@ mission "FW Wolf Pack 2A"
 	on visit
 		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Sarin system and destroy them before returning.`
 	on complete
-		event "wolf pack 3 ready" 10
 		karma --
+		event "wolf pack 3 ready" 10
 		payment 200000
-		dialog
-			`Rex, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
 		log "Destroyed a convoy of Republic freighters that was carrying food from the Dirt Belt. The Paradise Worlds cannot grow all the food that they need to feed their populations, so cutting off the flow of supplies from the Dirt Belt will put pressure on them to make peace with the Free Worlds."
+		dialog `Rex, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
 
 
 
@@ -478,7 +469,6 @@ mission "FW Wolf Pack 3"
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
 		dialog "The food convoy has been destroyed. You can now return to Solace."
-	
 	npc
 		government "Republic"
 		system "Gacrux"
@@ -490,13 +480,12 @@ mission "FW Wolf Pack 3"
 	on visit
 		dialog `You've landed on <planet>, but the freighters have not been eliminated yet. Hunt them down in the Gacrux system and destroy them before returning.`
 	on complete
+		karma --
 		event "wolf pack gacrux end"
 		event "wolf pack 4 ready" 20
-		karma --
 		payment 300000
-		dialog
-			`Once again, Rex from the Wolf Pack meets you soon after your ship lands. This time, he pays you <payment>. "I hope they didn't give you any trouble," he says. "We'll be in touch when there's another target to strike."`
 		log "Destroyed an even larger Republic food convoy. They are probably beginning to feel the pressure now, because they have clearly started to divert warships from the front to defend these convoys."
+		dialog `Once again, Rex from the Wolf Pack meets you soon after your ship lands. This time, he pays you <payment>. "I hope they didn't give you any trouble," he says. "We'll be in touch when there's another target to strike."`
 
 
 
@@ -536,8 +525,7 @@ mission "FW Wolf Pack 4"
 		has "event: fw armistice"
 	
 	on offer
-		dialog
-			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: an Auxiliary freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?"`
+		dialog `You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: an Auxiliary freighter, probably with Navy escorts. The freighter is passing through the <waypoints> system. Interested?"`
 	
 	on accept
 		event "wolf pack mizar start"
@@ -550,7 +538,6 @@ mission "FW Wolf Pack 4"
 		personality timid staying target
 		ship "Auxiliary (Cargo)" "RNS Golden Fleece"
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
-	
 	npc
 		government "Republic"
 		system "Mizar"
@@ -567,19 +554,19 @@ mission "FW Wolf Pack 4"
 	on visit
 		dialog `You've landed on <planet>, but the freighter has not been eliminated yet. Hunt it down in the Mizar system and destroy it before returning.`
 	on complete
-		event "wolf pack mizar end"
 		karma --
+		event "wolf pack mizar end"
+		log "Destroyed a third food convoy. These attacks seem to have succeeded in forcing the Navy to assign capital ships to defend their supply convoys."
 		payment 400000
 		dialog
 			`Rex meets up with you and thanks you for your continued service to the Free Worlds. "If we had a dozen captains as brave as you are," he says, "the war would be over tomorrow." He hands you <payment>, and walks away. You still don't know his real name or who the leaders of the Wolf Pack are, but you are glad to have been able to do something extra to assist the war effort.`
-		log "Destroyed a third food convoy. These attacks seem to have succeeded in forcing the Navy to assign capital ships to defend their supply convoys."
 
 
 
 mission "FW Stack Core 1"
+	landing
 	name "Escort convoy from Rand"
 	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
-	landing
 	destination "Rand"
 	to offer
 		has "FW Reconciliation Break: offered"
@@ -594,9 +581,9 @@ mission "FW Stack Core 1"
 
 
 mission "FWC Stack Core 1"
+	landing
 	name "Escort convoy from Rand"
 	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
-	landing
 	destination "Rand"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
@@ -630,10 +617,6 @@ mission "FW Stack Core 1B"
 			cargo 3
 			variant
 				"Bulk Freighter" 3
-	
-	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
-	
 	npc
 		government "Republic"
 		system "Menkent"
@@ -644,6 +627,8 @@ mission "FW Stack Core 1B"
 			variant
 				"Gunboat" 2
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	on complete
 		event "stack core for sale" 25
 		payment 200000

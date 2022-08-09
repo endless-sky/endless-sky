@@ -95,7 +95,6 @@ mission "Liberate Kornephoros"
 				"Bastion (Heavy)" 2
 				"Argosy (Blaster)" 4
 				"Fury" 6
-	
 	npc evade
 		government "Republic"
 		personality staying heroic
@@ -127,7 +126,7 @@ mission "Liberate Kornephoros"
 				"Rainmaker" 2
 	
 	on visit
-		dialog "There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea."
+		dialog `There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea.`
 	on complete
 		event "recapture of Kornephoros"
 		log "The Free Worlds have retaken the Kornephoros system, with heavy losses on both sides. And unfortunately, there is no sign of Katya; she may have been taken prisoner by the Navy."
@@ -202,7 +201,7 @@ mission "FW Prisoner Parole"
 		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog `You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
 
@@ -227,7 +226,7 @@ mission "FW Prisoner Parole 2"
 		ship "Blackbird (Prisoner Transport)" "Southern Luxury"
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog `You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system.`
 	
 	on complete
 		"reputation: Republic" <?= -1000
@@ -451,7 +450,7 @@ mission "FW Syndicate Diplomacy 1C"
 			`	"Thank you," says Alondo, "although for the time being the best way to support us may be for you to remain neutral in this conflict." He explains the negotiations with the Syndicate and the idea of Tarazed being a go-between for Syndicate supplies.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
 			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it."`
-			`	"Perhaps not," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad Blaster Turrets. Proton Guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate do not normally sell. Is this all for the Free Worlds?"`
+			`	"Perhaps not," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad blaster turrets. Proton guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate do not normally sell. Is this all for the Free Worlds?"`
 			`	Alondo pauses. "I have... an old friend within the Syndicate. He was a part of the negotiations, and mentioned that there would be 'extra goodies' within the coming convoys. We haven't been on speaking terms for years, and I suppose this is his attempt to get back on my good side."`
 			`	"I doubt that supplies in these amounts are just an attempt at old friends trying to get back together," says Emily. "The Syndicate do not play games like this without having something to gain from it. I would suggest not taking this good gesture too highly."`
 			`	They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral, although the intentions of the Syndicate remain in question.`
@@ -577,7 +576,7 @@ mission "FW Hope Recon 1"
 	on offer
 		conversation
 			`You meet up with Tomek and Freya, who are looking over a map of the nearby systems. "This is a choke point," says Freya, pointing to the Wei system. "Any attack on us will come either through Wei or Lesath, and Wei is much more likely. And that also means that if we can monitor what is happening there, we will have advance warning of any attack."`
-			`	Tomek adds, "As you may know, the planet Hope is in the Wei system. It's a former colony that is now an ice planet. Our plan is to deploy a sensor network on Hope, tracking every ship in system. Freya designed the equipment, so she can explain how to deploy it."`
+			`	"And with us strengthening our patrols to the east, we'll need any advance warning we can get, even if by only a day." says Tomek. "Now, as you may know, the planet Hope is in the Wei system. It's a former colony that is now an ice planet. Our plan is to deploy a sensor network on Hope, tracking every ship in system. Freya designed the equipment, so she can explain how to deploy it."`
 			`	Freya explains where on the planet each sensor should be installed, and how to cover them in insulative shielding so their heat and energy signatures will be difficult to detect. "Once the network is deployed," she says, "you will begin receiving telemetry. A good way to test it is to make sure it is picking up your own ship. Any questions?"`
 			choice
 				`	"No, sounds good."`
@@ -631,7 +630,7 @@ mission "FW Hope Recon 1C"
 	on offer
 		log "Planted some sensors on the abandoned world of Hope, as an early warning system for Navy raids on Free Worlds space. The Navy appears to be doing something on this world, as well."
 		conversation
-			`You land on Hope, place Freya's surveillance rigs in the locations she specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in their scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
+			`You land on Hope, place Freya's surveillance rigs in the locations she specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in the scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
 			choice
 				`	(Of course!)`
 				`	(No, sounds risky.)`
@@ -700,11 +699,9 @@ mission "FW Hope Recon 1D"
 			`	"I'd say, live and let live. We have no plans to expand north, so it doesn't cost us anything for them to know what is happening in that system. And we don't have resources to spare on sweeping the planet for their sensors."`
 			choice
 				`	"Makes sense to me."`
-					goto next
 				`	"Well, I'd rather not give them any advantage, no matter how slight."`
 					goto attack
 			
-			label next
 			`	"Good," says Freya, "because I've got a much more interesting job for you to do next. The people at Kraz Cybernetics have a new toy they want to test out, and I volunteered you to help out. They're waiting for you on Rust, in the Kraz system."`
 				decline
 			
@@ -749,7 +746,7 @@ mission "FW Plasma Testing 1B"
 	autosave
 	landing
 	name "Weapons Testing"
-	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
+	description "As a test for the new plasma turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
 	source "Rust"
 	waypoint "Ildaria"
 	to offer
@@ -764,11 +761,9 @@ mission "FW Plasma Testing 1B"
 			`You are met in the spaceport by a junior engineer from Kraz Cybernetics, who leads you to their facility and introduces you to his boss, who is known as "Barmy Edward." Edward is wearing a set of thick welding glasses and smoking a cigarette. "Pleased to meet you," he says, extending a hand that is encased in a heavy leather glove.`
 			choice
 				`	"Pleased to meet you, too, sir."`
-					goto sir
 				`	"Same here."`
 					goto same
 			
-			label sir
 			`	"Don't call me 'sir,'" he says. "I'm not wearing a suit."`
 			`	"Sorry," you say. "It's just all these militia habits I'm learning."`
 				goto explain
@@ -785,13 +780,11 @@ mission "FW Plasma Testing 1B"
 			`	In front of you is a turret. It is almost absurdly large: a pair of plasma cannons mounted on a massive rotating base. "Sixty tons," says Barmy Edward. "Draws more power than... well, than anything else, practically. Runs a little hot, too."`
 			choice
 				`	"It's so... big!"`
-					goto big
 				`	"I want one!"`
 					goto want
 				`	"That's the ugliest turret I've ever seen."`
 					goto ugly
 			
-			label big
 			`	"Kind of mesmerizing, huh?" he says.`
 				goto plan
 			
@@ -801,11 +794,10 @@ mission "FW Plasma Testing 1B"
 			
 			label ugly
 			`	"If you're looking for pretty," he says, "go buy one of those wussy guns that Lovelace Labs churn out. We don't do pretty here."`
-				goto plan
 			
 			label plan
 			`	"So, where do I come in?" you ask.`
-			`	"Well, the Council says no testing against the Navy yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile, that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
+			`	"Well, the Council says no testing against the Navy... yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile that's been haunting the <waypoints> system, sniping on merchants that take a wrong turn and end up there."`
 			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to <waypoints>, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?"`
 			choice
 				`	"You bet!"`
@@ -827,7 +819,7 @@ mission "FW Plasma Testing 1B"
 		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
-		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
+		dialog `You have returned to <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind.`
 	on complete
 		payment 200000
 		event "plasma turret available" 50
@@ -837,22 +829,18 @@ mission "FW Plasma Testing 1B"
 			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers is looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
 			choice
 				`	"Very impressive. I want a few of those on my own ship."`
-					goto impressive
 				`	"Well, I was a bit worried about the ship overheating, but otherwise they work well."`
 					goto overheat
 			
-			label impressive
 			`	"Yes," he said, "the team sent me some videos of the battle. First-rate carnage. I was very pleased. Any weak spots you noticed?"`
 				goto improve
 			
 			label overheat
 			`	"Yes, it will require a lot of cooling," he says. "Any other weak spots?"`
-				goto improve
 			
 			label improve
 			choice
 				`	"It seems like the only way to fit a gun this big into most ships is by leaving half the hardpoints empty. It's a bit impractical."`
-					goto hardpoints
 				`	"It worked well against a large ship, but I wonder how well the turrets could track fighters."`
 					goto fighters
 			
@@ -862,7 +850,6 @@ mission "FW Plasma Testing 1B"
 			
 			label fighters
 			`	"I guess we'll need to test it to find out," he says, "but our main goal was to have a weapon that could do serious damage to a Cruiser. Right now the Navy's heaviest ships have ours severely outgunned."`
-				goto next
 			
 			label next
 			`	"Do you know what my next assignment is?" you ask.`
@@ -908,14 +895,12 @@ mission "FW Supply Convoy 1"
 			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lined up next to each other.`
 			choice
 				`	"Isn't it risky to transport valuable cargo in such flimsy and vulnerable ships?"`
-					goto risky
 				`	"Hey, I'm a starship captain, not a cattle herder!"`
 					goto cattle
 				`	"No problem. I'll see to it that they arrive safely."`
 					accept
 			
-			label risky
-			`	"It would be, except that our Free Worlds military presence has basically eliminated piracy in the Rim. And in any case, we're saving a lot of money on crew salaries by using ships that can be piloted by one person."`
+			`	"It would be, except that our Free Worlds military presence has nearly eliminated piracy in the Rim. Although not entirely, hence why we still need an escort. And in any case, we're saving a lot of money on crew salaries by using ships that can be piloted by one person."`
 			choice
 				`	"Okay, I hope you're right!"`
 					accept
@@ -941,10 +926,9 @@ mission "FW Supply Convoy 1"
 		fleet "Small Southern Pirates" 2
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+		dialog `You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
-		dialog
-			`You make sure that all ten Star Barges have landed safely, then report to the quartermaster. He thanks you for your work, and mentions that Tomek has asked to see you in the spaceport bar.`
+		dialog `You make sure that all ten Star Barges have landed safely, then report to the quartermaster. He thanks you for your work, and mentions that Tomek has asked to see you in the spaceport bar.`
 
 
 
@@ -962,17 +946,18 @@ mission "FW Pirates 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		"salary: Free Worlds" = 2100
 		log "Tomek, from the Free Worlds Council, is trying to decide how to best deal with the threat of the pirates to the south of Free Worlds space."
 		conversation
-			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I pray whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
-			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
-			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and plus if we could do something about them, it would gain us a whole lot of support in the nearby systems that have not yet joined us."`
+			`You find Tomek sitting at the spaceport bar with a galactic map. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I pray whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
+			`	You describe to him the impressive performance of the plasma turrets, and the challenge of finding a ship with enough size for them. "Excellent!" he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
+			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and every shipment lost to piracy is a dent in our war effort. Plus if we could do something about them it would gain us a whole lot of support in the nearby Republic systems, and if we can gain sympathy from Republic worlds then we can lower the Republic's appetite for war."`
 			choice
 				`	"Agreed."`
 					goto agree
 				`	"But isn't the Navy still the bigger threat?"`
 			
-			`	"Maybe. But remember that what we're trying to do here is build a new government, not fight a war. We have absolutely no desire to take all of human space away from the Republic. All we want is the freedom to govern our own selves, here in our one corner of the galaxy. So attacking systems that the Republic holds right now would make absolutely no sense."`
+			`	"They certainly are, but there's little we can do about them right now aside from prepare for their next move. We have absolutely no desire to take all of human space away from the Republic. All we want is the freedom to govern our own selves, here in our one corner of the galaxy. So attacking systems that the Republic holds right now would make absolutely no sense, and would likely only embolden the Republic and reinforce their desire to see us conquered."`
 			`	"I suppose you're right," you say.`
 			
 			label agree
@@ -980,14 +965,10 @@ mission "FW Pirates 1"
 			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
-	on accept
-		"salary: Free Worlds" = 2100
-	
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
-		dialog
-			`You have scouted out all four pirate systems that Tomek asked you to visit. Time to head back to the spaceport bar and see if he is waiting for you.`
+		dialog `You have scouted out all four pirate systems that Tomek asked you to visit. Time to head back to the spaceport bar and see if he is waiting for you.`
 
 
 
@@ -1009,15 +990,12 @@ mission "FW Pirates 1A"
 			`	He brushes some of the dirt off his hands and then shakes hands with you. "How are you doing?" he asks. "And how is Katya? And Ijs?" You explain to him that you are now an official member of the Free Worlds, and that Katya has been captured by the Republic. He is clearly shocked and saddened by the news. After pressing you for all the details, he asks, "And what about you? What brings you to Harmony?"`
 			choice
 				`	"The Free Worlds is hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
-					goto attack
 				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about the pirate crews being just kids."`
 					goto kids
-			label attack
 			`	"If you want some military advice," he says, "here's what I can tell you. You cannot create peace using violence. Most people on the pirate worlds are not pirates, just ordinary people unlucky enough to be born there. Or people who feel unwelcome everywhere else."`
 				goto advice
 			label kids
 			`	"It's true," he says. "If you fight the pirates, innocent lives will be lost."`
-				goto advice
 			label advice
 			`	"Then what do you suggest we do?" you ask.`
 			`	"Well," he says, "it's worth noting that most people on the 'pirate' worlds are not pirates. They're just anarchists. As a monk, I feel a sort of kinship with them."`
@@ -1076,7 +1054,6 @@ mission "FW Senate 1B"
 	
 	on offer
 		event "fw senate timer" 8
-		log "People" "Ijs Springborn" `Ijs is now working to found the Conservatory, a publicly funded Free Worlds university that will have a particular focus on terraforming technology. Their goal is to make terraforming methods efficient enough that even Dirt Belt worlds will be able to afford them.`
 		conversation
 			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
 			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
@@ -1096,6 +1073,7 @@ mission "FW Senate 1B"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
+		log "People" "Ijs Springborn" `Ijs is now working to found the Conservatory, a publicly funded Free Worlds university that will have a particular focus on terraforming technology. Their goal is to make terraforming methods efficient enough that even Dirt Belt worlds will be able to afford them.`
 		conversation
 			branch slow
 				has "event: fw senate timer"
@@ -1107,10 +1085,8 @@ mission "FW Senate 1B"
 			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
 			choice
 				`	"You too. What brings you to Bourne?"`
-					goto bourne
 				`	"You too. Did you hear what happened to Katya?"`
 					goto katya
-			label bourne
 			`	"I guess I'm sort of a lobbyist," he says, "here to make Katya's dream a reality."`
 				goto dream
 			label katya
@@ -1155,10 +1131,8 @@ mission "FW Pirates 2"
 			`A few minutes later, Tomek shows up at your ship. "Glad you made it," he says. "Sorry to disappear on you earlier."`
 			choice
 				`	"Has the Senate decided anything about the pirates yet?"`
-					goto pirates
 				`	"It seems like some people are a little bit hostile toward the Council."`
 					goto council
-			label pirates
 			`	"Not yet. This is why we wanted to get as much done as possible while we were still under a relatively agile leadership structure. Getting two dozen politicians to agree on any course of action is... difficult. What did your reconnaissance turn up?"`
 				goto recon
 			label council
@@ -1169,12 +1143,10 @@ mission "FW Pirates 2"
 			`	You show him your sensor logs. "I've been trying to decide what advice we should give the Senate," he says. "A shock and awe assault on Greenrock might bring all the pirate systems in this sector under our control overnight. But we might have fewer losses if we attack the smaller worlds first, then demand that Greenrock surrender."`
 			choice
 				`	"I say we strike right at their heart, and launch a massive assault on Greenrock."`
-					goto greenrock
 				`	"Why not start by clearing out the Antares system? It's not very well defended."`
 					goto antares
 				`	"Occupying four pirate systems in perpetuity would be a huge drain on our resources. Why not try to negotiate with them, say by offering those worlds freedom from our interference as long as they stop supporting pirate fleets?"`
 					goto diplomacy
-			label greenrock
 			apply
 				set "fw pirate suggestion: greenrock"
 			`	"That's definitely the fastest solution," he says, "and it would be a great show of strength to impress worlds that are still undecided about joining us."`
@@ -1205,7 +1177,7 @@ mission "FW Pirates 2"
 	on visit
 		dialog phrase "generic waypoint on visit"
 	on complete
-		dialog "Your patrol fleet is still busy finding landing spots, but your work is done. Time to head to the spaceport bar and see if Tomek is there."
+		dialog `Your patrol fleet is still busy finding landing spots, but your work is done. Time to head to the spaceport bar and see if Tomek is there.`
 
 
 
@@ -1285,7 +1257,6 @@ mission "FW Pirates 3.1"
 		system "Antares"
 		fleet "Small Free Worlds"
 		fleet "Large Free Worlds" 2
-	
 	npc kill
 		government "Pirate"
 		personality plunders staying
@@ -1376,7 +1347,6 @@ mission "FW Pirates 3.2A"
 		personality heroic escort
 		fleet "Small Free Worlds" 3
 		fleet "Large Free Worlds" 3
-	
 	npc kill
 		government "Pirate"
 		personality plunders staying
@@ -1458,7 +1428,7 @@ mission "FW Pirates 4"
 			choice
 				`	"What do you think our odds are of a successful negotiation?"`
 				`	"What do we do if diplomacy doesn't work?"`
-			scene scene/army0
+			scene "scene/army0"
 			`	Before he has a chance to respond, the sky lights up with incoming particle beams, and you see one of the Terebinth's engines erupt in a gout of flames. "What the hell?" says Alondo.`
 			`	The captain of the Terebinth, who is standing next to you, stares slack-jawed at his ship for a second before jumping into action. "Captain <last>," he says, "fire up your ship immediately and go after whoever is attacking us. I'll call for backup, but you will need to keep the attackers distracted until they arrive."`
 				launch
@@ -1467,27 +1437,23 @@ mission "FW Pirates 4"
 		government "Pirate"
 		personality plunders
 		ship "Leviathan" "Dire Rain"
-	
 	npc evade
 		government "Pirate"
 		personality plunders entering
 		ship "Leviathan (Heavy)" "Red Dawn"
 		ship "Leviathan (Laser)" "Bleak Omen"
-	
 	npc
 		government "Free Worlds"
 		personality heroic
 		system "Pherkad"
 		fleet "Small Free Worlds"
 		fleet "Large Free Worlds"
-	
 	npc
 		government "Free Worlds"
 		personality heroic
 		system "Alniyat"
 		fleet "Small Free Worlds" 2
 		fleet "Large Free Worlds" 4
-	
 	npc
 		government "Free Worlds"
 		personality heroic
