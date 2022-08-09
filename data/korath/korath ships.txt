@@ -319,7 +319,7 @@ ship "Korath Conveyor"
 		hull 29600
 		"required crew" 334
 		"bunks" 453
-		"mass" 1731
+		"mass" 1915
 		"drag" 19
 		"heat dissipation" .4
 		"fuel capacity" 1000
@@ -390,7 +390,7 @@ ship "Korath Conqueror"
 		hull 39500
 		"required crew" 619
 		"bunks" 794
-		"mass" 1691
+		"mass" 1735
 		"drag" 21
 		"heat dissipation" .48
 		"fuel capacity" 1000
@@ -472,7 +472,7 @@ ship "Korath Tanker"
 		hull 26100
 		"required crew" 314
 		"bunks" 551
-		"mass" 1749
+		"mass" 1899
 		"drag" 17
 		"heat dissipation" .35
 		"fuel capacity" 32700
@@ -541,7 +541,7 @@ ship "Korath Traveller"
 		hull 34800
 		"required crew" 538
 		"bunks" 1492
-		"mass" 1773
+		"mass" 1900
 		"drag" 18
 		"heat dissipation" .37
 		"fuel capacity" 1000
@@ -611,7 +611,7 @@ ship "Korath Herder"
 		hull 31400
 		"required crew" 794
 		"bunks" 1037
-		"mass" 1865
+		"mass" 1762
 		"drag" 27
 		"heat dissipation" .41
 		"fuel capacity" 1000
@@ -694,7 +694,7 @@ ship "Korath Habitat"
 		hull 49600
 		"required crew" 543
 		"bunks" 1867
-		"mass" 2650
+		"mass" 2105
 		"drag" 24
 		"heat dissipation" .43
 		"fuel capacity" 600
