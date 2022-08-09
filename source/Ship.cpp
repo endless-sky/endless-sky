@@ -1119,14 +1119,14 @@ vector<string> Ship::FlightCheck(const bool docked) const
 	{	
 		if(energy <= 0.)
 			checks.emplace_back("no energy?");
-		if(!thrust && !reverseThrust && afterburner)
-			checks.emplace_back("afterburner only?");
-		if(!thrust && !afterburner && reverseThrust)
-			checks.emplace_back("reverse only?");
 		if(!thrust && !afterburner && !reverseThrust)
 			checks.emplace_back("no thruster?");
 		if(!turn)
 			checks.emplace_back("no steering?");
+		if(!thrust && !reverseThrust && afterburner)
+			checks.emplace_back("afterburner only?");
+		if(!thrust && !afterburner && reverseThrust)
+			checks.emplace_back("reverse only?");
 		if(!generation && !solar && !consuming)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
