@@ -759,18 +759,18 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "korath"
 			variant
-				"Nacasairot"
-				"Ikrikopespeb" 2
-				"Haspebrafa" 4
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Kor Efret"
 		personality heroic
 		fleet
 			names "korath"
 			variant
-				"Nacasairot"
-				"Ikrikopespeb" 2
-				"Haspebrafa" 4
+				"Echo-Galleon"
+				"Arch-Carrack" 2
+				"Charm-Shallop" 4
 	npc
 		government "Quarg"
 		personality heroic staying entering
@@ -1400,7 +1400,7 @@ mission "Wanderers: Tour 2"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Nacasairot" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1429,7 +1429,7 @@ mission "Wanderers: Tour 3"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Nacasairot" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1451,7 +1451,7 @@ mission "Wanderers: Tour 4"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Nacasairot" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -1480,7 +1480,7 @@ mission "Wanderers: Tour 5"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Nacasairot" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 	npc
 		system "Ap'arak"
 		government "Hai (Unfettered)"
@@ -1509,7 +1509,7 @@ mission "Wanderers: Tour 6"
 	npc accompany save
 		government "Kor Efret"
 		personality escort
-		ship "Nacasairot" "Asikimi Ko Cheska"
+		ship "Echo-Galleon" "Asikimi Ko Cheska"
 
 
 
@@ -3099,9 +3099,9 @@ mission "Wanderers: Sestor: Exiles 3"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath Conveyor (Jump)" "Seskerat Pratka"
-		ship "Korath Conqueror" "Eskretakfakta"
-		ship "Korath Tanker (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 
@@ -3133,9 +3133,9 @@ mission "Wanderers: Sestor: Factory 1"
 	npc accompany save
 		government "Korath"
 		personality escort
-		ship "Korath Conveyor (Jump)" "Seskerat Pratka"
-		ship "Korath Conqueror" "Eskretakfakta"
-		ship "Korath Tanker (Jump)" "Prekaprat Skata"
+		ship "Lor'kas Ik 577 (Jump)" "Seskerat Pratka"
+		ship "Ra'gru Ik 618" "Eskretakfakta"
+		ship "Kas'lor Ik 582 (Jump)" "Prekaprat Skata"
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you've left one of the Korath ships behind, or your escort carrying Rek hasn't entered the system yet. Better depart and wait for it to arrive.`
 

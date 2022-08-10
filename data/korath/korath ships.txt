@@ -309,7 +309,7 @@ ship "Korath Chaser"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
-ship "Korath Conveyor"
+ship "Lor'kas Ik 577"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
@@ -380,7 +380,7 @@ ship "Korath Conveyor"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis.  This simple ship has been adapted for hauling materials between refinery and factory stations."
 
 
-ship "Korath Conqueror"
+ship "Ra'gru Ik 618"
 	sprite "ship/world-ship b"
 	thumbnail "thumbnail/world-ship b"
 	attributes
@@ -462,7 +462,7 @@ ship "Korath Conqueror"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."  
 
 
-ship "Korath Tanker"
+ship "Kas'lor Ik 582"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
 	attributes
@@ -532,7 +532,7 @@ ship "Korath Tanker"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel."
 
 
-ship "Korath Traveller"
+ship "Lor'nag Ik 590"
 	sprite "ship/world-ship d"
 	thumbnail "thumbnail/world-ship d"
 	attributes
@@ -603,7 +603,7 @@ ship "Korath Traveller"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This bulbous ship has been adapted to carry passengers between stations, or boarding parties into enemy strongholds."
 
 
-ship "Korath Herder"
+ship "Ra'at Ik 621"
 	sprite "ship/world-ship e"
 	thumbnail "thumbnail/world-ship e"
 	attributes
@@ -966,9 +966,9 @@ ship "Korath Haven"
 
 
 
-ship "Nacasairot"
-	sprite "ship/nacasairot"
-	thumbnail "thumbnail/nacasairot"
+ship "Echo-Galleon"
+	sprite "ship/echo-galleon"
+	thumbnail "thumbnail/echo-galleon"
 	attributes
 		category "Utility"
 		cost 27690000
@@ -1028,9 +1028,9 @@ ship "Nacasairot"
 	description `The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts.`
 
 
-ship "Ikrikopespeb"
-	sprite "ship/ikrikopespeb"
-	thumbnail "thumbnail/ikrikopespeb"
+ship "Arch-Carrack"
+	sprite "ship/arch-carrack"
+	thumbnail "thumbnail/arch-carrack"
 	attributes
 		category "Heavy Freighter"
 		"cost" 29370000
@@ -1090,9 +1090,9 @@ ship "Ikrikopespeb"
 	description "Although they do not effectively provide for their own defense, the Efreti remain responsible for the day-to-day needs of civilian and cargo transportation. While not as bulky or powerful as other Korath designs, this freighter is much faster at making runs back and forth between the Efreti's handful of remaining planets, while still holding enough defensive loadout to ward off the odd Mereti drone that slips past the Quarg."
 
 
-ship "Haspebrafa"
-	sprite "ship/haspebrafa"
-	thumbnail "thumbnail/haspebrafa"
+ship "Charm-Shallop"
+	sprite "ship/charm-shallop"
+	thumbnail "thumbnail/charm-shallop"
 	attributes
 		category "Utility"
 		"cost" 16570000

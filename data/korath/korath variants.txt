@@ -455,7 +455,7 @@ ship "Korath Chaser" "Korath Chaser (World-Ship)"
 
 
 
-ship "Korath Conqueror" "Korath Conqueror (Crippled)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	outfits
 		"Korath Banisher" 3
 		"Korath Warder"
@@ -481,7 +481,7 @@ ship "Korath Conqueror" "Korath Conqueror (Crippled)"
 	turret "Korath Banisher"
 
 
-ship "Korath Conqueror" "Korath Conqueror (Ember)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 	outfits
 		"Shunt-Strike Turret" 5
 		"Blaze-Pike Turret" 2
@@ -525,7 +525,7 @@ ship "Korath Conqueror" "Korath Conqueror (Ember)"
 	turret "Blaze-Pike Turret"
 
 
-ship "Korath Conqueror" "Korath Conqueror (Grab)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	outfits
 		"Firelight Missile" 72
 		"Firelight Missile Bank" 2
@@ -566,7 +566,7 @@ ship "Korath Conqueror" "Korath Conqueror (Grab)"
 	turret "Korath Banisher"
 
 
-ship "Korath Conqueror" "Korath Conqueror (Storm)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2
 		"Korath Fire-Lance" 3
@@ -608,7 +608,7 @@ ship "Korath Conqueror" "Korath Conqueror (Storm)"
 	turret "Firestorm Turret"
 
 
-ship "Korath Conqueror" "Korath Conqueror (Mereti)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	outfits
 		"Korath Slicer" 3
 		"Korath Slicer Turret" 3
@@ -652,7 +652,7 @@ ship "Korath Conqueror" "Korath Conqueror (Mereti)"
 	turret "Korath Warder"
 
 
-ship "Korath Conqueror" "Korath Conqueror (Sestor)"
+ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	outfits
 		"Korath Detainer" 3
 		"Korath Repeater Turret" 4
@@ -698,7 +698,7 @@ ship "Korath Conqueror" "Korath Conqueror (Sestor)"
 
 
 
-ship "Korath Conveyor" "Korath Conveyor (Jump)"
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 	outfits
 		"Korath Banisher" 2
 		"Korath Warder" 3
@@ -717,7 +717,7 @@ ship "Korath Conveyor" "Korath Conveyor (Jump)"
 		"Jump Drive"
 
 
-ship "Korath Conveyor" "Korath Conveyor (Digger)"
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 	outfits
 		"Korath Banisher" 2
 		"Korath Warder" 3
@@ -749,7 +749,7 @@ ship "Korath Conveyor" "Korath Conveyor (Digger)"
 	turret "Korath Warder"
 
 
-ship "Korath Conveyor" "Korath Conveyor (Ember)"
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
 	outfits
 		"Digger Mining Beam" 2
 		"Korath Banisher" 2
@@ -782,7 +782,7 @@ ship "Korath Conveyor" "Korath Conveyor (Ember)"
 
 
 
-ship "Korath Tanker" "Korath Tanker (Jump)"
+ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 	outfits
 		"Langrage Hyper-Heaver" 2
 		"Korath Banisher" 3
@@ -802,7 +802,7 @@ ship "Korath Tanker" "Korath Tanker (Jump)"
 
 
 
-ship "Korath Herder" "Korath Herder (Digger)"
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 	outfits
 		"Digger Mining Beam" 3
 		"Digger Mining Turret" 4
@@ -837,7 +837,7 @@ ship "Korath Herder" "Korath Herder (Digger)"
 	turret "Korath Warder"
 
 
-ship "Korath Herder" "Korath Herder (Storm)"
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2
 		"Korath Warder" 3
@@ -869,7 +869,7 @@ ship "Korath Herder" "Korath Herder (Storm)"
 	turret "Firestorm Turret"
 
 
-ship "Korath Herder" "Korath Herder (Automata)"
+ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	outfits
 		"Korath Detainer"
 		"Korath Repeater" 2
@@ -908,7 +908,7 @@ ship "Korath Herder" "Korath Herder (Automata)"
 
 
 
-ship "Korath Traveller" "Korath Traveller (Grab)"
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 	outfits
 		"Korath Grab-Strike" 2
 		"Korath Banisher" 2
@@ -937,7 +937,7 @@ ship "Korath Traveller" "Korath Traveller (Grab)"
 	turret 51 276.5 "Korath Warder"
 
 
-ship "Korath Traveller" "Korath Traveller (Troop Transport)"
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 	outfits
 		"Korath Banisher" 3
 		"Korath Warder" 3
