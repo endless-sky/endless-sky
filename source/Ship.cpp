@@ -1122,6 +1122,8 @@ vector<string> Ship::FlightCheck(const bool docked) const
 	{
 		if(energy <= 0.)
 			checks.emplace_back("no energy?");
+		if((energy - consuming <= 0.) && (fuel <= 0.))
+			checks.emplace_back("no fuel energy?");
 		if(!thrust && !afterburner && !reverseThrust)
 			checks.emplace_back("no thruster?");
 		if(!turn)

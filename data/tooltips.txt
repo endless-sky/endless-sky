@@ -941,6 +941,9 @@ tip "no steering!"
 tip "no energy?"
 	`This ship does not have any source of energy to power its systems. Although it can take off while docked on an other ship, it will not function once deployed.`
 
+tip "no fuel energy?"
+	`This ship does not have enough fuel to provide energy to power its systems. Although it can take off while docked on an other ship, it will not function once deployed.`
+
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 
