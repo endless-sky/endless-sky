@@ -3171,11 +3171,9 @@ mission "Wanderers: Sestor: Factory Escorts"
 			names "wanderer"
 			variant
 				"Hurricane (Tough)"
-				"Hurricane (Turret)"
 				"Hurricane (Moonbeam)"
-				"Derecho" 2
+				"Derecho"
 				"Derecho (Moonbeam)" 2
-				"Derecho (Turret)"
 				"Tempest (Heavy)"
 				"Tempest (Moonbeam)" 2
 				"Tempest"
