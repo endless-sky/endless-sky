@@ -3154,9 +3154,13 @@ mission "Wanderers: Sestor: Factory Escorts"
 			names "wanderer"
 			variant
 				"Hurricane (Tough)"
-				"Derecho"
+				"Hurricane (Turret)"
+				"Hurricane (Moonbeam)"
+				"Derecho" 2
+				"Derecho (Moonbeam)" 2
 				"Derecho (Turret)"
-				"Tempest (Heavy)" 2
+				"Tempest (Heavy)"
+				"Tempest (Moonbeam)" 2
 				"Tempest"
 
 
@@ -3279,18 +3283,6 @@ event "wanderers: exiles hostile"
 
 event "wanderers: exiles have drones"
 	fleet "Korath Home"
-		add variant 2
-			"Tek Far 71 - Lek"
-			"Far Lek 14" 6
-		add variant 2
-			"Tek Far 71 - Lek (Close Quarters)"
-			"Far Lek 14" 4
-		add variant 2
-			"Tek Far 78 - Osk (Close Quarters)"
-			"Far Osk 27" 5
-		add variant 2
-			"Tek Far 78 - Osk"
-			"Far Osk 27" 2
 		add variant 3
 			"Tek Far 109"
 			"Far Lek 14" 9
@@ -3299,35 +3291,12 @@ event "wanderers: exiles have drones"
 			"Met Par Tek 53" 3
 		add variant 2
 			"Met Par Tek 53 (Sniper)" 3
-		add variant
-			"Kar Ik Vot 349"
-		add variant
-			"Kar Ik Vot 349 (Defense)"
-		add variant
-			"Kar Ik Vot 349 (Offense)"
-		add variant
-			"Kar Ik Vot 349 (Trapper)"
-		add variant 1
-			"Model 512"
-		add variant 2
-			"Model 512"
-			"Model 256"
-		add variant 2
-			"Model 256"
-		add variant 2
-			"Model 256"
-			"Model 64" 2
-		add variant 2
-			"Model 128" 2
-		add variant 2
-			"Model 64"
-			"Model 32" 3
-		add variant 3
-			"Model 64" 2
-			"Model 32" 3
 		add variant 4
 			"Model 32"
 			"Model 16" 5
+		add variant 2
+			"Model 32" 3
+			"Model 16" 2
 
 event "wanderers: sestor eliminated"
 	system "Celeborim"
@@ -3399,7 +3368,7 @@ mission "Wanderers: Sestor: Final"
 			variant
 				"Model 32"
 				"Model 16" 3
-				"Tek Far 78 - Osk"
+				"Tek Far 109"
 				"Met Par Tek 53 (Sniper)" 2
 	on visit
 		dialog phrase "generic waypoint on visit"
