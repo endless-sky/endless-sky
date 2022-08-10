@@ -3127,7 +3127,24 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you."`
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
+			choice
+				`	"Are those ships carrying a new type of weapon?"`
+				`	(Say nothing.)`
+					goto end
+			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this scourge. However, we will have them [ready, prepared] if the need does [arise, return]."`
+			choice
+				`	"Can I get some for my own ship?"`
+					goto buy
+				`	"Is it a good idea to show off these new weapons to the Korath Exiles when making overtures of friendship?"`
+				`	(Return to your ship.)`
+					goto end
+			`	Tele'ek gestures towards Rek who says, "I raised a similar concern, but in this case, I [recognize, accept] that the benefit outweighs possible risks."`
+			`	She looks at Tele'ek who explains, "If they view these weapons as signs of [aggression?] against themselves, there is little I can do for them. Their ships are not as [durable, well-armored] as the Kor Sestor automata, our other technologies would already be [effective, damaging] enough if used against them. If they are [rational, intelligent], they will value the added protection on this [journey, endeavor]."`
+				goto end
+			label buy
+			`	"We have not yet produced many, but they will be [available, present] in our outfitters soon."`
+			label end
 			`	You return to your ship, and get ready for the trip to <planet>.`
 				accept
 	npc accompany save
