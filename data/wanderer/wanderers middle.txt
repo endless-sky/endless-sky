@@ -3458,3 +3458,12 @@ event "wanderers taking jobs from kor efreti"
 		add fleet "Wanderer Kor Efret Traders" 1500
 	system "Solifar"
 		add fleet "Wanderer Kor Efret Traders" 1500
+
+mission "Wanderers: Sestor: Moonbeam Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor: Final: done"
+	on offer
+		event "wanderers: moonbeam mass production" 7
+		fail
