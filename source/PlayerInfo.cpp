@@ -859,7 +859,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				dockedShips[carriable] = true;
 			}
 			else
-				dockedShips[carriable]=false;
+				dockedShips[carriable] = false;
 		}
 	}
 
