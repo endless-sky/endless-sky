@@ -1105,14 +1105,17 @@ vector<string> Ship::FlightCheck(const bool docked) const
 	// Report the first error condition that will prevent takeoff:
 	if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
-	else if(energy <= 0. && !docked)
-		checks.emplace_back("no energy!");
-	else if((energy - consuming <= 0.) && (fuel <= 0.) && !docked)
-		checks.emplace_back("no fuel!");
-	else if(!thrust && !reverseThrust && !afterburner && !docked)
-		checks.emplace_back("no thruster!");
-	else if(!turn && !docked)
-		checks.emplace_back("no steering!");
+	else if(!docked)
+	{
+		if(energy <= 0.)
+			checks.emplace_back("no energy!");
+		else if((energy - consuming <= 0.) && (fuel <= 0.))
+			checks.emplace_back("no fuel!");
+		else if(!thrust && !reverseThrust && !afterburner)
+			checks.emplace_back("no thruster!");
+		else if(!turn)
+			checks.emplace_back("no steering!");
+	}
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
