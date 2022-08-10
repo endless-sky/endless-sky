@@ -954,7 +954,7 @@ tip "no thruster?"
 	`This ship does not have any sort of thruster installed. Although it can take off while docked on another ship, it will be unable to move once deployed.`
 
 tip "no steering?"
-	`This ship does not have any steering systems installed. Although it can take off while docked on an other ship, it would be unable to turn once deployed.`
+	`This ship does not have any steering system installed. Although it can take off while docked on another ship, it would be unable to turn once deployed.`
 
 tip "battery only?"
 	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
