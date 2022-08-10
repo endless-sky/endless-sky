@@ -115,6 +115,7 @@ ship "Summer Leaf"
 		"Sunbeam" 2
 		
 		"Yellow Sun Reactor"
+		"Small Biochemical Cell"
 		"Bright Cloud Shielding"
 		"Wanderer Ramscoop"
 		
