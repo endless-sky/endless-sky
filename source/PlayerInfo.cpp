@@ -856,7 +856,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			else if(bayType.second > 0)
 			{
 				--bayType.second;
-				dockedShips[carriable]=true;
+				dockedShips[carriable] = true;
 			}
 			else
 				dockedShips[carriable]=false;
