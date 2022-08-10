@@ -349,17 +349,17 @@ mission "FW Syndicate Diplomacy 1B"
 			`	"We are always open to new business opportunities," says another man, Lopez, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
 			choice
 				`	(Let Alondo handle this.)`
-					goto alondo
 				`	(Try to explain what Katya was doing in that system.)`
+					goto explain
 			
-			`	"She was there trying to find the terrorists. She wasn't one of them," you say.`
-			`	Alondo side eyes you, looking very pale.`
-				goto ijs
-			
-			label alondo
 			`	Alondo has turned very pale, but finally he says, "They have not announced this publicly."`
 			`	"No," says Lopez, "they have only shared it with certain... trusted friends of the Republic."`
 			`	Alondo says, "They haven't announced anything because they know she was innocent. She was hunting the terrorists, not helping them."`
+				goto ijs
+			
+			label explain
+			`	"She was there trying to find the terrorists. She wasn't one of them," you say.`
+			`	Alondo side eyes you, looking very pale.`
 			
 			label ijs
 			`	"That may be true," says a third man, Badenoch. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be in as safe a position today if you had not given him a reason to leave this sector of space, where he is... universally despised. Regardless, we cannot sell supplies to enemies of the Republic."`
@@ -1255,7 +1255,7 @@ mission "FW Pirates: Attack 1"
 			label explain
 			`	JJ explains, "We've been asked to deliver an ultimatum to each pirate world: the Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
 			`	Freya says, "The thing is, just like any other world, most people on the 'pirate' planets are just ordinary farmers, or factory workers, or whatever. The only difference is, they want no off-world government telling them how to live. So that's what we're going to offer them."`
-			`	"Our first mission will be to Thule in the Men system," Alondo says. "Although Thule is not the biggest hub of piracy in the region, it is the most populous with almost a billion people, a greater population than all the other pirate worlds in the region combined. We hope that by first coming to an agreement with the majority of the population of pirate worlds in the region, the rest will be easier to negotiate with. I will be leading the negotations."`
+			`	"Our first mission will be to Thule in the Men system," Alondo says. "Although Thule is not the biggest hub of piracy in the region, it is the most populous with almost a billion people, a greater population than all the other pirate worlds in the region combined. We hope that by first coming to an agreement with the majority of the population of pirate worlds in the region, the rest will be easier to negotiate with. I will be leading the negotiations."`
 			choice
 				`	"That's good news! I think the Senate made the right choice."`
 				`	"How do you negotiate with a billion anarchists? Sounds like that will take forever."`
@@ -1294,7 +1294,7 @@ mission "FW Pirates: Attack 1"
 			`	"Calm down!" JJ yells at Tomek, which seems to draw even more surprise and attention than when Tomek yelled. "The Council was decided that the Senate would convene, and so it did. It was only by the grace of the Senate that the Council even still exists."`
 			`	"And it'll be by the grace of God that we don't all end up dead because of it," Tomek responds.`
 			`	JJ turns to you and Alondo. "<first>. Alondo. I pray your mission to Thule is a success."`
-			`	"I'll introduce you to your escort," says Tomek, shaking off JJ's hand as he leads you out of the bar.
+			`	"I'll introduce you to your escort," says Tomek, shaking off JJ's hand as he leads you out of the bar.`
 			
 			branch remember
 				not "fw pirate suggestion: diplomacy"
@@ -1454,7 +1454,7 @@ mission "FW Pirates: Attack 2"
 		log "Disobeyed the Free Worlds Senate by helping to launch an attack on the pirate hub world of Greenrock. Captured the planet after a massive battle, but it is unclear how long the Free Worlds can afford to keep them subdued by force."
 		conversation
 			`As the remaining invasion fleet comes in for a landing on <origin>, you spot small pirate ships scattering from the spaceport, not into space, but instead into the far reaches of the Greenrock wilderness. When you reach the spaceport, for the locals who remain, there is a wild mix of emotions. Some spit at you and curse you out. Others thank you for driving off the pirates, even if only temporarily. Others still thank you for freeing them and ask for transportation off world before the slavers return; Greenrock is the hub of the underground slave trade in the galaxy, and it seems in the confusion and rush for some criminals to escape the spaceport, they left their slaves behind.`
-			`	In an attempt to not get yourselves assasinated by pirates looking for revenge, the fleet forms their ships into a circle just outside the spaceport and keeps an eye out for aggressors while waiting for Tomek, or anyone of authority within the Free Worlds for that matter, to show up and determine your next move.`
+			`	In an attempt to not get yourselves assassinated by pirates looking for revenge, the fleet forms their ships into a circle just outside the spaceport and keeps an eye out for aggressors while waiting for Tomek, or anyone of authority within the Free Worlds for that matter, to show up and determine your next move.`
 			`	Hours laters, Tomek's ship arrives, with even more ships in tow, likely to support a continued occupation. Tomek greets the invasion fleet, looking ecstatic. "Wonderful work, all of you. The people of the Free Worlds will be thanking you for generations." Tomek orders the members of the occupation fleet to sweep the spaceport, freeing any slaves they find and arresting any known criminals and warlords. "We can't possibly take in every criminal here, but if you find someone with a big name, we need to take this opportunity to arrest them."`
 			`	After Tomek is done giving order and celebrating, he approaches you and gives your hand a firm shake. "Thank you for listening to reason, Captain <last>. I know I asked a lot of you when I asked you to directly disobey Senate orders."`
 			choice
