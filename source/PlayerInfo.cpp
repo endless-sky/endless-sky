@@ -812,7 +812,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 	// True: The ship is docked
 	// False: The ship requires a dock but is not docked
 	// Missing: The ship doesn't require a dock, and is therefore not docked
-	auto dockedShips = map<shared_ptr<Ship>,bool>{};
+	map<shared_ptr<Ship>, bool> dockedShips;
 	// Count of all bay types in the active fleet.
 	auto bayCount = map<string, size_t>{};
 	// Classification of the present ships by category. Parked ships are ignored.
