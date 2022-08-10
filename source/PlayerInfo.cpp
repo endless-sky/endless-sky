@@ -836,7 +836,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				{
 					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
-					dockedShips[bay.ship]=true;
+					dockedShips[bay.ship] = true;
 				}
 			}
 		}
