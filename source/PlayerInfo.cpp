@@ -868,10 +868,11 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 		{
 			// Check if ship is docked
 			auto it = dockedShips.find(ship);
-			auto checks = ship->FlightCheck(it != dockedShips.end() && it->second);
+			const bool isCarried = it != dockedShips.end();
+			auto checks = ship->FlightCheck(isCarried && it->second);
 			// Include the lack of bay availability amongst any other
 			// warnings for this carriable ship.
-			if(it != dockedShips.end() && !it->second)
+			if(isCarried && !it->second)
 				checks.emplace_back("no bays?");
 			if(!checks.empty())
 				flightChecks.emplace(ship, checks);
