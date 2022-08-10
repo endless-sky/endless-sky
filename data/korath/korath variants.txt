@@ -10,7 +10,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
-ship "Ranolenrek" "Ranolenrek (Civilian)"
+ship "Rano'erek" "Rano'erek (Civilian)"
 	add attributes
 		"atmosphere scan" 1
 	outfits
@@ -42,7 +42,7 @@ ship "Ranolenrek" "Ranolenrek (Civilian)"
 	turret "Warder Anti-Missile"
 
 
-ship "Ranolenrek" "Ranolenrek (Crippled)"
+ship "Rano'erek" "Rano'erek (Crippled)"
 	outfits
 		"Banisher Grav-Turret"
 		"Digger Mining Turret"
@@ -72,7 +72,7 @@ ship "Ranolenrek" "Ranolenrek (Crippled)"
 	turret "Banisher Grav-Turret"
 
 
-ship "Ranolenrek" "Ranolenrek (Digger)"
+ship "Rano'erek" "Rano'erek (Digger)"
 	outfits
 		"Digger Mining Turret" 5
 		"Warder Anti-Missile"
@@ -101,7 +101,7 @@ ship "Ranolenrek" "Ranolenrek (Digger)"
 	turret "Digger Mining Turret"
 
 
-ship "Ranolenrek" "Ranolenrek (Shunt)"
+ship "Rano'erek" "Rano'erek (Shunt)"
 	outfits
 		"Shunt-Strike Turret" 4
 		"Banisher Grav-Turret"
@@ -128,7 +128,7 @@ ship "Ranolenrek" "Ranolenrek (Shunt)"
 	turret "Warder Anti-Missile"
 
 
-ship "Ranolenrek" "Ranolenrek (Ground Assault)"
+ship "Rano'erek" "Rano'erek (Ground Assault)"
 	"crew" 449
 	outfits
 		"Banisher Grav-Turret" 2
@@ -156,7 +156,7 @@ ship "Ranolenrek" "Ranolenrek (Ground Assault)"
 	turret "Banisher Grav-Turret"
 
 
-ship "Ranolenrek" "Ranolenrek (Heaver)"
+ship "Rano'erek" "Rano'erek (Heaver)"
 	outfits
 		"Langrage Hyper-Heaver" 4
 		"Warder Anti-Missile" 3
@@ -377,7 +377,7 @@ ship "Palavret" "Palavret (Hyperdrive)"
 
 
 
-ship "Tubfalem" "Tubfalem (Crippler)"
+ship "Tubfalet" "Tubfalet (Crippler)"
 	add attributes
 		"cargo space" -70
 		"outfit space" 70
@@ -414,7 +414,7 @@ ship "Tubfalem" "Tubfalem (Crippler)"
 
 
 
-ship "Olofek" "Olofek (Expeller)"
+ship "'olofez" "'olofez (Expeller)"
 	outfits
 		"Expeller Grav-Ray"
 		
@@ -426,7 +426,7 @@ ship "Olofek" "Olofek (Expeller)"
 		"Bow Drive (Meteor Class)"
 
 
-ship "Olofek" "Olofek (Digger)"
+ship "'olofez" "'olofez (Digger)"
 	outfits
 		"Digger Mining Beam"
 		
@@ -439,7 +439,7 @@ ship "Olofek" "Olofek (Digger)"
 		"Engine (Meteor Class)"
 
 
-ship "Olofek" "Olofek (World-Ship)"
+ship "'olofez" "'olofez (World-Ship)"
 	add attributes
 		"atmosphere scan" 1
 	outfits
