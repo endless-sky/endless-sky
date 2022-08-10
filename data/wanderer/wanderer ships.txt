@@ -504,8 +504,8 @@ ship "Derecho" "Derecho (Moonbeam)"
 	gun "Sunbeam"
 	turret "Moonbeam Turret"
 	turret "Moonbeam Turret"
-	turret "Dual Sunnbeam Turret"
-	turret "Dual Sunnbeam Turret"
+	turret "Dual Sunbeam Turret"
+	turret "Dual Sunbeam Turret"
 
 
 
