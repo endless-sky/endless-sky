@@ -1140,7 +1140,7 @@ mission "FW Pirates 2"
 			`	"They had that vote before she arrived?"`
 			`	"Yes, we already had a quorum. She was the last to get here, because of her transportation troubles. Sorry to give you a menial job like that, by the way. Now, what can you tell me about the pirates?"`
 			label recon
-			`	You show him your sensor logs. "I've been trying to decide what advice we should give the Senate," he says. "A shock and awe assault on Greenrock might bring all the pirate systems in this sector under our control overnight. But we might have fewer losses if we attack the smaller worlds first, then demand that Greenrock surrender. In any case, something must be done. Even though our biggest concern is the Republic, much of the animus toward them is as a result of their failure to get piracy in this region under control. We must succeed where they have failed. Otherwise we'll be no better than they were, confidence in this project will faulter and collapse, and we'll be back to square one except with all our leadership that got us this far in prison."`
+			`	You show him your sensor logs. "I've been trying to decide what advice we should give the Senate," he says. "A shock and awe assault on Greenrock might bring all the pirate systems in this sector under our control overnight. But we might have fewer losses if we attack the smaller worlds first, then demand that Greenrock surrender. In any case, something must be done. Even though our biggest concern is the Republic, much of the animus toward them is as a result of their failure to get piracy in this region under control. We must succeed where they have failed. Otherwise we'll be no better than they were, confidence in this project will falter and collapse, and we'll be back to square one except with all our leadership that got us this far in prison."`
 			choice
 				`	"I say we strike right at their heart, and launch a massive assault on Greenrock."`
 				`	"Why not start by clearing out the Antares system? It's not very well defended."`
@@ -1478,7 +1478,7 @@ event "battle for Greenrock"
 
 
 mission "FW Pirates: Attack 3"
-	name "Naval Offensive"
+	name "Early Warning"
 	description "Travel to <destination> to defend against the Navy assault. Any punishment for the invasion of Greenrock will come later."
 	source "Greenrock"
 	destination "Deep"
@@ -1514,11 +1514,11 @@ mission "FW Pirates: Attack 3"
 			`	Before anyone can continue arguing, JJ rushes into the tent. "Sorry to interrupt, but this little spat is going to need to wait. I just got word that our sensors on Hope have detected increased Naval fleet movements. It seems like they're getting ready for an assault."`
 			`	"Have they entered our space?" Alondo asks.`
 			`	"No, not yet. Not even a single scout," says JJ.`
-			`	"Leave a small fleet here to maintain our occupation, but move the rest of our available forces to Kornephoros," Tomek says, taking charge of the situation. "Recall the eastern patrols. They might arrive late to any battle, but they can at least act as reinforcements if necessary."`
+			`	"Leave a small fleet here to maintain our occupation, but move the rest of our available forces to <system>," Tomek says, taking charge of the situation. "Recall the eastern patrols. They might arrive late to any battle, but they can at least act as reinforcements if necessary."`
 			`	"You're in no position to be giving orders," Freya says, looking disgusted at Tomek. "You and <first> should both be placed under arrest for disobeying the Senate."`
-			`	"No," JJ says. "At least not yet. If the Navy is about to attack then we need everyone we can get. We'll resolve this matter once we have the time. And for now, Tomek is still a part of the Council. But if you won't listen to his orders, then I imagine you'll listen to mine, and I agree with Tomek, at least in this instance. Do what he says. Move our forces to Kornephoros and recall any patrols."`
+			`	"No," JJ says. "At least not yet. If the Navy is about to attack then we need everyone we can get. We'll resolve this matter once we have the time. And for now, Tomek is still a part of the Council. But if you won't listen to his orders, then I imagine you'll listen to mine, and I agree with Tomek, at least in this instance. Do what he says. Move our forces to <system> and recall any patrols."`
 			`	With that, JJ leaves the tent, hurrying off to a ship. Alondo too leaves without a word. As Freya begins to leave, she turns back to you and Tomek. "I'm very disappointed in you. Both of you." She exits the tent, leaving you and Tomek alone.`
-			`	"You should get going," Tomek says solemnly. "And don't get yourself killed in this battle just because of this little mess here. As disappointed as they might be, you still have a part to play. The Free Worlds still needs you. I can feel it."`
+			`	"You should get going," Tomek says solemnly. "And don't get yourself killed in this battle just because of this little mess here. As disappointed as they might be, you still have a part to play. The Free Worlds still needs you. I can feel it." He pauses for a moment before saying, "See you on <planet>," and leaving.`
 				accept
 
 
@@ -1629,7 +1629,67 @@ mission "FW Pirates: Diplomacy 3"
 
 
 
-mission "FW Pirates: Attack 4"
+mission "FW Pirates: Diplomacy 4"
+	landing
+	name "Early Warning"
+	description "Travel to <destination> to defend against the Navy assault."
+	source "Longjump"
+	destination "Deep"
+	to offer
+		has "FW Pirates: Diplomacy 3: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`You arrive back on Longjump to a hero's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
+			`	You lead them into your ship, where Freya explains, "Soon after you left for Thule, Tomek took off on his own and raised a fleet for an attack on Greenrock. He thought the Senate's plan of making a deal with the pirate worlds was too cowardly, and that we needed a show of strength instead. Surprisingly, his stunt succeeded; Greenrock is now nominally under Free Worlds control."`
+			`	"This puts us in a rather difficult position," says JJ. "Much of Tomek's fleet didn't survive the assault, and those ships didn't come out of thin air, they were our ships intended for defensive purposes in case the Navy attacks again. Word of this as spread quickly. Thule is already second guessing their deal with us, and if Thule has heard of this then there's no doubt in my mind that the Republic has as well."`
+			`	"And regardless of his success, an invasion of Greenrock was not approved by the Senate," says Freya. "Tomek was detained on Greenrock by some of our officers on order of the Senate, and he's currently being transported to Bourne for a hearing."`
+			choice
+				`	"Why would Tomek do something like that? It's unthinkable!"`
+				`	"How can the Senate have him arrested? He's part of the Council!"`
+					goto defend
+			`	"That's easy to answer," says Freya. "He didn't like the idea of taking orders from the Senate. He thought they should treat him like a hero and go along with whatever he thought best."`
+			`	"Is it really that easy?" says JJ softly. Freya raises an eyebrow, but doesn't respond to the question.`
+				goto next
+			label defend
+			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the Council have to be careful not to let that happen."`
+			label next
+			`	"So, what will happen to Tomek?" you ask.`
+			`	"That's for the Senate to decide," says JJ. "But he's a tactical genius. We'll need his advice, if this war turns worse."`
+			`	Just then, Alondo comes running onto your ship, looking particularly worried. "I hope I'm not interrupting anything too important, but I just received word that our sensors on Hope have detected increased Naval fleet movements. It seems like they're getting ready for an assault."`
+			`	"Have they entered our space?" JJ asks.`
+			`	"No, not yet. Not even a single scout," says Alondo.`
+			`	"We should head to <planet> before deciding our next move," says Freya.`
+			`	"About that," says Alondo. "It seems like Tomek is way ahead of us. The news that Tomek is under arrest by the Senate didn't spread quickly enough, and an officer gave him the news about the sensors. He argued that since he hasn't yet been revoked of his position in the Council that he still has the power to command the militia, and he already ordered all available forces to <system>, including recalling our patrols in the eastern Dirt Belt. The officers who were detaining him reluctantly agreed given the situation and released him."`
+			`	"What?" Freya says with disbelief. "Tomek is in no position to be giving orders! Let everyone know that he is not to be obeyed!"`
+			`	"No," JJ says. "At least not yet. If the Navy is about to attack then we need everyone we can get. We'll resolve this matter once we have the time. And for now, Tomek is still a part of the Council. But if you won't listen to his orders, then I imagine you'll listen to mine, and I agree with Tomek, at least in this instance. Do what he says. Move our forces to <system> and recall any patrols."`
+			`	Freya doesn't argue with JJ. "We should get going," says Alondo. The members of the Council all rush off your ship to find transport to <destination>, leaving you to prepare for the coming battle.`
+				accept
+
+
+
+mission "FW Early Warning 1"
+	landing
+	name ""
+	description ""
+	source "Deep"
+	to offer
+		or
+			has "FW Pirates: Attack 3: done"
+			has "FW Pirates: Diplomacy 4: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`New mission arc.`
+				accept
+
+
+
+mission "FW Senate Hearing"
 	landing
 	name "Senate Hearing"
 	description "Report to <destination> for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
@@ -1637,6 +1697,7 @@ mission "FW Pirates: Attack 4"
 	destination "Bourne"
 	deadline 14
 	to offer
+		has "FW Early Warning X: done"
 		has "FW Pirates: Attack 3: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1719,29 +1780,17 @@ mission "FW Refinery 1"
 	destination "Tundra"
 	clearance
 	to offer
-		has "FW Pirates: Diplomacy 3: done"
+		has "FW Early Warning X: done"
+		has "FW Pirates: Diplomacy 4: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
-			`You arrive back on Longjump to a hero's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
-			`	You lead them into your ship, where Freya explains, "Soon after you left for Thule, Tomek took off on his own and raised a fleet for an attack on Greenrock. He thought the Senate's plan of making a deal with the pirate worlds was too cowardly, and that we needed a show of strength instead. But he was defeated by the pirates. His fleet retreated, with heavy losses, and when they landed back on Trinket, Tomek was put under house arrest by order of the Senate."`
-			choice
-				`	"Why would Tomek do something like that? It's unthinkable!"`
-					goto attack
-				`	"How can the Senate have him arrested? He's part of the Council!"`
-					goto defend
-			label attack
-			`	"That's easy to answer," says JJ. "He didn't like the idea of taking orders from the Senate. He thought they should treat him like a hero and go along with whatever he thought best."`
-				goto next
-			label defend
-			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the Council have to be careful not to let that happen."`
-				goto next
-			label next
-			`	"So, what will happen to Tomek?" you ask.`
-			`	"He's out of the picture for now," says Freya. "But he's a tactical genius. We'll need his advice, if this war turns worse. In the meantime, though, we need your help with some peacemaking."`
+			`	JJ and Freya are here. Smooth over the relationship with Thule after the attack on Greenrock by building up the refinery.`
+			
+			`	In the meantime, though, we need your help with some peacemaking."`
 			choice
 				`	"How so?"`
 					goto repairs
