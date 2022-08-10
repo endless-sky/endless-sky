@@ -939,7 +939,7 @@ tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
 
 tip "no energy?"
-	`This ship does not have any source of energy to power its systems. Although it can take off while docked on an other ship, it will not function once deployed.`
+	`This ship does not have any source of energy to power its systems. Although it can take off while docked on another ship, it will not function once deployed.`
 
 tip "no fuel energy?"
 	`This ship does not have enough fuel to provide energy to power its systems. Although it can take off while docked on an other ship, it will not function once deployed.`
