@@ -683,8 +683,8 @@ outfit "Farves GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"flare sound" "ion small"
-	description "Exposure to the Quarg's graviton-thrusters, coupled with the forced retreat from research into interstellar Jump-Drive technology, has left the Efreti engineers with little else to tinker with than subluminal-propulsion. In this vein, Efreti-engineers have turned to integrating previously theoretical unifications of quantum gravity with the other physical forces into these engines."
-	description "	These resulting thrusters are one important example of this effort. Synthesizing quantum-gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines, while at the same time increases its energy consumption. The resulting thrusters produce less heat but require substantial energy generation to function."
+	description "Exposure to the Quarg's graviton-thrusters, coupled with the forced retreat from research into interstellar jump drive technology, has left the Efreti engineers with little else to tinker with than subluminal propulsion. In this vein, Efreti engineers have turned to integrating previously theoretical unifications of quantum gravity with the other physical forces into these engines."
+	description "	These resulting thrusters are one important example of this effort. Synthesizing quantum-gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines, while at the same time increasing its energy consumption. The resulting thrusters produce less heat but require substantial energy generation to function."
 
 outfit "Gaktem GP Hybrid Thruster"
 	plural "Gaktem GP Hybrid Thrusters"
@@ -700,7 +700,7 @@ outfit "Gaktem GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"flare sound" "ion medium"
-	description "Korath physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. While their understanding of spacetime is well behind that of the Quarg, their grudging divorce from Jump-Drive technology has pushed Efreti scientists and engineers to begin to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma-thrusters."
+	description "Korath physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. While their understanding of spacetime is well behind that of the Quarg, their grudging divorce from jump drive technology has pushed Efreti scientists and engineers to begin to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma thrusters."
 	description "	Despite the Efreti’s limited resources, these new hybrid gravitoplasma thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
 
 outfit "Nelmeb GP Hybrid Thruster"
@@ -718,7 +718,7 @@ outfit "Nelmeb GP Hybrid Thruster"
 		"frame rate" 6.5
 	"flare sound" "ion large"
 	description "Korath physicists have, for several centuries, understood powerful aspects of the unity that underlies both quantum gravity and forces that bind quarks and gluons together. Recently, prompted by the example of the Quarg's graviton thrusters, Efreti engineers have begun to utilize their theoretical knowledge of this unity to incorporate gravitational propulsion into their more traditional fusion-based plasma engines. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
-	description "	These are the largest such gravitoplasma-thrusters that the Efreti have to offer, and as such are usually only found on their gargantuan civilian ships. Despite their size and thrusting power, the Quarg are rather unimpressed with the inefficient design of such engines."
+	description "	These are the largest such gravitoplasma thrusters that the Efreti have to offer, and as such are usually only found on their gargantuan civilian ships. Despite their size and thrusting power, the Quarg are rather unimpressed with the inefficient design of such engines."
 
 outfit "Arkrof GP Hybrid Steering"
 	plural "Arkrof GP Hybrid Steerings"
@@ -750,8 +750,8 @@ outfit "Farves GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
-	description "Exposure to the Quarg's graviton-thrusters, coupled with the forced retreat from research into interstellar Jump-Drive technology, has left the Efreti engineers with little else to tinker with than subluminal-propulsion. Their ongoing efforts represent their evolving understanding of fundamental physics and how it can be put into practice."
-	description "	These resulting steering-thrusters are one important example of this effort. This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient. It appears that the Quarg influence on the Efreti has not changed the basic design philosophy of the Korath living here."
+	description "Exposure to the Quarg's graviton-thrusters, coupled with the forced retreat from research into interstellar jump drive technology, has left the Efreti engineers with little else to tinker with than subluminal propulsion. Their ongoing efforts represent their evolving understanding of fundamental physics and how it can be put into practice."
+	description "	These resulting steering thrusters are one important example of this effort. This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient. It appears that the Quarg influence on the Efreti has not changed the basic design philosophy of the Korath living here."
 
 outfit "Gaktem GP Hybrid Steering"
 	plural "Gaktem GP Hybrid Steerings"
@@ -767,7 +767,7 @@ outfit "Gaktem GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
-	description "While Korath understanding of the ultimate origins of spacetime are still incomplete, their grudging divorce from Jump-Drive technology has pushed Efreti scientists and engineers have begun to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma-thrusters."
+	description "While Korath understanding of the ultimate origins of spacetime are still incomplete, their grudging divorce from jump drive technology has pushed Efreti scientists and engineers have begun to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma thrusters."
 	description "	These Efreti steering thrusters can fit into just about any ship. Yet, unless accompanied by some Korath power systems as well, their energy consumption will often be more than the ship can handle. Their main advantage when compared to other Korath engines of the same size is their reduced heat production."
 
 outfit "Nelmeb GP Hybrid Steering"
@@ -784,7 +784,7 @@ outfit "Nelmeb GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"steering flare sound" "ion large"
-	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and forces that bind quarks and gluons together. Recently, prompted by the grim will to trudge onwards and innovate despite being forced to abandon Jump-Drive technology, Efreti engineers have begun to utilize their theoretical knowledge of this unity to incorporate gravitational propulsion into their more traditional fusion-based plasma engines. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
+	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and forces that bind quarks and gluons together. Recently, prompted by the grim will to trudge onwards and innovate despite being forced to abandon jump drive technology, Efreti engineers have begun to utilize their theoretical knowledge of this unity to incorporate gravitational propulsion into their more traditional fusion-based plasma engines. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
 	description "	More stable-looking than one would expect from Korath engines this large, these steering-thrusters were developed by the Efreti as a means of guiding their most massive ships. Their high energy usage is tempered by the fact that they are usually powered by the most powerful Korath fusion-reactors."
 
 outfit "Korath Repeater Rifle"
