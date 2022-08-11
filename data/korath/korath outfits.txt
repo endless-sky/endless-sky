@@ -667,7 +667,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"flare sound" "ion tiny"
-	description "Forced to abandon their beloved Jump-Drive technology, Efreti engineers have begun to grudgingly take inspiration from their not-entirely-welcome Quarg guardians. The incorporation of gravitational propulsion increases the thrust output for engines in this line, at the cost of even higher energy costs. These are the smallest such gravitoplasma-based steering-thrusters."
+	description "Forced to abandon their beloved jump drive technology, Efreti engineers have begun to grudgingly take inspiration from their not-entirely-welcome Quarg guardians. The incorporation of gravitational propulsion increases the thrust output for engines in this line, at the cost of even higher energy costs. These are the smallest such gravitoplasma-based thrusters."
 
 outfit "Farves GP Hybrid Thruster"
 	plural "Farves GP Hybrid Thrusters"
