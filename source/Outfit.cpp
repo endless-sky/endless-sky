@@ -195,7 +195,90 @@ void Outfit::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "category" && child.Size() >= 2)
+		if(child.Token(0) == "clear" && child.Size() >= 2)
+		{
+			string key = child.Token(1);
+			if(key == "flare sprite")
+				flareSprites.clear();
+			else if(key == "reverse flare sprite")
+				reverseFlareSprites.clear();
+			else if(key == "steering flare sprite")
+				steeringFlareSprites.clear();
+			else if(key == "flare sound")
+				flareSounds.clear();
+			else if(key == "reverse flare sound")
+				reverseFlareSounds.clear();
+			else if(key == "steering flare sound")
+				steeringFlareSounds.clear();
+			else if(key == "afterburner effect")
+				afterburnerEffects.clear();
+			else if(key == "jump effect")
+				jumpEffects.clear();
+			else if(key == "hyperdrive sound")
+				hyperSounds.clear();
+			else if(key == "hyperdrive in sound")
+				hyperInSounds.clear();
+			else if(key == "hyperdrive out sound")
+				hyperOutSounds.clear();
+			else if(key == "jump sound")
+				jumpSounds.clear();
+			else if(key == "jump in sound")
+				jumpInSounds.clear();
+			else if(key == "jump out sound")
+				jumpOutSounds.clear();
+			else if(key == "description")
+				description = "";
+			else if(key == "licenses")
+				licenses.clear();
+		}
+		else if(child.Token(0) == "remove" && child.Size() >= 3)
+		{
+			string key = child.Token(1);
+			else if(child.Token(0) == "flare sound" && child.Size() >= 2)
+				flareSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
+				reverseFlareSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
+				steeringFlareSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
+				afterburnerEffects.erase(GameData::Effects().Get(child.Token(1)));
+			else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+				jumpEffects.erase(GameData::Effects().Get(child.Token(1)));
+			else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+				hyperSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+				hyperInSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+				hyperOutSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+				jumpSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+				jumpInSounds.erase(Audio::Get(child.Token(1)));
+			else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+				jumpOutSounds.erase(Audio::Get(child.Token(1)));
+			else if(key == "description")
+				description = "";
+			else if(key == "licenses")
+			{
+				vector<string> toRemove;
+				// Remove any licenses that were specified "inline".
+				if(child.Size() >= 2)
+				{
+					for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+						toRemove.push_back(*it);
+				}
+				// Add any new licenses that were specified as an indented list.
+				for(const DataNode &grand : child)
+					toRemove.push_back(grand.Token(0));
+				for(const string license : toRemove)
+				{
+					const auto it = find(licenses.begin(), licenses.end(), license)
+					if(it != licenses.end())
+						licenses.erase(it);
+				}
+			}
+		}
+		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 			pluralName = child.Token(1);
