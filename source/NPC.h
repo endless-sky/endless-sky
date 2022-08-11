@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "Fleet.h"
+#include "FleetCargo.h"
 #include "LocationFilter.h"
 #include "Personality.h"
 #include "Phrase.h"
@@ -93,6 +94,9 @@ private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
 	Personality personality;
+
+	// The cargo ships in this NPC will be able to carry.
+	FleetCargo cargo;
 
 	EsUuid uuid;
 
