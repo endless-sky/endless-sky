@@ -199,7 +199,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and have begun to move around in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
@@ -233,7 +233,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and others have joined hands and move around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and have begun to move around in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
@@ -260,7 +260,7 @@ mission "Remnant: Celebration 1"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 					goto ceremonyleader
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 			label celebrationrehearsed
 			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, with most people taking part in one every few weeks. So most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation is up to them, and so the details and feel of each celebration are unique every time." She makes a gesture you have come to realize amounts to "If you have more questions, ask them."`
 			choice
@@ -281,7 +281,7 @@ mission "Remnant: Celebration 1"
 					goto awestruck
 				`	"Why were some of the people crying?`
 					goto askcrying
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 				`	"You said 'virtually.' Who is omitted?"`
 			`	Taely scowls a bit at this. "Only those of guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
@@ -292,7 +292,7 @@ mission "Remnant: Celebration 1"
 					goto awestruck
 				`	"Why were some of the people crying?`
 					goto askcrying
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 				`	"What constitutes your most serious crimes?"`
 			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective wellbeing is the single most destructive and senseless act someone can do."`
@@ -302,7 +302,7 @@ mission "Remnant: Celebration 1"
 				`	"That was awe-inspiring."`
 					goto awestruck
 				`	"Why were some of the people crying?`
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label askcrying
 			`	Taely gestures gently. "Those were friends of the crew of a ship that was destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
@@ -312,7 +312,7 @@ mission "Remnant: Celebration 1"
 				`	"That was awe-inspiring."`
 				`	"Who leads these ceremonies?"`
 					goto ceremonyleader
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label awestruck
 			`	Taely nods in agreement and simply gestures expansively at the cavern around you, giving you a few moments to contemplate it. Eventually she gestures asking if you have any further questions.`
@@ -323,7 +323,7 @@ mission "Remnant: Celebration 1"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 					goto ceremonyleader
-				`	"That seemed both well rehearsed and very disorganized."`
+				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label celebrationrequest
 			`	Taely strides over to a console near the door and retrieves a crystal from a compartment within the console. She slips it into a case and turns to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present can experience it too. This recording is destined for those working on Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
