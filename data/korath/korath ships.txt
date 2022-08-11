@@ -686,7 +686,7 @@ ship "Ra'at Ik 621"
 	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat."
 
 
-ship "Korath Habitat"
+ship "Kasichara A'awoj"
 	sprite "ship/world-ship f"
 	thumbnail "thumbnail/world-ship f"
 	attributes
@@ -753,9 +753,9 @@ ship "Korath Habitat"
 	description "When the Korath were exiled, it was on these gargantuan 'world-ships' they first fled and lived on. Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids."
 
 
-ship "Korath Haven"
-	sprite "ship/korath haven"
-	thumbnail "thumbnail/korath haven"
+ship "Korsmanath A'awoj"
+	sprite "ship/korsmanath a-awoj"
+	thumbnail "thumbnail/korsmanath a-awoj"
 	"uncapturable"
 	attributes
 		category "Utility"
@@ -961,7 +961,7 @@ ship "Korath Haven"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath Havens are massive nomadic habitats that hold much of their remaining population.  True flying cities, they could be self-contained miniature worlds were it not for their heavy defensive armament and reliance on unsustainable materials, methods, and sources of power."
+	description "Korsmanath A'awojs are massive nomadic habitats that hold much of their remaining population.  True flying cities, they could be self-contained miniature worlds were it not for their heavy defensive armament and reliance on unsustainable materials, methods, and sources of power."
 	description "  Commission of new Havens is an intensely resource-demanding, labour-intensive, painstaking process fraught with political intrigue. Navarchs fight with the civilian government for resources and yard time they would rather devote to building raiding and defensive fleets, civilians vie with each other for a place on the next ship, and planning committees argue with engineers over what methods and technologies to use. This leads to construction delays, corner-cutting, and over-militarisation of the design at best, and violent feuds at worst."
 
 

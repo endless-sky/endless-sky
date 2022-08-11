@@ -8,36 +8,36 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-fleet "Korath Havens"
+fleet "Korsmanath A'awojs"
 	government "Korath (Civilian)"
 	names "korath"
 	fighters "korath"
 	cargo 3
 	variant 21
-		"Korath Haven"
+		"Korsmanath A'awoj"
 		"Korath Chaser" 14
 		"Korath Chaser (Expeller)" 10
 	variant 9
-		"Korath Haven (Strike)"
+		"Korsmanath A'awoj (Strike)"
 		"Korath Chaser" 17
 		"Korath Chaser (Expeller)" 7
 	variant 6
-		"Korath Haven (Special)"
+		"Korsmanath A'awoj (Special)"
 		"Korath Chaser (Expeller)" 13
 		"Korath Chaser (Digger)" 6
 		"Korath Chaser" 5
 	variant
-		"Korath Haven (Blaze)"
+		"Korsmanath A'awoj (Blaze)"
 		"Korath Chaser (Expeller)" 15
 		"Korath Chaser" 9
 
-mission "North Korath Havens (Natural)"
+mission "North Korsmanath A'awojs (Natural)"
 	invisible
 	landing
 	repeat
 	to offer
 		random < 50
-		not "North Korath Havens (Natural): active"
+		not "North Korsmanath A'awojs (Natural): active"
 	to complete
 		never
 	deadline 7 1
@@ -48,15 +48,15 @@ mission "North Korath Havens (Natural)"
 		personality frugal opportunistic disables uninterested
 		system 
 			near "Kor Fel'tar" 2
-		fleet "Korath Havens"
+		fleet "Korsmanath A'awojs"
 
-mission "North Korath Havens (Staying)"
+mission "North Korsmanath A'awojs (Staying)"
 	invisible
 	landing
 	repeat
 	to offer
 		random < 50
-		not "North Korath Havens (Staying): active"
+		not "North Korsmanath A'awojs (Staying): active"
 	to complete
 		never
 	deadline 7 1
@@ -67,15 +67,15 @@ mission "North Korath Havens (Staying)"
 		personality frugal opportunistic disables staying uninterested
 		system 
 			near "Kor Fel'tar" 2
-		fleet "Korath Havens"
+		fleet "Korsmanath A'awojs"
 
-mission "South Korath Havens (Natural)"
+mission "South Korsmanath A'awojs (Natural)"
 	invisible
 	landing
 	repeat
 	to offer
 		random < 50
-		not "South Korath Havens (Natural): active"
+		not "South Korsmanath A'awojs (Natural): active"
 	to complete
 		never
 	deadline 7 1
@@ -86,15 +86,15 @@ mission "South Korath Havens (Natural)"
 		personality frugal opportunistic disables uninterested
 		system
 			near "Kor Tar'bei" 2
-		fleet "Korath Havens"
+		fleet "Korsmanath A'awojs"
 
-mission "South Korath Havens (Staying)"
+mission "South Korsmanath A'awojs (Staying)"
 	invisible
 	landing
 	repeat
 	to offer
 		random < 50
-		not "South Korath Havens (Staying): active"
+		not "South Korsmanath A'awojs (Staying): active"
 	to complete
 		never
 	deadline 7 1
@@ -105,4 +105,4 @@ mission "South Korath Havens (Staying)"
 		personality frugal opportunistic disables staying uninterested
 		system
 			near "Kor Tar'bei" 2
-		fleet "Korath Havens"
+		fleet "Korsmanath A'awojs"

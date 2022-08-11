@@ -390,11 +390,11 @@ fleet "Korath Civilian Large"
 		"Lor'kas Ik 577"
 		"Korath Chaser (Expeller)" 3
 	variant 5
-		"Korath Habitat"
+		"Kasichara A'awoj"
 		"Korath Raider" 2
 		"Korath Chaser" 4
 	variant 8
-		"Korath Habitat"
+		"Kasichara A'awoj"
 	variant 5
 		"Kas'lor Ik 582"
 		"Korath Chaser (Expeller)" 3

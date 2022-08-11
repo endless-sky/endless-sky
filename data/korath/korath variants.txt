@@ -969,7 +969,7 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 
 
 
-ship "Korath Haven" "Korath Haven (Strike)"
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 	outfits
 		"Korath Banisher" 7
 		"Korath Grab-Strike" 4
@@ -1026,7 +1026,7 @@ ship "Korath Haven" "Korath Haven (Strike)"
 	gun "Firelight Missile Bank"
 
 
-ship "Korath Haven" "Korath Haven (Special)"
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 	outfits
 		"Korath Banisher" 4
 		"Digger Mining Turret" 6
@@ -1077,7 +1077,7 @@ ship "Korath Haven" "Korath Haven (Special)"
 	gun "Firelight Missile Bank"
 
 
-ship "Korath Haven" "Korath Haven (Blaze)"
+ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 	outfits
 		"Korath Banisher" 4
 		"Korath Grab-Strike" 2
