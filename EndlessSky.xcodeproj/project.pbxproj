@@ -12,8 +12,8 @@
 		03DC4253AA8390FE0A8FB4EA /* MaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 499B4DA7A9C7351120660643 /* MaskManager.cpp */; };
 		072599D126A8CB2F007EC229 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; };
 		072599D426A8CD5D007EC229 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 072599CC26A8C942007EC229 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		1578F883250B5F8A00D318FB /* InfoPanelState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1578F880250B5F8A00D318FB /* InfoPanelState.cpp */; };
+		16AD4CACA629E8026777EA00 /* truncate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */; settings = {ATTRIBUTES = (Project, ); }; };
 		301A4FE885A7A12348986C4F /* UniverseObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 389245138CF297EB417DF730 /* UniverseObjects.cpp */; };
 		497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */; };
 		5155CD731DBB9FF900EF090B /* Depreciation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5155CD711DBB9FF900EF090B /* Depreciation.cpp */; };
@@ -164,6 +164,7 @@
 		B55C239D2303CE8B005C1A14 /* GameWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55C239B2303CE8A005C1A14 /* GameWindow.cpp */; };
 		B590161321ED4A0F00799178 /* Utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B590161121ED4A0E00799178 /* Utf8.cpp */; };
 		B5DDA6942001B7F600DBA76A /* News.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DDA6922001B7F600DBA76A /* News.cpp */; };
+		BAA9419AAD23C1409D664CB8 /* FleetCargo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63024EDD816724D5B90654FA /* FleetCargo.cpp */; };
 		C4264774A89C0001B6FFC60E /* Hazard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C49D4EA08DF168A83B1C7B07 /* Hazard.cpp */; };
 		C7354A3E9C53D6C5E3CC352F /* TestData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D34A71AE3BC4C93FC6865B /* TestData.cpp */; };
 		CE3F49A88B6DCBE09A711110 /* opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3754152958FBC924E9F76A9 /* opengl.cpp */; };
@@ -222,16 +223,17 @@
 		0DF34095B64BC64F666ECF5F /* CoreStartData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreStartData.cpp; path = source/CoreStartData.cpp; sourceTree = "<group>"; };
 		11EA4AD7A889B6AC1441A198 /* StartConditionsPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartConditionsPanel.cpp; path = source/StartConditionsPanel.cpp; sourceTree = "<group>"; };
 		13B643F6BEC24349F9BC9F42 /* alignment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alignment.hpp; path = source/text/alignment.hpp; sourceTree = "<group>"; };
+		1578F880250B5F8A00D318FB /* InfoPanelState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InfoPanelState.cpp; path = source/InfoPanelState.cpp; sourceTree = "<group>"; };
+		1578F882250B5F8A00D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanelState.h; path = source/InfoPanelState.h; sourceTree = "<group>"; };
 		19184B47B496B414EC9CE671 /* DamageProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DamageProfile.h; path = source/DamageProfile.h; sourceTree = "<group>"; };
 		191E4107A4F1CBBC2526A0E9 /* MaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaskManager.h; path = source/MaskManager.h; sourceTree = "<group>"; };
 		210C41C0BA33F71A694D5F98 /* Bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitset.h; path = source/Bitset.h; sourceTree = "<group>"; };
+		2B964D55BA2FEDDE07E4E7E0 /* FleetCargo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FleetCargo.h; path = source/FleetCargo.h; sourceTree = "<group>"; };
 		2CA44855BD0AFF45DCAEEA5D /* truncate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = truncate.hpp; path = source/text/truncate.hpp; sourceTree = "<group>"; };
 		2E1E458DB603BF979429117C /* DisplayText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayText.cpp; path = source/text/DisplayText.cpp; sourceTree = "<group>"; };
 		2E644A108BCD762A2A1A899C /* Hazard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hazard.h; path = source/Hazard.h; sourceTree = "<group>"; };
 		2E8047A8987DD8EC99FF8E2E /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = source/Test.cpp; sourceTree = "<group>"; };
 		32404878BFF00A095AF2DD2C /* MapPlanetCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapPlanetCard.cpp; path = source/MapPlanetCard.cpp; sourceTree = "<group>"; };
-		1578F880250B5F8A00D318FB /* InfoPanelState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InfoPanelState.cpp; path = source/InfoPanelState.cpp; sourceTree = "<group>"; };
-		1578F882250B5F8A00D318FB /* InfoPanelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoPanelState.h; path = source/InfoPanelState.h; sourceTree = "<group>"; };
 		389245138CF297EB417DF730 /* UniverseObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UniverseObjects.cpp; path = source/UniverseObjects.cpp; sourceTree = "<group>"; };
 		46B444A6B2A67F93BB272686 /* ByGivenOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByGivenOrder.h; path = source/comparators/ByGivenOrder.h; sourceTree = "<group>"; };
 		499B4DA7A9C7351120660643 /* MaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MaskManager.cpp; path = source/MaskManager.cpp; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		62A405B91D47DA4D0054F6A0 /* FogShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FogShader.h; path = source/FogShader.h; sourceTree = "<group>"; };
 		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
 		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
+		63024EDD816724D5B90654FA /* FleetCargo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FleetCargo.cpp; path = source/FleetCargo.cpp; sourceTree = "<group>"; };
 		6833448DAEB9861D28445DD5 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameAction.h; path = source/GameAction.h; sourceTree = "<group>"; };
 		6A4E42FEB3B265A91D5BD2FC /* TextReplacements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextReplacements.cpp; path = source/TextReplacements.cpp; sourceTree = "<group>"; };
 		6A5716311E25BE6F00585EB2 /* CollisionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionSet.cpp; path = source/CollisionSet.cpp; sourceTree = "<group>"; };
@@ -878,6 +881,8 @@
 				61FA4C2BB89E08C5E2B8B4B9 /* Variant.cpp */,
 				5EBC44769E84CF0C953D08B3 /* Variant.h */,
 				086E48E490C9BAD6660C7274 /* ExclusiveItem.h */,
+				63024EDD816724D5B90654FA /* FleetCargo.cpp */,
+				2B964D55BA2FEDDE07E4E7E0 /* FleetCargo.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -1271,6 +1276,7 @@
 				F35E4D6EA465D71CDA282EBA /* MenuAnimationPanel.cpp in Sources */,
 				497849B2A4C5EA58A64D316C /* MapPlanetCard.cpp in Sources */,
 				920F40E0ADECA8926F423FDA /* Variant.cpp in Sources */,
+				BAA9419AAD23C1409D664CB8 /* FleetCargo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
