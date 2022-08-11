@@ -2150,6 +2150,7 @@ mission "Defend Sabik"
 	on offer
 		set "license: Militia"
 		"salary: Free Worlds" = 1100
+		"reputation: Republic" <?= -10
 		event "start of hostilities"
 		event "joined the free worlds"
 		conversation

@@ -1462,7 +1462,7 @@ mission "FW Pirates: Attack 2"
 				`	"I'm sure we'll be getting in trouble for this."`
 					goto trouble
 			
-			`	Tomek smiles. "Now we do what we can to route the criminals and warlords out of this place while we have the advantage. The more damage we can do to them, the less innocent people within the Free Worlds will be hurt by piracy in the future. I've already ordered the men to sweep the spaceport, and we'll be leaving a fleet stationed here for some time to keep the peace. In time we may need to pull back to focus on the Navy again, but for now Greenrock is ours."`
+			`	Tomek smiles. "Now we do what we can to rout the criminals and warlords out of this place while we have the advantage. The more damage we can do to them, the less innocent people within the Free Worlds will be hurt by piracy in the future. I've already ordered the men to sweep the spaceport, and we'll be leaving a fleet stationed here for some time to keep the peace. In time we may need to pull back to focus on the Navy again, but for now Greenrock is ours."`
 			`	"What about the Senate?" you ask. "We'll certainly be in trouble for this."`
 			
 			label trouble
@@ -1601,8 +1601,9 @@ mission "FW Pirates: Diplomacy 3"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "The elders on Thule do not want to join the Free Worlds, but they have agreed to crack down on pirate activity in their system and to welcome Free Worlds visitors to their planet."
+		"reputation: Independent" >?= 10
 		event "Thule becomes independent"
+		log "The elders on Thule do not want to join the Free Worlds, but they have agreed to crack down on pirate activity in their system and to welcome Free Worlds visitors to their planet."
 		conversation
 			`A pall of smoke still hangs over the spaceport, and as you are coming in for a landing you fly over one landing pad where bodies draped in sheets have been laid out side by side: dozens of casualties. Several buildings are in ruins, some of them still smoldering.`
 			`	Alondo has survived, fortunately. He tells you, "While the fight was going on overhead, I met with the elders, and they agreed that now that the Free Worlds exist and opposing the pirates is a viable option, they will try to put an end to piracy in this system. But they have no interest whatsoever in joining the Free Worlds."`

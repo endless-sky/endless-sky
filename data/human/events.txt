@@ -824,7 +824,6 @@ event "start of hostilities"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
-	"reputation: Republic" <?= -10
 
 
 
@@ -1028,7 +1027,6 @@ event "fw conservatory founded"
 
 
 event "Thule becomes independent"
-	"reputation: Independent" >?= 10
 	system "Men"
 		government "Independent"
 		fleet "Small Independent" 400
@@ -1048,7 +1046,7 @@ event "Thule becomes independent"
 
 
 
-# Update event to reduce piracy in various systems.
+# TODO: Update event to reduce piracy in various systems.
 event "fw suppressed Greenrock"
 	system "Shaula"
 		government "Free Worlds"
@@ -1064,7 +1062,7 @@ event "fw suppressed Greenrock"
 
 
 
-# Update event to increase piracy in systems where it was reduced.
+# TODO: Update event to increase piracy in systems where it was reduced.
 event "fw abandoned Greenrock"
 	system "Shaula"
 		government "Pirate"
@@ -2271,7 +2269,6 @@ event "battle of algenib"
 			"Syndicate (Extremist)" -.1
 	system "Algenib"
 		fleet "Small Syndicate" 5000
-	"reputation: Syndicate (Extremist)" <?= -1000
 
 
 
