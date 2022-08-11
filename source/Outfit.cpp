@@ -234,7 +234,7 @@ void Outfit::Load(const DataNode &node)
 		else if(child.Token(0) == "remove" && child.Size() >= 3)
 		{
 			string key = child.Token(1);
-			else if(child.Token(0) == "flare sound" && child.Size() >= 2)
+			if(child.Token(0) == "flare sound" && child.Size() >= 2)
 				flareSounds.erase(Audio::Get(child.Token(1)));
 			else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
 				reverseFlareSounds.erase(Audio::Get(child.Token(1)));
@@ -272,7 +272,7 @@ void Outfit::Load(const DataNode &node)
 					toRemove.push_back(grand.Token(0));
 				for(const string license : toRemove)
 				{
-					const auto it = find(licenses.begin(), licenses.end(), license)
+					const auto it = find(licenses.begin(), licenses.end(), license);
 					if(it != licenses.end())
 						licenses.erase(it);
 				}
