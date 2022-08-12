@@ -1,5 +1,5 @@
 
-mission "First Contact: Gegno"
+mission "Giaru Gegno: Quarg Contact"
 	landing
 	source "Giaru Gegno"
 	to offer
@@ -67,7 +67,39 @@ mission "First Contact: Gegno"
 	on decline
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 
-#missions set up for future content
+#mission "First Contact: Gegno"
+	landing
+	source "Var Oti"
+	on offer
+		conversation
+			"Despite being in hostile alien territory...."
+
+#Recorded Missions
+
+
+mission "Gegno Civilian Rep Tracker"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Gegno" 
+		"Gegno Civilian Rep" 
+		clear "Gegno Civilian Rep Tracker: failed"
+		fail
+
+
+mission "Gegno Second Chance"
+	landing
+	source
+			attributes "quarg"
+	to offer
+			"reputation: Gegno Civilian"
+mission "Gegno Final Chance"
+		
+
+
+
+
 
 mission "Stationed Vi Augen"
 	invisible
@@ -85,7 +117,7 @@ mission "Augen Destruction"
 	invisible
 	to offer
 		has "Stationed Augen: failed"
-		not "Intermediate: done"
+		not "Intermediary: done"
 	on offer
 		set "dead augen"
 		fail
