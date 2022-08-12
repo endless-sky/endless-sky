@@ -404,8 +404,15 @@ news "hai attacked by pirates"
 			"Hai youth"
 	message
 		word
-			"The ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well be joining the Unfettered now, I have nothing to lose."
-			"Pirates destroyed the ship of relatives. My family was always curious about the humans, and look what that got them! I will join the Unfettered, they are right."
+			`"`
+		word
+			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well be joining the Unfettered now, I have nothing to lose."
+			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look what that got them! I will join the Unfettered, they are right."
+			"Human ships are so frail... My sister was on one, and she told me it lost all of his shields in a few shots! Thankfully, human weapons are not that strong either so they were able to escape."
+			"You call these human vessels ships? They barely have enough to protect them against the void. Given the danger of human space, I would expect humans to have more heavy transporters able to defend themselves, such as the Behemoth!"
+			"No wonder you have so many pirates in your space, with the kind of freighters you have... So much cargo for so little protection is pure madness! That is why I love humans."
+		word
+			`"`
 
 news "hai joining unfettered"
 	location
