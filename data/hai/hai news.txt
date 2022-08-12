@@ -393,6 +393,20 @@ news "hai advertisement in Hai space"
 		word
 			`"`
 
+news "hai attacked by pirates"
+	location
+		government "Hai"
+	to show
+		random < 1
+	name
+		word
+			"Hai civilian"
+			"Hai youth"
+	message
+		word
+			"The ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well be joining the Unfettered now, I have nothing to lose."
+			"Pirates destroyed the ship of relatives. My family was always curious about the humans, and look what that got them! I will join the Unfettered, they are right."
+
 news "hai joining unfettered"
 	location
 		government "Hai"
@@ -409,7 +423,6 @@ news "hai joining unfettered"
 			"Apparently our brothers and sisters to the north are in need of help. I may go there someday."
 			"Some very big things are going to happen in Unfettered space, and I wish to be a part of it!"
 			"I have lost everything... I knew I should not have taken that big loan. I will be heading for Unfettered space for a new life now."
-			"The ship carrying my family was attacked by pirates. I guess I may as well be joining the Unfettered now, I have nothing to lose."
 			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the new living conditions."
 			"Have you heard? The art in Unfettered space is ever changing, never dull. I wish I could go there and see it in person."
 			"Art in Unfettered space is very different from here. We could learn a lot from it."
