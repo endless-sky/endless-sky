@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 		else if(arg == "--tests")
 			printTests = true;
 		else if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
-				arg == "-o" || arg == "--outffits" || arg == "-e" || arg == "--engines" ||
+				arg == "-o" || arg == "--outfits" || arg == "-e" || arg == "--engines" ||
 				arg == "--power")
 		{
 			printData = true;

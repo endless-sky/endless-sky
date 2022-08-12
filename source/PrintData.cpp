@@ -56,6 +56,7 @@ void PrintData::Help()
 	cerr << "    --power: prints a table of power outfit stats." << endl;
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
 	cerr << "    -o --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
+	cerr << "    -o -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
 }
 
 
@@ -170,10 +171,10 @@ void PrintData::PrintShipShipyards()
 
 void PrintData::PrintLoadedShipStats(bool variants)
 {
-	cout << "model" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ','
-		<< "mass" << ',' << "crew" << ',' << "cargo" << ',' << "bunks" << ','
-		<< "fuel" << ',' << "outfit" << ',' << "weapon" << ',' << "engine" << ','
-		<< "speed" << ',' << "accel" << ',' << "turn" << ','
+	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
+		<< "hull" << ',' << "mass" << ',' << "crew" << ',' << "cargo" << ','
+		<< "bunks" << ',' << "fuel" << ',' << "outfit" << ',' << "weapon" << ','
+		<< "engine" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
 		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
 		<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
@@ -186,9 +187,11 @@ void PrintData::PrintLoadedShipStats(bool variants)
 
 		const Ship &ship = it.second;
 		cout << it.first << ',';
-		cout << ship.Cost() << ',';
 
 		const Outfit &attributes = ship.Attributes();
+		cout << attributes.Category() << ',';
+		cout << ship.Cost() << ',';
+
 		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 		cout << attributes.Get("shields") << ',';
 		cout << attributes.Get("hull") << ',';
@@ -220,8 +223,8 @@ void PrintData::PrintLoadedShipStats(bool variants)
 			+ attributes.Get("turning heat")
 			+ attributes.Get("afterburner heat")
 			+ attributes.Get("fuel heat")
-			+ (attributes.Get("hull heat") * (1 + attributes.Get("hull heat multiplier")))
-			+ (attributes.Get("shield heat") * (1 + attributes.Get("shield heat multiplier")))
+			+ (attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier")))
+			+ (attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier")))
 			+ attributes.Get("solar heat")
 			+ attributes.Get("cloaking heat");
 
@@ -236,7 +239,7 @@ void PrintData::PrintLoadedShipStats(bool variants)
 		cout << 60. * energyConsumed << ',';
 		cout << attributes.Get("energy capacity") << ',';
 		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
-		cout << 60. * heatProduced << '\t';
+		cout << 60. * heatProduced << ',';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
 		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
 
@@ -403,11 +406,13 @@ void PrintData::PrintPowerStats()
 
 void PrintData::Outfits(const char *const *argv)
 {
-	for(const char *const *it = argv + 3; *it; ++it)
+	for(const char *const *it = argv + 2; *it; ++it)
 	{
 		string arg = *it;
 		if(arg == "-s" || arg == "--sales")
 			PrintOutfitOutfitters();
+		else if(arg == "-a" || arg == "--all")
+			PrintOutfitsAllStats();
 		else
 			PrintOutfitsList();
 	}
@@ -442,6 +447,32 @@ void PrintData::PrintOutfitOutfitters()
 		{
 			cout << ',' << it2;
 		}
+		cout << '\n';
+	}
+}
+
+
+
+void PrintData::PrintOutfitsAllStats()
+{
+	set<string> attributes;
+	for(auto &it : GameData::Outfits())
+	{
+		const Outfit &outfit = it.second;
+		for(const auto attribute : outfit.Attributes())
+			attributes.insert(attribute.first);
+	}
+	cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
+	for(const auto attribute : attributes)
+		cout << ',' << attribute;
+	cout << '\n';
+	for(auto &it : GameData::Outfits())
+	{
+		const Outfit &outfit = it.second;
+		cout << outfit.Name() << ',' << outfit.Category() << ','
+			<< outfit.Cost() << ',' << outfit.Mass();
+		for(const auto attribute : attributes)
+			cout << ',' << outfit.Attributes().Get(attribute);
 		cout << '\n';
 	}
 }
