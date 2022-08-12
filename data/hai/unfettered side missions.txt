@@ -368,7 +368,7 @@ mission "Unfettered: Escort Hai Fleet"
 		fleet "Small Hai"
 
 	npc evade
-		government "Pirate"
+		government "Mercenaries"
 		to spawn
 			has "Unfettered: stopped on Greenbloom"
 		system "Ya Hai"
@@ -378,7 +378,7 @@ mission "Unfettered: Escort Hai Fleet"
 
 	on complete
 		clear "Unfettered: stopped on Greenbloom"
-		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space during a truce.`
+		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		payment 500000
 		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
 
@@ -454,6 +454,8 @@ mission "Unfettered: Pirate Help"
 
 	to fail
 		has "defeated scar's legion"
+	on fail
+		dialog `You have decided to side with the Hai on this. This was not really an official mission so the Unfettered will not be mad about it. Still, do not expect any payment from them.`
 	on visit
 		dialog `Go to the spaceport to talk to the local authorities on <stopovers> about the pirate problem.`
 	to complete
@@ -581,12 +583,12 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			`	"Those will be your last words, scum. Should've chosen better ones!"`
 
 	npc board
-		government "Pirate"
+		government "Hydra"
 		system "Sumar"
 		personality derelict staying target
 		ship "Behemoth (Mammoth)" "Mammoth"
 	npc evade
-		government "Pirate"
+		government "Mercenaries"
 		personality plunders disables staying
 		system "Sumar"
 		fleet "Small Northern Pirates" 6
@@ -625,6 +627,14 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
 			choice
 				`	(Celebrate.)`
+					goto celebrate
+				`	"We really did the Alphas a nasty one by stealing their jump drives earlier, right?" (Pretend you know who the drives belonged to.)`
+				`	"Those pirates did not see the stealing of their jump drives on Freedom, am I right?" (Pretend you know who the drives belonged to.)`
+					goto pirates
+			`	"Yeah we did! I mean, it was mostly you..." He then calms down somewhat and looks at you seriously, "I had not told you that before, did I? Well, whatever, I hope that you can be trusted with this information, or else..." He then keeps on drinking as if nothing happened.`
+				goto celebrate
+			label pirates
+			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah!" His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
 			label celebrate
 			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sha-Ri was taking when you first came here, now he has a purple one.`
 			choice

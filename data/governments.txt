@@ -484,6 +484,14 @@ government "Mercenaries"
 	fine 0
 	"hostile hail" "hostile pirate"
 
+government "Hydra"
+	swizzle 1
+	"player reputation" -1000
+	"display name" "Pirate"
+	bribe 0
+	fine 0
+	"hostile hail" "hostile pirate"
+
 government "Merchant"
 	swizzle 5
 	

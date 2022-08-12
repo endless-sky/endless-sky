@@ -829,9 +829,36 @@ mission "Unfettered: Prove Your Strength 2"
 		payment 3000000
 		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leadership and combat skills, and seems to be a fan of acquiring bigger and bigger ships. He's always trying to improve his tactics..`
-		dialog `"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". Come see me again soon if you are up for a challenge. I'm sure that I will have what you want." Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
+		conversation
+			`"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". Come see me again soon if you are up for a challenge. I'm sure that I will have what you want."`
+			branch "hydra question"
+				not "Unfettered: Attracted Attention: offered"
+			choice
+				`	(Let him leave).`
+					goto leave
+				`	"I heard you say a name, 'Hydra', I believe."`
+			action
+				event "hydra revealed"
+			`	"If you really must know, that is how the pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
+				goto leave
+			label "hydra question"
+			`	Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
+			label "hydra question"
+			choice
+				`	(Let him leave).`
+					goto leave
+				`	"Who were these pirates attacking us?"`
+			`	"If you really must know, they were called Hydra." He obviously does not wish to elaborate on it any further.`
+			action
+				event "hydra revealed"
+			label leave
+			`	Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
 
 
+
+event "hydra revealed"
+	government "Hydra"
+		remove "display name"
 
 mission "Unfettered: Attracted Attention"
 	invisible
@@ -843,9 +870,9 @@ mission "Unfettered: Attracted Attention"
 	on offer
 		require "Jump Drive" 1
 	on enter "Almaaz"
-		dialog `The Unfettered comes to the bridge to warn you. "There are even more unfettered humans than anticipated. I told you not to come here with a jump drive!"`
+		dialog `The Unfettered curses a name, which you can barely hear, "Hydra." He then comes closer to address you directly, "There are even more unfettered humans than anticipated. I told you not to come here with a jump drive!"`
 	npc evade
-		government "Pirate"
+		government "Hydra"
 		system "Almaaz"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates"
@@ -906,21 +933,21 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	It was indeed just a light flickering - from a laser sight, used to acquire a target: you.`
 				die
 			label outside
-			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend.`
+			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
 				die
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. The Unfettered was evidently trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
-			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you while he takes care of the security systems.`
+			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you while he takes care of the security systems. Once you are done, you look around, waiting for the captain to come back, and notice a symbol, that looks like a dragon with multiple heads. You then go back to double-check the jump drives. When the captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
 					goto vault
-			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets."`
+			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be to be more to it than what he's admitting.`
 				goto ship
 			label vault
-			`	"We needed to make sure there was not any malfunctions with them, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses."`
+			`	"We needed to make sure there was not any malfunctions with them, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be to be more to it than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
@@ -929,12 +956,12 @@ mission "Unfettered: Jump Drive Retrieval"
 			
 			label ship
 			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and either transfer the jump drives into cargo or install them directly on your ship if possible, to be able to flee more swifly.`
-			`	A bit later, the Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures.`
+			`	A bit later, the Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
 				launch
 	on accept
 		"outfit" "Jump Drive" 4
 	npc evade
-		government "Pirate"
+		government "Hydra"
 		personality disables plunders vindictive
 		system "Almaaz"
 		fleet "Large Northern Pirates"
@@ -1432,12 +1459,13 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
 					accept
-			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries, but the details are so well-encrypted that there is no hope learning more any time soon. You do find their captain's most recent log: apparently, they had indeed been waiting here to ambush you on arrival.`
+			`	As you explore the Auxiliary, you find out more about their flight patterns. It seems the Alphas had big plans for these prisoners, as you see the lizard head symbol from earlier on many log entries, but the details are so well-encrypted that there is no hope learning more any time soon. You do find their captain's most recent log: apparently, they had indeed been waiting here to ambush you on arrival. You must have really scared them by scanning them in the Unfettered system to warrant such extreme response... Or maybe it's more than that.`
 			choice
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
 					accept
-			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information.`
+			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction?`
+			`	You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				decline
 		outfit "Jump Drive" 10
@@ -1990,7 +2018,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 			label "has access to hai SB"
 			choice
 				`	(I don't care much for Shield Beetles, but he promised some better ships too.)`
-				`	(I can already buy Shield Beetles from the Hai, why bother?)`
+				`	(I can already buy Shield Beetles from the Hai, why bother? I do not need any special ships, or outfits from here.)`
 					decline
 				`	(Later.)`
 					defer
@@ -2265,7 +2293,9 @@ mission "Unfettered: Close Quarter"
 	description `He-Yi wants you to bring fifty non-lethal weapons stronger than the pulse rifle for him to use in training with the other Unfettered. Deliver them to <destination>.`
 	source "Warfeed"
 	to offer
-		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+		or
+			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
+			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: declined"
 		or
 			random < 30
 			not "Unfettered: offered close quarter"
