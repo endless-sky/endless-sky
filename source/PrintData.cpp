@@ -26,22 +26,20 @@ using namespace std;
 
 void PrintData::Print(char *argv[])
 {
-	const char *const *it = argv + 2;
+	const char *const *it = argv + 1;
 	if(!*it)
 		return;
 	string arg = *it;
 	if(arg == "-s" || arg == "--ships")
 		Ships(argv);
 	else if(arg == "-w" || arg == "--weapons")
-		Weapons(argv);
+		PrintWeaponStats();
 	else if(arg == "-e" || arg == "--engines")
 		PrintEngineStats();
-	else if(arg == "-p" || arg == "--power")
+	else if(arg == "--power")
 		PrintPowerStats();
 	else if(arg == "-o" || arg == "--outfits")
 		Outfits(argv);
-	else if(arg == "-h" || arg == "--help")
-		Help();
 	cout.flush();
 }
 
@@ -49,55 +47,47 @@ void PrintData::Print(char *argv[])
 
 void PrintData::Help()
 {
-	cerr << "--printdata: follow with arguments to print diffferent data." << endl;
-	cerr << "    -s, --ships: prints table of various base stats of all ships (not variants)." << endl;
-	cerr << "        -d, --deterrences: prints ship names and deterrence values, not variants." << endl;
-	cerr << "        -v, --variants: includes variants." << endl;
-	cerr << "        -s, --sales: prints a list of ships and the outfitters they appear in." << endl;
-	cerr << "        -o, --old: the older version of the PrintShipTable() function." << endl;
-	cerr << "    -w, --weapons: prints table of weapons and various stats." << endl;
-	cerr << "        -d, --deterrences: prints list of weapons and deterrence values." << endl;
-	cerr << "    -e, --engines: prints table of engines and various stats." << endl;
-	cerr << "    -p, --power: prints table of power outfits and various stats." << endl;
+	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)." << endl;
+	cerr << "    -s --sales: pritns a table of ships with every 'shipyard' each appears in." << endl;
+	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants." << endl;
+	cerr << "    Use the modifier `-v` or `--variants` with the above command to include variants." << endl;
+	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
+	cerr << "    -e, --engines: prints a table of engine stats." << endl;
+	cerr << "    --power: prints a table of power outfit stats." << endl;
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
-	cerr << "        -s, --sales: prints a list of outfits and all the outfitters they appear in." << endl;
+	cerr << "    -o --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
 }
 
 
 
 void PrintData::Ships(char *argv[])
 {
-	bool deterrence = false;
+	bool loaded = false;
 	bool variants = false;
 	bool sales = false;
 
-	for(const char *const *it = argv + 3; *it; ++it)
+	for(const char *const *it = argv + 2; *it; ++it)
 	{
 		string arg = *it;
-		if(arg == "-d" || arg == "--deterrences")
-			deterrence = true;
-		else if(arg == "-v" || arg == "--variants")
+		if(arg == "-v" || arg == "--variants")
 			variants = true;
-		else if(arg == "-s" || arg == "--sales")
+		else if(arg == "--sales")
 			sales = true;
-		else if(arg == "-o" || arg == "--old")
-		{
-			PrintShipOldTable();
-			return;
-		}
+		else if(arg == "--loaded")
+			loaded = true;
 	}
 
-	if(deterrence)
-		PrintShipDeterrences(variants);
-	else if(sales)
+	if(sales)
 		PrintShipShipyards();
+	else if(loaded)
+		PrintLoadedShipStats(variants);
 	else
-		PrintShipBaseStats();
+		PrintBaseShipStats();
 }
 
 
 
-void PrintData::PrintShipBaseStats()
+void PrintData::PrintBaseShipStats()
 {
 	cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
 		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dis" << ','
@@ -152,33 +142,6 @@ void PrintData::PrintShipBaseStats()
 
 
 
-void PrintData::PrintShipDeterrences(bool variants)
-{
-	cout << "model" << ',' << "deterrence" << '\n';
-	for(auto &it : GameData::Ships())
-	{
-		if(!variants && it.second.ModelName() != it.first)
-			continue;
-
-		const Ship &ship = it.second;
-		double deterrence = 0;
-		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.GetOutfit())
-			{
-				const Outfit *weapon = hardpoint.GetOutfit();
-				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
-					continue;
-				double damage = weapon->ShieldDamage() + weapon->HullDamage()
-					+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-					+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
-				deterrence += .12 * damage / weapon->Reload();
-			}
-		cout << it.first << ',' << deterrence << '\n';
-	}
-}
-
-
-
 void PrintData::PrintShipShipyards()
 {
 	cout << "ship" << ',' << "shipyards" << '\n';
@@ -205,41 +168,42 @@ void PrintData::PrintShipShipyards()
 
 
 
-void PrintData::PrintShipOldTable()
+void PrintData::PrintLoadedShipStats(bool variants)
 {
-	cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
-		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
-		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
-		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
-		<< "energy generation" << '\t' << "max energy usage" << '\t' << "energy capacity" << '\t'
-		<< "idle/max heat" << '\t' << "max heat generation" << '\t' << "max heat dissipation" << '\t'
-		<< "gun mounts" << '\t' << "turret mounts" << '\n';
+	cout << "model" << ',' << "cost" << ',' << "shields" << ',' << "hull" << ','
+		<< "mass" << ',' << "crew" << ',' << "cargo" << ',' << "bunks" << ','
+		<< "fuel" << ',' << "outfit" << ',' << "weapon" << ',' << "engine" << ','
+		<< "speed" << ',' << "accel" << ',' << "turn" << ','
+		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
+		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
+		<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
+		<< "drone bays" << ',' << "deterrence" << '\n';
 	for(auto &it : GameData::Ships())
 	{
-		// Skip variants and unnamed / partially-defined ships.
-		if(it.second.ModelName() != it.first)
+		// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
+		if(it.second.ModelName() != it.first && !variants)
 			continue;
 
 		const Ship &ship = it.second;
-		cout << it.first << '\t';
-		cout << ship.Cost() << '\t';
+		cout << it.first << ',';
+		cout << ship.Cost() << ',';
 
 		const Outfit &attributes = ship.Attributes();
 		auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-		cout << attributes.Get("shields") << '\t';
-		cout << attributes.Get("hull") << '\t';
-		cout << mass << '\t';
-		cout << attributes.Get("required crew") << '\t';
-		cout << attributes.Get("cargo space") << '\t';
-		cout << attributes.Get("bunks") << '\t';
-		cout << attributes.Get("fuel capacity") << '\t';
+		cout << attributes.Get("shields") << ',';
+		cout << attributes.Get("hull") << ',';
+		cout << mass << ',';
+		cout << attributes.Get("required crew") << ',';
+		cout << attributes.Get("cargo space") << ',';
+		cout << attributes.Get("bunks") << ',';
+		cout << attributes.Get("fuel capacity") << ',';
 
-		cout << ship.BaseAttributes().Get("outfit space") << '\t';
-		cout << ship.BaseAttributes().Get("weapon capacity") << '\t';
-		cout << ship.BaseAttributes().Get("engine capacity") << '\t';
-		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << '\t';
-		cout << 3600. * attributes.Get("thrust") / mass << '\t';
-		cout << 60. * attributes.Get("turn") / mass << '\t';
+		cout << ship.BaseAttributes().Get("outfit space") << ',';
+		cout << ship.BaseAttributes().Get("weapon capacity") << ',';
+		cout << ship.BaseAttributes().Get("engine capacity") << ',';
+		cout << (attributes.Get("drag") ? (60. * attributes.Get("thrust") / attributes.Get("drag")) : 0) << ',';
+		cout << 3600. * attributes.Get("thrust") / mass << ',';
+		cout << 60. * attributes.Get("turn") / mass << ',';
 
 		double energyConsumed = attributes.Get("energy consumption")
 			+ max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
@@ -268,13 +232,13 @@ void PrintData::PrintShipOldTable()
 				energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
 				heatProduced += oit.second * oit.first->FiringHeat() / reload;
 			}
-		cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << '\t';
-		cout << 60. * energyConsumed << '\t';
-		cout << attributes.Get("energy capacity") << '\t';
-		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << '\t';
+		cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
+		cout << 60. * energyConsumed << ',';
+		cout << attributes.Get("energy capacity") << ',';
+		cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
 		cout << 60. * heatProduced << '\t';
 		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << '\t';
+		cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
 
 		int numTurrets = 0;
 		int numGuns = 0;
@@ -285,21 +249,25 @@ void PrintData::PrintShipOldTable()
 			else
 				++numGuns;
 		}
-		cout << numGuns << '\t' << numTurrets << '\n';
-	}
-}
+		cout << numGuns << ',' << numTurrets << ',';
 
+		int numFighters = ship.BaysTotal("Fighter");
+		int numDrones = ship.BaysTotal("Drone");
+		cout << numFighters << ',' << numDrones << ',';
 
-
-void PrintData::Weapons(char *argv[])
-{
-	for(const char *const *it = argv + 3; *it; ++it)
-	{
-		string arg = *it;
-		if(arg == "-d" || arg == "--deterrence")
-			PrintWeaponDeterrences();
-		else
-			PrintWeaponStats();
+		double deterrence = 0.;
+		for(const Hardpoint &hardpoint : ship.Weapons())
+			if(hardpoint.GetOutfit())
+			{
+				const Outfit *weapon = hardpoint.GetOutfit();
+				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
+					continue;
+				double damage = weapon->ShieldDamage() + weapon->HullDamage()
+					+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
+					+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+				deterrence += .12 * damage / weapon->Reload();
+			}
+		cout << deterrence << '\n';
 	}
 }
 
@@ -308,9 +276,11 @@ void PrintData::Weapons(char *argv[])
 void PrintData::PrintWeaponStats()
 {
 	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ','
-		<< "shield/s" << ',' << "hull/s" << ',' << "heatdmg/s" << ',' << "push/s" << ','
-		<< "homing" << ',' << "strength" << ',';
+		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shots/second" << ','
+		<< "shield/s" << ',' << "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ','
+		<< "heat dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "slow dmg/s" << ','
+		<< "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ',' << "leak dmg/s" << ','
+		<< "push/s" << ',' << "homing" << ',' << "strength" << ',' << "deterrence" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-weapons and submunitions.
@@ -331,37 +301,44 @@ void PrintData::PrintWeaponStats()
 		double firingforce = outfit.FiringForce() * 60. / outfit.Reload();
 		cout << firingforce << ',';
 
-		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
-		cout << shield << ',';
-		double hull = outfit.HullDamage() * 60. / outfit.Reload();
-		cout << hull << ',';
-		double heatDmg = outfit.HeatDamage() * 60. / outfit.Reload();
+		double reload = outfit.Reload();
+		cout << 60. / reload << ',';
+
+		double shieldDmg = outfit.ShieldDamage() * 60. / reload;
+		cout << shieldDmg << ',';
+		double dischargeDmg = outfit.DischargeDamage() * 100. * 60. / reload;
+		cout << dischargeDmg << ',';
+		double hullDmg = outfit.HullDamage() * 60. / reload;
+		cout << hullDmg << ',';
+		double corrosionDmg = outfit.CorrosionDamage() * 100. * 60. / reload;
+		cout << corrosionDmg << ',';
+		double heatDmg = outfit.HeatDamage() * 60. / reload;
 		cout << heatDmg << ',';
-		double hitforce = outfit.HitForce() * 60. / outfit.Reload();
+		double energyDmg = outfit.EnergyDamage() * 60. / reload;
+		cout << energyDmg << ',';
+		double ionDmg = outfit.IonDamage() * 100. * 60. / reload;
+		cout << ionDmg << ',';
+		double slowDmg = outfit.SlowingDamage() * 60. / reload;
+		cout << slowDmg << ',';
+		double disruptDmg = outfit.DisruptionDamage() * 60. / reload;
+		cout << disruptDmg << ',';
+		cout << outfit.Piercing();
+		double fuelDmg = outfit.FuelDamage() * 60. / reload;
+		cout << fuelDmg << ',';
+		double leadDmg = outfit.LeakDamage() * 100. * 60. / reload;
+		cout << leadDmg << ',';
+		double hitforce = outfit.HitForce() * 60. / reload;
 		cout << hitforce << ',';
 
 		cout << outfit.Homing() << ',';
 		double strength = outfit.MissileStrength() + outfit.AntiMissile();
-		cout << strength << '\n';
+		cout << strength << ',';
+
+		double damage = shieldDmg + hullDmg;
+		double deterrence = .12 * damage / reload;
+		cout << it.first << ',' << deterrence << '\n';
 	}
 	cout.flush();
-}
-
-
-
-void PrintData::PrintWeaponDeterrences()
-{
-	cout << "name" << ',' << "deterrence" << ',' << "outfit" << ',' << "weapon" << '\n';
-	for(auto &it : GameData::Outfits())
-	{
-		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || it.second.Category().empty())
-			continue;
-		const Outfit &weapon = it.second;
-		double damage = weapon.ShieldDamage() + weapon.HullDamage();
-		double deterrence = .12 * damage / weapon.Reload();
-		cout << it.first << ',' << deterrence << ',' << -weapon.Get("outfit space") << ',' << -weapon.Get("weapon capacity") << '\n';
-	}
 }
 
 

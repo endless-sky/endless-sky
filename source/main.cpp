@@ -105,10 +105,10 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
-		else if(arg == "--printdata")
+		else if(arg == "-s" || arg == "--ships" || arg == "-w" || arg == "--weapons" ||
+				arg == "-o" || arg == "--outffits")
 		{
 			printData = true;
-			break;
 		}
 	}
 	Files::Init(argv);
@@ -411,9 +411,9 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
-	cerr << "    --printdata <args>: prints data about ships or outfits. Use '--printdata -h' for more info." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory" << endl;
+	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;

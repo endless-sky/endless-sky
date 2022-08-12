@@ -17,20 +17,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class PrintData {
 public:
 	static void Print(char *argv[]);
+	static void Help();
 
 
 private:
-	static void Help();
-
 	static void Ships(char *argv[]);
-	static void PrintShipBaseStats();
-	static void PrintShipDeterrences(bool variants = false);
+	static void PrintBaseShipStats();
 	static void PrintShipShipyards();
-	static void PrintShipOldTable();
+	static void PrintLoadedShipStats(bool variants = false);
 
-	static void Weapons(char *argv[]);
 	static void PrintWeaponStats();
-	static void PrintWeaponDeterrences();
 
 	static void PrintEngineStats();
 
