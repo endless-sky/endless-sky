@@ -1167,16 +1167,16 @@ mission "Pirate Troubles [3]"
 				`	"The Unfettered Hai ask that you continue attacking the Hai systems."`
 					goto continue
 			`	The leader grimaces. "I'll cut your tongue out if you don't watch your mouth."`
-			`	You take a step back. "The Unfettered Hai ask that you continue attacking the Hai systems," you say, attempting not to get shanked.`
+			`	You take a step back. "The Unfettered Hai ask that you continue attacking the Hai systems," you say, hoping you don't get shanked.`
 			label continue
 			`	The leader seems surprised. "Well that's what was planned anyway, so what are you here for then?"`
 			choice
-				`	"I am here to propose a deal, the Unfettered want your attacks to increase and are wondering how they could help."`
+				`	"I am here to propose a deal. The Unfettered want your attacks to increase and are wondering how they could help."`
 					goto deal
-				`	"No particular reason; just enjoying the view."`
+				`	"No particular reason. Just enjoying the view."`
 			`	The leader laughs and turns to the crowd, "He's a funny one, boys!" They all laugh in response.`
 			label deal
-			`	"Listen, here's what I want: bring us Hai tech. In exchange we will continue doing what we do, which is annoying the hell out of squirrels!"`
+			`	"Listen, here's what I want: bring us Hai tech. In exchange we'll continue doing what we do, which is annoying the hell out of squirrels!"`
 			choice
 				`	"That seems like a good deal to me. I will escort Hai ships here, pretending that if I do you will stop attacking them."`
 					decline
@@ -1192,7 +1192,7 @@ mission "Pirate Troubles [3]"
 			`	The leader pauses to think for a while, then speak, "So you are telling me not to attack the systems that are the most distant from us? I don't see why there would be a problem with that; we weren't doing it anyway."`
 			label proposition
 			choice
-				`	"I will escort Hai ships here, pretending that if I do you will stop attacking them."`
+				`	"I will escort Hai ships here, pretending that if I'm with them you will stop attacking them."`
 					decline
 				
 	on decline
