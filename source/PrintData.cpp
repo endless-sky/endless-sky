@@ -459,11 +459,11 @@ void PrintData::PrintOutfitsAllStats()
 	for(auto &it : GameData::Outfits())
 	{
 		const Outfit &outfit = it.second;
-		for(const auto attribute : outfit.Attributes())
+		for(const auto &attribute : outfit.Attributes())
 			attributes.insert(attribute.first);
 	}
 	cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
-	for(const auto attribute : attributes)
+	for(const auto &attribute : attributes)
 		cout << ',' << attribute;
 	cout << '\n';
 	for(auto &it : GameData::Outfits())
@@ -471,7 +471,7 @@ void PrintData::PrintOutfitsAllStats()
 		const Outfit &outfit = it.second;
 		cout << outfit.Name() << ',' << outfit.Category() << ','
 			<< outfit.Cost() << ',' << outfit.Mass();
-		for(const auto attribute : attributes)
+		for(const auto &attribute : attributes)
 			cout << ',' << outfit.Attributes().Get(attribute);
 		cout << '\n';
 	}
