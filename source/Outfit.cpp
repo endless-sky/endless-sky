@@ -259,7 +259,7 @@ void Outfit::Load(const DataNode &node)
 			else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
 				jumpOutSounds.erase(Audio::Get(child.Token(1)));
 			else if(key == "description")
-				description = "";
+				description.clear();
 			else if(key == "licenses")
 			{
 				vector<string> toRemove;
