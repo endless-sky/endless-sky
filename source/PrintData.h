@@ -16,12 +16,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // A class containing methods used to print ship and outfit stats to the console.
 class PrintData {
 public:
-	static void Print(char *argv[]);
+	static void Print(const char *const *argv);
 	static void Help();
 
 
 private:
-	static void Ships(char *argv[]);
+	static void Ships(const char *const *argv);
 	static void PrintBaseShipStats();
 	static void PrintShipShipyards();
 	static void PrintLoadedShipStats(bool variants = false);
@@ -32,7 +32,7 @@ private:
 
 	static void PrintPowerStats();
 
-	static void Outfits(char *argv[]);
+	static void Outfits(const char *const *argv);
 	static void PrintOutfitsList();
 	static void PrintOutfitOutfitters();
 	static void PrintOutfitsAllStats();

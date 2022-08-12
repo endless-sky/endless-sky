@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-void PrintData::Print(char *argv[])
+void PrintData::Print(const char *const *argv)
 {
 	const char *const *it = argv + 1;
 	if(!*it)
@@ -60,7 +60,7 @@ void PrintData::Help()
 
 
 
-void PrintData::Ships(char *argv[])
+void PrintData::Ships(const char *const *argv)
 {
 	bool loaded = false;
 	bool variants = false;
@@ -401,7 +401,7 @@ void PrintData::PrintPowerStats()
 
 
 
-void PrintData::Outfits(char *argv[])
+void PrintData::Outfits(const char *const *argv)
 {
 	for(const char *const *it = argv + 3; *it; ++it)
 	{
