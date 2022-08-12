@@ -230,6 +230,8 @@ void Outfit::Load(const DataNode &node)
 				description = "";
 			else if(key == "licenses")
 				licenses.clear();
+			else
+				attributes.erase(key);
 		}
 		else if(child.Token(0) == "remove" && child.Size() >= 3)
 		{
@@ -277,6 +279,18 @@ void Outfit::Load(const DataNode &node)
 						licenses.erase(it);
 				}
 			}
+		}
+		else if(child.Token(0) == "add" && child.Size() >= 3)
+		{
+			string key = child.Token(1);
+			if(key == "cost")
+				cost += child.Value(2);
+			else if(key == "mass")
+				mass += child.Value(2);
+			else if(key == "jump range")
+				attributes[key] = max(0, attributes[key] + child.Value(2));
+			else
+				attributes[key] += child.Value(2);
 		}
 		else if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
