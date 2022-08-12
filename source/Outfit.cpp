@@ -270,7 +270,7 @@ void Outfit::Load(const DataNode &node)
 				// Add any new licenses that were specified as an indented list.
 				for(const DataNode &grand : child)
 					toRemove.push_back(grand.Token(0));
-				for(const string license : toRemove)
+				for(const string &license : toRemove)
 				{
 					const auto it = find(licenses.begin(), licenses.end(), license);
 					if(it != licenses.end())
