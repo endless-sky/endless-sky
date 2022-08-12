@@ -407,12 +407,12 @@ news "hai joining unfettered"
 			`"`
 		word
 			"Apparently our brothers and sisters to the north are in need of help. I may go there someday."
-			"Some very big things are going to happen in Unfettered space, and I wish to be part of them!"
+			"Some very big things are going to happen in Unfettered space, and I wish to be a part of it!"
 			"I have lost everything... I knew I should not have taken that big loan. I will be heading for Unfettered space for a new life now."
 			"The ship carrying my family was attacked by pirates. I guess I may as well be joining the Unfettered now, I have nothing to lose."
 			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the new living conditions."
 			"Have you heard? The art in Unfettered space is ever changing, never dull. I wish I could go there and see it in person."
-			"Art in Unfettered space is very different from here, we could learn a lot from it."
+			"Art in Unfettered space is very different from here. We could learn a lot from it."
 			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed."
 		word
 			`"`
@@ -434,8 +434,8 @@ news "hai joining unfettered"
 			"With the rumors of action soon in the north, the demand in transport here has greatly increased. I cannot possibly fit all of them. Time to buy a new ship, I guess."
 			"Many of those who transport Hai here ask for little - too little. Have you seen the increase in demand? I'm going to raise my price; I can't be transporting people around all day for nothing."
 			"Once I'm done transporting people, I will stay here and be a part of the action."
-			"I've just finished transporting Hai, and now I have to transport others? Maybe you could help us, captain."
-			"Is it just me, or are there less merchants transporting Hai here?"
+			"I've just finished transporting some passengers to Unfettered space, and now I have to transport more? Maybe you could help us, Captain."
+			"Is it just me, or are there fewer merchants transporting Hai here?"
 		word
 			`"`
 

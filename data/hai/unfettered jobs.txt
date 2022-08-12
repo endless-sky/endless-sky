@@ -214,7 +214,7 @@ mission "Proud Unfettered Boarded"
 			`As you board the <origin> you immediately notice something is wrong: the ship is starting to explode! The captain sends you a message.`
 		dialog phrase "unfettered boarded"
 		conversation
-			`It is no bluff... Best get out of here!`
+			`They weren't bluffing. Better get out of here quickly!`
 				flee
 	destination "Darkcloak"
 
@@ -223,11 +223,11 @@ mission "Proud Unfettered Boarded"
 phrase "unfettered mining payment dialog"
 	word
 		`The group of Unfettered unloading the materials you mined seems enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practice, you know, but most find it dull and too easy to fight an enemy that does not shoot or react in any other way," one tells you as it hands over your payment of <payment> credits.`
-		`The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it." One tells you as it hands over your payment of <payment> credits.`
-		`Unfettered unload the materials you mined, without saying anything to you. As they are done, one gives you <payment> credits.`
-		`The leader of the Unfettered unloading the materials comes to you, expressing deeps thanks, "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment> credits.`
-		`You hand over the minerals to the local Unfettered and they hand you <payment> credits.`
-		`As your crew is done unloading the materials, an Unfettered comes to you, looking humble and sincere. "Thank you, captain. We need these materials more than we would like to admit it, and the same goes for all help. If you have time, please consider doing other jobs, such as bringing food, for us." He then gives you <payment> credits.`
+		`The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it," one tells you as it hands over your payment of <payment>.`
+		`Unfettered unload the materials you mined, without saying anything to you. As they are done, one gives you <payment>.`
+		`The leader of the Unfettered unloading the materials comes to you. "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment>.`
+		`You hand over the minerals to the local Unfettered and they hand you <payment>.`
+		`As your crew is done unloading the materials, an Unfettered comes to you, looking humble and sincere. "Thank you, captain. We need these materials more than we would like to admit it, and the same goes for all help. If you have time, please consider doing other jobs, such as bringing food for us." He then gives you <payment>.`
 
 mission "Unfettered Silicon Asteroid Mining"
 	name `Gather silicon`
@@ -265,14 +265,14 @@ mission "Unfettered Silver Asteroid Mining"
 phrase "unfettered medicals payment dialog"
 	word
 		"The local health specialists are relieved that you have managed to bring the needed medical supplies back in time, and give you <payment> credits for it."
-		"You have to wait a bit before being able to unload the medicals to the local hospital. All Unfettered there seem busy. After some time, a local worker gives you your <payment> credits and tells you to drop the cargo at a specific location."
-		`Once you arrive with the medical supplies, you are greeted by a local health specialist who seems to be desperate for them. "Not a moment too soon! If this was any later the consequences would have been dire." He adds, and then hands you <credits> credits.`
+		"You have to wait a bit before being able to unload the medical supplies to the local hospital. All Unfettered there seem busy. After some time, a local worker gives you <payment> and tells you to drop the cargo at a specific location."
+		`Once you arrive with the medical supplies, you are greeted by a local health specialist who seems to be desperate for them. "Not a moment too soon! If this was any later the consequences would have been dire," he says, and then hands you <payment>.`
 
 phrase "unfettered medicals pickup dialog"
 	word
 		`As usual, the Hai are more than happy to give you the medical supplies needed. "Tell our brothers and sisters to stay strong," one says while loading the supplies onto your ship.`
 		`The Hai understand the urgency of the situation, and waste no time in talking. They load the supplies on your ship, and wish you a safe trip.`
-		`There is no recitence to give you the medical supplies, it seems like the Hai are not really in need for them. "We prefer to make sure our brothers are not in need, our needs will come later," one says when he is done loading the supplies on your ship.`
+		`There is no recitence to give you the medical supplies. It seems like the Hai are not really in need for them. "We prefer to make sure our brothers and sisters are not in need. Our needs come later," one says when he is done loading the supplies on your ship.`
 
 mission "Unfettered Small Medicals Rush"
 	name `Express medical supplies to <planet>`
@@ -329,10 +329,10 @@ mission "Unfettered Big Medicals Rush"
 phrase "unfettered challenger defeated"
 	word
 		`You receive a message from the <npc>: "Did you cheat? If I learn you cheated, I will be the end of you, little monkey! Here is the <payment>, but I will want my money back if this was not a fair fight. Otherwise, you may have gained my respect."`
-		`You receive a message from the <npc> : "Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment> credits, captain. Next time I will not underestimate you anymore!"`
-		`You receive a message from the <npc> : "Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment> credits, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
-		`The <npc> hails you : "The fight is over! Stop shooting me or you'll blow holes into my ships! Here are the <payment> credits, let me be, now!"`
-		`The <npc> hails you : "I surrender, <last>. You have indeed lived up to your reputation, I did not stand a chance in this battle. Still, a challenge is a challenge, here are your <payment> credits."`
+		`You receive a message from the <npc>: "Raaaah... Well, you have beaten me fairly, so I'll pay up... Here are the <payment>, captain. Next time I will not underestimate you anymore!"`
+		`You receive a message from the <npc>: "Nicely done! You seem to learn from our encounters well... But next time will be different, I assure you. For now, here are the agreed <payment>, captain. Hopefully it allows you to improve the <ship> before our next battle..."`
+		`The <npc> hails you: "The fight is over! Stop shooting me or you'll blow holes into my ships! Here are the <payment>, let me be now!"`
+		`The <npc> hails you: "I surrender, <last>. You have indeed lived up to your reputation. I did not stand a chance in this battle. Still, a challenge is a challenge. Here are your <payment>."`
 		`You receive an ominous message from the <npc>: "You seem to learn from our encounters well... next time it will be different.`
 
 mission "Unfettered Challenge [0]"
@@ -419,16 +419,16 @@ phrase "jump drive or stopover"
 phrase "unfettered jump drive pickup dialog"
 	word
 		"You manage to land and retrieve the precious cargo without too much trouble. Do not rely on luck too long though - you should depart quickly!"
-		"You find a few pirates in the vault but they are quickly disposed off, and you proceed to pick up the cargo. Do not wait too long, or reinforcements could arrive."
+		"You find a few pirates in the vault but they are quickly disposed of, and you proceed to pick up the cargo. Do not wait too long, or reinforcements could arrive."
 		"It was easy, almost too easy to pick up the jump drives. Better depart before your luck runs out."
-		"You receive a warning from the vault saying intruders came, but cannot find any trace of them. The cargo is swifly transferred, and you should probably get on your way now."
+		"You receive a warning from the vault saying that intruders came, but cannot find any trace of them. The cargo is swiftly transferred into your ship, and you should probably get on your way now."
 		"The vault is secured and you can easily and safely pick up the jump drives."
 
 phrase "unfettered jump drive payment dialog"
 	word
-		"The Unfettered are more than content with paying <payment> credits in exchange for your precious cargo."
-		"The Unfettered are in a rush to get this cargo, hoping to install it on their ships. They give you <payment> credits."
-		"Every time you bring jump drives back, it seems to be a party for the Unfettered. This time is no different, and they almost forget to give you the <payment> credits."
+		"The Unfettered are more than content with paying <payment> in exchange for your precious cargo."
+		"The Unfettered are in a rush to get this cargo, hoping to install it on their ships. They give you <payment>."
+		"Every time you bring jump drives back, it seems to be a cause for celebration for the Unfettered. This time is no different, and they almost forget to give you the <payment>."
 		"After unloading the cargo, you try your luck asking who keeps placing these jump drives, but as usual they refuse giving you any information about it. They still give you <payment> credits."
 
 mission "Get Jump Drives(1)"
