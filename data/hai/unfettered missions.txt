@@ -1084,8 +1084,8 @@ ship "Auxiliary" "Auxiliary (Alpha with JD)"
 	turret 0 83 "Bullfrog Anti-Missile"
 
 outfit "Alpha Pirate Crew"
-	"crew defense" -50
-	"crew attack" -75
+	"crew defense" -100
+	"crew attack" -100
 	"unplunderable" 1
 	description `This ship is mostly manned by pirates and not actual Alphas, though they do lead them.`
 	description `You should not be seeing this.`
@@ -1340,7 +1340,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
-		dialog `While capturing the ship, you noticed that only very few of the crew were actually Alphas. Some seem to be mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
+		dialog `While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of mercenaries. There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Alpha"
 		system "Host"
@@ -1385,7 +1385,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			`	This seems to trouble them deeply. They are split between those who want to use the Korath for technological opportunities, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. Then, finally, one of them speaks up. He had not spoken until now, probably thinking. When he stands, you see many scars on his arms, and can only guess what he went through. He speak calmly, yet firmly, strongly enough to make everyone listen. "We have lost much, so much. Too much... But so have they. And the raids happened long ago. They could not have been responsible for those. They are victims of that war as much as we are. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers." This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
 			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Koraths out of your ship, after stabilizing them as much as could be done.`
 			branch logs
-				has "Unfettered: alpha logs"
+				has "Unfettered: Alphas 3: Bring The Spoils: declined"
 			``
 				decline
 			label logs
@@ -1399,7 +1399,6 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
 				set "Unfettered: jump drive source"
-				clear "Unfettered: alpha logs"
 				payment 200000
 			`	"Those are probably too well-encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
 				decline
@@ -1428,7 +1427,7 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
 			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably go to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems part of it has been replaced by a crude prosthetic. He may not survive the transport.`
-			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship.`
+			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
 			choice
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
@@ -1438,14 +1437,13 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
 					accept
-			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive method of encryption, on top of the more serious encryptions used for sensitive information.`
+			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction? You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
-			action
-				set "Unfettered: alpha logs"
+				decline
 		outfit "Jump Drive" 10
 
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
-		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Taer-Fi. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, obviously hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Taer-Fi. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
 
 
