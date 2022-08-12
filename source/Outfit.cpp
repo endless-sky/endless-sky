@@ -231,7 +231,7 @@ void Outfit::Load(const DataNode &node)
 			else if(key == "licenses")
 				licenses.clear();
 			else
-				attributes.erase(key);
+				attributes[key] = 0.;
 		}
 		else if(child.Token(0) == "remove" && child.Size() >= 3)
 		{
