@@ -288,7 +288,7 @@ void Outfit::Load(const DataNode &node)
 			else if(key == "mass")
 				mass += child.Value(2);
 			else if(key == "jump range")
-				attributes[key] = max(0, attributes[key] + child.Value(2));
+				attributes[key] = max(0., attributes[key] + child.Value(2));
 			else
 				attributes[key] += child.Value(2);
 		}
