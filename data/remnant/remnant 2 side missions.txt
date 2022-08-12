@@ -161,7 +161,7 @@ mission "Remnant: Celebration 1"
 		"day" = 7
 	on offer
 		conversation
-			`You stop by the starport just in time to see a large number of Remnant heading going somewhere together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
+			`You stop by the starport just in time to see a large number of Remnant going somewhere together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
 			`	"Well met, <first>. We were just going to the monthly Celebration of Remembrance. Would you like to accompany us?"`
 			choice
 				`	"Yes, I would."`
@@ -246,8 +246,8 @@ mission "Remnant: Celebration 1"
 			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady, almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
 			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
 			choice
-				`	Stand still and absorb the moment.`
-				`	Look around to see what is happening next.`
+				`	(Stand still and absorb the moment.)`
+				`	(Look around to see what is happening next.)`
 			`	Around you, everyone stands still. Most look exhausted, and some are sitting on the floor or leaning against the wall. A few people look like they have been crying, with those nearby hugging them or touching their shoulder. Most of the people you can see have reverent and joyful expressions. After what feels like several minutes the doors open and people start to leave, and in short order the cave is nearly empty.`
 			label celebrationend
 			`	"I always find these Celebrations of Remembrance to be invigorating. What did you think of it, <first>?"`
