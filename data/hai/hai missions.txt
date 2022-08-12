@@ -1178,7 +1178,7 @@ mission "Pirate Troubles [3]"
 			label deal
 			`	"Listen, here's what I want: bring us Hai tech. In exchange we'll continue doing what we do, which is annoying the hell out of squirrels!"`
 			choice
-				`	"That seems like a good deal to me. I will escort Hai ships here, pretending that if I do you will stop attacking them."`
+				`	"That seems like a good deal to me. I will escort Hai ships here, pretending that if I'm with them you will stop attacking them."`
 					decline
 				`	"Can you promise not to attack the Unfettered?"`
 			`	"Well, pirates don't like to be told where to go or what to do, but I can make an exception for a good deal. Now, how can we tell squirrels apart?"`
