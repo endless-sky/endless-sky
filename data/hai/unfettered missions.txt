@@ -842,8 +842,6 @@ mission "Unfettered: Prove Your Strength 2"
 			`	"If you really must know, that is how the pirates who attacked us are called." He obviously does not wish to elaborate on it any further.`
 				goto leave
 			label "hydra question"
-			`	Then he leaves, after doing what you assume to be a salute to you, his fist risen. You are taken by surprise by the act, and before you have the time to react, he is already leaving. He is probably in a hurry to buy that new ship he told you about.`
-			label "hydra question"
 			choice
 				`	(Let him leave).`
 					goto leave
