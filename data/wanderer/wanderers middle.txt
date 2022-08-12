@@ -3132,7 +3132,7 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are those ships carrying a new type of weapon?"`
 				`	(Say nothing.)`
 					goto end
-			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this scourge. However, we will have them [ready, prepared] if the need does [arise, return]."`
+			`	Tele'ek seems pleased that you noticed. "Indeed. They are more [useful, effective] against hull armor than shields, [perfect, appropriate] for use against the Kor Sestor vessels alongside our [existing, previous] armaments." He pauses before continuing. "[Hopefully, If this goes well], they will not get much use, but will see you [safely, successfully] through this [mission, task] to finally end this [blight, menace]. However, we will have them [ready, prepared] if the need does [arise, return]."`
 			choice
 				`	"Can I get some for my own ship?"`
 					goto buy
