@@ -3298,10 +3298,9 @@ event "wanderers: exiles hostile"
 
 event "wanderers: exiles have drones phase 1"
 	fleet "Korath Home"
-		add variant 3
-			"Tek Far 109"
-			"Far Lek 14" 9
-			"Far Osk 27" 7
+		add variant 2
+			"Far Osk 27" 4
+			"Far Lek 14" 6
 		add variant 3
 			"Met Par Tek 53" 3
 		add variant 2
@@ -3312,6 +3311,60 @@ event "wanderers: exiles have drones phase 1"
 		add variant 2
 			"Model 32" 3
 			"Model 16" 2
+
+event "wanderers: exiles have drones phase 2"
+	fleet "Korath Home"
+		remove variant
+			"Far Osk 27" 4
+			"Far Lek 14" 6
+		add variant 3
+			"Tek Far 109"
+			"Far Lek 14" 9
+			"Far Osk 27" 7
+		add variant 2
+			"Model 128" 2
+		add variant 2
+			"Model 64"
+			"Model 32" 3
+		add variant 3
+			"Model 64" 2
+			"Model 32" 3
+
+event "wanderers: exiles have drones phase 3"
+	fleet "Korath Home"
+		add variant 2
+			"Tek Far 71 - Lek"
+			"Far Lek 14" 6
+		add variant 2
+			"Tek Far 71 - Lek (Close Quarters)"
+			"Far Lek 14" 4
+		add variant 2
+			"Tek Far 78 - Osk (Close Quarters)"
+			"Far Osk 27" 5
+		add variant 2
+			"Tek Far 78 - Osk"
+			"Far Osk 27" 2
+		add variant 2
+			"Model 256"
+		add variant 2
+			"Model 256"
+			"Model 64" 2
+
+event "wanderers: exiles have drones phase 4"
+	fleet "Korath Home"
+		add variant
+			"Kar Ik Vot 349"
+		add variant
+			"Kar Ik Vot 349 (Defense)"
+		add variant
+			"Kar Ik Vot 349 (Offense)"
+		add variant
+			"Kar Ik Vot 349 (Trapper)"
+		add variant
+			"Model 512"
+		add variant 2
+			"Model 512"
+			"Model 256"
 
 event "wanderers: sestor eliminated"
 	system "Celeborim"
@@ -3392,6 +3445,9 @@ mission "Wanderers: Sestor: Final: Patched"
 		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
 		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
 		event "wanderers: exiles have drones phase 1" 20
+		event "wanderers: exiles have drones phase 2" 80
+		event "wanderers: exiles have drones phase 3" 160
+		event "wanderers: exiles have drones phase 4" 250
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
 		event "wanderers: sestor planets unrestricted" 40
@@ -3464,50 +3520,6 @@ event "wanderers taking jobs from kor efreti"
 	system "Solifar"
 		add fleet "Wanderer Kor Efret Traders" 1500
 
-event "wanderers: exiles have drones patch"
-	fleet "Korath Home"
-		remove variant
-			"Tek Far 71 - Lek"
-			"Far Lek 14" 6
-		remove variant
-			"Tek Far 71 - Lek (Close Quarters)"
-			"Far Lek 14" 4
-		remove variant
-			"Tek Far 78 - Osk (Close Quarters)"
-			"Far Osk 27" 5
-		remove variant
-			"Tek Far 78 - Osk"
-			"Far Osk 27" 2
-		remove variant
-			"Kar Ik Vot 349"
-		remove variant
-			"Kar Ik Vot 349 (Defense)"
-		remove variant
-			"Kar Ik Vot 349 (Offense)"
-		remove variant
-			"Kar Ik Vot 349 (Trapper)"
-		remove variant
-			"Model 512"
-		remove variant
-			"Model 512"
-			"Model 256"
-		remove variant
-			"Model 256"
-		remove variant
-			"Model 256"
-			"Model 64" 2
-		remove variant
-			"Model 128" 2
-		remove variant
-			"Model 64"
-			"Model 32" 3
-		remove variant
-			"Model 64" 2
-			"Model 32" 3
-		add variant 2
-			"Model 32" 3
-			"Model 16" 2
-
 mission "Wanderers: Sestor: Moonbeam Patch"
 	landing
 	invisible
@@ -3517,15 +3529,4 @@ mission "Wanderers: Sestor: Moonbeam Patch"
 		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
 		event "wanderers: moonbeam mass production" 7
-		fail
-
-mission "Wanderers: Sestor: Exiles Drone Patch"
-	landing
-	invisible
-	to offer
-		has "event: wanderers: exiles have drones"
-	to fail
-		has "Wanderers: Sestor: Final: Patched: offered"
-	on offer
-		event "wanderers: exiles have drones patch"
 		fail
