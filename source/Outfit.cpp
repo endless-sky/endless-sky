@@ -227,7 +227,7 @@ void Outfit::Load(const DataNode &node)
 			else if(key == "jump out sound")
 				jumpOutSounds.clear();
 			else if(key == "description")
-				description = "";
+				description.clear();
 			else if(key == "licenses")
 				licenses.clear();
 			else
