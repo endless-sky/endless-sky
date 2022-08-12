@@ -58,7 +58,7 @@ outfit "Pulse Turret"
 
 outfit "Tripulse Shredder"
 	category "Guns"
-	cost 130000
+	cost 520000
 	thumbnail "outfit/tripulse shredder"
 	"mass" 42
 	"outfit space" -42
