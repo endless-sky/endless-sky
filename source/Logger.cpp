@@ -26,7 +26,7 @@ namespace {
 
 void Logger::SetLogErrorCallback(function<void(const string &message)> callback)
 {
-	logErrorCallback = callback;
+	logErrorCallback = std::move(callback);
 }
 
 
