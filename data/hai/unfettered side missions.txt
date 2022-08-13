@@ -91,33 +91,29 @@ mission "Unfettered: Untrustable"
 
 mission "Unfettered: Alpha Business"
 	invisible
+	minor
+	repeat
 	landing
-	npc save
+	source "Warfeed"
+	to offer
+		not "Unfettered: Alphas: Find The Auxiliary: offered"
+		not "unfettered: destroyed auxiliary"
+		random < 8
+		not "Unfettered: Alpha Business: active"
+	deadline 2
+	npc kill
 		government "Alpha"
-		personality staying timid entering
-		to spawn
-			or
-				day > 16
-				day < 3
-		to despawn
-			or
-				and
-					day < 16
-					day > 3
-				day > 19
+		# the ship will land, ignoring you, and then launch and promptly leave
+		personality entering uninterested fleeing
 		system "Hi Yahr"
 		ship "Auxiliary (Alpha with supplies)" "Settler"
-		dialog `As you enter the system, you find an Alpha ship, bringing supplies to the Unfettered. The local authorities hail you, "You should not be here. Get out. That ship makes deliveries the 1th, 2th, 17th and 18th of each month, and when it does, you better not interfere with it."`
-	to fail
-		has "Unfettered: Alphas: Find The Auxiliary: offered"
-	on fail
 		conversation
-			branch "normal despawn"
-				has "Unfettered: Alphas: Find The Auxiliary: offered"
-			`You have destroyed the Alpha Auxiliary that was bringing supplies to the Unfettered. They will not forgive you for doing it this way.`
-			label "normal despawn"
-	to complete
-		never
+			`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who shot first, you are now an enemy of the Unfettered."`
+			action
+				set "unfettered: destroyed auxiliary"
+				"reputation: Hai (Unfettered)" <?= -1
+	on enter "Hi Yahr"
+		dialog `As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast. And do not interfere with that incoming ship."`
 
 
 

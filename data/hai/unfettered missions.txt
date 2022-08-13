@@ -1160,9 +1160,36 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-ship "Auxiliary" "Auxiliary (Alpha with supplies)"
+# variants cannot have their fuel defined to a given amount for some reason
+ship "Auxiliary (Alpha with supplies)"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
+	# set fuel to 0 to force it to land, damage it to show it has seen battle
+	"fuel" 0
+	"hull" 5500
+	"shields" 15000
+	attributes
+		category "Utility"
+		licenses
+			"Navy Auxiliary"
+		"cost" 13720000
+		"shields" 17100
+		"hull" 5900
+		"required crew" 87
+		"bunks" 250
+		"mass" 820
+		"drag" 13.3
+		"heat dissipation" .45
+		"fuel capacity" 900
+		"cargo space" 250
+		"outfit space" 720
+		"weapon capacity" 160
+		"engine capacity" 200
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
@@ -1198,6 +1225,23 @@ ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 	turret 0 -21 "Korath Disruptor"
 	turret 0 31 "Korath Slicer Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
+	engine -41. 180.5 0.45
+	engine 41. 180.5 0.45
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 30 30
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
+	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 outfit "Alpha Pirate Crew"
 	"crew defense" -100
@@ -1357,7 +1401,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	source "Darkcloak"
 	destination "Firelode"
 	to offer
-		not "Unfettered: Alpha Business: failed"
+		not "unfettered: destroyed auxiliary"
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 		has "Unfettered: Escort Hai Fleet: done"
 	on offer
