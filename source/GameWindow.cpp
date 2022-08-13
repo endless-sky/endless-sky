@@ -57,6 +57,10 @@ namespace {
 
 // The following two functions are only available for Valve Steam Deck support.
 #ifdef __linux__
+	// Code name Jupiter is the product for the steam deck.
+	const string DECK_VENDOR = "Valve";
+	const string DECK_PRODUCT = "Jupiter";
+
 	// Files::Read does not work because /sys bytes always returns 4096 for file
 	// size and does not match the contents byte size.
 	string ReadLinuxSysFile(const string &path)
@@ -74,10 +78,6 @@ namespace {
 	// Check if steam deck hardware by reading system vendor and product name.
 	bool IsSteamDeck()
 	{
-		// Code name Jupiter is the product for the steam deck.
-		string DECK_VENDOR = "Valve";
-		string DECK_PRODUCT = "Jupiter";
-
 		const string sys_vendor = "/sys/devices/virtual/dmi/id/sys_vendor";
 		const string sys_product = "/sys/devices/virtual/dmi/id/product_name";
 
