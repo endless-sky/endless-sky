@@ -95,18 +95,19 @@ mission "Unfettered: Alpha Business"
 	npc save
 		government "Alpha"
 		personality staying timid entering
-		# this ship is present from the 0 to the third and from the 28th to the 31th of each month
 		to spawn
 			or
-				day > 28
+				day > 16
 				day < 3
 		to despawn
-			and
-				day < 28
-				day > 3
+			or
+				and
+					day < 16
+					day > 3
+				day > 19
 		system "Hi Yahr"
 		ship "Auxiliary (Alpha with supplies)" "Settler"
-		dialog `As you enter the system, you find an Alpha ship, probably bringing supplies to the Unfettered. The local authorities hail you, "You should not be here. Get out."`
+		dialog `As you enter the system, you find an Alpha ship, bringing supplies to the Unfettered. The local authorities hail you, "You should not be here. Get out. That ship makes deliveries the 1th, 2th, 17th and 18th of each month, and when it does, you better not interfere with it."`
 	to fail
 		has "Unfettered: Alphas: Find The Auxiliary: offered"
 	on fail
