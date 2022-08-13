@@ -377,13 +377,9 @@ mission "Unfettered: Pirate Help"
 			label next
 			choice
 				`	"All of this seems a bit vague to me. What exactly are you proposing?"`
-				`	"I'm not interested in doing this."`
-					decline
 			`	"Once you are strong enough, we want you to go to Allhome, which is on the border with the unfettered humans coming from the whormhole. Once there, speak to the local governor, asking him if he has any... issues with unfettered humans. Then you will find those 'pirates', as you call them, and help them instead. A good way would be to convince the Hai to give them a tribute of technology, so they have even less weapons! The border is easy for our Hai friends to defend, however, it will take even more defenders if the unfettered humans are well-equipped with Hai technology."`
 			choice
 				`	"How will I convince the Hai I'm there to help them?"`
-				`	"I'm not interested in doing this."`
-					decline
 			`	"I hear those unfettered humans attack are very frequent these days... And that planet is on the border of Hai space. It is a very likely target for any pirates. I also have information indicating an attack will come, soon. It is easy to arrange this. Help them repel it and they will most probably trust you with the job. But this is not an urgent mission at all, <first>. You may return to your previous occupations if you do not feel strong enough yet."`
 			choice
 				`	"I will go to Allhome and help them repel this attack then, once I am strong enough to repel a pirate fleet."`
@@ -499,7 +495,6 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 				fine 500000
 			`	He doesn't seem too convinced about that, but agrees on the deal. He really seems disappointed about it, and you suspect he may even pay someone else to do it instead of you.`
 				decline
-
 	waypoint "Rajak"
 	on waypoint
 		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship's moved to a nearby system.`
@@ -535,7 +530,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
-		# you may decline this mission but if you agree you need to finish it
+		# you may decline this mission but if you accept it, you need to finish it
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
@@ -667,10 +662,14 @@ mission "Unfettered: The Word Has Spread North: Makerplace"
 			`After leaving your ship, you quickly see which Hai are the ones you are supposed to pick up here, the spaceport seems mostly empty at this time. They complain to you about the time it took for you to arrive, but still agree to come on your ship, provided you agree to give them a small compensation.`
 			choice
 				`	(Give them 10000 and be done with it.)`
-					decline
+					goto payup
 				`	(Refuse to pay. They can find themselves another ship.)`
 			action
 				"unfettered: missing northern hai" ++
+			label payup
+			action
+				payment -10000
+
 
 
 mission "Unfettered: The Word Has Spread South: Icelake"
@@ -727,7 +726,6 @@ mission "Unfettered: Family Hunt From Newhome"
 		conversation
 			`You search all over the spaceport but cannot find any trace of the Hai you are looking for. Looking at the news you learn the Hai family you were sent to recover have been missing for a while. Apparently they have been taken by a pirate who pretended to be a merchant, ready to bring them home. The name of the ship is 'The Harpy', and it probably still is in Hai space. You launch as soon as possible to find it, as rumors say that ship is as fast as light itself.`
 				launch
-
 	npc board
 		government "Bounty (Disguised)"
 		personality coward uninterested
@@ -740,7 +738,6 @@ mission "Unfettered: Family Hunt From Newhome"
 			`You manage to find the Hai family, thankfully no harm has come to them. They do not seem to be in shock but still insist to give you all that they have, <payment>, to thank you. They say that after this event, they're even more looking forward to meeting their cousins, and learning more about them (you assume they refer to the Unfettered.)`
 			`	The mother adds, "Some Hai ships tried to help us, or at least that is what I assumed when feeling the small shocks to the ship, but they were the exception. We will probably be safer in unfettered space, where they don't let pirates roam freely, whether they are disguised as merchants or not."`
 				decline
-
 	on fail
 		conversation
 			`The Unfettered will not be happy about the loss of these young Hai, as they care a lot for their reputation on the Hai side. It will probably be deduced from your payment.`
@@ -800,15 +797,12 @@ mission "Unfettered: Changed Their Mind"
 				`	"I will take you back to <planet> then."`
 					accept
 				`	"What do you mean? How would you help them from there?"`
-				`	"I only came to check on you. You'll have to find someone else for transport, sorry."`
-					decline
 			`	"We will spread the word. Our brethren need us, they need our support, and they need our resources - more food and supplies. We can convince other Hai to send those supplies." Maybe what changed their mind was how few resources would be available to them here. You briefly consider that they could have been sent here by the Hai to gather intel, but that seems highly unlikely.`
 			choice
 				`	"I will take you back to <planet> then."`
 					accept
 				`	"I only came to check on you. You'll have to find someone else for transport, sorry."`
 					decline
-
 	on complete
 		log `Brought a few Hai back to their space. They seemed to have changed their minds about the best way to help the Unfettered.`
 		payment 100000
@@ -894,10 +888,8 @@ mission "Unfettered: Special Cargo"
 					accept
 				`	"This seems too risky for me."`
 					decline
-	
 	on waypoint
 		dialog `It seems that the Degenerate is in this system, but judging from the marks on its hull, it will likely land to make repairs soon. You may be able to get the item without too much risk that way, and bribing them will mean secure landing. Or you could always just board it now and be done with it. You could even sabotage the ship to make your job easier, or take some more valuables with you.`
-	
 	npc board
 		personality staying target
 		to despawn
@@ -912,7 +904,6 @@ mission "Unfettered: Special Cargo"
 		system "Alcyone"
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 5
-	
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
 	on complete
@@ -1310,12 +1301,10 @@ mission "Unfettered: Know Your Enemy"
 	source
 		attributes "unfettered"
 	destination "Warfeed"
-
 	to offer
 		has "language: Wanderer"
 		has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 		not "Unfettered: Speak Hai: active"
-
 	on offer
 		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
 		conversation
@@ -1345,7 +1334,6 @@ mission "Unfettered: Know Your Enemy"
 					accept
 				`	"Well you'll have to wait for him to find the time, I'm not interested in taking this kind of risk."`
 					decline
-
 	waypoint "Chy'chra"
 	waypoint "Pik'ro'iyak"
 	waypoint "Ik'kara'ka"
@@ -1363,7 +1351,6 @@ mission "Unfettered: Know Your Enemy"
 	waypoint "Pug Iyik"
 	on waypoint
 		dialog `You have scouted all of the Wanderer's systems. It's time to come back to <destination> for your reward.`
-
 	on complete
 		payment 1000000
 		conversation
