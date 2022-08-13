@@ -11,6 +11,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "ShipModelLoader.h"
+#include "UniverseObjects.h"
 
 using namespace std;
 
@@ -31,24 +32,26 @@ ShipModel ShipModelLoader::Load(const DataNode &node)
 	
 	if(node.Size() >= 2)
 	{
-		model.SetModelName(node.Token(1));
+		model.modelName = node.Token(1);
 		model.pluralModelName = node.Token(1) + 's';
 	}
 	if(node.Size() >= 3)
 	{
-		ship.base = universe.Ships().Get(ship.ModelName());
-		ship.variantName = node.Token(2);
+		model.base = (universe.ShipModels()).Get(model.modelName);
+		model.variantName = node.Token(2);
 	}
-	
+
 	for(const DataNode &child : node){
 		LoadChild(model, child);
 	}
+
+	return model;
 }
 
-// Savegames typically contain a mix of a ships runtime-data and a ships
-// static data. This function should be used during loading of a savegame,
-// to allow the loader to transfer the loading of static data to the template loader.
-void ShipModelLoader::LoadChild(ShipModel &shipTemplate, const DataNode &child);
+
+
+// Loader for use during savegame loading.
+void ShipModelLoader::LoadChild(ShipModel &shipModel, const DataNode &child)
 {
 }
 

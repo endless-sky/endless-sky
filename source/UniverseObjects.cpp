@@ -486,3 +486,10 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 	lock_guard<mutex> lock(menuBackgroundMutex);
 	menuBackgroundCache.Draw(Information(), panel);
 }
+
+
+
+const Set<ShipModel> &UniverseObjects::ShipModels()
+{
+	return shipModels;
+}

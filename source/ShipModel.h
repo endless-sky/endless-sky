@@ -28,7 +28,7 @@ class DataWriter;
 class ShipModel {
 public:
 	// Get the name of this ship template / model / variant.
-	const std::string &Name() const;
+	const std::string &ModelName() const;
 
 	// Check that this template and all the outfits and other data it depends upon
 	// are correctly loaded.
@@ -36,6 +36,16 @@ public:
 
 	// Save the full model, as currently configured.
 	void Save(DataWriter &out) const;
+
+private:
+	friend class ShipModelLoader;
+
+	std::string modelName;
+	std::string pluralModelName;
+
+	// The base-model, if this model is based on another model.
+	const ShipModel *base = nullptr;
+	std::string variantName;
 };
 
 

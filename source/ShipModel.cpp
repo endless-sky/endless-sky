@@ -18,3 +18,8 @@ using namespace std;
 
 
 
+const string &ShipModel::ModelName() const
+{
+	return modelName;
+}
+

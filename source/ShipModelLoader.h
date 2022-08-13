@@ -37,8 +37,8 @@ public:
 
 	// Savegames typically contain a mix of a ships runtime-data and a ships
 	// static data. This function should be used during loading of a savegame,
-	// to allow the loader to transfer the loading of static data to the template loader.
-	void LoadChild(ShipModel &shipTemplate, const DataNode &child);
+	// to allow the loader to transfer the loading of static data to the model loader.
+	void LoadChild(ShipModel &shipModel, const DataNode &child);
 
 
 private:

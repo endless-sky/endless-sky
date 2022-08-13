@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "ShipModel.h"
 #include "StartConditions.h"
 #include "System.h"
 #include "Test.h"
@@ -79,6 +80,8 @@ public:
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
 
+	// Access to the data contained within this universe.
+	const Set<ShipModel> &ShipModels();
 
 private:
 	void LoadFile(const std::string &path, bool debugMode = false);
@@ -107,6 +110,7 @@ private:
 	Set<Phrase> phrases;
 	Set<Planet> planets;
 	Set<Ship> ships;
+	Set<ShipModel> shipModels;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
