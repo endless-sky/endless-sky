@@ -204,8 +204,9 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 
 
 
-mission "Unfettered: I Shall Go Unpunished"
+mission "Unfettered: Betrayal For The Bars"
 	landing
+	invisible
 	source
 		government "Pirate"
 	to offer
@@ -215,11 +216,16 @@ mission "Unfettered: I Shall Go Unpunished"
 	on offer
 		require "Gold Bars" 5
 		conversation
-			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits.`
+			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
 			choice
 				`(Its nothing. Probably just a rat.)`
-					goto lostbars
 				`(Go investigate.)`
+					goto investigate
+			action
+				outfit "Gold Bars" -5
+			``
+				defer
+			label investigate
 			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
 			choice
 				`(Ask if someone is there.)`
@@ -237,26 +243,24 @@ mission "Unfettered: I Shall Go Unpunished"
 			`As you run, you see a silouette running too. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
 			choice
 				`(Order them to stand down.)`
-				`(Follow them to see where he is going.)`
+				`(Follow them to see where they are going.)`
 					goto follow
 				`(Shoot.)`
 					goto shoot
-			label shout
 			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				defer
 			label follow
-			`You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take him a while. He hasn't noticed you're following him yet.`
+			`You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take them a while. They haven't noticed you're following them yet.`
 			choice
 				`(Wait for the traitor near the exit to stun them.)`
 					goto wait
 				`(Order the crew member to stand down.)`
-					goto shout
 				`(Shoot.)`
+					goto shoot
+			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+				accept
 			label shoot
 			`You hit the crew member in the shoulder and they fall. You go remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking eye in the eye, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
-			action
-				set "unfettered: knows about bars"
-			``
 				decline
 			label hello
 			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter you see a few gold bars have fallen off the pile. That was probably the sound you heard.`
@@ -265,49 +269,48 @@ mission "Unfettered: I Shall Go Unpunished"
 				`(Call for help.)`
 					goto help
 			`You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing, and so are two members of your crew.`
-			label lostbars
-			action
-				outfit "Gold Bars" -5
-				set "unfettered: knows about bars"
-			``
-				decline
+				goto lostbars
 			label wait
 			`You patiently wait for the intruder to arrive and hit them in the back with your pistol. Given it is a member of your crew that betrayed you, you decide not to involve anyone else, as they could be complicit. You first remove the weapon they are carrying. After doing a thorough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this.`
 			choice
 				`(Ignorance is bliss.)`
 				`(I prefer not to stay in the dark. Wake them.)`
 					goto light
+			`You throw a bucket of water on the crew member, waking them up.`
 			label bliss
-			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
-			action
-				set "unfettered: knows about bars"
-			``
-				decline
+			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was it should probably be safely stashed away, or gotten rid off.`
+				accept
 			label light
-			`You throw a bucket of water on the crew member. He then wakes up, and at first refuses to tell you anything, but once you reveal you're aware of their marking, he agrees to reveal something to you. He seems to recognize the hopelessness of his situation, and maybe willing to bargain. "This sign means that I holds my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
-			`You nod, and he then proceeds, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
+			`You throw a bucket of water on the crew member. They then wake up, and at first refuses to tell you anything, but once you reveal you're aware of their marking, they agrees to reveal something to you. They seem to recognize the hopelessness of their situation, and maybe willing to bargain. "This sign means that I holds my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
 			choice
 				`(This is it. I want to know all.)`
 				`(Ignorance is bliss.)`
 					goto bliss
-			`He takes a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
+			`They takes a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
 			choice
 				`(Sell the bars.)`
 				`(Keep the bars, and drop that traitor on the planet.)`
-					goto bliss
+					goto bliss2
 				`(Keep the crew member for further interrogating.)`
 					goto escape
-			`The soon to be gone traitor nods. "This is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be payed the price of brute gold for it."`
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
 				set "unfettered: sold bars"
-				set "unfettered: knows about bars"
-			``
+			`The soon to be gone traitor nods. "This is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be payed the price of brute gold for it."`
+				decline
+			label bliss2
+			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed safely, or maybe you should get rid of them.`
 				decline
 			label escape
 			`You tighten the traitor's hold, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of  your crew. "<first>. I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
-				goto lostbars
+			label lostbars
+			action
+				outfit "Gold Bars" -5
+	# accept is used when you spot the crew member but do not know the link to the bars
+	on accept
+		fail "Unfettered: Betrayal For The Bars"
 
 mission "Unfettered: Bar Selling"
 	invisible
@@ -971,7 +974,7 @@ mission "Unfettered: Special Cargo 1B"
 			label cargo
 			`	There are a lot of exotic things here, most of which are probably not legal at all. You better choose what to take with you, and fast! You also notice the presence of gold bars. There's no way you could carry all of them back with you discreetly, but you can drop them off the ship and then go grab them once you are out, hoping nobody will notice. Looking through a porthole you don't see anyone around at the moment. Conveniently, there is even some sand on the ground there, so the bars should sink in, partially hidden under it.`
 			branch knowsbars
-				has "Unfettered: I Shall Go Unpunished: offered"
+				has "Unfettered: Betrayal For The Bars: declined"
 			`	It may not be what you're looking for, but these bars are probably worth a small fortune, and you reckon you could get away with a few tons of them. They have special markings on them and are probably worth more than the value of the gold alone! You can always take out the pirate lord's ship afterward and claim them as your own, as they are more heavy and take more space than any of the other items which could interest the warlord.`
 				goto fake
 			label knowsbars
