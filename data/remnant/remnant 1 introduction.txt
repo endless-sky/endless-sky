@@ -127,12 +127,14 @@ mission "First Contact: Remnant"
 
 
 
-# Compatibility patch for those who made contact with the Remnant prior to v0.9.15:
-mission "Remnant: Blood Test Patch"
+# Compatibility patch for those who made contact with the Remnant prior to v0.9.15
+# v2 has been added to force those on continuous who already have the patch to get it again so that they get the post-scanning hostility/tolerance hail changes
+mission "Remnant: Blood Test Patch v2"
 	landing
 	invisible
 	to offer
 		has "event: ember waste label"
+		not "Remnant: Scanning Tolerances: done"
 	on offer
 		set "remnant: blood test pure"
 		event "remnant: change hail"
@@ -2432,6 +2434,62 @@ mission "Remnant: Salvage 6"
 			`	"Yes, sometimes salvage that is brought in is dangerous. A Systems Core comes with fleets of micro-bots, for instance. If they aren't de-activated properly, they keep trying to rebuild their surroundings in the form of the last ship they were configured to serve. And while it hasn't happened yet, we are worried that someday we might run into someone who builds traps into their equipment, or uses nanobots that have run amok. We have not seen any of that yet, but our science-fiction stories are filled with tales of nanotech apocalypses and things like that.`
 			label end
 			`	"Well, I need to get back to work. That last battle put us behind schedule on our repairs. Have a good day!" With a final flourish that you think is the equivalent of an exclamation mark, Taely strides out of the outfitters, heading towards another landing bay.`
+
+
+
+mission "Remnant: Scanning Tolerances"
+	name "Deliver Data to <planet>"
+	description `Deliver data crystal to a Remnant named Torza on <destination>.`
+	landing
+	deadline 15
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		not distance 0
+		not attributes "remnant station"
+	to offer
+		has "license: Remnant Capital"
+		not "remnant untrusted"
+		not "Deep: Remnant 3: Revealed: done"
+		"reputation: Remnant" >= 100
+		random < 30
+	on offer
+		conversation
+			`You were just in the process of disembarking from the <ship> when a young Remnant jogs up to you. "Good day, Captain <first>. Sorry to interrupt, but we have an urgent delivery that needs to go to Torza on <destination>. Could you deliver this please?"`
+			choice
+				`	"Yes, I can."`
+					goto agreement
+				`	"What is it?"`
+					goto questioning
+				`	"Sorry, not right now."`
+					defer
+			label questioning
+			`	"A data archive with the latest briefings and analyses. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
+			choice
+				`	"Yes, I can."`
+					goto agreement
+				`	"Sorry, not right now."`
+					defer
+			label agreement
+			`	"Thank you." They hand you the case. "Take it to <destination> by <date>. Torza will meet you there."`
+				accept
+	on complete
+		event "remnant: scanning tolerance"
+		conversation
+			`You step out of the <ship> to see a non-descript Remnant standing attentively next to the landing pad. "Captain <first>! We have been waiting for you." They lead you into a nearby bunker. Inside, a single Remnant is standing over a hologram displaying fortifications and what appear to be troops and ships moving around.`
+			`	"Torza, Captain <first> is here." The Remnant's gestures convey a deep sense of respect.`
+			`	The Remnant steps forward and accepts the case from you. The case pops open, and he slots the crystal into a spot on the display. He nods as the display pops up several confirmations of data integrity. "Well, you have certainly made many ripples since you arrived in our little corner of the galaxy." He gestures and the large display zooms in on a spot to show you walking through a spaceport outfitter. The display shifts to show you helping wounded onto your ship. The scene shifts again to show you launching the small stealth surveillance satellite. Then the table shifts back to the display of troop movements.`
+			`	"You have not been with us too long, but you have shown yourself to be trustworthy and eager to help." He gestures at the display. "As you can see, your actions have not gone unobserved. We have decided to amend your IFF registration as a result. He points to a set of slots next to the table similar to the ones that are installed on your ship. "Please place both your licenses in those slots, and I will confirm your side of the change."`
+			choice
+				`	(Place my licenses in the designated spots.)`
+					goto comply
+				`	"You have been watching me?"`
+			`	"Yes. There is very little that goes on in our worlds that is not observed by someone, and sometimes these events garner more attention than others." He looks at you. "You are one such. As a stranger among us, you were subject to much attention, although you probably did not notice most of it. Some felt it was too risky to trust you as far as we did, but the consensus was that you are worth the trust. Now," he gestures towards the console again, "place your licenses there, please."`
+			label comply
+			`	Once you do as you are told, he inserts several unique objects, which share similarities with your licenses, into slots on his side of the table and taps several controls. "You are not yet one of us, but this brings you one step closer. Your IFF signature has been updated, and our ships' databases will be updated within a day." He removes the licenses and hands yours back to you with a relieved expression. "We are a curious people, and we fully understand the search for knowledge and to learn more about one's surroundings. But we also know how important it is to maintain our secrets.`
+			`	"Going forward, you are now authorized to scan Remnant ships, and we encourage you to do so, although you should wait a day or two for the update to propagate through our fleet." He looks amused by something, but his serious expression returns. "Scanning each other is, after all, a valuable form of security that gives us opportunities to spot infiltrators and unknown contaminants on returning ships. Scans are uploaded to our databases for signature matching via the Quantum Entangled Communicator built into the IFF mechanism onboard your ship, and we will return information such as alien outfit identification and tactical scan readouts whenever possible to help you."`
+			`	He gives a tired sigh. "While I would enjoy answering a few of your questions, I should get back to supervising the operation." He gestures at the display, which has resumed showing the tactical movements of troops. "Thanks again for all your help, <first>."`
 
 
 
