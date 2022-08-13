@@ -25,9 +25,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Includes for steam deck hardware detection.
 #ifdef __linux__
+#include <fstream>
+
 #include <sys/statvfs.h>
 #include <sys/sysinfo.h>
-#include <fstream>
 #endif
 
 using namespace std;
@@ -56,8 +57,8 @@ namespace {
 
 // The following two functions are only available for Valve Steam Deck support.
 #ifdef __linux__
-	//Files::Read does not work because /sys bytes always returns 4096 for file
-	//size and does not match the contents byte size.
+	// Files::Read does not work because /sys bytes always returns 4096 for file
+	// size and does not match the contents byte size.
 	string ReadLinuxSysFile(const string &path)
 	{
 		stringstream strStream;
