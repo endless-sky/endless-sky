@@ -708,12 +708,22 @@ mission "Unfettered: Prove Your Strength"
 			label "too many ships"
 			`	"Nice try, monkey. First you most park some of your ships! I will not be facing of against a huge fleet. One heavy warship is already almost too much. When that is the case, you will see me in orbit."`
 				accept
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	to complete
+		has "Unfettered: Beaten the captain"
+	on complete
+		clear "Unfettered: Beaten the captain"
 
+mission "Unfettered: Prove Your Strength Duel"
+	landing
+	repeat
+	invisible
+	source "Darkcloak"
+	to offer
+		has "Unfettered: Prove Your Strength: active"
+		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 < 12
 	npc save disable
-		to spawn
-			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
-		to despawn
-			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target launching
 		ship "Sari'Sea Scorpion (Pulse)" "Intrepid"
@@ -737,23 +747,10 @@ mission "Unfettered: Prove Your Strength"
 				payment 100000
 				"reputation: Hai (Unfettered)" += 15
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I have transferred a small amount of <payment> to you to repair any damage I may have done to your ship. I will be landing on the surface soon to think about something other than this humiliating defeat I have just suffered. I do not need nor want your assistance in repairing damage, for that is a task best suited for the vanquished."`
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-	to complete
-		has "Unfettered: Beaten the captain"
-	on complete
-		clear "Unfettered: Beaten the captain"
-
-mission "Unfettered: captain not showing"
-	landing
-	source "Darkcloak"
-	to offer
-		has "Unfettered: Prove Your Strength: active"
+	to fail
 		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
-	on offer
-		conversation
-			`The Unfettered captain will only show up if you have a small enough amount of ships, that is not currently the case. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. You cannot have more than a heavy warship or a few lighter ships for this fight.)`
-				defer
+	on fail
+		dialog `The Unfettered captain will only show up if you have a small enough amount of ships, that is not currently the case. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. You cannot have more than a heavy warship or a few lighter ships for this fight.)`
 
 
 
