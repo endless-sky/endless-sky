@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "alignment.hpp"
 #include "DisplayText.h"
-#include "../Point.h"
+#include "Point.h"
 #include "truncate.hpp"
 
 #include <string>

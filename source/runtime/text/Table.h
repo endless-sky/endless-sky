@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ES_TEXT_TABLE_H_
 #define ES_TEXT_TABLE_H_
 
-#include "../Color.h"
+#include "Color.h"
 #include "DisplayText.h"
 #include "layout.hpp"
-#include "../Point.h"
+#include "Point.h"
 
 #include <string>
 #include <vector>

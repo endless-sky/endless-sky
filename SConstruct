@@ -152,12 +152,15 @@ except SConsEnvironmentError:
     pass
 
 # By default, invoking scons will build the backing archive file and then the game binary.
-sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
-exeObjs = [env.Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
+foundationLib = env.StaticLibrary(pathjoin(libDirectory, "endless-foundation"), RecursiveGlob("*.cpp", pathjoin(buildDirectory, "foundation")))
+templatesLib = env.StaticLibrary(pathjoin(libDirectory, "endless-templates"), RecursiveGlob("*.cpp", pathjoin(buildDirectory, "templates")), CPPPATH=["source/foundation"])
+platformLib = env.StaticLibrary(pathjoin(libDirectory, "endless-platform"), RecursiveGlob("*.cpp", pathjoin(buildDirectory, "platform")), CPPPATH=["source/foundation"])
+runtimeLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", pathjoin(buildDirectory, "runtime")), CPPPATH=["source/foundation", "source/templates", "source/platform"])
+exeObjs = [env.Glob(pathjoin(buildDirectory, f)) for f in ("maingame/main.cpp",)]
 if is_windows_host:
-	windows_icon = env.RES(pathjoin(buildDirectory, "WinApp.rc"))
+	windows_icon = env.RES(pathjoin(buildDirectory, "maingame/WinApp.rc"))
 	exeObjs.append(windows_icon)
-sky = env.Program(pathjoin(binDirectory, "endless-sky"), exeObjs + sourceLib)
+sky = env.Program(pathjoin(binDirectory, "endless-sky"), exeObjs + runtimeLib + templatesLib + foundationLib, CPPPATH=["source/foundation", "source/templates", "source/platform", "source/runtime"])
 env.Default(sky)
 
 
@@ -167,7 +170,7 @@ testBuildDirectory = pathjoin("tests", "unit", env["BUILDDIR"])
 env.VariantDir(testBuildDirectory, pathjoin("tests", "unit", "src"), duplicate = 0)
 test = env.Program(
 	target=pathjoin("tests", "unit", "endless-sky-tests"),
-	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
+	source=RecursiveGlob("*.cpp", testBuildDirectory) + runtimeLib,
 	# Add Catch header & additional test includes to the existing search paths.
 	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.

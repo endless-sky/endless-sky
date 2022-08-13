@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 
 #include "alignment.hpp"
-#include "../Color.h"
+#include "Color.h"
 #include "DisplayText.h"
 #include "../ImageBuffer.h"
-#include "../Point.h"
+#include "Point.h"
 #include "../Screen.h"
 #include "truncate.hpp"
 

@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
-#include "../Rectangle.h"
+#include "Rectangle.h"
 
 #include <algorithm>
 
