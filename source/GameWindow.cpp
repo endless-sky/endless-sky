@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <sstream>
 
-// includes for steam deck hardware detection
+// Includes for steam deck hardware detection.
 #ifdef __linux__
 #include <sys/statvfs.h>
 #include <sys/sysinfo.h>
@@ -58,21 +58,22 @@ namespace {
 #ifdef __linux__
 	//Files::Read does not work because /sys bytes always returns 4096 for file
 	//size and does not match the contents byte size.
-	string ReadLinuxSysFile(const string &path) {
+	string ReadLinuxSysFile(const string &path)
+	{
 		stringstream strStream;
 		ifstream ifs(path);
 		strStream << ifs.rdbuf();
 		string result = strStream.str();
 		// trim trailing newline
-		if (!result.empty() && result[result.length()-1] == '\n') {
-			result.erase(result.length()-1);
-		}
+		if(!result.empty() && result.back() == '\n')
+			result.pop_back();
 		return result;
 	}
 
 	// Check if steam deck hardware by reading system vendor and product name.
-	bool IsSteamDeck() {
-		// code name Jupiter is the product for steam deck
+	bool IsSteamDeck()
+	{
+		// Code name Jupiter is the product for the steam deck.
 		string DECK_VENDOR = "Valve";
 		string DECK_PRODUCT = "Jupiter";
 
@@ -150,7 +151,7 @@ bool GameWindow::Init()
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
 #ifdef __linux__
-	// Force fullscreen for steam deck
+	// Force fullscreen for the Steam Deck.
 	if(IsSteamDeck())
 		Preferences::Set("fullscreen", true);
 #endif
