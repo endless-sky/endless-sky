@@ -967,6 +967,91 @@ mission "Unfettered: Jump Drive Retrieval"
 
 
 
+mission "Unfettered: Escort Hai Fleet"
+	landing
+	name `Escort a Hai convoy`
+	description `Escort a Hai convoy from <stopovers> to <destination> before <date>.`
+	source "Warfeed"
+	stopover "Greenbloom"
+	deadline 20
+	to offer
+		has "Unfettered: Solifuge 2: Auxiliary Design: done"
+		has "combat rating" > 100
+		has "reputation: Hai Merchant (Sympathizers)" >= 0
+	on offer
+		conversation
+			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them through Hai space, from <stopovers>."`
+			choice
+				`	"What are you doing here?"`
+				`	"Why do you need my help?"`
+					goto help
+				`	"I'm busy right now, sorry."`
+					goto busy
+			`	"I'm talking with all the warlords to make sure nobody tries something stupid, else innocent Hai may get hurt. Usually the Hai do not get this deep into our territory, even the ones who sympathise with us, and these are not part of that group."`
+				goto busy
+			label help
+			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision."`
+				goto choose
+			label busy
+			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks."`
+			label choose
+			`	"A situation arose: a big sector, far away from the spaceport, has almost entirely collapsed due to a tsunami. Hundreds of casualties are estimated. We need medical teams, and materials to make new buildings, and quick!"`
+			choice
+				`	"Sure, let's do it!"`
+				`	"Sorry, I can't do this one for you, find someone else.`
+					decline
+			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens. If I understand correctly, a small Hai fleet will accompany you too."`
+				accept
+	on enter "Due Yoot"
+		dialog `The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once.`
+	npc accompany save
+		government "Hai Merchant (Sympathizers)"
+		to spawn
+			has "Unfettered: stopped on Greenbloom"
+		personality escort timid launching
+		system "Due Yoot"
+		fleet
+			names "hai"
+			variant
+				"Centipede"
+				"Geocoris"
+				"Water Bug"
+	npc accompany
+		government "Hai Merchant (Sympathizers)"
+		to spawn
+			has "Unfettered: stopped on Greenbloom"
+		personality escort launching
+		system "Due Yoot"
+		fleet "Small Hai"
+	npc evade
+		government "Mercenaries"
+		to spawn
+			has "Unfettered: stopped on Greenbloom"
+		system "Ya Hai"
+		personality disables plunders vindictive
+		fleet "Large Northern Pirates" 3
+		fleet "Small Northern Pirates" 2
+	on complete
+		clear "Unfettered: stopped on Greenbloom"
+		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
+		payment 500000
+		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
+
+mission "Unfettered: Taking Off With Hai Fleet"
+	invisible
+	landing
+	source "Greenbloom"
+	destination "Warfeed"
+	to offer
+		has "Unfettered: Escort Hai Fleet: active"
+	on offer
+		set "Unfettered: stopped on Greenbloom"
+		conversation
+			`You go meet the fleet admiral assigned to this so you can coordinate, and after a while everyone signals they are ready to take off.`
+				flee
+
+
+
 mission "Unfettered: Solifuge 1: Geocoris Design"
 	name `Scan the Geocoris`
 	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Unfettered scanner, then return to <destination> with the scanner logs.`
@@ -1075,7 +1160,7 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-ship "Auxiliary" "Auxiliary (Alpha with JD)"
+ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
 	outfits
@@ -1100,7 +1185,13 @@ ship "Auxiliary" "Auxiliary (Alpha with JD)"
 		"cargo space" 200
 	cargo
 		outfits
-			"Jump Drive" 10
+			"Jump Drive" 5
+		commodities
+			"Military" 150
+			"Electronics" 100
+			"Metal" 50
+			"Heavy Metals" 50
+
 	gun -12 -180 "Hai Tracker Pod"
 	gun 12 -180 "Hai Tracker Pod"
 	turret 0 -72 "Bullfrog Anti-Missile"
@@ -1190,7 +1281,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 		government "Alpha"
 		personality target staying timid entering
 		system "Hi Yahr"
-		ship "Auxiliary (Alpha with JD)" "Settler"
+		ship "Auxiliary (Alpha with supplies)" "Settler"
 
 		conversation
 			`You have finished scanning the Auxiliary. There can be no doubt: it is controlled by Alphas. As you prepare yourself to exit the system and bring the logs back, you receive a message from the local Unfettered authorities.`
@@ -1266,6 +1357,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	source "Darkcloak"
 	destination "Firelode"
 	to offer
+		not "Unfettered: Alpha Business: failed"
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
 		has "Unfettered: Escort Hai Fleet: done"
 	on offer
