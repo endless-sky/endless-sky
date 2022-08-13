@@ -89,13 +89,7 @@ int main(int argc, char *argv[])
 	string testToRunName = "";
 
 	// Ensure that we log errors to the errors.txt file.
-	Logger::SetLogErrorCallback([](const string &errorMessage)
-	{
-		// Log by default to stderr.
-		cerr << errorMessage << endl;
-		// And also log to the errors.txt logfile.
-		Files::LogErrorToFile(errorMessage);
-	});
+	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
 
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
