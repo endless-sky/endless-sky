@@ -4627,11 +4627,13 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 		}
 
 		// weapons out of ammo do not count
-		if((weapon->Ammo() && !OutfitCount(weapon->Ammo())) || !weapon->Range())
+		if((weapon->Ammo() && !other->OutfitCount(weapon->Ammo())) || !weapon->Range())
 			continue;
 		other->minWeaponRange = min(other->minWeaponRange, weapon->Range());
 		other->maxWeaponRange = max(other->maxWeaponRange, weapon->Range());
 	}
+	if(other->maxWeaponRange == 0.)
+		other->minWeaponRange = 0.;
 }
 
 
