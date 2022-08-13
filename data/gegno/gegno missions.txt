@@ -67,40 +67,91 @@ mission "Giaru Gegno: Quarg Contact"
 	on decline
 		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
 
-#mission "First Contact: Gegno"
+
+mission "Gegno Genocide Defense"
 	landing
-	source "Var Oti"
-	on offer
-		conversation
-			"Despite being in hostile alien territory...."
-
-#Recorded Missions
-
-
-mission "Gegno Civilian Rep Tracker"
-	landing
-	invisible
 	repeat
+	invisible
 	to offer
-		"reputation: Gegno" 
-		"Gegno Civilian Rep" 
-		clear "Gegno Civilian Rep Tracker: failed"
-		fail
+		not "Gegno Genocide Defense: active"
+		or
+			"reputation: Gegno" < -100
+			"reputation: Gegno Vi" < -100
+			"reputation: Gegno Scin" < -100
+	on offer
+		"reputation: Gegno" = -100
+		"reputation: Gegno Vi" = -100
+		"reputation: Gegno Scin" = -100
+		event "gegno: unified defense"
 
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant 
+				Gneiss 3
+				Hornfel 4
+				Eclogite 5
+				Feldspar 3
+				Halite 18
+				Felsic 3
+				Coesite 4
+				Tridymite 3
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant
+				Feldspar 2
+				Halite 12
+				Gneiss 4
+				Felsic 4
+				Coesite 3
+				Eclogite 3
+				Tridymite 2
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant
+				Feldspar 4
+				Halite 24
+				Gneiss 2
+				Hornfel 4
+				Tridymite 2
+				Eclogite 3
+				Coesite 6
 
-mission "Gegno Second Chance"
-	landing
-	source
-			attributes "quarg"
-	to offer
-			"reputation: Gegno Civilian"
-mission "Gegno Final Chance"
+event "gegno: unified defense"
+	government "Gegno Vi"
+		attitude toward
+			"Gegno Scin" 1
+	government "Gegno Scin"
+		attitude toward
+			"Gengno Vi" 1
+	government "Gegno"
+		attitude toward
+			"Gegno Scin" 1
+			"Gegno Vi" 1
+	system "Vesvii"
+		remove fleet "Vi Warfleet"
+		remove fleet "Scin Warfleet"
+		add fleet "Gegno Miners" 1000
+	system "Zeinar"
+		add fleet "Scin Warfleet" 600
+	system "Scija"
+		add fleet "Vi Warfleet" 600
+
 		
-
-
-
-
-
 mission "Stationed Vi Augen"
 	invisible
 	landing

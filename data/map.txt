@@ -32261,90 +32261,108 @@ system Aleit
 		period 10
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 20
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 40
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 60
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 80
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 100
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 120
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 140
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 160
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 180
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 200
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 220
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 240
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 260
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 280
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 300
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 320
 	object "Giaru Gegno"
 		sprite planet/ringworld
+			scale 0.5
 		distance 812
 		period 360
 		offset 340
