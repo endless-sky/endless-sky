@@ -24,7 +24,7 @@ namespace {
 
 
 
-void Logger::SetLogErrorCallback(std::function<void(const string &message)> callback)
+void Logger::SetLogErrorCallback(function<void(const string &message)> callback)
 {
 	logErrorCallback = callback;
 }
