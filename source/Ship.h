@@ -592,16 +592,18 @@ private:
 
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;
-	
-	const Effect *effectIonSpark = nullptr;
-	const Effect *effectDisruptionSpark = nullptr;
-	const Effect *effectSlowingSpark = nullptr;
-	const Effect *effectDischargeSpark = nullptr;
-	const Effect *effectCorrosionSpark = nullptr;
-	const Effect *effectLeakageSpark = nullptr;
-	const Effect *effectBurningSpark = nullptr;
-	const Effect *effectSmoke = nullptr;
-	const Effect *effectJumpDrive = nullptr;
+
+	struct StatusEffects {
+		const Effect *ionSpark = nullptr;
+		const Effect *disruptionSpark = nullptr;
+		const Effect *slowingSpark = nullptr;
+		const Effect *dischargeSpark = nullptr;
+		const Effect *corrosionSpark = nullptr;
+		const Effect *leakageSpark = nullptr;
+		const Effect *burningSpark = nullptr;
+		const Effect *smoke = nullptr;
+		const Effect *jumpDrive = nullptr;
+	} statusEffects;
 	
 	// Explosions that happen when the ship is dying:
 	std::map<const Effect *, int> explosionEffects;

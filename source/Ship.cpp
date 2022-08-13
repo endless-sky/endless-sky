@@ -1086,19 +1086,19 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Handle ionization effects, etc.
 	if(ionization)
-		CreateSparks(visuals, effectIonSpark, ionization * .1);
+		CreateSparks(visuals, statusEffects.ionSpark, ionization * .1);
 	if(disruption)
-		CreateSparks(visuals, effectDisruptionSpark, disruption * .1);
+		CreateSparks(visuals, statusEffects.disruptionSpark, disruption * .1);
 	if(slowness)
-		CreateSparks(visuals, effectSlowingSpark, slowness * .1);
+		CreateSparks(visuals, statusEffects.slowingSpark, slowness * .1);
 	if(discharge)
-		CreateSparks(visuals, effectDischargeSpark, discharge * .1);
+		CreateSparks(visuals, statusEffects.dischargeSpark, discharge * .1);
 	if(corrosion)
-		CreateSparks(visuals, effectCorrosionSpark, corrosion * .1);
+		CreateSparks(visuals, statusEffects.corrosionSpark, corrosion * .1);
 	if(leakage)
-		CreateSparks(visuals, effectLeakageSpark, leakage * .1);
+		CreateSparks(visuals, statusEffects.leakageSpark, leakage * .1);
 	if(burning)
-		CreateSparks(visuals, effectBurningSpark, burning * .1);
+		CreateSparks(visuals, statusEffects.burningSpark, burning * .1);
 
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
@@ -1167,7 +1167,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					Point effectPosition = position + radius * angle.Unit();
-					visuals.emplace_back(*effectSmoke, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
+					visuals.emplace_back(*statusEffects.smoke, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 				}
 
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -1256,7 +1256,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
 			const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
 			if(jumpEffects.empty())
-				CreateSparks(visuals, effectJumpDrive, sparkAmount);
+				CreateSparks(visuals, statusEffects.jumpDrive, sparkAmount);
 			else
 			{
 				// Spread the amount of particle effects created among all jump effects.

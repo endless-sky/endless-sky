@@ -373,13 +373,13 @@ void ShipLoader::FinishLoading(Ship &ship, bool isNewInstance) const
 	}
 
 	// Load the default effects for this ship.
-	ship.effectIonSpark = GameData::Effects().Get("ion spark");
-	ship.effectDisruptionSpark = GameData::Effects().Get("disruption spark");
-	ship.effectSlowingSpark = GameData::Effects().Get("slowing spark");
-	ship.effectDischargeSpark = GameData::Effects().Get("discharge spark");
-	ship.effectCorrosionSpark = GameData::Effects().Get("corrosion spark");
-	ship.effectLeakageSpark = GameData::Effects().Get("leakage spark");
-	ship.effectBurningSpark = GameData::Effects().Get("burning spark");
-	ship.effectSmoke = GameData::Effects().Get("smoke");
-	ship.effectJumpDrive = GameData::Effects().Get("jump drive");
+	ship.statusEffects.ionSpark = GameData::Effects().Get("ion spark");
+	ship.statusEffects.disruptionSpark = GameData::Effects().Get("disruption spark");
+	ship.statusEffects.slowingSpark = GameData::Effects().Get("slowing spark");
+	ship.statusEffects.dischargeSpark = GameData::Effects().Get("discharge spark");
+	ship.statusEffects.corrosionSpark = GameData::Effects().Get("corrosion spark");
+	ship.statusEffects.leakageSpark = GameData::Effects().Get("leakage spark");
+	ship.statusEffects.burningSpark = GameData::Effects().Get("burning spark");
+	ship.statusEffects.smoke = GameData::Effects().Get("smoke");
+	ship.statusEffects.jumpDrive = GameData::Effects().Get("jump drive");
 }
