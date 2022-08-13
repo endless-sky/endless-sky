@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	std::function<void(const string &message)> logErrorCallback = nullptr;
+	function<void(const string &message)> logErrorCallback = nullptr;
 	mutex logErrorMutex;
 }
 
