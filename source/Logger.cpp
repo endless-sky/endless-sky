@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Logger.h"
 
-#include <iostream>
 #include <mutex>
 
 using namespace std;
@@ -34,9 +33,7 @@ void Logger::SetLogErrorCallback(function<void(const string &message)> callback)
 void Logger::LogError(const string &message)
 {
 	lock_guard<mutex> lock(logErrorMutex);
-	// Log by default to stderr.
-	cerr << message << endl;
-	// Perform additional logging through callback if any is registered.
+	// Perform logging through callback if any is registered.
 	if(logErrorCallback)
 		logErrorCallback(message);
 }
