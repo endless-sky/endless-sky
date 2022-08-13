@@ -66,7 +66,7 @@ public:
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
 
-	static void LogError(const std::string &message);
+	static void LogErrorToFile(const std::string &message);
 };
 
 
