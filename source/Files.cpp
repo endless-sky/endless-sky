@@ -48,7 +48,6 @@ namespace {
 	string savePath;
 	string testPath;
 
-	mutex errorFileMutex;
 	File errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
@@ -548,7 +547,6 @@ void Files::Write(FILE *file, const string &data)
 
 void Files::LogErrorToFile(const string &message)
 {
-	lock_guard<mutex> lock(errorFileMutex);
 	if(!errorLog)
 	{
 		errorLog = File(config + "errors.txt", true);

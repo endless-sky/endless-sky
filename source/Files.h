@@ -66,6 +66,9 @@ public:
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
 
+	// Logging to the error-log. Actual calls should be done through Logger
+	// and not directly here to ensure that other logging actions also
+	// happen (and to ensure thread safety on the logging).
 	static void LogErrorToFile(const std::string &message);
 };
 
