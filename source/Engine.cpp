@@ -615,7 +615,7 @@ void Engine::Step(bool isActive)
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem ||
-					!target->IsCloakTargetable()))
+					!it->IsCloakTargetable()))
 				continue;
 			// Don't show status for dead ships.
 			if(it->IsDestroyed())
@@ -2024,7 +2024,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& target->IsCloakTargetable())))
+						&& ship->IsCloakTargetable())))
 				{
 					closestHit = 0.;
 					break;
