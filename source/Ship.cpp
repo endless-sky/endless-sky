@@ -1448,7 +1448,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			hull -= cloakingHull;
 			heat += attributes.Get("cloaking heat");
 			double cloakingShieldDelay = attributes.Get("cloaking shield delay");
-			double cloakingHullDelay = attributes.Get("cloaking hull delay");
+			double cloakingHullDelay = attributes.Get("cloaking repair delay");
 			cloakingShieldDelay = (cloakingShieldDelay < 1.) ?
 				(Random::Real() <= cloakingShieldDelay) : cloakingShieldDelay;
 			cloakingHullDelay = (cloakingHullDelay < 1.) ?
@@ -2017,11 +2017,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
-				if(cloak && !attributes.Get("cloaking docking"))
+				if(cloak && !attributes.Get("cloaked boarding"))
 				{
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
-					// not to actually board, if they are cloaked, except if they have "cloaking docking".
+					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
 						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
@@ -2325,7 +2325,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount ||
-			(cloak && !attributes.Get("cloaking deployment"))))
+			(cloak && !attributes.Get("cloaked deployment"))))
 		return;
 
 	for(Bay &bay : bays)
@@ -2589,8 +2589,8 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 				if(cloak)
 				{
-					double cloakingAction = attributes.Get("cloaking action");
-					// Any negative value means this does not take any cloaking action.
+					double cloakingAction = attributes.Get("cloaked action");
+					// Any negative value means this does not take any cloaked action.
 					cloak -= cloakingAction > 0. ? cloakingAction : 0.;
 				}
 			}
@@ -2654,7 +2654,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && (cloak < 1. ||
-		(cloak == 1. && attributes.Get("cloaking targetability"))) && hull >= 0. && hyperspaceCount < 70);
+		(cloak == 1. && attributes.Get("cloak targetability"))) && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -2719,7 +2719,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	const double cloakedAction = attributes.Get("cloaking action");
+	const double cloakedAction = attributes.Get("cloaked action");
 	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
 		((cloak == 1. && !cloakedAction) ||
 		(cloak != 1. && cloak && !cloakDisruption && !cloakedAction)));
@@ -2751,7 +2751,7 @@ double Ship::CloakingSpeed() const
 bool Ship::Phases(Projectile projectile) const
 {
 	bool phases = IsCloaked() && (projectile.Phases(*this) ||
-		attributes.Get("cloaking phasing") >= Random::Real());
+		attributes.Get("cloak phasing") >= Random::Real());
 	if(phases)
 		projectile.SetPhases(*this);
 	return phases;

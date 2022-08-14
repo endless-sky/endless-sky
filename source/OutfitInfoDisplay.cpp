@@ -46,14 +46,11 @@ namespace {
 		{"burn resistance fuel", 0},
 		{"burn resistance heat", 0},
 		{"cloak", 0},
-		{"cloak by mass", 0},
 		{"cloaking energy", 0},
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
 		{"cloaking shield", 0},
-		{"cloaking shield delay", 0},
-		{"cloaking hull delay", 0},
-		{"cloaking action", 0},
+		{"cloaked action", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
 		{"corrosion resistance energy", 0},
@@ -167,6 +164,7 @@ namespace {
 		{"shield heat multiplier", 3},
 		{"threshold percentage", 3},
 		{"overheat damage threshold", 3},
+		{"cloak by mass", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -182,10 +180,14 @@ namespace {
 		{"piercing protection", 4},
 		{"shield protection", 4},
 		{"slowing protection", 4},
+		{"cloak hull protection", 4},
+		{"cloak shield protection", 4},
 
 		{"repair delay", 5},
+		{"cloaking repair delay", 5},
 		{"disabled repair delay", 5},
 		{"shield delay", 5},
+		{"cloaking shield delay", 5},
 		{"depleted shield delay", 5}
 	};
 
@@ -195,7 +197,10 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"atrocity", "This outfit is considered an atrocity."}
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"cloaked communication", "This cloaking device still allows you to make hails when cloaked."},
+		{"cloaked boarding", "This cloaking device allows your ship to board even when cloaked."},
+		{"cloaked deployment", "This cloaking device is efficient enough to allow deploying drones and fighters without revealing your location."}
 	};
 }
 
@@ -318,7 +323,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
+			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts", "cloak by mass", "cloak"
 		};
 		if(SKIP.count(it.first))
 			continue;
@@ -342,6 +347,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		hasNormalAttributes = true;
 	}
+
+	if(outfit.Attributes)
 
 	if(!outfit.IsWeapon())
 		return;

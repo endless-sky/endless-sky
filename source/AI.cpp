@@ -1058,7 +1058,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| helper.GetGovernment() != ship.GetGovernment()
-			|| (helper.IsCloaked() && !helper.Attributes().Get("cloaking communication"))
+			|| (helper.IsCloaked() && !helper.Attributes().Get("cloaked communication"))
 			|| helper.IsDisabled() || helper.IsParalyzed() || helper.IsHyperspacing())
 		return false;
 
@@ -1270,7 +1270,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && ((target->IsCloaked() && !target->Attributes().Get("cloaking targetability"))
+		if(target && ((target->IsCloaked() && !target->Attributes().Get("cloak targetability"))
 				|| target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}

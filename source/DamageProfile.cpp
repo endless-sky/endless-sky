@@ -126,7 +126,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
 			* ScaleType(0., attributes.Get("shield protection") +
-			(ship.IsCloaked() ? attributes.Get("cloaking shield protection") : 0.));
+			(ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
@@ -138,8 +138,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.shieldDamage *= shieldFraction;
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
-		* ScaleType(1., attributes.Get("hull protection") +
-		(ship.IsCloaked() ? attributes.Get("cloaking hull protection") : 0.));
+		* (ScaleType(1., attributes.Get("hull protection") +
+		ship.IsCloaked() ? ScaleType(1., attributes.Get("cloak hull protection")) : 0.));
 	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
 	{
@@ -147,7 +147,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
-			* ScaleType(1., attributes.Get("hull protection"))
+			* (ScaleType(1., attributes.Get("hull protection") +
+			ship.IsCloaked() ? ScaleType(1., attributes.Get("cloak hull protection")) : 0.))
 			* (1. - hullFraction);
 	}
 	damage.energyDamage = (weapon.EnergyDamage()
