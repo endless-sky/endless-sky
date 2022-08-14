@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CollisionSet.h"
 
 #include "Body.h"
-#include "Files.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Point.h"
 #include "Projectile.h"
@@ -69,6 +69,7 @@ void CollisionSet::Clear(int step)
 	added.clear();
 	sorted.clear();
 	counts.clear();
+	all.clear();
 	// The counts vector starts with two sentinel slots that will be used in the
 	// course of performing the radix sort.
 	counts.resize(CELLS * CELLS + 2u, 0u);
@@ -96,6 +97,9 @@ void CollisionSet::Add(Body &body)
 			++counts[gy * CELLS + gx + 2];
 		}
 	}
+
+	// Also save a pointer to this object irrespective of its grid location.
+	all.emplace_back(&body);
 }
 
 
@@ -204,7 +208,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		// Cap projectile velocity to prevent integer overflows.
 		if(!warned)
 		{
-			Files::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			Logger::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
@@ -364,4 +368,11 @@ const vector<Body *> &CollisionSet::Ring(const Point &center, double inner, doub
 		}
 	}
 	return result;
+}
+
+
+
+const vector<Body *> &CollisionSet::All() const
+{
+	return all;
 }

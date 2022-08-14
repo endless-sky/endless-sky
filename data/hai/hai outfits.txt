@@ -343,7 +343,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
+	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and cause their reactors to shut down. When that happens, they install these."
 
 
 outfit "Quantum Keystone"
