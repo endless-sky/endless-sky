@@ -1901,7 +1901,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			}
 		}
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
-				&& !CannotAct();
+				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
 		{
 			thrust = attributes.Get("afterburner thrust");
@@ -2387,7 +2387,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship."
@@ -2447,7 +2447,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan()
 {
-	if(!commands.Has(Command::SCAN) || CannotAct())
+	if(!commands.Has(Command::SCAN) || CannotAct(Ship::ActionType::SCAN))
 		return 0;
 
 	shared_ptr<const Ship> target = GetTargetShip();
@@ -2560,7 +2560,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
 		projectiles.emplace_back(position, explosionWeapon);
 
-	if(CannotAct())
+	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
 	antiMissileRange = 0.;
@@ -2589,9 +2589,9 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 				if(cloak)
 				{
-					double cloakingAction = attributes.Get("cloaked action");
-					// Any negative value means this does not take any cloaked action.
-					cloak -= cloakingAction > 0. ? cloakingAction : 0.;
+					double cloakingFiring = attributes.Get("cloaked firing");
+					// Any negative value means this does not take off any cloak.
+					cloak -= cloakingFiring > 0. ? cloakingFiring : 0.;
 				}
 			}
 		}
@@ -2609,7 +2609,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 {
 	if(projectile.Position().Distance(position) > antiMissileRange)
 		return false;
-	if(CannotAct())
+	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
 	double scale = Energy() * 220.;
@@ -2717,12 +2717,28 @@ bool Ship::CanLand() const
 
 
 
-bool Ship::CannotAct() const
+bool Ship::CannotAct(ActionType actionType) const
 {
-	const double cloakedAction = attributes.Get("cloaked action");
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
-		((cloak == 1. && !cloakedAction) ||
-		(cloak != 1. && cloak && !cloakDisruption && !cloakedAction)));
+	bool canActCloaked = true;
+	if(cloak)
+		switch(actionType) {
+			case ActionType::AFTERBURNER:
+				canActCloaked = attributes.Get("cloaked afterburner");
+			case ActionType::BOARD:
+				canActCloaked = attributes.Get("cloaked boarding");
+			case ActionType::COMMUNICATION:
+				canActCloaked = attributes.Get("cloaked communication");
+			case ActionType::FIRE:
+				canActCloaked = attributes.Get("cloaked firing");
+			case ActionType::PICKUP:
+				canActCloaked = attributes.Get("cloaked pickup");
+			case ActionType::SCAN:
+				canActCloaked = attributes.Get("cloaked scanning");
+		}
+	bool crewIssue = (actionType == ActionType::COMMUNICATION ? pilotError : !crew);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || crewIssue ||
+		((cloak == 1. && !canActCloaked) ||
+		(cloak != 1. && cloak && !cloakDisruption && !canActCloaked)));
 }
 
 

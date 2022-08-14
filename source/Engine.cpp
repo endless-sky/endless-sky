@@ -144,8 +144,7 @@ namespace {
 			return false;
 
 		// Make sure this ship is able to send a hail.
-		if(ship->IsDisabled() || !ship->Crew() || (ship->IsCloaked() &&
-				!ship->Attributes().Get("cloaked communication")) || ship->GetPersonality().IsMute())
+		if(CannotAct(Ship::ActionType::COMMUNICATION) || ship->GetPersonality().IsMute())
 			return false;
 
 		// Ships that don't share a language with the player shouldn't send hails.
@@ -2149,12 +2148,12 @@ void Engine::DoWeather(Weather &weather)
 // Check if any ship collected the given flotsam.
 void Engine::DoCollection(Flotsam &flotsam)
 {
-	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked action" cannot act.
+	// Check if any ship can pick up this flotsam. Cloaked ships without "cloaked pickup" cannot act.
 	Ship *collector = nullptr;
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
+		if(!ship->CannotAct(Ship::ActionType::PICKUP) && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
 			&& ship->Cargo().Free() >= flotsam.UnitSize())
 		{
 			collector = ship;

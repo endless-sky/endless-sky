@@ -50,7 +50,7 @@ namespace {
 		{"cloaking fuel", 0},
 		{"cloaking heat", 0},
 		{"cloaking shield", 0},
-		{"cloaked action", 0},
+		{"cloaked firing", 0},
 		{"cooling", 0},
 		{"cooling energy", 0},
 		{"corrosion resistance energy", 0},
@@ -198,9 +198,12 @@ namespace {
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."},
-		{"cloaked communication", "This cloaking device still allows you to make hails when cloaked."},
-		{"cloaked boarding", "This cloaking device allows your ship to board even when cloaked."},
-		{"cloaked deployment", "This cloaking device is efficient enough to allow deploying drones and fighters without revealing your location."}
+		{"cloaked afterburner", "You may use your afterburner when cloaked"},
+		{"cloaked boarding", "You may board even when cloaked."},
+		{"cloaked communication", "You may make hails when cloaked."},
+		{"cloaked deployment", "You may deploy drones and fighters without revealing your location."},
+		{"cloaked pickup", "You may pickup items with this cloak."},
+		{"cloaked scanning", "You may scan other ships when cloaked."}
 	};
 }
 
@@ -323,7 +326,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(const pair<const char *, double> &it : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
-			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts", "cloak by mass", "cloak"
+			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
 		};
 		if(SKIP.count(it.first))
 			continue;
@@ -347,8 +350,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		hasNormalAttributes = true;
 	}
-
-	if(outfit.Attributes)
 
 	if(!outfit.IsWeapon())
 		return;

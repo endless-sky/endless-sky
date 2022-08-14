@@ -1058,8 +1058,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| helper.GetGovernment() != ship.GetGovernment()
-			|| (helper.IsCloaked() && !helper.Attributes().Get("cloaked communication"))
-			|| helper.IsDisabled() || helper.IsParalyzed() || helper.IsHyperspacing())
+			|| helper.CannotAct(Ship::ActionType::COMMUNICATION) || helper.IsParalyzed())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -2902,7 +2901,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary) const
 {
 	const Personality &person = ship.GetPersonality();
-	if(person.IsPacifist() || ship.CannotAct())
+	if(person.IsPacifist() || ship.CannotAct(Ship::ActionType::FIRE))
 		return;
 
 	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
