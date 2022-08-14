@@ -126,7 +126,7 @@ tip "cloaking phasing"
 	`Weapons cannot affect this ship, and pass right trough.`
 
 tip "cloaking visibility:"
-	`This cloaking device has flaws, and as a result you can still be partially seen by enemies. This number represents the maximum amount of cloaking you can reach; up to 1. It has an effect on optical tracking, making your ship easier to spot by those missiles the more visible you are.`
+	`How visible your ship will be while cloaked. 0 being totally invisible to optical tracking, 1 being as visible as without a cloak.`
 
 tip "cloaking targetability:"
 	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you if it is low enough, but ships will still be able to keep a lock on you anyway.`

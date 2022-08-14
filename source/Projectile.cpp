@@ -376,7 +376,7 @@ void Projectile::CheckLock(const Ship &target)
 	{
 		double weight = target.Mass() * target.Mass();
 		double probability = weapon->OpticalTracking() * weight / (150000. + weight) *
-			(target.IsCloaked() ? (1. - target.Attributes().Get("cloaking visibility")) : 1.);
+			(target.IsCloaked() ?  target.Attributes().Get("cloaking visibility") : 1.);
 		hasLock |= Check(probability, base);
 	}
 
