@@ -2017,11 +2017,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
-				if(cloak && !attributes.Get("cloaking action"))
+				if(cloak && !attributes.Get("cloaking docking"))
 				{
 					// Allow the player to get all the way to the end of the
 					// boarding sequence (including locking on to the ship) but
-					// not to actually board, if they are cloaked, except if they have "cloaking action".
+					// not to actually board, if they are cloaked, except if they have "cloaking docking".
 					if(isYours)
 						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 				}
@@ -2325,7 +2325,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount ||
-			(cloak && !attributes.Get("cloaking action"))))
+			(cloak && !attributes.Get("cloaking deployment"))))
 		return;
 
 	for(Bay &bay : bays)
