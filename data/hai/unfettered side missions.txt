@@ -100,6 +100,7 @@ mission "Unfettered: Alpha Business"
 		not "unfettered: destroyed auxiliary"
 		random < 8
 		not "Unfettered: Alpha Business: active"
+		"reputation: Hai (Unfettered)" >= 0
 	deadline 2
 	npc kill
 		government "Alpha"

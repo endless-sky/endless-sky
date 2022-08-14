@@ -1138,35 +1138,9 @@ mission "Unfettered: Geocoris Arriving"
 
 
 # variants cannot have their fuel defined to a given amount for some reason
-ship "Auxiliary (Alpha with supplies)"
+ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
-	# set fuel to 0 to force it to land, damage it to show it has seen battle
-	"fuel" 0
-	"hull" 5500
-	"shields" 15000
-	attributes
-		category "Utility"
-		licenses
-			"Navy Auxiliary"
-		"cost" 13720000
-		"shields" 17100
-		"hull" 5900
-		"required crew" 87
-		"bunks" 250
-		"mass" 820
-		"drag" 13.3
-		"heat dissipation" .45
-		"fuel capacity" 900
-		"cargo space" 250
-		"outfit space" 720
-		"weapon capacity" 160
-		"engine capacity" 200
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
@@ -1202,23 +1176,6 @@ ship "Auxiliary (Alpha with supplies)"
 	turret 0 -21 "Korath Disruptor"
 	turret 0 31 "Korath Slicer Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
-	engine -41. 180.5 0.45
-	engine 41. 180.5 0.45
-	bay "Fighter" 0 -74
-	bay "Fighter" 0 -17
-	bay "Fighter" 0 32
-	bay "Fighter" 0 83
-	leak "leak" 30 50
-	leak "flame" 30 80
-	leak "big leak" 30 30
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-	description "The Auxiliary is the Republic Navy's logistical backbone. The size and durability of a capital ship but more cargo and passenger space than any other Navy ship, the Auxiliary is used whenever the Navy needs large amounts of troops or cargo transported with a guarantee that they'll reach the destination."
-	description " The Auxiliary was built with modularity in mind, allowing the ship to be fitted for more cargo or bunk space depending on the mission. This modularity makes the ship rather expensive to build, however, and therefore a rare sight to see."
 
 outfit "Alpha Pirate Crew"
 	"crew defense" -100
@@ -2330,8 +2287,8 @@ mission "Unfettered: Start Of The War"
 			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath warship. Those materials are more sturdy than normal Hai ones, which is why this ship is so resilient to hull damage."`
 				goto questions
 			label cloak
-			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys, and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depar it returned, always harassing us. The ghost managed to take on countless of convoys and escorts without issue, using its superior technology and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was not there anymore."`
-			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared, they stopped shooting like usual and acted in distress, making the ghost overconfident. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its escape. The ghost ship disppeared, but it was too late. One of the convoy ships nearby rammed into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the damaged cloaking device remained installed."`
+			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys, and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always harassing us. The ghost managed to take on countless of convoys and escorts without issue, using its superior technology and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was not there anymore."`
+			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared, they stopped shooting like usual and acted in distress, making the ghost overconfident. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its escape. The ghost ship disappeared, but it was too late. One of the convoy ships nearby rammed into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the damaged cloaking device remained installed."`
 			branch "gave cloak"
 				has "Unfettered: Cloaking Interest: done"
 			``
