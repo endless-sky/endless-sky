@@ -18,11 +18,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
-#include "Files.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -143,7 +143,7 @@ namespace {
 	void LogWarning(const string &modelName, const string &name, string &&warning)
 	{
 		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
-		Files::LogError(shipID + std::move(warning));
+		Logger::LogError(shipID + std::move(warning));
 	}
 }
 
@@ -648,7 +648,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
-		Files::LogError(message);
+		Logger::LogError(message);
 	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
@@ -667,7 +667,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->Name() + "\"";
-			Files::LogError(warning);
+			Logger::LogError(warning);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -730,7 +730,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
-		Files::LogError(message + warning + outfitNames.str());
+		Logger::LogError(message + warning + outfitNames.str());
 	}
 
 	// Ships read from a save file may have non-default shields or hull.
@@ -750,12 +750,12 @@ void Ship::FinishLoading(bool isNewInstance)
 			"Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
-			Files::LogError(message + "\" (no current system).");
+			Logger::LogError(message + "\" (no current system).");
 			targetSystem = nullptr;
 		}
 		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
 		{
-			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
 			targetSystem = nullptr;
 		}
 	}

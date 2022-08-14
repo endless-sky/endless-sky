@@ -151,7 +151,7 @@ interface "menu background"
 	sprite "_menu/compass"
 		center 0 0
 	sprite "_menu/title"
-		center 0 -170
+		center 0 -200
 
 
 
