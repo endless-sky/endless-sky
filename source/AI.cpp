@@ -1269,8 +1269,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!target && person.IsVindictive())
 	{
 		target = ship.GetTargetShip();
-		if(target && ((target->IsCloaked() && !target->Attributes().Get("cloak targetability"))
-				|| target->GetSystem() != ship.GetSystem()))
+		if(target && (!target->IsCloakTargetable() || target->GetSystem() != ship.GetSystem()))
 			target.reset();
 	}
 

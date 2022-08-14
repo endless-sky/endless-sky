@@ -224,6 +224,7 @@ public:
 	// Check the status of this ship.
 	bool IsCapturable() const;
 	bool IsTargetable() const;
+	bool IsCloakTargetable() const;
 	bool IsOverheated() const;
 	bool IsParalyzed() const;
 	bool IsDisabled() const;

@@ -117,7 +117,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			for(const auto &it : weapon->Submunitions())
 				for(size_t i = 0; i < it.count; ++i)
 					projectiles.emplace_back(*this, it.offset, it.facing + Projectile::Inaccuracy(it.weapon->Inaccuracy() +
-						(cachedTarget && cachedTarget->IsCloaked() ? (1. - cachedTarget->Attributes().Get("cloak targetability")) * 5.: 0.)), it.weapon);
+						(cachedTarget && cachedTarget->IsCloaked() ?
+						(1. - cachedTarget->Attributes().Get("cloak infrared traceability")) * 5.: 0.)), it.weapon);
 		}
 		MarkForRemoval();
 		return;
@@ -392,7 +393,7 @@ void Projectile::CheckLock(const Ship &target)
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
 		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05) *
-			(target.IsCloaked() ? target.Attributes().Get("cloak targetability") : 1.);
+			(target.IsCloaked() ? target.Attributes().Get("cloak infrared traceability") : 1.);
 		hasLock |= Check(probability, base);
 	}
 
@@ -412,7 +413,7 @@ void Projectile::CheckLock(const Ship &target)
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
 		double probability = weapon->RadarTracking() / (1. + radarJamming) *
-			(target.IsCloaked() ? target.Attributes().Get("cloak radar penetrability") : 1.);
+			(target.IsCloaked() ? target.Attributes().Get("cloak radar traceability") : 1.);
 		hasLock |= Check(probability, base);
 	}
 }

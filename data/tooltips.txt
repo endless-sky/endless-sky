@@ -129,9 +129,12 @@ tip "cloak visibility:"
 	`How visible your ship will be while cloaked. 0 being totally invisible to optical tracking, 1 being as visible as without a cloak.`
 
 tip "cloak targetability:"
-	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you if it is low enough, but ships will still be able to keep a lock on you anyway.`
+	`Ships will still have a chance to keep a lock on you when you are cloaked, 1 being a garanteed lock and 0 is untargetable.`
 
-tip "cloak radar penetrability:"
+tip "cloak infrared traceability:"
+	`This value represents how easy this ship is to track using missiles and other guidance systems, when the cloak is active. All missiles will have a really hard time locking on you if it is low enough.`
+
+tip "cloak radar traceability:"
 	`This cloaking device does not hide you from radars. On top of that, it has an effect on radar trackers. The lower this value is, the easier time tracking you they will have.`
 
 tip "cloaked firing:"

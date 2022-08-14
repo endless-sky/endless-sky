@@ -615,7 +615,7 @@ void Engine::Step(bool isActive)
 		for(const auto &it : ships)
 		{
 			if(!it->GetGovernment() || it->GetSystem() != currentSystem ||
-					(it->IsCloaked() && !it->Attributes().Get("cloak targetability")))
+					!target->IsCloakTargetable()))
 				continue;
 			// Don't show status for dead ships.
 			if(it->IsDestroyed())
@@ -753,8 +753,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && (!target->IsCloaked() ||
-				target->Attributes().Get("cloak targetability")))
+		if(target->GetSystem() == player.GetSystem() && target->IsCloakTargetable()))
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
@@ -2025,7 +2024,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& (!ship->IsCloaked() || ship->Attributes().Get("cloak targetability"))))
+						&& target->IsCloakTargetable())))
 				{
 					closestHit = 0.;
 					break;
@@ -2269,7 +2268,7 @@ void Engine::FillRadar()
 		{
 			// Do not show cloaked ships on the radar, except the player's ships, and those who should show on radar.
 			bool isYours = ship->IsYours();
-			if(ship->IsCloaked() && !isYours && !ship->Attributes().Get("cloak radar penetrability"))
+			if(ship->IsCloaked() && !isYours && !ship->Attributes().Get("cloak radar traceability"))
 				continue;
 
 			// Figure out what radar color should be used for this ship.
