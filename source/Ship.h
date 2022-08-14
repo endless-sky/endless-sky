@@ -461,6 +461,7 @@ private:
 	std::string modelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string hullDisplayName;
 	std::string shipyardDisplayName;
 	std::string noun;
 	std::string description;

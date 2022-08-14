@@ -193,6 +193,8 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
+		if(key == "hull display name" && child.Size() > 1)
+			hullDisplayName = child.Token(1);
 		if(key == "shipyard display name" && child.Size() > 1)
 			shipyardDisplayName = child.Token(1);
 		else if(key == "sprite")
@@ -1019,7 +1021,7 @@ void Ship::SetModelName(const string &model)
 
 const string &Ship::ModelName() const
 {
-	return modelName;
+	return hullDisplayName.empty() ? modelName : hullDisplayName;
 }
 
 
