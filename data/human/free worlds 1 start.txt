@@ -1679,7 +1679,7 @@ mission "FW Pirates: Diplomacy 4"
 			`	"Have they entered our space?" JJ asks.`
 			`	"No, not yet. Not even a single scout," says Alondo.`
 			`	"We should head to <planet> before deciding our next move," says Freya.`
-			`	"About that," says Alondo. "It seems like Tomek is way ahead of us. The news that Tomek is under arrest by the Senate didn't spread quickly enough, and an officer gave him the news about the sensors. He argued that since he hasn't yet been revoked of his position in the Council that he still has the power to command the militia, and he already ordered all available forces to <system>, including recalling our patrols in the eastern Dirt Belt. The officers who were detaining him reluctantly agreed given the situation and released him."`W
+			`	"About that," says Alondo. "It seems like Tomek is way ahead of us. The news that Tomek is under arrest by the Senate didn't spread quickly enough, and an officer gave him the news about the sensors. He argued that since he hasn't yet been revoked of his position in the Council that he still has the power to command the militia, and he already ordered all available forces to <system>, including recalling our patrols in the eastern Dirt Belt. The officers who were detaining him reluctantly agreed given the situation and released him."`
 			`	"What?" Freya says with disbelief. "Tomek is in no position to be giving orders! Let everyone know that he is not to be obeyed!"`
 			`	"No," JJ says. "At least not yet. If the Navy is about to attack then we need everyone we can get. We'll resolve this matter once we have the time. And for now, Tomek is still a part of the Council. But if you won't listen to his orders, then I imagine you'll listen to mine, and I agree with Tomek, at least in this instance. Do what he says. Move our forces to <system> and recall any patrols."`
 			`	Freya doesn't argue with JJ. "We should get going," says Alondo. "The Terebinth has room for all of us. I'm sure Tomek will find his own way to <planet>."`
@@ -1789,7 +1789,7 @@ mission "FW Early Warning 1"
 mission "FW Early Warning 2"
 	landing
 	name "Seeking Harmony"
-	description "<planet> has become an unoffocial ceasefire zone for the Navy and Free Worlds patrols in the eastern Dirt Belt. Bring JJ there to attempt to negoatiate with the Navy to prevent an attack."
+	description "<planet> has become an unoffocial ceasefire zone for the Navy and Free Worlds patrols in the eastern Dirt Belt. Bring JJ there to attempt to negotiate with the Navy to prevent an attack."
 	source "Deep"
 	destination "Harmony"
 	passengers 1
@@ -1807,7 +1807,7 @@ mission "FW Early Warning 2"
 				`	"The Navy gave me some difficulty, but I was able to pull through."`
 			`	You recall the strength of the Navy fleets to Tomek and JJ, mentioning the small fleets in Wei as well as the larger fleets in Alioth, Alphecca, and Seginus. "I also spotted a few Protectors in Navy colors," you add. "They were a part of the Navy fleets."`
 			`	"I thought we had an agreement that the Syndicate would not act as mercenaries for the Republic," JJ says.`
-			`	"They never said anything about selling supplies to the Republic," says Tomek. "They're doing the same for us, afterall."`
+			`	"They never said anything about selling supplies to the Republic," says Tomek. "They're doing the same for us, after all."`
 			choice
 				`	"What's our next move?"`
 				`	"Have we learned anything from the patrols?"`
@@ -1883,7 +1883,7 @@ mission "FW Early Warning 3"
 			`	"I am afraid so, Soleau. The Republic does not wish to lower itself to negotiating with terrorists. As such, I am ordering the arrest of you and every captain and crew member of the so-called 'Free Worlds' here for acts of terrorism and treason against the Republic."`
 			`	Some of the militia watching begin to reach for their weapons or move away as some Navy soldiers step forward, but JJ raises his hand to motion them to stop. The militia notice and hold their ground, as do the Navy soldiers. "Where is the Navy honor that we've all heard so much about?" JJ shouts loud enough for everyone watching to hear. "We come here with open arms asking for peace talks and you move to arrest us?" You hear jeers coming from some of the civilians watching.`
 			`	Hines turns up his nose. "This is undoubtedly Republic territory you're standing on, Soleau, and therefore we have every right to arrest you."`
-			`	"I think your men disagree," JJ remarks. All of the Navy personnel have either remained in or returned to formation. "Remeber that I myself was a part of the Navy once. A Navy that each and every one of your honored men surely remember, either because they lived it or because they grew up revering it. But a Navy that I left because of those like you. I'm sorry to disappoint you, but if we can't negotate peace talks then we'll be leaving. I pray that you'll be wise enough to see the error in your ways and let us go." JJ stands up and begins walking off, leaving Hines to sulk in his chair.`
+			`	"I think your men disagree," JJ remarks. All of the Navy personnel have either remained in or returned to formation. "Remember that I myself was a part of the Navy once. A Navy that each and every one of your honored men surely remember, either because they lived it or because they grew up revering it. But a Navy that I left because of those like you. I'm sorry to disappoint you, but if we can't negotiate peace talks then we'll be leaving. I pray that you'll be wise enough to see the error in your ways and let us go." JJ stands up and begins walking off, leaving Hines to sulk in his chair.`
 			`	"Your days are numbered, Soleau," Hines shouts, but he remains in his chair and gives no orders to his soldiers.`
 			`	The Navy allows you to leave unmolested as you enter your ship with JJ. "Launch your ship immediately and return to <planet>," he says. "The only thing that rivals honor among the Navy is duty, and I don't want to be around with Hines starts whipping his men into his shape."`
 				launch
@@ -1925,9 +1925,9 @@ mission "FW Early Warning 3"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighters"
+			fighters "republic fighter"
 			variant
-				"Protector (Quad Blaster Turret)"
+				"Protector (Quad Blaster)"
 				"Frigate" 2
 	npc evade
 		government "Republic"
@@ -1935,7 +1935,7 @@ mission "FW Early Warning 3"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighters"
+			fighters "republic fighter"
 			variant
 				"Cruiser"
 				"Gunboat"
