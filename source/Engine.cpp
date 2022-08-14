@@ -144,7 +144,7 @@ namespace {
 			return false;
 
 		// Make sure this ship is able to send a hail.
-		if(CannotAct(Ship::ActionType::COMMUNICATION) || ship->GetPersonality().IsMute())
+		if(ship->CannotAct(Ship::ActionType::COMMUNICATION) || ship->GetPersonality().IsMute())
 			return false;
 
 		// Ships that don't share a language with the player shouldn't send hails.
