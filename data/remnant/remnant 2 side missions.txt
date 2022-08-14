@@ -161,7 +161,7 @@ mission "Remnant: Celebration 1"
 		"day" = 7
 	on offer
 		conversation
-			`You stop by the starport just in time to see a large number of Remnant going somewhere together. A few of them notice you and gesture an invitation to accompany them, but before you can react Taely appears from the stream of people and approaches you.`
+			`You stop by the starport just in time to see a large number of Remnant going somewhere together. A few of them notice you and gesture an invitation to accompany them, but, before you can react, Taely appears from the stream of people and approaches you.`
 			`	"Well met, <first>. We were just going to the monthly Celebration of Remembrance. Would you like to accompany us?"`
 			choice
 				`	"Yes, I would."`
@@ -184,7 +184,7 @@ mission "Remnant: Celebration 1"
 				`	"No, that is alright. I will just experience it."`
 				`	"Yes, that would be appreciated."`
 					goto celebrationannotated
-			`	The flow of people you are a part of joins with other streams of people, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
+			`	The flow of people you are a part of joins with other streams, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough, natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
 			`	Suddenly you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
@@ -199,7 +199,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and have begun to move around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving around in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
@@ -284,7 +284,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 				`	"You said 'virtually.' Who is omitted?"`
-			`	Taely scowls a bit at this. "Only those of guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
+			`	Taely scowls a bit at this. "Only those guilty of the most serious crimes cannot stand as a lead." She pauses, and continues with an amused tone. "Even children take the lead now and then, usually with a parent or sibling to guide them." She smiles at that, then gestures for you to continue asking your questions.`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -326,7 +326,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label celebrationrequest
-			`	Taely strides over to a console near the door and retrieves a crystal from a compartment within the console. She slips it into a case and turns to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present can experience it too. This recording is destined for those working on Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
+			`	Taely strides over to a console near the door and retrieves a crystal from a compartment within the console. She slips it into a case and turns to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present can experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
 			action set "Remnant: Attended Celebration of Remembrance with Taely"
 			choice
 				`	"Yes."`
@@ -338,4 +338,4 @@ mission "Remnant: Celebration 1"
 		payment 50000
 		conversation
 			`When you arrive on Postverta there is a small group of Remnant waiting at the landing bay for you. As they accept the crystal from you one gestures, "Thank you for bringing this to me, Captain <first>. Being able to join in the Remembrance will help me to remember and celebrate those who have gone on before." They head off into the depths of the station, leaving you in the bay.`
-			`	Taely never mentioned anything about compensation, but as soon as the Remnant left your commlink notifies you that you have been assigned <payment>.`
+			`	Taely never mentioned anything about compensation, but as soon as the Remnant leave, your commlink notifies you that you have been assigned <payment>.`
