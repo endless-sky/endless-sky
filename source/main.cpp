@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameWindow.h"
 #include "GameLoadingPanel.h"
 #include "Hardpoint.h"
+#include "Logger.h"
 #include "MenuPanel.h"
 #include "Outfit.h"
 #include "Panel.h"
@@ -87,6 +88,9 @@ int main(int argc, char *argv[])
 	bool printWeapons = false;
 	string testToRunName = "";
 
+	// Ensure that we log errors to the errors.txt file.
+	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
+
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -129,7 +133,7 @@ int main(int argc, char *argv[])
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
-			Files::LogError("Test \"" + testToRunName + "\" not found.");
+			Logger::LogError("Test \"" + testToRunName + "\" not found.");
 			return 1;
 		}
 
