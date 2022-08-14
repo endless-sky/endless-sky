@@ -382,6 +382,11 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+	// On Linux SDL doesn't generate a window size change event in certain cases,
+	// so we force adjust the viewport to guarantee that the viewport is the correct
+	// size.
+	AdjustViewport();
 }
 
 
