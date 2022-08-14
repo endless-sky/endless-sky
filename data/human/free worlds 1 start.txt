@@ -1479,7 +1479,7 @@ event "battle for Greenrock"
 
 mission "FW Pirates: Attack 3"
 	name "Early Warning"
-	description "Travel to <destination> to defend against the Navy assault. Any punishment for the invasion of Greenrock will come later."
+	description "The early warning systems you installed on Hope have detected a heightened Navy presence. Travel to <destination> to defend against the potential Navy assault. Any punishment for the invasion of Greenrock will come later."
 	source "Greenrock"
 	destination "Deep"
 	to offer
@@ -1520,6 +1520,22 @@ mission "FW Pirates: Attack 3"
 			`	With that, JJ leaves the tent, hurrying off to a ship. Alondo too leaves without a word. As Freya begins to leave, she turns back to you and Tomek. "I'm very disappointed in you. Both of you." She exits the tent, leaving you and Tomek alone.`
 			`	"You should get going," Tomek says solemnly. "And don't get yourself killed in this battle just because of this little mess here. As disappointed as they might be, you still have a part to play. The Free Worlds still needs you. I can feel it." He pauses for a moment before saying, "See you on <planet>," and leaving.`
 				accept
+	
+	on enter
+		dialog `When you launch, you receive a message from the <npc>, Alondo's transport. "Greetings, Captain <last>. This is the captain of the <npc>. I have the Council in tow. I know that Greenrock has been suppressed, but I wouldn't be surprised if there are pirates looking for revenge. Care to watch my back on our way to <planet>? Thanks."`
+	
+	npc accompany save
+		government "Free Worlds"
+		personality timid escort
+		ship "Falcon" "F.S. Terebinth"
+	npc
+		government "Pirate"
+		personality vindictive
+		system "Sargas"
+		fleet "Large Southern Pirates" 2
+	
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 
@@ -1633,7 +1649,7 @@ mission "FW Pirates: Diplomacy 3"
 mission "FW Pirates: Diplomacy 4"
 	landing
 	name "Early Warning"
-	description "Travel to <destination> to defend against the Navy assault."
+	description "The early warning systems you installed on Hope have detected a heightened Navy presence. Travel to <destination> to defend against the potential Navy assault. Any punishment for the invasion of Greenrock will come later."
 	source "Longjump"
 	destination "Deep"
 	to offer
@@ -1663,19 +1679,32 @@ mission "FW Pirates: Diplomacy 4"
 			`	"Have they entered our space?" JJ asks.`
 			`	"No, not yet. Not even a single scout," says Alondo.`
 			`	"We should head to <planet> before deciding our next move," says Freya.`
-			`	"About that," says Alondo. "It seems like Tomek is way ahead of us. The news that Tomek is under arrest by the Senate didn't spread quickly enough, and an officer gave him the news about the sensors. He argued that since he hasn't yet been revoked of his position in the Council that he still has the power to command the militia, and he already ordered all available forces to <system>, including recalling our patrols in the eastern Dirt Belt. The officers who were detaining him reluctantly agreed given the situation and released him."`
+			`	"About that," says Alondo. "It seems like Tomek is way ahead of us. The news that Tomek is under arrest by the Senate didn't spread quickly enough, and an officer gave him the news about the sensors. He argued that since he hasn't yet been revoked of his position in the Council that he still has the power to command the militia, and he already ordered all available forces to <system>, including recalling our patrols in the eastern Dirt Belt. The officers who were detaining him reluctantly agreed given the situation and released him."`W
 			`	"What?" Freya says with disbelief. "Tomek is in no position to be giving orders! Let everyone know that he is not to be obeyed!"`
 			`	"No," JJ says. "At least not yet. If the Navy is about to attack then we need everyone we can get. We'll resolve this matter once we have the time. And for now, Tomek is still a part of the Council. But if you won't listen to his orders, then I imagine you'll listen to mine, and I agree with Tomek, at least in this instance. Do what he says. Move our forces to <system> and recall any patrols."`
-			`	Freya doesn't argue with JJ. "We should get going," says Alondo. The members of the Council all rush off your ship to find transport to <destination>, leaving you to prepare for the coming battle.`
+			`	Freya doesn't argue with JJ. "We should get going," says Alondo. "The Terebinth has room for all of us. I'm sure Tomek will find his own way to <planet>."`
 				accept
+	
+	npc accompany save
+		government "Free Worlds"
+		personality timid escort
+		ship "Falcon" "F.S. Terebinth"
+	
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
 
 
 
 mission "FW Early Warning 1"
 	landing
-	name ""
-	description ""
+	name "Early Warning"
+	description "The Navy looks as though they're preparing for an attack. Scout the <waypoints> systems just north of Free Worlds space to determine the strength of the Navy there."
 	source "Deep"
+	waypoint "Alioth"
+	waypoint "Alnasl"
+	waypoint "Alphecca"
+	waypoint "Seginus"
+	waypoint "Wei"
 	to offer
 		or
 			has "FW Pirates: Attack 3: done"
@@ -1685,12 +1714,361 @@ mission "FW Early Warning 1"
 	
 	on offer
 		conversation
-			`New mission arc.`
+			branch greenrock
+				has "FW Pirates: Attack 3: done"
+			`When you arrive at the quartermaster's building in the spaceport where the militia are gathering, you find that the rest of the Council has already found Tomek and are arguing with him in front of a silent crowd of militia officers who look as though they're watching their parents fighting.`
+			`	"Do you not realize how weak of a position this puts us into?" Alondo says to Tomek. "If we want to keep Greenrock then it will be a perpetual resource drain that we cannot afford right now."`
+			`	"You're not seeing the bigger picture," Tomek responds. "Yes, we will need to spend resources keeping Greenrock under control, but we're already spending copious amounts of resources defending our planets, systems, and freighters from pirates as is. If we have Greenrock under our control and the other pirate worlds become afraid to act against us then that is one concentrated place that we need to focus on as opposed to being spread thin across our territory. In the end I imagine this will be a net positive for us."`
+			`	"That is yet to be seen," says Freya, "but right now we're in the red. Do you know how much we're going to need to spend on repairs as a result of this stunt of yours, not only in credits but in man-hours? A massive amount of our fleet is out of commission because of this. If the Navy attacked now we'd be practically defenseless."`
+			`	Tomek pauses for a moment, allowing JJ to step in. "We can discuss the consequences of Tomek's actions later. For now we need to focus on the situation at hand."`
+				goto report
+			
+			label greenrock
+			`You arrive at the quartermaster's building in the spaceport where the militia are gathering. The Council are standing outside, along with a silent crowd of militia officers who look as though they've just watched their parents fighting.`
+			
+			label report
+			`	"Let's get inside," Tomek says, motioning for a number of militia officers to follow. As they file in, he also motions to you.`
+			`	On the inside there is a large table with a map of the region at its center, much nicer than Tomek's map that he was using on Longjump. "Officer Sullivan, please give us a sitrep on the situation," JJ says.`
+			`	"Yes, sir. As the quartermaster of Deep, I have been monitoring the results of the early warning sensors installed on Hope by Captain <last>. For months now we would receive only the occasional ping of Navy ships entering the system, presumably scout fleets or fleets passing through the system from the western Dirt Belt to the east.`
+			`	"But starting within the past week, the number of Navy ships passing through the system began to rapidly increase. We went from seeing a fleet every few days to multiple per day, and those fleets that did enter often lingered for a longer amount of time for an unknown reason."`
+			branch sensors
+				has "fw caught navy planting sensors"
+			`	"Whatever we're capable of, they're capable of and then some," says JJ. "I wouldn't be surprised if they know about our sensors and are trying to use them against us."`
+			`	JJ suspects that they know about the sensors. "Whatever we're capable of, they're capable of and then some. I wouldn't be surprised if they know about our sensors and are trying to use them against us."`
+				goto next
+			
+			label sensors
+			`	"Captain <last> discovered a Navy Gunboat planting sensors of their own onto Hope when we installed ours," JJ says. "Surely they suspect that we have some as well."`
+			label next
+			`	"They're trying to bait us," Tomek says. "Or they're distracting us."`
+			`	"Distracting us from what?" Alondo asks.`
+			`	Tomek things for a moment. "Have any of the eastern patrols returned yet?"`
+			`	"None," says an officer. "Most of our patrols have been sticking close to Tarazed to stay out of reach of the Navy. It'll take a few more days for them to begin arriving."`
+			`	"We could sure use those ships that were lost attacking Greenrock," Freya snips.`
+			`	Tomek ignores her. "Alright, Captain <last>, I want you to scout <waypoints>. Simply enter the systems, look at what forces the Navy has there, then leave as soon as possible. We need to know what we're up against, if the Navy truly are moving to attack from Wei. If it turns out this is a distraction, hopefully we'll have intel from the returning patrol fleets by then."`
 				accept
+	
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Wei"
+		fleet "Small Republic" 2
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Seginus"
+		fleet "Large Republic"
+		fleet "Small Republic"
+		fleet
+			names "republic capital"
+			variant
+				"Protector (Quad Blaster)"
+				"Protector"
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alphecca"
+		fleet "Large Republic" 2
+		fleet "Small Republic" 2
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alioth"
+		fleet "Large Republic"
+		fleet "Small Republic" 2
+		fleet
+			names "republic capital"
+			variant
+				"Protector (Quad Blaster)"
+	
+	on visit
+		dialog phrase "generic waypoint on visit"
+
+
+
+mission "FW Early Warning 2"
+	landing
+	name "Seeking Harmony"
+	description "<planet> has become an unoffocial ceasefire zone for the Navy and Free Worlds patrols in the eastern Dirt Belt. Bring JJ there to attempt to negoatiate with the Navy to prevent an attack."
+	source "Deep"
+	destination "Harmony"
+	passengers 1
+	blocked `JJ contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
+	to offer
+		has "FW Early Warning 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	on offer
+		conversation
+			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off world in case the Navy retakes Kornephoros.`
+			`	"Welcome back, Captain," says Tomek. "I pray that your scouting mission went well."`
+			choice
+				`	"Yes. The Navy didn't give me too much trouble passing through their systems."`
+				`	"The Navy gave me some difficulty, but I was able to pull through."`
+			`	You recall the strength of the Navy fleets to Tomek and JJ, mentioning the small fleets in Wei as well as the larger fleets in Alioth, Alphecca, and Seginus. "I also spotted a few Protectors in Navy colors," you add. "They were a part of the Navy fleets."`
+			`	"I thought we had an agreement that the Syndicate would not act as mercenaries for the Republic," JJ says.`
+			`	"They never said anything about selling supplies to the Republic," says Tomek. "They're doing the same for us, afterall."`
+			choice
+				`	"What's our next move?"`
+				`	"Have we learned anything from the patrols?"`
+			`	"The patrols tell us that the Navy presence to the east dropped recently," says Tomek. "Most of them are still there, but it was a big enough drop for our patrols to notice."`
+			`	"Apparently the Navy patrols and militia patrols in the eastern Dirt Belt are on friendly terms," says JJ. "No information sharing, of course, but they're not shooting at one another. Neither side has found it advantageous to attack the other; Navy patrols outgun ours and so our patrols don't provoke them, but if the Navy patrols drew our attention then they'd be easily cut off. Given that, we've been able to keep accurate head counts of each other in the east."`
+			`	"Which means they'll have noticed our own drop in presence there," says Tomek. "They know that we know that they're making moves to our north. Hopefully baiting us into recalling our patrols wasn't a part of their plan."`
+			`	"Well if our patrols are already friendly, perhaps we can talk ourselves out of another battle," says JJ.`
+			`	"<planet> has become something of a neutral zone," one of the militia officers jumps in, presumably one from the eastern patrols. "Navy and militia patrols pass each other by in the spaceport without incident. People from the Republic and Free Worlds who know each other meet there often. We could arrange a meeting there."`
+			`	"I'll travel there to speak with the Navy. Captain <last> shall be my transport," says JJ. "Tomek shall remain here with the fleet." Tomek nods in agreement. "Meeting dismissed."`
+			`	After the officers shuffle out, just you, JJ, and Tomek remain. JJ tells you to wait outside. "I want to speak for Tomek in private for a moment."`
+			`	You move outside the building and stand next to the doorway. From inside you can hear the mumbling of Tomek and JJ speaking. You could probably press your ear to the door to hear what's going on.`
+			choice
+				`	(Step away so I don't hear anything.)`
+					goto away
+				`	(Eavesdrop on them.)`
+			`	"You will go peacefully to the Senate when this situation is handled, right, Tomek?" JJ asks.`
+			`	"I did what I had to, and I will not fight the punishment I receive," Tomek responds. "But it's up to you to not squander the opportunity I've provided us."`
+			`	"I'll do what I can," says JJ.`
+			`	You hear JJ walking toward the door and step away as to not be seen eavesdropping. JJ exits the building.`
+				goto end
+			label away
+			`	Once they are done speaking, JJ exits the building.`
+			label end
+			`	"Alright, let's move to quickly," he says. "There's no telling when the Navy could attack. Chart a course for <destination>. I'll contact the Navy and arrange the meeting on our way there."`
+				accept
+	
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying JJ hasn't entered the system yet. Better depart and wait for it to arrive.`
+
+
+
+mission "FW Early Warning 3"
+	autosave
+	landing
+	name "Harmony Lost"
+	description "The peace talks with the Navy have broken down. Another battle seems inevitable. Return to <destination> with JJ to prepare."
+	source "Harmony"
+	destination "Deep"
+	passengers 1
+	to offer
+		has "FW Early Warning 2: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		log "People" "Ranulph Hines" "Ranulph Hines is a commander within the Republic Navy. While a competent leader, he has a reputation for disregarding many of the Navy's old traditions, instead preferring to do things his own way."
+		conversation
+			`When you arrive, you see that the local Navy and Free Worlds soldiers have already gathered in the spaceport, keeping their distance from one another. News of the meeting must have already spread through the ranks. You see some civilians continuing to go about their day, while others are standing around watching the soldiers, but even with all the soldiers and civilians, the streets feel empty; perhaps many of the civilians that would normally be here have sought out shelter in fear of violence.`
+			`	JJ speaks with a Navy officer, asking him who he'll be meeting to negotiate with. "Commander Ranulph Hines, sir." The officer responds, seeming to catch himself up on calling JJ "sir." JJ has a look of concern on his face, but you don't think it's because of the Navy officer calling him "sir."`
+			choice
+				`	"Is something wrong?"`
+				`	(Say nothing.)`
+					goto talk
+			`	"Nothing," JJ responds, then pauses before saying, "I fear this won't end well."`
+			label talk
+			`	The officer directs you and JJ to an outdoor seating area of one of the spaceport's restaurants, where you find Commander Ranulph Hines finishing what looks like a plate of salmon. JJ sits down across from him`
+			`	"Lieutenant Commander Jean-Jacques Soleau, in the flesh before my very eyes," Hines says, wiping the edges of his mouth. "I never imagined I'd be seeing you again after you so unceremoniously left the Navy."`
+			`	"I'm not here to discuss the past, Commander," JJ responds. "I'm hear to prevent more bloodshed in this pointless war."`
+			`	"As am I, Soleau, as am I. Although I might ask, were the lives lost in your attacks on Geminus and Martini pointless, or were those necessary losses."`
+			`	"The Free Worlds is not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
+			`	"There was no 'taking,' Soleau. Kornephoros is rightfully Republic territory. We were simply enacting a police action on one of our own worlds, and arresting the terrorists who-"`
+			`	"So did you only come here to insult me and the Free Worlds or are you here to discuss peace as I asked?" JJ says, cutting Hines off. "As I said, I'm here to prevent more bloodshed. The deaths of those on Geminus and Martini as well as those in Kornephoros and Sabik are enough already. Continued bloodshed will not satisfy either side in this war."`
+			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the otherhand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
+			`	"The actions that were taken on Greenrock were unsanctioned by the Free Worlds Senate or Council," JJ responds. "It was the result of rogue elements that have been taken care of."`
+			`	"Rogue elements within your ranks? You certainly have a history of those if it was a rogue element within your insurgency that committed the terrorist acts that took the lives of thousands of Republic citizens. At least, I presume it was a rogue element, as I've never known the venerable Jean-Jacques Soleau to be a liar, so I certainly believe you when you tell me that your 'Free Worlds' wouldn't do that. Although I'm sure you would have also told me that your 'Free Worlds' would never subjugate the population of Greenrock, either."`
+			choice
+				`	"This guy doesn't seem to interested in peace talks. We should go."`
+				`	(Let JJ handle the situation.)`
+					goto handle
+			`	You whisper your concerns to JJ. "No," he responds. "I can handle this."`
+			label handle
+			`	"So it would seem that the answer to me question is no," JJ says, raising his voice. "You're not interested in peace talks."`
+			`	"I am afraid so, Soleau. The Republic does not wish to lower itself to negotiating with terrorists. As such, I am ordering the arrest of you and every captain and crew member of the so-called 'Free Worlds' here for acts of terrorism and treason against the Republic."`
+			`	Some of the militia watching begin to reach for their weapons or move away as some Navy soldiers step forward, but JJ raises his hand to motion them to stop. The militia notice and hold their ground, as do the Navy soldiers. "Where is the Navy honor that we've all heard so much about?" JJ shouts loud enough for everyone watching to hear. "We come here with open arms asking for peace talks and you move to arrest us?" You hear jeers coming from some of the civilians watching.`
+			`	Hines turns up his nose. "This is undoubtedly Republic territory you're standing on, Soleau, and therefore we have every right to arrest you."`
+			`	"I think your men disagree," JJ remarks. All of the Navy personnel have either remained in or returned to formation. "Remeber that I myself was a part of the Navy once. A Navy that each and every one of your honored men surely remember, either because they lived it or because they grew up revering it. But a Navy that I left because of those like you. I'm sorry to disappoint you, but if we can't negotate peace talks then we'll be leaving. I pray that you'll be wise enough to see the error in your ways and let us go." JJ stands up and begins walking off, leaving Hines to sulk in his chair.`
+			`	"Your days are numbered, Soleau," Hines shouts, but he remains in his chair and gives no orders to his soldiers.`
+			`	The Navy allows you to leave unmolested as you enter your ship with JJ. "Launch your ship immediately and return to <planet>," he says. "The only thing that rivals honor among the Navy is duty, and I don't want to be around with Hines starts whipping his men into his shape."`
+				launch
+	
+	on enter "Kornephoros"
+		dialog `Upon entering <system>, you spot Free Worlds ships in combat with the Navy. It looks like the Navy only sent a small force so far, as there are only a few ships remaining and there don't appear to be many destroyed ships, but the Free Worlds captains defending the system would probably appreciate help clearing out the rest before you land.`
+	
+	npc
+		government "Free Worlds"
+		personality heroic disables staying
+		system "Kornephoros"
+		fleet
+			names "free worlds capital"
+			fighters "free worlds fighters"
+			variant
+				"Falcon"
+				"Osprey" 2
+			variant
+				"Bastion"
+				"Argosy (Missile)" 2
+			variant
+				"Argosy (Blaster)"
+				"Hawk" 2
+				"Hawk (Rocket)"
+	npc
+		government "Free Worlds"
+		personality heroic disables staying derelict
+		system "Kornephoros"
+		fleet
+			names "free worlds capital"
+			fighters "free worlds fighters"
+			variant
+				"Falcon"
+				"Osprey"
+				"Sparrow" 3
+	npc evade
+		government "Republic"
+		personality heroic staying
+		system "Kornephoros"
+		fleet
+			names "republic capital"
+			fighters "republic fighters"
+			variant
+				"Protector (Quad Blaster Turret)"
+				"Frigate" 2
+	npc evade
+		government "Republic"
+		personality heroic staying derelict
+		system "Kornephoros"
+		fleet
+			names "republic capital"
+			fighters "republic fighters"
+			variant
+				"Cruiser"
+				"Gunboat"
+				"Rainmaker"
+	
+	on visit
+		dialog `You've landed on <planet>, but you haven't yet completed all the objectives. Either there are still Navy ships in the system, or one of your ships carrying JJ is not yet in the system.`
+
+
+
+mission "FW Early Warning 4"
+	landing
+	name "Preemptive Strike"
+	description "Meet the Navy ship for battle in <system>, attacking them before they can enter Free Worlds space. Once all the ships have been destroyed, land on <planet>."
+	source "Deep"
+	destination "Hope"
+	to offer
+		has "FW Early Warning 3: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`When you return, Tomek is busy preparing the fleet. It looks like most of the ships are ready to go, with some already starting their engines. "I take it the peace talks didn't work out," he says.`
+			`	"Not quite," says JJ. "Although I think we won a small victory in another way."`
+			`	"You'll have to tell me later," Tomek says, beginning to shout as ships around you begin to take off. "Captain <last>, get your ship ready for the air. Our sensors tell us there's a massive Navy fleet in <system>. They could jump in here any hour now. I've ordered a preemptive strike; we're going to rush into <system> and take them head on before they can reach our territory. Detain any surviving Navy personnel on <planet> and we'll send in transports to either ferry them back to the Republic if they agree to join the Oathkeepers, or to Bourne if they refuse. Now get going. We have no time to waste."`
+				accept
+	
+	npc
+		government "Free Worlds"
+		personality heroic disables
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Osprey" 2
+			variant
+				"Bastion"
+				"Argosy (Missile)" 2
+			variant
+				"Argosy (Blaster)"
+				"Hawk" 2
+				"Hawk (Rocket)"
+	npc
+		government "Free Worlds"
+		personality heroic disables waiting
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey"
+				"Osprey (Missile)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Osprey"
+				"Osprey (Laser)"
+				"Hawk" 3
+				"Sparrow" 5
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion (Heavy)" 2
+				"Argosy (Blaster)" 4
+				"Fury" 6
+	npc
+		government "Free Worlds"
+		personality heroic disables entering
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Heavy)"
+				"Hawk" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Sparrow" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk (Rocket)"
+				"Fury (Missile)" 2
+	npc evade
+		government "Republic"
+		personality heroic staying
+		system "Wei"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Heavy)" 2
+				"Combat Drone" 8
+				"Frigate" 2
+				"Rainmaker" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Protector (Quad Blaster)" 2
+				"Frigate" 2
+				"Gunboat"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Protector (Quad Blaster)" 2
+				"Frigate" 2
+				"Rainmaker" 2
+	
+	on visit
+		dialog `There are still Navy ships overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea.`
+	on complete
+		dialog `Although the battle is won, the mood is somber, just as with the first battles of the war. You help the militia tend to the wounded on both sides, caring for the Navy survivors, even on this harsh snowy planet. Within the hour, Free Worlds troop transports arrive to pick them up. As the transports take off, you receive a message from Freya calling you back to <destination>.`
+
+
+
+mission "FW Early Warning 5"
+	autosave
+	landing
+	name "Return to <planet>"
+	description "With the battle won, return to <destination> to report to Freya."
+	source "Hope"
+	destination "Longjump"
+	to offer
+		has "FW Early Warning 4: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 
 
 mission "FW Senate Hearing"
+	autosave
 	landing
 	name "Senate Hearing"
 	description "Report to <destination> for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
@@ -1698,48 +2076,35 @@ mission "FW Senate Hearing"
 	destination "Bourne"
 	deadline 14
 	to offer
-		has "FW Early Warning X: done"
+		has "FW Early Warning 5: done"
 		has "FW Pirates: Attack 3: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		clear "salary: Free Worlds"
-		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
-			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "you're a goddamn hero. Now, what exactly were you planning on doing next?"`
+			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we can't delay the outcome of your attack on Greenrock any longer."`
+			`	JJ says, "You have been suspended from your service to the Free Worlds by order of the Free Worlds Council, and are commanded to report to <planet> for a Senate hearing within the next two weeks. There, the Senate will decide your fate. If you do not report for your hearing, your service will be terminated."`
 			choice
-				`	"Station a fleet in orbit to keep the locals pacified."`
-					goto fleet
-				`	"Launch a ground assault on the planet."`
-					goto ground
-				`	"Subdue the locals with orbital bombardment."`
-					goto bombard
-			label fleet
-			`	"The fleet that's currently protecting us from the Navy, you mean? Sure, it makes perfect sense to split up that fleet in order to baby-sit a pirate world."`
-				goto tomek
-			label ground
-			`	"Are you out of your mind?" he says. "We have no ground army. And even if we did, pirate settlements are like fortresses. We'd have no hope of subduing them."`
-				goto tomek
-			label bombard
-			`	Freya looks shocked. "You're suggesting committing war crimes?" she says. "Sure, I bet that will make tons of other worlds flock to our cause."`
-				goto tomek
+				`	"It's been an honor serving with you."`
+				`	"What's happened to Tomek?"`
+					goto tomek
+			`	"You've been a good soldier," JJ says. "May you return to us in time. Goodbye, Captain."`
+				accept
 			label tomek
-			`	"Well, I'm sure Tomek had a plan," you say. "Why don't we ask him?"`
-			`	"We could do that," says Freya, "if he weren't currently under house arrest on Bourne for disobeying the Senate."`
-			`	The last vestiges of the elation you have been feeling over your victory are suddenly replaced by a sense of dread. "What about me?" you ask.`
-			`	JJ says, "You are temporarily suspended from your service to the Free Worlds, and commanded to report to Bourne for a Senate hearing within the next two weeks. If you do not report for your hearing, your service will be terminated. And given your reputation, I doubt you will be able to find any meaningful employment elsewhere in human space."`
-			`	"I'm very disappointed in you," says Freya, as she and JJ leave.`
+			`	"Tomek is on his way to <planet> right now," Freya says. "He left as soon as the news of the victory arrived. I imagine his Senate hearing will have occurred by the time you arrive." She pauses. "Goodbye, Captain."`
 				accept
 	
 	on complete
-		event "navy occupying the south" 50
+		event "wolf pack reveal" 30
+		event "fw stripped of service"
 		set "fw first chapter done"
 		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds is available."
+		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and captured the pirate world of Greenrock rather than pursue the diplomatic solution that the Senate preferred.`
 		conversation
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
 			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. Senator Huygens of Mere asks the first question. "Captain <last>, is it true that you took part in a recent unauthorized attack on Greenrock in the Shaula system?"`
-			label start
 			choice
 				`	"Yes, that is correct."`
 					goto knew
@@ -1768,7 +2133,14 @@ mission "FW Senate Hearing"
 			`	"I suppose so," you admit.`
 			label sentence
 			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
-			`	You are led back out to the lobby, where you wait for what feels like another hour. Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay. When we are in need of your services again, we will contact you." It looks like for now, you are back to being a simple merchant captain.`
+			`	You are led back out to the lobby, where you wait for what feels like another hour. During that time, you speak with someone else and learn that Tomek has been removed from the Council and put under house arrest. Although interestingly, despite Tomek disobeying orders, the Senate has decided to continue to occupation of Greenrock, at least for now, their public reasoning being that it would "dishonor those who lost their lives doing what they believed to be right" to leave the planet so quickly.`
+			`	Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay and stripped of your rank. When we are in need of your services again, we will contact you, and your rank will be reinstated as the Senate or Council sees fit." It looks like for now, you are back to being a simple merchant captain.`
+
+
+
+event "fw stripped of service"
+	government "Escort"
+		swizzle 5
 
 
 
@@ -1776,39 +2148,38 @@ mission "FW Refinery 1"
 	autosave
 	landing
 	name "Smuggler's Den Repairs"
-	description "Travel to Tundra and pick up a shipment of equipment for repairing the refinery on Smuggler's Den."
+	description "Travel to <planet> and pick up a shipment of equipment from the Syndicate for repairing the refinery on Smuggler's Den."
 	source "Longjump"
 	destination "Tundra"
 	clearance
 	to offer
-		has "FW Early Warning X: done"
+		has "FW Early Warning 5: done"
 		has "FW Pirates: Diplomacy 4: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and tried to launch an attack to capture the Pirate world of Greenrock rather than pursuing the diplomatic solution that the Senate preferred.`
 		conversation
-			`	JJ and Freya are here. Smooth over the relationship with Thule after the attack on Greenrock by building up the refinery.`
-			
-			`	In the meantime, though, we need your help with some peacemaking."`
+			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we not need to turn our attention to cleaning up Tomek's mess."`
+			`	"The people of Thule became very weary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them was just an attempt to get them to distance themselves from what would be their main line of defense."`
+			`	"We have to show them that our offer was genuine," Freya says.`
 			choice
-				`	"How so?"`
+				`	"How are we going to do that?"`
 					goto repairs
-				`	"So we're just going to let Tomek stay under arrest?"`
-			`	"Yes," says Freya, firmly. "Don't be a fool, <first>. We're trying to create a new sort of democracy here, and we can't do that by flaunting its rules."`
-			`	"I suppose you're right," you say. "So, what's next?"`
+				`	"So what happens to Tomek now?"`
+			`	"Tomek is on his way to <planet> right now," Freya says. "He left as soon as the news of the victory arrived. I imagine we'll know the outcome of his Senate hearing once you've returned from your mission."`
+			`	"What mission?" you ask.`
 			label repairs
 			`	"Well, thanks to you, the Men system is no longer engaged in piracy," says JJ. "And that means the folks on Smuggler's Den are in need of new work. That station used to be a deuterium refinery. With a little work, it can be one, again."`
-			`	"A working refinery could bring more income to that system than piracy ever did," says Freya. "Only problem is, the replacement parts are rare, and hard to come by. The Syndicate agreed to sell us the parts, but only if we meet them halfway, on Tundra. That's in the Cebalrai system. Just one jump away from one of the major new Navy bases."`
+			`	"A working refinery could bring more income to that system than piracy ever did, and helping to repair it would show the people of Thule that we mean them no harm," says Freya. "Only problem is, the replacement parts are rare, and hard to come by. The Syndicate agreed to sell us the parts, but only if we meet them halfway, on <planet>. That's in the <system> system. Just one jump away from one of the major new Navy bases."`
 			choice
 				`	"We're going to take a supply convoy through Republic space?"`
 					goto convoy
 				`	"How do we know this isn't a trap?"`
-			`	"We don't," says Freya, "except that the Syndicate is greedy, and we have money. I don't think they're ready yet to give up on the chance to sell their wares to both sides in this war."`
-			`	"Still, how do they expect us to get a convoy safely to Tundra?"`
+			`	"We don't," says Freya, "by the Syndicate has helped us before, and they are always willing to make deals. I don't think they're ready yet to give up on the chance to sell their wares to both sides in this war."`
+			`	"Still, how do they expect us to get a convoy safely to Tundra?" you ask`
 			label convoy
-			`	"Not a convoy," says JJ. "Just you, captain. It's only ten tons of spare parts. Your job is to fly to Tundra, retrieve the parts, and return here."`
+			`	"Not a convoy," says JJ. "Just you, Captain. It's only ten tons of spare parts. Your job is to fly to Tundra, retrieve the parts, and return here."`
 			choice
 				`	"I'll do my best."`
 					accept
@@ -1820,8 +2191,8 @@ mission "FW Refinery 1"
 
 mission "FW Refinery 1A"
 	landing
-	name "Smuggler's Den Repairs"
-	description "Bring a shipment of special refinery equipment to Smuggler's Den."
+	name "<planet> Repairs"
+	description "Bring a shipment of special refinery equipment to <destination>."
 	source "Tundra"
 	destination "Smuggler's Den"
 	cargo "refinery equipment" 10
@@ -1833,14 +2204,48 @@ mission "FW Refinery 1A"
 	
 	on offer
 		conversation
-			`Your landing site is an abandoned settlement a thousand kilometers from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only a few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
+			`Your landing site is an abandoned settlement a thousand kilometers from <origin>'s main spaceport. It's an old oil field that ran dry decades ago, and only a few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
 				launch
 	
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		event "wolf pack reveal" 15
 		set "fw first chapter done"
-		event "navy occupying the south" 8
 		log "Brought supplies to Smuggler's Den to help upgrade the station into a working deuterium refinery. No further orders from the Free Worlds, so this might be a good time to find ways to earn more money on the side."
-		dialog
-			`After unloading the supplies, you send Freya and JJ a message letting them know that you arrived safely. You're a bit surprised when they don't immediately send you a message back. Something else must be going on that is occupying their attention. After months of just traveling around following other people's orders, it feels odd to be left to your own devices for a change.`
+		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and captured the pirate world of Greenrock rather than pursue the diplomatic solution that the Senate preferred.`
+		conversation
+			`After unloading the supplies, you send Freya and JJ a message letting them know that you arrived safely with the refinery equipment. Workers on <origin> along with Free Worlds militia members work to throw out the old, rusted hardware and install the new equipment. It will likely take a few days for everything to get up and running again, but the people of this system seem eager to get back to more honest work.`
+			`	At the end of the day you receive a response from JJ. "Great work, Captain! This gesture will go a long way. With a great blow being dealt to the Navy, I doubt they'll come for us any time soon, and with our relationship with Thule repaired, I'm sure piracy will be at its lowest in years in this region. Thanks to our successes, we don't have any more work for you at the moment. We'll call upon you in the future when you're needed, but in the mean time you could help our officers with the occasional odd job. They've been posting on job boards around the Free Worlds looking for help from militia captains with spare time. Or you could just take time to relax if you need it. War can be taxing on the soul. Rest if you need to.`
+			`	"Before I sign off, I should also mention that I've just learned of the Senate's decision on Tomek. He's been removed from the Council and placed under house arrest until further notice. Furthermore, the Senate has decided that the occuptation of Greenrock will continue, at least for now. Although they disagree with Tomek's disobedience, it seems he convinced the Senate during his hearing that holding Greenrock would provide a tactical advantage. Let's pray that this is the right decision to make.`
+			`	"Goodbye, Captain. Stay well."`
+			`	After months of just traveling around following other people's orders, it feels odd to be left to your own devices for a change.`
+
+
+
+event "wolf pack reveal"
+
+
+
+mission "FW Rogue Elements"
+	landing
+	invisible
+	to offer
+		has "event: wolf pack reveal"
+	on offer
+		event "navy occupying the south" 45
+		conversation
+			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
+			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievences were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
+			`	"We tried our best, even with the system stacked against us. Councillor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. One behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces! And now Katya is a prisoner of war, held for crimes she did not commit by a system that did not listen to her despite her greatest attempts to be heard.`
+			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`
+			choice
+				`	"Is this live?"`
+				`	"What's happening?"`
+			`	"I don't know," a man next to you says. "It was playing the news like usual when suddenly this came on."`
+			`	You look back up to Tomek. "Yet even now our struggle does not end. Our new system is already beginning to fail us. I tell you now that the Free Worlds Senate has decided that instead of fighting piracy, they will negotiate with them instead! They will attempt to negotiate with those most known in this galaxy for lying and backstabbing and swindling. Those most known for not following the laws of the Republic, and who will undoubtedly refuse to follow the laws of these Free Worlds.`
+			`	"And so I make my plea to you, to those who fight for those who cannot, to join me in arms to give the pirates what they rightfully deserve! For inflicting so much pain upon us! For enslaving and killing our friends and family! For ruining our lives and businesses! For making us live in terror and fear! Who will join me to put an end to it all?"`
+			`	The crowd on the video can be heard cheering, and some of the crowd around you even cheers along with them.`
+			`	The screen then changes from the video of Tomek to a picture of a news clipping talking about Tomek's house arrest, with words flashing on the screen: "He fought for us, and for that they put him down." A symbol of a green wolf howling at a full moon appears, then the screen fades to black. A few seconds later the recording repeats, showing Tomek stepping up onto the top of a Free Worlds warship. "Captains and crew of the Free Worlds. Merchants of the Free Worlds. People of the Free Worlds. Please give me your attention. I have a plea, a cry for help that has gone unanswered.`
+			`	"For generations we have been neglected by the Republic! Our greivences..." The video continues as you saw it. You leave the crowd, not quite sure what to make of this situation.`
+				decline
