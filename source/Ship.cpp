@@ -193,7 +193,9 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
-		if(key == "sprite")
+		if(key == "shipyard display name" && child.Size() > 1)
+			shipyardDisplayName = child.Token(1);
+		else if(key == "sprite")
 			LoadSprite(child);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
@@ -1033,6 +1035,15 @@ const string &Ship::PluralModelName() const
 const string &Ship::VariantName() const
 {
 	return variantName.empty() ? modelName : variantName;
+}
+
+
+
+// Get the name to display when this ship is being sold in a shipyard.
+// If no specific name was set, returns the same as ModelName();
+const string &Ship::ShipyardDisplayName() const
+{
+	return shipyardDisplayName.empty() ? modelName : shipyardDisplayName;
 }
 
 

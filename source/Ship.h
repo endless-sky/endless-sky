@@ -144,6 +144,9 @@ public:
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the name to display when this ship is being sold in a shipyard.
+	// If no specific name was set, returns the same as ModelName();
+	const std::string &ShipyardDisplayName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
@@ -458,6 +461,7 @@ private:
 	std::string modelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string shipyardDisplayName;
 	std::string noun;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
