@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Files.h"
 #include "GameWindow.h"
+#include "Logger.h"
 #include "Screen.h"
 
 #include <algorithm>
@@ -196,7 +197,7 @@ bool Preferences::ToggleVSync()
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
-			Files::LogError("Unable to change VSync state");
+			Logger::LogError("Unable to change VSync state");
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
 			return false;
 		}
