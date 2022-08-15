@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -516,7 +516,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		message += ": " + testFailReason;
 	message += "\n";
 
-	Files::LogError(message);
+	Logger::LogError(message);
 
 	// Print the callstack if we have any.
 	string stackMessage = "Call-stack:\n";
@@ -530,12 +530,12 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
 		stackMessage += "\n";
 	}
-	Files::LogError(stackMessage);
+	Logger::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Files::LogError("No flagship at the moment of failure.");
+		Logger::LogError("No flagship at the moment of failure.");
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -553,7 +553,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Files::LogError(shipsOverview);
+		Logger::LogError(shipsOverview);
 	}
 
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
@@ -565,11 +565,11 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
 
 	if(!conditions.empty())
-		Files::LogError(conditions);
+		Logger::LogError(conditions);
 	else if(player.Conditions().empty())
-		Files::LogError("Player had no conditions set at the moment of failure.");
+		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No test conditions were set at the moment of failure.");
+		Logger::LogError("No test conditions were set at the moment of failure.");
 
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in
