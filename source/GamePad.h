@@ -82,7 +82,7 @@ public:
 
 
 private:
-	bool Repeat(Uint8 which, double threshold, Uint8 opposite = -1);
+	bool Repeat(Uint8 which, double threshold, Uint8 opposite = 255);
 
 
 private:

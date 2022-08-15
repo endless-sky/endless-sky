@@ -420,7 +420,7 @@ bool GamePad::Repeat(Uint8 which, double threshold, Uint8 opposite)
 	else
 		repeatTimer[which] = chrono::steady_clock::now();
 	// Releasing a stick quickly may cause opposite spikes.
-	if (opposite != -1)
+	if (opposite != 255)
 	{
 		chrono::time_point<std::chrono::steady_clock> adjust = chrono::steady_clock::now();
 		now -= chrono::milliseconds(int(threshold)-100);
