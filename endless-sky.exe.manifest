@@ -9,7 +9,7 @@
       <dpiAware>true/pm</dpiAware>
     </asmv3:windowsSettings>
     <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
-      <dpiAwareness>PerMonitorV2, permonitor, unaware</dpiAwareness>
+      <dpiAwareness>permonitorv2, permonitor, system</dpiAwareness>
     </asmv3:windowsSettings>
   </asmv3:application>
 </assembly>
