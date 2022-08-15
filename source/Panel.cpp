@@ -24,6 +24,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_A,
+		SDL_CONTROLLER_BUTTON_B,
+		SDL_CONTROLLER_BUTTON_Y,
+		SDL_CONTROLLER_BUTTON_BACK,
+		SDL_CONTROLLER_BUTTON_RIGHTSTICK,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_DPAD_UP,
+		SDL_CONTROLLER_BUTTON_DPAD_DOWN,
+		SDL_CONTROLLER_BUTTON_DPAD_LEFT,
+		SDL_CONTROLLER_BUTTON_DPAD_RIGHT
+	};
+}
+
 
 
 // Move the state of this panel forward one game step.
@@ -170,6 +186,97 @@ bool Panel::Release(int x, int y)
 
 
 
+// Generic panel controller handler.
+bool Panel::GamePadState(GamePad &controller)
+{
+	set<Uint8> pressed = controller.ReadHeld(CONTROLLER_BUTTONS);
+	set<Uint8> unhandledButtons;
+
+	Point mouse = GetUI()->GetMouse();
+	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
+	{
+		bool handled = false;
+		if(*it == SDL_CONTROLLER_BUTTON_A)
+		{
+			if(!ZoneClick(mouse))
+				handled = Click(mouse.X(), mouse.Y(), 1);
+			else
+				handled = true;
+		}
+		else if(*it == SDL_CONTROLLER_BUTTON_B)
+			handled = Click(mouse.X(), mouse.Y(), 2);
+		else if(*it == SDL_CONTROLLER_BUTTON_Y)
+			handled = RClick(mouse.X(), mouse.Y());
+		else if(*it == SDL_CONTROLLER_BUTTON_BACK)
+		{
+			DoKey(SDLK_ESCAPE);
+			handled = true;
+		}
+		else if(*it == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
+		{
+			UI::MoveMouseOffset(Point(0, 0));
+			handled = true;
+		}
+		else if(*it == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)
+		{
+			GetUI()->CursorToNextZone(mouse);
+			handled = true;
+		}
+		else if(*it == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+		{
+			GetUI()->CursorToPrevZone(mouse);
+			handled = true;
+		}
+		if(!handled)
+			unhandledButtons.insert(*it);
+	}
+	Point leftStick = controller.LeftStick();
+	if(leftStick.LengthSquared() > 0.05)
+	{
+		double x, y;
+		Point move(pow(leftStick.X()*GamePad::STICK_MOUSE_MULT, 3), pow(leftStick.Y()*GamePad::STICK_MOUSE_MULT, 3));
+		move += controllerCursorRem;
+		controllerCursorRem.Set(modf(move.X(), &x), modf(move.Y(), &y));
+		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSTICK))
+			Drag(x, y);
+		else
+			GetUI()->MoveMouseRelative(Point(x, y));
+	}
+	double rightStickY = controller.RightStickY();
+	if(rightStickY > 0.5)
+		Scroll(0, -rightStickY+GamePad::SCROLL_THRESHOLD);
+	else if(rightStickY < -0.5)
+		Scroll(0, -rightStickY-GamePad::SCROLL_THRESHOLD);
+
+	// Leave pressed state for the parent panel handler
+	for(auto it = pressed.begin(); it != pressed.end();)
+	{
+		if(unhandledButtons.find(*it) != unhandledButtons.cend())
+			it = pressed.erase(it);
+		else
+			++it;
+	}
+	if(!pressed.empty())
+		controller.Clear(pressed);
+
+	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_UP))
+		DoKey(SDLK_UP);
+	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_DOWN))
+		DoKey(SDLK_DOWN);
+	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT))
+		DoKey(SDLK_LEFT);
+	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT))
+		DoKey(SDLK_RIGHT);
+	if(controller.RepeatAxis(SDL_CONTROLLER_AXIS_RIGHTX))
+		GetUI()->NextPanel(true);
+	else if(controller.RepeatAxisNeg(SDL_CONTROLLER_AXIS_RIGHTX))
+		GetUI()->NextPanel(false);
+
+	return unhandledButtons.empty();
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;
@@ -200,6 +307,20 @@ void Panel::DrawBackdrop() const
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
 	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+}
+
+
+
+bool Panel::NextPanel()
+{
+	return false;
+}
+
+
+
+bool Panel::PrevPanel()
+{
+	return false;
 }
 
 
@@ -236,6 +357,14 @@ int Panel::Modifier()
 	if(mod & KMOD_SHIFT)
 		modifier *= 5;
 
+	double rightTrigger = GamePad::Singleton().RightTrigger();
+	if(rightTrigger > 0.8)
+		modifier *= 500;
+	else if(rightTrigger > 0.4)
+		modifier *= 20;
+	else if(rightTrigger > 0.05)
+		modifier *= 5;
+
 	return modifier;
 }
 
@@ -264,4 +393,16 @@ bool Panel::DoHelp(const string &name) const
 void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;
+}
+
+
+
+void Panel::CursorToFirstZone()
+{
+	auto firstZone = zones.cbegin();
+	if(firstZone != zones.cend())
+	{
+		Point center = firstZone->Center();
+		GetUI()->MoveMouseOffset(center);
+	}
 }

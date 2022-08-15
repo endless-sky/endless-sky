@@ -55,6 +55,14 @@ namespace {
 	{
 		return ship.GetSystem() == here && !ship.IsDisabled();
 	}
+
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_B,
+		SDL_CONTROLLER_BUTTON_X,
+		SDL_CONTROLLER_BUTTON_Y
+	};
 }
 
 
@@ -886,6 +894,44 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
+bool ShopPanel::GamePadState(GamePad &controller)
+{
+	set<Uint8> pressed = controller.ReadHeld(CONTROLLER_BUTTONS);
+	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
+	{
+		if(*it == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+			DoKey(SDLK_TAB);
+		else if(*it == SDL_CONTROLLER_BUTTON_B)
+			gamepadControl = true;
+		// This needs some attention, sometimes the buy button
+		// becomes install and 'b' won't do anything then.
+		else if(*it == SDL_CONTROLLER_BUTTON_X)
+			DoKey('b');
+		else if(*it == SDL_CONTROLLER_BUTTON_Y)
+			DoKey('s');
+
+		if(gamepadShift || gamepadControl)
+		{
+			Point mouse = GetUI()->GetMouse();
+			if(!ZoneClick(mouse))
+				Click(mouse.X(), mouse.Y(), 1);
+		}
+	}
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
+}
+
+
+
+bool ShopPanel::PrevPanel()
+{
+	GetUI()->Pop(this);
+	return true;
+}
+
+
+
 int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 {
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
@@ -1048,8 +1094,8 @@ void ShopPanel::SideSelect(int count)
 
 void ShopPanel::SideSelect(Ship *ship)
 {
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool shift = (SDL_GetModState() & KMOD_SHIFT) | gamepadShift;
+	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI)) | gamepadControl;
 
 	if(shift)
 	{
@@ -1080,6 +1126,8 @@ void ShopPanel::SideSelect(Ship *ship)
 	playerShip = ship;
 	playerShips.insert(playerShip);
 	sameSelectedTopY = true;
+	gamepadShift = false;
+	gamepadControl = false;
 }
 
 

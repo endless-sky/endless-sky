@@ -337,6 +337,43 @@ double Command::Turn() const
 
 
 
+void Command::SetTurnPoint(const Point& point)
+{
+	turnTarget = point;
+}
+
+
+
+const Point &Command::TurnPoint() const
+{
+	return turnTarget;
+}
+
+
+
+// Set the thrust amount to a value between -1 and 1.
+void Command::SetThrustGradient(double amount)
+{
+	thrust = max(-1., min(1., amount));
+}
+
+
+
+// Get the turn amount.
+double Command::ThrustGradient() const
+{
+	return thrust;
+}
+
+
+
+bool Command::HasMovement() const
+{
+	return thrust != 0. || turnTarget.X() != 0. || turnTarget.Y() != 0. || turn != 0.;
+}
+
+
+
 // Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
@@ -378,6 +415,9 @@ Command &Command::operator|=(const Command &command)
 	state |= command.state;
 	if(command.turn)
 		turn = command.turn;
+	if(command.thrust)
+		thrust = command.thrust;
+	turnTarget = command.turnTarget;
 	return *this;
 }
 

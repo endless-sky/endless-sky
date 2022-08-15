@@ -326,6 +326,17 @@ bool ConversationPanel::Hover(int x, int y)
 
 
 
+bool ConversationPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_X))
+		DoKey(SDLK_RETURN);
+	controller.Clear(SDL_CONTROLLER_BUTTON_X);
+
+	return Panel::GamePadState(controller);
+}
+
+
+
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {

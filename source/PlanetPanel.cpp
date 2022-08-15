@@ -40,6 +40,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_Y,
+		SDL_CONTROLLER_BUTTON_X,
+	};
+}
+
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
@@ -211,6 +218,35 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 
+	return true;
+}
+
+
+
+bool PlanetPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
+		DoKey('d');
+	if(controller.Held(SDL_CONTROLLER_BUTTON_X))
+
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
+}
+
+
+
+bool PlanetPanel::NextPanel()
+{
+	GetUI()->Push(new MapDetailPanel(player));
+	return true;
+}
+
+
+
+bool PlanetPanel::PrevPanel()
+{
+	GetUI()->Push(new PlayerInfoPanel(player));
 	return true;
 }
 

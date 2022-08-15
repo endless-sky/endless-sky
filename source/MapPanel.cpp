@@ -526,14 +526,29 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(dy > 0.)
+	cumulativeScroll += dy;
+	if(cumulativeScroll > 2.)
+	{
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
-	else if(dy < 0.)
+		cumulativeScroll = 0;
+	}
+	else if(cumulativeScroll < -2.)
+	{
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		cumulativeScroll = 0;
+	}
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
+	return true;
+}
+
+
+
+bool MapPanel::PrevPanel()
+{
+	GetUI()->Pop(this);
 	return true;
 }
 

@@ -289,6 +289,26 @@ bool TradingPanel::Click(int x, int y, int clicks)
 
 
 
+bool TradingPanel::GamePadState(GamePad &controller)
+{
+	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_LEFT))
+		DoKey(SDLK_MINUS);
+	else if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_RIGHT))
+		DoKey(SDLK_PLUS);
+
+	return Panel::GamePadState(controller);
+}
+
+
+
+bool TradingPanel::NextPanel()
+{
+	KeyDown(SDLK_UNKNOWN, 0, Command::MAP, true);
+	return true;
+}
+
+
+
 void TradingPanel::Buy(int64_t amount)
 {
 	int selectedRow = player.MapColoring();

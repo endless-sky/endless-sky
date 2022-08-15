@@ -225,7 +225,7 @@ void StartConditionsPanel::OnConversationEnd(int)
 {
 	gamePanels.Reset();
 	gamePanels.CanSave(true);
-	gamePanels.Push(new MainPanel(player));
+	gamePanels.Push(new MainPanel(player, gamePanels.Controller()));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	gamePanels.StepAll();
 	// If the starting conditions don't specify any ships, let the player buy one.

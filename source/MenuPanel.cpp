@@ -67,7 +67,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(gamePanels.IsEmpty())
 	{
-		gamePanels.Push(new MainPanel(player));
+		gamePanels.Push(new MainPanel(player, gamePanels.Controller()));
 		// It takes one step to figure out the planet panel should be created, and
 		// another step to actually place it. So, take two steps to avoid a flicker.
 		gamePanels.StepAll();

@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
+#include "PlayerInfoPanel.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"

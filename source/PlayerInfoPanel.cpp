@@ -855,6 +855,23 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 
 
+// PlayerInfoPanel may be opened directly as well as a prev action from the planet
+// panel. Just have both act as an exit to cover either.
+bool PlayerInfoPanel::NextPanel()
+{
+	GetUI()->Pop(this);
+	return true;
+}
+
+
+
+bool PlayerInfoPanel::PrevPanel()
+{
+	return NextPanel();
+}
+
+
+
 PlayerInfoPanel::SortableColumn::SortableColumn(
 	string name,
 	double offset,

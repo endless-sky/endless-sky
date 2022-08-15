@@ -208,16 +208,20 @@ int main(int argc, char *argv[])
 
 void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
+	// Game pad controller.  GameLoop updates the state via SDL events and either
+	// Engine or an active panel consumes them.
+	GamePad &controller = GamePad::Singleton();
+
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
 	// priority over the gamePanels. The gamePanels will not be shown until
 	// the stack of menuPanels is empty.
-	UI gamePanels;
+	UI gamePanels(controller);
 
 	// menuPanels is used for the panels related to pilot creation, preferences,
 	// game loading and game saving.
-	UI menuPanels;
+	UI menuPanels(controller);
 
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
@@ -252,9 +256,12 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
+		UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
 		while(SDL_PollEvent(&event))
 		{
-			UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
+			if(event.type >= 0x600 && event.type < 0x700) {
+				controller.Handle(event);
+			}
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
@@ -264,8 +271,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			{
 				isPaused = !isPaused;
 			}
-			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
+			else if(((event.type == SDL_KEYDOWN
+					&& Command(event.key.keysym.sym).Has(Command::MENU))
+					|| (event.type == SDL_CONTROLLERBUTTONDOWN
+					&& event.cbutton.button == SDL_CONTROLLER_BUTTON_GUIDE))
+					&& menuPanels.IsEmpty()
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
@@ -293,12 +303,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				toggleTimeout = 30;
 				GameWindow::ToggleFullscreen();
 			}
-			else if(event.type == SDL_KEYDOWN && !event.key.repeat
+			else if((event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+					|| (event.type == SDL_CONTROLLERBUTTONDOWN
+					&& event.cbutton.button == SDL_CONTROLLER_BUTTON_START))
 			{
 				isFastForward = !isFastForward;
 			}
 		}
+		if(controller.HavePads())
+			activeUI.HandleGamePad();
 		SDL_Keymod mod = SDL_GetModState();
 		Font::ShowUnderlines(mod & KMOD_ALT);
 

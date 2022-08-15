@@ -35,6 +35,8 @@ public:
 
 
 protected:
+	virtual bool GamePadState(GamePad &controller) override;
+
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
 	virtual int SelectedSpriteSwizzle() const override;

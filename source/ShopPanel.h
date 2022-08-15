@@ -79,6 +79,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool GamePadState(GamePad &controller) override;
+
+	virtual bool PrevPanel() override;
 
 	int64_t LicenseCost(const Outfit *outfit) const;
 
@@ -179,6 +182,13 @@ private:
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+	//virtual std::list<const Rectangle *> GetAllZones() const override;
+
+
+private:
+	// Mod key actions via pressing different controller buttons.
+	bool gamepadShift = false;
+	bool gamepadControl = false;
 };
 
 

@@ -31,7 +31,7 @@ class ShipEvent;
 // needed to move the ships around and to figure out where they should be drawn.
 class MainPanel : public Panel {
 public:
-	explicit MainPanel(PlayerInfo &player);
+	explicit MainPanel(PlayerInfo &player, GamePad &controller);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -47,6 +47,9 @@ public:
 	// The main panel allows fast-forward.
 	bool AllowsFastForward() const noexcept final;
 
+	// Game controller
+	GamePad &Controller() const;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -56,11 +59,12 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool GamePadState(GamePad &controller) override;
 
 
 private:
 	void ShowScanDialog(const ShipEvent &event);
-	bool ShowHailPanel();
+	bool ShowHailPanel(bool targetPlanet);
 	void StepEvents(bool &isActive);
 
 

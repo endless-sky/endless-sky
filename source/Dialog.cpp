@@ -79,6 +79,13 @@ namespace {
 		{SDLK_KP_SPACE, ' '},
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
+
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_B,
+		SDL_CONTROLLER_BUTTON_X,
+		SDL_CONTROLLER_BUTTON_Y,
+		SDL_CONTROLLER_BUTTON_LEFTSTICK,
+	};
 }
 
 
@@ -296,6 +303,22 @@ bool Dialog::Click(int x, int y, int clicks)
 	}
 
 	return true;
+}
+
+
+
+bool Dialog::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_B))
+		DoKey(SDLK_RETURN);
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_X))
+		DoKey('d');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
+		DoKey(SDLK_ESCAPE);
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSTICK))
+		KeyDown(SDLK_UNKNOWN, 0, Command::MAP, true);
+	controller.Clear(CONTROLLER_BUTTONS);
+	return Panel::GamePadState(controller);
 }
 
 

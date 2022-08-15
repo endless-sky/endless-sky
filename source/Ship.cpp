@@ -1821,7 +1821,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrustCommand = commands.ThrustGradient();
+		if (fabs(thrustCommand) < 0.05)
+			thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
 		double thrust = 0.;
 		if(thrustCommand)
 		{

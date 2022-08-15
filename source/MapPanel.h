@@ -86,6 +86,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	virtual bool PrevPanel() override;
+
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
@@ -170,6 +172,9 @@ private:
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
+
+	// Scroll events may come smoothly and not just quantized.
+	double cumulativeScroll = 0;
 
 	class Node {
 	public:

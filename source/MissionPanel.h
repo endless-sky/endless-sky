@@ -45,6 +45,7 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool GamePadState(GamePad &controller) override;
 
 
 private:

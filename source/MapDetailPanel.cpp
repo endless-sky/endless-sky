@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/layout.hpp"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
+#include "MissionPanel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -82,6 +83,11 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
+
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+	};
 }
 
 double MapDetailPanel::scroll = 0.;
@@ -147,6 +153,20 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 		return true;
 	}
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+bool MapDetailPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MissionPanel(*this));
+	}
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
 }
 
 

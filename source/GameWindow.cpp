@@ -70,10 +70,11 @@ string GameWindow::SDLVersions()
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
-	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
+	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) != 0) {
 		checkSDLerror();
 		return false;
 	}
+	SDL_JoystickEventState(SDL_ENABLE);
 
 	// Get details about the current display.
 	SDL_DisplayMode mode;
@@ -390,6 +391,13 @@ void GameWindow::ToggleFullscreen()
 bool GameWindow::HasSwizzle()
 {
 	return hasSwizzle;
+}
+
+
+
+SDL_Window *GameWindow::GetMainWindow()
+{
+	return mainWindow;
 }
 
 

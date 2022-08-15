@@ -40,6 +40,7 @@ public:
 	virtual void Draw() override;
 	// Navigate through the shown planets when there are too many, otherwise use the parent function.
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool GamePadState(GamePad &controller) override;
 
 
 public:
