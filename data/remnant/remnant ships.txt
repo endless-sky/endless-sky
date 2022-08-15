@@ -373,7 +373,7 @@ ship "Gull" "Gull (Bunks)"
 ship "Heron"
 	sprite "ship/heron"
 	attributes
-		category "Transport"
+		category "Utility"
 		licenses
 			"Remnant Capital"
 		"cost" 256375000

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 
 #include "File.h"
-#include "Files.h"
+#include "Logger.h"
 
 #include <png.h>
 #include <jpeglib.h>
@@ -226,7 +226,7 @@ namespace {
 		} catch (const bad_alloc &) {
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -235,9 +235,9 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 
@@ -303,7 +303,7 @@ namespace {
 		} catch (const bad_alloc &) {
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -312,9 +312,9 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 
