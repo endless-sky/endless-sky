@@ -195,7 +195,7 @@ void Outfit::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "clear" && child.Size() >= 2)
+		if(child.Token(0) == "remove" && child.Size() == 2)
 		{
 			string key = child.Token(1);
 			if(key == "flare sprite")
