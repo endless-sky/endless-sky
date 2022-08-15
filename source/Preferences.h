@@ -47,7 +47,7 @@ public:
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
 
-	static bool ToggleScreenMode();
+	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
 
 	// VSync setting, either "on", "off", or "adaptive".

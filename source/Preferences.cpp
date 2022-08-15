@@ -185,10 +185,9 @@ bool Preferences::ZoomViewOut()
 
 
 
-bool Preferences::ToggleScreenMode()
+void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
-	return true;
 }
 
 

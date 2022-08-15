@@ -514,8 +514,8 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == SCREEN_MODE_SETTING)
 		{
-			text = Preferences::ScreenModeSetting();
 			isOn = true;
+			text = Preferences::ScreenModeSetting();
 		}
 		else if(setting == VSYNC_SETTING)
 		{
