@@ -344,7 +344,7 @@ void UI::CursorToPrevZone(const Point &mouse) const
 	bool match = false;
 	std::list<Rectangle> zones = AllZones();
 
-        auto it = zones.crbegin();
+	auto it = zones.crbegin();
 	for(; !match && it != zones.crend(); ++it)
 	{
 		if(it->Contains(mouse))
