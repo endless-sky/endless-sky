@@ -134,8 +134,19 @@ namespace {
 	{
 		// Lay out the rules for what constitutes a deployable ship. (Since player ships are not
 		// deleted from memory until the next landing, check both parked and destroyed states.)
-		auto isCandidate = [](const shared_ptr<Ship> &ship) -> bool
+		auto isCandidate = [](const shared_ptr<Ship> &ship, bool manual) -> bool
 		{
+			// Check for incomplete ships based on player preferences
+			// Only applied to automatic deployments, allows the player to manually deploy
+			if(!manual && !ship->HasDeployOrder() && !Preferences::Has("Deploy incomplete fighters"))
+			{
+				auto flightChecks = ship->FlightCheck();
+				if(!flightChecks.empty())
+					for(const auto &result : flightChecks)
+						if(result.back() == '!')
+							return false;
+			}
+			// Check if the ship can be deployed
 			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();
 		};
 
@@ -151,28 +162,39 @@ namespace {
 		for(const weak_ptr<Ship> &it : player.SelectedShips())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship && ship->IsYours() && isCandidate(ship))
+			if(ship && ship->IsYours() && isCandidate(ship, true))
 				(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 		}
 		// If needed, check the player's fleet for deployable ships.
+		int failCount = 0;
 		if(toDeploy.empty() && toRecall.empty())
 			for(const shared_ptr<Ship> &ship : player.Ships())
-				if(isCandidate(ship) && ship.get() != player.Flagship())
-					(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
-
+				if(ship.get() != player.Flagship())
+				{
+					if(isCandidate(ship, false))
+						(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
+					// Check if ship is undeployable due to player preferences
+					else if(isCandidate(ship, true))
+						failCount++;
+				}
 		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried ships.", Messages::Importance::High);
+			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried " + (toDeploy.size() > 1 ? "ships" : "ship") + ".", Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried ships", Messages::Importance::High);
+			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + (toRecall.size() > 1 ? "ships" : "ship") + ".", Messages::Importance::High);
+		}
+		// Log failures
+		if(failCount > 0)
+		{
+			Messages::Add("Failed to deploy " + to_string(failCount) + " incomplete carried " + (failCount > 1 ? "ships" : "ship") + ".", Messages::Importance::High);
 		}
 	}
 

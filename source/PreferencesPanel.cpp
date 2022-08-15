@@ -444,6 +444,8 @@ void PreferencesPanel::DrawSettings()
 		"Automatic firing",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
+		"Take off with incomplete fighters",
+		"Deploy incomplete fighters",
 		TURRET_TRACKING,
 		"\n",
 		"Performance",

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Information.h"
 
+#include "Preferences.h"
 #include "text/alignment.hpp"
 #include "BankPanel.h"
 #include "Command.h"
@@ -270,6 +271,7 @@ void PlanetPanel::TakeOffIfReady()
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
+	size_t incompleteCount = 0;
 	if(!flightChecks.empty())
 	{
 		// There may be multiple warnings reported, but only 3 result in a ship which cannot jump.
@@ -283,9 +285,22 @@ void PlanetPanel::TakeOffIfReady()
 					++nonJumpCount;
 					break;
 				}
-	}
 
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
+		if(!Preferences::Has("Take off with incomplete fighters"))
+		{
+			const auto incompleteWarnings = set<string>{
+				"no energy?", "no fuel energy?", "no thruster?", "no steering?"
+			};
+			for(const auto &result : flightChecks)
+				for(const auto &warning : result.second)
+					if(incompleteWarnings.count(warning))
+					{
+						++incompleteCount;
+						break;
+					}
+		}
+	}
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || incompleteCount > 0)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
@@ -307,6 +322,16 @@ void PlanetPanel::TakeOffIfReady()
 				out << (missionCargoToSell > 1 ? " tons" : " ton");
 				out << " of your mission cargo.";
 			}
+		}
+		// Warn about ships that are missing components but can take off
+		else if(incompleteCount > 0)
+		{
+			out << "If you take off now you will launch with ";
+			if(incompleteCount == 1)
+				out << "a carried ship";
+			else
+				out << incompleteCount << " carried ships";
+			out << " that will not function once deployed.";
 		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
