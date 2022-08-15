@@ -37,6 +37,9 @@ namespace {
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
+	int screenModeIndex = 0;
+	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
+
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
@@ -178,6 +181,22 @@ bool Preferences::ZoomViewOut()
 
 	--zoomIndex;
 	return true;
+}
+
+
+
+bool Preferences::ToggleScreenMode()
+{
+	GameWindow::ToggleFullscreen();
+	return true;
+}
+
+
+
+const string &Preferences::ScreenModeSetting()
+{
+	screenModeIndex = GameWindow::IsFullscreen();
+	return SCREEN_MODE_SETTINGS[screenModeIndex];
 }
 
 
