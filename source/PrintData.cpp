@@ -48,7 +48,7 @@ void PrintData::Print(const char *const *argv)
 void PrintData::Help()
 {
 	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)." << endl;
-	cerr << "    -s --sales: pritns a table of ships with every 'shipyard' each appears in." << endl;
+	cerr << "    -s --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
 	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants." << endl;
 	cerr << "    Use the modifier `-v` or `--variants` with the above command to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
