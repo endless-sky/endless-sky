@@ -4658,7 +4658,7 @@ void Ship::UpdateEscortsState()
 				for(auto next : parents)
 					errmsg += next->name + ", ";
 				errmsg += flagship->GetParent()->name;
-				Files::LogError(errmsg);
+				Logger::LogError(errmsg);
 				break;
 			}
 			flagship = flagship->GetParent();
