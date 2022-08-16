@@ -63,6 +63,11 @@ const Sprite *Body::GetSprite() const
 	return sprite;
 }
 
+BodyState Body::GetState() const
+{
+	return this->currentState;
+}
+
 
 
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
@@ -273,6 +278,11 @@ void Body::SetSprite(const Sprite *sprite)
 	currentStep = -1;
 }
 
+// Set the state.
+void Body::SetState(BodyState state)
+{
+	this->currentState = state;
+}
 
 
 // Set the color swizzle.

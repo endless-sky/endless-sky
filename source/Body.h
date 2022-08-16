@@ -26,6 +26,7 @@ class Mask;
 class Sprite;
 
 
+enum BodyState{FLYING, FIGHTING, LAUNCHING, LANDING};
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -40,6 +41,7 @@ public:
 	bool HasSprite() const;
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite() const;
+	BodyState GetState() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
 	double Height() const;
@@ -71,6 +73,7 @@ public:
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
+	void SetState(BodyState state);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
@@ -109,6 +112,7 @@ private:
 private:
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
+	BodyState currentState;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 

@@ -1366,6 +1366,11 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
+	
+	if(this->IsYours()){
+		printf("BS %s: %d\n", this->Name().c_str(), this->GetState());
+	}
+	
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
@@ -1686,6 +1691,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// just slowly refuel.
 		if(landingPlanet && zoom)
 		{
+			this->SetState(BodyState::LANDING);
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
@@ -1717,6 +1723,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
+			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
@@ -1731,6 +1738,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		return;
 	}
+
+	this->SetState(BodyState::FLYING);
+
 	if(isDisabled)
 	{
 		// If you're disabled, you can't initiate landing or jumping.
@@ -1958,6 +1968,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
+
+
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
 	if(CanBeCarried() && !(target && target == GetShipToAssist()))
@@ -1969,9 +1981,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
+
+		bool activeTarget = !target->IsDisabled() && government->IsEnemy(target->government);
+
+		if(activeTarget && target->isInSystem){
+			this->SetState(BodyState::FIGHTING);
+		}	
+
 		if(isBoarding && !CanBeCarried())
 		{
-			if(!target->IsDisabled() && government->IsEnemy(target->government))
+			if(activeTarget)
 				isBoarding = false;
 			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
 					|| target->GetSystem() != GetSystem())
