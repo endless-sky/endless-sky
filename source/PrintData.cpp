@@ -278,11 +278,13 @@ void PrintData::PrintLoadedShipStats(bool variants)
 
 void PrintData::PrintWeaponStats()
 {
-	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
-		<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shots/second" << ','
-		<< "shield/s" << ',' << "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ','
-		<< "heat dmg/s" << ',' << "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ','
-		<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
+	cout << "name" << ',' << "cost" << ',' << "space" << ',' << "range" << ',' << "reload" << ','
+		<< "burst count" << ',' << "burst reload" << ',' << "lifetime" << ',' << "shots/second" << ','
+		<< "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ',' << "energy/s" << ','
+		<< "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ',' << "discharge/s" << ','
+		<< "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ',' << "burn dmg/s" << ','
+		<< "energy dmg/s" << ',' << "ion dmg/s" << ',' << "slow dmg/s" << ','
+		<< "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
 		<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
 		<< "deterrence" << '\n';
 	for(auto &it : GameData::Outfits())
