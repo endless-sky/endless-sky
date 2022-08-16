@@ -714,7 +714,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
-		if(isPresent && personality.IsSecretive() && !isStranded)
+		if(isPresent && personality.IsSecretive())
 		{
 			if(DoSecretive(*it, command))
 			{
@@ -2679,16 +2679,16 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 		Point scanningPos = scanningShip->Position();
 		Point pos = ship.Position();
 
-		double cargoDistance = 100. * sqrt(scanningShip->Attributes().Get("cargo scan power"));
-		double outfitDistance = 100. * sqrt(scanningShip->Attributes().Get("outfit scan power"));
+		double cargoDistance = 10000. * scanningShip->Attributes().Get("cargo scan power");
+		double outfitDistance = 10000. * scanningShip->Attributes().Get("outfit scan power");
 
-		double maxScanRange = cargoDistance > outfitDistance ? cargoDistance : outfitDistance;
-		double distance =scanningPos.Distance(pos);
+		double maxScanRange = max(cargoDistance, outfitDistance);
+		double distance = scanningPos.DistanceSquared(pos);
 
 		// If he can scan us we need to evade.
 		if(distance < maxScanRange)
 		{
-			Point away = scanningPos + Angle(pos - scanningPos).Unit() * (maxScanRange + 50.);
+			Point away = scanningPos + Angle(pos - scanningPos).Unit() * (sqrt(maxScanRange) + 50.);
 			MoveTo(ship, command, away, scanningShip->Velocity(), 0., ship.MaxVelocity());
 			return true;
 		}
