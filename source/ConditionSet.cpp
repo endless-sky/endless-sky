@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
+#include "Logger.h"
 #include "Random.h"
 
 #include <algorithm>
@@ -205,7 +205,7 @@ namespace {
 		string message = "Error decomposing complex condition expression:\nFound:\t";
 		for(const string &str : side)
 			message += " \"" + str + "\"";
-		Files::LogError(message);
+		Logger::LogError(message);
 	}
 
 	bool IsUnrepresentable(const string &token)
@@ -745,7 +745,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 			{
 				if(operators.at(opIndex) != ")")
 				{
-					Files::LogError("Did not find matched parentheses:");
+					Logger::LogError("Did not find matched parentheses:");
 					PrintConditionError(ToStrings());
 					tokens.clear();
 					operators.clear();
@@ -768,7 +768,7 @@ void ConditionSet::Expression::SubExpression::GenerateSequence()
 
 		if(operators.at(workingIndex) == "(" || operators.at(workingIndex) == ")")
 		{
-			Files::LogError("Mismatched parentheses:" + ToString());
+			Logger::LogError("Mismatched parentheses:" + ToString());
 			tokens.clear();
 			operators.clear();
 			sequence.clear();
@@ -794,7 +794,7 @@ bool ConditionSet::Expression::SubExpression::AddOperation(vector<int> &data, si
 	if((leftIndex < tokens.size() && tokens.at(leftIndex).empty())
 			|| (rightIndex < tokens.size() && tokens.at(rightIndex).empty()))
 	{
-		Files::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
+		Logger::LogError("Unable to obtain valid operand for function \"" + operators.at(opIndex) + "\" with tokens:");
 		PrintConditionError(tokens);
 		tokens.clear();
 		operators.clear();

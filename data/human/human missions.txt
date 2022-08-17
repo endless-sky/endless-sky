@@ -3997,7 +3997,6 @@ event "fumbling mugger followup timer"
 
 
 
-
 mission "Laborer"
 	minor
 	name "Out of Work"
