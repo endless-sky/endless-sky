@@ -540,12 +540,12 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 		outfit "Loot" -400
 		payment 2000000
 		conversation
-			`You arrive back at the bar and find Sa-Ri speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games, and fun, friends! Here is your share: <payment>. Now we can forget about our problems and celebrate victory!" He raises his drink and then moves it to the right, soon followed by all others. This is probably a Hai custom of some kind - or at least an Unfettered one.`
+			`You arrive back at the bar and find Si-Ra speaking to his friends. He appears more sober now. "It looks like you got the loot! Songs, games, and fun, friends! Here is your share: <payment>. Now we can forget about our problems and celebrate victory!" He raises his drink and then moves it to the right, soon followed by all others. This is probably a Hai custom of some kind - or at least an Unfettered one.`
 			choice
 				`	(Rejoice with them.)`
 				`	(Go.)`
 					decline
-			`	You continue the celebration with them, and before long Sa-Ri is drunk again. You figure the pirates from earlier probably knew about the Behemoth because of his lack of discretion.`
+			`	You continue the celebration with them, and before long Si-Ra is drunk again. You figure the pirates from earlier probably knew about the Behemoth because of his lack of discretion.`
 			choice
 				`	"You should be more careful. I was almost beaten to the chase by pirates."`
 				`	"What was this loot about anyway?"`
@@ -583,7 +583,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			label green
 			`	The green beverage is very exciting, and keeps you invigorated for hours.`
 			label continue
-			`	You continue the party late into the night. There won't be any way to get information out of Sa-Ri now - he's heavily inebriated. After several hours, you leave with a slight headache. These Unfettered drinks are stronger than you thought, but you don't feel drunk in the way human drinks would make you.`
+			`	You continue the party late into the night. There won't be any way to get information out of Si-Ra now - he's heavily inebriated. After several hours, you leave with a slight headache. These Unfettered drinks are stronger than you thought, but you don't feel drunk in the way human drinks would make you.`
 				decline
 			label none
 			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all. You leave after several hours and get a good night's rest.`

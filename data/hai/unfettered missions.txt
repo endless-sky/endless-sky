@@ -2234,11 +2234,11 @@ mission "Unfettered: Start Of The War"
 				`	"Nothing specific. Well fought to both of you."`
 					goto train
 			`	He-Yi answer first. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
-			`	Sa-Ri then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
+			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
 				goto train
 			label mistake
 			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, Captain."`
-			`	Sa-Ri then speaks. "Next time it will not be so easy, Captain!"`
+			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
 			label train
 			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
 	on fail
