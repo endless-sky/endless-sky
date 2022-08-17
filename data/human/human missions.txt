@@ -4367,7 +4367,7 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "Those landers are made to handle anything, it'll be fine. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
-			`	"Oh, nearly forgot. We're headed to <destination>. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and shields up. We leave at noon!"`
+			`	"Oh, nearly forgot. We're headed to <destination>. and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and shields up. We leave at noon!"`
 	on complete
 		payment 20000 500
 		conversation
