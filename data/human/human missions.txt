@@ -4609,9 +4609,21 @@ mission "Dangerous Games 2"
 				has "Mussie dead"
 				has "Elias and Taddese dead"
 				has "Jorma and Daciana dead"
+			branch some
+				or 
+					has "Mussie dead" 
+					has "Elias and Taddese dead"
+					has "Jorma and Daciana dead"
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
-			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
+			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+				goto end
+			branch some
+			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
+			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
+			`	Once back to the surface, the passengers begin to shuffle off your ship, choking back sobs all the while.`
+			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label onlyplayer
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
