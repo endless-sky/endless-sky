@@ -4345,11 +4345,11 @@ mission "Saving Artifacts 4"
 mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
-	description "The adventurer Karengo and eight others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
+	description "The adventurer Karengo and six others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
 	source 
 		attributes "frontier" "pirate" "rim"
 	destination Poseidos
-	cargo "subpods" 8
+	cargo "subpods" 6
 	passengers 8
 	to offer
 		random < 15
