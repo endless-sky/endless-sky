@@ -4420,7 +4420,7 @@ mission "Dangerous Games 2"
 				goto riddletwo
 			label north
 			`	You turn the ship to the north and guide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
-			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way to we go next, <first>?"`
+			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way do we go next, <first>?"`
 			label riddletwo
 			branch dead
 				has "Elias and Taddese dead"
