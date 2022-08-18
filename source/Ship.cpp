@@ -199,7 +199,6 @@ Ship::Ship(const DataNode &node)
 }
 
 
-
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -504,6 +503,14 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(!variantName.empty()) {
+			if ((key == "remove") && (child.Size() >= 2)) {
+				if (child.Token(1) == "bays")
+					removeBaseFeature |= (1 << REMOVE_SET_BAYS);
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -756,7 +763,10 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		else
 			++it;
-		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+
+		if (removeBaseFeature.test(REMOVE_SET_BAYS))
+			it = bays.erase(it - 1);
+		else if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 
