@@ -4584,13 +4584,13 @@ mission "Dangerous Games 2"
 			label alldead
 			`	"What we have here, <first>," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
-			`	An unknowable something has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
+			`	Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
 			`	It's slow work, but you and Karengo are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult. You wish there were others to help gather more salvage, but at last you are done.`
 				goto return
 			label somesurvive
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.`
-			`	An unknowable something has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
+			`	Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive. You wonder how such a thing got here.`
 			`	It's slow work, but the remains of the group are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work and you end up with an acceptable haul. At last, you are done.`
 			label return
 			`	Carefully, you navigate back to the surface, the knowledge that you've made it through once doing absolutely nothing to help with the very rational fear of the depths. Walls seem to loom just out of sight, and massive, yellow eyes seem to appear, then dissolve into tricks of the light.`
@@ -4608,7 +4608,7 @@ mission "Dangerous Games 2"
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
 			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
-			branch some
+			label some
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, choking back sobs all the while.`
