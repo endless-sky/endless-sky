@@ -136,8 +136,6 @@ private:
 private:
 	void SetUI(UI *ui);
 
-	//bool ControllerRepeat(Uint8 which, double threshold);
-
 
 private:
 	UI *ui = nullptr;
@@ -148,7 +146,10 @@ private:
 
 	std::list<Zone> zones;
 
+	// Fractional part of mouse cursor movement with stick.
 	Point controllerCursorRem;
+	// Has this panel handled the simulated mouse click yet.
+	bool controllerClickHandled = false;
 
 	friend class UI;
 };

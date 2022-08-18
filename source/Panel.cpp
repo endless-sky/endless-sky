@@ -192,18 +192,26 @@ bool Panel::Release(int x, int y)
 bool Panel::GamePadState(GamePad &controller)
 {
 	set<Uint8> pressed = controller.ReadHeld(CONTROLLER_BUTTONS);
+	auto released = controller.ReleasedButtons();
 	set<Uint8> unhandledButtons;
 
 	Point mouse = GetUI()->GetMouse();
+	for(auto it = released.cbegin(); it != released.cend(); ++it)
+	{
+		if(it->first == SDL_CONTROLLER_BUTTON_A)
+		{
+			controllerClickHandled = false;
+			Release(mouse.X(), mouse.Y());
+		}
+	}
 	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
 	{
 		bool handled = false;
-		if(*it == SDL_CONTROLLER_BUTTON_A)
+		if(*it == SDL_CONTROLLER_BUTTON_A && !controllerClickHandled)
 		{
+			controllerClickHandled = true;
 			if(!ZoneClick(mouse))
-				handled = Click(mouse.X(), mouse.Y(), 1);
-			else
-				handled = true;
+				Click(mouse.X(), mouse.Y(), 1);
 		}
 		else if(*it == SDL_CONTROLLER_BUTTON_B)
 			handled = Click(mouse.X(), mouse.Y(), 2);
@@ -239,10 +247,14 @@ bool Panel::GamePadState(GamePad &controller)
 		Point move(pow(leftStick.X()*GamePad::STICK_MOUSE_MULT, 3), pow(leftStick.Y()*GamePad::STICK_MOUSE_MULT, 3));
 		move += controllerCursorRem;
 		controllerCursorRem.Set(modf(move.X(), &x), modf(move.Y(), &y));
-		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSTICK))
+		if(pressed.find(SDL_CONTROLLER_BUTTON_LEFTSTICK) != pressed.cend())
 			Drag(x, y);
 		else
+		{
 			GetUI()->MoveMouseRelative(Point(x, y));
+			if(pressed.find(SDL_CONTROLLER_BUTTON_A) != pressed.cend())
+				Drag(x, y);
+		}
 	}
 	double rightStickY = controller.RightStickY();
 	if(rightStickY > 0.5)
