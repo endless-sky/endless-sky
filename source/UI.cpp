@@ -411,6 +411,9 @@ void UI::MoveMouseRelative(const Point &point)
 // If a push or pop is queued, apply it.
 void UI::PushOrPop()
 {
+	if(controller.HavePads() && (!toPush.empty() || !toPop.empty()))
+		controller.Clear();
+
 	// Handle any panels that should be added.
 	for(shared_ptr<Panel> &panel : toPush)
 		if(panel)
