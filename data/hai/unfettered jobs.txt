@@ -344,6 +344,7 @@ mission "Unfettered Challenge [0]"
 		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 < 12
 		random < 60
 	npc save disable
 		government "Hai (Unfettered Challenge)"
@@ -369,6 +370,7 @@ mission "Unfettered Challenge [1]"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		has "Unfettered: Prove Your Strength"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 < 24
 		random < 40
 	npc save disable
 		government "Hai (Unfettered Challenge)"
@@ -394,6 +396,7 @@ mission "Unfettered Challenge [2]"
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 		has "Unfettered: Prove Your Strength"
+		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 < 40
 		random < 10
 	npc save disable
 		government "Hai (Unfettered Challenge)"
