@@ -38,6 +38,8 @@ public:
 
 	// Read held buttons and how long they have been held.
 	std::map<Uint8, std::chrono::milliseconds> HeldButtons() const;
+	// Read held buttons and when they were first pressed.
+	std::map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> HeldButtonsSince() const;
 	// Read released buttons and how long they have been held.
 	std::map<Uint8, std::chrono::milliseconds> ReleasedButtons() const;
 

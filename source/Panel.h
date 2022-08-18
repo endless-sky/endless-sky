@@ -149,7 +149,7 @@ private:
 	// Fractional part of mouse cursor movement with stick.
 	Point controllerCursorRem;
 	// Has this panel handled the simulated mouse click yet.
-	bool controllerClickHandled = false;
+	std::chrono::time_point<std::chrono::steady_clock> controllerClickHandled;
 
 	friend class UI;
 };

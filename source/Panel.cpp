@@ -191,7 +191,7 @@ bool Panel::Release(int x, int y)
 // Generic panel controller handler.
 bool Panel::GamePadState(GamePad &controller)
 {
-	set<Uint8> pressed = controller.ReadHeld(CONTROLLER_BUTTONS);
+	auto pressed = controller.HeldButtonsSince();
 	auto released = controller.ReleasedButtons();
 	set<Uint8> unhandledButtons;
 
@@ -199,46 +199,45 @@ bool Panel::GamePadState(GamePad &controller)
 	for(auto it = released.cbegin(); it != released.cend(); ++it)
 	{
 		if(it->first == SDL_CONTROLLER_BUTTON_A)
-		{
-			controllerClickHandled = false;
 			Release(mouse.X(), mouse.Y());
-		}
 	}
 	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
 	{
 		bool handled = false;
-		if(*it == SDL_CONTROLLER_BUTTON_A && !controllerClickHandled)
+		if(it->first == SDL_CONTROLLER_BUTTON_A && it->second != controllerClickHandled)
 		{
-			controllerClickHandled = true;
+			controllerClickHandled = it->second;
 			if(!ZoneClick(mouse))
-				Click(mouse.X(), mouse.Y(), 1);
+				handled = Click(mouse.X(), mouse.Y(), 1);
+			else
+				handled = true;
 		}
-		else if(*it == SDL_CONTROLLER_BUTTON_B)
+		else if(it->first == SDL_CONTROLLER_BUTTON_B)
 			handled = Click(mouse.X(), mouse.Y(), 2);
-		else if(*it == SDL_CONTROLLER_BUTTON_Y)
+		else if(it->first == SDL_CONTROLLER_BUTTON_Y)
 			handled = RClick(mouse.X(), mouse.Y());
-		else if(*it == SDL_CONTROLLER_BUTTON_BACK)
+		else if(it->first == SDL_CONTROLLER_BUTTON_BACK)
 		{
 			DoKey(SDLK_ESCAPE);
 			handled = true;
 		}
-		else if(*it == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
+		else if(it->first == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
 		{
 			UI::MoveMouseOffset(Point(0, 0));
 			handled = true;
 		}
-		else if(*it == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)
+		else if(it->first == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)
 		{
 			GetUI()->CursorToNextZone(mouse);
 			handled = true;
 		}
-		else if(*it == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+		else if(it->first == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
 		{
 			GetUI()->CursorToPrevZone(mouse);
 			handled = true;
 		}
 		if(!handled)
-			unhandledButtons.insert(*it);
+			unhandledButtons.insert(it->first);
 	}
 	Point leftStick = controller.LeftStick();
 	if(leftStick.LengthSquared() > 0.05)
@@ -265,13 +264,20 @@ bool Panel::GamePadState(GamePad &controller)
 	// Leave pressed state for the parent panel handler
 	for(auto it = pressed.begin(); it != pressed.end();)
 	{
-		if(unhandledButtons.find(*it) != unhandledButtons.cend())
+		if(unhandledButtons.find(it->first) != unhandledButtons.cend())
 			it = pressed.erase(it);
 		else
 			++it;
 	}
+	// Special case, button A needs to stay in the state object for dragging.
+	pressed.erase(SDL_CONTROLLER_BUTTON_A);
 	if(!pressed.empty())
-		controller.Clear(pressed);
+	{
+		set<Uint8> pressedKeyIds;
+		for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
+			pressedKeyIds.insert(it->first);
+		controller.Clear(pressedKeyIds);
+	}
 
 	if(controller.RepeatButton(SDL_CONTROLLER_BUTTON_DPAD_UP))
 		DoKey(SDLK_UP);

@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <chrono>
 #include <cmath>
 #include <map>
-#include <iostream>
 #include <mutex>
 
 #include <SDL2/SDL.h>
@@ -69,7 +68,6 @@ void GamePad::Handle(const SDL_Event &event)
 	}
 	if(event.type == SDL_CONTROLLERBUTTONUP)
 	{
-		//printf("up %i\n", event.cbutton.button);
 		lock_guard<mutex> lock(gamePadMutex);
 		released[event.cbutton.button] = chrono::steady_clock::now();
 		unreportedReleases.insert(event.cbutton.button);
@@ -89,6 +87,22 @@ map<Uint8, chrono::milliseconds> GamePad::HeldButtons() const
 	{
 		if(released.count(it->first) == 0)
 			result[it->first] = chrono::duration_cast<chrono::milliseconds>(now - it->second);
+	}
+	return result;
+}
+
+
+
+map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> GamePad::HeldButtonsSince() const
+{
+	lock_guard<mutex> lock(gamePadMutex);
+	map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> result(held);
+	for(auto it = result.begin(); it != result.cend();)
+	{
+		if(released.find(it->first) != released.cend())
+			it = result.erase(it);
+		else
+			++it;
 	}
 	return result;
 }
@@ -155,7 +169,6 @@ void GamePad::Clear(Uint8 button)
 
 bool GamePad::HavePads() const
 {
-	//printf("check havepads %i %i\n", activePads, activePads > 0);
 	return activePads > 0;
 }
 
