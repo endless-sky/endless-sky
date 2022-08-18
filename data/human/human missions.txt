@@ -4349,8 +4349,8 @@ mission "Dangerous Games 2"
 	source 
 		attributes "frontier" "pirate" "rim"
 	destination Poseidos
-	cargo "subpods" 9
-	passengers 9
+	cargo "subpods" 8
+	passengers 8
 	to offer
 		random < 15
 		has "Dangerous Games 1: done"
@@ -4367,7 +4367,7 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "Those landers are made to handle anything, it'll be fine. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
-			`	"Oh, nearly forgot. We're headed to <destination>. and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and shields up. We leave at noon!"`
+			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 	on complete
 		payment 20000 500
 		conversation
@@ -4400,7 +4400,7 @@ mission "Dangerous Games 2"
 			action
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
-			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
+			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by Taddese.`
 			`	Then, without warning, a proximity sensor goes off. At the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto riddletwo
@@ -4475,6 +4475,7 @@ mission "Dangerous Games 2"
 			label rollcall
 			branch dead1
 				has "Elias and Taddese dead"
+				has "Mussie dead"
 			`	Karengo sounds a roll call over the radio. Mussie never reports in, and his subpod beacon isn't responding. "Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead."`
 			`	Only minutes later, he's found a clear path east, and you morosely trail the ship behind.`
 				goto riddlethree
