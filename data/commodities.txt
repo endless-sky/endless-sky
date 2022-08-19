@@ -444,7 +444,7 @@ trade
 		"surgical equipment"
 		"surgical robots"
 		"tissues"
-		"tongue depressers"
+		"tongue depressors"
 		"tourniquets"
 		"tranquilizers"
 		"tweezers"
