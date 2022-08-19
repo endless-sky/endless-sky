@@ -1696,7 +1696,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// (except if we have a customed landing speed defined)
 			if(landingSpeed)
 				zoom -= landingSpeed;
-			else if(mass < 1000.f)
+			else if(mass < 1000.)
 				zoom -= .02f;
 			else
 				zoom -= 20.f / mass;
