@@ -4270,7 +4270,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Oh, I see. You're too cowardly to fight."`
 				`	"I didn't realize 'The Great Lokust' was such a weakling."`
-			`	He becomes visibily enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will use them."`
+			`	He becomes visibly enraged the moment you're finished talking. "I will not stand these insults to my honor! We meet in the sky. Bring all of your weaponry to bear, for it is the last time you will use them."`
 			`	The communication cuts off. "He always uses that same line," the clerk says, rolling his eyes.`
 				decline
 			label pay
