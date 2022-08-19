@@ -203,7 +203,7 @@ trade
 		"sweaters"
 		"sweatpants"
 		"swimsuits"
-		"tanktops"
+		"tank tops"
 		"textiles"
 		"ties"
 		"togas"
