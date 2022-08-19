@@ -46,6 +46,10 @@ shipyard "Lionheart Advanced"
 	"Corvette"
 	"Bactrian"
 
+shipyard "Lionheart Custom"
+	"Aerie (No Bays)"
+	"Bactrian (No Bays)"
+
 shipyard "Betelgeuse Basics"
 	"Shuttle"
 	"Heavy Shuttle"
