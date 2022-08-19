@@ -199,6 +199,7 @@ Ship::Ship(const DataNode &node)
 }
 
 
+
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
