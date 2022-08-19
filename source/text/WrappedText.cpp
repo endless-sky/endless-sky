@@ -162,7 +162,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 		for(size_t i = 0; i < words.size(); ++i)
 		{
 			const Word &w = words[i];
-			if(h == w.y && (i != words.size() - 1 && w.y == words[i+1].y))
+			if(h == w.y && (i != words.size() - 1 && w.y == words[i + 1].y))
 				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 			else
 				font->Draw({text.c_str() + w.Index(), {wrapWidth, truncate}}, w.Pos() + topLeft, color);

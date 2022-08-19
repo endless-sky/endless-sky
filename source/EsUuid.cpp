@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "EsUuid.h"
 
-#include "Files.h"
+#include "Logger.h"
 #if defined(_WIN32)
 #include "text/Utf8.h"
 #endif
@@ -39,7 +39,7 @@ EsUuid::UuidType MakeUuid()
 	EsUuid::UuidType value;
 	RPC_STATUS status = UuidCreate(&value.id);
 	if(status == RPC_S_UUID_LOCAL_ONLY)
-		Files::LogError("Created locally unique UUID only");
+		Logger::LogError("Created locally unique UUID only");
 	else if(status == RPC_S_UUID_NO_ADDRESS)
 		throw std::runtime_error("Failed to create UUID");
 
@@ -72,7 +72,7 @@ std::string Serialize(const UUID &id)
 
 	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
 	if(result.empty())
-		Files::LogError("Failed to serialize UUID!");
+		Logger::LogError("Failed to serialize UUID!");
 	else
 		RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
 
@@ -183,7 +183,7 @@ EsUuid::EsUuid(const std::string &input)
 	}
 	catch (const std::invalid_argument &err)
 	{
-		Files::LogError(err.what());
+		Logger::LogError(err.what());
 	}
 }
 

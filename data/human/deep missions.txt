@@ -3149,7 +3149,7 @@ mission "Home for Skadenga 2"
 			`	"Ah yes, don't worry. We have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards, who close in on you.`
 			`	"Regrettably, this is not an invitation you are at liberty to ignore. So let us be on our way, shall we?"`
 			label fancypants
-			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
+			`	You are brought to large research complex just outside the spaceport, and deposited in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
 			`	"Of course, sir." The administrator, whose name seems to be Lars, turns and is followed outside by his two goons.`
 			`	The man who spoke looks at you with a friendly smile and, without a shred of irony, says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
 			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Incorporated, and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep. We've been monitoring you ever since you first arrived and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
