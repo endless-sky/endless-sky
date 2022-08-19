@@ -2673,10 +2673,11 @@ float Ship::LandingSpeed() const
 {
 	const float mass = Mass();
 	const float landingSpeed = attributes.Get("landing speed");
-	// Ships with a mass under 1000 will land normally,
+	// Ships with a mass under 43 will land at a fixed size,
 	// and those with above will progressively land slower.
-	// The landing speed will be applied on top of that.
-	return landingSpeed + (mass < 1000. ? 0.02f : 20.f / mass);
+	// The landing speed will be applied on top of that, and may be negative
+	// but the ship still should be even to land.
+	return max(0.01f, landingSpeed + (mass <= 43. ? 0.1f : 0.1f / cbrt(mass)));
 }
 
 
