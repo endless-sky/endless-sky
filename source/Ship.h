@@ -50,10 +50,6 @@ class StellarObject;
 class System;
 class Visual;
 
-enum {
-	REMOVE_SET_BAYS = 0,
-	REMOVE_SET_COUNT
-};
 
 // Class representing a ship (either a model for sale or an instance of it). A
 // ship's information can be saved to a file, so that it can later be read back
@@ -639,7 +635,7 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 
-	std::bitset<REMOVE_SET_COUNT> removeBaseFeature;
+	bool removeBays;
 };
 
 
