@@ -563,7 +563,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
-		if(bays.empty() && !base->bays.empty())
+		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
@@ -767,10 +767,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		else
 			++it;
-
-		if (removeBays)
-			it = bays.erase(it - 1);
-		else if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 
