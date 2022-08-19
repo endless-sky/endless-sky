@@ -461,7 +461,7 @@ bool Government::AllowJumpingTo(const System &system) const
 
 
 
-bool Government::AllowsLandingOn(const Planet &planet) const
+bool Government::AllowLandingOn(const Planet &planet) const
 {
 	return travelRestrictions.IsEmpty() || !travelRestrictions.Matches(&planet);
 }

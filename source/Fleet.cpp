@@ -337,7 +337,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& (unconstrained || government->AllowsLandingOn(*object.GetPlanet()))
+						&& (unconstrained || government->AllowLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 
@@ -349,7 +349,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet()
-						&& (unconstrained || government->AllowsLandingOn(*object.GetPlanet()))
+						&& (unconstrained || government->AllowLandingOn(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
