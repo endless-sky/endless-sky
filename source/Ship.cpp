@@ -1693,10 +1693,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			const double landingSpeed = attributes.Get("landing speed");
 			// Ships with a mass under 1000 will land normally,
 			// and those with one above will progressively land slower.
-			// (except if we have a customed landing speed defined)
-			if(landingSpeed)
-				zoom -= landingSpeed;
-			else if(mass < 1000.)
+			// The landing speed will be applied on top of that.
+			zoom -= landingSpeed;
+			if(mass < 1000.)
 				zoom -= .02f;
 			else
 				zoom -= 20.f / mass;

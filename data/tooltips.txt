@@ -303,7 +303,7 @@ tip "jump range:"
 	`How far you can jump between systems using this drive.`
 
 tip "landing speed:"
-	`How fast your ship is able to land on a planet, or travel trough a whormhole.`
+	`How much faster than normal your ship is able to land on a planet, or travel trough a whormhole.`
 
 tip "leak protection:"
 	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
