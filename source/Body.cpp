@@ -31,8 +31,14 @@ using namespace std;
 
 // Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+	: position(position), velocity(velocity), angle(facing), zoom(zoom), randomize(true)
 {
+
+	SpriteState* spriteState = new SpriteState();
+	spriteState->sprite = sprite;
+	spriteState->randomize = true;
+	
+	this->sprites[BodyState::FLYING] = spriteState;
 }
 
 
@@ -52,15 +58,26 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 // Check that this Body has a sprite and that the sprite has at least one frame.
 bool Body::HasSprite() const
 {
+	const Sprite* sprite = this->GetSprite(this->currentState);
 	return (sprite && sprite->Frames());
 }
 
 
 
 // Access the underlying Sprite object.
-const Sprite *Body::GetSprite() const
+const Sprite *Body::GetSprite(BodyState state) const
 {
-	return sprite;
+
+	BodyState selected = state != BodyState::CURRENT ? state : this->currentState;
+
+	SpriteState* spriteState = this->sprites[selected];
+
+	if(spriteState != nullptr && spriteState->sprite != nullptr){
+		return spriteState->sprite;
+	} else {
+		return this->sprites[BodyState::FLYING]->sprite;
+	}
+
 }
 
 BodyState Body::GetState() const
@@ -73,6 +90,7 @@ BodyState Body::GetState() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
+	const Sprite* sprite = this->GetSprite(this->currentState);
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
 }
 
@@ -81,6 +99,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
+	const Sprite* sprite = this->GetSprite(this->currentState);
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
 }
 
@@ -118,8 +137,10 @@ float Body::GetFrame(int step) const
 // return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const
 {
+	const Sprite* sprite = this->GetSprite(this->currentState);
+	
 	if(step >= 0)
-		SetStep(step);
+		SetStep(step, true);
 
 	static const Mask EMPTY;
 	int current = round(frame);
@@ -200,11 +221,15 @@ const Government *Body::GetGovernment() const
 
 
 // Load the sprite specification, including all animation attributes.
-void Body::LoadSprite(const DataNode &node)
+void Body::LoadSprite(const DataNode &node, BodyState state)
 {
 	if(node.Size() < 2)
 		return;
-	sprite = SpriteSet::Get(node.Token(1));
+
+	const Sprite* sprite = SpriteSet::Get(node.Token(1));
+	
+	SpriteState* spriteData = this->sprites[state];
+	spriteData->sprite = sprite;
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -213,31 +238,39 @@ void Body::LoadSprite(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
-			frameRate = child.Value(1) / 60.;
+			spriteData->frameRate = child.Value(1) / 60.;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
-			frameRate = 1. / child.Value(1);
+			spriteData->frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
-			delay = child.Value(1);
+			spriteData->delay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
-			scale = static_cast<float>(child.Value(1));
+			spriteData->scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
-			startAtZero = true;
+			spriteData->startAtZero = true;
 		}
 		else if(child.Token(0) == "random start frame")
-			randomize = true;
+			spriteData->randomize = true;
 		else if(child.Token(0) == "no repeat")
 		{
-			repeat = false;
-			startAtZero = true;
+			spriteData->repeat = false;
+			spriteData->startAtZero = true;
+		}
+		else if(child.Token(0) == "transition rewind"){
+			spriteData->transitionFinish = false;
+			spriteData->transitionRewind = true;
+		}
+		else if(child.Token(0) == "transition finish"){
+			spriteData->transitionFinish = true;
+			spriteData->transitionRewind = false;
 		}
 		else if(child.Token(0) == "rewind")
-			rewind = true;
+			spriteData->rewind = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-
+	
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
@@ -245,43 +278,110 @@ void Body::LoadSprite(const DataNode &node)
 
 
 // Save the sprite specification, including all animation attributes.
-void Body::SaveSprite(DataWriter &out, const string &tag) const
+void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
-	if(!sprite)
-		return;
+	if(allStates){
+		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing"};
+		
+		for(int i = 0; i < BodyState::NUM_STATES; i++){
+			SpriteState* spriteState = this->sprites[i];
+			const Sprite* sprite = spriteState->sprite;
+		
+			if(sprite){
+				out.Write(tags[i], sprite->Name());
+				out.BeginChild();
+				{
+					if(spriteState->frameRate != static_cast<float>(2. / 60.))
+						out.Write("frame rate", spriteState->frameRate * 60.);
+					if(spriteState->delay)
+						out.Write("delay", spriteState->delay);
+					if(spriteState->scale != 1.f)
+						out.Write("scale", spriteState->scale);
+					if(spriteState->randomize)
+						out.Write("random start frame");
+					if(!spriteState->repeat)
+						out.Write("no repeat");
+					if(spriteState->rewind)
+						out.Write("rewind");
+					if(spriteState->transitionFinish)
+						out.Write("transition finish");
+					if(spriteState->transitionRewind)
+						out.Write("transition rewind");
+					
+				}
+				out.EndChild();
+			}
+		}
+	} else {
+		SpriteState* spriteState = this->sprites[BodyState::FLYING];
+		const Sprite* sprite = spriteState->sprite;
+		
+		if(!sprite)
+			return;
 
-	out.Write(tag, sprite->Name());
-	out.BeginChild();
-	{
-		if(frameRate != static_cast<float>(2. / 60.))
-			out.Write("frame rate", frameRate * 60.);
-		if(delay)
-			out.Write("delay", delay);
-		if(scale != 1.f)
-			out.Write("scale", scale);
-		if(randomize)
-			out.Write("random start frame");
-		if(!repeat)
-			out.Write("no repeat");
-		if(rewind)
-			out.Write("rewind");
+		out.Write(tag, sprite->Name());
+		out.BeginChild();
+		{
+			if(spriteState->frameRate != static_cast<float>(2. / 60.))
+				out.Write("frame rate", spriteState->frameRate * 60.);
+			if(spriteState->delay)
+				out.Write("delay", spriteState->delay);
+			if(spriteState->scale != 1.f)
+				out.Write("scale", spriteState->scale);
+			if(spriteState->randomize)
+				out.Write("random start frame");
+			if(!spriteState->repeat)
+				out.Write("no repeat");
+			if(spriteState->rewind)
+				out.Write("rewind");
+			if(spriteState->transitionFinish)
+				out.Write("transition finish");
+			if(spriteState->transitionRewind)
+				out.Write("transition rewind");
+		}
+		out.EndChild();
 	}
-	out.EndChild();
+
 }
 
 
 
 // Set the sprite.
-void Body::SetSprite(const Sprite *sprite)
+void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	this->sprite = sprite;
+	if(this->sprites[state] == nullptr){
+		this->sprites[state] = new SpriteState();
+	}
+	
+	this->sprites[state]->sprite = sprite;
 	currentStep = -1;
 }
 
 // Set the state.
 void Body::SetState(BodyState state)
-{
-	this->currentState = state;
+{	
+	if(state != this->currentState){
+
+		if(!stateTransitionRequested && transitionRewind){
+			rewindFrame = frame;
+
+			frameOffset = -currentStep * frameRate;
+			frameOffset += rewindFrame;
+
+			if(debug)
+				printf("FO: %f, CF: %f", frameOffset, currentStep * frameRate + frameOffset);
+		}
+
+		stateTransitionRequested = true;
+
+	}
+
+	this->transitionState = state;
+
+	if(!this->transitionFinish && !this->transitionRewind && stateTransitionRequested){
+		this->FinishStateTransition();
+	}
+	
 }
 
 
@@ -315,6 +415,17 @@ void Body::PauseAnimation()
 	++pause;
 }
 
+void Body::PrintAnimationParameters()
+{
+	printf("Frame-RFrame %f-%f | Step %d | FO %f | Zero %d | Random %d | Repeat %d | R-TR-TF %d-%d-%d\n",
+		this->frame, this->rewindFrame, this->currentStep, this->frameOffset, this->startAtZero,
+		this->randomize, this->repeat, this->rewind, this->transitionRewind, this->transitionFinish);
+}
+
+void Body::SetDebug(bool debug){
+	this->debug = debug;
+}
+
 
 
 // Mark this object to be removed from the game.
@@ -332,10 +443,33 @@ void Body::UnmarkForRemoval()
 }
 
 
+void Body::FinishStateTransition() const
+{
+	frameOffset = 0.f;
+	pause = 0;
+	
+	SpriteState* transitionedState = this->sprites[this->transitionState]->sprite != nullptr ?
+									this->sprites[this->transitionState] : this->sprites[BodyState::FLYING];
+	this->frameRate = transitionedState->frameRate;
+	this->scale = transitionedState->scale;
+	this->delay = transitionedState->delay;
+	this->startAtZero = transitionedState->startAtZero;
+	this->randomize = transitionedState->randomize;
+	this->repeat = transitionedState->repeat;
+	this->rewind = transitionedState->rewind;
+	this->transitionFinish = transitionedState->transitionFinish;
+	this->transitionRewind = transitionedState->transitionRewind;
+
+	this->currentState = this->transitionState;
+	this->stateTransitionRequested = false;
+}
 
 // Set the current time step.
-void Body::SetStep(int step) const
+void Body::SetStep(int step, bool forMask) const
 {
+
+	const Sprite* sprite = this->GetSprite();
+
 	// If the animation is paused, reduce the step by however many frames it has
 	// been paused for.
 	step -= pause;
@@ -355,6 +489,7 @@ void Body::SetStep(int step) const
 		return;
 	}
 	float lastFrame = frames - 1.f;
+
 	// This is the number of frames per full cycle. If rewinding, a full cycle
 	// includes the first and last frames once and every other frame twice.
 	float cycle = (rewind ? 2.f * lastFrame : frames) + delay;
@@ -377,27 +512,59 @@ void Body::SetStep(int step) const
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
 	frame = max(0.f, frameRate * step + frameOffset);
-	// If repeating, wrap the frame index by the total cycle time.
-	if(repeat)
-		frame = fmod(frame, cycle);
-
-	if(!rewind)
-	{
-		// If not repeating, frame should never go higher than the index of the
-		// final frame.
-		if(!repeat)
-			frame = min(frame, lastFrame);
-		else if(frame >= frames)
-		{
-			// If we're in the delay portion of the loop, set the frame to 0.
-			frame = 0.f;
+	
+	if(!stateTransitionRequested){
+		// If repeating, wrap the frame index by the total cycle time.
+		if(repeat){
+			frame = fmod(frame, cycle);
 		}
+
+		if(!rewind)
+		{
+			// If not repeating, frame should never go higher than the index of the
+			// final frame.
+			if(!repeat){
+				frame = min(frame, lastFrame);
+
+			}
+			else if(frame >= frames)
+			{
+				frame = 0.f;
+			}
+			
+		}
+		else if(frame >= lastFrame)
+		{
+
+			// In rewind mode, once you get to the last frame, count backwards.
+			// Regardless of whether we're repeating, if the frame count gets to
+			// be less than 0, clamp it to 0.
+
+			frame = max(0.f, lastFrame * 2.f - frame);
+			
+		}
+
+		if(debug)
+			printf("NT == F %f | RF %f\n", frame, rewindFrame);
+
+		
+	} else {
+		if(transitionFinish && !transitionRewind){
+			frame = min(frame, lastFrame);
+
+			if(frame >= lastFrame){
+				this->FinishStateTransition();
+			}
+		} else if(!transitionFinish && transitionRewind){
+			frame = max(0.f, rewindFrame * 2.f - frame);
+
+			if(frame == 0.f){
+				this->FinishStateTransition();
+			}
+		}
+
+		if(debug)
+			printf("T == F %f | RF %f\n", frame, rewindFrame);
 	}
-	else if(frame >= lastFrame)
-	{
-		// In rewind mode, once you get to the last frame, count backwards.
-		// Regardless of whether we're repeating, if the frame count gets to
-		// be less than 0, clamp it to 0.
-		frame = max(0.f, lastFrame * 2.f - frame);
-	}
+	
 }

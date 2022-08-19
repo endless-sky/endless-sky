@@ -26,7 +26,23 @@ class Mask;
 class Sprite;
 
 
-enum BodyState{FLYING, FIGHTING, LAUNCHING, LANDING};
+enum BodyState{FLYING, FIGHTING, LAUNCHING, LANDING, NUM_STATES, CURRENT};
+
+typedef struct SpriteState{
+	const Sprite* sprite = nullptr;
+
+	float frameRate = 2.f / 60.f;
+	float scale = 1.f;
+	int delay = 0;
+
+	bool startAtZero = false;
+	bool randomize = false;
+	bool repeat = true;
+	bool rewind = false;
+	bool transitionFinish = false;
+	bool transitionRewind = false;
+
+} SpriteState;
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -40,7 +56,7 @@ public:
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
 	// Access the underlying Sprite object.
-	const Sprite *GetSprite() const;
+	const Sprite *GetSprite(BodyState state = BodyState::CURRENT) const;
 	BodyState GetState() const;
 	// Get the dimensions of the sprite.
 	double Width() const;
@@ -69,10 +85,10 @@ public:
 	const Government *GetGovernment() const;
 
 	// Sprite serialization.
-	void LoadSprite(const DataNode &node);
-	void SaveSprite(DataWriter &out, const std::string &tag = "sprite") const;
+	void LoadSprite(const DataNode &node, BodyState state = BodyState::FLYING);
+	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
 	// Set the sprite.
-	void SetSprite(const Sprite *sprite);
+	void SetSprite(const Sprite *sprite, BodyState state = BodyState::FLYING);
 	void SetState(BodyState state);
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
@@ -83,6 +99,11 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
+
+	// Debug
+	void PrintAnimationParameters();
+	void SetDebug(bool debug);	
+
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
@@ -97,34 +118,42 @@ protected:
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
-	float scale = 1.f;
+	mutable float scale = 1.f;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 
 
 private:
+	// Finish transitioning between states
+	void FinishStateTransition() const;
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
-	void SetStep(int step) const;
+	void SetStep(int step, bool forMask = false) const;
+
 
 
 private:
 	// Animation parameters.
-	const Sprite *sprite = nullptr;
-	BodyState currentState;
+	SpriteState* sprites[BodyState::NUM_STATES] = {new SpriteState(), new SpriteState(), new SpriteState(), new SpriteState()};
+	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::CURRENT;
+	mutable bool stateTransitionRequested = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 
-	float frameRate = 2.f / 60.f;
-	int delay = 0;
+	mutable float frameRate = 2.f / 60.f;
+	mutable int delay = 0;
 	// The chosen frame will be (step * frameRate) + frameOffset.
 	mutable float frameOffset = 0.f;
 	mutable bool startAtZero = false;
 	mutable bool randomize = false;
-	bool repeat = true;
-	bool rewind = false;
-	int pause = 0;
+	mutable bool repeat = true;
+	mutable bool rewind = false;
+	mutable bool transitionFinish = false;
+	mutable bool transitionRewind = false;
+	mutable int pause = 0;
+
+	mutable bool debug = false;
 
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
@@ -133,6 +162,7 @@ private:
 	// the same step over and over again.
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
+	mutable float rewindFrame = 0.f;
 };
 
 

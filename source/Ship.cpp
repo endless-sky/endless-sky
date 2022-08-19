@@ -193,8 +193,14 @@ void Ship::Load(const DataNode &node)
 					? "no key." : "key: " + child.Token(1)));
 			continue;
 		}
-		if(key == "sprite")
-			LoadSprite(child);
+		if(key == "sprite" || key == "sprite-flying")
+			LoadSprite(child, BodyState::FLYING);
+		else if(key == "sprite-fighting")
+			LoadSprite(child, BodyState::FIGHTING);
+		else if(key == "sprite-landing")
+			LoadSprite(child, BodyState::LANDING);
+		else if(key == "sprite-launching")
+			LoadSprite(child, BodyState::LAUNCHING);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -786,7 +792,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
-		SaveSprite(out);
+		SaveSprite(out, "sprite", true);
 		if(thumbnail)
 			out.Write("thumbnail", thumbnail->Name());
 
@@ -1366,11 +1372,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	
-	if(this->IsYours()){
-		printf("BS %s: %d\n", this->Name().c_str(), this->GetState());
-	}
-	
+
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
@@ -1739,8 +1741,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		return;
 	}
 
-	this->SetState(BodyState::FLYING);
-
 	if(isDisabled)
 	{
 		// If you're disabled, you can't initiate landing or jumping.
@@ -1982,15 +1982,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		double speed = dv.Length();
 		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 
-		bool activeTarget = !target->IsDisabled() && government->IsEnemy(target->government);
+		bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
 
-		if(activeTarget && target->isInSystem){
+		if(activeEnemyTarget && target->isInSystem){
 			this->SetState(BodyState::FIGHTING);
+		} else {
+			//Target is not an enemy
+			this->SetState(BodyState::FLYING);
 		}	
 
 		if(isBoarding && !CanBeCarried())
 		{
-			if(activeTarget)
+			if(activeEnemyTarget)
 				isBoarding = false;
 			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
 					|| target->GetSystem() != GetSystem())
@@ -2038,6 +2041,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 			}
 		}
+	} else {
+		// No target but still flying around
+		this->SetState(BodyState::FLYING);
 	}
 
 	// Clear your target if it is destroyed. This is only important for NPCs,
