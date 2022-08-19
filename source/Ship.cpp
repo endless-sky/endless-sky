@@ -2676,7 +2676,7 @@ float Ship::LandingSpeed() const
 	// Ships with mass under 43 will land with fixed speed,
 	// and heavier ones will land progressively slower.
 	// The landing speed will be applied on top of that, and may be negative,
-	// but the ship still should still be able to land at a minimum speed of 0.01f.
+	// but the ship will still land at a minimum speed of 0.01f.
 	return max(0.01f, landingSpeed + (mass <= 43. ? 0.1f : 0.1f / cbrt(mass)));
 }
 
