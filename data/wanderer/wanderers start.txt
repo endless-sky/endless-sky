@@ -166,6 +166,10 @@ mission "Wanderers: Hai Diplomat"
 	on accept
 		"reputation: Hai" >?= 20
 		"reputation: Hai" += 30
+		"reputation: Hai (Wormhole Access)" += 30
+		"reputation: Hai Merchant" += 30
+		"reputation: Hai Merchant (Human)" += 30
+		"reputation: Hai Merchant (Sympathizers)" += 30
 
 
 

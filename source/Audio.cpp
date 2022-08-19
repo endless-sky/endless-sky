@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 
 #include "Files.h"
+#include "Logger.h"
 #include "Music.h"
 #include "Point.h"
 #include "Random.h"
@@ -185,13 +186,13 @@ void Audio::CheckReferences()
 {
 	if(!isInitialized)
 	{
-		Files::LogError("Warning: audio could not be initialized. No audio will play.");
+		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
 	}
 
 	for(auto &&it : sounds)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+			Logger::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
 }
 
 
@@ -604,7 +605,7 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Files::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
 		}
 	}
 }
