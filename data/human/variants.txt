@@ -8,6 +8,12 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+ship "Aerie" "Aerie (No Bays)"
+	add attributes
+		"cargo space" 160
+	remove bays
+	description "This Aerie variant is the same as the original one but without the internal fighters bays, instead the ship has more cargo volume."
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -164,6 +170,12 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 
+
+ship "Bactrian" "Bactrian (No Bays)"
+	add attributes
+		"cargo space" 120
+	remove bays
+	description "This Bactrian variant is the same as the original one but without the internal fighters bays, instead the ship has more cargo."
 
 
 ship "Barb" "Barb (Gatling)"
