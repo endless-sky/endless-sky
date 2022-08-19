@@ -783,7 +783,6 @@ trade
 		"pig hearts"
 		"pig kidneys"
 		"pig lungs"
-		"pirated software"
 		"spy drones"
 		"stolen artwork"
 		"stolen automobiles"
