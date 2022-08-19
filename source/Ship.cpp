@@ -1689,7 +1689,17 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= .02f;
+			const double mass = Mass();
+			const double landingSpeed = attributes.Get("landing speed");
+			// Ships with a mass under 1000 will land normally,
+			// and those with one above will progressively land slower.
+			// (except if we have a customed landing speed defined)
+			if(landingSpeed)
+				zoom -= landingSpeed;
+			else if(mass < 1000.f)
+				zoom -= .02f;
+			else
+				zoom -= 20.f / mass;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
