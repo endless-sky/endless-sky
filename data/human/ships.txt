@@ -1626,10 +1626,10 @@ ship "Flivver"
 		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
-	engine -16 27
-	engine 16 27
-	gun -6 -31
-	gun 6 -31
+	engine -16.5 26
+	engine 16.5 26
+	gun -6 -35.5
+	gun 6 -35.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
