@@ -50,6 +50,7 @@ class System;
 class Visual;
 
 
+
 // Class representing a ship (either a model for sale or an instance of it). A
 // ship's information can be saved to a file, so that it can later be read back
 // in exactly the same state. The same class is used for the player's ship as
