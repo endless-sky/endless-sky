@@ -215,6 +215,7 @@ effect "finisher impact"
 	sprite "effect/finisher impact"
 		"no repeat"
 		"frame rate" 20
+	sound "torpedo hit"
 	"lifetime" 18
 	"random spin" 20
 	"random velocity" 2
