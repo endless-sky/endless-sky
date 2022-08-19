@@ -74,7 +74,7 @@ namespace{
 	}
 
 	// Prepare an keyboard input to one of the UIs.
-	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -457,7 +457,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 			case TestStep::Type::INJECT:
 				{
 					// Lookup the data and inject it in the game or into the environment.
-					const TestData* testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
+					const TestData *testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
