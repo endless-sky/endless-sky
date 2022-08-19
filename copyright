@@ -1394,6 +1394,7 @@ Files:
  images/effect/coalition?flare/*
  images/effect/corrosion?spark/*
  images/effect/explosion/pug/*
+ images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/wanderer?flare/*
