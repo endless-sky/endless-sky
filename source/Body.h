@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Point.h"
+#include "SpriteParameters.h"
 
 #include <cstdint>
 #include <string>
@@ -25,24 +26,7 @@ class Government;
 class Mask;
 class Sprite;
 
-
 enum BodyState{FLYING, FIGHTING, LAUNCHING, LANDING, NUM_STATES, CURRENT};
-
-typedef struct SpriteState{
-	const Sprite* sprite = nullptr;
-
-	float frameRate = 2.f / 60.f;
-	float scale = 1.f;
-	int delay = 0;
-
-	bool startAtZero = false;
-	bool randomize = false;
-	bool repeat = true;
-	bool rewind = false;
-	bool transitionFinish = false;
-	bool transitionRewind = false;
-
-} SpriteState;
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -135,7 +119,7 @@ private:
 
 private:
 	// Animation parameters.
-	SpriteState* sprites[BodyState::NUM_STATES] = {new SpriteState(), new SpriteState(), new SpriteState(), new SpriteState()};
+	SpriteParameters* sprites[BodyState::NUM_STATES] = {new SpriteParameters(), new SpriteParameters(), new SpriteParameters, new SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::CURRENT;
 	mutable bool stateTransitionRequested = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
