@@ -30872,6 +30872,7 @@ planet Valhalla
 	shipyard "Basic Ships"
 	shipyard "Lionheart Basics"
 	shipyard "Lionheart Advanced"
+	shipyard "Lionheart Custom"
 	shipyard "Betelgeuse Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
