@@ -13,7 +13,7 @@ mission "Gegno Vi: First Contact"
 				has "Gegno Vi: First Contact: deferred"
 				
 			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several very faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide keep your ship a few thousand meters above the surface while staying wary in alien territory. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
-			`Suddenly, your radar systems pick up a larger signature further up ahead on the horizon, and in the distance is an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around nearby systems, although it is half sunken into sand.`
+			`Suddenly, your radar systems pick up a larger signature further up ahead on the horizon, and in the distance is an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around nearby systems, although it is half sunken into the sand.`
 			choice
 				`	Land near the ship and investigate.`
 					goto land
@@ -21,15 +21,15 @@ mission "Gegno Vi: First Contact"
 					goto search
 			label land
 			`	Still keeping your guard up, you carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range, so it seems there's nothing coming after you at the moment. Exiting your ship in an environment suit with your sidearm on hand, you walk towards the alien ship while remaining alert.`
-			`	On closer inspection, the alien ship appears a bit larger than you thought it was, around the size of a Firebird. The dark-brown hull looks to be made from materials that you aren't familiar of, and it has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, it seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any life signs nearby. Leaving the sight, you decide to head back to your ship and take another look around the area.`
+			`	On closer inspection, the alien ship appears a bit larger than you thought it was, around the size of a Firebird. The dark-brown hull looks to be made from materials that you aren't familiar of, and it has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, it seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any life signs nearby. Leaving the site, you decide to head back to your ship and take another look around the area.`
 				
 			label search
 			`	Continuing on your journey, a vague radar signature similar to the ones you saw earlier, though more erratic, appears a bit further out. As you approach it, a large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close by and ready yourself as you exit it once again to investigate.`
 			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. You were sure your radar scans showed no life form signature, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding some type of spear-like weapon. The figure moves around attentively as if it is intently focused on its surroundings, but appears to take no interest in your presence. Unlike other aliens you have met in the galaxy, this encounter feels very odd in that there is no immediate interaction with you.`
 			choice
-				`	Slowly reach for your sidearm.`
+				`	Approach the alien.`
 				`	Turn back to your ship.`
-			`	All of a sudden, the ground starts to vibrate, rapidly increasing in intensity with every second. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they. too, enter a defensive stance- but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature covered in spikes and scales, hundreds of time the size of you. Taking aim with your sidearm, you barely have time to react as it plummets back into the sand over beyond your right, but get a quick glimpse of the alien creature riding it down into the desert as they impale it with their weapon. Unsure of what comes next during the omnious silence, you slowly start to back your way towards your ship.`
+			`	All of a sudden, the ground starts to vibrate, rapidly increasing in intensity with every second. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they. too, enter a defensive stance- but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature covered in spikes and scales, hundreds of times the size of you. Taking aim with your sidearm, you barely have time to react as it plummets back into the sand over beyond your right, but get a quick glimpse of the alien creature riding it down into the desert as they impale it with their weapon. Unsure of what comes next during the omnious silence, you slowly start to back your way towards your ship.`
 			choice
 				`	Leave the planet immediately.`
 					goto leave
