@@ -1,0 +1,278 @@
+
+
+
+
+mission "Gegno Vi: First Contact"
+	landing
+	source "Var Oti"
+	on offer
+		conversation		
+			branch "secound encounter"
+				has "Giaru Gegno: Quarg Contact: offered"
+			branch "return encounter"
+				has "Gegno Vi: First Contact: deferred"
+				
+			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several very faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide keep your ship a few thousand meters above the surface while staying wary in alien territory. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
+			`Suddenly, your radar systems pick up a larger signature further up ahead on the horizon, and in the distance is an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around nearby systems, although it is half sunken into sand.`
+			choice
+				`	Land near the ship and investigate.`
+					goto land
+				`	Continue to search the surface.`
+					goto search
+			label land
+			`	Still keeping your guard up, you carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range, so it seems there's nothing coming after you at the moment. Exiting your ship in an environment suit with your sidearm on hand, you walk towards the alien ship while remaining alert.`
+			`	On closer inspection, the alien ship appears a bit larger than you thought it was, around the size of a Firebird. The dark-brown hull looks to be made from materials that you aren't familiar of, and it has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, it seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any life signs nearby. Leaving the sight, you decide to head back to your ship and take another look around the area.`
+				
+			label search
+			`	Continuing on your journey, a vague radar signature similar to the ones you saw earlier, though more erratic, appears a bit further out. As you approach it, a large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close by and ready yourself as you exit it once again to investigate.`
+			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. You were sure your radar scans showed no life form signature, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding some type of spear-like weapon. The figure moves around attentively as if it is intently focused on its surroundings, but appears to take no interest in your presence. Unlike other aliens you have met in the galaxy, this encounter feels very odd in that there is no immediate interaction with you.`
+			choice
+				`	Slowly reach for your sidearm.`
+				`	Turn back to your ship.`
+			`	All of a sudden, the ground starts to vibrate, rapidly increasing in intensity with every second. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they. too, enter a defensive stance- but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature covered in spikes and scales, hundreds of time the size of you. Taking aim with your sidearm, you barely have time to react as it plummets back into the sand over beyond your right, but get a quick glimpse of the alien creature riding it down into the desert as they impale it with their weapon. Unsure of what comes next during the omnious silence, you slowly start to back your way towards your ship.`
+			choice
+				`	Leave the planet immediately.`
+					goto leave
+				`	Distance yourself from the site but continue to watch.`
+					goto watch
+				`	Try to help the alien defeat the beast.`
+					goto help
+					
+			label help
+			`	Despite being in a first contact situation without a proper interaction, you decide to attempt assisting the alien and aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. Everything becomes tense as the space between you and the flailing creature diminishes, and your pulse begins to race. A gust of sand is forced directly towards you, and as it clears by that's when you fire your weapon. A laser shot flies directly into the face of the beast.`
+			`	Much to your dismay, the shot almost immediately ricochetes off of it, and you watch as the massive monster tumbles over you, just barely leaping into the air above. The organism plummets back into the ground behind you, and you fall to your back with the intensity of the dive with the wind knocked out of you. Raising your sidearm again, you aim once more, this time with your life possibly on the line. The creature explodes out of the ground once again with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again, and your finger slowly starts to pull on the trigger.`
+			`	A very loud cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you're able to come to your senses, you look up to see the alien marching out of the mouth of it and towards your direction, which has you stand up quickly in response.` 
+			choice
+				`Attempt to communicate with the alien.`
+			`	At this point, you have already invested a great amount of your energy into the situation. With a last "thump" of their foot, the alien now stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metallics surround a majority of their body, and in any exposed areas are rough-looking patches of skin and hair. A great deal of facial hair covers their face, and above human-like eyes are a pair of horns curved inward towards you.`
+			`	You aren't sure how to begin a conversation, but start by trying to greet the alien in a formal manner. Awkward silence ensues, and the alien looks you up and down in an almost unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
+			`	You hesitantly take the device and turn to make your way to your ship. There doesn't feel to be any emergency to the situation, but you still feel uncomfortable. Before heading out, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few notably small appendiges are found at either end of it, almost like a salamander, but its surface is definitely scaley. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice.`
+			`	"Voordt."
+				flee
+			label watch
+			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble again, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
+			choice
+				`	Help.`
+					goto help
+				`	Leave.`
+					goto leave
+			label leave
+			`	With the situation beginning to spin out of your control, you quickly turn around and make for your ship, taking off as soon as you can. You wonder what will become of the alien figure as while they are most certainly a member of the species inhabiting the nearby systems, it doesn't seem like any help will be sent for them anytime soon.`
+				depart
+				
+			label "second encounter"
+			`Blah blah you met the Quarg already and are now here.`
+
+			
+			label "return encounter"
+			`	You came back. What do you do?`
+			choice
+				`	Watch.`
+					goto watch
+				`	Help.`
+					goto help
+					
+	on defer
+		set "Gegno Vi: First Contact: deferred"
+
+
+mission "Giaru Gegno: Quarg Contact"
+	landing
+	source "Giaru Gegno"
+	to offer
+		has "First Contact: Quarg: offered"
+	on offer
+		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
+		conversation
+			"After jumping through several systems of hostile alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval-style human clothing."
+			`	The mood here is eerie as the Quarg here move in a more quiet manner than what you're used to. They are almost dismissive of the other species walking about, who are equally as dismissive of you. The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After a moment of unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
+			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Humani". Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
+			`	One of the Quarg waiting in the room finally turns towards you and motions you to remain where you are for a little longer, offering you a seat. Their look of confusion disappears when they turn their gaze back upon you. Meanwhile, the other Quarg that was seated has left the room, along with the ones that first brought you here.`
+			choice
+				`	"Who are these aliens I've been seeing?"`
+				`	"Is it a problem that I'm here?"`
+				`	(Do not say anything.)`
+			`	The Quarg continues to look at you and bows its head slightly in an apologetic manner, as it seems neither they, nor any other Quarg on this ringworld, can speak your language. You continue to patiently wait in the uneasy silence, withholding your curiosities as almost half an hour goes by.`
+			`	Finally, the silence is broken when the second Quarg from earlier enters the room again. This time, they glare at you much more energetically, and you begin to wonder if they are going to escort you off of the ring for being somewhere you shouldn't be.`
+			`	You preemptively begin to stand up, but your action is caught short when you see the second Quarg raise its arms outward in a gesture you never thought you'd see from a Quarg. "Extravagant day, young traverser, this must be for you. A very substantial first this is for both of us, I strongly imagine." It is now obvious that this Quarg is not the same one from earlier, and you begin to see a few differences in their attire and figure.`
+			choice
+				`	"Where am I?"`
+			`	"You, brave rover, have found yourself in the dwelling of the mighty Gegno, who have rooted their hardy empire here in the great galactic east." You wonder if the Quarg's use of boastful adjectives is because of gaps in his translations, or if they are intentionally speaking of the Gegno in that way. Either way, they leave an odd impression on you; their voice comes from the lower tones of Quarg speech, rather than something more excitable.`
+			choice
+				`	"The Gegno?"`
+					goto gegno
+				`	"Are the ships I’ve seen these Gegno?"`
+					goto ships
+			label gegno
+			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future."`
+			choice 
+				`	"What is this guidance they pursue?"`
+					goto guidance
+			label ships
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration."`
+			choice
+				`	"Do the Gegno upset you in some way?"`
+					goto sacrifice
+			label guidance
+			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration. "The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery, will the Gegno prosper."`
+				goto next
+			label sacrifice
+			`	"The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery, will the Gegno prosper."`
+
+			label next
+			choice
+				`"The Vi are right, the strength to survive is more important than anything else." `
+					goto vi
+				`"The Scin are right, technological advancement opens up so many possibilities."`
+					goto scin
+				`"Why do they not combine their efforts to better their future together?"`
+					goto together
+			label vi
+			`	"While it is characteristic, such a tremendous proposition is rather dull for a growing species. Be that as it may, you humans follow this doctrine to a much lesser degree than that of the Vi."`
+				goto end
+			label scin
+			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of disappointment. "The pursuit of technology leaves behind many values important to a species' growth."`
+				goto end
+			label together
+			`	"Regrettably, most Gegno do not have a drive to pursue their future, diluting themselves far into their present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
+			label end
+			choice
+				`	"It seems that you do not like the paths they've chosen."`
+			`	With its physique raising above you, the Quarg now stands up, darting its gaze off to the side. The verve it exhibited earlier is now long gone. "It is not in our grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an uprising of such a sort once more." It pauses, then gestures you to stand up as well. "Similarly, the Gegno do not wish to interact with audacious outsiders. Unfortunately, only a brief history of them we can tell. We cannot advocate pleasantries between you and them, though you are welcome at this ring should you find yourself here again."`
+			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their hostility for the foreseeable future."`
+				decline
+	on decline
+		log `Learned from the Quarg that the Gegno are not interested in interaction with outsider species.`
+
+		
+mission "Stationed Augen"
+	invisible
+	landing
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Kiluit
+		ship Augen "Vytii Yrrlausei"
+	to fail
+		has "Intermediate: done"
+
+mission "Augen Destruction"
+	landing
+	invisible
+	to offer
+		has "Stationed Augen: failed"
+		not "Intermediary: done"
+	on offer
+		set "dead augen"
+		fail
+
+mission Intermediary
+	on complete
+		event "Vesvii War"
+
+mission "Active Augen"
+	to offer
+		has "Intermediary: done"
+		has "Stationed Augen: failed"
+		not "dead augen"
+	npc save
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Vesvii
+		ship Augen "Vytii Yrrlausei"
+
+event "Vesvii War"
+
+
+
+# Gegno Defense trigger
+
+mission "Gegno Genocide Defense"
+	landing
+	repeat
+	invisible
+	to offer
+		not "Gegno Genocide Defense: active"
+		or
+			"reputation: Gegno" < -100
+			"reputation: Gegno Vi" < -100
+			"reputation: Gegno Scin" < -100
+	on offer
+		"reputation: Gegno" = -100
+		"reputation: Gegno Vi" = -100
+		"reputation: Gegno Scin" = -100
+		event "gegno: unified defense"
+
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant 
+				Gneiss 3
+				Hornfel 4
+				Eclogite 5
+				Feldspar 3
+				Halite 18
+				Felsic 3
+				Coesite 4
+				Tridymite 3
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant
+				Feldspar 2
+				Halite 12
+				Gneiss 4
+				Felsic 4
+				Coesite 3
+				Eclogite 3
+				Tridymite 2
+	npc
+		government "Gegno"
+		system
+			government "Gegno" "Gegno Vi" "Gegno Scin"
+		personality nemesis heroic vindictive
+		fleet
+			names "gegno vi" "gegno scin"
+			variant
+				Feldspar 4
+				Halite 24
+				Gneiss 2
+				Hornfel 4
+				Tridymite 2
+				Eclogite 3
+				Coesite 6
+	npc
+		government "Gegno Vi"
+		personality heroic vindictive staying
+		system Heutesl
+		ship Augen "Vytii Yrrlausei"
+
+
+event "gegno: unified defense"
+	government "Gegno Vi"
+		attitude toward
+			"Gegno Scin" 1
+	government "Gegno Scin"
+		attitude toward
+			"Gengno Vi" 1
+	government "Gegno"
+		attitude toward
+			"Gegno Scin" 1
+			"Gegno Vi" 1
+	system "Vesvii"
+		remove fleet "Vi Warfleet"
+		remove fleet "Scin Warfleet"
+		add fleet "Gegno Miners" 1000
+	system "Zeinar"
+		add fleet "Scin Warfleet" 600
+	system "Scija"
+		add fleet "Vi Warfleet" 600
+
