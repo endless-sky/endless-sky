@@ -6,9 +6,13 @@ import glob
 # Script that checks for common code formatting pitfalls not covered by clang-format or other tests.
 
 # String version of the regexes for easy editing
+# List of the standard operators that are checked
 stdOp = "+/*<>&%=|!:-"
+# List of patterns for selecting potential formatting issues
 include = ["[^([{\\s" + stdOp + "][" + stdOp + "]+[^" + stdOp + "]*"]
-match_exclude = ["([+:-])\\1+", "^.->", "[" + stdOp + "][)\\]}]", "^[&*]", "\\.\\.\\.$", "^e[+-]"]
+# Patterns for excluding matches (test()#match) of 'include'
+match_exclude = ["([+:-])\\1+", "^.->", "[" + stdOp + "][)\\]}]", "^[&*][^[)\\]"+stdOp+"]", "\\.\\.\\.$", "^e[+-]"]
+# Patterns for excluding parts (test()#text) that had matches in $include
 part_exclude = ["^#include", "<.*>", "^(public|protected|private|default):", "operator"]
 
 # Precompiled version of the regexes
