@@ -31836,8 +31836,8 @@ system Vesvii
 	minables gold 7 3.2
 	minables yottrite 3 2.1
 	minables iron 9 1.7
-	fleet "Vi Warfleet" 500
-	fleet "Scin Warfleet" 500
+	fleet "Vi Warfleet" 800
+	fleet "Scin Warfleet" 800
 	object
 		sprite star/k5-old
 		distance 81.5

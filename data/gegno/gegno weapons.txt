@@ -152,7 +152,7 @@ effect "ballistic hit"
 	sprite effect/explosion/medium
 		"frame rate" 15
 		"no repeat"
-	sound "torpedo hit"
+	sound "explosion huge"
 	lifetime 36
 	"velocity scale" 0.4
 	"random angle" 360
