@@ -186,9 +186,10 @@ private:
 
 
 private:
-	// Mod key actions via pressing different controller buttons.
-	bool gamepadShift = false;
+	// Simulate mouse click with control held on button B.
 	bool gamepadControl = false;
+	// If held, will buy or sell to storage.
+	bool heldRightShoulder = false;
 };
 
 
