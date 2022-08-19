@@ -420,9 +420,9 @@ void PrintHelp()
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
-	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors" << endl;
+	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
-	cerr << "    --test <name>: run given test from resources directory" << endl;
+	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
