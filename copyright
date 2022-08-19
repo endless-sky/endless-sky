@@ -1430,12 +1430,14 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
+ images/ship/flivver*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
  images/star/neutron*
  images/thumbnail/corvette*
+ images/thumbnail/flivver*
  images/thumbnail/mraven*
  images/thumbnail/msplinter*
  images/thumbnail/raven*
