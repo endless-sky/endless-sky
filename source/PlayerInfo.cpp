@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Hardpoint.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
 #include "Person.h"
@@ -831,7 +832,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Files::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -2479,7 +2480,7 @@ void PlayerInfo::ValidateLoad()
 		else
 			warning += " (no ships could supply a valid player location).";
 
-		Files::LogError(warning);
+		Logger::LogError(warning);
 	}
 
 	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
@@ -2487,13 +2488,13 @@ void PlayerInfo::ValidateLoad()
 	if(planet && !system)
 	{
 		system = planet->GetSystem();
-		Files::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+		Logger::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &startData.GetSystem();
 		planet = &startData.GetPlanet();
-		Files::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+		Logger::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
 	}
 
 	// Every ship ought to have specified a valid location, but if not,
@@ -2503,7 +2504,7 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Files::LogError("Warning: player ship \"" + ship->Name()
+			Logger::LogError("Warning: player ship \"" + ship->Name()
 				+ "\" did not specify a valid system. Defaulting to the player's system.");
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
@@ -2511,7 +2512,7 @@ void PlayerInfo::ValidateLoad()
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Files::LogError("Warning: in-system player ship \"" + ship->Name()
+			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
 				+ "\" specified an invalid planet. Defaulting to the player's planet.");
 		}
 		// Owned ships that are not in the player's system always start in flight.
@@ -2520,7 +2521,7 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Files::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
+		Logger::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
 		travelDestination = nullptr;
 	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
@@ -2528,7 +2529,7 @@ void PlayerInfo::ValidateLoad()
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
-		Files::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+		Logger::LogError("Warning: reset the travel plan due to use of invalid system(s).");
 	}
 
 	// For old saves, default to the first start condition (the default "Endless Sky" start).
