@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 #include <vector>
-#include <bitset>
 
 class DamageDealt;
 class DataNode;
