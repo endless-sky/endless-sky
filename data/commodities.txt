@@ -712,7 +712,7 @@ trade
 		"composite beams"
 		"composite fibers"
 		"concrete"
-		"duck tape"
+		"duct tape"
 		"fiberglass"
 		"girders"
 		"I-beams"
