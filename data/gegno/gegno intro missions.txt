@@ -12,49 +12,49 @@ mission "Gegno Vi: First Contact"
 			branch "return encounter"
 				has "Gegno Vi: First Contact: deferred"
 				
-			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several very faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide keep your ship a few thousand meters above the surface while staying wary in alien territory. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
+			`As you descend towards the surface of this seemingly uninhabited world, your radar systems start to pick up several faint signatures below in every direction. None of the signatures change their behavior as you continue, but you decide to keep your ship a few thousand meters above the surface while staying wary in alien territory. You take the time to carefully look around, but there doesn't seem to be anything of note besides the cracked rock formations and valleys of sand.`
 			`Suddenly, your radar systems pick up a larger signature further up ahead on the horizon, and in the distance is an odd bulky rock-like structure. Once you get close enough, the structure begins to resemble ships you've seen flying around nearby systems, although it is half sunken into the sand.`
 			choice
-				`	Land near the ship and investigate.`
+				`	(Land near the ship and investigate.)`
 					goto land
-				`	Continue to search the surface.`
+				`	(Continue to search the surface.)`
 					goto search
 			label land
 			`	Still keeping your guard up, you carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range, so it seems there's nothing coming after you at the moment. Exiting your ship in an environment suit with your sidearm on hand, you walk towards the alien ship while remaining alert.`
-			`	On closer inspection, the alien ship appears a bit larger than you thought it was, around the size of a Firebird. The dark-brown hull looks to be made from materials that you aren't familiar of, and it has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, it seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any life signs nearby. Leaving the site, you decide to head back to your ship and take another look around the area.`
+			`	On closer inspection, the alien ship appears a bit larger than you thought it was - around the size of a Firebird. The dark-brown hull looks to be made from materials that you aren't familiar with, and it has several metallic-looking parts both hatched in crevices and protruding outward. Oddly enough, it seems perfectly intact, but the way it is angled into the sand suggests that the ship has been here for some time. There doesn't seem to be any activity around it, and you aren't picking up any life signs nearby. Leaving the site, you decide to head back to your ship and take another look around the area.`
 				
 			label search
 			`	Continuing on your journey, a vague radar signature similar to the ones you saw earlier, though more erratic, appears a bit further out. As you approach it, a large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close by and ready yourself as you exit it once again to investigate.`
 			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. You were sure your radar scans showed no life form signature, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding some type of spear-like weapon. The figure moves around attentively as if it is intently focused on its surroundings, but appears to take no interest in your presence. Unlike other aliens you have met in the galaxy, this encounter feels very odd in that there is no immediate interaction with you.`
 			choice
-				`	Approach the alien.`
-				`	Turn back to your ship.`
-			`	All of a sudden, the ground starts to vibrate, rapidly increasing in intensity with every second. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they. too, enter a defensive stance- but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature covered in spikes and scales, hundreds of times the size of you. Taking aim with your sidearm, you barely have time to react as it plummets back into the sand over beyond your right, but get a quick glimpse of the alien creature riding it down into the desert as they impale it with their weapon. Unsure of what comes next during the omnious silence, you slowly start to back your way towards your ship.`
+				`	(Approach the alien.)`
+				`	(Turn back to your ship.)`
+			`	All of a sudden, the ground starts to vibrate, rapidly increasing in intensity with every second. You take out your sidearm in a panic, but as you look back up at the alien figure, you notice that they too enter a defensive stance - but not towards you. A large maw bursts open in the sand to your left, and out of it comes a massive creature covered in spikes and scales, hundreds of times the size of you. Taking aim with your sidearm, you barely have time to react as it plummets back into the sand over beyond your right, but you get a quick glimpse of the alien creature riding it down into the desert as they impale it with their weapon. Unsure of what comes next during the omnious silence, you slowly start to back your way towards your ship.`
 			choice
-				`	Leave the planet immediately.`
+				`	(Leave the planet immediately.)`
 					goto leave
-				`	Distance yourself from the site but continue to watch.`
+				`	(Distance yourself from the site but continue to watch.)`
 					goto watch
-				`	Try to help the alien defeat the beast.`
+				`	(Try to help the alien defeat the beast.)`
 					goto help
 					
 			label help
-			`	Despite being in a first contact situation without a proper interaction, you decide to attempt assisting the alien and aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. Everything becomes tense as the space between you and the flailing creature diminishes, and your pulse begins to race. A gust of sand is forced directly towards you, and as it clears by that's when you fire your weapon. A laser shot flies directly into the face of the beast.`
-			`	Much to your dismay, the shot almost immediately ricochetes off of it, and you watch as the massive monster tumbles over you, just barely leaping into the air above. The organism plummets back into the ground behind you, and you fall to your back with the intensity of the dive with the wind knocked out of you. Raising your sidearm again, you aim once more, this time with your life possibly on the line. The creature explodes out of the ground once again with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again, and your finger slowly starts to pull on the trigger.`
+			`	Despite being in a first contact situation without a proper interaction, you decide to attempt assisting the alien and aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. Everything becomes tense as the space between you and the flailing creature diminishes, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
+			`	Much to your dismay, the shot almost immediately ricochets off of it, and you watch as the massive monster tumbles over you, just barely leaping into the air above. The organism plummets back into the ground behind you, and you fall to your back with the wind knocked out of you. Raising your sidearm again, you aim once more, this time with your life possibly on the line. The creature explodes out of the ground once again with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again, and your finger slowly starts to pull on the trigger.`
 			`	A very loud cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you're able to come to your senses, you look up to see the alien marching out of the mouth of it and towards your direction, which has you stand up quickly in response.` 
 			choice
-				`Attempt to communicate with the alien.`
+				`(Attempt to communicate with the alien.)`
 			`	At this point, you have already invested a great amount of your energy into the situation. With a last "thump" of their foot, the alien now stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metallics surround a majority of their body, and in any exposed areas are rough-looking patches of skin and hair. A great deal of facial hair covers their face, and above human-like eyes are a pair of horns curved inward towards you.`
 			`	You aren't sure how to begin a conversation, but start by trying to greet the alien in a formal manner. Awkward silence ensues, and the alien looks you up and down in an almost unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
-			`	You hesitantly take the device and turn to make your way to your ship. There doesn't feel to be any emergency to the situation, but you still feel uncomfortable. Before heading out, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few notably small appendiges are found at either end of it, almost like a salamander, but its surface is definitely scaley. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice.`
+			`	You hesitantly take the device and turn to make your way to your ship. There doesn't feel to be any emergency to the situation, but you still feel uncomfortable. Before heading out, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few notably small appendages are found at either end of it, almost like a salamander, but its surface is definitely scaly. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
 			`	"Voordt."
 				flee
 			label watch
 			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble again, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
 			choice
-				`	Help.`
+				`	(Help the alien.)`
 					goto help
-				`	Leave.`
+				`	(Leave.)`
 					goto leave
 			label leave
 			`	With the situation beginning to spin out of your control, you quickly turn around and make for your ship, taking off as soon as you can. You wonder what will become of the alien figure as while they are most certainly a member of the species inhabiting the nearby systems, it doesn't seem like any help will be sent for them anytime soon.`
@@ -67,9 +67,9 @@ mission "Gegno Vi: First Contact"
 			label "return encounter"
 			`	You came back. What do you do?`
 			choice
-				`	Watch.`
+				`	(Watch.)`
 					goto watch
-				`	Help.`
+				`	(Help.)`
 					goto help
 					
 	on defer
