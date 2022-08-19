@@ -36,8 +36,6 @@ mission "Gegno Vi: First Contact"
 				`	(Distance yourself from the site but continue to watch.)`
 					goto watch
 				`	(Try to help the alien defeat the beast.)`
-					goto help
-					
 			label help
 			`	Despite being in a first contact situation without a proper interaction, you decide to attempt assisting the alien and aim your sidearm at the beast, preparing to fire. Instead of digging back under the surface, the beast continues to thrash about where it is while the alien batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. Everything becomes tense as the space between you and the flailing creature diminishes, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it, and you watch as the massive monster tumbles over you, just barely leaping into the air above. The organism plummets back into the ground behind you, and you fall to your back with the wind knocked out of you. Raising your sidearm again, you aim once more, this time with your life possibly on the line. The creature explodes out of the ground once again with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again, and your finger slowly starts to pull on the trigger.`
