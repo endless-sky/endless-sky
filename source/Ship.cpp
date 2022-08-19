@@ -2677,7 +2677,6 @@ float Ship::LandingSpeed() const
 	// and those with above will progressively land slower.
 	// The landing speed will be applied on top of that.
 	return landingSpeed + (mass < 1000. ? 0.02f : 20.f / mass);
-	
 }
 
 
