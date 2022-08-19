@@ -1399,6 +1399,7 @@ Files:
  images/effect/plasma?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
@@ -1412,6 +1413,8 @@ Files:
  images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
  images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
  images/outfit/nuke*
  images/outfit/plasma?core*
  images/outfit/red?sun*
