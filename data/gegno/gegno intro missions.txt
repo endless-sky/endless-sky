@@ -7,7 +7,7 @@ mission "Gegno Vi: First Contact"
 	source "Var Oti"
 	on offer
 		conversation		
-			branch "secound encounter"
+			branch "second encounter"
 				has "Giaru Gegno: Quarg Contact: offered"
 			branch "return encounter"
 				has "Gegno Vi: First Contact: deferred"
