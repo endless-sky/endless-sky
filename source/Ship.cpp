@@ -1689,16 +1689,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			const double mass = Mass();
-			const double landingSpeed = attributes.Get("landing speed");
-			// Ships with a mass under 1000 will land normally,
-			// and those with above will progressively land slower.
-			// The landing speed will be applied on top of that.
-			zoom -= landingSpeed;
-			if(mass < 1000.)
-				zoom -= .02f;
-			else
-				zoom -= 20.f / mass;
+			zoom -= LandingSpeed();
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1726,7 +1717,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + .02f);
+			zoom = min(1.f, zoom + LandingSpeed());
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -2674,6 +2665,19 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
+}
+
+
+
+float Ship::LandingSpeed() const
+{
+	const float mass = Mass();
+	const float landingSpeed = attributes.Get("landing speed");
+	// Ships with a mass under 1000 will land normally,
+	// and those with above will progressively land slower.
+	// The landing speed will be applied on top of that.
+	return landingSpeed + (mass < 1000. ? 0.02f : 20.f / mass);
+	
 }
 
 
