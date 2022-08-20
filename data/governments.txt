@@ -241,6 +241,7 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Hai (Unfettered Challenge)" 1
+		"Shadow" 1
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -491,6 +492,16 @@ government "Hydra"
 	bribe 0
 	fine 0
 	"hostile hail" "hostile pirate"
+
+government "Shadow"
+	swizzle 9
+	"player reputation" 0
+	bribe 
+	fine 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Merchant"
 	swizzle 5

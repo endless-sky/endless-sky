@@ -1147,12 +1147,23 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		ship "Bactrian (Hydra)" "Rested Snake"
 		conversation
-			"Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials and bring them back to Sha-Ri."
+			`Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials when you can and bring them back to Sha-Ri.`
 			action
 				fail "Unfettered: Cavalry Arrives"
+			`	Seeing the fight is almost over if not completely, your surprise allies hail you, "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
+			choice
+				`	"Where you sent by Sha-Ri's contact?"`
+				`	"What are these weapons you are using?"`
+					goto weapons
+			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that."`
+				goto leave
+			label weapons
+			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
+			label leave
+			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again." They then end the hail, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the hail.`
 	npc save
 		system "Misam"
-		government "Hai (Unfettered)"
+		government "Shadow"
 		to spawn
 			has "Unfettered: Cavalry Arrives: offered"
 		personality entering heroic uninterested
