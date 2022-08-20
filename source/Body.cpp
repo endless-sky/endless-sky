@@ -136,7 +136,7 @@ float Body::GetFrame(int step) const
 const Mask &Body::GetMask(int step) const
 {
 	const Sprite* sprite = this->GetSprite(this->currentState);
-	
+
 	// Commenting this out results in correct transition behavior
 	/*if(step >= 0)
 		SetStep(step);*/
@@ -282,11 +282,11 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 	// Write all states to file
 	if(allStates){
 		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing"};
-		
+
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = this->sprites[i];
 			const Sprite* sprite = spriteState->sprite;
-		
+
 			if(sprite){
 				out.Write(tags[i], sprite->Name());
 				out.BeginChild();
@@ -357,7 +357,7 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 
 // Set the state.
 void Body::SetState(BodyState state)
-{	
+{
 	if(state != this->currentState){
 
 		// Set the current frame to be the rewindFrame upon first request to state transition
@@ -533,7 +533,7 @@ void Body::SetStep(int step) const
 
 			frame = max(0.f, lastFrame * 2.f - frame);
 		}
-		
+
 	} else {
 		if(transitionFinish && !transitionRewind){
 
