@@ -2672,8 +2672,9 @@ bool Ship::IsLanding() const
 float Ship::LandingSpeed() const
 {
 	// Makes no sense to query the landing speed if we are not landing.
+	// Return the default value instead.
 	if(!IsLanding())
-		return 0.f;
+		return 0.02f;
 
 	const float mass = Mass();
 	const float landingSpeed = attributes.Get("landing speed");
