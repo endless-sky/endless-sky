@@ -1034,6 +1034,13 @@ mission "Unfettered: Taking Off With Hai Fleet"
 
 
 
+outfit "Materials"
+	category "Special"
+	cost 1000
+	thumbnail "outfit/unknown"
+	"mass" 1
+	description "These are simple building materials, meant for the construction of Unfettered houses."
+
 ship "Bactrian" "Bactrian (Hydra)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -1090,7 +1097,7 @@ mission "Unfettered: Materials Intercepted"
 		`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
 			goto choose
 		label worthless
-		`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost."`
+		`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
 		label choose
 		choice
 			`	"I will try to bring the loot back without attracting too much attention."`

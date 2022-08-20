@@ -568,3 +568,108 @@ mission "Darkcloak Ship Materials"
 	on complete
 		payment 50000 7000
 		dialog `The Unfettered promise you many new, grandiose ships will be built with this new material. As long as you get your <payment>, that seems good to you.`
+
+
+
+ship "Bastion" "Bastion (Materials)"
+	outfits
+		"Plasma Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Blaster Turret" 3
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Laser Rifle" 5
+		"Cargo Scanner"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	cargo
+		outfits
+			"Materials" 100
+
+ship "Argosy" "Argosy (Proton)"
+	outfits
+		"Proton Gun" 2
+		"Proton Turret"
+		"NT-200 Nucleovoltaic"
+		"Supercapacitor"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	
+	cargo
+		outfits
+			"Materials" 100
+
+phrase "unfettered cargo interception payment dialog"
+	word
+		"The Unfettered unloading your cargo of materials gives you <payment>. Such a huge amount for what its worth, but considering what it took to get it the price is fair."
+		`An Unfettered unloading the materials comes to you, "It looks like the elders are keeping their promises to rebuild, no matter the cost. Here are your <payment>."`
+		`As you land, you are directed instead to go bring the materials to their destination. It is a short trip, considering you are used to travelling in space. There, you receive <payment> for your troubles, before heading back to the spaceport.`
+		`An Unfettered comes to you during the unloading of your cargo, "My deepest thanks, this will help in the repairs. We do not nearly produce enough materials to do it on our own." He then gives you <payment>.`
+		"A spaceport worker gives you <payment> for the materials, without any further ceremony."
+		`The leader of the Unfettered team that collects your cargo comes to you, "This is good, but we need more. Recently, an entire area collapsed because of lack of maintaining." He then hands the chip with <payment>.`
+
+mission "Cargo Interception West"
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	job
+	repeat
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 30
+	npc board
+		government "Pirate"
+		personality disables plunders harvests staying
+		system "Almaaz" "Alnilam" "Arneb"
+		fleet
+			names "pirate"
+			variant
+				"Bastion (Materials)"
+			variant
+				"Argosy (Materials"
+		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
+	on visit
+		dialog `You do not have the materials yet. Go look for in western pirate space.`
+	on complete
+		outfit "Materials" -100
+		payment 1000000
+		dialog phrase "unfettered cargo interception payment dialog"
+
+mission "Cargo Interception East"
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	job
+	repeat
+	source
+		attributes "unfettered"
+	destination
+		attributes "unfettered"
+	to offer
+		random < 15
+	npc board
+		government "Pirate"
+		personality disables plunders harvests staying
+		system "Alcyone" "Misam"
+		fleet
+			names "pirate"
+			variant
+				"Bastion (Materials)"
+			variant
+				"Argosy (Materials"
+		dialog "This pirate ship indeed contains the materials you are looking for. You should bring them to <destination> to receive your payment."
+	on visit
+		dialog `You do not have the materials yet. Go look for them in eastern pirate space.`
+	on complete
+		outfit "Materials" -100
+		payment 1000000
+		dialog phrase "unfettered cargo interception payment dialog"
