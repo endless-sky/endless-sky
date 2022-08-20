@@ -417,7 +417,7 @@ ship "Sea Scorpion"
 	attributes
 		category "Medium Warship"
 		"cost" 2950000
-		"shields" 13500
+		"shields" 15500
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
