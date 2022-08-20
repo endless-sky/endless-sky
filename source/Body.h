@@ -84,10 +84,6 @@ protected:
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 
-	// Debug
-	void PrintAnimationParameters();
-	void SetDebug(bool debug);	
-
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
@@ -113,7 +109,7 @@ private:
 	void FinishStateTransition() const;
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
-	void SetStep(int step, bool forMask = false) const;
+	void SetStep(int step) const;
 
 
 

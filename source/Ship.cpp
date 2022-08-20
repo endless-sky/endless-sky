@@ -1372,7 +1372,6 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.

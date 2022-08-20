@@ -26,18 +26,18 @@ class SpriteParameters{
         const Sprite* sprite = nullptr;
 
         // Animation parameters as found in Body.h
-        float frameRate = 2.f / 60.f;
-        float scale = 1.f;
-        int delay = 0;
+        mutable float frameRate = 2.f / 60.f;
+        mutable float scale = 1.f;
+        mutable int delay = 0;
 
-        bool startAtZero = false;
-        bool randomize = false;
-        bool repeat = true;
-        bool rewind = false;
+        mutable bool startAtZero = false;
+        mutable bool randomize = false;
+        mutable bool repeat = true;
+        mutable bool rewind = false;
         
         // Defines what to do when a state transition is requested (eg. FLYING to LANDING)
-        bool transitionFinish = false;
-        bool transitionRewind = false;
+        mutable bool transitionFinish = false;
+        mutable bool transitionRewind = false;
 };
 
 #endif

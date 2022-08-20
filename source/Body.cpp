@@ -67,11 +67,11 @@ bool Body::HasSprite() const
 // Access the underlying Sprite object.
 const Sprite *Body::GetSprite(BodyState state) const
 {
-
 	BodyState selected = state != BodyState::CURRENT ? state : this->currentState;
 
 	SpriteParameters* spriteState = this->sprites[selected];
 
+	// Return flying sprite if the requested state's sprite does not exist.
 	if(spriteState != nullptr && spriteState->sprite != nullptr){
 		return spriteState->sprite;
 	} else {
@@ -139,8 +139,9 @@ const Mask &Body::GetMask(int step) const
 {
 	const Sprite* sprite = this->GetSprite(this->currentState);
 	
-	if(step >= 0)
-		SetStep(step, true);
+	// Commenting this out results in correct transition behavior
+	/*if(step >= 0)
+		SetStep(step);*/
 
 	static const Mask EMPTY;
 	int current = round(frame);
@@ -280,6 +281,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 // Save the sprite specification, including all animation attributes.
 void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
+	// Write all states to file
 	if(allStates){
 		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing"};
 		
@@ -362,14 +364,14 @@ void Body::SetState(BodyState state)
 {	
 	if(state != this->currentState){
 
+		// Set the current frame to be the rewindFrame upon first request to state transition
 		if(!stateTransitionRequested && transitionRewind){
 			rewindFrame = frame;
 
+			// Ensures that rewinding starts from correct frame.
 			frameOffset = -currentStep * frameRate;
 			frameOffset += rewindFrame;
 
-			if(debug)
-				printf("FO: %f, CF: %f", frameOffset, currentStep * frameRate + frameOffset);
 		}
 
 		stateTransitionRequested = true;
@@ -378,6 +380,7 @@ void Body::SetState(BodyState state)
 
 	this->transitionState = state;
 
+	// If state transition has no animation needed, then immediately transition.
 	if(!this->transitionFinish && !this->transitionRewind && stateTransitionRequested){
 		this->FinishStateTransition();
 	}
@@ -415,18 +418,6 @@ void Body::PauseAnimation()
 	++pause;
 }
 
-void Body::PrintAnimationParameters()
-{
-	printf("Frame-RFrame %f-%f | Step %d | FO %f | Zero %d | Random %d | Repeat %d | R-TR-TF %d-%d-%d\n",
-		this->frame, this->rewindFrame, this->currentStep, this->frameOffset, this->startAtZero,
-		this->randomize, this->repeat, this->rewind, this->transitionRewind, this->transitionFinish);
-}
-
-void Body::SetDebug(bool debug){
-	this->debug = debug;
-}
-
-
 
 // Mark this object to be removed from the game.
 void Body::MarkForRemoval()
@@ -442,13 +433,20 @@ void Body::UnmarkForRemoval()
 	shouldBeRemoved = false;
 }
 
+// Called when the body is ready to transition between states.
 void Body::FinishStateTransition() const
 {
 	frameOffset = 0.f;
 	pause = 0;
-	
+
+	// No longer need to change states
+	this->stateTransitionRequested = false;
+
+	// Default to Flying sprite if requested sprite does not exist.
 	SpriteParameters* transitionedState = this->sprites[this->transitionState]->sprite != nullptr ?
 									this->sprites[this->transitionState] : this->sprites[BodyState::FLYING];
+	
+	// Update animation parameters.
 	this->frameRate = transitionedState->frameRate;
 	this->scale = transitionedState->scale;
 	this->delay = transitionedState->delay;
@@ -459,12 +457,12 @@ void Body::FinishStateTransition() const
 	this->transitionFinish = transitionedState->transitionFinish;
 	this->transitionRewind = transitionedState->transitionRewind;
 
+
 	this->currentState = this->transitionState;
-	this->stateTransitionRequested = false;
 }
 
 // Set the current time step.
-void Body::SetStep(int step, bool forMask) const
+void Body::SetStep(int step) const
 {
 
 	const Sprite* sprite = this->GetSprite();
@@ -528,6 +526,7 @@ void Body::SetStep(int step, bool forMask) const
 			}
 			else if(frame >= frames)
 			{
+				// If in the delay portion of the loop, set the frame to zero.
 				frame = 0.f;
 			}
 			
@@ -542,19 +541,19 @@ void Body::SetStep(int step, bool forMask) const
 			frame = max(0.f, lastFrame * 2.f - frame);
 			
 		}
-
-		if(debug)
-			printf("NT == F %f | RF %f\n", frame, rewindFrame);
-
 		
 	} else {
 		if(transitionFinish && !transitionRewind){
+
+			// Finish the ongoing state's animation then transition
 			frame = min(frame, lastFrame);
 
 			if(frame >= lastFrame){
 				this->FinishStateTransition();
 			}
 		} else if(!transitionFinish && transitionRewind){
+
+			// Rewind the ongoing state's animation, then transition.
 			frame = max(0.f, rewindFrame * 2.f - frame);
 
 			if(frame == 0.f){
@@ -562,8 +561,6 @@ void Body::SetStep(int step, bool forMask) const
 			}
 		}
 
-		if(debug)
-			printf("T == F %f | RF %f\n", frame, rewindFrame);
 	}
 	
 }
