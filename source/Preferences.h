@@ -25,6 +25,12 @@ public:
 		adaptive,
 	};
 
+	enum class IncompleteFighterUsage : int {
+		ask = 0,
+		depart,
+		deploy
+	};
+
 
 public:
 	static void Load();
@@ -51,6 +57,10 @@ public:
 	static bool ToggleVSync();
 	static Preferences::VSync VSyncState();
 	static const std::string &VSyncSetting();
+
+	// The use of incomplete fighters, either "ask", "depart" or "deploy"
+	static void ToggleIncompleteFighterUsage();
+	static std::string IncompleteFighterUsage();
 };
 
 

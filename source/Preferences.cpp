@@ -41,6 +41,10 @@ namespace {
 	// Enable standard VSync by default.
 	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+
+	// Default to "ask" for fighter use
+	const vector<string> INCOMPLETE_FIGHTER_SETTINGS = {"ask", "depart", "deploy"};
+	int incompleteFighterIndex = 0;
 }
 
 
@@ -82,6 +86,8 @@ void Preferences::Load()
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
+		else if(node.Token(0) == "use incomplete fighters")
+			incompleteFighterIndex = max<int>(0, min<int>(node.Value(1), INCOMPLETE_FIGHTER_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -99,6 +105,7 @@ void Preferences::Save()
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("use incomplete fighters", incompleteFighterIndex);
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -219,4 +226,21 @@ Preferences::VSync Preferences::VSyncState()
 const string &Preferences::VSyncSetting()
 {
 	return VSYNC_SETTINGS[vsyncIndex];
+}
+
+
+
+// The use of incomplete fighters
+void Preferences::ToggleIncompleteFighterUsage()
+{
+	incompleteFighterIndex++;
+	if(incompleteFighterIndex == static_cast<int>(INCOMPLETE_FIGHTER_SETTINGS.size()))
+		incompleteFighterIndex = 0;
+}
+
+
+
+string Preferences::IncompleteFighterUsage()
+{
+	return INCOMPLETE_FIGHTER_SETTINGS[incompleteFighterIndex];
 }

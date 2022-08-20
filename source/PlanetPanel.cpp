@@ -286,7 +286,7 @@ void PlanetPanel::TakeOffIfReady()
 					break;
 				}
 
-		if(!Preferences::Has("Take off with incomplete fighters"))
+		if(Preferences::IncompleteFighterUsage() == "ask")
 		{
 			const auto incompleteWarnings = set<string>{
 				"no energy?", "no fuel energy?", "no thruster?", "no steering?"

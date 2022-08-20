@@ -56,6 +56,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string INCOMPLETE_FIGHTERS = "Use incomplete fighters";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 }
 
@@ -182,6 +183,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
+			else if(zone.Value() == INCOMPLETE_FIGHTERS)
+				Preferences::ToggleIncompleteFighterUsage();
 			else if(zone.Value() == REACTIVATE_HELP)
 			{
 				for(const auto &it : GameData::HelpTemplates())
@@ -444,8 +447,7 @@ void PreferencesPanel::DrawSettings()
 		"Automatic firing",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
-		"Take off with incomplete fighters",
-		"Deploy incomplete fighters",
+		INCOMPLETE_FIGHTERS,
 		TURRET_TRACKING,
 		"\n",
 		"Performance",
@@ -526,6 +528,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == INCOMPLETE_FIGHTERS)
+		{
+			text = Preferences::IncompleteFighterUsage();
+			isOn = text != "ask";
 		}
 		else if(setting == SHIP_OUTLINES)
 		{

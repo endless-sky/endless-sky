@@ -138,7 +138,7 @@ namespace {
 		{
 			// Check for incomplete ships based on player preferences
 			// Only applied to automatic deployments, allows the player to manually deploy
-			if(!manual && !ship->HasDeployOrder() && !Preferences::Has("Deploy incomplete fighters"))
+			if(!manual && !ship->HasDeployOrder() && Preferences::IncompleteFighterUsage() != "deploy")
 			{
 				auto flightChecks = ship->FlightCheck();
 				if(!flightChecks.empty())
