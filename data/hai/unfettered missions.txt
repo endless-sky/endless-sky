@@ -1208,6 +1208,7 @@ ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 		"shields" 1500
 		"hull" 1000
 		"fuel capacity" 300
+		"outfit space" 2
 
 mission "Unfettered: Cavalry Arrives"
 	landing
