@@ -152,23 +152,10 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
-					bool remove = (grand.Token(0) == "remove");
-					if(remove || grand.Token(0) == "ignore")
-					{
-						const Outfit *outfit = GameData::Outfits().Get(grand.Token(1));
-						const auto &illegal = illegals.find(outfit);
-						if(illegal != illegals.end())
-						{
-							if(remove)
-								illegals.erase(illegal);
-							else
-								illegal->second = -1;
-						}
-						else if (!remove)
-							illegals.emplace(outfit, -1);
-						else
-							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
-					}
+					if(grand.Token(0) == "remove" && !illegals.erase(GameData::Outfits().Get(grand.Token(1)))
+						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
+					else if(grand.Token(0) == "ignore")
+						illegals[GameData::Outfits().Get(grand.Token(1))] = 0;
 					else
 						illegals[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
 				}
@@ -181,25 +168,15 @@ void Government::Load(const DataNode &node)
 				atrocities.clear();
 			for(const DataNode &grand : child)
 			{
-				bool remove = (grand.Token(0) == "remove");
-				if(grand.Size() >= 2 && (remove || grand.Token(0) == "ignore"))
-				{
-					const Outfit *outfit = GameData::Outfits().Get(grand.Token(1));
-					const auto &atrocity = atrocities.find(outfit);
-					if(atrocity != atrocities.end())
+					if(grand.Size() >= 2)
 					{
-						if(remove)
-							atrocities.erase(atrocity);
-						else
-							atrocity->second = false;
+						if(grand.Token(0) == "remove" && !atrocities.erase(GameData::Outfits().Get(grand.Token(1)))
+							grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
+						else if(grand.Token(0) == "ignore")
+							atrocities[GameData::Outfits().Get(grand.Token(1))] = false;
 					}
-					else if(!remove)
-						atrocities.emplace(outfit, false);
 					else
-						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
-				}
-				else
-					atrocities.emplace(GameData::Outfits().Get(grand.Token(0)), true);
+						atrocities[GameData::Outfits().Get(grand.Token(0))] = true;
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
