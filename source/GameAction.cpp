@@ -176,24 +176,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
-	{
-		string name = (child.Size() >= 4 ? child.Token(3) : "");
-		int count = (child.Size() >= 5 ? static_cast<int>(child.Value(4)) : 1);
-		bool taking = (key == "take");
-		if(count <= 0)
-			child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
-		else if(!name.empty() && count > 1 && taking)
-			child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
-		else
-			giftShips[GameData::Ships().Get(child.Token(2))] = ShipManager(
-				name,
-				count * (taking ? -1 : 1),
-				((child.Size() >= 6 && child.Token(5) == "unconstrained") ||
-				(child.Size() >= 7 && child.Token(6) == "unconstrained")) ? true : false,
-				((child.Size() >= 6 && child.Token(5) == "with outfits") ||
-				(child.Size() >= 7 && child.Token(6) == "with outfits")) ? true : false
-				);
-	}
+		ShipManager::Load(child, giftShips);
 	else if(key == "outfit" && hasValue)
 	{
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));

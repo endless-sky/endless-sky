@@ -99,19 +99,8 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
 		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
-		else if(key == "owns" && hasValue)
-		{
-			int count = (child.Size() < 4 ? 1 : static_cast<int>(child.Value(3)));
-			if(count >= 0)
-				requiredShips[GameData::Ships().Get(child.Token(1))] = ShipManager(
-					child.Size() >= 3 ? child.Token(2) : "",
-					count,
-					child.Size() >= 5 ? child.Token(4) == "unconstrained" : false,
-					false
-					);
-			else
-				child.PrintTrace("Error: Skipping invalid \"owns\" amount:");
-		}
+		else if(key == "owns" && child.Size() >= 3 && child.Token(2) == "ship")
+			ShipManager::Load(child, requiredShips);
 		else if(key == "require" && hasValue)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
