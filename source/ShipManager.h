@@ -24,7 +24,6 @@ class PlayerInfo;
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
-	ShipManager() = default;
 	// Does not take a DataNode because, if not valid, this will not be created in the first place,
 	// and the responsibility to check that is thus on those using the ShipManager.
 	ShipManager(std::string name, int count = 1, bool unconstrained = false, bool withOutfits = false);
