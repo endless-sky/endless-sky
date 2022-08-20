@@ -1167,8 +1167,8 @@ mission "Unfettered: Materials Intercepted"
 		to spawn
 			has "Unfettered: Cavalry Arrives: offered"
 		personality entering heroic uninterested
-		ship "Sea Scorpion (Tripulse, JD)" "Thorn"
-		ship "Sea Scorpion (Tripulse, JD)" "Talon"
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
 	npc
 		system "Misam"
 		government "Hydra"
@@ -1188,19 +1188,26 @@ mission "Unfettered: Materials Intercepted"
 		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas."
 		dialog "You cannot find Sha-Ri to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
 
-ship "Sea Scorpion" "Sea Scorpion (Tripulse, JD)"
+ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
+	sprite "ship/hai marauder sea scorpion"
+	thumbnail "thumbnail/hai marauder sea scorpion"
 	outfits
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Boulder Reactor"
-		"Fuel Pod" 3
 		"Hai Diamond Regenerator" 2
-		"Hai Gorge Batteries"
+		"Hai Ravine Batteries"
 		"Hai Williwaw Cooling" 2
 		"Jump Drive"
 		"Outfits Expansion" 2
 		"Pulse Rifle" 25
+		"Dual Pulse Pistols"
 		"Tripulse Shredder" 4
+		"Wanderer Ramscoop"
+	add attributes
+		"shields" 1500
+		"hull" 1000
+		"fuel capacity" 300
 
 mission "Unfettered: Cavalry Arrives"
 	landing
