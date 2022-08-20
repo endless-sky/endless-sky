@@ -178,13 +178,13 @@ outfit "Ionic Turret Prototype"
 		"velocity" 12
 		"lifetime" 70
 		"reload" 70
-		"firing energy" 300
-		"firing force" 5
-		"firing heat" 200
+		"firing energy" 371
+		"firing force" 8
+		"firing heat" 259
 		"hit force" 60
 		"shield damage" 100
 		"hull damage" 50
-		"ion damage" 12
+		"ion damage" 14
 	description "This is a turret version of the Ion Cannon. The Unfettered refined the ion in the shots to be more coherent, and thus apply more disruption, at the cost of dealing less damage, and needing a lot more energy. This weapon quickly disables any small ships that lack power generation, and jams the weapons of others."
 	description "Its larger size is explained by the need for extra ionizers, and the fast rotating base, intended to be able to keep up with agile ships such as drones or fighters. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
 
