@@ -274,7 +274,7 @@ mission "HI2-SF"
 	on complete
 		conversation
 			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the strategic location held by the planet, and the volume of resources and ships, marked it for investigation anyway.`
-			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing, and saying you may depart.`
+			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing. They then ask you to depart once they enter your ship.
 
 mission "HI2-SS"
 	name "Investigate <planet>"
@@ -465,7 +465,7 @@ mission "HI2-IW"
 				`	(Try and dig through the snowy mounds to find something.)`
 					goto dig
 			label cave
-			`	Iplora brings out a flashlight and lights up the way as you two explore the caverns. After some twists and turns she notices some large rocks, broken free from the walls, but still hugging them closely. She asks that you hold the flashlight for her and starts pushing the rocks, revealing a passage to a small campsite containing some makeshift beds, small wooden crates, and a worn down campfire in the middle.`
+			`	Iplora brings out a flashlight and lights up the way as you two explore the caverns. After some twists and turns she notices some large rocks that evidently broke free from the walls, but still hug them closely. She asks that you hold the flashlight for her and starts pushing the rocks, revealing a passage to a small campsite containing some makeshift beds, small wooden crates, and a worn down campfire in the middle.`
 			`	You search through the crates as she examines the room looking for some other hidden area, but neither of you find anything. She checks the campfire and concludes that nobody has been here for a few months. You continue exploring the cave and eventually loop back outside, leaving via another cave entrance, this time much further from the forest according to Iplora. You don't know how she can determine that because the blizzard has gotten so much stronger that you can't even see the trees anymore.`
 			choice
 				`	(Suggest returning to the ship.)`
@@ -507,7 +507,7 @@ mission "HI2-IW"
 				goto opencrate
 			label help
 			`	You start shooting the hills above, trying to aim around where Iplora's own shots go to. A shot comes your way, and you jump to the side. Iplora takes cover inside the hole, firing a few more shots from there, then leaves up the hill. You follow her lead, approaching from another direction.`
-			`	The shots alternate targets, some firing at Iplora, then some at you, then back at her. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
+			`	The shots alternate targets, some firing at Iplora, some at you. The blizzard is bad enough that you can't even see the attacker, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past the last cave you visited when the shots stop altogether. Iplora still takes aim for a bit, but ultimately lowers her weapon, coming toward you. "Fled, our attacker has," she claims. You two walk back to the crate.`
 			label opencrate
 			`	When it's finally open, you see it contains a Heliarch finisher torpedo. You two go around the fields, and find that many other mounds are identical crates. She uses a communication device and calls for Heliarch support. Several Heliarch Neutralizers arrive some time after the blizzard subsides, and you're directed to one of them to dry your clothes and make sure you're not frostbitten.`
@@ -565,7 +565,7 @@ mission "Heliarch Recon 1"
 		conversation
 			`Three Heliarch agents are waiting for you when you land. "The human visitor who so much to our society has contributed, we greet," the Saryd says as they all salute you.`
 			`	"Sent by Consul Aulori, we were," the Kimek says proudly, as if you were supposed to know who that is. "An important task for you, he has in mind."`
-			`	"How far would the visitor go, if to further help our Coalition, it meant?" The Arach asks.`
+			`	"How far would the visitor go, if to further help our Coalition, it meant?" the Arach asks.`
 			choice
 				`	"I'm not sure I understand what you're getting at."`
 				`	"Obviously I have my limits as for what I would do."`
@@ -595,7 +595,7 @@ mission "Heliarch Recon 1"
 		payment 165000
 		conversation
 			`The Heliarch trio are eagerly waiting for you when you return. They are quick to welcome you, urging you to show them your ship's logs so they can see what information you've gathered. They don't seem to pay much mind to data on Grakhord or Forpelog, being much more interested in the ringworlds. As they examine the data, though, the Saryd frowns, while the Kimek brings all his legs closer to his body, and the Arach squints all her eyes - probably their versions of that reaction.`
-			`	"Land on the rings, you really did, right Captain?" The Saryd asks while pointing at Lagrange, then Kuwaru Efreti, then Alta Hai.`
+			`	"Land on the rings, you really did, right Captain?" the Saryd asks while pointing at the places you visited.`
 			`	You nod, and the Kimek hits your control panel lightly with one of his legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
 			`	They have engineers return your sensors to normal, while you explain how your ship behaved while landing on them. They speak among themselves for a while, then the Arach says, "Too straightforward an approach, we might have taken. Captain <last>, contact you again soon, we will."`
 			`	They hand you <payment>, and leave to one of the Heliarch sections of the ring.`
@@ -917,7 +917,7 @@ mission "Heliarch Recon 3-C"
 			`	"Survived, you thankfully have, Captain," the Saryd taps your arm.`
 			`	"Odd, it is, that attack the Captain, the Wardragon did not..." the Arach thinks out loud, looking at the scan data. "A fortunate thing, no doubt, but very odd of them."`
 			`	"Much more detailed, these scans are. Certain, I am, that pleased with the results, Consul Aulori will be," the Kimek tells you. "Assisted us greatly you have, Captain."`
-			`	They pass along a message from the consul, who thanks you for all your efforts, and asks that you seek out his agents on <planet>, should you acquire any significant information on the Quarg ships or ringworlds. The Heliarchs say their goodbyes, and head on their way.`
+			`	They pass along a message from the consul, who thanks you for all your efforts, and asks that you seek out his agents on <planet> should you acquire any significant information on the Quarg ships or ringworlds. The Heliarchs say their goodbyes, and head on their way.`
 
 mission "Keep Zug Wardragon"
 	landing
@@ -988,7 +988,7 @@ mission "Heliarch Expedition 1"
 		payment 3000000
 		conversation
 			`You're met by Aulori when you land, as well as several other Heliarchs. You transmit your scan logs, and they bring you to a separate room once again, where a model of the broken ringworld is being projected for all to see.`
-			`	"Skeptical of what you told us, we all were, Captain," Aulori says, gesturing for you to accompany him as he walks around the projection. "Claimed that insane, you were, some of those here did," he reaches down to tap a Kimek on her head, "Or that wasting our time with jokes, you were," he bumps another Saryd's arm, "Assured me, some of them had, that wholly impossible, it was, to break a ring," he pushes an Arach's leg with his hoof. He stops where the projection shows signs of greater damage, where a large chunk of the ring was cut off, littered with floating debris. "But not insane, neither a joker, you are. And impossible, this clearly is not. Invaluable information, what you've brought us is, Captain <last>. Investigate the site thoroughly, we must, so ask for your assistance again, we will, when a suitable crew for it, we have found."`
+			`	"Skeptical of what you told us, we all were, Captain," Aulori says, gesturing for you to accompany him as he walks around the projection. "Claimed that insane, you were, some of those here did." He reaches down to tap a Kimek on her head. "Or that wasting our time with jokes, you were." He bumps another Saryd's arm. "Assured me, some of them had, that wholly impossible, it was, to break a ring." He pushes an Arach's leg with his hoof. He stops where the projection shows signs of greater damage, where a large chunk of the ring was cut off, littered with floating debris. "But not insane, neither a joker, you are. And impossible, this clearly is not. Invaluable information, what you've brought us is, Captain <last>. Investigate the site thoroughly, we must, so ask for your assistance again, we will, when a suitable crew for it, we have found."`
 			`	A Saryd rushes closer once Aulori says that, "Sir, against sending off anyone, the council is-".`
 			`	"Agree, the council will," Aulori cuts him off, still looking at the projection.`
 			`	The Saryd thinks for a while, then continues, "Take years, it would, to find and train someone willing to become an inspector. A dangerous task it-"`
@@ -1231,7 +1231,7 @@ mission "Heliarch Containment 3"
 					decline
 			label way
 			`	They show you to a room in the restricted sections of the spaceport, where an Arach is waiting.`
-			`	"Agreed to work with us, have you, Captain?" He asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
+			`	"Agreed to work with us, have you, Captain?" he asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
 			choice
 				`	"<first> <last>, pleasure to meet you."`
 				`	"I wouldn't call this "agreeing" to work. Why the secrecy anyway?"`
@@ -1276,7 +1276,7 @@ mission "Heliarch Containment 4-A"
 			`	"Granted access to our civilian ships, you were. Three new Kimek Spires, you have bought. Many passengers to <destination>, in them you are carrying," he says.`
 			`	The Saryd of the trio of captains then speaks up, "Pose as civilian ships, we must. Accompany your ship, we will."`
 			`	"Armed and ready, the soldiers are. Follow your lead once you depart, we shall," the Kimek adds.`
-			`	Plortup wishes you all good luck, and you follow the trio of captains back to your ship, seeing that the Spires are parked close to it.`
+			`	Plortup wishes you all good luck, and you follow the trio of captains back to your ship.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
@@ -1325,7 +1325,7 @@ mission "Heliarch Containment 5"
 			choice
 				`	"What's going on?"`
 				`	"My ship isn't exactly combat-ready to fight your own warships."`
-			`	They say that the station's systems haven't been functioning properly, and they haven't been able to contact neither the group on Remote Blue nor the fleet that left for Fourth Shadow.`
+			`	They say that the station's systems haven't been functioning properly, and they haven't been able to contact the group on Remote Blue, nor the fleet that left for Fourth Shadow.`
 			`	"Alerted, we were, of incoming ships! Armed, civilian ships! Criminals, no doubt, and fleeing, they are!"`
 			`	You can't say much before they've made you get back in your ship. They promise you'll be greatly compensated and ask that you only disable the ships so you can board and check for hostages.`
 				launch
