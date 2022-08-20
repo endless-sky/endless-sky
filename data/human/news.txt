@@ -169,27 +169,6 @@ news "human textiles"
 
 
 
-news "human mining"
-	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "mining"
-	name
-		word
-			"Miner"
-	message
-		word
-			`"`
-		word
-			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
-			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
-			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
-			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
-			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
-		word
-			`"`
-
-
-
 news "human factory"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -207,6 +186,27 @@ news "human factory"
 			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
 			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
 			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us workers."
+		word
+			`"`
+
+
+
+news "human mining"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "mining"
+	name
+		word
+			"Miner"
+	message
+		word
+			`"`
+		word
+			"Mining's the best opportunity on this whole planet, but I worry about my health. I've started to cough up blood when I get sick. It's a good thing the company pays for our medical bills."
+			"I buried my dad last week. He was a miner, too. The company didn't give me any time off so I had to pay to attend my own father's funeral. Can you believe that?"
+			"A few years of this and I'll be able to afford my own starship. I pulled in more than 120,000 credits last year! That's more than my brother makes on Hermes, and he's a scientist."
+			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
+			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
 		word
 			`"`
 
