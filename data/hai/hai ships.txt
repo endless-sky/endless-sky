@@ -826,7 +826,7 @@ ship "Shield Beetle Prototype"
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 855
-		"weapon capacity" 354
+		"weapon capacity" 333
 		"engine capacity" 140
 		weapon
 			"blast radius" 500
