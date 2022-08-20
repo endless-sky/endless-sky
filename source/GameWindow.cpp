@@ -402,7 +402,7 @@ SDL_Window *GameWindow::GetMainWindow()
 
 
 
-void GameWindow::ExitWithError(const string& message, bool doPopUp)
+void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
 	Logger::LogError(message);

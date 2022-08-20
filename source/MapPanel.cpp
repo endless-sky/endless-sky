@@ -106,7 +106,7 @@ namespace {
 			if(!system)
 				continue;
 
-			for(const auto &outfit: hold.second.Outfits())
+			for(const auto &outfit : hold.second.Outfits())
 				// Only count a system if it actually stores outfits.
 				if(outfit.second)
 					locations[system].outfits[planet] += outfit.second;
