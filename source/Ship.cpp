@@ -1229,6 +1229,8 @@ void Ship::SetPlanet(const Planet *planet)
 {
 	zoom = !planet;
 	landingPlanet = planet;
+	if(planet)
+		CalculateLandingSpeed();
 }
 
 
@@ -1689,7 +1691,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Move the ship toward the center of the planet while landing.
 			if(GetTargetStellar())
 				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= LandingSpeed();
+			zoom -= landingSpeed;
 			if(zoom < 0.f)
 			{
 				// If this is not a special ship, it ceases to exist when it
@@ -1717,7 +1719,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			zoom = min(1.f, zoom + LandingSpeed());
+			zoom = min(1.f, zoom + landingSpeed);
 			SetTargetStellar(nullptr);
 			landingPlanet = nullptr;
 		}
@@ -2665,34 +2667,6 @@ bool Ship::IsBoarding() const
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
-}
-
-
-
-float Ship::LandingSpeed() const
-{
-	// Makes no sense to query the landing speed if we are not landing.
-	// Return the default value instead.
-	if(!IsLanding())
-		return 0.02f;
-
-	const float mass = Mass();
-	const float landingSpeed = attributes.Get("landing speed");
-
-	const StellarObject *planet = landingPlanet->GetSystem()->FindStellar(landingPlanet);
-	const auto planetAttributes = landingPlanet->Attributes();
-	const float planetLandingSpeed = planetAttributes.count("very fast landing") ? 1.4f :
-		planetAttributes.count("fast landing") ? 1.2f :
-		(planet->IsMoon() || planetAttributes.count("slow landing")) ? .8f :
-		(planet->IsStation() || planetAttributes.count("very slow landing")) ? .6f :
-		1.f;
-
-	// Ships with mass under 43 will land with fixed speed,
-	// and heavier ones will land progressively slower.
-	// The landing speed will be applied on top of that, and may be negative,
-	// but the ship will still land at a minimum speed of 0.01f.
-	// Then, finally, the type of planet will affect the landing a bit.
-	return max(0.01f, landingSpeed + (mass <= 43. ? 0.1f : 0.1f / cbrt(mass))) * planetLandingSpeed;
 }
 
 
@@ -4096,4 +4070,27 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		if(GetMask().Contains(point, Angle()))
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
 	}
+}
+
+
+
+void Ship::CalculateLandingSpeed()
+{
+	const float mass = Mass();
+	const float shipLandingSpeed = attributes.Get("landing speed");
+
+	const StellarObject *planet = landingPlanet->GetSystem()->FindStellar(landingPlanet);
+	const auto planetAttributes = landingPlanet->Attributes();
+	const float planetLandingSpeed = planetAttributes.count("very fast landing") ? 1.4f :
+		planetAttributes.count("fast landing") ? 1.2f :
+		(planet->IsMoon() || planetAttributes.count("slow landing")) ? .8f :
+		(planet->IsStation() || planetAttributes.count("very slow landing")) ? .6f :
+		1.f;
+
+	// Ships with mass under 43 will land with fixed speed,
+	// and heavier ones will land progressively slower.
+	// The landing speed will be applied on top of that, and may be negative,
+	// but the ship will still land at a minimum speed of 0.01f.
+	// Then, finally, the type of planet will affect the landing a bit.
+	landingSpeed = max(0.01f, shipLandingSpeed + (mass <= 43. ? 0.1f : 0.1f / cbrt(mass))) * planetLandingSpeed;
 }

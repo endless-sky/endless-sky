@@ -229,7 +229,6 @@ public:
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
-	float LandingSpeed() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if some condition is keeping this ship from acting. (That is, it is
@@ -441,6 +440,8 @@ private:
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
+	// Calculate the speed at which we will land and depart from this planet.
+	void CalculateLandingSpeed();
 
 
 private:
@@ -555,6 +556,7 @@ private:
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
+	float landingSpeed = 0.f;
 
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
