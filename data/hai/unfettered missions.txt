@@ -2336,7 +2336,7 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"cloaking heat" 10
 		"engine capacity" 5
 		"outfit space" 2
-		"weapon capacity" -1
+		"weapon capacity" 20
 	outfits
 		"Sunbeam" 4
 		"Flamethrower" 2
