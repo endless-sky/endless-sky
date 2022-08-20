@@ -226,10 +226,10 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 		return;
 
 	const Sprite* sprite = SpriteSet::Get(node.Token(1));
-	
+
 	SpriteParameters* spriteData = this->sprites[state];
 	spriteData->sprite = sprite;
-	
+
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
 	// start at zero starts when the game started, it does not make sense for it
@@ -269,7 +269,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	
+
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
@@ -307,7 +307,6 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 						out.Write("transition finish");
 					if(spriteState->transitionRewind)
 						out.Write("transition rewind");
-					
 				}
 				out.EndChild();
 			}
@@ -315,7 +314,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 	} else {
 		SpriteParameters* spriteState = this->sprites[BodyState::FLYING];
 		const Sprite* sprite = spriteState->sprite;
-		
+
 		if(!sprite)
 			return;
 
@@ -341,7 +340,6 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		}
 		out.EndChild();
 	}
-
 }
 
 
@@ -352,7 +350,7 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 	if(this->sprites[state] == nullptr){
 		this->sprites[state] = new SpriteParameters(sprite);
 	}
-	
+
 	this->sprites[state]->sprite = sprite;
 	currentStep = -1;
 }
@@ -382,7 +380,7 @@ void Body::SetState(BodyState state)
 	if(!this->transitionFinish && !this->transitionRewind && stateTransitionRequested){
 		this->FinishStateTransition();
 	}
-	
+
 }
 
 
@@ -443,7 +441,7 @@ void Body::FinishStateTransition() const
 	// Default to Flying sprite if requested sprite does not exist.
 	SpriteParameters* transitionedState = this->sprites[this->transitionState]->sprite != nullptr ?
 									this->sprites[this->transitionState] : this->sprites[BodyState::FLYING];
-	
+
 	// Update animation parameters.
 	this->frameRate = transitionedState->frameRate;
 	this->scale = transitionedState->scale;
@@ -507,7 +505,7 @@ void Body::SetStep(int step) const
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
 	frame = max(0.f, frameRate * step + frameOffset);
-	
+
 	if(!stateTransitionRequested){
 		// If repeating, wrap the frame index by the total cycle time.
 		if(repeat){
@@ -520,24 +518,20 @@ void Body::SetStep(int step) const
 			// final frame.
 			if(!repeat){
 				frame = min(frame, lastFrame);
-
 			}
 			else if(frame >= frames)
 			{
 				// If in the delay portion of the loop, set the frame to zero.
 				frame = 0.f;
 			}
-			
 		}
 		else if(frame >= lastFrame)
 		{
-
 			// In rewind mode, once you get to the last frame, count backwards.
 			// Regardless of whether we're repeating, if the frame count gets to
 			// be less than 0, clamp it to 0.
 
 			frame = max(0.f, lastFrame * 2.f - frame);
-			
 		}
 		
 	} else {
@@ -558,7 +552,5 @@ void Body::SetStep(int step) const
 				this->FinishStateTransition();
 			}
 		}
-
 	}
-	
 }

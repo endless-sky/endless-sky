@@ -308,6 +308,8 @@
 		<Unit filename="source/SpaceportPanel.h" />
 		<Unit filename="source/Sprite.cpp" />
 		<Unit filename="source/Sprite.h" />
+		<Unit filename="source/SpriteParameters.cpp">
+		<Unit filename="source/SpriteParameters.h">
 		<Unit filename="source/SpriteQueue.cpp" />
 		<Unit filename="source/SpriteQueue.h" />
 		<Unit filename="source/SpriteSet.cpp" />

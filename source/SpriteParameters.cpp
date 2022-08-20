@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 SpriteParameters::SpriteParameters(){
-    
+
 }
 
 SpriteParameters::SpriteParameters(const Sprite* sprite) : sprite(sprite){
