@@ -16,10 +16,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "DistanceMap.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -412,6 +412,14 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 
 
+void Mission::NeverOffer()
+{
+	// Add the equivalent "never" condition, `"'" != 0`.
+	toOffer.Add("has", "'");
+}
+
+
+
 // Basic mission information.
 const EsUuid &Mission::UUID() const noexcept
 {
@@ -669,16 +677,17 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test(player.Conditions()))
+	const auto &playerConditions = player.Conditions();
+	if(!toOffer.Test(playerConditions))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
 	if(repeat)
 	{
-		auto cit = player.Conditions().find(name + ": offered");
-		if(cit != player.Conditions().end() && cit->second >= repeat)
+		auto cit = playerConditions.find(name + ": offered");
+		if(cit != playerConditions.end() && cit->second >= repeat)
 			return false;
 	}
 
@@ -1320,7 +1329,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Files::LogError("Instantiation Error: NPC template in mission \""
+		Logger::LogError("Instantiation Error: NPC template in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1338,7 +1347,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(ait != actions.end())
 	{
-		Files::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1354,7 +1363,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Files::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1370,7 +1379,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Files::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
+		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}

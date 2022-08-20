@@ -18,11 +18,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
-#include "Files.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -143,7 +143,7 @@ namespace {
 	void LogWarning(const string &modelName, const string &name, string &&warning)
 	{
 		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
-		Files::LogError(shipID + std::move(warning));
+		Logger::LogError(shipID + std::move(warning));
 	}
 }
 
@@ -648,7 +648,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
-		Files::LogError(message);
+		Logger::LogError(message);
 	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
@@ -667,7 +667,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->Name() + "\"";
-			Files::LogError(warning);
+			Logger::LogError(warning);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -730,7 +730,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
-		Files::LogError(message + warning + outfitNames.str());
+		Logger::LogError(message + warning + outfitNames.str());
 	}
 
 	// Ships read from a save file may have non-default shields or hull.
@@ -750,12 +750,12 @@ void Ship::FinishLoading(bool isNewInstance)
 			"Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
-			Files::LogError(message + "\" (no current system).");
+			Logger::LogError(message + "\" (no current system).");
 			targetSystem = nullptr;
 		}
 		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
 		{
-			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -1780,6 +1780,22 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(energy < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
 
+			cost = attributes.Get("turning shields");
+			if(shields < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
+
+			cost = attributes.Get("turning hull");
+			if(hull < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
+
+			cost = attributes.Get("turning fuel");
+			if(fuel < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+
+			cost = -attributes.Get("turning heat");
+			if(heat < cost * fabs(commands.Turn()))
+				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -1788,8 +1804,20 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
 				double scale = fabs(commands.Turn());
-				energy -= scale * cost;
+
+				shields -= scale * attributes.Get("turning shields");
+				hull -= scale * attributes.Get("turning hull");
+				energy -= scale * attributes.Get("turning energy");
+				fuel -= scale * attributes.Get("turning fuel");
 				heat += scale * attributes.Get("turning heat");
+				discharge += scale * attributes.Get("turning discharge");
+				corrosion += scale * attributes.Get("turning corrosion");
+				ionization += scale * attributes.Get("turning ion");
+				leakage += scale * attributes.Get("turning leakage");
+				burning += scale * attributes.Get("turning burn");
+				slowness += scale * attributes.Get("turning slowing");
+				disruption += scale * attributes.Get("turning disruption");
+
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
@@ -1803,6 +1831,26 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(energy < cost)
 				thrustCommand *= energy / cost;
 
+			cost = attributes.Get((thrustCommand > 0.) ?
+				"thrusting shields" : "reverse thrusting shields");
+			if(shields < cost)
+				thrustCommand *= shields / cost;
+
+			cost = attributes.Get((thrustCommand > 0.) ?
+				"thrusting hull" : "reverse thrusting hull");
+			if(hull < cost)
+				thrustCommand *= hull / cost;
+
+			cost = attributes.Get((thrustCommand > 0.) ?
+				"thrusting fuel" : "reverse thrusting fuel");
+			if(fuel < cost)
+				thrustCommand *= fuel / cost;
+
+			cost = -attributes.Get((thrustCommand > 0.) ?
+				"thrusting heat" : "reverse thrusting heat");
+			if(heat < cost)
+				thrustCommand *= heat / cost;
+
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
@@ -1813,8 +1861,20 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
-					energy -= scale * cost;
+
+					shields -= scale * attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
+					hull -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
+					energy -= scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
+					fuel -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
 					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
+					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
+					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
+					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
+					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
+					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
+					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
+					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
+
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
@@ -1824,13 +1884,39 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(applyAfterburner)
 		{
 			thrust = attributes.Get("afterburner thrust");
-			double fuelCost = attributes.Get("afterburner fuel");
+			double shieldCost = attributes.Get("afterburner shields");
+			double hullCost = attributes.Get("afterburner hull");
 			double energyCost = attributes.Get("afterburner energy");
-			if(thrust && fuel >= fuelCost && energy >= energyCost)
+			double fuelCost = attributes.Get("afterburner fuel");
+			double heatCost = -attributes.Get("afterburner heat");
+
+			double dischargeCost = attributes.Get("afterburner discharge");
+			double corrosionCost = attributes.Get("afterburner corrosion");
+			double ionCost = attributes.Get("afterburner ion");
+			double leakageCost = attributes.Get("afterburner leakage");
+			double burningCost = attributes.Get("afterburner burn");
+
+			double slownessCost = attributes.Get("afterburner slowing");
+			double disruptionCost = attributes.Get("afterburner disruption");
+
+			if(thrust && shields >= shieldCost && hull >= hullCost
+				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
 			{
-				heat += attributes.Get("afterburner heat");
-				fuel -= fuelCost;
+				shields -= shieldCost;
+				hull -= hullCost;
 				energy -= energyCost;
+				fuel -= fuelCost;
+				heat -= heatCost;
+
+				discharge += dischargeCost;
+				corrosion += corrosionCost;
+				ionization += ionCost;
+				leakage += leakageCost;
+				burning += burningCost;
+
+				slowness += slownessCost;
+				disruption += disruptionCost;
+
 				acceleration += angle.Unit() * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
@@ -2117,7 +2203,12 @@ void Ship::DoGeneration()
 
 	heat -= heat * HeatDissipation();
 	if(heat > MaximumHeat())
+	{
 		isOverheated = true;
+		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		if(heatRatio > 1.)
+			hull -= attributes.Get("overheat damage rate") * heatRatio;
+	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
@@ -2126,7 +2217,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2151,18 +2242,26 @@ void Ship::DoGeneration()
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
+			// Overheated ships produce half as much energy from solar collection.
+			energy += solarScaling * attributes.Get("solar collection") * (isOverheated ? 0.5 : 1.);
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
+		// Overheated ships disable their reactors, which typically have both energy and
+		// heat generation.
+		if(!isOverheated)
+		{
+			energy += attributes.Get("energy generation");
+			heat += attributes.Get("heat generation");
+		}
+		energy -= attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
-		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 
-		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		// Convert fuel into energy and heat only when the required amount of fuel is available
+		// and the ship is not overheated.
+		if(!isOverheated && attributes.Get("fuel consumption") <= fuel)
 		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
@@ -2189,6 +2288,7 @@ void Ship::DoGeneration()
 	}
 
 	// Don't allow any levels to drop below zero.
+	shields = max(0., shields);
 	energy = max(0., energy);
 	fuel = max(0., fuel);
 	heat = max(0., heat);
@@ -2443,6 +2543,17 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	antiMissileRange = 0.;
 
+	// Ships which are ionized have a chance for their weapons to jam,
+	// delaying their firing for another reload cycle. The less energy
+	// a ship has relative to its max and the more ionized the ship is,
+	// the higher the chance that a weapon will jam. The jam chance is
+	// capped at 50%. Very small amounts of ionization are ignored.
+	// The scale is such that a weapon with an ion damage of 5 and a reload
+	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
+	// of 5% when it is at 100% energy.
+	double scale = Energy() * 220.;
+	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
@@ -2452,7 +2563,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
-				armament.Fire(i, *this, projectiles, visuals);
+				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 		}
 	}
 
@@ -2471,12 +2582,15 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct())
 		return false;
 
+	double scale = Energy() * 220.;
+	double jamChance = ionization > .1 ? min(0.5, scale ? ionization / scale : 1.) : 0.;
+
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon && CanFire(weapon))
-			if(armament.FireAntiMissile(i, *this, projectile, visuals))
+			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
 
@@ -2517,6 +2631,14 @@ bool Ship::IsTargetable() const
 bool Ship::IsOverheated() const
 {
 	return isOverheated;
+}
+
+
+
+// A paralyzed ship is one that is overheated and has no energy left.
+bool Ship::IsParalyzed() const
+{
+	return isOverheated && !energy;
 }
 
 
@@ -2950,6 +3072,19 @@ double Ship::DisruptionLevel() const
 
 
 
+// Get the (absolute) amount of hull that needs to be damaged until the
+// ship becomes disabled. Returns 0 if the ships hull is already below the
+// disabled threshold.
+double Ship::HullUntilDisabled() const
+{
+	// Ships become disabled when they surpass their minimum hull threshold,
+	// not when they are directly on it, so account for this by adding a small amount
+	// of hull above the current hull level.
+	return max(0., hull + 0.25 - MinimumHull());
+}
+
+
+
 int Ship::JumpsRemaining(bool followParent) const
 {
 	// Make sure this ship has some sort of hyperdrive, and if so return how
@@ -3097,7 +3232,7 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass());
+	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 
@@ -3252,12 +3387,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
-	{
 		isOverheated = true;
-		isDisabled = true;
-	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 

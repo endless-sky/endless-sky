@@ -175,6 +175,7 @@ private:
 
 	bool calcTickTock = false;
 	bool drawTickTock = false;
+	bool hasFinishedCalculating = true;
 	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
@@ -238,6 +239,8 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
+	double nextZoom = 0.;
 
 	double load = 0.;
 	int loadCount = 0;
