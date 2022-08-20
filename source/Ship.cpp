@@ -4081,10 +4081,10 @@ void Ship::CalculateLandingSpeed()
 
 	const StellarObject *planet = landingPlanet->GetSystem()->FindStellar(landingPlanet);
 	const auto planetAttributes = landingPlanet->Attributes();
-	const float planetLandingSpeed = planetAttributes.count("very fast landing") ? 1.4f :
-		planetAttributes.count("fast landing") ? 1.2f :
-		(planet->IsMoon() || planetAttributes.count("slow landing")) ? .8f :
-		(planet->IsStation() || planetAttributes.count("very slow landing")) ? .6f :
+	const float planetLandingSpeed = planetAttributes.count("very slow landing") ? .8f :
+		planetAttributes.count("slow landing") ? .9f :
+		(planet->IsMoon() || planetAttributes.count("fast landing")) ? 1.1f :
+		(planet->IsStation() || planetAttributes.count("very fast landing")) ? 1.2f :
 		1.f;
 
 	// Ships with mass under 43 will land with fixed speed,
