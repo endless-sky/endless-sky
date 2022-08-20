@@ -60,6 +60,7 @@ private:
 	int modifier;
 
 	Sale<Ship> shipyard;
+	bool sellShipOutfitsToStorage = false;
 };
 
 

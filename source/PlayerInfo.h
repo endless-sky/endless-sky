@@ -140,7 +140,7 @@ public:
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name, bool isGift = false);
-	void SellShip(const Ship *selected);
+	void SellShip(const Ship *selected, bool toStorage = false);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);

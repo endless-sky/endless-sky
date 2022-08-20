@@ -314,7 +314,7 @@ void ShipyardPanel::Sell(bool toStorage)
 
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell the ";
+	string message = toStorage ? "Sell the chassis of " : "Sell the ";
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
@@ -347,9 +347,14 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day);
+	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
 
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::Credits(total) + " credits?";
+
+	if(toStorage)
+		message += " Any outfits will be placed in storage.";
+
+	sellShipOutfitsToStorage = toStorage;
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 
@@ -396,7 +401,7 @@ void ShipyardPanel::BuyShip(const string &name)
 void ShipyardPanel::SellShip()
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship);
+		player.SellShip(ship, sellShipOutfitsToStorage);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -408,4 +413,5 @@ void ShipyardPanel::SellShip()
 	if(playerShip)
 		playerShips.insert(playerShip);
 	player.UpdateCargoCapacities();
+	sellShipOutfitsToStorage = false;
 }

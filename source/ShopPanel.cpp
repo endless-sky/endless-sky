@@ -594,7 +594,7 @@ void ShopPanel::ToggleCargo()
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	scrollDetailsIntoView = false;
-	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
+	bool toStorage = key == 'r' || key == 'u';
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
