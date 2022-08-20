@@ -3212,7 +3212,7 @@ system Almaaz
 	government Pirate
 	attributes "north"
 	arrival 5000
-	habitable 6950
+	habitable 5600
 	belt 2873
 	haze _menu/haze-33
 	link Hatysa
@@ -3245,15 +3245,15 @@ system Almaaz
 	object
 		sprite planet/rock10-b
 		distance 1186.96
-		period 196.210
+		period 218.584
 	object
 		sprite planet/ganymede
 		distance 1588.37
-		period 303.735
+		period 338.371
 	object Freedom
 		sprite planet/cloud2
-		distance 5330.93
-		period 1867.54
+		distance 4530.93
+		period 1630.22
 
 system Almach
 	pos -7 232
@@ -4427,8 +4427,8 @@ system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 625
-	habitable 625
+	arrival 3000
+	habitable 3000
 	belt 1994
 	haze _menu/haze-red
 	link Cardea
@@ -4463,23 +4463,23 @@ system Antevorta
 	object
 		sprite planet/desert8
 		distance 152.41
-		period 30.1051
+		period 13.7410
 	object
 		sprite planet/io
 		distance 449.3
-		period 152.378
+		period 69.5510
 	object
 		sprite planet/lava7-b
 		distance 622.34
-		period 248.405
+		period 113.381
 	object
 		sprite planet/cloud8
 		distance 1538.34
-		period 965.380
+		period 440.633
 	object
 		sprite planet/gas2-b
 		distance 3887.63
-		period 3878.35
+		period 1770.21
 		object
 			sprite planet/dust3
 			distance 178
@@ -4876,7 +4876,7 @@ system Aspidiske
 	government Republic
 	attributes "deep"
 	arrival 5000
-	habitable 24000
+	habitable 11850
 	belt 2385
 	link Avior
 	link "Epsilon Leonis"
@@ -4903,11 +4903,11 @@ system Aspidiske
 	object
 		sprite planet/cloud2
 		distance 701.36
-		period 47.9585
+		period 68.2515
 	object
 		sprite planet/gas8
 		distance 1504.4
-		period 150.660
+		period 214.410
 		object
 			sprite planet/rock14
 			distance 234
@@ -4923,17 +4923,17 @@ system Aspidiske
 	object
 		sprite planet/dust3-b
 		distance 2354.96
-		period 295.073
+		period 419.929
 	object
 		sprite planet/rhea-b
 		distance 2771.8
-		period 376.788
+		period 536.220
 
 system Atik
 	pos -66 -52
 	government Uninhabited
 	arrival 5000
-	habitable 27555
+	habitable 15105
 	belt 1240
 	link Durax
 	asteroids "small rock" 36 1.99
@@ -4976,7 +4976,7 @@ system Atik
 	object
 		sprite planet/gas10-hot
 		distance 1350.7
-		period 119.618
+		period 161.561
 		object
 			sprite planet/desert4-b
 			distance 304
@@ -4988,7 +4988,7 @@ system Atik
 	object
 		sprite planet/lava1
 		distance 1905.05
-		period 200.363
+		period 270.619
 
 system Atria
 	pos -551 532
@@ -5586,8 +5586,8 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	arrival 4600
-	habitable 4600
+	arrival 3450
+	habitable 3450
 	belt 2141
 	haze _menu/haze-67
 	link Alheka
@@ -5624,15 +5624,15 @@ system Betelgeuse
 	object
 		sprite planet/desert2-b
 		distance 679.44
-		period 104.449
+		period 120.608
 	object
 		sprite planet/rock0-b
 		distance 1035.69
-		period 196.573
+		period 226.983
 	object
 		sprite planet/dust6
 		distance 1582.62
-		period 371.318
+		period 428.761
 		object
 			sprite planet/lava1-b
 			distance 182
@@ -5640,15 +5640,15 @@ system Betelgeuse
 	object
 		sprite planet/fog0
 		distance 2215.83
-		period 615.156
+		period 710.321
 	object Prime
 		sprite planet/forest2-b
-		distance 4081.98
-		period 1538.10
+		distance 3581.98
+		period 1459.94
 	object
 		sprite planet/gas13-b
-		distance 6080.11
-		period 2796.07
+		distance 5080.11
+		period 2465.81
 		object
 			sprite planet/rock17-b
 			distance 282
@@ -7326,7 +7326,7 @@ system Convector
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
-	habitable 7270
+	habitable 5920
 	belt 2111
 	haze _menu/haze-red
 	link Antevorta
@@ -7360,23 +7360,23 @@ system Convector
 	object
 		sprite planet/cloud1
 		distance 463.524
-		period 46.8167
+		period 51.8808
 	object
 		sprite planet/desert9-b
 		distance 901.534
-		period 126.988
+		period 140.725
 	object
 		sprite planet/rock6
 		distance 1093.02
-		period 169.525
+		period 187.863
 	object
 		sprite planet/rock5-b
 		distance 1329.87
-		period 227.513
+		period 252.123
 	object
 		sprite planet/gas11-b
 		distance 1752.16
-		period 344.075
+		period 381.293
 		object
 			sprite planet/rock3-b
 			distance 270
@@ -7384,7 +7384,7 @@ system Convector
 	object "Ember Reaches"
 		sprite planet/wormhole-red
 		distance 6592.96
-		period 2511.38
+		period 2783.04
 
 system "Cor Caroli"
 	pos -682 201
@@ -8962,8 +8962,8 @@ system Edusa
 	pos 273.87 347.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	arrival 4320
-	habitable 4320
+	arrival 4050
+	habitable 4050
 	belt 1167
 	haze _menu/haze-red
 	link Arculus
@@ -8994,23 +8994,23 @@ system Edusa
 	object
 		sprite planet/ice4
 		distance 360.187
-		period 41.6016
+		period 42.9659
 	object
 		sprite planet/desert10-b
 		distance 572.397
-		period 83.3420
+		period 86.0752
 	object
 		sprite planet/rock19-b
 		distance 829.397
-		period 145.365
+		period 150.133
 	object
 		sprite planet/dust4
 		distance 1130.29
-		period 231.261
+		period 238.845
 	object "Remnant Wormhole"
 		sprite planet/wormhole-red
 		distance 3613.73
-		period 1322.06
+		period 1365.41
 
 system Egeria
 	pos 288 146
@@ -9895,7 +9895,7 @@ system Esix
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 5000
-	habitable 8640
+	habitable 5600
 	belt 1500
 	haze _menu/haze-red
 	link Gerenus
@@ -9926,19 +9926,19 @@ system Esix
 	object
 		sprite planet/desert7-b
 		distance 245.01
-		period 16.5036
+		period 20.4994
 	object
 		sprite planet/dust5-b
 		distance 593.57
-		period 62.2316
+		period 77.2990
 	object
 		sprite planet/gas5
 		distance 945.38
-		period 125.087
+		period 155.373
 	object
 		sprite planet/gas3
 		distance 2694.88
-		period 602.021
+		period 747.782
 		object
 			sprite planet/ice0-b
 			distance 270
@@ -9950,7 +9950,7 @@ system Esix
 	object "Graveyard Wormhole (Unstable)"
 		sprite planet/wormhole-red
 		distance 3618.74
-		period 936.783
+		period 1163.59
 
 system Eteron
 	pos -330 33
@@ -10799,8 +10799,8 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	arrival 3645
-	habitable 3645
+	arrival 3200
+	habitable 3200
 	belt 1500
 	haze _menu/haze-red
 	link Lire
@@ -10831,11 +10831,11 @@ system Fereti
 	object
 		sprite planet/lava7
 		distance 152.36
-		period 12.4599
+		period 13.2981
 	object
 		sprite planet/desert5
 		distance 521.2
-		period 78.8347
+		period 84.1378
 		object
 			sprite planet/dust3-b
 			distance 161
@@ -10844,11 +10844,11 @@ system Fereti
 		sprite planet/station2b
 			scale 0.5
 		distance 1687.04
-		period 459.091
+		period 489.974
 	object
 		sprite planet/gas2
 		distance 2166.29
-		period 668.014
+		period 712.951
 		object Alix
 			sprite planet/luna-b
 			distance 203
@@ -10858,8 +10858,8 @@ system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
 	attributes "korath"
-	arrival 5000
-	habitable 5425
+	arrival 4075
+	habitable 4075
 	belt 1419
 	haze _menu/haze-blackbody
 	link Farbutero
@@ -10897,7 +10897,7 @@ system Feroteri
 	object
 		sprite planet/gas17-b
 		distance 732.656
-		period 107.698
+		period 124.264
 		object
 			sprite planet/dust7-b
 			distance 212
@@ -10913,11 +10913,11 @@ system Feroteri
 	object
 		sprite planet/gas4
 		distance 1509.07
-		period 318.364
+		period 367.333
 	object
 		sprite planet/gas0-b
 		distance 2528.08
-		period 690.313
+		period 796.493
 		object
 			sprite planet/rock3-b
 			distance 284
@@ -10933,7 +10933,7 @@ system Feroteri
 	object
 		sprite planet/gas16
 		distance 3770.57
-		period 1257.39
+		period 1450.79
 		object "Esperaktu Station"
 			sprite planet/station1k
 				scale 0.5
@@ -11451,7 +11451,7 @@ system "Gamma Cassiopeiae"
 	government Syndicate
 	attributes "core"
 	arrival 5000
-	habitable 11500
+	habitable 7000
 	belt 1779
 	haze _menu/haze-133
 	link Mirach
@@ -11484,19 +11484,19 @@ system "Gamma Cassiopeiae"
 	object
 		sprite planet/ice7
 		distance 208.99
-		period 11.2693
+		period 14.4443
 	object
 		sprite planet/cloud2
 		distance 465
-		period 37.4016
+		period 47.9391
 	object
 		sprite planet/desert6-b
 		distance 789.64
-		period 82.7665
+		period 106.085
 	object
 		sprite planet/gas3
 		distance 1622.89
-		period 243.862
+		period 312.568
 		object
 			sprite planet/ganymede
 			distance 303
@@ -14716,8 +14716,8 @@ system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
 	attributes "korath" "wolf-rayet"
-	arrival 625
-	habitable 625
+	arrival 3000
+	habitable 3000
 	belt 1606
 	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
@@ -14747,27 +14747,27 @@ system "Kor Ak'Mari"
 	object
 		sprite planet/lava6
 		distance 179.89
-		period 38.6038
+		period 17.6201
 	object
 		sprite planet/lava0-b
 		distance 492.58
-		period 174.918
+		period 79.8388
 	object
-		sprite planet/ocean6-b
+		sprite planet/cloud2-b
 		distance 874.19
-		period 413.550
+		period 188.759
 		object
 			sprite planet/callisto-b
 			distance 166
 			period 16.2305
 	object
-		sprite planet/ice0-b
+		sprite planet/dust3-b
 		distance 1777.8
-		period 1199.34
+		period 547.423
 	object
 		sprite planet/oberon
 		distance 2107.64
-		period 1548.15
+		period 706.633
 
 system "Kor En'lakfar"
 	pos -31 -33
@@ -15630,7 +15630,7 @@ system Levana
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
-	habitable 12425
+	habitable 8325
 	belt 1202
 	haze _menu/haze-red
 	link Coluber
@@ -15666,23 +15666,23 @@ system Levana
 	object
 		sprite planet/dust1-b
 		distance 215.093
-		period 11.3201
+		period 13.8295
 	object
 		sprite planet/venus
 		distance 438.933
-		period 32.9996
+		period 40.3148
 	object
 		sprite planet/desert1
 		distance 665.023
-		period 61.5413
+		period 75.1835
 	object
 		sprite planet/cloud1
 		distance 922.583
-		period 100.558
+		period 122.850
 	object
 		sprite planet/neptune-b
 		distance 3359.19
-		period 698.656
+		period 853.531
 		object
 			sprite planet/rock17-b
 			distance 213
@@ -16550,7 +16550,7 @@ system Mebsuta
 	government Republic
 	attributes "north"
 	arrival 5000
-	habitable 8675
+	habitable 6110
 	belt 2340
 	haze _menu/haze-33
 	link Mirzam
@@ -16587,23 +16587,23 @@ system Mebsuta
 	object
 		sprite planet/gas0-hot
 		distance 605.544
-		period 63.9946
+		period 76.2531
 	object
 		sprite planet/dust0
 		distance 1566.24
-		period 266.202
+		period 317.195
 	object
 		sprite planet/rock2-b
 		distance 2090.45
-		period 410.473
+		period 489.101
 		object
 			sprite planet/europa-b
 			distance 142
 			period 16.1817
 	object
 		sprite planet/gas10
-		distance 4725.69
-		period 1395.15
+		distance 3225.69
+		period 937.504
 		object
 			sprite planet/dust3-b
 			distance 195
@@ -16614,8 +16614,8 @@ system Mebsuta
 			period 25.612
 	object Featherweight
 		sprite planet/forest3-b
-		distance 6155.03
-		period 2073.81
+		distance 4155.03
+		period 1370.56
 		object
 			sprite planet/desert4
 			distance 127
@@ -18689,7 +18689,7 @@ system Orbona
 	government Republic
 	attributes "dirt belt"
 	arrival 5000
-	habitable 23490
+	habitable 11840
 	belt 1507
 	haze _menu/haze-67
 	link Limen
@@ -18727,7 +18727,7 @@ system Orbona
 	object
 		sprite planet/ice6
 		distance 447.836
-		period 24.7341
+		period 34.8387
 		object
 			sprite planet/desert4
 			distance 149
@@ -18735,11 +18735,11 @@ system Orbona
 	object
 		sprite planet/desert3-b
 		distance 862.846
-		period 66.1482
+		period 93.1717
 	object
 		sprite planet/desert2
 		distance 1210.49
-		period 109.915
+		period 154.819
 		object
 			sprite planet/rock3-b
 			distance 175
@@ -18747,11 +18747,11 @@ system Orbona
 	object
 		sprite planet/dust2
 		distance 1594.3
-		period 166.139
+		period 234.012
 	object
 		sprite planet/gas4-b
 		distance 2057.86
-		period 243.636
+		period 343.168
 		object
 			sprite planet/dust1
 			distance 273
@@ -19240,7 +19240,7 @@ system Pelubta
 	government Coalition
 	attributes "arachi"
 	arrival 5000
-	habitable 10750
+	habitable 7050
 	belt 1709
 	link Ablodab
 	link Gupta
@@ -19284,19 +19284,19 @@ system Pelubta
 	object
 		sprite planet/rock7
 		distance 331.254
-		period 23.2593
+		period 28.7215
 	object
 		sprite planet/dust7-b
 		distance 451.254
-		period 36.9817
+		period 45.6664
 	object
 		sprite planet/lava6-b
 		distance 668.214
-		period 66.6390
+		period 82.2884
 	object
 		sprite planet/gas6
 		distance 1831.43
-		period 302.371
+		period 373.379
 		object "Pelubta Station"
 			sprite planet/station2c
 				scale 0.5
@@ -19305,7 +19305,7 @@ system Pelubta
 	object
 		sprite planet/gas2-b
 		distance 2309.75
-		period 428.255
+		period 528.826
 		object
 			sprite planet/io
 			distance 188
@@ -20381,7 +20381,7 @@ system Prosa
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 5000
-	habitable 40960
+	habitable 22300
 	belt 1500
 	haze _menu/haze-red
 	link Vaticanus
@@ -20400,19 +20400,19 @@ system Prosa
 	object
 		sprite planet/cloud1
 		distance 443.879
-		period 18.4831
+		period 25.0498
 	object
 		sprite planet/desert9
 		distance 881.879
-		period 51.7599
+		period 70.1489
 	object
 		sprite planet/rock6
 		distance 1073.88
-		period 69.5526
+		period 94.2629
 	object
 		sprite planet/gas17
 		distance 1443.88
-		period 108.436
+		period 146.961
 		object
 			sprite planet/callisto
 			distance 227
@@ -21180,7 +21180,7 @@ system Regulus
 	government Republic
 	attributes "near earth"
 	arrival 5000
-	habitable 11500
+	habitable 7000
 	belt 1605
 	haze _menu/haze-67
 	link Merak
@@ -21213,7 +21213,7 @@ system Regulus
 	object
 		sprite planet/gas15-b
 		distance 774.96
-		period 80.4692
+		period 103.140
 		object
 			sprite planet/rock3
 			distance 186
@@ -21233,11 +21233,11 @@ system Regulus
 	object
 		sprite planet/dust7-b
 		distance 1570.21
-		period 232.085
+		period 297.473
 	object
 		sprite planet/gas11
 		distance 2327.7
-		period 418.891
+		period 536.909
 		object
 			sprite planet/miranda
 			distance 248
@@ -21389,7 +21389,7 @@ system Rigel
 	government Republic
 	attributes "north"
 	arrival 5000
-	habitable 46000
+	habitable 17025
 	belt 1882
 	link Alnitak
 	link Betelgeuse
@@ -21428,15 +21428,15 @@ system Rigel
 	object
 		sprite planet/lava1
 		distance 330
-		period 11.1802
+		period 18.3775
 	object
 		sprite planet/cloud7
 		distance 546
-		period 23.7941
+		period 39.1115
 	object
 		sprite planet/jupiter
 		distance 1098.16
-		period 67.8702
+		period 111.561
 		object
 			sprite planet/dust5
 			distance 250
@@ -21444,7 +21444,7 @@ system Rigel
 	object
 		sprite planet/cloud8-b
 		distance 1700.16
-		period 130.742
+		period 214.907
 		object
 			sprite planet/desert4-b
 			distance 146
@@ -21452,7 +21452,7 @@ system Rigel
 	object
 		sprite planet/gas5
 		distance 2967
-		period 301.409
+		period 495.441
 		object
 			sprite planet/dust0-b
 			distance 256
@@ -21910,8 +21910,8 @@ system Sadr
 	pos -287 543
 	government Republic
 	attributes "south"
-	arrival 3875
-	habitable 3875
+	arrival 3430
+	habitable 3430
 	belt 1388
 	link Albireo
 	asteroids "small rock" 48 4.9932
@@ -21950,15 +21950,15 @@ system Sadr
 	object
 		sprite planet/callisto
 		distance 280.83
-		period 30.2405
+		period 32.1423
 	object
 		sprite planet/rock3-b
 		distance 543.84
-		period 81.4949
+		period 86.6202
 	object
 		sprite planet/desert6-b
 		distance 876.65
-		period 166.787
+		period 177.276
 		object
 			sprite planet/rock17-b
 			distance 150
@@ -21966,11 +21966,11 @@ system Sadr
 	object
 		sprite planet/desert5
 		distance 1311.09
-		period 305.051
+		period 324.236
 	object
 		sprite planet/miranda
 		distance 2553.34
-		period 829.062
+		period 881.202
 
 system "Sagittarius A*"
 	pos 112 22
@@ -24544,8 +24544,8 @@ system Tais
 	pos -346 381
 	government Republic
 	attributes "dirt belt"
-	arrival 3645
-	habitable 3645
+	arrival 3200
+	habitable 3200
 	belt 1379
 	haze _menu/haze-133
 	link Ascella
@@ -24581,23 +24581,23 @@ system Tais
 	object
 		sprite planet/venus-b
 		distance 259.21
-		period 27.6496
+		period 29.5095
 	object
 		sprite planet/water0
 		distance 525.45
-		period 79.8009
+		period 85.1691
 	object
 		sprite planet/rock16-b
 		distance 814.7
-		period 154.066
+		period 164.430
 	object
 		sprite planet/rock3-b
 		distance 1915.66
-		period 555.506
+		period 592.874
 	object
 		sprite planet/dust7
 		distance 2265.3
-		period 714.331
+		period 762.383
 
 system Talita
 	pos -519 -26
@@ -25966,8 +25966,8 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
-	arrival 5000
-	habitable 5000
+	arrival 3650
+	habitable 3650
 	belt 1194
 	haze _menu/haze-67
 	link "Due Yoot"
@@ -26010,7 +26010,7 @@ system "Wah Oh"
 	object
 		sprite planet/gas8-hot
 		distance 341.76
-		period 35.7401
+		period 41.8307
 		object Ochrescoop
 			sprite planet/stationh-ancient2
 				scale 0.5
@@ -26019,7 +26019,7 @@ system "Wah Oh"
 	object
 		sprite planet/gas11
 		distance 1012.77
-		period 182.322
+		period 213.392
 		object
 			sprite planet/rock14
 			distance 282
@@ -26027,7 +26027,7 @@ system "Wah Oh"
 	object
 		sprite planet/gas15
 		distance 1722.93
-		period 404.553
+		period 473.494
 		object
 			sprite planet/tethys
 			distance 212
@@ -26035,7 +26035,7 @@ system "Wah Oh"
 	object
 		sprite planet/gas12
 		distance 2963.45
-		period 912.580
+		period 1068.09
 		object
 			sprite planet/miranda-b
 			distance 304
@@ -26051,7 +26051,7 @@ system "Wah Oh"
 	object Farwater
 		sprite planet/water0
 		distance 4021.38
-		period 1442.57
+		period 1688.40
 
 system "Wah Yoot"
 	pos 40.9382 -685.994
@@ -30524,7 +30524,7 @@ planet Splashdown
 		fleet "Large Republic" 3
 
 planet "Ssil Vida"
-	attributes emitter sheragi uninhabited
+	attributes emitter sheragi "remnant station" uninhabited
 	landscape land/station11
 	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you. Either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 	spaceport `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
