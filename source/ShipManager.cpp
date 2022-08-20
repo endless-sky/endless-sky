@@ -10,16 +10,20 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "PlayerInfo.h"
 #include "ShipManager.h"
+
+#include "PlayerInfo.h"
 
 #include <cstdlib>
 
 using namespace std;
 
 
-ShipManager::ShipManager(std::string naming, int amount, bool isUnconstrained, bool isWithOutfits)
-	: name(naming), count(amount), unconstrained(isUnconstrained), withOutfits(isWithOutfits) {}
+
+ShipManager::ShipManager(string name, int count, bool isUnconstrained, bool isWithOutfits)
+	: name(name), count(count), unconstrained(isUnconstrained), withOutfits(isWithOutfits)
+{
+}
 
 
 
@@ -28,7 +32,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 	const System *here = player.GetSystem();
 	const auto &id = player.GiftedShips().find(model->VariantName() + " " + name);
 	bool hasName = !name.empty();
-	bool foundShip = (player.GiftedShips().end() != id);
+	bool foundShip = id != player.GiftedShips().end();
 	vector<shared_ptr<Ship>> toSell;
 
 	for(const auto &ship : player.Ships())

@@ -1872,7 +1872,7 @@ const map<string, int64_t> &PlayerInfo::Conditions() const
 
 
 // Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
-const std::map<std::string, EsUuid> &PlayerInfo::GiftedShips() const
+const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
 	return giftedShips;
 }
@@ -3240,7 +3240,7 @@ void PlayerInfo::ForgetShip(const Ship &oldShip)
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
 						[&id](const std::pair<const string, EsUuid> &shipId) { return id == shipId.second; });
 	if(shipToForget != giftedShips.end())
-		giftedShips.erase(shipToForget->first);
+		giftedShips.erase(shipToForget);
 }
 
 
