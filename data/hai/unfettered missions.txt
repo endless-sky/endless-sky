@@ -1150,6 +1150,8 @@ mission "Unfettered: Materials Intercepted"
 			`Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials when you can and bring them back to Sha-Ri.`
 			action
 				fail "Unfettered: Cavalry Arrives"
+			branch "allies died"
+				has "unfettered: thorn talon death"
 			`	Seeing the fight is almost over if not completely, your surprise allies hail you, "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
 				`	"Where you sent by Sha-Ri's contact?"`
@@ -1161,22 +1163,8 @@ mission "Unfettered: Materials Intercepted"
 			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
 			label leave
 			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again." They then end the hail, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the hail.`
-	npc save
-		system "Misam"
-		government "Shadow"
-		to spawn
-			has "Unfettered: Cavalry Arrives: offered"
-		personality entering heroic uninterested
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
-	npc
-		system "Misam"
-		government "Hydra"
-		to spawn
-			has "Unfettered: Cavalry Arrives: offered"
-		personality waiting plunders vindictive
-		fleet "Small Northern Pirates" 2
-		fleet "Large Northern Pirates" 2
+			label "allies died"
+			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1209,6 +1197,9 @@ ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 		"hull" 1000
 		"fuel capacity" 300
 		"outfit space" 2
+	cargo
+		outfits
+			"Gold Bars" 5
 
 mission "Unfettered: Cavalry Arrives"
 	landing
@@ -1222,6 +1213,30 @@ mission "Unfettered: Cavalry Arrives"
 				launch
 	on enter "Arneb"
 		dialog "They have called backup! Multiple pirate ships have just arrived in the system. But you see other ships arriving by jump drives. Is does not look like more pirates, maybe the 'contact' has provided help as well?"
+	npc save
+		system "Misam"
+		government "Shadow"
+		personality entering heroic uninterested
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
+	npc
+		system "Misam"
+		government "Hydra"
+		personality waiting plunders vindictive
+		fleet "Small Northern Pirates" 2
+		fleet "Large Northern Pirates" 2
+	to fail
+		not "Unfettered: Materials Intercepted: active"
+	on fail
+		conversation
+			branch murdered
+				has "Unfettered: Materials Intercepted: active"
+			``
+				decline
+			label murdered
+			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the shadows. They may want to have their vengeance on you..."
+			action
+				set "unfettered: thorn talon death"
 
 
 

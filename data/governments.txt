@@ -494,8 +494,7 @@ government "Hydra"
 	"hostile hail" "hostile pirate"
 
 government "Shadow"
-	swizzle 9
-	"player reputation" 0
+	swizzle 4
 	bribe 0
 	fine 0
 	"friendly hail" "friendly unfettered"
