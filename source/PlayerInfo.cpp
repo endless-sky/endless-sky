@@ -951,7 +951,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 // Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 // instead of allowing the player to buy them back, by putting them in the stock.
-void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *exactModelRequired)
+void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *outfitsToDestroy)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == shipToTake)
@@ -962,10 +962,10 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *exactModelRequired
 			{
 				// We only take all of the outfits specified in the model without putting them in the stock.
 				// The extra outfits of this ship are transfered into the stock.
-				if(exactModelRequired)
+				if(outfitsToDestroy)
 				{
-					auto outfit = exactModelRequired->Outfits().find(it.first);
-					int amountRequired = (outfit != exactModelRequired->Outfits().end() ? outfit->second : 0);
+					auto outfit = outfitsToDestroy->Outfits().find(it.first);
+					int amountRequired = (outfit != outfitsToDestroy->Outfits().end() ? outfit->second : 0);
 					if(amountRequired < it.second)
 						stock[it.first] += it.second - amountRequired;
 				}

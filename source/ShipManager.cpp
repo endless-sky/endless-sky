@@ -53,7 +53,8 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 
 			toSell.emplace_back(ship);
 
-			if(static_cast<int>(toSell.size()) >= abs(count))
+			// We do not want any more ships than is specified.
+			if(static_cast<int>(toSell.size()) == abs(count))
 				break;
 		}
 
