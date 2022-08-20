@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 		InitConsole();
 #endif
 	Conversation conversation;
-	bool debugMode = true;
+	bool debugMode = false;
 	bool loadOnly = false;
 	bool printShips = false;
 	bool printTests = false;
