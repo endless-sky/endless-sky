@@ -1184,10 +1184,10 @@ ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 		`"Bondir" Atomic Steering`
 		"Boulder Reactor"
 		"Hai Diamond Regenerator" 2
-		"Hai Ravine Batteries"
-		"Hai Williwaw Cooling" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 3
 		"Jump Drive"
-		"Outfits Expansion" 2
+		"Outfits Expansion"
 		"Pulse Rifle" 25
 		"Dual Pulse Pistols"
 		"Tripulse Shredder" 4
@@ -1196,7 +1196,9 @@ ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 		"shields" 1500
 		"hull" 1000
 		"fuel capacity" 300
-		"outfit space" 2
+		"outfit space" 5
+		"heat dissipation" -.1
+		"required crew" 4
 	cargo
 		outfits
 			"Gold Bars" 5
@@ -2331,12 +2333,14 @@ ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
 		"hull" 1000
 		"spinal mount" 1
 		"cloak" .01
-		"cloaking energy" 10
+		"heat dissipation" -.05
+		"cloaking energy" 5
 		"cloaking fuel" .5
-		"cloaking heat" 10
+		"cloaking heat" 5
 		"engine capacity" 5
 		"outfit space" 2
 		"weapon capacity" 20
+		"required crew" 5
 	outfits
 		"Sunbeam" 4
 		"Flamethrower" 2
