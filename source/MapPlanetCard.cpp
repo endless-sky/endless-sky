@@ -48,7 +48,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 
 	sprite = object.GetSprite();
 
-	const Interface* planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
 	spriteScale = min(.5f, min((planetIconMaxSize) / sprite->Width(), (planetIconMaxSize) / sprite->Height()));
 }
