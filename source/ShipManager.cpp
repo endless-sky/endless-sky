@@ -117,10 +117,5 @@ void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> shi
 	else if(taking && !name.empty() && count > 1)
 		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
 	else
-		shipsList[ship] = ShipManager(
-			name,
-			count * (taking ? -1 : 1),
-			unconstrained,
-			withOutfits
-			);
+		shipsList.emplace(ship, (name, count * (taking ? -1 : 1), unconstrained, withOutfits));
 }
