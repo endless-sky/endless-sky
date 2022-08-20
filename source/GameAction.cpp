@@ -188,8 +188,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			giftShips[GameData::Ships().Get(child.Token(2))] = ShipManager(
 				name,
 				count * (taking ? -1 : 1),
-				((child.Size() >= 6 && child.Token(5) == "unconstrained") || (child.Size() >= 7 && child.Token(6) == "unconstrained")) ? true : false,
-				((child.Size() >= 6 && child.Token(5) == "with outfits") || (child.Size() >= 7 && child.Token(6) == "with outfits")) ? true : false
+				((child.Size() >= 6 && child.Token(5) == "unconstrained") ||
+				(child.Size() >= 7 && child.Token(6) == "unconstrained")) ? true : false,
+				((child.Size() >= 6 && child.Token(5) == "with outfits") ||
+				(child.Size() >= 7 && child.Token(6) == "with outfits")) ? true : false
 				);
 	}
 	else if(key == "outfit" && hasValue)

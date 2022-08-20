@@ -27,7 +27,7 @@ public:
 	ShipManager() = default;
 	// Does not take a DataNode because, if not valid, this will not be created in the first place,
 	// and the responsibility to check that is thus on those using the ShipManager.
-	ShipManager(std::string name, int count, bool isUnconstrained, bool isWithOutfits);
+	ShipManager(std::string name, int count = 1, bool unconstrained = false, bool withOutfits = false);
 
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
 	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
@@ -39,9 +39,9 @@ public:
 
 private:
 	std::string name;
-	int count = 1;
-	bool unconstrained = false;
-	bool withOutfits = false;
+	int count;
+	bool unconstrained;
+	bool withOutfits;
 };
 
 

@@ -20,8 +20,8 @@ using namespace std;
 
 
 
-ShipManager::ShipManager(string name, int count, bool isUnconstrained, bool isWithOutfits)
-	: name(name), count(count), unconstrained(isUnconstrained), withOutfits(isWithOutfits)
+ShipManager::ShipManager(string name, int count, bool unconstrained, bool withOutfits)
+	: name(name), count(count), unconstrained(unconstrained), withOutfits(withOutfits)
 {
 }
 
@@ -53,7 +53,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 
 			toSell.emplace_back(ship);
 
-			if(toSell.size() >= abs(count))
+			if(static_cast<int>(toSell.size()) >= abs(count))
 				break;
 		}
 
@@ -64,7 +64,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, 
 
 bool ShipManager::Satisfies(const PlayerInfo &player, const Ship *model) const
 {
-	return SatisfyingShips(player, model).size() == abs(count);
+	return static_cast<int>(SatisfyingShips(player, model).size()) == abs(count);
 }
 
 

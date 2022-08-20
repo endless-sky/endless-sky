@@ -943,7 +943,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 			ForgetShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
-			return;
+			break;
 		}
 }
 
@@ -975,7 +975,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *exactModelRequired
 			ForgetShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
-			return;
+			break;
 		}
 }
 
