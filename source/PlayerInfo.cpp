@@ -913,7 +913,7 @@ Ship *PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
 		if(isGift && !name.empty())
 			giftedShips[ships.back()->VariantName() + " " + name].clone(ships.back()->UUID());
 		// Record the transfer of this ship in the depreciation and stock info.
-		else
+		else if(!isGift)
 		{
 			depreciation.Buy(*model, day, &stockDepreciation);
 			for(const auto &it : model->Outfits())
@@ -951,21 +951,21 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 // Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 // instead of allowing the player to buy them back, by putting them in the stock.
-void PlayerInfo::TakeShip(const Ship *ship, const Ship *model)
+void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *exactModelRequired)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(it->get() == ship)
+		if(it->get() == shipToTake)
 		{
 			// Record the transfer of this ship in the depreciation and stock info.
-			stockDepreciation.Buy(*ship, date.DaysSinceEpoch(), &depreciation);
-			for(const auto &it : ship->Outfits())
+			stockDepreciation.Buy(*shipToTake, date.DaysSinceEpoch(), &depreciation);
+			for(const auto &it : shipToTake->Outfits())
 			{
 				// We only take all of the outfits specified in the model without putting them in the stock.
 				// The extra outfits of this ship are transfered into the stock.
-				if(model)
+				if(exactModelRequired)
 				{
-					auto outfit = model->Outfits().find(it.first);
-					int amountRequired = (outfit != model->Outfits().end() ? outfit->second : 0);
+					auto outfit = exactModelRequired->Outfits().find(it.first);
+					int amountRequired = (outfit != exactModelRequired->Outfits().end() ? outfit->second : 0);
 					if(amountRequired < it.second)
 						stock[it.first] += it.second - amountRequired;
 				}
