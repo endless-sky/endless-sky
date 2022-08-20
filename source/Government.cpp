@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
 #include "ShipEvent.h"
@@ -480,11 +481,10 @@ int Government::Fines(const Outfit *outfit) const
 	if(!fine)
 		return 0;
 
-	for(const auto& it : illegals)
+	for(const auto &it : illegals)
 		if(it.first == outfit)
-			// If it is negative it means we ignore any global fines on the outfit.
-			return it.second <= 0 ? 0 : outfit->Get("illegal");
-	return 0;
+			return it.second;
+	return outfit->Get("illegal");
 }
 
 

@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
-#include "Outfit.h"
 #include "LocationFilter.h"
 
 #include <map>
@@ -27,6 +26,7 @@ class Fleet;
 class Phrase;
 class Planet;
 class PlayerInfo;
+class Outfit;
 class Ship;
 class System;
 
