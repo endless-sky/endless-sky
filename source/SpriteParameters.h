@@ -20,25 +20,25 @@ class SpriteParameters
 {
 
 public:
-    SpriteParameters();
-    explicit SpriteParameters(const Sprite *sprite);
+	SpriteParameters();
+	explicit SpriteParameters(const Sprite *sprite);
 
-    // Sprite to be animated
-    const Sprite *sprite = nullptr;
+	// Sprite to be animated
+	const Sprite *sprite = nullptr;
 
-    // Animation parameters as found in Body.h
-    float frameRate = 2.f / 60.f;
-    float scale = 1.f;
-    int delay = 0;
+	// Animation parameters as found in Body.h
+	float frameRate = 2.f / 60.f;
+	float scale = 1.f;
+	int delay = 0;
 
-    bool startAtZero = false;
-    bool randomize = false;
-    bool repeat = true;
-    bool rewind = false;
+	bool startAtZero = false;
+	bool randomize = false;
+	bool repeat = true;
+	bool rewind = false;
 
-    // Defines what to do when a state transition is requested (eg. FLYING to LANDING)
-    bool transitionFinish = false;
-    bool transitionRewind = false;
+	// Defines what to do when a state transition is requested (eg. FLYING to LANDING)
+	bool transitionFinish = false;
+	bool transitionRewind = false;
 };
 
 #endif
