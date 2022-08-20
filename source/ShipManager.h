@@ -19,13 +19,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class PlayerInfo;
 
+
+
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
 	ShipManager() = default;
-	// Does not take a node because if not valid this will not be created in the first place,
-	// and the responsability to check that is thus on those using the ShipManager.
-	ShipManager(std::string naming, int amount, bool isUnconstrained, bool isWithOutfits);
+	// Does not take a DataNode because, if not valid, this will not be created in the first place,
+	// and the responsibility to check that is thus on those using the ShipManager.
+	ShipManager(std::string name, int count, bool isUnconstrained, bool isWithOutfits);
 
 	std::vector<std::shared_ptr<Ship>> SatisfyingShips(const PlayerInfo &player, const Ship *model) const;
 	bool Satisfies(const PlayerInfo &player, const Ship *model) const;
@@ -36,7 +38,7 @@ public:
 	bool WithOutfits() const;
 
 private:
-	std::string name = "";
+	std::string name;
 	int count = 1;
 	bool unconstrained = false;
 	bool withOutfits = false;
