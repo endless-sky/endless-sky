@@ -496,7 +496,7 @@ government "Hydra"
 government "Shadow"
 	swizzle 9
 	"player reputation" 0
-	bribe 
+	bribe 0
 	fine 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
