@@ -1015,7 +1015,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on complete
 		clear "Unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
-		event "shipment lost" 20
+		event "unfettered: shipment lost" 20
 		payment 500000
 		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
 
@@ -1033,6 +1033,8 @@ mission "Unfettered: Taking Off With Hai Fleet"
 				flee
 
 
+
+event "unfettered: shipment lost"
 
 outfit "Materials"
 	category "Special"
@@ -1076,48 +1078,48 @@ mission "Unfettered: Materials Intercepted"
 		attributes "unfettered"
 	to offer
 		has "Unfettered: Escort Hai Fleet: done"
-		has "event: shipment lost"
+		has "event: unfettered: shipment lost"
 		or
 			not "unfettered: materials intercepted offered"
 			random < 15
 	on defer
 		set "unfettered: materials intercepted offered"
 	on offer
-		`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sha-Ri, titled "looking for stolen cargo".`
-		choice
-			`	(Go see him.)`
-			`	(Later.)`
-				defer
-		`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
-		`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster. This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
-		choice
-			`	"Do you have any idea where the stolen cargo could be?"`
-			`	"Why is the trip so dangerous if the cargo is worthless?"`
-				goto worthless
-		`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
-			goto choose
-		label worthless
-		`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
-		label choose
-		choice
-			`	"I will try to bring the loot back without attracting too much attention."`
+		conversation
+			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sha-Ri, titled "looking for stolen cargo".`
+			choice
+				`	(Go see him.)`
+				`	(Later.)`
+					defer
+			`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
+			`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster. This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			choice
+				`	"Do you have any idea where the stolen cargo could be?"`
+				`	"Why is the trip so dangerous if the cargo is worthless?"`
+					goto worthless
+			`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
+				goto choose
+			label worthless
+			`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
+			label choose
+			choice
+				`	"I will try to bring the loot back without attracting too much attention."`
+					accept
+				`	"I will find them and bring the loot back, whatever the cost.`
+				`	"Why do you not just hire another pirate?"`
+					goto whyhire
+			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
 				accept
-			`	"I will find them and bring the loot back, whatever the cost.`
-			`	"Why do you not just hire another pirate?"`
-				goto whyhire
-		`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
-			accept
-		label whyhire
-		`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say?"`
-		choice
-			`	"I will try to bring the loot back without attracting too much attention."`
+			label whyhire
+			`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say?"`
+			choice
+				`	"I will try to bring the loot back without attracting too much attention."`
+					accept
+				`	"I will find them and bring the loot back, whatever the cost.`
+				`	"This is mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
+					decline
+			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
 				accept
-			`	"I will find them and bring the loot back, whatever the cost.`
-			`	"This is mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
-				decline
-		`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
-			accept
-	waypoint "Almaaz"
 	on enter "Arneb"
 		conversation
 			`As you enter the system, you notice pirates from Hydra here. They could have the cargo you are looking for.`
@@ -1131,6 +1133,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"If you do not give it to me, I will open fire."`
 			`	"If I layed down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				decline
+			label intention
 			`	"My masters are coming soon to retrieve it, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
 	npc board
 		system "Arneb"
@@ -2124,9 +2127,9 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
 		dialog `Seeing you brought the coolers, Taer-Fi thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
-		event "Unfettered: new cooling system" 40
+		event "unfettered: new cooling system" 40
 
-event "Unfettered: new cooling system"
+event "unfettered: new cooling system"
 	outfitter "Unfettered Basics"
 		add "Hai Zephyr Cooling"
 
@@ -2135,7 +2138,7 @@ mission "Unfettered: New Cooling Available"
 	source
 		attributes "unfettered"
 	to offer
-		has "event: Unfettered: new cooling system"
+		has "event: unfettered: new cooling system"
 	on offer
 		conversation
 			`You receive a message from Taer-Fi. "Hi <first>. Remember the coolers you helped to develop? They are finally available on Darkcloak. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat. However, you're welcome to buy as many as you want!"`
@@ -2199,10 +2202,10 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 	on complete
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		give ship "Shield Beetle Prototype" "Basilisk"
-		event "Unfettered: shield beetle mass production" 30
+		event "unfettered: shield beetle mass production" 30
 		dialog `After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Taer-Fi left you this message.`
 
-event "Unfettered: shield beetle mass production"
+event "unfettered: shield beetle mass production"
 	planet "Darkcloak"
 		add outfitter "Unfettered"
 
@@ -2211,7 +2214,7 @@ mission "Unfettered: Improved Production"
 	source
 		attributes "unfettered"
 	to offer
-		has "event: Unfettered: shield beetle mass production"
+		has "event: unfettered: shield beetle mass production"
 	on offer
 		conversation
 			`You receive a message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
@@ -2295,8 +2298,8 @@ mission "Unfettered: Start Of The War"
 		<question> "Why is your hull black?"
 			has "Unfettered: Cloaking Interest: done"
 	to offer
-		has "event: Unfettered: shield beetle mass production"
-		has "event: Unfettered: new cooling system"
+		has "event: unfettered: shield beetle mass production"
+		has "event: unfettered: new cooling system"
 		has "Unfettered: Special Cargo 2: done"
 		has "main plot completed"
 		has "language: Wanderer"
