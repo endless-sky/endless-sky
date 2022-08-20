@@ -1081,7 +1081,7 @@ int64_t Ship::ChassisCost() const
 // Check if this ship is configured in such a way that it would be difficult
 // or impossible to fly.
 // Docked ships may have different requirements for flight checks.
-vector<string> Ship::FlightCheck(const bool docked) const
+vector<string> Ship::FlightCheck(const bool docked, const bool addWarnings) const
 {
 	auto checks = vector<string>{};
 
@@ -1118,7 +1118,7 @@ vector<string> Ship::FlightCheck(const bool docked) const
 	}
 
 	// If no errors were found, check all warning conditions:
-	if(checks.empty())
+	if(addWarnings && checks.empty())
 	{
 		if(energy <= 0.)
 			checks.emplace_back("no energy?");

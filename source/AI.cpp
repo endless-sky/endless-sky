@@ -140,11 +140,9 @@ namespace {
 			// Only applied to automatic deployments, allows the player to manually deploy
 			if(!manual && !ship->HasDeployOrder() && Preferences::IncompleteFighterUsage() != "deploy")
 			{
-				auto flightChecks = ship->FlightCheck();
+				auto flightChecks = ship->FlightCheck(false);
 				if(!flightChecks.empty())
-					for(const auto &result : flightChecks)
-						if(result.back() == '!')
-							return false;
+					return false;
 			}
 			// Check if the ship can be deployed
 			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();

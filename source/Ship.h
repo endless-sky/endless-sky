@@ -157,7 +157,7 @@ public:
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
 	// Docked ships may have different requirements for flight checks.
-	std::vector<std::string> FlightCheck(bool docked = false) const;
+	std::vector<std::string> FlightCheck(bool docked = false, bool addWarnings = true) const;
 
 	void SetPosition(Point position);
 	// When creating a new ship, you must set the following:

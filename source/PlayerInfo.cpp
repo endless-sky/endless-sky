@@ -807,7 +807,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 // Inspect the flightworthiness of the player's active fleet, individually and
 // as a whole, to determine which ships cannot travel with the group.
 // Returns a mapping of ships to the reason their flight check failed.
-map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
+map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck(bool addWarnings) const
 {
 	// Stores the relations between ships and docks.
 	// True: The ship is docked
@@ -870,7 +870,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 			// Check if ship is docked
 			auto it = dockedShips.find(ship);
 			const bool isCarried = it != dockedShips.end();
-			auto checks = ship->FlightCheck(isCarried && it->second);
+			auto checks = ship->FlightCheck(isCarried && it->second, addWarnings);
 			// Include the lack of bay availability amongst any other
 			// warnings for this carriable ship.
 			if(isCarried && !it->second)
