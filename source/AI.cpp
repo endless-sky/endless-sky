@@ -192,7 +192,7 @@ namespace {
 			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + (toRecall.size() > 1 ? "ships" : "ship") + ".", Messages::Importance::High);
 		}
 		// Log failures
-		if(failCount > 0)
+		if(failCount)
 		{
 			Messages::Add("Failed to deploy " + to_string(failCount) + " incomplete carried " + (failCount > 1 ? "ships" : "ship") + ".", Messages::Importance::High);
 		}
