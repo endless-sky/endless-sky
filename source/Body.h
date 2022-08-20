@@ -115,7 +115,7 @@ private:
 
 private:
 	// Animation parameters.
-	SpriteParameters* sprites[BodyState::NUM_STATES] = {new SpriteParameters(), new SpriteParameters(), new SpriteParameters, new SpriteParameters()};
+	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::CURRENT;
 	mutable bool stateTransitionRequested = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.

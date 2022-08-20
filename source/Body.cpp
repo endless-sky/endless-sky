@@ -34,7 +34,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 	: position(position), velocity(velocity), angle(facing), zoom(zoom), randomize(true)
 {
 
-	SpriteParameters* spriteState = this->sprites[BodyState::FLYING];
+	SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
 	spriteState->randomize = true;
 	spriteState->sprite = sprite;
 }
@@ -67,13 +67,13 @@ const Sprite *Body::GetSprite(BodyState state) const
 {
 	BodyState selected = state != BodyState::CURRENT ? state : this->currentState;
 
-	SpriteParameters* spriteState = this->sprites[selected];
+	SpriteParameters* spriteState = &this->sprites[selected];
 
 	// Return flying sprite if the requested state's sprite does not exist.
 	if(spriteState != nullptr && spriteState->sprite != nullptr){
 		return spriteState->sprite;
 	} else {
-		return this->sprites[BodyState::FLYING]->sprite;
+		return this->sprites[BodyState::FLYING].sprite;
 	}
 
 }
@@ -227,7 +227,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 
 	const Sprite* sprite = SpriteSet::Get(node.Token(1));
 
-	SpriteParameters* spriteData = this->sprites[state];
+	SpriteParameters* spriteData = &this->sprites[state];
 	spriteData->sprite = sprite;
 
 	// The only time the animation does not start on a specific frame is if no
@@ -284,7 +284,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing"};
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
-			SpriteParameters* spriteState = this->sprites[i];
+			SpriteParameters* spriteState = &this->sprites[i];
 			const Sprite* sprite = spriteState->sprite;
 
 			if(sprite){
@@ -312,7 +312,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 			}
 		}
 	} else {
-		SpriteParameters* spriteState = this->sprites[BodyState::FLYING];
+		SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
 		const Sprite* sprite = spriteState->sprite;
 
 		if(!sprite)
@@ -347,11 +347,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	if(this->sprites[state] == nullptr){
-		this->sprites[state] = new SpriteParameters(sprite);
-	}
-
-	this->sprites[state]->sprite = sprite;
+	this->sprites[state].sprite = sprite;
 	currentStep = -1;
 }
 
@@ -439,8 +435,8 @@ void Body::FinishStateTransition() const
 	this->stateTransitionRequested = false;
 
 	// Default to Flying sprite if requested sprite does not exist.
-	SpriteParameters* transitionedState = this->sprites[this->transitionState]->sprite != nullptr ?
-									this->sprites[this->transitionState] : this->sprites[BodyState::FLYING];
+	SpriteParameters* transitionedState = this->sprites[this->transitionState].sprite != nullptr ?
+									&this->sprites[this->transitionState] : &this->sprites[BodyState::FLYING];
 
 	// Update animation parameters.
 	this->frameRate = transitionedState->frameRate;
