@@ -626,6 +626,7 @@ mission "Cargo Interception West"
 		attributes "unfettered"
 	to offer
 		random < 30
+		has "Unfettered: Materials Intercepted: done"
 	npc board
 		government "Pirate"
 		personality disables plunders harvests staying
@@ -655,6 +656,7 @@ mission "Cargo Interception East"
 		attributes "unfettered"
 	to offer
 		random < 15
+		has "Unfettered: Materials Intercepted: done"
 	npc board
 		government "Pirate"
 		personality disables plunders harvests staying

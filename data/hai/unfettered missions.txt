@@ -1064,7 +1064,7 @@ ship "Bactrian" "Bactrian (Hydra)"
 		"Hyperdrive"
 	cargo
 		outfits
-			"Materials" 150
+			"Materials" 142
 		commodities
 			"Military" 150
 			"Electronics" 100
@@ -1073,7 +1073,7 @@ ship "Bactrian" "Bactrian (Hydra)"
 
 mission "Unfettered: Materials Intercepted"
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>.`
+	description `Find the "Rested Snake" that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. They should be located in the pirate worlds near Korath space, and not too far from the wormhole.`
 	source
 		attributes "unfettered"
 	to offer
@@ -1092,15 +1092,16 @@ mission "Unfettered: Materials Intercepted"
 				`	(Later.)`
 					defer
 			`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
-			`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster. This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+			`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster, and it came from the Hai.`
+			`	This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
 			choice
 				`	"Do you have any idea where the stolen cargo could be?"`
 				`	"Why is the trip so dangerous if the cargo is worthless?"`
 					goto worthless
-			`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
+			`	"Well I assume it was not stolen by the navy, given their principles, or by the syndicate, given the low value of the cargo. That means that whoever stole it are likely to hide away in pirate space and wait for the rumours there could be about this stealing to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
 				goto choose
 			label worthless
-			`	"Our contact mentioned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
+			`	"Our contact mentioned having to sometimes fight Korath invaders, as well as having to pass trough the big no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
@@ -1118,40 +1119,90 @@ mission "Unfettered: Materials Intercepted"
 				`	"I will find them and bring the loot back, whatever the cost.`
 				`	"This is mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
 					decline
-			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
+			`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies. I would hardly recommend bribing those that can be. Do what you must to bring back all 142 tons of materials. And remember to look for it near the Koraths."`
 				accept
 	on enter "Arneb"
 		conversation
-			`As you enter the system, you notice pirates from Hydra here. They could have the cargo you are looking for.`
+			`As you enter the system, you notice pirates from Hydra in orbit of the planet. They could have the cargo you are looking for.`
 			choice
 				`	Demand that the materials be returned to you.`
 				`	(Say nothing, I have no need to talk with these scums. I shall take.)`
+					goto over
 			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that got these stolen before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
 			choice
 				`	"What do you intend to do with this cargo?"`
 					goto intention
 				`	"If you do not give it to me, I will open fire."`
 			`	"If I laid down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
-				decline
+				goto over
 			label intention
 			`	"My masters are coming soon to retrieve it, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
+			label over
+				`They quickly land on the planet, it looks like you will have to pursue them.`
 	npc board
-		system "Arneb"
+		system "Misam"
 		government "Hydra"
-		personality target staying plunders vindictive uninterested
+		to spawn
+			has "Unfettered: Cavalry Arrives: offered"
+		personality target launching plunders vindictive uninterested
 		ship "Bactrian (Hydra)" "Rested Snake"
-		dialog "Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 150 tons of materials and bring them back to Sha-Ri."
+		conversation
+			"Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials and bring them back to Sha-Ri."
+			action
+				fail "Unfettered: Cavalry Arrives"
+	npc save
+		system "Misam"
+		government "Hai (Unfettered)"
+		to spawn
+			has "Unfettered: Cavalry Arrives: offered"
+		personality entering heroic uninterested
+		ship "Sea Scorpion (Tripulse, JD)" "Thorn"
+		ship "Sea Scorpion (Tripulse, JD)" "Talon"
+	npc
+		system "Misam"
+		government "Hydra"
+		to spawn
+			has "Unfettered: Cavalry Arrives: offered"
+		personality waiting plunders vindictive
+		fleet "Small Northern Pirates" 2
+		fleet "Large Northern Pirates" 2
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You do not have the materials yet. Go look for them deep in western pirate space.`
+		dialog `You do not have the materials yet, or your escort carrying them has not arrived. The materials should be looked for in north-east pirate space.`
 	on complete
 		clear "unfettered: materials intercepted offered"
-		outfit "Materials" -150
-		payment 2000000
+		outfit "Materials" -142
+		payment 3000000
 		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas."
 		dialog "You cannot find Sha-Ri to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
 
+ship "Sea Scorpion" "Sea Scorpion (Tripulse, JD)"
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Boulder Reactor"
+		"Fuel Pod" 3
+		"Hai Diamond Regenerator" 2
+		"Hai Gorge Batteries"
+		"Hai Williwaw Cooling" 2
+		"Jump Drive"
+		"Outfits Expansion" 2
+		"Pulse Rifle" 25
+		"Tripulse Shredder" 4
+
+mission "Unfettered: Cavalry Arrives"
+	landing
+	invisible
+	source "New Tortuga"
+	to offer
+		has "Unfettered: Materials Intercepted: active"
+	on offer
+		conversation
+			`Realizing you have landed after them, the pirates fire up their launching procedures as fast as they can. It looks like they did not expect you to have the guts to land on such a lawless world. Or maybe they just wanted to delay you...`
+				launch
+	on enter "Arneb"
+		dialog "They have called backup! Multiple pirate ships have just arrived in the system. But you see other ships arriving by jump drives. Is does not look like more pirates, maybe the 'contact' has provided help as well?"
 
 
 
@@ -1520,7 +1571,6 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
 				accept
-
 	waypoint "Hi Yahr"
 	on waypoint
 		dialog `You indeed notice the traces as you come back in the system where you found the Auxiliary. You figure they probably went to the East next with their jump drive, avoiding Hai territory.`
