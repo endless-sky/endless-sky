@@ -1988,7 +1988,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		} else {
 			//Target is not an enemy
 			this->SetState(BodyState::FLYING);
-		}	
+		}
 
 		if(isBoarding && !CanBeCarried())
 		{

@@ -16,28 +16,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Sprite;
 
 // Class holding all of the animation parameters required to animate a sprite;
-class SpriteParameters{
+class SpriteParameters
+{
 
-    public:
-        SpriteParameters();
-        explicit SpriteParameters(const Sprite* sprite);
+public:
+    SpriteParameters();
+    explicit SpriteParameters(const Sprite *sprite);
 
-        // Sprite to be animated
-        const Sprite* sprite = nullptr;
+    // Sprite to be animated
+    const Sprite *sprite = nullptr;
 
-        // Animation parameters as found in Body.h
-        float frameRate = 2.f / 60.f;
-        float scale = 1.f;
-        int delay = 0;
+    // Animation parameters as found in Body.h
+    float frameRate = 2.f / 60.f;
+    float scale = 1.f;
+    int delay = 0;
 
-        bool startAtZero = false;
-        bool randomize = false;
-        bool repeat = true;
-        bool rewind = false;
-        
-        // Defines what to do when a state transition is requested (eg. FLYING to LANDING)
-        bool transitionFinish = false;
-        bool transitionRewind = false;
+    bool startAtZero = false;
+    bool randomize = false;
+    bool repeat = true;
+    bool rewind = false;
+
+    // Defines what to do when a state transition is requested (eg. FLYING to LANDING)
+    bool transitionFinish = false;
+    bool transitionRewind = false;
 };
 
 #endif

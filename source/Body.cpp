@@ -34,11 +34,9 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 	: position(position), velocity(velocity), angle(facing), zoom(zoom), randomize(true)
 {
 
-	SpriteParameters* spriteState = new SpriteParameters(sprite);
+	SpriteParameters* spriteState = this->sprites[BodyState::FLYING];
 	spriteState->randomize = true;
-	
-	this->sprites[BodyState::FLYING] = spriteState;
-
+	spriteState->sprite = sprite;
 }
 
 
@@ -231,7 +229,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	
 	SpriteParameters* spriteData = this->sprites[state];
 	spriteData->sprite = sprite;
-
+	
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
 	// start at zero starts when the game started, it does not make sense for it
