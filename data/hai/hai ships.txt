@@ -416,7 +416,7 @@ ship "Sea Scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
 	attributes
 		category "Medium Warship"
-		"cost" 2950000
+		"cost" 4950000
 		"shields" 15500
 		"hull" 4900
 		"required crew" 14
