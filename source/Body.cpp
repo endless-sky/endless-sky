@@ -263,6 +263,10 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 		else if(child.Token(0) == "transition finish"){
 			spriteData->transitionFinish = true;
 			spriteData->transitionRewind = false;
+		} else if(child.Token(0) == "indicate"){
+			spriteData->indicateReady = true;
+			spriteData->repeat = false;
+			spriteData->startAtZero = true;
 		}
 		else if(child.Token(0) == "rewind")
 			spriteData->rewind = true;
@@ -281,7 +285,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
 	// Write all states to file
 	if(allStates){
-		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing"};
+		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing", "sprite-jumping"};
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = &this->sprites[i];
@@ -303,6 +307,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 						out.Write("no repeat");
 					if(spriteState->rewind)
 						out.Write("rewind");
+					if(spriteState->indicateReady)
+						out.Write("indicate");
 					if(spriteState->transitionFinish)
 						out.Write("transition finish");
 					if(spriteState->transitionRewind)
@@ -333,6 +339,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				out.Write("no repeat");
 			if(spriteState->rewind)
 				out.Write("rewind");
+			if(spriteState->indicateReady)
+				out.Write("indicate");
 			if(spriteState->transitionFinish)
 				out.Write("transition finish");
 			if(spriteState->transitionRewind)
@@ -411,6 +419,14 @@ void Body::PauseAnimation()
 }
 
 
+// Indicate whether the body can perform the requested action (depending on its state)
+// only if a signal is needed for the action.
+bool Body::ReadyForAction() const
+{
+	return this->indicateReady ? this->stateReady : true;
+}
+
+
 // Mark this object to be removed from the game.
 void Body::MarkForRemoval()
 {
@@ -446,6 +462,7 @@ void Body::FinishStateTransition() const
 	this->randomize = transitionedState->randomize;
 	this->repeat = transitionedState->repeat;
 	this->rewind = transitionedState->rewind;
+	this->indicateReady = transitionedState->indicateReady;
 	this->transitionFinish = transitionedState->transitionFinish;
 	this->transitionRewind = transitionedState->transitionRewind;
 
@@ -514,6 +531,12 @@ void Body::SetStep(int step) const
 			// final frame.
 			if(!repeat){
 				frame = min(frame, lastFrame);
+
+				if(frame == lastFrame){
+					stateReady = true;
+				} else {
+					stateReady = false;
+				}
 			}
 			else if(frame >= frames)
 			{
@@ -531,6 +554,9 @@ void Body::SetStep(int step) const
 		}
 
 	} else {
+
+		stateReady = false;
+
 		if(transitionFinish && !transitionRewind){
 
 			// Finish the ongoing state's animation then transition

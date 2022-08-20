@@ -201,6 +201,8 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child, BodyState::LANDING);
 		else if(key == "sprite-launching")
 			LoadSprite(child, BodyState::LAUNCHING);
+		else if(key == "sprite-jumping")
+			LoadSprite(child, BodyState::JUMPING);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -1372,6 +1374,7 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
+
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
@@ -1549,6 +1552,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
+
+		this->SetState(BodyState::JUMPING);
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
 
@@ -1746,11 +1751,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
-	else if(commands.Has(Command::JUMP) && IsReadyToJump())
+	else if(commands.Has(Command::JUMP))
 	{
-		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
-		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+		this->SetState(BodyState::JUMPING);
+		if(IsReadyToJump()){
+			hyperspaceSystem = GetTargetSystem();
+			isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+			hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+		}
 	}
 
 	if(pilotError)
@@ -1968,7 +1976,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
 
-
 	// If this is a fighter or drone and it is not assisting someone at the
 	// moment, its boarding target should be its parent ship.
 	if(CanBeCarried() && !(target && target == GetShipToAssist()))
@@ -1983,11 +1990,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
 
-		if(activeEnemyTarget && target->isInSystem){
-			this->SetState(BodyState::FIGHTING);
-		} else {
-			//Target is not an enemy
-			this->SetState(BodyState::FLYING);
+		if(!commands.Has(Command::JUMP)){
+			if(activeEnemyTarget && target->isInSystem){
+				this->SetState(BodyState::FIGHTING);
+			} else {
+				//Target is not an enemy
+				this->SetState(BodyState::FLYING);
+			}
 		}
 
 		if(isBoarding && !CanBeCarried())
@@ -2040,8 +2049,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 			}
 		}
-	} else {
-		// No target but still flying around
+	} else if(!commands.Has(Command::JUMP)){
+		// No target but still flying around and doesn't want to jump
 		this->SetState(BodyState::FLYING);
 	}
 
@@ -2712,7 +2721,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct() const
 {
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak || !this->ReadyForAction());
 }
 
 
@@ -2785,7 +2794,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 			return false;
 	}
 
-	return true;
+	return this->ReadyForAction();
 }
 
 

@@ -39,6 +39,7 @@ public:
 	// Defines what to do when a state transition is requested (eg. FLYING to LANDING)
 	bool transitionFinish = false;
 	bool transitionRewind = false;
+	bool indicateReady = false;
 };
 
 #endif
