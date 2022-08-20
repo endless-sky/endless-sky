@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -74,7 +74,7 @@ namespace{
 	}
 
 	// Prepare an keyboard input to one of the UIs.
-	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -127,7 +127,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
-			for(const DataNode &grand: child){
+			for(const DataNode &grand : child){
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
@@ -140,7 +140,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 		}
 		else if(child.Token(0) == "pointer")
 		{
-			for(const DataNode &grand: child)
+			for(const DataNode &grand : child)
 			{
 				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
 				if(grand.Token(0) == "X")
@@ -191,7 +191,7 @@ void Test::LoadSequence(const DataNode &node)
 		return;
 	}
 
-	for(const DataNode &child: node)
+	for(const DataNode &child : node)
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
@@ -266,7 +266,7 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				for(const DataNode &grand: child)
+				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "travel" && grand.Size() >= 2)
 						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
@@ -457,7 +457,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 			case TestStep::Type::INJECT:
 				{
 					// Lookup the data and inject it in the game or into the environment.
-					const TestData* testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
+					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
@@ -516,7 +516,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		message += ": " + testFailReason;
 	message += "\n";
 
-	Files::LogError(message);
+	Logger::LogError(message);
 
 	// Print the callstack if we have any.
 	string stackMessage = "Call-stack:\n";
@@ -530,12 +530,12 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
 		stackMessage += "\n";
 	}
-	Files::LogError(stackMessage);
+	Logger::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Files::LogError("No flagship at the moment of failure.");
+		Logger::LogError("No flagship at the moment of failure.");
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -553,7 +553,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Files::LogError(shipsOverview);
+		Logger::LogError(shipsOverview);
 	}
 
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
@@ -565,11 +565,11 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
 
 	if(!conditions.empty())
-		Files::LogError(conditions);
+		Logger::LogError(conditions);
 	else if(player.Conditions().empty())
-		Files::LogError("Player had no conditions set at the moment of failure.");
+		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No test conditions were set at the moment of failure.");
+		Logger::LogError("No test conditions were set at the moment of failure.");
 
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in

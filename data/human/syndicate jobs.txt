@@ -57,8 +57,9 @@ mission "Corporate retreat from <origin>"
 
 
 mission "Corporate espionage"
-	description "The <npc> is about to enter this system. Locate it and make detailed scans of its cargo, which are of considerable interest to a team of Syndicate researchers on <destination>; proceed there for <payment> after retrieving the data."
+	description "The <npc> is about to enter this system. Intercept it and make detailed scans of its cargo for Syndicate researchers on <destination>; proceed there before <date> for <payment> after retrieving the data."
 	job
+	deadline 1 3
 	repeat
 	to offer
 		random < 10
