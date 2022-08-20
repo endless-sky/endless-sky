@@ -716,7 +716,7 @@ mission "Unfettered: Prove Your Strength Duel"
 	source "Darkcloak"
 	to offer
 		has "Unfettered: Prove Your Strength: active"
-		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 < 12
+		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target launching
@@ -1015,6 +1015,7 @@ mission "Unfettered: Escort Hai Fleet"
 	on complete
 		clear "Unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
+		event "shipment lost" 20
 		payment 500000
 		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
 
@@ -1030,6 +1031,117 @@ mission "Unfettered: Taking Off With Hai Fleet"
 		conversation
 			`You go meet the fleet admiral assigned to this so you can coordinate, and after a while everyone signals they are ready to take off.`
 				flee
+
+
+
+ship "Bactrian" "Bactrian (Hydra)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"D67-TM Shield Generator"
+		"Hai Williwaw Cooling" 3
+		"Ramscoop"
+		"Pulse Rifle" 12
+		"Outfits Expansion" 2
+		`"Bufaer" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+		"Hyperdrive"
+	cargo
+		outfits
+			"Materials" 150
+		commodities
+			"Military" 150
+			"Electronics" 100
+			"Metal" 50
+			"Heavy Metals" 50
+
+mission "Unfettered: Materials Intercepted"
+	name `Find and bring the materials back`
+	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>.`
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered: Escort Hai Fleet: done"
+		has "event: shipment lost"
+		or
+			not "unfettered: materials intercepted offered"
+			random < 15
+	on defer
+		set "unfettered: materials intercepted offered"
+	on offer
+		`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sha-Ri, titled "looking for stolen cargo".`
+		choice
+			`	(Go see him.)`
+			`	(Later.)`
+				defer
+		`	You go to see him in order to discuss it in greater details, and easily find him by asking around, everyone seems to know him here. He leaves a conversation he had with another elder when he sees you.`
+		`	"<last>! I was hoping to find you here. I just happen to have needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates. Granted, the shipment you escorted was exceptional due to the disaster. This one, however, happens somewhat more regularly, although it often has inpredictible delays, due to the dangerous nature of the trip. At first we assumed that the ship coming with cargo all the way from human space simply got delayed, as usual. But in that case we should at least have gotten a message by now, it's been too long and I've grown quite worried that they may not make it here after all. The materials they supply us with are not urgently required, but still, they are needed in order to develop some of the most distant areas on this world, and maintain our current buildings." He then takes a pad out of his pocket, and shows you what they should look like. These are fairly standard materials for construction purposes, not rare in the slightest.`
+		choice
+			`	"Do you have any idea where the stolen cargo could be?"`
+			`	"Why is the trip so dangerous if the cargo is worthless?"`
+				goto worthless
+		`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
+			goto choose
+		label worthless
+		`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost."`
+		label choose
+		choice
+			`	"I will try to bring the loot back without attracting too much attention."`
+				accept
+			`	"I will find them and bring the loot back, whatever the cost.`
+			`	"Why do you not just hire another pirate?"`
+				goto whyhire
+		`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
+			accept
+		label whyhire
+		`	"I do not trust them much, but the real reason is that it was our contact that dealt with these kind of preoccupations - we only provided the founds. Sometimes it is one faction that brings us the cargo, sometimes another, and we do not ask questions. So, what do you say?"`
+		choice
+			`	"I will try to bring the loot back without attracting too much attention."`
+				accept
+			`	"I will find them and bring the loot back, whatever the cost.`
+			`	"This is mission is too dangerous for me, the Unfettered will need to find someone else for this one and others like it."`
+				decline
+		`	"Please, whatever you do, try to avoid needless bloodshed, these pirates are not our enemies."`
+			accept
+	waypoint "Almaaz"
+	on enter "Arneb"
+		conversation
+			`As you enter the system, you notice pirates from Hydra here. They could have the cargo you are looking for.`
+			choice
+				`	Demand that the materials be returned to you.`
+				`	(Say nothing, I have no need to talk with these scums. I shall take.)`
+			`	The first mate of the <npc> responds to your hail, "That's ours, mate, always has been. You must have suffered a serious blow to the head to think otherwise, especially this deep in our lands. In fact we were the ones that got these stolen before we could bring them to port! Well, after we stole them from a merchant, but that's irrelevant."`
+			choice
+				`	"What do you intend to do with this cargo?"`
+					goto intention
+				`	"If you do not give it to me, I will open fire."`
+			`	"If I layed down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
+				decline
+			`	"My masters are coming soon to retrieve it, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`
+	npc board
+		system "Arneb"
+		government "Hydra"
+		personality target staying plunders vindictive uninterested
+		ship "Bactrian (Hydra)" "Rested Snake"
+		dialog "Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 150 tons of materials and bring them back to Sha-Ri."
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog `You do not have the materials yet. Go look for them deep in western pirate space.`
+	on complete
+		clear "unfettered: materials intercepted offered"
+		outfit "Materials" -150
+		payment 2000000
+		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas."
+		dialog "You cannot find Sha-Ri to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
+
 
 
 
@@ -1094,11 +1206,9 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				accept
 		outfit "Value Detector"
 		log "People" "Taer-Fi" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
-
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
 		set "Unfettered: entered Ya Hai"
-
 	npc "scan cargo"
 		government "Hai"
 		to spawn
@@ -1110,7 +1220,6 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 			variant
 				"Geocoris"
 		dialog `You have scanned the Geocoris. You may now return to <destination> with the scanner logs.`
-
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1333,7 +1442,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 	to offer
 		not "unfettered: destroyed auxiliary"
 		has "Unfettered: Solifuge 3: Auxiliary Design Logs: done"
-		has "Unfettered: Escort Hai Fleet: done"
+		has "Unfettered: Materials Intercepted: done"
 	on offer
 		conversation
 			`As you enter the spaceport, you see the council gathered in a stadium looking similar to the one on Firelode, though larger. It seems like you will finally be able to get some answers, if you would like to see them now, that is.`
@@ -1615,7 +1724,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		outfit "Silicon" -100
 		outfit "Silver" -15
 		payment 500000
-		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance.`
+		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
 
 
 
@@ -2330,10 +2439,10 @@ mission "Unfettered: Close Quarter"
 			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: done"
 			has "Unfettered: Solifuge 9: Shield Beetles Mass Production: declined"
 		or
+			not "unfettered: offered close quarter"
 			random < 30
-			not "Unfettered: offered close quarter"
 	on defer
-		set "Unfettered: offered close quarter"
+		set "unfettered: offered close quarter"
 	on offer
 		conversation
 			`You can see movement in the spaceport. People seem to be heading to one place in particular, and you can hear some shouting coming from that direction. Do you want to go take a look?`
@@ -2456,7 +2565,7 @@ mission "Unfettered: Close Quarter"
 			has "Bring Coalition Weapons: done"
 			has "Bring Void Rifle: done"
 	on complete
-		clear "Unfettered: offered close quarter"
+		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
 		conversation
 			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`

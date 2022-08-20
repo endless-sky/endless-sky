@@ -104,12 +104,11 @@ mission "Unfettered: Alpha Business"
 	deadline 2
 	npc kill
 		government "Alpha"
-		# the ship will land, ignoring you, and then launch and promptly leave
 		personality entering uninterested fleeing
 		system "Hi Yahr"
 		ship "Auxiliary (Alpha with supplies)" "Settler"
 		conversation
-			`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who shot first, you are now an enemy of the Unfettered."`
+			`	The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
 			action
 				set "unfettered: destroyed auxiliary"
 				"reputation: Hai (Unfettered)" <?= -1
@@ -305,7 +304,7 @@ mission "Unfettered: Betrayal For The Bars"
 			label lostbars
 			action
 				outfit "Gold Bars" -5
-	# accept is used when you spot the crew member but do not know the link to the bars
+	# accept is used when you spot the crew member but do not know the link to the bars, if they are revealed, they will not try again.
 	on accept
 		fail "Unfettered: Betrayal For The Bars"
 
@@ -330,6 +329,7 @@ mission "Unfettered: Bar Selling 2"
 	repeat
 	to offer
 		has "unfettered: sold bars"
+		not "Unfettered: Bar Selling: active"
 	on offer
 		outfit "Gold Bars" -1
 		payment 1000000
