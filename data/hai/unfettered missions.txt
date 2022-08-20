@@ -1073,7 +1073,7 @@ ship "Bactrian" "Bactrian (Hydra)"
 
 mission "Unfettered: Materials Intercepted"
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>.`
 	source
 		attributes "unfettered"
 	to offer
@@ -1100,7 +1100,7 @@ mission "Unfettered: Materials Intercepted"
 			`	"Well I assume it was not stolen by the navy, meaning they are likely to hide away in pirate space, wait for it to calm down, before selling the loot back. Our contact led me to believe that skirmishes between pirates sometimes happen, especially when there is a big potential gain from it. But this cargo is not worth much, so I do not understand what happened. Maybe they got intercepted on the way. If I understand correctly our contact has his base of operation located in the west, so you should probably start looking in that general area."`
 				goto choose
 			label worthless
-			`	"Our contact mentionned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exagerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
+			`	"Our contact mentioned having to pass trough Farpoint, which is well defended, as well as passing trough the no-man lands that lead to the wormhole afterwards, which have some pirates here and there. However, maybe he exaggerated the risks, in order to increase the cost. We are quite desperate for materials, and thus ready to pay quite a heafty price."`
 			label choose
 			choice
 				`	"I will try to bring the loot back without attracting too much attention."`
@@ -1131,7 +1131,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"What do you intend to do with this cargo?"`
 					goto intention
 				`	"If you do not give it to me, I will open fire."`
-			`	"If I layed down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
+			`	"If I laid down at every threat I received, the masters would have replaced me long ago. Not gonna lie, I don't mind bashing you down a bit."`
 				decline
 			label intention
 			`	"My masters are coming soon to retrieve it, and if it ain't there no more, I'll be the one they 'retrieve' instead." He says, before abruptly closing the communication.`

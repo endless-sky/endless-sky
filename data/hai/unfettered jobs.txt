@@ -224,7 +224,7 @@ mission "Proud Unfettered Boarded"
 phrase "unfettered mining payment dialog"
 	word
 		`The group of Unfettered unloading the materials you mined seems enthused. "Keep this up and we will be building new ships in no time! Some use those asteroids as target practice, you know, but most find it dull and too easy to fight an enemy that does not shoot or react in any other way," one tells you as it hands over your payment of <payment>.`
-		`The local Unfettered unload your cargo of minerals, and one comes you give you your payment of <payment>. "Some Unfettered use these asteroids as target practise, but too few bring the precious materials back," he adds.`
+		`The local Unfettered unload your cargo of minerals, and one comes you give you your payment of <payment>. "Some Unfettered use these asteroids as target practices, but too few bring the precious materials back," he adds.`
 		`The Unfettered unloading the materials you mined seem satisfied. "This will allow us to repair our ships! Too few captains are patient enough to gather asteroids like you are. Most of them try to get the resources from enemy ships, but this is a safer way to do it," one tells you as it hands over your payment of <payment>.`
 		`A group of Unfettered unload the materials you mined, without saying anything to you. As they are done, one gives you <payment>.`
 		`The leader of the Unfettered unloading the materials comes to you. "This will allow us to repair our houses, our hospitals, even our schools. For that you have my deepest thanks." He then hands you <payment>.`
@@ -617,7 +617,7 @@ phrase "unfettered cargo interception payment dialog"
 
 mission "Cargo Interception West"
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	job
 	repeat
 	source
@@ -646,7 +646,7 @@ mission "Cargo Interception West"
 
 mission "Cargo Interception East"
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the developement of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen the materials needed for the development of the urban areas, and bring those materials back to <destination>. You will need to scan the cargo of ships to figure out which one has the materials.`
 	job
 	repeat
 	source
