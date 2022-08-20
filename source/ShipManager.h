@@ -25,6 +25,11 @@ class PlayerInfo;
 // Used to contain and manage gift/take ship, and owns commands.
 class ShipManager {
 public:
+	// Will try to add the a shipManager matching the DataNode to the given shipList.
+	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> shipsList);
+
+
+public:
 	ShipManager() = default;
 	ShipManager(std::string name, int count = 1, bool unconstrained = false, bool withOutfits = false);
 
@@ -37,16 +42,11 @@ public:
 	bool WithOutfits() const;
 
 
-public:
-	// Will try to add the a shipManager matching the DataNode to the given shipList.
-	static void Load(const DataNode &child, std::map<const Ship *, ShipManager> shipsList);
-
-
 private:
 	std::string name;
-	int count;
-	bool unconstrained;
-	bool withOutfits;
+	int count = 1;
+	bool unconstrained = false;
+	bool withOutfits = false;
 };
 
 

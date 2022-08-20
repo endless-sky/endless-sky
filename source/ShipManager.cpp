@@ -28,6 +28,29 @@ ShipManager::ShipManager(string name, int count, bool unconstrained, bool withOu
 
 
 
+void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> shipsList)
+{
+	bool taking = child.Token(0) == "take";
+	bool owns = child.Token(0) == "owns";
+	const Ship *ship = GameData::Ships().Get(child.Token(2));
+	string name = (child.Size() >= 4 ? child.Token(3) : "");
+	int count = (child.Size() >= 5 ? static_cast<int>(child.Value(4)) : 1);
+
+	bool unconstrained = ((child.Size() >= 6 && child.Token(5) == "unconstrained") ||
+			(child.Size() >= 7 && child.Token(6) == "unconstrained"));
+	bool withOutfits = owns ? ((child.Size() >= 6 && child.Token(5) == "with outfits") ||
+			(child.Size() >= 7 && child.Token(6) == "with outfits")) : false;
+
+	if(count <= 0)
+		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
+	else if(taking && !name.empty() && count > 1)
+		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
+	else
+		shipsList.emplace(ship, ShipManager(name, count * (taking ? -1 : 1), unconstrained, withOutfits));
+}
+
+
+
 vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player, const Ship *model) const
 {
 	const System *here = player.GetSystem();
@@ -95,27 +118,4 @@ bool ShipManager::Unconstrained() const
 bool ShipManager::WithOutfits() const
 {
 	return withOutfits;
-}
-
-
-
-void ShipManager::Load(const DataNode &child, map<const Ship *, ShipManager> shipsList)
-{
-	bool taking = child.Token(0) == "take";
-	bool owns = child.Token(0) == "owns";
-	const Ship *ship = GameData::Ships().Get(child.Token(2));
-	string name = (child.Size() >= 4 ? child.Token(3) : "");
-	int count = (child.Size() >= 5 ? static_cast<int>(child.Value(4)) : 1);
-
-	bool unconstrained = ((child.Size() >= 6 && child.Token(5) == "unconstrained") ||
-			(child.Size() >= 7 && child.Token(6) == "unconstrained"));
-	bool withOutfits = owns ? ((child.Size() >= 6 && child.Token(5) == "with outfits") ||
-			(child.Size() >= 7 && child.Token(6) == "with outfits")) : false;
-
-	if(count <= 0)
-		child.PrintTrace("Error: Skipping invalid ship quantity:" + to_string(count));
-	else if(taking && !name.empty() && count > 1)
-		child.PrintTrace("Error: Skipping invalid ship quantity with a specified name:");
-	else
-		shipsList.emplace(ship, (name, count * (taking ? -1 : 1), unconstrained, withOutfits));
 }
