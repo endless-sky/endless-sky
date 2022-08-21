@@ -575,11 +575,11 @@ mission "Unfettered: Bring Medical Supplies"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		log `Brought medial supplies to Darkcloak to prevent an epidemic.`
-		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
+		log "People" "Nimo" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're heading to your ship, someone catches up to you. "Hello, captain <last>. I am Nio, manager of this hospital. I wanted to express my deepest thanks to you, and give you the <payment> in person."`
-			`	On the way back, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`	On the way back, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Nimo." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Nimo. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
@@ -964,7 +964,7 @@ mission "Unfettered: Escort Hai Fleet"
 		has "reputation: Hai Merchant (Sympathizers)" >= 0
 	on offer
 		conversation
-			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Sha-Ri, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them through Hai space, from <stopovers>."`
+			`As you are preparing to leave this planet, an Unfettered Chief approaches you. After some time you finally recognize Nimo, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed. "<first>! I, or more precisely a fleet of True Hai, need your immediate assistance escorting them through Hai space, from <stopovers>."`
 			choice
 				`	"What are you doing here?"`
 				`	"Why do you need my help?"`
@@ -1018,7 +1018,7 @@ mission "Unfettered: Escort Hai Fleet"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
 		payment 500000
-		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Sha-Ri.`
+		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Nimo.`
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	invisible
@@ -1087,7 +1087,7 @@ mission "Unfettered: Materials Intercepted"
 		set "unfettered: materials intercepted offered"
 	on offer
 		conversation
-			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Sha-Ri, titled "looking for stolen cargo".`
+			`When entering the spaceport, you see that there is a very peculiar job on the board, left by none other than Nimo, titled "looking for stolen cargo".`
 			choice
 				`	(Go see him.)`
 				`	(Later.)`
@@ -1157,7 +1157,7 @@ mission "Unfettered: Materials Intercepted"
 		personality target launching plunders vindictive uninterested
 		ship "Bactrian (Hydra)" "Rested Snake"
 		conversation
-			`Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Sha-Ri talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials when you can and bring them back to Sha-Ri.`
+			`Boarding the ship, it seems like they have other commodities than what you are looking for, but they do have the materials Nimo talked to you about. Given the damage the ship has suffered, it seems it would require heavy works in the spaceport to get it running again, so you should have some time to switch to a ship with more cargo space, should you need to. Take all 142 tons of materials when you can and bring them back to Nimo.`
 			branch "allies died"
 				has "Unfettered: Cavalry Arrives: failed"
 			action
@@ -1167,7 +1167,7 @@ mission "Unfettered: Materials Intercepted"
 				has "unfettered: thorn talon death"
 			`	Seeing the fight is almost over if not completely, your surprise allies hail you, "Well done, captain," the first one says. "You have truly impressed us today," the other one adds.`
 			choice
-				`	"Where you sent by Sha-Ri's contact?"`
+				`	"Where you sent by Nimo's contact?"`
 				`	"What are these weapons you are using?"`
 					goto weapons
 			`	They laugh a bit, hearing the way you referenced their leader, "Yes, you could call her that."`
@@ -1209,8 +1209,8 @@ mission "Unfettered: Materials Intercepted"
 		clear "unfettered: materials intercepted offered"
 		outfit "Materials" -142
 		payment 2000000
-		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
-		dialog "You cannot find Sha-Ri to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
+		log "Helped Nimo by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
+		dialog "You cannot find Nimo to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
 
 ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 	sprite "ship/hai marauder sea scorpion"
@@ -1296,7 +1296,7 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 		conversation
 			`As you wander through the spaceport, you find a market. You notice that the amount and diversity of goods are very limited. Some of it seems to be completely alien, even by Hai standards. Most Unfettered here are just busy buying food, that is if they can even afford it. You see two Unfettered disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence...`
 			`	An Unfettered approaches you. At first you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out here. There are not many non-Hai on the Unfettered worlds.`
-			`	"Captain <last>! I am Taer-Fi, an engineer. We have an easy job for you, if you are interested," she says.`
+			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says.`
 			choice
 				`	"Sure, what can I do for you?"`
 				`	"How do you know me?"`
@@ -1340,10 +1340,10 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 				`	"I'm not interested in scanning ships for you."`
 					decline
 			label agree
-			`	On the way back to your ship, Taer-Fi runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you one of our scanners. It will be placed in your cargo hold if there is no space on your ship."`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing, captain!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you one of our scanners. It will be placed in your cargo hold if there is no space on your ship."`
 				accept
 		outfit "Value Detector"
-		log "People" "Taer-Fi" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
+		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
 		set "Unfettered: entered Ya Hai"
@@ -1476,7 +1476,7 @@ mission "Unfettered: Solifuge 2: Auxiliary Design"
 	on offer
 		conversation
 			`You go get a drink in the spaceport. You take a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consumming many special drinks - at least not on a regular basis.`
-			`	You ask around for Taer-Fi, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
+			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more about it once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
 			choice
@@ -1541,7 +1541,7 @@ mission "Unfettered: Solifuge 3: Auxiliary Design Logs"
 		payment 300000
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Taer-Fi. "Can I speak to you about your scans? I really am intrigued about that ship."`
+			`	Moments later, on your bridge, thinking about how to explain to the Chiefs that this was an Alpha ship, you hear a familiar voice from the coms on your ship. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that ship."`
 			choice
 				`	"I won't discuss those things with you."`
 					decline
@@ -1588,7 +1588,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 				`	(Enter the stadium and go see them.)`
 				`	(I don't have time right now.)`
 					defer
-			`	Seeing you approach, one of the leaders steps forward, and you recognize Sha-Ri. "It seems you are an enemy to the unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Nimo. "It seems you are an enemy to the unfettered humans, and we cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
 			choice
 				`	"What is it you want me to do? I don't like these Alphas."`
 					goto hate
@@ -1601,7 +1601,7 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask proof that you have taken on the Alphas by bringing their ship."`
 			choice
 				`	"How can I find them?"`
-			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Taer-Fi and ask her if she found anything useful in the logs."`
+			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Mera and ask her if she found anything useful in the logs."`
 			choice
 				`	"I better get on my way to kill Alphas then."`
 				`	"I won't risk engaging the Alphas."`
@@ -1614,14 +1614,14 @@ mission "Unfettered: Alphas: Find The Auxiliary"
 mission "Unfettered: Alphas 2: Prove Yourself"
 	landing
 	name `Find and capture the Alpha Auxiliary`
-	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Taer-Fi pointed out around the system you last saw it in, and then capture it.`
+	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
 		has "Unfettered: Alphas: Find The Auxiliary: done"
 	on offer
 		conversation
-			`Taer-Fi is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't be going very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
+			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't be going very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
 			choice
 				`	"Get to the point. Where can I find it?"`
 				`	"What kind of damage?"`
@@ -1770,14 +1770,14 @@ mission "Unfettered: Alphas 3: Bring The Spoils"
 				`	(Look for reports of the leak.)`
 				`	(Better not dig too deep.)`
 					decline
-			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Taer-Fi really think it was a jump drive malfunction?`
+			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Mera really think it was a jump drive malfunction?`
 			`	You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 				accept
 		outfit "Jump Drive" 10
 
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
-		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Taer-Fi. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+		dialog `When you arrive in the Unfettered system, the local authorities relay a message to you, from Mera. "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
 
 
 
@@ -1790,7 +1790,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
 		conversation
-			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Taer-Fi is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering materials here."`
+			`You have never seen so much business in Unfettered space. It looks like a major undertaking is about to happen, and you will probably be a part of it. Mera is spreading a message for all Unfettered to hear. "The time has come, brothers and sisters! Now all that is needed is to spread the word, and our brethren from Hai space will join us in glorious victory! But let us not be reckless. In order to win we will need ships, and in order to build ships we will need materials. That is why we should all start gathering materials here."`
 			choice
 				`	"What kind of materials do you need?"`
 			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with lead, friends. It is useless, for we are not a barbaric people. No, we need a lot of silver and silicon. Also do not forget we are selling asteroid scanners in the outfitter, should you require any."`
@@ -1873,7 +1873,7 @@ mission "Unfettered: The Word Has Spread"
 		has "passenger space" >= 66
 	on offer
 		conversation
-			`Even before exiting your ship, you notice that the recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Sha-Ri, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
+			`Even before exiting your ship, you notice that the recent activity has not diminished. People are still moving around everywhere, getting to their ships or simply doing their jobs with renewed purpose. In all that activity you find your Chief friend, Nimo, who seems happy to see you. "Ah, here you are when you are most needed, like always, <first>! Many True Hai have felt the calling of battle now, or the need to change. So many, in fact, that the sympathisers to our cause cannot keep up. Indeed those who join generally do so without a ship or many funds; what they are looking for is a chance at a new life, but they need help getting here. Could you provide that help?"`
 			choice
 				`	"Sure!"`
 					goto details
@@ -2187,18 +2187,18 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	landing
 	name `Primitive Cooling Technology`
-	description `Taer-Fi has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 300 tons of nitrogen human cooling.`
+	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 300 tons of nitrogen human cooling.`
 	source "Firelode"
 	to offer
 		has "Unfettered: Alphas 2: Prove Yourself: done"
 	on offer
 		conversation
-			`As soon as you land, an Unfettered notifies you that Taer-Fi wishes to speak with you, and you should come with him to see her in her labs.`
+			`As soon as you land, an Unfettered notifies you that Mera wishes to speak with you, and you should come with him to see her in her labs.`
 			choice
 				`	(Follow him.)`
 				`	"I don't have time right now. I'll come back later."`
 					defer
-			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Taer-Fi working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They all look around, seeming excited, and like they can't focus on one thing at a time. Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet.`
+			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They all look around, seeming excited, and like they can't focus on one thing at a time. Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet.`
 			choice
 				`	"Here I am. What do you need me for?"`
 				`	(Wait for them to notice me.)`
@@ -2231,7 +2231,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 				`	"Oh, is that why you got captured by the Alphas?"`
 			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best.`			
 			label objective
-			`	Taer-Fi stops whatever it is that she was doing on the cooler and comes to speak to you. "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
+			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
 			choice
 				`	"That can't be hard. I'll go look for human coolers then."`
 					goto quantity
@@ -2248,12 +2248,12 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You do not yet have 300 tons of nitrogen human coolers that Taer-Fi requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them.`
+		dialog `You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them.`
 	on complete
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
-		dialog `Seeing you brought the coolers, Taer-Fi thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
+		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
 		event "unfettered: new cooling system" 40
 
 event "unfettered: new cooling system"
@@ -2268,7 +2268,7 @@ mission "Unfettered: New Cooling Available"
 		has "event: unfettered: new cooling system"
 	on offer
 		conversation
-			`You receive a message from Taer-Fi. "Hi <first>. Remember the coolers you helped to develop? They are finally available on Darkcloak. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat. However, you're welcome to buy as many as you want!"`
+			`You receive a message from Mera. "Hi <first>. Remember the coolers you helped to develop? They are finally available on Darkcloak. We don't yet have enough to equip all of our ships with them, but that's not required yet since our current weapons don't generate that much heat. However, you're welcome to buy as many as you want!"`
 				decline
 
 
@@ -2330,7 +2330,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		give ship "Shield Beetle Prototype" "Basilisk"
 		event "unfettered: shield beetle mass production" 30
-		dialog `After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Taer-Fi left you this message.`
+		dialog `After unloading all the cargo, you go check for He-Yi in the shipyard, and you find an unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "We have a very special reward for you, Captain: a brand new ship, produced just for you. It is equipped with plenty of prototype weapons and has some particulars which I am sure you will like, including a reinforced shield matrix. Thank you for your assistance so far!" You guess that Mera left you this message.`
 
 event "unfettered: shield beetle mass production"
 	planet "Darkcloak"

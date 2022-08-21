@@ -351,7 +351,7 @@ mission "Unfettered: Pirate Help"
 		has "reputation: Hai" >= 0
 	on offer
 		conversation
-			`Entering the spaceport, you quickly find Sha-Ri. He looks relieved you are here and that you have arrived safe and well with the convoy. It seems like he speaks to you with more respect than before. "Finally, you have arrived. When I heard about the unfettered human attack, I was worried sick."`
+			`Entering the spaceport, you quickly find Nimo. He looks relieved you are here and that you have arrived safe and well with the convoy. It seems like he speaks to you with more respect than before. "Finally, you have arrived. When I heard about the unfettered human attack, I was worried sick."`
 			choice
 				`	"It takes more than a few pirates to scare me off."`
 					goto strong
@@ -371,7 +371,7 @@ mission "Unfettered: Pirate Help"
 				`	"You mean you want me to help these pirates?"`
 					goto help
 				`	"Are you planning an offensive on the Hai?"`
-			`	"Absolutely not, but as you know, we are planning an offensive to the north of our space, and it would be better if we did not have to leave too many ships behind on the border with the Hai." This does indeed make sense tactically. The warlord must have been forced to justify his position in order to convince Sha-Ri to do such a thing, which may result in casualties on the Hai side.`
+			`	"Absolutely not, but as you know, we are planning an offensive to the north of our space, and it would be better if we did not have to leave too many ships behind on the border with the Hai." This does indeed make sense tactically. The warlord must have been forced to justify his position in order to convince Nimo to do such a thing, which may result in casualties on the Hai side.`
 				goto next
 			label help
 			`	"Indeed. We need you to find some way to help them, so they can disrupt the Hai operations even more. This way, we do not have to keep too many of our ships on the Hai border."`
@@ -628,7 +628,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 			label pirates
 			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah!" His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
 			label celebrate
-			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sha-Ri was taking when you first came here, now he has a purple one.`
+			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Nimo was taking when you first came here, now he has a purple one.`
 			choice
 				`	(The purple one.)`
 				`	(The green one.)`
