@@ -314,8 +314,6 @@ ship "Korath Ravager"
 	engine -29 96
 	engine 29 96
 	engine 0 90 0.9
-	turret -26.5 -11 "Korath Inferno"
-	turret 26.5 -11 "Korath Inferno"
 	gun -28 -133.5 "Korath Fire-Lance"
 	gun 28 -133.5 "Korath Fire-Lance"
 	gun -48.5 -85.5 "Firelight Missile Bank"
@@ -330,6 +328,8 @@ ship "Korath Ravager"
 		angle 190
 	gun 98 75 "Firelight Missile Bank"
 		angle 170
+	turret -26.5 -11 "Korath Inferno"
+	turret 26.5 -11 "Korath Inferno"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70

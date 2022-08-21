@@ -413,6 +413,41 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	turret "Korath Banisher"
 
 
+ship "Korath Ravager" "Korath Ravager (Crippler)"
+	outfits
+		"Korath Detainer" 2
+		"Korath Warder" 2
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 80
+
+		"Systems Core (Large)"
+		"Fuel Processor" 2
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Korath Repeater Rifle" 219
+
+		"Afterburner (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+
 
 ship "Korath Chaser" "Korath Chaser (Expeller)"
 	outfits
