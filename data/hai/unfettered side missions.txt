@@ -387,7 +387,6 @@ mission "Unfettered: Pirate Help"
 					accept
 				`	"I'm not interested in doing this."`
 					decline
-
 	to fail
 		has "defeated scar's legion"
 	on fail
@@ -402,6 +401,64 @@ mission "Unfettered: Pirate Help"
 		"reputation: Scar's Legion" >?= 1
 		payment 500000
 		dialog `The Unfettered authorities thank you for deceiving the Hai and give you a payment of <payment>.`
+
+
+
+mission "Unfettered: Duel Squared"
+	landing
+	source "New Tortuga"
+	to offer
+		has "unfettered: accepted duel"
+	on offer
+		conversation
+			action
+				"unfettered: duel startdays" = day + month * 30 + year * 365
+			`The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are."`
+				accept
+	npc disable save
+		system "Misam"
+		government "Hai (Unfettered Challenge)"
+		to despawn
+			has "unfettered: stop the duel"
+		personality waiting heroic uninterested staying disables
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
+		conversation
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments to you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
+			action
+				"reputation: Hai (Unfettered)" += 150
+	on fail
+		conversation
+			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and disrespecting the rules of the duel."
+			action
+				set "unfettered: thorn talon murdered"
+				"reputation: Shadow" <?= -1000
+	on complete
+		conversation
+			branch "won"
+				not "unfettered: stop the duel"
+			action
+				log "Lost a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. I had to pay up 10 million credits."
+			``
+				decline
+			label won
+			action
+				log "Won a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. They allowed me to plunder their ships."
+
+mission "Unfettered: Stop The Duel"
+	landing
+	source "New Tortuga"
+	to offer
+		has "Unfettered: Duel Squared: active"
+		# to not stop it the day it starts
+		"unfettered: duel startdays" < day + month * 30 + year * 365
+	on offer
+		conversation
+			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
+				decline
+	on decline
+		set "unfettered: stop the duel"
+		fine 10000000
 
 
 
