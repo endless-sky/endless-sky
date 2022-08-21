@@ -149,19 +149,19 @@ outfit "Ionic Blaster Prototype"
 		sprite "projectile/ion blast"
 			"frame rate" 5
 		sound "ion blast"
-		"hit effect" "ion impact" 2
+		"hit effect" "ion impact"
 		"inaccuracy" 4
 		"velocity" 18
-		"lifetime" 40
-		"reload" 50
-		"firing energy" 120
-		"firing force" 20
-		"firing heat" 180
-		"hit force" 120
-		"shield damage" 120
-		"hull damage" 40
-		"ion damage" 1.5
-	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which does a small amount of ion damage that scrambles the weapons of the target, sometimes disabling it if its power generation is low enough. It also has enough raw damage to be useful in all situations."
+		"lifetime" 30
+		"reload" 30
+		"firing energy" 72
+		"firing force" 12
+		"firing heat" 108
+		"hit force" 72
+		"shield damage" 70
+		"hull damage" 30
+		"ion damage" 1
+	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which does a small amount of ion damage that scrambles the weapons of the target, sometimes disabling it if its power generation is low enough. It also has enough raw damage to be useful in all situations. To be able to make such a weapon, they inspired themselves of the Pulse Cannon, and added ionic elements into it."
 	description "The main focus the Unfettered had in mind when developing the weapon was making sure they could fill all of a Shield Beetle's gun ports with them, unlike the bigger Ion Cannon. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
 
 outfit "Ionic Turret Prototype"
@@ -179,20 +179,20 @@ outfit "Ionic Turret Prototype"
 		"hardpoint sprite" "hardpoint/hai ionic turret"
 		"hardpoint offset" 16.
 		sound "ion blast"
-		"hit effect" "ion impact" 2
+		"hit effect" "ion impact" 5
 		"inaccuracy" 2
 		"turret turn" 2.5
 		"velocity" 12
-		"lifetime" 60
-		"reload" 30
-		"firing energy" 200
-		"firing force" 10
-		"firing heat" 120
+		"lifetime" 70
+		"reload" 70
+		"firing energy" 371
+		"firing force" 8
+		"firing heat" 259
 		"hit force" 60
-		"shield damage" 80
-		"hull damage" 40
-		"ion damage" 5
-	description "This is a dual turret version of the Ionic Blaster Prototype, the first weapon that the Unfetttered developed independently. However, they did not stop there - they refined the ion in the shots to be more coherent, and thus apply more disruption, at the cost of dealing less damage. This weapon quickly disables any small ships that lack power generation, and jams the weapons of others."
+		"shield damage" 100
+		"hull damage" 50
+		"ion damage" 14
+	description "This is a turret version of the Ion Cannon. The Unfettered refined the ion in the shots to be more coherent, and thus apply more disruption, at the cost of dealing less damage, and needing a lot more energy. This weapon quickly disables any small ships that lack power generation, and jams the weapons of others."
 	description "Its larger size is explained by the need for extra ionizers, and the fast rotating base, intended to be able to keep up with agile ships such as drones or fighters. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
 
 
