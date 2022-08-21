@@ -336,7 +336,7 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "The Korath Ravager is powerful artillery ship armed with numerous missile ports, designed to rain fire down on enemies before they are close enough to burn them up with their powerful heat lances."
+	description "The Korath Ravager is a powerful artillery ship armed with numerous missile ports, designed to rain fire on enemies before they are close enough to burn them up with their powerful heat lances."
 
 
 ship "Korath Chaser"
