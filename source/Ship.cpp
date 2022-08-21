@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Minable.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "Preferences.h"
@@ -195,8 +196,8 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite" || key == "sprite-flying")
 			LoadSprite(child, BodyState::FLYING);
-		else if(key == "sprite-fighting")
-			LoadSprite(child, BodyState::FIGHTING);
+		else if(key == "sprite-firing")
+			LoadSprite(child, BodyState::FIRING);
 		else if(key == "sprite-landing")
 			LoadSprite(child, BodyState::LANDING);
 		else if(key == "sprite-launching")
@@ -1250,6 +1251,20 @@ void Ship::SetGovernment(const Government *government)
 
 
 
+void Ship::SetIsPlayerFlagship(bool isFlagship)
+{
+	this->isPlayerFlagship = isFlagship;
+}
+
+
+
+void Ship::SetFirePrimary(bool firePrimary)
+{
+	this->firePrimary = firePrimary;
+}
+
+
+
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
@@ -1374,7 +1389,6 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
@@ -1729,6 +1743,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
+			// If the ship was transitioning states while landing, finish any animation transitions.
+			this->FinishStateTransition();
 			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
@@ -1973,6 +1989,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		acceleration = Point();
 	}
 
+	static const double weaponsRangeMultiplier = 1.25;
+	bool hasPrimary = firePrimary;
+
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
 
@@ -1990,13 +2009,18 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
 
-		if(!commands.Has(Command::JUMP)){
-			if(activeEnemyTarget && target->isInSystem){
-				this->SetState(BodyState::FIGHTING);
+		if(!commands.Has(Command::JUMP) && !hasPrimary){
+
+			bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+
+			if(activeEnemyTarget && target->isInSystem && targetInRange){
+				this->SetState(BodyState::FIRING);
 			} else {
 				//Target is not an enemy
 				this->SetState(BodyState::FLYING);
 			}
+		} else if(hasPrimary){
+			this->SetState(BodyState::FIRING);
 		}
 
 		if(isBoarding && !CanBeCarried())
@@ -2049,9 +2073,24 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				}
 			}
 		}
-	} else if(!commands.Has(Command::JUMP)){
-		// No target but still flying around and doesn't want to jump
-		this->SetState(BodyState::FLYING);
+	} else {
+
+		shared_ptr<Minable> target = this->GetTargetAsteroid();
+
+		if(!commands.Has(Command::JUMP) && !hasPrimary){
+			if(target && !isDisabled){
+				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+				// If in range, or the weapon range hasn't been calculated yet.
+				if(targetInRange){
+					this->SetState(BodyState::FIRING);
+				}
+			} else {
+				// No target but still flying around and doesn't want to jump
+				this->SetState(BodyState::FLYING);
+			}
+		} else if(hasPrimary){
+			this->SetState(BodyState::FIRING);
+		}
 	}
 
 	// Clear your target if it is destroyed. This is only important for NPCs,
@@ -2591,12 +2630,19 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon)
 		{
-			if(weapon->AntiMissile())
-				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
-			else if(firingCommands.HasFire(i))
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+			bool isAntiMissile = weapon->AntiMissile();
+			if(CanFire(weapon)){
+				if(isAntiMissile)
+					antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+				else if(firingCommands.HasFire(i))
+					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+			}
+			// Calculate max range of firable weapons
+			if(!isAntiMissile){
+				weaponRange = max(weaponRange, weapon->Range());
+			}
 		}
 	}
 
@@ -2758,6 +2804,7 @@ bool Ship::IsUsingJumpDrive() const
 // Check if this ship is currently able to enter hyperspace to it target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
+
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
 	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
 			|| hyperspaceCount || !targetSystem || !currentSystem)
@@ -2793,8 +2840,9 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(left == stillLeft)
 			return false;
 	}
-
-	return this->ReadyForAction();
+	
+	// For any ship that is not the player flagship, jumps should not be restricted by animation if they are not in the system
+	return this->ReadyForAction() || !(this->isPlayerFlagship || isInSystem);
 }
 
 

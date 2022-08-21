@@ -28,6 +28,7 @@ public:
 
 	// Animation parameters as found in Body.h
 	float frameRate = 2.f / 60.f;
+	float startFrame = 0.f;
 	float scale = 1.f;
 	int delay = 0;
 

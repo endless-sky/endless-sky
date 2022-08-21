@@ -26,7 +26,7 @@ class Government;
 class Mask;
 class Sprite;
 
-enum BodyState{FLYING, FIGHTING, LAUNCHING, LANDING, JUMPING, NUM_STATES, CURRENT};
+enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, NUM_STATES, CURRENT};
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -79,12 +79,15 @@ public:
 
 
 protected:
+
 	// Adjust the frame rate.
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	bool ReadyForAction() const;
 
+	// Finish transitioning between states
+	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
@@ -100,19 +103,16 @@ protected:
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
 	mutable float scale = 1.f;
+	mutable bool debug = false;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 
 
 private:
-	// Finish transitioning between states
-	void FinishStateTransition() const;
 	// Set what animation step we're on. This affects future calls to GetMask()
 	// and GetFrame().
 	void SetStep(int step) const;
-
-
 
 private:
 	// Animation parameters.
@@ -123,6 +123,7 @@ private:
 	int swizzle = 0;
 
 	mutable float frameRate = 2.f / 60.f;
+	mutable float startFrame = 0.f;
 	mutable int delay = 0;
 	// The chosen frame will be (step * frameRate) + frameOffset.
 	mutable float frameOffset = 0.f;
@@ -136,9 +137,6 @@ private:
 	mutable bool indicateReady = false;
 	mutable int pause = 0;
 
-	mutable bool debug = false;
-	mutable bool stateReady = false;
-
 	// Record when this object is marked for removal from the game.
 	bool shouldBeRemoved = false;
 
@@ -147,6 +145,7 @@ private:
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
 	mutable float rewindFrame = 0.f;
+	mutable bool stateReady = false;
 };
 
 

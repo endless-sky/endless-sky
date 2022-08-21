@@ -3538,17 +3538,26 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(activeCommands.Has(Command::PRIMARY))
 		{
 			int index = 0;
+
+			// Used for animating when the players flagship "wants to fire"
+			ship.SetFirePrimary();
+
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
 					firingCommands.SetFire(index);
 				++index;
 			}
+		} else {
+			// No longer wants to fire.
+			ship.SetFirePrimary(false);
 		}
+
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
 			const auto &playerSelectedWeapons = player.SelectedWeapons();
+
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && (playerSelectedWeapons.find(hardpoint.GetOutfit()) != playerSelectedWeapons.end()))

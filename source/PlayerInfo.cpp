@@ -780,13 +780,18 @@ Ship *PlayerInfo::Flagship()
 // Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
+	bool foundFlagship = false;
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship() && !foundFlagship)
 			{
 				flagship = it;
-				break;
+				// Marks the players flagship for animation purposes
+				flagship->SetIsPlayerFlagship();
+				foundFlagship = true;
+			} else {
+				it->SetIsPlayerFlagship(false);
 			}
 	}
 

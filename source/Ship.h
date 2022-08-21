@@ -165,6 +165,8 @@ public:
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
+	void SetIsPlayerFlagship(bool isFlagship = true);
+	void SetFirePrimary(bool firePrimary = true);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
 
@@ -481,16 +483,19 @@ private:
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
+	bool firePrimary = false;
 	double steeringDirection = 0.;
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool isPlayerFlagship = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
+	double weaponRange = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
@@ -518,6 +523,7 @@ private:
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
+
 
 	// Various energy levels:
 	double shields = 0.;

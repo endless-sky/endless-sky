@@ -56,7 +56,7 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 // Check that this Body has a sprite and that the sprite has at least one frame.
 bool Body::HasSprite() const
 {
-	const Sprite* sprite = this->GetSprite(this->currentState);
+	const Sprite* sprite = this->GetSprite();
 	return (sprite && sprite->Frames());
 }
 
@@ -88,7 +88,7 @@ BodyState Body::GetState() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	const Sprite* sprite = this->GetSprite(this->currentState);
+	const Sprite* sprite = this->GetSprite();
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
 }
 
@@ -97,7 +97,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	const Sprite* sprite = this->GetSprite(this->currentState);
+	const Sprite* sprite = this->GetSprite();
 	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
 }
 
@@ -117,8 +117,6 @@ int Body::GetSwizzle() const
 	return swizzle;
 }
 
-
-
 // Get the frame index for the given time step. If no time step is given, this
 // will return the frame from the most recently given step.
 float Body::GetFrame(int step) const
@@ -135,7 +133,7 @@ float Body::GetFrame(int step) const
 // return the mask from the most recently given step.
 const Mask &Body::GetMask(int step) const
 {
-	const Sprite* sprite = this->GetSprite(this->currentState);
+	const Sprite* sprite = this->GetSprite();
 
 	// Commenting this out results in correct transition behavior
 	/*if(step >= 0)
@@ -246,7 +244,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteData->scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
-			frameOffset += static_cast<float>(child.Value(1));
+			spriteData->startFrame = static_cast<float>(child.Value(1));
 			spriteData->startAtZero = true;
 		}
 		else if(child.Token(0) == "random start frame")
@@ -285,7 +283,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
 	// Write all states to file
 	if(allStates){
-		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-fighting", "sprite-launching", "sprite-landing", "sprite-jumping"};
+		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-firing", "sprite-launching", "sprite-landing", "sprite-jumping"};
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = &this->sprites[i];
@@ -363,7 +361,6 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 void Body::SetState(BodyState state)
 {
 	if(state != this->currentState){
-
 		// Set the current frame to be the rewindFrame upon first request to state transition
 		if(!stateTransitionRequested && transitionRewind){
 			rewindFrame = frame;
@@ -373,9 +370,7 @@ void Body::SetState(BodyState state)
 			frameOffset += rewindFrame;
 
 		}
-
 		stateTransitionRequested = true;
-
 	}
 
 	this->transitionState = state;
@@ -384,7 +379,6 @@ void Body::SetState(BodyState state)
 	if(!this->transitionFinish && !this->transitionRewind && stateTransitionRequested){
 		this->FinishStateTransition();
 	}
-
 }
 
 
@@ -393,8 +387,6 @@ void Body::SetSwizzle(int swizzle)
 {
 	this->swizzle = swizzle;
 }
-
-
 
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
@@ -423,7 +415,38 @@ void Body::PauseAnimation()
 // only if a signal is needed for the action.
 bool Body::ReadyForAction() const
 {
-	return this->indicateReady ? this->stateReady : true;
+	// Never ready for action if transitioning between states
+	return this->indicateReady ? this->stateReady : !this->stateTransitionRequested;
+}
+
+// Called when the body is ready to transition between states.
+void Body::FinishStateTransition() const
+{
+	if(this->stateTransitionRequested){
+		frameOffset = 0.0f;
+		pause = 0;
+
+		// Default to Flying sprite if requested sprite does not exist.
+		SpriteParameters* transitionedState = this->sprites[this->transitionState].sprite != nullptr ?
+										&this->sprites[this->transitionState] : &this->sprites[BodyState::FLYING];
+
+		// Update animation parameters.
+		this->frameRate = transitionedState->frameRate;
+		this->startFrame = transitionedState->startFrame;
+		this->scale = transitionedState->scale;
+		this->delay = transitionedState->delay;
+		this->startAtZero = transitionedState->startAtZero;
+		this->randomize = transitionedState->randomize;
+		this->repeat = transitionedState->repeat;
+		this->rewind = transitionedState->rewind;
+		this->indicateReady = transitionedState->indicateReady;
+		this->transitionFinish = transitionedState->transitionFinish;
+		this->transitionRewind = transitionedState->transitionRewind;
+
+		this->currentState = this->transitionState;
+		// No longer need to change states
+		this->stateTransitionRequested = false;
+	}
 }
 
 
@@ -441,39 +464,10 @@ void Body::UnmarkForRemoval()
 	shouldBeRemoved = false;
 }
 
-// Called when the body is ready to transition between states.
-void Body::FinishStateTransition() const
-{
-	frameOffset = 0.f;
-	pause = 0;
-
-	// No longer need to change states
-	this->stateTransitionRequested = false;
-
-	// Default to Flying sprite if requested sprite does not exist.
-	SpriteParameters* transitionedState = this->sprites[this->transitionState].sprite != nullptr ?
-									&this->sprites[this->transitionState] : &this->sprites[BodyState::FLYING];
-
-	// Update animation parameters.
-	this->frameRate = transitionedState->frameRate;
-	this->scale = transitionedState->scale;
-	this->delay = transitionedState->delay;
-	this->startAtZero = transitionedState->startAtZero;
-	this->randomize = transitionedState->randomize;
-	this->repeat = transitionedState->repeat;
-	this->rewind = transitionedState->rewind;
-	this->indicateReady = transitionedState->indicateReady;
-	this->transitionFinish = transitionedState->transitionFinish;
-	this->transitionRewind = transitionedState->transitionRewind;
-
-
-	this->currentState = this->transitionState;
-}
 
 // Set the current time step.
 void Body::SetStep(int step) const
 {
-
 	const Sprite* sprite = this->GetSprite();
 
 	// If the animation is paused, reduce the step by however many frames it has
@@ -512,7 +506,8 @@ void Body::SetStep(int step) const
 	{
 		startAtZero = false;
 		// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
-		frameOffset -= frameRate * step;
+		frameOffset = -frameRate * step;
+		frameOffset += startFrame;
 	}
 
 	// Figure out what fraction of the way in between frames we are. Avoid any
@@ -533,13 +528,14 @@ void Body::SetStep(int step) const
 				frame = min(frame, lastFrame);
 
 				if(frame == lastFrame){
-					stateReady = true;
+					stateReady = this->indicateReady;
 				} else {
 					stateReady = false;
 				}
 			}
 			else if(frame >= frames)
 			{
+				stateReady = false;
 				// If in the delay portion of the loop, set the frame to zero.
 				frame = 0.f;
 			}
@@ -551,12 +547,10 @@ void Body::SetStep(int step) const
 			// be less than 0, clamp it to 0.
 
 			frame = max(0.f, lastFrame * 2.f - frame);
+
+			stateReady = false;
 		}
-
 	} else {
-
-		stateReady = false;
-
 		if(transitionFinish && !transitionRewind){
 
 			// Finish the ongoing state's animation then transition
@@ -574,5 +568,6 @@ void Body::SetStep(int step) const
 				this->FinishStateTransition();
 			}
 		}
+		stateReady = false;
 	}
 }
