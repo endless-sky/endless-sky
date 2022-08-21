@@ -1174,9 +1174,32 @@ mission "Unfettered: Materials Intercepted"
 			label weapons
 			`	"They are simply a prototype we are testing on the field of battle, as it should be. You will learn more soon enough."`
 			label leave
-			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again." They then end the hail, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the hail.`
+			`	"The Shadow of Mintaka sends her regards, <first> <last>. We look forward to dancing with you again."`
+			branch "not too many ships"
+				"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
+			``
+				decline
+			label "not too many ships"
+			choice
+				`	"Thanks for the assistance."`
+					goto leaving
+				`	"I challenge you to a duel for those weapons!"`
+			`	They seem surprised, but not disapointed, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth millions, so I think it would be fair you gave some to us should you lose."`
+			choice
+				`	"Seems like a fair deal to me."`
+				`	"Nevermind, I'll let you be on your way."`
+					goto leaving
+			action
+				set "unfettered: accepted duel"
+			`	"We will let you land and repair before starting the fight. If you want to surrender, just land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
+				accept
+			label leaving
+			`	They end the hail, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the hail.`
+				decline
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
+	to fail
+		has "unfettered: thorn talon death"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1216,10 +1239,6 @@ ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 		outfits
 			"Gold Bars" 5
 
-mission "test"
-	landing
-	on offer
-		give ship "Marauder Sea Scorpion (Tripulse, JD)"
 mission "Unfettered: Cavalry Arrives"
 	landing
 	invisible
@@ -1255,12 +1274,58 @@ mission "Unfettered: Cavalry Arrives"
 			``
 				decline
 			label murdered
-			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the shadows. They may want to have their vengeance on you..."
+			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you..."
 			action
 				set "unfettered: thorn talon death"
 	to complete
 		never
 
+mission "Unfettered: Duel Squared"
+	landing
+	source "New Tortuga"
+	to offer
+		has "unfettered: accepted duel"
+	on offer
+		conversation
+			action
+				"unfettered: duel startdays" = day + month * 30 + year * 365
+			`The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are."`
+				accept
+	npc disable save
+		system "Misam"
+		government "Hai (Unfettered Challenge)"
+		to despawn
+			has "unfettered: stop the duel"
+		personality waiting heroic uninterested staying disables
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
+		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
+		conversation
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one argues, "That was just luck!" the other one says. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it."`
+			action
+				"reputation: Hai (Unfettered)" += 150
+	on fail
+		conversation
+			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you..."
+			action
+				set "unfettered: thorn talon death"
+				"reputation: Shadow" <?= -1000
+	on complete
+		clear "unfettered: stop the duel"
+
+mission "Unfettered: Stop The Duel"
+	landing
+	source "New Tortuga"
+	to offer
+		has "Unfettered: Duel Squared: active"
+		# to not stop it the day it starts
+		"unfettered: duel startdays" < day + month * 30 + year * 365
+	on offer
+		conversation
+			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility."`
+				decline
+	on decline
+		set "unfettered: stop the duel"
+		fine 10000000
 
 
 mission "Unfettered: Solifuge 1: Geocoris Design"
