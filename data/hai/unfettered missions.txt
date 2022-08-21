@@ -578,8 +578,8 @@ mission "Unfettered: Bring Medical Supplies"
 		log "People" "Sha-Ri" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. A local administrator takes the time to track you down and give you <payment>.`
-			`	As you head to leave, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're heading to your ship, someone catches up to you. "Hello, captain <last>. I am Nio, manager of this hospital. I wanted to express my deepest thanks to you, and give you the <payment> in person."`
+			`	On the way back, you notice the same Hai Chief from Firelode, speaking with someone who could be the hospital's chief medical officer judging by their demeanour and attire. He soon sees you as well and moves to speak with you, seeming more than a bit emotional. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down. We did not before have the time to get properly introduced. I am Sha-Ri." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sha-Ri. "Worry not, <first> <last>, I already know who you are."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
 					accept
@@ -919,16 +919,17 @@ mission "Unfettered: Jump Drive Retrieval"
 			label down
 			`	You get down yourself as you give the warning, then look his way to see if he followed it. The Unfettered was evidently trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of that weapon as the sniper was quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
 			`	After searching through the vault to find other surprises, the area is declared cleared. Any other stalkers have probably run off after seeing the firepower the Hai brought. You then inspect the jump drives to the best of your ability with a device he gave you while he takes care of the security systems. Once you are done, you look around, waiting for the captain to come back, and notice a symbol, that looks like a dragon with multiple heads. You then go back to double-check the jump drives. When the captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
+			`	He switches a level and you hear that the humming of machines suddenly stops. "I have disabled the holographic field generator, meaning your ship can come and pick up the drives. Best have it come here to win time, in the hopes of it reaching us before the intruders come back, in force," he suggests. You quickly send a message to the <ship>, asking them to dock with the vault.`
 			choice
-				`	(Go back to the ship.)`
+				`	(Wait for the ship to arrive.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
-				`	"Why did we have to go into the vault instead of just connecting it to the ship earlier?"`
+				`	"Is this holographic field the reason we had to go into the vault in person, instead of just connecting it to the ship?"`
 					goto vault
 			`	"We needed to act discreetly so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and caused the pirates to use the vault's defenses against us for sure. As you have probably noticed, we did not have access to this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be to be more to it than what he's admitting.`
 				goto ship
 			label vault
-			`	"We needed to make sure there was not any malfunctions with them, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be to be more to it than what he's admitting.`
+			`	"Yes and no. It is not only a holographic generator but also a set of jammers, meaning your ship cannot pinpoint the exact location, and would have to land blindly. We also needed to make sure the jump drives were not sabotaged, and that the vault was not compromised, as its defenses could probably have taken your ship down. Needless to say, even monkeys could rig the jump drives to blow when placed on a ship and used to jump, and checking that takes time. Besides, we want to keep using this vault for later, so we may as well ensure its safety. That said, it seems to be too compromised for further uses." You have a hunch that there could be to be more to it than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
@@ -936,8 +937,8 @@ mission "Unfettered: Jump Drive Retrieval"
 			`	"The Unfettered are not the ones who placed those jump drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
 			
 			label ship
-			`	As you head back to your ship, you notice more activity than on the way in. He keeps his rifle well in sight in order to dissuade any potential attackers. Once back to the vault with your ship, you give the orders to collect and either transfer the jump drives into cargo or install them directly on your ship if possible, to be able to flee more swifly.`
-			`	A bit later, the Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
+			`	As soon as your shpi arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly on your ship if possible, to be able to flee more swifly. When your ship takes off, you notice more activity near the vault, and in the sky, than on the way in...`
+			`	The Hai comes to speak to you on the bridge. "It took us too long to transfer and install the jump drives, and we seem to have attracted attention. I guess if some of the unfettered humans got away from the vault, they have contacted some friends..." Multiple alarms start going off, confirming his suspicions. Multiple hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain quickly joins you on the bridge, probably used to being where the action can be seen.`
 				launch
 	on accept
 		"outfit" "Jump Drive" 4

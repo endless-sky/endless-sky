@@ -927,7 +927,8 @@ mission "Unfettered: Special Cargo"
 			`	Your thoughts are interrupted by a local Unfettered wearing a strange mask of some kind of bird, who seems to have a very important message to give you given how fast he is speaking. "He-Yi has asked me to deliver you a message! It has come to his attention that an item of great importance to us is currently in the possession of an unfettered human warlord." You guess that he means a pirate leader. "The warlord can be found in <waypoints>. We want you to go and retrieve that item right now - 'by any means,' he says."`
 			choice
 				`	"How will I know which warlord it is?"`
-			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money. This warlord, Mhairi, took the item from another warlord. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
+			`	"It is no common warlord. To say the truth it is the most powerful warlord there, and her ship is the 'Degenerate.' You may have to bring it down in order to complete the mission. She may accept a payment instead, but do remember, we are not willing to pay a fortune for this item. If you cannot face her, you may have to use quite a large sum of your own money.`
+			`	"This warlord, Mhairi, has beaten the previous warlord in power there, right after he sent the orders to acquire the item. She may not know about it yet, but the officers of the previous warlord probably will - and those officers are now hers. Also, you shouldn't worry about how to identify said item. It is... unique. You will understand once you see it. Once you have it, bring it back to my master. You have been given access to his war room on <planet>."`
 			choice
 				`	"I will depart as soon as I can."`
 					accept
@@ -1157,7 +1158,7 @@ mission "Unfettered: Special Cargo 2"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
 			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. This will give you a [pretext, reason] for going to their world, because otherwise I fear they may be curious about your [reasons, intentions]. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
 			choice
 				`	"Is this the real reason for my trip, like with the shipyard?"`
 			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
@@ -1252,7 +1253,7 @@ mission "Unfettered: Speak Hai"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`Moving through the spaceport, you notice some buildings are not as dilapidated as before. You wonder if the Unfettered have found new interest in restoring their past, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
+			`Moving through the spaceport, you notice some buildings are not as dilapidated as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
 			`	An Unfettered herald - recognizable with his peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. Not only with us. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			choice
 				`	"How can I learn Hai?"`
@@ -1296,9 +1297,9 @@ mission "Unfettered: Bring Detainer"
 		not "language: Wanderer"
 	on offer
 		conversation
-			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north, in order to complete your mission for us."`
+			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want my translation device."`
 			`	You nod.`
-			`	"Well, that's not our way. We do not ask. We take. Things need to be earned, in battle or otherwise, or they have no [meaning, value]. You must have noticed that I was using a translator to [communicate with, talk to] you. Such a device is able to translate your backwards language into ours, and in the other way as well. Because these birds speak Hai, you will be able to communicate with them later.`
+			`	"Well, giving is not our way. We do not ask, or give. We take, and we earn. Things need to be earned, in battle or otherwise, or they have no [meaning, value]. You must have noticed that I was using a translator to [communicate with, talk to] you. Such a device is able to translate your backwards language into ours, and in the other way as well. Because these birds speak Hai, you will be able to communicate with them later.`
 			`	"If you want my translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would [neutralize, disable] one's engines. Such a weapon would be a very [useful, nice] addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned my translator."`
 			choice
 				`	"Sure. I'll go and bring it back for you."`
