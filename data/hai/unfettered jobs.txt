@@ -310,9 +310,11 @@ mission "Unfettered Big Medicals Rush"
 	deadline 15
 	source
 		attributes "unfettered"
+	destination
+		attributes "unfettered"
 	to offer
-		has "Unfettered Jump Drive 1: offered"
-		random < 80
+		has "Unfettered: Bring Medical Supplies: done"
+		random < 60
 	cargo "medicals" 35 2 .05
 	stopover
 		distance 5 7
@@ -353,7 +355,7 @@ mission "Unfettered Challenge [0]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Jump Drive 2: offered"
+		has "Unfettered: Prove Your Strength: done"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 		random < 60
 	npc save disable
@@ -378,8 +380,7 @@ mission "Unfettered Challenge [1]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Jump Drive 2: offered"
-		has "Unfettered: Prove Your Strength"
+		has "Unfettered: Prove Your Strength: done"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 24
 		random < 40
 	npc save disable
@@ -404,8 +405,7 @@ mission "Unfettered Challenge [2]"
 	source
 		attributes "unfettered"
 	to offer
-		has "Unfettered Jump Drive 3: offered"
-		has "Unfettered: Prove Your Strength"
+		has "Unfettered: Prove Your Strength: done"
 		"ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 40
 		random < 10
 	npc save disable
@@ -463,6 +463,14 @@ mission "Get Jump Drives(1)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive"
+		"spawn jd fleet 1"++
+	npc
+		government "Hydra"
+		to spawn
+			# this is about as good as it can be made, it means that if you have multiple missions for 1 jump drives you will get attacked by multiple fleets at the same time
+			"spawn jd fleet 1" == "Get Jump Drives (1): offered"
+		personality disables plunders vindictive evade waiting
+		fleet "Small Northern Pirates" 2
 	on visit
 		dialog phrase "jump drive or stopover"
 	on complete
@@ -487,12 +495,19 @@ mission "Get Jump Drives (2)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 2
+		"spawn jd fleet 2"++
+	npc
+		government "Hydra"
+		to spawn
+			"spawn jd fleet 2" == "Get Jump Drives (2): offered"
+		personality disables plunders vindictive evade launching
+		fleet "Large Northern Pirates"
 	on visit
 		dialog phrase "jump drive or stopover"
 	on complete
 		payment 1000000
 		outfit "Jump Drive" -2
-		dialog phase "unfettered jump drive payment dialog"
+		dialog phrase "unfettered jump drive payment dialog"
 
 mission "Get Jump Drives (3)"
 	name "Collect 3 jump drives"
@@ -509,6 +524,14 @@ mission "Get Jump Drives (3)"
 	on stopover
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 3
+		"spawn jd fleet 3"++
+	npc
+		government "Hydra"
+		to spawn
+			"spawn jd fleet 3" == "Get Jump Drives (3): offered"
+		personality disables plunders vindictive evade entering
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
 	on visit
 		dialog phrase "jump drive or stopover"
 	on complete
