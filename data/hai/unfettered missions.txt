@@ -2033,7 +2033,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, altough he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
+			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, although he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Just curious: Why do you call me monkey? Have I not earned your respect yet?"`
@@ -2043,7 +2043,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	"Why can't I buy Shield Beetles here then?"`
 				`	"Nothing's better than a Carrier."`
 					goto brag
-			`	"We haven't allowed you to purchase our [biggest, strongest] ships because we didn't have the [capacity, ressources] to build enough of them at the same time. But you may help us with that, actually."`
+			`	"We haven't allowed you to purchase our [biggest, strongest] ships because we didn't have the [capacity, resources] to build enough of them at the same time. But you may help us with that, actually."`
 				goto mighty
 			label brag
 			`	"[Stupid, Young] monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
@@ -2054,7 +2054,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 			`	"If you want to [help, assist] us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a [permission, authorisation]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
+			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
 			choice
 				`	"I have a better idea: I'll tell them I come to collect your usual tribute."`
 				`	"This seems like it could easily go wrong. I'm not interested."`
@@ -2083,7 +2083,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	"Does this mean I can buy Shield Beetles now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
-			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much [capacity, ressources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
+			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
 			choice
 				`	(Go.)`
 					decline
@@ -2645,7 +2645,7 @@ mission "Unfettered: Close Quarter"
 			label stories
 			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillfull] fight, especially considering this must be your first!"`
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillful] fight, especially considering this must be your first!"`
 			branch "lost fight"
 				not "unfettered: won the duel"
 			choice
@@ -2706,7 +2706,7 @@ mission "Unfettered: Close Quarter"
 		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
 		conversation
-			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpfull, decisive] in the coming war."`
+			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpful, decisive] in the coming war."`
 			choice
 				`	"How can a few better-trained troops make a difference?"`
 				`	"Glad I could make a difference then."`
