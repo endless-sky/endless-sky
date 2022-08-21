@@ -63,11 +63,22 @@ mission "Gegno Vi: First Contact"
 
 			
 			label "return encounter"
-			`	You came back. What do you do?`
+			`	You find yourself approaching this desert world once again, wondering what happened to the alien figure you previously encountered. Knowing the world is home to a dangerous indigenous species, you are hesitant on landing, making sure to stay clear of any of those creatures' radar signatures.`
 			choice
-				`	(Watch.)`
-					goto watch
-				`	(Help.)`
+				`	(Go search for the alien.)`
+					goto "search again"
+				`	(Carry on.)`
+					defer
+					
+			label "search again"
+			`	With the coordinates of the alien's ship still in the history of your radar, you set off to find it again. On your flight there, your radar suddenly picks up another ship approaching, and you look up to see the same type of ship you saw before flying at a higher altitude over you in the opposite direction. It must be another pilot belonging to the alien species.`
+			choice
+				`(Attempt to contact the ship).`
+				`(Evade the ship).`
+			`	The ship doesn't seem to take any interest in your presence and continues to fly off behind you until it disappears. It really seems like there is no concern to send help to the alien on the surface. Eventually, the familiar sunken vessel appears on the horizon and you begin to fly around the area in search for life signatures, hoping that the alien is still alive. Yet again, nothing comes up besides the faint marks of the creatures at the edges of your radar, so you start to follow those instead.`
+			`	After checking a few of the signatures, many of which would randomly disappear or reappear elsewhere, one of them strikes out to you as eccentric as the one from the first encounter. You hurriedly guide your ship to it and land, preparing yourself for whats to come. You've gone this far, so there's no point in turning around now. Approaching the location, you recognize the beast that is swinging about on the surface, and catch glimpses of the alien from before continuing to fight it.`
+			choice
+				`	(Assist the alien in defeating the creature.)`
 					goto help
 					
 	on defer
@@ -82,7 +93,7 @@ mission "Giaru Gegno: Quarg Contact"
 	on offer
 		log "Factions" "Gegno" `The Gegno are a humanoid species to the galactic east of the core, split amongst themselves into branches. One branch is the Gegno Vi, who are spoken of to be strong and forceful brutes. The other is the Gegno Scin, mentioned to be progressers of research and technology. Apart from them is a complacent civilian population.`
 		conversation
-			"After jumping through several systems of hostile alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval-style human clothing."
+			"After jumping through several systems of many alien ships, a Quarg ring world is a sight of relief to you. From the looks of it, this is a fully complete ringworld, a true sight to behold. Trillions of Quarg probably inhabit this ring, but what's more interesting to your eye is that some other aliens are also present. They too are humanoid, and the most common figures you come across are either slightly above or below an average human's height. Their skin is a smooth, light gray, and adorned with different sorts of leather that remind you of medieval-style human clothing."
 			`	The mood here is eerie as the Quarg here move in a more quiet manner than what you're used to. They are almost dismissive of the other species walking about, who are equally as dismissive of you. The unusual atmosphere around you is finally broken when a few Quarg start to advance towards you, moving much quicker than the rest. After a moment of unidentifiable discussion and gestures between themselves, one of them motions you to follow them.`
 			`	You walk with the Quarg, occasionally having trouble keeping pace with their silent yet brisk steps, as you head towards an area that appears devoid of the other aliens. Eventually, you are led to a smaller room with two more Quarg in waiting, silently sitting at the end of it. They talk, but this time you can hear a few familiar sounding terms, one being "Humani". Despite speaking to each other for several minutes, the Quarg still look at each other in what you assume is something like bewilderment.`
 			`	One of the Quarg waiting in the room finally turns towards you and motions you to remain where you are for a little longer, offering you a seat. Their look of confusion disappears when they turn their gaze back upon you. Meanwhile, the other Quarg that was seated has left the room, along with the ones that first brought you here.`
