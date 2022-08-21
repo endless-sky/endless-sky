@@ -98,7 +98,11 @@ mission "Unfettered: Alpha Business"
 	to offer
 		not "Unfettered: Alphas: Find The Auxiliary: offered"
 		not "unfettered: destroyed auxiliary"
-		random < 8
+		or
+			random < 8
+			and
+				not "Unfettered: Alpha Business: offered"
+				random < 50
 		not "Unfettered: Alpha Business: active"
 		"reputation: Hai (Unfettered)" >= 0
 	deadline 2
@@ -463,9 +467,7 @@ mission "Unfettered: Stop The Duel"
 
 
 outfit "Loot"
-	category "Special"
 	cost 1000
-	thumbnail "outfit/unknown"
 	"mass" 1
 	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
 

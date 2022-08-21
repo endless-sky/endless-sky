@@ -1039,9 +1039,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 event "unfettered: shipment lost"
 
 outfit "Materials"
-	category "Special"
 	cost 1000
-	thumbnail "outfit/unknown"
 	"mass" 1
 	description "These are simple building materials, meant for the construction of Unfettered houses."
 
