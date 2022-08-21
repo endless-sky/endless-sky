@@ -464,12 +464,13 @@ mission "Get Jump Drives(1)"
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive"
 		"spawn jd fleet 1"++
-	npc
+	npc evade
 		government "Hydra"
 		to spawn
-			# this is about as good as it can be made, it means that if you have multiple missions for 1 jump drives you will get attacked by multiple fleets at the same time
+			# this is about as good as it can be made, it means that if you have multiple missions for 1 jump drives you will get attacked by multiple fleets at the same time.
+			# I'd like to make it random but that would mean they can spawn on other systems than the one you take the JD from, which could be weird
 			"spawn jd fleet 1" == "Get Jump Drives (1): offered"
-		personality disables plunders vindictive evade waiting
+		personality disables plunders vindictive waiting
 		fleet "Small Northern Pirates" 2
 	on visit
 		dialog phrase "jump drive or stopover"
@@ -496,11 +497,11 @@ mission "Get Jump Drives (2)"
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 2
 		"spawn jd fleet 2"++
-	npc
+	npc evade
 		government "Hydra"
 		to spawn
 			"spawn jd fleet 2" == "Get Jump Drives (2): offered"
-		personality disables plunders vindictive evade launching
+		personality disables plunders vindictive launching
 		fleet "Large Northern Pirates"
 	on visit
 		dialog phrase "jump drive or stopover"
@@ -525,11 +526,11 @@ mission "Get Jump Drives (3)"
 		dialog phrase "unfettered jump drive pickup dialog"
 		outfit "Jump Drive" 3
 		"spawn jd fleet 3"++
-	npc
+	npc evade
 		government "Hydra"
 		to spawn
 			"spawn jd fleet 3" == "Get Jump Drives (3): offered"
-		personality disables plunders vindictive evade entering
+		personality disables plunders vindictive entering
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
 	on visit
