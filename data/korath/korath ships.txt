@@ -270,6 +270,75 @@ ship "Korath Raider Mark XLII"
 	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
 
 
+ship "Korath Ravager"
+	sprite "ship/ravager"
+	thumbnail "thumbnail/ravager"
+	attributes
+		category "Heavy Warship"
+		"cost" 3760000
+		"shields" 25000
+		"hull" 6500
+		"required crew" 277
+		"bunks" 319
+		"mass" 1260
+		"drag" 12.3
+		"heat dissipation" .7
+		"fuel capacity" 900
+		"cargo space" 110
+		"outfit space" 915
+		"weapon capacity" 520
+		"engine capacity" 177
+		weapon
+			"blast radius" 300
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
+	outfits
+		"Korath Inferno" 2
+		"Korath Fire-Lance" 2
+		"Firelight Missile Bank" 6
+		"Firelight Missile" 108
+
+		"Systems Core (Large)"
+		"Fuel Processor" 2
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Korath Repeater Rifle" 219
+
+		"Afterburner (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	engine -29 96
+	engine 29 96
+	engine 0 90 0.9
+	turret -26.5 -11 "Korath Inferno"
+	turret 26.5 -11 "Korath Inferno"
+	gun -28 -133.5 "Korath Fire-Lance"
+	gun 28 -133.5 "Korath Fire-Lance"
+	gun -48.5 -85.5 "Firelight Missile Bank"
+		angle 320
+	gun 48.5 -85.5 "Firelight Missile Bank"
+		angle 40
+	gun -145 14.5 "Firelight Missile Bank"
+		angle 250
+	gun 145 14.5 "Firelight Missile Bank"
+		angle 110
+	gun -98 75 "Firelight Missile Bank"
+		angle 190
+	gun 98 75 "Firelight Missile Bank"
+		angle 170
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large"
+	description "The Korath Ravager is powerful artillery ship armed with numerous missile ports, designed to rain fire down on enemies before they are close enough to burn them up with their powerful heat lances."
+
+
 ship "Korath Chaser"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
