@@ -70,7 +70,8 @@ string GameWindow::SDLVersions()
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
-	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) != 0) {
+	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) != 0)
+	{
 		checkSDLerror();
 		return false;
 	}

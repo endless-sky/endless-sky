@@ -57,7 +57,7 @@ void GamePad::Handle(const SDL_Event &event)
 	}
 	if(event.type == SDL_CONTROLLERAXISMOTION)
 	{
-		double gradient = event.caxis.value/32768.;
+		double gradient = event.caxis.value / 32768.;
 		axis[event.caxis.axis] = gradient;
 	}
 	if(event.type == SDL_CONTROLLERBUTTONDOWN)
@@ -71,7 +71,7 @@ void GamePad::Handle(const SDL_Event &event)
 		lock_guard<mutex> lock(gamePadMutex);
 		released[event.cbutton.button] = chrono::steady_clock::now();
 		unreportedReleases.insert(event.cbutton.button);
-		repeatTimer.erase(SDL_CONTROLLER_AXIS_MAX*2+event.cbutton.button);
+		repeatTimer.erase(SDL_CONTROLLER_AXIS_MAX * 2 + event.cbutton.button);
 	}
 }
 
@@ -118,7 +118,9 @@ std::map<Uint8, chrono::milliseconds> GamePad::ReleasedButtons() const
 		if(unreportedReleases.find(it->first) != unreportedReleases.cend())
 		{
 			auto start = held.find(it->first);
-			result[it->first] = start != held.cend() ? chrono::duration_cast<chrono::milliseconds>(it->second - start->second) : chrono::milliseconds::zero();
+			result[it->first] = start != held.cend() ?
+				chrono::duration_cast<chrono::milliseconds>(it->second - start->second) :
+				  chrono::milliseconds::zero();
 		}
 	}
 	return result;
@@ -147,7 +149,7 @@ void GamePad::Clear()
 void GamePad::Clear(const set<Uint8> &toClear)
 {
 	lock_guard<mutex> lock(gamePadMutex);
-	for (auto it = toClear.cbegin(); it != toClear.cend(); ++it)
+	for(auto it = toClear.cbegin(); it != toClear.cend(); ++it)
 	{
 		held.erase(*it);
 		released.erase(*it);
@@ -250,7 +252,7 @@ bool GamePad::RepeatAxis(Uint8 which)
 		threshold = 1500;
 	else
 		return false;
-	return Repeat(which, threshold, which+SDL_CONTROLLER_AXIS_MAX);
+	return Repeat(which, threshold, which + SDL_CONTROLLER_AXIS_MAX);
 }
 
 
@@ -263,9 +265,8 @@ bool GamePad::RepeatAxisNeg(Uint8 which)
 		threshold = 1500;
 	else
 		return false;
-	return Repeat(which+SDL_CONTROLLER_AXIS_MAX, threshold);
+	return Repeat(which + SDL_CONTROLLER_AXIS_MAX, threshold);
 }
-
 
 
 
@@ -276,7 +277,7 @@ bool GamePad::RepeatButton(Uint8 button)
 	else if(released.find(button) != released.cend())
 		return false;
 	else
-		return Repeat(button+SDL_CONTROLLER_AXIS_MAX*2, 200.);
+		return Repeat(button + SDL_CONTROLLER_AXIS_MAX * 2, 200.);
 }
 
 
@@ -347,14 +348,14 @@ Command GamePad::ToCommand()
 		command.SetTurnPoint(leftStick);
 	if(axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] > 0.1)
 	{
-		double thrust = axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT]*THRUST_MULTI;
+		double thrust = axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] * THRUST_MULTI;
 		command.SetThrustGradient(thrust);
-		if (thrust >= 1. && axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 0.5)
+		if(thrust >= 1. && axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 0.5)
 			command.Set(Command::AFTERBURNER);
 	}
 	else if(axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 0.1)
 	{
-		double thrust = -axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT]*THRUST_MULTI;
+		double thrust = -axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] * THRUST_MULTI;
 		command.SetThrustGradient(thrust);
 	}
 	return command;
@@ -397,7 +398,7 @@ Command GamePad::RightStickCommand() const
 	Point stick = RightStick();
 	if(stick.LengthSquared() > GamePad::VECTOR_TURN_THRESHOLD)
 	{
-		double deg = std::atan2(stick.Y(), stick.X())*TO_DEG;
+		double deg = std::atan2(stick.Y(), stick.X()) * TO_DEG;
 		double degAbs = fabs(deg);
 		if(degAbs >= 150.)
 			command.Set(Command::DEPLOY);
@@ -423,7 +424,7 @@ bool GamePad::Repeat(Uint8 which, double threshold, Uint8 opposite)
 	chrono::time_point<std::chrono::steady_clock> now = chrono::steady_clock::now();
 	if(it != repeatTimer.cend())
 	{
-		threshold *= Preferences::ScrollSpeed()/60.;
+		threshold *= Preferences::ScrollSpeed() / 60.;
 		int diff = chrono::duration_cast<chrono::milliseconds>(now - it->second).count();
 		if(diff > threshold)
 			repeatTimer[which] = now;
@@ -433,10 +434,10 @@ bool GamePad::Repeat(Uint8 which, double threshold, Uint8 opposite)
 	else
 		repeatTimer[which] = chrono::steady_clock::now();
 	// Releasing a stick quickly may cause opposite spikes.
-	if (opposite != 255)
+	if(opposite != 255)
 	{
 		chrono::time_point<std::chrono::steady_clock> adjust = chrono::steady_clock::now();
-		now -= chrono::milliseconds(int(threshold)-100);
+		now -= chrono::milliseconds(int(threshold) - 100);
 		repeatTimer[opposite] = adjust;
 	}
 	return true;

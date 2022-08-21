@@ -243,7 +243,8 @@ bool Panel::GamePadState(GamePad &controller)
 	if(leftStick.LengthSquared() > 0.05)
 	{
 		double x, y;
-		Point move(pow(leftStick.X()*GamePad::STICK_MOUSE_MULT, 3), pow(leftStick.Y()*GamePad::STICK_MOUSE_MULT, 3));
+		Point move(
+			pow(leftStick.X() * GamePad::STICK_MOUSE_MULT, 3), pow(leftStick.Y() * GamePad::STICK_MOUSE_MULT, 3));
 		move += controllerCursorRem;
 		controllerCursorRem.Set(modf(move.X(), &x), modf(move.Y(), &y));
 		if(pressed.find(SDL_CONTROLLER_BUTTON_LEFTSTICK) != pressed.cend())
@@ -257,9 +258,9 @@ bool Panel::GamePadState(GamePad &controller)
 	}
 	double rightStickY = controller.RightStickY();
 	if(rightStickY > 0.5)
-		Scroll(0, -rightStickY+GamePad::SCROLL_THRESHOLD);
+		Scroll(0, -rightStickY + GamePad::SCROLL_THRESHOLD);
 	else if(rightStickY < -0.5)
-		Scroll(0, -rightStickY-GamePad::SCROLL_THRESHOLD);
+		Scroll(0, -rightStickY - GamePad::SCROLL_THRESHOLD);
 
 	// Leave pressed state for the parent panel handler
 	for(auto it = pressed.begin(); it != pressed.end();)

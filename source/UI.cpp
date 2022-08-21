@@ -25,8 +25,7 @@ using namespace std;
 
 
 
-UI::UI(GamePad &controller)
-	: controller(controller)
+UI::UI(GamePad &controller) : controller(controller)
 {
 }
 
@@ -101,7 +100,7 @@ bool UI::Handle(const SDL_Event &event)
 // Handle gamepad state.
 void UI::HandleGamePad()
 {
-	for(auto it = stack.crbegin();it != stack.crend(); ++it)
+	for(auto it = stack.crbegin(); it != stack.crend(); ++it)
 	{
 		if((*it)->GamePadState(controller) || (*it)->TrapAllEvents())
 			break;
@@ -391,8 +390,8 @@ Point UI::GetMouse()
 void UI::MoveMouseOffset(const Point &point)
 {
 	double scale = Screen::Zoom() / 100.;
-	int x = (point.X()+Screen::Right()) * scale;
-	int y = (point.Y()+Screen::Bottom()) * scale;
+	int x = (point.X() + Screen::Right()) * scale;
+	int y = (point.Y() + Screen::Bottom()) * scale;
 	SDL_WarpMouseInWindow(GameWindow::GetMainWindow(), x, y);
 }
 
@@ -403,7 +402,7 @@ void UI::MoveMouseRelative(const Point &point)
 	int x = 0;
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
-	SDL_WarpMouseInWindow(GameWindow::GetMainWindow(), x+point.X(), y+point.Y());
+	SDL_WarpMouseInWindow(GameWindow::GetMainWindow(), x + point.X(), y + point.Y());
 }
 
 
