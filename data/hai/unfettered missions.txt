@@ -2033,42 +2033,42 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. "It looks like even the monkeys cannot resist the attraction of these ships," he says.`
+			`	You go to the shipyard. There, you find an Unfettered warlord and ask to learn more about them. The warlord is speaking trough a translator, altough he appears to be able to understand what you say without it. "It looks like even the monkeys cannot resist the [attraction, power] of these ships," he says.`
 			choice
 				`	"Are these Shield Beetles? That's the only Hai warship I've seen that's as large as these."`
 				`	"Just curious: Why do you call me monkey? Have I not earned your respect yet?"`
 					goto curious
-			`	"Not at all. They're something much more powerful, something so strong it would contend with even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful existence." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
+			`	"Not at all. They're something much more powerful, something so strong it would [contend with, beat] even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful [existence, coming here]." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
 			choice
 				`	"Why can't I buy Shield Beetles here then?"`
 				`	"Nothing's better than a Carrier."`
 					goto brag
-			`	"We haven't allowed you to purchase our biggest ships because we didn't have the capacity to build enough of them at the same time. But you may help us with that, actually."`
+			`	"We haven't allowed you to purchase our [biggest, strongest] ships because we didn't have the [capacity, ressources] to build enough of them at the same time. But you may help us with that, actually."`
 				goto mighty
 			label brag
-			`	"Stupid monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
+			`	"[Stupid, Young] monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
 				goto mighty
 			label curious
 			`	He was about to say something, but instead ignores your question.`
 			label mighty
-			`	"If you want to help us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need intel on how they mass produce them."`
+			`	"If you want to [help, assist] us and get access to our mighty Shield Beetles and more, go to <destination>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
-			`	"Why would you need a permission? Discreetly land in an isolated region, while nobody is looking. If they detect you, just pretend you have a navigation issue." This plan seems very risky to you.`
+			`	"Why would you need a [permission, authorisation]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you have had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
 			choice
 				`	"I have a better idea: I'll tell them I come to collect your usual tribute."`
 				`	"This seems like it could easily go wrong. I'm not interested."`
 					decline
-			`	He seems genuinely impressed. "That is a brilliant idea! Well what are you waiting for? Go on then."`
+			`	He seems genuinely impressed. "That is a [brilliant, mature] idea! Well what are you waiting for? Go on then."`
 				accept
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
 		log `Gathered intel on a Hai shipyard for the Unfettered.`
-		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management.`
+		log "People" "He-Yi" `An Unfettered warlord that appreciates directness and calling humans monkey. He is particularly skilled at management, and speaks trough a translator, although he has little to no problem understanding my language without it.`
 		payment 250000
 		conversation
-			`The warlord from earlier hands you <payment>, and introduces himself, "I would not give you my true name, but you may refer to me as He-Yi, the name that I gained by working for the Unfettered, and is attached to my current status as a warlord."`
+			`The warlord from earlier hands you <payment>, and introduces himself, "I would not give you my [true, original] name, but you may refer to me as He-Yi, the name that I [gained, deserved] when working for the Unfettered, and is attached to my current [status, position] as a warlord."`
 			branch noboughtship
 				not "Unfettered: bought ship"
 			choice
@@ -2077,13 +2077,13 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 					goto noboughtship
 			action
 				payment 1000000
-			`	"You had to pay a ship? Clever way to remove suspicion. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more detailed that what I even asked for."`
+			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
 			label noboughtship
 			choice
 				`	"Does this mean I can buy Shield Beetles now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
-			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much capacity to build ships. But that will come soon - I first have to do some managing." He may have exaggerated how quickly you will get access to Shield Beetles.`
+			`	He seems amused. "For that, you would have to do a bit more than bringing some intel. We still don't have much [capacity, ressources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
 			choice
 				`	(Go.)`
 					decline
@@ -2303,19 +2303,19 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	(Later.)`
 					defer
 			label gosee
-			`	He does not seem very surprised to see you. "Coming for more big ships?" You feel like him asking this is just a formality. He already knows your answer.`
+			`	He does not seem very surprised to see you. "Coming for more [big, strong] ships?" You feel like him asking this is just a formality. He already knows your answer.`
 			choice
 				`	"Yeah. Just tell me what to do to help."`
 					goto help
 				`	"Why do you say that?"`
 			`	"I know that your species loves big things. I guess that makes two of us. Since you are here, you can help us anyway."`
 			label help
-			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial materials to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up significantly, especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to the cargo."`
+			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial [materials, supplies] to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up [significantly, reasonably], especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to [the cargo, your ship]."`
 			choice
 				`	"I will cover whatever distance necessary."`
 				`	"I don't want to do long distance cargo missions. Screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <stopovers> and take the materials there.. Don't stay too long, and try not to attract attention. These green humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major extracting operations, so we can easily arrange for you to acquire supplies from there."`
+			`	"Good, then go to <stopovers> and take the [materials, supplies] there.. Don't stay too long, and try not to attract [suspicion, attention]. These [green humans, unfettered humans] are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major [extracting, processing] operations, so we can easily arrange for you to acquire [materials, supplies] from there."`
 			choice
 				`	"Time to go then."`
 					accept
@@ -2343,7 +2343,7 @@ mission "Unfettered: Improved Production"
 		has "event: unfettered: shield beetle mass production"
 	on offer
 		conversation
-			`You receive a message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
 				decline
 
 
@@ -2471,7 +2471,7 @@ mission "Unfettered: Start Of The War"
 			action
 				"reputation: Hai (Unfettered)" += 100
 				event "shield beetles accessible"
-			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to fight! I feel now maybe we are the ones who need training. I feel like it is only fair you give us tips this time."`
+			`Now that the fight is over, they both hail you, and He-Yi speaks first. "You sure know how to [fight, move your ship]! I feel now maybe we are the ones who need [experience, training]. I feel like it is only [fair, normal] you give us tips this time."`
 			choice
 				`	"You were overconfident, and that's what let you down."`
 					goto mistake
@@ -2484,7 +2484,7 @@ mission "Unfettered: Start Of The War"
 			`	Si-Ra then speaks. "Well captain, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
 				goto train
 			label mistake
-			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, Captain."`
+			`	He-Yi answers first. "Yes, that is true. We'll try not to repeat that mistake again, [Captain, esteemed adversary]."`
 			`	Si-Ra then speaks. "Next time it will not be so easy, Captain!"`
 			label train
 			`	"The war will start soon, but there is still some time to train. Use that time well, Captain. We have also given you access to our mighty Shield Beetles, should you need it."`
@@ -2499,13 +2499,13 @@ mission "Unfettered: Start Of The War"
 		#"reputation: Wanderer" <?= -1000 
 		#TO BE UNCOMMENTED FOR PR TO BE MERGED!!
 		conversation
-			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can muster an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our colors. We have informed the Hai of your new colors so that they will recognize you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
+			`He-Yi joins you on your ship after having parked his. "We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet. Also, from now on, you will officially have the permission - nay, the obligation - to proudly wear our [flag, colors]. We have informed the Hai of your new colors so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful."`
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I would like to ask a few questions, about your ship."`
 				`	"I am honoured, and hope we will fight again, later."`
 					accept
-			`	"Yes, that was to be expected. I am prepared to answer a few."`
+			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few."`
 			action
 				"Unfettered: questions" = -1
 			label questions
@@ -2525,33 +2525,33 @@ mission "Unfettered: Start Of The War"
 					goto weapon
 				`	"I am honoured, but I don't have any more questions."`
 					accept
-			`	"You are aware of what our keystones are, right? They aren't believed to give luck for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a gun for boarding. It was given to me by the council many years ago, matching my responsibility as well as my character."`
+			`	"You are aware of what our keystones are, right? They aren't believed to give [luck, fame] for no reason, after all. I cannot tell you much more about it, but rest assured this sword would be more useful than a [gun, simple weapon] for boarding. It was given to me by the council many years ago, matching my [responsibility, task] as well as my character."`
 				goto questions
 			label tejolis
-			`	"Tejolis is the goddess of apt thinking, which you could call intelligence. It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to justify. Likewise, when time is of the essence, one must learn to act quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her teachings."`
+			`	"Tejolis is the goddess of [strategy, apt thinking], which you could call intelligence. It is the aptitude to make good judgments based on context. For instance, if you have time to choose, a quick decision does not make sense, and a wrong decision is hard to [justify, forgive]. Likewise, when time is of the essence, one must learn to [act, react] quickly or be overwhelmed by the actions of others. I named this ship in her honor and I have a statue of her in my war room because I follow her [teachings, legacy]."`
 				goto questions
 			label hull
-			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath warship. Those materials are more sturdy than normal Hai ones, which is why this ship is so resilient to hull damage."`
+			`	"As you have probably noticed, the hull is not standard Hai colors. It is, partly, a matter of taste, but the biggest reason is that this ship was built out of the wreck of an old Korath [raider, warship]. Those materials are more sturdy than normal Hai ones, which is why this ship is so [impervious, resilient] to hull damage. However, it comes at the cost of cooling efficiency."`
 				goto questions
 			label cloak
-			`	"Many years ago, when the Korath attacked us, they used a ghost ship. It would attack the convoys, and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always harassing us. The ghost managed to take on countless of convoys and escorts without issue, using its superior technology and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was not there anymore."`
-			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it disappeared, they stopped shooting like usual and acted in distress, making the ghost overconfident. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its escape. The ghost ship disappeared, but it was too late. One of the convoy ships nearby rammed into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of shooting it down. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never cloaked for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the damaged cloaking device remained installed."`
+			`	"Many years ago, when the Korath attacked us, they used a [ghost, fantom] ship. It would attack the [convoys, defenceless], and then disappear without a trace. There was no jump, no flash, nothing. It was just gone. Then, once our warships would depart it returned, always [harassing, plundering] us. The ghost managed to take on countless of convoys and escorts without issue, using its superior [technology, weaponry] and tactical advantages. But it was no real ghost. Everyone has a weakness. Its weakness was that while we could not see it, it did not mean that it was [not there anymore, gone]."`
+			`	"With this in mind, the brave Unfettered laid a trap for the ship. When it [disappeared, cloaked], they stopped shooting like usual and acted in distress, making the ghost [arrogant, overconfident]. When it reappeared and moved toward the convoy, we were ready. The fleet arrived and blocked its [escape, cloaking]. The ghost ship disappeared, but it was too late. One of the convoy ships nearby [rammed, crashed] into it, which costed the life of the proud captain but revealed the ship. Then it was just a matter of [shooting it down, damaging it]. The cloaking device was damaged in the fight, or maybe it was already damaged before, knowing the ship never [disappeared, cloaked] for long, so we could not extract it from the wreckage. Instead, we built a ship based on that wreckage's materials, and the [damaged, incomplete] cloaking device remained installed."`
 			branch "gave cloak"
 				has "Unfettered: Cloaking Interest: done"
 			``
 				goto questions
 			label "gave cloak"
-			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully replace the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know almost nothing about."`
+			`	"When you gave me the cloaking device, I started the preparations to install it on my ship, but it was not ready yet. It needs to fully [replace, overwrite] the old system, and that one is well integrated into the ship, so we may have to simply disable it if it cannot be replaced. The engineers are doing all that they can, but it is advanced technology we know [almost nothing, little] about."`
 				goto questions
 			label weapon
 			branch helped
 				has "Unfettered: Bring Detainer: done"
-			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the automated killing machines to the east, I went looking for such weapons under the safety of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it exploded in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, victorious. I had barely enough space in my cargo hold for it."`
+			`	"I have heard tales from the Unfettered humans of a weapon that neutralizes the target's engines. Knowing it could only come from the [automated, soulless] killing machines to the east, I went looking for such weapons under the [assurance, safety] of my cloak. I expected to battle for it, but the killing machines are fighting other killing machines. I just watched them battle from a distance and then swiftly looted a ship... Except it [self destructed, exploded] in my face. So I looked for another one, and that one did not explode. I took the weapon and came home, [proud, victorious]. I had barely enough space in my cargo hold for it."`
 				goto otherweapons
 			label helped
 			`	"Well, as you know, you brought the Detainer to me in exchange for the translation device."`
 			label otherweapons
-			`	"For the other weapons, it was loot collected during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were loted from ships in the north. And then of course, our anti-missile systems are cheap and effective at couintering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but effective."`
+			`	"For the other weapons, it was loot [taken, collected] during the Korath raids that we have held onto. The Sunbeams are the most recent addition to the ship, which were looted from ships in the north. And then of course, our anti-missile systems are cheap and effective at countering large volumes. Last, I'm sure you know plenty about flamethrowers. They are crude, but [effective, powerful]."`
 				goto questions
 			label enough
 			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all."`
@@ -2611,14 +2611,14 @@ mission "Unfettered: Close Quarter"
 				`	(Accept.)`
 				`	(Decline.)`
 					goto nope
-			`	One of them comes toward you. "I challenge you, <last>! Tales of your strength have been spread, I want to test it first-hand. If I win, I demand you tell me those stories yourself." He is equipped with what looks to be a twin pistol version of the standard Hai rifles.`
+			`	One of them comes toward you. "I challenge you, <last>! Tales of your strength have been spread, I want to test it first-hand. If I win, I demand you tell me those stories yourself." You are surprised he knows your language so well. He is equipped with what looks to be a twin pistol version of the standard Hai rifles.`
 			choice
 				`	"I'm sure those tales don't do me justice. I accept!"`
 				`	"Very well. But if I win, I want your weapon."`
 					goto weapon
-			`	"I see the tales about your wisdom were exaggerated at least," he snarks.`
+			`	"I see the tales about your wisdom were exaggerated at least," he snarks, first in your language, then he translates for his friends.`
 			label weapon
-			`	He looks at his weapons, thinking. Then he nods and hands you one of the pistols. "I have set it on training. We wouldn't want any accidents to happen," he adds. Then he moves away to the edge of the blue circle. "Because this is your first time, I will let you choose your position and have the initiative. The rules are simple: once you shout, the fight begins." You understand why you heard so much of that earlier.`
+			`	He looks at his weapons, thinking. Then he nods and hands you one of the pistols. "I have set it on training. We wouldn't want any accidents to happen," he adds. He says something to his friends, apparently telling them to move away. Then he moves away to the edge of the blue circle. "Because this is your first time, I will let you choose your position and have the initiative. The rules are simple: once you shout, the fight begins." You understand why you heard so much of that earlier.`
 			choice
 				`	(Shout now to surprise him.)`
 					goto start
@@ -2645,7 +2645,7 @@ mission "Unfettered: Close Quarter"
 			label stories
 			`	 As agreed, you speak to him of many stories, including how you happened to find Hai space, and how you joined the Unfettered. He seems captivated by all of it, and so are his friends. Then he goes back to fight with his friends, seemingly in teams.`
 			label heyi
-			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a nice fight, especially considering this must be your first!"`
+			`	It seems like your fight has attracted the attention of many of the Unfettered, including He-Yi. He comes to speak to you. "That was a [nice, skillfull] fight, especially considering this must be your first!"`
 			branch "lost fight"
 				not "unfettered: won the duel"
 			choice
@@ -2663,18 +2663,18 @@ mission "Unfettered: Close Quarter"
 					goto lost
 				`	"It was quite fun. Do you do this often?"`
 			label fun
-			`	"Fun, that it is! This practice is part of life for most Unfettered. We must always be ready to repel a ground assault, as we always were. To that end we need to try most weapons, and ways of fighting, which we do here."`
+			`	"Fun, that it is! This [practice, ritual] is part of life for most Unfettered. We must always be ready to [repel, lead] a ground assault, as we always were. To that end we need to try most weapons, and [ways of fighting, tactics], which we do here."`
 				goto speak
 			label won
-			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that young one a lesson! I have something to ask of you."`
+			`	"Yes indeed, that was quite impressive! I most say, I never expected that out of you. I don't know if you got lucky or it was just superior skill or experience but you showed that [young, inexperienced] one a lesson! I have something to ask of you."`
 				goto speak
 			label lost
-			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the fight, but you have won something else."`
+			`	"Oh, well I got distracted near the end, so I wouldn't know, but were you expecting to win the fight? Those of us who choose to fight are well trained to do so. You may not have won the [fight, battle], but you have won something else."`
 			choice
 				`	"And what is that?"`
 				`	"Can I help you with anything?"`
 					goto speak
-			`	"Experience? Fun? There is always something to be gained, even when there is not the risk of losing your life."`
+			`	"Experience? Fun? There is always something to be [gained, deserved], even when there is not the risk of losing your life."`
 				goto speak
 			label challenge
 			`	You try to get a challenge with him, but you are not experienced enough for them to allow it. You did attract his attention however, and he comes to speak to you.`
@@ -2682,14 +2682,14 @@ mission "Unfettered: Close Quarter"
 			label nope
 			`	You watch them battling for so long you don't notice time pass, but then you realize you are being watched. It is He-Yi. He looks satisfied of your interest in this fight. "You should try it someday," he says.`
 			label speak
-			`	"As you may have noticed, we do this training quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get killed. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too enthusiastic... They shoot one too many times to make sure to hit. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even stronger than ours."`
+			`	"As you may have noticed, we do this [fighting, training] quite often. Because our rifles are not deadly on the first shots, we almost never have anyone get [killed, seriously wounded]. But it still happens sometimes, between some of the older, more fragile ones, and some young ones who can be too [enthusiastic, trigger-happy]... They shoot one too many times to make sure to [win, hit]. We have experimented with some less powerful versions of our rifles, but those don't reflect war well enough for our liking. Do you happen to know any weapons that would not have such weaknesses - any that would be non-lethal but still not meant for child's play? I would expect said weapons to be even [stronger, more useful] than ours."`
 			choice
 				`	"Yes, I think I do."`
 					goto idea
 				`	"I have no idea, sorry."`
 			`	"I've heard stories of weapons that could not ever kill anyone, no matter how much you shoot him," He-Yi muses.`
 			label idea
-			`	"If you ever find any weapon that's less risky than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird territory. I would not have expected them to use weapons at all, but maybe they too have Unfettered people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, fifty of them?"`
+			`	"If you ever find any weapon that's [safer, less risky] than ours, please bring it to me. I would be interested to use them in training fights. I have heard tales of some who journeyed too far, excited by their newly acquired jump drives, and who came into contact with such weapons far into bird [territory, space]. I would not have expected them to use weapons at all, but maybe they too have [Unfettered, true] people that want to change? Those would make for great allies. Regardless, if you ever find such a weapon, could you bring me, say, fifty of them?"`
 			choice
 				`	"I'll see what I can do."`
 					accept
@@ -2706,21 +2706,21 @@ mission "Unfettered: Close Quarter"
 		clear "unfettered: offered close quarter"
 		log `Brought powerful but non-lethal weapons to the Unfettered for training.`
 		conversation
-			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be decisive in the coming war."`
+			`You go see He-Yi with the non-lethal weapons to see if he has anything else to ask you. He seems very happy you managed to find them, and says, "Great job! It will be [helpfull, decisive] in the coming war."`
 			choice
 				`	"How can a few better-trained troops make a difference?"`
 				`	"Glad I could make a difference then."`
 					goto getrd
-			`	"Well... To be completely honest with you, these weapons are not only intended for training purposes, but I cannot tell you any more for now."`
+			`	"Well... To be completely [true, honest] with you, these weapons are not only intended for training purposes, but I cannot tell you any more for now."`
 			label getrd
-			`	"We'll soon want your help with the upcoming invasion, so you best be prepared! Having a strong flagship is always an important asset, but it is not all." It is not clear whether he means more ships or better strategy, and knowing him, it could be either.`
+			`	"We'll soon want your help with the upcoming invasion, so you best be [prepared, experienced]! Having a strong flagship is always an important asset, but it is not all." It is not clear whether he means more ships or better strategy, and knowing him, it could be either.`
 			choice
 				`	"The Basilisk will not be enough, I take it?"`
 				`	"In that case, I'll go prepare myself."`
 					goto train
-			`	"The Basilisk is very strong, but it is only a prototype. It has its weaknesses."`
+			`	"The Basilisk is very strong, but it is only [a prototype, an experience]. It has its weaknesses."`
 			label train
-			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to use it properly! If you want to practice, there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested."`
+			`	"Remember, having a strong fleet and flagship does not matter much if you don't know how to [use it, fight] properly! If you want to [practice, learn], there are plenty of Unfettered captains looking forward to challenging you. Check the job board if you're interested. Do not that they are not interested in too [unfair, quick] fights!"`
 
 mission "Bring Pug Staves"
 	invisible
@@ -2749,63 +2749,3 @@ mission "Bring Coalition Weapons"
 		payment 4000000
 		outfit "Enforcer Riot Staff" -50
 		dialog `The Unfettered thank you for bringing these 50 staves to them. They give you <payment>.`
-
-conversation "more staves"
-	`As you wonder in the spaceport, you see He-Yi's herald, or at least he has the same mask. He seems interested to know your progress in acquiring weapons.`
-	choice
-		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
-		`	"It's going fine, thank you for asking."`
-			goto fine
-	`	You bring him to your ship and he sees a weapon that appears of interest. "This... <staff> staff seems to be adequate for what my master wants. We would only require more of these."`
-	label fine
-	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - fifty, to be precise.`
-
-mission "Bring More Enforcer Staves"
-	minor # so both staff conversations don't pop up at the same time
-	invisible
-	source "Warfeed"
-	substitutions
-		<staff> "Enforcer"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
-	on offer
-		require "Enforcer Riot Staff"
-		conversation "more staves"
-
-
-mission "Bring More Pug Staves"
-	invisible
-	source "Warfeed"
-	substitutions
-		<staff> "Pug Peacekeeping"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-		not "Bring Coalition Weapons: offered"
-		not "Bring Pug Staves: offered"
-	on offer
-		require "Pug Peacekeeping Staff"
-		conversation "more staves"
-
-mission "Bring Void Rifle"
-	invisible
-	source "Warfeed"
-	to offer
-		has "Unfettered: Close Quarter: offered"
-	on offer
-		require "Void Rifle" 1
-		conversation
-			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
-			choice
-				`	"Sorry, this is one of a kind."`
-			`	"I can cancel the exchange then, if it is precious to your eyes."`
-			choice
-				`	"10000000 is much more precious, thank you."`
-				`	"Yes, I have changed my mind. Cancel the exchange."`
-					decline
-			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
-				accept
-	on accept
-		payment 10000000
-		outfit "Void Rifle" -1

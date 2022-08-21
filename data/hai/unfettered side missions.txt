@@ -1149,35 +1149,35 @@ mission "Unfettered: Special Cargo 2"
 			action
 				log `Bought a mystery cube off pirates for the Unfettered. Price tag was large.`
 			label afterlog
-			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big payment once the mission is completed."`
+			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
 				not "Unfettered: brokered deal"
 			action
 				clear "Unfettered: brokered deal"
 				payment 2000000
-			`	You tell him that you had to pay a few million to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will alleviate the cost. Next time try to show more strength. Thankfully, money is not really much of an issue to us."`
+			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
 			label nodeal
-			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one noticed. You'll also need to be able to tell me exactly where it is so it can be retrieved later."`
+			`	"I want you to go to <stopovers> and collect a tribute of food for us there. While there, I want you to place this device you recovered somewhere on the surface, discreetly," he expains. "It doesn't matter where as long as no one [noticed, suspects]. You'll also need to be able to tell me exactly where it is so it can be [retrieved, used] later."`
 			choice
 				`	"Is this the real reason for my trip, like with the shipyard?"`
-			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my tactics when there is no need?"`
+			`	"Indeed. The Hai seem almost eager to allow our operatives into their space to collect tributes, why should I change my [tactics, plans] when there is no need?"`
 			choice
 				`	"I'll do it."`
 					accept
 				`	"What will this cube do?"`
 				`	"I was almost caught last time. I'm not trying again."`
 					decline
-			`	"You have earned the right to know, considering it is you who brought it to us. It's a very advanced surveillance device, which should record everything that happens on the world as well as in orbit."`
+			`	"You have earned the right to know, considering it is you who brought it to us. It's a very [complex, advanced] surveillance device, which should record everything that happens on the world as well as in [the system, space]."`
 			choice
 				`	"Why this particular world?"`
 				`	"I'll do it."`
 					accept
-			`	"All important Hai ships are built on their homeworld. That would be a perfect place to put this cube, but we don't want to bring too much heat onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet movements, in order to be able to react in time should the worst arrive. Of course, we need something discreet to do it, else our operatives could get caught."`
+			`	"All important Hai ships are built on our homeworld. That would be a perfect place to put this cube, but we don't want to bring too much [heat, attention] onto you. As you know, that's where most of their larger ships are made, and ships that get produced there are sent to the worlds which border ours. Also, because this is their home system, it makes sense that a lot of their fleets go through it. We want to learn more about their fleet [movements, activities], in order to be able to react in time should the worst arrive. Of course, we need something [unpredicted, discreet] to do it, else our operatives could get caught."`
 			choice
 				`	"If it's so sensible to movement all over the system, you could just have me place the cube in orbit."`
 				`	"I'll do it."`
 					accept
-			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by accident. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be captured. You already know more than I would prefer."`
+			`	"We could, but it would be very suspicious for you to just go in that system and then come back here, and we don't want to risk anyone finding it by [chance, accident]. We have other reasons for wanting the cube on the planet, but I cannot tell you everything or I would risk much should you be [captured, coerced]. You already know more than [you should, I would prefer]."`
 			choice
 				`	"I'll do it."`
 					accept
@@ -1244,7 +1244,7 @@ mission "Unfettered: Wanderer Homeworld"
 
 mission "Unfettered: Speak Hai"
 	name `Acquire a translator`
-	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi managed to find a translator for you in the mean time.`
+	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Firelode"
 	stopover "Warfeed"
 	to offer
@@ -1277,7 +1277,6 @@ mission "Unfettered: Speak Hai"
 			choice
 				`	"I guess I'll try to land on their planet."`
 					accept
-
 	to complete
 		has "language: Wanderer"
 	on complete
@@ -1299,18 +1298,18 @@ mission "Unfettered: Bring Detainer"
 		conversation
 			`You go find He-Yi in his war room, who does not seem too surprised to see you. "I expected you to come here. You must want one of us to act as 'diplomat' with the aliens to the north, in order to complete your mission for us."`
 			`	You nod.`
-			`	"Well, that's not our way. We do not ask. We take. Things need to be earned, in battle or otherwise, or they have no value. I have obtained a device that is able to translate your backwards language into ours. Because these birds speak Hai, you will be able to communicate with them later.`
-			`	"If you want this translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would neutralize one's engines. Such a weapon would be a very nice addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned this translator."`
+			`	"Well, that's not our way. We do not ask. We take. Things need to be earned, in battle or otherwise, or they have no [meaning, value]. You must have noticed that I was using a translator to [communicate with, talk to] you. Such a device is able to translate your backwards language into ours, and in the other way as well. Because these birds speak Hai, you will be able to communicate with them later.`
+			`	"If you want my translator, you will have to earn it. There is something I want: I have heard tales of a weapon that would [neutralize, disable] one's engines. Such a weapon would be a very [useful, nice] addition to both my collection and arsenal during battle. Bring me one of these weapons, and you will have earned my translator."`
 			choice
 				`	"Sure. I'll go and bring it back for you."`
 					accept
 				`	"Where can I find said weapon?"`
-			`	"The green humans told me of it, and we know that they were active in the territory to the east. You would do well to go and look there. There are legends speaking of an everlasting battlefield - one that never ends the carnage, never sleeps, as if gods were laughing in the background, enjoying the endless show. The Alphas did not tell me much though... I heard it in a bar, so it may be a bit exaggerated," he finishes with a smirk.`
+			`	"The [green humans, unfettered humans] told me of it, and we know that they were active in the territory to the east. You would do well to go and look there. There are legends speaking of an everlasting battlefield - one that never ends the carnage, never sleeps, as if gods were [laughing, toying] in the background, enjoying the endless [destruction, show]. The Alphas, as you call them, did not tell me much details about it though... I heard it in a bar, so it may be a bit [exaggerated, false]," he finishes with a smirk.`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
 				`	"I doubt I have the strength to face the Korath machines."`
-			`	"If you cannot acquire the weapon, then you do not deserve this device. There should be other ways to get it than brute force, however. You could loot a ship while its allies are dustracted. Use whatever tools you have at your disposal. What do you say?"`
+			`	"If you cannot acquire the weapon, then you do not deserve this device. There should be other ways to get it than brute force, however. You could loot a ship while its allies are distracted. Use whatever tools you have at your disposal. What do you say?"`
 			choice
 				`	"Sure, I will go and bring it back for you."`
 					accept
@@ -1456,16 +1455,78 @@ mission "Unfettered: Cloaking Interest"
 			choice
 				`	"What do you mean?"`
 				`	(Let him continue speaking.)`
-			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so precious and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest importance, and I am willing to give you 50 million for it. I will not lie to you: this item nearly guarantees the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
+			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you 50 million for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
 			choice
 				`	"I accept."`
 					accept
 				`	"I don't want to trade now, but maybe later."`
 				`	"I refuse."`
 					decline
-			`	"Very well. I cannot take it from you, of course. If you change you mind, my offer still stands."`
+			`	"Very well. I [would not, do not want to] take it from you, of course. If you change your mind, my offer still stands."`
 				defer
 	on accept
 		payment 50000000
 		outfit "Cloaking Device" -1
 		log `I gave my cloaking device to He-Yi for a very big sum. It should keep him safe.`
+
+
+
+conversation "more staves"
+	`As you wonder in the spaceport, you see He-Yi's herald, or at least he has the same mask. He seems interested to know your progress in acquiring weapons.`
+	choice
+		`	"Could you look at what I have here to tell me if it's what you're looking for?"`
+		`	"It's going fine, thank you for asking."`
+			goto fine
+	`	You bring him to your ship and he sees a weapon that appears of interest. "This... <staff> staff seems to be adequate for what my master wants. We would only require more of these."`
+	label fine
+	`	He wishes you good luck and hopes you can find the staves. He reminds you a large amount of them is requested - fifty, to be precise.`
+
+mission "Bring More Enforcer Staves"
+	minor # so both staff conversations don't pop up at the same time
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Enforcer"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staves: offered"
+	on offer
+		require "Enforcer Riot Staff"
+		conversation "more staves"
+
+
+mission "Bring More Pug Staves"
+	invisible
+	source "Warfeed"
+	substitutions
+		<staff> "Pug Peacekeeping"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+		not "Bring Coalition Weapons: offered"
+		not "Bring Pug Staves: offered"
+	on offer
+		require "Pug Peacekeeping Staff"
+		conversation "more staves"
+
+mission "Bring Void Rifle"
+	invisible
+	source "Warfeed"
+	to offer
+		has "Unfettered: Close Quarter: offered"
+	on offer
+		require "Void Rifle" 1
+		conversation
+			`He-Yi seems very, very interested in this weapon. "Where did you find it? Can you bring us more? We would gladly make you rich if you do. This is the perfect weapon for training."`
+			choice
+				`	"Sorry, this is one of a kind."`
+			`	"I can cancel the exchange then, if it is precious to your eyes."`
+			choice
+				`	"10000000 is much more precious, thank you."`
+				`	"Yes, I have changed my mind. Cancel the exchange."`
+					decline
+			`	"This will be my personal weapon. Worry not, I will take good care of it!"`
+				accept
+	on accept
+		payment 10000000
+		outfit "Void Rifle" -1
