@@ -1184,7 +1184,7 @@ mission "Unfettered: Materials Intercepted"
 				`	"Thanks for the assistance."`
 					goto leaving
 				`	"I challenge you to a duel for those weapons!"`
-			`	They seem surprised, but not disapointed, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth millions, so I think it would be fair you gave some to us should you lose."`
+			`	They seem surprised, but not disappointed in the slightest, "A challenge, interesting," one says, "We would have much to learn from each others," the other one add. "But what do we have to gain? Our shredders are worth many millions, so I think it would be fair you gave some to us should you lose."`
 			choice
 				`	"Seems like a fair deal to me."`
 				`	"Nevermind, I'll let you be on your way."`
@@ -1199,7 +1199,7 @@ mission "Unfettered: Materials Intercepted"
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
 	to fail
-		has "unfettered: thorn talon death"
+		has "unfettered: thorn talon murdered"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1208,7 +1208,7 @@ mission "Unfettered: Materials Intercepted"
 		clear "unfettered: materials intercepted offered"
 		outfit "Materials" -142
 		payment 2000000
-		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas."
+		log "Helped Sha-Ri by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
 		dialog "You cannot find Sha-Ri to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
 
 ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
@@ -1274,7 +1274,7 @@ mission "Unfettered: Cavalry Arrives"
 			``
 				decline
 			label murdered
-			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you..."
+			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. The Shadow of Mintaka may want to have their vengeance on you for letting them die, or worse, maybe even participating in it, rumors could tell."
 			action
 				set "unfettered: thorn talon death"
 	to complete
@@ -1300,17 +1300,26 @@ mission "Unfettered: Duel Squared"
 		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
 		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
 		conversation
-			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one argues, "That was just luck!" the other one says. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it."`
+			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments to you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
 			action
 				"reputation: Hai (Unfettered)" += 150
 	on fail
 		conversation
-			"One of the ship; Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you..."
+			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and disrespecting the rules of the duel."
 			action
-				set "unfettered: thorn talon death"
+				set "unfettered: thorn talon murdered"
 				"reputation: Shadow" <?= -1000
 	on complete
-		clear "unfettered: stop the duel"
+		conversation
+			branch "won"
+				not "unfettered: stop the duel"
+			action
+				log "Lost a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. I had to pay up 10 million credits."
+			``
+				decline
+			label won
+			action
+				log "Won a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. They allowed me to plunder their ships."
 
 mission "Unfettered: Stop The Duel"
 	landing
@@ -1321,7 +1330,7 @@ mission "Unfettered: Stop The Duel"
 		"unfettered: duel startdays" < day + month * 30 + year * 365
 	on offer
 		conversation
-			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility."`
+			`Having landed, you concede the duel, and receive a hail. "Do not feel ashamed, you fought well. To be fair, you never stood much of a chance against our superior firepower and agility," one says. "We hope you will have improved next time!"`
 				decline
 	on decline
 		set "unfettered: stop the duel"
