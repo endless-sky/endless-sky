@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
-#include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -30,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "Logger.h"
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -324,7 +324,7 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Files::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
 			ship->SetSystem(player.GetSystem());
 		}
 
@@ -504,6 +504,13 @@ void Engine::Step(bool isActive)
 	wasActive = isActive;
 	Audio::Update(center);
 
+	// Update the zoom value now that the calculation thread is paused.
+	if(nextZoom)
+	{
+		// TODO: std::exchange
+		zoom = nextZoom;
+		nextZoom = 0.;
+	}
 	// Smoothly zoom in and out.
 	if(isActive)
 	{
@@ -518,9 +525,9 @@ void Engine::Step(bool isActive)
 
 			double zoomRatio = max(MIN_SPEED, min(MAX_SPEED, abs(log2(zoom) - log2(zoomTarget)) * ZOOM_SPEED));
 			if(zoom < zoomTarget)
-				zoom = min(zoomTarget, zoom * (1. + zoomRatio));
+				nextZoom = min(zoomTarget, zoom * (1. + zoomRatio));
 			else if(zoom > zoomTarget)
-				zoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
+				nextZoom = max(zoomTarget, zoom * (1. / (1. + zoomRatio)));
 		}
 	}
 
@@ -1339,6 +1346,11 @@ void Engine::CalculateStep()
 {
 	FrameTimer loadTimer;
 
+	// If there is a pending zoom update then use it
+	// because the zoom will get updated in the main thread
+	// as soon as the calculation thread is finished.
+	const double zoom = nextZoom ? nextZoom : this->zoom;
+
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step, zoom);
 	batchDraw[calcTickTock].Clear(step, zoom);
@@ -1414,7 +1426,7 @@ void Engine::CalculateStep()
 
 	// Step the weather.
 	for(Weather &weather : activeWeather)
-		weather.Step(newVisuals);
+		weather.Step(newVisuals, flagship ? flagship->Position() : center);
 	Prune(activeWeather);
 
 	// Move the visuals.
@@ -2112,7 +2124,8 @@ void Engine::DoWeather(Weather &weather)
 		// Get all ship bodies that are touching a ring defined by the hazard's min
 		// and max ranges at the hazard's origin. Any ship touching this ring takes
 		// hazard damage.
-		for(Body *body : shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange()))
+		for(Body *body : (hazard->SystemWide() ? shipCollisions.All()
+			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
 			hit->TakeDamage(visuals, damage.CalculateDamage(*hit), nullptr);

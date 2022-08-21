@@ -18,11 +18,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
-#include "Files.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
@@ -144,7 +144,7 @@ namespace {
 	void LogWarning(const string &modelName, const string &name, string &&warning)
 	{
 		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
-		Files::LogError(shipID + std::move(warning));
+		Logger::LogError(shipID + std::move(warning));
 	}
 
 	// Transfer as many of the given outfits from the source ship to the target
@@ -671,7 +671,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
-		Files::LogError(message);
+		Logger::LogError(message);
 	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
@@ -690,7 +690,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->Name() + "\"";
-			Files::LogError(warning);
+			Logger::LogError(warning);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -753,7 +753,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
-		Files::LogError(message + warning + outfitNames.str());
+		Logger::LogError(message + warning + outfitNames.str());
 	}
 
 	// Ships read from a save file may have non-default shields or hull.
@@ -773,12 +773,12 @@ void Ship::FinishLoading(bool isNewInstance)
 			"Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
-			Files::LogError(message + "\" (no current system).");
+			Logger::LogError(message + "\" (no current system).");
 			targetSystem = nullptr;
 		}
 		else if(!currentSystem->Links().count(targetSystem) && (!jumpRange || !currentSystem->JumpNeighbors(jumpRange).count(targetSystem)))
 		{
-			Files::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -2240,7 +2240,7 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Whenever not actively scanning, the amount of scan information the ship
 	// has "decays" over time. For a scanner with a speed of 1, one second of
@@ -2265,18 +2265,26 @@ void Ship::DoGeneration()
 			fuel += currentSystem->SolarWind() * .03 * scale * (sqrt(attributes.Get("ramscoop")) + .05 * scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
+			// Overheated ships produce half as much energy from solar collection.
+			energy += solarScaling * attributes.Get("solar collection") * (isOverheated ? 0.5 : 1.);
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
+		// Overheated ships disable their reactors, which typically have both energy and
+		// heat generation.
+		if(!isOverheated)
+		{
+			energy += attributes.Get("energy generation");
+			heat += attributes.Get("heat generation");
+		}
+		energy -= attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
-		heat += attributes.Get("heat generation");
 		heat -= coolingEfficiency * attributes.Get("cooling");
 
-		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		// Convert fuel into energy and heat only when the required amount of fuel is available
+		// and the ship is not overheated.
+		if(!isOverheated && attributes.Get("fuel consumption") <= fuel)
 		{
 			fuel -= attributes.Get("fuel consumption");
 			energy += attributes.Get("fuel energy");
@@ -2663,6 +2671,14 @@ bool Ship::IsTargetable() const
 bool Ship::IsOverheated() const
 {
 	return isOverheated;
+}
+
+
+
+// A paralyzed ship is one that is overheated and has no energy left.
+bool Ship::IsParalyzed() const
+{
+	return isOverheated && !energy;
 }
 
 
@@ -3411,12 +3427,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 
-	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
-	{
 		isOverheated = true;
-		isDisabled = true;
-	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
