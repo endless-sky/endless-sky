@@ -952,8 +952,6 @@ event "oathkeepers founded"
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create Syndicate freighter fleets.
 event "syndicate convoys to Tarazed"
-	system "Tarazed"
-		add fleet "Small Syndicate" 5000
 
 
 
@@ -974,8 +972,6 @@ event "Tarazed neutrality"
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create specific patrol fleets.
 event "fw dirt belt patrols"
-	system "Tarazed"
-		add fleet "Small Free Worlds" 5000
 
 
 
@@ -996,8 +992,6 @@ event "syndicate assistance"
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create Republic fleets neutral to FW patrols.
 event "unofficial ceasefire"
-	system "Tarazed"
-		add fleet "Small Republic" 5000
 
 
 

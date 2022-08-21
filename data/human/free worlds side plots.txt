@@ -8,6 +8,53 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "FW Pirates: Harmony"
+	landing
+	source "Harmony"
+	to offer
+		has "FW Pirates 1: active"
+	
+	on offer
+		conversation
+			`As you land on <planet>, you recall that the monks who live here are involved in some sort of outreach to children serving as pirate crew members. They might have something to say about the best way to deal with the pirate threat. Do you want to visit them?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	It's a short walk to the monastery from the spaceport. When you arrive there, you run into a monk who is working in the garden. He glances up, and recognizes you. "Welcome back," he says. "You're Katya's friend, right? I'm David. I've forgotten your name."`
+			`	"<first>," you say.`
+			`	He brushes some of the dirt off his hands and then shakes hands with you. "How are you doing?" he asks. "And how is Katya? And Ijs?" You explain to him that you are now an official member of the Free Worlds, and that Katya has been captured by the Republic. He is clearly shocked and saddened by the news. After pressing you for all the details, he asks, "And what about you? What brings you to Harmony?"`
+			choice
+				`	"The Free Worlds is hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
+				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about the pirate crews being just kids."`
+					goto kids
+			`	"If you want some military advice," he says, "here's what I can tell you. You cannot create peace using violence. Most people on the pirate worlds are not pirates, just ordinary people unlucky enough to be born there. Or people who feel unwelcome everywhere else."`
+				goto advice
+			label kids
+			`	"It's true," he says. "If you fight the pirates, innocent lives will be lost."`
+			label advice
+			`	"Then what do you suggest we do?" you ask.`
+			`	"Well," he says, "it's worth noting that most people on the 'pirate' worlds are not pirates. They're just anarchists. As a monk, I feel a sort of kinship with them."`
+			choice
+				`	"How so?"`
+				`	"Naturally."`
+					goto continue
+			`	"For starters, we both wear black all the time," he says, grinning. "And more to the point, we're both seeking to build an alternative community according to our own ideals. Historically, monasticism can actually be seen as a form of utopic anarchism - 'Fear none but God' and all that."`
+			choice
+				`	"Of course."`
+				`	"That makes absolutely no sense. Are you joking around with me?"`
+			label continue
+			`	He grins. "Well, that's a tangent, anyway. My real advice is this: figure out what the people on those pirate worlds want, and how to offer it to them. Freedom from government intervention would be a good start. But that means no annexing their territory for the Free Worlds. Instead, you could offer them some sort of pact: they stop supporting pirate fleets, and you agree to leave their planets in peace."`
+			choice
+				`	"Thanks for the advice. I'll see if we can work out something like that."`
+				`	"No way. We need to speak the language they understand. Overwhelming force."`
+					goto force
+			`	He wishes you the best of luck, and you return to the port.`
+				decline
+			label force
+			`	"It won't end," he says, "not unless you exterminate every last person on those planets. But I can't control what choices you make. Good luck." He returns to gardening, and you walk back to the spaceport.`
+				decline
+
 
 
 mission "FW Conservatory 1"
@@ -167,10 +214,10 @@ mission "FW Flamethrower 1"
 	name "Weapon Testing"
 	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
 	source
-		near Kraz 1 100
+		near "Kraz" 1 100
 	destination "Rust"
 	to offer
-		has "event: plasma turret available"
+		has "plasma turret available: offered"
 		random < 15
 	
 	on offer

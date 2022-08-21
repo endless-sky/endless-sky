@@ -21,6 +21,9 @@ mission "FW Diplomacy 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "joined the free worlds"
+		event "fw abandoned Greenrock" 60
+		event "Greenrock recovered" 420
 		conversation
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
 			branch suspended
@@ -1698,7 +1701,7 @@ mission "FW Albatross 1"
 					accept
 				`	"Actually, I'm gay too."`
 					goto metoo
-				`	"Ah. That certainly explains a lot."`
+				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
