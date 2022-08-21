@@ -50,13 +50,6 @@ mission "Liberate Kornephoros"
 			variant
 				"Falcon"
 				"Osprey" 2
-			variant
-				"Bastion"
-				"Argosy (Missile)" 2
-			variant
-				"Argosy (Blaster)"
-				"Hawk" 2
-				"Hawk (Rocket)"
 	npc
 		government "Free Worlds"
 		personality heroic disables
@@ -1858,24 +1851,20 @@ mission "FW Early Warning 3"
 		system "Kornephoros"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Falcon" 2
 				"Osprey" 2
+		fleet
+			names "free worlds capital"
 			variant
 				"Bastion"
 				"Argosy (Missile)" 2
-			variant
-				"Argosy (Blaster)"
-				"Hawk" 2
-				"Hawk (Rocket)" 2
 	npc
 		government "Free Worlds"
 		personality heroic disables staying derelict
 		system "Kornephoros"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Falcon"
 				"Osprey"
@@ -1886,7 +1875,6 @@ mission "FW Early Warning 3"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
 			variant
 				"Protector (Quad Blaster)"
 				"Frigate" 2
@@ -1896,7 +1884,6 @@ mission "FW Early Warning 3"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
 			variant
 				"Cruiser"
 				"Gunboat"
@@ -1934,13 +1921,11 @@ mission "FW Early Warning 4"
 			variant
 				"Falcon"
 				"Osprey" 2
+		fleet
+			names "free worlds capital"
 			variant
 				"Bastion"
 				"Argosy (Missile)" 2
-			variant
-				"Argosy (Blaster)"
-				"Hawk" 2
-				"Hawk (Rocket)"
 	npc
 		government "Free Worlds"
 		personality heroic disables waiting
@@ -1995,14 +1980,12 @@ mission "FW Early Warning 4"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
 			variant
 				"Protector (Quad Blaster)" 2
 				"Frigate" 2
 				"Gunboat"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
 			variant
 				"Protector (Quad Blaster)" 2
 				"Frigate" 2
