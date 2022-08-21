@@ -813,7 +813,7 @@ mission "Unfettered: Prove Your Strength 2"
 		log `Helped a young Unfettered captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain who seems to grow wiser by the day. He has impressive leadership and combat skills, and seems to be a fan of acquiring bigger and bigger ships. He's always trying to improve his tactics..`
 		conversation
-			`"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". Come see me again soon if you are up for a challenge. I'm sure that I will have what you want."`
+			`"Here is your share: <payment>. You have saved my life, Captain <first>, and I shall never forget it. You have earned the right to know my name: "Si-Ra". It is one I deserve and wear proudly. Come see me again soon if you are up for a challenge. I'm sure that I will have what you want."`
 			branch "hydra question"
 				not "Unfettered: Attracted Attention: offered"
 			choice
@@ -1210,7 +1210,16 @@ mission "Unfettered: Materials Intercepted"
 		outfit "Materials" -142
 		payment 2000000
 		log "Helped Nimo by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, I wonder how it is related to the Alphas, and the Shadows."
-		dialog "You cannot find Nimo to bring the materials directly to him, but since you know where this is supposed to go you arrange for a delivery there. Later on, you receive your payment of <payment>."
+		conversation
+			`You look for Nimo in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
+			`	The Elder then shakes your hands in true human fashion. "Jiko has just told me of your success, captain. Congratulations are in order!"`
+			choice
+				`	"Thanks. Here is the cargo."`
+					goto cargo
+				`	"Jiko? I thought his name was Si-Ra."`
+			`	"He wishes that were his name! When we appoint a warlord, we also give him a name, indicative of his function. He may then wear it proudly, and that name protects him as well. Real names have power, you see... Do you not react when hearing your name, <first>? It identifies you, and a warlord is meant to become different when he earns the title. He must fit the task. To represent that, their names are changed, though they can still use their old names.`
+			`	"Si-Ra actually means the raging sea, it is a title apointed to the warlords that must stand against enemies, no matter how strong, and never give up or break. They may lose battles, but never the war. As the sea, they can be calm. However, in time of need, they can show sign of the flame burning within them, and let it out." He seems very passionate about it. It occurs to you he probably participated in the creation of some of the warlord titles. "The sea takes all kinds of punishment without real damage, and some think they may tame it, as space... They can't. Those named Si-Ra are the masters of the sea, the masters of space. They never give any information to the enemy when captured, and..."`
+			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>."`
 
 ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
 	sprite "ship/hai marauder sea scorpion"

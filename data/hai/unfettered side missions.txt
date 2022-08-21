@@ -458,7 +458,7 @@ mission "Unfettered: Stop The Duel"
 				decline
 	on decline
 		set "unfettered: stop the duel"
-		fine 10000000
+		fine 4000000
 
 
 
