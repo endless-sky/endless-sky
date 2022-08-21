@@ -488,6 +488,9 @@ government "Mercenaries"
 government "Hydra"
 	swizzle 1
 	"player reputation" -1000
+	"attitude toward"
+		"Shadow" -.5
+		"Korath" -.01
 	"display name" "Pirate"
 	bribe 0
 	fine 0
@@ -495,6 +498,8 @@ government "Hydra"
 
 government "Shadow"
 	swizzle 4
+	"attitude toward"
+		"Hydra" -.5
 	bribe 0
 	fine 0
 	"friendly hail" "friendly unfettered"
