@@ -15,8 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 #include <map>
+#include <tuple>
 
 class Sprite;
+
+// Used specifically for trigger based sprites
+enum Indication{INDICATE, NO_INDICATE, DEFAULT_INDICATE};
 
 // Class holding all of the animation parameters required to animate a sprite;
 class SpriteParameters
@@ -26,8 +30,17 @@ public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
 
-	void SetSprite(std::string trigger, const Sprite *sprite);
-	const Sprite *GetSprite(std::string trigger = "default") const;
+	void SetSprite(std::string trigger, const Sprite *sprite, Indication indication);
+	const Sprite *GetSprite() const;
+	const Sprite *GetSprite(std::string trigger) const;
+	Indication GetIndication() const;
+	Indication GetIndication(std::string trigger) const;
+	bool IndicateReady() const;
+
+	void SetTrigger(std::string trigger);
+	bool IsTrigger(std::string trigger) const;
+
+	const std::map<std::string, std::tuple<const Sprite*, Indication>> *GetAllSprites() const;
 
 public:
 	// Act like a struct
@@ -49,8 +62,11 @@ public:
 	bool indicateReady = false;
 
 private:
+	// Used to trigger different animations
+	std::string trigger = "default";
+
 	// Sprites to be animated
-	std::map<std::string, const Sprite*> sprites;
+	std::map<std::string, std::tuple<const Sprite*, Indication>> sprites;
 };
 
 #endif

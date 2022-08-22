@@ -21,22 +21,58 @@ SpriteParameters::SpriteParameters()
 
 SpriteParameters::SpriteParameters(const Sprite* sprite)
 {
-	this->sprites.insert(std::pair<std::string, const Sprite*>("default", sprite));
+	auto tuple = std::tuple<const Sprite*, Indication>{sprite, Indication::DEFAULT_INDICATE};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication>>("default", tuple));
 }
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, Indication indication)
 {
-	this->sprites.insert(std::pair<std::string, const Sprite*>(trigger, sprite));
+	auto tuple = std::tuple<const Sprite*, Indication>{sprite, indication};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication>>(trigger, tuple));
 }
 
+const Sprite *SpriteParameters::GetSprite() const
+{
+	auto it = this->sprites.find(this->trigger);
+	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
+}
 
 const Sprite *SpriteParameters::GetSprite(std::string trigger) const
 {
 	auto it = this->sprites.find(trigger);
+	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
+}
 
-	if(it != this->sprites.end()){
-		return it->second;
-	} else {
-		return nullptr;
-	}
+Indication SpriteParameters::GetIndication() const
+{
+	auto it = this->sprites.find(this->trigger);
+	return (it == this->sprites.end()) ? Indication::DEFAULT_INDICATE : std::get<1>(it->second);
+}
+
+Indication SpriteParameters::GetIndication(std::string trigger) const
+{
+	auto it = this->sprites.find(trigger);
+	return (it == this->sprites.end()) ? Indication::DEFAULT_INDICATE : std::get<1>(it->second);
+}
+
+bool SpriteParameters::IndicateReady() const
+{
+	auto it = this->sprites.find(this->trigger);
+	return (it == this->sprites.end()) ? this->indicateReady : std::get<1>(it->second) != Indication::NO_INDICATE;
+}
+
+void SpriteParameters::SetTrigger(std::string trigger)
+{
+	this->trigger = trigger;
+}
+
+bool SpriteParameters::IsTrigger(std::string trigger) const
+{
+	auto it = this->sprites.find(trigger);
+	return it != this->sprites.end();
+}
+
+const std::map<std::string, std::tuple<const Sprite*, Indication>> *SpriteParameters::GetAllSprites() const
+{
+	return &this->sprites;
 }

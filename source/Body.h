@@ -19,11 +19,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdint>
 #include <string>
+#include <map>
 
 class DataNode;
 class DataWriter;
 class Government;
 class Mask;
+class Outfit;
 class Sprite;
 
 enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT};
@@ -85,6 +87,7 @@ protected:
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
 	bool ReadyForAction() const;
+	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
 
 	// Finish transitioning between states
 	void FinishStateTransition() const;

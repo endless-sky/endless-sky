@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Mask.h"
 #include "MaskManager.h"
+#include "Outfit.h"
 #include "Random.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -36,7 +37,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 	SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
 	spriteState->randomize = true;
-	spriteState->SetSprite("default", sprite);
+	spriteState->SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
 }
 
 
@@ -226,7 +227,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	const Sprite* sprite = SpriteSet::Get(node.Token(1));
 
 	SpriteParameters* spriteData = &this->sprites[state];
-	spriteData->SetSprite("default", sprite);
+	spriteData->SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -234,7 +235,31 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	// to do that unless it is repeating endlessly.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
+		if(child.Token(0) == "trigger" && child.Size() >= 3)
+		{
+			const Sprite* triggerSprite = SpriteSet::Get(node.Token(2));
+			std::string trigger = child.Token(1);
+			if(GameData::Outfits().Find(trigger) == nullptr){
+				child.PrintTrace("Unrecognized outfit: " + trigger);
+			}
+
+			if(child.Size() >= 4){
+				// Override global indication, if trigger based sprite animation should/should not block the desired action
+				// Typically jumping or firing
+				if(child.Token(3) == "indicate"){
+					spriteData->SetSprite(trigger, triggerSprite, Indication::INDICATE);
+				} else if(child.Token(3) == "no indicate"){
+					spriteData->SetSprite(trigger, triggerSprite, Indication::NO_INDICATE);
+				} else {
+					child.PrintTrace("Unrecognized token: " + child.Token(3) + " ==> Using global indication setting");
+					spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE);
+				}
+			} else {
+				// Default to indication value for this state
+				spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE);
+			}
+		} 
+		else if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
 			spriteData->frameRate = child.Value(1) / 60.;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteData->frameRate = 1. / child.Value(1);
@@ -295,6 +320,22 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				out.Write(tags[i], sprite->Name());
 				out.BeginChild();
 				{
+					const std::map<std::string, std::tuple<const Sprite*, Indication>> *triggerSprites = spriteState->GetAllSprites();
+
+					for(auto it = triggerSprites->begin(); it != triggerSprites->end(); ++it){
+						if(it->first != "default"){
+							const Sprite* triggerSprite = std::get<0>(it->second);
+							Indication indication = std::get<1>(it->second);
+
+							if(indication == Indication::DEFAULT_INDICATE)
+								out.Write("trigger", it->first, triggerSprite->Name());
+							else if(indication == Indication::NO_INDICATE)
+								out.Write("trigger", it->first, triggerSprite->Name(), "no indicate");
+							else if(indication == Indication::INDICATE)
+								out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+						}
+					}
+
 					if(spriteState->frameRate != static_cast<float>(2. / 60.))
 						out.Write("frame rate", spriteState->frameRate * 60.);
 					if(spriteState->delay)
@@ -359,7 +400,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	this->sprites[state].SetSprite("default", sprite);
+	this->sprites[state].SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
 	currentStep = -1;
 }
 
@@ -430,6 +471,28 @@ bool Body::ReadyForAction() const
 {
 	// Never ready for action if transitioning between states
 	return this->indicateReady ? this->stateReady : !this->stateTransitionRequested;
+}
+
+// Used to assign triggers for all states according to the outfits present
+void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
+{	
+	bool triggerSet[BodyState::NUM_STATES];
+
+	for(const auto it : outfits)
+	{
+		for(int i = 0; i < BodyState::NUM_STATES; i++)
+		{
+			if(!triggerSet[i])
+			{
+				SpriteParameters* toSet = &this->sprites[i];
+				if(toSet->IsTrigger(it.first->Name()))
+				{
+					toSet->SetTrigger(it.first->Name());
+					triggerSet[i] = true;
+				}
+			}
+		}
+	}
 }
 
 // Called when the body is ready to transition between states.

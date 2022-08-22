@@ -1745,8 +1745,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
-			// If the ship was transitioning states while landing, finish any animation transitions.
-			this->FinishStateTransition();
+			if(zoom <= 0.f)
+			{
+				// If the ship was transitioning states while landing, finish any animation transitions.
+				this->FinishStateTransition();
+				// Check upon takeoff if any state triggers need to be updated
+				this->AssignStateTriggers(outfits);
+			}
+			
 			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
@@ -3775,6 +3781,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// and cache this ship's jump range.
 		if(outfit->Get("jump drive"))
 			jumpRange = JumpRange(false);
+		
+		this->AssignStateTriggers(outfits);
 	}
 }
 
