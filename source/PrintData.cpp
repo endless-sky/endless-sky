@@ -172,9 +172,9 @@ void PrintData::PrintShipShipyards()
 void PrintData::PrintLoadedShipStats(bool variants)
 {
 	cout << "model" << ',' << "category" << ',' << "cost" << ',' << "shields" << ','
-		<< "hull" << ',' << "mass" << ',' << "crew" << ',' << "cargo" << ','
-		<< "bunks" << ',' << "fuel" << ',' << "outfit" << ',' << "weapon" << ','
-		<< "engine" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
+		<< "hull" << ',' << "mass" << ',' << "required crew" << ',' << "cargo" << ','
+		<< "bunks" << ',' << "fuel" << ',' << "outfit space" << ',' << "weapon capacity" << ','
+		<< "engine capacity" << ',' << "speed" << ',' << "accel" << ',' << "turn" << ','
 		<< "energy generation" << ',' << "max energy usage" << ',' << "energy capacity" << ','
 		<< "idle/max heat" << ',' << "max heat generation" << ',' << "max heat dissipation" << ','
 		<< "gun mounts" << ',' << "turret mounts" << ',' << "fighter bays" << ','
