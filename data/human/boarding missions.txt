@@ -536,7 +536,7 @@ mission "Slave Crew Rescue (No Brig Variant)"
 				"flagship crew" < 3
 
 			label "blackmailing with a big boarding party"
-			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he said coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
+			`	Tarquin eyes your boarding party and stares at you icily for at least five uncomfortable seconds before finally replying. "Fine," he says coldly, his eyes blazing with barely contained rage, even as the rest of his face remains calm. He remains as tense as a steel cable as you and your team repair the ship in stony silence, awkwardly collecting your payment once the <origin> is up and running again.`
 			apply
 				set "tarquin hates you"
 			`	You feel relieved that the whole situation is over once you're safely back on board your own ship.`
