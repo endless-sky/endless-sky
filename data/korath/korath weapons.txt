@@ -1017,7 +1017,7 @@ outfit "Firestorm Torpedo"
 	"firestorm torpedo capacity" -1
 	"energy generation" 0.06
 	"heat generation" 0.3
-	description `More massive in both size and destructive capability, the Firestorm Torpedo dwarfs comparable weaponry. Its massive blast radius makes up for its lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Turret.`
+	description `More massive in both size and destructive capability, the Firestorm Torpedo dwarfs comparable weaponry. Its massive blast radius makes it a dangerous part of larger ship arsenals, despite the lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Turret.`
 
 outfit "Firestorm Torpedo Rack"
 	plural "Firestorm Torpedo Racks"
