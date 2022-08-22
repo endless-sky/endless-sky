@@ -285,7 +285,7 @@ ship "Korath Ravager"
 		"heat dissipation" .7
 		"fuel capacity" 900
 		"cargo space" 50
-		"outfit space" 915
+		"outfit space" 943
 		"weapon capacity" 520
 		"engine capacity" 177
 		weapon
@@ -295,6 +295,7 @@ ship "Korath Ravager"
 			"hit force" 6600
 	outfits
 		"Korath Inferno" 2
+		"Korath Warder"
 		"Korath Fire-Lance" 2
 		"Firelight Missile Bank" 6
 		"Firelight Missile" 108
