@@ -281,7 +281,7 @@ ship "Korath Ravager"
 		"required crew" 193
 		"bunks" 221
 		"mass" 1120
-		"drag" 12.3
+		"drag" 11.3
 		"heat dissipation" .7
 		"fuel capacity" 900
 		"cargo space" 50
@@ -336,11 +336,8 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "While perhaps, at first, seeming like a super sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly new ship design the Exiles have fielded since the Exodus but also the first purposed directly towards combat usage instead of needing to also double as population and supply housing. It's size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj.
-
-The 'nra'ret-Class Chaser provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units, and, to this end, is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of the powerful Korath Infernos and two smaller heat lances to continue burning enemies in close quarters as well."```
-
-
+	description "While perhaps, at first, seeming like a super sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly new ship design the Exiles have fielded since the Exodus but also the first purposed directly towards combat usage instead of needing to also double as population and supply housing. It's size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj."
+	description "The 'nra'ret-Class Chaser provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units, and, to this end, is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of the powerful Korath Infernos and two smaller heat lances to continue burning enemies in close quarters as well."
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
