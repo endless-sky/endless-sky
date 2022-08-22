@@ -96,7 +96,7 @@ outfit "Finisher Pod"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 5
@@ -133,7 +133,7 @@ outfit "Finisher Maegrolain"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 6
@@ -158,7 +158,7 @@ outfit "Active Finisher"
 		sprite "projectile/finisher"
 			"frame rate" 2.4
 		"live effect" "finisher trail" 50
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "small explosion"
 		"lifetime" 500
@@ -215,7 +215,8 @@ effect "finisher impact"
 	sprite "effect/finisher impact"
 		"no repeat"
 		"frame rate" 20
-	"lifetime" 13
+	sound "torpedo hit"
+	"lifetime" 18
 	"random spin" 20
 	"random velocity" 2
 	"velocity scale" -.2
