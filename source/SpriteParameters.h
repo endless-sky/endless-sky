@@ -30,7 +30,7 @@ public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
 
-	// Add a sprite-trigger mapping	
+	// Add a sprite-trigger mapping
 	void SetSprite(std::string trigger, const Sprite *sprite, Indication indication);
 	// Get the sprite associated with the current trigger
 	const Sprite *GetSprite() const;
