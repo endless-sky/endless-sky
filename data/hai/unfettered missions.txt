@@ -782,7 +782,7 @@ mission "Unfettered: Prove Your Strength 2"
 			`	"One last thing: We should not go there by jump drive, especially considering where we are going. It would only attract unwanted attention to us. Besides, we should not travel through Wanderer space; I do not want to try their patience or tolerance considering you have some association with us." You accompany him to your ship, and he admits to quite liking the interior of it, as well as general look of it. Your ship "is adequate for a warrior," he says.`
 				accept
 	on visit
-		dialog `You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it.`
+		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left your escort allocated to carrying the jump drives behind - better launch and wait for it."
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
@@ -829,7 +829,7 @@ mission "Unfettered: Attracted Attention"
 	to offer
 		has "Unfettered: Prove your strength 2: active"
 	on offer
-		require "Jump Drive" 1
+		require "Jump Drive"
 	on enter "Almaaz"
 		dialog `The Unfettered curses a name, which you can barely hear, "Hydra." He then comes closer to address you directly, "There are even more unfettered humans than anticipated. I told you not to come here with a jump drive!"`
 	npc evade
@@ -965,7 +965,7 @@ mission "Unfettered: Escort Hai Fleet"
 			`	"Good! The ships are mostly carrying supplies and passengers, so you would do well to stay with them whatever happens. If I understand correctly, a small Hai fleet will accompany you too."`
 				accept
 	on enter "Due Yoot"
-		dialog `The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once.`
+		dialog "The fleet signals you they are waiting for one last ship. They ask you to land so you can launch with all of them at once."
 	npc accompany save
 		government "Hai Merchant (Sympathizers)"
 		to spawn
@@ -998,7 +998,7 @@ mission "Unfettered: Escort Hai Fleet"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
 		payment 500000
-		dialog `The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Nimo.`
+		dialog "The fleet admiral thanks you for escorting them, and gives you <payment>. He says you should probably go to the spaceport and speak with Nimo."
 
 mission "Unfettered: Taking Off With Hai Fleet"
 	invisible
@@ -2247,7 +2247,7 @@ mission "Unfettered: Solifuge 8: Useful Korath Scientists"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
-		dialog `You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them.`
+		dialog "You do not yet have 300 tons of nitrogen human coolers that Mera requested in your cargo hold or installed on your ships. In order to load directly into your cargo hold, you need to first unselect your ships by ctrl+clicking on them."
 	on complete
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
@@ -2320,7 +2320,7 @@ mission "Unfettered: Solifuge 9: Shield Beetles Mass Production"
 				`	"Time to go then."`
 					accept
 	on stopover
-		dialog `You find your cargo waiting for you and take it without asking questions or losing time.`
+		dialog "You find your cargo waiting for you and take it without asking questions or losing time."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on fail
@@ -2636,7 +2636,7 @@ mission "Unfettered: Close Quarter"
 				goto stories
 			label lucky
 			action
-				outfit "Dual Pulse Pistols" 1
+				outfit "Dual Pulse Pistols"
 				set "unfettered: won the duel"
 			`	You actually manage to reach cover, thanks to him stumbling a bit on the approach. He was probably anxious to beat you... Now that you are behind cover, you have a strategic advantage, and he misses his shots. It seems that the pistol quickly runs out of power, and using this opportunity you shoot back at him. Most of your shots miss, but because he cannot shoot back and you are well protected anyway, you can take the time to aim precisely. You manage to shoot his arm and he drops his pistol. He does not shout at all when getting shot, simply sits on the ground on that position, showing he surrenders. You get out of your cover and grab the other pistol. "You can keep them; you've earned it. This was a fair fight, Captain! I'd like to try again some time, and maybe get my pistols back..." He then goes away and sits on the side, probably thinking about what mistakes he made.`
 				goto heyi

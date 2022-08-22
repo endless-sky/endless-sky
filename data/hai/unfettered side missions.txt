@@ -1058,7 +1058,7 @@ mission "Unfettered: Special Cargo 1B"
 				die
 			label one
 			action
-				outfit "Gold Bars" 1
+				outfit "Gold Bars"
 			``
 				goto dropbars
 			label three
@@ -1119,7 +1119,7 @@ mission "Unfettered: Special Cargo 1B"
 			`	You launch your fleet and send a challenge to the warlord, putting her authority and competence in question. She cannot resist the urge to come and kill you, you only hope you can beat her and collect the item from her ship.`
 				flee
 	on accept
-		outfit "Mystery Cube" 1
+		outfit "Mystery Cube"
 
 
 mission "Unfettered: Special Cargo 2"
@@ -1187,8 +1187,8 @@ mission "Unfettered: Special Cargo 2"
 				`	"I was almost caught last time. I'm not trying again."`
 					decline
 	on stopover
+		dialog "You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship."
 		outfit "Mystery Cube" -1
-		dialog `You land, and the Hai start loading their food onto your ship. You tell them you want to stretch your legs (which isn't entirely a lie), and they don't appear to suspect a thing. You find a clearing and choose to bury the cube just below the ground. You remember to mark the exact spot, and then you return to your ship.`
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
