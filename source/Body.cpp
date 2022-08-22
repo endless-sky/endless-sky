@@ -285,7 +285,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 {
 	// Write all states to file
 	if(allStates){
-		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-firing", "sprite-launching", "sprite-landing", "sprite-jumping"};
+		std::string tags[BodyState::NUM_STATES] = {"sprite-flying", "sprite-firing", "sprite-launching", "sprite-landing", "sprite-jumping", "sprite-disabled"};
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = &this->sprites[i];
@@ -494,7 +494,6 @@ void Body::SetStep(int step) const
 	// this same time step, we don't need to redo the calculations.
 	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
 		return;
-	currentStep = step;
 
 	// If the sprite only has one frame, no need to animate anything.
 	float frames = sprite->Frames();
@@ -571,7 +570,7 @@ void Body::SetStep(int step) const
 	} else {
 
 		// Override any delay if the ship wants to jump
-		bool ignoreDelay = this->transitionState == BodyState::JUMPING;
+		bool ignoreDelay = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED;
 
 		if(delayed >= transitionDelay || ignoreDelay){
 
@@ -592,10 +591,11 @@ void Body::SetStep(int step) const
 			}
 			stateReady = false;
 		} else {
-			delayed += frameRate;
+			delayed += (step - currentStep) * frameRate;
 			// Maintain last frame of animation in delay
-			frameOffset -= frameRate;
-			frame = lastFrame;
+			frameOffset -= (step - currentStep) * frameRate;
+			frame = min(frame, lastFrame);
 		}
 	}
+	currentStep = step;
 }

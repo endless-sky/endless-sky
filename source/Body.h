@@ -26,7 +26,7 @@ class Government;
 class Mask;
 class Sprite;
 
-enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, NUM_STATES, CURRENT};
+enum BodyState{FLYING, FIRING, LAUNCHING, LANDING, JUMPING, DISABLED, NUM_STATES, CURRENT};
 
 // Class representing any object in the game that has a position, velocity, and
 // facing direction and usually also has a sprite.
@@ -116,7 +116,7 @@ private:
 
 private:
 	// Animation parameters.
-	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
+	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
@@ -148,7 +148,6 @@ private:
 	mutable float rewindFrame = 0.f;
 	mutable float delayed = 0;
 	mutable bool stateReady = false;
-	mutable bool ignoreDelay = false;
 };
 
 

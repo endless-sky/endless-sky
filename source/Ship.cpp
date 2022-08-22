@@ -204,6 +204,8 @@ void Ship::Load(const DataNode &node)
 			LoadSprite(child, BodyState::LAUNCHING);
 		else if(key == "sprite-jumping")
 			LoadSprite(child, BodyState::JUMPING);
+		else if(key == "sprite-disabled")
+			LoadSprite(child, BodyState::DISABLED);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -1764,6 +1766,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(isDisabled)
 	{
 		// If you're disabled, you can't initiate landing or jumping.
+		this->SetState(BodyState::DISABLED);
 	}
 	else if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
@@ -1999,97 +2002,99 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// moment, its boarding target should be its parent ship.
 	if(CanBeCarried() && !(target && target == GetShipToAssist()))
 		target = GetParent();
-	if(target && !isDisabled)
-	{
-		Point dp = (target->position - position);
-		double distance = dp.Length();
-		Point dv = (target->velocity - velocity);
-		double speed = dv.Length();
-		isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
-
-		bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
-
-		if(!commands.Has(Command::JUMP) && !hasPrimary){
-
-			bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
-
-			if(activeEnemyTarget && target->isInSystem && targetInRange){
-				this->SetState(BodyState::FIRING);
-			} else {
-				//Target is not an enemy
-				this->SetState(BodyState::FLYING);
-			}
-		} else if(hasPrimary){
-			this->SetState(BodyState::FIRING);
-		}
-
-		if(isBoarding && !CanBeCarried())
+	if(!isDisabled){
+		if(target)
 		{
-			if(activeEnemyTarget)
-				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
-					|| target->GetSystem() != GetSystem())
-				isBoarding = false;
-		}
-		if(isBoarding && !pilotError)
-		{
-			Angle facing = angle;
-			bool left = target->Unit().Cross(facing.Unit()) < 0.;
-			double turn = left - !left;
+			Point dp = (target->position - position);
+			double distance = dp.Length();
+			Point dv = (target->velocity - velocity);
+			double speed = dv.Length();
+			isBoarding = (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 
-			// Check if the ship will still be pointing to the same side of the target
-			// angle if it turns by this amount.
-			facing += TurnRate() * turn;
-			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
-			if(left != stillLeft)
-				turn = 0.;
-			angle += TurnRate() * turn;
+			bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
 
-			velocity += dv.Unit() * .1;
-			position += dp.Unit() * .5;
+			if(!commands.Has(Command::JUMP) && !hasPrimary){
 
-			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
-			{
-				if(cloak)
-				{
-					// Allow the player to get all the way to the end of the
-					// boarding sequence (including locking on to the ship) but
-					// not to actually board, if they are cloaked.
-					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
+				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+
+				if(activeEnemyTarget && target->isInSystem && targetInRange){
+					this->SetState(BodyState::FIRING);
+				} else {
+					//Target is not an enemy
+					this->SetState(BodyState::FLYING);
 				}
-				else
-				{
+			} else if(hasPrimary){
+				this->SetState(BodyState::FIRING);
+			}
+
+			if(isBoarding && !CanBeCarried())
+			{
+				if(activeEnemyTarget)
 					isBoarding = false;
-					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+				else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
+						|| target->GetSystem() != GetSystem())
+					isBoarding = false;
+			}
+			if(isBoarding && !pilotError)
+			{
+				Angle facing = angle;
+				bool left = target->Unit().Cross(facing.Unit()) < 0.;
+				double turn = left - !left;
+
+				// Check if the ship will still be pointing to the same side of the target
+				// angle if it turns by this amount.
+				facing += TurnRate() * turn;
+				bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
+				if(left != stillLeft)
+					turn = 0.;
+				angle += TurnRate() * turn;
+
+				velocity += dv.Unit() * .1;
+				position += dp.Unit() * .5;
+
+				if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
+				{
+					if(cloak)
 					{
-						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
-						GetTargetShip()->SelfDestruct();
+						// Allow the player to get all the way to the end of the
+						// boarding sequence (including locking on to the ship) but
+						// not to actually board, if they are cloaked.
+						if(isYours)
+							Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
 					}
 					else
-						hasBoarded = true;
+					{
+						isBoarding = false;
+						bool isEnemy = government->IsEnemy(target->government);
+						if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
+						{
+							Messages::Add("The " + target->ModelName() + " \"" + target->Name()
+								+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
+							GetTargetShip()->SelfDestruct();
+						}
+						else
+							hasBoarded = true;
+					}
 				}
 			}
-		}
-	} else {
+		} else {
 
-		shared_ptr<Minable> target = this->GetTargetAsteroid();
+			shared_ptr<Minable> target = this->GetTargetAsteroid();
 
-		if(!commands.Has(Command::JUMP) && !hasPrimary){
-			if(target && !isDisabled){
-				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
-				// If in range, or the weapon range hasn't been calculated yet.
-				if(targetInRange){
-					this->SetState(BodyState::FIRING);
+			if(!commands.Has(Command::JUMP) && !hasPrimary){
+				if(target && !isDisabled){
+					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+					// If in range, or the weapon range hasn't been calculated yet.
+					if(targetInRange){
+						this->SetState(BodyState::FIRING);
+					}
+				} else {
+					// No target but still flying around and doesn't want to jump
+					this->SetState(BodyState::FLYING);
 				}
-			} else {
-				// No target but still flying around and doesn't want to jump
-				this->SetState(BodyState::FLYING);
+			} else if(hasPrimary){
+				this->SetState(BodyState::FIRING);
 			}
-		} else if(hasPrimary){
-			this->SetState(BodyState::FIRING);
 		}
 	}
 
@@ -2301,9 +2306,7 @@ void Ship::DoGeneration()
 		outfitScan = max(0., outfitScan - 1.);
 
 	// Update ship supply levels.
-	if(isDisabled)
-		PauseAnimation();
-	else
+	if(!isDisabled)
 	{
 		// Ramscoops work much better when close to the system center. Even if a
 		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
