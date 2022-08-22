@@ -1246,7 +1246,7 @@ mission "Unfettered: Wanderer Homeworld"
 		dialog `Judging by the population compared to the other worlds, this appears to be the capital of these aliens. You should land to introduce yourself as an diplomat between them and the Hai.`
 
 mission "Unfettered: Speak Hai"
-	name `Acquire a translator`
+	name `Meet the Wanderers and acquire a translator`
 	description `You need to be able to act as a diplomat between the Hai and the aliens up north. First go and meet those aliens. Then go to <stopovers> to see if He-Yi will provide a translator for you.`
 	source "Firelode"
 	stopover "Warfeed"
@@ -1280,6 +1280,8 @@ mission "Unfettered: Speak Hai"
 			choice
 				`	"I guess I'll try to land on their planet."`
 					accept
+	on visit
+		dialog "You have not yet met the Wanderers and acquired a translator from <stopovers> to communicate with them. "
 	to complete
 		has "language: Wanderer"
 	on complete
@@ -1294,7 +1296,7 @@ mission "Unfettered: Bring Detainer"
 	description `He-Yi has asked you to earn a translation device by bringing back a powerful alien weapon, said to be able to neutralize the engines of its target. You should probably look around Kor Sestor space.`
 	source "Warfeed"
 	to offer
-		has "Unfettered: Know Your Enemy: active"
+		has "Unfettered: Speak Hai: active"
 		has "First Contact: Wanderer: offered"
 		not "language: Wanderer"
 	on offer
