@@ -275,12 +275,12 @@ ship "Korath Ravager"
 	thumbnail "thumbnail/ravager"
 	attributes
 		category "Heavy Warship"
-		"cost" 3760000
+		"cost" 24760000
 		"shields" 32700
 		"hull" 9850
 		"required crew" 193
 		"bunks" 221
-		"mass" 1120
+		"mass" 979
 		"drag" 11.3
 		"heat dissipation" .7
 		"fuel capacity" 900
