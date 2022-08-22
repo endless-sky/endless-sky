@@ -455,6 +455,7 @@ void Body::FinishStateTransition() const
 		this->indicateReady = transitionedState->indicateReady;
 		this->transitionFinish = transitionedState->transitionFinish;
 		this->transitionRewind = transitionedState->transitionRewind;
+		this->transitionDelay = transitionedState->transitionDelay;
 
 		this->currentState = this->transitionState;
 		// No longer need to change states
@@ -568,7 +569,12 @@ void Body::SetStep(int step) const
 			stateReady = false;
 		}
 	} else {
-		if(delayed >= transitionDelay){
+
+		// Override any delay if the ship wants to jump
+		bool ignoreDelay = this->transitionState == BodyState::JUMPING;
+
+		if(delayed >= transitionDelay || ignoreDelay){
+
 			if(transitionFinish && !transitionRewind){
 				// Finish the ongoing state's animation then transition
 				frame = min(frame, lastFrame);
@@ -587,6 +593,9 @@ void Body::SetStep(int step) const
 			stateReady = false;
 		} else {
 			delayed += frameRate;
+			// Maintain last frame of animation in delay
+			frameOffset -= frameRate;
+			frame = lastFrame;
 		}
 	}
 }

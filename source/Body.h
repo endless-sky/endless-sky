@@ -148,6 +148,7 @@ private:
 	mutable float rewindFrame = 0.f;
 	mutable float delayed = 0;
 	mutable bool stateReady = false;
+	mutable bool ignoreDelay = false;
 };
 
 
