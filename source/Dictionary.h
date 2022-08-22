@@ -19,23 +19,60 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+typedef std::vector<double>::size_type dict;
+
 // This class stores a mapping from character string keys to values, in a way
 // that prioritizes fast lookup time at the expense of longer construction time
 // compared to an STL map. That makes it suitable for ship attributes, which are
-// changed much less frequently than they are queried.
-class Dictionary : private std::vector<std::pair<const char *, double>> {
+// changed much less frequently than they are queried. For critical paths, it
+// offers direct access to the attribute values stored in a vector.
+class Dictionary : private std::vector<dict> {
 public:
 	// Access a key for modifying it:
-	double &operator[](const char *key);
-	double &operator[](const std::string &key);
+	double &operator[](const char *name);
+	double &operator[](const std::string &name);
+	inline double &operator[](const dict &key)
+	{
+		return store.data()[key];
+	}
+
+	// Update a key if it exists. Faster if you know it to be present.
+	void Update(const char *name, const double &value);
+	void Update(const std::string &name, const double &value);
+	inline void Update(const dict &key, const double &value)
+	{
+		store.data()[key] = value;
+	}
+
+
 	// Get the value of a key, or 0 if it does not exist:
-	double Get(const char *key) const;
-	double Get(const std::string &key) const;
+	//double Get(const char *name) const;
+	double Get(const std::string &name) const;
+	inline double Get(const dict &key) const
+	{
+		return store.data()[key];
+	}
+
+	// Make the vector large enough to fit every attribute.
+	void Grow();
+
+	// Mark key as used for this dictionary.
+	void UseKey(const dict &key);
+
+	// Get the key id matching to a attribute name, or vice versa.
+	static const char *GetName(const dict &key);
+	static const dict GetKey(const std::string &name);
 
 	// Expose certain functions from the underlying vector:
-	using std::vector<std::pair<const char *, double>>::empty;
-	using std::vector<std::pair<const char *, double>>::begin;
-	using std::vector<std::pair<const char *, double>>::end;
+	using std::vector<dict>::empty;
+	using std::vector<dict>::begin;
+	using std::vector<dict>::end;
+
+
+private:
+	// The actual data stored. For every instance, the same position in the
+	// vector holds the same kind of value.
+	std::vector<double> store;
 };
 
 

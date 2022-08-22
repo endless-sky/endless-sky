@@ -61,6 +61,7 @@ public:
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
+	double Get(const dict &key) const;
 	const Dictionary &Attributes() const;
 
 	// Determine whether the given number of instances of the given outfit can
@@ -73,6 +74,7 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	void Set(const dict &key, double value);
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;

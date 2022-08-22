@@ -310,19 +310,20 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight = 20;
 
 	bool hasNormalAttributes = false;
-	for(const pair<const char *, double> &it : outfit.Attributes())
+	for(const dict &at : outfit.Attributes())
 	{
 		static const set<string> SKIP = {
 			"outfit space", "weapon capacity", "engine capacity", "gun ports", "turret mounts"
 		};
-		if(SKIP.count(it.first))
+		const char *name = Dictionary::GetName(at);
+		if(SKIP.count(name))
 			continue;
 
-		auto sit = SCALE.find(it.first);
+		auto sit = SCALE.find(name);
 		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
 		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		auto bit = BOOLEAN_ATTRIBUTES.find(name);
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
@@ -331,8 +332,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		else
 		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			double value = outfit.Attributes().Get(at);
+			attributeLabels.emplace_back(string(name) + ":");
+			attributeValues.emplace_back(Format::Number(value * scale) + units);
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;

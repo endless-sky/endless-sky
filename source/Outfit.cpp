@@ -281,7 +281,10 @@ void Outfit::Load(const DataNode &node)
 			attributes[child.Token(0)] = max(0., child.Value(1));
 		}
 		else if(child.Size() >= 2)
+		{
+			attributes.Grow();
 			attributes[child.Token(0)] = child.Value(1);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -399,6 +402,13 @@ double Outfit::Get(const string &attribute) const
 
 
 
+double Outfit::Get(const dict &key) const
+{
+	return attributes.Get(key);
+}
+
+
+
 const Dictionary &Outfit::Attributes() const
 {
 	return attributes;
@@ -411,13 +421,14 @@ const Dictionary &Outfit::Attributes() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
-	for(const auto &at : other.attributes)
+	for(const dict &at : other.attributes)
 	{
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
 		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
+		const char *name = Dictionary::GetName(at);
+		auto it = MINIMUM_OVERRIDES.find(name);
 		if(it != MINIMUM_OVERRIDES.end())
 		{
 			minimum = it->second;
@@ -427,13 +438,14 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		}
 
 		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(at.first, "required crew"))
+		if(!strcmp(name, "required crew"))
 			minimum = !attributes.Get("automaton");
 
-		double value = Get(at.first);
+		const double value = attributes.Get(at);
+		const double otherValue = other.attributes.Get(at);
 		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
+		if(value + otherValue * count < minimum - EPS)
+			count = (value - minimum) / -otherValue + EPS;
 	}
 
 	return count;
@@ -447,11 +459,13 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
-	for(const auto &at : other.attributes)
+	attributes.Grow();
+	for(const dict &at : other.attributes)
 	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
+		attributes.UseKey(at);
+		attributes[at] += other.attributes.Get(at) * count;
+		if(fabs(attributes.Get(at)) < EPS)
+			attributes.Update(at, 0.);
 	}
 
 	for(const auto &it : other.flareSprites)
@@ -479,6 +493,13 @@ void Outfit::Add(const Outfit &other, int count)
 void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
+}
+
+
+
+void Outfit::Set(const dict &key, double value)
+{
+	attributes.Update(key, value);
 }
 
 
