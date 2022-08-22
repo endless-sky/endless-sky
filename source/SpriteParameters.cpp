@@ -58,7 +58,7 @@ Indication SpriteParameters::GetIndication(std::string trigger) const
 bool SpriteParameters::IndicateReady() const
 {
 	auto it = this->sprites.find(this->trigger);
-	return (it == this->sprites.end()) ? this->indicateReady : std::get<1>(it->second) != Indication::NO_INDICATE;
+	return (it == this->sprites.end() || std::get<1>(it->second) == Indication::DEFAULT_INDICATE) ? this->indicateReady : std::get<1>(it->second) != Indication::NO_INDICATE;
 }
 
 void SpriteParameters::SetTrigger(std::string trigger)

@@ -30,16 +30,22 @@ public:
 	SpriteParameters();
 	explicit SpriteParameters(const Sprite *sprite);
 
+	// Add a sprite-trigger mapping	
 	void SetSprite(std::string trigger, const Sprite *sprite, Indication indication);
+	// Get the sprite associated with the current trigger
 	const Sprite *GetSprite() const;
 	const Sprite *GetSprite(std::string trigger) const;
+	// Get the indication associated with the current trigger
 	Indication GetIndication() const;
 	Indication GetIndication(std::string trigger) const;
+	// Does the selected sprite want to indicate before doing the action
 	bool IndicateReady() const;
 
+	// Set the current trigger
 	void SetTrigger(std::string trigger);
 	bool IsTrigger(std::string trigger) const;
 
+	// Used for saving the sprites.
 	const std::map<std::string, std::tuple<const Sprite*, Indication>> *GetAllSprites() const;
 
 public:
