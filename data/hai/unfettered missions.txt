@@ -258,7 +258,7 @@ mission "Unfettered Jump Drive 3"
 			choice
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
-					accept
+					goto jobboard
 			apply
 				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
@@ -282,13 +282,14 @@ mission "Unfettered Jump Drive 3"
 			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
 			choice
 				`	"I look forward to hearing from them."`
-					accept
+					goto jobboard
 				`	"What do you plan to do to the species that inhabits those worlds now?"`
 			
 			label wanderers
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
-				accept
+			label jobboard
+			`	"If you want to sell more Jump Drive to us you can do so by going to the job board."`
 	
 	on accept
 		outfit "Jump Drive" -1
@@ -296,38 +297,6 @@ mission "Unfettered Jump Drive 3"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
-
-
-
-mission "Unfettered Jump Drive 4"
-	repeat
-	minor
-	to offer
-		has "Unfettered Jump Drive 3: offered"
-		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		never
-	source
-		attributes "unfettered"
-	on offer
-		conversation
-			`Would you like to sell another jump drive to the Unfettered?`
-			choice
-				`	(No.)`
-					defer
-				`	(Yes.)`
-			`	As usual, they are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them.`
-				accept
-	
-	on accept
-		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
-		payment 1000000
-		"reputation: Hai (Unfettered)" >?= 40
-		fail "Unfettered Jump Drive 3"
-		fail "Unfettered Jump Drive 4"
 
 
 
@@ -1444,6 +1413,10 @@ ship "Auxiliary" "Auxiliary (Alpha with supplies)"
 	turret 0 -21 "Korath Disruptor"
 	turret 0 31 "Korath Slicer Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 
 outfit "Alpha Pirate Crew"
 	"crew defense" -100
@@ -1484,6 +1457,10 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 	turret 0 -21 "Korath Disruptor"
 	turret 0 31 "Korath Slicer Turret"
 	turret 0 83 "Bullfrog Anti-Missile"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
 
 mission "Unfettered: Solifuge 2: Auxiliary Design"
 	name `Scan the human ship`

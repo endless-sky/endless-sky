@@ -193,6 +193,32 @@ mission "Unfettered Tribute 3"
 
 
 
+
+mission "Unfettered Jump Drive 4"
+	name "Sell Jump Drive"
+	description "The Unfettered are willing to give you a million credits for a Jump Drive."
+	repeat
+	job
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+		not "Wanderers: Jump Drive Source: active"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
+	to complete
+		never
+	source
+		attributes "unfettered"
+	on accept
+		dialog "As usual, the Unfettered are more than willing to pay you a million credits for your jump drive, but you do not gain any additional information by talking with them."
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 1000000
+		"reputation: Hai (Unfettered)" >?= 40
+		fail "Unfettered Jump Drive 3"
+		fail "Unfettered Jump Drive 4"
+
+
+
 phrase "unfettered boarded"
 	word
 		`"This is not a fair fight. It is better to die with my crew standing than risk being slaughtered by inferior humans! You will not be allowed to capture this ship and use it against our brothers and sisters. I will take you down with us!"`
