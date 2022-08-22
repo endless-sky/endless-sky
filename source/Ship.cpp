@@ -3781,7 +3781,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// and cache this ship's jump range.
 		if(outfit->Get("jump drive"))
 			jumpRange = JumpRange(false);
-		
+
 		this->AssignStateTriggers(outfits);
 	}
 }
@@ -3806,7 +3806,7 @@ const vector<Hardpoint> &Ship::Weapons() const
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 bool Ship::CanFire(const Weapon *weapon) const
-{	
+{
 	if(!weapon || !weapon->IsWeapon())
 		return false;
 

@@ -258,7 +258,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 				// Default to indication value for this state
 				spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE);
 			}
-		} 
+		}
 		else if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
 			spriteData->frameRate = child.Value(1) / 60.;
 		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
@@ -475,7 +475,7 @@ bool Body::ReadyForAction() const
 
 // Used to assign triggers for all states according to the outfits present
 void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
-{	
+{
 	bool triggerSet[BodyState::NUM_STATES];
 
 	for(const auto it : outfits)
