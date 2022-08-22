@@ -117,7 +117,7 @@ private:
 private:
 	// Animation parameters.
 	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
-	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::CURRENT;
+	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
@@ -134,6 +134,7 @@ private:
 	// State based parameters
 	mutable bool transitionFinish = false;
 	mutable bool transitionRewind = false;
+	mutable int transitionDelay = 0;
 	mutable bool indicateReady = false;
 	mutable int pause = 0;
 
@@ -145,6 +146,7 @@ private:
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
 	mutable float rewindFrame = 0.f;
+	mutable float delayed = 0;
 	mutable bool stateReady = false;
 };
 

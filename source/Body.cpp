@@ -240,6 +240,8 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteData->frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteData->delay = child.Value(1);
+		else if(child.Token(0) == "transition delay" && child.Size() >= 2 && child.Value(1) > 0.)
+			spriteData->transitionDelay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
 			spriteData->scale = static_cast<float>(child.Value(1));
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
@@ -311,6 +313,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 						out.Write("transition finish");
 					if(spriteState->transitionRewind)
 						out.Write("transition rewind");
+					if(spriteState->transitionDelay)
+						out.Write("transition delay", spriteState->transitionDelay);
 				}
 				out.EndChild();
 			}
@@ -343,6 +347,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				out.Write("transition finish");
 			if(spriteState->transitionRewind)
 				out.Write("transition rewind");
+			if(spriteState->transitionDelay)
+				out.Write("transition delay", spriteState->transitionDelay);
 		}
 		out.EndChild();
 	}
@@ -360,7 +366,15 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 // Set the state.
 void Body::SetState(BodyState state)
 {
-	if(state != this->currentState){
+	if(state == this->currentState && this->transitionState != this->currentState){
+		// Cancel transition
+		stateTransitionRequested = false;
+
+		// Start replaying animation from current frame
+		frameOffset = -currentStep * frameRate;
+		frameOffset += frame;
+
+	} else if(state != this->currentState){
 		// Set the current frame to be the rewindFrame upon first request to state transition
 		if(!stateTransitionRequested && transitionRewind){
 			rewindFrame = frame;
@@ -368,7 +382,6 @@ void Body::SetState(BodyState state)
 			// Ensures that rewinding starts from correct frame.
 			frameOffset = -currentStep * frameRate;
 			frameOffset += rewindFrame;
-
 		}
 		stateTransitionRequested = true;
 	}
@@ -450,6 +463,7 @@ void Body::FinishStateTransition() const
 }
 
 
+
 // Mark this object to be removed from the game.
 void Body::MarkForRemoval()
 {
@@ -515,6 +529,9 @@ void Body::SetStep(int step) const
 	frame = max(0.f, frameRate * step + frameOffset);
 
 	if(!stateTransitionRequested){
+		// For when it needs to be applied to transition
+		delayed = 0.f;
+		
 		// If repeating, wrap the frame index by the total cycle time.
 		if(repeat){
 			frame = fmod(frame, cycle);
@@ -551,23 +568,27 @@ void Body::SetStep(int step) const
 			stateReady = false;
 		}
 	} else {
-		if(transitionFinish && !transitionRewind){
+		if(delayed >= transitionDelay){
+			if(transitionFinish && !transitionRewind){
 
-			// Finish the ongoing state's animation then transition
-			frame = min(frame, lastFrame);
+				// Finish the ongoing state's animation then transition
+				frame = min(frame, lastFrame);
 
-			if(frame >= lastFrame){
-				this->FinishStateTransition();
+				if(frame >= lastFrame){
+					this->FinishStateTransition();
+				}
+			} else if(!transitionFinish && transitionRewind){
+
+				// Rewind the ongoing state's animation, then transition.
+				frame = max(0.f, rewindFrame * 2.f - frame);
+
+				if(frame == 0.f){
+					this->FinishStateTransition();
+				}
 			}
-		} else if(!transitionFinish && transitionRewind){
-
-			// Rewind the ongoing state's animation, then transition.
-			frame = max(0.f, rewindFrame * 2.f - frame);
-
-			if(frame == 0.f){
-				this->FinishStateTransition();
-			}
+			stateReady = false;
+		} else {
+			delayed += frameRate;
 		}
-		stateReady = false;
 	}
 }

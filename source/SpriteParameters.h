@@ -31,6 +31,7 @@ public:
 	float startFrame = 0.f;
 	float scale = 1.f;
 	int delay = 0;
+	int transitionDelay = 0;
 
 	bool startAtZero = false;
 	bool randomize = false;
