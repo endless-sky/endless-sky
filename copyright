@@ -1400,10 +1400,12 @@ Files:
  images/effect/corrosion?spark/*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
+ images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/wanderer?flare/*
  images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
@@ -1419,6 +1421,8 @@ Files:
  images/outfit/*efreti?steering*
  images/outfit/*efreti?thruster*
  images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
  images/outfit/nuke*
  images/outfit/plasma?core*
  images/outfit/red?sun*
@@ -1437,12 +1441,14 @@ Files:
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
+ images/ship/flivver*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
  images/star/neutron*
  images/thumbnail/corvette*
+ images/thumbnail/flivver*
  images/thumbnail/mraven*
  images/thumbnail/msplinter*
  images/thumbnail/raven*

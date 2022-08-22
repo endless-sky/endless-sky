@@ -1742,6 +1742,7 @@ mission "Remnant: Heavy Laser"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1784,6 +1785,7 @@ mission "Remnant: Plasma Cannon"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1833,6 +1835,7 @@ mission "Remnant: Catalytic Ramscoop"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1873,6 +1876,7 @@ mission "Remnant: Electron Beam"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1913,6 +1917,7 @@ mission "Remnant: D94-YV Shield Generator"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1953,6 +1958,7 @@ mission "Remnant: S-970 Regenerator"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -2574,6 +2580,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	source "Wayfarer"
 	destination
 		government "Remnant"
+		not attributes "requires: gaslining"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
 	to offer
@@ -2615,6 +2622,7 @@ mission "Remnant: Broken Jump Drive 1"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2671,6 +2679,7 @@ mission "Remnant: Broken Jump Drive 2"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2715,6 +2724,7 @@ mission "Remnant: Broken Jump Drive 3"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2758,6 +2768,7 @@ mission "Remnant: Broken Jump Drive 4"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2801,6 +2812,7 @@ mission "Remnant: Broken Jump Drive 5"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"

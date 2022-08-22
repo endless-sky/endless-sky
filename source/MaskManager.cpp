@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MaskManager.h"
 
-#include "Files.h"
+#include "Logger.h"
 #include "Sprite.h"
 
 using namespace std;
@@ -49,7 +49,7 @@ void MaskManager::RegisterScale(const Sprite *sprite, double scale)
 	if(lb == scales.end() || lb->first != scale)
 		scales.emplace_hint(lb, scale, vector<Mask>{});
 	else if(!lb->second.empty())
-		Files::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + PrintScale(scale) + " was already generated.");
+		Logger::LogError("Collision mask for sprite \"" + sprite->Name() + "\" at scale " + PrintScale(scale) + " was already generated.");
 }
 
 
@@ -93,7 +93,7 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 	if(scalesIt == spriteMasks.end())
 	{
 		if(warned.insert(make_pair(sprite, true)).second)
-			Files::LogError("Warning: sprite \"" + sprite->Name() + "\": no collision masks found.");
+			Logger::LogError("Warning: sprite \"" + sprite->Name() + "\": no collision masks found.");
 		return EMPTY;
 	}
 
@@ -114,7 +114,7 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scal
 			for(auto &&s : scales)
 				warning += "\n\t\t" + PrintScale(s.first);
 		}
-		Files::LogError(warning);
+		Logger::LogError(warning);
 	}
 	return EMPTY;
 }
