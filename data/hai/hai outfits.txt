@@ -343,7 +343,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
+	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and cause their reactors to shut down. When that happens, they install these."
 
 
 outfit "Quantum Keystone"
@@ -468,7 +468,7 @@ outfit `"Baellie" Atomic Engines`
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"steering flare sound" "atomic tiny"
-	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie".`
+	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie."`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"

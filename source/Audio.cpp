@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Music.h"
 #include "Point.h"
 #include "Random.h"
@@ -155,7 +156,7 @@ void Audio::CheckReferences()
 {
 	if(!isInitialized)
 	{
-		Files::LogError("Warning: audio could not be initialized. No audio will play.");
+		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
 	}
 
@@ -245,6 +246,10 @@ void Audio::Play(const string &sound, const Point &position)
 void Audio::PlayMusic(const string &name)
 {
 	if(!isInitialized)
+		return;
+
+	// Skip changing music if the requested music is already playing.
+	if(name == currentTrack->GetSource())
 		return;
 
 	// Don't worry about thread safety here, since music will always be started

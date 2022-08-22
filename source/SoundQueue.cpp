@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SoundQueue.h"
 
-#include "Files.h"
+#include "Logger.h"
 #include "Sound.h"
 #include "SoundSet.h"
 
@@ -102,7 +102,7 @@ void SoundQueue::operator()()
 
 			// Load the sound file.
 			if(!sounds.Modify(sound.name)->Load(sound.path, sound.name))
-				Files::LogError("Unable to load sound \"" + sound.name + "\" from path: " + sound.path);
+				Logger::LogError("Unable to load sound \"" + sound.name + "\" from path: " + sound.path);
 
 			lock.lock();
 			++completed;

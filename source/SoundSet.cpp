@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SoundSet.h"
 
-#include "Files.h"
+#include "Logger.h"
 #include "Sound.h"
 
 using namespace std;
@@ -42,5 +42,5 @@ void SoundSet::CheckReferences() const
 {
 	for(auto &&it : sounds)
 		if(it.second.Name().empty())
-			Files::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+			Logger::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
 }

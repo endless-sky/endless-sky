@@ -14,8 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Files.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -147,7 +147,7 @@ void StartConditions::FinishLoading()
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Files::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
 			+ GetDisplayName() + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
