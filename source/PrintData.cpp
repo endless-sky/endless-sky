@@ -91,7 +91,7 @@ void PrintData::Ships(const char *const *argv)
 void PrintData::PrintBaseShipStats()
 {
 	cout << "model" << ',' << "category" << ',' << "chassis cost" << ',' << "loaded cost" << ',' << "shields" << ','
-		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dis" << ','
+		<< "hull" << ',' << "mass" << ',' << "drag" << ',' << "heat dissipation" << ','
 		<< "crew" << ',' << "bunks" << ',' << "cargo" << ',' << "fuel" << ','
 		<< "outfit" << ',' << "weapon" << ',' << "engine" << ',' << "gun mounts" << ','
 		<< "turret mounts" << ',' << "fighter bays" << ',' << "drone bays" << '\n';
