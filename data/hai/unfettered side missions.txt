@@ -497,10 +497,10 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	to offer
 		has "Unfettered: Solifuge 5: Materials For Ships: done"
 		or
-			not "Unfettered: offered loot"
+			not "unfettered: offered loot"
 			random < 30
 	on defer
-		set "Unfettered: offered loot"
+		set "unfettered: offered loot"
 	on offer
 		conversation
 			`When passing in front of a bar, you notice Si-Ra. He seems to be having quite a lot of fun. The bar itself does not seem that alien to you.`
@@ -594,7 +594,7 @@ mission "Unfettered: Loot: Ion Cannon Materials"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or they are in one of your escort.`
 	on complete
-		clear "Unfettered: offered loot"
+		clear "unfettered: offered loot"
 		log `Found some "defenseless" cargo in space, and brought it back to the Unfettered.`
 		outfit "Loot" -400
 		payment 2000000
@@ -1111,7 +1111,7 @@ mission "Unfettered: Special Cargo 1B"
 				payment -8000000
 			label leaveinpeace
 			action
-				set "Unfettered: brokered deal"
+				set "unfettered: brokered deal"
 				"reputation: Mhairi's Legion" >?= 1
 			``
 				accept
@@ -1136,7 +1136,7 @@ mission "Unfettered: Special Cargo 2"
 	on offer
 		conversation
 			branch bought
-				has "Unfettered: brokered deal"
+				has "unfettered: brokered deal"
 			branch stole
 				has "Unfettered: Special Cargo 1B: done"
 			action
@@ -1154,9 +1154,9 @@ mission "Unfettered: Special Cargo 2"
 			label afterlog
 			`You find He-Yi in his war room, which is full of strange objects - only half of which appear to be weapons. You notice some keystone carvings, but also a statue, probably of some Hai goddess. He seems to have multiple missives, serving as his eyes and ears everywhere. You bring him the cube. "Very well done! But this is not all. You will have a big [reward, payment] once the mission is completed."`
 			branch nodeal
-				not "Unfettered: brokered deal"
+				not "unfettered: brokered deal"
 			action
-				clear "Unfettered: brokered deal"
+				clear "unfettered: brokered deal"
 				payment 2000000
 			`	You tell him that you had to pay a few millions to get the cube. "You were not supposed to negotiate, but I guess that is acceptable. These <payment> will [alleviate, reduce] the cost. Next time try to show more [cunning, strength]. Thankfully, money is not really much of an issue to us."`
 			label nodeal

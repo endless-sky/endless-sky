@@ -374,10 +374,10 @@ mission "Unfettered: Bring Hai"
 		has "Unfettered Jump Drive 1: offered"
 		has "reputation: Hai" >= 0
 		or
-			not "Unfettered: offered bring hai"
+			not "unfettered: offered bring hai"
 			random < 20
 	on defer
-		set "Unfettered: offered bring hai"
+		set "unfettered: offered bring hai"
 	substitutions
 		# they're speaking Hai but so are the Wanderers
 		<firstgroup> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the children are."
@@ -491,7 +491,7 @@ mission "Unfettered: Bring Hai"
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
-		clear "Unfettered: offered bring hai"
+		clear "unfettered: offered bring hai"
 		log `Helped some Hai citizens to join the Unfettered.`
 		payment 100000
 		dialog `The Unfettered thank you for helping these "True" Hai find their way home, and give you <payment>. After discussing with them, the Unfettered Chief says, "If you want to help us again, the hospitals on Darkcloak are in grave need of resupply." Checking back on the group, you can see they are doing fine and already finding a place to call home. They may not have much, but they seem not to require anything at all, other than to be here.`
@@ -969,7 +969,7 @@ mission "Unfettered: Escort Hai Fleet"
 	npc accompany save
 		government "Hai Merchant (Sympathizers)"
 		to spawn
-			has "Unfettered: stopped on Greenbloom"
+			has "unfettered: stopped on Greenbloom"
 		personality escort timid launching
 		system "Due Yoot"
 		fleet
@@ -981,20 +981,20 @@ mission "Unfettered: Escort Hai Fleet"
 	npc accompany
 		government "Hai Merchant (Sympathizers)"
 		to spawn
-			has "Unfettered: stopped on Greenbloom"
+			has "unfettered: stopped on Greenbloom"
 		personality escort launching
 		system "Due Yoot"
 		fleet "Small Hai"
 	npc evade
 		government "Mercenaries"
 		to spawn
-			has "Unfettered: stopped on Greenbloom"
+			has "unfettered: stopped on Greenbloom"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Large Northern Pirates" 3
 		fleet "Small Northern Pirates" 2
 	on complete
-		clear "Unfettered: stopped on Greenbloom"
+		clear "unfettered: stopped on Greenbloom"
 		log `Escorted a Hai fleet carying supplies and passengers into Unfettered space.`
 		event "unfettered: shipment lost" 20
 		payment 500000
@@ -1008,7 +1008,7 @@ mission "Unfettered: Taking Off With Hai Fleet"
 	to offer
 		has "Unfettered: Escort Hai Fleet: active"
 	on offer
-		set "Unfettered: stopped on Greenbloom"
+		set "unfettered: stopped on Greenbloom"
 		conversation
 			`You go meet the fleet admiral assigned to this so you can coordinate, and after a while everyone signals they are ready to take off.`
 				flee
@@ -1336,11 +1336,11 @@ mission "Unfettered: Solifuge 1: Geocoris Design"
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
 	on waypoint
 		dialog `You do not see the Geocoris that Tear-Fi mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
-		set "Unfettered: entered Ya Hai"
+		set "unfettered: entered Ya Hai"
 	npc "scan cargo"
 		government "Hai"
 		to spawn
-			has "Unfettered: entered Ya Hai"
+			has "unfettered: entered Ya Hai"
 		personality target entering uninterested waiting
 		system "Ya Hai"
 		fleet
@@ -1365,9 +1365,9 @@ mission "Unfettered: Geocoris Arriving"
 	source
 		system "Ya Hai"
 	to offer
-		has "Unfettered: entered Ya Hai"
+		has "unfettered: entered Ya Hai"
 	on offer
-		clear "Unfettered: entered Ya Hai"
+		clear "unfettered: entered Ya Hai"
 		conversation
 			`Shortly after you land, you see the Geocoris signature coming into the system on your radar. You take off immediately.`
 				flee
@@ -1729,7 +1729,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			label showlogs
 			action
 				log `Found out where the Alphas were getting their jump drives from, in theory at least. The problem is the information is encrypted, but the Unfettered will work hard to decipher it.`
-				set "Unfettered: jump drive source"
+				set "unfettered: jump drive source"
 				payment 200000
 			`	"Those are probably too well-encrypted to be of much use, but we will try to break them anyway, maybe with some outside help. Thank you for sharing this information with us. We will transfer a bonus of <payment> for this."`
 				decline
@@ -2070,7 +2070,7 @@ mission "Unfettered: Solifuge 6: Shipyard Upgrade"
 		conversation
 			`The warlord from earlier hands you <payment>, and introduces himself, "I would not give you my [true, original] name, but you may refer to me as He-Yi, the name that I [gained, deserved] when working for the Unfettered, and is attached to my current [status, position] as a warlord."`
 			branch noboughtship
-				not "Unfettered: bought ship"
+				not "unfettered: bought ship"
 			choice
 				`	(Ask him to pay for the ship you bought, and show him the detailed scanner logs.)`
 				`	(Just roll with it. You do not need extra money, and the more detailed scans were not asked for.)`
@@ -2131,7 +2131,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 					goto waterbug
 				`	"Actually, I am only here to get a tribute for the Unfettered. These ships seem too costly for me, sorry."`
 			action
-				set "Unfettered: too suspect"
+				set "unfettered: too suspect"
 			``
 				goto suspect
 			label centipede
@@ -2156,7 +2156,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 				fine 13000000
 			label bought
 			action
-				set "Unfettered: bought ship"
+				set "unfettered: bought ship"
 			`	He shows you to the ship you requested and tells you all about its different qualities, but you don't really listen - you only bought this ship so he would let you finish your scans. You did have to spend a fine sum for it though... You could always sell it back to someone else, at the shipyard. Maybe you could use this ship's scanners to get an even better scan of the ships here.`
 			label shipbought
 			`	Now that you're in the newly acquired ship, you pretend to look around until he leaves, seeing you are satisfied with your purchase. Then you get back to scanning the shipyard.`
@@ -2169,7 +2169,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 					decline
 			label finishscan
 			branch toosuspect
-				has "Unfettered: too suspect"
+				has "unfettered: too suspect"
 			`	You manage to finish the scans without any more interruption, and are eager to get back to your ship to get all of this over with.`
 				accept
 			label toosuspect
@@ -2177,7 +2177,7 @@ mission "Unfettered: Solifuge 7: Hai Shipyard Intel"
 				fine 100000
 			`	It looks like you have aroused too much suspicion. Maybe he was waiting to see if you would actually leave, or maybe he alerted the local authorities, but the result is the same: they arrest you and even fine you <fine>.`
 			action
-				clear "Unfettered: too suspect"
+				clear "unfettered: too suspect"
 	on decline
 		fail "Unfettered: Solifuge 6: Shipyard Upgrade"
 
@@ -2507,12 +2507,12 @@ mission "Unfettered: Start Of The War"
 					accept
 			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few."`
 			action
-				"Unfettered: questions" = -1
+				"unfettered: questions" = -1
 			label questions
 			action
-				"Unfettered: questions" ++
+				"unfettered: questions" ++
 			branch enough
-				"Unfettered: questions" > 3
+				"unfettered: questions" > 3
 			choice
 				`	"What does this sword do?"`
 				`	"Why is your ship named Tejolis?"`
@@ -2556,7 +2556,7 @@ mission "Unfettered: Start Of The War"
 			label enough
 			`	"I have answered enough of your questions. Some things should remain a mystery. Knowledge is power, after all."`
 			action
-				clear "Unfettered: questions"
+				clear "unfettered: questions"
 
 event "joined the unfettered"
 	government "Escort"
