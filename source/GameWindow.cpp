@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "ImageBuffer.h"
+#include "Logger.h"
 #include "Screen.h"
 
 #include "opengl.h"
@@ -39,7 +40,7 @@ namespace {
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
-			Files::LogError("(SDL message: \"" + message + "\")");
+			Logger::LogError("(SDL message: \"" + message + "\")");
 			SDL_ClearError();
 			return true;
 		}
@@ -82,7 +83,7 @@ bool GameWindow::Init()
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Files::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
+		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int minWidth = 640;
@@ -393,10 +394,10 @@ bool GameWindow::HasSwizzle()
 
 
 
-void GameWindow::ExitWithError(const string& message, bool doPopUp)
+void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Files::LogError(message);
+	Logger::LogError(message);
 	checkSDLerror();
 
 	// Show the error message in a message box.

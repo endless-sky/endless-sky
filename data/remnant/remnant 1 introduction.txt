@@ -127,12 +127,14 @@ mission "First Contact: Remnant"
 
 
 
-# Compatibility patch for those who made contact with the Remnant prior to v0.9.15:
-mission "Remnant: Blood Test Patch"
+# Compatibility patch for those who made contact with the Remnant prior to v0.9.15
+# v2 has been added to force those on continuous who already have the patch to get it again so that they get the post-scanning hostility/tolerance hail changes
+mission "Remnant: Blood Test Patch v2"
 	landing
 	invisible
 	to offer
 		has "event: ember waste label"
+		not "Remnant: Scanning Tolerances: done"
 	on offer
 		set "remnant: blood test pure"
 		event "remnant: change hail"
@@ -1740,6 +1742,7 @@ mission "Remnant: Heavy Laser"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1782,6 +1785,7 @@ mission "Remnant: Plasma Cannon"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1831,6 +1835,7 @@ mission "Remnant: Catalytic Ramscoop"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1871,6 +1876,7 @@ mission "Remnant: Electron Beam"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1911,6 +1917,7 @@ mission "Remnant: D94-YV Shield Generator"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -1951,6 +1958,7 @@ mission "Remnant: S-970 Regenerator"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	to offer
 		or
@@ -2165,7 +2173,7 @@ conversation "taely cultural data"
 			defer
 	`	Replying that you can, you make your way through the crowds and find an empty table. Moments later Taely appears and grabs two trays from the dispenser before heading towards you. She settles down in the opposite chair with a look of exhaustion.`
 	`	"It is good to see you again, <first>," she sings softly. When you sign a reply she sits up, smiles, and switches to sign. "My, you are a quick learner. This is much faster." Her quick gestures are hard to follow, but the language videos seem to have focused on a practical vocabulary that has most of the words she uses.`
-	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand".) "...the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
+	`	"I have not fully..." (She makes a sign that you don't understand, but seems similar to the signs for "break" and "understand.") "... the technology you retrieved for us, but we are learning much from what we have already found. Could you help us catch up with what has happened in ancestral space since our Exodus?"`
 	choice
 		`	"Yes. What can I do to help?"`
 		`	"Sorry, not interested."`
@@ -2435,6 +2443,62 @@ mission "Remnant: Salvage 6"
 
 
 
+mission "Remnant: Scanning Tolerances"
+	name "Deliver Data to <planet>"
+	description `Deliver data crystal to a Remnant named Torza on <destination>.`
+	landing
+	deadline 15
+	source
+		government "Remnant"
+	destination
+		government "Remnant"
+		not distance 0
+		not attributes "remnant station"
+	to offer
+		has "license: Remnant Capital"
+		not "remnant untrusted"
+		not "Deep: Remnant 3: Revealed: done"
+		"reputation: Remnant" >= 100
+		random < 30
+	on offer
+		conversation
+			`You were just in the process of disembarking from the <ship> when a young Remnant jogs up to you. "Good day, Captain <first>. Sorry to interrupt, but we have an urgent delivery that needs to go to Torza on <destination>. Could you deliver this please?"`
+			choice
+				`	"Yes, I can."`
+					goto agreement
+				`	"What is it?"`
+					goto questioning
+				`	"Sorry, not right now."`
+					defer
+			label questioning
+			`	"A data archive with the latest briefings and analyses. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
+			choice
+				`	"Yes, I can."`
+					goto agreement
+				`	"Sorry, not right now."`
+					defer
+			label agreement
+			`	"Thank you." They hand you the case. "Take it to <destination> by <date>. Torza will meet you there."`
+				accept
+	on complete
+		event "remnant: scanning tolerance"
+		conversation
+			`You step out of the <ship> to see a non-descript Remnant standing attentively next to the landing pad. "Captain <first>! We have been waiting for you." They lead you into a nearby bunker. Inside, a single Remnant is standing over a hologram displaying fortifications and what appear to be troops and ships moving around.`
+			`	"Torza, Captain <first> is here." The Remnant's gestures convey a deep sense of respect.`
+			`	The Remnant steps forward and accepts the case from you. The case pops open, and he slots the crystal into a spot on the display. He nods as the display pops up several confirmations of data integrity. "Well, you have certainly made many ripples since you arrived in our little corner of the galaxy." He gestures and the large display zooms in on a spot to show you walking through a spaceport outfitter. The display shifts to show you helping wounded onto your ship. The scene shifts again to show you launching the small stealth surveillance satellite. Then the table shifts back to the display of troop movements.`
+			`	"You have not been with us too long, but you have shown yourself to be trustworthy and eager to help." He gestures at the display. "As you can see, your actions have not gone unobserved. We have decided to amend your IFF registration as a result. He points to a set of slots next to the table similar to the ones that are installed on your ship. "Please place both your licenses in those slots, and I will confirm your side of the change."`
+			choice
+				`	(Place my licenses in the designated spots.)`
+					goto comply
+				`	"You have been watching me?"`
+			`	"Yes. There is very little that goes on in our worlds that is not observed by someone, and sometimes these events garner more attention than others." He looks at you. "You are one such. As a stranger among us, you were subject to much attention, although you probably did not notice most of it. Some felt it was too risky to trust you as far as we did, but the consensus was that you are worth the trust. Now," he gestures towards the console again, "place your licenses there, please."`
+			label comply
+			`	Once you do as you are told, he inserts several unique objects, which share similarities with your licenses, into slots on his side of the table and taps several controls. "You are not yet one of us, but this brings you one step closer. Your IFF signature has been updated, and our ships' databases will be updated within a day." He removes the licenses and hands yours back to you with a relieved expression. "We are a curious people, and we fully understand the search for knowledge and to learn more about one's surroundings. But we also know how important it is to maintain our secrets.`
+			`	"Going forward, you are now authorized to scan Remnant ships, and we encourage you to do so, although you should wait a day or two for the update to propagate through our fleet." He looks amused by something, but his serious expression returns. "Scanning each other is, after all, a valuable form of security that gives us opportunities to spot infiltrators and unknown contaminants on returning ships. Scans are uploaded to our databases for signature matching via the Quantum Entangled Communicator built into the IFF mechanism onboard your ship, and we will return information such as alien outfit identification and tactical scan readouts whenever possible to help you."`
+			`	He gives a tired sigh. "While I would enjoy answering a few of your questions, I should get back to supervising the operation." He gestures at the display, which has resumed showing the tactical movements of troops. "Thanks again for all your help, <first>."`
+
+
+
 mission "Remnant: Expanded Horizons Quarg 1"
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
@@ -2516,6 +2580,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 	source "Wayfarer"
 	destination
 		government "Remnant"
+		not attributes "requires: gaslining"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
 	to offer
@@ -2557,6 +2622,7 @@ mission "Remnant: Broken Jump Drive 1"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2613,6 +2679,7 @@ mission "Remnant: Broken Jump Drive 2"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2657,6 +2724,7 @@ mission "Remnant: Broken Jump Drive 3"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2700,6 +2768,7 @@ mission "Remnant: Broken Jump Drive 4"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2743,6 +2812,7 @@ mission "Remnant: Broken Jump Drive 5"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "requires: gaslining"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -3714,7 +3784,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
 			choice
 				`	"Yes."`
-					goto  stormcontinue
+					goto stormcontinue
 				`	"How does that work?"`
 			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
 			label stormcontinue
@@ -3793,7 +3863,7 @@ mission "Remnant: Logistics 1"
 			label delivery
 			`	"That generator was originally scheduled for delivery 30 days from now, but it was ready earlier and the project can install it now. So, by bringing it over, you have enabled us to move the project forward and free up delivery capacity next month."`
 			`	"So, why did you offer this work to me?" you ask, trying to mimic the gestures you've seen that you think refer to one's self.`
-			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no...what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
+			`	He smiles and responds, "Very good! Very good! We schedule everything, but we maintain slack in the system to take advantage of opportunities like the power system being ready early, or to deal with emergencies. Sometimes, of course, we have to drop everything and sort the schedule out later. But, in normal times, we publish these jobs on the job board and captains that have capacity available can pick them up. The projects provide resource allocations to cover operating and crew costs, but there is no... what is the word? Margin, yes! Since your ship is not in our planned resources, you provide extra capacity, and we might be able to move some of our larger projects forward when you are in our space.`
 			choice
 				`	"Thanks for the opportunity."`
 					goto thanks

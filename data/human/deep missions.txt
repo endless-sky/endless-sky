@@ -1051,7 +1051,7 @@ mission "Deep: Project Hawking"
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
 			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
-			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
+			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "... <last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
 	on accept
@@ -2647,7 +2647,7 @@ mission "Stone of our Fathers 4"
 			choice
 				`	(Head to bed for some well deserved sleep.)`
 			`	The day is bright and the sky is clear, the storm long forgotten as you prepare your things. Both men meet you in the main room. Thorleif opens up his hand to accept the stone, which you gladly place into it. He smiles and looks it over, tracing his finger along its chiseled runes.`
-			`	"Thank you, <first>". You nod, happy to be done with this mission and free to fly the space lanes once more.`
+			`	"Thank you, <first>." You nod, happy to be done with this mission and free to fly the space lanes once more.`
 			`	"Just more thing," Thorleif adds with a sly grin. "I'll need a captain willing to ferry me to Alfheim. That's where my family's cairn is located."`
 			`	Before you know it, the three of you are on Helm's boat and heading for the spaceport.`
 			`	"Alfheim," Thorleif says idly, "you know of it? The name means the home of the Alfar, or elves as you call them. I've never been there, only heard of it. It'll be strange to visit the world of my ancestors."`
@@ -2714,7 +2714,7 @@ mission "Stone of our Fathers 5"
 				goto drinkandbemerry
 			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about half an hour before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
-			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize.  It is covered with filled with letters and images that are unfamiliar to you.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
 			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
@@ -3149,7 +3149,7 @@ mission "Home for Skadenga 2"
 			`	"Ah yes, don't worry. We have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards, who close in on you.`
 			`	"Regrettably, this is not an invitation you are at liberty to ignore. So let us be on our way, shall we?"`
 			label fancypants
-			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
+			`	You are brought to large research complex just outside the spaceport, and deposited in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
 			`	"Of course, sir." The administrator, whose name seems to be Lars, turns and is followed outside by his two goons.`
 			`	The man who spoke looks at you with a friendly smile and, without a shred of irony, says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
 			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Incorporated, and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep. We've been monitoring you ever since you first arrived and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
@@ -3268,7 +3268,7 @@ mission "Home for Skadenga 4"
 			`	"That is no surprise," Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
 			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
-			`	"Now", Hjlod says, "Tell me about Setstokkr. Did you find it?"`
+			`	"Now," Hjlod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
 				`	"I found nothing definitive."`
 					goto nothing
@@ -3345,8 +3345,6 @@ mission "Home for Skadenga 5"
 	on complete
 		event "mani refit" 21
 		conversation
-			apply
-				set "Asgard2"
 			scene "scene/citydark"
 			`Mani is a quiet, empty moon with only a few hubs of human activity. The Deep Security forces, Transport Union, and other semi-governmental fleets are all serviced here.`
 			`	A Transport Union executive meets you when you touch down. "It'll take a while for the ships to be ready, Captain <last>. We're primitive-proofing them so that those ice-savages from Nifel don't accidentally kill themselves. I'll send you a message when the ships are ready. It should take about three weeks," the executive explains as he skims through a time table displayed on his tablet.`
@@ -3654,7 +3652,7 @@ mission "Home for Skadenga 9"
 					goto prenext
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
 			branch buffboi
-				"combat rating" >  8104
+				"combat rating" > 8104
 			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag.`
 			label prenext
 			`	"If it wasn't the Allen boys who sent you, who do you work for? The Leshinskis? Mad Mikkel's Gang? Or maybe the Hanovarian?" Hroar pauses. "Nah, not his style. So who?"`
@@ -3934,10 +3932,14 @@ mission "Homecoming to Skadenga"
 	on complete
 		payment 50000
 		event "hjlod waits" 360
+		conversation
+			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
+			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment> credits, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
 
 
 
 mission "Stones of Skadenga 1"
+	landing
 	name "Stones of Skadenga"
 	source "Nifel"
 	passengers 5
@@ -3945,11 +3947,6 @@ mission "Stones of Skadenga 1"
 	description "Return the Skadenga mourners to <destination>."
 	to offer
 		has "Homecoming to Skadenga: done"
-	on offer
-		conversation
-			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
-			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
-				accept
 	on complete
 		event "skadenga mourners" 90
 		dialog

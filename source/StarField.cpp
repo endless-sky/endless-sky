@@ -112,7 +112,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 	if(allowAnimation && sprite != lastSprite)
 	{
 		transparency = 1.;
-		for(Body &body: haze[1])
+		for(Body &body : haze[1])
 			body.SetSprite(lastSprite);
 	}
 	lastSprite = sprite;
