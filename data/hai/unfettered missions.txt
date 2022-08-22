@@ -564,9 +564,11 @@ mission "Unfettered: Bring Medical Supplies"
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you're here, you're not sure you'll be able to leave without at least being accosted for your assistance with this.`
 			choice
 				`	(Signal them that I'm going to get the supplies.)`
-					accept
+					goto agree
 				`	(I don't have time for this.)`
 			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You probably also shouldn't stay landed here too long in case they decide to follow you.`
+			label agree
+			`	You are quickly assigned the collection of supplies from <stopovers>, and asked to go collect them as quickly as possible.`
 	on stopover
 		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo, and once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
 	on fail
@@ -647,7 +649,7 @@ mission "Unfettered: Prove Your Strength"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		has "Unfettered: Bring Medical Supplies: done"
-		has "armament deterrence" > 4
+		has "armament deterrence" >= 4
 	on offer
 		conversation
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, some of them are even armored. It seems they are ready for action at any time. You are happy to no longer be their enemy, at least for now.`
@@ -701,26 +703,17 @@ mission "Unfettered: Prove Your Strength"
 				accept
 			label "too many ships"
 			`	"Nice try, monkey. First you most park some of your ships! I will not be facing of against a huge fleet. One heavy warship is already almost too much. When that is the case, you will see me in orbit."`
+			``
+			`The Unfettered captain will only show up if you have a small enough amount of ships, that is not currently the case. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. You cannot have more than a heavy warship or a few lighter ships for this fight.)`
 				accept
-	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-	to complete
-		has "Unfettered: Beaten the captain"
-	on complete
-		clear "Unfettered: Beaten the captain"
-
-mission "Unfettered: Prove Your Strength Duel"
-	landing
-	repeat
-	invisible
-	source "Darkcloak"
-	to offer
-		has "Unfettered: Prove Your Strength: active"
-		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 	npc save disable
 		government "Hai (Unfettered Challenge)"
 		personality disables staying heroic target launching
 		ship "Sari'Sea Scorpion (Pulse)" "Intrepid"
+		to spawn
+			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
+		to despawn
+			"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you. "It seems you fight well. You have earned my respect today," he says with a voice so calm you are surprised it came from the same captain who so recently ago was provoking you for no apparent reason. In the background you can hear a fire roaring. It looks like the damage to his ship was serious.`
 			choice
@@ -737,15 +730,32 @@ mission "Unfettered: Prove Your Strength Duel"
 			label end
 			action
 				log `Defeated a young Unfettered captain in a duel.`
-				set "Unfettered: Beaten the captain"
+				set "unfettered: beaten the captain"
 				payment 100000
-				"reputation: Hai (Unfettered)" += 15
+				"reputation: Hai (Unfettered)" += 30
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I have transferred a small amount of <payment> to you to repair any damage I may have done to your ship. I will be landing on the surface soon to think about something other than this humiliating defeat I have just suffered. I do not need nor want your assistance in repairing damage, for that is a task best suited for the vanquished."`
 			`	"If you are feeling up to the challenge there are other captains that would be willing to duel you, if you do not have a fleet too big of course. None accept to fight more than 2 heavy warhips, some even prefer just 1, like me. Indeed we wish to fight and test your strength and exotic technologies or strategies, not to get humiliated."`
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail"
+	on visit
+		dialog "You have not yet defeated the Unfettered captain. If he did not show up it is probably because your fleet is too large."
+	to complete
+		has "unfettered: beaten the captain"
+	on complete
+		clear "unfettered: beaten the captain"
+
+mission "Unfettered: Trust Broken"
+	landing
+	to offer
+		has "Unfettered: Prove Your Strength: active"
+		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 <= 12
 	to fail
 		"ships: Transport" * 6 + "ships: Light Freighter" * 3 + "ships: Heavy Freighter" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 4 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 > 12
 	on fail
-		dialog `The Unfettered captain will only show up if you have a small enough amount of ships, that is not currently the case. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. You cannot have more than a heavy warship or a few lighter ships for this fight.)`
+		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
+		fail "Unfettered: Prove Your Strength"
+	to complete
+		has "unfettered: beaten the captain"
 
 
 
@@ -1872,7 +1882,7 @@ mission "Unfettered: Solifuge 5: Materials For Ships"
 		outfit "Silicon" -100
 		outfit "Silver" -15
 		payment 500000
-		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+		dialog `You bring your cargo to the local Unfettered shipyards, and they hand you <payment>. You see huge ships being built in the distance. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas. You notice that the job boards include missions to gather asteroids as well.`
 
 
 
