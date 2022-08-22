@@ -768,7 +768,7 @@ outfit "Gaktem GP Hybrid Steering"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
 	description "While Korath understanding of the ultimate origins of spacetime are still incomplete, their grudging divorce from jump drive technology has pushed Efreti scientists and engineers to begin to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma thrusters."
-	description "	Unless accompanied by some Korath power systems, these Efreti steering's energy consumption will often be more than the ship can handle. Their main advantage when compared to other Korath engines of the same size is their reduced heat production."
+	description "	Unless accompanied by some Korath power systems, this Efreti steering system's energy consumption will often be more than the ship can handle. Their main advantage when compared to other Korath engines of the same size is their reduced heat production."
 
 outfit "Nelmeb GP Hybrid Steering"
 	plural "Nelmeb GP Hybrid Steerings"
