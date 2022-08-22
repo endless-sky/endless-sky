@@ -36,7 +36,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 	SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
 	spriteState->randomize = true;
-	spriteState->sprite = sprite;
+	spriteState->SetSprite("default", sprite);
 }
 
 
@@ -70,10 +70,10 @@ const Sprite *Body::GetSprite(BodyState state) const
 	SpriteParameters* spriteState = &this->sprites[selected];
 
 	// Return flying sprite if the requested state's sprite does not exist.
-	if(spriteState != nullptr && spriteState->sprite != nullptr){
-		return spriteState->sprite;
+	if(spriteState != nullptr && spriteState->GetSprite() != nullptr){
+		return spriteState->GetSprite();
 	} else {
-		return this->sprites[BodyState::FLYING].sprite;
+		return this->sprites[BodyState::FLYING].GetSprite();
 	}
 
 }
@@ -226,7 +226,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	const Sprite* sprite = SpriteSet::Get(node.Token(1));
 
 	SpriteParameters* spriteData = &this->sprites[state];
-	spriteData->sprite = sprite;
+	spriteData->SetSprite("default", sprite);
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -289,7 +289,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = &this->sprites[i];
-			const Sprite* sprite = spriteState->sprite;
+			const Sprite* sprite = spriteState->GetSprite();
 
 			if(sprite){
 				out.Write(tags[i], sprite->Name());
@@ -321,7 +321,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		}
 	} else {
 		SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
-		const Sprite* sprite = spriteState->sprite;
+		const Sprite* sprite = spriteState->GetSprite();
 
 		if(!sprite)
 			return;
@@ -359,7 +359,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	this->sprites[state].sprite = sprite;
+	this->sprites[state].SetSprite("default", sprite);
 	currentStep = -1;
 }
 
@@ -440,7 +440,7 @@ void Body::FinishStateTransition() const
 		pause = 0;
 
 		// Default to Flying sprite if requested sprite does not exist.
-		SpriteParameters* transitionedState = this->sprites[this->transitionState].sprite != nullptr ?
+		SpriteParameters* transitionedState = this->sprites[this->transitionState].GetSprite() != nullptr ?
 										&this->sprites[this->transitionState] : &this->sprites[BodyState::FLYING];
 
 		// Update animation parameters.

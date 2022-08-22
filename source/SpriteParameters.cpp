@@ -14,10 +14,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sprite.h"
 
-SpriteParameters::SpriteParameters(){
+SpriteParameters::SpriteParameters()
+{
 
 }
 
-SpriteParameters::SpriteParameters(const Sprite* sprite) : sprite(sprite){
+SpriteParameters::SpriteParameters(const Sprite* sprite)
+{
+	this->sprites.insert(std::pair<std::string, const Sprite*>("default", sprite));
+}
 
+void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite)
+{
+	this->sprites.insert(std::pair<std::string, const Sprite*>(trigger, sprite));
+}
+
+
+const Sprite *SpriteParameters::GetSprite(std::string trigger) const
+{
+	auto it = this->sprites.find(trigger);
+
+	if(it != this->sprites.end()){
+		return it->second;
+	} else {
+		return nullptr;
+	}
 }
