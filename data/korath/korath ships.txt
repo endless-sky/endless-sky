@@ -328,8 +328,9 @@ ship "Korath Ravager"
 		angle 190
 	gun 98 75 "Firelight Missile Bank"
 		angle 170
-	turret -26.5 -11 "Korath Inferno"
-	turret 26.5 -11 "Korath Inferno"
+	turret -32.5 -53.5 "Korath Inferno"
+	turret 32.5 -53.5 "Korath Inferno"
+	turret 0 -23 "Korath Warder"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70

@@ -446,6 +446,7 @@ ship "Korath Ravager" "Korath Ravager (Crippler)"
 	gun "Firelight Missile Bank"
 	turret "Korath Warder"
 	turret "Korath Warder"
+	turret
 
 
 
