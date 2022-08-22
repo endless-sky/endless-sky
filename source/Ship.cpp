@@ -2840,7 +2840,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(left == stillLeft)
 			return false;
 	}
-	
+
 	// For any ship that is not the player flagship, jumps should not be restricted by animation if they are not in the system
 	return this->ReadyForAction() || !(this->isPlayerFlagship || isInSystem);
 }

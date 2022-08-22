@@ -531,7 +531,7 @@ void Body::SetStep(int step) const
 	if(!stateTransitionRequested){
 		// For when it needs to be applied to transition
 		delayed = 0.f;
-		
+
 		// If repeating, wrap the frame index by the total cycle time.
 		if(repeat){
 			frame = fmod(frame, cycle);
@@ -570,7 +570,6 @@ void Body::SetStep(int step) const
 	} else {
 		if(delayed >= transitionDelay){
 			if(transitionFinish && !transitionRewind){
-
 				// Finish the ongoing state's animation then transition
 				frame = min(frame, lastFrame);
 
@@ -578,7 +577,6 @@ void Body::SetStep(int step) const
 					this->FinishStateTransition();
 				}
 			} else if(!transitionFinish && transitionRewind){
-
 				// Rewind the ongoing state's animation, then transition.
 				frame = max(0.f, rewindFrame * 2.f - frame);
 
