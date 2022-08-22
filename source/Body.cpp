@@ -237,7 +237,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	{
 		if(child.Token(0) == "trigger" && child.Size() >= 3)
 		{
-			const Sprite* triggerSprite = SpriteSet::Get(node.Token(2));
+			const Sprite* triggerSprite = SpriteSet::Get(child.Token(2));
 			std::string trigger = child.Token(1);
 			if(GameData::Outfits().Find(trigger) == nullptr){
 				child.PrintTrace("Unrecognized outfit: " + trigger);
@@ -515,7 +515,7 @@ void Body::FinishStateTransition() const
 		this->randomize = transitionedState->randomize;
 		this->repeat = transitionedState->repeat;
 		this->rewind = transitionedState->rewind;
-		this->indicateReady = transitionedState->indicateReady;
+		this->indicateReady = transitionedState->IndicateReady();
 		this->transitionFinish = transitionedState->transitionFinish;
 		this->transitionRewind = transitionedState->transitionRewind;
 		this->transitionDelay = transitionedState->transitionDelay;
@@ -633,7 +633,7 @@ void Body::SetStep(int step) const
 	} else {
 
 		// Override any delay if the ship wants to jump
-		bool ignoreDelay = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED;
+		bool ignoreDelay = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED || this->transitionState == BodyState::LANDING;
 
 		if(delayed >= transitionDelay || ignoreDelay){
 

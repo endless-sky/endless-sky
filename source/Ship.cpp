@@ -1752,7 +1752,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				// Check upon takeoff if any state triggers need to be updated
 				this->AssignStateTriggers(outfits);
 			}
-			
+
 			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
@@ -3806,7 +3806,7 @@ const vector<Hardpoint> &Ship::Weapons() const
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 bool Ship::CanFire(const Weapon *weapon) const
-{
+{	
 	if(!weapon || !weapon->IsWeapon())
 		return false;
 
