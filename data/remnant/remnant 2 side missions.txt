@@ -157,11 +157,11 @@ mission "Remnant: Celebration 1"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
-		# random < 25
+		# random < 50
 		"day" = 7
 	on offer
 		conversation
-			`You stop by the starport just in time to see a large number of Remnant going somewhere together. A few of them notice you and gesture an invitation to accompany them, but, before you can react, Taely appears from the stream of people and approaches you.`
+			`You stop by the starport just in time to see a large group of Remnant departing. A few of the nearest notice your interest and begin gesturing recognition or various invitations to accompany them, but before you are able to respond, Taely appears from the stream of people and approaches you.`
 			`	"Well met, <first>. We were just going to the monthly Celebration of Remembrance. Would you like to accompany us?"`
 			choice
 				`	"Yes, I would."`
@@ -170,16 +170,16 @@ mission "Remnant: Celebration 1"
 					goto celebrationdefinition
 				`	"No thanks."`
 			label celebrationdeclined
-			`	She nods. "May the Embers guide you, <first>." With that, she rejoins the stream of people and vanishes from sight.`
+			`	She nods. "Well, may the Embers guide you, <first>." With that, she rejoins the stream of people as they vanish from sight.`
 				decline
 			label celebrationdefinition
-			`	"The Celebration of Remembrance is a gathering where we take a moment to remember where we have come from, appreciate where we are, and express our hope for the future." Her gestures take on a critical tone. "That sounds very formal, but it is more artistic than defined." She glances at the slowing flow of people. "It will be starting shortly, and I want to attend this month, so I should get moving. Do you want to come too?"`
+			`	"The Celebration of Remembrance is a gathering where we take a moment to remember where we have come from, appreciate where we are, and express hope for where we will be in the future." Her gestures take on a critical tone. "That sounds very formal, but it is more artistic than defined." She glances at the slowing flow of people. "It will be starting shortly, and I want to attend this month, so I should get moving. Would you like to join us?"`
 			choice
 				`	"Yes, I do."`
 				`	"No thanks."`
 					goto celebrationdeclined
 			label celebrationattendance
-			`	As the two of you join the flow of people Taely gestures once again. "I can provide you with some commentary if you like, but it is more about feeling than doing anything specific. Just to provide you with some context, this is a free-form dance mixed with singing and music. You are welcome to participate. Just try not to be disruptive, such as getting in the way of people dancing."`
+			`	As the two of you join the flow of people Taely gestures once again. "If you would like, I could provide you with some commentary and explanation, but it is more about feeling than doing anything specific. Together, we remember and celebrate through free-form dance mixed with singing and music. You are welcome to participate, but try not to disrupt or impede others in the way you join the dancing."`
 			choice
 				`	"No, that is alright. I will just experience it."`
 				`	"Yes, that would be appreciated."`
@@ -216,10 +216,10 @@ mission "Remnant: Celebration 1"
 			`	Around you, everyone stands still. Most look exhausted, and some are sitting on the floor or leaning against the wall. A few people look like they have been crying, with those nearby hugging them or touching their shoulder. Most of the people you can see have reverent and joyful expressions. After what feels like several minutes the doors open and people start to leave, and in short order the cave is nearly empty.`
 				goto celebrationend
 			label celebrationannotated
-			`	The flow of people you are a part of joins with other streams of people, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
-			`	Taely gestures quietly to you. "It will start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
+			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually coming out of the typical hallways and into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sounds of drips or trace lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
+			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
 			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
-			`	Suddenly you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	Suddenly you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
 			`	"Thump."`
@@ -228,13 +228,13 @@ mission "Remnant: Celebration 1"
 				`	(Look around the room.)`
 				`	(Move in time with the beat.)`
 			`	At your side, Taely gestures again. "Existence starts with the patterns of the universe, and our story starts with life."`
-			`	The beat echoes in the cavern, but you quickly manage to locate the source: an elderly Remnant using her hands to thump on a polished stalagmite. Judging by the resonance, it appears that it must be hollow. As you watch, a child steps up next to her and starts hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
+			`	The beat echoes in the cavern, but you quickly manage to locate the source: an elderly Remnant using her hands to drum against a polished stalagmite that, judging by the resonance, appears to be hollow. As you watch, a child steps up next to her and starts also hitting the rock with their palms, slightly off-beat, changing the pattern into a hauntingly familiar one:`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and have begun to move around in a circle. Everywhere you look there are people dancing in countless variations.`
-			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are already swaying their whole body while others are just nodding their heads or tapping their feet. Standing next to you, Taely has a hand over her heart, tapping softly in time. Soon you hear other drummers join in and the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and have begun to move around in a circle. Soon, everywhere you look there are people dancing, alone and together, in countless variations.`
+			`	Out of the chaos you here a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming but not overwhelming either:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
 				`	(Look around with anticipation.)`
@@ -242,13 +242,13 @@ mission "Remnant: Celebration 1"
 				`	(Look around nervously.)`
 			`	Taely notices your anxiety and gestures reassuringly. "They sing of the days of humanity's infancy; when we first ventured out of the cradle."`
 			label countdownannotated
-			`	On the final word the chant ends and dozens of deep voices join in with a roaring crescendo that builds then fades away as many new voices join in with tones of wonder. At this point, it seems that almost everyone in the room is either drumming, dancing, or singing - and many seem to be doing several simultaneously.`
-			`	As the stars wheel outside the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion of the singing is clear. The early tone of anticipation shifted to the roar of excitement then on to a peaceful tone of wonder. As the ceremony continues, this shifts to a steady, almost mechanical feel, which is then penetrated by a piercing thread of excitement that leads to the entire tone of the song becoming one of curiosity with a driving beat. The melody wanders through regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other emotions before finally culminating in a return to the original heartbeat as the singers' voices reach upwards in a tone of hope and then everything trails off into silence.`
-			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization, and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact with the aliens, discovery of strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
+			`	On the final word the chant ends and dozens of deep voices join together in a roaring crescendo before fading away, replaced by many new voices expressing tones of wonder. At this point, it seems that almost every single person in the room is drumming, dancing, or singing - many seem to be doing several simultaneously.`
+			`	As the stars wheel through the night sky above the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of the words, but the emotion conveyed in the singing is clear. The early tone of anticipation shifts to the roar of excitement and then on to a peaceful tone of wonder. As the ceremony continues, this shifts again, to a steady, almost mechanical feel, which is in turn abruptly penetrated by a piercing thread of excitement, leading to the entire tone of the song becoming one of curiosity over another driving beat. The melody then seems to wander more, caught in duel tones of regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other deeply emotional pairings before finally culminating in a return to the original, unified heartbeat as the singers' voices come together, reaching upwards in hope before finally everything trails off into silence.`
+			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is rather familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact, strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that, despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
 			choice
 				`	(Stand still and absorb the moment.)`
 				`	(Look around to see what is happening next.)`
-			`	Around you, everyone stands still. Most look exhausted, and some are sitting on the floor or leaning against the wall. A few people look like they have been crying, with those nearby hugging them or touching their shoulder. Most of the people you can see have reverent and joyful expressions. After what feels like several minutes the doors open and people start to leave, and in short order the cave is nearly empty.`
+			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
 			label celebrationend
 			`	"I always find these Celebrations of Remembrance to be invigorating. What did you think of it, <first>?"`
 			choice
@@ -262,7 +262,7 @@ mission "Remnant: Celebration 1"
 					goto ceremonyleader
 				`	"That seemed both well-rehearsed and very disorganized."`
 			label celebrationrehearsed
-			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, with most people taking part in one every few weeks. So most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation is up to them, and so the details and feel of each celebration are unique every time." She makes a gesture you have come to realize amounts to "If you have more questions, ask them."`
+			`	Taely smiles at that. "Well, it is and it is not. We hold these several times a month, though most people take part in only one every few weeks. Most of us have attended hundreds of these. Although as far as that goes, every one of these celebrations is different. Each person's participation and style is entirely up to them, so the details and feel of the celebration are unique every time." After explaining this, she makes a singular gesture you have come to realize encompasses the idea, "If you have more questions, ask them."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -272,7 +272,7 @@ mission "Remnant: Celebration 1"
 					goto askcrying
 				`	"Who leads these ceremonies?"`
 			label ceremonyleader
-			`	Taely gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
+			`	Taely's gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment, based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
 			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to it. Memories of friends and family who are no longer with us are common."`
 			choice
 				`	"I think that is all for now."`
@@ -305,7 +305,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label askcrying
-			`	Taely gestures gently. "Those were friends of the crew of a ship that was destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals."`
+			`	Taely gestures gently. "Many were friends of the crew of a ship that was recently destroyed while studying a black hole. They acquired ground-breaking data from it, but perished in the process. Their friends and families are proud of them, of course, but that does not change the fact that they are lost to us mortals. Sometimes the whole experience is simply overwhelming, and some of us still sorrow for other losses in our stories."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
@@ -326,7 +326,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 			label celebrationrequest
-			`	Taely strides over to a console near the door and retrieves a crystal from a compartment within the console. She slips it into a case and turns to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present can experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
+			`	Taely strides over to a console near the closest door and retrieves a crystal from a compartment within. She slips it into a case and turns back to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present at a particular event may still experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
 			action set "Remnant: Attended Celebration of Remembrance with Taely"
 			choice
 				`	"Yes."`
@@ -337,5 +337,5 @@ mission "Remnant: Celebration 1"
 	on complete
 		payment 50000
 		conversation
-			`When you arrive on Postverta there is a small group of Remnant waiting at the landing bay for you. As they accept the crystal from you one gestures, "Thank you for bringing this to me, Captain <first>. Being able to join in the Remembrance will help me to remember and celebrate those who have gone on before." They head off into the depths of the station, leaving you in the bay.`
+			`When you arrive on Postverta there is a small group of Remnant waiting at the landing bay for you. As you hand the crystal to one, another gestures, "Thank you for bringing this to us, Captain <first>. Being able to join in the Remembrance will help me to celebrate those who have gone on before." The group heads off into the depths of the station, leaving you in the bay.`
 			`	Taely never mentioned anything about compensation, but as soon as the Remnant leave, your commlink notifies you that you have been assigned <payment>.`
