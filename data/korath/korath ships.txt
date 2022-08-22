@@ -276,15 +276,15 @@ ship "Korath Ravager"
 	attributes
 		category "Heavy Warship"
 		"cost" 3760000
-		"shields" 25000
-		"hull" 6500
-		"required crew" 277
-		"bunks" 319
-		"mass" 1260
+		"shields" 32700
+		"hull" 9850
+		"required crew" 193
+		"bunks" 221
+		"mass" 1120
 		"drag" 12.3
 		"heat dissipation" .7
 		"fuel capacity" 900
-		"cargo space" 110
+		"cargo space" 50
 		"outfit space" 915
 		"weapon capacity" 520
 		"engine capacity" 177
@@ -336,7 +336,9 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "The Korath Ravager is a powerful artillery ship armed with numerous missile ports, designed to rain fire on enemies before getting close enough to burn them up with their powerful heat lances."
+	description "While perhaps, at first, seeming like a super sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly new ship design the Exiles have fielded since the Exodus but also the first purposed directly towards combat usage instead of needing to also double as population and supply housing. It's size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj.
+
+The 'nra'ret-Class Chaser provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units, and, to this end, is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of the powerful Korath Infernos and two smaller heat lances to continue burning enemies in close quarters as well."```
 
 
 
