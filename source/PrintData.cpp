@@ -114,7 +114,7 @@ void PrintData::PrintBaseShipStats()
 		cout << attributes.Get("hull") << ',';
 		cout << mass << ',';
 		cout << attributes.Get("drag") << ',';
-		cout << ship.HeatDissipation() * 1000.<< ',';
+		cout << ship.HeatDissipation() * 1000. << ',';
 		cout << attributes.Get("required crew") << ',';
 		cout << attributes.Get("bunks") << ',';
 		cout << attributes.Get("cargo space") << ',';
