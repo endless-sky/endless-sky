@@ -401,7 +401,7 @@ void PrintData::PrintEngineStats()
 void PrintData::PrintPowerStats()
 {
 	cout << "name" << ',' << "cost" << ',' << "mass" << ',' << "outfit space" << ','
-		<< "energy gen" << ',' << "heat gen" << ',' << "energy cap" << '\n';
+		<< "energy generation" << ',' << "heat generation" << ',' << "energy capacity" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Ship non-power.
