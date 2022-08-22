@@ -179,7 +179,7 @@ outfit "Pug Zapper"
 			"random start frame"
 			"delay" 6
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"velocity" 320
 		"lifetime" 1
@@ -206,7 +206,7 @@ outfit "Pug Zapper Turret"
 		"hardpoint sprite" "hardpoint/pug zapper turret"
 		"hardpoint offset" 7.
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"turret turn" 2.5
 		"velocity" 320
@@ -218,6 +218,14 @@ outfit "Pug Zapper Turret"
 		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
+effect "zapper impact"
+	sprite "effect/zapper impact"
+		"frame rate" 60
+		"random start frame"
+	"lifetime" 2
+	"random angle" 360
+	"random spin" 1
+	"velocity scale" 0.
 
 outfit "Pug Seeker"
 	category "Guns"
