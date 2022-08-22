@@ -259,7 +259,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 		UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
 		while(SDL_PollEvent(&event))
 		{
-			if(event.type >= 0x600 && event.type < 0x700) {
+			if(event.type >= 0x600 && event.type < 0x700)
+			{
 				controller.Handle(event);
 			}
 

@@ -337,7 +337,7 @@ double Command::Turn() const
 
 
 
-void Command::SetTurnPoint(const Point& point)
+void Command::SetTurnPoint(const Point &point)
 {
 	turnTarget = point;
 }

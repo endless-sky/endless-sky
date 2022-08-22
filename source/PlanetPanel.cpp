@@ -228,8 +228,7 @@ bool PlanetPanel::GamePadState(GamePad &controller)
 	if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
 		DoKey('d');
 	if(controller.Held(SDL_CONTROLLER_BUTTON_X))
-
-	controller.Clear(CONTROLLER_BUTTONS);
+		controller.Clear(CONTROLLER_BUTTONS);
 
 	return Panel::GamePadState(controller);
 }
