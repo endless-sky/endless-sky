@@ -120,9 +120,9 @@ void PrintData::PrintBaseShipStats()
 		cout << attributes.Get("cargo space") << ',';
 		cout << attributes.Get("fuel capacity") << ',';
 
-		cout << ship.BaseAttributes().Get("outfit space") << ',';
-		cout << ship.BaseAttributes().Get("weapon capacity") << ',';
-		cout << ship.BaseAttributes().Get("engine capacity") << ',';
+		cout << attributes.Get("outfit space") << ',';
+		cout << attributes.Get("weapon capacity") << ',';
+		cout << attributes.Get("engine capacity") << ',';
 
 		int numTurrets = 0;
 		int numGuns = 0;
