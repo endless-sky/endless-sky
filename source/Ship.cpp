@@ -1743,6 +1743,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			} 
 			else if(zoom <= zoomTriggerStart)
 			{
+				// Ship should be small enough to not notice any sprite changes
 				this->ShowDefaultSprite(true);
 			}
 		}
@@ -1750,6 +1751,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else if(fuel >= attributes.Get("fuel capacity")
 				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
+			// Ship is moving upwards to space
 			if(zoom <= 0.f)
 			{
 				// If the ship was transitioning states while landing, finish any animation transitions.
@@ -1761,7 +1763,6 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			{
 				this->ShowDefaultSprite(false);
 			}
-
 			this->SetState(BodyState::LAUNCHING);
 			zoom = min(1.f, zoom + .02f);
 			SetTargetStellar(nullptr);
