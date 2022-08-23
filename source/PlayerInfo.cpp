@@ -545,7 +545,8 @@ void PlayerInfo::IncrementDate()
 		}
 	}
 
-	// Check if any missions have failed because of deadlines and do on daily actions if not.
+	// Check if any missions have failed because of deadlines and 
+	// do any daily mission actions for those that have not failed.
 	for(Mission &mission : missions)
 	{
 		if(mission.CheckDeadline(date) && mission.IsVisible())
