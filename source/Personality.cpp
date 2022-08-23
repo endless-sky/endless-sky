@@ -371,12 +371,11 @@ Personality Personality::Defender()
 
 
 // Remove target and marked since the defender defeat check doesn't actually care
-// about carried ships.  Remove heroic and staying to make them stick with carriers
-// but use unconstrained to have targeting work outside of the fence.
+// about carried ships.
 Personality Personality::DefenderFighter()
 {
 	Personality defender;
-	defender.flags = UNCONSTRAINED;
+	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
 	return defender;
 }
 
