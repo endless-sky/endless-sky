@@ -178,7 +178,7 @@ mission "Deep: Tarazed Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded onto the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on  to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
