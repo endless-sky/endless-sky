@@ -4460,7 +4460,7 @@ mission "Dangerous Games 2"
 				`	(Go west.)`
 			action
 				set "Mussie dead"
-			`	The proximity alarm wails and this time, you're much quicker to stop the ship... but Mussie isn't so lucky. His subpod smashes straight into a different stretch of the same rock wall that claimed Elias and Taddese not minutes before.`
+			`	The proximity alarm wails and you bring your ship to a halt... but Mussie isn't so lucky. His subpod smashes straight into a rock wall, leaving little doubt as to his fate.`
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 				goto rollcall
 			label east2
@@ -4537,7 +4537,7 @@ mission "Dangerous Games 2"
 			label east3
 			action
 				set "Jorma and Daciana dead"
-			`	By now, the proximity alarm is familiar to you, as is the solid wall rushing toward your already-slowing ship and the feeling as the ship's subpod tracker loses two more dots, leaving a single remaining subpod: Karengo's.`
+			`	By now, the feeling that you get when the ship's subpod tracker loses two more dots is familiar. Jorma and Daciana are lost to the eastern wall, leaving a single remaining subpod: Karengo's.`
 				goto failure
 			label dead3
 			choice
@@ -4558,7 +4558,9 @@ mission "Dangerous Games 2"
 			`	"Quoijuu," says Karengo simply.`
 				goto failure
 			label east4
-			`	The proximity alarm wails and this time, you're much quicker to stop the ship... but your tracker shows two subpods smash straight into the stone wall looming in front of you.`
+			action
+				set "Jorma and Daciana dead"
+			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two subpods smash straight into the stone wall looming in front of you.`
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 			label failure
 			`	Jorma and Daciana never report back in.`
