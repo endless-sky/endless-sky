@@ -31,13 +31,18 @@ fleet "Korsmanath A'awojs"
 		"Korath Chaser (Expeller)" 15
 		"Korath Chaser" 9
 
-mission "North Korsmanath A'awojs (Natural)"
+mission "North Korsmanath A'awojs [0]"
 	invisible
 	landing
 	repeat
 	to offer
-		random < 50
-		not "North Korsmanath A'awojs (Natural): active"
+		not "North Korsmanath A'awojs [0]: active"
+		or
+			random < 25
+			and
+				not "North Korsmanath A'awojs [1]: active"
+				not "North Korsmanath A'awojs [2]: active"
+				random < 33
 	to complete
 		never
 	deadline 7 1
@@ -45,56 +50,67 @@ mission "North Korsmanath A'awojs (Natural)"
 		distance 1 3
 	npc save
 		government "Korath (Civilian)"
-		personality frugal opportunistic disables uninterested
-		system 
-			near "Kor Fel'tar" 2
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor Fel'tar"
 		fleet "Korsmanath A'awojs"
 
-mission "North Korsmanath A'awojs (Staying)"
+mission "North Korsmanath A'awojs [1]"
 	invisible
 	landing
 	repeat
 	to offer
-		random < 50
-		not "North Korsmanath A'awojs (Staying): active"
+		not "North Korsmanath A'awojs [1]: active"
+		or
+			random < 25
+			and
+				not "North Korsmanath A'awojs [0]: active"
+				not "North Korsmanath A'awojs [2]: active"
+				random < 50
 	to complete
 		never
-	deadline 7 1
+	deadline 5 1
 	destination
-		distance 1 3
+		distance 1 5
 	npc save
 		government "Korath (Civilian)"
-		personality frugal opportunistic disables staying uninterested
-		system 
-			near "Kor Fel'tar" 2
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor En'lakfar"
 		fleet "Korsmanath A'awojs"
 
-mission "South Korsmanath A'awojs (Natural)"
+mission "North Korsmanath A'awojs [2]"
 	invisible
 	landing
 	repeat
 	to offer
-		random < 50
-		not "South Korsmanath A'awojs (Natural): active"
+		not "North Korsmanath A'awojs [2]: active"
+		or
+			random < 25
+			and
+				not "North Korsmanath A'awojs [0]: active"
+				not "North Korsmanath A'awojs [1]: active"
 	to complete
 		never
-	deadline 7 1
+	deadline 6 1
 	destination
-		distance 1 3
+		distance 1 4
 	npc save
 		government "Korath (Civilian)"
-		personality frugal opportunistic disables uninterested
-		system
-			near "Kor Tar'bei" 2
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor Men"
 		fleet "Korsmanath A'awojs"
 
-mission "South Korsmanath A'awojs (Staying)"
+mission "South Korsmanath A'awojs [0]"
 	invisible
 	landing
 	repeat
 	to offer
-		random < 50
-		not "South Korsmanath A'awojs (Staying): active"
+		not "South Korsmanath A'awojs [0]: active"
+		or
+			random < 25
+			and
+				not "South Korsmanath A'awojs [1]: active"
+				not "South Korsmanath A'awojs [2]: active"
+				random < 33
 	to complete
 		never
 	deadline 7 1
@@ -102,7 +118,51 @@ mission "South Korsmanath A'awojs (Staying)"
 		distance 1 3
 	npc save
 		government "Korath (Civilian)"
-		personality frugal opportunistic disables staying uninterested
-		system
-			near "Kor Tar'bei" 2
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor Zena'i"
+		fleet "Korsmanath A'awojs"
+
+mission "South Korsmanath A'awojs [1]"
+	invisible
+	landing
+	repeat
+	to offer
+		not "South Korsmanath A'awojs [1]: active"
+		or
+			random < 25
+			and
+				not "South Korsmanath A'awojs [0]: active"
+				not "South Korsmanath A'awojs [2]: active"
+				random < 50
+	to complete
+		never
+	deadline 5 1
+	destination
+		distance 1 5
+	npc save
+		government "Korath (Civilian)"
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor Tar'bei"
+		fleet "Korsmanath A'awojs"
+
+mission "South Korsmanath A'awojs [2]"
+	invisible
+	landing
+	repeat
+	to offer
+		not "South Korsmanath A'awojs [2]: active"
+		or
+			and
+				not "South Korsmanath A'awojs [0]: active"
+				not "South Korsmanath A'awojs [1]: active"
+			random < 25
+	to complete
+		never
+	deadline 6 1
+	destination
+		distance 1 4
+	npc save
+		government "Korath (Civilian)"
+		personality frugal opportunistic disables uninterested staying harvests
+		system "Kor Nor'peli"
 		fleet "Korsmanath A'awojs"
