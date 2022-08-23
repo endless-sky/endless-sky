@@ -86,9 +86,11 @@ protected:
 	void SetFrameRate(float framesPerSecond);
 	void AddFrameRate(float framesPerSecond);
 	void PauseAnimation();
+	void ShowDefaultSprite(bool defaultSprite);
+	// Ready to perform the desired action
 	bool ReadyForAction() const;
+	// Assign any outfit triggers for animations
 	void AssignStateTriggers(std::map<const Outfit *, int> &outfits);
-
 	// Finish transitioning between states
 	void FinishStateTransition() const;
 	// Mark this object to be removed from the game.
@@ -122,6 +124,7 @@ private:
 	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
+	bool returnDefaultSprite = false;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	int swizzle = 0;
 

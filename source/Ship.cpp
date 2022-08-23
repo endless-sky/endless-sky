@@ -1709,6 +1709,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
+		static const double zoomTriggerStart = 0.03f;
+
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1737,8 +1739,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					MarkForRemoval();
 					return;
 				}
-
 				zoom = 0.f;
+			} 
+			else if(zoom <= zoomTriggerStart)
+			{
+				this->ShowDefaultSprite(true);
 			}
 		}
 		// Only refuel if this planet has a spaceport.
@@ -1751,6 +1756,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				this->FinishStateTransition();
 				// Check upon takeoff if any state triggers need to be updated
 				this->AssignStateTriggers(outfits);
+			}
+			else if(zoom >= zoomTriggerStart)
+			{
+				this->ShowDefaultSprite(false);
 			}
 
 			this->SetState(BodyState::LAUNCHING);

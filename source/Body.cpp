@@ -71,7 +71,7 @@ const Sprite *Body::GetSprite(BodyState state) const
 	SpriteParameters* spriteState = &this->sprites[selected];
 
 	// Return flying sprite if the requested state's sprite does not exist.
-	if(spriteState != nullptr && spriteState->GetSprite() != nullptr){
+	if(spriteState != nullptr && spriteState->GetSprite() != nullptr && !returnDefaultSprite){
 		return spriteState->GetSprite();
 	} else {
 		return this->sprites[BodyState::FLYING].GetSprite();
@@ -464,6 +464,10 @@ void Body::PauseAnimation()
 	++pause;
 }
 
+void Body::ShowDefaultSprite(bool defaultSprite)
+{
+	this->returnDefaultSprite = defaultSprite;
+}
 
 // Indicate whether the body can perform the requested action (depending on its state)
 // only if a signal is needed for the action.
