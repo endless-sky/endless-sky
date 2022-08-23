@@ -273,7 +273,7 @@ mission "Remnant: Celebration 1"
 				`	"Who leads these ceremonies?"`
 			label ceremonyleader
 			`	Taely's gestures take on a tone of conviction. "For something like this, or anything of a social or spiritual nature for that matter, we determine who takes the lead for various parts at the moment, based on who is present. Whether we are talking about our connection with society, or our connection to the Universe, we must each forge our own understanding of it. As such, when we gather together for ceremonies such as this, virtually anyone could be chosen to take the lead for one of the segments.`
-			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to it. Memories of friends and family who are no longer with us are common."`
+			`	"As a result, each celebration takes on a different feel - after all, each of us has our own unique perspective, and bring our own experiences to contribute." She pauses, and adopts a respectful tone. "The ceremony is not just about major events, either. Everyone who takes part brings their own life experiences and memories to the story we tell. Memories of friends and family who are no longer with us are common as well."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
