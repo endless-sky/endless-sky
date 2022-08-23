@@ -4293,7 +4293,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
-	
+
 	npc kill 
 		personality heroic nemesis waiting staying target
 		government "Pirate"
@@ -4313,7 +4313,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
-	
+
 	on complete
 		conversation
 			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
