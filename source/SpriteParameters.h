@@ -59,6 +59,7 @@ public:
 
 	bool startAtZero = false;
 	bool randomize = false;
+	bool randomizeStart = false;
 	bool repeat = true;
 	bool rewind = false;
 

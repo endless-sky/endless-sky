@@ -135,6 +135,7 @@ private:
 	mutable float frameOffset = 0.f;
 	mutable bool startAtZero = false;
 	mutable bool randomize = false;
+	mutable bool randomizeStart = false;
 	mutable bool repeat = true;
 	mutable bool rewind = false;
 	// State based parameters
@@ -152,6 +153,7 @@ private:
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
 	mutable float rewindFrame = 0.f;
+	mutable float randomFrame = 0.f;
 	mutable float delayed = 0;
 	mutable bool stateReady = false;
 };

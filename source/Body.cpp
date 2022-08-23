@@ -36,7 +36,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 {
 
 	SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
-	spriteState->randomize = true;
+	spriteState->randomizeStart = true;
 	spriteState->SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
 }
 
@@ -124,8 +124,8 @@ float Body::GetFrame(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-
-	return frame;
+	// Select between frame and random frame based on the randomize parameter
+	return !this->randomize || stateTransitionRequested ? frame : randomFrame;
 }
 
 
@@ -274,8 +274,10 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteData->startFrame = static_cast<float>(child.Value(1));
 			spriteData->startAtZero = true;
 		}
-		else if(child.Token(0) == "random start frame")
+		else if(child.Token(0) == "random")
 			spriteData->randomize = true;
+		else if(child.Token(0) == "random start frame")
+			spriteData->randomizeStart = true;
 		else if(child.Token(0) == "no repeat")
 		{
 			spriteData->repeat = false;
@@ -342,8 +344,10 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 						out.Write("delay", spriteState->delay);
 					if(spriteState->scale != 1.f)
 						out.Write("scale", spriteState->scale);
-					if(spriteState->randomize)
+					if(spriteState->randomizeStart)
 						out.Write("random start frame");
+					if(spriteState->randomize)
+						out.Write("random");
 					if(!spriteState->repeat)
 						out.Write("no repeat");
 					if(spriteState->rewind)
@@ -376,8 +380,10 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				out.Write("delay", spriteState->delay);
 			if(spriteState->scale != 1.f)
 				out.Write("scale", spriteState->scale);
-			if(spriteState->randomize)
+			if(spriteState->randomizeStart)
 				out.Write("random start frame");
+			if(spriteState->randomize)
+				out.Write("random");
 			if(!spriteState->repeat)
 				out.Write("no repeat");
 			if(spriteState->rewind)
@@ -523,6 +529,7 @@ void Body::FinishStateTransition() const
 		this->delay = transitionedState->delay;
 		this->startAtZero = transitionedState->startAtZero;
 		this->randomize = transitionedState->randomize;
+		this->randomizeStart = transitionedState->randomizeStart;
 		this->repeat = transitionedState->repeat;
 		this->rewind = transitionedState->rewind;
 		this->indicateReady = transitionedState->IndicateReady();
@@ -583,9 +590,9 @@ void Body::SetStep(int step) const
 
 	// If this is the very first step, fill in some values that we could not set
 	// until we knew the sprite's frame count and the starting step.
-	if(randomize)
+	if(randomizeStart)
 	{
-		randomize = false;
+		randomizeStart = false;
 		// The random offset can be a fractional frame.
 		frameOffset += static_cast<float>(Random::Real()) * cycle;
 	}
@@ -599,6 +606,7 @@ void Body::SetStep(int step) const
 
 	// Figure out what fraction of the way in between frames we are. Avoid any
 	// possible floating-point glitches that might result in a negative frame.
+	int prevFrame = static_cast<int>(frame), nextFrame = -1;
 	frame = max(0.f, frameRate * step + frameOffset);
 
 	if(!stateTransitionRequested){
@@ -640,9 +648,16 @@ void Body::SetStep(int step) const
 
 			stateReady = false;
 		}
+
+		nextFrame = static_cast<int>(frame);
+		if(nextFrame != prevFrame)
+			randomFrame = static_cast<int>(static_cast<float>(Random::Real()) * frames);
+		else
+			randomFrame += frame - nextFrame;
+
 	} else {
 
-		// Override any delay if the ship wants to jump
+		// Override any delay if the ship wants to jump, become disabled, or land
 		bool ignoreDelay = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED || this->transitionState == BodyState::LANDING;
 
 		if(delayed >= transitionDelay || ignoreDelay){
@@ -669,6 +684,8 @@ void Body::SetStep(int step) const
 			frameOffset -= (step - currentStep) * frameRate;
 			frame = min(frame, lastFrame);
 		}
+		// Prevent any flickers from transitioning into states with randomized flares.
+		randomFrame = frame;
 	}
 	currentStep = step;
 }
