@@ -260,7 +260,7 @@ void UniverseObjects::CheckReferences()
 
 	// Outfit names are used by a number of classes.
 	for(auto &&it : outfits)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)

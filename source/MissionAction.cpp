@@ -189,7 +189,7 @@ string MissionAction::Validate() const
 	// Required content must be defined & valid.
 	for(auto &&outfit : requiredOutfits)
 		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->Name() + "\"";
+			return "required outfit \"" + outfit.first->TrueName() + "\"";
 
 	return action.Validate();
 }

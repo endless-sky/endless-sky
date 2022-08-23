@@ -575,13 +575,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->TrueName() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -606,7 +606,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!it.first->IsDefined())
 		{
-			undefinedOutfits.emplace_back("\"" + it.first->Name() + "\"");
+			undefinedOutfits.emplace_back("\"" + it.first->TrueName() + "\"");
 			continue;
 		}
 		attributes.Add(*it.first, it.second);
@@ -624,7 +624,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(VariantName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+					LogWarning(VariantName(), Name(), "weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
@@ -729,7 +729,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
-			outfitNames << '\t' << it.second << " " + it.first->Name() << endl;
+			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
 		Files::LogError(message + warning + outfitNames.str());
 	}
 
@@ -859,7 +859,7 @@ void Ship::Save(DataWriter &out) const
 			using OutfitElement = pair<const Outfit *const, int>;
 			WriteSorted(outfits,
 				[](const OutfitElement *lhs, const OutfitElement *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const OutfitElement &it){
 					if(it.second == 1)
 						out.Write(it.first->Name());
