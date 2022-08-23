@@ -3328,6 +3328,10 @@ event "wanderers: exiles have drones"
 		add variant 4
 			"Model 32"
 			"Model 16" 5
+		add variant
+			"Korath Ravager"
+		add variant
+			"Korath Ravager (Crippler)"
 
 event "wanderers: sestor eliminated"
 	system "Celeborim"
