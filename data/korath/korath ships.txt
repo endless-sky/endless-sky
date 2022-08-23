@@ -286,7 +286,7 @@ ship "Korath Ravager"
 		"fuel capacity" 900
 		"cargo space" 50
 		"outfit space" 943
-		"weapon capacity" 520
+		"weapon capacity" 521
 		"engine capacity" 177
 		weapon
 			"blast radius" 300
@@ -298,7 +298,7 @@ ship "Korath Ravager"
 		"Korath Warder"
 		"Korath Fire-Lance" 2
 		"Firelight Missile Bank" 6
-		"Firelight Missile" 108
+		"Firelight Missile" 120
 
 		"Systems Core (Large)"
 		"Fuel Processor" 2
@@ -307,8 +307,8 @@ ship "Korath Ravager"
 		"Liquid Sodium Cooler"
 		"Korath Repeater Rifle" 219
 
-		"Afterburner (Lunar Class)"
-		"Steering (Planetary Class)"
+		"Afterburner (Planetary Class)"
+		"Steering (Lunar Class)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
