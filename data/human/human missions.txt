@@ -4293,7 +4293,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
-	
+
 	npc kill 
 		personality heroic nemesis waiting staying target
 		government "Pirate"
@@ -4313,7 +4313,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
-	
+
 	on complete
 		conversation
 			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
@@ -4331,6 +4331,10 @@ mission "Saving Artifacts 4"
 		or
 			has "Bought Off Artifacts"
 			has "Saving Artifacts 3: done"
+			and
+				has "Saving Artifacts 2: done"
+				not "Duel Lokust"
+	landing
 	
 	on visit
 		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
@@ -4339,3 +4343,100 @@ mission "Saving Artifacts 4"
 		conversation
 			`You dock on the station and the librarian from earlier comes to greet you almost immediately. "Get the dockworkers, stat!" he calls, then turns to you. "You did get the statues, right?" He relaxes once he sees you nod. As the cargo is unloaded, the librarian hurries up to inspect your haul and shakes his head. "There's damage, but I suppose it's the best we could've hoped for considering the circumstances." He sighs. "Thank you for your help, Captain <last>. You've provided an invaluable service." After paying you <payment>, he turns back towards the statues, focusing his attention on their safe unloading.`
 				decline
+
+
+
+mission "Dangerous Games 1"
+	minor
+	name "Dragonriders"
+	description "A lively man named Karengo and a few passionate youths are traveling to see the dragons on <stopovers>. Take the group there, then return them to <destination> once they've finished."
+	passengers 9
+	source
+		attributes "frontier" "pirate"
+	stopover "Skymoot"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Upon entering the spaceport, you notice that the local bar seems to be more active than usual. The moment you pass through the bar door, a strong drink is pressed into your hand. You look at it, dumbfounded, and then look up to the waiter who gave it to you. "Compliments of Mr. Karengo," he says, nodding his head towards a crowd of people, mostly young men, before moving on.`
+			choice
+				`	(Head over to "Mr. Karengo.")`
+				`	(Leave.)`
+					decline
+			`	As you make your way over, you note that nearly everyone in the bar has the same drink you do. In the middle of the crowd, a large, heavily muscled, and tattooed man is gesticulating wildly, apparently telling a story.`
+			choice
+				`	(Go listen to the man.)`
+				`	(Leave.)`
+					decline
+			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all: who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
+			`	You've heard the stories of the dragons flying through <planet>'s skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. <planet> is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
+			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells. "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
+			choice
+				`	"Captain <last>, at your service. We leave at dawn!"`
+					goto accept
+				`	"Am I getting paid?"`
+					goto money
+				`	(Stay silent.)`
+			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to <planet>." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+				decline
+			label accept
+			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
+				accept
+			label money
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation."`
+			choice
+				`	"Works for me. We leave tomorrow."`
+					goto accept
+				`	"<payment> won't be enough. I'm out."`
+			`	You're treated to some jeering and rude looks as you leave the bar.`
+				decline
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
+	on stopover
+		conversation
+			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech as your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
+			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the eight men, or "Dragonriders," as they creatively branded themselves during the first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
+			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
+			`	The dragons of Skymoot you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are faster than you thought possible, or perhaps the ones on the show had been drugged to make them easier to film.`
+			`	A quick survey of the scene shows that Karengo has tagged three dragons with some sort of harmless marker gun to make them easier to track. Eight of the Dragonriders, Karengo included, are chasing the largest one, which is missing part of a tooth and has blackened scales from where it hit your ship's shields. The last Dragonrider is nowhere in sight.`
+			`	Suddenly, proximity sensors go off on the starboard side and a camera shows something - or someone - bounce off your shield and tumble down the mountain.`
+			choice
+				`	(Announce that I'm leaving.)`
+					goto leave
+				`	(Stay and watch the Dragonriders.)`
+				`	(Take off and leave everybody else behind.)`
+					goto betrayal
+			`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
+			choice
+				`	(Get everyone out of there.)`
+					goto leave
+				`	(Take off and leave everybody else behind.)`
+			label betrayal
+			action
+				fail
+			`	The ship takes off with a roar at your touch. Between the cries of the dragons, the sound of the engines, and the air rushing past, you can barely hear the fear and betrayal in the voices of the men you've left behind.`
+				decline
+			label leave
+			`	You turn on the external speakers. "We are leaving," you blast to the survivors. "Get on board."`
+			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him when a flicker of motion on a monitor catches your eye.`
+			`	Karengo is riding a dragon, gripping the ridge of scales around its neck. The dragon frantically tries to get him off, but deft application of his jetpack keeps him on top of the beast for now. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
+			`	You activate your engines, and the ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
+	on complete
+		payment 12000 500
+		conversation
+			`As you land and fuel up, Karengo herds the seven surviving men out of the ship. "Meet us at the bar, yeah?" he says to you. "This day deserves a celebration." You nod, but can't help but notice red eyes and wet cheeks among the rest of the Dragonriders as they shuffle off.`
+			`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.`
+			`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, Captain." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
+			choice
+				`	"To the Dragonriders!"`
+				`	"To our fallen friend!"`
+				`	"I'm good, thanks."`
+			`	Karengo gives you an unreadable look, lowers his glass, and says, "Your payment, plus Jarek's signup fees: <payment>."`
+			choice
+				`	"Thanks."`
+					goto end
+				`	I can't accept his money. It's not right."`
+			`	Karengo shrugs and doesn't take it back.`
+			label end
+			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
