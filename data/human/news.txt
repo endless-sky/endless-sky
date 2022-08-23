@@ -791,7 +791,7 @@ news "human mechanic"
 
 
 
-news "human ship salesperson"
+news "ship salesperson"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
@@ -1210,7 +1210,7 @@ news "human syndicate manager"
 
 
 
-news "human work coach"
+news "work coach"
 	location
 		government "Syndicate"
 	name
