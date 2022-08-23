@@ -4449,7 +4449,6 @@ mission "Dangerous Games 2"
 	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
 	source 
 		attributes "frontier" "pirate" "rim"
-		not Poseidos
 	destination Poseidos
 	cargo "subpods" 6
 	passengers 6
@@ -4608,11 +4607,11 @@ mission "Dangerous Games 2"
 			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			choice
 				`	(Run.)`
-				goto run
+					goto run
 				`	(Observe the creature.)`
-			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. 
+			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive.`
 			label run
-			All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
+			`	All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
 			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
 			`	"Quoijuu," says Karengo simply.`
 				goto failure
