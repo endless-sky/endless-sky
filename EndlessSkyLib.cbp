@@ -134,6 +134,7 @@
 		<Unit filename="source/EscortDisplay.h" />
 		<Unit filename="source/EsUuid.cpp" />
 		<Unit filename="source/EsUuid.h" />
+		<Unit filename="source/ExclusiveItem.h" />
 		<Unit filename="source/File.cpp" />
 		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
@@ -190,6 +191,8 @@
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />
 		<Unit filename="source/LocationFilter.h" />
+		<Unit filename="source/Logger.cpp" />
+		<Unit filename="source/Logger.h" />
 		<Unit filename="source/LogbookPanel.cpp" />
 		<Unit filename="source/LogbookPanel.h" />
 		<Unit filename="source/MainPanel.cpp" />
@@ -200,6 +203,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapPlanetCard.cpp" />
+		<Unit filename="source/MapPlanetCard.h" />
 		<Unit filename="source/MapSalesPanel.cpp" />
 		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />
@@ -335,6 +340,8 @@
 		<Unit filename="source/UI.h" />
 		<Unit filename="source/UniverseObjects.cpp" />
 		<Unit filename="source/UniverseObjects.h" />
+		<Unit filename="source/Variant.cpp" />
+		<Unit filename="source/Variant.h" />
 		<Unit filename="source/Visual.cpp" />
 		<Unit filename="source/Visual.h" />
 		<Unit filename="source/Weapon.cpp" />

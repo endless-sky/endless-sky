@@ -52,13 +52,16 @@ namespace {
 		static const size_t BUF_SIZE = 24;
 		char buf[BUF_SIZE];
 
-		const tm *date = localtime(&timestamp);
 #ifdef _WIN32
+		tm date;
+		localtime_s(&date, &timestamp);
 		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
+		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
 #else
+		const tm *date = localtime(&timestamp);
 		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-#endif
 		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+#endif
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -216,10 +219,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
-			"Are you sure you want to delete the selected pilot, \"" + selectedPilot
+			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == selectedPilot; }));
+				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
