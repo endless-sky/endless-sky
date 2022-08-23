@@ -314,7 +314,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 
 		for(int i = 0; i < BodyState::NUM_STATES; i++){
 			SpriteParameters* spriteState = &this->sprites[i];
-			const Sprite* sprite = spriteState->GetSprite();
+			const Sprite* sprite = spriteState->GetSprite("default");
 
 			if(sprite){
 				out.Write(tags[i], sprite->Name());
@@ -492,6 +492,12 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 				}
 			}
 		}
+	}
+	// Switch back to default sprite if the outfit is no longer found
+	for(int i = 0; i < BodyState::NUM_STATES; i++){
+		SpriteParameters* toSet = &this->sprites[i];
+		if(!triggerSet[i])
+			toSet->SetTrigger("default"); 
 	}
 }
 
