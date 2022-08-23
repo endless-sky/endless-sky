@@ -374,6 +374,22 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		out.Write(tag, sprite->Name());
 		out.BeginChild();
 		{
+			const std::map<std::string, std::tuple<const Sprite*, Indication>> *triggerSprites = spriteState->GetAllSprites();
+
+			for(auto it = triggerSprites->begin(); it != triggerSprites->end(); ++it){
+				if(it->first != "default"){
+					const Sprite* triggerSprite = std::get<0>(it->second);
+					Indication indication = std::get<1>(it->second);
+
+					if(indication == Indication::DEFAULT_INDICATE)
+						out.Write("trigger", it->first, triggerSprite->Name());
+					else if(indication == Indication::NO_INDICATE)
+						out.Write("trigger", it->first, triggerSprite->Name(), "no indicate");
+					else if(indication == Indication::INDICATE)
+						out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+				}
+			}
+
 			if(spriteState->frameRate != static_cast<float>(2. / 60.))
 				out.Write("frame rate", spriteState->frameRate * 60.);
 			if(spriteState->delay)
