@@ -4345,12 +4345,12 @@ mission "Saving Artifacts 4"
 mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
-	description "The adventurer Karengo and six others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination>."
+	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
 	source 
 		attributes "frontier" "pirate" "rim"
 	destination Poseidos
 	cargo "subpods" 6
-	passengers 8
+	passengers 6
 	to offer
 		random < 15
 		has "Dangerous Games 1: done"
@@ -4368,6 +4368,7 @@ mission "Dangerous Games 2"
 					decline
 			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
+				accept
 	on complete
 		payment 20000 500
 		conversation
@@ -4386,7 +4387,7 @@ mission "Dangerous Games 2"
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 9 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
 			choice
@@ -4483,7 +4484,7 @@ mission "Dangerous Games 2"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 			label riddlethree
-			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone.`
+			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
 			branch dead2
 				has "Mussie dead"
 				has "Elias and Taddese dead"
