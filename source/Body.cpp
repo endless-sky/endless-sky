@@ -507,7 +507,7 @@ void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 	for(int i = 0; i < BodyState::NUM_STATES; i++){
 		SpriteParameters* toSet = &this->sprites[i];
 		if(!triggerSet[i])
-			toSet->SetTrigger("default"); 
+			toSet->SetTrigger("default");
 	}
 }
 

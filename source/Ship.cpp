@@ -1740,7 +1740,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					return;
 				}
 				zoom = 0.f;
-			} 
+			}
 			else if(zoom <= zoomTriggerStart)
 			{
 				// Ship should be small enough to not notice any sprite changes
