@@ -286,7 +286,7 @@ ship "Korath Ravager"
 		"fuel capacity" 900
 		"cargo space" 50
 		"outfit space" 943
-		"weapon capacity" 521
+		"weapon capacity" 404
 		"engine capacity" 177
 		weapon
 			"blast radius" 300
