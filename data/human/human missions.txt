@@ -4454,7 +4454,6 @@ mission "Dangerous Games 2"
 	cargo "subpods" 6
 	passengers 6
 	to offer
-		random < 99
 		has "Dangerous Games 1: done"
 	on offer
 		conversation
