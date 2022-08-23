@@ -45,7 +45,7 @@ news "human merchant anywhere"
 			"The people from Earth are called Earthlings, but the people from Mars don't want to be called Martians due to those stupid old science fiction stories."
 			"Somebody installed my anti-gravity plates upside-down. Luckily I saw it in time! Can you imagine what would have happened if I wouldn't have seen it?"
 			"To the optimist the glass is half full, but zero gravity is even better, because there you don't even need the glass."
-			"My ship has a built-in cinema, an artificial gravity pool and an indoor roller-coaster. But you also have a nice ship, I guess."
+			"My ship has a built-in cinema, an artificial gravity pool, and an indoor roller-coaster. But you also have a nice ship, I guess."
 			"Hey, didn't I see you 3 weeks ago in the 'The Space Bar' on Bourne?"
 		word
 			`"`
@@ -113,16 +113,16 @@ news "human merchant in human space"
 			"I was doing some jobs in the Core, when an enormous alien warship jumped in and attacked! People say I'm crazy, but I'm lucky to have gotten out of there with my life!"
 			"The Syndicate tries to keep alien attacks under wraps, but if you've been around as long as I have, you'll see them eventually."
 			"I was working a Syndicate defense job once, expecting to only deal with some pirates. Instead, I had to drive off an alien warship that jumped in same way the Quarg do! They made us sign a non-disclosure agreement, so don't tell anyone I said that."
-			"I once got hired by someone in search for his true love; he didn't know which ship she left in, so we travelled to dozens of planets to search for her, until he ran out of credits."
-			"I once had a passenger that returned to a spaceport where she met her true love. I wonder if they ever got together again."
-			"I once put 50,000 rifles and 150,000 grenades into my armory. One grenade became embedded in the floor due to the weight of all the other weaponry on top of it and I could no longer sell that grenade."
+			"I once got hired by someone in search for his true love; he didn't know which ship she left in, so we traveled to dozens of planets to search for her... until he ran out of credits."
+			"I once had a passenger that was returning to the spaceport where she met her true love. I still wonder if they ever got together again."
+			"I once put 50,000 rifles and 150,000 grenades into my armory. Some of the grenades in the bottom became embedded in the floor because of all the weight on top of them. I still can't get one of them out."
 			"I felt lonely, so I participated in Romantic Matchmaking on a Syndicate planet, but that was a big scam! They never asked anything about the type of partner I was looking for, they only asked questions about what I wanted to buy in the next 10 years."
 			"I once joined Romantic Matchmaking organized by the Syndicate, but they couldn't tell me anything about my true love due to privacy concerns. Can you believe that?"
 			"Romantic Matchmaking as organized by the Syndicate is garbage; they don't even differentiate on gender."
-			"I once got married, but my partner didn't allow me to fly further than 5 systems away from her. Guess what? I'm now more than 5 systems away from my ex-partner."
+			"I once got married, but my partner didn't allow me to fly further than 5 systems away. Guess what? I'm now more than 5 systems away from my ex-partner."
 			"I once married somebody with no credits, and I lost half of my fleet when we divorced."
 			"I really found my true love in one of those Romantic Matchmaking programs; my love always joins me on every flight I'm on. We're a great team."
-			"I often join those Syndicate Romantic Matchmaking programs; they're a great source to pick-up crew members that work for free, at least until they find out. Then I dump them on whatever planet I'm visiting."
+			"I often join those Syndicate Romantic Matchmaking programs; they're a great source to pick up crew members that work for free - at least until they find out. Then I dump them on whatever planet I'm visiting."
 			"Truck drivers in the old days were required by law to take a break every 2 hours. Can you imagine that in our business? Stopping our ships every 2 hours to take a rest?"
 			"I once had some Flat Earthers as passengers. They claimed that the planets we saw are 2 dimensional circles instead of 3 dimensional spheres."
 			"Some Flat Earthers accused me of playing propaganda videos on the ship's viewports when they looked out of the ship while we were in orbit."
@@ -223,7 +223,7 @@ news "human factory"
 			"Working around so many huge machines is exciting. Every day we build things that would have blown the mind of anyone a thousand years ago. We're the backbone of interstellar civilization!"
 			"I don't like those news shows that tell you what to think! When I'm in the voting booth it's only MY opinion that counts!"
 			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us workers."
-			"When things go wrong, then somebody is responsible and somebody gets blamed, but those somebodies are rarely the same person."
+			"When things go wrong, somebody is responsible, and somebody gets blamed. Those somebodies are rarely the same person, unfortunately."
 			"Some people claim our universe is a simulation, but my job is so boring that I'm sure nobody would ever want to simulate it."
 		word
 			`"`
@@ -600,7 +600,7 @@ news "hyperspace relay engineer"
 			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
 			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
 			"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
-			"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space."
+			`"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space..." The engineer gives a long-winded and confusing explanation of hyperlanes.`
 		word
 			`"`
 
@@ -1193,18 +1193,18 @@ news "human syndicate manager"
 			"I would love to tell you about my job, but just telling you I work for the Syndicate probably already violates the non-disclosure agreement I signed."
 			"Those union boys are completely unreasonable; if we give them a finger then they try to eat up the whole arm up to the elbow."
 			"I've some disagreements with a manager above me. Can you pick up a mediator called Harry the Butcher from Deadman's Cove to help us resolve the problem peacefully?"
-			"I'm a manager. The folks here need to learn that it is my way or the highway."
-			"Those union guys wanted to rally on a planet nearby, but unionizing is forbidden on that planet, so we could stop them easily by closing the spaceport there for known criminals!"
+			"I'm the manager. The folks here need to learn that it is my way or the highway."
+			"Those union guys wanted to rally on a planet nearby, but unionizing is forbidden on that planet. We could stop them easily by having the spaceport there closed for harboring known criminals!"
 			"My employees are angry when they need to do unpaid overtime in exceptional situations. They should have realized that working for me is exceptional every day."
 			"Patience is a virtue, but why is 'just hurry up' not also a virtue? Hurrying up works much better in the factory."
-			"When everything is under control, then we are not going fast enough. Except of course in your business, where people typically die due to explosions or the vacuum of space when things go out of control."
+			"If everything is under control, then we're not going fast enough. Except of course in your business, where people typically die due to explosions or the vacuum of space when things get out of control."
 			"I allow people to go home when they are no longer productive, even if it is 3 PM. Who are we kidding if we just steer on being present instead of steering on being productive?"
 			"We used to give our top performers shuttles, but they flew away faster than we could hire. Now we give them apartments and many are settling here and starting families."
 			"I'm really fed up with employees that have a 'can do' attitude. Just do your job, without the attitude."
 			"I'm actively recruiting people with a 9-to-5 mentality, because I know how important it is to have a good work/life balance."
 			"We used to advertise our food products with 100% organic ingredients, but nobody believed us. Now we are advertising with 60% organic ingredients and sales are sky high."
-			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done', and that really caught on."
-			"We hired a marketing agency and they came up with the sloppy slogan 'Just what's needed to get the job done'. Can you believe we spent huge amounts of money on that garbage?"
+			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done,' and that really caught on."
+			"We hired a marketing agency and they came up with the sloppy slogan 'Just what's needed to get the job done.' Can you believe we spent huge amounts of money on that garbage?"
 		word
 			`"`
 
@@ -1433,7 +1433,7 @@ news "human republic soldier"
 			"I hope I don't get posted to fighter duty next week. Those things are deathtraps. By the time you get close enough to fire your lasers, you've already lost half your shields!"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
 			"While it seems pointless to have the Bactrian locked behind a license, don't forget that it's one of the oldest designs in human space. It was the Navy Carrier of its time - and it's still comparable to one."
-			"We recently went to full alert, because somebody screamed 'It's scrambled!'. Turns out some rookie in the galley was enthusiastic about making scrambled eggs."
+			`We recently went to full alert, because somebody screamed "It's scrambled!" Turns out some rookie in the galley was enthusiastic about making scrambled eggs.`
 		word
 			`"`
 
@@ -1609,7 +1609,7 @@ news "human republic reporter in pirate space"
 			"Look at this! 'Top Ten Pirates Hector Barbarossa is Too Afraid to Cross!'"
 			"Read this! 'Twenty Pirates with the Highest IQs - You'll Never Guess Who's Number One!'"
 			"Check this out! 'Telltale Signs Your Spouse is Secretly a Pirate - Number Five Says it All!'"
-			"Read my column on how to identify pirates in disguise!... Or just look around this planet, that also works."
+			"Read my column on how to identify pirates in disguise! Or just look around this planet, that also works."
 		word
 			`"`
 
@@ -1623,10 +1623,10 @@ news "spaceport video advertisement"
 			"Spaceport Video Screen"
 	message
 		word
-			"You see a video of stuntmen making a jump from the edge of space. The 'do not try this at home', 'illegal on many planets', and 'high risk/deadly' warnings at the end of the video suggest that this might become quite a popular sport."
+			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home", "illegal on many planets", and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
 			"A video of fast spaceships racing around a three dimensional course in space is shown on the screen, interwoven with clips of very luxurious ships where people appear to be watching the race."
 			"An action-packed advertisement about joining the Navy is playing on the screen. It shows impressive video-fragments of carriers, gunships, dropships and heroic marines."
-			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done'."
+			"Some video is showing Syndicate equipment. The video ends with the slogan, 'Just what's needed to get the job done.'"
 
 
 
@@ -1645,7 +1645,7 @@ news "syndicate pa system"
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
 			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
-			"Attention course participants: The course 'Efficient Passenger Logistics' has been canceled because the trainer got stuck in transit."
+			"Attention course participants: The course 'Efficient Passenger Logistics' has been cancelled because the trainer got stuck in transit."
 			"Attention: The safe spaceship piloting training course has been canceled because our instructors crashed their shuttles this morning."
 			"Notice: The course on dealing with space sickness has been canceled because the instructor got seasick."
 		word
