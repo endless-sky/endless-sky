@@ -955,9 +955,9 @@ mission "Hai Rescue [C08] Freedom"
 			`	"It was a pleasure meeting you," says the human leader.`
 				goto leave
 			label korath
-			`	The Korath leader begins speak, with the Hai translating. "A few years ago, three of our raiding ships jumped into the Alcyone system. Numerous pirate vessels left Stormhold and disabled all of our ships. A large human ship boarded our flagship while us on the other two vessels listened over communicators. All we heard was screaming. The pirates used deadly gas - what you call 'nerve gas' - to kill the entire crew.  The death is excruciatingly painful to Korath. Not wanting that fate, the rest of the raiders on the second and third Korath ships surrendered. We worked as slaves for the pirate gangs, but now we're here, safe, and free. We are not scientists like the others here, but we help as we can.`
+			`	The Korath leader begins speak, with the Hai translating. "Several generations ago, three of our raiding ships jumped into the Alcyone system. Numerous pirate vessels left Stormhold and disabled all of our ships. A large human ship boarded our flagship while us on the other two vessels listened over communicators. All we heard was screaming. The pirates used deadly gas - what you call 'nerve gas' - to kill the entire crew.  The death is excruciatingly painful to Korath. Not wanting that fate, most of the raiders on the second and third Korath ships mutinied and then surrendered. We worked as slaves for the pirate gangs, but now we're here, safe, and free. We are not scientists like the others here, but we help as we can.`
 			`	"The pirates must defend this planet against a space-based lifeform that attacks in flocks. Our ships gave them a significant advantage. Fortunately, we have one more left defend against any threats." The Korath eyes the Republic operatives as he waits for the translator to catch up.`
-			`	"I must ask you keep the presence of Korath here a secret. If the other Exiles hear of this place, they may attack to retrieve us, or simply to pillage. We will remain here in hiding unless Korath space becomes safe."`
+			`	"I must ask you keep the presence of Korath here a secret. If the Archons or other Exiles hear of this place, they may attack to retrieve us, or the Exiles may simply pillage. We will remain here in hiding unless the Exiles finally learn to settle on their planet."`
 				goto questions
 			label "translation services"
 			`	The Korath leader hisses and replies while the Hai translates. "No, we cannot. Few among the Korath know your language, and we must remain here in secret. Perhaps in time there will be a way, but not yet."`
@@ -965,12 +965,12 @@ mission "Hai Rescue [C08] Freedom"
 			label "microtransceivers"
 			`	The Korath leader looks to the Hai, who responds, "Is that how you were led back here?"`
 			`	"Yes," you reply.`
-			`	The Hai leader continues, "Excellent! That was the plan. Our overlords ordered us to create a means of tracking their prey. The microtransceivers were a combination of Hai medical microbots and what our Korath friends here could tell us. None of the Korath were scientists, but the principles of their science are part of their engineers' training. With their knowledge, we augmented the transceivers to transmit in hyperspace as well, hoping it would lead someone back here."`
+			`	The Hai leader continues, "Excellent! That was the plan. Our overlords ordered us to create a means of tracking their prey. The microtransceivers were a combination of Hai medical microbots and what our Korath friends here could tell us. None of the surviving Korath were scientists, but many of them seemed to have an uncanny knack for engineering. With their help, we augmented the transceivers to transmit in hyperspace as well, hoping it would lead someone back here."`
 			`	The human leader adds, "I can scarcely believe it worked, but I'm very glad it did."`
 				goto questions
 			label home
 			`	The three leaders laugh. The Hai answers, "We are home. This is a place of learning, where three races join as one to seek knowledge. Some recent kidnapping victims wish to leave. We will help you find them and send them home."`
-			`	The Korath speaks next, and the Hai translates. "Where my people come from, everyone is starving, barely subsisting. We have to raid for supplies, and those of us who refuse to fight are treated poorly. This is a much better place for us."`
+			`	The Korath speaks next, and the Hai translates. "Where my people came from, everyone was starving, barely subsisting. We had to raid for supplies, or slave away in bleak factory stations. This is a much better place for us."`
 			`	The human leader concludes, "Most of the humans in this city have been here for several generations. This has always been home to us."`
 				goto questions
 			label place
