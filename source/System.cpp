@@ -237,7 +237,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				if(child.Size() >= 4)
 				{
 					fleets.emplace_back(fleet, child.Value(valueIndex + 1), ids, child.Value(valueIndex + 2));
-					fleetCounters.emplace_back(ids);
+					fleetCounters.insert(make_pair(ids, 0));
 				}
 				else
 					fleets.emplace_back(fleet, child.Value(valueIndex + 1), ids);
@@ -774,8 +774,8 @@ const vector<RandomEvent<Fleet>> &System::Fleets() const
 const int System::GetFleetCounter(int id) const
 {
 	for(const auto counter : fleetCounters)
-		if(counter.id == id)
-			return counter.count;
+		if(counter.first == id)
+			return counter.second;
 	return -1;
 }
 
@@ -784,8 +784,8 @@ const int System::GetFleetCounter(int id) const
 void System::IncreaseFleetCounter(int id) const
 {
 	for(auto counter : fleetCounters)
-		if(counter.id == id)
-			counter.count++;
+		if(counter.first == id)
+			counter.second++;
 }
 
 
@@ -793,8 +793,8 @@ void System::IncreaseFleetCounter(int id) const
 void System::DecreaseFleetCounter(int id) const
 {
 	for(auto counter : fleetCounters)
-		if(counter.id == id)
-			counter.count--;
+		if(counter.first == id)
+			counter.second--;
 }
 
 

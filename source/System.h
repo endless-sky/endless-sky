@@ -33,13 +33,6 @@ class Planet;
 class Ship;
 class Sprite;
 
-struct Counter{
-	int id;
-	int count = 0;
-	Counter(int id)
-	: id(id) {}
-};
-
 
 
 // Class representing a star system. This includes characteristics like what
@@ -208,7 +201,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
-	std::vector<Counter> fleetCounters;
+	std::map<int, int> fleetCounters;
 	int ids = 0;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
