@@ -286,7 +286,7 @@ ship "Korath Ravager"
 		"fuel capacity" 900
 		"cargo space" 50
 		"outfit space" 943
-		"weapon capacity" 444
+		"weapon capacity" 407
 		"engine capacity" 177
 		weapon
 			"blast radius" 300
@@ -294,15 +294,16 @@ ship "Korath Ravager"
 			"hull damage" 2200
 			"hit force" 6600
 	outfits
-		"Korath Inferno" 2
+		"Langrage Hyper-Heaver" 2
 		"Korath Warder"
 		"Korath Fire-Lance" 2
 		"Firelight Missile Bank" 6
-		"Firelight Missile" 120
+		"Firelight Missile" 190
+		"Firelight Missile Rack" 7
 
 		"Systems Core (Large)"
-		"Fuel Processor" 2
-		"Plasma Core"
+		"Systems Core (Medium)"
+		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
 		"Korath Repeater Rifle" 219
@@ -329,8 +330,8 @@ ship "Korath Ravager"
 		angle 190
 	gun 98 75 "Firelight Missile Bank"
 		angle 170
-	turret -32.5 -53.5 "Korath Inferno"
-	turret 32.5 -53.5 "Korath Inferno"
+	turret -32.5 -53.5 "Langrage Hyper-Heaver"
+	turret 32.5 -53.5 "Langrage Hyper-Heaver"
 	turret 0 -23 "Korath Warder"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
@@ -338,8 +339,8 @@ ship "Korath Ravager"
 	explode "large explosion" 50
 	explode "huge explosion" 15
 	"final explode" "final explosion large"
-	description "While perhaps, at first, seeming like a super-sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly new ship design the Exiles have fielded since the Exodus but also the first purposed directly towards combat usage instead of needing to also double as population and supply housing. Its size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj."
-	description "	The 'nra'ret-Class Chaser provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units, and, to this end, is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of the powerful Korath Infernos and two smaller Fire-Lances allowing it to burn enemies in close quarters."
+	description "While perhaps, at first, seeming like a super-sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly unique warship design the Exiles have fielded since the Exodus, but also the first built solely for combat instead of needing to double as a habitat or supply ship. Its size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj."
+	description "	The 'nra'ret-Class Chaser, named in honor of a brilliant weapons engineer who took their own life to avoid having their secrets captured by a hostile alien force, provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units. To this end, it is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of langrage heavers for sustained operations, and two Fire-Lances for emergency use in close quarters."
 
 ship "Korath Chaser"
 	sprite "ship/chaser"
