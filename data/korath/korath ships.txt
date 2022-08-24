@@ -270,9 +270,9 @@ ship "Korath Raider Mark XLII"
 	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to support their endeavors, the shipwrights of the Korath have updated the design to deal with modern targets.`
 
 
-ship "Korath Ravager"
-	sprite "ship/ravager"
-	thumbnail "thumbnail/ravager"
+ship "'nra'ret"
+	sprite "ship/nraret"
+	thumbnail "thumbnail/nraret"
 	attributes
 		category "Heavy Warship"
 		"cost" 24760000

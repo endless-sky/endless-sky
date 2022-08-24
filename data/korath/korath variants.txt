@@ -413,7 +413,7 @@ ship "Korath Raider Mark XLII" "Korath Raider Mark XLII (Crippler)"
 	turret "Korath Banisher"
 
 
-ship "Korath Ravager" "Korath Ravager (Crippler)"
+ship "'nra'ret" "'nra'ret (Crippler)"
 	outfits
 		"Korath Detainer" 2
 		"Korath Repeater Turret" 2
