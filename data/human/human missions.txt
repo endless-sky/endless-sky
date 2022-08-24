@@ -4704,7 +4704,7 @@ mission "Dangerous Games 2"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
-				`	(Stay silent.)`
+				`	(Help him out.)`
 					goto silent
 				`	"Do you know how this got here?"`
 			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
@@ -4713,9 +4713,9 @@ mission "Dangerous Games 2"
 				goto return
 			label alldead
 			`	"What we have here, <first>," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
-			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red.Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
-				`	(Stay silent.)`
+				`	(Help him out.)`
 					goto silent1
 				`	"Do you know how this got here?"`
 			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
@@ -4726,7 +4726,7 @@ mission "Dangerous Games 2"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
-				`	(Stay silent.)`
+				`	(Help him out.)`
 					goto silent2
 				`	"Do you know how this got here?"`
 			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
