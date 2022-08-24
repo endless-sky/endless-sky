@@ -4689,14 +4689,9 @@ mission "Dangerous Games 2"
 			label closer
 			`	Your craft moves closer to investigate and you send out another ping, this time more focused, and the holographic ship display flickers and refines. The outlines of sealed entrances are visible, unnecessary with the ship torn apart as it is. Sea growth is mostly absent from the hull, to your surprise, except for a radial pattern of some sort of crystal-shaped growth. Infrared imaging shows a dim glow of heat at its center.`
 			branch somesurvive
-				or 
-					has "Mussie dead" 
-					has "Elias and Taddese dead"
-					has "Jorma and Daciana dead"
-				and
-					not "Mussie dead" 
-					not "Elias and Taddese dead"
-					not "Jorma and Daciana dead"
+				or
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
 			branch alldead
 				has "Mussie dead"
 				has "Elias and Taddese dead"
@@ -4739,14 +4734,9 @@ mission "Dangerous Games 2"
 				has "Elias and Taddese dead"
 				has "Jorma and Daciana dead"
 			branch some
-				or 
-					has "Mussie dead" 
-					has "Elias and Taddese dead"
-					has "Jorma and Daciana dead"
-				and
-					not "Mussie dead" 
-					not "Elias and Taddese dead"
-					not "Jorma and Daciana dead"
+				or
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
