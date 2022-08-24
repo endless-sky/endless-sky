@@ -2861,24 +2861,32 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// have moved forward one time step.
 				p += v;
 
-				// Find out how long it would take for this projectile to reach the target.
-				double rendezvousTime = RendezvousTime(p, v, vp);
-				// If there is no intersection (i.e. the turret is not facing the target),
-				// consider this target "out-of-range" but still targetable.
-				if(std::isnan(rendezvousTime))
-					rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
+				// Beam weapons hit instantenously if they are in range.
+				double rendezvousScore = 0.;
+				if(weapon->TotalLifetime() > 1)
+				{
+					// Find out how long it would take for this projectile to reach the target.
+					double rendezvousTime = weapon->TotalLifetime() == 1 ? 0 : RendezvousTime(p, v, vp);
+					// If there is no intersection (i.e. the turret is not facing the target),
+					// consider this target "out-of-range" but still targetable.
+					if(std::isnan(rendezvousTime))
+						rendezvousTime = max(p.Length() / (vp ? vp : 1.), 2 * weapon->TotalLifetime());
 
-				// Determine where the target will be at that point.
-				p += v * rendezvousTime;
+					// Determine where the target will be at that point.
+					p += v * rendezvousTime;
+
+					// All bodies within weapons range have the same basic
+					// weight. Outside that range, give them lower priority.
+					rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
+
+					// Always prefer targets that you are able to hit.
+					rendezvousScore = (180. / weapon->TurretTurn()) * rendezvousTime;
+				}
 
 				// Determine how much the turret must turn to face that vector.
 				double degrees = (Angle(p) - aim).Degrees();
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
-				// All bodies within weapons range have the same basic
-				// weight. Outside that range, give them lower priority.
-				rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
-				// Always prefer targets that you are able to hit.
-				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
+				double score = turnTime + rendezvousScore;
 				if(score < bestScore)
 				{
 					bestScore = score;
