@@ -4481,7 +4481,7 @@ mission "Dangerous Games 2"
 			`	Karengo laughs. "You worry too much," he says.`
 			label adventure
 			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
-			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working. A young couple, Balazs and Jorma, uneasily exchange glances.`
+			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working.`
 			`	EIGHT KILOMETERS, the depth meter reads.`
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
