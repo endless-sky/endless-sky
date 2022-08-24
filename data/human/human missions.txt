@@ -4350,12 +4350,12 @@ mission "Riley"
 	name "Visiting Home"
 	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
 	minor
-	passengers 1
 	source
 		attributes "deep"
 		attributes "urban"
-	deadline
 	destination "Memory"
+	deadline
+	passengers 1
 	to offer
 		random < 15
 	on offer
@@ -4367,7 +4367,7 @@ mission "Riley"
 					decline
 			`	You approach the woman and ask her if she is looking to hire a pilot.`
 			`	"I need to get to <destination> to see my father. He's dying. I have 13,000 credits to pay for the journey; please, will you help me? I need to be there by <day>, at the most."`
-			`	Her eyelids are baggy, her clothes wrinkled, and she holds herself rigidly: signs of desperation, stress, and sleep deprivation.`
+			`	Her eyelids are baggy, her clothes wrinkled, and she holds herself rigidly.`
 			choice
 				`	"I can help you. We'll make haste to reach <planet> in time."`
 					goto help
@@ -4384,9 +4384,9 @@ mission "Riley"
 		conversation
 			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
 			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding on a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
-			`	She didn't mention it, but it's clear that she was concerned she'd arrive too late to say goodbye.`
 			`	As you neared <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <origin> and had a break in her touring schedule, so she spent a good chunk of her savings meeting up with him on Memory. They spent most of a week together, reliving old times.`
 			`	He'd cried when it was time to leave, and she had, too, but life went on, and it was years before she heard from him again. His message nearly broke her. "Ri, please come as soon as you can. I may not have long, and wish to hold your hand one more time. All love, Dad."`
+			`	She doesn't mention it, but it's clear that she's concerned she'll arrive too late to say goodbye.`
 			`	Riley directs you to a pad near her old home, and you land the ship. She starts toward the door, then pauses and turns around with a self-conscious, but oddly sad, chuckle.`
 			`	"Right - your payment. <payment>, as I promised."`
 			choice
