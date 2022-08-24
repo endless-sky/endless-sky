@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CollisionSet.h"
 
 #include "Body.h"
-#include "Files.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "Point.h"
 #include "Projectile.h"
@@ -208,7 +208,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 		// Cap projectile velocity to prevent integer overflows.
 		if(!warned)
 		{
-			Files::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			Logger::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
