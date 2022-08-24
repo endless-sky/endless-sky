@@ -4353,7 +4353,7 @@ mission "Riley"
 	source
 		attributes "deep"
 		attributes "urban"
-		not "Memory"
+		not planet "Memory"
 	destination "Memory"
 	deadline
 	passengers 1
@@ -4465,6 +4465,8 @@ mission "Riley"
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
+			action
+				set "Shot Core"
 			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
 			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
@@ -4483,4 +4485,30 @@ mission "Riley"
 				decline
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
+				decline
+
+
+
+mission "Property Damage"
+	name "Property Damage"
+	minor
+	source
+		attributes "deep"
+	to offer
+		has "Shot Core"
+	on offer
+		conversation
+			`	Upon landing you are accosted by a Deep Security officer surrounded by personnel. The markings on his uniform are unfamiliar to you. "Are you <first> <last>?" he asks. He doesn't wait for a response. "Please follow me." Considering the armaments on him and his colleagues, you obey and are led to his ship.`
+			`After making sure the hatch is closed, he begins. "It has come to our attention that you are responsible for the destruction of an advanced AI on Memory. Ordinarily you would go to trial for property damage in the hundreds of thousands of credits, but the machine that you destroyed was highly illegal and the existence of this technology is something that we have been trying to keep under wraps for quite some time. A trial, with witnesses, juries, and potential media interest, would not be conductive towards that goal. In addition, the Deep is grateful that the AI is destroyed, even if it was through... less than legal means. Therefore we have recieved orders to 'let you off with a warning,' so to speak.`
+			choice
+				`	"Why was the AI illegal?"`
+				`	"Who's giving these orders?"`
+					goto no
+				`	"I understand."`
+				`	(Stay silent.)`
+					goto end
+			label no
+			`	"That is not something I am authorized to tell you. Frankly the amount of knowledge you have regarding AI is already not something the Deep is exactly comfortable with."
+			label end
+			`	You are directed to leave by the officer, but before you step outside, he speaks up. "And please, if you see something like that again, don't just shoot at it, for God's sake. Dealing with AI is enough of a paperwork nightmare as is." Once you are out of his ship, you look around. If anyone noticed your run-in with the law they are not showing it.
 				decline
