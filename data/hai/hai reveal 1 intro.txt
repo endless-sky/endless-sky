@@ -78,15 +78,15 @@ conversation "hai reveal free worlds news"
 	`	You raise an eyebrow with surprise.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
+	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other. They fire weapons quite unlike anything produced in human space.`
 	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept
 	label "hai knowledge"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
+	`	They show a short video of alien ships, Hai ships, engaged in combat with each other.`
 	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
-	`	You suspect it might be time to go visit your Hai friends again.`
+	`	It might be time to go visit your Hai friends again.`
 		accept
 
 
@@ -99,7 +99,7 @@ conversation "hai reveal republic or syndicate news"
 	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown. You've seen things, but not this.`
+	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other. They fire weapons quite unlike anything produced in human space.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
 	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
@@ -113,7 +113,7 @@ conversation "hai reveal republic or syndicate news"
 
 conversation "What is going on in Hai space? (Have not met Unfettered.)"
 	`Landing in Hai space draws a much different type of attention than expected. Only recently you've begun to acclimate yourself to getting positive attention. As a war hero you're something of a minor celebrity now back in human space, but here suddenly mothers are keeping tight grips on their children, and passers-by look upon you with a hint of wariness.`
-	`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet them to ask a few questions.`
+	`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment, and when you catch the eye of one lady who looks friendly you greet her to ask a few questions.`
 	choice
 		`	"Why does everyone seem so afraid?"`
 	`	She shakes her head and wrinkles her nose with a look of distaste. "Within about three days of hearing that the Hai were being splashed all over major news networks back home, a whole heap of curious pirates have chanced the wormhole en masse. The local security forces on patrol at the time got blown out of the sky by a surprise attack, and everyone has been a bit shaken up since."`
@@ -305,7 +305,7 @@ mission "Trader Directions to Hai Space"
 	on offer
 		conversation
 			`Arriving at the only place you can think of where you feel sure you can find out more information, you find that <origin>, like most places, is abuzz with the recent news. Avoiding the many large, cheap, and boisterous establishments that service the many crews and workers of the Megaparsec corporate machinery here, you make your way to one of the marginally more up-market places, cunningly marketed as a merchant-only dive.`
-			`	The endless cycle of both news and government propaganda displayed on most screens in major thoroughfares is remarkably absent here, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
+			`	Since the story first broke, there has been an endless cycle of contradictory reporting on the matter plastered across most screens in major thoroughfares. Here, however, it is remarkably absent, with only one of the screens on display covering the "violent alien race" at all - running stats on how many different versions of the story are now being told.`
 			`	Casting around the room, you pick out a merchant who looks like she's been around the block a few times. In addition to looking like she could pick up most people and break them over her knee, she's conspicuous by the threatening glare you watch her give a younger captain who left a table talking about the Hai to approach her... briefly. After the captain is briskly sent away, you make your way over. Her glare falters in a flash of recognition before subsiding to a reserved scowl.`
 			`	She waits until you're directly next to her table. "The famous Captain <last>. Which ancient Sumerian deity did I offend to be granted the gift of your attention, hey?"`
 			`	The emphasis she places on the word "gift" is dripping in sarcasm, but her overall tone is wary rather than hostile, and she gestures without comment to the seat opposite for you to sit.`
@@ -536,7 +536,7 @@ mission "Hai Leaks Response 2"
 		event "pirates respond to leaks"
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
-			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override fast-tracking the process from the quoted "two to three business days" to "2 hours after landing."`
+			`On approach to the spaceport on Earth, you request to speak to an official of significant standing on diplomatic business. Thanks to your renown from the Pug war, you are able to shortcut objections stemming from you yourself not being a diplomat. The diplomatic ID from the box Sayari gave you, when presented, also seems to trigger some sort of classified override, fast-tracking the process from the quoted "two to three business days" to "2 hours after landing."`
 			`	The Republic Deputy Minister for Foreign Affairs meets you in a private room at the spaceport.`
 			`	"Captain <last>," he steps around the table to grasp your hand in a firm handshake. "Xilin Yang. It's an honor to meet a hero of the Pug crisis such as yourself."`
 			choice
@@ -666,12 +666,12 @@ mission "Hai Leaks Response 3"
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
 			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is other than the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
 			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," says Yang. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
-			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them route the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
+			`	Sayari looks at you. "We will have to come up with a plan, and quickly, but for the moment may I ask a favor of the war hero in the room? Please meet up with the security forces converging on Allhome and help them rout the pirates back to the other side of the wormhole. It will buy us some breathing room and options."`
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
@@ -695,7 +695,7 @@ mission "Hai Leaks Response 4"
 			`When you land on Allhome, you are greeted by the Hai Captain of the local forces. You're not an expert at judging Hai ages, but he appears to be a little younger than expected.`
 			`	"Captain <last>! I heard you were coming to assist."`
 			choice
-				`	"Time to route some pirates baby!"`
+				`	"Time to rout some pirates, baby!"`
 				`	"I'm here to reinforce you. What can I do?"`
 			`	"Uh well, yes. I presume you saw the pirates on your way in? They've been appearing en masse and overwhelming security forces to raid technology and goods from the Hai traders and their security. Some of them have even been sneaking down onto the planet, capturing Hai, and taking them away."`
 			choice
@@ -922,7 +922,7 @@ mission "Hai Leaks Response 6"
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
 				`	"Oh, I could have told her all about it..."`
-			`	He chuckles. "Anyway, I have a hunch that we'll need you before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were, of an exclusive role-play community, just chilling out here and having fun."`
+			`	He chuckles. "Anyway, I have a hunch that we'll need you again before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were, of an exclusive role-play community, just chilling out here and having fun."`
 			`	"I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
 			`	Some hours later, you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep. Your cabin by far seems to be the best place to not be bothered.`
 			`	Partway there, a hooded figure suddenly falls in step beside you.`
