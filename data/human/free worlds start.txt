@@ -282,11 +282,11 @@ mission "FW Syndicate Diplomacy 1"
 				`	"Wait, isn't the Syndicate an evil megacorporation?"`
 					goto evil
 			
-			`	"Certainly not," says Alondo. "Unlike us, the Syndicate have few grievances with the Republic. While the Navy does not patrol the Core, the Syndicate fund their own private security for the region. I don't see what they'd gain from joining the fight on our side. But they are very interested in maximizing their profits, so I pray we can arrange to purchase ship materials from them. And if nothing else, I pray they at least will promise not to hire out their security forces as mercenaries to the Republic."`
+			`	"Certainly not," says Alondo. "Unlike us, the Syndicate has few grievances with the Republic. While the Navy does not patrol the Core, the Syndicate funds their own private security for the region. I don't see what they'd gain from joining the fight on our side. But they are very interested in maximizing their profits, so I pray we can arrange to purchase ship materials from them. And if nothing else, I pray they at least will promise not to hire out their security forces as mercenaries to the Republic."`
 				goto time
 			
 			label evil
-			`	"Well, they do have a long record of environmental and human rights violations. But they are also the single largest employer in the galaxy, and a main reason for the stability the Republic has enjoyed for the last few centuries. The Syndicate is also not a monolith. There are at least some good people within the Syndicate. I... use to know one," Alondo says with some apprehension. "So, I wouldn't call the Syndicate 'evil.' It's more complicated than that."`
+			`	"Well, they do have a long record of environmental and human rights violations. But they are also the single largest employer in the galaxy, and a main reason for the stability the Republic has enjoyed for the last few centuries. The Syndicate is also not a monolith. There are at least some good people within the Syndicate. I... used to know one," Alondo says with some apprehension. "So, I wouldn't call the Syndicate 'evil.' It's more complicated than that."`
 			
 			label time
 			`	"Reaching Syndicate space could be difficult once the Navy has time to regroup," says Tomek. "This may be the last window of opportunity we get for a while to meet with them in person."`
@@ -298,7 +298,7 @@ mission "FW Syndicate Diplomacy 1"
 				`	"What should we do if we encounter Navy ships?"`
 					goto navy
 			
-			`	"While data moves through the hyperspace network faster than ships, having any substantial back and forth would take longer than if we simply showed up in person. The Syndicate are also often driven by greed, and we're worth more as customers of the Syndicate than as prisoners of the Republic. If nothing else, showing up in person is a sign of good faith. It puts our trust in the Syndicate, trust that they'd be unlikely to betray given the risk they'd see us taking simply to meet with them."`
+			`	"While data moves through the hyperspace network faster than ships, having any substantial back and forth would take longer than if we simply showed up in person. The Syndicate is also often driven by greed, and we're worth more as customers of the Syndicate than as prisoners of the Republic. If nothing else, showing up in person is a sign of good faith. It puts our trust in the Syndicate, trust that they'd be unlikely to betray given the risk they'd see us taking simply to meet with them."`
 			choice
 				`	"I hope you're right! Let's get going."`
 					accept
@@ -338,7 +338,7 @@ mission "FW Syndicate Diplomacy 1B"
 			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
 			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
 			`	A man who introduced himself as Samuel Remington, who appears much younger than the others, responds. "Hearing that representatives of the Free Worlds were on their way was certainly a surprise. I apologize that CEO Korban could not meet with us today. He sent me in his stead to ensure that this meeting was handled with the upmost excellency. So, what might it be that brings you here?"`
-			`	"We would like to secure the purchase of construction materials for new ships," says Alondo. "As well as ask that the Syndicate refrain from joining the war as mercenaries. Our grievance is with the Republic, not the Syndicate."`
+			`	"We would like to secure the purchase of construction materials for new ships," says Alondo. "As well as ask that the Syndicate refrains from joining the war as mercenaries. Our grievance is with the Republic, not the Syndicate."`
 			`	"We are always open to new business opportunities," says another man, Lopez, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
 			choice
 				`	(Let Alondo handle this.)`
@@ -448,9 +448,9 @@ mission "FW Syndicate Diplomacy 1C"
 				`	(Let Alondo do the talking.)`
 			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it."`
 			label skip
-			`	"Perhaps so," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad blaster turrets. Proton guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate do not normally sell. Is this all for the Free Worlds?"`
+			`	"Perhaps so," Emily responds. "Although I must ask what sort of strings you pulled to manage what you have. Shortly before you arrived we began receiving Syndicate supplies that we never ordered. Quad blaster turrets. Proton guns. Anti-missile turrets. Even atomic thrusters from the Deep, which the Syndicate does not normally sell. Is this all for the Free Worlds?"`
 			`	Alondo pauses. "I have... an old friend within the Syndicate. He was a part of the negotiations, and mentioned that there would be 'extra goodies' within the coming convoys. We haven't been on speaking terms for years, and I suppose this is his attempt to get back on my good side."`
-			`	"I doubt that supplies in these amounts are just an attempt at old friends trying to get back together," says Emily. "The Syndicate do not play games like this without having something to gain from it. I would suggest not taking this good gesture too highly."`
+			`	"I doubt that supplies in these amounts are just an attempt at old friends trying to get back together," says Emily. "The Syndicate does not play games like this without having something to gain from it. I would suggest not taking this good gesture too highly."`
 			`	They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral, although the intentions of the Syndicate remain in question.`
 			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet <planet> has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
 				accept
@@ -482,7 +482,7 @@ mission "FW Syndicate Diplomacy 1D"
 		log "Tried to convince Poisonwood, a world adjacent to Free Worlds territory, to switch sides. But, they are fiercely loyal to the Republic because the Navy freed them from being dominated by Alpha warlords decades ago."
 		conversation
 			`As you are landing on Poisonwood, Alondo explains, "Three decades ago, this was a slave colony. The Navy was responsible for liberating them, and they still feel a deep debt to the Republic as a result. But even if they do not join us, we can maybe establish more friendly relations with them."`
-			`	Soon after you land, the governor of Poisonwood sends an aide to escort you to her office. The governor is a woman probably in her late fifties, and as you are speaking the sunlight occasionally catches her face or arms at exactly the right angle to show the faint, criss-crossing lines of very old scars. She must be one of the slaves who was freed by the Navy.`
+			`	Soon after you land, the governor of Poisonwood sends an aide to escort you to her office. The governor is a woman probably in her late fifties, and as you are speaking the sunlight occasionally catches her face or arms at exactly the right angle to show the faint, criss-crossing lines of very old scars. She must be one of the slaves who were freed by the Navy.`
 			`	As soon as you are seated, she says, "Now, I don't want to give you false hope. We will not be joining the Free Worlds."`
 			`	"Understood," says Alondo. "We've come primarily to assure you that the Free Worlds will never attempt to take control of a planet that has not willingly chosen to join us. But without our support, your world is isolated and vulnerable."`
 			`	"Indeed," she says, grimacing. They talk for a while, but it is clear she does not think her people would ever support even a treaty of neutrality with the "rebellion." Finally, she changes the subject. "Captain <last>," she says, "what do you believe is the greatest threat that humanity faces today?"`
@@ -627,7 +627,7 @@ mission "FW Hope Recon 1C"
 	
 	on offer
 		"reputation: Republic (Friendly)" >?= 0
-		log "Planted some sensors on the abandoned world of Hope, as an early warning system for Navy raids on Free Worlds space. The Navy appears to be doing something on this world, as well."
+		log "Planted some sensors on the abandoned world of Hope, as an early warning system for Navy raids on Free Worlds space. The Navy appears to be doing something on this world as well."
 		conversation
 			`You land on Hope, place Freya's surveillance rigs in the locations she specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in the scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
 			choice
@@ -1688,7 +1688,6 @@ mission "FW Early Warning 1"
 			branch sensors
 				has "fw caught navy planting sensors"
 			`	"Whatever we're capable of, they're capable of and then some," says JJ. "I wouldn't be surprised if they know about our sensors and are trying to use them against us."`
-			`	JJ suspects that they know about the sensors. "Whatever we're capable of, they're capable of and then some. I wouldn't be surprised if they know about our sensors and are trying to use them against us."`
 				goto next
 			
 			label sensors
@@ -1817,14 +1816,14 @@ mission "FW Early Warning 3"
 					goto talk
 			`	"Nothing," JJ responds, then pauses before saying, "I fear this won't end well."`
 			label talk
-			`	The officer directs you and JJ to an outdoor seating area of one of the spaceport's restaurants, where you find Commander Ranulph Hines finishing what looks like a plate of salmon. JJ sits down across from him`
+			`	The officer directs you and JJ to an outdoor seating area of one of the spaceport's restaurants, where you find Commander Ranulph Hines finishing what looks like a plate of salmon. JJ sits down across from him.`
 			`	"Lieutenant Commander Jean-Jacques Soleau, in the flesh before my very eyes," Hines says, wiping the edges of his mouth. "I never imagined I'd be seeing you again after you so unceremoniously left the Navy."`
 			`	"I'm not here to discuss the past, Commander," JJ responds. "I'm hear to prevent more bloodshed in this pointless war."`
 			`	"As am I, Soleau, as am I. Although I might ask, were the lives lost in your attacks on Geminus and Martini pointless, or were those necessary losses."`
 			`	"The Free Worlds is not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
 			`	"There was no 'taking,' Soleau. Kornephoros is rightfully Republic territory. We were simply enacting a police action on one of our own worlds, and arresting the terrorists who-"`
 			`	"So did you only come here to insult me and the Free Worlds or are you here to discuss peace as I asked?" JJ says, cutting Hines off. "As I said, I'm here to prevent more bloodshed. The deaths of those on Geminus and Martini as well as those in Kornephoros and Sabik were enough already. Continued bloodshed will not satisfy either side in this war."`
-			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the otherhand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
+			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the other hand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
 			`	"The actions that were taken on Greenrock were unsanctioned by the Free Worlds Senate or Council," JJ responds. "It was the result of rogue elements that have been taken care of."`
 			`	"Rogue elements within your ranks? You certainly have a history of those if it was a rogue element within your insurgency that committed the terrorist acts that took the lives of thousands of Republic citizens. At least, I presume it was a rogue element, as I've never known the venerable Jean-Jacques Soleau to be a liar, so I certainly believe you when you tell me that your 'Free Worlds' wouldn't do that. Although I'm sure you would have also told me that your 'Free Worlds' would never subjugate the population of Greenrock, either."`
 			choice
@@ -1839,7 +1838,7 @@ mission "FW Early Warning 3"
 			`	Hines turns up his nose. "This is undoubtedly Republic territory you're standing on, Soleau, and therefore we have every right to arrest you."`
 			`	"I think your men disagree," JJ remarks. All of the Navy personnel have either remained in or returned to formation. "Remember that I myself was a part of the Navy once. A Navy that each and every one of your honored men surely remember, either because they lived it or because they grew up revering it. But a Navy that I left because of those like you. I'm sorry to disappoint you, but if we can't negotiate peace talks then we'll be leaving. I pray that you'll be wise enough to see the error in your ways and let us go." JJ stands up and begins walking off, leaving Hines to sulk in his chair.`
 			`	"Your days are numbered, Soleau," Hines shouts, but he remains in his chair and gives no orders to his soldiers.`
-			`	The Navy allows you to leave unmolested as you enter your ship with JJ. "Launch your ship immediately and return to <planet>," he says. "The only thing that rivals honor among the Navy is duty, and I don't want to be around with Hines starts whipping his men into his shape."`
+			`	The Navy allows you to leave unmolested as you enter your ship with JJ. "Launch your ship immediately and return to <planet>," he says. "The only thing that rivals honor among the Navy is duty, and I don't want to be around when Hines starts whipping his men into his shape."`
 				launch
 	
 	on enter "Kornephoros"
@@ -2117,7 +2116,7 @@ mission "FW Refinery 1"
 	
 	on offer
 		conversation
-			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we not need to turn our attention to cleaning up Tomek's mess."`
+			`JJ and Freya meet you soon after you land on <origin>. "Great work in the battle, Captain," Freya says. "Unfortunately, we now need to turn our attention to cleaning up Tomek's mess."`
 			`	"The people of Thule became very weary of our deal with them after Tomek's attack on Greenrock," JJ explains. "They feared that they would be next, and that our negotiations with them was just an attempt to get them to distance themselves from what would be their main line of defense."`
 			`	"We have to show them that our offer was genuine," Freya says.`
 			choice
@@ -2133,7 +2132,7 @@ mission "FW Refinery 1"
 				`	"We're going to take a supply convoy through Republic space?"`
 					goto convoy
 				`	"How do we know this isn't a trap?"`
-			`	"We don't," says Freya, "by the Syndicate has helped us before, and they are always willing to make deals. I don't think they're ready yet to give up on the chance to sell their wares to both sides in this war."`
+			`	"We don't," says Freya, "but the Syndicate has helped us before, and they are always willing to make deals. I don't think they're ready to give up on the chance to sell their wares to both sides in this war just yet."`
 			`	"Still, how do they expect us to get a convoy safely to Tundra?" you ask`
 			label convoy
 			`	"Not a convoy," says JJ. "Just you, Captain. It's only ten tons of spare parts. Your job is to fly to Tundra, retrieve the parts, and return here."`

@@ -38,10 +38,10 @@ mission "Pact Recon 0"
 				`	"How can you tell?"`
 				`	"Are the pirates rough around these parts?"`
 					goto pirates
-			`	"Because captains from around here don't rubberneck at an every-day occurrence. After seeing your first dozen or so damaged ships, you eventually get use to seeing them and just move on."`
+			`	"Because captains from around here don't rubberneck at an every-day occurrence. After seeing your first dozen or so damaged ships, you eventually get used to seeing them and just move on."`
 			`	"Are the pirates rough around these parts?" you ask.`
 			label pirates
-			`	"Rougher than you're probably use to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free reign to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
+			`	"Rougher than you're probably used to if you're from farther up north. The Navy doesn't patrol these parts, not unless there's some high profile warlord that's on their radar. Because of that, pirates have more free reign to terrorize us down here." She pauses for a moment while turning back to the freighter. "And the pirate fleets keep getting stronger every year," she says with concern.`
 			choice
 				`	"Is there something I can do to help?"`
 				`	"I wish I could help, but my ship is not a warship."`
@@ -153,7 +153,7 @@ mission "Pact Recon 3"
 		not "event: war begins"
 	
 	on offer
-		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet massing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight them, just observe them."`
+		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet amassing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight, just observe them."`
 	
 	npc
 		government "Pirate"
@@ -499,7 +499,7 @@ mission "FW Recon 3B"
 				`	"What should I do now that the Republic is watching me?"`
 				`	"Knowing that, how can you possibly expect to stand up against the Republic?"`
 					goto odds
-			`	"Keep your head low. You're compromised, so I can't ask you to do any more recon work for us. So long as you don't cause them any trouble, they'll likely eventually leave you alone. We have a great number of merchants helping us, and for as capable as the Republic is, they can only keep a close eye on so many people at a time."`
+			`	"Keep your head low. You're compromised, so I can't ask you to do any more recon work for us. So long as you don't cause them any trouble, they'll likely eventually leave you alone. We have a great number of merchants helping us, and as capable as the Republic is, they can only keep a close eye on so many people at a time."`
 				goto info
 			
 			label odds
@@ -944,7 +944,7 @@ mission "FW Katya 3"
 				`	"That sounds like a terrible idea."`
 					goto terrible
 			
-			`	Eyes laughs, spitting out his milkshake in the process. "We don't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't to anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
+			`	Eyes laughs, spitting out his milkshake in the process. "We won't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't to anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
 				goto decision
 			
 			label terrible
@@ -1391,7 +1391,7 @@ mission "FW Escort 0"
 	on offer
 		conversation
 			`As you are walking through the spaceport, a man in a militia uniform approaches you. Judging by the markings on his uniform, you suspect that he is very highly ranked within the militia.`
-			`	"Captain <last>?" he asks. You nod. "Glad to finally meet you. I'm Tomek Voigt, commanding officer of the Free miltiias. I have friends and officers who have spoken very highly of you. They tell me that you've gone to great lengths to help us. I thank you for that."`
+			`	"Captain <last>?" he asks. You nod. "Glad to finally meet you. I'm Tomek Voigt, commanding officer of the Free militias. I have friends and officers who have spoken very highly of you. They tell me that you've gone to great lengths to help us. I thank you for that."`
 			choice
 				`	"Oh, it was nothing. Just helping people out where I can."`
 					goto humble
@@ -1414,9 +1414,9 @@ mission "FW Escort 0"
 				`	"Sorry, but that's not the type of work I'm looking for."`
 					decline
 			
-			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacture of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
+			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacturing of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
 			choice
-				`	"Well then I'd be glad to help."`
+				`	"Well, then I'd be glad to help."`
 				`	"Sorry, but that's not the type of work I'm looking for."`
 					decline
 			
@@ -1765,7 +1765,9 @@ mission "FW Escort 3"
 					decline
 				`	"What exactly is the Council?"`
 			
-			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact. We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds, but with the Free Worlds having declared itself as a formal government which is at war with the Republic, the militias will now be obligated to answer to the Council as an emergency power, as opposed to the prior agreement where worlds could refuse to answer to the Pact if for whatever reason they chose not to. But the Council is only a transitional organization; upon the establishment of the Free Worlds Senate, which is in the works, the Council will be dissolved and all its responsibilities will be moved to the Council.`
+			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact.`
+			`	"We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds, but with the Free Worlds having declared itself as a formal government which is at war with the Republic, the militias will now be obligated to answer to the Council as an emergency power, as opposed to the prior agreement where worlds could refuse to answer to the Pact if for whatever reason they chose not to.`
+			`	"But the Council is only a transitional organization; upon the establishment of the Free Worlds Senate, which is in the works, the Council will be dissolved and all its responsibilities will be moved to the Senate.`
 			`	"Does that answer your question?" Tomek asks.`
 			`	"It does," you say. "Thank you."`
 
@@ -1893,7 +1895,7 @@ mission "FW Bounty 1"
 
 mission "FW Bounty 2"
 	name "Free Worlds Bounty Hunting"
-	description `A Free Worlds militia officer from <destination> asked you to hunt down the Moonless Night, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a pirate ship last seen in the Delta Sagittarii system. The militia officer suggested trying to attack the ship from a distance.`
 	source
 		government "Free Worlds"
 	to offer
@@ -1911,7 +1913,7 @@ mission "FW Bounty 2"
 				`	"Sorry, I'm way too busy right now."`
 					defer
 			
-			`	"There's a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
+			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
 			choice
 				`	"Sounds like this shouldn't be too difficult. I'm in."`
 				`	"I could handle a group of interceptors, but this sounds like too much for me. Go find someone else."`
@@ -1921,7 +1923,7 @@ mission "FW Bounty 2"
 				accept
 			
 			label accept
-			`	He grins. "Your target is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
+			`	He grins. "Your target is a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone fit on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
 				accept
 	
 	npc kill
@@ -2167,7 +2169,7 @@ mission "Defend Sabik"
 			label paint
 			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
 			`	Tomek stands by, silently, until you finish, and then approaches you with an outstretched arm holding onto a license. "Here. You're going to need this. I'm sure your assistance will be invaluable to our cause," he says as you accept the militia license. "Now if you'll excuse me, I must gather the militia for the coming battle."`
-			`	You find that the militia are collecting at the spaceport bar. Some congratulate you on joining the Free Worlds, but most are standing around quietly, waiting for something to happen. More gather as time goes to the point that the bar becomes overcrowded and militia are waiting in the streets outside the building.`
+			`	You find that the militia are collecting at the spaceport bar. Some congratulate you on joining the Free Worlds, but most are standing around quietly, waiting for something to happen. More gather as time goes by, to the point that the bar becomes overcrowded and militia are waiting in the streets outside the building.`
 			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapon fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!`
 			`	"And if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do. Now go! Your worlds need you!" You hurry to join all the other ships taking off to defend the system.`
 				launch
