@@ -4447,11 +4447,13 @@ mission "Dangerous Games 2"
 	minor
 	name "Karengo's Galactic Adventures"
 	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
-	source "Skymoot"
+	source
+		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
 	cargo "subpods" 6
 	passengers 6
 	to offer
+		random < 15
 		has "Dangerous Games 1: done"
 	on offer
 		conversation
