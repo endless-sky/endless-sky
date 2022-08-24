@@ -299,7 +299,7 @@ ship "Korath Ravager"
 		"Korath Fire-Lance" 2
 		"Firelight Missile Bank" 6
 		"Firelight Missile" 190
-		"Firelight Missile Rack" 7
+		"Firelight Storage Rack" 7
 
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
