@@ -233,7 +233,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+			{
+				if(child.Size() >= 4)
+				{
+					fleets.emplace_back(fleet, child.Value(valueIndex + 1), ids, child.Value(valueIndex + 2));
+					fleetCounters.emplace_back(ids);
+				}
+				else
+					fleets.emplace_back(fleet, child.Value(valueIndex + 1), ids);
+				ids++;
+			}
 		}
 		else if(key == "hazard")
 		{
@@ -758,6 +767,34 @@ double System::Exports(const string &commodity) const
 const vector<RandomEvent<Fleet>> &System::Fleets() const
 {
 	return fleets;
+}
+
+
+
+const int System::GetFleetCounter(int id) const
+{
+	for(const auto counter : fleetCounters)
+		if(counter.id == id)
+			return counter.count;
+	return -1;
+}
+
+
+
+void System::IncreaseFleetCounter(int id) const
+{
+	for(auto counter : fleetCounters)
+		if(counter.id == id)
+			counter.count++;
+}
+
+
+
+void System::DecreaseFleetCounter(int id) const
+{
+	for(auto counter : fleetCounters)
+		if(counter.id == id)
+			counter.count--;
 }
 
 

@@ -33,6 +33,13 @@ class Planet;
 class Ship;
 class Sprite;
 
+struct Counter{
+	int id;
+	int count = 0;
+	Counter(int id)
+	: id(id) {}
+};
+
 
 
 // Class representing a star system. This includes characteristics like what
@@ -145,6 +152,10 @@ public:
 
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<RandomEvent<Fleet>> &Fleets() const;
+	const int GetFleetCounter(int id) const;
+	void IncreaseFleetCounter(int id) const;
+	void DecreaseFleetCounter(int id) const;
+
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is (credits worth of enemy ships jumping
@@ -197,6 +208,8 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
+	std::vector<Counter> fleetCounters;
+	int ids = 0;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
 	WeightedList<double> belts;

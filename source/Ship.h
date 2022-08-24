@@ -424,6 +424,9 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	const int FleetId() const;
+	void SetFleetId(int id);
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -595,6 +598,8 @@ private:
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+
+	int fleetId = -1;
 };
 
 

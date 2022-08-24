@@ -20,21 +20,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 template <typename T>
 class RandomEvent {
 public:
-	constexpr RandomEvent(const T *event, int period) noexcept;
+	constexpr RandomEvent(const T *event, int period, int id = -1, int maxNumber = 0) noexcept;
 
 	constexpr const T *Get() const noexcept;
 	constexpr int Period() const noexcept;
+	constexpr int MaxNumber() const noexcept;
+	constexpr int Id() const noexcept;
 
 private:
 	const T *event;
 	int period;
+	int id;
+	int maxNumber;
 };
 
 
 
 template <typename T>
-constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
-	: event(event), period(period > 0 ? period : 200)
+constexpr RandomEvent<T>::RandomEvent(const T *event, int period, int id, int maxNumber) noexcept
+	: event(event), period(period > 0 ? period : 200), id(id), maxNumber(maxNumber)
 {
 }
 
@@ -50,6 +54,17 @@ constexpr int RandomEvent<T>::Period() const noexcept
 	return period;
 }
 
+template <typename T>
+constexpr int RandomEvent<T>::MaxNumber() const noexcept
+{
+	return maxNumber;
+}
+
+template <typename T>
+constexpr int RandomEvent<T>::Id() const noexcept
+{
+	return id;
+}
 
 
 #endif

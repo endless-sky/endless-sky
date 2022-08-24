@@ -3903,6 +3903,20 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
+const int Ship::FleetId() const
+{
+	return fleetId;
+}
+
+
+
+void Ship::SetFleetId(int id)
+{
+	fleetId = id;
+}
+
+
+
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)

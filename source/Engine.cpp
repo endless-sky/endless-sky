@@ -1598,6 +1598,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				if(bay.ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
 		}
+		if(ship->FleetId() >= 0)
+			player.GetSystem()->DecreaseFleetCounter(ship->FleetId());
 		return;
 	}
 
@@ -1681,7 +1683,7 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()))
+		if(!Random::Int(fleet.Period()) && (fleet.MaxNumber() < player.GetSystem()->GetFleetCounter(fleet.Id()) || fleet.MaxNumber() <= 0))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -1694,7 +1696,8 @@ void Engine::SpawnFleets()
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
 
-			fleet.Get()->Enter(*player.GetSystem(), newShips);
+			fleet.Get()->Enter(*player.GetSystem(), newShips, nullptr, fleet.Id());
+			player.GetSystem()->IncreaseFleetCounter(fleet.Id());
 		}
 }
 

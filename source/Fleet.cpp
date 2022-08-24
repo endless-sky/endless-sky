@@ -271,7 +271,7 @@ const Government *Fleet::GetGovernment() const
 
 
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet, int fleetId) const
 {
 	if(variants.empty() || personality.IsDerelict())
 		return;
@@ -430,7 +430,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(flagship)
 			ship->SetParent(flagship);
 		else
+		{
 			flagship = ship;
+			ship->SetFleetId(fleetId);
+		}
 
 		SetCargo(&*ship);
 	}
