@@ -2862,11 +2862,20 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				p += v;
 
 				// Beam weapons hit instantenously if they are in range.
-				double rendezvousScore = 0.;
-				if(weapon->TotalLifetime() > 1)
+				double rendezvousTime;
+				if(weapon->TotalLifetime() == 1)
+				{
+					// Lower target priority if it is out of range.
+					double distance = p.Length();
+					if(distance > weapon->Velocity())
+						rendezvousTime = distance / weapon->Velocity() - 1.;
+					else
+						rendezvousTime = 0.;
+				}
+				else
 				{
 					// Find out how long it would take for this projectile to reach the target.
-					double rendezvousTime = weapon->TotalLifetime() == 1 ? 0 : RendezvousTime(p, v, vp);
+					rendezvousTime = weapon->TotalLifetime() == 1 ? 0 : RendezvousTime(p, v, vp);
 					// If there is no intersection (i.e. the turret is not facing the target),
 					// consider this target "out-of-range" but still targetable.
 					if(std::isnan(rendezvousTime))
@@ -2879,14 +2888,13 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					// weight. Outside that range, give them lower priority.
 					rendezvousTime = max(0., rendezvousTime - weapon->TotalLifetime());
 
-					// Always prefer targets that you are able to hit.
-					rendezvousScore = (180. / weapon->TurretTurn()) * rendezvousTime;
 				}
 
 				// Determine how much the turret must turn to face that vector.
 				double degrees = (Angle(p) - aim).Degrees();
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
-				double score = turnTime + rendezvousScore;
+				// Always prefer targets that you are able to hit.
+				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
 				if(score < bestScore)
 				{
 					bestScore = score;
