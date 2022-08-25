@@ -2875,7 +2875,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				else
 				{
 					// Find out how long it would take for this projectile to reach the target.
-					rendezvousTime = weapon->TotalLifetime() == 1 ? 0 : RendezvousTime(p, v, vp);
+					rendezvousTime = RendezvousTime(p, v, vp);
 					// If there is no intersection (i.e. the turret is not facing the target),
 					// consider this target "out-of-range" but still targetable.
 					if(std::isnan(rendezvousTime))
