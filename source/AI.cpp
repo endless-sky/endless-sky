@@ -2861,8 +2861,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 				// have moved forward one time step.
 				p += v;
 
-				// Beam weapons hit instantenously if they are in range.
 				double rendezvousTime;
+				// Beam weapons hit instantenously if they are in range.
 				if(weapon->TotalLifetime() == 1)
 				{
 					// Lower target priority if it is out of range.
