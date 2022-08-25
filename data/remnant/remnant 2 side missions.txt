@@ -219,11 +219,6 @@ mission "Remnant: Celebration 1"
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually coming out of the typical hallways and into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sounds of drips or trace lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
 			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
-``
-
-This could stand on emphasis on how the doors close: "slam closed" "close in unison/sequence/one at a time," etc., but I wasn't sure on that intent.
-
-Also, this should probably be moved above Tarly's explanation, otherwise that "without warning" is contradictory.
 			`	Suddenly you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
