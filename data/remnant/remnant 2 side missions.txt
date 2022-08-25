@@ -149,7 +149,7 @@ mission "Remnant: Visit to Paradise 1"
 
 mission "Remnant: Celebration 1"
 	name "Deliver Celebration records to <destination>"
-	description "The Remnant have asked you to take records of their celebration to <destination>"
+	description "The Remnant have asked you to take records of their celebration to <destination>."
 	minor
 	source
 		government "Remnant"
@@ -179,7 +179,7 @@ mission "Remnant: Celebration 1"
 				`	"No thanks."`
 					goto celebrationdeclined
 			label celebrationattendance
-			`	As the two of you join the flow of people Taely gestures once again. "If you would like, I could provide you with some commentary and explanation, but it is more about feeling than doing anything specific. Together, we remember and celebrate through free-form dance mixed with singing and music. You are welcome to participate, but try not to disrupt or impede others in the way you join the dancing."`
+			`	As the two of you join the flow of people, Taely gestures once again. "If you would like, I could provide you with some commentary and explanation, but it is more about feeling than doing anything specific. Together, we remember and celebrate through free-form dance mixed with singing and music. You are welcome to participate, but try not to disrupt or impede others in the way you join the dancing."`
 			choice
 				`	"No, that is alright. I will just experience it."`
 				`	"Yes, that would be appreciated."`
@@ -218,7 +218,12 @@ mission "Remnant: Celebration 1"
 			label celebrationannotated
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually coming out of the typical hallways and into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sounds of drips or trace lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
-			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
+			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
+``
+
+This could stand on emphasis on how the doors close: "slam closed" "close in unison/sequence/one at a time," etc., but I wasn't sure on that intent.
+
+Also, this should probably be moved above Tarly's explanation, otherwise that "without warning" is contradictory.
 			`	Suddenly you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
@@ -250,7 +255,7 @@ mission "Remnant: Celebration 1"
 				`	(Look around to see what is happening next.)`
 			`	Around you, everyone has gone still. Most look exhausted, and some are sitting on the floor or leaning against the walls. A few people look like they have been crying, and those nearby are hugging them or simply touching their shoulder. Most of the people you can see have reverent and joyful expressions. After the silence lingers for what feels like several minutes, the doors open and people start to leave. In short order the cave is nearly empty.`
 			label celebrationend
-			`	"I always find these Celebrations of Remembrance to be invigorating. What did you think of it, <first>?"`
+			`	"I always find these Celebrations of Remembrance to be invigorating," Taely says. "What did you think of it, <first>?"`
 			choice
 				`	"I think I will have to get back to you on that later."`
 					goto celebrationrequest
