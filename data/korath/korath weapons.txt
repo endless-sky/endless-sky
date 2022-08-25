@@ -395,7 +395,7 @@ outfit "Piercer Missile"
 outfit "Piercer Missile Rack"
 	category "Ammunition"
 	cost 56000
-	thumbnail "outfit/Piercer Missile storage"
+	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
 	"outfit space" -7
 	"piercer capacity" 16

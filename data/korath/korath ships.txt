@@ -161,8 +161,8 @@ ship "Palavret"
 
 
 ship "Tubfalet"
-	sprite "ship/raider xlii"
-	thumbnail "thumbnail/raider xlii"
+	sprite "ship/tubfalet"
+	thumbnail "thumbnail/tubfalet"
 	attributes
 		category "Utility"
 		"cost" 22895000
