@@ -385,7 +385,7 @@ ship "Ra'gru Ik 618"
 	thumbnail "thumbnail/world-ship b"
 	attributes
 		category "Heavy Warship"
-		cost 29640000
+		cost 37640000
 		shields 51000
 		hull 39500
 		"required crew" 619
@@ -760,7 +760,7 @@ ship "Korsmanath A'awoj"
 	"uncapturable"
 	attributes
 		category "Utility"
-		cost 27690000
+		cost 276900000
 		shields 196420
 		hull 320690
 		"required crew" 1940
