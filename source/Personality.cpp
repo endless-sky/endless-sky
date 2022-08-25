@@ -370,6 +370,17 @@ Personality Personality::Defender()
 
 
 
+// Remove target and marked since the defender defeat check doesn't actually care
+// about carried ships.
+Personality Personality::DefenderFighter()
+{
+	Personality defender;
+	defender.flags = STAYING | HEROIC | UNCONSTRAINED;
+	return defender;
+}
+
+
+
 void Personality::Parse(const DataNode &node, int index, bool remove)
 {
 	const string &token = node.Token(index);
