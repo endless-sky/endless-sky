@@ -95,7 +95,7 @@ government "Derelict"
 	"fine" 0
 
 government "Drak"
-	swizzle 5
+	swizzle 0
 	color 1 1 1
 	"player reputation" 1
 	"fine" 0
@@ -106,7 +106,7 @@ government "Drak"
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
 	"display name" "Drak"
-	swizzle 5
+	swizzle 0
 	"player reputation" -1000
 	"attitude toward"
 		"Indigenous Lifeform" 1
@@ -375,8 +375,24 @@ government "Korath"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
+		"Korath (Civilian)" 1
 	
 	"player reputation" -10
+
+government "Korath (Civilian)"
+	"display name" "Korath"
+	swizzle 2
+	color .8 .5 .1
+	"crew attack" 1.1
+	"crew defense" 2.1
+	language "Korath"
+
+	"attitude toward"
+		"Kor Mereti" -.01
+		"Kor Sestor" -.01
+		"Korath" .01
+
+	"player reputation" 1
 
 government "Korath Nanobots"
 	"player reputation" -1000

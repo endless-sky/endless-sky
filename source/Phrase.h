@@ -27,6 +27,10 @@ class DataNode;
 // Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
+	Phrase() = default;
+	// Construct and Load() at the same time.
+	Phrase(const DataNode &node);
+
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
 
@@ -49,9 +53,6 @@ private:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
 
-		// The likelihood that this choice will be picked by its part.
-		int Weight() const { return weight; };
-		int weight;
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;

@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Logger.h"
 #include "Phrase.h"
 #include "pi.h"
 #include "Planet.h"
@@ -206,16 +206,15 @@ void Fleet::Load(const DataNode &node)
 				resetVariants = false;
 				variants.clear();
 			}
-			variants.emplace_back(child);
+			int weight = (child.Size() >= add + 2) ? max<int>(1, child.Value(add + 1)) : 1;
+			variants.emplace_back(weight, child);
 		}
 		else if(key == "variant")
 		{
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
-			auto removeIt = std::remove(variants.begin(), variants.end(), toRemove);
-			if(removeIt != variants.end())
-				variants.erase(removeIt, variants.end());
-			else
+			int count = erase(variants, toRemove);
+			if(!count)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else
@@ -252,21 +251,12 @@ bool Fleet::IsValid(bool requireGovernment) const
 
 void Fleet::RemoveInvalidVariants()
 {
-	auto IsInvalidVariant = [](const Variant &v) noexcept -> bool
-	{
-		return !v.IsValid();
-	};
-	auto firstInvalid = find_if(variants.begin(), variants.end(), IsInvalidVariant);
-	if(firstInvalid == variants.end())
+	int total = variants.TotalWeight();
+	int count = erase_if(variants, [](const Variant &v) noexcept -> bool { return !v.IsValid(); });
+	if(!count)
 		return;
 
-	// Ensure the class invariant can be maintained.
-	int total = variants.TotalWeight();
-	auto removeIt = remove_if(firstInvalid, variants.end(), IsInvalidVariant);
-	int count = distance(removeIt, variants.end());
-	variants.erase(removeIt, variants.end());
-
-	Files::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+	Logger::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
 		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
 }
@@ -389,7 +379,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!object)
 		{
 			// Log this error.
-			Files::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+			Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
 				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
 			return;
 		}
@@ -570,7 +560,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Files::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 
