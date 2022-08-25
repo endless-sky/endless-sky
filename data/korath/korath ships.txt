@@ -271,8 +271,8 @@ ship "Korath Raider Mark XLII"
 
 
 ship "'nra'ret"
-	sprite "ship/nraret"
-	thumbnail "thumbnail/nraret"
+	sprite "ship/-nra-ret"
+	thumbnail "thumbnail/-nra-ret"
 	attributes
 		category "Heavy Warship"
 		"cost" 24760000
