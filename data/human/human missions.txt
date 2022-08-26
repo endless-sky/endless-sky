@@ -4894,7 +4894,7 @@ mission "Riley"
 			action
 				payment 100000
 			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep Security office and report what you saw. A slick voice on the other side of your commlink responds.`
-			`"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."` A few minutes pass as you watch their forces descend on the house.`
+			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."` A few minutes pass as you watch their forces descend on the house.`
 			`	Your bank account notifies you that 100,000 credits have been added to your account. Turning away, you head back to your ship.`
 				decline
 			label end
@@ -4922,7 +4922,7 @@ mission "Property Damage"
 				`	(Stay silent.)`
 					goto end
 			label no
-			`	"That is not something I am authorized to tell you. Frankly the amount of knowledge you have regarding AI is already not something the Deep is exactly comfortable with."
+			`	"That is not something I am authorized to tell you. Frankly the amount of knowledge you have regarding AI is already not something the Deep is exactly comfortable with."`
 			label end
-			`	You are directed to leave by the officer, but before you step outside, he speaks up. "And please, if you see something like that again, don't just shoot at it, for God's sake. Dealing with AI is enough of a paperwork nightmare as is." Once you are out of his ship, you look around. If anyone noticed your run-in with the law they are not showing it.
+			`	You are directed to leave by the officer, but before you step outside, he speaks up. "And please, if you see something like that again, don't just shoot at it, for God's sake. Dealing with AI is enough of a paperwork nightmare as is." Once you are out of his ship, you look around. If anyone noticed your run-in with the law they are not showing it.`
 				decline
