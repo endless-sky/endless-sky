@@ -405,7 +405,7 @@ outfit "Teciimach Pod"
 		"hit force" 90
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor class vessels."
-	description "Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
