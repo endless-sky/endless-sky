@@ -76,6 +76,7 @@ public:
 
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
+	static Personality DefenderFighter();
 
 
 private:
