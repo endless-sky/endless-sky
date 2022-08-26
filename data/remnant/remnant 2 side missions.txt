@@ -157,7 +157,7 @@ mission "Remnant: Teciimach Deployment"
 		attributes "shipyard" "remnant"
 	to offer
 		has "event: remnant: cognizance calm"
-		has "event remnant research update bjd1"
+		has "event: remnant research update bjd1"
 	on offer
 		event "remnant: teciimach deployment"
 		conversation
