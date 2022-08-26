@@ -340,7 +340,7 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 			"shield damage" 2600
 			"hull damage" 1300
 			"hit force" 3900
-		"Automaton" 1
+		"automaton" 1
 		inscrutable 1
 		"quantum keystone" 1
 		"burn protection" 100
@@ -418,7 +418,7 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 			"shield damage" 2600
 			"hull damage" 1300
 			"hit force" 3900
-		"Automaton" 1
+		"automaton" 1
 		inscrutable 1
 		"quantum keystone" 1
 		"burn protection" 100
