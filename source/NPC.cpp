@@ -342,7 +342,7 @@ string NPC::Validate(bool asTemplate) const
 			return "ship \"" + ship->Name() + "\"";
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
-			return "stock model \"" + ship->VariantName() + "\"";
+			return "stock model \"" + ship->VariantTrueName() + "\"";
 
 	return "";
 }

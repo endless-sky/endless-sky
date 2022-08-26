@@ -140,9 +140,9 @@ namespace {
 		return equipped;
 	}
 
-	void LogWarning(const string &modelName, const string &name, string &&warning)
+	void LogWarning(const string &trueName, const string &name, string &&warning)
 	{
-		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		string shipID = trueName + (name.empty() ? ": " : " \"" + name + "\": ");
 		Logger::LogError(shipID + std::move(warning));
 	}
 }
@@ -161,13 +161,14 @@ void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 	{
-		modelName = node.Token(1);
+		trueName = node.Token(1);
+		modelName = trueName;
 		pluralModelName = modelName + 's';
 	}
 	if(node.Size() >= 3)
 	{
 		base = GameData::Ships().Get(modelName);
-		variantName = node.Token(2);
+		variantTrueName = node.Token(2);
 	}
 	isDefined = true;
 
@@ -195,6 +196,8 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
+		else if(child.Token(0) == "display model name" && child.Size() >= 2)
+			modelName = child.Token(1);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
@@ -479,12 +482,13 @@ void Ship::FinishLoading(bool isNewInstance)
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
 	// the base model if no overrides were given.
-	if(GameData::Ships().Has(modelName))
+	if(GameData::Ships().Has(trueName))
 	{
-		const Ship *model = GameData::Ships().Get(modelName);
+		const Ship *model = GameData::Ships().Get(trueName);
 		explosionWeapon = &model->BaseAttributes();
-		if(pluralModelName.empty())
-			pluralModelName = model->pluralModelName;
+		// Allow for renames of player owned ships' models from game data.
+		modelName = model->ModelName();
+		pluralModelName = model->pluralModelName;
 		if(noun.empty())
 			noun = model->noun;
 		if(!thumbnail)
@@ -575,13 +579,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
+			LogWarning(VariantTrueName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
+			LogWarning(VariantTrueName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -624,7 +628,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(VariantName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+					LogWarning(VariantTrueName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
@@ -636,15 +640,15 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message;
 		if(isYours)
 		{
-			message = "Player ship " + modelName + " \"" + name + "\":";
+			message = "Player ship " + trueName + " \"" + name + "\":";
 			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
 		}
 		else
 		{
-			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
-				: modelName + " variant \"" + variantName + "\": ";
+			message = variantTrueName.empty() ? "Stock ship \"" + trueName + "\": "
+				: trueName + " variant \"" + variantTrueName + "\": ";
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
@@ -660,7 +664,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
+			string warning = (!isYours && !variantTrueName.empty()) ? "variant \"" + variantTrueName + "\"" : trueName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
@@ -725,7 +729,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantTrueName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
@@ -746,7 +750,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
 	if(!isNewInstance && targetSystem)
 	{
-		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + trueName + " \"" + name + "\": "
 			"Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
@@ -778,12 +782,11 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", modelName);
+	// Display model name is always loaded from game data and not saved.
+	out.Write("ship", trueName);
 	out.BeginChild();
 	{
 		out.Write("name", name);
-		if(pluralModelName != modelName + 's')
-			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
 		SaveSprite(out);
@@ -1007,6 +1010,22 @@ const string &Ship::Name() const
 
 
 
+// Set / Get the true name of this class of ships.  This is what is used in
+// saves and data files, but the name displayed to the player may be different.
+void Ship::SetTrueName(const string &trueName)
+{
+	this->trueName = trueName;
+}
+
+
+
+const string &Ship::TrueName() const
+{
+	return trueName;
+}
+
+
+
 // Set / Get the name of this class of ships, e.g. "Marauder Raven."
 void Ship::SetModelName(const string &model)
 {
@@ -1017,7 +1036,7 @@ void Ship::SetModelName(const string &model)
 
 const string &Ship::ModelName() const
 {
-	return modelName;
+	return modelName.empty() ? trueName : modelName;
 }
 
 
@@ -1030,9 +1049,9 @@ const string &Ship::PluralModelName() const
 
 
 // Get the name of this ship as a variant.
-const string &Ship::VariantName() const
+const string &Ship::VariantTrueName() const
 {
-	return variantName.empty() ? modelName : variantName;
+	return variantTrueName.empty() ? trueName : variantTrueName;
 }
 
 

@@ -506,7 +506,7 @@ void PrintShipTable()
 	for(auto &it : GameData::Ships())
 	{
 		// Skip variants and unnamed / partially-defined ships.
-		if(it.second.ModelName() != it.first)
+		if(it.second.TrueName() != it.first)
 			continue;
 
 		const Ship &ship = it.second;
