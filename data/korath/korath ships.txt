@@ -271,6 +271,79 @@ ship "Tubfalet"
 	description `Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets, and the Tubfalet-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory.`
 
 
+ship "'nra'ret"
+	sprite "ship/-nra-ret"
+	thumbnail "thumbnail/-nra-ret"
+	attributes
+		category "Heavy Warship"
+		"cost" 24760000
+		"shields" 32700
+		"hull" 9850
+		"required crew" 193
+		"bunks" 221
+		"mass" 979
+		"drag" 11.3
+		"heat dissipation" .63
+		"fuel capacity" 900
+		"cargo space" 50
+		"outfit space" 943
+		"weapon capacity" 407
+		"engine capacity" 177
+		weapon
+			"blast radius" 300
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
+	outfits
+		"Langrage Hyper-Heaver" 2
+		"Korath Warder"
+		"Korath Fire-Lance" 2
+		"Firelight Missile Bank" 6
+		"Firelight Missile" 190
+		"Firelight Storage Rack" 7
+
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Fuel Processor" 3
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Korath Repeater Rifle" 219
+
+		"Afterburner (Planetary Class)"
+		"Steering (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Jump Drive"
+
+	engine -29 96
+	engine 29 96
+	engine 0 90 0.9
+	gun -28 -133.5 "Korath Fire-Lance"
+	gun 28 -133.5 "Korath Fire-Lance"
+	gun -48.5 -85.5 "Firelight Missile Bank"
+		angle 320
+	gun 48.5 -85.5 "Firelight Missile Bank"
+		angle 40
+	gun -145 14.5 "Firelight Missile Bank"
+		angle 250
+	gun 145 14.5 "Firelight Missile Bank"
+		angle 110
+	gun -98 75 "Firelight Missile Bank"
+		angle 190
+	gun 98 75 "Firelight Missile Bank"
+		angle 170
+	turret -32.5 -53.5 "Langrage Hyper-Heaver"
+	turret 32.5 -53.5 "Langrage Hyper-Heaver"
+	turret 0 -23 "Korath Warder"
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large"
+	description "While perhaps, at first, seeming like a super-sized 'olofez-Class Carried Chaser, the 'nra'ret-Class Chaser is not only the first truly unique warship design the Exiles have fielded since the Exodus, but also the first built solely for combat instead of needing to double as a habitat or supply ship. Its size and non-modular nature also means it must be constructed wholesale at the largest Korath facilities, something that, until recently, was generally reserved for the likes of the massive Ik'atilajej and the Korsmanath A'awoj."
+	description "	The 'nra'ret-Class Chaser, named in honor of a brilliant weapons engineer who took their own life to avoid having their secrets captured by a hostile alien force, provides the Exiles with a fast and powerful patrol striker both in support of large raiding fleets and as independent units. To this end, it is armed with numerous missile ports designed to rain fire on enemies from afar. It also carries a pair of langrage heavers for sustained operations, and two Fire-Lances for emergency use in close quarters."
+
+
 ship "'olofez"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"

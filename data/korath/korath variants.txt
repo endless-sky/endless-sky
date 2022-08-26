@@ -413,6 +413,43 @@ ship "Tubfalet" "Tubfalet (Crippler)"
 	turret "Banisher Grav-Turret"
 
 
+ship "'nra'ret" "'nra'ret (Crippler)"
+	outfits
+		"Korath Detainer" 2
+		"Korath Repeater Turret" 2
+		"Korath Warder"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Firelight Missile Bank" 4
+		"Firelight Missile" 80
+
+		"Systems Core (Large)"
+		"Fuel Processor" 2
+		"Plasma Core"
+		"Triple Plasma Core"
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt"
+		"Outfits Expansion"
+		"Korath Repeater Rifle" 219
+
+		"Afterburner (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Jump Drive"
+
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	gun "Firelight Missile Bank"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+
+
 
 ship "'olofez" "'olofez (Expeller)"
 	outfits
