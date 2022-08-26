@@ -130,7 +130,7 @@ mission "Remnant: Expanded Horizons Astral job"
 mission "Remnant: Bounty 3"
 	job
 	repeat
-	name "Damaged Dredger Bounty"
+	name "Damaged Rano'erek Bounty"
 	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -163,7 +163,7 @@ mission "Remnant: Bounty 3"
 mission "Remnant: Bounty 4"
 	job
 	repeat
-	name "Marauding Dredger Bounty"
+	name "Marauding Rano'erek Bounty"
 	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
