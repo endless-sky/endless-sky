@@ -319,7 +319,7 @@ mission "Remnant: Defense 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger (Crippled)"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -349,7 +349,7 @@ mission "Remnant: Defense 3"
 					decline
 
 			`	He explains that they hope to gain advance notice of future raids by setting up remote surveillance equipment in the system in the Ember Waste that is closest to Korath space. The equipment will communicate with the Remnant via something called an "entangled particle pair" that does not require a hyperspace relay network. Ironically, this is technology that the Remnant acquired by raiding the Korath decades ago.`
-			`	"I will mark the target system on your map," he says, "and give you the equipment necessary to deploy the surveillance satellite. Please do not deploy it while any Korath ships are watching. Our scouts encountered Korath Raiders, but they have crippled them enough to where they should not be a problem."`
+			`	"I will mark the target system on your map," he says, "and give you the equipment necessary to deploy the surveillance satellite. Please do not deploy it while any Korath ships are watching. Our scouts encountered Palavrets, but they have crippled them enough to where they should not be a problem."`
 				accept
 	on accept
 		event "remnant: surveillance begin"
@@ -361,8 +361,8 @@ mission "Remnant: Defense 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Crippled)"
-				"Korath Chaser" 2
+				"Palavret (Crippled)"
+				"'olofez" 2
 		dialog "Now that you are alone, you are able to deploy the Remnant surveillance satellite unobserved. Time to report back to <planet>."
 	on visit
 		dialog `You have returned to <planet>, but you haven't deployed the surveillance satellite yet. Return to <waypoints> and make sure that all of the Korath there have been eliminated.`
@@ -2273,8 +2273,8 @@ mission "Remnant: Salvage 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger"
-				"Korath Chaser" 4
+				"Rano'erek"
+				"'olofez" 4
 	on visit
 		dialog "There are still Korath raiders circling overhead. You should take off and help the Remnant ships to fight them."
 	on complete
@@ -2357,7 +2357,7 @@ mission "Remnant: Salvage 4"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Hyperdrive)"
+				"Palavret (Hyperdrive)"
 		dialog "You have disabled the Korath ship that was left over from the raid on <planet>. You can now return there to collect your payment."
 	on abort
 		# No action, the player choose to just walk away from this mission(string)
@@ -2604,7 +2604,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 
 phrase "broken jump drive on visit"
 	word
-		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Korath Raiders found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
+		`You've landed on <planet>, but you don't have a broken jump drive to give to the Remnant. You may need to steal one from Palavrets or Rano'ereks found through Remnant jobs, or depart and wait for an escort carrying one to enter the system.`
 
 mission "Remnant: Broken Jump Drive 1"
 	repeat
@@ -3587,7 +3587,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 					goto labnext
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomenon, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
 			label labnext
-			`	"Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath Raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
+			`	"Now that you have the research laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
 
 
