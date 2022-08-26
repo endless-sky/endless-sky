@@ -352,7 +352,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Ammo())
 	{
 		attributeLabels.emplace_back("ammo:");
-		attributeValues.emplace_back(outfit.Ammo()->TrueName());
+		attributeValues.emplace_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
 		if(outfit.AmmoUsage() != 1)
 		{
