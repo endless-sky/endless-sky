@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/FontSet.h"
 #include "ImageSet.h"
 #include "Information.h"
+#include "Logger.h"
 #include "MaskManager.h"
 #include "Music.h"
 #include "PlayerInfo.h"
@@ -44,7 +45,7 @@ namespace {
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
-		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
 	}
 	// Class objects with a deferred definition should still get named when content is loaded.
 	template <class Type>
@@ -149,7 +150,7 @@ void UniverseObjects::FinishLoading()
 			for(const string &name : category.second)
 				persons.Get(name)->NeverSpawn();
 		else
-			Files::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+			Logger::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
 	}
 }
 
@@ -228,7 +229,7 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
@@ -265,7 +266,7 @@ void UniverseObjects::CheckReferences()
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
 		if(it.second.empty() && !deferred["outfitter"].count(it.first))
-			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -284,7 +285,7 @@ void UniverseObjects::CheckReferences()
 	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
 		if(it.second.empty() && !deferred["shipyard"].count(it.first))
-			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
+			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
@@ -305,7 +306,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 
 	DataFile data(path);
 	if(debugMode)
-		Files::LogError("Parsing: " + path);
+		Logger::LogError("Parsing: " + path);
 
 	for(const DataNode &node : data)
 	{
