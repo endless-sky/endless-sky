@@ -4894,7 +4894,7 @@ mission "Riley"
 			action
 				payment 100000
 			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep Security office and report what you saw. A slick voice on the other side of your commlink responds.`
-			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."` A few minutes pass as you watch their forces descend on the house.`
+			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip." A few minutes pass as you watch their forces descend on the house.`
 			`	Your bank account notifies you that 100,000 credits have been added to your account. Turning away, you head back to your ship.`
 				decline
 			label end
@@ -4913,7 +4913,7 @@ mission "Property Damage"
 	on offer
 		conversation
 			`	Upon landing you are accosted by a Deep Security officer surrounded by personnel. The markings on his uniform are unfamiliar to you. "Are you <first> <last>?" he asks. He doesn't wait for a response. "Please follow me." Considering the armaments on him and his colleagues, you obey and are led to his ship.`
-			`After making sure the hatch is closed, he begins. "It has come to our attention that you are responsible for the destruction of an advanced AI on Memory. Ordinarily you would go to trial for property damage in the hundreds of thousands of credits, but the machine that you destroyed was highly illegal and the existence of this technology is something that we have been trying to keep under wraps for quite some time. A trial, with witnesses, juries, and potential media interest, would not be conductive towards that goal. In addition, the Deep is grateful that the AI is destroyed, even if it was through... less than legal means. Therefore we have recieved orders to 'let you off with a warning,' so to speak.`
+			`After making sure the hatch is closed, he begins. "It has come to our attention that you are responsible for the destruction of an advanced AI on Memory. Ordinarily you would go to trial for property damage in the hundreds of thousands of credits, but the machine that you destroyed was highly illegal and the existence of this technology is something that we have been trying to keep under wraps for quite some time. A trial, with witnesses, juries, and potential media interest, would not be conductive towards that goal. In addition, the Deep is grateful that the AI is destroyed, even if it was through... less than legal means. Therefore we have received orders to 'let you off with a warning,' so to speak.`
 			choice
 				`	"Why was the AI illegal?"`
 				`	"Who's giving these orders?"`
