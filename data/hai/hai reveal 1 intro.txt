@@ -58,34 +58,35 @@ mission "Event: Pug Media Coverage"
 		has "event: pug media coverage"
 	on offer
 		event "hai secret leaks" 10 15
+		log "Minor People" "Maduena Kabiru" `A senator from Bounty in the Delta Velorum system. He is somewhat paranoid and insistent upon the Navy taking great steps to better explore the galaxy beyond human space to search for possible threats.`
 		conversation
 			`As you walk through the spaceport, you can't help but notice that coverage on the events of the Pug invasion still continues to dominate headlines, even though it's been weeks now.`
 			`	Looking around, you see that experts and officials have given way to talking heads and theorists. Some of them are saying what you yourself suspect: that the Pug invasion was a ploy to cause humanity to band together, learn to resolve differences without conflict, and ensure the sorts of extremism that lead to the events precipitating the war would not be tolerated.`
 			`	Others...`
-			`	You sigh deeply as you watch some paranoid fringe world politician demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people.`
-			`	Your thoughts, you keep to yourself.`
+			`	You sigh deeply as you watch some paranoid fringe-world politician, one Senator Maduena Kabiru from Bounty, demand that the edges of human space be better understood, that threats and even potential threats must clearly exist beyond what is already known, and that it is the responsibility of the government to find out and inform the people. While one could definitely argue in favor of his point, it feels rather cheap coming from a senator whose system is a mere two jumps from a brand new Navy base.`
+			`	In this very public space you spot a couple of people who seem to hesitantly recognize you, presumably from other coverage. As such, your thoughts, you keep to yourself.`
 				decline
 
 event "hai secret leaks"
 
 
 conversation "hai reveal free worlds news"
-	`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show - not something you specifically pay attention to, but apparently quite a popular one out of Tarazed.`
+	`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On the view-screen is some talk show that you haven't previously encountered, but apparently seems to be quite a popular one out of Tarazed.`
 	`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
 	`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
 	`	The host stresses the word 'had' so much his voice squeaks, but the audience's attention has certainly been gained.`
 	`	"But first, let's take a look at a clip."`
-	`	You raise an eyebrow with surprise.`
+	`	You raise your eyebrows with surprise. Actual verifiable footage of an unknown alien conflict seems improbable, to say the least.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other. They fire weapons quite unlike anything produced in human space.`
 	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
-	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+	`	This is, of course, ridiculous... the idea that there's a directly accessible alien race, in a war, that has also somehow been kept a secret... to call it far-fetched would be an understatement. Nevertheless, maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept
 	label "hai knowledge"
 	`	They show a short video of alien ships, Hai ships, engaged in combat with each other.`
-	`	When it's finished the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
+	`	When it is finished, the young man, who is very well presented but is clearly anxious about being here, is encouraged to talk about where he got the footage. As he speaks he has a bit of a paranoid manner to him that is plain to see even through a screen, talking at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war: a war waged by an alien species known as the 'Hai'.`
 	`	It might be time to go visit your Hai friends again.`
 		accept
 
@@ -94,14 +95,14 @@ conversation "hai reveal republic or syndicate news"
 	`You are relaxing at the spaceport while your ship refuels when a breaking news broadcast comes on; it's not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
 	`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
 	`	"An ex-crewman employed by an itinerant trader has come forward to media in the Free Worlds about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
-	`	You raise your eyebrows with surprise.`
+	`	You raise your eyebrows with surprise. Actual verifiable footage of an unknown alien conflict seems improbable, to say the least.`
 	`	That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
 	`	Right on schedule the news returns with the severe anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 	branch "hai knowledge"
 		has "First Contact: Hai: offered"
 	`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other. They fire weapons quite unlike anything produced in human space.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
-	`	This is, of course, ridiculous... but maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
+	`	This is, of course, ridiculous... the idea that there's a directly accessible alien race, in a war, that has also somehow been kept a secret... to call it far-fetched would be an understatement. Nevertheless, maybe it would be good to go investigate this for yourself. You listen in to collect the relevant details for future reference.`
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept	
 	label "hai knowledge"
@@ -174,7 +175,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 		event "news: hai video clip published"
 		conversation "hai reveal republic or syndicate news"
 	on visit
-		dialog "You need to visit Allhome first before you can finish this mission."
+		dialog "You should visit Allhome, where the most humans are, first to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -199,7 +200,7 @@ mission "ZZ Event Hai Secret Leaks: FWHU"
 		event "news: hai video clip published"
 		conversation "hai reveal free worlds news"
 	on visit
-		dialog "You need to visit Allhome first before you can finish this mission."
+		dialog "You should visit Allhome, where the most humans are, first to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -263,6 +264,7 @@ mission "ZZ Event Hai Secret Leaks: RS"
 		event "pirates investigate leaks"
 		event "news: hai video clip published"
 		set "asked to investigate hai leak"
+		set "didn't know about hai"
 		conversation "hai reveal republic or syndicate news"
 
 mission "ZZ Event Hai Secret Leaks: FW"
@@ -278,9 +280,10 @@ mission "ZZ Event Hai Secret Leaks: FW"
 		not "First Contact: Hai: offered"
 		not "asked to investigate hai leak"
 	on offer
-		set "asked to investigate hai leak"
-		event "news: hai video clip published"
 		event "pirates investigate leaks"
+		event "news: hai video clip published"
+		set "asked to investigate hai leak"
+		set "didn't know about hai"
 		conversation "hai reveal free worlds news"
 
 
@@ -296,8 +299,8 @@ mission "Trader Directions to Hai Space"
 	name "Investigate the Hai"
 	description "Follow the coordinates given to you by Captain Casey and meet the Hai."
 	source "Sunracer"
-	waypoint "Ultima Thule"
-	destination "Allhome"
+#	waypoint "Ultima Thule"
+	destination "Wormhole Alpha"
 	to offer
 		or
 			has "ZZ Event Hai Secret Leaks: RS: done"
@@ -392,7 +395,7 @@ mission "Hai Tour [2] Alta Hai"
 			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular gray color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
 			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, and warehouses and living quarters dot the inside of the ring.`
 			`	While the layout is utilitarian, it looks to be an incredibly comfortable place to live; the Hai have clearly given their individual community spaces quite a lot of character and life.`
-			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out.`
+			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out and asking around quickly gets you some clear directions.`
 				accept
 
 	#Goto Stop 3 Wah Yoot (Darkcloak) - must happen after Quarg first contact
@@ -410,7 +413,7 @@ mission "ZZ Hai Tour [3] Meet Unfettered"
 			`	Pondering your questions, you find a Quarg and ask, "So this isn't Hai space then, but it's a dead end?"`
 			`	The Quarg explains, "Much like in Enif in human space, this is where we live as friends to the Hai."`
 			`	This explanation seems typically Quarg, but it's the best one you're able to get. Before you go, you ask, "Do you know about the rebels I've been hearing about?"`
-			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to Darkcloak in Wah Yoot to understand."`
+			`	The Quarg responds, "The Hai and their rebels are the same. You should travel to Darkcloak in Wah Yoot to understand. Be warned, they tend to shoot at newcomers."`
 			`	It seems like there's nothing else for it but to see for yourself.`
 				accept
 	
@@ -492,10 +495,22 @@ mission "Hai Leaks Response 1"
 			has "ZZ Event Hai Secret Leaks: FWHU: done"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). Her experience has placed her in charge of coordinating the Hai response to the crisis of their continued secrecy.`
-		log `The Hai are very real, and human worlds seem poised to become aware of their existence. The Hai would like to avoid this. Agreed to assist by representing their interests where travel to human space is required. Their desire was for a human, yet somewhat neutral, party.`
+		
 		conversation
-			`As you arrive on Hai-home, you find that a reasonable security detachment is waiting at your designated landing berth. The Hai aren't usually ones to be concerned about such things, but you suspect that, as an apparent "war hero", they may be more for your own safety than the Hai's.`
-			`	Word of your status in human space seems to have spread ahead of you, especially considering your apparent reputation on many Hai worlds as one of the few significant human visitors. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
+			`As you arrive on Hai-home, you find that a reasonable security detachment is waiting at your designated landing berth.`
+			branch rudeawakening
+				has "didn't know about hai"
+			action
+				log `Human worlds seem poised to become aware of the Hai's existence. The Hai would like to avoid this. Agreed to assist by representing their interests where travel to human space is required. Their desire was for a human, yet somewhat neutral, party.`
+			`	The Hai aren't usually ones to be concerned about such things, but you suspect that, as an apparent "war hero", they may be more for your own safety than the Hai's.`
+			`	Word of your status in human space also seems to have spread ahead of you, especially considering your apparent reputation on many Hai worlds as one of the few significant human visitors. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
+				goto resume
+			label rudeawakening
+			action
+				log `The Hai are very real, and human worlds seem poised to become aware of their existence. The Hai would like to avoid this. Agreed to assist by representing their interests where travel to human space is required. Their desire was for a human, yet somewhat neutral, party.`
+			`	You haven't really seen very much of the Hai so far, and you can't help but think the size of the detachment is rather militant of them. It's impossible to judge if it's for your safety or whether, given your status as a "war hero", it's for theirs.`
+			`	Word of your status in human space also seems to have spread ahead of you, perhaps because you are a significant human visitor in the current climate. A small crowd of Hai gather to peek at you on the short walk from the spaceport to the government building you are led to.`
+			label resume
 			branch karma
 				karma > 1
 			`	As you are making the walk you hear questions posed and rumors stated. Occasionally you hear words like "survivor" and "dangerous" thrown in amongst the babble.`
@@ -510,7 +525,8 @@ mission "Hai Leaks Response 1"
 			`	You give it a moment of thought.`
 			choice
 				`	"That seems practical."`
-			`	"Fantastic," she says, though her tone is much more business like than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
+				`	"I don't really have an option to refuse do I?"`
+			`	"Fantastic, you understand the situation," she says, though her tone is much more business like than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
 			`	She hands you an officially branded box containing what appears to be a diplomatic ID, which appears to both identify you in human standard and, from context, in Hai.`
 			choice
 				`	"Various? We only have two governments."`
@@ -675,7 +691,7 @@ mission "Hai Leaks Response 3"
 			`	It is so hard to say "no" to a Hai and their cute squirrelly features.`
 			choice
 				`	"I'll do what I can."`
-					decline
+					accept
 #If a republic/syndicate campaign gets added this text will need variants.
 
 
@@ -807,7 +823,7 @@ ship "Geodesic Geocoris"
 	sprite "ship/geodesic geocoris"
 	thumbnail "thumbnail/geodesic geocoris"
 	attributes
-		category "Heavy Warship"
+		category "Utility"
 		"cost" 23540000
 		"shields" 26600
 		"hull" 7100
@@ -889,6 +905,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Electron Turret"
+	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
 
 mission "Hai Leaks Response 5"
 	landing
@@ -935,7 +952,7 @@ mission "Hai Leaks Response 6"
 			choice
 				`	"Of course."`
 			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps harping on to me about this theory of hers that a smuggling ring is kidnapping Hai and transporting them into human space."`
-			`	"Of course, a thorough investigation has occurred on our side, and no evidence of such things has turned up, but..."`
+			`	"Of course, a thorough investigation has occurred on our side, and no admissible evidence of such things has turned up, but..."`
 			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy, the human diplomats are willing to accommodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
 			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
 			choice
