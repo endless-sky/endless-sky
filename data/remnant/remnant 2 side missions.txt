@@ -148,13 +148,13 @@ mission "Remnant: Visit to Paradise 1"
 
 
 mission "Remnant: Teciimach Deployment"
-	name "Watch the new EMP deployment"
+	name "New EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
 	invisible
 	minor
 	landing
 	source
-		attributes "has shipyard" remnant
+		attributes "shipyard" "remnant"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "event remnant research update bjd1"
