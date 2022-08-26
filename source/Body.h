@@ -156,6 +156,7 @@ private:
 	mutable float randomFrame = 0.f;
 	mutable float delayed = 0;
 	mutable bool stateReady = false;
+	mutable bool ignoredDelay = false;
 };
 
 

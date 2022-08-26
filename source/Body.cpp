@@ -429,7 +429,15 @@ void Body::SetSprite(const Sprite *sprite, BodyState state)
 // Set the state.
 void Body::SetState(BodyState state)
 {
-	if(state == this->currentState && this->transitionState != this->currentState){
+	// If the transition has a delay, ensure that rapid changes from transitions which ignore the delay to transitions that don't keep smooth animations.
+	bool delayIgnoredPreviousStep = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED || this->transitionState == BodyState::LANDING;
+	bool delayActiveCurrentStep = (state == BodyState::FLYING || state == BodyState::LAUNCHING || state == BodyState::FIRING) && delayed < transitionDelay;
+	if(delayIgnoredPreviousStep && delayActiveCurrentStep && stateTransitionRequested){
+		// Start replaying animation from current frame
+		frameOffset = -currentStep * frameRate;
+		frameOffset += frame;
+
+	} else if(state == this->currentState && this->transitionState != this->currentState){
 		// Cancel transition
 		stateTransitionRequested = false;
 
@@ -672,7 +680,6 @@ void Body::SetStep(int step) const
 			randomFrame += frame - nextFrame;
 
 	} else {
-
 		// Override any delay if the ship wants to jump, become disabled, or land
 		bool ignoreDelay = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED || this->transitionState == BodyState::LANDING;
 
@@ -697,7 +704,8 @@ void Body::SetStep(int step) const
 		} else {
 			delayed += (step - currentStep) * frameRate;
 			// Maintain last frame of animation in delay
-			frameOffset -= (step - currentStep) * frameRate;
+			if(frame >= lastFrame)
+				frameOffset -= (step - currentStep) * frameRate;
 			frame = min(frame, lastFrame);
 		}
 		// Prevent any flickers from transitioning into states with randomized flares.
