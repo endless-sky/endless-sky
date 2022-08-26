@@ -974,6 +974,10 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 	if(ship.GetPersonality().IsUnconstrained())
 		return true;
 
+	// Owned ships ignore fence.
+	if(ship.IsYours())
+		return true;
+
 	// Check if the target is beyond the "invisible fence" for this system.
 	const auto fit = fenceCount.find(&target);
 	if(fit == fenceCount.end())
