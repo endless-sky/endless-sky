@@ -53,7 +53,7 @@ mission "Hai Rescue: Yeertle Family"
 		"Hai Rescue: Yeertle Family (defer count)" < 3
 	on offer
 		conversation
-			`A few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			`	Do you want to talk to him?`
 			choice
 				`	(Talk to him.)`
@@ -63,33 +63,64 @@ mission "Hai Rescue: Yeertle Family"
 			`	From the shaking voice, you can tell he's frightened.`
 			`	"C-can I help you?"`
 			choice
-				`	"You're a Hai. Why are you this far into human space?"`
+				`	"You're a Hai. Why are you in human space?"`
 					goto far
 				`	"Do you need a ride home to Hai space?"`
 					goto "ride offer"
+				`	"How did you make that holoprojector?"
+					goto "made in a cave"
+			label "made in a cave"
+			`	He pauses and after a brief delay his hologram registers surprise, "You know what this is then?"`
+			choice
+				`	"Yes, that's a holoprojector and you're a Hai."`
+				`	"Yes, I've been looking for someone like yourself."`
+			`	He peers at you for a second, perhaps pondering if he can trust you with the answer.`
+			`	"Yes, well, holography is my trade, and Hai children sometimes construct holoprojectors for fun. This one is primitive but it is functional if only barely, thanks to inferior human components I've had to scavenge."`
+			choice
+				`	"Do you need a ride home to Hai space?"`
+					goto "ride offer"
+				`	"You're a Hai. Why are you in human space?"`
+			`	"I'm from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+				goto "questioned first"
 			label far
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
 			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+			label "questioned first"
 			`	"My youngest daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was under-crewed and so we overpowered them. Unfortunately, they had already landed and the ship was locked down. I didn't know how to disable the lock so we could not take off, and for lack of options we've been hiding near here ever since.`
 			`	"Can you take us back to <destination>? I have considerable savings back there and can pay you well. Say, <payment>?"`
 			choice
 				`	"Sure!"`
+				`	"Would the Hai government be looking for you?"`
+					goto looking
 				`	"No, I can't."`
 					decline
 			`	"Thank you. My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label "ride offer"
-			`	"Yes! Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
-			`	"Thank you. My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
+			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the Syndicate. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
+			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
+				goto leave
+			label looking
+			`	The man's holographic expression doesn't change, but his body language shifts in a way that speaks of distress.`
+			`	"The Hai government... no. No they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
+			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. Possible even it is that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
+			choice
+				`	"Do you need a ride home to Hai space?"`
+					goto "ride offer"
+				`	"Well, let's get you out of here and home safely."`
+			`	Turns out relief is an expression his holoprojector does handle. "Thank you! My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
+				goto leave
 			label leave
-			`	"Follow me back to my house, and we will make our preparations."`
+			`	"Please, follow me back to my house, and we will make our preparations."`
 			choice
 				`	(Follow him.)`
 			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a trio of energetic Hai children eating dinner with their mother.`
 			`	Duniip turns off his hologram and addresses his family. "I found us a pilot! They're going to take us all the way home."`
-			`	The whole family cheers and it turns out they were already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors. Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with all computers within twenty meters. Fortunately, your ship is outside that range.`
-			`	The six of you run to your ship as quickly as possible. You look back and see the men were not following you; they were running to their own ships.`
+			`	The whole family cheers and it turns out they were already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors. Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with a nearby bank of lights, but by the time you stumble to a stop and identify the cause you're much closer to your ship than they are to you.`
+			`	In the sudden dimness surrounding your group, you quickly cross the remaining distance to your ship as hastily as possible before someone gets a good look at the Yeertle's. Looking back, you see the men were not following you; they were running to their own ships. Looks like they're planning to follow you into orbit.`
 				launch
+	on accept
+		dialog `It appears some unsavory types have followed you into orbit in pursuit of the Yeertle family. You could fight them, but they don't look equipped to make the journey back to Hai space successfully; so you could also probably outrun them if you prefer.`
 	on defer
 		"Hai Rescue: Yeertle Family (defer count)" ++
 	on complete
