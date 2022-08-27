@@ -13,7 +13,7 @@
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled <model> Bounty"
+	name "Crippled <npcmodel> Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -45,7 +45,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome <model> Bounty"
+	name "Troublesome <npcmodel> Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"

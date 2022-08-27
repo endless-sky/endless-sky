@@ -629,7 +629,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	if(!result.ships.empty())
 	{
 		subs["<npc>"] = result.ships.front()->Name();
-		subs["<model>"] = result.ships.front()->ModelName();
+		subs["<npcmodel>"] = result.ships.front()->ModelName();
 	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
