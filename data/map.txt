@@ -77,7 +77,7 @@ galaxy "label waste"
 	pos -32 293
 
 galaxy "pug empty galaxy"
-	pos 9888 6978
+	pos 10000 7000
 	sprite ui/pleiades
 
 system "1 Axis"
