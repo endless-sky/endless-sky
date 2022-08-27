@@ -200,26 +200,6 @@ namespace {
 			return false;
 		return true;
 	}
-
-	// Check if a ship is low energy based on drain vs seconds to recharge.
-	bool CheckLowEnergy(shared_ptr<const Ship> ship, double secondsRemaining)
-	{
-		double frames = 60.;
-		double idleEnergy = frames * ship->GetIdleEnergyPerFrame();
-		double maxEnergy = ship->Attributes().Get("energy capacity");
-		double totalConsumption = frames * ship->GetEnergyConsumptionPerFrame();
-		double currentEnergy = (ship->CanBeCarried() && ship->GetSystem() && !ship->IsLanding()) ? ship->GetCurrentEnergy() : maxEnergy * .75;
-		//double currentEnergy = GetCurrentEnergy();
-		if(totalConsumption < 0.)
-		{
-			double secondsToEmpty = currentEnergy / (-totalConsumption);
-			// how quickly can it charge under no energy load
-			double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : secondsRemaining + 1.;
-			if((secondsToEmpty < secondsRemaining && secondsToFullCharge > secondsRemaining) || (secondsToEmpty < secondsRemaining && idleEnergy <= 0.))
-				return true;
-		}
-		return false;
-	}
 }
 
 
@@ -1202,7 +1182,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("reverse only?");
 		if(!generation && !solar && !consuming && !canBeCarried)
 			checks.emplace_back("battery only?");
-		if(canBeCarried && CheckLowEnergy(shared_from_this(), lowOperatingTime))
+		if(canBeCarried && secondsToEmpty < lowOperatingTime)
 			checks.emplace_back("low battery?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2842,7 +2822,32 @@ bool Ship::IsEnemyInEscortSystem() const
 // then consider it low on energy.
 bool Ship::IsEnergyLow() const
 {
-	return CheckLowEnergy(shared_from_this(), minimumOperatingTime);
+	return (secondsToEmpty < minimumOperatingTime && (IsLanding() || secondsToFullCharge > minimumOperatingTime));
+}
+
+
+
+// Calculate the number of seconds to battery empty and the number of seconds to
+// battery recharge based on current power state.
+void Ship::CalculateBatteryChargeDischargeTime()
+{
+		double frames = 60.;
+		double idleEnergy = frames * GetIdleEnergyPerFrame();
+		double maxEnergy = Attributes().Get("energy capacity");
+		double totalConsumption = frames * GetEnergyConsumptionPerFrame();
+		double currentEnergy = (CanBeCarried() && GetSystem() && !IsLanding()) ? GetCurrentEnergy() : maxEnergy * .75;
+		// Estimate number of seconds until batteries run out.
+		if(totalConsumption < 0.)
+			secondsToEmpty = currentEnergy / (-totalConsumption);
+		else
+			secondsToEmpty = numeric_limits<double>::infinity();
+		// Estimate number of seconds before batteries are fully charged.
+		if(maxEnergy == GetCurrentEnergy())
+			secondsToFullCharge = 0.;
+		else if(idleEnergy <= 0.)
+			secondsToFullCharge = numeric_limits<double>::infinity();
+		else
+			secondsToFullCharge = (maxEnergy - currentEnergy) / idleEnergy;
 }
 
 
@@ -4577,6 +4582,24 @@ double Ship::GetSpareEnergy() const
 
 
 
+// For low powered and battery powered ships, return the number of seconds of
+// power remaining based on worst-case usage.
+double Ship::GetSecondsToEmpty() const
+{
+	return secondsToEmpty;
+}
+
+
+
+// For low powered and battery powered ships, return the number of seconds for
+// the battery to be fully charged based on idle energy.
+double Ship::GetSecondsToFullCharge() const
+{
+	return secondsToFullCharge;
+}
+
+
+
 // A small check to see if a ship may request help.  Primarily for player escort
 // fleet but can be used by any ship.
 bool Ship::MayRequestHelp() const
@@ -4671,6 +4694,7 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 	other->maximumHeat = other->CalculateMaximumHeat();
 	other->requiredCrew = other->CalculateRequiredCrew();
 	other->isDisabled = other->CalculateIsDisabled();
+	other->CalculateBatteryChargeDischargeTime();
 
 	// Update weapon / arming state of other ship
 	other->hasAntiMissile = false;
@@ -4702,7 +4726,8 @@ void Ship::UpdateEscortsState(shared_ptr<Ship> other)
 // Perform calculations across all escorts to set private variables
 // escortsHaveOneJump, isEnemyInEscortSystem, isEscortsFullOfFuel, and
 // refuelMissionNpcEscort.  Warning this is an expensive calculation if done too
-// often.
+// often.  This function is called by AI.cpp while in space and PlayerInfo.cpp
+// while in an outfitter roughly 3 times a second.
 void Ship::UpdateEscortsState()
 {
 	vector<shared_ptr<Ship>> parents;

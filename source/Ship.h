@@ -439,6 +439,8 @@ public:
 	bool IsFuelLow(double compareTo) const;
 	bool IsRefueledByRamscoop() const;
 	bool IsTankerCarrier() const;
+	double GetSecondsToEmpty() const;
+	double GetSecondsToFullCharge() const;
 	double GetCurrentEnergy() const;
 	double GetEnergyConsumptionPerFrame() const;
 	double GetFiringEnergyPerFrame() const;
@@ -478,6 +480,7 @@ private:
 	double CalculateMaximumHeat() const;
 	double CalculateMinimumHull() const;
 	int CalculateRequiredCrew() const;
+	void CalculateBatteryChargeDischargeTime();
 
 private:
 	/* Protected member variables of the Body class:
@@ -522,11 +525,11 @@ private:
 	bool isTankerCarrier = false;
 	// Used by AI and ship launch to toggle Tanker Carrier refueling.
 	bool isEscortsFullOfFuel = true;
-	//Used by CanRefuel to determine refueling other ships.
+	// Used by CanRefuel to determine refueling other ships.
 	bool escortsHaveOneJump = false;
-	//Used by CanRefuel to determine refueling other ships.
+	// Used by CanRefuel to determine refueling other ships.
 	bool refuelMissionNpcEscort = false;
-	//Variables for armaments
+	// Variables for armaments
 	bool hasAntiMissile = false;
 	double minWeaponRange = 0.;
 	double maxWeaponRange = 0.;
@@ -538,6 +541,9 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
+	// Variables for battery powered ships
+	double secondsToEmpty = std::numeric_limits<double>::infinity();
+	double secondsToFullCharge = 0.;
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
