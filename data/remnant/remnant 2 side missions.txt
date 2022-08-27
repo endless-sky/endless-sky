@@ -297,7 +297,7 @@ mission "Remnant: Celebration 1"
 				`	"That seemed both well-rehearsed and very disorganized."`
 					goto celebrationrehearsed
 				`	"What constitutes your most serious crimes?"`
-			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective wellbeing is the single most destructive and senseless act someone can perpetrate."`
+			`	Taely gestures harshly. "Crimes against society, of course. Acting against the best interest of our collective well-being is the single most destructive and senseless act someone can perpetrate."`
 			choice
 				`	"I think that is all for now."`
 					goto celebrationrequest
