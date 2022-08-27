@@ -17,7 +17,7 @@ galaxy "Small Magellanic Cloud"
 	sprite "ui/small magellanic cloud"
 
 galaxy "Large Magellanic Cloud"
-	pos -2500 1400
+	pos -2600 1800
 	sprite "ui/large magellanic cloud"
 
 galaxy "label arachi"
@@ -81,7 +81,7 @@ galaxy "pug empty galaxy"
 	sprite ui/pleiades
 
 system "1 Axis"
-	pos -1386 245
+	pos -1387 245
 	government Coalition
 	attributes "kimek"
 	arrival 745
@@ -160,7 +160,7 @@ system "1 Axis"
 			period 67.0771
 
 system "10 Pole"
-	pos -1468 -2
+	pos -1469 -3
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -233,7 +233,7 @@ system "10 Pole"
 			period 57.7392
 
 system "11 Autumn Above"
-	pos -1390 126
+	pos -1391 126
 	government Coalition
 	attributes "kimek"
 	arrival 1570
@@ -316,7 +316,7 @@ system "11 Autumn Above"
 			period 32.5936
 
 system "11 Spring Below"
-	pos -1384 358
+	pos -1385 358
 	government Coalition
 	attributes "kimek"
 	arrival 915
@@ -397,7 +397,7 @@ system "11 Spring Below"
 			period 32.052
 
 system "12 Autumn Above"
-	pos -1388 -41
+	pos -1389 -42
 	government Coalition
 	attributes "kimek"
 	arrival 1050
@@ -491,7 +491,7 @@ system "12 Autumn Above"
 			period 27.8748
 
 system "14 Pole"
-	pos -1455 -141
+	pos -1456 -142
 	government Coalition
 	attributes "kimek"
 	arrival 625
@@ -553,7 +553,7 @@ system "14 Pole"
 		period 1616.77
 
 system "14 Summer Above"
-	pos -1548 160
+	pos -1549 160
 	government Coalition
 	attributes "kimek"
 	arrival 1400
@@ -620,7 +620,7 @@ system "14 Summer Above"
 		period 1145.72
 
 system "14 Winter Below"
-	pos -1255 319
+	pos -1256 319
 	government Coalition
 	attributes "kimek"
 	arrival 1115
@@ -697,7 +697,7 @@ system "14 Winter Below"
 			period 21.4023
 
 system "16 Autumn Rising"
-	pos -1417 52
+	pos -1418 52
 	government Coalition
 	attributes "kimek"
 	arrival 1715
@@ -768,7 +768,7 @@ system "16 Autumn Rising"
 			period 36.3264
 
 system "3 Axis"
-	pos -1347 277
+	pos -1348 277
 	government Coalition
 	attributes "kimek"
 	arrival 2560
@@ -837,7 +837,7 @@ system "3 Axis"
 			period 21.2051
 
 system "3 Pole"
-	pos -1456 140
+	pos -1457 140
 	government Coalition
 	attributes "kimek"
 	arrival 625
@@ -898,7 +898,7 @@ system "3 Pole"
 		period 1446.94
 
 system "3 Spring Rising"
-	pos -1526 334
+	pos -1527 334
 	government Coalition
 	attributes "kimek"
 	arrival 1080
@@ -972,7 +972,7 @@ system "3 Spring Rising"
 			period 48.1229
 
 system "4 Axis"
-	pos -1281 343
+	pos -1282 343
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1036,7 +1036,7 @@ system "4 Axis"
 			period 13.1312
 
 system "4 Spring Rising"
-	pos -1421 299
+	pos -1422 299
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1102,7 +1102,7 @@ system "4 Spring Rising"
 			period 38.6591
 
 system "4 Summer Rising"
-	pos -1489 185
+	pos -1490 185
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1163,7 +1163,7 @@ system "4 Summer Rising"
 		period 5539.82
 
 system "4 Winter Rising"
-	pos -1371 226
+	pos -1372 226
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1239,7 +1239,7 @@ system "4 Winter Rising"
 			period 62.7773
 
 system "5 Axis"
-	pos -1254 372
+	pos -1255 372
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1313,7 +1313,7 @@ system "5 Axis"
 			period 53.0176
 
 system "5 Spring Below"
-	pos -1325 393
+	pos -1326 393
 	government Coalition
 	attributes "kimek"
 	arrival 2320
@@ -1386,7 +1386,7 @@ system "5 Spring Below"
 			period 31.8423
 
 system "5 Summer Above"
-	pos -1499 96
+	pos -1500 96
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1454,7 +1454,7 @@ system "5 Summer Above"
 		period 2550.80
 
 system "5 Winter Above"
-	pos -1328 186
+	pos -1329 186
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1519,7 +1519,7 @@ system "5 Winter Above"
 			period 15
 
 system "7 Autumn Rising"
-	pos -1347 155
+	pos -1348 155
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1586,7 +1586,7 @@ system "7 Autumn Rising"
 			period 58.4201
 
 system "8 Winter Below"
-	pos -1291 262
+	pos -1292 262
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1652,7 +1652,7 @@ system "8 Winter Below"
 			period 32.1305
 
 system "9 Spring Above"
-	pos -1489 259
+	pos -1490 259
 	government Coalition
 	attributes "kimek"
 	arrival 1050
@@ -1729,7 +1729,7 @@ system "9 Spring Above"
 			period 28.1138
 
 system Ablodab
-	pos -966 570
+	pos -967 570
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -1820,7 +1820,7 @@ system Ablodab
 			period 82.9155
 
 system Ablub
-	pos -693 615
+	pos -694 615
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -4176,7 +4176,7 @@ system Aludra
 			period 32.2749
 
 system "Ancient Hope"
-	pos -1271 680
+	pos -1272 680
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -4303,7 +4303,7 @@ system Ankaa
 		period 1495.61
 
 system Answer
-	pos -1198 609
+	pos -1199 609
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -4502,7 +4502,7 @@ system Antevorta
 			period 46.8468
 
 system Ap'arak
-	pos -276 -803
+	pos -277 -804
 	government Wanderer
 	arrival 1080
 	habitable 1080
@@ -4623,7 +4623,7 @@ system Arcturus
 		period 3963.50
 
 system Arculus
-	pos 196 371
+	pos 197 371
 	government Remnant
 	attributes "ember waste"
 	arrival 625
@@ -4814,7 +4814,7 @@ system Ascella
 			period 12.5478
 
 system Asikafarnut
-	pos 141 -606
+	pos 141 -607
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -5138,7 +5138,7 @@ system Avior
 			period 15.2148
 
 system Aya'k'k
-	pos -546 -638
+	pos -546 -639
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -5198,7 +5198,7 @@ system Aya'k'k
 		period 2983.58
 
 system Beginning
-	pos -1024 672
+	pos -1025 672
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -5323,7 +5323,7 @@ system Bellatrix
 		period 2137.28
 
 system Belonging
-	pos -1119 636
+	pos -1120 636
 	government Coalition
 	attributes "saryd"
 	arrival 625
@@ -5384,7 +5384,7 @@ system Belonging
 			period 18.9022
 
 system Belug
-	pos -1136 366
+	pos -1137 366
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -5455,7 +5455,7 @@ system Belug
 			period 28.9943
 
 system Belugt
-	pos -950 646
+	pos -951 646
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -5671,7 +5671,7 @@ system Betelgeuse
 			period 31.4485
 
 system Bloptab
-	pos -925 705
+	pos -926 705
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -5733,7 +5733,7 @@ system Bloptab
 			period 13.2266
 
 system Blubipad
-	pos -762 572
+	pos -763 572
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -5791,7 +5791,7 @@ system Blubipad
 		period 2003.77
 
 system Blugtad
-	pos -883 658
+	pos -884 658
 	government Coalition
 	attributes "arachi"
 	arrival 625
@@ -5931,7 +5931,7 @@ system Boral
 			period 30.6958
 
 system "Bore Fah"
-	pos -40 -614
+	pos -40 -615
 	government Hai
 	arrival 625
 	habitable 625
@@ -5997,7 +5997,7 @@ system "Bore Fah"
 			period 21.5754
 
 system "Bote Asu"
-	pos -103 -594
+	pos -103 -595
 	government Hai
 	arrival 3180
 	habitable 3180
@@ -6099,7 +6099,7 @@ system "Bote Asu"
 			period 38.6987
 
 system "Bright Void"
-	pos -1171 583
+	pos -1172 583
 	government Coalition
 	attributes "saryd"
 	arrival 2795
@@ -6181,7 +6181,7 @@ system "Bright Void"
 			period 25.2156
 
 system "Broken Bowl"
-	pos -1068 544
+	pos -1069 544
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -6242,7 +6242,7 @@ system "Broken Bowl"
 			period 13.0737
 
 system Caeculus
-	pos 50 321
+	pos 51 321
 	government Uninhabited
 	attributes "ember waste"
 	arrival 625
@@ -6780,7 +6780,7 @@ system Cebalrai
 		period 1658.39
 
 system Celeborim
-	pos 69 -655
+	pos 69 -656
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -6840,7 +6840,7 @@ system Celeborim
 			period 23.9558
 
 system Chikatip
-	pos -189 -329
+	pos -190 -330
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -6898,7 +6898,7 @@ system Chikatip
 		period 4416.90
 
 system Chimitarp
-	pos 38 -309
+	pos 38 -310
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 915
@@ -6973,7 +6973,7 @@ system Chimitarp
 			period 14.0039
 
 system Chirr'ay'akai
-	pos -214 -771
+	pos -215 -772
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -7023,7 +7023,7 @@ system Chirr'ay'akai
 			period 13.6328
 
 system Chornifath
-	pos -71 -236
+	pos -72 -237
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -7086,7 +7086,7 @@ system Chornifath
 			period 25.0729
 
 system Chy'chra
-	pos -26 -851
+	pos -26 -852
 	government Wanderer
 	arrival 625
 	habitable 625
@@ -7151,7 +7151,7 @@ system Chy'chra
 			period 80.0847
 
 system Cinxia
-	pos 153 393
+	pos 154 393
 	government Remnant
 	attributes "ember waste"
 	arrival 500
@@ -7208,7 +7208,7 @@ system Cinxia
 			period 16.6355
 
 system Coluber
-	pos 37 175
+	pos 38 175
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1110
@@ -7272,7 +7272,7 @@ system Coluber
 		period 1371.69
 
 system Companion
-	pos -1144 687
+	pos -1145 687
 	government Coalition
 	arrival 500
 	habitable 425
@@ -7455,7 +7455,7 @@ system "Cor Caroli"
 		period 1104.91
 
 system "Da Ent"
-	pos -118 -484
+	pos -118 -485
 	government Hai
 	arrival 500
 	habitable 230
@@ -7532,7 +7532,7 @@ system "Da Ent"
 			period 23.42
 
 system "Da Lest"
-	pos -135 -435
+	pos -135 -436
 	government Hai
 	arrival 500
 	habitable 320
@@ -7729,7 +7729,7 @@ system Danoa
 			period 52.153
 
 system "Dark Hills"
-	pos -1038 597
+	pos -1039 597
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -7797,7 +7797,7 @@ system "Dark Hills"
 		period 1402.46
 
 system Debrugt
-	pos -981 491
+	pos -982 491
 	government Coalition
 	attributes "arachi"
 	arrival 640
@@ -8439,7 +8439,7 @@ system Dixere
 			period 69.6011
 
 system Dokdobaru
-	pos -133 -263
+	pos -134 -264
 	government Quarg
 	attributes "korath" "ringworld"
 	arrival 700
@@ -8692,7 +8692,7 @@ system Dubhe
 		period 2800.58
 
 system "Due Yoot"
-	pos -279 -448
+	pos -280 -449
 	government Hai
 	arrival 500
 	habitable 230
@@ -8900,7 +8900,7 @@ system Eber
 		period 1524.05
 
 system Eblumab
-	pos -879 681
+	pos -880 681
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -8967,7 +8967,7 @@ system Eblumab
 			period 14.7087
 
 system Edusa
-	pos 161 325
+	pos 162 325
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 4050
@@ -9062,7 +9062,7 @@ system Egeria
 			period 16
 
 system "Ehma Ti"
-	pos -72 -771
+	pos -73 -771
 	government "Hai (Unfettered)"
 	arrival 500
 	habitable 490
@@ -9130,7 +9130,7 @@ system "Ehma Ti"
 			period 26.8467
 
 system Ek'kek'ru
-	pos -399 -749
+	pos -400 -750
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -9190,7 +9190,7 @@ system Ek'kek'ru
 		period 2197.90
 
 system Ekuarik
-	pos -1141 404
+	pos -1142 404
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -9530,7 +9530,7 @@ system Eltanin
 		period 1900.78
 
 system Eneremprukt
-	pos 199 -470
+	pos 199 -471
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -9824,7 +9824,7 @@ system Es'sprak'ai
 			period 14.4268
 
 system Eshkoshtar
-	pos 44 -403
+	pos 44 -404
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 810
@@ -10102,7 +10102,7 @@ system "Fah Root"
 			period 40.8604
 
 system "Fah Soom"
-	pos -291 -357
+	pos -292 -357
 	government Hai
 	arrival 500
 	habitable 425
@@ -10236,7 +10236,7 @@ system Fala
 			period 17.0811
 
 system "Fallen Leaf"
-	pos -1015 695
+	pos -1016 695
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10290,7 +10290,7 @@ system "Fallen Leaf"
 			period 17.7794
 
 system "Far Horizon"
-	pos -1220 704
+	pos -1221 704
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10347,7 +10347,7 @@ system "Far Horizon"
 			period 15.687
 
 system Farbutero
-	pos -18 -273
+	pos -19 -274
 	government Uninhabited
 	attributes "korath"
 	arrival 625
@@ -10424,7 +10424,7 @@ system Farbutero
 			period 32.222
 
 system Farinus
-	pos 90 418
+	pos 91 418
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1270
@@ -10498,7 +10498,7 @@ system Farinus
 			period 41.9524
 
 system Faronektu
-	pos 180 -331
+	pos 180 -332
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1080
@@ -10567,7 +10567,7 @@ system Faronektu
 			period 14.8056
 
 system Fasitopfar
-	pos -19 -127
+	pos -20 -128
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -10682,7 +10682,7 @@ system Fearis
 		period 2767.58
 
 system "Fell Omen"
-	pos -1268 453
+	pos -1269 453
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10863,7 +10863,7 @@ system Fereti
 			period 17.525
 
 system Feroteri
-	pos 37 -227
+	pos 37 -228
 	government Uninhabited
 	attributes "korath"
 	arrival 4075
@@ -10949,7 +10949,7 @@ system Feroteri
 			period 22.7339
 
 system Ferukistek
-	pos 195 -537
+	pos 195 -538
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -11063,7 +11063,7 @@ system Fingol
 		period 4209.36
 
 system Flugbu
-	pos -1015 512
+	pos -1016 512
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -11193,7 +11193,7 @@ system Fomalhaut
 			period 28.2155
 
 system Fornarep
-	pos -32 -331
+	pos -33 -332
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -11259,7 +11259,7 @@ system Fornarep
 			period 30.5305
 
 system "Four Pillars"
-	pos -1322 750
+	pos -1323 750
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -11322,7 +11322,7 @@ system "Four Pillars"
 			period 13.5106
 
 system Furmeliki
-	pos -147 -303
+	pos -148 -304
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -11849,7 +11849,7 @@ system Girtab
 			period 55.2737
 
 system Glubatub
-	pos -762 671
+	pos -763 671
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -11999,7 +11999,7 @@ system Gomeisa
 			period 21.7957
 
 system "Good Omen"
-	pos -1053 724
+	pos -1054 724
 	government Coalition
 	attributes "saryd"
 	arrival 1715
@@ -12186,7 +12186,7 @@ system Graffias
 			period 57.7746
 
 system Gupta
-	pos -920 603
+	pos -921 603
 	government Coalition
 	attributes "arachi"
 	arrival 915
@@ -12550,7 +12550,7 @@ system Hatysa
 		period 2607.23
 
 system "Heia Due"
-	pos -258 -503
+	pos -258 -504
 	government Hai
 	arrival 1215
 	habitable 1215
@@ -12633,7 +12633,7 @@ system "Heia Due"
 			period 41.3231
 
 system Hesselpost
-	pos -142 -209
+	pos -143 -210
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -12846,7 +12846,7 @@ system "Hevru Hai"
 		offset 340
 
 system "Hi Yahr"
-	pos -29 -663
+	pos -30 -664
 	government "Hai (Unfettered)"
 	arrival 625
 	habitable 625
@@ -13011,7 +13011,7 @@ system Holeb
 		period 1700.75
 
 system Homeward
-	pos -1157 455
+	pos -1158 455
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -13078,7 +13078,7 @@ system Homeward
 			period 29.3171
 
 system Host
-	pos 272 -565
+	pos 272 -566
 	government Uninhabited
 	arrival 500
 	habitable 490
@@ -13127,7 +13127,7 @@ system Host
 			period 41.3874
 
 system Hunter
-	pos -1080 568
+	pos -1081 568
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -13190,7 +13190,7 @@ system Hunter
 			period 22.2053
 
 system Ik'kara'ka
-	pos -55 -910
+	pos -56 -910
 	government Wanderer
 	arrival 625
 	habitable 625
@@ -13438,7 +13438,7 @@ system Insitor
 		period 5518.79
 
 system "Io Lowe"
-	pos -206 -549
+	pos -207 -550
 	government Hai
 	arrival 500
 	habitable 135
@@ -13511,7 +13511,7 @@ system "Io Lowe"
 			period 56.4665
 
 system "Io Mann"
-	pos -304 -469
+	pos -305 -470
 	government Hai
 	arrival 980
 	habitable 980
@@ -13664,7 +13664,7 @@ system Ipsing
 			period 43.1032
 
 system Iyech'yek
-	pos -389 -715
+	pos -389 -716
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -13843,7 +13843,7 @@ system Ka'ch'chrai
 		period 3987.70
 
 system Ka'pru
-	pos -188 -1016
+	pos -189 -1017
 	government Wanderer
 	arrival 1505
 	habitable 1505
@@ -13914,7 +13914,7 @@ system Ka'pru
 			period 37.7636
 
 system Kaliptari
-	pos -26 -424
+	pos -27 -425
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -14052,7 +14052,7 @@ system "Kappa Centauri"
 			period 28.1328
 
 system Kashikt
-	pos -185 -241
+	pos -186 -242
 	government "Kor Efret"
 	attributes "korath"
 	arrival 1715
@@ -14122,7 +14122,7 @@ system Kashikt
 			period 13.0737
 
 system Kasikfar
-	pos -101 -149
+	pos -102 -150
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -14284,7 +14284,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system "Ki War Ek"
-	pos -1218 346
+	pos -1219 346
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -14539,7 +14539,7 @@ system "Ki War Ek"
 		offset 250
 
 system Kiro'ku
-	pos -243 -906
+	pos -244 -906
 	government Wanderer
 	arrival 1115
 	habitable 1115
@@ -15250,7 +15250,7 @@ system Kornephoros
 			period 72.8043
 
 system Korsmanath
-	pos -14 -207
+	pos -15 -208
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -15504,7 +15504,7 @@ system Kursa
 		period 1517.13
 
 system "Last Word"
-	pos -1257 473
+	pos -1258 473
 	government Coalition
 	arrival 625
 	habitable 625
@@ -15634,7 +15634,7 @@ system Lesath
 		period 1301.48
 
 system Levana
-	pos 91 225
+	pos 92 225
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
@@ -15705,7 +15705,7 @@ system Levana
 			period 38.521
 
 system Limen
-	pos -903 -34
+	pos -904 -34
 	government Republic
 	attributes "dirt belt"
 	arrival 1715
@@ -15889,7 +15889,7 @@ system Lolami
 			period 23.3479
 
 system "Lom Tahr"
-	pos -206 -468
+	pos -206 -469
 	government Hai
 	arrival 2560
 	habitable 2560
@@ -15967,7 +15967,7 @@ system "Lom Tahr"
 			period 17.5
 
 system "Lone Cloud"
-	pos -1351 725
+	pos -1352 725
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -16019,7 +16019,7 @@ system "Lone Cloud"
 		period 2623.40
 
 system Lucina
-	pos 63 154
+	pos 64 154
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
@@ -16142,7 +16142,7 @@ system Lurata
 		period 1774.16
 
 system Makferuti
-	pos 176 -650
+	pos 176 -651
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 525
@@ -16429,7 +16429,7 @@ system Matar
 			period 23.3043
 
 system Mebla
-	pos -926 533
+	pos -927 533
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -16488,7 +16488,7 @@ system Mebla
 			period 12.1447
 
 system Meblumem
-	pos -834 594
+	pos -835 594
 	government Coalition
 	attributes "arachi"
 	arrival 2205
@@ -16630,7 +16630,7 @@ system Mebsuta
 			period 17.9915
 
 system Meftarkata
-	pos -59 -298
+	pos -60 -299
 	government Uninhabited
 	attributes "korath"
 	arrival 2205
@@ -16693,7 +16693,7 @@ system Meftarkata
 			period 29.4282
 
 system "Mei Yohn"
-	pos -218 -603
+	pos -219 -604
 	government Hai
 	arrival 500
 	habitable 425
@@ -16765,7 +16765,7 @@ system "Mei Yohn"
 			period 29.0088
 
 system Mekislepti
-	pos 25 -357
+	pos 25 -358
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1705
@@ -17171,7 +17171,7 @@ system Merak
 		period 1501.33
 
 system Mesuket
-	pos 108 -431
+	pos 108 -432
 	government Uninhabited
 	attributes "korath"
 	arrival 950
@@ -17317,7 +17317,7 @@ system Miaplacidus
 			period 51.9616
 
 system Miblulub
-	pos -742 648
+	pos -743 648
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -18693,7 +18693,7 @@ system Oblate
 		period 2449.85
 
 system Orbona
-	pos -847 -119
+	pos -848 -119
 	government Republic
 	attributes "dirt belt"
 	arrival 5000
@@ -18984,7 +18984,7 @@ system Paeli
 		period 2883.88
 
 system Pantica
-	pos 191 423
+	pos 192 423
 	government Remnant
 	attributes "ember waste"
 	arrival 500
@@ -19042,7 +19042,7 @@ system Pantica
 		period 1598.78
 
 system Parca
-	pos 38 129
+	pos 39 129
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1385
@@ -19244,7 +19244,7 @@ system Peacock
 			period 49.3926
 
 system Pelubta
-	pos -869 553
+	pos -870 553
 	government Coalition
 	attributes "arachi"
 	arrival 5000
@@ -19390,7 +19390,7 @@ system Peragenor
 		period 949.346
 
 system Peresedersi
-	pos -30 -176
+	pos -31 -177
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -19438,7 +19438,7 @@ system Peresedersi
 		period 602.965
 
 system Perfica
-	pos 73 397
+	pos 74 397
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
@@ -19554,7 +19554,7 @@ system Persian
 		period 757.801
 
 system Persitar
-	pos 185 -417
+	pos 185 -418
 	government Uninhabited
 	attributes "korath" "nova"
 	arrival 500
@@ -19847,7 +19847,7 @@ system Phurad
 		period 1650.10
 
 system Pik'ro'iyak
-	pos -490 -699
+	pos -491 -699
 	government Wanderer
 	arrival 500
 	habitable 230
@@ -19896,7 +19896,7 @@ system Pik'ro'iyak
 		period 4936.71
 
 system Plort
-	pos -820 701
+	pos -821 701
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -20247,7 +20247,7 @@ system Postverta
 		period 1818.85
 
 system Prakacha'a
-	pos -147 -824
+	pos -147 -825
 	government Wanderer
 	arrival 2030
 	habitable 2030
@@ -20489,7 +20489,7 @@ system "Pug Iyik"
 			period 36.706
 
 system Quaru
-	pos -1192 426
+	pos -1193 426
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -21055,7 +21055,7 @@ system Rastaban
 		period 2943.27
 
 system "Rati Cal"
-	pos -228 -413
+	pos -229 -413
 	government Hai
 	arrival 500
 	habitable 425
@@ -21335,7 +21335,7 @@ system Relifer
 		period 2602.82
 
 system Remembrance
-	pos -996 619
+	pos -997 619
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -21741,7 +21741,7 @@ system Sabik
 		period 1497.65
 
 system Sabriset
-	pos 39 -448
+	pos 40 -449
 	government Uninhabited
 	attributes "korath"
 	arrival 1570
@@ -22053,7 +22053,7 @@ system Saiph
 		period 3626.44
 
 system Salipastart
-	pos 138 -392
+	pos 138 -393
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 500
@@ -22258,7 +22258,7 @@ system Sarin
 		period 2382.35
 
 system Sayaiban
-	pos 138 -296
+	pos 138 -297
 	government Drak
 	attributes "archon" "korath"
 	arrival 3750
@@ -22582,7 +22582,7 @@ system Seginus
 			period 37.7101
 
 system Seketra
-	pos -136 -378
+	pos -137 -379
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -22635,7 +22635,7 @@ system Seketra
 			period 31.8741
 
 system Sepetrosk
-	pos 80 -265
+	pos 80 -266
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 500
@@ -22698,7 +22698,7 @@ system Sepetrosk
 			period 17.2951
 
 system Sepriaptu
-	pos 27 -470
+	pos 27 -471
 	government Uninhabited
 	attributes "korath"
 	arrival 2035
@@ -22752,7 +22752,7 @@ system Sepriaptu
 		period 984.429
 
 system Sevrelect
-	pos -226 -261
+	pos -227 -262
 	government "Kor Efret"
 	attributes "korath"
 	arrival 500
@@ -23016,7 +23016,7 @@ system Si'yak'ku
 			period 26.3627
 
 system Sich'ka'ara
-	pos -209 -853
+	pos -209 -854
 	government Wanderer
 	arrival 1715
 	habitable 1715
@@ -23068,7 +23068,7 @@ system Sich'ka'ara
 		period 1115.11
 
 system Silikatakfar
-	pos 136 -503
+	pos 136 -504
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -23121,7 +23121,7 @@ system Silikatakfar
 			period 30.5006
 
 system "Silver Bell"
-	pos -1157 519
+	pos -1158 519
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -23200,7 +23200,7 @@ system "Silver Bell"
 			period 16.4391
 
 system "Silver String"
-	pos -1134 495
+	pos -1135 495
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -23266,7 +23266,7 @@ system "Silver String"
 			period 22.8107
 
 system Similisti
-	pos 98 -335
+	pos 98 -336
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1080
@@ -23401,7 +23401,7 @@ system Sirius
 		period 935.078
 
 system Skeruto
-	pos -83 -361
+	pos -84 -362
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -23454,7 +23454,7 @@ system Skeruto
 			period 11.9576
 
 system Sko'karak
-	pos -416 -952
+	pos -416 -953
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -23507,7 +23507,7 @@ system Sko'karak
 			period 28.8527
 
 system Sobarati
-	pos 165 -579
+	pos 165 -580
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 3355
@@ -23684,7 +23684,7 @@ system Sol
 		period 24012.7
 
 system "Sol Arach"
-	pos -823 627
+	pos -824 627
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -23757,7 +23757,7 @@ system "Sol Arach"
 			period 26.2104
 
 system "Sol Kimek"
-	pos -1422 205
+	pos -1423 205
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -23832,7 +23832,7 @@ system "Sol Kimek"
 		period 2322.85
 
 system "Sol Saryd"
-	pos -1149 653
+	pos -1150 653
 	government Coalition
 	attributes "saryd"
 	arrival 1310
@@ -23916,7 +23916,7 @@ system "Sol Saryd"
 		period 1409.06
 
 system Solifar
-	pos -64 -457
+	pos -65 -458
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -24040,7 +24040,7 @@ system Sospi
 			period 48.1545
 
 system Speloog
-	pos -1079 423
+	pos -1080 423
 	government Coalition
 	attributes "arachi"
 	arrival 625
@@ -24217,7 +24217,7 @@ system Statina
 		period 4975.52
 
 system "Steep Roof"
-	pos -1225 548
+	pos -1226 548
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -24291,7 +24291,7 @@ system "Steep Roof"
 			period 47.4807
 
 system Stercutus
-	pos 28 298
+	pos 29 298
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1570
@@ -24482,7 +24482,7 @@ system Sumar
 			period 67.9617
 
 system Sumprast
-	pos -213 -284
+	pos -214 -285
 	government "Kor Efret"
 	attributes "korath"
 	arrival 500
@@ -24814,7 +24814,7 @@ system Tarazed
 			period 16.9693
 
 system Tebuteb
-	pos -727 688
+	pos -728 688
 	government Coalition
 	attributes "arachi"
 	arrival 550
@@ -24956,7 +24956,7 @@ system Tejat
 			period 22.9367
 
 system Terminus
-	pos -839 -45
+	pos -840 -45
 	government Republic
 	attributes "dirt belt" "wormhole"
 	arrival 950
@@ -25011,7 +25011,7 @@ system Terminus
 		period 1229.00
 
 system "Terra Incognita"
-	pos 9809 7064
+	pos 9810 7064
 	government Uninhabited
 	attributes "pleiades"
 	arrival 500
@@ -25058,7 +25058,7 @@ system "Terra Incognita"
 			period 32.7715
 
 system Torbab
-	pos -1061 468
+	pos -1062 468
 	government Coalition
 	attributes "arachi"
 	arrival 2030
@@ -25262,7 +25262,7 @@ system Turais
 		period 4109.01
 
 system "Ula Mon"
-	pos -176 -581
+	pos -176 -582
 	government Hai
 	arrival 640
 	habitable 640
@@ -25600,7 +25600,7 @@ system Unukalhai
 		period 2955.85
 
 system "Uwa Fahn"
-	pos -76 -513
+	pos -77 -514
 	government Hai
 	arrival 500
 	habitable 320
@@ -25897,7 +25897,7 @@ system Volax
 		period 2872.94
 
 system "Wah Ki"
-	pos -97 -634
+	pos -97 -635
 	government Hai
 	arrival 500
 	habitable 425
@@ -26062,7 +26062,7 @@ system "Wah Oh"
 		period 1688.40
 
 system "Wah Yoot"
-	pos -71 -707
+	pos -71 -708
 	government "Hai (Unfettered)"
 	arrival 1080
 	habitable 1080
@@ -26396,7 +26396,7 @@ system Wezen
 			period 38.9601
 
 system "World's End"
-	pos 9854 6995
+	pos 9854 6996
 	government Uninhabited
 	attributes "pleiades"
 	arrival 700
@@ -26467,7 +26467,7 @@ system "World's End"
 		offset 290
 
 system "Ya Hai"
-	pos -136 -527
+	pos -137 -528
 	government Hai
 	arrival 500
 	habitable 425
@@ -26868,7 +26868,7 @@ system Zosma
 			period 12.9498
 
 system "Zuba Zub"
-	pos -160 -669
+	pos -160 -670
 	government Hai
 	arrival 500
 	habitable 425
