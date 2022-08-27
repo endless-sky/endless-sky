@@ -233,7 +233,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are already swaying their whole body while others are just nodding their heads or tapping their feet. Standing next to you, Taely has a hand over her heart, tapping softly in time. Soon you hear other drummers join in and the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun to move around in a circle. Soon, everywhere you look there are people dancing, alone and together, in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming but not overwhelming either:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
