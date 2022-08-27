@@ -864,7 +864,7 @@ void Ship::Save(DataWriter &out) const
 					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const OutfitElement &it){
 					if(it.second == 1)
-						out.Write(it.first->Name());
+						out.Write(it.first->TrueName());
 					else
 						out.Write(it.first->Name(), it.second);
 				});
