@@ -76,11 +76,10 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"The Republic will not allow the Hai to build a station on our side of the wormhole without some oversight by someone we trust. This has now been a point of contention for some days, and multiple suggestions have been rejected."`
 			`	Sayari chitters, "Honestly, it's all very silly. Lots of old men who are meant to be friends concerned that the other might have been lying to them."`
 			`	In an oddly comical gesture, they both shrug at the same time.`
-			`	"Anyway, thanks to a little Freedom of Information request to the Republic, I have been looking at things, and I think I have the solution."`
+			`	"Anyway," she continues, "thanks to a little Freedom of Information request to the Republic, I have been looking at things, and I think I have the solution."`
 			choice
 				`	"Is it me?"`
-			`	Sayari winks at you, "Catch on quick, don't you?"`
-			`	"The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
+			`	Sayari winks at you, "Catch on quick, don't you? The actions you're recorded as having taken show a certain conscience for the good of your species as a whole, despite your affiliations. I have convinced the other diplomats and the Elders that you might be a viable solution to this impasse. The human diplomats have already agreed, but the Elders wish to speak with you first."`
 			choice
 				`	"Who are these Elders?"`
 				`	"Of course, that's natural."`
@@ -106,15 +105,14 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
 			`	"I will have a look," is all she says.`
 			`	No sooner has she pocketed it than there is a knock at the door, and an aide looks in. "The Council will see you now."`
-			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the Freedom of Information report. You're not really sure what most of it has to do with anything, but eventually one of the elders stands up.`
-			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision."`
-			`	"Do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
+			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the Freedom of Information report. You're not really sure what most of it has to do with anything, but eventually one of the Elders stands up.`
+			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision. Firstly, do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`
 			choice
 				`	"It should be strong enough to defend itself. You cannot trust your enemy."`
-					goto trust
-				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
 					goto caution
+				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
+					goto trust
 			label trust
 			action
 				set haitrust
@@ -313,7 +311,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 		conversation
 			`At Hai-home, you are directed to a now familiar government hangar. Sayari, Xilin, and Alondo all send you greeting pings, but are busy at the time of your landing. To your surprise though, Terry is banging on your airlock before too long.`
 			`	"Captain <last>, or should I call you <first>? Anyway, doesn't matter. How would you like to make some money?" The smile she gives you is something like you imagine a large cat giving the tasty morsel it just identified as its food. "Of course you do, everyone likes to make money," she continues, not waiting for you to reply.`
-			`	"The Hai have put out the call for volunteers to staff the new Mountaintop station when it's finished. While you've been off watching early construction works, we've been gauging public interest and well... it's not going to work. In order to sell this, they're going to need at least four thousand volunteers by the end of the week to get a good handle on what they can expect to need in terms of facilities, amenities, supplies, and various livability requirements. Nearly twelve thousand by the time the station is actually built. Our current estimates suggest they'll only get a quarter of that unless something changes."`
+			`	"The Hai have put out the call for volunteers to staff the new Mountaintop station when it's finished. While you've been off watching early construction works, we've been gauging public interest and well... it's not going to work. In order to sell this, they're going to need at least four thousand volunteers by the end of the month to get a good handle on what they can expect to need in terms of facilities, amenities, supplies, and various livability requirements. Nearly twelve thousand by the time the station is actually built. Our current estimates suggest they'll only get a quarter of that unless something changes."`
 			`	As she's talking, Terry has been laying out charts and graphs while using a handheld Hai holographic device to show animated diagrams.`
 			choice
 				`	"How do you know all this?"`
@@ -336,9 +334,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 	on complete
 		log `Had to go on a lengthy promotional tour to rustle up volunteers for the new station. Terry took care of all the details and seemed especially keen. Presumably she has some marketing background, which may explain her success within the Syndicate.`
 		payment 10000000
-		conversation
-			`You finally dock at <planet>, your tedious tour complete. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
-				decline
+		dialog `You finally dock at <planet>, your tedious tour complete. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
 
 
 mission "ZZ Hai Building Mountaintop [2a] Sales Job"
