@@ -488,7 +488,7 @@ mission "Hai Rescue [B04Z] Guard"
 		fleet
 			names "pirate"
 			variant
-				"Korath Raider"
+				"Palavret"
 
 mission "Hai Rescue [B05] Plant a Spy"
 	name "Missing Researchers"
@@ -887,7 +887,7 @@ mission "Hai Rescue [C07] Devil-Hide Battle"
 		fleet
 			names "pirate"
 			variant
-				"Korath Raider"
+				"Palavret"
 	# Note: a second Korath Raider may already be in orbit from mission B04Z
 
 event "Philosopher's Paradise can be dominated"
@@ -1014,7 +1014,7 @@ mission "Hai Rescue [C08G] Philosopher Guard"
 		fleet
 			names "civilian"
 			variant
-				"Korath Raider"
+				"Palavret"
 				"Falcon"
 				"Leviathan (Hai Engines)"
 				"Leviathan (Hai Weapons)"
