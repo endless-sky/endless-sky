@@ -93,14 +93,10 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			`	"If you're willing, there will be a council meeting in an hour, and I can put you first on the agenda. Will you do this?" asks Sayari.`
 			choice
 				`	"I suppose I must."`
-					goto council
 				`	"Someone better be paying me for this."`
-					goto council
 				`	"Of course, let's do it."`
-					goto council
 				`	"Maybe in a bit. I should do something else first."`
 					defer
-			label council
 			`	Following Sayari, you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she says, glancing at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
 			choice
@@ -120,12 +116,12 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				`	"Both sides must be trusted to protect a diplomatic post, or there is no point to having one."`
 					goto caution
 			label trust
-			apply
+			action
 				set haitrust
 			`	You seem to get no reaction, and the Elder follows up with, "What is the gravest threat, in your opinion, facing humanity?"`
 				goto return
 			label caution
-			apply
+			action
 				set haicaution
 			`	You seem to get no reaction, and the Elder follows up with, "What is the gravest threat, in your opinion, facing humanity?"`
 			label return
@@ -152,9 +148,9 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		"Building Mountaintop Deferred" ++
 	on accept
 		event "role-play station before construction"
-		log `The diplomats have elected to double-down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. You have been asked to fulfill the role of supervisor as a result. The Elders asked you some odd questions, but agreed that you were an acceptable individual for the task.`
+		log `The diplomats have elected to double-down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. Agreed to fulfill the role of supervisor after being asked by the diplomats and completing some sort of test by the Hai Elders involving some odd questions.`
 	on stopover
-		dialog `A fleet of seven Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come into land. They will follow you to the site where the new station will be built.`
+		dialog `A fleet of eight Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come in to land. They will follow you to the site where the new station will be built.`
 	to complete
 		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on complete
@@ -170,7 +166,7 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 	to offer
 		has "Hai Building Mountaintop [1] Construction Fleet: active"
 	on visit
-		dialog `You have arrived without the seven Geocoris you are escorting from <origin> to <destination>. You must take off and wait for them to finish this mission.`
+		dialog `You have arrived without all eight of the Geocoris you are escorting from <origin> to <destination>. You must take off and wait for them to finish this mission.`
 	npc accompany save
 		personality escort timid
 		government "Hai (Wormhole Access)"
@@ -328,7 +324,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 			choice
 				`	"And that is?"`
 				`	"What's the deal then?"`
-			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the man to do it. The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I'll obviously stage manage your image, and will have promotional material ready inside of 3 hours."`
+			`	Terry crosses her arms and leans back against the bulkhead, "We need a recruitment campaign, and if you haven't guessed, you're the one to do it. The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I'll obviously stage manage your image, and will have promotional material ready inside of 3 hours."`
 			choice
 				`	"I don't really have a choice in this matter, do I?"`
 			`	Terry's answering grin is best described as "predatory".`
