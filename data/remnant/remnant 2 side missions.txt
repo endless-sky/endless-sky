@@ -157,7 +157,7 @@ mission "Remnant: Celebration 1"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
-		# random < 50
+		random < 50
 		"day" = 7
 	on offer
 		conversation
@@ -175,7 +175,7 @@ mission "Remnant: Celebration 1"
 			label celebrationdefinition
 			`	"The Celebration of Remembrance is a gathering; we take a moment to remember where we have come from, appreciate where we are, and express hope for where we will be in the future." Her gestures take on a critical tone. "That sounds very formal, but it is more artistic than defined." She glances at the slowing flow of people. "It will be starting shortly, and I want to attend this month, so I should get moving. Would you like to join us?"`
 			choice
-				`	"Yes, I do."`
+				`	"Yes, I would."`
 				`	"No thanks."`
 					goto celebrationdeclined
 			label celebrationattendance
@@ -186,7 +186,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationannotated
 			`	The flow of people you are a part of joins with other streams, finally leading out of the typical hallways and into a large cave. A large opening on one side opens upwards towards the night sky, framed by rough stone and a handful of shield emitters. Stalagmites ring the perimeter of the room with matching stalactites above them, but there is no trace of drips or moisture here. While the walls are rough, natural stone, the floor and stalagmites have been polished smooth. At a quick glance, you estimate that there are probably over a hundred people in here with more filtering in through several doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Without warning the room stills, and the doors close. You see a flurry of gestures wash over the room, as if everyone is repeating what someone closer to the center is saying, but you cannot see anyone starting it. "Perimeter secure?" it asks, followed by a ripple of gestures from the edges of the room back toward the center: "All clear."`
-			`	Suddenly you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	Suddenly, you are aware of a drum beat building in the silence, and realize that it had started with the first ripple of gestures, so quiet that it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
 			`	"Thump."`
@@ -199,7 +199,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you here other drummers join in as the beat resonates through the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving around in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of nowhere you here a voice singing. You cannot make out what it is saying, but the tone sounds like one of anticipation. You can, however, clearly make out a chant that cuts through the solo voice in time with the drumming:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
@@ -219,7 +219,7 @@ mission "Remnant: Celebration 1"
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually coming out of the typical hallways and into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or trace of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
 			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
-			`	Suddenly you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
 			`	"Thump."`
