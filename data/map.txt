@@ -13247,8 +13247,8 @@ system Ildaria
 	pos -702 317
 	government Republic
 	attributes "rim" "wolf-rayet"
-	arrival 3000
-	habitable 3000
+	arrival 625
+	habitable 625
 	belt 1132
 	haze _menu/haze-133
 	link Kochab
@@ -13275,20 +13275,12 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/carbon
-		period 10
-	object
-		sprite star/nova-core
-			scale 2
+		sprite star/nova-small
 		period 10
 	object
 		sprite star/f-giant
-			scale 0.75
+			scale 0.5
 		period 13
-	object
-		sprite star/k-dwarf
-		distance 790
-		period 420
 	object
 		sprite planet/rock6-b
 		distance 1135.47
