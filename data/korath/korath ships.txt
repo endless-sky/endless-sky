@@ -399,7 +399,7 @@ ship "Rai'arorej"
 		"fuel capacity" 700
 
 		"cargo space" 351
-		"outfit space" 835
+		"outfit space" 1029
 		"weapon capacity" 431
 		"engine capacity" 309
 		weapon
@@ -420,7 +420,7 @@ ship "Rai'arorej"
 		"Small Heat Shunt" 2
 		"Fuel Processor" 2
 		"Korath Repeater Rifle" 523
-		"Microbot Defense Station" 28
+		"Microbot Defense Station" 18
 
 		"Afterburner (Planetary Class)"
 		"Reverser (Lunar Class)"
