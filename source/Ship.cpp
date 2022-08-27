@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Visual.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <limits>
 #include <sstream>
@@ -144,6 +145,28 @@ namespace {
 	{
 		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
 		Logger::LogError(shipID + std::move(warning));
+	}
+
+	// Transfer as many of the given outfits from the source ship to the target
+	// ship as the source ship can remove and the target ship can handle. Returns the
+	// items and amounts that were actually transferred (so e.g. callers can determine
+	// how much material was transferred, if any).
+	map<const Outfit *, int> TransferAmmo(const map<const Outfit *, int> &stockpile, Ship &from, Ship &to)
+	{
+		auto transferred = map<const Outfit *, int>{};
+		for(auto &&item : stockpile)
+		{
+			assert(item.second > 0 && "stockpile count must be positive");
+			int unloadable = abs(from.Attributes().CanAdd(*item.first, -item.second));
+			int loadable = to.Attributes().CanAdd(*item.first, unloadable);
+			if(loadable > 0)
+			{
+				from.AddOutfit(item.first, -loadable);
+				to.AddOutfit(item.first, loadable);
+				transferred[item.first] = loadable;
+			}
+		}
+		return transferred;
 	}
 
 	// Check if the ship is escorted by the escort.
@@ -2368,7 +2391,23 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 			// Resupply any ships launching of their own accord.
 			if(!ejecting)
 			{
-				// TODO: Restock fighter weaponry that needs ammo.
+				// Determine which of the fighter's weapons we can restock.
+				auto restockable = bay.ship->GetArmament().RestockableAmmo();
+				auto toRestock = map<const Outfit *, int>{};
+				for(auto &&ammo : restockable)
+				{
+					int count = OutfitCount(ammo);
+					if(count > 0)
+						toRestock.emplace(ammo, count);
+				}
+				auto takenAmmo = TransferAmmo(toRestock, *this, *bay.ship);
+				bool tookAmmo = !takenAmmo.empty();
+				if(tookAmmo)
+				{
+					// Update the carried mass cache.
+					for(auto &&item : takenAmmo)
+						carriedMass += item.first->Mass() * item.second;
+				}
 
 				// Only calculate readyToRefuelParent once if there's at least
 				// one ship.
@@ -2385,7 +2424,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 					double spareFuel = fuel - JumpFuel();
 					bool carriedShipHasRamscoop = bay.ship->IsRefueledByRamscoop();
 					bool takeFuelFromCarrierOnDeploy = spareFuel > 100.;
-					bool depositFuelIntoCarrier = bay.ship->fuel < .25 * maxFuel;
+					bool depositFuelIntoCarrier = !tookAmmo && bay.ship->fuel < .25 * maxFuel;
 					if(!isTankerCarrier && (IsRefueledByRamscoop() || carriedShipHasRamscoop))
 						isTankerCarrier = true;
 					// Carried ship can refuel the parent so favor optimizing for fuel generation.
@@ -3827,12 +3866,26 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isReversing = false;
 			ship->isSteering = false;
 			ship->commands.Clear();
+
 			// If this fighter collected anything in space, try to store it
 			// (unless this is a player-owned ship).
 			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
-			// Return unused fuel to the carrier, for any launching fighter that needs it.
+
+			// Return unused fuel and ammunition to the carrier, so they may
+			// be used by the carrier or other fighters.
 			ship->TransferFuel(ship->fuel, this);
+
+			// Determine the ammunition the fighter can supply.
+			auto restockable = ship->GetArmament().RestockableAmmo();
+			auto toRestock = map<const Outfit *, int>{};
+			for(auto &&ammo : restockable)
+			{
+				int count = ship->OutfitCount(ammo);
+				if(count > 0)
+					toRestock.emplace(ammo, count);
+			}
+			TransferAmmo(toRestock, *ship, *this);
 
 			// Update the cached mass of the mothership.
 			carriedMass += ship->Mass();

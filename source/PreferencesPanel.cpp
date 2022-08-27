@@ -374,7 +374,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: warning);
+				table.DrawHighlight(isEditing ? dim : warning);
 			}
 
 			// Mark the selected row.

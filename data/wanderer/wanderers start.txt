@@ -1135,8 +1135,8 @@ ship "Carrier" "Carrier (Alpha)"
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Korath Disruptor" 2
-		"Korath Slicer Turret" 2
+		"Shield Disruptor Turret" 2
+		"Husk-Slice Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -1158,10 +1158,10 @@ ship "Carrier" "Carrier (Alpha)"
 	gun "Hai Tracker Pod"
 	gun
 	gun
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
