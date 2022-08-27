@@ -383,6 +383,165 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
+ship "Rai'arorej"
+	sprite "ship/refuge"
+	thumbnail "thumbnail/refuge"
+	attributes
+		category "Utility"
+		cost 81970000
+		shields 63000
+		hull 57000
+		"required crew" 893
+		"bunks" 3254
+		"mass" 4960
+		"drag" 44
+		"heat dissipation" .36
+		"fuel capacity" 700
+
+		"cargo space" 1251
+		"outfit space" 1235
+		"weapon capacity" 431
+		"engine capacity" 309
+		weapon
+			"blast radius" 600
+			"shield damage" 9000
+			"hull damage" 4800
+			"hit force" 20000
+	outfits
+		"Banisher Grav-Turret" 4
+		"Warder Anti-Missile" 4
+		"Langrage Hyper-Heaver" 1
+		"Firelight Missile Bank"
+		"Firelight Missile" 18
+
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor" 2
+		"Korath Repeater Rifle" 8500
+
+		"Afterburner (Planetary Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+
+	"reverse engine" -82 -193.5
+		zoom 0.8
+	"reverse engine" 82 -193.5
+		zoom 0.8
+	engine -99 181.5
+		zoom 0.9
+	engine 99 181.5
+		zoom 0.9
+	engine -60 167 0.8
+	engine 60 167 0.8
+	engine -29.5 195.5
+	engine 29.5 195.5
+	gun -81.5 41.5 "Firelight Missile Bank"
+		angle 270
+	turret -88.5 -150 "Banisher Grav-Turret"
+	turret 88.5 -150 "Warder Anti-Missile"
+	turret -110.5 -142 "Warder Anti-Missile"
+	turret 110.5 -142 "Banisher Grav-Turret"
+	turret 49.5 -53.5 "Langrage Hyper-Heaver"
+	turret -64 28 "Warder Anti-Missile"
+	turret 64 28 "Banisher Grav-Turret"
+	turret -64 50 "Banisher Grav-Turret"
+	turret 64 50 "Warder Anti-Missile"
+	bay "Fighter" -119.5 -179
+		angle 30
+	bay "Fighter" 119.5 -179
+		angle 330
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
+
+
+ship "Ik'atilajej"
+	sprite "ship/refabricator"
+	thumbnail "thumbnail/refabricator"
+	attributes
+		category "Utility"
+		"cost" 109375000
+		"shields" 72700
+		"hull" 93000
+		"required crew" 957
+		"bunks" 1933
+		"mass" 3380
+		"drag" 63
+		"heat dissipation" .29
+		"fuel capacity" 800
+		"cargo space" 845
+		"outfit space" 1829
+		"weapon capacity" 676
+		"engine capacity" 290
+		"spinal mount" 1
+		weapon
+			"blast radius" 600
+			"shield damage" 9000
+			"hull damage" 4800
+			"hit force" 20000
+	outfits
+		"Microbot Factory"
+		"Shunt-Strike Turret" 5
+		"Grab-Strike Turret" 3
+		"Warder Anti-Missile"
+		"Firestorm Turret" 2
+		"Firestorm Torpedo" 26
+
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Korath Repeater Rifle"  1933
+		"Microbot Defense Station" 20
+
+		"Afterburner (Lunar Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Hyperdrive"
+
+	engine -84 231.5
+		zoom 0.8
+	engine 84 231.5
+		zoom 0.8
+	engine -61 262.5
+	engine 61 262.5
+	engine -27 249.5
+		zoom 0.8
+	engine 27 249.5
+		zoom 0.8
+	gun 0 -190 "Microbot Factory"
+	turret -90.5 -176 "Grab-Strike Turret"
+	turret 90.5 -176 "Grab-Strike Turret"
+	turret -95 -156 "Warder Anti-Missile"
+	turret 95 -156 "Grab-Strike Turret"
+	turret -51.5 -98.5 "Shunt-Strike Turret"
+	turret 51.5 -98.5 "Warder Anti-Missile"
+	turret 0 -94.5 "Shunt-Strike Turret"
+	turret 0 14 "Shunt-Strike Turret"
+	turret -145.5 83 "Shunt-Strike Turret"
+	turret 145.5 83 "Warder Anti-Missile"
+	turret -44.5 113 "Firestorm Turret"
+	turret 44.5 113 "Firestorm Turret"
+	turret -139.5 178 "Warder Anti-Missile"
+	turret 139.5 178 "Shunt-Strike Turret"
+	explode "tiny explosion" 180
+	explode "small explosion" 80
+	explode "medium explosion" 90
+	explode "large explosion" 60
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "The Refabricator is factory ship; a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. Today, its nanite-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
+
+
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"

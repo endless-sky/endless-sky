@@ -1006,3 +1006,31 @@ effect "firelight ring"
 	"random angle" 360
 	"random velocity" 2
 	"velocity scale" 0.1
+
+outfit "Microbot Factory"
+	category "Guns"
+	thumbnail "outfit/unknown"
+	"mass" 112
+	"outfit space" -112
+	"weapon capacity" -112
+	"required crew" 20
+	"gun ports" -1
+	"spinal mount" -1
+	weapon
+		"hardpoint sprite" "hardpoint/factory/nanobot factory"
+			"frame rate" 12
+		"hit effect" "shunt-strike hit" 
+		"die effect" "shunt-strike hit" 
+		"inaccuracy" 10
+		"velocity" 10
+		"lifetime" 2
+		"reload" 6
+		"firing energy" 5
+		"blast radius" 100
+		"shield damage" 48
+		"corrosion damage" 3
+		"minable damage" 200
+		"piercing" 0.1
+		"safe"
+	description "This is a huge factory that constructs microbots."
+
