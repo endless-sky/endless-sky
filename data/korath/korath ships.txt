@@ -503,10 +503,15 @@ ship "Ik'atilajej"
 		"Microbot Defense Station" 20
 
 		"Afterburner (Lunar Class)"
+		"Reverser (Lunar Class)"
 		"Steering (Stellar Class)"
 		"Thruster (Stellar Class)"
 		"Hyperdrive"
 
+	"reverse engine" -105 -190.5
+		zoom 0.8
+	"reverse engine" 105 -190.5
+		zoom 0.8
 	engine -84 231.5
 		zoom 0.8
 	engine 84 231.5
