@@ -974,6 +974,10 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 	if(ship.GetPersonality().IsUnconstrained())
 		return true;
 
+	// Owned ships ignore fence.
+	if(ship.IsYours())
+		return true;
+
 	// Check if the target is beyond the "invisible fence" for this system.
 	const auto fit = fenceCount.find(&target);
 	if(fit == fenceCount.end())
@@ -1725,7 +1729,28 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	if(ship.Health() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
 		return true;
 
-	// TODO: Reboard if in need of ammo.
+	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
+	// needed to use them, it should dock if the parent can supply that ammo.
+	auto requiredAmmo = set<const Outfit *>{};
+	for(const Hardpoint &hardpoint : ship.Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon && !hardpoint.IsAntiMissile())
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(!ammo || ship.OutfitCount(ammo))
+			{
+				// This fighter has at least one usable weapon, and
+				// thus does not need to dock to continue fighting.
+				requiredAmmo.clear();
+				break;
+			}
+			else if(parent.OutfitCount(ammo))
+				requiredAmmo.insert(ammo);
+		}
+	}
+	if(!requiredAmmo.empty())
+		return true;
 
 	// If a carried ship has fuel capacity but is very low, it should return if
 	// the parent can refuel it.
@@ -1739,12 +1764,12 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	if(!ship.IsYours())
 	{
 		bool hasEnemy = ship.GetTargetShip() && ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment());
-		if(!hasEnemy)
+		if(!hasEnemy && parent.Cargo().Free())
 		{
 			const CargoHold &cargo = ship.Cargo();
 			// Mining ships only mine while they have 5 or more free space. While mining, carried ships
 			// do not consider docking unless their parent is far from a targetable asteroid.
-			if(parent.Cargo().Free() && !cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
+			if(!cargo.IsEmpty() && cargo.Size() && cargo.Free() < 5)
 				return true;
 		}
 	}
