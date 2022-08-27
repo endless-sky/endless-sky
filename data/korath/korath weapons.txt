@@ -1017,7 +1017,7 @@ outfit "Microbot Factory"
 	"gun ports" -1
 	"spinal mount" -1
 	weapon
-		"hardpoint sprite" "hardpoint/factory/nanobot factory"
+		"hardpoint sprite" "hardpoint/factory/microbot factory"
 			"frame rate" 12
 		"hit effect" "shunt-strike hit" 
 		"die effect" "shunt-strike hit" 

@@ -384,22 +384,22 @@ ship "'olofez"
 
 
 ship "Rai'arorej"
-	sprite "ship/refuge"
-	thumbnail "thumbnail/refuge"
+	sprite "ship/rai-arorej"
+	thumbnail "thumbnail/rai-arorej"
 	attributes
 		category "Utility"
 		cost 81970000
 		shields 63000
 		hull 57000
-		"required crew" 893
-		"bunks" 3254
-		"mass" 4960
-		"drag" 44
+		"required crew" 523
+		"bunks" 1433
+		"mass" 2060
+		"drag" 29.6
 		"heat dissipation" .36
 		"fuel capacity" 700
 
-		"cargo space" 1251
-		"outfit space" 1235
+		"cargo space" 351
+		"outfit space" 835
 		"weapon capacity" 431
 		"engine capacity" 309
 		weapon
@@ -464,8 +464,8 @@ ship "Rai'arorej"
 
 
 ship "Ik'atilajej"
-	sprite "ship/refabricator"
-	thumbnail "thumbnail/refabricator"
+	sprite "ship/ik-atilajej"
+	thumbnail "thumbnail/ik-atilajej"
 	attributes
 		category "Utility"
 		"cost" 109375000
@@ -473,8 +473,8 @@ ship "Ik'atilajej"
 		"hull" 93000
 		"required crew" 957
 		"bunks" 1933
-		"mass" 3380
-		"drag" 63
+		"mass" 5380
+		"drag" 58
 		"heat dissipation" .29
 		"fuel capacity" 800
 		"cargo space" 845
@@ -489,9 +489,9 @@ ship "Ik'atilajej"
 			"hit force" 20000
 	outfits
 		"Microbot Factory"
-		"Shunt-Strike Turret" 5
-		"Grab-Strike Turret" 3
-		"Warder Anti-Missile" 4
+		"Shunt-Strike Turret" 4
+		"Grab-Strike Turret" 5
+		"Warder Anti-Missile" 5
 
 		"Triple Plasma Core"
 		"Double Plasma Core"
@@ -519,7 +519,7 @@ ship "Ik'atilajej"
 	gun 0 -190 "Microbot Factory"
 	turret -90.5 -176 "Grab-Strike Turret"
 	turret 90.5 -176 "Grab-Strike Turret"
-	turret -95 -156 "Warder Anti-Missile"
+	turret -95 -156 "Grab-Strike Turret"
 	turret 95 -156 "Grab-Strike Turret"
 	turret -51.5 -98.5 "Shunt-Strike Turret"
 	turret 51.5 -98.5 "Warder Anti-Missile"
@@ -527,8 +527,8 @@ ship "Ik'atilajej"
 	turret 0 14 "Shunt-Strike Turret"
 	turret -145.5 83 "Shunt-Strike Turret"
 	turret 145.5 83 "Warder Anti-Missile"
-	turret -44.5 113
-	turret 44.5 113
+	turret -44.5 113 "Warder Anti-Missile"
+	turret 44.5 113 "Warder Anti-Missile"
 	turret -139.5 178 "Warder Anti-Missile"
 	turret 139.5 178 "Shunt-Strike Turret"
 	explode "tiny explosion" 180
