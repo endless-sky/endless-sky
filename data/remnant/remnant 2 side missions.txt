@@ -327,7 +327,8 @@ mission "Remnant: Celebration 1"
 					goto celebrationrehearsed
 			label celebrationrequest
 			`	Taely strides over to a console near the closest door and retrieves a crystal from a compartment within. She slips it into a case and turns back to you. "Our celebrations are something that bind us together, and we share in both the memory of the departed and the hope for the future. As such, we keep recordings of them so that those who are not present at a particular event may still experience it too. This recording is destined for those working in Postverta, as a friend of one of those being mourned today is stationed there. Could you deliver this to them please?"`
-			action set "Remnant: Attended Celebration of Remembrance with Taely"
+			action 
+				set "Remnant: Attended Celebration of Remembrance with Taely"
 			choice
 				`	"Yes."`
 					accept
