@@ -1,0 +1,17 @@
+name: Discord Webhook
+
+on:
+  push:
+    branches:
+      - master
+ 
+jobs:
+  send-payload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@0.3.2
+      with:
+        args: '{{ EVENT_PAYLOAD.head_commit.author.name }}: {{ EVENT_PAYLOAD.head_commit.message }}'
