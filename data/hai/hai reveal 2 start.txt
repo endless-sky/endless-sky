@@ -167,17 +167,16 @@ mission "Hai Rescue: Prison Role-Players"
 	source "Sunracer"
 	destination "Allhome"
 	passengers 5
-	repeat 3
 	to offer
 		has "First Contact: Hai: declined"
-		"Hai Rescue: Prison Role-Players (offer count)" < 3
+		"Hai Rescue: Prison Role-Players (defer count)" < 3
 		not "event: hai-human treaty signed"
 		not "Hai Rescue: Prison Role-Players: offered"
 		# No combat rating requirement since there are no NPCs.
 		has "Hai Leaks Response 6: active"
 		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
 	on offer
-		"Hai Rescue: Prison Role-Players (offer count)" ++
+		"Hai Rescue: Prison Role-Players (defer count)" ++
 		conversation
 			`As you set your landing vector, you detect a very faint distress call directed at your ship. Your scanners show it appears to come from a remote island. Do you want to check it out?`
 			choice
@@ -375,15 +374,14 @@ mission "Hai Rescue: Meroot and Lucy"
 	source Canyon
 	destination Newhome
 	passengers 2
-	repeat 3
 	to offer
 		"combat rating" > 50
 		has "Unwanted Cargo: done"
 		not "event: hai-human treaty signed"
 		not "Hai Rescue: Meroot and Lucy: offered"
-		"Hai Rescue: Meroot and Lucy (offer count)" < 3
+		"Hai Rescue: Meroot and Lucy (defer count)" < 3
 	on offer
-		"Hai Rescue: Meroot and Lucy (offer count)" ++
+		"Hai Rescue: Meroot and Lucy (defer count)" ++
 		conversation
 			`As you walk through a major street, you notice a woman approach an alcove in the side of one building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You ohly had a moment to observe, but in the small alcove you spot something hiding inside with tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
 			`	Do you want to investigate?`
