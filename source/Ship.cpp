@@ -1170,7 +1170,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
-	else if(canBeCarried && IsEnergyLow())
+	else if(canBeCarried && GetSecondsToEmpty() < minimumOperatingTime)
 			checks.emplace_back("low battery!");
 
 	// If no errors were found, check all warning conditions:
@@ -2822,7 +2822,7 @@ bool Ship::IsEnemyInEscortSystem() const
 // then consider it low on energy.
 bool Ship::IsEnergyLow() const
 {
-	return (secondsToEmpty < minimumOperatingTime && (IsLanding() || secondsToFullCharge > minimumOperatingTime));
+	return (secondsToEmpty < minimumOperatingTime && secondsToFullCharge > minimumOperatingTime);
 }
 
 
