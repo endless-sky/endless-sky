@@ -1051,7 +1051,7 @@ const string &Ship::PluralModelName() const
 // Get the data name of this ship as a variant.
 const string &Ship::VariantName() const
 {
-	return variantTrueName.empty() ? trueName : variantTrueName;
+	return variantName.empty() ? trueName : variantName;
 }
 
 
