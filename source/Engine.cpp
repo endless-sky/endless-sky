@@ -1618,6 +1618,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
+			if(ship->FleetId() >= 0)
+				player.GetSystem()->DecreaseFleetCounter(ship->FleetId());
 		}
 
 		// Did this ship just jump into the player's system?
@@ -1629,6 +1631,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
+			if(ship->FleetId() >= 0)
+				player.GetSystem()->IncreaseFleetCounter(ship->FleetId());
 		}
 	}
 

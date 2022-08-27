@@ -773,28 +773,24 @@ const vector<RandomEvent<Fleet>> &System::Fleets() const
 
 const int System::GetFleetCounter(int id) const
 {
-	for(const auto counter : fleetCounters)
-		if(counter.first == id)
-			return counter.second;
-	return -1;
+	const auto it = fleetCounters.find(id);
+	if(it == fleetCounters.end())
+		return -1;
+	return it->second;
 }
 
 
 
 void System::IncreaseFleetCounter(int id) const
 {
-	for(auto counter : fleetCounters)
-		if(counter.first == id)
-			counter.second++;
+	fleetCounters[id]++;
 }
 
 
 
 void System::DecreaseFleetCounter(int id) const
 {
-	for(auto counter : fleetCounters)
-		if(counter.first == id)
-			counter.second--;
+	fleetCounters[id]--;
 }
 
 
