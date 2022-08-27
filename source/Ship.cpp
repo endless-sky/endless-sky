@@ -196,7 +196,7 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "display model name" && child.Size() >= 2)
+		else if(child.Token(0) == "display model" && child.Size() >= 2)
 			modelName = child.Token(1);
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
