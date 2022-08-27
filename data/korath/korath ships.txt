@@ -480,7 +480,7 @@ ship "Ik'atilajej"
 		"fuel capacity" 800
 		"cargo space" 845
 		"outfit space" 1829
-		"weapon capacity" 676
+		"weapon capacity" 680
 		"engine capacity" 290
 		"spinal mount" 1
 		weapon
