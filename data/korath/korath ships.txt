@@ -491,9 +491,7 @@ ship "Ik'atilajej"
 		"Microbot Factory"
 		"Shunt-Strike Turret" 5
 		"Grab-Strike Turret" 3
-		"Warder Anti-Missile"
-		"Firestorm Turret" 2
-		"Firestorm Torpedo" 26
+		"Warder Anti-Missile" 4
 
 		"Triple Plasma Core"
 		"Double Plasma Core"
@@ -529,8 +527,8 @@ ship "Ik'atilajej"
 	turret 0 14 "Shunt-Strike Turret"
 	turret -145.5 83 "Shunt-Strike Turret"
 	turret 145.5 83 "Warder Anti-Missile"
-	turret -44.5 113 "Firestorm Turret"
-	turret 44.5 113 "Firestorm Turret"
+	turret -44.5 113
+	turret 44.5 113
 	turret -139.5 178 "Warder Anti-Missile"
 	turret 139.5 178 "Shunt-Strike Turret"
 	explode "tiny explosion" 180
