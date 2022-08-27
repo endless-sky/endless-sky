@@ -89,6 +89,49 @@ mission "Unfettered: Untrustable"
 
 
 
+ship "Auxiliary" "Auxiliary (Alpha with supplies)"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Korath Disruptor"
+		"Korath Slicer Turret"
+		"Bullfrog Anti-Missile" 2
+
+		"Double Plasma Core"
+		"Systems Core (Large)" 2
+		"Large Heat Shunt" 2
+		"Wanderer Ramscoop"
+		"Fuel Pod" 7
+		"Brig"
+
+		`"Bufaer" Atomic Thruster`
+		"Steering (Planetary Class)"
+		"Jump Drive"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	cargo
+		outfits
+			"Jump Drive" 5
+		commodities
+			"Military" 150
+			"Electronics" 100
+			"Metal" 50
+			"Heavy Metals" 50
+
+	gun -12 -180 "Hai Tracker Pod"
+	gun 12 -180 "Hai Tracker Pod"
+	turret 0 -72 "Bullfrog Anti-Missile"
+	turret 0 -21 "Korath Disruptor"
+	turret 0 31 "Korath Slicer Turret"
+	turret 0 83 "Bullfrog Anti-Missile"
+	bay "Fighter" 0 -72
+	bay "Fighter" 0 -20
+	bay "Fighter" 0 32
+	bay "Fighter" 0 83
+
 mission "Unfettered: Alpha Business"
 	invisible
 	minor

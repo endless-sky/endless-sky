@@ -1374,50 +1374,6 @@ mission "Unfettered: Geocoris Arriving"
 
 
 
-# variants cannot have their fuel defined to a given amount for some reason
-ship "Auxiliary" "Auxiliary (Alpha with supplies)"
-	sprite "ship/auxiliaryc"
-	thumbnail "thumbnail/auxiliaryc"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Korath Disruptor"
-		"Korath Slicer Turret"
-		"Bullfrog Anti-Missile" 2
-
-		"Double Plasma Core"
-		"Systems Core (Large)" 2
-		"Large Heat Shunt" 2
-		"Wanderer Ramscoop"
-		"Fuel Pod" 7
-		"Brig"
-
-		`"Bufaer" Atomic Thruster`
-		"Steering (Planetary Class)"
-		"Jump Drive"
-	add attributes
-		"bunks" -112
-		"cargo space" 200
-	cargo
-		outfits
-			"Jump Drive" 5
-		commodities
-			"Military" 150
-			"Electronics" 100
-			"Metal" 50
-			"Heavy Metals" 50
-
-	gun -12 -180 "Hai Tracker Pod"
-	gun 12 -180 "Hai Tracker Pod"
-	turret 0 -72 "Bullfrog Anti-Missile"
-	turret 0 -21 "Korath Disruptor"
-	turret 0 31 "Korath Slicer Turret"
-	turret 0 83 "Bullfrog Anti-Missile"
-	bay "Fighter" 0 -72
-	bay "Fighter" 0 -20
-	bay "Fighter" 0 32
-	bay "Fighter" 0 83
-
 outfit "Alpha Pirate Crew"
 	"crew defense" -100
 	"crew attack" -100
@@ -1745,6 +1701,7 @@ mission "Unfettered: Alphas 2: Prove Yourself"
 			action
 				clear "salary: Unfettered"
 				fail "Unfettered: Alphas 2: Prove Yourself"
+				set "unfettered: betrayed"
 
 mission "Unfettered: Alphas 3: Bring The Spoils"
 	invisible
@@ -2458,7 +2415,7 @@ mission "Unfettered: Start Of The War"
 		ship "Enhanced Shield Beetle (Pulse)" "Intrepid II"
 		personality disables staying heroic target launching
 		conversation
-			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and rhen take off when you're be ready to face him."`
+			`"You have defeated me, But He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him."`
 			action
 				set "unfettered: defeated Si-Ra"
 	npc save disable
