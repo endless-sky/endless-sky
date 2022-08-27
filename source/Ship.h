@@ -547,6 +547,7 @@ private:
 	// Number of seconds a battery powered ship or fighter should be able to
 	// operate minimally.
 	double minimumOperatingTime = 10.;
+	double lowOperatingTime = 15.;
 	double minimumHull = 0.;
 	double maximumHeat = std::numeric_limits<double>::infinity();
 	int requiredCrew = 0;

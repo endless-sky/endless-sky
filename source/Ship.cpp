@@ -200,6 +200,26 @@ namespace {
 			return false;
 		return true;
 	}
+
+	// Check if a ship is low energy based on drain vs seconds to recharge.
+	bool CheckLowEnergy(shared_ptr<const Ship> ship, double secondsRemaining)
+	{
+		double frames = 60.;
+		double idleEnergy = frames * ship->GetIdleEnergyPerFrame();
+		double maxEnergy = ship->Attributes().Get("energy capacity");
+		double totalConsumption = frames * ship->GetEnergyConsumptionPerFrame();
+		double currentEnergy = (ship->CanBeCarried() && ship->GetSystem() && !ship->IsLanding()) ? ship->GetCurrentEnergy() : maxEnergy * .75;
+		//double currentEnergy = GetCurrentEnergy();
+		if(totalConsumption < 0.)
+		{
+			double secondsToEmpty = currentEnergy / (-totalConsumption);
+			// how quickly can it charge under no energy load
+			double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : secondsRemaining + 1.;
+			if((secondsToEmpty < secondsRemaining && secondsToFullCharge > secondsRemaining) || (secondsToEmpty < secondsRemaining && idleEnergy <= 0.))
+				return true;
+		}
+		return false;
+	}
 }
 
 
@@ -1170,6 +1190,8 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
+	else if(canBeCarried && IsEnergyLow())
+			checks.emplace_back("low battery!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
@@ -1180,7 +1202,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("reverse only?");
 		if(!generation && !solar && !consuming && !canBeCarried)
 			checks.emplace_back("battery only?");
-		if(canBeCarried && IsEnergyLow())
+		if(canBeCarried && CheckLowEnergy(shared_from_this(), lowOperatingTime))
 			checks.emplace_back("low battery?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -2820,21 +2842,7 @@ bool Ship::IsEnemyInEscortSystem() const
 // then consider it low on energy.
 bool Ship::IsEnergyLow() const
 {
-	double frames = 60.;
-	double idleEnergy = frames * GetIdleEnergyPerFrame();
-	double maxEnergy = Attributes().Get("energy capacity");
-	double totalConsumption = frames * GetEnergyConsumptionPerFrame();
-	double currentEnergy = (CanBeCarried() && GetSystem() && !landingPlanet) ? GetCurrentEnergy() : maxEnergy * .75;
-	//double currentEnergy = GetCurrentEnergy();
-	if(totalConsumption < 0.)
-	{
-		double secondsToEmpty = currentEnergy / (-totalConsumption);
-		// how quickly can it charge under no energy load
-		double secondsToFullCharge = (idleEnergy > 0.) ? (maxEnergy - currentEnergy) / idleEnergy : minimumOperatingTime + 1.;
-		if((secondsToEmpty < minimumOperatingTime && secondsToFullCharge > minimumOperatingTime) || (secondsToEmpty < minimumOperatingTime && idleEnergy <= 0.))
-			return true;
-	}
-	return false;
+	return CheckLowEnergy(shared_from_this(), minimumOperatingTime);
 }
 
 

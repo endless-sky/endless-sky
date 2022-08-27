@@ -938,6 +938,9 @@ tip "no thruster!"
 tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
 
+tip "low battery!"
+	`This ship does not have enough energy generation or battery storage to provide sustained flight.`
+
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 
@@ -948,7 +951,7 @@ tip "battery only?"
 	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
 
 tip "low battery?"
-	`This ship does not have enough energy generation or battery storage to provide sustained flight.`
+	`This ship will have very limited sustained flight due to battery capacity.`
 
 tip "limited thrust?"
 	`This ship's energy supply is not sufficient to run the thrusters at full power. Its top speed and acceleration will be diminished.`
