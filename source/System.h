@@ -201,7 +201,7 @@ private:
 	std::vector<Asteroid> asteroids;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
-	std::map<int, int> fleetCounters;
+	mutable std::map<int, int> fleetCounters;
 	int ids = 0;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
