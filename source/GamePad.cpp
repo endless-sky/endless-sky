@@ -120,7 +120,7 @@ std::map<Uint8, chrono::milliseconds> GamePad::ReleasedButtons() const
 			auto start = held.find(it->first);
 			result[it->first] = start != held.cend() ?
 				chrono::duration_cast<chrono::milliseconds>(it->second - start->second) :
-				  chrono::milliseconds::zero();
+					chrono::milliseconds::zero();
 		}
 	}
 	return result;
