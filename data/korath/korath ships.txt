@@ -419,7 +419,8 @@ ship "Rai'arorej"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
 		"Fuel Processor" 2
-		"Korath Repeater Rifle" 8500
+		"Korath Repeater Rifle" 523
+		"Microbot Defense Station" 28
 
 		"Afterburner (Planetary Class)"
 		"Reverser (Lunar Class)"
@@ -489,8 +490,8 @@ ship "Ik'atilajej"
 			"hit force" 20000
 	outfits
 		"Microbot Factory"
-		"Shunt-Strike Turret" 4
-		"Grab-Strike Turret" 5
+		"Shunt-Strike Turret" 5
+		"Grab-Strike Turret" 4
 		"Warder Anti-Missile" 5
 
 		"Triple Plasma Core"
@@ -498,7 +499,7 @@ ship "Ik'atilajej"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
-		"Korath Repeater Rifle"  1933
+		"Korath Repeater Rifle"  957
 		"Microbot Defense Station" 20
 
 		"Afterburner (Lunar Class)"
