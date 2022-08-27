@@ -13282,17 +13282,17 @@ system Ildaria
 			scale 0.5
 		period 13
 	object
+		sprite planet/rock17-b
+		distance 694.26
+		period 292.686
+	object
 		sprite planet/rock6-b
 		distance 1135.47
 		period 612.186
 	object
-		sprite planet/rock17-b
+		sprite planet/ice4-b
 		distance 1893.08
 		period 1317.87
-	object
-		sprite planet/ice4-b
-		distance 2294.26
-		period 2092.686
 		object
 			sprite planet/ice8
 			distance 130
