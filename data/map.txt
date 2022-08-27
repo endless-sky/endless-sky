@@ -10,70 +10,78 @@
 
 galaxy "Milky Way"
 	pos 0 0
-	sprite ui/galaxy
+	sprite "ui/milky way"
+	
+galaxy "Small Magellanic Cloud"
+	pos -3200 -1000
+	sprite "ui/small magellanic cloud"
+
+galaxy "Large Magellanic Cloud"
+	pos -2500 1400
+	sprite "ui/large magellanic cloud"
 
 galaxy "label arachi"
-	pos -750 615
+	pos -862 593
 
 galaxy "label core"
-	pos -136 130
+	pos -248 108
 	sprite label/core
 
 galaxy "label deep"
-	pos -658 -300
+	pos -770 -322
 	sprite label/deep
 
 galaxy "label dirt belt"
-	pos -515 260
+	pos -627 238
 	sprite "label/dirt belt"
 
 galaxy "label earth"
-	pos -420 94
+	pos -532 72
 	sprite label/earth
 
 galaxy "label graveyard"
-	pos 45 590
+	pos -67 568
 
 galaxy "label hai"
-	pos -74 -497
+	pos -186 -519
 
 galaxy "label kimek"
-	pos -1250 215
+	pos -1362 193
 
 galaxy "label korath"
-	pos 165 -347
+	pos 53 -369
 
 galaxy "label north"
-	pos -324 -332
+	pos -436 -354
 	sprite label/north
 
 galaxy "label paradise"
-	pos -345 -136
+	pos -457 -158
 	sprite label/paradise
 
 galaxy "label rim"
-	pos -778 265
+	pos -890 243
 	sprite label/rim
 
 galaxy "label saryds"
-	pos -1080 678
+	pos -1192 656
 
 galaxy "label south"
-	pos -566 501
+	pos -678 479
 	sprite label/south
 
 galaxy "label wanderers"
-	pos -145 -753
+	pos -257 -775
 
 galaxy "label waste"
-	pos 80 315
+	pos -32 293
 
 galaxy "pug empty galaxy"
-	pos 10000 7000
+	pos 9888 6978
 	sprite ui/pleiades
 
 system "1 Axis"
-	pos -1274.63 267.214
+	pos -1386 245
 	government Coalition
 	attributes "kimek"
 	arrival 745
@@ -152,7 +160,7 @@ system "1 Axis"
 			period 67.0771
 
 system "10 Pole"
-	pos -1356.63 19.2137
+	pos -1468 -2
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -225,7 +233,7 @@ system "10 Pole"
 			period 57.7392
 
 system "11 Autumn Above"
-	pos -1278.63 148.214
+	pos -1390 126
 	government Coalition
 	attributes "kimek"
 	arrival 1570
@@ -308,7 +316,7 @@ system "11 Autumn Above"
 			period 32.5936
 
 system "11 Spring Below"
-	pos -1272.63 380.214
+	pos -1384 358
 	government Coalition
 	attributes "kimek"
 	arrival 915
@@ -389,7 +397,7 @@ system "11 Spring Below"
 			period 32.052
 
 system "12 Autumn Above"
-	pos -1276.63 -19.7863
+	pos -1388 -41
 	government Coalition
 	attributes "kimek"
 	arrival 1050
@@ -483,7 +491,7 @@ system "12 Autumn Above"
 			period 27.8748
 
 system "14 Pole"
-	pos -1343.63 -119.786
+	pos -1455 -141
 	government Coalition
 	attributes "kimek"
 	arrival 625
@@ -545,7 +553,7 @@ system "14 Pole"
 		period 1616.77
 
 system "14 Summer Above"
-	pos -1436.63 182.214
+	pos -1548 160
 	government Coalition
 	attributes "kimek"
 	arrival 1400
@@ -612,7 +620,7 @@ system "14 Summer Above"
 		period 1145.72
 
 system "14 Winter Below"
-	pos -1143.63 341.214
+	pos -1255 319
 	government Coalition
 	attributes "kimek"
 	arrival 1115
@@ -689,7 +697,7 @@ system "14 Winter Below"
 			period 21.4023
 
 system "16 Autumn Rising"
-	pos -1305.63 74.2137
+	pos -1417 52
 	government Coalition
 	attributes "kimek"
 	arrival 1715
@@ -760,7 +768,7 @@ system "16 Autumn Rising"
 			period 36.3264
 
 system "3 Axis"
-	pos -1235.63 299.214
+	pos -1347 277
 	government Coalition
 	attributes "kimek"
 	arrival 2560
@@ -829,7 +837,7 @@ system "3 Axis"
 			period 21.2051
 
 system "3 Pole"
-	pos -1344.63 162.214
+	pos -1456 140
 	government Coalition
 	attributes "kimek"
 	arrival 625
@@ -890,7 +898,7 @@ system "3 Pole"
 		period 1446.94
 
 system "3 Spring Rising"
-	pos -1414.63 356.214
+	pos -1526 334
 	government Coalition
 	attributes "kimek"
 	arrival 1080
@@ -964,7 +972,7 @@ system "3 Spring Rising"
 			period 48.1229
 
 system "4 Axis"
-	pos -1169.63 365.214
+	pos -1281 343
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1028,7 +1036,7 @@ system "4 Axis"
 			period 13.1312
 
 system "4 Spring Rising"
-	pos -1309.63 321.214
+	pos -1421 299
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1094,7 +1102,7 @@ system "4 Spring Rising"
 			period 38.6591
 
 system "4 Summer Rising"
-	pos -1377.63 207.214
+	pos -1489 185
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1155,7 +1163,7 @@ system "4 Summer Rising"
 		period 5539.82
 
 system "4 Winter Rising"
-	pos -1259.63 248.214
+	pos -1371 226
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1231,7 +1239,7 @@ system "4 Winter Rising"
 			period 62.7773
 
 system "5 Axis"
-	pos -1142.63 394.214
+	pos -1254 372
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1305,7 +1313,7 @@ system "5 Axis"
 			period 53.0176
 
 system "5 Spring Below"
-	pos -1213.63 415.214
+	pos -1325 393
 	government Coalition
 	attributes "kimek"
 	arrival 2320
@@ -1378,7 +1386,7 @@ system "5 Spring Below"
 			period 31.8423
 
 system "5 Summer Above"
-	pos -1387.63 118.214
+	pos -1499 96
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1446,7 +1454,7 @@ system "5 Summer Above"
 		period 2550.80
 
 system "5 Winter Above"
-	pos -1216.63 208.214
+	pos -1328 186
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1511,7 +1519,7 @@ system "5 Winter Above"
 			period 15
 
 system "7 Autumn Rising"
-	pos -1235.63 177.214
+	pos -1347 155
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1578,7 +1586,7 @@ system "7 Autumn Rising"
 			period 58.4201
 
 system "8 Winter Below"
-	pos -1179.63 284.214
+	pos -1291 262
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -1644,7 +1652,7 @@ system "8 Winter Below"
 			period 32.1305
 
 system "9 Spring Above"
-	pos -1377.63 281.214
+	pos -1489 259
 	government Coalition
 	attributes "kimek"
 	arrival 1050
@@ -1721,7 +1729,7 @@ system "9 Spring Above"
 			period 28.1138
 
 system Ablodab
-	pos -854.587 592.051
+	pos -966 570
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -1812,7 +1820,7 @@ system Ablodab
 			period 82.9155
 
 system Ablub
-	pos -581.587 637.051
+	pos -693 615
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -1867,7 +1875,7 @@ system Ablub
 		period 2236.11
 
 system Acamar
-	pos -284 -3
+	pos -396 -25
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -1927,7 +1935,7 @@ system Acamar
 		period 3183.91
 
 system Achernar
-	pos -93 154
+	pos -205 132
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -2000,7 +2008,7 @@ system Achernar
 			period 23.907
 
 system Acrux
-	pos -808 192
+	pos -920 170
 	government Republic
 	attributes "rim"
 	arrival 585
@@ -2081,7 +2089,7 @@ system Acrux
 			period 44.703
 
 system Adhara
-	pos -669 -200
+	pos -781 -222
 	government Republic
 	attributes "deep"
 	arrival 680
@@ -2147,7 +2155,7 @@ system Adhara
 		period 1815.95
 
 system Aescolanus
-	pos -15 340
+	pos -127 318
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 500
@@ -2191,7 +2199,7 @@ system Aescolanus
 		period 2870.08
 
 system Aki'il
-	pos -83 722
+	pos -195 700
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1505
@@ -2244,7 +2252,7 @@ system Aki'il
 		period 291.368
 
 system "Al Dhanab"
-	pos -177 207
+	pos -289 185
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -2315,7 +2323,7 @@ system "Al Dhanab"
 		period 1340.95
 
 system Albaldah
-	pos -350 484
+	pos -462 462
 	government Republic
 	attributes "south"
 	arrival 560
@@ -2391,7 +2399,7 @@ system Albaldah
 			period 14.5337
 
 system Albireo
-	pos -270 503
+	pos -382 481
 	government Republic
 	attributes "south"
 	arrival 760
@@ -2450,7 +2458,7 @@ system Albireo
 		period 1509.48
 
 system Alcyone
-	pos -80 -144
+	pos -192 -166
 	government Pirate
 	attributes "core"
 	arrival 500
@@ -2519,7 +2527,7 @@ system Alcyone
 			period 24.8475
 
 system Aldebaran
-	pos -356 -26
+	pos -468 -48
 	government Republic
 	attributes "paradise"
 	arrival 625
@@ -2566,7 +2574,7 @@ system Aldebaran
 		period 1570.88
 
 system Alderamin
-	pos -272 258
+	pos -384 236
 	government Syndicate
 	attributes "core"
 	arrival 1705
@@ -2632,7 +2640,7 @@ system Alderamin
 		period 1069.76
 
 system Aldhibain
-	pos -659 451
+	pos -771 429
 	government Republic
 	attributes "south"
 	arrival 500
@@ -2694,7 +2702,7 @@ system Aldhibain
 			period 13.622
 
 system Algenib
-	pos -118 341
+	pos -230 319
 	government Pirate
 	attributes "core"
 	arrival 500
@@ -2752,7 +2760,7 @@ system Algenib
 			period 42.6838
 
 system Algieba
-	pos -691 -52
+	pos -803 -74
 	government Republic
 	attributes "deep"
 	arrival 2720
@@ -2823,7 +2831,7 @@ system Algieba
 			period 22.4237
 
 system Algol
-	pos -210 17
+	pos -322 -5
 	government Syndicate
 	attributes "core"
 	arrival 3490
@@ -2886,7 +2894,7 @@ system Algol
 		period 1056.95
 
 system Algorel
-	pos -631 145
+	pos -743 123
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -2953,7 +2961,7 @@ system Algorel
 			period 12.3693
 
 system Alheka
-	pos -350 -271
+	pos -462 -293
 	government Republic
 	attributes "north"
 	arrival 1080
@@ -3014,7 +3022,7 @@ system Alheka
 			period 11.3132
 
 system Alhena
-	pos -430 -80
+	pos -542 -102
 	government Republic
 	attributes "paradise"
 	arrival 995
@@ -3085,7 +3093,7 @@ system Alhena
 			period 12.2356
 
 system Alioth
-	pos -620 315
+	pos -732 293
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -3139,7 +3147,7 @@ system Alioth
 		period 1942.72
 
 system Alkaid
-	pos -825 318
+	pos -937 296
 	government Republic
 	attributes "rim"
 	arrival 1080
@@ -3208,7 +3216,7 @@ system Alkaid
 			period 42.0132
 
 system Almaaz
-	pos -349 -538
+	pos -461 -560
 	government Pirate
 	attributes "north"
 	arrival 5000
@@ -3256,7 +3264,7 @@ system Almaaz
 		period 1630.22
 
 system Almach
-	pos -7 232
+	pos -119 210
 	government Pirate
 	attributes "core"
 	arrival 500
@@ -3321,7 +3329,7 @@ system Almach
 			period 26.8252
 
 system Alnair
-	pos -272 314
+	pos -384 292
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -3391,7 +3399,7 @@ system Alnair
 			period 13.5997
 
 system Alnasl
-	pos -553 380
+	pos -665 358
 	government Republic
 	attributes "dirt belt"
 	arrival 1375
@@ -3455,7 +3463,7 @@ system Alnasl
 		period 1225.46
 
 system Alnilam
-	pos -487 -513
+	pos -599 -535
 	government Pirate
 	attributes "north"
 	arrival 1715
@@ -3534,7 +3542,7 @@ system Alnilam
 			period 61.2801
 
 system Alnitak
-	pos -331 -412
+	pos -443 -434
 	government Republic
 	attributes "north"
 	arrival 1310
@@ -3586,7 +3594,7 @@ system Alnitak
 		period 1949.02
 
 system Alniyat
-	pos -691 501
+	pos -803 479
 	government Republic
 	attributes "south"
 	arrival 560
@@ -3660,7 +3668,7 @@ system Alniyat
 			period 25.92
 
 system "Alpha Arae"
-	pos -481 394
+	pos -593 372
 	government Republic
 	attributes "dirt belt"
 	arrival 995
@@ -3732,7 +3740,7 @@ system "Alpha Arae"
 		period 2021.89
 
 system "Alpha Centauri"
-	pos -429 125
+	pos -541 103
 	government Republic
 	attributes "near earth"
 	arrival 1190
@@ -3796,7 +3804,7 @@ system "Alpha Centauri"
 		period 3022.55
 
 system "Alpha Hydri"
-	pos -97 98
+	pos -209 76
 	government Syndicate
 	attributes "core"
 	arrival 1450
@@ -3851,7 +3859,7 @@ system "Alpha Hydri"
 		period 1185.18
 
 system Alphard
-	pos -588 -47
+	pos -700 -69
 	government Republic
 	attributes "paradise"
 	arrival 1115
@@ -3919,7 +3927,7 @@ system Alphard
 		period 1494.29
 
 system Alphecca
-	pos -546 308
+	pos -658 286
 	government Republic
 	attributes "dirt belt"
 	arrival 1450
@@ -3970,7 +3978,7 @@ system Alphecca
 		period 1008.95
 
 system Alpheratz
-	pos -176 125
+	pos -288 103
 	government Syndicate
 	attributes "core"
 	arrival 1115
@@ -4039,7 +4047,7 @@ system Alpheratz
 			period 12.909
 
 system Altair
-	pos -357 161
+	pos -469 139
 	government Republic
 	attributes "near earth"
 	arrival 995
@@ -4103,7 +4111,7 @@ system Altair
 		period 1329.95
 
 system Aludra
-	pos -606 -374
+	pos -718 -396
 	government Republic
 	attributes "deep"
 	arrival 500
@@ -4168,7 +4176,7 @@ system Aludra
 			period 32.2749
 
 system "Ancient Hope"
-	pos -1159.59 702.051
+	pos -1271 680
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -4239,7 +4247,7 @@ system "Ancient Hope"
 			period 14.3618
 
 system Ankaa
-	pos -230 100
+	pos -342 78
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -4295,7 +4303,7 @@ system Ankaa
 		period 1495.61
 
 system Answer
-	pos -1086.59 631.051
+	pos -1198 609
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -4361,7 +4369,7 @@ system Answer
 		period 1863.33
 
 system Antares
-	pos -711 541
+	pos -823 519
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -4424,7 +4432,7 @@ system Antares
 		period 2762.04
 
 system Antevorta
-	pos -36.1297 446.242
+	pos -148 424
 	government Uninhabited
 	attributes "ember waste"
 	arrival 3000
@@ -4494,7 +4502,7 @@ system Antevorta
 			period 46.8468
 
 system Ap'arak
-	pos -164.62 -781.858
+	pos -276 -803
 	government Wanderer
 	arrival 1080
 	habitable 1080
@@ -4550,7 +4558,7 @@ system Ap'arak
 			period 32.9651
 
 system Arcturus
-	pos -589 226
+	pos -701 204
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -4615,7 +4623,7 @@ system Arcturus
 		period 3963.50
 
 system Arculus
-	pos 308.87 393.242
+	pos 196 371
 	government Remnant
 	attributes "ember waste"
 	arrival 625
@@ -4689,7 +4697,7 @@ system Arculus
 		period 3113.44
 
 system Arneb
-	pos -523 -580
+	pos -635 -602
 	government Pirate
 	attributes "north"
 	arrival 1715
@@ -4739,7 +4747,7 @@ system Arneb
 		period 2500.84
 
 system Ascella
-	pos -376 328
+	pos -488 306
 	government Republic
 	attributes "dirt belt"
 	arrival 740
@@ -4806,7 +4814,7 @@ system Ascella
 			period 12.5478
 
 system Asikafarnut
-	pos 253.431 -584.812
+	pos 141 -606
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -4872,7 +4880,7 @@ system Asikafarnut
 			period 40.7311
 
 system Aspidiske
-	pos -690 -282
+	pos -802 -304
 	government Republic
 	attributes "deep"
 	arrival 5000
@@ -4930,7 +4938,7 @@ system Aspidiske
 		period 536.220
 
 system Atik
-	pos -66 -52
+	pos -178 -74
 	government Uninhabited
 	arrival 5000
 	habitable 15105
@@ -4991,7 +4999,7 @@ system Atik
 		period 270.619
 
 system Atria
-	pos -551 532
+	pos -663 510
 	government Republic
 	attributes "south"
 	arrival 500
@@ -5058,7 +5066,7 @@ system Atria
 		period 3306.89
 
 system Avior
-	pos -658 -317
+	pos -770 -339
 	government Republic
 	attributes "deep"
 	arrival 1215
@@ -5130,7 +5138,7 @@ system Avior
 			period 15.2148
 
 system Aya'k'k
-	pos -434.245 -616.57
+	pos -546 -638
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -5190,7 +5198,7 @@ system Aya'k'k
 		period 2983.58
 
 system Beginning
-	pos -912.587 694.051
+	pos -1024 672
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -5254,7 +5262,7 @@ system Beginning
 			period 11.563
 
 system Bellatrix
-	pos -225 -82
+	pos -337 -104
 	government Syndicate
 	attributes "core"
 	arrival 680
@@ -5315,7 +5323,7 @@ system Bellatrix
 		period 2137.28
 
 system Belonging
-	pos -1007.59 658.051
+	pos -1119 636
 	government Coalition
 	attributes "saryd"
 	arrival 625
@@ -5376,7 +5384,7 @@ system Belonging
 			period 18.9022
 
 system Belug
-	pos -1024.59 388.051
+	pos -1136 366
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -5447,7 +5455,7 @@ system Belug
 			period 28.9943
 
 system Belugt
-	pos -838.587 668.051
+	pos -950 646
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -5523,7 +5531,7 @@ system Belugt
 			period 68.5535
 
 system "Beta Lupi"
-	pos -851 417
+	pos -963 395
 	government Republic
 	attributes "south"
 	arrival 625
@@ -5583,7 +5591,7 @@ system "Beta Lupi"
 		period 1406.05
 
 system Betelgeuse
-	pos -384 -322
+	pos -496 -344
 	government Republic
 	attributes "north"
 	arrival 3450
@@ -5663,7 +5671,7 @@ system Betelgeuse
 			period 31.4485
 
 system Bloptab
-	pos -813.587 727.051
+	pos -925 705
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -5725,7 +5733,7 @@ system Bloptab
 			period 13.2266
 
 system Blubipad
-	pos -650.587 594.051
+	pos -762 572
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -5783,7 +5791,7 @@ system Blubipad
 		period 2003.77
 
 system Blugtad
-	pos -771.587 680.051
+	pos -883 658
 	government Coalition
 	attributes "arachi"
 	arrival 625
@@ -5857,7 +5865,7 @@ system Blugtad
 			period 66.2347
 
 system Boral
-	pos -502 331
+	pos -614 309
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -5923,7 +5931,7 @@ system Boral
 			period 30.6958
 
 system "Bore Fah"
-	pos 71.7761 -592.536
+	pos -40 -614
 	government Hai
 	arrival 625
 	habitable 625
@@ -5989,7 +5997,7 @@ system "Bore Fah"
 			period 21.5754
 
 system "Bote Asu"
-	pos 8.87418 -572.768
+	pos -103 -594
 	government Hai
 	arrival 3180
 	habitable 3180
@@ -6091,7 +6099,7 @@ system "Bote Asu"
 			period 38.6987
 
 system "Bright Void"
-	pos -1059.59 605.051
+	pos -1171 583
 	government Coalition
 	attributes "saryd"
 	arrival 2795
@@ -6173,7 +6181,7 @@ system "Bright Void"
 			period 25.2156
 
 system "Broken Bowl"
-	pos -956.587 566.051
+	pos -1068 544
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -6234,7 +6242,7 @@ system "Broken Bowl"
 			period 13.0737
 
 system Caeculus
-	pos 162.87 343.242
+	pos 50 321
 	government Uninhabited
 	attributes "ember waste"
 	arrival 625
@@ -6306,7 +6314,7 @@ system Caeculus
 			period 23.2775
 
 system Canopus
-	pos -421 -225
+	pos -533 -247
 	government Republic
 	attributes "north"
 	arrival 500
@@ -6354,7 +6362,7 @@ system Canopus
 		period 2315.96
 
 system Capella
-	pos -378 -13
+	pos -490 -35
 	government Republic
 	attributes "paradise"
 	arrival 500
@@ -6426,7 +6434,7 @@ system Capella
 			period 31.7666
 
 system Caph
-	pos -295 77
+	pos -407 55
 	government Syndicate
 	attributes "near earth"
 	arrival 700
@@ -6492,7 +6500,7 @@ system Caph
 		period 1816.57
 
 system Cardax
-	pos -211 -215
+	pos -323 -237
 	government Republic
 	attributes "north"
 	arrival 1705
@@ -6556,7 +6564,7 @@ system Cardax
 			period 13.4426
 
 system Cardea
-	pos -89.1297 417.242
+	pos -201 395
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1375
@@ -6624,7 +6632,7 @@ system Cardea
 		period 2047.64
 
 system Castor
-	pos -452 -17
+	pos -564 -39
 	government Republic
 	attributes "paradise"
 	arrival 1570
@@ -6710,7 +6718,7 @@ system Castor
 			period 57.9426
 
 system Cebalrai
-	pos -461 282
+	pos -573 260
 	government Republic
 	attributes "dirt belt"
 	arrival 625
@@ -6772,7 +6780,7 @@ system Cebalrai
 		period 1658.39
 
 system Celeborim
-	pos 181.431 -633.812
+	pos 69 -655
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -6832,7 +6840,7 @@ system Celeborim
 			period 23.9558
 
 system Chikatip
-	pos -77.5695 -307.812
+	pos -189 -329
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -6890,7 +6898,7 @@ system Chikatip
 		period 4416.90
 
 system Chimitarp
-	pos 150.431 -287.812
+	pos 38 -309
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 915
@@ -6965,7 +6973,7 @@ system Chimitarp
 			period 14.0039
 
 system Chirr'ay'akai
-	pos -102.761 -749.614
+	pos -214 -771
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -7015,7 +7023,7 @@ system Chirr'ay'akai
 			period 13.6328
 
 system Chornifath
-	pos 40.4305 -214.812
+	pos -71 -236
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -7078,7 +7086,7 @@ system Chornifath
 			period 25.0729
 
 system Chy'chra
-	pos 85.5308 -829.667
+	pos -26 -851
 	government Wanderer
 	arrival 625
 	habitable 625
@@ -7143,7 +7151,7 @@ system Chy'chra
 			period 80.0847
 
 system Cinxia
-	pos 265.87 415.242
+	pos 153 393
 	government Remnant
 	attributes "ember waste"
 	arrival 500
@@ -7200,7 +7208,7 @@ system Cinxia
 			period 16.6355
 
 system Coluber
-	pos 149.504 197.389
+	pos 37 175
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1110
@@ -7264,7 +7272,7 @@ system Coluber
 		period 1371.69
 
 system Companion
-	pos -1032.59 709.051
+	pos -1144 687
 	government Coalition
 	arrival 500
 	habitable 425
@@ -7322,7 +7330,7 @@ system Companion
 			period 13.4397
 
 system Convector
-	pos -14.1297 379.242
+	pos -126 357
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
@@ -7387,7 +7395,7 @@ system Convector
 		period 2783.04
 
 system "Cor Caroli"
-	pos -682 201
+	pos -794 179
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -7447,7 +7455,7 @@ system "Cor Caroli"
 		period 1104.91
 
 system "Da Ent"
-	pos -6.22391 -462.536
+	pos -118 -484
 	government Hai
 	arrival 500
 	habitable 230
@@ -7524,7 +7532,7 @@ system "Da Ent"
 			period 23.42
 
 system "Da Lest"
-	pos -23.2239 -413.536
+	pos -135 -435
 	government Hai
 	arrival 500
 	habitable 320
@@ -7590,7 +7598,7 @@ system "Da Lest"
 			period 13.508
 
 system Dabih
-	pos -253 427
+	pos -365 405
 	government Republic
 	attributes "dirt belt"
 	arrival 680
@@ -7651,7 +7659,7 @@ system Dabih
 			period 24.141
 
 system Danoa
-	pos -239 -321
+	pos -351 -343
 	government Republic
 	attributes "north"
 	arrival 500
@@ -7721,7 +7729,7 @@ system Danoa
 			period 52.153
 
 system "Dark Hills"
-	pos -926.587 619.051
+	pos -1038 597
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -7789,7 +7797,7 @@ system "Dark Hills"
 		period 1402.46
 
 system Debrugt
-	pos -869.587 513.051
+	pos -981 491
 	government Coalition
 	attributes "arachi"
 	arrival 640
@@ -7860,7 +7868,7 @@ system Debrugt
 			period 23.3095
 
 system Delia
-	pos -41 757
+	pos -153 735
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
@@ -7944,7 +7952,7 @@ system Delia
 		period 5611.94
 
 system "Delta Capricorni"
-	pos -285 202
+	pos -397 180
 	government Syndicate
 	attributes "core"
 	arrival 855
@@ -8008,7 +8016,7 @@ system "Delta Capricorni"
 		period 2749.06
 
 system "Delta Sagittarii"
-	pos -414 416
+	pos -526 394
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -8076,7 +8084,7 @@ system "Delta Sagittarii"
 			period 28.9594
 
 system "Delta Velorum"
-	pos -740 90
+	pos -852 68
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -8136,7 +8144,7 @@ system "Delta Velorum"
 		period 1294.65
 
 system Deneb
-	pos -348 225
+	pos -460 203
 	government Pug
 	arrival 625
 	habitable 625
@@ -8192,7 +8200,7 @@ system Deneb
 		period 1210.08
 
 system Denebola
-	pos -478 70
+	pos -590 48
 	government Republic
 	attributes "near earth"
 	arrival 560
@@ -8259,7 +8267,7 @@ system Denebola
 		period 2677.01
 
 system Diespiter
-	pos 332 210
+	pos 220 188
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 950
@@ -8299,7 +8307,7 @@ system Diespiter
 			period 14
 
 system Diphda
-	pos -262 61
+	pos -374 39
 	government Syndicate
 	attributes "near earth"
 	arrival 585
@@ -8358,7 +8366,7 @@ system Diphda
 		period 1779.23
 
 system Dixere
-	pos 33 708
+	pos -79 686
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 980
@@ -8431,7 +8439,7 @@ system Dixere
 			period 69.6011
 
 system Dokdobaru
-	pos -21.5695 -241.812
+	pos -133 -263
 	government Quarg
 	attributes "korath" "ringworld"
 	arrival 700
@@ -8551,7 +8559,7 @@ system Dokdobaru
 		offset 220
 
 system Dschubba
-	pos -598 501
+	pos -710 479
 	government Republic
 	attributes "south"
 	arrival 505
@@ -8626,7 +8634,7 @@ system Dschubba
 			period 22.6624
 
 system Dubhe
-	pos -577 -103
+	pos -689 -125
 	government Republic
 	attributes "deep"
 	arrival 500
@@ -8684,7 +8692,7 @@ system Dubhe
 		period 2800.58
 
 system "Due Yoot"
-	pos -167.547 -426.683
+	pos -279 -448
 	government Hai
 	arrival 500
 	habitable 230
@@ -8756,7 +8764,7 @@ system "Due Yoot"
 			period 31.1257
 
 system Durax
-	pos -59 -90
+	pos -171 -112
 	government Pirate
 	attributes "core"
 	arrival 2160
@@ -8827,7 +8835,7 @@ system Durax
 			period 29.2266
 
 system Eber
-	pos -532 406
+	pos -644 384
 	government Republic
 	attributes "dirt belt"
 	arrival 950
@@ -8892,7 +8900,7 @@ system Eber
 		period 1524.05
 
 system Eblumab
-	pos -767.587 703.051
+	pos -879 681
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -8959,7 +8967,7 @@ system Eblumab
 			period 14.7087
 
 system Edusa
-	pos 273.87 347.242
+	pos 161 325
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 4050
@@ -9013,7 +9021,7 @@ system Edusa
 		period 1365.41
 
 system Egeria
-	pos 288 146
+	pos 176 124
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 2030
@@ -9054,7 +9062,7 @@ system Egeria
 			period 16
 
 system "Ehma Ti"
-	pos 39.1085 -749.244
+	pos -72 -771
 	government "Hai (Unfettered)"
 	arrival 500
 	habitable 490
@@ -9122,7 +9130,7 @@ system "Ehma Ti"
 			period 26.8467
 
 system Ek'kek'ru
-	pos -287.517 -727.738
+	pos -399 -749
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -9182,7 +9190,7 @@ system Ek'kek'ru
 		period 2197.90
 
 system Ekuarik
-	pos -1029.63 426.214
+	pos -1141 404
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -9394,7 +9402,7 @@ system Ekuarik
 		offset 312
 
 system Elnath
-	pos -288 -77
+	pos -400 -99
 	government Republic
 	attributes "north"
 	arrival 1715
@@ -9461,7 +9469,7 @@ system Elnath
 			period 12.546
 
 system Eltanin
-	pos -328 433
+	pos -440 411
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -9522,7 +9530,7 @@ system Eltanin
 		period 1900.78
 
 system Eneremprukt
-	pos 311.431 -448.812
+	pos 199 -470
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -9579,7 +9587,7 @@ system Eneremprukt
 		period 1786.12
 
 system Enif
-	pos -177 498
+	pos -289 476
 	government Quarg
 	attributes "ringworld" "south"
 	arrival 700
@@ -9679,7 +9687,7 @@ system Enif
 		offset 100
 
 system "Epsilon Leonis"
-	pos -619 -229
+	pos -731 -251
 	government Republic
 	attributes "deep"
 	arrival 1450
@@ -9755,7 +9763,7 @@ system "Epsilon Leonis"
 			period 37.9234
 
 system Es'sprak'ai
-	pos -469.044 -733.375
+	pos -581 -755
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -9816,7 +9824,7 @@ system Es'sprak'ai
 			period 14.4268
 
 system Eshkoshtar
-	pos 156.431 -381.812
+	pos 44 -403
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 810
@@ -9891,7 +9899,7 @@ system Eshkoshtar
 			period 24.7968
 
 system Esix
-	pos 142 532
+	pos 30 510
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 5000
@@ -9953,7 +9961,7 @@ system Esix
 		period 1163.59
 
 system Eteron
-	pos -330 33
+	pos -442 11
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -10019,7 +10027,7 @@ system Eteron
 		period 3624.98
 
 system "Fah Root"
-	pos -264.065 -400.135
+	pos -376 -422
 	government Hai
 	arrival 500
 	habitable 490
@@ -10094,7 +10102,7 @@ system "Fah Root"
 			period 40.8604
 
 system "Fah Soom"
-	pos -179.891 -335.011
+	pos -291 -357
 	government Hai
 	arrival 500
 	habitable 425
@@ -10166,7 +10174,7 @@ system "Fah Soom"
 			period 22.2216
 
 system Fala
-	pos -690 64
+	pos -802 42
 	government Republic
 	attributes "dirt belt"
 	arrival 1250
@@ -10228,7 +10236,7 @@ system Fala
 			period 17.0811
 
 system "Fallen Leaf"
-	pos -903.587 717.051
+	pos -1015 695
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10282,7 +10290,7 @@ system "Fallen Leaf"
 			period 17.7794
 
 system "Far Horizon"
-	pos -1108.59 726.051
+	pos -1220 704
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10339,7 +10347,7 @@ system "Far Horizon"
 			period 15.687
 
 system Farbutero
-	pos 93.4305 -251.812
+	pos -18 -273
 	government Uninhabited
 	attributes "korath"
 	arrival 625
@@ -10416,7 +10424,7 @@ system Farbutero
 			period 32.222
 
 system Farinus
-	pos 202.87 440.242
+	pos 90 418
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1270
@@ -10490,7 +10498,7 @@ system Farinus
 			period 41.9524
 
 system Faronektu
-	pos 292.431 -309.812
+	pos 180 -331
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1080
@@ -10559,7 +10567,7 @@ system Faronektu
 			period 14.8056
 
 system Fasitopfar
-	pos 92.4305 -105.812
+	pos -19 -127
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -10609,7 +10617,7 @@ system Fasitopfar
 		period 478.777
 
 system Fearis
-	pos -16 643
+	pos -128 621
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
@@ -10674,7 +10682,7 @@ system Fearis
 		period 2767.58
 
 system "Fell Omen"
-	pos -1156.59 475.051
+	pos -1268 453
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -10750,7 +10758,7 @@ system "Fell Omen"
 			period 27.9331
 
 system Feraticus
-	pos 58 630
+	pos -54 608
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
@@ -10796,7 +10804,7 @@ system Feraticus
 		period 1390.20
 
 system Fereti
-	pos -39 600
+	pos -151 578
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3200
@@ -10855,7 +10863,7 @@ system Fereti
 			period 17.525
 
 system Feroteri
-	pos 149.431 -205.812
+	pos 37 -227
 	government Uninhabited
 	attributes "korath"
 	arrival 4075
@@ -10941,7 +10949,7 @@ system Feroteri
 			period 22.7339
 
 system Ferukistek
-	pos 307.431 -515.812
+	pos 195 -537
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -10996,7 +11004,7 @@ system Ferukistek
 			period 13.6681
 
 system Fingol
-	pos -482 113
+	pos -594 91
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -11055,7 +11063,7 @@ system Fingol
 		period 4209.36
 
 system Flugbu
-	pos -903.587 534.051
+	pos -1015 512
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -11121,7 +11129,7 @@ system Flugbu
 			period 37.165
 
 system Fomalhaut
-	pos -314 124
+	pos -426 102
 	government Syndicate
 	attributes "near earth"
 	arrival 500
@@ -11185,7 +11193,7 @@ system Fomalhaut
 			period 28.2155
 
 system Fornarep
-	pos 79.4305 -309.812
+	pos -32 -331
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -11251,7 +11259,7 @@ system Fornarep
 			period 30.5305
 
 system "Four Pillars"
-	pos -1210.59 772.051
+	pos -1322 750
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -11314,7 +11322,7 @@ system "Four Pillars"
 			period 13.5106
 
 system Furmeliki
-	pos -35.5695 -281.812
+	pos -147 -303
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -11378,7 +11386,7 @@ system Furmeliki
 			period 75.4354
 
 system Gacrux
-	pos -713 184
+	pos -825 162
 	government Republic
 	attributes "dirt belt"
 	arrival 530
@@ -11447,7 +11455,7 @@ system Gacrux
 			period 33.4236
 
 system "Gamma Cassiopeiae"
-	pos -116 293
+	pos -228 271
 	government Syndicate
 	attributes "core"
 	arrival 5000
@@ -11507,7 +11515,7 @@ system "Gamma Cassiopeiae"
 			period 21.1965
 
 system "Gamma Corvi"
-	pos -906 64
+	pos -1018 42
 	government Republic
 	attributes "rim"
 	arrival 1530
@@ -11574,7 +11582,7 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gerenus
-	pos 197 514
+	pos 85 492
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 3000
@@ -11635,7 +11643,7 @@ system Gerenus
 			period 15.5606
 
 system Gienah
-	pos -176 354
+	pos -288 332
 	government Pirate
 	attributes "core"
 	arrival 600
@@ -11700,7 +11708,7 @@ system Gienah
 		period 1610.94
 
 system Giribea
-	pos -6 674
+	pos -118 652
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1800
@@ -11775,7 +11783,7 @@ system Giribea
 			period 48.7616
 
 system Girtab
-	pos -430 481
+	pos -542 459
 	government Republic
 	attributes "south"
 	arrival 1080
@@ -11841,7 +11849,7 @@ system Girtab
 			period 55.2737
 
 system Glubatub
-	pos -650.587 693.051
+	pos -762 671
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -11920,7 +11928,7 @@ system Glubatub
 			period 65.8689
 
 system Gomeisa
-	pos -600 -161
+	pos -712 -183
 	government Republic
 	attributes "deep"
 	arrival 980
@@ -11991,7 +11999,7 @@ system Gomeisa
 			period 21.7957
 
 system "Good Omen"
-	pos -941.587 746.051
+	pos -1053 724
 	government Coalition
 	attributes "saryd"
 	arrival 1715
@@ -12054,7 +12062,7 @@ system "Good Omen"
 		period 2295.83
 
 system Gorvi
-	pos -250 -483
+	pos -362 -505
 	government Republic
 	attributes "north"
 	arrival 625
@@ -12113,7 +12121,7 @@ system Gorvi
 			period 32.1366
 
 system Graffias
-	pos -784 517
+	pos -896 495
 	government Republic
 	attributes "south"
 	arrival 980
@@ -12178,7 +12186,7 @@ system Graffias
 			period 57.7746
 
 system Gupta
-	pos -808.587 625.051
+	pos -920 603
 	government Coalition
 	attributes "arachi"
 	arrival 915
@@ -12240,7 +12248,7 @@ system Gupta
 		period 1077.08
 
 system Hadar
-	pos -788 283
+	pos -900 261
 	government Republic
 	attributes "rim"
 	arrival 500
@@ -12302,7 +12310,7 @@ system Hadar
 			period 13.7068
 
 system Hamal
-	pos -129 24
+	pos -241 2
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -12358,7 +12366,7 @@ system Hamal
 		period 1585.83
 
 system Han
-	pos -610 561
+	pos -722 539
 	government Republic
 	attributes "south"
 	arrival 1115
@@ -12418,7 +12426,7 @@ system Han
 		period 2661.03
 
 system Hassaleh
-	pos -291 -287
+	pos -403 -309
 	government Republic
 	attributes "north"
 	arrival 680
@@ -12480,7 +12488,7 @@ system Hassaleh
 		period 1565.49
 
 system Hatysa
-	pos -474 -542
+	pos -586 -564
 	government Pirate
 	attributes "north"
 	arrival 525
@@ -12542,7 +12550,7 @@ system Hatysa
 		period 2607.23
 
 system "Heia Due"
-	pos -146.177 -481.694
+	pos -258 -503
 	government Hai
 	arrival 1215
 	habitable 1215
@@ -12625,7 +12633,7 @@ system "Heia Due"
 			period 41.3231
 
 system Hesselpost
-	pos -30.5695 -187.812
+	pos -142 -209
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -12698,7 +12706,7 @@ system Hesselpost
 			period 68.5584
 
 system "Hevru Hai"
-	pos -189 -310
+	pos -301 -332
 	government Quarg
 	attributes "ringworld"
 	arrival 700
@@ -12838,7 +12846,7 @@ system "Hevru Hai"
 		offset 340
 
 system "Hi Yahr"
-	pos 82.3672 -641.6
+	pos -29 -663
 	government "Hai (Unfettered)"
 	arrival 625
 	habitable 625
@@ -12893,7 +12901,7 @@ system "Hi Yahr"
 			period 24.4934
 
 system Hintar
-	pos -422 311
+	pos -534 289
 	government Republic
 	attributes "dirt belt"
 	arrival 625
@@ -12954,7 +12962,7 @@ system Hintar
 		period 1489.58
 
 system Holeb
-	pos -590 287
+	pos -702 265
 	government Republic
 	attributes "dirt belt"
 	arrival 3430
@@ -13003,7 +13011,7 @@ system Holeb
 		period 1700.75
 
 system Homeward
-	pos -1045.59 477.051
+	pos -1157 455
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -13070,7 +13078,7 @@ system Homeward
 			period 29.3171
 
 system Host
-	pos 384.431 -543.812
+	pos 272 -565
 	government Uninhabited
 	arrival 500
 	habitable 490
@@ -13119,7 +13127,7 @@ system Host
 			period 41.3874
 
 system Hunter
-	pos -968.587 590.051
+	pos -1080 568
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -13182,7 +13190,7 @@ system Hunter
 			period 22.2053
 
 system Ik'kara'ka
-	pos 56.2159 -888.296
+	pos -55 -910
 	government Wanderer
 	arrival 625
 	habitable 625
@@ -13244,7 +13252,7 @@ system Ik'kara'ka
 			period 24.9998
 
 system Ildaria
-	pos -702 317
+	pos -814 295
 	government Republic
 	attributes "rim" "wolf-rayet"
 	arrival 625
@@ -13299,7 +13307,7 @@ system Ildaria
 		period 2260.86
 
 system "Imo Dep"
-	pos -56.2764 -600.1
+	pos -168 -622
 	government Hai
 	arrival 1715
 	habitable 1715
@@ -13374,7 +13382,7 @@ system "Imo Dep"
 			period 41.9524
 
 system Insitor
-	pos -28.1296 400.242
+	pos -140 378
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 550
@@ -13430,7 +13438,7 @@ system Insitor
 		period 5518.79
 
 system "Io Lowe"
-	pos -94.7566 -527.728
+	pos -206 -549
 	government Hai
 	arrival 500
 	habitable 135
@@ -13503,7 +13511,7 @@ system "Io Lowe"
 			period 56.4665
 
 system "Io Mann"
-	pos -192.955 -447.669
+	pos -304 -469
 	government Hai
 	arrival 980
 	habitable 980
@@ -13588,7 +13596,7 @@ system "Io Mann"
 			period 24.0584
 
 system Ipsing
-	pos -549 160
+	pos -661 138
 	government Republic
 	attributes "dirt belt"
 	arrival 2585
@@ -13656,7 +13664,7 @@ system Ipsing
 			period 43.1032
 
 system Iyech'yek
-	pos -277.37 -693.913
+	pos -389 -715
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -13710,7 +13718,7 @@ system Iyech'yek
 		period 2076.75
 
 system Izar
-	pos -784 231
+	pos -896 209
 	government Republic
 	attributes "rim"
 	arrival 1400
@@ -13777,7 +13785,7 @@ system Izar
 			period 12.6652
 
 system Ka'ch'chrai
-	pos -240.163 -822.448
+	pos -352 -844
 	government Wanderer
 	arrival 500
 	habitable 425
@@ -13835,7 +13843,7 @@ system Ka'ch'chrai
 		period 3987.70
 
 system Ka'pru
-	pos -76.6756 -994.955
+	pos -188 -1016
 	government Wanderer
 	arrival 1505
 	habitable 1505
@@ -13906,7 +13914,7 @@ system Ka'pru
 			period 37.7636
 
 system Kaliptari
-	pos 85.4305 -402.812
+	pos -26 -424
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -13982,7 +13990,7 @@ system Kaliptari
 			period 29.5684
 
 system "Kappa Centauri"
-	pos -867 480
+	pos -979 458
 	government Republic
 	attributes "south"
 	arrival 1215
@@ -14044,7 +14052,7 @@ system "Kappa Centauri"
 			period 28.1328
 
 system Kashikt
-	pos -73.5695 -219.812
+	pos -185 -241
 	government "Kor Efret"
 	attributes "korath"
 	arrival 1715
@@ -14114,7 +14122,7 @@ system Kashikt
 			period 13.0737
 
 system Kasikfar
-	pos 10.4305 -127.812
+	pos -101 -149
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -14159,7 +14167,7 @@ system Kasikfar
 		period 277.250
 
 system "Kaus Australis"
-	pos -284 395
+	pos -396 373
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -14212,7 +14220,7 @@ system "Kaus Australis"
 		period 2646.93
 
 system "Kaus Borealis"
-	pos -456 350
+	pos -568 328
 	government Republic
 	attributes "dirt belt"
 	arrival 585
@@ -14276,7 +14284,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system "Ki War Ek"
-	pos -1106.63 368.214
+	pos -1218 346
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -14531,7 +14539,7 @@ system "Ki War Ek"
 		offset 250
 
 system Kiro'ku
-	pos -131.923 -884.46
+	pos -243 -906
 	government Wanderer
 	arrival 1115
 	habitable 1115
@@ -14608,7 +14616,7 @@ system Kiro'ku
 			period 55.0097
 
 system Kiru'kichi
-	pos -195.063 -662.343
+	pos -307 -684
 	government Wanderer
 	arrival 2795
 	habitable 2795
@@ -14668,7 +14676,7 @@ system Kiru'kichi
 		period 1095.06
 
 system Kochab
-	pos -731 279
+	pos -843 257
 	government Republic
 	attributes "rim"
 	arrival 500
@@ -14713,7 +14721,7 @@ system Kochab
 		period 2474.09
 
 system "Kor Ak'Mari"
-	pos 43 42
+	pos -69 20
 	government Korath
 	attributes "korath" "wolf-rayet"
 	arrival 3000
@@ -14770,7 +14778,7 @@ system "Kor Ak'Mari"
 		period 706.633
 
 system "Kor En'lakfar"
-	pos -31 -33
+	pos -143 -55
 	government Korath
 	attributes "korath"
 	arrival 1080
@@ -14837,7 +14845,7 @@ system "Kor En'lakfar"
 			period 49.9035
 
 system "Kor Fel'tar"
-	pos 29 -66
+	pos -83 -88
 	government Korath
 	attributes "korath"
 	arrival 500
@@ -14907,7 +14915,7 @@ system "Kor Fel'tar"
 			period 47.3517
 
 system "Kor Men"
-	pos 6 -5
+	pos -106 -27
 	government Korath
 	attributes "korath"
 	arrival 2340
@@ -14975,7 +14983,7 @@ system "Kor Men"
 		period 1346.18
 
 system "Kor Nor'peli"
-	pos 52 160
+	pos -60 138
 	government Korath
 	attributes "korath"
 	arrival 585
@@ -15043,7 +15051,7 @@ system "Kor Nor'peli"
 			period 12.7057
 
 system "Kor Tar'bei"
-	pos 57 106
+	pos -55 84
 	government Korath
 	attributes "korath"
 	arrival 500
@@ -15103,7 +15111,7 @@ system "Kor Tar'bei"
 		period 3427.41
 
 system "Kor Zena'i"
-	pos -2 83
+	pos -114 61
 	government Korath
 	attributes "korath"
 	arrival 1385
@@ -15160,7 +15168,7 @@ system "Kor Zena'i"
 			period 25.0213
 
 system Kornephoros
-	pos -612 424
+	pos -724 402
 	government Republic
 	attributes "south"
 	arrival 980
@@ -15242,7 +15250,7 @@ system Kornephoros
 			period 72.8043
 
 system Korsmanath
-	pos 97.4305 -185.812
+	pos -14 -207
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -15303,7 +15311,7 @@ system Korsmanath
 			period 28.8281
 
 system Kraz
-	pos -876 204
+	pos -988 182
 	government Republic
 	attributes "rim"
 	arrival 1080
@@ -15371,7 +15379,7 @@ system Kraz
 			period 26.5299
 
 system Kugel
-	pos -230 -26
+	pos -342 -48
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -15441,7 +15449,7 @@ system Kugel
 			period 46.2903
 
 system Kursa
-	pos -366 -105
+	pos -478 -127
 	government Republic
 	attributes "paradise"
 	arrival 505
@@ -15496,7 +15504,7 @@ system Kursa
 		period 1517.13
 
 system "Last Word"
-	pos -1145.59 495.051
+	pos -1257 473
 	government Coalition
 	arrival 625
 	habitable 625
@@ -15560,7 +15568,7 @@ system "Last Word"
 		period 5525.77
 
 system Lesath
-	pos -516 485
+	pos -628 463
 	government Republic
 	attributes "south"
 	arrival 1715
@@ -15626,7 +15634,7 @@ system Lesath
 		period 1301.48
 
 system Levana
-	pos 203.504 247.389
+	pos 91 225
 	government Uninhabited
 	attributes "ember waste"
 	arrival 5000
@@ -15697,7 +15705,7 @@ system Levana
 			period 38.521
 
 system Limen
-	pos -791.99 -12.2491
+	pos -903 -34
 	government Republic
 	attributes "dirt belt"
 	arrival 1715
@@ -15751,7 +15759,7 @@ system Limen
 			period 13.1879
 
 system Lire
-	pos -59 676
+	pos -171 654
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
@@ -15816,7 +15824,7 @@ system Lire
 			period 36
 
 system Lolami
-	pos -628 -10
+	pos -740 -32
 	government Republic
 	attributes "dirt belt"
 	arrival 1215
@@ -15881,7 +15889,7 @@ system Lolami
 			period 23.3479
 
 system "Lom Tahr"
-	pos -94.0437 -446.586
+	pos -206 -468
 	government Hai
 	arrival 2560
 	habitable 2560
@@ -15959,7 +15967,7 @@ system "Lom Tahr"
 			period 17.5
 
 system "Lone Cloud"
-	pos -1239.59 747.051
+	pos -1351 725
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -16011,7 +16019,7 @@ system "Lone Cloud"
 		period 2623.40
 
 system Lucina
-	pos 175.504 176.389
+	pos 63 154
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
@@ -16070,7 +16078,7 @@ system Lucina
 			period 14.0673
 
 system Lurata
-	pos -279 463
+	pos -391 441
 	government Republic
 	attributes "south"
 	arrival 500
@@ -16134,7 +16142,7 @@ system Lurata
 		period 1774.16
 
 system Makferuti
-	pos 288.431 -628.812
+	pos 176 -650
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 525
@@ -16211,7 +16219,7 @@ system Makferuti
 			period 54.4696
 
 system Markab
-	pos -241 168
+	pos -353 146
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -16295,7 +16303,7 @@ system Markab
 			period 48.8868
 
 system Markeb
-	pos -602 -305
+	pos -714 -327
 	government Republic
 	attributes "deep"
 	arrival 500
@@ -16362,7 +16370,7 @@ system Markeb
 		period 2775.06
 
 system Matar
-	pos -218 272
+	pos -330 250
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -16421,7 +16429,7 @@ system Matar
 			period 23.3043
 
 system Mebla
-	pos -814.587 555.051
+	pos -926 533
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -16480,7 +16488,7 @@ system Mebla
 			period 12.1447
 
 system Meblumem
-	pos -722.587 616.051
+	pos -834 594
 	government Coalition
 	attributes "arachi"
 	arrival 2205
@@ -16546,7 +16554,7 @@ system Meblumem
 		period 1390.18
 
 system Mebsuta
-	pos -482 -394
+	pos -594 -416
 	government Republic
 	attributes "north"
 	arrival 5000
@@ -16622,7 +16630,7 @@ system Mebsuta
 			period 17.9915
 
 system Meftarkata
-	pos 52.4305 -276.812
+	pos -59 -298
 	government Uninhabited
 	attributes "korath"
 	arrival 2205
@@ -16685,7 +16693,7 @@ system Meftarkata
 			period 29.4282
 
 system "Mei Yohn"
-	pos -106.757 -581.698
+	pos -218 -603
 	government Hai
 	arrival 500
 	habitable 425
@@ -16757,7 +16765,7 @@ system "Mei Yohn"
 			period 29.0088
 
 system Mekislepti
-	pos 137.431 -335.812
+	pos 25 -357
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1705
@@ -16823,7 +16831,7 @@ system Mekislepti
 			period 30.4733
 
 system Men
-	pos -888 361
+	pos -1000 339
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -16891,7 +16899,7 @@ system Men
 			period 14.0811
 
 system Menkalinan
-	pos -400 -61
+	pos -512 -83
 	government Republic
 	attributes "paradise"
 	arrival 5000
@@ -16960,7 +16968,7 @@ system Menkalinan
 			period 26.6433
 
 system Menkar
-	pos -183 -52
+	pos -295 -74
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -17025,7 +17033,7 @@ system Menkar
 		period 5485.83
 
 system Menkent
-	pos -495 218
+	pos -607 196
 	government Republic
 	attributes "dirt belt"
 	arrival 2340
@@ -17097,7 +17105,7 @@ system Menkent
 		period 1562.60
 
 system Merak
-	pos -553 60
+	pos -665 38
 	government Republic
 	attributes "near earth"
 	arrival 1115
@@ -17163,7 +17171,7 @@ system Merak
 		period 1501.33
 
 system Mesuket
-	pos 220.431 -409.812
+	pos 108 -431
 	government Uninhabited
 	attributes "korath"
 	arrival 950
@@ -17233,7 +17241,7 @@ system Mesuket
 			period 66.1613
 
 system Miaplacidus
-	pos -524 -69
+	pos -636 -91
 	government Republic
 	attributes "paradise"
 	arrival 500
@@ -17309,7 +17317,7 @@ system Miaplacidus
 			period 51.9616
 
 system Miblulub
-	pos -630.587 670.051
+	pos -742 648
 	government Coalition
 	attributes "arachi"
 	arrival 1080
@@ -17392,7 +17400,7 @@ system Miblulub
 			period 81.065
 
 system Mimosa
-	pos -895 168
+	pos -1007 146
 	government Republic
 	attributes "rim"
 	arrival 500
@@ -17444,7 +17452,7 @@ system Mimosa
 		period 1958.75
 
 system Minkar
-	pos -823 138
+	pos -935 116
 	government Republic
 	attributes "rim"
 	arrival 1300
@@ -17511,7 +17519,7 @@ system Minkar
 		period 1708.18
 
 system Mintaka
-	pos -304 -462
+	pos -416 -484
 	government Republic
 	attributes "north"
 	arrival 860
@@ -17576,7 +17584,7 @@ system Mintaka
 		period 4209.57
 
 system Mirach
-	pos -166 250
+	pos -278 228
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -17646,7 +17654,7 @@ system Mirach
 			period 25.0252
 
 system Mirfak
-	pos -187 -128
+	pos -299 -150
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -17703,7 +17711,7 @@ system Mirfak
 		period 1969.61
 
 system Mirzam
-	pos -498 -301
+	pos -610 -323
 	government Republic
 	attributes "north"
 	arrival 1080
@@ -17766,7 +17774,7 @@ system Mirzam
 			period 12.1447
 
 system Misam
-	pos -9 -80
+	pos -121 -102
 	government Pirate
 	arrival 3835
 	habitable 3835
@@ -17845,7 +17853,7 @@ system Misam
 			period 47.4807
 
 system Mizar
-	pos -579 184
+	pos -691 162
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -17899,7 +17907,7 @@ system Mizar
 			period 10.8475
 
 system Moktar
-	pos -169 -170
+	pos -281 -192
 	government Syndicate
 	attributes "core"
 	arrival 530
@@ -17968,7 +17976,7 @@ system Moktar
 		period 1540.20
 
 system Mora
-	pos -755 23
+	pos -867 1
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -18030,7 +18038,7 @@ system Mora
 			period 24.168
 
 system Muhlifain
-	pos -702 242
+	pos -814 220
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -18078,7 +18086,7 @@ system Muhlifain
 		period 2049.23
 
 system Muphrid
-	pos -495 152
+	pos -607 130
 	government Republic
 	attributes "near earth"
 	arrival 1570
@@ -18137,7 +18145,7 @@ system Muphrid
 		period 1191.15
 
 system Naos
-	pos -653 -396
+	pos -765 -418
 	government Republic
 	attributes "deep"
 	arrival 1310
@@ -18212,7 +18220,7 @@ system Naos
 			period 40.7407
 
 system Naper
-	pos -416 369
+	pos -528 347
 	government Republic
 	attributes "dirt belt"
 	arrival 1715
@@ -18275,7 +18283,7 @@ system Naper
 			period 23.8403
 
 system Nenia
-	pos -39.1297 467.242
+	pos -151 445
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
 	arrival 4680
@@ -18355,7 +18363,7 @@ system Nenia
 			period 21.8746
 
 system Nihal
-	pos -262 -121
+	pos -374 -143
 	government Republic
 	attributes "north"
 	arrival 530
@@ -18429,7 +18437,7 @@ system Nihal
 			period 23.3833
 
 system Nocte
-	pos -467 172
+	pos -579 150
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -18497,7 +18505,7 @@ system Nocte
 		period 3701.13
 
 system Nona
-	pos 166 558
+	pos 54 536
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 1080
@@ -18554,7 +18562,7 @@ system Nona
 			period 15.6474
 
 system Nunki
-	pos -393 537
+	pos -505 515
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -18625,7 +18633,7 @@ system Nunki
 			period 66.2404
 
 system Oblate
-	pos -124 -119
+	pos -236 -141
 	government Pirate
 	attributes "core"
 	arrival 2300
@@ -18685,7 +18693,7 @@ system Oblate
 		period 2449.85
 
 system Orbona
-	pos -735.99 -97.2491
+	pos -847 -119
 	government Republic
 	attributes "dirt belt"
 	arrival 5000
@@ -18758,7 +18766,7 @@ system Orbona
 			period 15.9089
 
 system Orvala
-	pos -334 303
+	pos -446 281
 	government Republic
 	attributes "dirt belt"
 	arrival 520
@@ -18824,7 +18832,7 @@ system Orvala
 			period 14.1511
 
 system Ossipago
-	pos 6.87033 429.242
+	pos -105 407
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 3590
@@ -18893,7 +18901,7 @@ system Ossipago
 			period 17.2936
 
 system "Over the Rainbow"
-	pos 9904 7176
+	pos 9792 7154
 	government Uninhabited
 	attributes "pleiades"
 	arrival 1895
@@ -18928,7 +18936,7 @@ system "Over the Rainbow"
 			period 12.7012
 
 system Paeli
-	pos 129 497
+	pos 17 475
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 500
@@ -18976,7 +18984,7 @@ system Paeli
 		period 2883.88
 
 system Pantica
-	pos 303.87 445.242
+	pos 191 423
 	government Remnant
 	attributes "ember waste"
 	arrival 500
@@ -19034,7 +19042,7 @@ system Pantica
 		period 1598.78
 
 system Parca
-	pos 150.504 151.389
+	pos 38 129
 	government Uninhabited
 	attributes "ember waste"
 	arrival 1385
@@ -19111,7 +19119,7 @@ system Parca
 
 system Patir
 	hidden
-	pos -38 553
+	pos -150 531
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 500
@@ -19160,7 +19168,7 @@ system Patir
 			period 17.525
 
 system Peacock
-	pos -307 350
+	pos -419 328
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -19236,7 +19244,7 @@ system Peacock
 			period 49.3926
 
 system Pelubta
-	pos -757.587 575.051
+	pos -869 553
 	government Coalition
 	attributes "arachi"
 	arrival 5000
@@ -19316,7 +19324,7 @@ system Pelubta
 			period 37.6521
 
 system Peragenor
-	pos 86.8703 356.242
+	pos -25 334
 	government Uninhabited
 	attributes "ember waste"
 	arrival 2160
@@ -19382,7 +19390,7 @@ system Peragenor
 		period 949.346
 
 system Peresedersi
-	pos 81.4305 -154.812
+	pos -30 -176
 	government Uninhabited
 	attributes "archon" "korath" "nova"
 	arrival 500
@@ -19430,7 +19438,7 @@ system Peresedersi
 		period 602.965
 
 system Perfica
-	pos 185.87 419.242
+	pos 73 397
 	government Uninhabited
 	attributes "ember waste"
 	arrival 500
@@ -19477,7 +19485,7 @@ system Perfica
 		period 2668.74
 
 system Persian
-	pos -203 331
+	pos -315 309
 	government Syndicate
 	attributes "core"
 	arrival 3920
@@ -19546,7 +19554,7 @@ system Persian
 		period 757.801
 
 system Persitar
-	pos 297.431 -395.812
+	pos 185 -417
 	government Uninhabited
 	attributes "korath" "nova"
 	arrival 500
@@ -19588,7 +19596,7 @@ system Persitar
 		period 134.050
 
 system Phact
-	pos -375 -191
+	pos -487 -213
 	government Republic
 	attributes "north"
 	arrival 1115
@@ -19662,7 +19670,7 @@ system Phact
 		period 1691.25
 
 system Phecda
-	pos -607 88
+	pos -719 66
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -19721,7 +19729,7 @@ system Phecda
 		period 5538.43
 
 system Pherkad
-	pos -798 451
+	pos -910 429
 	government Republic
 	attributes "south"
 	arrival 500
@@ -19778,7 +19786,7 @@ system Pherkad
 			period 29.2801
 
 system Phurad
-	pos -494 -153
+	pos -606 -175
 	government Republic
 	attributes "paradise"
 	arrival 1080
@@ -19839,7 +19847,7 @@ system Phurad
 		period 1650.10
 
 system Pik'ro'iyak
-	pos -378.845 -677.001
+	pos -490 -699
 	government Wanderer
 	arrival 500
 	habitable 230
@@ -19888,7 +19896,7 @@ system Pik'ro'iyak
 		period 4936.71
 
 system Plort
-	pos -708.587 723.051
+	pos -820 701
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -19949,7 +19957,7 @@ system Plort
 			period 17.2667
 
 system Polaris
-	pos -35 126
+	pos -147 104
 	government Syndicate
 	arrival 1715
 	habitable 1715
@@ -20003,7 +20011,7 @@ system Polaris
 			period 16.8578
 
 system Polerius
-	pos 88 482
+	pos -24 460
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 2030
@@ -20074,7 +20082,7 @@ system Polerius
 			period 28.7798
 
 system Pollux
-	pos -465 4
+	pos -577 -18
 	government Republic
 	attributes "paradise"
 	arrival 1080
@@ -20130,7 +20138,7 @@ system Pollux
 		period 3279.38
 
 system Porrima
-	pos -556 123
+	pos -668 101
 	government Republic
 	attributes "near earth"
 	arrival 760
@@ -20200,7 +20208,7 @@ system Porrima
 
 system Postverta
 	hidden
-	pos 297 269
+	pos 185 247
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
@@ -20239,7 +20247,7 @@ system Postverta
 		period 1818.85
 
 system Prakacha'a
-	pos -35.1114 -802.607
+	pos -147 -824
 	government Wanderer
 	arrival 2030
 	habitable 2030
@@ -20318,7 +20326,7 @@ system Prakacha'a
 			period 49.6561
 
 system Procyon
-	pos -411 23
+	pos -523 1
 	government Republic
 	attributes "near earth"
 	arrival 500
@@ -20377,7 +20385,7 @@ system Procyon
 		period 3332.01
 
 system Prosa
-	pos 303 194
+	pos 191 172
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 5000
@@ -20423,7 +20431,7 @@ system Prosa
 			period 28
 
 system "Pug Iyik"
-	pos -361.149 -883.233
+	pos -473 -905
 	government "Pug (Wanderer)"
 	arrival 625
 	habitable 625
@@ -20481,7 +20489,7 @@ system "Pug Iyik"
 			period 36.706
 
 system Quaru
-	pos -1080.63 448.214
+	pos -1192 426
 	government Heliarch
 	attributes "ringworld"
 	arrival 700
@@ -20826,7 +20834,7 @@ system Quaru
 		offset 237
 
 system Queri
-	pos 69 518
+	pos -43 496
 	government Uninhabited
 	attributes "ember waste" "graveyard"
 	arrival 700
@@ -20854,7 +20862,7 @@ system Queri
 		period 10
 
 system Rajak
-	pos -270 -236
+	pos -382 -258
 	government Republic
 	attributes "north"
 	arrival 500
@@ -20923,7 +20931,7 @@ system Rajak
 			period 35.6508
 
 system Rasalhague
-	pos -413 246
+	pos -525 224
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -20985,7 +20993,7 @@ system Rasalhague
 		period 2045.39
 
 system Rastaban
-	pos -463 446
+	pos -575 424
 	government Republic
 	attributes "south"
 	arrival 1080
@@ -21047,7 +21055,7 @@ system Rastaban
 		period 2943.27
 
 system "Rati Cal"
-	pos -116.765 -391.123
+	pos -228 -413
 	government Hai
 	arrival 500
 	habitable 425
@@ -21112,7 +21120,7 @@ system "Rati Cal"
 			period 17.5
 
 system Regor
-	pos -702 -335
+	pos -814 -357
 	government Republic
 	attributes "deep"
 	arrival 500
@@ -21176,7 +21184,7 @@ system Regor
 			period 49.3713
 
 system Regulus
-	pos -544 25
+	pos -656 3
 	government Republic
 	attributes "near earth"
 	arrival 5000
@@ -21248,7 +21256,7 @@ system Regulus
 			period 20.065
 
 system Relifer
-	pos 19 603
+	pos -93 581
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
@@ -21327,7 +21335,7 @@ system Relifer
 		period 2602.82
 
 system Remembrance
-	pos -884.587 641.051
+	pos -996 619
 	government Coalition
 	attributes "saryd"
 	arrival 500
@@ -21385,7 +21393,7 @@ system Remembrance
 			period 13.2191
 
 system Rigel
-	pos -324 -363
+	pos -436 -385
 	government Republic
 	attributes "north"
 	arrival 5000
@@ -21463,7 +21471,7 @@ system Rigel
 			period 22.2115
 
 system Ritilas
-	pos 11 523
+	pos -101 501
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
 	arrival 980
@@ -21537,7 +21545,7 @@ system Ritilas
 			period 26.1475
 
 system Ruchbah
-	pos -174 69
+	pos -286 47
 	government Syndicate
 	attributes "core"
 	arrival 2560
@@ -21610,7 +21618,7 @@ system Ruchbah
 		period 5522.26
 
 system Rutilicus
-	pos -535 273
+	pos -647 251
 	government Republic
 	attributes "dirt belt"
 	arrival 625
@@ -21680,7 +21688,7 @@ system Rutilicus
 			period 33.1083
 
 system Sabik
-	pos -675 379
+	pos -787 357
 	government Republic
 	attributes "rim"
 	arrival 625
@@ -21733,7 +21741,7 @@ system Sabik
 		period 1497.65
 
 system Sabriset
-	pos 151.724 -426.518
+	pos 39 -448
 	government Uninhabited
 	attributes "korath"
 	arrival 1570
@@ -21787,7 +21795,7 @@ system Sabriset
 		period 510.696
 
 system Sadalmelik
-	pos -145 472
+	pos -257 450
 	government Quarg
 	attributes "south"
 	arrival 1715
@@ -21844,7 +21852,7 @@ system Sadalmelik
 			period 16.2351
 
 system Sadalsuud
-	pos -134 508
+	pos -246 486
 	government Quarg
 	attributes "south"
 	arrival 1450
@@ -21907,7 +21915,7 @@ system Sadalsuud
 		period 3268.62
 
 system Sadr
-	pos -287 543
+	pos -399 521
 	government Republic
 	attributes "south"
 	arrival 3430
@@ -21973,7 +21981,7 @@ system Sadr
 		period 881.202
 
 system "Sagittarius A*"
-	pos 112 22
+	pos 0 0
 	government Uninhabited
 	arrival 5000
 	habitable 10000
@@ -21990,7 +21998,7 @@ system "Sagittarius A*"
 		period 1
 
 system Saiph
-	pos -375 -390
+	pos -487 -412
 	government Republic
 	attributes "north"
 	arrival 500
@@ -22045,7 +22053,7 @@ system Saiph
 		period 3626.44
 
 system Salipastart
-	pos 250.431 -370.812
+	pos 138 -392
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 500
@@ -22114,7 +22122,7 @@ system Salipastart
 			period 21.2086
 
 system Saquergen
-	pos -482 561
+	pos -594 539
 	government Uninhabited
 	attributes "nova"
 	arrival 500
@@ -22147,7 +22155,7 @@ system Saquergen
 		period 162.598
 
 system Sargas
-	pos -542 445
+	pos -654 423
 	government Republic
 	attributes "south"
 	arrival 980
@@ -22199,7 +22207,7 @@ system Sargas
 		period 1191.13
 
 system Sarin
-	pos -670 293
+	pos -782 271
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -22250,7 +22258,7 @@ system Sarin
 		period 2382.35
 
 system Sayaiban
-	pos 250.431 -274.812
+	pos 138 -296
 	government Drak
 	attributes "archon" "korath"
 	arrival 3750
@@ -22307,7 +22315,7 @@ system Sayaiban
 		period 536.924
 
 system Scheat
-	pos -205 233
+	pos -317 211
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -22367,7 +22375,7 @@ system Scheat
 			period 13.1034
 
 system Schedar
-	pos -93 229
+	pos -205 207
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -22437,7 +22445,7 @@ system Schedar
 			period 25.3563
 
 system Segesta
-	pos 111.87 294.242
+	pos 0 272
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 950
@@ -22507,7 +22515,7 @@ system Segesta
 		offset 180
 
 system Seginus
-	pos -557 356
+	pos -669 334
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -22574,7 +22582,7 @@ system Seginus
 			period 37.7101
 
 system Seketra
-	pos -24.5695 -356.812
+	pos -136 -378
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -22627,7 +22635,7 @@ system Seketra
 			period 31.8741
 
 system Sepetrosk
-	pos 192.431 -243.812
+	pos 80 -265
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 500
@@ -22690,7 +22698,7 @@ system Sepetrosk
 			period 17.2951
 
 system Sepriaptu
-	pos 139.431 -448.812
+	pos 27 -470
 	government Uninhabited
 	attributes "korath"
 	arrival 2035
@@ -22744,7 +22752,7 @@ system Sepriaptu
 		period 984.429
 
 system Sevrelect
-	pos -114.569 -239.812
+	pos -226 -261
 	government "Kor Efret"
 	attributes "korath"
 	arrival 500
@@ -22797,7 +22805,7 @@ system Sevrelect
 			period 15.4601
 
 system Shaula
-	pos -460 527
+	pos -572 505
 	government Pirate
 	attributes "south"
 	arrival 625
@@ -22866,7 +22874,7 @@ system Shaula
 			period 22.0718
 
 system Sheratan
-	pos -40 45
+	pos -152 23
 	government Syndicate
 	attributes "core"
 	arrival 2085
@@ -22927,7 +22935,7 @@ system Sheratan
 		period 2556.72
 
 system Si'yak'ku
-	pos -329.235 -760.435
+	pos -441 -782
 	government Wanderer
 	arrival 1310
 	habitable 1310
@@ -23008,7 +23016,7 @@ system Si'yak'ku
 			period 26.3627
 
 system Sich'ka'ara
-	pos -97.1237 -831.921
+	pos -209 -853
 	government Wanderer
 	arrival 1715
 	habitable 1715
@@ -23060,7 +23068,7 @@ system Sich'ka'ara
 		period 1115.11
 
 system Silikatakfar
-	pos 248.431 -481.812
+	pos 136 -503
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 500
@@ -23113,7 +23121,7 @@ system Silikatakfar
 			period 30.5006
 
 system "Silver Bell"
-	pos -1045.59 541.051
+	pos -1157 519
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -23192,7 +23200,7 @@ system "Silver Bell"
 			period 16.4391
 
 system "Silver String"
-	pos -1022.59 517.051
+	pos -1134 495
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -23258,7 +23266,7 @@ system "Silver String"
 			period 22.8107
 
 system Similisti
-	pos 210.431 -313.812
+	pos 98 -335
 	government "Kor Mereti"
 	attributes "korath"
 	arrival 1080
@@ -23328,7 +23336,7 @@ system Similisti
 			period 31.4243
 
 system Sirius
-	pos -378 44
+	pos -490 22
 	government Republic
 	attributes "near earth"
 	arrival 1850
@@ -23393,7 +23401,7 @@ system Sirius
 		period 935.078
 
 system Skeruto
-	pos 28.4305 -339.812
+	pos -83 -361
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -23446,7 +23454,7 @@ system Skeruto
 			period 11.9576
 
 system Sko'karak
-	pos -304.43 -930.688
+	pos -416 -952
 	government Wanderer
 	arrival 500
 	habitable 320
@@ -23499,7 +23507,7 @@ system Sko'karak
 			period 28.8527
 
 system Sobarati
-	pos 277.431 -557.812
+	pos 165 -579
 	government "Kor Sestor"
 	attributes "korath"
 	arrival 3355
@@ -23563,7 +23571,7 @@ system Sobarati
 			period 16.139
 
 system Sol
-	pos -400 100
+	pos -512 78
 	government Republic
 	attributes "near earth"
 	arrival 1080
@@ -23676,7 +23684,7 @@ system Sol
 		period 24012.7
 
 system "Sol Arach"
-	pos -711.587 649.051
+	pos -823 627
 	government Coalition
 	attributes "arachi"
 	arrival 500
@@ -23749,7 +23757,7 @@ system "Sol Arach"
 			period 26.2104
 
 system "Sol Kimek"
-	pos -1310.63 227.214
+	pos -1422 205
 	government Coalition
 	attributes "kimek"
 	arrival 500
@@ -23824,7 +23832,7 @@ system "Sol Kimek"
 		period 2322.85
 
 system "Sol Saryd"
-	pos -1037.59 675.051
+	pos -1149 653
 	government Coalition
 	attributes "saryd"
 	arrival 1310
@@ -23908,7 +23916,7 @@ system "Sol Saryd"
 		period 1409.06
 
 system Solifar
-	pos 47.4305 -435.812
+	pos -64 -457
 	government Uninhabited
 	attributes "korath"
 	arrival 500
@@ -23965,7 +23973,7 @@ system Solifar
 		period 2104.34
 
 system Sospi
-	pos -317 -161
+	pos -429 -183
 	government Republic
 	attributes "north"
 	arrival 625
@@ -24032,7 +24040,7 @@ system Sospi
 			period 48.1545
 
 system Speloog
-	pos -967.587 445.051
+	pos -1079 423
 	government Coalition
 	attributes "arachi"
 	arrival 625
@@ -24100,7 +24108,7 @@ system Speloog
 			period 29.0613
 
 system Spica
-	pos -906 120
+	pos -1018 98
 	government Republic
 	attributes "rim"
 	arrival 625
@@ -24162,7 +24170,7 @@ system Spica
 			period 26.1539
 
 system Statina
-	pos 385 198
+	pos 273 176
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
 	arrival 500
@@ -24209,7 +24217,7 @@ system Statina
 		period 4975.52
 
 system "Steep Roof"
-	pos -1113.59 570.051
+	pos -1225 548
 	government Coalition
 	attributes "saryd"
 	arrival 1080
@@ -24283,7 +24291,7 @@ system "Steep Roof"
 			period 47.4807
 
 system Stercutus
-	pos 140.87 320.242
+	pos 28 298
 	government Uninhabited
 	attributes "ember waste" "wormhole"
 	arrival 1570
@@ -24350,7 +24358,7 @@ system Stercutus
 		period 1305.80
 
 system Suhail
-	pos -774 -338
+	pos -886 -360
 	government Republic
 	attributes "deep"
 	arrival 3000
@@ -24413,7 +24421,7 @@ system Suhail
 			period 20.4528
 
 system Sumar
-	pos -236 -273
+	pos -348 -295
 	government Republic
 	attributes "north"
 	arrival 2560
@@ -24474,7 +24482,7 @@ system Sumar
 			period 67.9617
 
 system Sumprast
-	pos -101.569 -262.812
+	pos -213 -284
 	government "Kor Efret"
 	attributes "korath"
 	arrival 500
@@ -24541,7 +24549,7 @@ system Sumprast
 			period 29.291
 
 system Tais
-	pos -346 381
+	pos -458 359
 	government Republic
 	attributes "dirt belt"
 	arrival 3200
@@ -24600,7 +24608,7 @@ system Tais
 		period 762.383
 
 system Talita
-	pos -519 -26
+	pos -631 -48
 	government Republic
 	attributes "paradise"
 	arrival 1705
@@ -24667,7 +24675,7 @@ system Talita
 		period 995.049
 
 system "Tania Australis"
-	pos -671 7
+	pos -783 -15
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -24741,7 +24749,7 @@ system "Tania Australis"
 			period 68.3166
 
 system Tarazed
-	pos -194 448
+	pos -306 426
 	government Republic
 	attributes "south"
 	arrival 1215
@@ -24806,7 +24814,7 @@ system Tarazed
 			period 16.9693
 
 system Tebuteb
-	pos -615.587 710.051
+	pos -727 688
 	government Coalition
 	attributes "arachi"
 	arrival 550
@@ -24869,7 +24877,7 @@ system Tebuteb
 		period 2147.36
 
 system Tejat
-	pos -489 -107
+	pos -601 -129
 	government Republic
 	attributes "paradise"
 	arrival 1215
@@ -24948,7 +24956,7 @@ system Tejat
 			period 22.9367
 
 system Terminus
-	pos -727.99 -23.2491
+	pos -839 -45
 	government Republic
 	attributes "dirt belt" "wormhole"
 	arrival 950
@@ -25003,7 +25011,7 @@ system Terminus
 		period 1229.00
 
 system "Terra Incognita"
-	pos 9921.5 7086.5
+	pos 9809 7064
 	government Uninhabited
 	attributes "pleiades"
 	arrival 500
@@ -25050,7 +25058,7 @@ system "Terra Incognita"
 			period 32.7715
 
 system Torbab
-	pos -949.587 490.051
+	pos -1061 468
 	government Coalition
 	attributes "arachi"
 	arrival 2030
@@ -25128,7 +25136,7 @@ system Torbab
 			period 18.1784
 
 system Tortor
-	pos -255 -424
+	pos -367 -446
 	government Republic
 	attributes "north"
 	arrival 500
@@ -25196,7 +25204,7 @@ system Tortor
 			period 37.3803
 
 system Turais
-	pos -691 134
+	pos -803 112
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -25254,7 +25262,7 @@ system Turais
 		period 4109.01
 
 system "Ula Mon"
-	pos -64.1218 -559.868
+	pos -176 -581
 	government Hai
 	arrival 640
 	habitable 640
@@ -25341,7 +25349,7 @@ system "Ula Mon"
 			period 14.0516
 
 system "Ultima Thule"
-	pos -336 -211
+	pos -448 -233
 	government Republic
 	attributes "north" "wormhole"
 	arrival 2560
@@ -25396,7 +25404,7 @@ system "Ultima Thule"
 		period 2158.49
 
 system Umbral
-	pos -164 406
+	pos -276 384
 	government Republic
 	attributes "south"
 	arrival 1300
@@ -25475,7 +25483,7 @@ system Umbral
 			period 71.3804
 
 system Unagi
-	pos -306 -578
+	pos -418 -600
 	government Pirate
 	attributes "north"
 	arrival 500
@@ -25530,7 +25538,7 @@ system Unagi
 			period 20.5056
 
 system Unukalhai
-	pos -710 405
+	pos -822 383
 	government Republic
 	attributes "rim"
 	arrival 625
@@ -25592,7 +25600,7 @@ system Unukalhai
 		period 2955.85
 
 system "Uwa Fahn"
-	pos 35.1585 -491.67
+	pos -76 -513
 	government Hai
 	arrival 500
 	habitable 320
@@ -25662,7 +25670,7 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
-	pos 324 112
+	pos 212 90
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
@@ -25714,7 +25722,7 @@ system Vaticanus
 		period 3231.69
 
 system Vega
-	pos -402 182
+	pos -514 160
 	government Republic
 	attributes "near earth"
 	arrival 1450
@@ -25779,7 +25787,7 @@ system Vega
 		period 1710.41
 
 system Vindemiatrix
-	pos -635 257
+	pos -747 235
 	government Republic
 	attributes "dirt belt"
 	arrival 1080
@@ -25833,7 +25841,7 @@ system Vindemiatrix
 		period 1164.01
 
 system Volax
-	pos -256 -179
+	pos -368 -201
 	government Republic
 	attributes "north"
 	arrival 1715
@@ -25889,7 +25897,7 @@ system Volax
 		period 2872.94
 
 system "Wah Ki"
-	pos 14.9925 -612.792
+	pos -97 -634
 	government Hai
 	arrival 500
 	habitable 425
@@ -25964,7 +25972,7 @@ system "Wah Ki"
 			period 10.5851
 
 system "Wah Oh"
-	pos -205.344 -381.381
+	pos -317 -403
 	government Hai
 	arrival 3650
 	habitable 3650
@@ -26054,7 +26062,7 @@ system "Wah Oh"
 		period 1688.40
 
 system "Wah Yoot"
-	pos 40.9382 -685.994
+	pos -71 -707
 	government "Hai (Unfettered)"
 	arrival 1080
 	habitable 1080
@@ -26119,7 +26127,7 @@ system "Wah Yoot"
 			period 24.4001
 
 system Waypoint
-	pos -184 -515
+	pos -296 -537
 	government Hai
 	attributes "wormhole"
 	arrival 500
@@ -26178,7 +26186,7 @@ system Waypoint
 		period 3264.09
 
 system Wazn
-	pos -385 -131
+	pos -497 -153
 	government Republic
 	attributes "paradise"
 	arrival 530
@@ -26245,7 +26253,7 @@ system Wazn
 		period 2679.48
 
 system Wei
-	pos -598 369
+	pos -710 347
 	government Republic
 	attributes "dirt belt"
 	arrival 500
@@ -26304,7 +26312,7 @@ system Wei
 			period 26.4015
 
 system Wezen
-	pos -664 -433
+	pos -776 -455
 	government Republic
 	attributes "deep"
 	arrival 2710
@@ -26388,7 +26396,7 @@ system Wezen
 			period 38.9601
 
 system "World's End"
-	pos 9966.5 7017.5
+	pos 9854 6995
 	government Uninhabited
 	attributes "pleiades"
 	arrival 700
@@ -26459,7 +26467,7 @@ system "World's End"
 		offset 290
 
 system "Ya Hai"
-	pos -24.9453 -505.571
+	pos -136 -527
 	government Hai
 	arrival 500
 	habitable 425
@@ -26541,7 +26549,7 @@ system "Ya Hai"
 			period 13.1378
 
 system "Yed Prior"
-	pos -810 374
+	pos -922 352
 	government Republic
 	attributes "south"
 	arrival 500
@@ -26599,7 +26607,7 @@ system "Yed Prior"
 			period 10.8785
 
 system Zaurak
-	pos -109 -34
+	pos -221 -56
 	government Syndicate
 	attributes "core"
 	arrival 625
@@ -26658,7 +26666,7 @@ system Zaurak
 		period 2461.86
 
 system "Zeta Aquilae"
-	pos -369 276
+	pos -481 254
 	government Republic
 	attributes "dirt belt"
 	arrival 1450
@@ -26734,7 +26742,7 @@ system "Zeta Aquilae"
 			period 35.2957
 
 system "Zeta Centauri"
-	pos -835 257
+	pos -947 235
 	government Republic
 	attributes "rim"
 	arrival 500
@@ -26791,7 +26799,7 @@ system "Zeta Centauri"
 		period 12226.1
 
 system Zosma
-	pos -640 -123
+	pos -752 -145
 	government Republic
 	attributes "deep"
 	arrival 500
@@ -26860,7 +26868,7 @@ system Zosma
 			period 12.9498
 
 system "Zuba Zub"
-	pos -48.2661 -647.926
+	pos -160 -669
 	government Hai
 	arrival 500
 	habitable 425
@@ -26937,7 +26945,7 @@ system "Zuba Zub"
 			period 13.1398
 
 system Zubenelgenubi
-	pos -710 353
+	pos -822 331
 	government Republic
 	attributes "rim"
 	arrival 995
@@ -27005,7 +27013,7 @@ system Zubenelgenubi
 
 system Zubenelhakrabi
 	hidden
-	pos -755 365
+	pos -867 343
 	government Uninhabited
 	arrival 500
 	habitable 490
@@ -27080,7 +27088,7 @@ system Zubenelhakrabi
 			period 44.5228
 
 system Zubeneschamali
-	pos -759 338
+	pos -871 316
 	government Republic
 	attributes "rim"
 	arrival 1250
