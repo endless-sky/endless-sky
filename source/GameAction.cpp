@@ -243,7 +243,7 @@ void GameAction::Save(DataWriter &out) const
 			out.EndChild();
 		}
 	for(auto &&it : giftShips)
-		out.Write("give", "ship", it.first->VariantTrueName(), it.second);
+		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
@@ -272,7 +272,7 @@ string GameAction::Validate() const
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.first->IsValid())
-			return "gift ship model \"" + it.first->VariantTrueName() + "\"";
+			return "gift ship model \"" + it.first->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
 			return "gift outfit \"" + outfit.first->Name() + "\"";

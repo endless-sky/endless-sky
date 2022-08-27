@@ -146,8 +146,8 @@ public:
 	void SetModelName(const std::string &model);
 	const std::string &ModelName() const;
 	const std::string &PluralModelName() const;
-	// Get the name of this ship as a variant.
-	const std::string &VariantTrueName() const;
+	// Get the data name of this ship as a variant.
+	const std::string &VariantName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
@@ -460,9 +460,9 @@ private:
 	bool isDefined = false;
 	const Ship *base = nullptr;
 	std::string trueName;
-	std::string variantTrueName;
 	std::string modelName;
 	std::string pluralModelName;
+	std::string variantName;
 	std::string noun;
 	std::string description;
 	const Sprite *thumbnail = nullptr;

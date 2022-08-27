@@ -168,7 +168,7 @@ void Ship::Load(const DataNode &node)
 	if(node.Size() >= 3)
 	{
 		base = GameData::Ships().Get(modelName);
-		variantTrueName = node.Token(2);
+		variantName = node.Token(2);
 	}
 	isDefined = true;
 
@@ -579,13 +579,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantTrueName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->IsWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantTrueName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
+			LogWarning(VariantName(), Name(), "outfit \"" + it.first->Name() + "\" is not a weapon, but is installed as one.");
 	}
 
 	// Mark any drone that has no "automaton" value as an automaton, to
@@ -628,7 +628,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(VariantTrueName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
+					LogWarning(VariantName(), Name(), "weapon \"" + it.first->Name() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
@@ -647,8 +647,8 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		else
 		{
-			message = variantTrueName.empty() ? "Stock ship \"" + trueName + "\": "
-				: trueName + " variant \"" + variantTrueName + "\": ";
+			message = variantName.empty() ? "Stock ship \"" + trueName + "\": "
+				: trueName + " variant \"" + variantName + "\": ";
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
@@ -664,7 +664,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = (!isYours && !variantTrueName.empty()) ? "variant \"" + variantTrueName + "\"" : trueName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->Name() + "\" installed as a ";
@@ -729,7 +729,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantTrueName() + "):\n";
+		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
@@ -1048,8 +1048,8 @@ const string &Ship::PluralModelName() const
 
 
 
-// Get the name of this ship as a variant.
-const string &Ship::VariantTrueName() const
+// Get the data name of this ship as a variant.
+const string &Ship::VariantName() const
 {
 	return variantTrueName.empty() ? trueName : variantTrueName;
 }
