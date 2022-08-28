@@ -37,7 +37,7 @@ Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, d
 
 	SpriteParameters* spriteState = &this->sprites[BodyState::FLYING];
 	spriteState->randomizeStart = true;
-	spriteState->SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
+	spriteState->SetSprite("default", sprite, Indication::DEFAULT_INDICATE, -1.0f);
 }
 
 
@@ -225,9 +225,8 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 		return;
 
 	const Sprite* sprite = SpriteSet::Get(node.Token(1));
-
 	SpriteParameters* spriteData = &this->sprites[state];
-	spriteData->SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
+	float indicatePercentage = -1.0f;
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -247,16 +246,22 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 				// Override global indication, if trigger based sprite animation should/should not block the desired action
 				// Typically jumping or firing
 				if(child.Token(3) == "indicate"){
-					spriteData->SetSprite(trigger, triggerSprite, Indication::INDICATE);
+					spriteData->SetSprite(trigger, triggerSprite, Indication::INDICATE, -1.0f);
 				} else if(child.Token(3) == "no indicate"){
-					spriteData->SetSprite(trigger, triggerSprite, Indication::NO_INDICATE);
+					spriteData->SetSprite(trigger, triggerSprite, Indication::NO_INDICATE, -1.0f);
+				} else if(child.Token(3) == "indicate frame" && child.Size() >= 6 && child.Value(4) > 0. && child.Value(5) > 0.){
+					float triggerIndicatePercentage = static_cast<float>(child.Value(4)/child.Value(5));
+					spriteData->SetSprite(trigger, triggerSprite, Indication::NO_INDICATE, triggerIndicatePercentage);
+				} else if(child.Token(3) == "indicate percentage" && child.Size() >= 5 && child.Value(4) > 0. && child.Value(4) < 1.){
+					float triggerIndicatePercentage = static_cast<float>(child.Value(4));
+					spriteData->SetSprite(trigger, triggerSprite, Indication::NO_INDICATE, triggerIndicatePercentage);
 				} else {
 					child.PrintTrace("Unrecognized token: " + child.Token(3) + " ==> Using global indication setting");
-					spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE);
+					spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE, -1.0f);
 				}
 			} else {
 				// Default to indication value for this state
-				spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE);
+				spriteData->SetSprite(trigger, triggerSprite, Indication::DEFAULT_INDICATE, -1.0f);
 			}
 		}
 		else if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
@@ -274,6 +279,27 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteData->startFrame = static_cast<float>(child.Value(1));
 			spriteData->startAtZero = true;
 		}
+		else if(child.Token(0) == "indicate percentage" && child.Size() >= 2 && child.Value(1) > 0. && child.Value(1) < 1.)
+		{
+			spriteData->indicateReady = true;
+			spriteData->repeat = false;
+			spriteData->startAtZero = true;
+			indicatePercentage = static_cast<float>(child.Value(1));
+		}
+		else if(child.Token(0) == "indicate frame" && child.Size() >= 3 && child.Value(1) > 0. && child.Value(2) > 0.)
+		{
+			spriteData->indicateReady = true;
+			spriteData->repeat = false;
+			spriteData->startAtZero = true;
+			indicatePercentage = static_cast<float>(child.Value(1)/child.Value(2));
+		}
+		else if(child.Token(0) == "indicate")
+		{
+			spriteData->indicateReady = true;
+			spriteData->repeat = false;
+			spriteData->startAtZero = true;
+			indicatePercentage = 1.0f;
+		}
 		else if(child.Token(0) == "random")
 			spriteData->randomize = true;
 		else if(child.Token(0) == "random start frame")
@@ -283,23 +309,23 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 			spriteData->repeat = false;
 			spriteData->startAtZero = true;
 		}
-		else if(child.Token(0) == "transition rewind"){
+		else if(child.Token(0) == "transition rewind")
+		{
 			spriteData->transitionFinish = false;
 			spriteData->transitionRewind = true;
 		}
-		else if(child.Token(0) == "transition finish"){
+		else if(child.Token(0) == "transition finish")
+		{
 			spriteData->transitionFinish = true;
 			spriteData->transitionRewind = false;
-		} else if(child.Token(0) == "indicate"){
-			spriteData->indicateReady = true;
-			spriteData->repeat = false;
-			spriteData->startAtZero = true;
 		}
 		else if(child.Token(0) == "rewind")
 			spriteData->rewind = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+
+	spriteData->SetSprite("default", sprite, Indication::DEFAULT_INDICATE, indicatePercentage);
 
 	if(scale != 1.f)
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
@@ -322,19 +348,28 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 				out.Write(tags[i], sprite->Name());
 				out.BeginChild();
 				{
-					const std::map<std::string, std::tuple<const Sprite*, Indication>> *triggerSprites = spriteState->GetAllSprites();
-
+					const std::map<std::string, std::tuple<const Sprite*, Indication, float>> *triggerSprites = spriteState->GetAllSprites();
+					float defaultIndicatePercentage = 1.0f;
 					for(auto it = triggerSprites->begin(); it != triggerSprites->end(); ++it){
 						if(it->first != "default"){
 							const Sprite* triggerSprite = std::get<0>(it->second);
 							Indication indication = std::get<1>(it->second);
+							float indicatePercentage = std::get<2>(it->second);
 
 							if(indication == Indication::DEFAULT_INDICATE)
 								out.Write("trigger", it->first, triggerSprite->Name());
 							else if(indication == Indication::NO_INDICATE)
 								out.Write("trigger", it->first, triggerSprite->Name(), "no indicate");
 							else if(indication == Indication::INDICATE)
-								out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+							{
+								if(indicatePercentage <= 0.0f){
+									out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+								} else {
+									out.Write("trigger", it->first, triggerSprite->Name(), "indicate percentage", indicatePercentage);
+								}
+							}
+						} else {
+							defaultIndicatePercentage = std::get<2>(it->second);
 						}
 					}
 
@@ -353,7 +388,12 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 					if(spriteState->rewind)
 						out.Write("rewind");
 					if(spriteState->indicateReady)
-						out.Write("indicate");
+					{
+						if(defaultIndicatePercentage == 1.0f)
+							out.Write("indicate");
+						else
+							out.Write("indicate percentage", defaultIndicatePercentage);
+					}
 					if(spriteState->transitionFinish)
 						out.Write("transition finish");
 					if(spriteState->transitionRewind)
@@ -374,19 +414,28 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		out.Write(tag, sprite->Name());
 		out.BeginChild();
 		{
-			const std::map<std::string, std::tuple<const Sprite*, Indication>> *triggerSprites = spriteState->GetAllSprites();
-
+			const std::map<std::string, std::tuple<const Sprite*, Indication, float>> *triggerSprites = spriteState->GetAllSprites();
+			float defaultIndicatePercentage = 1.0f;
 			for(auto it = triggerSprites->begin(); it != triggerSprites->end(); ++it){
 				if(it->first != "default"){
 					const Sprite* triggerSprite = std::get<0>(it->second);
 					Indication indication = std::get<1>(it->second);
+					float indicatePercentage = std::get<2>(it->second);
 
 					if(indication == Indication::DEFAULT_INDICATE)
 						out.Write("trigger", it->first, triggerSprite->Name());
 					else if(indication == Indication::NO_INDICATE)
 						out.Write("trigger", it->first, triggerSprite->Name(), "no indicate");
 					else if(indication == Indication::INDICATE)
-						out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+					{
+						if(indicatePercentage <= 0.0f){
+							out.Write("trigger", it->first, triggerSprite->Name(), "indicate");
+						} else {
+							out.Write("trigger", it->first, triggerSprite->Name(), "indicate frame", indicatePercentage);
+						}
+					}
+				} else {
+					defaultIndicatePercentage = std::get<2>(it->second);
 				}
 			}
 
@@ -405,7 +454,12 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 			if(spriteState->rewind)
 				out.Write("rewind");
 			if(spriteState->indicateReady)
-				out.Write("indicate");
+			{
+				if(defaultIndicatePercentage == 1.0f)
+					out.Write("indicate");
+				else
+					out.Write("indicate percentage", defaultIndicatePercentage);
+			}
 			if(spriteState->transitionFinish)
 				out.Write("transition finish");
 			if(spriteState->transitionRewind)
@@ -422,7 +476,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 // Set the sprite.
 void Body::SetSprite(const Sprite *sprite, BodyState state)
 {
-	this->sprites[state].SetSprite("default", sprite, Indication::DEFAULT_INDICATE);
+	this->sprites[state].SetSprite("default", sprite, Indication::DEFAULT_INDICATE, -1.0f);
 	currentStep = -1;
 }
 
@@ -432,15 +486,15 @@ void Body::SetState(BodyState state)
 	// If the transition has a delay, ensure that rapid changes from transitions which ignore the delay to transitions that don't keep smooth animations.
 	bool delayIgnoredPreviousStep = this->transitionState == BodyState::JUMPING || this->transitionState == BodyState::DISABLED || this->transitionState == BodyState::LANDING;
 	bool delayActiveCurrentStep = (state == BodyState::FLYING || state == BodyState::LAUNCHING || state == BodyState::FIRING) && delayed < transitionDelay;
-	if(delayIgnoredPreviousStep && delayActiveCurrentStep && stateTransitionRequested){
+	if(state == this->currentState && this->transitionState != this->currentState){
+		// Cancel transition
+		stateTransitionRequested = false;
+
 		// Start replaying animation from current frame
 		frameOffset = -currentStep * frameRate;
 		frameOffset += frame;
 
-	} else if(state == this->currentState && this->transitionState != this->currentState){
-		// Cancel transition
-		stateTransitionRequested = false;
-
+	} else if(delayIgnoredPreviousStep && delayActiveCurrentStep && stateTransitionRequested){
 		// Start replaying animation from current frame
 		frameOffset = -currentStep * frameRate;
 		frameOffset += frame;
@@ -557,6 +611,7 @@ void Body::FinishStateTransition() const
 		this->repeat = transitionedState->repeat;
 		this->rewind = transitionedState->rewind;
 		this->indicateReady = transitionedState->IndicateReady();
+		this->indicatePercentage = transitionedState->IndicatePercentage();
 		this->transitionFinish = transitionedState->transitionFinish;
 		this->transitionRewind = transitionedState->transitionRewind;
 		this->transitionDelay = transitionedState->transitionDelay;
@@ -648,8 +703,8 @@ void Body::SetStep(int step) const
 			// final frame.
 			if(!repeat){
 				frame = min(frame, lastFrame);
-
-				if(frame == lastFrame){
+				framePercentage = (frame + 1)/frames;
+				if(framePercentage >= indicatePercentage){
 					stateReady = this->indicateReady;
 				} else {
 					stateReady = false;

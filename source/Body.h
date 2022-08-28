@@ -143,6 +143,7 @@ private:
 	mutable bool transitionRewind = false;
 	mutable int transitionDelay = 0;
 	mutable bool indicateReady = false;
+	mutable float indicatePercentage = -1.0f;
 	mutable int pause = 0;
 
 	// Record when this object is marked for removal from the game.
@@ -154,11 +155,8 @@ private:
 	mutable float frame = 0.f;
 	mutable float rewindFrame = 0.f;
 	mutable float randomFrame = 0.f;
+	mutable float framePercentage = 0.f;
 	mutable float delayed = 0;
 	mutable bool stateReady = false;
-	mutable bool ignoredDelay = false;
 };
-
-
-
 #endif

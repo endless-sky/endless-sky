@@ -21,14 +21,14 @@ SpriteParameters::SpriteParameters()
 
 SpriteParameters::SpriteParameters(const Sprite* sprite)
 {
-	auto tuple = std::tuple<const Sprite*, Indication>{sprite, Indication::DEFAULT_INDICATE};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication>>("default", tuple));
+	auto tuple = std::tuple<const Sprite*, Indication, float>{sprite, Indication::DEFAULT_INDICATE, -1.0f};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication, float>>("default", tuple));
 }
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, Indication indication)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, Indication indication, float indicatePercentage)
 {
-	auto tuple = std::tuple<const Sprite*, Indication>{sprite, indication};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication>>(trigger, tuple));
+	auto tuple = std::tuple<const Sprite*, Indication, float>{sprite, indication, indicatePercentage};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication, float>>(trigger, tuple));
 }
 
 const Sprite *SpriteParameters::GetSprite() const
@@ -61,6 +61,14 @@ bool SpriteParameters::IndicateReady() const
 	return (it == this->sprites.end() || std::get<1>(it->second) == Indication::DEFAULT_INDICATE) ? this->indicateReady : std::get<1>(it->second) != Indication::NO_INDICATE;
 }
 
+float SpriteParameters::IndicatePercentage() const
+{
+	auto it = this->sprites.find(this->trigger);
+	auto defIt = this->sprites.find("default");
+	float defaultIndicatePercentage = std::get<2>(defIt->second);
+	return std::get<2>(it->second) <= 0.0f ? (defaultIndicatePercentage <= 0.0f ? 1.0f : defaultIndicatePercentage) : std::get<2>(it->second);
+}
+
 void SpriteParameters::SetTrigger(std::string trigger)
 {
 	this->trigger = trigger;
@@ -72,7 +80,7 @@ bool SpriteParameters::IsTrigger(std::string trigger) const
 	return it != this->sprites.end();
 }
 
-const std::map<std::string, std::tuple<const Sprite*, Indication>> *SpriteParameters::GetAllSprites() const
+const std::map<std::string, std::tuple<const Sprite*, Indication, float>> *SpriteParameters::GetAllSprites() const
 {
 	return &this->sprites;
 }
