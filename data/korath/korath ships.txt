@@ -461,7 +461,7 @@ ship "Rai'arorej"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath Refuges hold the must vulnerable of the Korath, those that would not survive a battle, even in a ship with armor and shields. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships immediately flee; they're among the fastest ships the Korath have built."
+	description "Korath Refuges rescue the most vulnerable of the Korath from battle. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships are quick to respond."
 
 
 ship "Ik'atilajej"
@@ -543,7 +543,7 @@ ship "Ik'atilajej"
 	explode "large explosion" 60
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
-	description "The Refabricator is factory ship; a millennia-old ship design that has improved in every generation. At the height of the Korath war, these ships created drones and clouds of combat nanites. Today, its nanite-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
+	description "The Refabricator is factory ship. Its microbot-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
 
 
 ship "Korath World-Ship"
