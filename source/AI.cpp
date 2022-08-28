@@ -113,9 +113,7 @@ namespace {
 					&& (bay.ship->IsArmed(true) || (!bay.ship->IsArmed() && !bay.ship->IsEnemyInEscortSystem())))
 			{
 				// Refuse to deploy on low energy
-				if(bay.ship->IsEnergyLow())
-					Messages::Add(bay.ship->Attributes().Category() + " " + bay.ship->Name() + " refuses to deploy due insufficient energy.", Messages::Importance::High);
-				else
+				if(!bay.ship->IsEnergyLow())
 					bay.ship->SetCommands(Command::DEPLOY);
 			}
 	}

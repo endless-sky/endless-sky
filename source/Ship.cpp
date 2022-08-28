@@ -1170,7 +1170,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
-	else if(canBeCarried && GetSecondsToEmpty() < minimumOperatingTime)
+	else if(canBeCarried && GetSecondsToEmpty() < minimumOperatingTime && GetIdleEnergyPerFrame() <= 0)
 			checks.emplace_back("low battery!");
 
 	// If no errors were found, check all warning conditions:
