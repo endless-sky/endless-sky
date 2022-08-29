@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
-#include "Files.h"
+#include "Logger.h"
 
 #include <cctype>
 #include <cstring>
@@ -28,19 +28,19 @@ Shader::Shader(const char *vertex, const char *fragment)
 {
 	GLuint vertexShader = Compile(vertex, GL_VERTEX_SHADER);
 	GLuint fragmentShader = Compile(fragment, GL_FRAGMENT_SHADER);
-	
+
 	program = glCreateProgram();
 	if(!program)
 		throw runtime_error("Creating OpenGL shader program failed.");
-	
+
 	glAttachShader(program, vertexShader);
 	glAttachShader(program, fragmentShader);
-	
+
 	glLinkProgram(program);
-	
+
 	glDetachShader(program, vertexShader);
 	glDetachShader(program, fragmentShader);
-	
+
 	GLint status;
 	glGetProgramiv(program, GL_LINK_STATUS, &status);
 	if(status == GL_FALSE)
@@ -50,8 +50,8 @@ Shader::Shader(const char *vertex, const char *fragment)
 		vector<GLchar> infoLog(maxLength);
 		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
 		string error(infoLog.data());
-		Files::LogError(error);
-		
+		Logger::LogError(error);
+
 		throw runtime_error("Linking OpenGL shader program failed.");
 	}
 }
@@ -70,7 +70,7 @@ GLint Shader::Attrib(const char *name) const
 	GLint attrib = glGetAttribLocation(program, name);
 	if(attrib == -1)
 		throw runtime_error("Attribute \"" + string(name) + "\" not found.");
-	
+
 	return attrib;
 }
 
@@ -81,7 +81,7 @@ GLint Shader::Uniform(const char *name) const
 	GLint uniform = glGetUniformLocation(program, name);
 	if(uniform == -1)
 		throw runtime_error("Uniform \"" + string(name) + "\" not found.");
-	
+
 	return uniform;
 }
 
@@ -92,18 +92,28 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	GLuint object = glCreateShader(type);
 	if(!object)
 		throw runtime_error("Shader creation failed.");
-	
+
 	static string version;
 	if(version.empty())
 	{
 		version = "#version ";
 		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		bool found = false;
 		for(char c : glsl)
 		{
+			if(!found && !isdigit(c)) {
+				continue;
+			}
 			if(isspace(c))
 				break;
-			if(isdigit(c))
+			if(isdigit(c)) {
+				found = true;
 				version += c;
+			}
+		}
+		if(glsl.find("GLSL ES") != std::string::npos)
+		{
+			version += " es";
 		}
 		version += '\n';
 	}
@@ -112,27 +122,27 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	memcpy(&text.front(), version.data(), version.length());
 	memcpy(&text.front() + version.length(), str, length);
 	text[version.length() + length] = '\0';
-	
+
 	const GLchar *cText = &text.front();
 	glShaderSource(object, 1, &cText, nullptr);
 	glCompileShader(object);
-	
+
 	GLint status;
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
 		string error = version;
 		error += string(str, length);
-		
+
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;
-		
+
 		glGetShaderInfoLog(object, SIZE, &length, message);
 		error += string(message, length);
-		Files::LogError(error);
+		Logger::LogError(error);
 		throw runtime_error("Shader compilation failed.");
 	}
-	
+
 	return object;
 }

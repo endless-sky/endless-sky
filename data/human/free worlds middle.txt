@@ -392,7 +392,7 @@ event "battle for Rastaban"
 
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
-	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
+	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in the system."
 	source Trinket
 	destination Dancer
 	clearance
@@ -595,11 +595,11 @@ mission "FW Southern Prisoners - Release"
 	npc accompany save
 		government "Escort"
 		personality timid escort
-		ship "Blackbird" "F.S. Charity"
-		ship "Blackbird" "F.S. Good Hope"
-		ship "Blackbird" "F.S. Stoutheart"
-		ship "Blackbird" "F.S. Nightingale"
-		ship "Blackbird" "F.S. Turtledove"
+		ship "Blackbird (Prisoner Transport)" "F.S. Charity"
+		ship "Blackbird (Prisoner Transport)" "F.S. Good Hope"
+		ship "Blackbird (Prisoner Transport)" "F.S. Stoutheart"
+		ship "Blackbird (Prisoner Transport)" "F.S. Nightingale"
+		ship "Blackbird (Prisoner Transport)" "F.S. Turtledove"
 	npc
 		government Republic
 		personality staying uninterested
@@ -705,7 +705,7 @@ mission "FW Southern Break"
 	on offer
 		log "Once again there is no immediate work to be done for the Free Worlds. This would be a good time to earn some money for an upgraded ship, if possible."
 		event "fw occupying the north" 50
-		"salary: Free Worlds" >?= 800
+		"salary: Free Worlds" >?= 2100
 		conversation
 			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
 			`	Freya says, "Well, I hope we're done with fighting for a while, now. We'll stay here to hold this system against any Navy retaliation. And, we'll keep hoping that Parliament might come to their senses and agree to a diplomatic end to this conflict. In the meantime I suggest you spend some time doing whatever it is you do to earn money on the side - carrying passengers or freight or hunting pirates. We'll contact you when things begin to move forward again."`
@@ -718,7 +718,7 @@ mission "FW Southern Break"
 			label salary
 			branch end
 				not "FW Pirates 4.1: offered"
-			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 800 credits, just like before."`
+			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 2,100 credits, just like before."`
 			
 			label end
 			`	Alondo gives you a nod. "We'll contact you as soon as things get interesting again."`
@@ -963,7 +963,7 @@ mission "FW Northern 3"
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
 		log "Agreed to become a member of the Free Worlds Council, taking Tomek's spot."
-		"salary: Free Worlds" = 2500
+		"salary: Free Worlds" = 6800
 		conversation
 			`As you are landing on <planet>, Freya says, "I miss Katya. It's hard being the only woman on the Council."`
 			choice
@@ -1171,7 +1171,7 @@ mission "FW Alphas 1.1"
 			`	Alondo explains, "It's only one Cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
 			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
-			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
+			`	Alondo says, "Captain <last> will lead the attack." He beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
 				accept
 	
 	npc accompany save
@@ -1184,7 +1184,7 @@ mission "FW Alphas 1.1"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
@@ -1227,7 +1227,7 @@ mission "FW Alphas 1.1"
 			`	While Nguyen holds the creature still, one of the Navy troops puts a gun to its head and pulls the trigger. Not even an Alpha can survive that; the creature goes limp. Now that you can get a good look at it, you can see that it does indeed have green skin.`
 				goto end
 			label end
-			`	Nguyen gets shakily to his feet; he looks stunned and very pale. "Thank you," he says. The sounds of gunfire within the factory eventually dies down. "We'll continue to patrol the city," says Nguyen, "in case there are more of them. Then I'll meet you in the spaceport." He heads off back into the city.`
+			`	Nguyen gets shakily to his feet; he looks stunned and very pale. "Thank you," he says. The sounds of gunfire within the factory eventually die down. "We'll continue to patrol the city," says Nguyen, "in case there are more of them. Then I'll meet you in the spaceport." He heads off back into the city.`
 
 
 
@@ -1275,7 +1275,7 @@ mission "FW Alphas 1.2"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
-		government "Pirate"
+		government "Alpha"
 		personality heroic staying target
 		system Graffias
 		ship "Leviathan (Heavy)" "Dread Lord"
@@ -1327,7 +1327,7 @@ mission "FW Alphas 1.1A"
 			`	"Yes," he says. "Silly, isn't it? Anyway, this is my job to deal with; you need to go find Danforth."`
 				goto end
 			label kill
-			`	"Well," he says, "I envy you for living in a universe where decision like this are easy. But to me it's still a painful choice to make. Anyway, that's my problem to deal with, not yours; you need to go find Danforth."`
+			`	"Well," he says, "I envy you for living in a universe where decisions like this are easy. But to me it's still a painful choice to make. Anyway, that's my problem to deal with, not yours; you need to go find Danforth."`
 				goto end
 			label live
 			`	"The Alphas were originally bred to be super-soldiers," he says, "a weapon in the hands of a despotic government. As much as I hate to admit it, there are certain branches of the Republic who would love to get their hands on a small army of impressionable Alpha children. Far better for them to die than for that to happen. Anyway, that's my job to deal with; you need to go find Danforth."`
@@ -1748,7 +1748,6 @@ mission "FW Albatross 2A"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
 	autosave
 	source "Albatross"
-	destination "Albatross"
 	clearance
 	to offer
 		has "FW Albatross 2: done"
@@ -1789,7 +1788,7 @@ mission "FW Albatross 2A"
 			`	They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
 				accept
 	on visit
-		dialog phrase "generic bounty hunting on visit"
+		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
 		personality staying plunders disables heroic nemesis target
@@ -2024,6 +2023,8 @@ mission "FW Defend New Tibet"
 	passengers 2
 	to offer
 		has "FW Rand 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."

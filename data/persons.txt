@@ -16,6 +16,8 @@ person "Michael Zahniser"
 		word
 			"I hope you're enjoying the game!"
 	ship Kestrel Kestrel
+		sprite "ship/kestreloriginal"
+		thumbnail "thumbnail/kestreloriginal"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -50,8 +52,6 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		bay "Fighter" -46 106 under
-		bay "Fighter" 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -72,36 +72,40 @@ person "Michael Zahniser"
 		turret 23 14 "Electron Turret"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
+		bay "Fighter" -46 106 under
+		bay "Fighter" 46 106 under
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
 		explode "huge explosion" 60
 	ship "Finch (MZ)" "Vapor"
+		"never disabled"
 	ship "Finch (MZ)" "Cipher"
+		"never disabled"
 
 ship "Finch" "Finch (MZ)"
-		"never disabled"
-		add attributes
-			"shields" 900
-			"hull" 1800
-			"outfit space" 140
-			"weapon capacity" 22
-			"engine capacity" 22
-		outfits
-			"Electron Beam" 2
-			
-			"Fuel Pod"
-			"Liquid Nitrogen Cooler"
-			"Large Radar Jammer"
-			"Ramscoop"
-			"S-270 Regenerator"
-			
-			"LP036a Battery Pack"
-			"Fission Reactor"
-			
-			"A125 Atomic Steering"
-			"A120 Atomic Thruster"
-			"Ionic Afterburner"
+	"never disabled"
+	add attributes
+		"shields" 900
+		"hull" 1800
+		"outfit space" 140
+		"weapon capacity" 22
+		"engine capacity" 22
+	outfits
+		"Electron Beam" 2
+		
+		"Fuel Pod"
+		"Liquid Nitrogen Cooler"
+		"Large Radar Jammer"
+		"Ramscoop"
+		"S-270 Regenerator"
+		
+		"LP036a Battery Pack"
+		"Fission Reactor"
+		
+		"A125 Atomic Steering"
+		"A120 Atomic Thruster"
+		"Ionic Afterburner"
 
 
 
@@ -441,7 +445,7 @@ ship "Lampyrid-Class Transport"
 		"shields" 5400
 		"hull" 4400
 		"required crew" 5
-		"bunks" 14
+		"bunks" 23
 		"mass" 240
 		"drag" 8.5
 		"heat dissipation" .7
@@ -469,6 +473,18 @@ ship "Lampyrid-Class Transport"
 	engine 0 80 1.8
 	engine 0 100 1.2
 	engine 64 28 0.7
+	"reverse engine" -64.5 -31.5 0.7
+	"reverse engine" 64.5 -31.5 0.7
+	"steering engine" -64.5 -31.5 0.7
+		angle -180
+		left
+	"steering engine" 64 28 0.7
+		left
+	"steering engine" -64 28 0.7
+		right
+	"steering engine" 64.5 -31.5 0.7
+		angle -180
+		right
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -601,11 +617,11 @@ ship "Modified Osprey"
 			"hit force" 30000
 	outfits
 		"Nuclear Missile"
-		"Korath Slicer" 4
+		"Husk-Slice" 4
 		"Korath Detainer" 4
 		"Finisher Pod" 2
 		"Finisher Torpedo" 200
-		"Korath Disruptor" 2
+		"Shield Disruptor Turret" 2
 		"Heliarch Repulsor" 2
 		"Point Defense Turret" 3
 		
@@ -619,7 +635,7 @@ ship "Modified Osprey"
 		"Tactical Scanner"
 		"Wanderer Ramscoop"
 		
-		"Afterburner"
+		"Volcano Afterburner"
 		`"Bufaer" Atomic Thruster`
 		"Ionic Afterburner" 5
 		"Type 4 Radiant Thruster"
@@ -632,10 +648,10 @@ ship "Modified Osprey"
 	engine -16.5 105 .6
 	engine 16.5 105 .6
 	gun 0 -114 "Nuclear Missile"
-	gun -6.5 -100 "Korath Slicer"
-	gun 6.5 -100 "Korath Slicer"
-	gun -14 -91 "Korath Slicer"
-	gun 14 -91 "Korath Slicer"
+	gun -6.5 -100 "Husk-Slice"
+	gun 6.5 -100 "Husk-Slice"
+	gun -14 -91 "Husk-Slice"
+	gun 14 -91 "Husk-Slice"
 	gun -19 -59 "Korath Detainer"
 	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
@@ -643,8 +659,8 @@ ship "Modified Osprey"
 	gun -67 -1.5 "Finisher Pod"
 	gun 67 -1.5 "Finisher Pod"
 	turret 0 -91.5 "Point Defense Turret"
-	turret -13.5 -15.5 "Korath Disruptor"
-	turret 13.5 -15.5 "Korath Disruptor"
+	turret -13.5 -15.5 "Shield Disruptor Turret"
+	turret 13.5 -15.5 "Shield Disruptor Turret"
 	turret -49.5 20 "Heliarch Repulsor"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
@@ -767,7 +783,7 @@ ship "Ursa Polaris"
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
-		"outfit space" 1768	
+		"outfit space" 1768
 		"weapon capacity" 861
 		"engine capacity" 301
 		weapon
@@ -779,13 +795,13 @@ ship "Ursa Polaris"
 		"Quarg Skylance"
 		"LG Gridfire Turret" 3
 		"Plasma Turret"
-		"Korath Disruptor" 5
+		"Shield Disruptor Turret" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
-		"Korath Repeater Rifle" 600
+		"Thermal Repeater Rifle" 600
 		"Thruster (Stellar Class)"
 		"Smelter-Class Thruster"
 		`"Basrem" Atomic Thruster`
@@ -796,19 +812,19 @@ ship "Ursa Polaris"
 	engine -106.5 80.5 0.4
 	turret 27 -162 "Quarg Anti-Missile"
 	turret 27 -162 "Quarg Skylance"
-	turret 27 -162 "Korath Disruptor"
+	turret 27 -162 "Shield Disruptor Turret"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
 	turret 94.5 -52.5 "LG Gridfire Turret"
-	turret 94.5 -52.5 "Korath Disruptor"
+	turret 94.5 -52.5 "Shield Disruptor Turret"
 	turret 80.5 53 "Quarg Anti-Missile"
 	turret 80.5 53 "LG Gridfire Turret"
-	turret 80.5 53 "Korath Disruptor"
+	turret 80.5 53 "Shield Disruptor Turret"
 	turret 21 25.5 "Quarg Anti-Missile"
 	turret 21 25.5 "LG Gridfire Turret"
-	turret 21 25.5 "Korath Disruptor"
+	turret 21 25.5 "Shield Disruptor Turret"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
-	turret -69.5 -43 "Korath Disruptor"
+	turret -69.5 -43 "Shield Disruptor Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -840,10 +856,10 @@ outfit "LG Gridfire Turret"
 
 person "Subsidurial"
 	government "Indigenous Lifeform"
-	frequency 100
+	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute
-	ship "Subsidurial"
+	ship "Subsidurial" "Subsidurial"
 		"never disabled"
 	system
 		government "Uninhabited"
@@ -851,8 +867,8 @@ person "Subsidurial"
 
 
 person "Prototype B3-CC4"
-	frequency 20000
 	government "Author"
+	frequency 1000
 	personality
 		forbearing mining unconstrained swarming
 	system
@@ -882,7 +898,7 @@ person "Prototype B3-CC4"
 			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
 			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
 			"I am the only thing in the universe capable of beating the power of friendship."
-			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
+			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The macOS workflow run was not successful.'"
 	phrase
 		word
 			"What are you looking at?"
@@ -897,7 +913,7 @@ person "Prototype B3-CC4"
 		word
 			"<"
 		word
-			"Unauthorised"
+			"Unauthorized"
 			"Unknown"
 		word
 			" "
@@ -925,7 +941,7 @@ person "Prototype B3-CC4"
 		word
 			"response"
 			"EM beam"
-			"transmission brust"
+			"transmission burst"
 		word
 			">"
 	phrase
@@ -988,6 +1004,7 @@ ship "Shooting Star"
 		"Floating Crystal"
 		"Tree Skeleton Key Stone"
 	gun 0 0
+		over
 	turret 0 0
 	turret 0 0
 	turret 0 0
@@ -1084,13 +1101,86 @@ outfit "Tree Skeleton Key Stone"
 
 
 person "Rais Iris XVIII"
-	frequency 200
 	government "Author"
+	frequency 200
 	personality
 		disables heroic plunders opportunistic
 	phrase
 		phrase
 			"friendly author"
+	phrase
+		word
+			"Remember, overkill is underrated."
+			"When in doubt, add more flammenwerfer."
+			"Why settle for something reasonable, when you can have something completely bonkers?"
+			"Bactrian Gaming."
+			"His Union's Qi Pianist."
+			"I'm basically a computer gynecologist."
+			"Your ship looks like it came out of a liquidizer!"
+			"Look at me. I am the Captain now."
+			`Pronounce "Wrzlprnft." You have 5 seconds.`
+			"Everything you see here has been created by volunteers. You can join us if you want!"
+
+			"To this day, I can still hear the Teeworlds title music."
+			"I am a light sleeper; but I am a heavy dreamer." # Owl City
+			"Did you know Viggo broke his toe?" # LoTR
+			"Meet me at the Prancing Pony." # LoTR
+			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
+			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
+			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGPGrey
+			"Do not greed for the Thrumbo horns." # RimWorld
+
+			# Walter Moers: The Mugg's Code of Conduct
+			"Honor thy muggroom."
+			"If thou seest two sticks lying one on top of the other, thou shalt walk backwards over them with thy left foot first, not with thy right. Moreover, thou shalt not devour them."
+			"Should a vulture's shadow fall across a fire that has gone out, thou shalt rekindle it three times or a great misfortune will ensue."
+			"If thou cross the path of a white cockerel seated on two superimposed sticks, thou shalt not strike it, nor shalt thou address it by name nor partake of the said sticks."
+			"Thou shalt not finkle backwards."
+			"Thou shalt not finkle forwards."
+
+			# SovietWomble
+			"Get the doomsday rounds."
+			`I wouldn't recommend shooting at me, because your gun goes "pew pew," but my gun goes BBBRRRRRRR!`
+			"Ramming speed!"
+
+			# videogamedonkey
+			"Tony. Get the boulder."
+			"Not even close!"
+			"Knack II, baby!"
+
+			# League of Legends
+			"Damnit Skaarl, did you hide my mushroom juice again?"
+			"Stand still! My eyes are on the side of my head!"
+			"One, two, three, four, two, two, three, four."
+			"Luck is failure that failed."
+			"If you want a weapon, here's a weapon. If you want conversation - here's a weapon."
+			"Working with you is almost like working alone. Almost."
+			"I will go over there. It looks quiet. It will be nice."
+
+			# Star Wars
+			"Yes, using Parsecs as measurement of speed does make sense."
+			"Hello there."
+			"I'm just a simple man trying to make my way in the universe."
+			"Did you ever hear the tragedy of Darth Plagueis the wise?"
+			"Congratulations, you are being rescued. Please do not resist."
+			"I'll be there for you. Cassian said I had to."
+
+	phrase
+		word
+			"We all serve "
+			"Praise be upon "
+			"I'm definitely not being held hostage by "
+		word
+			"the "
+		word
+			"barmy bronc."
+			"crazy colt."
+			"daft dobbin."
+			"foolish filly."
+			"scatty stallion."
+			"potty pony."
+			"mental mustang."
+
 	ship "Marauder Bactrian" "Rais Iris XVIII"
 		"never disabled"
 
@@ -1118,7 +1208,7 @@ ship "Marauder Bactrian"
 			"blast radius" 260
 			"shield damage" 2600
 			"hull damage" 1300
-			"hit force" 3900		
+			"hit force" 3900
 	outfits
 		"Dual Sunbeam Turret" 7
 		"Point Defense Turret"
@@ -1153,8 +1243,8 @@ ship "Marauder Bactrian"
 
 
 person "Zitchas"
-	frequency 200
 	government "Author"
+	frequency 1000
 	personality
 		mining harvests unconstrained opportunistic
 	system
@@ -1277,3 +1367,108 @@ person "Zitchas"
 	ship "Tern" "Shadow Flight 22"
 	ship "Tern" "Shadow Flight 23"
 	ship "Tern" "Shadow Flight 24"
+
+
+
+person "Brick"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"If sticks and stones break bones, then bricks should work wonders."
+			"The red coloring in bricks is caused by rust or iron oxide in the clay prior to baking."
+			"Bricks and blenders make monsters."
+			"I have no idea what I'm doing."
+	ship "Modified Boxwing" "Quarg Block"
+		"never disabled"
+	ship "Modified Boxwing" "Hai Block"
+		"never disabled"
+	ship "Modified Boxwing" "Remnant Block"
+		"never disabled"
+
+ship "Modified Boxwing"
+	sprite "ship/modified boxwing"
+	thumbnail "thumbnail/modified boxwing"
+	attributes
+		category "Interceptor"
+		cost 3690000
+		"shields" 8000
+		"hull" 8000
+		"required crew" 1
+		"bunks" 3
+		"mass" 60
+		"drag" 2.59
+		"heat dissipation" .27
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 350
+		"weapon capacity" 130
+		"engine capacity" 100
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Electron Beam" 2
+		"Heavy Laser" 2
+		"Beam Laser" 2
+
+		"Quarg Anti-Missile"
+
+		"Asteroid Scanner"
+		"Fuel Processor"
+		"Water Coolant System"
+		"Luxury Accommodations"
+		"Pebble Core"
+		"Hai Chasm Batteries"
+
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Scram Drive"
+
+	gun -3 -44.5 "Beam Laser"
+	gun 3 -44.5 "Beam Laser"
+	gun -8.5 -43 "Heavy Laser"
+	gun 8.5 -43 "Heavy Laser"
+	gun -15 -39 "Electron Beam"
+	gun 15 -39 "Electron Beam"
+	turret 0 7.5 "Quarg Anti-Missile"
+	engine -5 42
+		zoom 1
+	engine 5 42
+		zoom 1
+	engine -12 44
+		zoom 1
+	engine 12 44
+		zoom 1
+	engine -21.5 35
+		zoom 0.75
+	engine 21.5 35
+		zoom 0.75
+	engine -26 2
+		zoom 0.5
+	engine 26 2
+		zoom 0.5
+	"steering engine" -26.5 2
+		zoom 0.5
+		right
+	"steering engine" 26.5 2
+		zoom 0.5
+		left
+	"steering engine" -21.5 35
+		zoom 0.5
+		right
+	"steering engine" 21.5 35
+		zoom 0.5
+		left
+	leak "leak" 70 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `No matter how maligned, every ship has someone out there that loves it.`
+	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophagus. It is still terribly cramped, but at least it is luxurious and shiny!`

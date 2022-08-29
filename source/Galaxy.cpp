@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "SpriteSet.h"
 
-using namespace std;
-
 
 
 void Galaxy::Load(const DataNode &node)

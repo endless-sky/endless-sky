@@ -20,8 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
-
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
@@ -49,21 +47,13 @@ Angle Angle::Random(double range)
 	// The given range would have to be about 22.6 million degrees to overflow
 	// the size of a 32-bit int, which should never happen in normal usage.
 	uint32_t mod = static_cast<uint32_t>(fabs(range) * DEG_TO_STEP) + 1;
-	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) : 0);
-}
-
-
-
-// Default constructor: generates an angle pointing straight up.
-Angle::Angle()
-	: angle(0)
-{
+	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) & MASK : 0);
 }
 
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(double degrees)
+Angle::Angle(double degrees) noexcept
 	: angle(llround(degrees * DEG_TO_STEP) & MASK)
 {
 	// Make sure llround does not overflow with the values of System::SetDate.
@@ -75,7 +65,7 @@ Angle::Angle(double degrees)
 
 
 // Construct an angle pointing in the direction of the given vector.
-Angle::Angle(const Point &point)
+Angle::Angle(const Point &point) noexcept
 	: Angle(TO_DEG * atan2(point.X(), -point.Y()))
 {
 }
@@ -129,7 +119,7 @@ Angle Angle::operator-() const
 Point Angle::Unit() const
 {
 	// The very first time this is called, create a lookup table of unit vectors.
-	static vector<Point> cache;
+	static std::vector<Point> cache;
 	if(cache.empty())
 	{
 		cache.reserve(STEPS);
@@ -158,7 +148,7 @@ double Angle::Degrees() const
 }
 
 
-	
+
 // Return a point rotated by this angle around (0, 0).
 Point Angle::Rotate(const Point &point) const
 {
