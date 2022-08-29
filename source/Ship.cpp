@@ -1763,7 +1763,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->HyperlinkedTo(hyperspaceSystem, *this);
 		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 	}
 
@@ -2765,18 +2765,24 @@ bool Ship::IsUsingJumpDrive() const
 // Check if this ship is currently able to enter hyperspace to it target.
 bool Ship::IsReadyToJump(bool waitingIsReady) const
 {
+	printf("%s\n", "--");
 	// Ships can't jump while waiting for someone else, carried, or if already jumping.
 	if(IsDisabled() || (!waitingIsReady && commands.Has(Command::WAIT))
 			|| hyperspaceCount || !targetSystem || !currentSystem)
 		return false;
+	printf("%s\n", "aa");
 
 	// Check if the target system is valid and there is enough fuel to jump.
 	double fuelCost = JumpFuel(targetSystem);
 	if(!fuelCost || fuel < fuelCost)
 		return false;
 
+	printf("%s\n", "bb");
+
 	Point direction = targetSystem->Position() - currentSystem->Position();
-	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->Links().count(targetSystem);
+
+
+	bool isJump = !attributes.Get("hyperdrive") || !currentSystem->HyperlinkedTo(targetSystem, *this);
 	double scramThreshold = attributes.Get("scram drive");
 
 	// The ship can only enter hyperspace if it is traveling slowly enough
@@ -3155,7 +3161,7 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	bool linked = currentSystem->Links().count(destination);
+	bool linked = currentSystem->HyperlinkedTo(destination, *this);
 	// Figure out what sort of jump we're making.
 	if(attributes.Get("hyperdrive") && linked)
 		return HyperdriveFuel();

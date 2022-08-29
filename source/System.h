@@ -90,8 +90,11 @@ public:
 
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
-
 	const std::set<CustomLink> &CustomLinks() const;
+
+	// Check if this system is hyperlinked to a destination system with hyperlanes
+	// that can be traversed by a ship
+	bool HyperlinkedTo(const System *destination, const Ship &ship) const;
 	// Get a list of systems that can be jumped to from here with the given
 	// jump distance, whether or not there is a direct hyperspace link to them.
 	// If this system has its own jump range, then it will always return the

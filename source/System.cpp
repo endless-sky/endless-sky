@@ -513,6 +513,17 @@ const set<CustomLink> &System::CustomLinks() const
 }
 
 
+bool System::HyperlinkedTo(const System *destination, const Ship &ship) const
+{
+	bool linked = Links().count(destination);
+
+	bool custom_linked = count_if(CustomLinks().cbegin(), CustomLinks().cend(), [destination, ship](const CustomLink &link){
+		return link.GetSystem() == destination && link.CanTravel(ship);
+	});
+
+	return linked || custom_linked;
+}
+
 // Get a list of systems that can be jumped to from here with the given
 // jump distance, whether or not there is a direct hyperspace link to them.
 // If this system has its own jump range, then it will always return the

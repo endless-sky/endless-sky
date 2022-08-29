@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DistanceMap.h"
 
+#include <iostream>
+#include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -171,6 +173,14 @@ void DistanceMap::Init(const Ship *ship)
 		hyperspaceFuel = ship->HyperdriveFuel();
 		jumpFuel = ship->JumpDriveFuel();
 		jumpRange = ship->JumpRange();
+
+		for (auto linkType = GameData::CustomLinkTypes().begin(); linkType != GameData::CustomLinkTypes().end(); linkType++) {
+			if(linkType->second.CanTravel(*ship))
+				customLinkFuel[&linkType->second] = hyperspaceFuel;
+
+			std::cout << linkType->first << " " << customLinkFuel[&linkType->second] << std::endl;
+		}
+
 		// If hyperjumps and non-hyper jumps cost the same amount, there is no
 		// need to check hyperjump paths at all.
 		if(hyperspaceFuel == jumpFuel)
@@ -268,6 +278,22 @@ bool DistanceMap::Propagate(Edge edge, bool useJump)
 		if(!--maxCount)
 			return false;
 	}
+	if(!useJump)
+		for(const CustomLink &customLink : edge.next->CustomLinks())
+		{
+			std::cout << "CL" << std::endl;
+			if (!customLinkFuel[customLink.LinkType()])
+				continue;
+			std::cout << "EL" << std::endl;
+
+			if(HasBetter(*customLink.GetSystem(), edge) || !CheckLink(*edge.next, *customLink.GetSystem(), useJump))
+				continue;
+			std::cout << "FL" << std::endl;
+
+			Add(*customLink.GetSystem(), edge);
+			if(!--maxCount)
+				return false;
+		}
 	return true;
 }
 

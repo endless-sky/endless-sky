@@ -284,7 +284,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
 	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().count(jump[1]);
+	bool isLink = jump[0]->HyperlinkedTo(jump[1], *player.Flagship());
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
@@ -330,6 +330,28 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			gov = link->GetGovernment();
 			Color color = Color(.5f * alpha, 0.f);
 			if(player.HasVisited(*link) && link->IsInhabited(flagship) && gov)
+				color = Color(
+					alpha * gov->GetColor().Get()[0],
+					alpha * gov->GetColor().Get()[1],
+					alpha * gov->GetColor().Get()[2], 0.f);
+			RingShader::Draw(to, OUTER, INNER, color);
+		}
+		for(const CustomLink &customLink : system.CustomLinks())
+		{
+			if(!player.HasVisited(system) && !player.HasVisited(*customLink.GetSystem()))
+				continue;
+
+			Point to = customLink.GetSystem()->Position() - center + drawPos;
+			Point unit = (from - to).Unit() * LINK_OFFSET;
+			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, customLink.LinkType()->GetColorFor(*flagship, true));
+
+			if(drawnSystems.count(customLink.GetSystem()))
+				continue;
+			drawnSystems.insert(customLink.GetSystem());
+
+			gov = customLink.GetSystem()->GetGovernment();
+			Color color = Color(.5f * alpha, 0.f);
+			if(player.HasVisited(*customLink.GetSystem()) && customLink.GetSystem()->IsInhabited(flagship) && gov)
 				color = Color(
 					alpha * gov->GetColor().Get()[0],
 					alpha * gov->GetColor().Get()[1],
@@ -969,7 +991,7 @@ void MapPanel::DrawTravelPlan()
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
-		bool isHyper = previous->Links().count(next);
+		bool isHyper = previous->HyperlinkedTo(next, *player.Flagship());
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool systemJumpRange = previous->JumpRange() > 0.;
 		bool isWormhole = false;

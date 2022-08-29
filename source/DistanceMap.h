@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
+#include "CustomLink.h"
+
 #include <map>
 #include <queue>
 #include <set>
@@ -109,6 +111,8 @@ private:
 	// the ship does not have that type of drive.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
+	std::map<const CustomLinkType*, int> customLinkFuel;
+
 	bool useWormholes = true;
 	double jumpRange = 0.;
 };
