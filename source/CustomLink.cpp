@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -32,10 +33,32 @@ bool CustomLink::operator<(const CustomLink& link) const
 
 
 
+void CustomLink::Load(const string &system, const string &linkType)
+{
+	this->system = GameData::Systems().Get(system);
+	this->linkType = GameData::CustomLinkTypes().Get(linkType);
+}
+
+
+
 // Shorthand for CustomLinkType::CanTravel
 bool CustomLink::CanTravel(const Ship &ship) const
 {
     return linkType->CanTravel(ship);
+}
+
+
+
+const CustomLinkType* CustomLink::LinkType() const
+{
+	return linkType;
+}
+
+
+
+const System* CustomLink::GetSystem() const
+{
+	return system;
 }
 
 
@@ -46,10 +69,13 @@ bool CustomLink::CanTravel(const Outfit &outfit) const
 }
 
 
-const Color &CustomLinkType::GetColorFor(const Ship &ship) const
+const Color &CustomLinkType::GetColorFor(const Ship &ship, bool isClose) const
 {
-	bool canTravel = ship.Attributes().Get(requirement);
-	bool isClose = true;
+	bool canTravel = CanTravel(ship);
+
+	std::cout << isClose << canTravel << std::endl;
+	std::cout << closeColor.Get()[3] << std::endl;
+
 	if (canTravel && isClose)
 		return closeColor;
 	if (canTravel && !isClose)
@@ -75,34 +101,34 @@ void CustomLinkType::Load(const DataNode &node)
             child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
         else if(child.Token(0) == "requires") 
             requirement = child.Token(1);
-        
-        
-        bool found_color = false;
-        for (size_t i = 0; i < (sizeof(color_names) / sizeof(string)); ++i) 
+        else
         {
-            bool is_far = i % 2;
-            bool is_unusable = i > 1;
-            if(child.Token(0) == color_names[i]) 
-            {
-                if(child.Size() == 4) 
-                {
-                    if(is_unusable) {
-                        child.PrintTrace("Warning: Custom link color when unusable \"" + color_names[i] + "\" did not specify an alpha value, so 0.0 (transparent) was assumed.");
-                        *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), 0);
-                    }
-                    else
-                        *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), 0.5 ? is_far : 1);
-                }
-                if(child.Size() == 5) 
-                    *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), child.Value(4));
-                wasDefined[i] = true;
-                found_color = true;
-                break;
-            }
+	        bool found_color = false;
+	        for (size_t i = 0; i < (sizeof(color_names) / sizeof(string)); ++i)
+	        {
+	            bool is_far = i % 2;
+	            bool is_unusable = i > 1;
+	            if(child.Token(0) == color_names[i])
+	            {
+	                if(child.Size() == 4)
+	                {
+	                    if(is_unusable) {
+	                        child.PrintTrace("Warning: Custom link color when unusable \"" + color_names[i] + "\" did not specify an alpha value, so 0.0 (transparent) was assumed.");
+	                        *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), 0);
+	                    }
+	                    else
+	                        *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), 0.5 ? is_far : 1);
+	                }
+	                if(child.Size() == 5)
+	                    *colorPointers[i] = Color(child.Value(1), child.Value(2), child.Value(3), child.Value(4));
+	                wasDefined[i] = true;
+	                found_color = true;
+	                break;
+	            }
+	        }
+	        if(!found_color)
+	            child.PrintTrace("Skipped unrecognized key: " + child.Token(0) + ".");
         }
-        if(!found_color)
-            child.PrintTrace("Skipped unrecognized key: " + child.Token(0) + ".");    
-        
     }
 
     // Adjust everything's colors with the alpha value
@@ -124,6 +150,7 @@ void CustomLinkType::Load(const DataNode &node)
 // Checks if a certain ship can travel through this link type
 bool CustomLinkType::CanTravel(const Ship &ship) const
 {
+	std::cout << requirement << " " << ship.Attributes().Get(requirement) << std::endl;
     return ship.Attributes().Get(requirement);
 }
 

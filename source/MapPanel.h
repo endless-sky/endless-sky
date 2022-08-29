@@ -158,6 +158,7 @@ private:
 	void DrawEscorts();
 	void DrawWormholes();
 	void DrawLinks();
+	void DrawCustomLinks();
 	// Draw systems in accordance to the set commodity color scheme.
 	void DrawSystems();
 	void DrawNames();

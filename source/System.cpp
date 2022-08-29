@@ -135,6 +135,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				attributes.clear();
 			else if(key == "link")
 				links.clear();
+			else if(key == "custom link")
+				customLinks.clear();
 			else if(key == "asteroids" || key == "minables")
 				asteroids.clear();
 			else if(key == "haze")
@@ -190,6 +192,25 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				links.erase(GameData::Systems().Get(value));
 			else
 				links.insert(GameData::Systems().Get(value));
+		}
+		else if(key == "custom link")
+		{
+			int systemIndex = valueIndex;
+			int linkTypeIndex = valueIndex + 1;
+			if(child.Size() > linkTypeIndex)
+			{
+				CustomLink link;
+				link.Load(child.Token(systemIndex), child.Token(linkTypeIndex));
+				if (remove)
+					customLinks.erase(link);
+				else
+					customLinks.insert(link);
+			}
+			else
+				if (remove)
+					child.PrintTrace("Error: Erasing custom links requires both target system and link type");
+				else
+					child.PrintTrace("Error: Custom link has to provide both target system and link type");
 		}
 		else if(key == "asteroids")
 		{
@@ -483,6 +504,13 @@ const set<const System *> &System::Links() const
 	return links;
 }
 
+
+
+// Get a list of systems you can travel to through hyperspace from here.
+const set<CustomLink> &System::CustomLinks() const
+{
+	return customLinks;
+}
 
 
 // Get a list of systems that can be jumped to from here with the given

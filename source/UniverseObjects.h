@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Conversation.h"
+#include "CustomLink.h"
 #include "Effect.h"
 #include "Fleet.h"
 #include "Galaxy.h"
@@ -92,6 +93,8 @@ private:
 private:
 	Set<Color> colors;
 	Set<Conversation> conversations;
+	Set<CustomLink> customLinks;
+	Set<CustomLinkType> customLinkTypes;
 	Set<Effect> effects;
 	Set<GameEvent> events;
 	Set<Fleet> fleets;

@@ -485,6 +485,13 @@ const Set<Conversation> &GameData::Conversations()
 
 
 
+const Set<CustomLinkType> &GameData::CustomLinkTypes()
+{
+	return objects.customLinkTypes;
+}
+
+
+
 const Set<Effect> &GameData::Effects()
 {
 	return objects.effects;

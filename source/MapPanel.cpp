@@ -10,11 +10,13 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
+#include <iostream>
 #include "MapPanel.h"
 
 #include "text/alignment.hpp"
 #include "Angle.h"
 #include "CargoHold.h"
+#include "CustomLink.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "FogShader.h"
@@ -908,6 +910,23 @@ void MapPanel::UpdateCache()
 
 				bool isClose = (system == &playerSystem || link == &playerSystem);
 				links.emplace_back(system->Position(), link->Position(), isClose ? closeColor : farColor);
+			}
+
+		for(const CustomLink &customLink : system->CustomLinks())
+			if(customLink.GetSystem() < system || !player.HasSeen(*customLink.GetSystem()))
+			{
+				if((!player.HasVisited(*system) && !player.HasVisited(*customLink.GetSystem())) || !customLink.GetSystem()->IsValid())
+					continue;
+
+				std::cout << "ql" << std::endl;
+
+				bool isClose = (system == &playerSystem || customLink.GetSystem() == &playerSystem);
+
+				// Custom links change color depending on the ship's outfits
+				Color color = customLink.LinkType()->GetColorFor(*player.Flagship(), isClose);
+				std::cout << color.Get()[0] << ","<< color.Get()[1] << ","<< color.Get()[2] << ","<< color.Get()[3] << "," << std::endl;
+
+				links.emplace_back(system->Position(), customLink.GetSystem()->Position(), color);
 			}
 	}
 }

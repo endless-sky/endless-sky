@@ -26,6 +26,7 @@ class Outfit;
 class CustomLink
 {
 	public:
+		void Load(const std::string &system, const std::string &linkType);
 
 		// For sorting in set objects
 		bool operator<(const CustomLink&) const;
@@ -33,12 +34,15 @@ class CustomLink
 		// Check if a ship/outfit can travel through this link. This function calls CustomLinkType::CanTravel
 		bool CanTravel(const Ship &ship) const;
 		bool CanTravel(const Outfit &outfit) const;
+
+		const CustomLinkType* LinkType() const;
+		const System* GetSystem() const;
 		
 	private:
 		// System this link links to
 		const System *system = nullptr;
 		// String representing link type
-		CustomLinkType *linkType = nullptr;
+		const CustomLinkType *linkType = nullptr;
 };
 
 // Plugin-editable hyperlink type
@@ -51,7 +55,7 @@ class CustomLinkType
 		bool CanTravel(const Ship &ship) const;
 		bool CanTravel(const Outfit &outfit) const;
 		
-		const Color &GetColorFor(const Ship &ship) const;
+		const Color &GetColorFor(const Ship &ship, bool isClose) const;
 
 	private:
 		bool doHyperdriveMovement = false;

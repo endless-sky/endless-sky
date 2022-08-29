@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "CustomLink.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RandomEvent.h"
@@ -24,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class CustomLink;
 class DataNode;
 class Date;
 class Fleet;
@@ -88,6 +90,8 @@ public:
 
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::set<const System *> &Links() const;
+
+	const std::set<CustomLink> &CustomLinks() const;
 	// Get a list of systems that can be jumped to from here with the given
 	// jump distance, whether or not there is a direct hyperspace link to them.
 	// If this system has its own jump range, then it will always return the
@@ -184,6 +188,7 @@ private:
 
 	// Hyperspace links to other systems.
 	std::set<const System *> links;
+	std::set<CustomLink> customLinks;
 	std::map<double, std::set<const System *>> neighbors;
 
 	// Defines whether this system can be seen when not linked.
