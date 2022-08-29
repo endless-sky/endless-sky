@@ -35,7 +35,7 @@ SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
 		WHEN( "money is added" ) {
 			REQUIRE( account.Credits() == 0. );
 			account.AddCredits(100);
-			THEN( "the balance is increased" ){
+			THEN( "the balance is increased" ) {
 				REQUIRE( account.Credits() == 100 );
 			}
 		}
