@@ -423,7 +423,8 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 				try {
 					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
-				} catch(const std::invalid_argument &e) {
+				} catch(const std::invalid_argument &e)
+				{
 					SUCCEED( "threw when item weight was negative" );
 					AND_THEN( "the invalid object was not inserted into the list" ) {
 						CHECK( list.empty() );
