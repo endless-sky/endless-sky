@@ -401,7 +401,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 				// Compare the observed distribution to the expected distribution using the chi-squared
 				// statistic with a two degrees of freedom and significance levels of 0.01 and 0.05.
 				// (Critical values available via NIST: https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm)
-				if (computeChiStat(totalPicks) > 9.210)
+				if(computeChiStat(totalPicks) > 9.210)
 				{
 					INFO("alpha = 0.05");
 					CHECK( computeChiStat(totalPicks) <= 5.991 );
