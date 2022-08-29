@@ -127,7 +127,8 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
-			for(const DataNode &grand : child){
+			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
