@@ -60,7 +60,7 @@ class CustomLinkType
 	private:
 		bool doHyperdriveMovement = false;
 
-		 // Link color when it is far away from the player
+		// Link color when it is far away from the player
 		Color farColor = Color(0.5f, 1.f);
 		// Color when it is close to the player
 		Color closeColor  = Color(1.f, 1.f);
