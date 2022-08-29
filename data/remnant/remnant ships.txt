@@ -232,11 +232,12 @@ ship "Albatross" "Albatross (Ember Shield)"
 
 
 ship "Modified Dromedary"
+	plural "Modified Dromedaries"
 	sprite "ship/modified dromedary"
 	thumbnail "thumbnail/modified dromedary"
 	attributes
 		licenses
-			Remnant Capital
+			"Remnant Capital"
 		category "Transport"
 		"cost" 57600000
 		"shields" 15100
@@ -303,7 +304,7 @@ ship "Modified Dromedary"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for cityships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed 'dream cells' built to transport people in bulk."
+	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
 	description "	Since the Remnant do not have schematics for the Dromedary, just the highly-modified example of the Shattered Light, this ship is actually a commemorative replica of that specific ship. As such, it combines the original's odd mix of eclectic modifications with new Remnant systems."
 	description "	Unfortunately, since they lack the manufacturing facilities that would normally support a large construction project, it will cost massively more than it would have originally back on Luna."
 
@@ -543,7 +544,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 	explode "large explosion" 45
 	explode "huge explosion" 30
 	"final explode" "final explosion large"
-	description "The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for cityships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed 'dream cells' built to transport people in bulk."
+	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
 	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistently continuing their work manage to maintain any degree of functionality."
 
 

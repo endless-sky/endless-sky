@@ -160,7 +160,7 @@ mission "Remnant: Shattered Light 1"
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
-		system Caeculus
+		system "Caeculus"
 		ship "Modified Dromedary Ghost" "???"
 		dialog "This ship barely registers on your sensors, and you can clearly see through it. The Remnant will want to know about it. You should probably look for Taely on Viminal."
 	on complete
@@ -202,7 +202,7 @@ mission "Remnant: Shattered Light 2"
 		payment 50000
 		conversation
 			`The <ship> hasn't even settled onto the landing pad when Ruach leaps down from the airlock and jogs a couple of spots down to stare up at the gills of an Albatross. A few moments later, Taely drops out of them, greeting Ruach warmly. By the time you join them, Ruach has a hologram of the spectral ship floating in the air. "It is lacking the confirmation codes or identification info, but I am confident that this is it," muses Ruach as you arrive.`
-			`	"Sorry for leaving you behind, <first>, but this is just such an exciting discovery. This ship you found matches the profile of the Shattered Light - a large city ship that was part of the exodus but never arrived on this side of the wormhole. There are so many questions to be answered! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
+			`	"Sorry for leaving you behind, <first>, but this is just such an exciting discovery. This ship you found matches the profile of the Shattered Light - a large city ship that was part of the Exodus but never arrived on this side of the wormhole. There are so many questions to be answered! Anyway, the data is being distributed right now. Meet me in the cafeteria in a few hours to see what ideas have come up. Oh, and before I forget, we have allotted you <payment> for your assistance."`
 			
 
 
@@ -354,7 +354,7 @@ mission "Remnant: Shattered Light 6"
 	on offer
 		conversation
 			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
-			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd of people is gathered around them in animated conversation. They spot you and the crowd start waving their goodbyes as the group pick up their bags and head towards you.`
+			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd is gathered around them in animated conversation. They spot you and the crowd start waving their goodbyes as the group pick up their bags and head towards you.`
 			`	"Ah, <first>! Thank you for transporting us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 				accept
 	on complete
@@ -362,7 +362,7 @@ mission "Remnant: Shattered Light 6"
 		event "remnant: shattered light research" 60
 		conversation
 			`The Remnant spend the trip busily discussing what is known so far and exchanging theories, eagerly asking you questions about what you saw and reviewing your sensor records. By the time you reach Viminal, they have a whole collection of theories and have a preliminary plan of what studies they hope to do. When pressed, however, they all acknowledge that their top priority will be documenting the ship. Every scratch, every oddly charged component, every minor modification. "After all," they say, "knowing how it is now is the first step to determining how it arrived here."`
-			`	The entire complement of Remnant crowd the windows when you finally settle into the final approach for the covered valley that houses the Shattered Light. You can see that the Remnant have been busy setting up large equipment towers around it, including several small encampments of tents. As you settle in for a landing, you see a camel team maneuver a sled with a large anti-aircraft battery into position, where it is promptly shrouded in a tent that blends into the rest of the camp.`
+			`	The entire complement of Remnant crowd the windows when you settle into the final approach for the covered valley that houses the Shattered Light. You can see that the Remnant have been busy setting up large equipment towers around it, including several small encampments of tents. As you settle in for a landing, you see a camel team maneuver a sled with a large anti-aircraft battery into position, where it is promptly shrouded in a tent that blends into the rest of the camp.`
 			`	Traffic control directs you to a pad near a large door of the Shattered Light. Ruach and a small group of Remnant are gathered around a hologram of the ship, and seem to be co-ordinating teams exploring it. Large mounds of equipment appear to have expanded from the sides of the ship, some of which appears to be functional. As you go through your landing checks, the team thank you for the transportation and begin offloading their equipment.`
 			`	"Welcome back, <first>!" signs Ruach from across the pad. "We have made considerable progress already." She appears set to explain what they have discovered.`
 			choice
@@ -370,7 +370,7 @@ mission "Remnant: Shattered Light 6"
 					goto shatteredrequest
 				`	"You figured out what happened? Great!"`
 			`	She looks crestfallen "Well, we know what the ship thinks happened, anyway. It is likely that what actually happened differs significantly." Her posture takes on a more positive stance. "We have had the opportunity to start querying the onboard systems and piece together a little of the Shattered Light's history. Particularly the logs.`
-			`	"As we all know, it was part of the exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
+			`	"As we all know, it was part of the Exodus fleet that entered the Terminus wormhole. Unlike most of the other ships, however, it never emerged from the other side. Fortunately, it had a significantly larger array of instruments than was normal for ships of its type, and it looks like at least some of the databanks survived."`
 			`	At this point another Remnant takes up the narrative. "Based on the initial incident logs, it appears that something in the stabilization fields failed during transit. The data is not clear whether the systems failed, or if something in the wormhole fluctuations exceeded the parameters that the systems could handle. In any case, the ship appears to have been shunted laterally from the wormhole in mid-transit.`
 			`	"It is unclear what happened after that, but the ship was subject to significant forces including unidentified impacts that caused multiple system failures. The data loses some coherence at this point, but it basically seems to have been semi-permanently stuck out-of-phase with the prime weft until an energy surge destabilized it and it wobbled back into prime coherence. At that point, it started being visible again, and shortly after, you spotted it."`
 			choice
@@ -383,5 +383,5 @@ mission "Remnant: Shattered Light 6"
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
 			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
-			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at Tycho Crater... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
+			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
