@@ -37,7 +37,7 @@ class CustomLink
 
 		const CustomLinkType* LinkType() const;
 		const System* GetSystem() const;
-		
+
 	private:
 		// System this link links to
 		const System *system = nullptr;
@@ -54,22 +54,22 @@ class CustomLinkType
 		// Check if a ship/outfit can travel through this link type
 		bool CanTravel(const Ship &ship) const;
 		bool CanTravel(const Outfit &outfit) const;
-		
+
 		const Color &GetColorFor(const Ship &ship, bool isClose) const;
 
 	private:
 		bool doHyperdriveMovement = false;
-		
+
 		 // Link color when it is far away from the player
 		Color farColor = Color(0.5f, 1.f);
 		// Color when it is close to the player
-		Color closeColor  = Color(1.f, 1.f); 
+		Color closeColor  = Color(1.f, 1.f);
 
 		// Same as above, but used when the player can't travel through the links. Can be used to create "secret" links.
 		Color unusableFarColor = Color(0.5f, 0.f);
 		Color unusableCloseColor = Color(1.f, 0.f);
 
 		// Outfit attribute required to travel through this link
-		std::string requirement; 
+		std::string requirement;
 };
 #endif
