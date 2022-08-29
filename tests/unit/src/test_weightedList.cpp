@@ -372,7 +372,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 		list.emplace_back(weights[2], third);
 
 		WHEN( "a random selection is performed" ) {
-			auto getSampleSummary = [&list](std::size_t size){
+			auto getSampleSummary = [&list](std::size_t size) {
 				auto l = std::map<int, unsigned>{};
 				for(unsigned i = 0; i < size; ++i)
 					++l[list.Get().GetValue()];
@@ -420,7 +420,7 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 
 		WHEN( "attempting to insert a negative weighted object" ) {
 			THEN( "an invalid argument exception is thrown" ) {
-				try{
+				try {
 					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
 				} catch(const std::invalid_argument &e) {

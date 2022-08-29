@@ -32,7 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace{
+namespace {
 	const auto STATUS_TO_TEXT = map<Test::Status, const string> {
 		{Test::Status::ACTIVE, "active"},
 		{Test::Status::BROKEN, "broken"},
