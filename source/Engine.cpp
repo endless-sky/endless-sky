@@ -976,7 +976,8 @@ void Engine::Draw() const
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		const Color *color = nullptr;
-		switch (it->importance) {
+		switch(it->importance)
+		{
 			case Messages::Importance::Highest:
 				color = GameData::Colors().Find("message importance highest");
 				break;
