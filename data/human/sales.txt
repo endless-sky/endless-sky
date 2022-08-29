@@ -475,6 +475,8 @@ outfitter "Pirate Outfits"
 	"Gatling Gun"
 	"Bullet Boxes"
 	"Brig"
+	"Slave"
+	"Drugs"
 
 outfitter "Stack Core"
 	"Stack Core"

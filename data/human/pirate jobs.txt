@@ -3396,3 +3396,21 @@ mission "Republic Assassination [4]"
 		"reputation: Republic" -= 25
 		"reputation: Navy (Oathkeeper)" -= 25
 		"reputation: Pirate" += 10
+
+mission "Slave revolt"
+	landing
+	repeat
+	to offer
+		random < 10
+	on offer
+		require "Slave" 2
+		require "Laser Rifle"
+		conversation
+			`	You are flicking through your diary in your cabin, when out of the corner of your eye, you see your door start to open.`
+			`	You look up, one of your slaves' head pokes through... the tip of a laser rifle pokes through as well.`
+			choice
+				`    Dive for cover.`
+					goto Dive
+			label "Dive"
+			`	You immediately try to dive behind your bed. As you jump there's a flash of light. You see no more...`
+				die
