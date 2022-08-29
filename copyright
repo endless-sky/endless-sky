@@ -1398,6 +1398,7 @@ Files:
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
  images/effect/wanderer?flare/*
+ images/effect/zapper?impact/*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
@@ -1553,11 +1554,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
 Files:
- images/ship/raider?xlii*
- images/thumbnail/raider?xlii*
+ images/ship/tubfalet*
+ images/thumbnail/tubfalet*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
+
+Files:
+ images/ship/-nra-ret*
+ images/thumbnail/-nra-ret*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by NomadicVolcano (public domain).
 
 Files:
  images/outfit/microbot?defense?station*

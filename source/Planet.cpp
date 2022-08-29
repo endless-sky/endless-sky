@@ -617,8 +617,15 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 
 	// All defenders use a special personality.
 	Personality defenderPersonality = Personality::Defender();
+	Personality fighterPersonality = Personality::DefenderFighter();
 	for(auto it = defenders.begin(); it != end; ++it)
+	{
 		(**it).SetPersonality(defenderPersonality);
+		if((**it).HasBays())
+			for(auto bay = (**it).Bays().begin(); bay != (**it).Bays().end(); ++bay)
+				if(bay->ship)
+					bay->ship->SetPersonality(fighterPersonality);
+	}
 
 	++defenseDeployed;
 }
