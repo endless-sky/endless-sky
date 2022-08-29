@@ -4293,7 +4293,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Falcon" "Pestilance"
-	
+
 	npc kill 
 		personality heroic nemesis waiting staying target
 		government "Pirate"
@@ -4313,7 +4313,7 @@ mission "Saving Artifacts 3"
 		personality heroic nemesis waiting staying target
 		government "Pirate"
 		ship "Headhunter" "Konkwest"
-	
+
 	on complete
 		conversation
 			`The clerk rushes up to your ship as soon as it finishes landing on the tarmac. He begins to shake your hand vigorously. "You got rid of all his cronies, yeah?" You nod. "Good. Take the statues into your ship and don't draw attention to yourself. Don't want them stolen, y'know." A sarcastic grin emerges on his face.`
@@ -4331,6 +4331,10 @@ mission "Saving Artifacts 4"
 		or
 			has "Bought Off Artifacts"
 			has "Saving Artifacts 3: done"
+			and
+				has "Saving Artifacts 2: done"
+				not "Duel Lokust"
+	landing
 	
 	on visit
 		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
@@ -4338,4 +4342,418 @@ mission "Saving Artifacts 4"
 		payment 1800000
 		conversation
 			`You dock on the station and the librarian from earlier comes to greet you almost immediately. "Get the dockworkers, stat!" he calls, then turns to you. "You did get the statues, right?" He relaxes once he sees you nod. As the cargo is unloaded, the librarian hurries up to inspect your haul and shakes his head. "There's damage, but I suppose it's the best we could've hoped for considering the circumstances." He sighs. "Thank you for your help, Captain <last>. You've provided an invaluable service." After paying you <payment>, he turns back towards the statues, focusing his attention on their safe unloading.`
+				decline
+
+
+
+mission "Dangerous Games 1"
+	minor
+	name "Dragonriders"
+	description "A lively man named Karengo and a few passionate youths are traveling to see the dragons on <stopovers>. Take the group there, then return them to <destination> once they've finished."
+	passengers 9
+	source
+		attributes "frontier" "pirate"
+	stopover "Skymoot"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Upon entering the spaceport, you notice that the local bar seems to be more active than usual. The moment you pass through the bar door, a strong drink is pressed into your hand. You look at it, dumbfounded, and then look up to the waiter who gave it to you. "Compliments of Mr. Karengo," he says, nodding his head towards a crowd of people, mostly young men, before moving on.`
+			choice
+				`	(Head over to "Mr. Karengo.")`
+				`	(Leave.)`
+					decline
+			`	As you make your way over, you note that nearly everyone in the bar has the same drink you do. In the middle of the crowd, a large, heavily muscled, and tattooed man is gesticulating wildly, apparently telling a story.`
+			choice
+				`	(Go listen to the man.)`
+				`	(Leave.)`
+					decline
+			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all: who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
+			`	You've heard the stories of the dragons flying through <planet>'s skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. <planet> is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
+			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells. "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
+			choice
+				`	"Captain <last>, at your service. We leave at dawn!"`
+					goto accept
+				`	"Am I getting paid?"`
+					goto money
+				`	(Stay silent.)`
+			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to <planet>." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+				decline
+			label accept
+			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
+				accept
+			label money
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation."`
+			choice
+				`	"Works for me. We leave tomorrow."`
+					goto accept
+				`	"<payment> won't be enough. I'm out."`
+			`	You're treated to some jeering and rude looks as you leave the bar.`
+				decline
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
+	on stopover
+		conversation
+			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech as your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
+			`	"Look lively, lads!" shouts Karengo, the only person still standing. "Your chariot awaits!" He double-checks the jetpacks on the backs of each of the eight men, or "Dragonriders," as they creatively branded themselves during the first night of the voyage, then opens the side hatch and hurls the Dragonriders out the door before jumping himself.`
+			`	After the group has left, you land - this time undisturbed - and pull up every external camera you have to watch the action.`
+			`	The dragons of Skymoot you learned about on the "Xenofauna and Flora" channel were different from the dragons of mythology, but the beasts you see today aren't quite what you learned about, either. For one, the creatures flying outside your window are faster than you thought possible, or perhaps the ones on the show had been drugged to make them easier to film.`
+			`	A quick survey of the scene shows that Karengo has tagged three dragons with some sort of harmless marker gun to make them easier to track. Eight of the Dragonriders, Karengo included, are chasing the largest one, which is missing part of a tooth and has blackened scales from where it hit your ship's shields. The last Dragonrider is nowhere in sight.`
+			`	Suddenly, proximity sensors go off on the starboard side and a camera shows something - or someone - bounce off your shield and tumble down the mountain.`
+			choice
+				`	(Announce that I'm leaving.)`
+					goto leave
+				`	(Stay and watch the Dragonriders.)`
+				`	(Take off and leave everybody else behind.)`
+					goto betrayal
+			`	Checking your camera feeds again, you see that object rolling down the hill is indeed a body. On another monitor, one of the Dragonriders is keeping just above a dragon, attempting to lower himself down. The dragon rolls in midair, its wing catching the man and sending him flying out of control. Fortunately, a leafy tree branch prevents any further physical harm. Meanwhile, a second dragon is pursuing another one of the Dragonriders.`
+			choice
+				`	(Get everyone out of there.)`
+					goto leave
+				`	(Take off and leave everybody else behind.)`
+			label betrayal
+			action
+				fail
+			`	The ship takes off with a roar at your touch. Between the cries of the dragons, the sound of the engines, and the air rushing past, you can barely hear the fear and betrayal in the voices of the men you've left behind.`
+				decline
+			label leave
+			`	You turn on the external speakers. "We are leaving," you blast to the survivors. "Get on board."`
+			`	The defeated Dragonriders need no further encouragement. They beeline for the hatch and you flicker the shield to let them on deck, where they collapse, wide-eyed and panting. Karengo isn't with them. You turn to ask about him when a flicker of motion on a monitor catches your eye.`
+			`	Karengo is riding a dragon, gripping the ridge of scales around its neck. The dragon frantically tries to get him off, but deft application of his jetpack keeps him on top of the beast for now. He lets out wild screams of triumph as they soar through the sky and at last you can understand the appeal of this whole expedition. Your admiration is cut short by two catastrophic crashes on either side of the ship and accompanying sirens. The dragons are trying to get through.`
+			`	You activate your engines, and the ship takes off quickly enough to make you light-headed. "Get on board!" shouts one of the men over the external speakers as you position the ship just below Karengo and lower the shields. Scales bounce off the roof like diamonds. Karengo releases his grip on the dragon and free falls toward you, slowing at the last possible moment before dropping through the top hatch. You flick on the shields and hit the engines, hard. They respond enthusiastically, rocketing you away from the mountain and into the safety of patrolled airspace. From the cabin comes the sound of back-slapping and, surprisingly, a sob.`
+	on complete
+		payment 12000 500
+		conversation
+			`As you land and fuel up, Karengo herds the seven surviving men out of the ship. "Meet us at the bar, yeah?" he says to you. "This day deserves a celebration." You nod, but can't help but notice red eyes and wet cheeks among the rest of the Dragonriders as they shuffle off.`
+			`	Later that day, you spot the Dragonriders at a corner table of the bar. The men, with the exception of Karengo, appear subdued.`
+			`	"How goes it, <last>?" he asks. "We were just raising a glass to mission success - made possible by you, of course. Great flying, Captain." The bartender arrives with a round of drinks and Karengo raises one. "To the Dragonriders!" he says.`
+			choice
+				`	"To the Dragonriders!"`
+				`	"To our fallen friend!"`
+				`	"I'm good, thanks."`
+			`	Karengo gives you an unreadable look, lowers his glass, and says, "Your payment, plus Jarek's signup fees: <payment>."`
+			choice
+				`	"Thanks."`
+					goto end
+				`	I can't accept his money. It's not right."`
+			`	Karengo shrugs and doesn't take it back.`
+			label end
+			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
+
+
+
+mission "Dangerous Games 2"
+	minor
+	name "Karengo's Galactic Adventures"
+	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures". Bring Karengo and crew to <destination> for <payment>.`
+	source
+		attributes "frontier" "pirate" "rim"
+	destination "Poseidos"
+	cargo "subpods" 6
+	passengers 6
+	to offer
+		random < 15
+		has "Dangerous Games 1: done"
+	on offer
+		conversation
+			`A boisterous laugh sounds from somewhere behind you. You haven't heard that voice since your ship was attacked by dragons.`
+			`	"<first>!" A huge hand claps you on the shoulder and spins you around, where you find yourself facing a large, widely grinning man.`
+			`	"Remember me? Yer the best pilot I've had - that stunt to get us out of Skymoot, right out of the dragon's nest? Epic."`
+			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
+			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. Your ship's waterproof, right?"`
+			choice
+				`	"Uh, yeah. I think so.`
+				`	"Of course."`
+				`	"Sorry, mate. You'll have to find another pilot."`
+					decline
+			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
+			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
+				accept
+	on complete
+		payment 20000 500
+		conversation
+			`As before on Skymoot, Karengo guides you down to a landing spot far away from the local government. "Don't want no interruptions," he says.`
+			`	Despite days of pressuring, you've been unable to get Karengo to tell you exactly what a quoijuu is, other than a slightly ominous "the biggest fish." He sends a file to your ship computer and grins. "Since it's too late to back out now, it's time to fill you in. Quoijuu aren't the only thing down there; you've also got scyllae, taniwhales, morgawrii, plus some hydrothermal vents, none of which will benefit us if we run into them."`
+			`	"The good news is that there's a path to follow. The bad news is the only person to traverse the path was a bit of a nut. It's all in riddles, and I haven't been able to make heads or tails of them. Look them over and we'll follow your lead. And don't worry too much about it - what's the worst that could happen?"`
+			choice
+				`	"Okay, I'll take a look."`
+					goto adventure
+				`	"We could get lost and then die."`
+			`	Karengo laughs. "You worry too much," he says.`
+			label adventure
+			`	The adventure seekers, who you've spent the trip getting to know, are getting ready. You watch a nearby pair, Daciana and Mussie, helping each other get their wetsuits on. Daciana catches your gaze and grins. "Bafta, mate. Safe sailing, see you on the other side." Karengo gives you a signal and you hurry back to the cockpit to fly out, away from safe shoals and over the watery abyss.`
+			`	At your touch, the ship slowly sinks below the waves. As Karengo warned, most of your navigation systems quickly flash red warnings, then go offline; there is some unknown interference that overwhelms your ship's sensors, which were designed for space first and water second, or fifth, or not at all. Minutes tick by as the crew silently watches one of the few sensors still working.`
+			`	EIGHT KILOMETERS, the depth meter reads.`
+			`	TEN KILOMETERS.`
+			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
+			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
+			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
+			`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			choice
+				`	(Go east).`
+					goto east
+				`	(Go north).`
+					goto north
+				`	(Go south).`
+					goto south
+				`	(Go west).`
+			action
+				set "Elias and Taddese dead"
+			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
+			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by Taddese.`
+			`	Then, without warning, a proximity sensor goes off. At the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+				goto riddletwo
+			label east
+			action
+				set "Elias and Taddese dead"
+			`	Small schools of fish flit past as you guide your small fleet to the east. Out of the darkness, some sort of small whale crashes into your ship, setting off a couple of proximity alarms but causing no damage. It isn't until you hear screaming, distorted by the speakers, that it becomes clear what you just saw; the "small whale" was a just a flipper of something much, much larger.`
+			`	"Morgawrii!" shouts Karengo, "Turn around! Turn around!"`
+			`	Hauling on the controls, you spin your ship around. Leviathan shapes rise from below, stirring the water around your ship as it speeds to safety.`
+				goto riddletwo
+			label south
+			action
+				set "Elias and Taddese dead"
+			`	Small schools of fish flit past as you guide your small fleet to the south. The swirling clouds of emissions seem to get thicker and thicker, until there's no reason to look at anything but the ship compass. The screen beeps once and a blip disappears.`
+			`	"Elias?" Karengo asks. "Your transmitter just cut out." When there's no response, he swears. "Everybody go back." he broadcasts. "Something's wrong."`
+			`	You spin your ship around and hear a loud crunch come from outside - your shields have just impacted something large and solid. The outer lights shine off falling stone and, suddenly, it all comes together; you've led everybody through a field of hydrothermal vents that rise dozens of meters off the bottom, obscured by their own noxious clouds. You guide your ship back to safety, toppling more underwater smokestacks as you go.`
+				goto riddletwo
+			label north
+			`	You turn the ship to the north and guide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
+			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way do we go next, <first>?"`
+			label riddletwo
+			branch dead
+				has "Elias and Taddese dead"
+			`	After everyone arrives and is accounted for, Karengo reads the riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			choice
+				`	(Go east.)`
+					goto east1
+				`	(Go north.)`
+					goto north1
+				`	(Go west.)`
+			action
+				set "Mussie dead"
+			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
+			`	"Last one there's a rotten fish eye!" shouts Mussie, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
+			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+				goto rollcall
+			label east1
+			`	"A bee-less beast," you mutter to yourself. "A poet, this writer was not." Turning east, the ship powers forward, cautious but confident.`
+			`	Subpods fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
+				goto riddlethree
+			label north1
+			action
+				set "Mussie dead"
+			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
+			`	One is missing: Mussie.`
+			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
+				goto rollcall
+			label dead
+			`	After making a roll call, you find out that Elias and Taddese have not returned. Karengo seems unfazed as he reads the second riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			choice
+				`	(Go east.)`
+					goto east2
+				`	(Go north.)`
+					goto north2
+				`	(Go west.)`
+			action
+				set "Mussie dead"
+			`	The proximity alarm wails and you bring your ship to a halt... but Mussie isn't so lucky. His subpod smashes straight into a rock wall, leaving little doubt as to his fate.`
+			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
+				goto rollcall
+			label east2
+			`	Cautiously, you turn to the east and power forward. Subpods fly ahead, exulting in their agility in the face of the dangerous ocean.`
+			`	After holding your breath for what feels like hours, Karengo radios you. "Knew you'd find your way eventually. What's the next direction?"`
+				goto riddlethree
+			label north2
+			action
+				set "Mussie dead"
+			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
+			`	One is missing: Mussie.`
+			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
+			label rollcall
+			branch dead1
+				has "Elias and Taddese dead"
+				has "Mussie dead"
+			`	Karengo sounds a roll call over the radio. Mussie never reports in, and his subpod beacon isn't responding. "Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead."`
+			`	Only minutes later, he's found a clear path east, and you morosely trail the ship behind.`
+				goto riddlethree
+			label dead1
+			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
+			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
+			label riddlethree
+			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
+			branch dead2
+				has "Mussie dead"
+				has "Elias and Taddese dead"
+			branch dead3
+				has "Mussie dead"
+			choice
+				`	(Go north.)`
+					goto north5
+				`	(Go east.)`
+					goto east5
+				`	(Go south.)`
+					goto uninterested
+			label north5
+			action
+				set "Jorma and Daciana dead"
+			`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.`
+			label subpods
+			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
+			choice
+				`	(Run.)`
+					goto run
+				`	(Observe the creature.)`
+			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive.`
+			label run
+			`	All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
+			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
+			`	"Quoijuu," says Karengo simply.`
+				goto failure
+			label east5
+			action
+				set "Jorma and Daciana dead"
+			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
+			`	"Last one there's a rotten fish eye!" shouts Jorma, and your screen shows her subpod leap forward and gain on you, followed quickly by Daciana's.`
+			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
+			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
+				goto failure
+			label dead2
+			choice
+				`	(Go north.)`
+					goto north3
+				`	(Go east.)`
+					goto east3
+				`	(Go south.)`
+			label uninterested
+			`	You smoothly turn the ship to the right, heading south.`
+			`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
+			`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
+				goto treasure
+			label north3
+			action
+				set "Jorma and Daciana dead"
+			`	Disheartened at this point, you make the call to go north, completing the zig-zag pattern.`
+				goto subpods
+			label east3
+			action
+				set "Jorma and Daciana dead"
+			`	By now, the feeling that you get when the ship's subpod tracker loses two more dots is familiar. One subpod remains: Karengo's.`
+				goto failure
+			label dead3
+			choice
+				`	(Go north.)`
+					goto north4
+				`	(Go east.)`
+					goto east4
+				`	(Go south.)`
+					goto uninterested
+			label north4
+			action
+				set "Jorma and Daciana dead"
+			`	Hesitantly, you make the call to go north, completing the zig-zag pattern.`
+			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
+			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
+			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
+			`	"Quoijuu," says Karengo simply.`
+				goto failure
+			label east4
+			action
+				set "Jorma and Daciana dead"
+			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two subpods smash straight into the stone wall looming in front of you.`
+			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
+			label failure
+			`	Jorma and Daciana never report back in.`
+			`	"You stay," radios Karengo. He sounds frustrated for the first time, and you keep the ship in place, watching his subpod dot radiate outwards, exploring.`
+			choice
+				`	(Follow him.)`
+					goto follow
+				`	(Wait.)`
+			`	"Come here." he finally says. His dot has stopped moving, hovering to the south, and you turn to follow, wondering if this misadventure is finally over.`
+			label follow
+			`	You follow him and find his pod stopped at a junction. "It's here," radios Karengo. "Fire off a ping." You comply, and the display shows a massive object directly below you.`
+			label treasure
+			`	A 3D holo floats on the console, displaying the smooth lines of a starship soaring down into the depths. The jagged edges suggest that this is only a part of a much larger vessel, although it's hard to guess at the size of the whole ship from the fragment.`
+			choice
+				`	(Wait for instructions.)`
+					goto instructions
+				`	(Move closer.)`
+					goto closer
+			label instructions
+			`	"Come on then," Karengo says. "We'll need a better look at this baby."`
+			label closer
+			`	Your craft moves closer to investigate and you send out another ping, this time more focused, and the holographic ship display flickers and refines. The outlines of sealed entrances are visible, unnecessary with the ship torn apart as it is. Sea growth is mostly absent from the hull, to your surprise, except for a radial pattern of some sort of crystal-shaped growth. Infrared imaging shows a dim glow of heat at its center.`
+			branch somesurvive
+				or
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
+			branch alldead
+				has "Mussie dead"
+				has "Elias and Taddese dead"
+				has "Jorma and Daciana dead"
+			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			choice
+				`	(Help him out.)`
+					goto silent
+				`	"Do you know how this got here?"`
+			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
+			label silent
+			`	It's slow work, but the group is able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work, and you end up with a sizable haul. At last, you are done.`
+				goto return
+			label alldead
+			`	"What we have here, <first>," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			choice
+				`	(Help him out.)`
+					goto silent1
+				`	"Do you know how this got here?"`
+			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
+			label silent1
+			`	It's slow work, but you and Karengo are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult. You wish there were others to help gather more salvage, but at last you are done.`
+				goto return
+			label somesurvive
+			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			choice
+				`	(Help him out.)`
+					goto silent2
+				`	"Do you know how this got here?"`
+			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
+			label silent2
+			`	It's slow work, but the remains of the group are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work and you end up with an acceptable haul. At last, you are done.`
+			label return
+			`	Carefully, you navigate back to the surface, the knowledge that you've made it through once doing absolutely nothing to help with the very rational fear of the depths. Walls seem to loom just out of sight, and massive, yellow eyes seem to appear, then dissolve into tricks of the light.`
+			branch onlyplayer
+				has "Mussie dead"
+				has "Elias and Taddese dead"
+				has "Jorma and Daciana dead"
+			branch some
+				or
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
+					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
+			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
+			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
+			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
+			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+				goto end
+			label some
+			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
+			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
+			`	Once back to the surface, the passengers begin to shuffle off your ship, choking back sobs all the while. As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+				goto end
+			label onlyplayer
+			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
+			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
+			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			label end
+			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>. The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person. However, they've proven to only grow near a power source that has been submerged in water from <planet>. Efforts to stimulate growth through other means have all failed. If cultivated, they could significantly boost the production of drugs for Karengo's operations.`
+			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences'. Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
 				decline
