@@ -19,7 +19,7 @@ using namespace std;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-	:ships(player.Ships()), canEdit(player.GetPlanet())
+	: ships(player.Ships()), canEdit(player.GetPlanet())
 {
 }
 
