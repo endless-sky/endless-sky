@@ -13,7 +13,7 @@ stdOp = "+/*<>&%=|!:-"
 # These lines don't contain the contents of strings, chars or comments.
 # The dict also contains the error description for the patterns.
 line_include = {
-	# Matches any '{' following an 'if', 'for' or 'switch' statement.
+	# Matches any '{' following an 'if', 'else if', 'for' or 'switch' statement.
 	"^(?:(}\\selse\\s)?if|for|switch|}\\scatch).*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
 	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'"
@@ -47,11 +47,7 @@ word_include = {
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
 	"^[^+/%=]*[+/%=][^+/%=,\\s]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that has no trailing whitespace.
-	"^[^<>=:]?[" + stdOp + "]+[=<>:][^=<>:,\\s]": "missing whitespace after operator",
-	# Matches a single ':' operator that is followed by a ')' in the same word,
-	# as seen in this incorrectly formatted example: for(int a :b)
-	# This cannot be merged with the previous one due to the use of ':' in method implementations.
-	"^:[\\S]+\\)$": "missing whitespace after operator"
+	"^[^<>=:]?[" + stdOp + "]*[=<>:][^=<>:,\\s]": "missing whitespace after operator"
 }
 
 # Patterns for excluding matches (test()#match) of 'include'
