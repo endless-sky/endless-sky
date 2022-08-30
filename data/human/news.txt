@@ -592,17 +592,13 @@ news "hyperspace relay engineer"
 			"Hyperspace relay engineer"
 	message
 		word
-			`"`
-		word
-			"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."
-			"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."
-			"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."
-			"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."
-			"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."
-			"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"
+			`"All of human space is linked into a single communications network by relay beacons. It's something that most people just take for granted."`
+			`"Hyperspace links don't just allow faster-than-light travel. They also allow near-instantaneous communication, if you have the right sort of relay on both ends."`
+			`"The hyperspace communications network is a marvel of public infrastructure, but most people just take it for granted."`
+			`"Hyperspace relays are so integral to society that even pirates don't dare to touch them. They'd easily become the number one enemy of the Republic if they did."`
+			`"I'm surprised at how many people on Earth are still using the old IPv4 protocol. None of the off-Earth websites are reachable for them."`
+			`"Have you ever set up a TCP/IP connection from Bourne to a server on Farpoint? I did and it is a little slow, but it works!"`
 			`"Do you know the DRQ of the HSBE for the hyperlanes around here? You don't understand? Sorry, a hyperlane can be thought of as a corridor through space..." The engineer gives a long-winded and confusing explanation of hyperlanes.`
-		word
-			`"`
 
 
 
