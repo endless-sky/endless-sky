@@ -14,6 +14,7 @@ mission "First Contact: Wanderer (Before Hai)"
 		attributes "wanderer"
 	to offer
 		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
