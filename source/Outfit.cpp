@@ -196,7 +196,7 @@ void Outfit::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
-			displayName = child.Token(1);
+			displayName = child.Token(1).empty() ? name : child.Token(1);
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
