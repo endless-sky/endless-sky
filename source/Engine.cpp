@@ -1069,23 +1069,12 @@ void Engine::Draw() const
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
-		string amount = "";
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
 		if(it.second < 0)
-		{
 			continue;
-		}
-		//When the amount of ammo is in the thousands, abbreviate it
-		//instead of displaying the exact value to conserve space in the box
-		else if(it.second >= 1000)
-		{
-			amount = to_string(it.second / 1000) + "." + to_string((it.second - (it.second / 1000) * 1000) / 100) + "k";
-		}
-		else
-		{
-			amount = to_string(it.second);
-		}
+		
+		string amount = Format::SecondaryAmmo(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}

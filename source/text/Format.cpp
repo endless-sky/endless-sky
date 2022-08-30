@@ -117,7 +117,18 @@ std::string Format::PlayTime(double timeVal)
 	return result;
 }
 
-
+//
+string Format::SecondaryAmmo(int value)
+{
+		if(value >= 10000)
+		{
+			return to_string(value / 1000) + "." + to_string((value - (value / 1000) * 1000) / 100) + "k";
+		}
+		else
+		{
+			return to_string(value);
+		}
+}
 
 // Convert the given number to a string, with a reasonable number of decimal
 // places. (This is primarily for displaying ship and outfit attributes.)

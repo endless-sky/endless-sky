@@ -28,6 +28,9 @@ public:
 	static std::string Credits(int64_t value);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
+	//Abbreviates numbers in the tens of thousands with the suffix "k"
+	//to conserve space in the box for secondary ammo
+	static std::string SecondaryAmmo(int value);
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
