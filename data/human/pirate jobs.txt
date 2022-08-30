@@ -3404,13 +3404,13 @@ mission "Slave revolt"
 		random < 10
 	on offer
 		require "Slave" 2
-		require "Laser Rifle"
 		conversation
-			`	You are flicking through your diary in your cabin, when out of the corner of your eye, you see your door start to open.`
-			`	You look up, one of your slaves' head pokes through... the tip of a laser rifle pokes through as well.`
+			`	You are flicking through your diary in your cabin, when you hear your door start to open.`
+			`	You look up, one of your slaves is standing in the doorway... holding a large metal bar.`
 			choice
-				`    Dive for cover.`
-					goto Dive
-			label "Dive"
-			`	You immediately try to dive behind your bed. As you jump there's a flash of light. You see no more...`
+				`    Grab for a weapon.`
+					goto grab
+			label "grab"
+			`	You immediately try to grab the antique sword hanging on the wall that your grandfather gave you before you left to be a space pilot.`
+			`	As you reach for it the slave rushes in and brings the bar down on your head. All goes black...`
 				die
