@@ -1068,7 +1068,7 @@ void Engine::Draw() const
 
 		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
-		
+
 		string amount = "";
 		// Some secondary weapons may not have limited ammo. In that case, just
 		// show the icon without a number.
