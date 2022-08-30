@@ -16,7 +16,11 @@ line_include = {
 	# Matches any '{' following an 'if', 'else if', 'for' or 'switch' statement.
 	"^(?:(}\\selse\\s)?if|for|switch|}\\scatch).*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
-	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'"
+	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
+	# Matches any parenthesis preceded by a whitespace,
+	# except if the whitespace follows a semicolon,
+	# or follows an all-caps method name
+	"(?![A-Z]+)^.*[^;]\\s\\)": "extra whitespace before closing parenthesis",
 }
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
@@ -27,12 +31,9 @@ segment_include = {
 	# This is necessary to avoid flagging array-declaration tables that have custom indentation for readability.
 	"(?![\\s\\w\\.,\\d{}-])^.*\\S\\s\\s+.*$": "consecutive whitespace characters",
 	# Matches any '(' that has no following whitespace,
-	# except if the whitespace is followed by a semicolon.
-	# Due to the way segments work, it allows strings and comments to begin after the space.
-	"(?![A-Z]+)^.*\\(\\s(?!;)": "missing whitespace after opening parenthesis",
-	# Matches any parenthesis preceded by a whitespace,
-	# except if the whitespace follows a semicolon.
-	"[^;]\\s\\)]": "missing whitespace before closing parenthesis",
+	# except if the whitespace is followed by a semicolon,
+	# or follows an all-caps method name.
+	"(?![A-Z]+)^.*\\(\\s(?!;)": "extra whitespace after opening parenthesis",
 	# Matches any whitespaces at the end of a line that are preceded by brackets, parentheses or semicolons.
 	"[;[{]\\s+$": "trailing whitespace at end of line",
 	# Matches any 'if', 'for' or 'switch' statements where the '(' is preceded by a whitespace.
