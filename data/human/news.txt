@@ -1645,9 +1645,9 @@ news "syndicate pa system"
 			"Attention factory workers: please proceed to the fast-lane immigration desk. Time spent in regular immigration lanes will not be reimbursed."
 			"Dear spaceship captains: please be aware that our outfitters are open all hours of the day. There is never a reason to delay the purchase of your next piece of Syndicate equipment."
 			"Dear traveler: we recommend you to have dinner in our local restaurant 'The Wing'. You will not be disappointed."
-			"Attention course participants: The course 'Efficient Passenger Logistics' has been cancelled because the trainer got stuck in transit."
-			"Attention: The safe spaceship piloting training course has been cancelled because our instructors crashed their shuttles this morning."
-			"Notice: The course on dealing with space sickness has been cancelled because the instructor got seasick."
+			"Attention course participants: The course 'Efficient Passenger Logistics' has been canceled because the trainer got stuck in transit."
+			"Attention: The safe spaceship piloting training course has been canceled because our instructors crashed their shuttles this morning."
+			"Notice: The course on dealing with space sickness has been canceled because the instructor got seasick."
 		word
 			`"`
 
