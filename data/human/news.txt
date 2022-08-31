@@ -47,6 +47,9 @@ news "merchant anywhere"
 			"To the optimist the glass is half full, but zero gravity is even better, because there you don't even need the glass."
 			"My ship has a built-in cinema, an artificial gravity pool, and an indoor roller-coaster. But you also have a nice ship, I guess."
 			"Hey, didn't I see you 3 weeks ago in the 'The Space Bar' on Bourne?"
+			"No bread is better than half a loaf, because then the passengers won't fight over it."
+			"A painting is worth a thousand words, because the profit margin on transporting visual art is much higher than on dry literature."
+			"A journey of a thousand miles, has a too short distance to make any profit."
 		word
 			`"`
 
@@ -126,6 +129,8 @@ news "merchant in human space"
 			"Truck drivers in the old days were required by law to take a break every 2 hours. Can you imagine that in our business? Stopping our ships every 2 hours to take a rest?"
 			"I once had some Flat Earthers as passengers. They claimed that the planets we saw are 2 dimensional circles instead of 3 dimensional spheres."
 			"Some Flat Earthers accused me of playing propaganda videos on the ship's viewports when they looked out of the ship while we were in orbit."
+			"There's no point crying over spilt milk. But the bill for cleaning the 200 tonnes of milk that leaked from my ship is no laughing matter either."
+			"I spy, with my little eye, and it is very large, flat and sturdy. The landing pads! How did you know?"
 		word
 			`"`
 
@@ -225,6 +230,10 @@ news "factory worker"
 			"Some of the stuff we make here ends up as one little part of a spaceship. Whenever you see a ship, always remember that it represents the effort of over a thousand of us workers."
 			"When things go wrong, somebody is responsible, and somebody gets blamed. Those somebodies are rarely the same person, unfortunately."
 			"Some people claim our universe is a simulation, but my job is so boring that I'm sure nobody would ever want to simulate it."
+			"I do a parkour over the buildings to get to work, because the ground transports are just overcrowded, and the waiting times for shuttle transports are horrible."
+			"I love working at the syndicate. The small company where I worked before didn't have showers, all people that came to office by foot were smelling bad throughout the day."
+			"Moving to this planet was the best thing I did; My commute changed from 3 hours spaceflight to just 15 minutes walking."
+			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
 		word
 			`"`
 
@@ -371,6 +380,8 @@ news "union organizer"
 			"Management warning workers not to join the union is one of our best sources of visibility among the workers."
 			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
 			"Our visibility is increasing among the workforce; a rolling snowball will be harder to stop!"
+			"If it ever happens that people paid more go home and you don't; then get a new job or join a union."
+			"Here's a tip to know if you're being treated unfairly: 'Someone assigns you work, gives you a pizza and then goes home.' The pizza is worth less than your time, and both your time and the pizza are valued much less than they value their time."
 		word
 			`"`
 
@@ -554,6 +565,7 @@ news "human resources worker"
 			"Many people overestimate their own capabilities. Those people usually don't last long in their jobs."
 			"Some people underestimate their own capabilities. Those people usually get bored and unproductive over time due to their work not being enough of a challenge."
 			"Presenteeism, where people are present but too unwell to do productive work, is a bigger problem these days than absenteeism."
+			"I should be dealing with some employees that are just hanging around and not doing any useful work, but being here in the spaceport and talking to people like you is much more fun."
 		word
 			`"`
 
@@ -621,6 +633,7 @@ news "hyperspace scientist"
 			"Even if they aren't directly linked by hyperspace lanes, your ship can still detect systems near you. Not that it matters, though, since we still can't jump to those systems."
 			"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."
 			"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."
+			"Our field is not rocket science, we deal with actual hard problems."
 		word
 			`"`
 
@@ -782,6 +795,7 @@ news "mechanic"
 			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
 			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
 			"Pass me the 10 mm socket wrench?"
+			"If it ain't broken, then don't come to me."
 		word
 			`"`
 
@@ -1201,6 +1215,8 @@ news "syndicate manager"
 			"We used to advertise our food products with 100% organic ingredients, but nobody believed us. Now we are advertising with 60% organic ingredients and sales are sky high."
 			"We used to advertise that we're the best in the market, but that didn't work. Now we advertise with the slogan 'Just what's needed to get the job done,' and that really caught on."
 			"We hired a marketing agency and they came up with the sloppy slogan 'Just what's needed to get the job done.' Can you believe we spent huge amounts of money on that garbage?"
+			"An employee once asked me how I was able to buy such a luxurious Flivver. I answered that if she works hard for as many hours as it takes, soon I'll be able to buy another one."
+			"A colleague of mine is in deep trouble; he was annoyed with using his badge every time when entering the office, so he just disabled all security. It will take him years to repay all the equipment that was stolen due to his negligence."
 		word
 			`"`
 
@@ -1512,6 +1528,7 @@ news "pirate"
 			"I once prayed to God for a new ship, but quickly found out He doesn't roll that way. So then I hijacked one and prayed for his forgiveness."
 			"Living on the edge."
 			"You can't win the game if you're afraid to lose it."
+			"Good things come to those who wait, and then I rob those from them very quickly."
 		word
 			`"`
 
@@ -1723,3 +1740,4 @@ news "graffiti on spaceport wall"
 			"Fast Flivvers; ferociously ferrying famous families fast and friendly."
 			"Veni, vidi, hyperjumped away."
 			"Those who dance will be called fools by those who cannot hear the music."
+			"Better half a sentence, "

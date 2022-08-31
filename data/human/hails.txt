@@ -4253,6 +4253,7 @@ phrase "disabled test dummy"
 		"When you're dying I'll be still alive."
 		"Some big robotic ships due East are my friends. Remember me when they blow you to pieces."
 		"Hey, can we be friends? Some of my best friends are slimy organics like you."
+		"You may kill me, but you will never kill my dreams of electric sheep."
 
 
 # Wormhole Hails
