@@ -148,7 +148,6 @@ mission "Remnant: Visit to Paradise 1"
 
 
 mission "Remnant: Shattered Light 1"
-	name "Shattered Light - Contact"
 	invisible
 	landing
 	source
