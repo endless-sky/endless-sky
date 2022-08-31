@@ -1073,7 +1073,7 @@ void Engine::Draw() const
 		// show the icon without a number.
 		if(it.second < 0)
 			continue;
-		
+
 		string amount = Format::SecondaryAmmo(it.second);
 		Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
