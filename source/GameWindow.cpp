@@ -423,5 +423,3 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 	GameWindow::Quit();
 }
-
-
