@@ -49,7 +49,7 @@ news "merchant anywhere"
 			"Hey, didn't I see you 3 weeks ago in the 'The Space Bar' on Bourne?"
 			"No bread is better than half a loaf, because then the passengers won't fight over it."
 			"A painting is worth a thousand words, because the profit margin on transporting visual art is much higher than on dry literature."
-			"A journey of a thousand miles, has a too short distance to make any profit."
+			"A journey of a thousand miles has too short of a distance to make any profit."
 		word
 			`"`
 
@@ -231,8 +231,8 @@ news "factory worker"
 			"When things go wrong, somebody is responsible, and somebody gets blamed. Those somebodies are rarely the same person, unfortunately."
 			"Some people claim our universe is a simulation, but my job is so boring that I'm sure nobody would ever want to simulate it."
 			"I do a parkour over the buildings to get to work, because the ground transports are just overcrowded, and the waiting times for shuttle transports are horrible."
-			"I love working at the syndicate. The small company where I worked before didn't have showers, all people that came to office by foot were smelling bad throughout the day."
-			"Moving to this planet was the best thing I did; My commute changed from 3 hours spaceflight to just 15 minutes walking."
+			"I love working at the Syndicate. The small company where I worked before didn't have showers, so all people that came to office by foot smelled bad throughout the day."
+			"Moving to this planet was the best thing I did; my commute changed from 3 hours spaceflight to just 15 minutes walking."
 			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
 		word
 			`"`
@@ -380,7 +380,7 @@ news "union organizer"
 			"Management warning workers not to join the union is one of our best sources of visibility among the workers."
 			"Young people usually don't join a union, so we are mostly working for the benefit of higher aged workers."
 			"Our visibility is increasing among the workforce; a rolling snowball will be harder to stop!"
-			"If it ever happens that people paid more go home and you don't; then get a new job or join a union."
+			"If it ever happens that people paid more go home and you don't, then get a new job or join a union."
 			"Here's a tip to know if you're being treated unfairly: 'Someone assigns you work, gives you a pizza and then goes home.' The pizza is worth less than your time, and both your time and the pizza are valued much less than they value their time."
 		word
 			`"`
@@ -633,7 +633,7 @@ news "hyperspace scientist"
 			"Even if they aren't directly linked by hyperspace lanes, your ship can still detect systems near you. Not that it matters, though, since we still can't jump to those systems."
 			"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."
 			"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."
-			"Our field is not rocket science, we deal with actual hard problems."
+			"Our field is not rocket science. We deal with actually hard problems."
 		word
 			`"`
 
