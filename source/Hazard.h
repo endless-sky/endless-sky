@@ -1,5 +1,5 @@
 /* Hazard.h
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -37,6 +37,11 @@ public:
 	int RandomDuration() const;
 	// Generates a random double between the minimum and maximum strength of this hazard.
 	double RandomStrength() const;
+	// Whether this hazard affects every ship in the system irrespective of its distance from the
+	// hazard origin. System-wide hazards use the center of the screen as the origin point for
+	// environmental effects. The min range is then the range around the center in which effects
+	// won't be drawn, while the max range becomes the bounds of the screen.
+	bool SystemWide() const;
 	// The minimum and maximum distances from the origin in which this hazard has an effect.
 	double MinRange() const;
 	double MaxRange() const;
@@ -55,6 +60,7 @@ private:
 	double minRange = 0.;
 	// Hazards given no range only extend out to the invisible fence defined in AI.cpp.
 	double maxRange = 10000.;
+	bool systemWide = false;
 	bool deviates = true;
 
 	std::map<const Effect *, int> environmentalEffects;

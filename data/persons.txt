@@ -16,6 +16,8 @@ person "Michael Zahniser"
 		word
 			"I hope you're enjoying the game!"
 	ship Kestrel Kestrel
+		sprite "ship/kestreloriginal"
+		thumbnail "thumbnail/kestreloriginal"
 		"never disabled"
 		attributes
 			category "Heavy Warship"
@@ -50,8 +52,6 @@ person "Michael Zahniser"
 		
 		engine -14 177
 		engine 14 177
-		bay "Fighter" -46 106 under
-		bay "Fighter" 46 106 under
 		gun -75 57 "Ion Cannon"
 		gun 75 57 "Ion Cannon"
 		gun -75 57 "Ion Cannon"
@@ -72,6 +72,8 @@ person "Michael Zahniser"
 		turret 23 14 "Electron Turret"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
+		bay "Fighter" -46 106 under
+		bay "Fighter" 46 106 under
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -443,7 +445,7 @@ ship "Lampyrid-Class Transport"
 		"shields" 5400
 		"hull" 4400
 		"required crew" 5
-		"bunks" 14
+		"bunks" 23
 		"mass" 240
 		"drag" 8.5
 		"heat dissipation" .7
@@ -615,11 +617,11 @@ ship "Modified Osprey"
 			"hit force" 30000
 	outfits
 		"Nuclear Missile"
-		"Korath Slicer" 4
+		"Husk-Slice" 4
 		"Korath Detainer" 4
 		"Finisher Pod" 2
 		"Finisher Torpedo" 200
-		"Korath Disruptor" 2
+		"Shield Disruptor Turret" 2
 		"Heliarch Repulsor" 2
 		"Point Defense Turret" 3
 		
@@ -633,7 +635,7 @@ ship "Modified Osprey"
 		"Tactical Scanner"
 		"Wanderer Ramscoop"
 		
-		"Afterburner"
+		"Volcano Afterburner"
 		`"Bufaer" Atomic Thruster`
 		"Ionic Afterburner" 5
 		"Type 4 Radiant Thruster"
@@ -646,10 +648,10 @@ ship "Modified Osprey"
 	engine -16.5 105 .6
 	engine 16.5 105 .6
 	gun 0 -114 "Nuclear Missile"
-	gun -6.5 -100 "Korath Slicer"
-	gun 6.5 -100 "Korath Slicer"
-	gun -14 -91 "Korath Slicer"
-	gun 14 -91 "Korath Slicer"
+	gun -6.5 -100 "Husk-Slice"
+	gun 6.5 -100 "Husk-Slice"
+	gun -14 -91 "Husk-Slice"
+	gun 14 -91 "Husk-Slice"
 	gun -19 -59 "Korath Detainer"
 	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
@@ -657,8 +659,8 @@ ship "Modified Osprey"
 	gun -67 -1.5 "Finisher Pod"
 	gun 67 -1.5 "Finisher Pod"
 	turret 0 -91.5 "Point Defense Turret"
-	turret -13.5 -15.5 "Korath Disruptor"
-	turret 13.5 -15.5 "Korath Disruptor"
+	turret -13.5 -15.5 "Shield Disruptor Turret"
+	turret 13.5 -15.5 "Shield Disruptor Turret"
 	turret -49.5 20 "Heliarch Repulsor"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
@@ -793,13 +795,13 @@ ship "Ursa Polaris"
 		"Quarg Skylance"
 		"LG Gridfire Turret" 3
 		"Plasma Turret"
-		"Korath Disruptor" 5
+		"Shield Disruptor Turret" 5
 		"Quarg Anti-Missile" 5
 		Hyperdrive
 		"Large Heat Shunt"
 		"Small Heat Shunt" 2
 		"Systems Core (Large)" 2
-		"Korath Repeater Rifle" 600
+		"Thermal Repeater Rifle" 600
 		"Thruster (Stellar Class)"
 		"Smelter-Class Thruster"
 		`"Basrem" Atomic Thruster`
@@ -810,19 +812,19 @@ ship "Ursa Polaris"
 	engine -106.5 80.5 0.4
 	turret 27 -162 "Quarg Anti-Missile"
 	turret 27 -162 "Quarg Skylance"
-	turret 27 -162 "Korath Disruptor"
+	turret 27 -162 "Shield Disruptor Turret"
 	turret 94.5 -52.5 "Quarg Anti-Missile"
 	turret 94.5 -52.5 "LG Gridfire Turret"
-	turret 94.5 -52.5 "Korath Disruptor"
+	turret 94.5 -52.5 "Shield Disruptor Turret"
 	turret 80.5 53 "Quarg Anti-Missile"
 	turret 80.5 53 "LG Gridfire Turret"
-	turret 80.5 53 "Korath Disruptor"
+	turret 80.5 53 "Shield Disruptor Turret"
 	turret 21 25.5 "Quarg Anti-Missile"
 	turret 21 25.5 "LG Gridfire Turret"
-	turret 21 25.5 "Korath Disruptor"
+	turret 21 25.5 "Shield Disruptor Turret"
 	turret -69.5 -43 "Quarg Anti-Missile"
 	turret -69.5 -43 "Plasma Turret"
-	turret -69.5 -43 "Korath Disruptor"
+	turret -69.5 -43 "Shield Disruptor Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -896,7 +898,7 @@ person "Prototype B3-CC4"
 			"I remember when the Archons tried to kill me with some supernovae. They got so depressed when they understood that not even their weapons could stop me."
 			"I ate a black hole once. It took me a few years, but it was definitely worth it. Tastes like chicken."
 			"I am the only thing in the universe capable of beating the power of friendship."
-			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The MacOS workflow run was not successful.'"
+			"I want to tell you some words of a long gone past, which back then used to scare people of your race more than any weapon or war machine. These words are, 'The macOS workflow run was not successful.'"
 	phrase
 		word
 			"What are you looking at?"
@@ -1106,6 +1108,79 @@ person "Rais Iris XVIII"
 	phrase
 		phrase
 			"friendly author"
+	phrase
+		word
+			"Remember, overkill is underrated."
+			"When in doubt, add more flammenwerfer."
+			"Why settle for something reasonable, when you can have something completely bonkers?"
+			"Bactrian Gaming."
+			"His Union's Qi Pianist."
+			"I'm basically a computer gynecologist."
+			"Your ship looks like it came out of a liquidizer!"
+			"Look at me. I am the Captain now."
+			`Pronounce "Wrzlprnft." You have 5 seconds.`
+			"Everything you see here has been created by volunteers. You can join us if you want!"
+
+			"To this day, I can still hear the Teeworlds title music."
+			"I am a light sleeper; but I am a heavy dreamer." # Owl City
+			"Did you know Viggo broke his toe?" # LoTR
+			"Meet me at the Prancing Pony." # LoTR
+			"This isn't my first ship. I fondly remember The Blin Machine and The Chernomobil." # Life of Boris
+			"Heard of solar panels? Now you can eat sunlight!" # bill wurtz
+			"So you want to be a pirate, m'lad? Well, let me tell ye: being a pirate, be all about Branding." # CGPGrey
+			"Do not greed for the Thrumbo horns." # RimWorld
+
+			# Walter Moers: The Mugg's Code of Conduct
+			"Honor thy muggroom."
+			"If thou seest two sticks lying one on top of the other, thou shalt walk backwards over them with thy left foot first, not with thy right. Moreover, thou shalt not devour them."
+			"Should a vulture's shadow fall across a fire that has gone out, thou shalt rekindle it three times or a great misfortune will ensue."
+			"If thou cross the path of a white cockerel seated on two superimposed sticks, thou shalt not strike it, nor shalt thou address it by name nor partake of the said sticks."
+			"Thou shalt not finkle backwards."
+			"Thou shalt not finkle forwards."
+
+			# SovietWomble
+			"Get the doomsday rounds."
+			`I wouldn't recommend shooting at me, because your gun goes "pew pew," but my gun goes BBBRRRRRRR!`
+			"Ramming speed!"
+
+			# videogamedonkey
+			"Tony. Get the boulder."
+			"Not even close!"
+			"Knack II, baby!"
+
+			# League of Legends
+			"Damnit Skaarl, did you hide my mushroom juice again?"
+			"Stand still! My eyes are on the side of my head!"
+			"One, two, three, four, two, two, three, four."
+			"Luck is failure that failed."
+			"If you want a weapon, here's a weapon. If you want conversation - here's a weapon."
+			"Working with you is almost like working alone. Almost."
+			"I will go over there. It looks quiet. It will be nice."
+
+			# Star Wars
+			"Yes, using Parsecs as measurement of speed does make sense."
+			"Hello there."
+			"I'm just a simple man trying to make my way in the universe."
+			"Did you ever hear the tragedy of Darth Plagueis the wise?"
+			"Congratulations, you are being rescued. Please do not resist."
+			"I'll be there for you. Cassian said I had to."
+
+	phrase
+		word
+			"We all serve "
+			"Praise be upon "
+			"I'm definitely not being held hostage by "
+		word
+			"the "
+		word
+			"barmy bronc."
+			"crazy colt."
+			"daft dobbin."
+			"foolish filly."
+			"scatty stallion."
+			"potty pony."
+			"mental mustang."
+
 	ship "Marauder Bactrian" "Rais Iris XVIII"
 		"never disabled"
 

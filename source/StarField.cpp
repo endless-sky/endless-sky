@@ -112,7 +112,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 	if(allowAnimation && sprite != lastSprite)
 	{
 		transparency = 1.;
-		for(Body &body: haze[1])
+		for(Body &body : haze[1])
 			body.SetSprite(lastSprite);
 	}
 	lastSprite = sprite;
@@ -199,6 +199,9 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom) const
 		transparency -= FADE_PER_FRAME;
 	else
 		transparency = 0.;
+
+	// Set zoom to a higher level than stars to avoid premature culling.
+	zoom = min(.25, zoom / 1.4);
 
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.

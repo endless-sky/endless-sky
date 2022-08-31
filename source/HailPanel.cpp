@@ -79,8 +79,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();
-		// Check if the player is out of fuel.
-		if(!flagship->JumpsRemaining())
+		// Check if the player is in need of fuel to jump away.
+		if(!flagship->JumpsRemaining() && flagship->JumpFuelMissing())
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*flagship);
@@ -114,7 +114,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	}
 
 	if(message.empty())
-		message = ship->GetHail(player);
+		message = ship->GetHail(player.GetSubstitutions());
 }
 
 
@@ -149,6 +149,8 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
 					+ Format::Credits(bribe) + " credits.";
+			else if(gov->IsEnemy())
+				message = "You are not welcome here.";
 			else
 				message = "I'm afraid we can't permit you to land here.";
 		}

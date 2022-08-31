@@ -16,10 +16,10 @@ name: CI
 
 on:
   push:
-    # Run for pushes to master or a version branch, e.g. a PR was merged ...
+    # Run for pushes to master or a release branch, e.g. a PR was merged ...
     branches:
       - master
-      - v[0-9]+.[0-9]+.[0-9]+
+      - releases/v[0-9]+.[0-9]+.[0-9]+
     # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'
@@ -51,7 +51,7 @@ on:
 jobs:
   # Figure out what changed, so other jobs in this file can conditionally execute.
   changed:
-    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
+    uses: ./.github/workflows/compute-changes.yml
 
   build_ubuntu:
     needs: changed
@@ -73,7 +73,7 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-${{ matrix.opengl }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-${{ matrix.opengl }}-artifact-${{ hashFiles('source/**', 'SConstruct', '.github/workflows/ci.yml') }}
     - name: Install development dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: |
@@ -118,7 +118,7 @@ jobs:
     env:
         CCACHE_DIR: ./ccache/
         CXX: ccache g++
-        TEST_BINARY: tests/endless-sky-tests
+        TEST_BINARY: tests/unit/endless-sky-tests
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -127,7 +127,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('SConstruct', '.github/workflows/ci.yml') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/**', 'SConstruct', '.github/workflows/ci.yml') }}
     - name: Install dependencies
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -150,7 +150,7 @@ jobs:
     - name: Run tests
       run: scons -Qj $(nproc) test
     - name: Run benchmarks
-      run: ./tests/endless-sky-tests [!benchmark]
+      run: ./tests/unit/endless-sky-tests [!benchmark]
 
 
   build_windows:
@@ -162,7 +162,7 @@ jobs:
         os: [windows-latest]
     env:
         SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
         DIR_ESLIB: dev64
         CXX: sccache g++
         ARTIFACT: EndlessSky.exe
@@ -175,7 +175,7 @@ jobs:
       with:
         path: ${{ env.ARTIFACT }}
         # Rebuild the game binary if source code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-artifact-${{ hashFiles('source/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install sccache
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -222,11 +222,11 @@ jobs:
         os: [windows-latest]
     env:
         SCCACHE_DIR: ./sccache/
-        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+        DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
         DIR_ESLIB: .\dev64
         CXX: sccache g++
         AR: gcc-ar
-        TEST_BINARY: .\tests\endless-sky-tests.exe
+        TEST_BINARY: .\tests\unit\endless-sky-tests.exe
     steps:
     - uses: actions/checkout@v2
     - name: Restore cached test binary
@@ -235,7 +235,7 @@ jobs:
       with:
         path: ${{ env.TEST_BINARY }}
         # Rebuild the test binary if source code changed, test code changed, or if instructions on building the game changed.
-        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/src/**', 'tests/include/**') }}-${{ hashFiles('.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
+        key: ${{ matrix.os }}-tests-${{ hashFiles('source/**', 'tests/unit/**', '.winmake', '.github/workflows/ci.yml', 'SConstruct') }}
     - name: Install development dependencies
       if: steps.cache-tests.outputs.cache-hit != 'true'
       run: choco install sccache
@@ -251,9 +251,9 @@ jobs:
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
         COPY ".\dev64\bin\*.dll" .
-        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
-        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
-        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Cache sccache results
       if: steps.cache-tests.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -290,13 +290,13 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.ARTIFACT }}
-        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**') }}-${{ hashFiles('.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+        key: ${{ matrix.os }}-artifacts-${{ hashFiles('source/**', '.github/workflows/ci.yml', 'EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
     - name: Update Homebrew
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       run: brew update
     - name: Install dependencies
       if: steps.cache-artifact.outputs.cache-hit != 'true'
-      run: brew install libmad libpng jpeg-turbo
+      run: brew install libpng jpeg-turbo
     - name: Restore cached SDL2 framework
       if: steps.cache-artifact.outputs.cache-hit != 'true'
       uses: actions/cache@v2
@@ -358,7 +358,7 @@ jobs:
     - name: Run Integration tests
       env:
         PRINT_GLXINFO: true
-      run: ./tests/run_tests_headless.sh
+      run: ./tests/integration/run_tests_headless.sh
 
 
   test_ubuntu-parse:
@@ -387,7 +387,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x endless-sky && ./endless-sky -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./endless-sky
+      run: ./utils/test_parse.sh ./endless-sky
 
 
   test_windows-parse:
@@ -395,7 +395,7 @@ jobs:
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.data == 'true' }}
     runs-on: ${{ matrix.os }}
     env:
-      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\x86_64-w64-mingw32
+      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
     strategy:
       matrix:
         os: [windows-latest]
@@ -407,15 +407,15 @@ jobs:
         Expand-Archive win64-dev.zip -DestinationPath . -Force
         Remove-Item win64-dev.zip
         COPY ".\dev64\bin\*.dll" .
-        COPY $Env:DIR_MINGW64\lib\libgcc_s_seh-1.dll .
-        COPY $Env:DIR_MINGW64\lib\libstdc++-6.dll .
-        COPY $Env:DIR_MINGW64\lib\libwinpthread-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
+        COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
+        COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
     - name: Download game binary
       uses: actions/download-artifact@v2
       with:
         name: binary-${{ matrix.os }}
     - name: Parse Datafiles
-      run: .\tests\test_parse.ps1 EndlessSky.exe
+      run: .\utils\test_parse.ps1 EndlessSky.exe
 
 
   test_macos-parse:
@@ -458,7 +458,7 @@ jobs:
     - name: Verify Executable
       run: chmod +x "Contents/MacOS/${ES_BINARY}" && ./"Contents/MacOS/${ES_BINARY}" -v
     - name: Parse Datafiles
-      run: ./tests/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
+      run: ./utils/test_parse.sh ./"Contents/MacOS/${ES_BINARY}"
 
 
   test_memory-leaks-lite:
@@ -506,3 +506,12 @@ jobs:
         builtin: clear,en-GB_to_en-US
         path: data/
         exclude_file: .codespell.exclude
+
+
+
+  style-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: editorconfig-checker/action-editorconfig-checker@main
+    - run: editorconfig-checker

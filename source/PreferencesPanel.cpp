@@ -374,7 +374,7 @@ void PreferencesPanel::DrawControls()
 			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim: warning);
+				table.DrawHighlight(isEditing ? dim : warning);
 			}
 
 			// Mark the selected row.
@@ -464,6 +464,7 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		SCROLL_SPEED,
 		"Show escort systems on map",
+		"Show stored outfits on map",
 		"System map sends move orders",
 		"Warning siren"
 	};

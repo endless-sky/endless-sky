@@ -4,12 +4,10 @@ endless-sky-tests
 libendless-sky.a
 *.exe
 *.lnk
+*.AppImage
 
 # dlls needed to run the binary
 *.dll
-
-# Files::LogError output from unit tests
-errors.txt
 
 # Build Directories and toolchain-generated files
 build/
@@ -29,13 +27,15 @@ scons-local*
 test-report.xml
 
 # User-installed plugins
-plugins/
+/plugins/
 
 # OS-specific generated files
 .DS_Store
 *.db
 
 # IDEs (no support implied)
+.cache
+.devcontainer
 .vscode
 .vs
 .metadata
@@ -61,4 +61,5 @@ ipch/
 .idea/
 .idea_modules/
 CMakeLists.txt
+compile_commands.json
 /.gitmodules

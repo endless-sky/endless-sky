@@ -12,15 +12,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteSet.h"
 
-#include "Files.h"
+#include "Logger.h"
 #include "Sprite.h"
 
 #include <map>
+#include <mutex>
 
 using namespace std;
 
 namespace {
 	map<string, Sprite> sprites;
+
+	mutex modifyMutex;
 }
 
 
@@ -40,7 +43,7 @@ void SpriteSet::CheckReferences()
 		if(sprite.Height() == 0 && sprite.Width() == 0)
 			// Landscapes are allowed to still be empty.
 			if(pair.first.compare(0, 5, "land/") != 0)
-				Files::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
+				Logger::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
 	}
 }
 
@@ -48,6 +51,8 @@ void SpriteSet::CheckReferences()
 
 Sprite *SpriteSet::Modify(const string &name)
 {
+	lock_guard<mutex> guard(modifyMutex);
+
 	auto it = sprites.find(name);
 	if(it == sprites.end())
 		it = sprites.emplace(name, Sprite(name)).first;

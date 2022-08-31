@@ -45,6 +45,33 @@ namespace {
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
 	}
+
+	// Determine the refillable ammunition a particular ship consumes or stores.
+	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
+	{
+		auto toRefill = set<const Outfit *>{};
+		auto armed = set<const Outfit *>{};
+		for(auto &&it : ship.Weapons())
+			if(it.GetOutfit())
+			{
+				const Outfit *weapon = it.GetOutfit();
+				armed.emplace(weapon);
+				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
+					toRefill.emplace(weapon->Ammo());
+			}
+
+		// Carriers may be configured to supply ammunition for carried ships found
+		// within the fleet. Since a particular ammunition outfit is not bound to
+		// any particular weapon (i.e. one weapon may consume it, while another may
+		// only require it be installed), we always want to restock these outfits.
+		for(auto &&it : ship.Outfits())
+		{
+			const Outfit *outfit = it.first;
+			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
+				toRefill.emplace(outfit->Ammo());
+		}
+		return toRefill;
+	};
 }
 
 
@@ -93,6 +120,13 @@ int OutfitterPanel::TileSize() const
 
 
 
+int OutfitterPanel::VisiblityCheckboxesSize() const
+{
+	return 60;
+}
+
+
+
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player.FleetDepreciation(), day);
@@ -106,13 +140,13 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if((outfitter.Has(outfit) || player.Stock(outfit) > 0) && showForSale)
+	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
 		return true;
 
-	if(player.Cargo().Get(outfit) && (!playerShip || showForSale))
+	if(showCargo && player.Cargo().Get(outfit))
 		return true;
 
-	if(player.Storage() && player.Storage()->Get(outfit))
+	if(showStorage && player.Storage() && player.Storage()->Get(outfit))
 		return true;
 
 	for(const Ship *ship : playerShips)
@@ -493,13 +527,21 @@ void OutfitterPanel::FailBuy() const
 	}
 
 	if(!playerShip)
+	{
+		double mass = selectedOutfit->Mass();
+		double freeCargo = player.Cargo().Free();
+
+		GetUI()->Push(new Dialog("You cannot buy this outfit, because it takes up "
+			+ Tons(mass) + " of mass, and your fleet has "
+			+ Tons(freeCargo) + " of cargo space free."));
 		return;
+	}
+
 
 	double outfitNeeded = -selectedOutfit->Get("outfit space");
 	double outfitSpace = playerShip->Attributes().Get("outfit space");
 	if(outfitNeeded > outfitSpace)
 	{
-		string need =  to_string(outfitNeeded) + (outfitNeeded != 1. ? "tons" : "ton");
 		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
 			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
 			+ Tons(outfitSpace) + " free."));
@@ -763,17 +805,21 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -30.);
+	Point pos = Screen::BottomLeft() + Point(10., -VisiblityCheckboxesSize() + 10.);
 	Point off = Point(10., -.5 * font.Height());
 	SpriteShader::Draw(box[showForSale], pos);
 	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
 
-	bool showCargo = !playerShip;
 	pos.Y() += 20.;
 	SpriteShader::Draw(box[showCargo], pos);
 	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
+
+	pos.Y() += 20.;
+	SpriteShader::Draw(box[showStorage], pos);
+	font.Draw("Show outfits in storage", pos + off, color[showStorage]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleStorage(); });
 }
 
 
@@ -782,24 +828,43 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
+	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	{
+		selectedOutfit = nullptr;
+	}
+
 	ShopPanel::ToggleForSale();
+}
+
+
+
+void OutfitterPanel::ToggleStorage()
+{
+	showStorage = !showStorage;
+
+	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	{
+		selectedOutfit = nullptr;
+	}
+
+	ShopPanel::ToggleStorage();
 }
 
 
 
 void OutfitterPanel::ToggleCargo()
 {
+	showCargo = !showCargo;
+
+	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	{
+		selectedOutfit = nullptr;
+	}
+
 	if(playerShip)
 	{
-		previousShip = playerShip;
 		playerShip = nullptr;
-		previousShips = playerShips;
 		playerShips.clear();
-	}
-	else if(previousShip)
-	{
-		playerShip = previousShip;
-		playerShips = previousShips;
 	}
 	else
 	{
@@ -897,15 +962,12 @@ void OutfitterPanel::CheckRefill()
 	map<const Outfit *, int> needed;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		// Skip ships in other systems and those that were unable to land in-system.
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 
 		++count;
-		set<const Outfit *> toRefill;
-		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
-				toRefill.insert(it.GetOutfit()->Ammo());
-
+		auto toRefill = GetRefillableAmmunition(*ship);
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
@@ -939,14 +1001,11 @@ void OutfitterPanel::Refill()
 {
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		// Skip ships in other systems and those that were unable to land in-system.
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 
-		set<const Outfit *> toRefill;
-		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo())
-				toRefill.insert(it.GetOutfit()->Ammo());
-
+		auto toRefill = GetRefillableAmmunition(*ship);
 		for(const Outfit *outfit : toRefill)
 		{
 			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());

@@ -1,5 +1,5 @@
 /* Weather.h
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -19,11 +19,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Hazard;
 class Visual;
+class Weapon;
+
 
 
 // Weather is used to contain an active system hazard, keeping track of the hazard's
 // lifetime, its strength, and if it should cause any damage.
 class Weather {
+public:
+	class ImpactInfo {
+	public:
+		ImpactInfo(const Weapon &weapon, Point position, double scale)
+			: weapon(weapon), position(std::move(position)), scale(scale) {}
+
+		const Weapon &weapon;
+		Point position;
+		double scale;
+	};
+
 public:
 	Weather() = default;
 	explicit Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin);
@@ -34,18 +47,24 @@ public:
 	bool HasWeapon() const;
 	// The period of this weather, dictating how often it deals damage while active.
 	int Period() const;
-	// What the hazard's damage is multiplied by given the current weather strength.
-	double DamageMultiplier() const;
 	// The origin of the hazard.
 	const Point &Origin() const;
 	// Create any environmental effects and decrease the lifetime of this weather.
-	void Step(std::vector<Visual> &newVisuals);
+	void Step(std::vector<Visual> &newVisuals, const Point &center);
 	// Calculate this weather's strength for the current frame, to be used to find
 	// out what the current period and damage multipliers are.
 	void CalculateStrength();
 
+	// Get information on how this hazard impacted a ship.
+	ImpactInfo GetInfo() const;
+
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
+
+
+private:
+	// What the hazard's damage is multiplied by given the current weather strength.
+	double DamageMultiplier() const;
 
 
 private:

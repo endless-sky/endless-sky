@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 
 using namespace std;
 
@@ -32,35 +33,113 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"cooling energy", 0.},
+		{"shield generation", 0,},
+		{"shield energy", 0.},
+		{"shield fuel", 0.},
+		{"shield heat", 0.},
+		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
 		{"hull threshold", 0.},
-		{"shield energy", 0.},
-		{"shield fuel", 0.},
-		{"shield heat", 0.},
-		{"disruption resistance energy", 0.},
-		{"disruption resistance fuel", 0.},
-		{"disruption resistance heat", 0.},
+		{"energy generation", 0.},
+		{"energy consumption", 0.},
+		{"fuel generation", 0.},
+		{"fuel consumption", 0.},
+		{"fuel energy", 0.},
+		{"fuel heat", 0.},
+		{"heat generation", 0.},
+
+		{"thrusting shields", 0.},
+		{"thrusting hull", 0.},
+		{"thrusting energy", 0.},
+		{"thrusting fuel", 0.},
+		{"thrusting heat", 0.},
+		{"thrusting discharge", 0.},
+		{"thrusting corrosion", 0.},
+		{"thrusting ion", 0.},
+		{"thrusting leakage", 0.},
+		{"thrusting burn", 0.},
+		{"thrusting disruption", 0.},
+		{"thrusting slowing", 0.},
+
+		{"turning shields", 0.},
+		{"turning hull", 0.},
+		{"turning energy", 0.},
+		{"turning fuel", 0.},
+		{"turning heat", 0.},
+		{"turning discharge", 0.},
+		{"turning corrosion", 0.},
+		{"turning ion", 0.},
+		{"turning leakage", 0.},
+		{"turning burn", 0.},
+		{"turning disruption", 0.},
+		{"turning slowing", 0.},
+
+		{"reverse thrusting shields", 0.},
+		{"reverse thrusting hull", 0.},
+		{"reverse thrusting energy", 0.},
+		{"reverse thrusting fuel", 0.},
+		{"reverse thrusting heat", 0.},
+		{"reverse thrusting discharge", 0.},
+		{"reverse thrusting corrosion", 0.},
+		{"reverse thrusting ion", 0.},
+		{"reverse thrusting leakage", 0.},
+		{"reverse thrusting burn", 0.},
+		{"reverse thrusting disruption", 0.},
+		{"reverse thrusting slowing", 0.},
+
+		{"afterburner shields", 0.},
+		{"afterburner hull", 0.},
+		{"afterburner energy", 0.},
+		{"afterburner fuel", 0.},
+		{"afterburner heat", 0.},
+		{"afterburner discharge", 0.},
+		{"afterburner corrosion", 0.},
+		{"afterburner ion", 0.},
+		{"afterburner leakage", 0.},
+		{"afterburner burn", 0.},
+		{"afterburner disruption", 0.},
+		{"afterburner slowing", 0.},
+
+		{"cooling energy", 0.},
+		{"discharge resistance energy", 0.},
+		{"discharge resistance fuel", 0.},
+		{"discharge resistance heat", 0.},
+		{"corrosion resistance energy", 0.},
+		{"corrosion resistance fuel", 0.},
+		{"corrosion resistance heat", 0.},
 		{"ion resistance energy", 0.},
 		{"ion resistance fuel", 0.},
 		{"ion resistance heat", 0.},
+		{"leak resistance energy", 0.},
+		{"leak resistance fuel", 0.},
+		{"leak resistance heat", 0.},
+		{"burn resistance energy", 0.},
+		{"burn resistance fuel", 0.},
+		{"burn resistance heat", 0.},
+		{"disruption resistance energy", 0.},
+		{"disruption resistance fuel", 0.},
+		{"disruption resistance heat", 0.},
 		{"slowing resistance energy", 0.},
 		{"slowing resistance fuel", 0.},
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
 
 		// "Protection" attributes appear in denominators and are incremented by 1.
-		{"disruption protection", -0.99},
+		{"shield protection", -0.99},
+		{"hull protection", -0.99},
 		{"energy protection", -0.99},
-		{"force protection", -0.99},
 		{"fuel protection", -0.99},
 		{"heat protection", -0.99},
-		{"hull protection", -0.99},
-		{"ion protection", -0.99},
 		{"piercing protection", -0.99},
-		{"shield protection", -0.99},
+		{"force protection", -0.99},
+		{"discharge protection", -0.99},
+		{"corrosion protection", -0.99},
+		{"ion protection", -0.99},
+		{"leak protection", -0.99},
+		{"burn protection", -0.99},
+		{"disruption protection", -0.99},
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
@@ -346,6 +425,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 			if(!minimum)
 				continue;
 		}
+
+		// Only automatons may have a "required crew" of 0.
+		if(!strcmp(at.first, "required crew"))
+			minimum = !attributes.Get("automaton");
+
 		double value = Get(at.first);
 		// Allow for rounding errors:
 		if(value + at.second * count < minimum - EPS)

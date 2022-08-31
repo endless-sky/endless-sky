@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapOutfitterPanel.h"
 
+#include "comparators/ByName.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -242,9 +243,9 @@ void MapOutfitterPanel::DrawItems()
 				storedInSystem == 0
 				? ""
 				: storedInSystem == 1
-				? "One unit in storage"
+				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
 				outfit->Name(), price, info, storage_details);
 			list.push_back(outfit);
 		}
@@ -288,6 +289,5 @@ void MapOutfitterPanel::Init()
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Outfit *a, const Outfit *b) { return a->Name() < b->Name(); });
+		sort(it.second.begin(), it.second.end(), ByName<Outfit>());
 }

@@ -255,7 +255,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 {
 	if(key == 'a' && CanAccept())
 	{
-		Accept();
+		Accept((mod & KMOD_CTRL));
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
@@ -282,6 +282,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_UP)
 	{
 		SelectAnyMission();
+		// Select the previous mission, which may be at the end of the list.
 		if(availableIt != available.end())
 		{
 			// All available missions are, by definition, visible.
@@ -299,11 +300,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN && !SelectAnyMission())
+	else if(key == SDLK_DOWN)
 	{
-		// Keyed "Down," and didn't auto-select the first mission on a side,
-		// so update the existing selected mission.
-		if(availableIt != available.end())
+		if(SelectAnyMission())
+		{
+			// A mission was just auto-selected. Nothing else to do here.
+		}
+		else if(availableIt != available.end())
 		{
 			++availableIt;
 			if(availableIt == available.end())
@@ -686,7 +689,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos,
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
 
-		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
+		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
 			pos, (!canAccept ? dim : isSelected ? selected : unselected));
 	}
@@ -731,12 +734,12 @@ bool MissionPanel::CanAccept() const
 	if(availableIt == available.end())
 		return false;
 
-	return availableIt->HasSpace(player);
+	return availableIt->CanAccept(player);
 }
 
 
 
-void MissionPanel::Accept()
+void MissionPanel::Accept(bool force)
 {
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = 0;
@@ -747,6 +750,11 @@ void MissionPanel::Accept()
 		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
+		if(force)
+		{
+			MakeSpaceAndAccept();
+			return;
+		}
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "

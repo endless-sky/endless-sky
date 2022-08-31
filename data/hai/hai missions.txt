@@ -12,6 +12,7 @@ mission "First Contact: Hai"
 	landing
 	source
 		government "Hai"
+		not attributes "uninhabited"
 	on offer
 		conversation
 			branch unfettered
@@ -91,7 +92,7 @@ mission "Discovered Hai Space"
 	landing
 	invisible
 	source
-		government "Hai"
+		government "Hai" "Hai (Unfettered)"
 	on offer
 		event "label hai space"
 		fail
@@ -186,7 +187,7 @@ mission "First Contact: Unfettered"
 			
 			label everyone
 			`	"We fight to defend ourselves from extinction," it says.`
-			`	"Extinction'" you ask. "Do you mean that you are not the same species as the other Hai?"`
+			`	"Extinction?" you ask. "Do you mean that you are not the same species as the other Hai?"`
 			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
@@ -251,6 +252,7 @@ mission "Ask the Hai about the Unfettered"
 	landing
 	source
 		government "Hai"
+		not attributes "uninhabited"
 	to offer
 		has "First Contact: Hai: offered"
 		has "First Contact: Unfettered: offered"
@@ -297,9 +299,10 @@ mission "Ask the Hai about the Unfettered"
 
 
 mission "Unfettered Jump Drive 1"
+	minor
+	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
-	landing
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -356,9 +359,10 @@ mission "Unfettered Jump Drive 1"
 
 
 mission "Unfettered Jump Drive 2"
+	minor
+	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
-	landing
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -398,9 +402,10 @@ mission "Unfettered Jump Drive 2"
 
 
 mission "Unfettered Jump Drive 3"
+	minor
+	landing
 	name "More Jump Drives"
 	description "If you find more jump drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
-	landing
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
@@ -422,6 +427,8 @@ mission "Unfettered Jump Drive 3"
 				`	"Can you tell me what you are using the jump drives for?"`
 				`	"Thank you, I will certainly bring more of them when I am able."`
 					accept
+			apply
+				set "unfettered know of wanderers"
 			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
 			branch know
 				has "First Contact: Wanderer: offered"
@@ -542,6 +549,10 @@ mission "Unfettered returning home"
 		dialog
 			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
 		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
 
 
 
@@ -640,10 +651,11 @@ mission "Unwanted Cargo Trigger"
 event "hai in cargo"
 
 mission "Unwanted Cargo"
+	minor
 	landing
 	description "Bring a Hai child who hid in your cargo hold back to <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		not government "Hai" "Hai (Unfettered)"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
@@ -681,7 +693,7 @@ mission "Unwanted Cargo"
 			`	The child looks surprised when your translation device speaks to it in Hai. "Take me home!" it yells back at you. You attempt to find out where the child's home is, but it continues to cry for its mother without giving any important information.`
 			
 			label end
-			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on a human world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
+			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on this world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`
 				accept
 			
 	on complete
@@ -1245,6 +1257,10 @@ mission "Pirate Troubles [1]"
 		has "Pirate Troubles [0]: done"
 	on offer
 		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
 		conversation
 			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai elder approaches you. "We have heard from the humans here that you are considered a seasoned fighter among your people. May you lend your combat prowess to us to resolve this issue?"`
 			choice
@@ -1288,7 +1304,7 @@ mission "Pirate Troubles [1]: Farpoint"
 	on offer
 		conversation
 			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
-			`	You return to your ships and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
+			`	You return to your ship and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
 				decline
 
 
@@ -1528,6 +1544,10 @@ mission "Pirate Troubles [4]"
 			has "accepted scar's legion tribute"
 	on offer
 		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
 		payment 2500000
 		conversation
 			`Upon landing on <origin>, the Hai authorities give you <payment> for your assistance in defending their systems and for helping to track down the culprits. You're sent to the council of elders, the elected ruling body of the Hai, to tell them about Scar's Legion. "Please, tell us what has occurred," one of the elders says.`
@@ -1568,6 +1588,10 @@ mission "Pirate Troubles [4]"
 	
 	on decline
 		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
 	
 	npc save accompany
 		government "Hai (Wormhole Access)"
@@ -1586,6 +1610,10 @@ mission "Pirate Troubles [4]"
 	
 	on complete
 		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
 		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
 
@@ -1778,7 +1806,7 @@ mission "Nanachi 4"
 				`	"Can't you just postpone the festival until the pirates are taken care of?"`
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
-			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught your chances of outrunning the pirates are next to nothing!"`
+			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught, your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?" While it's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful and this could be extremely dangerous, you're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
 			choice
 				`	"Alright, I'll make sure we reach Prime and get back here safely."`
@@ -1843,11 +1871,14 @@ mission "Nanachi Meeting"
 		has "event: Nanachi: Update"
 		random > 30
 	on offer
+		outfit "Shield Beetle Pendant"
 		conversation
 			`After you leave your ship and start making your way through the docking area, you notice a Hai running towards you and waving. As they get closer, you realize that it's Nanachi, the Hai pilot who you helped out years ago.`
 			`	"I was just about to go back to my crew when I saw you coming out of your ship. I know a nice snack bar here, let's go there!" Before you can even say hello, she's dragged you to the bar, and ordered some drinks for the two of you. She tells you about her last few years as a captain. She has long since sold her old ship, and now pilots a Geocoris, transporting large amounts of cargo across Hai space. You also tell her about how your life has been ever since you last met, of your adventures and how far you've come. You keep swapping stories for hours, until the bar is ready to close.`
 			`	You thank her for the drinks, and get ready to say your goodbyes.`
-			`	"Oh wait, before you go Captain, let me give you something," she says, right as you're about to head to your ship. She grabs a small pendant from her pocket. "Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make this for you in case I saw you again." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "It's just a good-luck charm I thought you'd like. Thanks again Captain!" You two part ways, and head back to your ships.`
+			`	"Oh wait, before you go Captain, let me give you something," she says, right as you're about to head to your ship. She grabs a small pendant from her pocket.`
+			scene `outfit/crystal pendant`
+			`	"Back home in Giverstone, when I had some free time from the mining works, I took a hobby of sculpting some small stones into ship miniatures. I thought it'd be nice to make one for you, in case I ever saw you again. I made it from the same stones we use as good luck charms on our ships." She gives you the pendant, which has been sculpted into a Hai Shield Beetle. It is extremely well made, with different surface textures representing the different parts of the Shield Beetle. "I wanted it to be something to make your travels easier, the way you helped with starting mine. Thanks again, Captain!" You two part ways, and head back to your ships.`
 				decline
 
 
@@ -1859,6 +1890,7 @@ mission "Strider Alt Start"
 	source
 		government "Hai"
 		not planet "Hai-home"
+		not attributes "uninhabited"
 	destination "Hai-home"
 	clearance
 	to offer

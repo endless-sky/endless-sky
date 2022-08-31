@@ -1,5 +1,5 @@
 /* Hazard.cpp
-Copyright (c) 2020 by Jonathan Steck
+Copyright (c) 2020 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -34,6 +34,8 @@ void Hazard::Load(const DataNode &node)
 			LoadWeapon(child);
 		else if(key == "constant strength")
 			deviates = false;
+		else if(key == "system-wide")
+			systemWide = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping hazard attribute with no value specified:");
 		else if(key == "period")
@@ -110,6 +112,13 @@ int Hazard::RandomDuration() const
 double Hazard::RandomStrength() const
 {
 	return minStrength + (maxStrength <= minStrength ? 0. : (maxStrength - minStrength) * Random::Real());
+}
+
+
+
+bool Hazard::SystemWide() const
+{
+	return systemWide;
 }
 
 

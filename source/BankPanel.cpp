@@ -115,11 +115,11 @@ void BankPanel::Draw()
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.
-	int64_t maintenance = player.Maintenance();
+	PlayerInfo::FleetBalance b = player.MaintenanceAndReturns();
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (maintenance != 0 || maintenanceDue != 0) - (income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0) - (b.assetsReturns != 0 || income[0] != 0 || income[1] != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
@@ -191,9 +191,9 @@ void BankPanel::Draw()
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
-	if(maintenance || maintenanceDue)
+	if(b.maintenanceCosts || maintenanceDue)
 	{
-		totalPayment += maintenance;
+		totalPayment += b.maintenanceCosts;
 
 		table.Draw("Maintenance");
 		if(maintenanceDue)
@@ -204,20 +204,22 @@ void BankPanel::Draw()
 		}
 		else
 			table.Advance(3);
-		table.Draw(maintenance);
+		table.Draw(b.maintenanceCosts);
 		table.Advance();
 	}
-	if(income[0] || income[1])
+	if(income[0] || income[1] || b.assetsReturns)
 	{
 		// Your daily income offsets expenses.
-		totalPayment -= income[0] + income[1];
+		totalPayment -= income[0] + income[1] + b.assetsReturns;
 
-		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income"};
+		static const string LABEL[] = {"", "Your Salary Income", "Your Tribute Income", "Your Salary and Tribute Income",
+			"Your Return on Assets Income", "Your Salary and Return on Assets Income",
+			"Your Tribute and Return on Assets Income", "Your Salary, Tribute, and Returns Income" };
 		const auto incomeLayout = Layout(310, Truncate::BACK);
-		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0)], incomeLayout});
+		table.DrawCustom({LABEL[(income[0] != 0) + 2 * (income[1] != 0) + 4 * (b.assetsReturns != 0)], incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(-(income[0] + income[1]));
+		table.Draw(-(income[0] + income[1] + b.assetsReturns));
 		table.Advance();
 	}
 

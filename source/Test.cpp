@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Test.h"
 
 #include "DataNode.h"
-#include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -74,7 +74,7 @@ namespace{
 	}
 
 	// Prepare an keyboard input to one of the UIs.
-	bool KeyInputToEvent(const char* keyName, Uint16 modKeys)
+	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
@@ -127,7 +127,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
-			for(const DataNode &grand: child){
+			for(const DataNode &grand : child){
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
@@ -140,7 +140,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 		}
 		else if(child.Token(0) == "pointer")
 		{
-			for(const DataNode &grand: child)
+			for(const DataNode &grand : child)
 			{
 				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
 				if(grand.Token(0) == "X")
@@ -191,7 +191,7 @@ void Test::LoadSequence(const DataNode &node)
 		return;
 	}
 
-	for(const DataNode &child: node)
+	for(const DataNode &child : node)
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
@@ -266,7 +266,7 @@ void Test::LoadSequence(const DataNode &node)
 				}
 				break;
 			case TestStep::Type::NAVIGATE:
-				for(const DataNode &grand: child)
+				for(const DataNode &grand : child)
 				{
 					if(grand.Token(0) == "travel" && grand.Size() >= 2)
 						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
@@ -385,12 +385,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// If the step to run is beyond the end of the steps, then we finished
 	// the current test (and step to the step higher in the stack or we are
 	// done testing if we are at toplevel).
-	if(context.stepToRun.back() >= steps.size())
+	if(context.callstack.back().step >= steps.size())
 	{
-		context.testToRun.pop_back();
-		context.stepToRun.pop_back();
+		context.callstack.pop_back();
 
-		if(context.stepToRun.empty())
+		if(context.callstack.empty())
 		{
 			// Done, no failures, exit the game with exitcode success.
 			SendQuitEvent();
@@ -398,7 +397,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		}
 		else
 			// Step beyond the call statement we just finished.
-			++(context.stepToRun.back());
+			++(context.callstack.back().step);
 
 		// We changed the active test or are quitting, so don't run the current one.
 		continueGameLoop = true;
@@ -407,7 +406,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 
-	while(context.stepToRun.back() < steps.size() && !continueGameLoop)
+	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		// Fail if we encounter a watchdog timeout
 		if(context.watchdog == 1)
@@ -415,34 +414,34 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		else if(context.watchdog > 1)
 			--(context.watchdog);
 
-		const TestStep &stepToRun = steps[context.stepToRun.back()];
+		const TestStep &stepToRun = steps[context.callstack.back().step];
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
 				stepToRun.conditions.Apply(player.Conditions());
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
 				if(!stepToRun.conditions.Test(player.Conditions()))
 					Fail(context, player, "asserted false");
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::BRANCH:
 				// If we encounter a branch entry twice, then resume the gameloop before the second encounter.
 				// Encountering branch entries twice typically only happen in "wait loops" and we should give
 				// the game cycles to proceed if we are in a wait loop for something that happens over time.
-				if(context.branchesSinceGameStep.count(context.stepToRun))
+				if(context.branchesSinceGameStep.count(context.callstack.back()))
 				{
 					continueGameLoop = true;
 					break;
 				}
-				context.branchesSinceGameStep.emplace(context.stepToRun);
+				context.branchesSinceGameStep.emplace(context.callstack.back());
 				if(stepToRun.conditions.Test(player.Conditions()))
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
-					context.stepToRun.back() = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
+					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
 				else
-					++(context.stepToRun.back());
+					++(context.callstack.back().step);
 				break;
 			case TestStep::Type::CALL:
 				{
@@ -450,8 +449,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					if(nullptr == calledTest)
 						Fail(context, player, "Calling non-existing test \"" + stepToRun.nameOrLabel + "\"");
 					// Put the called test on the stack and start it from 0.
-					context.testToRun.push_back(calledTest);
-					context.stepToRun.push_back(0);
+					context.callstack.push_back({calledTest, 0});
 					// Break the loop to switch to the test just pushed.
 				}
 				continueGameLoop = true;
@@ -459,11 +457,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 			case TestStep::Type::INJECT:
 				{
 					// Lookup the data and inject it in the game or into the environment.
-					const TestData* testData = (GameData::TestDataSets()).Get(stepToRun.nameOrLabel);
+					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
 					if(!testData->Inject())
 						Fail(context, player, "injecting data failed");
 				}
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::INPUT:
 				if(stepToRun.command)
@@ -479,20 +477,20 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				// TODO: handle mouse inputs
 				// Make sure that we run a gameloop to process the input.
 				continueGameLoop = true;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::LABEL:
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::NAVIGATE:
 				player.TravelPlan().clear();
 				player.TravelPlan() = stepToRun.travelPlan;
 				player.SetTravelDestination(stepToRun.travelDestination);
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::WATCHDOG:
 				context.watchdog = stepToRun.watchdog;
-				++(context.stepToRun.back());
+				++(context.callstack.back().step);
 				break;
 			default:
 				Fail(context, player, "Unknown step type");
@@ -514,17 +512,30 @@ const string &Test::StatusText() const
 void Test::Fail(const TestContext &context, const PlayerInfo &player, const string &testFailReason) const
 {
 	string message = "Test failed";
-	if(!context.stepToRun.empty() && context.stepToRun.back() < steps.size())
-		message += " at step " + to_string(1 + context.stepToRun.back()) + " (" +
-			STEPTYPE_TO_TEXT.at(steps[context.stepToRun.back()].stepType) + ")";
-
 	if(!testFailReason.empty())
 		message += ": " + testFailReason;
+	message += "\n";
+
+	Logger::LogError(message);
+
+	// Print the callstack if we have any.
+	string stackMessage = "Call-stack:\n";
+	if(context.callstack.empty())
+		stackMessage += "  No callstack info at moment of failure.";
+
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
+	{
+		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
+		if(i->step < i->test->steps.size())
+			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
+		stackMessage += "\n";
+	}
+	Logger::LogError(stackMessage);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Files::LogError("No flagship at the moment of failure.");
+		Logger::LogError("No flagship at the moment of failure.");
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -542,7 +553,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Files::LogError(shipsOverview);
+		Logger::LogError(shipsOverview);
 	}
 
 	// Only log the conditions that start with test; we don't want to overload the terminal or errorlog.
@@ -554,11 +565,11 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
 
 	if(!conditions.empty())
-		Files::LogError(conditions);
+		Logger::LogError(conditions);
 	else if(player.Conditions().empty())
-		Files::LogError("Player had no conditions set at the moment of failure.");
+		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Files::LogError("No test conditions were set at the moment of failure.");
+		Logger::LogError("No test conditions were set at the moment of failure.");
 
 	// Throwing a runtime_error is kinda rude, but works for this version of
 	// the tester. Might want to add a menuPanels.QuitError() function in

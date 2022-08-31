@@ -213,18 +213,20 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
 	Angle aim = ship.Facing();
-
-	// Get projectiles to start at the right position. They are drawn at an
-	// offset of (.5 * velocity) and that velocity includes the velocity of the
-	// ship that fired them.
-	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
+	Point start = ship.Position() + aim.Rotate(point);
 
 	// Apply the aim and hardpoint offset.
 	aim += angle;
 	start += aim.Rotate(outfit->HardpointOffset());
 
+	// Apply the weapon's inaccuracy to the aim. This allows firing effects
+	// to share the same inaccuracy as the projectile.
+	aim += Projectile::Inaccuracy(outfit->Inaccuracy());
+
 	// Create a new projectile, originating from this hardpoint.
-	projectiles.emplace_back(ship, start, aim, outfit);
+	// In order to get projectiles to start at the right position they are drawn
+	// at an offset of (.5 * velocity). See BatchDrawList.cpp for more details.
+	projectiles.emplace_back(ship, start - .5 * ship.Velocity(), aim, outfit);
 
 	// Create any effects this weapon creates when it is fired.
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
@@ -275,6 +277,19 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 	// Check whether the missile was destroyed.
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
+}
+
+
+
+// This weapon jammed. Increase its reload counters, but don't fire.
+void Hardpoint::Jam()
+{
+	// Since this is only called internally by Armament (no one else has non-
+	// const access), assume Armament checked that this is a valid call.
+
+	// Reset the reload count.
+	reload += outfit->Reload();
+	burstReload += outfit->BurstReload();
 }
 
 

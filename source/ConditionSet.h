@@ -27,8 +27,8 @@ class DataWriter;
 // those conditions, and other operations that can be "applied" to change the
 // values.
 class ConditionSet {
-public:
 	using Conditions = std::map<std::string, int64_t>;
+public:
 	ConditionSet() = default;
 	// Construct and Load() at the same time.
 	ConditionSet(const DataNode &node);

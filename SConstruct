@@ -1,6 +1,7 @@
 import os
 import platform
 from SCons.Node.FS import Dir
+from SCons.Errors import SConsEnvironmentError
 
 def pathjoin(*args):
 	return os.path.join(*args)
@@ -9,13 +10,12 @@ def pathjoin(*args):
 # If we are compiling on Windows, then we need to change the toolset to MinGW.
 is_windows_host = platform.system().startswith('Windows')
 scons_toolset = ['mingw' if is_windows_host else 'default']
-env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ)
+env = DefaultEnvironment(tools = scons_toolset, ENV = os.environ, COMPILATIONDB_USE_ABSPATH=True)
 # If manually building within the Steam Runtime (scout), SCons will need to be invoked directly
 # with `python3.5`. Most other runtimes / build hosts will default to a newer version of python.
 env.EnsurePythonVersion(3, 5)
 # Make sure the current SCons version is at least v3.1.0; newer versions are allowed.
 env.EnsureSConsVersion(3, 1, 0)
-
 
 if 'CXX' in os.environ:
 	env['CXX'] = os.environ['CXX']
@@ -144,6 +144,13 @@ def RecursiveGlob(pattern, dir_name=buildDirectory):
 	matches = [i for i in matches if not '{}main.cpp'.format(os.path.sep) in str(i)]
 	return matches
 
+try:
+    env.Tool('compilation_db')
+    env.Default(env.CompilationDatabase())
+# scons before 4.0.0 is used. In that case, simply don't provide a compilation database.
+except SConsEnvironmentError:
+    pass
+
 # By default, invoking scons will build the backing archive file and then the game binary.
 sourceLib = env.StaticLibrary(pathjoin(libDirectory, "endless-sky"), RecursiveGlob("*.cpp", buildDirectory))
 exeObjs = [env.Glob(pathjoin(buildDirectory, f)) for f in ("main.cpp",)]
@@ -156,13 +163,13 @@ env.Default(sky)
 
 # The testing infrastructure ignores "mode" specification (i.e. we only test optimized output).
 # (If we add support for code coverage output, this will likely need to change.)
-testBuildDirectory = pathjoin("tests", env["BUILDDIR"])
-env.VariantDir(testBuildDirectory, pathjoin("tests", "src"), duplicate = 0)
+testBuildDirectory = pathjoin("tests", "unit", env["BUILDDIR"])
+env.VariantDir(testBuildDirectory, pathjoin("tests", "unit", "src"), duplicate = 0)
 test = env.Program(
-	target=pathjoin("tests", "endless-sky-tests"),
+	target=pathjoin("tests", "unit", "endless-sky-tests"),
 	source=RecursiveGlob("*.cpp", testBuildDirectory) + sourceLib,
-	 # Add Catch header & additional test includes to the existing search paths
-	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'include')]),
+	# Add Catch header & additional test includes to the existing search paths.
+	CPPPATH=(env.get('CPPPATH', []) + [pathjoin('tests', 'unit', 'include')]),
 	# Do not link against the actual implementations of SDL, OpenGL, etc.
 	LIBS=sys_libs,
 	# Pass the necessary link flags for a console program.
@@ -190,7 +197,7 @@ env.Install("$DESTDIR$PREFIX/games", sky)
 env.Install("$DESTDIR$PREFIX/share/applications", "endless-sky.desktop")
 
 # Install app center metadata:
-env.Install("$DESTDIR$PREFIX/share/appdata", "endless-sky.appdata.xml")
+env.Install("$DESTDIR$PREFIX/share/metainfo", "endless-sky.appdata.xml")
 
 # Install icons, keeping track of all the paths.
 # Most Ubuntu apps supply 16, 22, 24, 32, 48, and 256, and sometimes others.

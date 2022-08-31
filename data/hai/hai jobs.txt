@@ -25,6 +25,11 @@ mission "Human Vacation [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 8000 150
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Human Vacation [2]"
@@ -44,6 +49,11 @@ mission "Human Vacation [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 150
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Vacation [1]"
@@ -63,6 +73,11 @@ mission "Hai Vacation [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 6000 150
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Vacation [2]"
@@ -82,6 +97,11 @@ mission "Hai Vacation [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 4000 150
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Vacation [3]"
@@ -101,6 +121,11 @@ mission "Hai Vacation [3]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 4000 150
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Vacation [4]"
@@ -121,6 +146,11 @@ mission "Hai Vacation [4]"
 	on complete
 		payment
 		payment 6000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -145,6 +175,11 @@ mission "Wealthy Hai [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wealthy Hai [2]"
@@ -168,6 +203,11 @@ mission "Wealthy Hai [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "generic passenger dropoff payment"
 
 
@@ -194,6 +234,11 @@ mission "Hai Festival [1]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "hai festival payment dialog"
 
 mission "Hai Festival [2]"
@@ -215,6 +260,11 @@ mission "Hai Festival [2]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "hai festival payment dialog"
 
 mission "Hai Festival [3]"
@@ -236,6 +286,11 @@ mission "Hai Festival [3]"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 10000 200
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "hai festival payment dialog"
 
 
@@ -263,7 +318,7 @@ mission "Unfettered Aid [0]"
 	cargo "food (aid)" 25 2 .05
 	to offer
 		random < 40
-		"cargo space" > 80
+		"cargo space" >= 50
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -276,6 +331,11 @@ mission "Unfettered Aid [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 5000 1600
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -287,7 +347,7 @@ mission "Unfettered Aid [1]"
 	cargo "food (aid)" 30 2 .05
 	to offer
 		random < 30
-		"cargo space" > 100
+		"cargo space" > 60
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -300,6 +360,11 @@ mission "Unfettered Aid [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 6000 1800
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -311,7 +376,7 @@ mission "Unfettered Aid [2]"
 	cargo "food (aid)" 35 2 .05
 	to offer
 		random < 20
-		"cargo space" > 120
+		"cargo space" > 65
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
@@ -324,6 +389,11 @@ mission "Unfettered Aid [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 7000 2000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
 phrase "unfettered tribute payment dialog"
@@ -355,7 +425,7 @@ mission "Unfettered Tribute 1"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -378,7 +448,7 @@ mission "Unfettered Tribute 2"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -401,7 +471,7 @@ mission "Unfettered Tribute 3"
 		attributes "hai"
 		attributes "spaceport"
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered tribute pickup dialog"
 
@@ -424,6 +494,11 @@ mission "Delivery to Human Space [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic cargo delivery payment"
 
 mission "Delivery to Human Space [1]"
@@ -443,6 +518,11 @@ mission "Delivery to Human Space [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic cargo delivery payment"
 
 mission "Delivery to Human Space [2]"
@@ -462,6 +542,11 @@ mission "Delivery to Human Space [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment 60000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Retrieve Human Luxury Goods"
@@ -484,6 +569,11 @@ mission "Hai Retrieve Human Luxury Goods"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
 
 mission "Hai Retrieve Human Food"
@@ -506,6 +596,11 @@ mission "Hai Retrieve Human Food"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
 
 mission "Hai Retrieve Human Electronics"
@@ -528,6 +623,11 @@ mission "Hai Retrieve Human Electronics"
 		dialog phrase "generic missing stopover or cargo"
 	on complete
 		payment 120000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog "The Hai tinkerer is waiting for you when you arrive. They pay you <payment> and then run after the cargo pallets as though they plan to open them right there in the spaceport."
 
 
@@ -571,6 +671,11 @@ mission "Escort to Human Space (Small)"
 				"Freighter (Hai)"
 	on complete
 		payment 120000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -619,6 +724,11 @@ mission "Escort to Human Space (Medium)"
 				"Freighter (Hai)"
 	on complete
 		payment 180000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -662,6 +772,11 @@ mission "Escort to Human Space (Large)"
 				"Behemoth (Hai)"
 	on complete
 		payment 240000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -711,6 +826,11 @@ mission "Escort to Human Space (Extra Large)"
 				"Behemoth (Hai)"
 	on complete
 		payment 300000
+		"reputation: Hai" += 5
+		"reputation: Hai (Wormhole Access)" += 5
+		"reputation: Hai Merchant" += 5
+		"reputation: Hai Merchant (Human)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "generic safe escort completion dialog"
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -734,6 +854,11 @@ mission "Hai Passengers [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Passengers [2]"
@@ -753,6 +878,11 @@ mission "Hai Passengers [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Passengers [3]"
@@ -772,6 +902,11 @@ mission "Hai Passengers [3]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Hai Family [0]"
@@ -782,7 +917,7 @@ mission "Hai Family [0]"
 	passengers 2 4 .5
 	to offer
 		random < 60
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Hai"
 	destination
@@ -793,6 +928,11 @@ mission "Hai Family [0]"
 	on complete
 		payment
 		payment 4000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Hai Family [1]"
@@ -803,7 +943,7 @@ mission "Hai Family [1]"
 	passengers 2 4 .5
 	to offer
 		random < 40
-		"passenger space" > 10
+		"passenger space" >= 5
 	source
 		government "Hai"
 	destination
@@ -814,6 +954,11 @@ mission "Hai Family [1]"
 	on complete
 		payment
 		payment 6000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Transport Hai miners to <planet>"
@@ -834,6 +979,11 @@ mission "Transport Hai miners to <planet>"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "You wish the mining family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport Hai farmers to <planet>"
@@ -854,6 +1004,11 @@ mission "Transport Hai farmers to <planet>"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport Hai mill workers to <planet>"
@@ -874,6 +1029,11 @@ mission "Transport Hai mill workers to <planet>"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport Hai workers to <planet>"
@@ -894,6 +1054,11 @@ mission "Transport Hai workers to <planet>"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 
@@ -915,6 +1080,11 @@ mission "Hai Cargo [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Cargo [1]"
@@ -934,6 +1104,11 @@ mission "Hai Cargo [1]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Cargo [2]"
@@ -954,6 +1129,11 @@ mission "Hai Cargo [2]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Cargo [3]"
@@ -975,6 +1155,11 @@ mission "Hai Cargo [3]"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Cargo [4]"
@@ -996,6 +1181,11 @@ mission "Hai Cargo [4]"
 	on complete
 		payment
 		payment 4000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Bulk Delivery [0]"
@@ -1015,6 +1205,11 @@ mission "Hai Bulk Delivery [0]"
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Bulk Delivery [1]"
@@ -1035,6 +1230,11 @@ mission "Hai Bulk Delivery [1]"
 	on complete
 		payment
 		payment 2000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Bulk Delivery [2]"
@@ -1056,6 +1256,11 @@ mission "Hai Bulk Delivery [2]"
 	on complete
 		payment
 		payment 4000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Bulk Delivery [0]"
@@ -1066,7 +1271,7 @@ mission "Hai Large Bulk Delivery [0]"
 	cargo random 50 3 .02
 	to offer
 		random < 60
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Hai"
 	destination
@@ -1077,6 +1282,11 @@ mission "Hai Large Bulk Delivery [0]"
 	on complete
 		payment
 		payment 4000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Bulk Delivery [1]"
@@ -1087,7 +1297,7 @@ mission "Hai Large Bulk Delivery [1]"
 	cargo random 50 3 .02
 	to offer
 		random < 50
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		government "Hai"
 	destination
@@ -1098,6 +1308,11 @@ mission "Hai Large Bulk Delivery [1]"
 	on complete
 		payment
 		payment 6000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Bulk Delivery [2]"
@@ -1108,7 +1323,7 @@ mission "Hai Large Bulk Delivery [2]"
 	cargo random 50 3 .02
 	to offer
 		random < 40
-		"cargo space" > 160
+		"cargo space" > 100
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
@@ -1120,6 +1335,11 @@ mission "Hai Large Bulk Delivery [2]"
 	on complete
 		payment
 		payment 8000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [0]"
@@ -1141,6 +1361,11 @@ mission "Hai Rush Delivery [0]"
 	on complete
 		payment
 		payment 16000
+		"reputation: Hai" += 2
+		"reputation: Hai (Wormhole Access)" += 2
+		"reputation: Hai Merchant" += 2
+		"reputation: Hai Merchant (Human)" += 2
+		"reputation: Hai Merchant (Sympathizers)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [1]"
@@ -1162,6 +1387,7 @@ mission "Hai Rush Delivery [1]"
 	on complete
 		payment
 		payment 18000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [2]"
@@ -1184,6 +1410,7 @@ mission "Hai Rush Delivery [2]"
 	on complete
 		payment
 		payment 20000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [3]"
@@ -1206,6 +1433,7 @@ mission "Hai Rush Delivery [3]"
 	on complete
 		payment
 		payment 22000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [0]"
@@ -1217,7 +1445,7 @@ mission "Hai Large Rush Delivery [0]"
 	cargo random 30 8 .1
 	to offer
 		random < 80
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Hai"
 	destination
@@ -1228,6 +1456,7 @@ mission "Hai Large Rush Delivery [0]"
 	on complete
 		payment
 		payment 36000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [1]"
@@ -1239,7 +1468,7 @@ mission "Hai Large Rush Delivery [1]"
 	cargo random 30 8 .1
 	to offer
 		random < 60
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		government "Hai"
 	destination
@@ -1250,6 +1479,7 @@ mission "Hai Large Rush Delivery [1]"
 	on complete
 		payment
 		payment 38000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [2]"
@@ -1261,7 +1491,7 @@ mission "Hai Large Rush Delivery [2]"
 	cargo random 30 8 .1
 	to offer
 		random < 40
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
@@ -1273,6 +1503,7 @@ mission "Hai Large Rush Delivery [2]"
 	on complete
 		payment
 		payment 40000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [3]"
@@ -1284,7 +1515,7 @@ mission "Hai Large Rush Delivery [3]"
 	cargo random 30 8 .1
 	to offer
 		random < 30
-		"cargo space" > 80
+		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
 		government "Hai"
@@ -1296,6 +1527,7 @@ mission "Hai Large Rush Delivery [3]"
 	on complete
 		payment
 		payment 42000
+		"reputation: Hai" += 2
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1319,4 +1551,5 @@ mission "Hai Prisoner Roleplay"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 150
+		"reputation: Hai" += 5
 		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."

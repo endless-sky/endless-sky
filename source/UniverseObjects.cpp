@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "text/FontSet.h"
 #include "ImageSet.h"
+#include "Information.h"
+#include "Logger.h"
 #include "MaskManager.h"
 #include "Music.h"
 #include "PlayerInfo.h"
@@ -43,7 +45,7 @@ namespace {
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	void Warn(const string &noun, const string &name)
 	{
-		Files::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
 	}
 	// Class objects with a deferred definition should still get named when content is loaded.
 	template <class Type>
@@ -134,6 +136,22 @@ void UniverseObjects::FinishLoading()
 			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
 		startConditions.end()
 	);
+
+	// Process any disabled game objects.
+	for(const auto &category : disabled)
+	{
+		if(category.first == "mission")
+			for(const string &name : category.second)
+				missions.Get(name)->NeverOffer();
+		else if(category.first == "event")
+			for(const string &name : category.second)
+				events.Get(name)->Disable();
+		else if(category.first == "person")
+			for(const string &name : category.second)
+				persons.Get(name)->NeverSpawn();
+		else
+			Logger::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+	}
 }
 
 
@@ -211,7 +229,7 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Files::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
@@ -248,7 +266,7 @@ void UniverseObjects::CheckReferences()
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
 		if(it.second.empty() && !deferred["outfitter"].count(it.first))
-			Files::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
+			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -267,7 +285,7 @@ void UniverseObjects::CheckReferences()
 	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
 		if(it.second.empty() && !deferred["shipyard"].count(it.first))
-			Files::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
+			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
@@ -288,7 +306,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 
 	DataFile data(path);
 	if(debugMode)
-		Files::LogError("Parsing: " + path);
+		Logger::LogError("Parsing: " + path);
 
 	for(const DataNode &node : data)
 	{
@@ -311,7 +329,17 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		else if(key == "hazard" && node.Size() >= 2)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
+		{
 			interfaces.Get(node.Token(1))->Load(node);
+
+			// If we modified the "menu background" interface, then
+			// we also update our cache of it.
+			if(node.Token(1) == "menu background")
+			{
+				lock_guard<mutex> lock(menuBackgroundMutex);
+				menuBackgroundCache.Load(node);
+			}
+		}
 		else if(key == "minable" && node.Size() >= 2)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && node.Size() >= 2)
@@ -428,7 +456,31 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node);
+		else if(key == "disable" && node.Size() >= 2)
+		{
+			static const set<string> canDisable = {"mission", "event", "person"};
+			const string &category = node.Token(1);
+			if(canDisable.count(category))
+			{
+				if(node.HasChildren())
+					for(const DataNode &child : node)
+						disabled[category].emplace(child.Token(0));
+				if(node.Size() >= 3)
+					for(int index = 2; index < node.Size(); ++index)
+						disabled[category].emplace(node.Token(index));
+			}
+			else
+				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }
