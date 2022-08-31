@@ -14,13 +14,15 @@ stdOp = "+/*<>&%=|!:-"
 # The dict also contains the error description for the patterns.
 line_include = {
 	# Matches any '{' following an 'if', 'else if', 'for' or 'switch' statement.
-	"^(?:(}\\selse\\s)?if|for|switch|}\\scatch).*{$": "'{' should be on new line",
+	"^(?:(}\\selse\\s)?if|for|switch|catch).*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
 	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
 	# Matches any parenthesis preceded by a whitespace,
 	# except if the whitespace follows a semicolon,
 	# or follows an all-caps method name
 	"(?![A-Z]+)^.*[^;]\\s\\)": "extra whitespace before closing parenthesis",
+	# Matches any 'if', 'else if', 'for', 'catch', 'try' or 'switch' statements where the statement is not at the beginning of the line.
+	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else\\sif|switch|for|catch|try)(\\s{|\\()": "statement should begin on new line"
 }
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
@@ -36,8 +38,8 @@ segment_include = {
 	"(?![A-Z]+)^.*\\(\\s(?!;)": "extra whitespace after opening parenthesis",
 	# Matches any whitespaces at the end of a line that are preceded by brackets, parentheses or semicolons.
 	"[;[{]\\s+$": "trailing whitespace at end of line",
-	# Matches any 'if', 'for' or 'switch' statements where the '(' is preceded by a whitespace.
-	"(?:if|switch|for)\\s+\\(": "extra whitespace before '('"
+	# Matches any 'if', 'for', 'catch' or 'switch' statements where the '(' is preceded by a whitespace.
+	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('"
 }
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
