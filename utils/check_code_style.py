@@ -24,7 +24,7 @@ line_include = {
 	# Matches any 'if', 'else if', 'for', 'catch', 'try' or 'switch' statements where the statement is not at the beginning of the line.
 	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else\\sif|switch|for|catch|try)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
-	"(?<!^for\\();[^\\)}]+$": "semicolon should terminate line"
+	";[^\\)}]+$": "semicolon should terminate line"
 }
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
