@@ -238,7 +238,7 @@ ship "Modified Dromedary"
 	attributes
 		licenses
 			"Remnant Capital"
-		category "Transport"
+		category "Utility"
 		"cost" 57600000
 		"shields" 15100
 		"hull" 9600
@@ -386,6 +386,8 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 ship "Modified Dromedary" "Modified Dromedary Wreck"
 	sprite "ship/modified dromedary wreck"
 	thumbnail "thumbnail/modified dromedary wreck"
+	"uncapturable"
+	"never disabled"
 	attributes
 	add attributes
 		"shields" -10000
