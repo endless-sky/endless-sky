@@ -248,7 +248,7 @@ outfit "Surveillance Pod"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan power" 16
-	"outfit scan speed" 32
+	"outfit scan speed" 50
 	"cargo scan power" 4
 	"cargo scan speed" 18
 	"atmosphere scan" 100
