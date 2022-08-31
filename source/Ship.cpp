@@ -2376,12 +2376,12 @@ int Ship::Scan()
 			so rearrange the formula to minimize divisions.
 
 			"(scannerRange - distance) / scannerRange"
-			This scales linearly from 1 at 0px distance to 0 at "scannerRage" distance.
+			This line hits 1 at distace = 0, and 0 at distance = scannerRange.
+			This is a hard cap on scanning range.
 
 			"speed / (sqrt(speed) + distance)"
-			This doubles scan time over the square root of "speed" in distance,
-			while also boosting base scan speed by the square root of "speed".
-			The bonus to scan speed is reduced to 1 at ("speed" - sqrt("speed)) distance.
+			This gives a modest speed boost at no distance (speed/sqrt(speed), and
+			the boost tapers off to 0 at arbitrary distance.
 
 			"1 / depth"
 			This doubles scan time for cargo holds or outfit sections that are twice as large. */
