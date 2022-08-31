@@ -223,7 +223,7 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} 
+		}
 		catch (const bad_alloc &)
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
@@ -302,7 +302,7 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} 
+		}
 		catch (const bad_alloc &)
 		{
 			jpeg_destroy_decompress(&cinfo);
