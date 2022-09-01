@@ -1003,7 +1003,7 @@ ship "Peregrine"
 ship "Peregrine" "Peregrine (II)"
 	outfits
 		"Thrasher Cannon" 4
-		"Teciimach Bay" 1
+		"Teciimach Bay"
 		"Point Defense Turret"
 		"Thrasher Turret"
 		"Teciimach Canister" 9
