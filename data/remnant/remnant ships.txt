@@ -327,6 +327,7 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 		"energy protection" 1
 		"force protection" 100
 		"fuel protection" 100
+		"heat protection" 100
 		"hull protection" 100
 		"ion protection" 1
 		"leak protection" 100
@@ -364,6 +365,7 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 		"disruption protection" 100
 		"energy protection" 1
 		"force protection" 100
+		"heat protection" 100
 		"fuel protection" 100
 		"hull protection" 100
 		"ion protection" 1
@@ -395,6 +397,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"shields" -10000
 		"hull" -5000
 		"burn protection" 100
+		"heat protection" 1
 		"quantum keystone" 1
 		"discharge protection" 1
 		"energy protection" 1
