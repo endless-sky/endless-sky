@@ -731,7 +731,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
 		Logger::LogError(message + warning + outfitNames.str());
-
 	}
 
 	// Ships read from a save file may have non-default shields or hull.
