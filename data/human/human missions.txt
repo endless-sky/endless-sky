@@ -4334,7 +4334,6 @@ mission "Saving Artifacts 4"
 			and
 				has "Saving Artifacts 2: done"
 				not "Duel Lokust"
-	landing
 	
 	on visit
 		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
