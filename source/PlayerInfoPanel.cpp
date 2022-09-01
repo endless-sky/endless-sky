@@ -646,7 +646,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Table attributes.
 	Table table;
-	for(const auto &col: columns)
+	for(const auto &col : columns)
 		table.AddColumn(col.offset, col.layout);
 
 	table.SetUnderline(0, 730);

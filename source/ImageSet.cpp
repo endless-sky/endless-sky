@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageSet.h"
 
-#include "Files.h"
 #include "GameData.h"
+#include "Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Sprite.h"
@@ -103,7 +103,7 @@ namespace {
 		// Valid animations (or stills) begin with frame 0.
 		if(frameData.begin()->first != 0)
 		{
-			Files::LogError(prefix + "ignored " + (is2x ? "@2x " : "") + "frame " + to_string(frameData.begin()->first)
+			Logger::LogError(prefix + "ignored " + (is2x ? "@2x " : "") + "frame " + to_string(frameData.begin()->first)
 					+ " (" + to_string(frameData.size()) + " ignored in total). Animations must start at frame 0.");
 			return;
 		}
@@ -123,7 +123,7 @@ namespace {
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Files::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
+			Logger::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
 					+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
@@ -204,7 +204,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	// Drop any @2x paths that will not be used.
 	if(paths[1].size() > paths[0].size())
 	{
-		Files::LogError(prefix + to_string(paths[1].size() - paths[0].size())
+		Logger::LogError(prefix + to_string(paths[1].size() - paths[0].size())
 				+ " extra frames for the @2x sprite will be ignored.");
 		paths[1].resize(paths[0].size());
 	}
@@ -235,12 +235,12 @@ void ImageSet::Load() noexcept(false)
 	for(size_t i = 0; i < frames; ++i)
 	{
 		if(!buffer[0].Read(paths[0][i], i))
-			Files::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
+			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
 		else if(makeMasks)
 		{
 			masks[i].Create(buffer[0], i);
 			if(!masks[i].IsLoaded())
-				Files::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
 	}
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
@@ -248,7 +248,7 @@ void ImageSet::Load() noexcept(false)
 	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
 		if(!buffer[1].Read(paths[1][i], i))
 		{
-			Files::LogError("Removing @2x frames for \"" + name + "\" due to read error");
+			Logger::LogError("Removing @2x frames for \"" + name + "\" due to read error");
 			buffer[1].Clear();
 			break;
 		}
@@ -260,7 +260,7 @@ void ImageSet::Load() noexcept(false)
 			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
 			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
 	))
-		Files::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
+		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }
 
