@@ -283,7 +283,7 @@ outfit "Teciimach Canister"
 	category "Ammunition"
 	licenses
 		Remnant
-	cost 25500
+	cost 35500
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
 	"teciimach canister capacity" -1
