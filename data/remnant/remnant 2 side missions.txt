@@ -186,7 +186,7 @@ mission "Remnant: Celebration 1"
 					goto celebrationannotated
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually emerging from the typical hallways into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or traces of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
-			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually: a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
 			`	"Thump."`
@@ -199,7 +199,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, and some are nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming but not overwhelming either:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
@@ -220,7 +220,7 @@ mission "Remnant: Celebration 1"
 			`	The crowd you have joined merges with other flows of people as you all stream onward, eventually emerging from the typical hallways into a massive cave. On one side, a large opening, framed by rough stone and a handful of shield emitters, looks up towards the night sky. Stalagmites with matching stalactites above them ring the perimeter of the room, but there is no sound of drips or traces of lingering moisture here. While the walls are still rough, natural stone, the floor and all the stalagmites have been polished smooth. With a quick glance, you estimate that there are already over a hundred people in here, and more are still filtering in around you and through several other doors. Taely leads you through the crowd, frequently gesturing greetings to those she passes by.`
 			`	Taely gestures quietly to you. "We start with the ritual query and response asking if we are safe. Safe in this moment, at least."`
 			`	Without warning the room stills, and all the doors close. A flurry of gestures washes out from the center of the room, as if everyone is repeating what someone has said, but you cannot see anyone starting it. "Perimeter secure?" comes the gestured question, followed by an answering ripple from the edges of the room back toward the center: "All clear."`
-			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually, a slow, steady rhythm.`
+			`	Suddenly, you become aware of a drum beat building in the silence, and then realize that it had already started with the first ripple of gestures, so quiet that, until now, it was unnoticeable. The beat builds gradually: a slow, steady rhythm.`
 			`	"Thump."`
 			`	"Thump."`
 			`	"Thump."`
@@ -234,7 +234,7 @@ mission "Remnant: Celebration 1"
 			`	"Thump-thump."`
 			`	"Thump-thump."`
 			`	"Thump-thump."`
-			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, some nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
+			`	Looking around the room you can see people starting to move in time with the beat. Some are swaying, and some are nodding their heads or tapping their feet. Standing next to you, Taely has a hand on her heart, tapping softly. Soon you hear other drummers join in as the beat resonates throughout the room. Now people are not merely swaying to the beat, but dancing. Some spin in place, others rock back and forth between different stances, and a few have joined hands and begun moving in a circle. Everywhere you look there are people dancing in countless variations.`
 			`	Out of the chaos you hear a voice rise in song. You cannot make out what it is saying, but it carries the tones of anticipation. You can, however, clearly decipher a chant from many other voices, cutting through the solo voice in time with the drumming but not overwhelming either:`
 			`	"...6...5...4...Ignition...2...1...Liftoff!"`
 			choice
