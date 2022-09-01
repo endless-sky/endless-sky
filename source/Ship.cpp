@@ -668,7 +668,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->TrueName() + "\"";
 			Logger::LogError(warning);
-
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
