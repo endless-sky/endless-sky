@@ -152,7 +152,13 @@ bool GameWindow::Init()
 	// Initialize GLEW.
 #if !defined(__APPLE__) && !defined(ES_GLES)
 	glewExperimental = GL_TRUE;
-	if(glewInit() != GLEW_OK){
+	GLenum err = glewInit();
+#ifdef GLEW_ERROR_NO_GLX_DISPLAY
+	if(err != GLEW_OK && err != GLEW_ERROR_NO_GLX_DISPLAY)
+#else
+	if(err != GLEW_OK)
+#endif
+	{
 		ExitWithError("Unable to initialize GLEW!");
 		return false;
 	}
