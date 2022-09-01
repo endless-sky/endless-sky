@@ -1632,7 +1632,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
-	if(ship.get() != flagship || !ship->CanBeCarried())
+	// The player should not become a docked passenger on some other ship, but AI ships may.
+	if(!(ship.get() == flagship && ship->CanBeCarried()))
 	{
 		shared_ptr<Ship> victim = ship->Board(autoPlunder);
 		if(victim)

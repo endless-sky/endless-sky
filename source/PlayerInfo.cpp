@@ -53,17 +53,19 @@ namespace {
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
-	// This function should not be used while other functions have direct references
-	// to the shared_pointer elements in this list.
 	void MoveFlagshipBegin(vector<shared_ptr<Ship>> &ships, const shared_ptr<Ship> &flagship)
 	{
 		if(!flagship)
 			return;
 
+		// Find the current location of the flagship.
 		auto it = find(ships.begin(), ships.end(), flagship);
 		if(it != ships.begin() && it != ships.end())
 		{
+			// Move all ships before the flagship one position backwards (which overwrites
+			// the flagship position).
 			move_backward(ships.begin(), it, next(it));
+			// Re-add the flagship at the beginning of the list.
 			ships[0] = flagship;
 		}
 	}
