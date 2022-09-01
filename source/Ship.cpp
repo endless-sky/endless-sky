@@ -864,7 +864,7 @@ void Ship::Save(DataWriter &out) const
 					if(it.second == 1)
 						out.Write(it.first->TrueName());
 					else
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->TrueName(), it.second);
 				});
 		}
 		out.EndChild();
