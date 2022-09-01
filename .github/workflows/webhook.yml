@@ -1,4 +1,4 @@
-name: Discord Webhook
+name: Discord Automation
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - master
 
 jobs:
-  send-payload:
+  commit-stream:
     runs-on: ubuntu-latest
     steps:
-    - name: Discord notification
-      env:
+    - env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@0.3.2
+      if: "${{ env.DISCORD_WEBHOOK != '' }}"
       with:
-        args: '{{ EVENT_PAYLOAD.head_commit.author.name }}: {{ EVENT_PAYLOAD.head_commit.message }}'
+        args: '{{ EVENT_PAYLOAD.head_commit.message }} committed by {{ EVENT_PAYLOAD.head_commit.author.name }}'
