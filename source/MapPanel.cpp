@@ -1035,8 +1035,8 @@ void MapPanel::DrawEscorts()
 				{
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					Point from = pos + angle.Unit() * DOTS_OUTER * 1.25 * sqrt(zoom);
-					Point to = from + angle.Unit() * 6 * sqrt(zoom);
+					Point from = pos + angle.Unit() * DOTS_OUTER * 1.5 * sqrt(zoom);
+					Point to = from + angle.Unit() * 4 * sqrt(zoom);
 					LineShader::Draw(from, to, 1.5f, active);
 				}
 		}
