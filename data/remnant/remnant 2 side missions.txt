@@ -352,7 +352,8 @@ mission "Remnant: Teciimach Deployment"
 	name "New EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
 	source
-		attributes "shipyard" "remnant"
+		attributes "shipyard"
+		attributes "remnant"
 	to offer
 		has "event: remnant: cognizance calm"
 		has "event: remnant: research update bjd1"
