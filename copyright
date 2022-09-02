@@ -1390,15 +1390,17 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/burning?spark/*
+ images/effect/burning?spark*
  images/effect/coalition?flare/*
- images/effect/corrosion?spark/*
+ images/effect/corrosion?spark*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
+ images/effect/pug?flare/*
+ images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
- images/effect/zapper?impact/*
+ images/effect/zapper?impact*
  images/hardpoint/dual?sunbeam?turret*
  images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
@@ -1428,6 +1430,9 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/projectile/fire-lance*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
@@ -1504,6 +1509,8 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/teciimach?bay*
+ images/outfit/teciimach?pod*
  images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*

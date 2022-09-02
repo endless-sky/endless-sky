@@ -160,7 +160,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
+			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
 			: 1.f;
 
 		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();

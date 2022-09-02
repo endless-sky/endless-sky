@@ -883,7 +883,8 @@ void Ship::Save(DataWriter &out) const
 			WriteSorted(outfits,
 				[](const OutfitElement *lhs, const OutfitElement *rhs)
 					{ return lhs->first->Name() < rhs->first->Name(); },
-				[&out](const OutfitElement &it){
+				[&out](const OutfitElement &it)
+				{
 					if(it.second == 1)
 						out.Write(it.first->Name());
 					else
