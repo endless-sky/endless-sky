@@ -175,8 +175,6 @@ fleet "Remnant Home Guard"
 		"Petrel" 2
 		"Tern" 4
 	variant 3
-		"Smew (Support)" 2
-	variant 3
 		"Smew (Miner)" 2
 	variant 2
 		"Smew (Runabout)"

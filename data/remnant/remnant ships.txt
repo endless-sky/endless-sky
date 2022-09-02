@@ -1194,14 +1194,22 @@ ship "Smew"
 
 ship "Smew" "Smew (Miner)"
 	outfits
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		
 		"Thrasher Cannon"
-
-ship "Smew" "Smew (Support)"
-	outfits
-		"Inhibitor Cannon"	
 
 ship "Smew" "Smew (Runabout)"
 	outfits
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+		
 		"Hyperdrive"	
 
 
