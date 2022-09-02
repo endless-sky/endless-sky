@@ -29,17 +29,17 @@ std_op = "+/\\*<>&%=|!:\\-"
 # These lines don't contain the contents of strings, chars or comments.
 # The dict also contains the error description for the patterns.
 line_include = {
-	# Matches any '{' following an 'if', 'else if', 'for', 'do' or 'switch' statement.
-	"^(?:(}\\selse\\s)?if|for|switch|catch|do).*{$": "'{' should be on new line",
+	# Matches any '{' following an 'if', 'else if', 'for', 'while' or 'switch' statement.
+	"^(?:(}\\selse\\s)?if|else|for|switch|catch|while)\\W*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
 	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
 	# Matches any parenthesis preceded by a whitespace,
 	# except if the whitespace follows a semicolon,
 	# or follows an all-caps method name
 	"(?![A-Z]+)^.*[^;]\\s\\)": "extra whitespace before closing parenthesis",
-	# Matches any 'if', 'else if', 'else', 'for', 'catch', 'try', 'do', 'while' or 'switch' statements
+	# Matches any 'if', 'else if', 'else', 'for', 'catch', 'try', 'do', or 'switch' statements
 	# where the statement is not at the beginning of the line.
-	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do|while)(\\s{|\\()": "statement should begin on new line",
+	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
 	";[^\\)}]+$": "semicolon should terminate line"
 }
