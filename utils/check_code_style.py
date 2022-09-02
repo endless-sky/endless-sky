@@ -90,7 +90,7 @@ match_exclude = [
 ]
 # Patterns for excluding segments that had matches in $include
 segment_exclude = [
-	# Matches anything inside '<>'; this is a bit of a hack for getting type-related issues
+	# Matches anything inside '<>'; this is a bit of a hack for getting rid of type-related issues
 	"<.*>",
 	# Matches any visibility modes; these are followed by ':' marks.
 	"^(public|protected|private|default):$",
