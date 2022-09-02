@@ -1,10 +1,26 @@
 #!/usr/bin/python
+# check_coding_style.py
+# Copyright (c) 2022 by tibetiroka
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 import os
 
 import regex as re
 import glob
 
 # Script that checks for common code formatting pitfalls not covered by clang-format or other tests.
+# The formatting rules are generally based on the guide found at http://endless-sky.github.io/styleguide/styleguide.xml
+# Unit tests mandate the existence of several exceptions to these rules.
+#
+# This checker uses regular expressions. For the sake of simplicity, these expressions represent a rather loose
+# interpretation of the rules.
 
 # String version of the regexes for easy editing
 # List of the standard operators that are checked
@@ -44,7 +60,9 @@ segment_include = {
 	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('",
 	# Matches any 'try' statements that are not followed by a whitespace and a '{'.
 	# The missing whitespace is checked in another pattern.
-	"^try$": "'try' and '{' should be on the same line"
+	"^try$": "'try' and '{' should be on the same line",
+	# Matches any tabulator characters.
+	"\t": "tabulators should only be used for indentation"
 }
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
@@ -95,20 +113,21 @@ after_comment = re.compile("[^\\s#]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
 
+# The number of errors found in all files
 errors = 0
 
 
+# Checks the format of all source files.
 def check_code_style():
 	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
 	for file in files:
-		test_file(file)
+		check_code_format(file)
+		check_global_format(file)
 
 
-# Tests a file for syntax errors. Parameters:
-# file: The path of the file
-
-
-def test_file(file):
+# Tests a file for syntax formatting errors. Parameters:
+# file: The path to the file
+def check_code_format(file):
 	is_multiline_comment = False
 	is_string = False
 	is_char = False
@@ -117,8 +136,12 @@ def test_file(file):
 	f = open(file, "r")
 	lines = f.readlines()
 	for line in lines:
+		line = line.removesuffix('\n')
+		# Checking the width of the line
+		if len(line) > 120:
+			write_error(line, file, line_count, "lines should hard wrap at 120 characters")
 		segments = []
-		line = line.lstrip().replace('\n', '').replace('\r', "")
+		line = line.lstrip()
 		line_count += 1
 		is_escaped = False
 		# Start index is the beginning of the sequence to be tested
@@ -127,6 +150,10 @@ def test_file(file):
 		for i in range(len(line)):
 			# Getting current character
 			char = line[i]
+			# Checking for non-ASCII characters
+			if ord(char) < 0 or ord(char) > 127:
+				write_error(line, file, line_count, "files should be plain ASCII")
+				break
 			# Handling character escapes
 			if is_escaped:
 				is_escaped = False
@@ -191,6 +218,10 @@ def test_file(file):
 			test(segments, file, line_count)
 
 
+# Tests whether the specified segments contain any formatting issues. Parameters:
+# segments: the list of segments on the line
+# file: the path to the file
+# line: the current line number
 def test(segments, file, line):
 	line_text = "".join(segments)
 	for regex, description in line_include.items():
@@ -211,6 +242,13 @@ def test(segments, file, line):
 						return
 
 
+# Checks if the specified regex matches with the text. Parameters:
+# regex: the regex to match
+# part: the part of the text to match
+# segment: the segment the part belongs to
+# file: the path to the file
+# line: the current line number
+# reason: the reason to display if the regex matches the text
 def check_match(regex, part, segment, file, line, reason):
 	pos = re.search(regex, part)
 	if pos is not None:
@@ -223,21 +261,90 @@ def check_match(regex, part, segment, file, line, reason):
 				if re.search(temp, segment):
 					return False
 		write_error(segment, file, line, reason)
-		global errors
-		errors += 1
 		return True
 	return False
 
 
+# Checks certain global formatting properties of files, such as their copyright headers.
+def check_global_format(file):
+	check_copyright(file)
+	return
+
+
+# Checks if the copyright header of the file is correct.
+def check_copyright(file):
+	name = file.split("/")[-1]
+	copyright_begin = [
+		["/* " + name, False],
+		["Copyright \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? by .*", True]
+	]
+	copyright_end = [
+		["", False],
+		["Endless Sky is free software: you can redistribute it and/or modify it under the", False],
+		["terms of the GNU General Public License as published by the Free Software", False],
+		["Foundation, either version 3 of the License, or (at your option) any later version.", False],
+		["", False],
+		["Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY", False],
+		["WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A", False],
+		["PARTICULAR PURPOSE.  See the GNU General Public License for more details.", False],
+		["*/", False]
+	]
+	lines = open(file, "r").readlines()
+	lines = [line.removesuffix('\n') for line in lines]
+	index = 0
+	error_line = -1
+	complete = False
+	for [copyright, is_regex] in copyright_begin:
+		if is_regex:
+			if not re.search(copyright, lines[index]):
+				error_line = index
+				break
+		else:
+			if copyright != lines[index]:
+				error_line = index
+				break
+		index += 1
+	if error_line == -1:
+		index_begin = index
+		while index_begin < len(lines) - len(copyright_end):
+			index = index_begin
+			for [copyright, is_regex] in copyright_end:
+				if is_regex:
+					if not re.search(copyright, lines[index]):
+						error_line = index
+						break
+				else:
+					if copyright != lines[index]:
+						error_line = index
+						break
+				index += 1
+			if error_line == -1:
+				complete = True
+				break
+			index_begin += 1
+			error_line = -1
+	if error_line != -1:
+		write_error(lines[error_line], file, error_line + 1, "invalid or missing copyright header")
+	elif not complete:
+		write_error(lines[len(lines) - 1], file, len(lines) - 1, "incomplete copyright header")
+
+
+# Displays an error message. Parameters:
+# text: the text where the formatting error was found
+# file: the path to the file
+# line: the current line number
+# reason: the reason for the formatting error
 def write_error(text, file, line, reason):
-	print("Formatting error in file", file, "line", line.__str__() + ":", text)
+	print("Formatting error in file", file, "line", line.__str__() + ":", text.replace('\n', ""))
 	print("\tReason:", reason)
+	global errors
+	errors += 1
 
 
 if __name__ == '__main__':
 	check_code_style()
 	if errors > 0:
-		print("Found", errors, "formatting", "error" if errors == 1 else "errors")
+		print("Found", errors, "formatting", "error." if errors == 1 else "errors.")
 		exit(1)
 	print("No formatting errors found.")
 	exit(0)
