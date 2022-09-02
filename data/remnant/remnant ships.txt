@@ -229,6 +229,41 @@ ship "Albatross" "Albatross (Ember Shield)"
 	turret
 	turret
 
+ship "Albatross" "Albatross (Sniper II)"
+	outfits
+		"Inhibitor Cannon" 5
+		"Teciimach Bay" 2
+		"Point Defense Turret" 3
+		"Teciimach Canister" 45
+		"Teciimach Canister Rack" 3
+
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Thermoelectric Cooler" 3
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Outfits Expansion"
+		"Tuning Rifle" 57
+
+		"Forge-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Inhibitor Cannon"
+	gun "Teciimach Bay"
+	gun "Teciimach Bay"
+
+	turret "Point Defense Turret"
+	turret "Point Defense Turret"
+	turret
+	turret
+	turret "Point Defense Turret"
 
 ship "Gull"
 	sprite "ship/gull"
@@ -324,6 +359,27 @@ ship "Gull" "Gull (Support)"
 		"Point Defense Turret"
 		"EMP Torpedo" 16
 		"EMP Torpedo Storage Bay"
+
+		"Epoch Cell"
+		"Millennium Cell"
+		"Crystal Capacitor"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		"Salvage Scanner" 2
+		"Outfits Expansion" 2
+		"Tuning Rifle" 3
+
+		"Forge-Class Thruster"
+		"Forge-Class Steering"
+		"Hyperdrive"
+
+ship "Gull" "Gull (Support II)"
+	outfits
+		"Teciimach Bay"
+		"Inhibitor Cannon" 2
+		"Point Defense Turret"
+		"Teciimach Canister" 18
+		"Teciimach Canister Rack"
 
 		"Epoch Cell"
 		"Millennium Cell"
@@ -655,6 +711,28 @@ ship "Merganser"
 	description "	The cloaking technology is built into the Merganser's hull; it cannot be removed or transferred to another ship."
 
 
+ship "Merganser" "Merganser (II)"
+	outfits
+		"Inhibitor Cannon" 2
+		"Teciimach Pod"
+		"Teciimach Canister" 3
+		
+		"Millennium Cell" 2
+		"Crystal Capacitor" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		
+		"Crucible-Class Thruster"
+		"Anvil-Class Engine"
+		"Bellows-Class Afterburner"
+		"Scram Drive"
+		
+	gun 0 -48.5 "Teciimach Pod"
+	gun -6 -41 "Inhibitor Cannon"
+	gun 6 -41 "Inhibitor Cannon"
+	turret 0 0
+
+
 
 ship "Pelican"
 	sprite "ship/pelican"
@@ -921,6 +999,36 @@ ship "Peregrine"
 	description "The Peregrine is the first capital warship designed by Taely using fresh insights garnered from recent experimentation as well as renewed studies of the void sprites. Encompassing over a century of development since the last generation of warships was built, it is the forerunner of a new breed of Remnant ships."
 	description "	The Peregrine was designed along the lines of old-earth's fast-attack cruisers. Drawing on inspiration from its namesake, famed for being the fastest self-propelled lifeform on Earth, it is designed to strike hard and fast. It closes quickly with enemies to unleash devastating barrages in the opening seconds of combat."
 	description "	The cloaking technology is built into the Peregrine's hull; it cannot be removed or transferred to another ship."
+	
+ship "Peregrine" "Peregrine (II)"
+	outfits
+		"Thrasher Cannon" 4
+		"Teciimach Bay"
+		"Point Defense Turret"
+		"Thrasher Turret"
+		"Teciimach Canister" 9
+		
+		"Aeon Cell"
+		"Crystal Capacitor" 2
+		"Thermoelectric Cooler" 2
+		"Small Heat Shunt"
+		"Quantum Key Stone"
+		"Salvage Scanner"
+		"Tuning Rifle" 11
+		
+		"Bellows-Class Afterburner"
+		"Smelter-Class Thruster"
+		"Crucible-Class Thruster"
+		"Smelter-Class Steering"
+		"Scram Drive"
+		
+	gun 0 -133.5 "Teciimach Bay"
+	gun -12.5 -105 "Thrasher Cannon"
+	gun 12.5 -105 "Thrasher Cannon"
+	gun -17.5 -83 "Thrasher Cannon"
+	gun 17.5 -83 "Thrasher Cannon"
+	turret 0 -44 "Point Defense Turret"
+	turret 0 21 "Thrasher Turret"
 
 
 
@@ -1029,6 +1137,60 @@ ship "Puffin"
 	explode "tiny explosion" 8
 	explode "small explosion" 7
 	description "Centuries ago, the Remnant built these ships in order to explore the upper atmosphere of nearby gas giants. The Archons took issue with the Remnant's research methods, and the studies were unable to be completed. The remaining Puffins have been gathering dust in storage for centuries while the Remnant wait to see if the anger of the Archons will subside."
+
+
+
+ship "Smew"
+	sprite "ship/smew"
+	thumbnail "thumbnail/smew"
+	attributes
+		category "Fighter"
+		licenses
+			Remnant
+		"cost" 971000
+		"shields" 1200
+		"hull" 2800
+		"required crew" 1
+		"bunks" 8
+		"mass" 50
+		"drag" 1.75
+		"heat dissipation" .65
+		"fuel capacity" 100
+		"cargo space" 70
+		"outfit space" 80
+		"weapon capacity" 10
+		"engine capacity" 46
+		"energy capacity" 3000
+		"ion resistance" 0.002
+		"ramscoop" 0.8
+		"shield generation" 0.48
+		"shield energy" 0.32
+		"hull repair rate" 0.9
+		"hull energy" 0.58
+		"outfit scan power" 14
+		"outfit scan speed" 1
+		"tactical scan power" 28
+		"asteroid scan power" 50	
+		weapon
+			"blast radius" 24
+			"shield damage" 130
+			"hull damage" 175
+			"hit force" 315
+	outfits
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+
+	engine 0 48.5
+	gun 0 -47.5
+	leak "remnant leak sparkle" 22 3
+	explode "tiny explosion" 35
+	explode "small explosion" 24
+	description "The Remnant have long favored turns of action that avoid putting crew directly at risk; though their Terns are a rather effective result of this ideology, the Remnant still had to face the fact that, eventually, one of their manned ships was going to end up too crippled to escape to safety. To that end, the Smew was developed; though quite lightly armed, Smews are capable of carrying a considerable quantity of cargo and passengers for a ship of their size, and are durable enough to absorb some fire from enemies while doing so."
+	description "	Though originally designed as lifeboats, the surprisingly mobile freighter-fighter hybrid has seen a remarkable amount of usage in mining fleets, as a way to supplement the otherwise poor cargo capacity of the Ibis. Because their purpose can vary from fleet to fleet, Smews are traditionally sold with a fair amount of free space: enough for a small weapon, upgraded engines, or additional support systems."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 

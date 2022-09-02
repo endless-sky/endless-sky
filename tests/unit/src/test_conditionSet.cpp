@@ -101,7 +101,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = Conditions{
+			const auto conditionList = Conditions {
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -114,7 +114,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = Conditions{
+			const auto listWithNever = Conditions {
 				{"never", 1},
 			};
 			THEN( "the ConditionSet is not satisfied" ) {

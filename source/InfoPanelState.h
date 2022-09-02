@@ -28,7 +28,7 @@ class Ship;
 // saved when the user is switching between the panels.
 class InfoPanelState {
 public:
-	using ShipComparator = bool (const std::shared_ptr <Ship>&, const std::shared_ptr <Ship>&);
+	using ShipComparator = bool(const std::shared_ptr<Ship> &, const std::shared_ptr<Ship> &);
 
 	InfoPanelState(PlayerInfo &player);
 
@@ -36,12 +36,13 @@ public:
 	void SetSelectedIndex(int newSelectedIndex);
 
 	const std::set<int> &AllSelected() const;
-	void SetSelected(const std::set<int> &selected);
+	void SetSelected(std::set<int> selected);
 	void Select(int index);
 	void SelectOnly(int index);
 	void SelectMany(int start, int end);
 	bool Deselect(int index);
 	void DeselectAll();
+	void Disown(std::vector<std::shared_ptr<Ship>>::const_iterator it);
 
 	bool CanEdit() const;
 
@@ -50,13 +51,19 @@ public:
 
 	std::vector<std::shared_ptr<Ship>> &Ships();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
-	bool ReorderShips(const std::set<int> &fromIndices, int toIndex);
+	bool ReorderShipsTo(int toIndex);
 
 	ShipComparator *CurrentSort() const;
 	void SetCurrentSort(ShipComparator *s);
 
 
 private:
+	bool ReorderShips(const std::set<int> &fromIndices, int toIndex);
+
+
+private:
+	PlayerInfo &player;
+
 	// Most recent selected ship index.
 	int selectedIndex = -1;
 
