@@ -558,7 +558,8 @@ void PlayerInfo::IncrementDate()
 	}
 
 	// Check what salaries and tribute the player receives.
-	auto GetIncome = [&](string prefix) {
+	auto GetIncome = [&](string prefix)
+	{
 		int64_t total = 0;
 		auto it = conditions.lower_bound(prefix);
 		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
