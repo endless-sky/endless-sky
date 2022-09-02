@@ -1107,9 +1107,6 @@ event "remnant: teciimach deployment"
 		add "Teciimach Pod"
 		add "Teciimach Canister"
 		add "Teciimach Canister Rack"
-	shipyard "Remnant"
-		remove "Peregrine"
-		add "Peregrine (II)"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2
