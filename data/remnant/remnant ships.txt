@@ -1042,12 +1042,12 @@ ship "Smew"
 		category "Fighter"
 		licenses
 			Remnant
-		"cost" 1641000
+		"cost" 971000
 		"shields" 1200
 		"hull" 2800
 		"required crew" 1
 		"bunks" 8
-		"mass" 60
+		"mass" 50
 		"drag" 1.75
 		"heat dissipation" .65
 		"fuel capacity" 100
