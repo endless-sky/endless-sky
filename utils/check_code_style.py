@@ -61,7 +61,7 @@ segment_include = {
 	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('",
 	# Matches any 'try' or 'do' statements that are not followed by a whitespace and a '{'.
 	# The missing whitespace is checked in another pattern.
-	"^(try|do)$": "'try' and '{' should be on the same line",
+	"^(try|do)$": "'try' or 'do' and '{' should be on the same line",
 	# Matches any tabulator characters.
 	"\t": "tabulators should only be used for indentation",
 	# Matches any commas that are not followed by whitespace characters.
@@ -72,30 +72,24 @@ segment_include = {
 word_include = {
 	# Matches any number of operators that have no leading whitespace,
 	# except if preceded by '(', '[' or '{'.
-	"[^([{\\s" + std_op + "][" + std_op + "]+[^" + std_op + "]*": "missing whitespace before operator",
+	"[^([{\\s" + std_op + "][" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator",
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
-	"^[^+/%=]*[+/%=][^+/%=,\\s]": "missing whitespace after operator",
+	"^[^+/%=]*[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that has no trailing whitespace.
-	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s]": "missing whitespace after operator"
+	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator"
 }
 
 # Patterns for excluding matches (test()#match) of 'include'
 match_exclude = [
-	# Matches any repeating +, - or : operators
-	"([+:-])\\1+",
-	# Matches any matches which have a -> operator following the first character
-	"^.->",
-	# Matches any matches ending with an operator and a bracket
-	"[" + std_op + "][)\\]}]$",
-	# Matches any matches ending in triple dots, fixing an issue with vararg references.
-	"\\.\\.\\.$",
+	# Matches any repeating +, - or : operators, or any ::* or ::& references
+	"^.?([+:-])\\1+|::&|::\\*.?$",
+	# Matches any matches which have a -> operator surrounded by at most 1 character on either side.
+	"^.?->.?$",
 	# Matches any exponent-related matches.
-	"^e[+-]"
+	"^e[+-]\\d+$"
 ]
 # Patterns for excluding segments that had matches in $include
 segment_exclude = [
-	# Matches anything that begins with an include statement; this prevents flagging '<name>' for spacing issues
-	"^#include",
 	# Matches anything inside '<>'; this is a bit of a hack for getting type-related issues
 	"<.*>",
 	# Matches any visibility modes; these are followed by ':' marks.
