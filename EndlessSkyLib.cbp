@@ -191,6 +191,8 @@
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />
 		<Unit filename="source/LocationFilter.h" />
+		<Unit filename="source/Logger.cpp" />
+		<Unit filename="source/Logger.h" />
 		<Unit filename="source/LogbookPanel.cpp" />
 		<Unit filename="source/LogbookPanel.h" />
 		<Unit filename="source/MainPanel.cpp" />

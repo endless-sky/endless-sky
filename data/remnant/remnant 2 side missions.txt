@@ -143,4 +143,4 @@ mission "Remnant: Visit to Paradise 1"
 				goto questionloop
 			label mainreturn
 			`	Taely leads you around the area for a few more hours, pointing out historical features, places where they resurrected trades and skills from before the advent of flight, and other interesting things. Eventually she heads back to the train station, which deposits you back in the main spaceport.`
-			`	"I hope you enjoyed the tour, <first>. It was interesting to see our history through fresh eyes." She smiles micheviously. "And I enjoyed the hoverboarding, too. Maybe we can do it again sometime." She pauses for a moment, focusing on something you cannot see. "Looks like duty calls. Embers guide your way, Captain <last>." She waves, and heads off into the crowd.`
+			`	"I hope you enjoyed the tour, <first>. It was interesting to see our history through fresh eyes." She smiles mischievously. "And I enjoyed the hoverboarding, too. Maybe we can do it again sometime." She pauses for a moment, focusing on something you cannot see. "Looks like duty calls. Embers guide your way, Captain <last>." She waves, and heads off into the crowd.`
