@@ -148,11 +148,11 @@ mission "Remnant: Visit to Paradise 1"
 
 
 mission "Remnant: Teciimach Deployment"
+	invisible
 	minor
 	landing
 	name "New EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
-	invisible
 	source
 		attributes "shipyard" "remnant"
 	to offer
