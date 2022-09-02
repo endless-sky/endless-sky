@@ -173,7 +173,6 @@ ship "Black Diamond"
 		"engine capacity" 38
 		"hull repair rate" 1
 		"hull delay" 60
-		"force protection" 2
 		weapon
 			"blast radius" 24
 			"shield damage" 240

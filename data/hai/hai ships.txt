@@ -152,7 +152,6 @@ ship "Flea"
 		"weapon capacity" 13
 		"engine capacity" 22
 		"automaton" 1
-		"force protection" 2
 		weapon
 			"blast radius" 6
 			"shield damage" 55
@@ -926,7 +925,6 @@ ship "Violin Spider"
 		"outfit space" 92
 		"weapon capacity" 19
 		"engine capacity" 30
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120

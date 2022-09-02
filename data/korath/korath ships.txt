@@ -360,7 +360,6 @@ ship "'olofez"
 		"outfit space" 92
 		"weapon capacity" 25
 		"engine capacity" 30
-		"force protection" 2
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -827,7 +826,6 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
-		"force protection" 2
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -868,7 +866,6 @@ ship "Far Osk 27"
 		"weapon capacity" 22
 		"engine capacity" 24
 		"self destruct" .6
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120

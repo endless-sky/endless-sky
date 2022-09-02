@@ -62,7 +62,6 @@ ship "Flycatcher"
 		"outfit space" 86
 		"weapon capacity" 28
 		"engine capacity" 26
-		"force protection" 2
 		weapon
 			"blast radius" 10
 			"shield damage" 100

@@ -466,7 +466,6 @@ ship "Selii'mar"
 		"outfit space" 77
 		"weapon capacity" 18
 		"engine capacity" 21
-		"force protection" 2
 		weapon
 			"blast radius" 48
 			"shield damage" 320
@@ -498,7 +497,6 @@ ship "Faes'mar"
 		"cargo space" 102
 		"outfit space" 113
 		"engine capacity" 21
-		"force protection" 2
 		weapon
 			"blast radius" 52
 			"shield damage" 410

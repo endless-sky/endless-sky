@@ -378,7 +378,6 @@ ship "Barb"
 		"outfit space" 85
 		"weapon capacity" 24
 		"engine capacity" 22
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -722,7 +721,6 @@ ship "Boxwing"
 		"outfit space" 45
 		"engine capacity" 28
 		"cargo space" 80
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1038,7 +1036,6 @@ ship "Combat Drone"
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
-		"force protection" 2
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1278,7 +1275,6 @@ ship "Dagger"
 		"outfit space" 90
 		"weapon capacity" 20
 		"engine capacity" 30
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1395,7 +1391,6 @@ ship "Dropship"
 		"outfit space" 100
 		"weapon capacity" 16
 		"engine capacity" 40
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1506,7 +1501,6 @@ ship "Finch"
 		"outfit space" 110
 		"weapon capacity" 20
 		"engine capacity" 40
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -2209,7 +2203,6 @@ ship "Lance"
 		"outfit space" 100
 		"weapon capacity" 20
 		"engine capacity" 30
-		"force protection" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -3283,7 +3276,6 @@ ship "Surveillance Drone"
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
-		"force protection" 2
 		weapon
 			"blast radius" 3
 			"shield damage" 30
