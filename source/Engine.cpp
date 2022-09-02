@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
-#include "Files.h"
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -30,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "Logger.h"
 #include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -324,7 +324,7 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Files::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
 			ship->SetSystem(player.GetSystem());
 		}
 
@@ -976,7 +976,8 @@ void Engine::Draw() const
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		const Color *color = nullptr;
-		switch (it->importance) {
+		switch(it->importance)
+		{
 			case Messages::Importance::Highest:
 				color = GameData::Colors().Find("message importance highest");
 				break;
@@ -1126,7 +1127,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / RADAR_SCALE + center,
-			(to - radarCenter) / RADAR_SCALE  + center);
+			(to - radarCenter) / RADAR_SCALE + center);
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }

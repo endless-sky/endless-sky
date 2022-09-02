@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteSet.h"
 
-#include "Files.h"
+#include "Logger.h"
 #include "Sprite.h"
 
 #include <map>
@@ -43,7 +43,7 @@ void SpriteSet::CheckReferences()
 		if(sprite.Height() == 0 && sprite.Width() == 0)
 			// Landscapes are allowed to still be empty.
 			if(pair.first.compare(0, 5, "land/") != 0)
-				Files::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
+				Logger::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
 	}
 }
 
