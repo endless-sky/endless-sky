@@ -13,7 +13,7 @@
 mission "Remnant: Bounty"
 	job
 	repeat
-	name "Crippled Raider Bounty"
+	name "Crippled Palavret Bounty"
 	description "A crippled Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -32,7 +32,7 @@ mission "Remnant: Bounty"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Crippled)"
+				"Palavret (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -45,7 +45,7 @@ mission "Remnant: Bounty"
 mission "Remnant: Bounty 2"
 	job
 	repeat
-	name "Troublesome Raider Bounty"
+	name "Troublesome Palavret Bounty"
 	description "A Korath ship is proving troublesome in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -64,7 +64,7 @@ mission "Remnant: Bounty 2"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Raider (Hyperdrive)"
+				"Palavret (Hyperdrive)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -130,7 +130,7 @@ mission "Remnant: Expanded Horizons Astral job"
 mission "Remnant: Bounty 3"
 	job
 	repeat
-	name "Damaged Dredger Bounty"
+	name "Damaged Rano'erek Bounty"
 	description "A damaged Korath ship is lurking in Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -150,7 +150,7 @@ mission "Remnant: Bounty 3"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger (Crippled)"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -163,7 +163,7 @@ mission "Remnant: Bounty 3"
 mission "Remnant: Bounty 4"
 	job
 	repeat
-	name "Marauding Dredger Bounty"
+	name "Marauding Rano'erek Bounty"
 	description "A Korath ship is marauding through Remnant territory. Hunt it down, and then return to <planet> to receive your payment of <payment>."
 	source
 		government "Remnant"
@@ -179,7 +179,7 @@ mission "Remnant: Bounty 4"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger"
+				"Rano'erek"
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -213,8 +213,8 @@ mission "Remnant: Bounty 5"
 			names "korath"
 			cargo 3
 			variant
-				"Korath Dredger (Ground Assault)"
-				"Korath Chaser" 4
+				"Rano'erek (Ground Assault)"
+				"'olofez" 4
 		dialog "You have destroyed the Korath ship. You can now return to <planet> to collect your payment."
 	on visit
 		dialog phrase "generic bounty hunting on visit"

@@ -21,7 +21,8 @@ namespace {
 	constexpr double DEFAULT = 1.;
 	map<const Sprite *, bool> warned;
 
-	string PrintScale(double s) {
+	string PrintScale(double s)
+	{
 		return to_string(100. * s) + "%";
 	}
 }

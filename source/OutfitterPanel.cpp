@@ -45,6 +45,33 @@ namespace {
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
 	}
+
+	// Determine the refillable ammunition a particular ship consumes or stores.
+	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
+	{
+		auto toRefill = set<const Outfit *>{};
+		auto armed = set<const Outfit *>{};
+		for(auto &&it : ship.Weapons())
+			if(it.GetOutfit())
+			{
+				const Outfit *weapon = it.GetOutfit();
+				armed.emplace(weapon);
+				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
+					toRefill.emplace(weapon->Ammo());
+			}
+
+		// Carriers may be configured to supply ammunition for carried ships found
+		// within the fleet. Since a particular ammunition outfit is not bound to
+		// any particular weapon (i.e. one weapon may consume it, while another may
+		// only require it be installed), we always want to restock these outfits.
+		for(auto &&it : ship.Outfits())
+		{
+			const Outfit *outfit = it.first;
+			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.count(outfit))
+				toRefill.emplace(outfit->Ammo());
+		}
+		return toRefill;
+	};
 }
 
 
@@ -76,12 +103,10 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
-	if(GetUI()->IsTop(this) && !checkedHelp) {
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3")) {
+	if(GetUI()->IsTop(this) && !checkedHelp)
+		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
 			checkedHelp = true;
-		}
-	}
 }
 
 
@@ -801,7 +826,7 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -815,7 +840,7 @@ void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -829,7 +854,7 @@ void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -935,15 +960,12 @@ void OutfitterPanel::CheckRefill()
 	map<const Outfit *, int> needed;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		// Skip ships in other systems and those that were unable to land in-system.
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 
 		++count;
-		set<const Outfit *> toRefill;
-		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo() && it.GetOutfit()->AmmoUsage() > 0)
-				toRefill.insert(it.GetOutfit()->Ammo());
-
+		auto toRefill = GetRefillableAmmunition(*ship);
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
@@ -977,14 +999,11 @@ void OutfitterPanel::Refill()
 {
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		// Skip ships in other systems and those that were unable to land in-system.
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 			continue;
 
-		set<const Outfit *> toRefill;
-		for(const Hardpoint &it : ship->Weapons())
-			if(it.GetOutfit() && it.GetOutfit()->Ammo() && it.GetOutfit()->AmmoUsage() > 0)
-				toRefill.insert(it.GetOutfit()->Ammo());
-
+		auto toRefill = GetRefillableAmmunition(*ship);
 		for(const Outfit *outfit : toRefill)
 		{
 			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
