@@ -192,15 +192,19 @@ void Outfit::Load(const DataNode &node)
 		displayName = name;
 	}
 	isDefined = true;
-
+    
+    bool hasPluralName = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
-			displayName = child.Token(1).empty() ? name : child.Token(1);
+			displayName = child.Token(1).empty();
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
+        {
 			pluralName = child.Token(1);
+            hasPluralName = true;
+        }
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
@@ -288,7 +292,7 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(pluralName.empty())
+	if(!hasPluralName)
 		pluralName = displayName + 's';
 
 	// Only outfits with the jump drive and jump range attributes can
