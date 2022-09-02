@@ -12,13 +12,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfoPanel.h"
 
-#include "InfoPanelState.h"
 #include "text/alignment.hpp"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
