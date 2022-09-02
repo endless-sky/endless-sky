@@ -25,6 +25,7 @@ import glob
 # String version of the regexes for easy editing
 # List of the standard operators that are checked
 stdOp = "+/*<>&%=|!:-"
+stdOp = "+/\\*<>&%=|!:\\-"
 # Dict of patterns for selection potential formatting issues in full lines.
 # These lines don't contain the contents of strings, chars or comments.
 # The dict also contains the error description for the patterns.
@@ -132,6 +133,7 @@ def check_code_format(file):
 	is_string = False
 	is_char = False
 	is_raw_string = False
+	is_raw_string_short = False
 	line_count = 0
 	f = open(file, "r")
 	lines = f.readlines()
@@ -206,7 +208,22 @@ def check_code_format(file):
 						segments.append(line[start_index:i + 1])
 					is_raw_string = not is_raw_string
 					is_string = not is_string
+				elif line[i - 1:i + 2] == "R\"(":
+					if is_raw_string:
+						continue
+					if is_raw_string_short:
+						continue
+					is_raw_string_short = True
+					is_string = True
+				elif line[i - 1:i + 1] == ")\"" and is_raw_string_short:
+					if is_raw_string:
+						continue
+					is_raw_string_short = False
+					is_string = False
+					segments.append(line[start_index:i + 1])
 				else:
+					if is_raw_string or is_raw_string_short:
+						continue
 					if is_string:
 						start_index = i
 					else:
@@ -265,13 +282,14 @@ def check_match(regex, part, segment, file, line, reason):
 	return False
 
 
-# Checks certain global formatting properties of files, such as their copyright headers.
+# Checks certain global formatting properties of files, such as their copyright headers. Parameters:
+# file: the path to the file
 def check_global_format(file):
 	check_copyright(file)
-	return
 
 
-# Checks if the copyright header of the file is correct.
+# Checks if the copyright header of the file is correct. Parameters:
+# file: the path to the file
 def check_copyright(file):
 	name = file.split("/")[-1]
 	copyright_begin = [
