@@ -441,6 +441,9 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 // The arc depends on both the base hardpoint and the installed outfit.
 void Hardpoint::UpdateArc()
 {
+	if(!outfit)
+		return;
+
 	const BaseAttributes &attributes = baseAttributes;
 	// Restore the initial value.
 	isOmnidirectional = attributes.isOmnidirectional;
@@ -456,9 +459,6 @@ void Hardpoint::UpdateArc()
 		minArc = attributes.minArc;
 		maxArc = attributes.maxArc;
 	}
-
-	if(!outfit) //Prob should move this to the top.
-		return;
 
 	// The installed weapon restricts the arc of fire.
 	const double hardpointsArc = (maxArc - minArc).AbsDegrees();
