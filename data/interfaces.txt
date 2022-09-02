@@ -118,7 +118,7 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 interface "map detail panel"
-	value "planet panel height" 460
+	value "max planet panel height" 2022
 	value "starting X" 100
 	value "starting Y" 45
 	value "government Y" 280

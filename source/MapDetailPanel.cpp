@@ -146,10 +146,9 @@ double MapDetailPanel::PlanetPanelHeight()
 
 bool MapDetailPanel::Hover(int x, int y)
 {
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
-		&& y < Screen::Top() + mapInterface->GetValue("planet panel height"));
+		&& y < Screen::Top() + PlanetPanelHeight());
 
 	return isPlanetViewSelected ? true : MapPanel::Hover(x, y);
 }
@@ -160,7 +159,7 @@ bool MapDetailPanel::Drag(double dx, double dy)
 {
 	if(isPlanetViewSelected)
 	{
-		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.025);
+		SetScroll(scroll - dy);
 
 		return true;
 	}
@@ -173,7 +172,7 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 {
 	if(isPlanetViewSelected)
 	{
-		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.25);
+		SetScroll(scroll - dy * Preferences::ScrollSpeed());
 
 		return true;
 	}
@@ -284,7 +283,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 				}
 			}
 			// If none/the last one are considered selected, it will select the first one of the list.
-			if(!selectNext && planetCards.size())
+			if(!selectNext && !planetCards.empty())
 			{
 				SetScroll(0.);
 				planetCards.front().Select();
@@ -320,7 +319,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 				}
 				previousCard = &card;
 			}
-			if(!anySelected && planetCards.size())
+			if(!anySelected && !planetCards.empty())
 			{
 				SetScroll(maxScroll);
 				planetCards.back().Select();
@@ -626,7 +625,7 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	double defaultPlanetPanelHeight = mapInterface->GetValue("planet panel height");
+	double maxPlanetPanelHeight = mapInterface->GetValue("max planet panel height");
 
 	const double bottomGovY = mapInterface->GetValue("government Y");
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
@@ -634,9 +633,12 @@ void MapDetailPanel::DrawInfo()
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY - systemSprite->Height());
-	planetPanelHeight = hasVisited ? min(min(maximumSize, defaultPlanetPanelHeight),
+	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY);
+	planetPanelHeight = hasVisited ? min(min(maximumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetHeight) : 0.;
+	// If not all planets fit on screen, make sure we're seeing half a planet to indicate there's more below.
+	if(hasVisited && planetPanelHeight < planetCards.size() * planetHeight)
+		planetPanelHeight -= static_cast<int>(planetPanelHeight) % static_cast<int>(planetHeight) + planetHeight / 2.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -646,7 +648,7 @@ void MapDetailPanel::DrawInfo()
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
 	// Draw the basic information for visitable planets in this system.
-	if(hasVisited)
+	if(hasVisited && !planetCards.empty())
 	{
 		uiPoint.Y() -= GetScroll();
 		maxScroll = 0.;
@@ -660,18 +662,30 @@ void MapDetailPanel::DrawInfo()
 			// Do this all of the time so we can scroll if an element is partially shown.
 			maxScroll += (planetHeight - card.AvailableSpace());
 		}
+
+		// Edges:
+		Point pos(Screen::Left(), Screen::Top());
+		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		Point edgePos = pos + Point(.5 * size.X(), size.Y());
+		Point bottomOff(-23.5, .5 * bottom->Height() - 1);
+		SpriteShader::Draw(bottom, edgePos + bottomOff);
+
+		const Sprite *right = SpriteSet::Get("ui/right edge");
+		Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
+		SpriteShader::Draw(right, edgePos + rightOff);
+
+		if(maxScroll)
+		{
+			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
+			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
+			// Draw the pointers to go up and down by a planet at most.
+			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
+				Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
+			PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
+				Screen::Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
+				(scroll < maxScroll) ? medium : dim);
+		}
 	}
-
-	// Edges:
-	Point pos(Screen::Left(), Screen::Top());
-	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-	Point edgePos = pos + Point(.5 * size.X(), size.Y());
-	Point bottomOff(-23.5, .5 * bottom->Height() - 1);
-	SpriteShader::Draw(bottom, edgePos + bottomOff);
-
-	const Sprite *right = SpriteSet::Get("ui/right edge");
-	Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
-	SpriteShader::Draw(right, edgePos + rightOff);
 
 	const double textMargin = mapInterface->GetValue("text margin");
 	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - bottomGovY);
@@ -692,18 +706,6 @@ void MapDetailPanel::DrawInfo()
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
-
-	if(maxScroll)
-	{
-		const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
-		const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
-		// Draw the pointers to go up and down by a planet at most.
-		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-			Screen::Top() + arrowOffsetY), Point(0., -1.), 10.f, 10.f, 5.f, scroll ? medium : dim);
-		PointerShader::Draw(Point(Screen::Left() + planetWidth + arrowOffsetX,
-			Screen::Top() - arrowOffsetY + planetPanelHeight), Point(0., 1.), 10.f, 10.f, 5.f,
-			(scroll < maxScroll) ? medium : dim);
-	}
 
 	const double tradeHeight = mapInterface->GetValue("trade height");
 	uiPoint = Point(Screen::Left() + startingX, Screen::Bottom() - tradeHeight);
