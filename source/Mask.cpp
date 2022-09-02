@@ -30,7 +30,8 @@ namespace {
 		const int height = image.Height();
 		const int numPixels = width * height;
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
-		auto LogError = [width, height](string reason) {
+		auto LogError = [width, height](string reason)
+		{
 			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + " px image: " + std::move(reason));
 		};
 		raw.clear();

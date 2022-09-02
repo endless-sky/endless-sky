@@ -32,14 +32,14 @@ namespace { // test namespace
 SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
 	GIVEN( "an account" ) {
 		Account account;
-		WHEN( "money is added" ){
+		WHEN( "money is added" ) {
 			REQUIRE( account.Credits() == 0. );
 			account.AddCredits(100);
-			THEN( "the balance is increased" ){
+			THEN( "the balance is increased" ) {
 				REQUIRE( account.Credits() == 100 );
 			}
 		}
-		WHEN( "a fine is levied" ){
+		WHEN( "a fine is levied" ) {
 			REQUIRE( account.TotalDebt() == 0 );
 			account.AddFine(10000);
 			THEN ( "debt is incurred" ) {

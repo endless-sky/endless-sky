@@ -1032,6 +1032,7 @@ outfitter "Remnant Core"
 	"Fuel Pod"
 	"Tuning Rifle"
 	"Salvage Scanner"
+	"EMP Torpedo"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"

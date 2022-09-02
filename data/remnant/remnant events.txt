@@ -100,7 +100,7 @@ event "remnant: scanning tolerance"
 
 
 
-event "remnant research update bjd1"
+event "remnant: research update bjd1"
 
 
 
@@ -257,6 +257,13 @@ event "remnant: ssil vida inhabited"
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
 
 
 
@@ -1088,3 +1095,62 @@ event "remnant: cognizance salvage expansion"
 
 
 event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3
