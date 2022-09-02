@@ -24,7 +24,6 @@ import glob
 
 # String version of the regexes for easy editing
 # List of the standard operators that are checked
-stdOp = "+/*<>&%=|!:-"
 stdOp = "+/\\*<>&%=|!:\\-"
 # Dict of patterns for selection potential formatting issues in full lines.
 # These lines don't contain the contents of strings, chars or comments.
@@ -38,8 +37,8 @@ line_include = {
 	# except if the whitespace follows a semicolon,
 	# or follows an all-caps method name
 	"(?![A-Z]+)^.*[^;]\\s\\)": "extra whitespace before closing parenthesis",
-	# Matches any 'if', 'else if', 'for', 'catch', 'try' or 'switch' statements where the statement is not at the beginning of the line.
-	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else\\sif|switch|for|catch|try)(\\s{|\\()": "statement should begin on new line",
+	# Matches any 'if', 'else if', 'else', 'for', 'catch', 'try' or 'switch' statements where the statement is not at the beginning of the line.
+	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
 	";[^\\)}]+$": "semicolon should terminate line"
 }
