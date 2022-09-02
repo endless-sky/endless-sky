@@ -523,7 +523,7 @@ government "Parrot"
 
 government "Pirate"
 	swizzle 6
-	color .78 0 0
+	color .78 .1 .1
 	
 	"player reputation" -10
 	"attitude toward"
@@ -695,7 +695,7 @@ government "Sheragi"
 
 government "Syndicate"
 	swizzle 4
-	color 0 .41 .71
+	color 0.1 .45 .8
 	
 	"player reputation" 2
 	"attitude toward"
@@ -741,7 +741,7 @@ government "Test Dummy"
 	"fine" 0
 
 government "Uninhabited"
-	color .4 .4 .4
+	color .7 .7 .7
 	"bribe" 0
 	"fine" 0
 

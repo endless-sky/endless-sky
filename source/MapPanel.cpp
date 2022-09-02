@@ -41,6 +41,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
+#include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -138,11 +139,17 @@ namespace {
 	}
 }
 
-const float MapPanel::OUTER = 6.f;
-const float MapPanel::INNER = 3.5f;
-const float MapPanel::LINK_WIDTH = 1.2f;
+const float MapPanel::OUTER = 1.f;
+const float MapPanel::INNER = 0.f;
+const float MapPanel::LINK_WIDTH = 1.f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
-const float MapPanel::LINK_OFFSET = 7.f;
+const float MapPanel::LINK_OFFSET = 0.f;
+const float MapPanel::WIDE_LINK = 2.f;
+const float MapPanel::WORMHOLE_ARROW = 8.f;
+
+const float MapPanel::DOTS_OUTER = 4.f;
+const float MapPanel::DOTS_INNER = 0.f;
+const float MapPanel::DOTS_OFFSET = 4.f;
 
 
 
@@ -237,8 +244,8 @@ void MapPanel::Draw()
 	DrawEscorts();
 	DrawLinks();
 	DrawSystems();
-	DrawNames();
 	DrawMissions();
+	DrawNames();
 	DrawTooltips();
 
 	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
@@ -265,9 +272,9 @@ void MapPanel::DrawButtons(const string &condition)
 	Information info;
 	info.SetCondition(condition);
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
-	if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+	if(player.MapZoom() >= static_cast<float>(mapInterface->GetValue("max zoom")))
 		info.SetCondition("max zoom");
-	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+	if(player.MapZoom() <= static_cast<float>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
 	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons");
 	mapButtonUi->Draw(info, this);
@@ -297,7 +304,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
 		const string &name = player.KnowsName(system) ? system.Name() : UNKNOWN_SYSTEM;
-		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
+		font.Draw(name, from + Point(DOTS_OUTER, -.5 * font.Height()), lineColor);
 
 		// Draw the origin and destination systems, since they
 		// might not be linked via hyperspace.
@@ -307,7 +314,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 				alpha * gov->GetColor().Get()[0],
 				alpha * gov->GetColor().Get()[1],
 				alpha * gov->GetColor().Get()[2], 0.f);
-		RingShader::Draw(from, OUTER, INNER, color);
+		RingShader::Draw(from, DOTS_OUTER, DOTS_INNER, color);
 
 		for(const System *link : system.Links())
 		{
@@ -318,7 +325,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			// Draw the system link. This will double-draw the jump
 			// path if it is via hyperlink, to increase brightness.
 			Point to = link->Position() - center + drawPos;
-			Point unit = (from - to).Unit() * LINK_OFFSET;
+			Point unit = (from - to).Unit() * DOTS_OFFSET;
 			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
 
 			if(drawnSystems.count(link))
@@ -332,7 +339,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 					alpha * gov->GetColor().Get()[0],
 					alpha * gov->GetColor().Get()[1],
 					alpha * gov->GetColor().Get()[2], 0.f);
-			RingShader::Draw(to, OUTER, INNER, color);
+			RingShader::Draw(to, DOTS_OUTER, DOTS_INNER, color);
 		}
 
 		unsigned missionCounter = 0;
@@ -444,9 +451,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 	else
 		return false;
 
@@ -527,9 +534,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min(static_cast<float>(mapInterface->GetValue("max zoom")), player.MapZoom() + 0.5f));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max(static_cast<float>(mapInterface->GetValue("min zoom")), player.MapZoom() - 0.5f));
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -882,7 +889,7 @@ void MapPanel::UpdateCache()
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(system) ? system.GetGovernment() : nullptr);
+			player.HasVisited(system) ? system.GetGovernment() : nullptr, system.GetMapIcon());
 	}
 
 	// Now, update the cache of the links.
@@ -890,7 +897,7 @@ void MapPanel::UpdateCache()
 
 	// The link color depends on whether it's connected to the current system or not.
 	const Color &closeColor = *GameData::Colors().Get("map link");
-	const Color &farColor = closeColor.Transparent(.5);
+	const Color &farColor = closeColor.Transparent(0.5);
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
@@ -994,7 +1001,7 @@ void MapPanel::DrawTravelPlan()
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * LINK_OFFSET;
-		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+		LineShader::Draw(from - unit, to + unit, WIDE_LINK, drawColor);
 
 		previous = next;
 	}
@@ -1020,17 +1027,18 @@ void MapPanel::DrawEscorts()
 
 			// Active and parked ships are drawn/indicated by a ring in the center.
 			if(squad.second.activeShips || squad.second.parkedShips)
-				RingShader::Draw(pos, INNER - 1.f, 0.f, squad.second.activeShips ? active : parked);
+				RingShader::Draw(pos, DOTS_OUTER * sqrt(zoom) * 2 + 2, DOTS_OUTER * sqrt(zoom) * 2, squad.second.activeShips ? active : parked);
 
-			if(squad.second.outfits.size())
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
+			if(squad.second.outfits.size())
 				for(int i = 0; i < 8; ++i)
 				{
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					Point from = pos + angle.Unit() * OUTER;
-					Point to = from + angle.Unit() * 4.f;
 					LineShader::Draw(from, to, 2.f, active);
+					Point from = pos + angle.Unit() * DOTS_OUTER * 1.25 * sqrt(zoom);
+					Point to = from + angle.Unit() * 6 * sqrt(zoom);
+					LineShader::Draw(from, to, 1.5f, active);
 				}
 		}
 }
@@ -1045,6 +1053,7 @@ void MapPanel::DrawWormholes()
 	// Avoid iterating each StellarObject in every system by iterating over planets instead. A
 	// system can host more than one set of wormholes (e.g. Cardea), and some wormholes may even
 	// share a link vector. If a wormhole's planet has no description, no link will be drawn.
+
 	for(auto &&it : GameData::Planets())
 	{
 		const Planet &p = it.second;
@@ -1078,14 +1087,16 @@ void MapPanel::DrawWormholes()
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
+				Point arrowOffset = (from - to).Unit() * WORMHOLE_ARROW;
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
+
 		if(link.first < link.second || !arrowsToDraw.count(make_pair(link.second, link.first)))
 			LineShader::Draw(from, to, LINK_WIDTH, wormholeDim);
 
 		// Compute the start and end positions of the arrow edges.
-		Point arrowStem = zoom * ARROW_LENGTH * offset;
+		Point arrowStem = zoom * ARROW_LENGTH * arrowOffset;
 		Point arrowLeft = arrowStem - ARROW_RATIO * LEFT.Rotate(arrowStem);
 		Point arrowRight = arrowStem - ARROW_RATIO * RIGHT.Rotate(arrowStem);
 
@@ -1106,7 +1117,9 @@ void MapPanel::DrawLinks()
 	{
 		Point from = zoom * (link.start + center);
 		Point to = zoom * (link.end + center);
-		Point unit = (from - to).Unit() * LINK_OFFSET;
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+		float linkOffset = (static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom()) ? DOTS_OFFSET * 2: LINK_OFFSET;
+		Point unit = (from - to).Unit() * linkOffset * zoom;
 		from -= unit;
 		to += unit;
 
@@ -1127,12 +1140,51 @@ void MapPanel::DrawSystems()
 	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 
-	// Draw the circles for the systems.
+
 	double zoom = Zoom();
+
+	// Draw the star sprites for the systems.
 	for(const Node &node : nodes)
 	{
+
+
+		float ringOuter;
+		float ringInner;
+		int starsOn;
+
+		// Draws dots on the systems at max zoom.
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+		if(static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom())
+		{
+			ringOuter	= DOTS_OUTER * 2;
+			ringInner	= DOTS_INNER * 2;
+			starsOn = 0;
+		}
+		else
+		{
+			ringOuter	= OUTER;
+			ringInner	= INNER;
+			starsOn = 1;
+		}
+
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		RingShader::Draw(pos, zoom * ringOuter, zoom * ringInner, node.color);
+
+		// Ensures every multiple-star system has a deterministic but distinct rotation.
+		float starAngle = node.name.length();
+		float spin = 4*acos(0.0) / node.mapIcon.size();
+
+		Point starOffset(4, 4);
+		if(node.mapIcon.size() == 1)
+			starOffset = Point(0, 0);
+
+		// Draws the star sprites.
+		for(string stars : node.mapIcon)
+		{
+			starAngle = starAngle + spin;
+			Point starRotate(cos(starAngle), sin(starAngle));
+			SpriteShader::Draw(SpriteSet::Get(stars), pos + zoom * starOffset * starRotate, zoom / 8 * starsOn);
+		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1155,15 +1207,20 @@ void MapPanel::DrawNames()
 {
 	// Don't draw if too small.
 	double zoom = Zoom();
-	if(zoom <= 0.5)
+	if(zoom <= 0.75)
 		return;
 
 	// Draw names for all systems you have visited.
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
-	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
+	Point offset(useBigFont ? 16. : 10., -.5 * font.Height());
 	for(const Node &node : nodes)
-		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+		font.Draw(node.name, zoom * (node.position + center) + offset, node.color);
+//	{
+//		int namewidth = font.Width(node.name);
+//		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
+//		font.Draw(node.name, zoom * (node.position + center) + offset, node.color);
+//	}
 }
 
 
@@ -1186,8 +1243,8 @@ void MapPanel::DrawMissions()
 		++missionCount[specialSystem].drawn;
 		Angle a = Angle(MISSION_POINTERS_ANGLE_DELTA * missionCount[specialSystem].drawn);
 		Point pos = Zoom() * (specialSystem->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -4.f, black);
-		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -6.f, specialColor);
+		PointerShader::Draw(pos, a.Unit(), 20.f, 27.f, -6.f, black);
+		PointerShader::Draw(pos, a.Unit(), 11.5f, 21.5f, -8.f, specialColor);
 	}
 	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
@@ -1318,6 +1375,6 @@ void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &c
 		return;
 	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
 	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
-	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
+		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -6.f, black);
+	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -8.f, color);
 }

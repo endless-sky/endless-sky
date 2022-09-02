@@ -52,6 +52,12 @@ public:
 	static const float INNER;
 	static const float LINK_WIDTH;
 	static const float LINK_OFFSET;
+	static const float WIDE_LINK;
+	static const float WORMHOLE_ARROW;
+
+	static const float DOTS_OUTER;
+	static const float DOTS_INNER;
+	static const float DOTS_OFFSET;
 
 	class SystemTooltipData {
 	public:
@@ -160,12 +166,11 @@ private:
 	void DrawLinks();
 	// Draw systems in accordance to the set commodity color scheme.
 	void DrawSystems();
-	void DrawNames();
 	void DrawMissions();
 	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
-
+	void DrawNames();
 
 private:
 	// This is the coloring mode currently used in the cache.
@@ -173,14 +178,15 @@ private:
 
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government), mapIcon(mapIcon) {}
 
 		Point position;
 		Color color;
 		std::string name;
 		Color nameColor;
 		const Government *government;
+		std::vector<std::string> mapIcon;
 	};
 	std::vector<Node> nodes;
 

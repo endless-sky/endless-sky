@@ -129,6 +129,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			// Clear the data of the given type.
 			if(key == "government")
 				government = nullptr;
+			else if(key == "mapicon")
+				mapIcon.clear();
 			else if(key == "music")
 				music.clear();
 			else if(key == "attributes")
@@ -174,6 +176,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
+		}
+		else if(key == "mapicon")
+		{
+			if(remove)
+				mapIcon.erase(std::remove(mapIcon.begin(), mapIcon.end(), value), mapIcon.end());
+			else
+				mapIcon.push_back(value);
 		}
 		else if(key == "attributes")
 		{
@@ -274,6 +283,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
+		else if(key == "mapicon")
+			mapIcon.erase(std::remove(mapIcon.begin(), mapIcon.end(), child.Token(valueIndex)), mapIcon.end());
 		else if(key == "music")
 			music = value;
 		else if(key == "habitable")
@@ -458,6 +469,13 @@ const Government *System::GetGovernment() const
 	return government ? government : &empty;
 }
 
+
+
+// Get this system's map icons.
+const vector<string> &System::GetMapIcon() const
+{
+	return mapIcon;
+}
 
 
 
