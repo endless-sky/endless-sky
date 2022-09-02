@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "Preferences.h"
+#include "Plugins.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -584,18 +585,22 @@ void PreferencesPanel::DrawPlugins()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
+	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
-	table.SetUnderline(-120, 120);
+	table.SetUnderline(-120, 100);
 
 	int firstY = -238;
-	table.DrawAt(Point(-130, firstY));
+	// Table is at -110 while checkbox is at -130
+	table.DrawAt(Point(-110, firstY));
 	table.DrawUnderline(medium);
 	table.Draw("Installed plugins:", bright);
 	table.DrawGap(5);
 
 	const Font &font = FontSet::Get(14);
+
 	for(const auto &plugin : GameData::PluginAboutText())
 	{
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.first);
@@ -603,7 +608,20 @@ void PreferencesPanel::DrawPlugins()
 		bool isSelected = (plugin.first == selectedPlugin);
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
-		table.Draw(plugin.first, isSelected ? bright : medium);
+		bool pluginEnabled = Plugins::IsEnabled(plugin.first);
+		Point checkboxPos = table.GetRowBounds().TopLeft();
+		checkboxPos.X() -= font.Height() / 2;
+		checkboxPos.Y() += table.GetRowBounds().Height() / 2;
+
+		SpriteShader::Draw(box[pluginEnabled], checkboxPos);
+		Point zoneDimension = Point(20., table.GetRowBounds().Height() * 2. / 3.);
+		Point zoneOffset = checkboxPos + Point(0., table.GetRowBounds().Height() / 3);
+		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
+		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.first); });
+		if(pluginEnabled)
+			table.Draw(plugin.first, isSelected ? bright : medium);
+		else
+			table.Draw(plugin.first, isSelected ? bright : back);
 
 		if(isSelected)
 		{

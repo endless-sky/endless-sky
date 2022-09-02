@@ -43,6 +43,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
 #include "Random.h"
@@ -805,7 +806,7 @@ void GameData::LoadSources()
 	}
 
 	// Load the plugin data, if any.
-	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
+	for(auto it = sources.begin() + 1; it != sources.end();)
 	{
 		// Get the name of the folder containing the plugin.
 		size_t pos = it->rfind('/', it->length() - 2) + 1;
@@ -830,6 +831,16 @@ void GameData::LoadSources()
 
 		icon->ValidateFrames();
 		spriteQueue.Add(icon);
+
+		// Enabling plugins is the default preference.
+		if(Plugins::IsEnabled(name))
+		{
+			Plugins::Set(name, true);
+			++it;
+			continue;
+		}
+		// Remove sources for user-disabled plugins while preserving about.txt in preferences.
+		it = sources.erase(it);
 	}
 }
 
