@@ -1430,6 +1430,9 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/projectile/fire-lance*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
