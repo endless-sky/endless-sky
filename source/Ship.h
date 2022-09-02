@@ -63,7 +63,8 @@ public:
 		~Bay() = default;
 
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side),
+			facing(b.facing), launchEffects(b.launchEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 
 		Point point;
@@ -433,7 +434,8 @@ private:
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
+	double BestFuel(const std::string &type, const std::string &subtype,
+		double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);

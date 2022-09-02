@@ -187,7 +187,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Depending on whether the flagship has a jump drive, the possible links
 		// we can travel along are different:
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const set<const System *> &links = hasJumpDrive ? source->JumpNeighbors(player.Flagship()->JumpRange()) : source->Links();
+		const set<const System *> &links = hasJumpDrive
+			? source->JumpNeighbors(player.Flagship()->JumpRange()) : source->Links();
 
 		// For each link we can travel from this system, check whether the link
 		// is closer to the current angle (while still being larger) than any
@@ -780,7 +781,8 @@ void MapDetailPanel::DrawOrbits()
 			// Draw an X (to mark the spot, of course).
 			auto uiPoint = (pendingOrder.second * scale) + orbitCenter;
 			const Color *color = GameData::Colors().Get("map orbits fleet destination");
-			// TODO: Add a "batch pointershader" method that takes the shape description, a count, and a reference point+orientation
+			// TODO: Add a "batch pointershader" method that takes
+			// the shape description, a count, and a reference point+orientation.
 			// Use that method below and in Engine for drawing target reticles.
 			auto a = Angle{45.};
 			auto inc = Angle{90.};

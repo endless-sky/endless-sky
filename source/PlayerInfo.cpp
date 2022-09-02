@@ -1208,7 +1208,8 @@ void PlayerInfo::Land(UI *ui)
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
 	{
-		string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
+		string message = "These active missions or jobs were deactivated due to a missing definition"
+			" - perhaps you recently removed a plugin?\n";
 		auto mit = inactiveMissions.rbegin();
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))

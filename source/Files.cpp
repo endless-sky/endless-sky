@@ -552,7 +552,8 @@ void Files::LogErrorToFile(const string &message)
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}

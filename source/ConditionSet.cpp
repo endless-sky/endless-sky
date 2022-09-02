@@ -149,7 +149,8 @@ namespace {
 
 	// Converts the given vector of condition tokens (like "reputation: Republic",
 	// "random", or "4") into the integral values they have at runtime.
-	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions, const map<string, int64_t> &created)
+	vector<int64_t> SubstituteValues(const vector<string> &side, const map<string, int64_t> &conditions,
+		const map<string, int64_t> &created)
 	{
 		auto result = vector<int64_t>();
 		result.reserve(side.size());
@@ -183,7 +184,8 @@ namespace {
 	}
 
 	// Finding the left operand's index if getLeft = true. The operand's index is the first non-empty, non-used index.
-	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices, const size_t &opIndex, bool getLeft)
+	size_t FindOperandIndex(const vector<string> &tokens, const vector<int> &resultIndices,
+		const size_t &opIndex, bool getLeft)
 	{
 		// Start at the operator index (left), or just past it (right).
 		size_t index = opIndex + !getLeft;
@@ -295,7 +297,8 @@ void ConditionSet::Add(const DataNode &node)
 		// If a child node has assignment operators, warn on load since
 		// these will be processed after all non-child expressions.
 		if(children.back().hasAssign)
-			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last. This may be unexpected.");
+			node.PrintTrace("Warning: Assignment expressions contained within and/or groups are applied last."
+				" This may be unexpected.");
 	}
 	else if(IsValidCondition(node))
 	{

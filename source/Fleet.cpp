@@ -222,7 +222,8 @@ void Fleet::Load(const DataNode &node)
 	}
 
 	if(variants.empty())
-		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+		node.PrintTrace("Warning: " + (fleetName.empty()
+			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
 
 
@@ -560,7 +561,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 

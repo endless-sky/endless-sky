@@ -63,7 +63,8 @@ namespace {
 	}
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+		int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;

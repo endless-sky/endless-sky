@@ -326,7 +326,8 @@ void Test::Load(const DataNode &node)
 		return;
 	}
 	// Validate if the testname contains valid characters.
-	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
+		!= std::string::npos)
 	{
 		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
