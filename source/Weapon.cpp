@@ -248,7 +248,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_DISABLED_DAMAGE] = value;
 				relativeDisabledDamageSet = true;
 			}
-			else if (key == "relative minable damage")
+			else if(key == "relative minable damage")
 			{
 				damage[RELATIVE_MINABLE_DAMAGE] = value;
 				relativeMinableDamageSet = true;

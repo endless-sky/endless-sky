@@ -23,7 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstring>
 
 namespace {
-	bool HasOpenGLExtension(const char *name) {
+	bool HasOpenGLExtension(const char *name)
+	{
 #ifndef __APPLE__
 		auto extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
 		return strstr(extensions, name);

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Logger.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -193,6 +194,26 @@ int Armament::TurretCount() const
 	for(const Hardpoint &hardpoint : hardpoints)
 		count += hardpoint.IsTurret();
 	return count;
+}
+
+
+
+// Determine the installed weaponry's reusable ammunition. That is, all ammo outfits that are not also
+// weapons (as then they would be installed on hardpoints, like the "Nuclear Missile" and other one-shots).
+set<const Outfit *> Armament::RestockableAmmo() const
+{
+	auto restockable = set<const Outfit *>{};
+	for(auto &&hardpoint : Get())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon)
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(ammo && !ammo->IsWeapon())
+				restockable.emplace(ammo);
+		}
+	}
+	return restockable;
 }
 
 
