@@ -41,7 +41,10 @@ segment_include = {
 	# Matches any whitespaces at the end of a line that are preceded by brackets, parentheses or semicolons.
 	"[;[{]\\s+$": "trailing whitespace at end of line",
 	# Matches any 'if', 'for', 'catch' or 'switch' statements where the '(' is preceded by a whitespace.
-	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('"
+	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('",
+	# Matches any 'try' statements that are not followed by a whitespace and a '{'.
+	# The missing whitespace is checked in another pattern.
+	"^try$": "'try' and '{' should be on the same line"
 }
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
