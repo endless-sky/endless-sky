@@ -214,7 +214,7 @@ void Hardpoint::Step()
 
 
 // Adjust this weapon's aim by the given amount, relative to its maximum
-// "turret turn" rate. Up to its' angle limit.
+// "turret turn" rate. Up to its angle limit.
 void Hardpoint::Aim(double amount)
 {
 	if(!outfit)
@@ -351,12 +351,12 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 
-		// Update the arc of fire because of change an outfit.
+		// Update the arc of fire because of changing an outfit.
 		UpdateArc();
 
 		// For fixed weapons and idling turrets, apply "gun harmonization,"
 		// pointing them slightly inward so the projectiles will converge.
-		// Weapons that fire in parallel beams don't get a harmonized angle.
+		// Weapons that fire parallel beams don't get a harmonized angle.
 		// And some hardpoints/gunslots are configured not to get harmonized.
 		// So only harmonize when both the port and the outfit supports it.
 		if(!isParallel && !outfit->IsParallel())
@@ -388,7 +388,7 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 
-	// Update the arc of fire because of change an outfit.
+	// Update the arc of fire because of changing an outfit.
 	UpdateArc();
 }
 
@@ -456,7 +456,7 @@ void Hardpoint::UpdateArc()
 		isOmnidirectional = false;
 		const double weaponsHalf = weaponsArc / 2.;
 
-		// The base angle is placed at center as possible.
+		// The base angle is placed as close to center as possible.
 		const Angle &firstAngle = arc.first;
 		const Angle &secondAngle = arc.second;
 		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();

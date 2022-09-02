@@ -33,7 +33,7 @@ public:
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	struct BaseAttributes {
 		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
-		// The turret should point this angle when idling.
+		// The turret should point to this angle when idling.
 		Angle baseAngle;
 		// Indicates if this hardpoint disallows converging (guns and the idle position of turrets).
 		bool isParallel;
@@ -61,7 +61,7 @@ public:
 	// For guns, this function is equal to GetAngle().
 	const Angle &GetIdleAngle() const;
 	// Get the arc of fire if this is a directional turret,
-	// otherwise a pair of 180 degree + baseAngle.
+	// otherwise a pair of 180 degrees + baseAngle.
 	const std::pair<Angle, Angle> &GetArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
@@ -123,7 +123,7 @@ private:
 	// Angle of firing direction (guns) or idle position (turret).
 	Angle baseAngle;
 	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
-	// otherwise a pair of 180 degree + baseAngle.
+	// otherwise a pair of 180 degrees + baseAngle.
 	std::pair<Angle, Angle> arc;
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	BaseAttributes baseAttributes;
