@@ -2823,8 +2823,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					continue;
 
 				Angle centerAngle = Angle(hardpoint.GetIdleAngle());
-				const auto arcRange = hardpoint.GetArc();
-				const auto arcMiddleDegrees = (arcRange.first.AbsDegrees() + arcRange.second.AbsDegrees()) / 2.;
+				const Angle minArc = hardpoint.GetMinArc();
+				const Angle maxArc = hardpoint.GetMaxArc();
+				const auto arcMiddleDegrees = (minArc.AbsDegrees() + maxArc.AbsDegrees()) / 2.;
 				double bias = (centerAngle - hardpoint.GetAngle()).Degrees() / min(arcMiddleDegrees, 180.);
 				double acceleration = Random::Real() - Random::Real() + bias;
 				command.SetAim(index, previous + .1 * acceleration);
@@ -2878,24 +2879,25 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					degrees = (angleToPoint - aim).Degrees();
 				else
 				{
-					auto range = hardpoint.GetArc();
+					Angle minArc = hardpoint.GetMinArc();
+					Angle maxArc = hardpoint.GetMaxArc();
 					const Angle facing = ship.Facing();
-					range.first += facing;
-					range.second += facing;
-					if(!angleToPoint.IsInRange(range))
+					minArc += facing;
+					maxArc += facing;
+					if(!angleToPoint.IsInRange(minArc,maxArc))
 					{
 						// Decrease the priority of the target.
 						rendezvousTime += 2. * weapon->TotalLifetime();
 
 						// Point to the nearer edge of the arc.
-						const double degree1 = (range.first - angleToPoint).Degrees();
-						const double degree2 = (range.second - angleToPoint).Degrees();
+						const double degree1 = (minArc - angleToPoint).Degrees();
+						const double degree2 = (maxArc - angleToPoint).Degrees();
 						if(fabs(degree1) < fabs(degree2))
-							angleToPoint = range.first;
+							angleToPoint = minArc;
 						else
-							angleToPoint = range.second;
+							angleToPoint = maxArc;
 					}
-					degrees = (angleToPoint - range.first).AbsDegrees() - (aim - range.first).AbsDegrees();
+					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
 				}
 				double turnTime = fabs(degrees) / weapon->TurretTurn();
 				// All bodies within weapons range have the same basic

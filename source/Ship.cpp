@@ -297,9 +297,10 @@ void Ship::Load(const DataNode &node)
 					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
-						attributes.arc = make_pair(Angle(grand.Value(1)), Angle(grand.Value(2)));
+						attributes.minArc = Angle(grand.Value(1));
+						attributes.maxArc = Angle(grand.Value(2));
 						needToCheckAngles = true;
-						if(attributes.arc.first.Degrees() < attributes.arc.second.Degrees())
+						if(attributes.minArc.Degrees() < attributes.maxArc.Degrees())
 						{
 							grand.PrintTrace("Warning: First limit is higher than second limit. Might not work as expected.");
 						}
@@ -314,14 +315,14 @@ void Ship::Load(const DataNode &node)
 
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
 					{
-						attributes.arc.first += attributes.baseAngle;
-						attributes.arc.second += attributes.baseAngle;
+						attributes.minArc += attributes.baseAngle;
+						attributes.maxArc += attributes.baseAngle;
 					}
 				}
 				if(!attributes.isOmnidirectional && defaultBaseAngle)
 				{
-					const Angle &first = attributes.arc.first;
-					const Angle &second = attributes.arc.second;
+					const Angle &first = attributes.minArc;
+					const Angle &second = attributes.maxArc;
 					attributes.baseAngle = first + (second - first).AbsDegrees() / 2.;
 				}
 			}
@@ -946,8 +947,8 @@ void Ship::Save(DataWriter &out) const
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			const auto &attributes = hardpoint.GetBaseAttributes();
 			const double baseDegree = attributes.baseAngle.Degrees();
-			const double firstArc = round((attributes.arc.first.Degrees() - baseDegree)*100)/100;
-			const double secondArc = round((attributes.arc.second.Degrees() - baseDegree)*100)/100;
+			const double firstArc = round((attributes.minArc.Degrees() - baseDegree)*100)/100;
+			const double secondArc = round((attributes.maxArc.Degrees() - baseDegree)*100)/100;
 			out.BeginChild();
 			{
 				if(baseDegree)

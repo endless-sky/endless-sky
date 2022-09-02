@@ -85,9 +85,16 @@ const Angle &Hardpoint::GetIdleAngle() const
 
 // Get the arc of fire if this is a directional turret,
 // otherwise a pair of 180 degree + baseAngle.
-const std::pair<Angle, Angle> &Hardpoint::GetArc() const
+const Angle &Hardpoint::GetMinArc() const
 {
-	return arc;
+	return minArc;
+}
+
+
+
+const Angle &Hardpoint::GetMaxArc() const
+{
+	return maxArc;
 }
 
 
@@ -226,10 +233,10 @@ void Hardpoint::Aim(double amount)
 	else
 	{
 		const Angle newAngle = angle + add;
-		if(add < 0. && arc.first.IsInRange(newAngle, angle))
-			angle = arc.first;
-		else if(add > 0. && arc.second.IsInRange(angle, newAngle))
-			angle = arc.second;
+		if(add < 0. && minArc.IsInRange(newAngle, angle))
+			angle = minArc;
+		else if(add > 0. && maxArc.IsInRange(angle, newAngle))
+			angle = maxArc;
 		else
 			angle += add;
 	}
@@ -292,10 +299,11 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 	Angle aim(offset);
 	if(!IsOmnidirectional())
 	{
-		auto range = GetArc();
-		range.first += facing;
-		range.second += facing;
-		if(!aim.IsInRange(range))
+		Angle minArc = GetMinArc();
+		Angle maxArc = GetMaxArc();
+		minArc += facing;
+		maxArc += facing;
+		if(!aim.IsInRange(minArc,maxArc))
 			return false;
 	}
 
@@ -364,7 +372,7 @@ void Hardpoint::Install(const Outfit *outfit)
 			const Angle harmonized = baseAngle + HarmonizedAngle();
 			// The harmonized angle might be out of the arc of a turret.
 			// If so, this turret is forced "parallel."
-			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetArc()))
+			if(!isTurret || isOmnidirectional || harmonized.IsInRange(GetMinArc(),GetMaxArc()))
 				baseAngle = harmonized;
 		}
 		angle = baseAngle;
@@ -440,16 +448,20 @@ void Hardpoint::UpdateArc()
 	if(isOmnidirectional)
 	{
 		const Angle opposite = baseAngle + Angle(180.);
-		arc = make_pair(opposite, opposite);
+		minArc = opposite;
+		maxArc = opposite;
 	}
 	else
-		arc = attributes.arc;
+	{
+		minArc = attributes.minArc;
+		maxArc = attributes.maxArc;
+	}
 
-	if(!outfit)
+	if(!outfit) //Prob should move this to the top.
 		return;
 
 	// The installed weapon restricts the arc of fire.
-	const double hardpointsArc = (arc.second - arc.first).AbsDegrees();
+	const double hardpointsArc = (maxArc - minArc).AbsDegrees();
 	const double weaponsArc = outfit->Arc();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
@@ -457,19 +469,20 @@ void Hardpoint::UpdateArc()
 		const double weaponsHalf = weaponsArc / 2.;
 
 		// The base angle is placed as close to center as possible.
-		const Angle &firstAngle = arc.first;
-		const Angle &secondAngle = arc.second;
-		double hardpointsFirstArc = (baseAngle - firstAngle).AbsDegrees();
-		double hardpointsSecondArc = (secondAngle - baseAngle).AbsDegrees();
-		if(hardpointsFirstArc < weaponsHalf)
-			hardpointsSecondArc = weaponsArc - hardpointsFirstArc;
-		else if(hardpointsSecondArc < weaponsHalf)
-			hardpointsFirstArc = weaponsArc - hardpointsSecondArc;
+		const Angle &firstAngle = minArc;
+		const Angle &secondAngle = maxArc;
+		double hardpointsMinArc = (baseAngle - firstAngle).AbsDegrees();
+		double hardpointsMaxArc = (secondAngle - baseAngle).AbsDegrees();
+		if(hardpointsMinArc < weaponsHalf)
+			hardpointsMaxArc = weaponsArc - hardpointsMinArc;
+		else if(hardpointsMaxArc < weaponsHalf)
+			hardpointsMinArc = weaponsArc - hardpointsMaxArc;
 		else
 		{
-			hardpointsFirstArc = weaponsHalf;
-			hardpointsSecondArc = weaponsHalf;
+			hardpointsMinArc = weaponsHalf;
+			hardpointsMaxArc = weaponsHalf;
 		}
-		arc = make_pair(baseAngle - hardpointsFirstArc, baseAngle + hardpointsSecondArc);
+		minArc = baseAngle - hardpointsMinArc;
+		maxArc = baseAngle + hardpointsMaxArc;
 	}
 }

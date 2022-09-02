@@ -41,7 +41,8 @@ public:
 		bool isOmnidirectional;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
-		std::pair<Angle, Angle> arc;
+		Angle minArc;
+		Angle maxArc;
 	};
 
 public:
@@ -62,7 +63,8 @@ public:
 	const Angle &GetIdleAngle() const;
 	// Get the arc of fire if this is a directional turret,
 	// otherwise a pair of 180 degrees + baseAngle.
-	const std::pair<Angle, Angle> &GetArc() const;
+	const Angle &GetMinArc() const;
+	const Angle &GetMaxArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
@@ -124,7 +126,8 @@ private:
 	Angle baseAngle;
 	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
 	// otherwise a pair of 180 degrees + baseAngle.
-	std::pair<Angle, Angle> arc;
+	Angle minArc;
+	Angle maxArc;
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	BaseAttributes baseAttributes;
 	// This hardpoint is for a turret or a gun.
