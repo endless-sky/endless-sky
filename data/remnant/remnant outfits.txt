@@ -294,7 +294,7 @@ outfit "Teciimach Canister Rack"
 	category "Ammunition"
 	licenses
 		Remnant
-	cost 298000
+	cost 295000
 	thumbnail "outfit/emp rack"
 	"mass" 5
 	"outfit space" -9
@@ -308,7 +308,7 @@ outfit "Teciimach Bay"
 	category "Secondary Weapons"
 	licenses
 		Remnant
-	cost 5250000
+	cost 1525000
 	thumbnail "outfit/teciimach bay"
 	"mass" 9
 	"outfit space" -13
@@ -357,7 +357,7 @@ outfit "Teciimach Pod"
 	category "Secondary Weapons"
 	licenses
 		Remnant
-	cost 2250000
+	cost 762500
 	thumbnail "outfit/teciimach pod"
 	"mass" 3
 	"outfit space" -6

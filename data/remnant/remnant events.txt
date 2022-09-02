@@ -100,7 +100,7 @@ event "remnant: scanning tolerance"
 
 
 
-event "remnant research update bjd1"
+event "remnant: research update bjd1"
 
 
 
