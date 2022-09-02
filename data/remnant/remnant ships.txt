@@ -1062,6 +1062,7 @@ ship "Petrel"
 		"outfit scan speed" 1
 		"tactical scan power" 20
 		"asteroid scan power" 30
+		"force protection" 2
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1330,6 +1331,7 @@ ship "Tern"
 		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
+		"force protection" 2
 		weapon
 			"blast radius" 10
 			"shield damage" 100

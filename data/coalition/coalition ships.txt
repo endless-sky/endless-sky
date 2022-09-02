@@ -1278,6 +1278,7 @@ ship "Heliarch Pursuer"
 		"outfit space" 105
 		"weapon capacity" 19
 		"engine capacity" 36
+		"force protection" 2
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1337,6 +1338,7 @@ ship "Heliarch Rover"
 		"outfit space" 125
 		"weapon capacity" 24
 		"engine capacity" 32
+		"force protection" 2
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1395,6 +1397,7 @@ ship "Heliarch Stalker"
 		"outfit space" 133
 		"weapon capacity" 43
 		"engine capacity" 16
+		"force protection" 2
 		weapon
 			"blast radius" 15
 			"shield damage" 150
