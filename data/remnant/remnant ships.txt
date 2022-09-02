@@ -1157,9 +1157,11 @@ ship "Smew"
 		"heat dissipation" .65
 		"fuel capacity" 100
 		"cargo space" 70
-		"outfit space" 92
+		"outfit space" 80
 		"weapon capacity" 10
 		"engine capacity" 46
+		"energy capacity" 3000
+		"ion resistance" 0.002
 		"ramscoop" 0.8
 		"shield generation" 0.48
 		"shield energy" 0.32
@@ -1176,7 +1178,6 @@ ship "Smew"
 			"hit force" 315
 	outfits
 		"Millennium Cell"
-		"Crystal Capacitor"
 		"Quantum Key Stone"
 		"Thermoelectric Cooler"
 		
