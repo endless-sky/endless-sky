@@ -946,6 +946,8 @@ void Ship::Save(DataWriter &out) const
 				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
 			const auto &attributes = hardpoint.GetBaseAttributes();
 			const double baseDegree = attributes.baseAngle.Degrees();
+			const double firstArc = round((attributes.arc.first.Degrees() - baseDegree)*100)/100;
+			const double secondArc = round((attributes.arc.second.Degrees() - baseDegree)*100)/100;
 			out.BeginChild();
 			{
 				if(baseDegree)
@@ -953,7 +955,7 @@ void Ship::Save(DataWriter &out) const
 				if(attributes.isParallel)
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
-					out.Write("arc", attributes.arc.first.Degrees(), attributes.arc.second.Degrees());
+					out.Write("arc", firstArc, secondArc);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
