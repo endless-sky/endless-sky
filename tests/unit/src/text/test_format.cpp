@@ -1,4 +1,4 @@
-/* text/test_format.cpp
+/* test_format.cpp
 Copyright (c) 2021 by Terin
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

@@ -1,4 +1,4 @@
-/* text/test_layout.cpp
+/* test_layout.cpp
 Copyright (c) 2020 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

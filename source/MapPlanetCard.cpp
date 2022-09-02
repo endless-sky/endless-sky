@@ -1,4 +1,4 @@
-/* MapPlanet.cpp
+/* MapPlanetCard.cpp
 Copyright (c) 2022 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
