@@ -38,6 +38,7 @@ color "tooltip background" .2 .2 .2 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
+color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .70 .75
