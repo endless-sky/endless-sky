@@ -1157,7 +1157,7 @@ ship "Smew"
 		"heat dissipation" .65
 		"fuel capacity" 100
 		"cargo space" 70
-		"outfit space" 79
+		"outfit space" 80
 		"weapon capacity" 10
 		"engine capacity" 46
 		"energy capacity" 3000
