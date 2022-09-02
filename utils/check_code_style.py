@@ -24,7 +24,7 @@ import glob
 
 # String version of the regexes for easy editing
 # List of the standard operators that are checked
-stdOp = "+/\\*<>&%=|!:\\-"
+std_op = "+/\\*<>&%=|!:\\-"
 # Dict of patterns for selection potential formatting issues in full lines.
 # These lines don't contain the contents of strings, chars or comments.
 # The dict also contains the error description for the patterns.
@@ -69,11 +69,11 @@ segment_include = {
 word_include = {
 	# Matches any number of operators that have no leading whitespace,
 	# except if preceded by '(', '[' or '{'.
-	"[^([{\\s" + stdOp + "][" + stdOp + "]+[^" + stdOp + "]*": "missing whitespace before operator",
+	"[^([{\\s" + std_op + "][" + std_op + "]+[^" + std_op + "]*": "missing whitespace before operator",
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
 	"^[^+/%=]*[+/%=][^+/%=,\\s]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that has no trailing whitespace.
-	"^[^<>=:]?[" + stdOp + "]*[=<>:][^=<>:,\\s]": "missing whitespace after operator"
+	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s]": "missing whitespace after operator"
 }
 
 # Patterns for excluding matches (test()#match) of 'include'
@@ -83,7 +83,7 @@ match_exclude = [
 	# Matches any matches which have a -> operator following the first character
 	"^.->",
 	# Matches any matches ending with an operator and a bracket
-	"[" + stdOp + "][)\\]}]$",
+	"[" + std_op + "][)\\]}]$",
 	# Matches any matches ending in triple dots, fixing an issue with vararg references.
 	"\\.\\.\\.$",
 	# Matches any exponent-related matches.
