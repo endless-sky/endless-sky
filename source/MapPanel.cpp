@@ -1155,14 +1155,14 @@ void MapPanel::DrawSystems()
 		const Interface *mapInterface = GameData::Interfaces().Get("map");
 		if(static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom())
 		{
-			ringOuter	= DOTS_OUTER * 2;
-			ringInner	= DOTS_INNER * 2;
+			ringOuter = DOTS_OUTER * 2;
+			ringInner = DOTS_INNER * 2;
 			starsOn = 0;
 		}
 		else
 		{
-			ringOuter	= OUTER;
-			ringInner	= INNER;
+			ringOuter = OUTER;
+			ringInner = INNER;
 			starsOn = 1;
 		}
 
@@ -1215,11 +1215,6 @@ void MapPanel::DrawNames()
 	Point offset(useBigFont ? 16. : 10., -.5 * font.Height());
 	for(const Node &node : nodes)
 		font.Draw(node.name, zoom * (node.position + center) + offset, node.color);
-//	{
-//		int namewidth = font.Width(node.name);
-//		Point offset(useBigFont ? -namewidth / 2 : -namewidth / 2, 0.75 * font.Height());
-//		font.Draw(node.name, zoom * (node.position + center) + offset, node.color);
-//	}
 }
 
 
