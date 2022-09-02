@@ -12,10 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
-#include "Files.h"
 #include "FireCommand.h"
+#include "Logger.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -56,7 +57,7 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Files::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
 		return 0;
 	}
 
@@ -193,6 +194,26 @@ int Armament::TurretCount() const
 	for(const Hardpoint &hardpoint : hardpoints)
 		count += hardpoint.IsTurret();
 	return count;
+}
+
+
+
+// Determine the installed weaponry's reusable ammunition. That is, all ammo outfits that are not also
+// weapons (as then they would be installed on hardpoints, like the "Nuclear Missile" and other one-shots).
+set<const Outfit *> Armament::RestockableAmmo() const
+{
+	auto restockable = set<const Outfit *>{};
+	for(auto &&hardpoint : Get())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon)
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(ammo && !ammo->IsWeapon())
+				restockable.emplace(ammo);
+		}
+	}
+	return restockable;
 }
 
 

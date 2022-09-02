@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 
 #include "File.h"
+#include "Logger.h"
 
 #include <SDL2/SDL.h>
 
@@ -21,12 +22,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
+#else
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <utime.h>
+#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -47,7 +48,6 @@ namespace {
 	string savePath;
 	string testPath;
 
-	mutex errorMutex;
 	File errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
@@ -434,14 +434,14 @@ void Files::Copy(const string &from, const string &to)
 	// Preserve the timestamps of the original file.
 	struct stat buf;
 	if(stat(from.c_str(), &buf))
-		LogError("Error: Cannot stat \"" + from + "\".");
+		Logger::LogError("Error: Cannot stat \"" + from + "\".");
 	else
 	{
 		struct utimbuf times;
 		times.actime = buf.st_atime;
 		times.modtime = buf.st_mtime;
 		if(utime(to.c_str(), &times))
-			LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
+			Logger::LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
 	}
 #endif
 }
@@ -483,7 +483,9 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	FILE *file = nullptr;
+	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif
@@ -543,10 +545,8 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::LogError(const string &message)
+void Files::LogErrorToFile(const string &message)
 {
-	lock_guard<mutex> lock(errorMutex);
-	cerr << message << endl;
 	if(!errorLog)
 	{
 		errorLog = File(config + "errors.txt", true);
