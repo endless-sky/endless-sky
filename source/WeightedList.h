@@ -144,7 +144,7 @@ typename std::enable_if<
 >::type WeightedList<Type>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
-	if (tw == 0) return 0;
+	if(tw == 0) return 0;
 
 	auto sum = typename std::result_of<Callable(const Type &)>::type{};
 	for(unsigned index = 0; index < choices.size(); ++index)
