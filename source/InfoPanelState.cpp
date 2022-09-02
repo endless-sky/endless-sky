@@ -99,7 +99,7 @@ void InfoPanelState::DeselectAll()
 
 
 
-void InfoPanelState::Disown(std::vector<std::shared_ptr<Ship>>::const_iterator it)
+void InfoPanelState::Disown(vector<shared_ptr<Ship>>::const_iterator it)
 {
 	ships.erase(it);
 }
