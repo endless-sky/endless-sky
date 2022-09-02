@@ -37,7 +37,7 @@ namespace detail {
 namespace Catch {
 	template<>
 	struct StringMaker<EsUuid> {
-		static std::string convert(const EsUuid &value ) {
+		static std::string convert(const EsUuid &value) {
 			return value.ToString();
 		}
 	};
