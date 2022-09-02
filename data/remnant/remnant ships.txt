@@ -1209,7 +1209,19 @@ ship "Smew" "Smew (Runabout)"
 		"Thermoelectric Cooler"
 		
 		"Anvil-Class Engine"
-		"Hyperdrive"	
+		"Hyperdrive"
+
+ship "Smew" "Smew (Teciimach Ferry)"
+	outfits
+		"Teciimach Canister" 3
+		"Teciimach Pod"
+		
+		"Millennium Cell"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Anvil-Class Engine"
+
 
 
 ship "Starling"
