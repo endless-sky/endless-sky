@@ -1046,12 +1046,12 @@ ship "Smew"
 		"shields" 1200
 		"hull" 2800
 		"required crew" 1
-		"bunks" 9
+		"bunks" 8
 		"mass" 60
 		"drag" 1.75
 		"heat dissipation" .65
 		"fuel capacity" 100
-		"cargo space" 90
+		"cargo space" 70
 		"outfit space" 92
 		"weapon capacity" 10
 		"engine capacity" 46
