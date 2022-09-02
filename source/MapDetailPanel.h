@@ -74,10 +74,8 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
-	// Wether or not the trade panel is selected, or the planet view (and should be affected by up and down keys).
-	bool tradeSelected = true;
-
-	bool isHovered = false;
+	// Wether or not the planet view is hovered, or the trade panel (and should be affected by up and down keys).
+	bool isPlanetViewSelected = false;
 
 	// Maximum scrolling possible with the current amount of planets being displayed.
 	double maxScroll = 0.;

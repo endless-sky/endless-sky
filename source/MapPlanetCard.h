@@ -55,7 +55,7 @@ public:
 
 	const Planet *GetPlanet() const;
 
-	void Select(bool select);
+	void Select(bool select = true);
 
 
 protected:

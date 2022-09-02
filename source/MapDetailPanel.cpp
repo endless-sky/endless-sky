@@ -148,17 +148,17 @@ bool MapDetailPanel::Hover(int x, int y)
 {
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	isHovered = (x < Screen::Left() + planetCardInterface->GetValue("width")
+	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
 		&& y < Screen::Top() + mapInterface->GetValue("planet panel height"));
 
-	return isHovered ? true : MapPanel::Hover(x, y);
+	return isPlanetViewSelected ? true : MapPanel::Hover(x, y);
 }
 
 
 
 bool MapDetailPanel::Drag(double dx, double dy)
 {
-	if(isHovered)
+	if(isPlanetViewSelected)
 	{
 		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.025);
 
@@ -171,7 +171,7 @@ bool MapDetailPanel::Drag(double dx, double dy)
 
 bool MapDetailPanel::Scroll(double dx, double dy)
 {
-	if(isHovered)
+	if(isPlanetViewSelected)
 	{
 		SetScroll(scroll - dy * Preferences::ScrollSpeed() * 0.25);
 
@@ -255,7 +255,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if(key == SDLK_DOWN)
 	{
-		if(tradeSelected)
+		if(!isPlanetViewSelected)
 		{
 			if(commodity < 0 || commodity == 9)
 				SetCommodity(0);
@@ -269,24 +269,32 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 			{
 				if(selectNext)
 				{
-					card.Select(true);
+					card.Select();
 					double space = card.AvailableSpace();
 					if(space < planetCardHeight)
 						scroll += (planetCardHeight - space);
 					break;
 				}
-				else if(card.IsSelected() && !planetCards.back().IsSelected())
+				// We have this one selected, the next one will be selected instead.
+				else if(card.IsSelected())
 				{
-					selectNext = true;
+					if(!planetCards.back().IsSelected())
+						selectNext = true;
 					card.Select(false);
 				}
+			}
+			// If none/the last one are considered selected, it will select the first one of the list.
+			if(!selectNext && planetCards.size())
+			{
+				SetScroll(0.);
+				planetCards.front().Select();
 			}
 		}
 
 	}
 	else if(key == SDLK_UP)
 	{
-		if(tradeSelected)
+		if(!isPlanetViewSelected)
 		{
 			if(commodity <= 0)
 				SetCommodity(9);
@@ -296,18 +304,26 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		else
 		{
 			MapPlanetCard *previousCard = &planetCards.front();
+			bool anySelected = false;
 			for(auto &card : planetCards)
 			{
 				if(card.IsSelected())
 				{
+					if(!planetCards.front().IsSelected())
+						anySelected = true;
+					previousCard->Select();
 					card.Select(false);
-					previousCard->Select(true);
 					double space = previousCard->AvailableSpace();
 					if(space < planetCardHeight)
 						scroll -= (planetCardHeight - space);
 					break;
 				}
 				previousCard = &card;
+			}
+			if(!anySelected && planetCards.size())
+			{
+				SetScroll(maxScroll);
+				planetCards.back().Select();
 			}
 		}
 	}
@@ -325,6 +341,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
+	const double planetCardHeight = planetCardInterface->GetValue("height");
 	if(x < Screen::Left() + 160)
 	{
 		// The player clicked in the left-hand interface. This could be the system
@@ -333,7 +350,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		{
 			// The player clicked on a tradable commodity. Color the map by its price.
 			SetCommodity((y - tradeY) / 20);
-			tradeSelected = true;
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
@@ -347,7 +363,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		if(maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
 		{
-			const double planetCardHeight = planetCardInterface->GetValue("height");
 			// The arrows are of size 10.
 			const double arrowVerticalOffset = mapInterface->GetValue("arrow y offset") + 10.;
 			bool arrowUp = (y < Screen::Top() + arrowVerticalOffset);
@@ -375,7 +390,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				else if(clickAction != MapPlanetCard::ClickAction::NONE)
 				{
 					selectedPlanet = card.GetPlanet();
-					tradeSelected = false;
 					if(clickAction != MapPlanetCard::ClickAction::SELECTED)
 						SetCommodity(static_cast<int>(clickAction));
 				}
@@ -397,6 +411,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			{
 				distance = d;
 				selectedPlanet = it.first;
+				double place = 0.;
+				for(auto &planetCard : planetCards)
+				{
+					planetCard.Select(planetCard.GetPlanet() == selectedPlanet);
+					if(planetCard.IsSelected())
+						SetScroll(place * planetCardHeight);
+					++place;
+				}
 			}
 		}
 		if(selectedPlanet && player.Flagship())
@@ -640,6 +662,17 @@ void MapDetailPanel::DrawInfo()
 		}
 	}
 
+	// Edges:
+	Point pos(Screen::Left(), Screen::Top());
+	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+	Point edgePos = pos + Point(.5 * size.X(), size.Y());
+	Point bottomOff(-23.5, .5 * bottom->Height() - 1);
+	SpriteShader::Draw(bottom, edgePos + bottomOff);
+
+	const Sprite *right = SpriteSet::Get("ui/right edge");
+	Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
+	SpriteShader::Draw(right, edgePos + rightOff);
+
 	const double textMargin = mapInterface->GetValue("text margin");
 	uiPoint = Point(Screen::Left() + textMargin, Screen::Bottom() - bottomGovY);
 
@@ -659,18 +692,6 @@ void MapDetailPanel::DrawInfo()
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
 			10.f, 10.f, 0.f, medium);
-
-	// Edges:
-	Point pos(Screen::Left(), Screen::Top());
-	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-	Point edgePos = pos + Point(.5 * size.X(), size.Y());
-	Point bottomOff(-23.5, .5 * bottom->Height() - 1);
-	SpriteShader::Draw(bottom, edgePos + bottomOff);
-
-	const Sprite *right = SpriteSet::Get("ui/right edge");
-	Point rightOff(.5 * (size.X() + right->Width()) - 1, -right->Height() / 2.);
-	SpriteShader::Draw(right, edgePos + rightOff);
-
 
 	if(maxScroll)
 	{
