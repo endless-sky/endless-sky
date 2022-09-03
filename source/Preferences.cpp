@@ -189,13 +189,13 @@ bool Preferences::ZoomViewOut()
 void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
+	screenModeIndex = GameWindow::IsFullscreen();
 }
 
 
 
 const string &Preferences::ScreenModeSetting()
 {
-	screenModeIndex = GameWindow::IsFullscreen();
 	return SCREEN_MODE_SETTINGS[screenModeIndex];
 }
 
