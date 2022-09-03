@@ -282,7 +282,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 					card.Select(false);
 				}
 			}
-			// If none/the last one are considered selected, it will select the first one of the list.
+			// If none/the last one are considered selected, it will select the first one from the list.
 			if(!selectNext && !planetCards.empty())
 			{
 				SetScroll(0.);

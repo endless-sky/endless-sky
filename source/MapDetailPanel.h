@@ -46,7 +46,7 @@ public:
 
 
 protected:
-	// Navigate through the shown planets panel, and drags them around.
+	// Navigates through the shown planets panel, and drags them around.
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
@@ -74,7 +74,7 @@ private:
 	int governmentY = 0;
 	int tradeY = 0;
 
-	// Wether or not the planet view is hovered, or the trade panel (and should be affected by up and down keys).
+	// Which panel is being hovered over and should be affected by up and down keys.
 	bool isPlanetViewSelected = false;
 
 	// Maximum scrolling possible with the current amount of planets being displayed.
