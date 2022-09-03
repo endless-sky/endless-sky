@@ -14,10 +14,39 @@
 
 #NOTE: The Hai Leaks Response 6 and 7 missions will break if any of these missions have Hai-home as a destination.
 
+#Logic Register (don't delete)
+## Some subset of these are restricted so you can't pick up enough of them (total 3) to finish the quest at the same time as starting it.
+#
+# Main Event:
+# #Gipeep
+# - Minor People logs
+# - Cannot be discovered pre-story
+# - Includes essential information to progress (or needs alternative source later)
+#
+# Secondary Events:
+# #Yeertle Family and Oonem
+# - Minor People logs
+# - Can be discovered pre-story (foreshadowing)
+# - Potential for recurring appearances
+# - to offer
+#		or
+#			has "Unwanted Cargo: done"
+#			has "Hai Leaks Response 6: offered"
+# - needs: not "event: hai-human treaty signed"
+# 
+# Filler Events:
+# #Prison RPers, Meroot & Lucy 
+# - Only mission logs
+# - Cannot be discovered pre-story
+# - to offer
+#		has "Hai Leaks Response 6: active"
+#
+
+
 mission "Hai Rescue: Yeertle Hint"
 	landing
 	name "Investigate a Were-Squirrel"
-	description "A truly outlandish rumor has been floating around that there might be a Hai hiding out on <destination>."
+	description "A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>."
 	source
 		near "Betelgeuse" 4
 		government "Republic" "Syndicate"
@@ -48,12 +77,20 @@ mission "Hai Rescue: Yeertle Family"
 	passengers 5
 	to offer
 		"combat rating" > 50
-		has "First Contact: Hai: offered"
+		or
+			has "Unwanted Cargo: done"
+			has "Hai Leaks Response 6: offered"
 		not "event: hai-human treaty signed"
 		"Hai Rescue: Yeertle Family (defer count)" < 3
 	on offer
 		conversation
+			branch nohint
+				not "Hai Rescue: Yeertle Hint: offered"
 			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
+				goto start
+			label nohint
+			`Wandering around after dark you find yourself down an alley near the spaceport. The ongoing drizzle increases in intensity and you pause for a moment to huddle in an alcove for a while until it settles down. After a few moments, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			label start
 			`	Do you want to talk to him?`
 			choice
 				`	(Talk to him.)`
@@ -135,92 +172,6 @@ mission "Hai Rescue: Yeertle Family"
 		fleet "Small Core Pirates" 1
 
 
-mission "Hai Rescue: Prison RP Hint"
-	landing
-	name "Phantom Distress Calls"
-	description "Some merchants have mentioned picking up a distress call near <destination> that they couldn't locate the source of."
-	source
-		near "Mirfak" 4
-		government "Republic" "Syndicate"
-		attributes "spaceport"
-		not attributes "station"
-		not planet "Sunracer"
-	destination Sunracer
-	to offer
-		has "Hai Leaks Response 6: active"
-		has "event: slightly lost"
-		not "Hai Rescue: Prison Role-Players: offered"
-		not "event: hai-human treaty signed"
-		random < 80
-	on offer
-		conversation
-			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. Out here on the edge of things and toward the core, it is a popular pastime for merchants to swap ghost stories. In all likelihood, the majority of these stories can be put down to minor failures from cheap, mass-produced Syndicate equipment. Nevertheless, one of them stands out this time.`
-			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of <planet>, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system, and they've bugged out. Mysteriously the pirates don't seem to have been looking for or pursuing the merchants when they've appeared though.`
-			`	It seems like a long-shot, but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
-				accept
-
-mission "Hai Rescue: Prison Role-Players"
-	# You get to rescue the Hai from "First Contact: Hai"
-	landing
-	name "Return the Prison Role-Players"
-	description "Return Hai prison role-players to <destination>. Payment is <payment>."
-	source "Sunracer"
-	destination "Allhome"
-	passengers 5
-	to offer
-		has "First Contact: Hai: declined"
-		"Hai Rescue: Prison Role-Players (defer count)" < 3
-		not "event: hai-human treaty signed"
-		not "Hai Rescue: Prison Role-Players: offered"
-		# No combat rating requirement since there are no NPCs.
-		has "Hai Leaks Response 6: active"
-		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
-	on offer
-		"Hai Rescue: Prison Role-Players (defer count)" ++
-		conversation
-			`As you set your landing vector, you detect a very faint distress call directed at your ship. Your scanners show it appears to come from a remote island. Do you want to check it out?`
-			choice
-				`	(Follow the distress signal.)`
-				`	(Ignore it and come back later.)`
-					defer
-			`	You put your ship down in a forest clearing and step out to find some wary-looking Hai with a directional transmitter and a very broken freighter in pirate colors.`
-			`	One of them, a lady, steps forward. "Captain <last>! Please help us. We need to get home to <destination>."`
-				goto "actual questions"
-			label questions
-			`	"Do you want to know anything else, or can we leave now?"`
-			label "actual questions"
-			choice
-				`	"Of course. Let's go."`
-					goto go
-				`	"How do you know who I am?"`
-					goto who
-				`	"How did you get here?"`
-					goto how
-				`	"How much will you pay me?"`
-					goto pay
-				`	"Sorry, maybe another time."`
-					defer
-			label who
-			`	"You don't remember me? I'm the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute."`
-				goto questions
-			label how
-			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one," she says.`
-			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash land and used an escape pod. Now we're stuck here."`
-				goto questions
-			label pay
-			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <destination> though, so you'll have to fly us there first."`
-				goto questions
-			label go
-			`	"Excellent! Everyone pile aboard. Let's go back to <destination>!"`
-				accept
-	on complete
-		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. Returned the Hai to <destination>.`
-		payment 565000
-		"hai slave prereq" ++
-		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
-	# No NPCs for this one since the Pirates are presumed dead.
-
-
 mission "Hai Rescue: Oonem Hint"
 	landing
 	name "A (Short) Angel of Death"
@@ -254,18 +205,31 @@ mission "Hai Rescue: Ooonem"
 	passengers 1
 	to offer
 		"combat rating" > 50
-		"Hai Rescue: Ooonem (defer count)" < 3
+		or
+			has "Unwanted Cargo: done"
+			has "Hai Leaks Response 6: offered"
 		not "event: hai-human treaty signed"
-		not "Hai Rescue: Ooonem: offered"
-		has "First Contact: Hai: offered"
-		has "Hai Leaks Response 6: active"
-		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
+		"Hai Rescue: Ooonem (defer count)" < 3
 	on offer
 		"Hai Rescue: Ooonem (defer count)" ++
 		conversation
 			branch transmitter
 				has "Oonem Transmitter"
-			`Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from her hood. She might be a Hai. Do you want to talk to her?`
+			branch nohint
+				and
+					not "Hai Rescue: Oonem Hint: offered"
+					not "Hai Rescue: Ooonem (defer count)" >= 1
+			`Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. They might be a Hai. Do you want to talk to them?`
+				goto start
+			label nohint
+			`As you come in you are informed that all the ships are being searched before departure. No sooner do you disembark your ship than you notice that there's a lot of paranoid goons with weapons hot. Like a lot. There seems to be some kind of manhunt going on for a short, hooded, 'angel of death' who has been loitering in dark alleyways. So far, no one is explicitly claiming to know what's going on though, and even for a place like this the effort seems... ungoverned. Even to the extent that some groups seem to be actively pretending to be involved while surreptitiously not joining in with groups that leave on the hunt.`
+			`	It's all very odd, but one thing you do glean from the constant conversation and the small selection of individuals loudly demanding cooperation is that the 'angel of death', as they're calling it, is unusually short and fast, and capable of things which give you reason to suspect they might possibly be a Hai.`
+			choice
+				`	(Investigate for yourself.)`
+				`	(Come back later.)`
+					defer
+			`	Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. Seems you may have indeed found a Hai. Do you want to talk to them?`
+			label start
 			choice
 				`	(Talk to her.)`
 				`	(Come back later.)`
@@ -343,6 +307,90 @@ mission "Hai Rescue: Ooonem"
 		fleet "Small Core Pirates" 1
 
 
+mission "Hai Rescue: Prison RP Hint"
+	landing
+	name "Phantom Distress Calls"
+	description "Some merchants have mentioned picking up a distress call near <destination> that they couldn't locate the source of."
+	source
+		near "Mirfak" 4
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+		not attributes "station"
+		not planet "Sunracer"
+	destination Sunracer
+	to offer
+		has "Hai Leaks Response 6: active"
+		has "event: slightly lost"
+		not "Hai Rescue: Prison Role-Players: offered"
+		not "event: hai-human treaty signed"
+		random < 80
+	on offer
+		conversation
+			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. Out here on the edge of things and toward the core, it is a popular pastime for merchants to swap ghost stories. In all likelihood, the majority of these stories can be put down to minor failures from cheap, mass-produced Syndicate equipment. Nevertheless, one of them stands out this time.`
+			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of <planet>, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system, and they've bugged out. Mysteriously the pirates don't seem to have been looking for or pursuing the merchants when they've appeared though.`
+			`	It seems like a long-shot, but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
+				accept
+
+mission "Hai Rescue: Prison Role-Players"
+	# You get to rescue the Hai from "First Contact: Hai"
+	landing
+	name "Return the Prison Role-Players"
+	description "Return Hai prison role-players to <destination>. Payment is <payment>."
+	source "Sunracer"
+	destination "Allhome"
+	passengers 5
+	to offer
+		has "Hai Leaks Response 6: active"
+		not "event: hai-human treaty signed"
+		"Hai Rescue: Prison Role-Players (defer count)" < 3
+		# No combat rating requirement since there are no NPCs.
+	on offer
+		"Hai Rescue: Prison Role-Players (defer count)" ++
+		conversation
+			`As you set your landing vector, you detect a very faint distress call directed at your ship. Your scanners show it appears to come from a remote island. Do you want to check it out?`
+			choice
+				`	(Follow the distress signal.)`
+				`	(Ignore it and come back later.)`
+					defer
+			`	You put your ship down in a forest clearing and step out to find some wary-looking Hai with a directional transmitter and a very broken freighter in pirate colors.`
+			`	One of them, a lady, steps forward. "Captain <last>! Please help us. We need to get home to <destination>."`
+				goto "actual questions"
+			label questions
+			`	"Do you want to know anything else, or can we leave now?"`
+			label "actual questions"
+			choice
+				`	"Of course. Let's go."`
+					goto go
+				`	"How do you know who I am?"`
+					goto who
+				`	"How did you get here?"`
+					goto how
+				`	"How much will you pay me?"`
+					goto pay
+				`	"Sorry, maybe another time."`
+					defer
+			label who
+			`	"You don't remember me? I'm the first Hai you met. You were so confused back then and didn't know who or what we were. It was very cute."`
+				goto questions
+			label how
+			`	"There are prison role-play cruises in Hai space where we can ride in a brig with human security guards. My research group thought it would be a fun experience, so we all chartered one," she says.`
+			`	"Unfortunately, it was a trick! They were pirates and took us into human space instead. They didn't feed us much, so we all pretended to be too weak to stand. When one of the pirates came in to check on us, we overpowered him. I don't know if they got sloppy or if they were just new at this, but it seems they had forgotten how fast we can be. The other pirate set the ship to crash land and used an escape pod. Now we're stuck here."`
+				goto questions
+			label pay
+			`	"Ah, well, we can give you what is left of our travel budget: <payment>. The money is on <destination> though, so you'll have to fly us there first."`
+				goto questions
+			label go
+			`	"Excellent! Everyone pile aboard. Let's go back to <destination>!"`
+				accept
+	on complete
+		log `Found some gullible Hai that pirates tricked into a "prison role-play cruise," complete with security guards and a brig. They overpowered the pirate crew who crashed the ship and used escape pods. Returned the Hai to <destination>.`
+		payment 565000
+		"hai slave prereq" ++
+		dialog `The Hai researchers thank you for rescuing them from their ill-fated "prison role-play cruise" and promise to stick to safer pastimes in the future. They happily give you <payment>.`
+	# No NPCs for this one since the Pirates are presumed dead.
+
+
+
 mission "Hai Rescue: Meroot and Lucy Hint"
 	landing
 	name "Deep Crevasses"
@@ -356,7 +404,6 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	destination Canyon
 	to offer
 		"combat rating" > 50
-		has "Unwanted Cargo: done"
 		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Meroot and Lucy: offered"
@@ -376,14 +423,13 @@ mission "Hai Rescue: Meroot and Lucy"
 	passengers 2
 	to offer
 		"combat rating" > 50
-		has "Unwanted Cargo: done"
+		has "Hai Leaks Response 6: active"
 		not "event: hai-human treaty signed"
-		not "Hai Rescue: Meroot and Lucy: offered"
 		"Hai Rescue: Meroot and Lucy (defer count)" < 3
 	on offer
 		"Hai Rescue: Meroot and Lucy (defer count)" ++
 		conversation
-			`As you walk through a major street, you notice a woman approach an alcove in the side of one building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You ohly had a moment to observe, but in the small alcove you spot something hiding inside with tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
+			`As you walk through a major street, you notice a woman approach an alcove in the side of one building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You only had a moment to observe, but through the gap you spotted something hiding inside the small alcove which might have had tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
 			`	Do you want to investigate?`
 			choice
 				`	(Investigate.)`
@@ -447,7 +493,6 @@ mission "Hai Rescue: Gipeep Hint"
 	destination Maelstrom
 	to offer
 		"combat rating" > 50
-		has "Unwanted Cargo: done"
 		has "Hai Leaks Response 6: active"
 		has "event: slightly lost"
 		not "Hai Rescue: Gipeep: offered"
@@ -467,12 +512,14 @@ mission "Hai Rescue: Gipeep"
 	passengers 1
 	to offer
 		"combat rating" > 50
-		not "event: hai-human treaty signed"
-		has "Unwanted Cargo: done"
 		has "Hai Leaks Response 6: active"
-		# Some subset of these are restricted so you can't pick up enough of them to finish the quest at the same time as starting it.
+		not "event: hai-human treaty signed"
 	on offer
 		conversation
+			branch hint
+				has "Hai Rescue: Gipeep Hint: offered"
+			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
+			label hint
 			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order but that just means that at the very least maybe you should pick up a job yourself.`
 			choice
 				`	(Check it out.)`
@@ -508,6 +555,7 @@ mission "Hai Rescue: Gipeep"
 				launch
 	on complete
 		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <destination> and transported in a locked cargo crate. The crate's key had a marking on it like an angry cat in a circle.`
+		log "Minor People" "Gipeep" `A Hai of no stated profession who was actively rescued from his captors. His tenacity of spirit may have `
 		payment 285000
 		"hai slave prereq" ++
 		dialog `The Hai, who has since introduced himself as Gipeep, thanks you for helping him finally finish his long walk home from the store. His grateful family give you <payment>. None of them know who kidnapped him or why.`
