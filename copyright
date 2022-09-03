@@ -1509,6 +1509,8 @@ Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/teciimach?bay*
+ images/outfit/teciimach?pod*
  images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
@@ -1686,6 +1688,13 @@ Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
+
+Files:
+ images/thumbnail/smew*
+ images/ship/smew*
+Copyright: Dschiltt
+License: CC0 (Creative Commons Zero)/Public-Domain
+Comment: Derived from works by MZ (under the same license), and contributions by Zoura, Kitteh, Ejo Thims, and Saugia.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
