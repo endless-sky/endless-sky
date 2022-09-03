@@ -117,6 +117,7 @@ errors = 0
 # Checks the format of all source files.
 def check_code_style():
 	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
+	files.sort()
 	for file in files:
 		check_code_format(file)
 		check_global_format(file)
@@ -135,15 +136,15 @@ def check_code_format(file):
 	lines = f.readlines()
 	for line in lines:
 		line = line.removesuffix('\n')
-		# Checking the width of the line
-		if len(line) > 120:
-			write_error(line, file, line_count, "lines should hard wrap at 120 characters")
-		segments = []
-		line = line.lstrip()
 		line_count += 1
+		segments = []
 		is_escaped = False
 		# Start index is the beginning of the sequence to be tested
 		start_index = 0
+		# Checking the width of the line
+		if len(line) > 120:
+			write_error(line, file, line_count, "lines should hard wrap at 120 characters")
+		line = line.lstrip()
 		# Looking for parts of the file that are not strings or comments
 		for i in range(len(line)):
 			# Getting current character
