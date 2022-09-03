@@ -30,7 +30,13 @@ namespace {
 	{
 		DataFile prefs(path);
 		for(const DataNode &node : prefs)
-			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+		{
+			const string &key = node.Token(0);
+			if(key == "plugins")
+				for(const DataNode &child : node)
+					if(child.Size() == 2)
+						settings[child.Token(0)] = child.Value(1);
+		}
 	}
 }
 
@@ -48,10 +54,18 @@ void Plugins::Load()
 
 void Plugins::Save()
 {
+	if(settings.size() == 0)
+		return;
 	DataWriter out(Files::Config() + "plugins.txt");
 
-	for(const auto &it : settings)
-		out.Write(it.first, it.second);
+	out.Write("plugins");
+	out.BeginChild();
+	{
+		for(const auto &it : settings)
+			out.Write(it.first, it.second);
+	}
+	out.EndChild();
+
 }
 
 

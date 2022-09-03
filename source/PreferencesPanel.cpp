@@ -613,13 +613,14 @@ void PreferencesPanel::DrawPlugins()
 			table.DrawHighlight(back);
 		bool pluginEnabled = Plugins::IsEnabled(plugin.first);
 		double rowHeight = table.GetRowBounds().Height();
+		double thirdHeight = rowHeight / 3;
 		Point checkboxPos = table.GetRowBounds().TopLeft();
 		checkboxPos.X() -= font.Height() / 2;
 		checkboxPos.Y() += rowHeight / 2;
 
 		SpriteShader::Draw(box[pluginEnabled], checkboxPos);
-		Point zoneDimension = Point(20., rowHeight * 2. / 3.);
-		Point zoneOffset = checkboxPos + Point(0., rowHeight / 3);
+		Point zoneDimension = Point(20., thirdHeight * 2.);
+		Point zoneOffset = checkboxPos + Point(0., thirdHeight - 3);
 		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
 		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.first); });
 		if(Plugins::HasChanged(plugin.first))

@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Person.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -3095,7 +3096,12 @@ void PlayerInfo::Save(const string &path) const
 		out.Write("plugins");
 		out.BeginChild();
 		for(const auto &plugin : GameData::PluginAboutText())
-			out.Write(plugin.first);
+		{
+			if(Plugins::IsEnabled(plugin.first))
+				out.Write(plugin.first);
+			else
+				out.Write(plugin.first, "(disabled)");
+		}
 		out.EndChild();
 	}
 }
