@@ -191,8 +191,8 @@ void Outfit::Load(const DataNode &node)
 		name = node.Token(1);
 	}
 	isDefined = true;
-    
-    bool hasPluralName = false;
+
+	bool hasPluralName = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
@@ -200,10 +200,10 @@ void Outfit::Load(const DataNode &node)
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
-        {
+		{
 			pluralName = child.Token(1);
-            hasPluralName = true;
-        }
+			hasPluralName = true;
+		}
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
