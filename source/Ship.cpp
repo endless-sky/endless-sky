@@ -3466,10 +3466,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	if(!currentMass)
 		return;
 
-	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	acceleration += force / currentMass;
 }
 
 
