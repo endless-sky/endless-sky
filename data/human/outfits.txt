@@ -16,7 +16,8 @@ outfit "Cooling Ducts"
 	"mass" 5
 	"outfit space" -5
 	"cooling" 5
-	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating and shutting down. In that case, you may need to install one of these."
+	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating. In that case, you may need to install one of these."
+	description "	An overheated ship will shut down its energy reactors in an attempt to reduce its temperature, but at the risk of running out of stored energy in its batteries and becoming a sitting duck."
 
 outfit "Water Coolant System"
 	category "Systems"
@@ -350,7 +351,6 @@ outfit "Interference Plating"
 	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. It even helps against scans at spaceports, so you can more reliably land to refuel without getting caught."
 
 
-
 outfit "Laser Rifle"
 	category "Hand to Hand"
 	cost 8000
@@ -389,7 +389,7 @@ outfit "Nerve Gas"
 	"capture defense" .8
 	"illegal" 1000000
 	"unplunderable" 1
-	description "This is a highly illegal weapon for hand to hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
+	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 
 outfit "Local Map"

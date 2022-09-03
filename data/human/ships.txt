@@ -189,7 +189,7 @@ ship "Auxiliary"
 	sprite "ship/auxiliaryh"
 	thumbnail "thumbnail/auxiliaryh"
 	attributes
-		category "Transport"
+		category "Utility"
 		licenses
 			"Navy Auxiliary"
 		"cost" 13720000
@@ -296,7 +296,7 @@ ship "Bactrian"
 	attributes
 		licenses
 			City-Ship
-		category "Heavy Warship"
+		category "Utility"
 		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
@@ -401,6 +401,7 @@ ship "Barb"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -422,6 +423,7 @@ ship "Barb" "Barb (Proton)"
 	gun -7.5 -24.5 "Proton Gun"
 	leak "leak" 60 50
 	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -737,7 +739,8 @@ ship "Boxwing"
 	leak "flame" 50 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing," the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 ship "Bulk Freighter"
@@ -1052,6 +1055,7 @@ ship "Combat Drone"
 	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
@@ -1297,6 +1301,7 @@ ship "Dagger"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1410,6 +1415,7 @@ ship "Dropship"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Dropships were designed with the Navy's Auxiliary in mind. Landed Auxiliaries often act as forward operating bases, so troops needing transport to another area often rely on their Dropships. This cramped and uncomfortable vessel is able to move a squad of Republic soldiers at great speed for its size."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1520,6 +1526,7 @@ ship "Finch"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the blindingly fast Finch bears strong resemblance to its hyperspace-faring cousin."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -1619,10 +1626,10 @@ ship "Flivver"
 		"X1100 Ion Reverse Thruster"
 		"Hyperdrive"
 		
-	engine -16 27
-	engine 16 27
-	gun -6 -31
-	gun 6 -31
+	engine -16.5 26
+	engine 16.5 26
+	gun -6 -35.5
+	gun 6 -35.5
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
@@ -2221,6 +2228,7 @@ ship "Lance"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
 
@@ -2407,7 +2415,7 @@ ship "Mule"
 	sprite "ship/mule"
 	thumbnail "thumbnail/mule"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 4080000
 		"shields" 5400
 		"hull" 4400
@@ -2469,7 +2477,7 @@ ship "Nest"
 	sprite "ship/nest"
 	thumbnail "thumbnail/nest"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 2500000
 		"shields" 2500
 		"hull" 3700
@@ -2522,7 +2530,7 @@ ship "Nest"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
+	description `Southbound Shipyards quickly answered the Free Worlds' call for a carrier by building modified cargo containers for Haulers - adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient that most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F," Southbound assembly workers started calling the single container variant the "Nest" due to its complement of Finch Fighters, and the name stuck.`
 
 
 
@@ -2814,7 +2822,7 @@ ship "Roost"
 	sprite "ship/roost"
 	thumbnail "thumbnail/roost"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		"cost" 3000000
 		"shields" 2900
 		"hull" 5200
@@ -2870,7 +2878,7 @@ ship "Roost"
 	explode "medium explosion" 30
 	explode "large explosion" 15
 	"final explode" "final explosion medium"
-	description `Southbound Shipyards' new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed the "Roost" to continue the theme.`
+	description `Southbound Shipyards' new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest," "Hauler II: Type F" was quickly dubbed the "Roost" to continue the theme.`
 
 
 
@@ -2976,7 +2984,7 @@ ship "Skein"
 	sprite "ship/skein"
 	thumbnail "thumbnail/skein"
 	attributes
-		category "Medium Warship"
+		category "Utility"
 		licenses
 			"Militia"
 		"cost" 3500000
@@ -3037,7 +3045,7 @@ ship "Skein"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
 
 
 
@@ -3194,7 +3202,7 @@ ship "Star Queen"
 	sprite "ship/star queen"
 	thumbnail "thumbnail/star queen"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
@@ -3280,10 +3288,11 @@ ship "Surveillance Drone"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -5 29
-	engine 5 29
+	engine -3 29
+	engine 3 29
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
