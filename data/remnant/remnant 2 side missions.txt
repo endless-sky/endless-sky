@@ -447,6 +447,10 @@ mission "Remnant: Shattered Light 2"
 					accept
 				`	"Sorry, not interested."`
 					decline
+	on enter 
+		"Caeculus"
+		dialog
+			`Ruach pores over the scanning arrays before reporting that the subject is not present. She suggests searching nearby systems to locate it.`
 	npc "scan outfits"
 		government "Ember Waste"
 		personality uninterested waiting staying mute
