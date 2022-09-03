@@ -505,9 +505,9 @@ mission "Remnant: Shattered Light 3"
 
 
 mission "Remnant: Shattered Light 4"
+	landing
 	name "Shattered Light"
 	description "Escort the wreck back to Viminal."
-	landing
 	source "Far Monad"
 	destination "Viminal"
 	to offer
@@ -576,9 +576,9 @@ mission "Remnant: Shattered Light 4"
 
 
 mission "Remnant: Shattered Light 5"
+	landing
 	name "Brilliant Energy"
 	description "Retrieve a team with their equipment from <destination> to help research the Shattered Light."
-	landing
 	source "Viminal"
 	destination "Caelian"
 	to offer
@@ -587,12 +587,12 @@ mission "Remnant: Shattered Light 5"
 
 
 mission "Remnant: Shattered Light 6"
+	landing
 	name "Shattered Light"
 	description "Ferry the team and their gear back to <destination>"
 	blocked "From your count at the information desk, you estimate that you need space for 11 people as well as 18 tons of cargo."
 	cargo "equipment" 18
 	passengers 11
-	landing
 	source "Caelian"
 	destination "Viminal"
 	to offer
