@@ -295,44 +295,6 @@ def check_global_format(file):
 	check_include(lines, file)
 
 
-# Checks the import statements at the beginning of the file. Parameters:
-# file: the path to the file
-# line: the lines of the file, without the terminating line separators
-def check_include(lines, file):
-	name = file.split("/")[-1]
-	if name.endswith(".cpp"):
-		name = name[0:-4] + ".h"
-	#
-	include_lines = [index for index, line in enumerate(lines) if line.startswith("#include ")]
-	groups = []
-	previous = -2
-	for i in include_lines:
-		if i == previous + 1:
-			groups[-1].append(i)
-		else:
-			groups.append([i])
-		previous = i
-	#
-	if file.endswith(".cpp") and name[0].isupper():
-		if len(groups) == 0:
-			write_warning("", file, 0, "missing include statement for own header file")
-			return
-		elif lines[groups[0][0]] != "#include \"" + name + "\"":
-			write_warning(lines[groups[0][0]], file, groups[0][0], "missing include for own header file")
-		if len(groups[0]) > 1:
-			write_warning(lines[groups[0][1]], file, groups[0][1], "missing empty line after including own header file")
-	for group in groups:
-		quote = lines[group[0]].endswith("\"") and lines[group[0]] != "#include \"opengl.h\""
-		for index in group:
-			if (lines[index].endswith("\"") and lines[group[0]] != "#include \"opengl.h\"") != quote:
-				write_warning(lines[index], file, index, "missing empty line before changing include style")
-				break
-		group_lines = [lines[index] for index in group]
-		for i in range(len(group) - 1):
-			if group_lines[i].lower() > group_lines[i + 1].lower():
-				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
-
-
 # Checks if the copyright header of the file is correct. Parameters:
 # file: the path to the file
 # line: the lines of the file, without the terminating line separators
@@ -389,6 +351,44 @@ def check_copyright(lines, file):
 		write_error(lines[error_line], file, error_line + 1, "invalid or missing copyright header")
 	elif not complete:
 		write_error(lines[len(lines) - 1], file, len(lines) - 1, "incomplete copyright header")
+
+
+# Checks the import statements at the beginning of the file. Parameters:
+# file: the path to the file
+# line: the lines of the file, without the terminating line separators
+def check_include(lines, file):
+	name = file.split("/")[-1]
+	if name.endswith(".cpp"):
+		name = name[0:-4] + ".h"
+
+	include_lines = [index for index, line in enumerate(lines) if line.startswith("#include ")]
+	groups = []
+	previous = -2
+	for i in include_lines:
+		if i == previous + 1:
+			groups[-1].append(i)
+		else:
+			groups.append([i])
+		previous = i
+
+	if file.endswith(".cpp") and name[0].isupper():
+		if len(groups) == 0:
+			write_warning("", file, 0, "missing include statement for own header file")
+			return
+		elif lines[groups[0][0]] != "#include \"" + name + "\"":
+			write_warning(lines[groups[0][0]], file, groups[0][0], "missing include for own header file")
+		if len(groups[0]) > 1:
+			write_warning(lines[groups[0][1]], file, groups[0][1], "missing empty line after including own header file")
+	for group in groups:
+		quote = lines[group[0]].endswith("\"") and lines[group[0]] != "#include \"opengl.h\""
+		for index in group:
+			if (lines[index].endswith("\"") and lines[group[0]] != "#include \"opengl.h\"") != quote:
+				write_warning(lines[index], file, index, "missing empty line before changing include style")
+				break
+		group_lines = [lines[index] for index in group]
+		for i in range(len(group) - 1):
+			if group_lines[i].lower() > group_lines[i + 1].lower():
+				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
 
 
 # Displays an error message. Parameters:
