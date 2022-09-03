@@ -1142,6 +1142,8 @@ event "remnant: teciimach deployment"
 			"Merganser (II)"
 			"Petrel" 2
 			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
 	fleet "Small Remnant"
 		remove variant 1
 			"Peregrine"
