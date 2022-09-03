@@ -618,10 +618,10 @@ void PreferencesPanel::DrawPlugins()
 		Point zoneOffset = checkboxPos + Point(0., table.GetRowBounds().Height() / 3);
 		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
 		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.first); });
-		if(pluginEnabled)
-			table.Draw(plugin.first, isSelected ? bright : medium);
+		if(isSelected)
+			table.Draw(plugin.first, bright);
 		else
-			table.Draw(plugin.first, isSelected ? bright : back);
+			table.Draw(plugin.first, pluginEnabled ? medium : back);
 
 		if(isSelected)
 		{
