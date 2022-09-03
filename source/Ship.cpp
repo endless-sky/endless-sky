@@ -4016,6 +4016,36 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 {
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
+	double mass = Mass();
+	
+	auto CalculateFuelCost = [this, mass, jumpDistance](const Outfit &outfit) -> double
+	{
+		double fuel = outfit.Get("jump fuel");
+		// If the jump drive or hyperdrive has an attached
+		// (mass/distance) (reference/exponent), calculate
+		// the fuel about to be used for this jump.
+		double driveMassExp = outfit.Get("drive mass exponent");
+		double driveMassRef = outfit.Get("drive mass reference");
+		double driveDistExp = outfit.Get("drive distance exponent");
+		double driveDistRef = outfit.Get("drive distance reference");
+
+		if(!driveMassRef)
+			driveMassRef = 400;
+		if(!driveDistRef)
+			driveDistRef = 100;
+
+		if(driveMassExp || driveMassRef)
+			fuel *= pow((mass / driveMassRef), driveMassExp);
+		if(driveDistExp || driveDistRef)
+			fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
+
+		// if a "startup" fuel is provided, add that to the above formula.
+		// It's a constant fuel consumption regardless of mass or distance of jump.
+		fuel += outfit.Get("jump startup fuel");
+		
+		return fuel;
+	};
+	
 	// Make it possible for a hyperdrive to be integrated into a ship.
 	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
 	{
@@ -4028,30 +4058,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 
-		double fuel = baseAttributes.Get("jump fuel");
-
-		double mass = Mass();
-		double driveMassExp = 0;
-		double driveMassRef = 400;
-		double driveDistExp = 0;
-		double driveDistRef = 100;
-
-		if((baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive mass exponent")))
-		{
-			driveMassRef = max(baseAttributes.Get("drive mass reference"), .01);
-			driveMassExp = max(baseAttributes.Get("drive mass exponent"), 0.);
-			fuel *= pow((mass / driveMassRef), driveMassExp);
-		}
-		if((baseAttributes.Get("drive distance reference") || baseAttributes.Get("drive distance exponent")) && jumpDistance > 0)
-		{
-			driveDistRef = max(baseAttributes.Get("drive distance reference"), .01);
-			driveDistExp = max(baseAttributes.Get("drive distance exponent"), 0.);
-			fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
-		}
-
-		// if a "startup" fuel is provided, add that to the above formula.
-		// It's a constant fuel consumption regardless of mass or distance of jump.
-		fuel += baseAttributes.Get("jump startup fuel");
+		double fuel = CalculateFuelCost(baseAttributes, mass, jumpDistance);
 
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
@@ -4072,35 +4079,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 			if(jumpRange >= jumpDistance)
 			{
-				double fuel = it.first->Get("jump fuel");
-				// If the jump drive or hyperdrive has an attached
-				// (mass/distance) (reference/exponent), calculate
-				// the fuel about to be used for this jump.
-				double mass = Mass();
-				double driveMassExp = 0;
-				double driveMassRef = 400;
-				double driveDistExp = 0;
-				double driveDistRef = 100;
-
-				if((it.first->Get("drive mass exponent") || it.first->Get("drive distance exponent")) && mass > 0.)
-				{
-					driveMassRef = max(it.first->Get("drive mass reference"), .01);
-					driveMassExp = max(it.first->Get("drive mass exponent"), 0.);
-					fuel *= pow((mass / driveMassRef), driveMassExp);
-				}
-				if((it.first->Get("drive mass reference") || it.first->Get("drive distance reference")) && jumpDistance > 0.)
-				{
-					driveDistRef = max(it.first->Get("drive distance reference"), .01);
-					driveDistExp = max(it.first->Get("drive distance exponent"), 0.);
-					fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
-				}
-
-				// if a "startup" fuel is provided, add that to the above formula.
-				// It's a constant fuel consumption regardless of mass or distance of jump.
-				if(it.first->Get("jump startup fuel") > 0)
-					fuel += it.first->Get("jump startup fuel");
-
-				// finally, use that here to test if it's better than any previous fuel usages.
+				double fuel = calculateFuelCost(*it.first, mass, jumpDistance);
 				if(!fuel)
 					fuel = defaultFuel;
 				if(!best || fuel < best)
