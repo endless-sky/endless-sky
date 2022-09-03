@@ -72,10 +72,10 @@ segment_include = {
 word_include = {
 	# Matches any number of operators that have no leading whitespace,
 	# except if preceded by '(', '[' or '{'.
-	"[^([{\\s" + std_op + "][" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator",
+	"([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator",
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
-	"^[^+/%=]*[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
-	# Matches any series of operators ending with '=', '<' or '>' that has no trailing whitespace.
+	"^([^+/%=]?(?<!operator))[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
+	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
 	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator"
 }
 
@@ -85,6 +85,8 @@ match_exclude = [
 	"^.?([+:-])\\1+|::&|::\\*.?$",
 	# Matches any matches which have a -> operator surrounded by at most 1 character on either side.
 	"^.?->.?$",
+	# Matches any matches which have a character followed by '*(' or '&('
+	"^\\w[*&]\\($",
 	# Matches any exponent-related matches.
 	"^e[+-]\\d+$"
 ]
@@ -93,9 +95,7 @@ segment_exclude = [
 	# Matches anything inside '<>'; this is a bit of a hack for getting rid of type-related issues
 	"<.*>",
 	# Matches any visibility modes; these are followed by ':' marks.
-	"^(public|protected|private|default):$",
-	# Matches any segments containing operator declarations, since those suck
-	"operator"
+	"^(public|protected|private|default):$"
 ]
 
 # Precompiled version of the regexes
@@ -405,7 +405,7 @@ def write_error(text, file, line, reason):
 # line: the current line number
 # reason: the reason for the warning
 def write_warning(text, file, line, reason):
-	print("Warning:", reason, "in ", file, "line", line.__str__() + ":", text.replace('\n', ""))
+	print("Warning:", reason, "in", file, "line", line.__str__() + ":", text.replace('\n', ""))
 	global warnings
 	warnings += 1
 
