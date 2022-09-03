@@ -150,7 +150,7 @@ mission "ZZ Hai Rescue [A03] Microtransceiver Identification"
 		conversation
 			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of microtransceivers.`
 			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of microtransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
-			`	You pass through another two gray platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cells attached to a tiny machine; this may be a microscale medicine laboratory.`
+			`	You pass through another two gray platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cell attached to a tiny machine; this may be a microscale medicine laboratory.`
 			`	The Quarg and Korath discuss your microtransceivers for a few minutes, placing them in various instruments.`
 			`	Finally, you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it explains, handing you a standard data card compatible with human computers. "Take this to Tarazed Shipyards."`
 			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
@@ -245,7 +245,7 @@ event "devil-run smugglers visible"
 mission "Hai Rescue [A04] Tarazed Analysis"
 	landing
 	name "Missing Researchers"
-	description `Find and board a ship that has microtransceivers. Your display will identify such ships as government "Smuggler." Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
+	description `Find and board a ship that has microtransceivers. Your display will identify such ships as belonging to the "Smuggler" government. Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
 	source Wayfarer
 	destination Earth
 	clearance `Curious about your story, the authorities let you land.`
@@ -269,12 +269,12 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 			`	"Here, let me take a look at what you've brought me." He takes the data card you got from the Quarg and plugs it into the communicator. After several minutes of typing and muttering incoherently to himself he pauses as a simulation plays on his screen. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
 			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps. That station sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means."`
 			`	He pauses, realizing he's been rambling. "Sorry, that was probably way more explanation than you needed. There's a small group of us comms people that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. Now though, well, what you've given me is a match!"`
-			`	He casts around for a moment and then plugs in a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
+			`	He casts around for a moment and then plugs a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
 			choice
 				`	(Sit down.)`
 				`	(Stand around idly.)`
 			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one, now loaded up with whatever he was putting on it. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local station when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
-			`	"Also... maybe keep this quiet. This is"-he pauses and clears his throat conspicuously-"somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. You should focus your search on the uninhabited areas between the Far North and Syndicate space, plus any nearby pirate systems. That's where we've noticed the most suspicious activity."`
+			`	"Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. You should focus your search on the uninhabited areas between the Far North and Syndicate space, plus any nearby pirate systems. That's where we've noticed the most suspicious activity."`
 			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
 			choice
 				`	(Return to your ship.)`
@@ -301,7 +301,7 @@ mission "Hai Rescue [A05] Boarded Smuggler"
 			`	The angry cat symbol startles you with a flash of recognition. You've seen this somewhere, else when you rescued a captured Hai from a shipping crate.`
 			label nogipeep
 			`	Soon after, you hear explosions in the ship and see an escape pod rapidly jet away. It seems the smugglers set the self-destruct and signaled for help. The pod has no microtransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
-			`	You begin to set a course for <planet> where you can finally get some answers, but multiple hyperspace windows suddenly begin to form. Your scanners indicate hostile ships are entering the system. You prepare for battle.`
+			`	You begin to set a course for <planet> where you can finally get some answers, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
 				launch
 	npc
 		government "Pirate"
@@ -320,8 +320,8 @@ mission "Hai Rescue [A06A] Smuggler Ambush"
 		government "Smuggler (Hai Trafficker)"
 	on offer
 		conversation
-			`You scan this smuggling ship and notice none of the microtransceiver transmissions come from a lifeform. Instead, they all seem to come from a containment cell just behind the airlock. It seems these smugglers don't always carry slaves, but they do have a supply of microtransceivers on hand anyway (perhaps for future catches).`
-			`	The ship begins to self-destruct, and escape pods float away, just like before. Just as you wrap up, more hyperspace windows begin to form. You prepare for another wave.`
+			`You scan this smuggling ship and notice none of the microtransceiver transmissions come from a lifeform. Instead, they all seem to come from a containment cell just behind the airlock. This vessel is probably looking to collect new victims, with microtransceivers ready for when they are brought on board.`
+			`	The ship begins to self-destruct, and escape pods float away, just like before. Just as you wrap up, your ship informs you of incoming hostile ships. You prepare for another wave.`
 				launch
 	npc kill
 		government "Pirate"
@@ -342,7 +342,7 @@ mission "Hai Rescue [A06B] Smuggler Ambush"
 		government "Smuggler (Hai Trafficker)"
 	on offer
 		conversation
-			`As before, the smugglers set the self-destruct mechanism and escape without their prey, and more hyperspace windows begin to form. You prepare for another wave.`
+			`As before, the smugglers set the self-destruct mechanism and escape without their prey, and your ship detects more incoming hostile vessels. You prepare for another wave.`
 				launch
 	npc kill
 		government "Pirate"
@@ -372,11 +372,11 @@ mission "Hai Rescue [A07] Logo Identification"
 		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
 		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
 		conversation
-			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth.  Only one has a research library, so you contact the library. Giti Gilani no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
+			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth. Only one has a research library, so you contact the library. Giti Gilani no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
 			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
 			choice
 				`	(Enter the building.)`
-			`	You're ushered to an elevator and given a room number: 3017A19 - the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have less population than one of these buildings.`
+			`	You're ushered to an elevator and given a room number: 3017A19 - the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have smaller populations than one of these buildings.`
 			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the cat-like symbol, but needed more detail about the demonic one. You also show her the information about the microtransceivers.`
 			`	"This cat symbol was used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
@@ -391,7 +391,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	"Fly through the wormhole at the coordinates on that card, if you can, come back and tell me what you see. In the meantime, I'll ask other researchers about the microtransceivers."`
 			choice
 				`	(Thank her and return to your ship.)`
-			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by hyperlane, so you'll need a Jump Drive. The red wormhole requires another key.`
+			`	Upon returning to your ship, you ponder Giti's findings. The coordinates are for a system in Syndicate space that is not reachable by hyperlane, so you'll need a jump drive. The red wormhole requires another key.`
 			`	Once you've passed through that wormhole, hopefully Giti will have more information for you.`
 				accept
 	on complete
@@ -409,7 +409,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	"What? I... Aaa! Don't startle me like that. I just need a minute. Hold on..."`
 			label wait
 			`	"Okay. I've arranged for some advanced scanning equipment that can see past most types of radiation and a few hundred meters of solid rock. I'll have to come with you on this trip."`
-			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the microtransceiver transmissions. Navy carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return."`
+			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the microtransceiver transmissions. Navy Carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return."`
 			`	"Meet me in the spaceport when you have a bunk and 7 tons of cargo space free. Oh, and make sure you have a ramscoop. The Navy will pay for this trip."`
 
 mission "Hai Rescue [A08] Scanner"
