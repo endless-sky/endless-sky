@@ -887,9 +887,10 @@ void MapPanel::UpdateCache()
 		}
 
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
-			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.HasVisited(system) ? system.GetGovernment() : nullptr, system.GetMapIcon());
+				player.KnowsName(system) ? system.Name() : "",
+				(&system == &playerSystem) ? closeNameColor : farNameColor,
+				player.HasVisited(system) ? system.GetGovernment() : nullptr,
+				system.GetMapIcon());
 	}
 
 	// Now, update the cache of the links.
@@ -1086,7 +1087,7 @@ void MapPanel::DrawWormholes()
 		Point offset = (from - to).Unit() * LINK_OFFSET;
 		from -= offset;
 		to += offset;
-				Point arrowOffset = (from - to).Unit() * WORMHOLE_ARROW;
+		Point arrowOffset = (from - to).Unit() * WORMHOLE_ARROW;
 
 		// If an arrow is being drawn, the link will always be drawn too. Draw
 		// the link only for the first instance of it in this set.
@@ -1145,8 +1146,6 @@ void MapPanel::DrawSystems()
 	// Draw the star sprites for the systems.
 	for(const Node &node : nodes)
 	{
-
-
 		float ringOuter;
 		float ringInner;
 		int starsOn;
@@ -1171,7 +1170,7 @@ void MapPanel::DrawSystems()
 
 		// Ensures every multiple-star system has a deterministic but distinct rotation.
 		float starAngle = node.name.length();
-		float spin = 4*acos(0.0) / node.mapIcon.size();
+		float spin = 4 * acos(0.0) / node.mapIcon.size();
 
 		Point starOffset(4, 4);
 		if(node.mapIcon.size() == 1)
