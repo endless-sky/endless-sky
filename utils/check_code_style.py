@@ -112,6 +112,8 @@ whitespaces = re.compile("\\s+")
 
 # The number of errors found in all files
 errors = 0
+# The number of warnings found in all files
+warnings = 0
 
 
 # Checks the format of all source files.
@@ -282,12 +284,55 @@ def check_match(regex, part, segment, file, line, reason):
 # Checks certain global formatting properties of files, such as their copyright headers. Parameters:
 # file: the path to the file
 def check_global_format(file):
-	check_copyright(file)
+	lines = open(file, "r").readlines()
+	lines = [line.removesuffix('\n') for line in lines]
+	#
+	check_copyright(lines, file)
+	check_include(lines, file)
+
+
+# Checks the import statements at the beginning of the file. Parameters:
+# file: the path to the file
+# line: the lines of the file, without the terminating line separators
+def check_include(lines, file):
+	name = file.split("/")[-1]
+	if name.endswith(".cpp"):
+		name = name[0:-4] + ".h"
+	#
+	include_lines = [index for index, line in enumerate(lines) if line.startswith("#include ")]
+	groups = []
+	previous = -2
+	for i in include_lines:
+		if i == previous + 1:
+			groups[-1].append(i)
+		else:
+			groups.append([i])
+		previous = i
+	#
+	if file.endswith(".cpp") and name[0].isupper():
+		if len(groups) == 0:
+			write_warning("", file, 0, "missing include statement for own header file")
+			return
+		elif lines[groups[0][0]] != "#include \"" + name + "\"":
+			write_warning(lines[groups[0][0]], file, groups[0][0], "missing include for own header file")
+		if len(groups[0]) > 1:
+			write_warning(lines[groups[0][1]], file, groups[0][1], "missing empty line after including own header file")
+	for group in groups:
+		quote = lines[group[0]].endswith("\"") and lines[group[0]] != "#include \"opengl.h\""
+		for index in group:
+			if (lines[index].endswith("\"") and lines[group[0]] != "#include \"opengl.h\"") != quote:
+				write_warning(lines[index], file, index, "missing empty line before changing include style")
+				break
+		group_lines = [lines[index] for index in group]
+		for i in range(len(group) - 1):
+			if group_lines[i].lower() > group_lines[i + 1].lower():
+				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
 
 
 # Checks if the copyright header of the file is correct. Parameters:
 # file: the path to the file
-def check_copyright(file):
+# line: the lines of the file, without the terminating line separators
+def check_copyright(lines, file):
 	name = file.split("/")[-1]
 	copyright_begin = [
 		["/* " + name, False],
@@ -304,8 +349,6 @@ def check_copyright(file):
 		["PARTICULAR PURPOSE.  See the GNU General Public License for more details.", False],
 		["*/", False]
 	]
-	lines = open(file, "r").readlines()
-	lines = [line.removesuffix('\n') for line in lines]
 	index = 0
 	error_line = -1
 	complete = False
@@ -356,10 +399,28 @@ def write_error(text, file, line, reason):
 	errors += 1
 
 
+# Displays a warning message. Parameters:
+# text: the text where the warning originates from
+# file: the path to the file
+# line: the current line number
+# reason: the reason for the warning
+def write_warning(text, file, line, reason):
+	print("Warning:", reason, "in ", file, "line", line.__str__() + ":", text.replace('\n', ""))
+	global warnings
+	warnings += 1
+
+
 if __name__ == '__main__':
 	check_code_style()
 	if errors > 0:
-		print("Found", errors, "formatting", "error." if errors == 1 else "errors.")
+		text = "Found " + errors.__str__() + " formatting " + ("error" if errors == 1 else "errors")
+		if warnings > 0:
+			text += " and " + warnings.__str__() + " " + ("warning" if warnings == 1 else "warnings")
+		text += "."
+		print(text)
 		exit(1)
-	print("No formatting errors found.")
+	if warnings == 0:
+		print("No formatting errors found.")
+	else:
+		print(warnings, "warning" if warnings == 1 else "warnings", "found.")
 	exit(0)
