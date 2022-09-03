@@ -431,9 +431,9 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 	add attributes
 		"shields" -10000
 		"hull" -5000
+		"quantum keystone" 1
 		"burn protection" 100
 		"heat protection" 1
-		"quantum keystone" 1
 		"discharge protection" 1
 		"energy protection" 1
 		"hull protection" 1

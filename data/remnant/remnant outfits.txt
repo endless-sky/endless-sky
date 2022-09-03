@@ -604,8 +604,6 @@ outfit "Emergency Ramscoop"
 
 outfit "NDR-114 Android"
 	category "Unique"
-	licenses
-		Remnant
 	cost 120000
 	thumbnail "outfit/android"
 	"required crew" -1
