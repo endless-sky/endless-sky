@@ -159,7 +159,7 @@ tip "drag:"
 	`Limits the maximum speed of a ship.`
 	
 tip "drive mass reference:"
-	`The mass of your ship when this drive will function as advertised.`
+	`If your ship has this mass, this drive will function as advertised.`
 
 tip "drive mass exponent:"
 	`When your ship mass is doubled, fuel consumption of this drive will increase twofold this many times.`
