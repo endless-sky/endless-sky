@@ -4017,7 +4017,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 	// Find the outfit that provides the least costly hyperjump.
 	double best = 0.;
 	double mass = Mass();
-	
+
 	auto CalculateFuelCost = [this, mass, jumpDistance](const Outfit &outfit) -> double
 	{
 		double fuel = outfit.Get("jump fuel");
@@ -4042,10 +4042,10 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// if a "startup" fuel is provided, add that to the above formula.
 		// It's a constant fuel consumption regardless of mass or distance of jump.
 		fuel += outfit.Get("jump startup fuel");
-		
+
 		return fuel;
 	};
-	
+
 	// Make it possible for a hyperdrive to be integrated into a ship.
 	if(baseAttributes.Get(type) && (subtype.empty() || baseAttributes.Get(subtype)))
 	{
@@ -4058,7 +4058,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		if(!jumpRange)
 			jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 
-		double fuel = CalculateFuelCost(baseAttributes, mass, jumpDistance);
+		double fuel = CalculateFuelCost(baseAttributes);
 
 		// If no distance was given then we're either using a hyperdrive
 		// or refueling this ship, in which case this if statement will
@@ -4079,7 +4079,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 				jumpRange = System::DEFAULT_NEIGHBOR_DISTANCE;
 			if(jumpRange >= jumpDistance)
 			{
-				double fuel = calculateFuelCost(*it.first, mass, jumpDistance);
+				double fuel = CalculateFuelCost(*it.first);
 				if(!fuel)
 					fuel = defaultFuel;
 				if(!best || fuel < best)
