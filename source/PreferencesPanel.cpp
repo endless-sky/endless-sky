@@ -84,6 +84,8 @@ void PreferencesPanel::Draw()
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
+	if(Plugins::HasChanged())
+		info.SetCondition("show plugins changed");
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
 	zones.clear();
@@ -584,6 +586,7 @@ void PreferencesPanel::DrawPlugins()
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &error = *GameData::Colors().Get("bright error");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
@@ -609,16 +612,19 @@ void PreferencesPanel::DrawPlugins()
 		if(isSelected || plugin.first == hoverPlugin)
 			table.DrawHighlight(back);
 		bool pluginEnabled = Plugins::IsEnabled(plugin.first);
+		double rowHeight = table.GetRowBounds().Height();
 		Point checkboxPos = table.GetRowBounds().TopLeft();
 		checkboxPos.X() -= font.Height() / 2;
-		checkboxPos.Y() += table.GetRowBounds().Height() / 2;
+		checkboxPos.Y() += rowHeight / 2;
 
 		SpriteShader::Draw(box[pluginEnabled], checkboxPos);
-		Point zoneDimension = Point(20., table.GetRowBounds().Height() * 2. / 3.);
-		Point zoneOffset = checkboxPos + Point(0., table.GetRowBounds().Height() / 3);
+		Point zoneDimension = Point(20., rowHeight * 2. / 3.);
+		Point zoneOffset = checkboxPos + Point(0., rowHeight / 3);
 		Rectangle zoneBounds = Rectangle(zoneOffset, zoneDimension);
 		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.first); });
-		if(isSelected)
+		if(Plugins::HasChanged(plugin.first))
+			table.Draw(plugin.first, error);
+		else if(isSelected)
 			table.Draw(plugin.first, bright);
 		else
 			table.Draw(plugin.first, pluginEnabled ? medium : back);

@@ -96,6 +96,7 @@ color "radar blink" 1. 1. 1. 0.
 color "radar viewport" 0. .3 0. 0.
 
 # Colors used for warnings and errors.
+color "bright error" .75 .1 .1 0.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 color "warning conflict" .315 .27 .12 1.
@@ -429,6 +430,14 @@ interface "preferences"
 		dimensions 0 -200
 		color "energy"
 		size 3
+	visible if "show plugins changed"
+	sprite "ui/planet dialog button"
+		center 0 210
+	visible if "show plugins changed"
+	label "Restart game..."
+		center 0 210
+		dimensions 140 40
+		color "bright error"
 
 
 

@@ -24,6 +24,7 @@ using namespace std;
 
 namespace {
 	map<string, bool> settings;
+	map<string, bool> frozenSettings;
 
 	void LoadSettings(const string &path)
 	{
@@ -55,15 +56,42 @@ void Plugins::Save()
 
 
 
+// Freeze the plugin set to determine if a setting has changed.
+void Plugins::Freeze()
+{
+	copy(settings.begin(), settings.end(), inserter(frozenSettings, frozenSettings.end()));
+}
+
+
+
+// Determine if a plugin setting has changed since launching.
+bool Plugins::HasChanged(const string &name)
+{
+	return frozenSettings[name] != settings[name];
+}
+
+
+
+
+// Returns true if any plugin enabled or disabled setting has changed since
+// launched via user preferences.
+bool Plugins::HasChanged()
+{
+	for(const auto &plugin : frozenSettings)
+		if(plugin.second != settings[plugin.first])
+			return true;
+	return false;
+}
+
+
+
+
 // Plugins are enabled by default and disabled if the user prefers it to be
 // disabled.
 bool Plugins::IsEnabled(const string &name)
 {
 	auto it = settings.find(name);
-	if(it == settings.end())
-		return true;
-	else
-		return it->second;
+	return (it == settings.end()) || it->second;
 }
 
 

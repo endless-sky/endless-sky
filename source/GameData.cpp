@@ -842,6 +842,9 @@ void GameData::LoadSources()
 		// Remove sources for user-disabled plugins while preserving about.txt in preferences.
 		it = sources.erase(it);
 	}
+	// Freeze the current plugin state to check if plugin state has changed when
+	// toggling user settings.  This should only be called once per instance.
+	Plugins::Freeze();
 }
 
 
