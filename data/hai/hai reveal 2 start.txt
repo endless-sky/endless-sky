@@ -21,7 +21,7 @@
 # #Gipeep
 # - Minor People logs
 # - Cannot be discovered pre-story
-# - Includes essential information to progress (or needs alternative source later)
+# - Includes information to support later progress (not critical)
 #
 # Secondary Events:
 # #Yeertle Family and Oonem

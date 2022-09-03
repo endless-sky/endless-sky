@@ -62,8 +62,8 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 	to offer
 		has "Hai Rescue [A01] Visit Darkwaste: done"
 	on offer
-		log "People" "Teeneep Goot'r" `Teeneep is a civil rights leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
-		log `Many Hai and humans have gone missing over the past few decades. The ones who have subsequently been rescued all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai civil rights leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
+		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
+		log `Many Hai and humans have gone missing over the past few decades. The ones who have subsequently been rescued all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		conversation
 			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
@@ -71,7 +71,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 				`	(Come back later.)`
 					defer
 			`	You walk twenty meters into the cave and pass through an open doorway. There's a variety of medical machinery and some computers in a makeshift base. Some of the people you've rescued are present, with some more humans and Hai you haven't met. A few of them have pulse rifles. A woman walks towards you.`
-			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a civil rights advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and humans victims are here; they were rescued by other kind merchants in human space."`
+			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and humans victims are here; they were rescued by other kind merchants in human space."`
 			`	"My organization researched their problem and discovered some patterns to the disappearances. We've found these kidnappings have been going on for several years. What is strangest is the microtransceivers in most of the kidnapped victims."`
 			choice
 				`	"What patterns have you noticed in the kidnappings?"`
@@ -109,7 +109,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
 				goto questions
 			label patterns
-			`	Teeneep explains, "I head a large civil rights activist organization; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances."`
+			`	Teeneep explains, "I head a large activist organization for social direction and civil rights alignment; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances."`
 			`	"There are violent crimes and kidnappings in Hai space, though much less frequently than in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved."`
 			`	"A disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are gifted researchers in their field, but not prominent enough for the field to be crippled by their absence. The same is happening in human space. In research institutions, people are occasionally disappearing. The patterns are exactly the same. We believe someone is collecting researchers."`
 				goto questions
@@ -118,7 +118,7 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans."`
 				goto questions
 			label know
-			`	Teeneep explains, "The civil rights organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
+			`	Teeneep explains, "The organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
 			`	"We've spent the last two years researching this problem, but it helped a lot to meet the people who have been rescued."`
 				goto questions
 			label anyone
@@ -296,7 +296,11 @@ mission "Hai Rescue [A05] Boarded Smuggler"
 	on offer
 		conversation
 			`As you approach the airlock of the smuggler ship <origin>, the door opens and a Hai rushes through pointing a gun back towards a human in the ship. The human and Hai shoot at the same time, killing each other. In his death throes, the Hai manages to toss a keycard in your direction. It is damaged beyond usefulness, but you can see a pair of logos on it. One looks like an angry cat in a circle, and the other looks demonic.`
-			`	Soon after, you hear explosions in the ship and see an escape pod float away. It seems the smugglers set the self-destruct and signaled for help. The pod has no microtransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
+			branch nogipeep
+				not "Hai Rescue: Gipeep: done"
+			`	The angry cat symbol startles you with a flash of recognition. You've seen this somewhere, else when you rescued a captured Hai from a shipping crate.`
+			label nogipeep
+			`	Soon after, you hear explosions in the ship and see an escape pod rapidly jet away. It seems the smugglers set the self-destruct and signaled for help. The pod has no microtransceiver transmissions, so it must be one of the smugglers. Apparently the smugglers care more about not being caught than about finishing their mission.`
 			`	You begin to set a course for <planet> where you can finally get some answers, but multiple hyperspace windows suddenly begin to form. Your scanners indicate hostile ships are entering the system. You prepare for battle.`
 				launch
 	npc
@@ -373,7 +377,7 @@ mission "Hai Rescue [A07] Logo Identification"
 			choice
 				`	(Enter the building.)`
 			`	You're ushered to an elevator and given a room number: 3017A19 - the 301st floor, section 7A, room 19. It's amazing how large Earth's megabuildings have become. Some planets have less population than one of these buildings.`
-			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the Syndicate-like symbol, but needed more detail about the demonic one. You also show her the information about the microtransceivers.`
+			`	Giti is even more excited in-person than she was by holocommunicator. She's already researched the cat-like symbol, but needed more detail about the demonic one. You also show her the information about the microtransceivers.`
 			`	"This cat symbol was used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
 			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
 			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated.`

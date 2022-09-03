@@ -302,7 +302,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 	destination "Mountaintop"
 	clearance
 	passengers 1
-	blocked `Terry contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for her, then return here.`
+	blocked `Terry contacts you and says, "Captain, there are things to do and you're going to need a bunk free for me. I need to speak to you as soon as practicable." You do not have a free bunk, so you should complete or abort another mission to make room for her, then return here.`
 	on visit
 		dialog `You have arrived at the Mountaintop construction site, but it isn't finished or staffed yet.`
 	to offer
