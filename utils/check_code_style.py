@@ -39,7 +39,7 @@ line_include = {
 	"(?![A-Z]+)^.*[^;]\\s\\)": "extra whitespace before closing parenthesis",
 	# Matches any 'if', 'else if', 'else', 'for', 'catch', 'try', 'do', or 'switch' statements
 	# where the statement is not at the beginning of the line.
-	"(?<!^(inline|struct).*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do)(\\s{|\\()": "statement should begin on new line",
+	"(?<!^inline\\s.*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
 	";[^\\)}]+$": "semicolon should terminate line"
 }
@@ -134,6 +134,7 @@ def check_code_format(file):
 	is_raw_string = False
 	is_raw_string_short = False
 	line_count = 0
+	header_parsed = False
 	f = open(file, "r")
 	lines = f.readlines()
 	for line in lines:
@@ -149,7 +150,6 @@ def check_code_format(file):
 		line = line.lstrip()
 		# Looking for parts of the file that are not strings or comments
 		for i in range(len(line)):
-			# Getting current character
 			char = line[i]
 			# Checking for non-ASCII characters
 			if ord(char) < 0 or ord(char) > 127:
@@ -189,6 +189,10 @@ def check_code_format(file):
 				# Checking for space after comment
 				if len(line) > i + 2 and line[i + 2] != ' ':
 					write_error(line[i:i + 3], file, line_count, "missing space after beginning of multiline comment")
+				if header_parsed:
+					write_error(line, file, line_count, "multiline comments should only be used for copyright headers")
+				else:
+					header_parsed = True
 				continue
 			# Checking for strings (both standard and raw literals)
 			elif (not is_string) and char == "'":
