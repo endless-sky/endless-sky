@@ -1142,6 +1142,8 @@ event "remnant: teciimach deployment"
 			"Merganser (II)"
 			"Petrel" 2
 			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
 	fleet "Small Remnant"
 		remove variant 1
 			"Peregrine"
@@ -1154,3 +1156,13 @@ event "remnant: teciimach deployment"
 		add variant 5
 			"Peregrine (II)"
 			"Merganser (II)" 3
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Modified Dromedary"
+
+
+
+event "remnant: shattered light research" 
