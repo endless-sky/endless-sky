@@ -23,10 +23,10 @@ mission "Heliarch Investigation 1"
 	destination "Ring of Friendship"
 	on offer
 		conversation
-			`A group of Heliarch agents rapidly approach you as you step onto the spaceport, looking rather agitated as they stand in front of you.`
+			`A few minutes into browsing the local shops, you hear the strong sound of Saryd hooves approaching, and turn to see a trio of Heliarch agents coming to you. They briefly salute you, before stating their business.`
 			`	"Looking for work, the human visitor is?" the Saryd asks.`
 			`	"To the <destination>, a means of transport we need," the Kimek follows.`
-			`	"<payment>, we can offer," the Arach finishes.`
+			`	"<payment>, we can offer. And, perhaps, some more interesting work after our destination, we reach," the Arach finishes.`
 			choice
 				`	"Of course, I'll show you to my ship."`
 				`	"Sorry, I'm not looking for any work currently."`
@@ -37,7 +37,7 @@ mission "Heliarch Investigation 1"
 		"coalition jobs" ++
 		payment 90000
 		conversation
-			`The three Heliarchs disembark, heading immediately across the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should."`
+			`The three Heliarchs disembark, heading immediately across the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should." She bows her head lightly, and follows her colleagues into one of the Heliarch-only sections of the ring.`
 
 mission "Heliarch Investigation 2"
 	name "Heliarch Investigation"
@@ -57,16 +57,16 @@ mission "Heliarch Investigation 2"
 		has "HI2-RB: done"
 	on offer
 		conversation
-			`The Heliarch trio you brought here approaches you when you enter the spaceport, Kirrie being the first to greet you, "Captain <last>! Glad I am, that still around, you are."`
+			`Despite the immense traffic in the <origin>'s spaceport, the Heliarch trio you brought here is quick to find you after you enter the spaceport. Kirrie is the first to greet you, "Captain <last>! Glad I am, that still around, you are."`
 			`	"Accompany us, would you? A job in mind for you, our superior has." Iplora says.`
 			choice
 				`	"I don't see why not, lead the way."`
 				`	"Not this time, I'm really busy now."`
 					decline
-			`	The trio escorts you through a number of restricted passageways, eventually leading you to a meeting room of sorts with about a dozen other Heliarchs, one of whom motions for you to sit with them.`
-			`	You take a seat before one of the Kimek there speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
+			`	The three of them escort you through a number of restricted passageways, dotted with armed, statue-like guards at every door, and throughout every hallway. Eventually you reach a meeting room of sorts, with about a dozen other Heliarchs seated at the central table. One of them motions for you to join them.`
+			`	As you take a seat, one of the Kimek there speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
 			choice
-				`	"Nice to meet you."`
+				`	"Thank you. The honor's all mine."`
 				`	"Are you the one that has a job for me?"`
 			`	"Stable and safe, our great Coalition is. Sadly, there are some who ideas of revolt and rebellion spread," she says. "To combat these thoughts of disunion, we swore. Correct such behavior, we must," she says as she points to the three agents beside you. "Dedicated to that, our agents are, but often times slow and predictable, their tactics are. A different approach might be due, so an outsider's help, and their way of thinking, we'd like to ask for."`
 			choice
@@ -78,18 +78,18 @@ mission "Heliarch Investigation 2"
 				`	"Sounds easy enough. Where should I start?"`
 				`	"Whether they go undercover or not, this seems a bit risky for me. Sorry, you'll have to find someone else."`
 					decline
-			`	"Your choice, that is," Iekie responds. "Known to these outlaws, many of our methods are. Easily predicted, our ordering would be."`
-			`	Some of the others explain that you will have to visit the following worlds they have deemed suspicious: Shifting Sand, in Saryd space, Into White, Fourth Shadow and Remote Blue, in Kimek space, and Mebla's Portion and Stronghold of Flugbu, in Arach space.`
-			`	They wish the four of you luck. You're escorted back to the spaceport, after which you show the 'tourists' to their bunks in your ship.`
+			`	"Decide the order of your visits, you will, Captain," Iekie responds. "Shameful to admit this, it is, but known to these outlaws, many of our methods are. Failed in similar operations before, we have, so fear I do, that easily predicted, our own ordering would be."`
+			`	Some of the others explain that you will have to visit the following worlds, where suspicious activity has been reported: Shifting Sand, in Saryd space, Into White, Fourth Shadow and Remote Blue, in Kimek space, and Mebla's Portion and Stronghold of Flugbu, in Arach space.`
+			`	They wish the four of you good luck, and have you escorted back to the spaceport. The Heliarch trio arrives at your ship a few minutes later, out of uniform and with heavy luggage. You show the <bunks> 'tourists' to their bunks, and head to your cockpit to decide which of the six worlds you'll head to first.`
 				accept
 	on complete
 		"assisted heliarch" ++
 		log "Assisted the Heliarch in investigating several worlds around Coalition space, bringing their agents to each world to look for any signs of criminal activity."
 		payment 900000
 		conversation
-			`The Heliarch consul, Iekie, greets you and the agents when you return, handing you your payment of <payment>.`
+			`When you and the agents leave your ship, you're greeted by about a dozen Heliarch guards, who urge you to follow them into the restricted portions of the ring. You're once again guided through the halls, until you're met by Consul Iekie and her delegation. She approaches you first, handing you <payment>. "Welcome back, Captain <last>. Glad, we all are, that made it back safely, you all have. Trust, I do, that fruitful in learning more of these criminals, your efforts have been?" She looks to the agents you transported.`
 			`	"Unearthed some useful information, we have," Tugroob tells her, as he delivers the agents' reports. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
-			`	"No doubt of that, I have. To the report, looking forward I am."`
+			`	She nods, as she hands the data to one of the Heliarchs behind her, who immediately move to start analyzing the findings. "Eager to read on the progress made, I am."`
 			branch evidence1
 				"resistance evidence" == 1
 			branch evidence2
@@ -97,19 +97,16 @@ mission "Heliarch Investigation 2"
 			branch evidence3
 				"resistance evidence" == 3
 			label finalthanks
-			`	They thank you once again for helping, and move to the Heliarch-only parts of the ringworld.`
+			`	Iekie thanks you for your efforts in the operation, and goes to analyze the findings with her team. Iplora, Kirrie and Tugroob remain there with them, and you're escorted back to your ships by the guards.`
 				accept
 			label evidence1
-			`	The agents then get closer to her before Iplora whispers something, handing her another report.`
-			`	Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`
+			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her another report. Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`
 				goto finalthanks
 			label evidence2
-			`	The agents then get closer to her before Iplora whispers something, handing her two separate reports.`
-			`	Iekie turns to you once more, saying, "Most useful to our investigation, these findings will prove. Excellent work, Captain."`
+			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her two more reports. Iekie turns to you once more, saying, "Most useful to our investigation, these findings will prove. Excellent work, Captain."`
 				goto finalthanks
 			label evidence3
-			`	The agents then get closer to her before Iplora whispers something, handing her three separate reports.`
-			`	Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
+			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her three more reports. Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
 				goto finalthanks
 
 mission "HI2-Bonus 1"
@@ -125,9 +122,8 @@ mission "HI2-Bonus 1"
 		conversation
 			apply
 				clear "resistance evidence"
-			`You receive a message from the Heliarch Consul Iekie as you go in for a landing.`
-			`	"Captain <last>! Analyzed your findings, we have. Brought light to some stolen equipment, your aid has, and for that, grateful we are. Sending a monetary bonus as thanks, I am."`
-			`	<payment> are transferred to your account.`
+			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Brought light to some stolen equipment, your aid has, and for that, grateful we are. Sending a monetary bonus as thanks, I am."`
+			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
 mission "HI2-Bonus 2"
@@ -143,9 +139,8 @@ mission "HI2-Bonus 2"
 		conversation
 			apply
 				clear "resistance evidence"
-			`You receive a message from the Heliarch consul Iekie as you go in for a landing.`
-			`	"Captain <last>! Analyzed your findings, we have. A great help, your assistance was, with finding two stashes of our stolen equipment. Investigating who was involved in such operations, my teams are. Grateful for your help, we are, so a monetary bonus, as thanks, I am sending."`
-			`	<payment> are transferred to your account.`
+			`You receive a message from the Heliarch consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. A great boon, your assistance was, having located two stashes of our stolen equipment. Investigating who was involved in such operations, my teams are. Very grateful for your help, we are, so sending a monetary bonus as thanks, I am."`
+			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
 mission "HI2-Bonus 3"
@@ -161,9 +156,8 @@ mission "HI2-Bonus 3"
 		conversation
 			apply
 				clear "resistance evidence"
-			`You receive a message from the Heliarch Consul Iekie as you go in for a landing.`
-			`	"Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, as without your help found all these operations, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
-			`	<payment> are transferred to your account.`
+			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, as without your help found all these operations, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
+			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
 mission "HI2-MP"
@@ -180,9 +174,9 @@ mission "HI2-MP"
 			has "Heliarch Investigation 2: failed"
 	on complete
 		conversation
-			`You arrive to a thunderstorm, as is often the norm for <planet>.`
+			`You arrive to a thunderstorm, as is often the norm for <planet>, and the agents go over their plans on how to best investigate the planet.`
 			`	Tugroob suggests that he pose as an Arach writer looking to find housing on the planet and scurries off to what must be a real estate office. Iplora continues with the original idea of pretending to be a tourist, saying that she will ask the young local Arachi about rumors while walking around the city, hoping to find something of use.`
-			`	You are left with Kirrie, who has been mostly silent as his friends left your ship.`
+			`	The two of them leave, and you are left with Kirrie, who has been mostly silent as his friends left your ship.`
 			choice
 				`	"Are you not going to follow their lead?"`
 				`	"Have you not decided how to investigate the planet?"`
@@ -192,7 +186,7 @@ mission "HI2-MP"
 				`	"Of course, I'll get my rain coat."`
 				`	"I'd rather not go out there with that rain."`
 					goto decline
-			`	You walk in a straight line for about an hour, many times without any building providing cover from the rain. Kirrie takes you to the very edge of the town where you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and constant downpour. One or two warehouses have a fair bit of rust on their doors, and just once you spot one with a damaged roof. You can also make out the shapes of small trees and bushes not too far out.`
+			`	You walk in a straight line for about an hour, occasionally being hit by splintering rain drops despite the cover provided by buildings and local structures. Kirrie takes you to the very edge of the town where you would be able to see the hills and mountains in the distance, were it not for the colossal rain clouds and constant downpour. One or two warehouses have a fair bit of rust on their doors, and just once you spot one with a damaged roof. You can also make out the shapes of small trees and bushes not too far out.`
 			`	"Now, Captain, start looking for something suspicious, where would you?" he asks as he shows you some sort of identification card, explaining that it can open any of the warehouse doors.`
 			choice
 				`	(Check the warehouses with the rusty doors.)`
@@ -216,10 +210,10 @@ mission "HI2-MP"
 				"resistance evidence" ++
 			`	Kirrie tries to open the door but can't get his card to work. "All the doors to these warehouses, my card should open. Damaged, the reader doesn't seem to be," he says. He decides that he must get in, and grabs a small sidearm, busting the door open with a couple shots.`
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
-			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots. Kirrie is hit on one of his legs before he can take cover.`
-			`	Just as you spot several small automatic turrets on the ceiling and walls, you two attempt to retaliate, but their fire proves too much. Barely escaping, you rush back outside, where Kirrie uses a small radio-like device to call for support. A pair of Heliarch Punishers soon land nearby, and dozens of armed agents enter the warehouse while you wait with Kirrie as his wound is treated.`
+			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as one of the shots hit one of his back legs just before he is back at the stairs. You go to help him up before any more shots come, but he seems to make do with just five good legs well enough.`
+			`	You two head back up, and Kirrie tells you to be alert and watch the staircase, as he reaches for a small radio-like device to call for support. A few minutes later, a pair of Heliarch Punishers land nearby, and dozens of armed agents enter the warehouse, while you head to one of the ships with Kirrie, and wait as his wound is treated.`
 			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our reactor modules is."`
-			`	With the local Heliarchs taking care of the place, a Neutralizer drops you and Kirrie at your ship, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
+			`	With the local Heliarchs taking care of the place, they have another, smaller ship come in to pick you two up, and drop you and Kirrie closer to the <ship>, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
 				accept
 			label trees
 			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
@@ -273,8 +267,8 @@ mission "HI2-SF"
 			has "Heliarch Investigation 2 :failed"
 	on complete
 		conversation
-			`While you doubt anyone opposing the Heliarchs would find much success in this massive compound, it seems the strategic location held by the planet, and the volume of resources and ships, marked it for investigation anyway.`
-			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing. They then ask you to depart once they enter your ship.
+			`While you doubt anyone opposing the Heliarchs would find much success operating in this massive compound, it seems the strategic location held by the planet, the volume of resources invested, fortifications available, and sheer number of ships stationed here, had it marked for investigation anyway.`
+			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing worthwhile, "As expected," Kirrie comments with a sigh. They tell you they're ready to leave, and head to their bunks.`
 
 mission "HI2-SS"
 	name "Investigate <planet>"
@@ -388,7 +382,7 @@ mission "HI2-FS"
 			`For this planet, the trio informs you that they cannot spend too much time in one place considering how densely populated it is. Instead, they hand you the coordinates of dozens of factories, with the instructions to take them to each factory in whichever order you'd prefer.`
 			`	"Surprise inspections, we shall perform," Kirrie says as the three prepare their equipment and weapons. You spend hours flying around the planet dropping one agent off in a factory, running off to another, then another, then picking up the first of the three, and continuing the process.`
 			`	After picking up Tugroob from the last factory, they all analyze their findings one last time. They do this by going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side, and briefly writing a description if any such "abnormality" was noted in a factory.`
-			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says. You land on a Heliarch base, and they hand all their findings to the agents there before returning to your ship. As they head to their bunks, you see several Heliarch ships fly off in the direction of some of the factories.`
+			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says. You land on a Heliarch base, and they hand a copy of their findings to the Heliarchs stationed there before returning to your ship. As they head to their bunks, you see several Heliarch ships fly off in the direction of some of the factories.`
 
 mission "HI2-IW"
 	name "Investigate <planet>"
@@ -529,8 +523,8 @@ mission "HI2-RB"
 	on complete
 		conversation
 			`When you land, a couple of other civilian ships land nearby. Some Kimek leave them and wait outside your own. Kirrie is the only one to leave, and after speaking a bit with the other Kimek, they leave for the city, splitting in two groups.`
-			`	"Not fond of outsiders, the people of this world are," Tugroob explains. "Decided to employ undercover Kimek agents, the consul has."`
-			`	You wait around for a couple hours as Iplora and Tugroob tinker with your ship's communication devices, keeping in contact with the two groups. They don't mention if either group finds anything, and as night falls, Kirrie returns to the ship on his own.`
+			`	"Not fond of outsiders, the people of this world are," Tugroob explains. "Decided to employ undercover Kimek agents, Consul Iekie."`
+			`	You wait around for a couple hours as Iplora and Tugroob tinker with your ship's communication devices, keeping in contact with the two groups. They don't mention if either group finds anything, and as night falls, Kirrie returns to the ship on his own. He doesn't say anything of the operation, instead just heading to his bunk to rest. Iplora and Tugroob follow suit, after telling you to depart whenever you're ready.`
 
 
 
