@@ -3955,7 +3955,7 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		double driveDistExp = 0;
 		double driveDistRef = 100;
 
-		if((baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive mass exponent")) && mass > 0)
+		if((baseAttributes.Get("drive mass reference") || baseAttributes.Get("drive mass exponent")))
 		{
 			driveMassRef = max(baseAttributes.Get("drive mass reference"), .01);
 			driveMassExp = max(baseAttributes.Get("drive mass exponent"), 0.);
