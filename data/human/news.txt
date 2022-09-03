@@ -23,7 +23,7 @@ phrase "merchant names"
 		"pilot"
 
 
-news "human merchant anywhere"
+news "merchant anywhere"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai" "Quarg"
 		not
@@ -54,7 +54,7 @@ news "human merchant anywhere"
 
 
 
-news "human merchant in human space"
+news "merchant in human space"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 		not
@@ -111,7 +111,7 @@ news "human merchant in human space"
 			`"`
 
 
-news "human farming"
+news "farmer"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "farming"
@@ -142,7 +142,7 @@ news "human farming"
 
 
 
-news "human textiles"
+news "textile worker"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "textiles"
@@ -165,7 +165,7 @@ news "human textiles"
 
 
 
-news "human mining"
+news "miner"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining"
@@ -187,7 +187,7 @@ news "human mining"
 
 
 
-news "human factory"
+news "factory worker"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
@@ -765,7 +765,7 @@ news "economist"
 
 
 
-news "human mechanic"
+news "mechanic"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "dirt belt" "rim" "factory" "south" "core"
@@ -1069,7 +1069,7 @@ news "chauffeur"
 
 
 
-news "human retiree"
+news "retiree"
 	location
 		attributes "paradise"
 	name
@@ -1094,7 +1094,7 @@ news "human retiree"
 
 
 
-news "human financial analyst"
+news "financial analyst"
 	location
 		attributes "paradise" "near earth"
 	name
@@ -1119,7 +1119,7 @@ news "human financial analyst"
 
 
 
-news "human syndicate manager"
+news "syndicate manager"
 	location
 		government "Syndicate"
 		attributes "urban"
@@ -1146,7 +1146,7 @@ news "human syndicate manager"
 
 
 
-news "human scientist"
+news "scientist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "research" "deep"
@@ -1169,7 +1169,7 @@ news "human scientist"
 
 
 
-news "human student"
+news "student"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "research" "deep"
@@ -1196,7 +1196,7 @@ news "human student"
 
 
 
-news "human religious"
+news "religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "religious"
@@ -1225,7 +1225,7 @@ news "human religious"
 
 
 
-news "human tourism"
+news "tourist"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "rich" "paradise" "tourism"
@@ -1263,7 +1263,7 @@ news "human tourism"
 			`"`
 
 
-news "human protester"
+news "protester"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
 		attributes "urban"
@@ -1283,7 +1283,7 @@ news "human protester"
 
 
 
-news "human diplomat"
+news "diplomat"
 	location
 		government "Republic" "Free Worlds" "Syndicate"
 		attributes "rich"
@@ -1306,7 +1306,7 @@ news "human diplomat"
 
 
 
-news "human mercenary"
+news "mercenary"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier"
@@ -1330,7 +1330,7 @@ news "human mercenary"
 
 
 
-news "human republic soldier"
+news "republic soldier"
 	location
 		government "Republic"
 		attributes "military"
@@ -1355,7 +1355,7 @@ news "human republic soldier"
 
 
 
-news "human syndicate soldier"
+news "syndicate soldier"
 	location
 		government "Syndicate"
 		attributes "military"
@@ -1379,7 +1379,7 @@ news "human syndicate soldier"
 
 
 
-news "human pirate"
+news "pirate"
 	location
 		government "Pirate"
 	name
@@ -1435,7 +1435,7 @@ news "human pirate"
 
 
 
-news "human merchant in pirate space"
+news "merchant in pirate space"
 	location
 		government "Pirate"
 	name
@@ -1471,7 +1471,7 @@ news "human merchant in pirate space"
 
 
 
-news "human farming in pirate space"
+news "farmer in pirate space"
 	location
 		government "Pirate"
 	name
@@ -1505,7 +1505,7 @@ news "human farming in pirate space"
 
 
 
-news "human republic reporter in pirate space"
+news "republic reporter in pirate space"
 	location
 		government "Pirate"
 	name

@@ -16,8 +16,11 @@ event "ember waste label"
 
 event "remnant: change hail"
 	government "Remnant"
-		"friendly hail" "friendly remnant"
-		"hostile hail" "hostile remnant"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
+	government "Remnant (Research)"
+		"friendly hail" "remnant friendly"
+		"hostile hail" "remnant hostile"
 
 
 
@@ -86,7 +89,18 @@ event "remnant salvage available"
 
 
 
-event "remnant research update bjd1"
+event "remnant: scanning tolerance"
+	government "Remnant"
+		"penalty for"
+			scan 0
+		remove "provoked on scan"
+		"friendly hail" "remnant trusting"
+	government "Remnant (Research)"
+		"friendly hail" "remnant trusting"
+
+
+
+event "remnant: research update bjd1"
 
 
 
@@ -176,7 +190,7 @@ event "remnant: cognizance 1 systems available"
 		remove attributes "inaccessible"
 	system Egeria
 		remove attributes "inaccessible"
-	system Porrima
+	system Postverta
 		remove attributes "inaccessible"
 	system Prosa
 		remove attributes "inaccessible"
@@ -241,8 +255,15 @@ event "remnant: ssil vida inhabited"
 
 
 event "remnant: cognizance peregrine"
-	shipyard "Remnant"
-		"Peregrine"
+	outfitter "Remnant"
+		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
 
 
 
@@ -285,6 +306,7 @@ event "remnant: ssil vida activation"
 		pos 162.87 343.242
 		government Uninhabited
 		attributes "ember waste"
+		arrival 625
 		habitable 320
 		belt 1797
 		haze _menu/haze-red
@@ -312,7 +334,7 @@ event "remnant: ssil vida activation"
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
-			sprite star/wr
+			sprite star/wr1
 			period 10
 		object
 			sprite planet/dust6-b
@@ -354,6 +376,7 @@ event "remnant: ssil vida activation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
+		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
@@ -401,6 +424,7 @@ event "remnant: ssil vida activation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
+		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
@@ -447,6 +471,7 @@ event "remnant: ssil vida activation"
 		pos 203.504 247.389
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2798.68
 		belt 1202
 		haze _menu/haze-red
@@ -516,6 +541,7 @@ event "remnant: ssil vida activation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -538,7 +564,7 @@ event "remnant: ssil vida activation"
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 19
 		object
 			sprite planet/desert7
@@ -564,6 +590,7 @@ event "remnant: ssil vida activation"
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
@@ -617,6 +644,7 @@ event "remnant: ssil vida activation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -642,7 +670,7 @@ event "remnant: ssil vida activation"
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 10
 		object
 			sprite planet/desert4
@@ -672,6 +700,7 @@ event "remnant: ssil vida activation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
@@ -742,6 +771,7 @@ event "remnant: ssil vida deactivation"
 		pos 288 146
 		government Uninhabited
 		attributes "ember waste"
+		arrival 2030
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
@@ -788,6 +818,7 @@ event "remnant: ssil vida deactivation"
 		pos 332 210
 		government Uninhabited
 		attributes "ember waste"
+		arrival 950
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
@@ -840,6 +871,7 @@ event "remnant: ssil vida deactivation"
 		pos 297 269
 		government Remnant
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -856,7 +888,7 @@ event "remnant: ssil vida deactivation"
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 19
 		object
 			sprite planet/desert7
@@ -882,6 +914,7 @@ event "remnant: ssil vida deactivation"
 		pos 303 194
 		government Uninhabited
 		attributes "ember waste"
+		arrival 5000
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
@@ -934,6 +967,7 @@ event "remnant: ssil vida deactivation"
 		pos 385 198
 		government Uninhabited
 		attributes "ember waste" "wormhole"
+		arrival 500
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
@@ -953,7 +987,7 @@ event "remnant: ssil vida deactivation"
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
 		object
-			sprite star/m3
+			sprite star/m8
 			period 10
 		object
 			sprite planet/desert4
@@ -983,6 +1017,7 @@ event "remnant: ssil vida deactivation"
 		pos 324 112
 		government Uninhabited
 		attributes "ember waste"
+		arrival 500
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
@@ -1046,13 +1081,76 @@ event "remnant: cognizance salvage expansion"
 		add "Systems Core (Medium)"
 		add "Large Heat Shunt"
 		add "Fuel Processor"
-		add "Korath Repeater Rifle"
-		add "Korath Grab-Strike"
-		add "Korath Banisher"
-		add "Korath Warder"
+		add "Thermal Repeater Rifle"
+		add "Grab-Strike Turret"
+		add "Banisher Grav-Turret"
+		add "Warder Anti-Missile"
 	planet "Viminal"
 		add shipyard "Remnant Salvage Ships"
 	planet "Aventine"
 		add shipyard "Remnant Salvage Ships"
 	planet "Caelian"
 		add shipyard "Remnant Salvage Ships"
+
+
+
+event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3

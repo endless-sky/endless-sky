@@ -107,6 +107,7 @@ private:
 	// Special decisions a ship might make.
 	static bool ShouldUseAfterburner(Ship &ship);
 	// Special personality behaviors.
+	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
@@ -190,7 +191,7 @@ private:
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
 	// General firing command for ships. This is a data member to avoid
-	// thrashing the heap, since we can reuse the the storage for
+	// thrashing the heap, since we can reuse the storage for
 	// each ship.
 	FireCommand firingCommands;
 
@@ -220,7 +221,7 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, double> appeasmentThreshold;
+	std::map<const Ship *, double> appeasementThreshold;
 
 	std::map<const Ship *, int64_t> shipStrength;
 

@@ -112,7 +112,7 @@ protected:
 	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static const int BUTTON_HEIGHT = 70;
 	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 180;
+	static const int OUTFIT_SIZE = 183;
 
 
 protected:
@@ -166,6 +166,8 @@ protected:
 
 private:
 	bool DoScroll(double dy);
+	bool SetScrollToTop();
+	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();

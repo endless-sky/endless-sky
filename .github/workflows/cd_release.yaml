@@ -46,12 +46,12 @@ jobs:
       - name: Update Homebrew
         run: brew update
       - name: Install dependencies
-        run: brew install libmad libpng jpeg-turbo
+        run: brew install libpng jpeg-turbo
       - name: Restore cached SDL2 framework
         uses: actions/cache@v2
         with:
           path: ${{ env.SDL2_FRAMEWORK }}
-          key: macos-latest-sdl2-${{ hashFiles('utils/fetch_sdl2_framework.sh', 'EndlessSky.xcodeproj/**') }}
+          key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
       - name: Build Application
         run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
       - name: Package Application

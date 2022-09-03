@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
-#include "Files.h"
+#include "Logger.h"
 
 #include <cctype>
 #include <cstring>
@@ -50,7 +50,7 @@ Shader::Shader(const char *vertex, const char *fragment)
 		vector<GLchar> infoLog(maxLength);
 		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
 		string error(infoLog.data());
-		Files::LogError(error);
+		Logger::LogError(error);
 
 		throw runtime_error("Linking OpenGL shader program failed.");
 	}
@@ -101,12 +101,14 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		bool found = false;
 		for(char c : glsl)
 		{
-			if(!found && !isdigit(c)) {
+			if(!found && !isdigit(c))
+			{
 				continue;
 			}
 			if(isspace(c))
 				break;
-			if(isdigit(c)) {
+			if(isdigit(c))
+			{
 				found = true;
 				version += c;
 			}
@@ -140,7 +142,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 
 		glGetShaderInfoLog(object, SIZE, &length, message);
 		error += string(message, length);
-		Files::LogError(error);
+		Logger::LogError(error);
 		throw runtime_error("Shader compilation failed.");
 	}
 
