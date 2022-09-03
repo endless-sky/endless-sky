@@ -178,8 +178,8 @@ private:
 
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government), mapIcon(mapIcon) {}
+		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon, bool isVisited)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government), mapIcon(mapIcon), isVisited(isVisited) {}
 
 		Point position;
 		Color color;
@@ -187,6 +187,7 @@ private:
 		Color nameColor;
 		const Government *government;
 		std::vector<std::string> mapIcon;
+		bool isVisited;
 	};
 	std::vector<Node> nodes;
 

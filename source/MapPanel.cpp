@@ -890,7 +890,7 @@ void MapPanel::UpdateCache()
 				player.KnowsName(system) ? system.Name() : "",
 				(&system == &playerSystem) ? closeNameColor : farNameColor,
 				player.HasVisited(system) ? system.GetGovernment() : nullptr,
-				system.GetMapIcon());
+				system.GetMapIcon(), player.HasVisited(system));
 	}
 
 	// Now, update the cache of the links.
@@ -1118,7 +1118,7 @@ void MapPanel::DrawLinks()
 		Point from = zoom * (link.start + center);
 		Point to = zoom * (link.end + center);
 		const Interface *mapInterface = GameData::Interfaces().Get("map");
-		float linkOffset = (static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom()) ? DOTS_OFFSET * 2: LINK_OFFSET;
+		float linkOffset = (static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom()) ? DOTS_OFFSET / zoom: LINK_OFFSET;
 		Point unit = (from - to).Unit() * linkOffset * zoom;
 		from -= unit;
 		to += unit;
@@ -1154,8 +1154,8 @@ void MapPanel::DrawSystems()
 		const Interface *mapInterface = GameData::Interfaces().Get("map");
 		if(static_cast<float>(mapInterface->GetValue("min zoom")) == player.MapZoom())
 		{
-			ringOuter = DOTS_OUTER * 2;
-			ringInner = DOTS_INNER * 2;
+			ringOuter = DOTS_OUTER / zoom;
+			ringInner = DOTS_INNER / zoom;
 			starsOn = 0;
 		}
 		else
@@ -1169,7 +1169,7 @@ void MapPanel::DrawSystems()
 		RingShader::Draw(pos, zoom * ringOuter, zoom * ringInner, node.color);
 
 		// Ensures every multiple-star system has a deterministic but distinct rotation.
-		float starAngle = node.name.length();
+		float starAngle = node.name.length() + node.position.Length();
 		float spin = 4 * acos(0.0) / node.mapIcon.size();
 
 		Point starOffset(4, 4);
@@ -1181,7 +1181,8 @@ void MapPanel::DrawSystems()
 		{
 			starAngle = starAngle + spin;
 			Point starRotate(cos(starAngle), sin(starAngle));
-			SpriteShader::Draw(SpriteSet::Get(stars), pos + zoom * starOffset * starRotate, zoom / 8 * starsOn);
+			string displayStar = (node.isVisited) ? stars : "map/unexplored-star";
+			SpriteShader::Draw(SpriteSet::Get(displayStar), pos + zoom * starOffset * starRotate, zoom / 8 * starsOn);
 		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
