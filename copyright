@@ -1504,6 +1504,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/modified?dromedary*
+ images/ship/modified?dromedary?wreck*
+ images/thumbnail/modified?dromedary*
+ images/thumbnail/modified?dromedary?wreck*
  sound/korath?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
@@ -1695,6 +1699,13 @@ Files:
 Copyright: Dschiltt
 License: CC0 (Creative Commons Zero)/Public-Domain
 Comment: Derived from works by MZ (under the same license), and contributions by Zoura, Kitteh, Ejo Thims, and Saugia.
+
+Files:
+ images/ship/modified?dromedary?ghost*
+ images/ship/modified?dromedary?spectre*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Transparent materials by scrinarii1337.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
