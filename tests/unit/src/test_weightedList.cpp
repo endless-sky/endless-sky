@@ -372,7 +372,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 		list.emplace_back(weights[2], third);
 
 		WHEN( "a random selection is performed" ) {
-			auto getSampleSummary = [&list](std::size_t size){
+			auto getSampleSummary = [&list](std::size_t size) {
 				auto l = std::map<int, unsigned>{};
 				for(unsigned i = 0; i < size; ++i)
 					++l[list.Get().GetValue()];
@@ -401,7 +401,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 				// Compare the observed distribution to the expected distribution using the chi-squared
 				// statistic with a two degrees of freedom and significance levels of 0.01 and 0.05.
 				// (Critical values available via NIST: https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm)
-				if (computeChiStat(totalPicks) > 9.210)
+				if(computeChiStat(totalPicks) > 9.210)
 				{
 					INFO("alpha = 0.05");
 					CHECK( computeChiStat(totalPicks) <= 5.991 );
@@ -420,10 +420,12 @@ SCENARIO( "Test WeightedList error conditions.", "[WeightedList]" ) {
 
 		WHEN( "attempting to insert a negative weighted object" ) {
 			THEN( "an invalid argument exception is thrown" ) {
-				try{
+				try {
 					list.emplace_back(-1, 1);
 					FAIL( "should have thrown" );
-				} catch(const std::invalid_argument &e) {
+				}
+				catch(const std::invalid_argument &e)
+				{
 					SUCCEED( "threw when item weight was negative" );
 					AND_THEN( "the invalid object was not inserted into the list" ) {
 						CHECK( list.empty() );

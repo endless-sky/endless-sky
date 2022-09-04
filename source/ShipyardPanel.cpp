@@ -160,7 +160,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH  - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
+			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
 			: 1.f;
 
 		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
@@ -365,12 +365,13 @@ bool ShipyardPanel::CanSellMultiple() const
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(player.GetCondition("license: " + licenseName) <= 0)
-				player.Conditions()["license: " + licenseName] = true;
+			if(playerConditions.Get("license: " + licenseName) <= 0)
+				playerConditions["license: " + licenseName] = true;
 	}
 
 	for(int i = 1; i <= modifier; ++i)

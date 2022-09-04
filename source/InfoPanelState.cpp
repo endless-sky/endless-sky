@@ -19,7 +19,7 @@ using namespace std;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-	:ships(player.Ships()), canEdit(player.GetPlanet())
+	: player(player), ships(player.Ships()), canEdit(player.GetPlanet())
 {
 }
 
@@ -40,11 +40,11 @@ void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 
 
 
-void InfoPanelState::SetSelected(const std::set<int> &selected)
+void InfoPanelState::SetSelected(set<int> selected)
 {
-	allSelected = selected;
-	if(!selected.empty())
-		selectedIndex = *selected.begin();
+	allSelected = std::move(selected);
+	if(!allSelected.empty())
+		selectedIndex = *allSelected.begin();
 }
 
 
@@ -99,7 +99,14 @@ void InfoPanelState::DeselectAll()
 
 
 
-const std::set<int> &InfoPanelState::AllSelected() const
+void InfoPanelState::Disown(vector<shared_ptr<Ship>>::const_iterator it)
+{
+	ships.erase(it);
+}
+
+
+
+const set<int> &InfoPanelState::AllSelected() const
 {
 	return allSelected;
 }
@@ -137,6 +144,16 @@ vector<shared_ptr<Ship>> &InfoPanelState::Ships()
 const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
 {
 	return ships;
+}
+
+
+
+bool InfoPanelState::ReorderShipsTo(int toIndex)
+{
+	bool success = ReorderShips(allSelected, toIndex);
+	if(success)
+		player.SetShipOrder(ships);
+	return success;
 }
 
 

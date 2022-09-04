@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 #include "CargoHold.h"
+#include "ConditionsStore.h"
 #include "CoreStartData.h"
 #include "DataNode.h"
 #include "Date.h"
@@ -204,13 +205,8 @@ public:
 	void HandleEvent(const ShipEvent &event, UI *ui);
 
 	// Access the "condition" flags for this player.
-	int64_t GetCondition(const std::string &name) const;
-	std::map<std::string, int64_t> &Conditions();
-	const std::map<std::string, int64_t> &Conditions() const;
-	// Set and check the reputation conditions, which missions and events
-	// can use to modify the player's reputation with other governments.
-	void SetReputationConditions();
-	void CheckReputationConditions();
+	ConditionsStore &Conditions();
+	const ConditionsStore &Conditions() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Check what the player knows about the given system or planet.
@@ -287,9 +283,10 @@ private:
 	void ApplyChanges();
 	// After loading & applying changes, make sure the player & ship locations are sensible.
 	void ValidateLoad();
+	// Helper to register derived conditions.
+	void RegisterDerivedConditions();
 
 	// New missions are generated each time you land on a planet.
-	void UpdateAutoConditions(bool isBoarding = false);
 	void CreateMissions();
 	void StepMissions(UI *ui);
 	void Autosave() const;
@@ -349,7 +346,7 @@ private:
 	// its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeBoardingMission = nullptr;
 
-	std::map<std::string, int64_t> conditions;
+	ConditionsStore conditions;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;

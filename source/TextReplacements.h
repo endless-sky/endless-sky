@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class ConditionSet;
+class ConditionsStore;
 class DataNode;
 class PlayerInfo;
 
@@ -39,7 +40,7 @@ public:
 	// Add new text replacements to the given map after evaltuating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
-	void Substitutions(std::map<std::string, std::string> &subs, const std::map<std::string, int64_t> &conditions) const;
+	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions) const;
 
 
 private:
