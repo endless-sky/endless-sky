@@ -3408,7 +3408,7 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, double intersection, Point hitVelocity, Angle hitAngle)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, Point intersection, Point hitVelocity, Angle hitAngle)
 {
 	int type = DoDamage(visuals, damage);
 
@@ -3421,22 +3421,24 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// Create hull/shield hit effect visuals at the point of impact for weapons
 	// fire, if there are any to create.
-		if(shields > 0.)
-		{
-			for(const auto &it : ShieldHitEffects())
-				for(int i = 0; i < it.second; ++i)
-				{
-					visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
-				}
-		}
-		else
-		{
-			for(const auto &it : HullHitEffects())
-				for(int i = 0; i < it.second; ++i)
-				{
-					visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
-				}
-		}
+	if(!damage.Hull())
+	{
+		for(const auto &it : ShieldHitEffects())
+			for(int i = 0; i < it.second; ++i)
+			{
+				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
+				//visuals.emplace_back(*it.first, velocity, velocity, hitAngle, hitVelocity);
+				//visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
+			}
+	}
+	else
+	{
+		for(const auto &it : HullHitEffects())
+			for(int i = 0; i < it.second; ++i)
+			{
+				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
+			}
+	}
 
 	return type;
 }

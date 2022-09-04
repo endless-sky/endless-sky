@@ -2080,14 +2080,14 @@ void Engine::DoCollisions(Projectile &projectile)
 
 				// Only directly targeted ships get provoked by blast weapons.
 				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
-					targeted ? gov : nullptr, closestHit, hitVelocity, projectile.Facing());
+					targeted ? gov : nullptr, projectile.Position() + projectile.Velocity() * closestHit, hitVelocity, projectile.Facing());
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
 		}
 		else if(hit)
 		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, closestHit, hitVelocity, projectile.Facing());
+			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, projectile.Position() + projectile.Velocity() * closestHit, hitVelocity, projectile.Facing());
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
