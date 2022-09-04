@@ -2720,7 +2720,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += flagship->OutfitCount(outfit);
 		return retVal;
 	});
-	
+
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
