@@ -475,6 +475,14 @@ def check_include(sanitized_lines, original_lines, file):
 				write_warning(original_lines[index], file, index, "missing empty line before changing include style")
 				break
 		group_lines = [original_lines[index] for index in group]
+		for i in range(len(group_lines)):
+			line = group_lines[i]
+			if line.count("/") > 0:
+				if quote:
+					line = line[0:line.find("\"") + 1] + line[line.rfind("/") + 1:len(line)]
+				else:
+					line = line[0:line.find("<") + 1] + line[line.rfind("/") + 1:len(line)]
+				group_lines[i] = line
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
