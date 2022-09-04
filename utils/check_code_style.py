@@ -114,6 +114,50 @@ whitespaces = re.compile("\\s+")
 errors = 0
 # The number of warnings found in all files
 warnings = 0
+# The list of errors and warnings for the current file
+error_list = []
+
+
+# A class used for buffering error messages.
+# text: the text where the error originates from
+# file: the path to the file
+# line: the current line number
+# reason: the reason for the error
+class Error(object):
+
+	def __init__(self, text, file, line, reason):
+		self.text = text
+		self.file = file
+		self.line = line
+		self.reason = reason
+		global errors
+		errors += 1
+		global error_list
+		error_list.append(self)
+
+	# Displays the message for this error
+	def print(self):
+		print("Formatting error in file", self.file, "line", self.line.__str__() + ":", self.text.replace('\n', ""))
+		print("\tReason:", self.reason)
+
+
+# A class used for buffering error messages.
+# text: the text where the warning originates from
+# file: the path to the file
+# line: the current line number
+# reason: the reason for the warning
+class Warning(Error):
+
+	def __init__(self, text, file, line, reason):
+		Error.__init__(self, text, file, line, reason)
+
+		global errors
+		errors -= 1
+		global warnings
+		warnings += 1
+
+	def print(self):
+		print("Warning:", self.reason, "in", self.file, "line", self.line.__str__() + ":", self.text.replace('\n', ""))
 
 
 # Checks the format of all source files.
@@ -121,40 +165,51 @@ def check_code_style():
 	files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
 	files.sort()
 	for file in files:
-		check_code_format(file)
-		check_global_format(file)
+
+		f = open(file, "r")
+		original_lines = f.readlines()
+		original_lines = [line.removesuffix('\n') for line in original_lines]
+
+		check_pre_sanitize(original_lines, file)
+
+		segmented_lines = sanitize(original_lines, file)
+		sanitized_lines = ["".join(segments) for segments in segmented_lines]
+
+		check_global_format(sanitized_lines, segmented_lines, original_lines, file)
+		check_local_format(sanitized_lines, segmented_lines, file)
+
+		error_list.sort(key=lambda error: error.line)
+		for error in error_list:
+			error.print()
+		error_list.clear()
 
 
-# Tests a file for syntax formatting errors. Parameters:
-# file: The path to the file
-def check_code_format(file):
+# Sanitizes the contents of the file by removing the contents of strings and comments.
+# Also performs some minimal format checking that cannot be done elsewhere.
+# Parameters:
+# lines: the original contents of the file, without trailing line separators
+# file: the path to the file
+# skip_checks: whether to skip checks for formatting errors
+def sanitize(lines, file, skip_checks=False):
 	is_multiline_comment = False
 	is_string = False
 	is_char = False
 	is_raw_string = False
 	is_raw_string_short = False
 	line_count = 0
-	header_parsed = False
-	f = open(file, "r")
-	lines = f.readlines()
+	header_found = False
+
+	line_segments = []
+
 	for line in lines:
-		line = line.removesuffix('\n')
 		line_count += 1
 		segments = []
 		is_escaped = False
 		# Start index is the beginning of the sequence to be tested
 		start_index = 0
-		# Checking the width of the line
-		if len(line) > 120:
-			write_error(line, file, line_count, "lines should hard wrap at 120 characters")
-		line = line.lstrip()
 		# Looking for parts of the file that are not strings or comments
 		for i in range(len(line)):
 			char = line[i]
-			# Checking for non-ASCII characters
-			if ord(char) < 0 or ord(char) > 127:
-				write_error(line, file, line_count, "files should be plain ASCII")
-				break
 			# Handling character escapes
 			if is_escaped:
 				is_escaped = False
@@ -166,10 +221,11 @@ def check_code_format(file):
 			first_two = line[i:i + 2]
 			if is_multiline_comment:
 				if first_two == "*/":
-					# Checking for space after comment
-					if i > 0 and line[i - 1] != ' ' and line[i - 1] != '  ':
-						write_error(line[i - 1:i + 2], file, line_count,
-						            "missing space before end of multiline comment")
+					if not skip_checks:
+						# Checking for space after comment
+						if i > 0 and line[i - 1] != ' ' and line[i - 1] != '\t':
+							write_error(line[i - 1:i + 2], file, line_count,
+							            "missing space before end of multiline comment")
 					# End of comment
 					is_multiline_comment = False
 					i += 1
@@ -177,22 +233,25 @@ def check_code_format(file):
 				continue
 			if (not is_string) and first_two == "//":
 				segments.append(line[start_index:i].rstrip())
-				# Checking for space after comment
-				if len(line) > i + 2:
-					if re.search(after_comment, line[i + 2:i + 3]):
-						write_error(line[i:i + 3], file, line_count,
-						            "missing space after beginning of single-line comment")
+				if not skip_checks:
+					# Checking for space after comment
+					if len(line) > i + 2:
+						if re.search(after_comment, line[i + 2:i + 3]):
+							write_error(line[i:i + 3], file, line_count,
+							            "missing space after beginning of single-line comment")
 				break
 			elif (not is_string) and first_two == "/*":
 				segments.append(line[start_index:i].rstrip())
 				is_multiline_comment = True
-				# Checking for space after comment
-				if len(line) > i + 2 and line[i + 2] != ' ':
-					write_error(line[i:i + 3], file, line_count, "missing space after beginning of multiline comment")
-				if header_parsed:
-					write_error(line, file, line_count, "multiline comments should only be used for copyright headers")
-				else:
-					header_parsed = True
+				if not skip_checks:
+					if header_found:
+						write_error(line.lstrip(), file, line_count,
+						            "multiline comments should only be used for the copyright header")
+					# Checking for space after comment
+					if len(line) > i + 2 and line[i + 2] != ' ':
+						write_error(line[i:i + 3], file, line_count,
+						            "missing space after beginning of multiline comment")
+				header_found = True
 				continue
 			# Checking for strings (both standard and raw literals)
 			elif (not is_string) and char == "'":
@@ -218,12 +277,11 @@ def check_code_format(file):
 						continue
 					is_raw_string_short = True
 					is_string = True
+					segments.append(line[start_index:i + 1])
 				elif line[i - 1:i + 1] == ")\"" and is_raw_string_short:
-					if is_raw_string:
-						continue
 					is_raw_string_short = False
 					is_string = False
-					segments.append(line[start_index:i + 1])
+					start_index = i
 				else:
 					if is_raw_string or is_raw_string_short:
 						continue
@@ -235,30 +293,59 @@ def check_code_format(file):
 		else:
 			if (not is_multiline_comment) and (not is_char) and (not is_escaped) and (not is_string):
 				segments.append(line[start_index:])
-			test(segments, file, line_count)
+		line_segments.append(segments)
+	return line_segments
 
 
-# Tests whether the specified segments contain any formatting issues. Parameters:
-# segments: the list of segments on the line
+# Runs checks on the contents of the file before sanitization.
+def check_pre_sanitize(lines, file):
+	check_copyright(lines, file)
+	line_count = 0
+	for line in lines:
+		line_count += 1
+		if len(line) > 120:
+			write_error(line, file, line_count, "lines should hard wrap at 120 characters")
+		for char in line:
+			if ord(char) < 0 or ord(char) > 127:
+				write_error(line, file, line_count, "files should be plain ASCII")
+				break
+
+
+# Tests whether the specified file contains any formatting issues. Parameters:
+# lines: the lines of the file, without terminating line separators and the contents of strings or comments
+# segmented_lines: the segments of each line
 # file: the path to the file
-# line: the current line number
-def test(segments, file, line):
-	line_text = "".join(segments)
+def check_local_format(lines, segmented_lines, file):
+	line_count = 0
+	for line, segments in zip(lines, segmented_lines):
+		line_count += 1
+		line = line.lstrip()
+		if len(segments) > 0:
+			segments[0] = segments[0].lstrip()
+		check_regex_format(line, segments, line_count, file)
+
+
+# Tests whether the specified file contains any formatting issues, based on the regex tests. Parameters:
+# line: the line to test, without the contents of strings or comments
+# segments: the segments of the line
+# line_count: the position of the line
+# file: the path to the file
+def check_regex_format(line, segments, line_count, file):
 	for regex, description in line_include.items():
-		if check_match(regex, line_text, line_text, file, line, description):
+		if check_match(regex, line, line, file, line_count, description):
 			return
 	for segment in segments:
 		# Skip empty
 		if re.match(whitespace_only, segment):
 			return
 		for regex, description in segment_include.items():
-			if check_match(regex, segment, segment, file, line, description):
+			if check_match(regex, segment, segment, file, line_count, description):
 				return
 		for token in re.split(whitespaces, segment):
 			token = token.strip()
 			if token != "":
 				for regex, description in word_include.items():
-					if check_match(regex, token, segment, file, line, description):
+					if check_match(regex, token, segment, file, line_count, description):
 						return
 
 
@@ -267,9 +354,9 @@ def test(segments, file, line):
 # part: the part of the text to match
 # segment: the segment the part belongs to
 # file: the path to the file
-# line: the current line number
+# line_count: the current line number
 # reason: the reason to display if the regex matches the text
-def check_match(regex, part, segment, file, line, reason):
+def check_match(regex, part, segment, file, line_count, reason):
 	pos = re.search(regex, part)
 	if pos is not None:
 		match = part[pos.start():pos.end()]
@@ -280,24 +367,20 @@ def check_match(regex, part, segment, file, line, reason):
 			for temp in segment_exclude:
 				if re.search(temp, segment):
 					return False
-		write_error(segment, file, line, reason)
+		write_error(segment, file, line_count, reason)
 		return True
 	return False
 
 
 # Checks certain global formatting properties of files, such as their copyright headers. Parameters:
 # file: the path to the file
-def check_global_format(file):
-	lines = open(file, "r").readlines()
-	lines = [line.removesuffix('\n') for line in lines]
-	#
-	check_copyright(lines, file)
-	check_include(lines, file)
+def check_global_format(sanitized_lines, line_segments, original_lines, file):
+	check_include(sanitized_lines, original_lines, file)
 
 
 # Checks if the copyright header of the file is correct. Parameters:
+# lines: the lines of the file, without the terminating line separators
 # file: the path to the file
-# line: the lines of the file, without the terminating line separators
 def check_copyright(lines, file):
 	name = file.split("/")[-1]
 	copyright_begin = [
@@ -354,14 +437,18 @@ def check_copyright(lines, file):
 
 
 # Checks the import statements at the beginning of the file. Parameters:
+# sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
+# original_lines: the lines of the file, without the terminating line separators
 # file: the path to the file
-# line: the lines of the file, without the terminating line separators
-def check_include(lines, file):
+def check_include(sanitized_lines, original_lines, file):
+	# opengl.h is treated as a <> include in most cases
+	original_lines = [line if line != "#include \"opengl.h\"" else "#include <opengl.h>" for line in original_lines]
+
 	name = file.split("/")[-1]
 	if name.endswith(".cpp"):
 		name = name[0:-4] + ".h"
 
-	include_lines = [index for index, line in enumerate(lines) if line.startswith("#include ")]
+	include_lines = [index for index, line in enumerate(sanitized_lines) if line.startswith("#include ")]
 	groups = []
 	previous = -2
 	for i in include_lines:
@@ -375,17 +462,18 @@ def check_include(lines, file):
 		if len(groups) == 0:
 			write_warning("", file, 0, "missing include statement for own header file")
 			return
-		elif lines[groups[0][0]] != "#include \"" + name + "\"":
-			write_warning(lines[groups[0][0]], file, groups[0][0], "missing include for own header file")
+		elif original_lines[groups[0][0]] != "#include \"" + name + "\"":
+			write_warning(original_lines[groups[0][0]], file, groups[0][0], "missing include for own header file")
 		if len(groups[0]) > 1:
-			write_warning(lines[groups[0][1]], file, groups[0][1], "missing empty line after including own header file")
+			write_warning(original_lines[groups[0][1]], file, groups[0][1],
+			              "missing empty line after including own header file")
 	for group in groups:
-		quote = lines[group[0]].endswith("\"") and lines[group[0]] != "#include \"opengl.h\""
+		quote = original_lines[group[0]].endswith("\"")
 		for index in group:
-			if (lines[index].endswith("\"") and lines[group[0]] != "#include \"opengl.h\"") != quote:
-				write_warning(lines[index], file, index, "missing empty line before changing include style")
+			if original_lines[index].endswith("\"") != quote:
+				write_warning(original_lines[index], file, index, "missing empty line before changing include style")
 				break
-		group_lines = [lines[index] for index in group]
+		group_lines = [original_lines[index] for index in group]
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
@@ -397,10 +485,7 @@ def check_include(lines, file):
 # line: the current line number
 # reason: the reason for the formatting error
 def write_error(text, file, line, reason):
-	print("Formatting error in file", file, "line", line.__str__() + ":", text.replace('\n', ""))
-	print("\tReason:", reason)
-	global errors
-	errors += 1
+	error = Error(text, file, line, reason)
 
 
 # Displays a warning message. Parameters:
@@ -409,9 +494,7 @@ def write_error(text, file, line, reason):
 # line: the current line number
 # reason: the reason for the warning
 def write_warning(text, file, line, reason):
-	print("Warning:", reason, "in", file, "line", line.__str__() + ":", text.replace('\n', ""))
-	global warnings
-	warnings += 1
+	warning = Warning(text, file, line, reason)
 
 
 if __name__ == '__main__':
