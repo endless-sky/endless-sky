@@ -9,7 +9,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-outfit "Korath Grab-Strike"
+outfit "Grab-Strike Turret"
 	category "Turrets"
 	cost 821000
 	thumbnail "outfit/grab-strike"
@@ -112,7 +112,7 @@ effect "shunt-strike sparkle"
 	"random angle" 10
 
 
-outfit "Korath Banisher"
+outfit "Banisher Grav-Turret"
 	category "Turrets"
 	cost 943000
 	thumbnail "outfit/banisher"
@@ -172,7 +172,7 @@ effect "banisher impact"
 	"velocity scale" 0.
 
 
-outfit "Korath Warder"
+outfit "Warder Anti-Missile"
 	category "Turrets"
 	cost 845000
 	thumbnail "outfit/warder"
@@ -202,7 +202,7 @@ effect "korath warder"
 	"velocity scale" 1
 
 
-outfit "Korath Fire-Lance"
+outfit "Fire-Lance"
 	category "Guns"
 	cost 697000
 	thumbnail "outfit/fire-lance"
@@ -313,7 +313,7 @@ effect "korath inferno hit"
 	"velocity scale" .005
 
 
-outfit "Korath Repeater"
+outfit "Thermal Repeater"
 	category "Guns"
 	cost 306000
 	thumbnail "outfit/repeater"
@@ -351,7 +351,7 @@ effect "repeater impact"
 	"random velocity" .6
 	"velocity scale" -.1
 
-outfit "Korath Repeater Turret"
+outfit "Thermal Repeater Turret"
 	category "Turrets"
 	cost 874000
 	thumbnail "outfit/repeater turret"
@@ -381,28 +381,28 @@ outfit "Korath Repeater Turret"
 		"shield damage" 26
 		"hull damage" 22
 		"heat damage" 33
-	description "Korath repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
+	description "Thermal Repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
 
 
-outfit "Korath Piercer"
+outfit "Piercer Missile"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
 	"piercer capacity" -1
-	description "This missile is fired from a Korath Piercer Launcher."
+	description "This missile is fired from a Piercer Missile Launcher."
 
-outfit "Korath Piercer Rack"
+outfit "Piercer Missile Rack"
 	category "Ammunition"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
 	"outfit space" -7
 	"piercer capacity" 16
-	ammo "Korath Piercer"
-	description "The Korath Piercer Rack is used to store extra ammunition for Korath Piercer Launchers."
+	ammo "Piercer Missile"
+	description "The Piercer Missile Rack is used to store extra ammunition for Piercer Missile Launchers."
 
-outfit "Korath Piercer Launcher"
+outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
@@ -417,7 +417,7 @@ outfit "Korath Piercer Launcher"
 			"frame rate" 5
 			"random start frame"
 		sound "piercer"
-		ammo "Korath Piercer"
+		ammo "Piercer Missile"
 		icon "icon/piercer"
 		"fire effect" "piercer fire"
 		"hit effect" "piercer impact"
@@ -504,7 +504,7 @@ outfit "Korath Detainer"
 		"hull damage" 240
 		"slowing damage" 40
 		"blast radius" 20
-	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
+	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes. Its reputation has earned it the honor of being named for the Korath themselves."
 
 effect "detainer sparks"
 	sprite "effect/detainer sparks"
@@ -536,25 +536,25 @@ effect "detainer smoke"
 	"velocity scale" -.01
 
 
-outfit "Korath Mine"
+outfit "Cluster Mine"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
 	"minelayer capacity" -1
-	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
+	description "This is ammunition for a Cluster Mine Layer. Each mine splits into eleven submunitions after it is deployed."
 
-outfit "Korath Mine Rack"
+outfit "Cluster Mine Rack"
 	category "Ammunition"
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
 	"outfit space" -9
 	"minelayer capacity" 9
-	ammo "Korath Mine"
-	description "The Korath Mine Rack is used to store extra ammunition for Korath Minelayers."
+	ammo "Cluster Mine"
+	description "The Cluster Mine Rack is used to store extra ammunition for Cluster Mine Layers."
 
-outfit "Korath Minelayer"
+outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
@@ -569,7 +569,7 @@ outfit "Korath Minelayer"
 			"frame rate" .6
 			"no repeat"
 		sound "minelayer"
-		ammo "Korath Mine"
+		ammo "Cluster Mine"
 		icon "icon/minelayer"
 		"fire effect" "minelayer fire"
 		"hit effect" "huge explosion"
@@ -634,7 +634,7 @@ effect "minelayer split"
 	"velocity scale" .8
 
 
-outfit "Korath Disruptor"
+outfit "Shield Disruptor Turret"
 	category "Turrets"
 	cost 983000
 	thumbnail "outfit/disruptor"
@@ -660,7 +660,7 @@ outfit "Korath Disruptor"
 		"shield damage" 3.8
 		"hull damage" .5
 		"disruption damage" .24
-	description "Korath Disruptors interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
+	description "Shield Disruptor Turrets interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
 
 effect "disruptor impact"
 	sprite "effect/static"
@@ -673,7 +673,7 @@ effect "disruptor impact"
 	"velocity scale" -.004
 
 
-outfit "Korath Slicer"
+outfit "Husk-Slice"
 	category "Guns"
 	cost 832000
 	thumbnail "outfit/slicer"
@@ -698,7 +698,7 @@ outfit "Korath Slicer"
 		"hull damage" 16.7
 	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
 
-outfit "Korath Slicer Turret"
+outfit "Husk-Slice Turret"
 	category "Turrets"
 	cost 1473000
 	thumbnail "outfit/slicer turret"

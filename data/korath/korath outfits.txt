@@ -787,14 +787,14 @@ outfit "Nelmeb GP Hybrid Steering"
 	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and the forces that bind quarks and gluons together. Prompted by the grim will to trudge onwards and innovate despite being forced to abandon jump drive technology, Efreti engineers have recently begun to utilize their theoretical knowledge of this unity to incorporate gravitational propulsion into their more traditional fusion-based plasma engines. However, as Efreti efforts in this field are comparatively recent, this technological synthesis lags behind Quarg technology."
 	description "	More stable than one would expect from Korath engines this large, these steering thrusters were developed by the Efreti as a means of guiding their most massive ships. Their high energy usage is tempered by the fact that they are usually powered by the most massive Korath fusion reactors."
 
-outfit "Korath Repeater Rifle"
+outfit "Thermal Repeater Rifle"
 	category "Hand to Hand"
 	cost 53000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
 	"unplunderable" 1
-	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+	description "This rifle is commonplace among the Korath, predating the creation of the ship-scale thermal repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
 
 outfit "Microbot Defense Station"
 	category "Hand to Hand"
