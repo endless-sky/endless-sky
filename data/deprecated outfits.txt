@@ -6,7 +6,7 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 # Note: this file contains outfits that are no longer used in the game, but that
 # must be maintained in case anyone installed one of them while they were available.
