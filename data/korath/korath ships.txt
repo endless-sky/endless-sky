@@ -769,13 +769,13 @@ ship "Kasichara A'awoj"
 		shields 44000
 		hull 49600
 		"required crew" 543
-		"bunks" 1867
+		"bunks" 1997
 		"mass" 2105
 		"drag" 24
 		"heat dissipation" .43
 		"solar collection" 12.7
 		"fuel capacity" 600
-		"cargo space" 1052
+		"cargo space" 532
 		"outfit space" 1038
 		"weapon capacity" 331
 		"engine capacity" 251
