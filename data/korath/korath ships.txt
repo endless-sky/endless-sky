@@ -1075,7 +1075,7 @@ ship "Echo-Galleon"
 		"Systems Core (Large)"
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 150
+		"Thermal Repeater Rifle" 246
 		
 		"Nelmeb GP Hybrid Thruster"
 		"Nelmeb GP Hybrid Steering"
@@ -1140,6 +1140,7 @@ ship "Arch-Carrack"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
+		"Thermal Repeater Rifle" 90
 		
 		"Nelmeb GP Hybrid Thruster"
 		"Gaktem GP Hybrid Steering"
@@ -1201,6 +1202,7 @@ ship "Charm-Shallop"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
+		"Thermal Repeater Rifle" 104
 		
 		"Nelmeb GP Hybrid Thruster"
 		"Gaktem GP Hybrid Steering"
