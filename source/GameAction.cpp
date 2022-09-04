@@ -365,9 +365,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
-	player.CheckReputationConditions();
 }
 
 
