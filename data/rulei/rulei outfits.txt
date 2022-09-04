@@ -1,0 +1,44 @@
+# Copyright (c) 2022 by Saugia
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Fate Sealer"
+	category Turrets
+	cost 77777777
+	mass 131
+	"outfit space" -131
+	"turret mounts" -1
+	"weapon capacity" -131
+	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
+		sound gridfire
+		"fire effect" "fate sealer fire"
+		"hit effect" "gridfire hit" 2
+		"hit effect" "gridfire cloud"
+		lifetime 1
+		reload 100
+		"burst reload" 2
+		velocity 1440
+		"turret turn" 20
+		"firing energy" 800
+		"firing force" 150
+		"firing heat" 400
+		"blast radius" 40
+		"hit force" -40
+		"shield damage" 600
+		"hull damage" 600
+		piercing 0.3
+		cluster
+
+effect "fate sealer fire"
+	sprite effect/blink/blink
+		"frame rate" 18
+		"no repeat"
+	lifetime 30
+	"random angle" 360
+

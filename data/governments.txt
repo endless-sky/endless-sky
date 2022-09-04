@@ -792,6 +792,12 @@ government "Uninhabited"
 	"bribe" 0
 	"fine" 0
 
+government "vyu'Rulei"
+	swizzle 0
+	color 1 1 1
+	"attitude toward"
+		"Indigenous Lifeform" 1
+
 government "Ember Waste"
 	"display name" "???"
 	"player reputation" 1

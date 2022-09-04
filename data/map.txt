@@ -31251,7 +31251,7 @@ planet Zug
 		threshold 3000
 		fleet "Large Militia" 18
 
-#gegnocontentunorganized
+#gegnocontentunorganized---------------------------------------------------------
 
 system 17b
 	pos 481.2 -25.7

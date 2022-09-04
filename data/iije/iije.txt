@@ -1,0 +1,121 @@
+# Copyright (c) 2022 by Saugia
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Creatures:
+
+ship "Jje"
+	noun "creature"
+	"sprite" ship/jje/jje
+		"frame rate" 4
+	"thumbnail"
+	"never disabled"
+	attributes
+		category "Light Freighter"
+		"cost" 0
+		"hull" 4000
+		"required crew" 2
+		"bunks" 2
+		"mass" 100
+		"drag" 10
+		"thrust" 4
+		"turn" 60
+		"heat dissipation" 20
+		"energy capacity" 400
+		"energy generation" 4
+		"engine capacity" 200
+		"fuel capacity" 1
+		"cargo space" 10
+		"outfit space" 10
+		"weapon capacity" 10
+		"engine capacity" 10
+		"inscrutable" 1
+		"gaslining" 1
+		"hull repair rate" 1
+		"hull protection" 2
+		"ion protection" 2
+		"ion resistance" 2
+		"slowing protection" 2
+		"burn protection" 2
+		"energy protection" 2
+		"discharge protection" 2
+
+		weapon
+			"blast radius" 100
+			"shield damage" 20
+			"hull damage" 10
+			"hit force" 30
+	outfits
+
+	engine 0 0
+	"steering engine" 0 0
+	leak blood 10 5
+	explode blood
+	"final explode" blood
+	description "Iije adolescent."
+
+ship "Ayym"
+	noun "creature"
+	"sprite" ship/ayym/ayym
+		"frame rate" 4
+	"thumbnail"
+	"never disabled"
+	attributes
+		category "Heavy Freighter"
+		"cost" 0
+		"hull" 6000
+		"required crew" 4
+		"bunks" 4
+		"mass" 200
+		"drag" 20
+		"thrust" 4
+		"turn" 60
+		"heat dissipation" 20
+		"energy capacity" 400
+		"energy generation" 4
+		"engine capacity" 200
+		"fuel capacity" 1
+		"cargo space" 10
+		"outfit space" 10
+		"weapon capacity" 10
+		"engine capacity" 10
+		"inscrutable" 1
+		"gaslining" 1
+		"hull repair rate" 2
+		"hull protection" 3
+		"ion protection" 3
+		"ion resistance" 3
+		"slowing protection" 3
+		"burn protection" 3
+		"energy protection" 3
+		"discharge protection" 3
+		weapon
+			"blast radius" 100
+			"shield damage" 20
+			"hull damage" 10
+			"hit force" 30
+	outfits
+
+	engine 0 0
+	"steering engine" 0 0
+	leak blood 10 5
+	explode blood
+	"final explode" blood
+	description "Iije Adult."
+
+
+fleet "Iije"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid mute swarming unconstrained
+	variant 40
+		"Jje"
+	variant 
+		"Ayym"
+	
