@@ -647,8 +647,8 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	outfits
-		"Husk-Slike" 3
-		"Husk-Slike Turret" 3
+		"Husk-Slice" 3
+		"Husk-Slice Turret" 3
 		"Shield Disruptor Turret" 3
 		"Cluster Mine Layer" 2
 		"Cluster Mine" 34
@@ -672,19 +672,19 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		
-	gun "Husk-Slike"
-	gun "Husk-Slike"
-	gun "Husk-Slike"
+	gun "Husk-Slice"
+	gun "Husk-Slice"
+	gun "Husk-Slice"
 	gun "Cluster Mine Layer"
 	gun "Cluster Mine Layer"
-	turret "Husk-Slike Turret"
+	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"
-	turret "Husk-Slike Turret"
+	turret "Husk-Slice Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
 	turret "Shield Disruptor Turret"
 	turret "Warder Anti-Missile"
-	turret "Husk-Slike Turret"
+	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"
 	turret "Warder Anti-Missile"
 
@@ -912,7 +912,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 		"Thermal Repeater" 2
 		"Thermal Repeater Turret" 2
 		"Shield Disruptor Turret"
-		"Husk-Slike Turret"
+		"Husk-Slice Turret"
 		"Warder Anti-Missile" 3
 
 		"Triple Plasma Core"
@@ -935,7 +935,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	gun "Thermal Repeater"
 	gun "Korath Detainer"
 	gun "Thermal Repeater"
-	turret "Husk-Slike Turret"
+	turret "Husk-Slice Turret"
 	turret "Shield Disruptor Turret"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
