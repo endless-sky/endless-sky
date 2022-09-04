@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 
-#include "Files.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cctype>
@@ -121,7 +121,7 @@ double DataNode::Value(const string &token)
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
 	if(!IsNumber(token))
 	{
-		Files::LogError("Cannot convert value \"" + token + "\" to a number.");
+		Logger::LogError("Cannot convert value \"" + token + "\" to a number.");
 		return 0.;
 	}
 	const char *it = token.c_str();
@@ -246,7 +246,7 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
-		Files::LogError(message);
+		Logger::LogError(message);
 
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
@@ -271,11 +271,11 @@ int DataNode::PrintTrace(const string &message) const
 		if(hasSpace)
 			line += hasQuote ? '`' : '"';
 	}
-	Files::LogError(line);
+	Logger::LogError(line);
 
 	// Put an empty line in the log between each error message.
 	if(!message.empty())
-		Files::LogError("");
+		Logger::LogError("");
 
 	// Tell the caller what indentation level we're at now.
 	return indent;

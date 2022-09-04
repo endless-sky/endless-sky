@@ -818,7 +818,7 @@ ship "Deep River Transport"
 	sprite "ship/deep river"
 	thumbnail "thumbnail/deep river"
 	attributes
-		category "Heavy Freighter"
+		category "Space Liner"
 		licenses
 			Wanderer
 		"cost" 18300000
@@ -870,7 +870,7 @@ ship "Riptide"
 	sprite "ship/riptide"
 	thumbnail "thumbnail/riptide"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		licenses
 			Wanderer
 		"cost" 21120000
