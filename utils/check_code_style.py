@@ -76,7 +76,11 @@ word_include = {
 	# Matches any single '+', '/', '%', '=' operator that has no trailing whitespace.
 	"^([^+/%=]?(?<!operator))[+/%=][^+/%=,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
-	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator"
+	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator",
+	# Matches any 'dynamic_cast' or 'const_cast' statements
+	"^(dynamic|const)_cast<": "C-style typecasts are not to be used",
+	# Matches any '(void)' arguments in methods
+	"\\(void\\)": "do not use void to denote a function with no arguments"
 }
 
 # Patterns for excluding matches (test()#match) of 'include'
@@ -244,7 +248,8 @@ def sanitize(lines, file, skip_checks=False):
 				segments.append(line[start_index:i].rstrip())
 				is_multiline_comment = True
 				if not skip_checks:
-					if header_found:
+					if header_found and not (
+							line[i + 1:].count("*/") >= 1 and (line.endswith(")") or line.endswith("{"))):
 						write_error(line.lstrip(), file, line_count,
 						            "multiline comments should only be used for the copyright header")
 					# Checking for space after comment
@@ -412,6 +417,7 @@ def check_copyright(lines, file):
 				error_line = index
 				break
 		index += 1
+	not_found_error_line = index
 	if error_line == -1:
 		index_begin = index
 		while index_begin < len(lines) - len(copyright_end):
@@ -434,7 +440,8 @@ def check_copyright(lines, file):
 	if error_line != -1:
 		write_error(lines[error_line], file, error_line + 1, "invalid or missing copyright header")
 	elif not complete:
-		write_error(lines[len(lines) - 1], file, len(lines) - 1, "incomplete copyright header")
+		write_error(lines[not_found_error_line], file, not_found_error_line + 1,
+		            "invalid or incomplete copyright header")
 
 
 # Checks the import statements at the beginning of the file. Parameters:
@@ -485,7 +492,7 @@ def check_include(sanitized_lines, original_lines, file):
 				group_lines[i] = line
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
-				write_warning(group_lines[i], file, group[i], "includes are not in alphabetical order")
+				write_warning(group_lines[i], file, group[i] + 1, "includes are not in alphabetical order")
 
 
 # Displays an error message. Parameters:
@@ -494,7 +501,7 @@ def check_include(sanitized_lines, original_lines, file):
 # line: the current line number
 # reason: the reason for the formatting error
 def write_error(text, file, line, reason):
-	error = Error(text, file, line, reason)
+	Error(text, file, line, reason)
 
 
 # Displays a warning message. Parameters:
@@ -503,7 +510,7 @@ def write_error(text, file, line, reason):
 # line: the current line number
 # reason: the reason for the warning
 def write_warning(text, file, line, reason):
-	warning = Warning(text, file, line, reason)
+	Warning(text, file, line, reason)
 
 
 if __name__ == '__main__':
