@@ -31559,6 +31559,15 @@ planet "Chosen Nexus"
 	outfitter "Coalition Advanced"
 	security 0.6
 
+planet Cipi
+	landscape land/mountain5
+	description "Cipi's forestries and mountains are a suitable place for the Gegno Scin's less active population, home to more quiet industries. The population of this planet is limited, and architecture is built on the alpines to avoid hurting the natural landscapes of the planet. This provides the Scin with healthy crop and hunting seasons to supply their main population without the interference of polluting industry."
+	spaceport "Rather than inside the mountain, the spaceport is built at the very edge, supported underneath by several pylons in a half-oval formation. The valley down below, between you and the mountain range just a bit further away, seems almost cramped between the formations. Occasionally, a few Halite fighters buzz by at low altitudes and then sharply turn off into the distance, though you expect them to be louder than they really are."
+	government "Gegno Scin"
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Clark
 	attributes "dirt belt" factory forest
 	landscape land/valley3
@@ -31657,6 +31666,11 @@ planet Crossroads
 	tribute 1100
 		threshold 3500
 		fleet "Small Syndicate" 11
+
+planet Cyife
+	landscape land/snow13
+	description "This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no readings of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before."
+	government Uninhabited
 
 planet Dancer
 	attributes research south
@@ -31836,6 +31850,29 @@ planet Dune
 		threshold 3000
 		fleet "Small Militia" 23
 
+planet "Dueitch Ae"
+	landscape land/mountain1
+	description "In order to pursue biological and other important scientific research, this green, lush world was designated as the Gegno Scin's capital. Much unlike the heavy industry of the core Gegno worlds, Dueitch Ae's surface still supports many natural ecosystems, and most importantly, is home to a notable amount of water bodies. The Scin effectively limit their expansion on the planet, even at the cost of their population's growth, in order to preserve the flourshing life on it as long as possible."
+	description "Although preservation is a primary goal, the Scin still manipulate the planet for the sake of research. Even if it's not harming the environment directly, patches of the planet have been converted into large experimentation grounds, some a bit less humane than others."
+	spaceport "The spaceport you are staying at is one huge circular construction hundreds of yards in diameter outfitted with strange looking devices and technology, very much in contrast to the surrounding natural environment. In an open section located at the center is a small forest being observed by the nearby Scin. Some of them, however, seem to be more interested in observing you."
+	government "Gegno Scin"
+	shipyard "Gegno Scin Ships"
+	outfitter "Gegno Scin Outfits"
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Dueyu Eitch"
+	landscape land/desert4
+	description "The historic homeworld of all Gegno, Dueyu Eitch is a rugged, rocky world covered with enormous metropolises and structures. Each city is based on an elevated structure, and starting from the bottom up the buildings are more advanced the farther they reach into the sky. Larger cities are lit by the varying reds and oranges of industrial forgery, and more urban areas are speckled with yellow and green. Beneath the heavily populated surface are traces of enormous cavities, suggesting the Gegno began a majority of their ancestry in the ground."
+	description "Three distinct subspecies can be seen walking about the architecture: one that is very bulky and scaly in appearance, another slimmer and more bone-like, and the third a combination of the first two; all stand at heights varying between a human being and a Quarg."
+	spaceport x
+	government Gegno
+	shipyard "Gegno Ships"
+	outfitter "Gegno Outfits"
+	"required reputation" 1
+	security 0
+
 planet "Dusk Companion"
 	attributes kimek oil
 	landscape land/mountain9
@@ -31900,6 +31937,16 @@ planet Eldergrasp
 	bribe 0.1
 	security 0.8
 
+planet "Ef Osch"
+	landscape land/beach11-harro
+	description "Ef Osch is the first world found by the Gegno to have a substantial part of the surface covered in water. Pristine beaches surround tropical land masses, and many strange creatures occupy the depths. Despite being appropriated by the Gegno Scin, there is a relatively low amount of construction work done on the mainland. Most industrial work takes place on large, vessel-like complexes that travel the oceans."
+	spaceport "Each island vessel also serves as a makeshift yet functioning spaceport with all of the basic facilities. From as far as you can see, there are two lines of vessels in your area, and although they are miles apart, they form a runway-like pattern."
+	spaceport "The island ports also are built in a variety of sizes. The Scin fly their ships down the pattern as if it's a highway, staying neatly in the center until they find a port that accommodates the ship they are piloting."
+	government "Gegno Scin"
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet "Elek Kartanu"
 	attributes korath
 	landscape land/lava2
@@ -31929,6 +31976,27 @@ planet Eminonu
 	landscape land/snow12
 	description `Eminonu's notably green rocks show a remarkably high copper content and the historic presence of atmospheric water. Scattered vegetative debris suggests that this world was, until recently, some variety of garden planet, albeit likely a cold one. Today the vast majority of moisture is locked up in ice fields, and the ambient temperatures are far too cold for even hardy lichens to survive.`
 	government Uninhabited
+	security 0
+
+planet Enbi
+	landscape land/fog0
+	description "A cold, mountainous world on the very edge of the binary system's habitable area, Enbi maintains the massive shipyards of the Gegno Vi, using raw resources gathered from the nearby volcanic planet to churn out hull after hull for warships. Many large canyons decorate the surface and are used as weapon test sites, and in one of the largest canyons lies a shipyard several times larger and older-looking than the rest."
+	description "On closer inspection, the method that created the canyons does not seem entirely natural, and there are slight glints of light shimmering down in the deepest regions. How these crevices appeared is a mystery, but it is clear that the Vi had no hand in creating them."
+	spaceport "Rows of alternating towers stretch far ahead and behind the one your spacecraft is stationed at, and a thick layer of fog acts as a sort of floor connecting them. Every now and then, the fog breaks, revealing the large shipyards down below either side of you, followed by a new row of towers."
+	spaceport "Off in the distance of the breaking fog is one vast gray structure, almost taking up your field of view. The closer you look at the mass, the more buildings there seem to be, and it's unlikely you could get anywhere near there without becoming a threat."
+	spaceport "If you stare too long, the nearby guards gesture more aggressively towards you, suggesting you keep your attention to yourself."
+	government "Gegno Vi"
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Enn Bue"
+	landscape land/canyon01
+	description "Lengthy oval-like shipyards speckle the surface of this otherwise inhospitable desert planet, home to most of the Gegno Scin's ship production. A majority of wealthy materials come from the neighboring gas giant's moons; however, the strong gravitational pull occasionally generates natural disasters that ravage the surface. Despite all of this, the Scin remain vigilant and efficient in their craftworks."
+	spaceport "Enveloped in a large black dome cap, this spaceport is a lot quieter inside than the loud winds and storms often found outside. It has definitely seen a severe duststorm or two, but still holds tight together. The Gegno Scin here give you lengthy stares, and oddly enough you notice that they take turns to observe you. One will look up then look back down to themselves, which is soon followed by another's attention."
+	government "Gegno Scin"
+	"required reputation" 1
+	bribe 0
 	security 0
 
 planet "Esayaku Fen"
@@ -31965,6 +32033,16 @@ planet Esquiline
 	landscape land/nasa13
 	description `Esquiline's wispy skies billow with raging winds and continuous storms. The Remnant have discovered that its upper atmosphere contains a useful source of certain chemicals. Although few spacecraft can penetrate its depths, specially-designed aero scoop drones can be seen regularly dipping into the atmosphere for shipments to Aventine.`
 	government Uninhabited
+	security 0
+
+planet Essime
+	landscape land/mountain4
+	description "Starting from an early age, most Vi devote their lives to their endless trials of survival, finding themselves either on the frontlines of conflict or in the backlines of industry. As they grow old, they retire and spend the rest of their lives on green planets such as this one, where they hunt animals for food and till acres of land. "
+	spaceport "The spaceport here is a very large circular shape with tall pylons reaching up into a dome roofing. The empty space between each pylon is occasionally interrupted by a freighter or two, and in the center of it is a main center shaft where most pilots are gathered. Surrounding the pilots are what appear to be older members of the Vi deep in conversation."
+	spaceport "Several Vi are chuckling deeply, likely telling stories of hunts they've had on the planet. Strangely, they pay you no attention; not even of distrust, and carry on about their day as if you aren't even present."
+	government "Gegno Vi"
+	"required reputation" 1
+	bribe 0
 	security 0
 
 planet Everhope
@@ -32301,6 +32379,16 @@ planet Geyser
 		threshold 3500
 		fleet "Large Militia" 20
 
+planet "Giaru Gegno"
+	attributes "gegno quarg" quarg station
+	landscape land/station2
+	description "The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space."
+	description "Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present."
+	spaceport "There has to be at least billions of Quarg on this ring. They shift past you at a normal walking pace for a Quarg, and don't give you much attention except from the occasional uninterested glance or two. There seems to be little conversation, and the silence is slightly unnerving to you as the only non-Quarg in sight. It seems areas containing the aliens from nearby are off-limits to you."
+	government Quarg
+	bribe 0
+	security 1
+
 planet Giverstone
 	attributes hai mining
 	landscape land/mountain19-harro
@@ -32359,6 +32447,18 @@ planet Goldcrawl
 	government Hai
 	bribe 0.1
 	security 0.8
+
+planet Graede
+	landscape land/forest2
+	description "Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Acres of forestry are spread across relatively low mountain ranges, and a variety of small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky. "
+	spaceport "The structure you're parked at seems to be just a section of a much larger rectilinear building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch for miles, occasionally interrupted with another tall-reaching spaceport or factory."
+	spaceport "You often find yourself lost in the beauty of a world still untouched by the rest of its industry, occasionally distracting you from the many distasteful looks given to you from the Vi here. It's clear that they do not have the same attitude towards you as you have towards their planet, and would likely blast your brains out if they cared enough to do so."
+	government "Gegno Vi"
+	shipyard "Gegno Vi Ships"
+	outfitter "Gegno Vi Outfits"
+	"required reputation" 1
+	bribe 0
+	security 0
 
 planet Grakhord
 	attributes "human quarg" moon quarg
@@ -32448,6 +32548,15 @@ planet "Guardian Array Sapphire"
 	spaceport `	On certain days every month, Heliarch ships "damaged" during combat exercises dock to stress test the station's turnover capabilities, breathing new life into the station's population, and causing extreme overcrowding of the facilities...`
 	"required reputation" 25
 	security 0.6
+
+planet "Gue Faur"
+	landscape land/forest3
+	description "Like most Gegno Scin planets, Gue Faur is a steep jungle planet full of all sorts of life. Surprisingly, a majority of the Scin's population resides on this planet rather than their capital. A great percentage of inhabitants consists of researchers and scientists, and all sorts of greenhouses and biodomes are visible everywhere."
+	spaceport "The spaceport seems very busy with all sorts of Gegno Scin walking around in a hurried fashion. Some of them are wearing long, sleek jackets while others wear more feather-like plating. Once in a while, a female Scin will stop nearby to observe and record you, and then carry on as if nothing happened."
+	government "Gegno Scin"
+	"required reputation" 1
+	bribe 0
+	security 0
 
 planet Hai-home
 	attributes hai urban
@@ -32935,6 +33044,11 @@ planet Longjump
 	tribute 600
 		threshold 3000
 		fleet "Large Militia" 9
+
+planet "Long Gone"
+	landscape land/snow10
+	description "Although frozen worlds such as this one are barely able to sustain life, there are signs across the surface seem to suggest some sort of civilization was here once long ago. Once in a few hundred miles there are strange glass-like obelisks sticking out of the ground, but they seem as though they now have no purpose. Very few bird-like species circle these protrusions, but other than that, whatever life this planet once sustained is now long gone."
+	government Uninhabited
 
 planet Luna
 	attributes factory moon "near earth" tourism
@@ -33596,6 +33710,15 @@ planet Osaeli
 	landscape land/fields15
 	description `An Earth-like planet with a large biodiversity, at first look Osaeli appears to be an idyllic world where no lifeform ever became the predominant one; but looking more closely, the signs of an ancient devastation can still be seen. In the middle of the forests, huge amounts of debris are scattered in large areas; scans reveal many underground bunkers, partly destroyed and filled with water.`
 
+planet "Oup Je"
+	landscape land/canyon4
+	description "The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, both to natural and unnatural causes."
+	spaceport "The Scin here have different gear than those leaving and entering the spaceport, suggesting they have a particular place on the surface to be, most likely in the mines. They seem quite interested in you compared to other Gegno being that a majority of their days involve seeing mostly materials and machinery."
+	government "Gegno Scin"
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
@@ -34214,6 +34337,22 @@ planet Shroud
 		threshold 7000
 		fleet "Large Republic" 14
 
+planet Siedi
+	landscape land/forest5
+	description "The gravitational pull of the nearby gas giant resulted in the large, bulky, mountainous surface of this planet. Tectonic shifts are very common, and the surface is marked with the wear and tear of massive tremors. Beneath the cracks, however, lies a rich source of materials that the Vi quickly capitalized on for their nearby worlds."
+	spaceport "The spaceport is haphazardly build inside the side of a smaller mountain, and every now and then you can feel a very faint rumbling from below. You're not sure if it is beneath you or somewhere off in the distance. The area around the spaceport continues to be under construction, but it is more likely because the Vi are mining for materials here rather than making improvements to the structure itself."
+	government "Gegno Vi"
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Sies Upi"
+	landscape land/hills1
+	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions."
+	description "Being the farthest away from the rest of Gegno territory, this planet is also the first line of defense between the Gegno and the Quarg. Although there are no active hostilities between the two, the Vi remain alert and ready at all times."
+	spaceport "This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-personnel civilians here, and it feels somewhat claustrophobic with all of the guards standing around."
+	government "Gegno Vi"
+
 planet "Silo of Ablodab"
 	attributes arach "coalition station" factory mining
 	landscape land/station9
@@ -34501,6 +34640,16 @@ planet "Tefkar Ret"
 	landscape land/station12
 	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
+planet Ternituul
+	landscape land/fog1
+	description "Ternituul is a dull world covered in a thick layer of fog hiding a dry desolate surface: an ideal world for the hardened Gegno Vi. A large portion of the Vi's military branch is based here, where new recruits are thrown into the first bottleneck of their lives. It is not uncommon for inhabitants to be lost to the bleak ecosystem of this planet."
+	description "The fog also hides a more grim aspect of this world - numerous graveyards cover the terrain, serving as a final resting place for most Vi. Large ceremonies are constantly held for the fallen, though instead of grievance, the Vi celebrate the commitment and dignity of their fellow brethren."
+	spaceport "Here, the spaceport is built very close to and partly in the ground, making it slightly dangerous for any craft trying to land here. Undeterred by the gloomy appearance of this graveyard world, the nearby Vi are occasionally chanting or lighting fires for the deceased, even while exiting their ships."
+	government "Gegno Vi"
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet "Third Umber"
 	attributes factory kimek research
 	landscape land/desert12
@@ -34646,6 +34795,16 @@ planet Trove
 		threshold 2500
 		fleet "Small Syndicate" 5
 
+planet Tschyss
+	landscape land/sivael6
+	description "This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all larger than any normal bunker in human space, and the outside is enveloped in many docking bays of numerous sizes."
+	description "Despite the scale and number of onboard facilities, there is only a small percentage of Gegno making use of them."
+	spaceport "Gegno of all kinds are walking to and fro, though they seem very tired and overworked. Not a lot of them seem happy with their current working conditions, but all you can do is watch from a distance in a small half-built area nearby your ship's designated lock."
+	government Gegno
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Tundra
 	attributes "dirt belt" oil textiles
 	landscape land/dmottl1
@@ -34726,6 +34885,11 @@ planet "Valley of the Damned"
 	landscape land/fog4
 	description `From afar, this looks like a habitable planet, comfortably located on the near end of the goldilocks zone of its star. It has a high concentration of water vapor in its atmosphere and hosts primitive life, with mosses covering nearly all moist surfaces and exotic crustacean-like animals roaming the land, their carapaces made of what would be considered synthetic plastic elsewhere.`
 	description `However, there is an unusually high concentration of toxic chlorine in the lower atmosphere. Without special equipment, one can only stay on the mountains to avoid the dense gas, and even then, only for a few hours before problems arise. Most traces of attempted colonization by the Sheragi have eroded away by now, leaving only broken buildings and decaying bones.`
+
+planet "Var Oti"
+	landscape land/desert0
+	description `Vort (to be expanded).`
+	government Uninhabited
 
 planet "Var' Kar'i'i"
 	attributes farming urban wanderer
@@ -34891,6 +35055,10 @@ planet "Vibrant Water"
 	"required reputation" 15
 	security 0.2
 
+planet Vigales
+	landscape land/desert5
+	description `This hot desert world is home to several species of large underground animals, which most often resemble reptilian and amphibious-like creatures such as salamanders or lizards. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
+
 planet Viminal
 	attributes remnant
 	landscape land/snow3
@@ -35021,6 +35189,10 @@ planet "Wormhole Barren Beta"
 	description ``
 
 planet "Wormhole Link"
+	attributes "requires: quantum keystone"
+	description ``
+
+planet "Ember Gegno"
 	attributes "requires: quantum keystone"
 	description ``
 
