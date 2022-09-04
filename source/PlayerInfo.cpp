@@ -546,14 +546,20 @@ void PlayerInfo::IncrementDate()
 		}
 	}
 
-	// Check if any missions have failed because of deadlines.
+	// Check if any missions have failed because of deadlines and
+	// do any daily mission actions for those that have not failed.
 	for(Mission &mission : missions)
+	{
 		if(mission.CheckDeadline(date) && mission.IsVisible())
-			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\"."
-				, Messages::Importance::Highest);
+			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+				Messages::Importance::Highest);
+		if(!mission.IsFailed())
+			mission.Do(Mission::DAILY, *this);
+	}
 
 	// Check what salaries and tribute the player receives.
-	auto GetIncome = [&](string prefix) {
+	auto GetIncome = [&](string prefix)
+	{
 		int64_t total = 0;
 		auto it = conditions.lower_bound(prefix);
 		for( ; it != conditions.end() && !it->first.compare(0, prefix.length(), prefix); ++it)
