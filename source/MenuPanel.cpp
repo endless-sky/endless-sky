@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Information.h"
 #include "LoadPanel.h"
+#include "Logger.h"
 #include "MainPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -60,7 +61,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 	else if(showCreditsWarning)
 	{
-		Files::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		Logger::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
 		showCreditsWarning = false;
 	}
 

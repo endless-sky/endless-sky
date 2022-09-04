@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "File.h"
 #include "Files.h"
+#include "Logger.h"
 
 #include <png.h>
 #include <jpeglib.h>
@@ -241,10 +242,12 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} catch (const bad_alloc &) {
+		}
+		catch (const bad_alloc &)
+		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -253,9 +256,9 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 
@@ -271,6 +274,8 @@ namespace {
 			png_set_expand_gray_1_2_4_to_8(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
+		if(colorType == PNG_COLOR_TYPE_RGB)
+			png_set_filler(png, 0xFFFF, PNG_FILLER_AFTER);
 		// Let libpng handle any interlaced image decoding.
 		png_set_interlace_handling(png);
 		png_read_update_info(png, info);
@@ -317,10 +322,12 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} catch (const bad_alloc &) {
+		}
+		catch (const bad_alloc &)
+		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -329,9 +336,9 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 

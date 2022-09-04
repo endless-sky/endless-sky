@@ -178,7 +178,7 @@ mission "Deep: Tarazed Convoy"
 		fleet "Large Northern Pirates"
 	
 	on stopover
-		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
+		dialog `You and the freighters are directed to park in a private hangar owned by the Tarazed Corporation. While watching the cargo crates get loaded on  to the freighters, you notice that the crates have labels on them which read "To be opened by addressee only" in large red letters.`
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or you left part of the convoy behind.`
 	on complete
@@ -1042,7 +1042,7 @@ mission "Deep: Project Hawking"
 					decline
 			
 			label know
-			`	You recognize them as Garrison, Hannah, Pierre, and Laura, the scientists who asked you to find There Might Be Riots. "<first> <last>, is that you? What a great time to run in to you!" Garrison exclaims. "We're looking for a captain who can give us a ride to a few planets in the Paradise sector while we pick up supplies for our research. We'd normally use an official transport from the Deep, but they're having some trouble sparing one at the moment. Instead, we received permission to hire a trustworthy merchant captain to act as our transport. Would you be able to help?"`
+			`	You recognize them as Garrison, Hannah, Pierre, and Laura, the scientists who asked you to find There Might Be Riots. "<first> <last>, is that you? What a great time to run into you!" Garrison exclaims. "We're looking for a captain who can give us a ride to a few planets in the Paradise sector while we pick up supplies for our research. We'd normally use an official transport from the Deep, but they're having some trouble sparing one at the moment. Instead, we received permission to hire a trustworthy merchant captain to act as our transport. Would you be able to help?"`
 			choice
 				`	"I'd be glad to help. Where do you need to go?"`
 				`	"Sorry, I'm too busy at the moment. You'll need to find a different captain."`
@@ -1051,7 +1051,7 @@ mission "Deep: Project Hawking"
 			label accept
 			`	"Thank you, Captain. The planets that we need to go to are..." Garrison turns to the other three scientists. "<stopovers>," Hannah says.`
 			`	"... Thanks. After we've gathered all the supplies, we'll need to be dropped off on <destination>."`
-			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "...<last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
+			`	You bring the scientists to your ship where they quickly make themselves comfy in the bunk rooms. As you walk to the bridge, you overhear Pierre quietly communicating with what you assume to be the spaceport authorities, "... <last> agreed. I expect Project Hawking to proceed on schedule. We will arrive before <day>." As you prepare for launch, you wonder what you've just signed up for.`
 				accept
 	
 	on accept
@@ -1133,7 +1133,7 @@ mission "Deep: Project Hawking: Carbuncle"
 			`	You open your docking doors, only to find the bulkhead doors to the rest of the station blocked by three well-armed security officers. You follow the scientists' lead and approach the guards. They spend several minutes conversing, but eventually a guard activates a toggle on his communicator. A video screen next to the bulkhead blinks on, revealing a woman in a uniform distinctly more embellished than those of the guards before you.`
 			`	"What brings you here to Carbuncle Station?"`
 			`	Pierre responds with only two words, "Project Hawking," and the screen momentarily goes blank. When it flickers on again, she is equally succinct and says only, "Admit three."`
-			`	After a short discussion, Garrison agrees to stay behind with you. Pierre, Hannah, and Laura are lead through an awkwardly small opening in the bulkhead door, into the restricted area. Rather than wait in front of the guards, you return to the comfort of your ship with Garrison.`
+			`	After a short discussion, Garrison agrees to stay behind with you. Pierre, Hannah, and Laura are led through an awkwardly small opening in the bulkhead door, into the restricted area. Rather than wait in front of the guards, you return to the comfort of your ship with Garrison.`
 			choice
 				`	"How should we pass the time while we wait?"`
 				`	"How long will it be before they come back?"`
@@ -1289,7 +1289,7 @@ mission "Deep: Remnant 0"
 		conversation
 			`While wandering through the spaceport, you are approached by a man you instantly recognize as Ivan, the scientist whose drone you recovered data from in Terminus, thanks to his comically thick glasses. He mentions that he heard how helpful you have been to others within the Deep.`
 			`	"I was hoping you would continue assisting us in our research on the spatial anomaly in Terminus. Thanks to the data you retrieved, we have deduced that the anomaly is in fact some sort of wormhole, but it is far too unstable to support sending anything through it.`
-			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so called 'quantum keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
+			`	Ivan looks around then leans in to whisper to you. "I must ask you, do you know of the Hai?" You nod. "Splendid!" He jumps up, nearly knocking his own glasses off his face. "Then you will be able to help. One of the scientists on my team grew up in their territory, and suggested that the so-called 'quantum keystones' which they sell might have something to do with the wormhole. He recalls hearing some Hai folktales of these stones making travel between the stars easier, and since the Hai once lived close to where the wormhole is, there may be a relation. Given that it would be immensely difficult to stabilize the wormhole with our current knowledge, it may be that these stones will make access into the wormhole easier. Would you kindly retrieve ten of them for us, so that we may be able to discover if these legends are true?"`
 			branch remnant
 				has "First Contact: Remnant: offered"
 			choice
@@ -1652,7 +1652,7 @@ mission "Deep: Remnant Research"
 	on offer
 		payment 250000
 		conversation
-			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, but given their sensitive nature the Deep is taking its time deciding whether to fund further research. In the mean time, I've transferred <payment> of my own funds to your account. I have no doubt the Deep will approve further funding for our project in the future, so I've simply written this off as a business expense. I'll contact you once we continue our research beyond the wormhole. Thanks again!"`
+			`You receive a message from Ivan after you land. "Thanks for all your help recently. We brought our findings to the Deep government, but given their sensitive nature the Deep is taking its time deciding whether to fund further research. In the meantime, I've transferred <payment> of my own funds to your account. I have no doubt the Deep will approve further funding for our project in the future, so I've simply written this off as a business expense. I'll contact you once we continue our research beyond the wormhole. Thanks again!"`
 				decline
 
 
@@ -1839,7 +1839,7 @@ mission "Deep: Remnant Surveillance"
 			`Instead of sending the Inhibitor Cannon to Ivan's lab, the unloading crew transfers it to a waiting Deep Security ship, which immediately departs when its cargo bay doors close. Unlike the previous crews that met you upon landing, they are all in military garb. When you meet Ivan at his lab, he explains that the Deep was especially interested in the Remnant technology after reading his previous reports, and that his team would need to study it in a "more secure location."`
 			branch friendly
 				"reputation: Remnant" >= 1
-			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few months. It may take us years to fully understand the technology you have brought us, but rest assured that that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
+			`	Ivan hands you <payment>. "Thank you for all the help, Captain <last>. You've done a lot for humanity in these past few months. It may take us years to fully understand the technology you have brought us, but rest assured that once we do understand it, the galaxy will be a better place. I'll see you later, Captain. Stay safe."`
 				decline
 				
 			label friendly
@@ -2583,7 +2583,7 @@ mission "Stone of our Fathers 4"
 			label earth
 			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour gray building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
 			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
-			`	After a brief wait the door opens ponderously revealing, a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
+			`	After a brief wait the door opens ponderously, revealing a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
 			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
 			choice
 				`	(Answer for myself.)`
@@ -2647,7 +2647,7 @@ mission "Stone of our Fathers 4"
 			choice
 				`	(Head to bed for some well deserved sleep.)`
 			`	The day is bright and the sky is clear, the storm long forgotten as you prepare your things. Both men meet you in the main room. Thorleif opens up his hand to accept the stone, which you gladly place into it. He smiles and looks it over, tracing his finger along its chiseled runes.`
-			`	"Thank you, <first>". You nod, happy to be done with this mission and free to fly the space lanes once more.`
+			`	"Thank you, <first>." You nod, happy to be done with this mission and free to fly the space lanes once more.`
 			`	"Just more thing," Thorleif adds with a sly grin. "I'll need a captain willing to ferry me to Alfheim. That's where my family's cairn is located."`
 			`	Before you know it, the three of you are on Helm's boat and heading for the spaceport.`
 			`	"Alfheim," Thorleif says idly, "you know of it? The name means the home of the Alfar, or elves as you call them. I've never been there, only heard of it. It'll be strange to visit the world of my ancestors."`
@@ -2714,7 +2714,7 @@ mission "Stone of our Fathers 5"
 				goto drinkandbemerry
 			label followcairn
 			`	You follow Thorleif up a mostly overgrown trail for about half an hour before finally stepping out into a wide open plain. The wind is cool and refreshing, and the grass blows with a steadiness that is somehow reassuring. There is something special and timeless about this meadow.`
-			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize.  It is covered with filled with letters and images that are unfamiliar to you.`
+			`	You notice over two dozen columns of stone arranged in a circle around a much more massive and impressive structure - a wall cut from some sort of metal you don't recognize. It is covered with filled with letters and images that are unfamiliar to you.`
 			`	"That is an Elf-Stone. It is why we built our Family-Cairns here. Such stones can be found on most worlds in The Deep. Indestructible, and left by the Alfar for some unknowable reason. Some, like this one, have been mostly forgotten. Others though, are important places of celebration and even worship."`
 			`	He points at a smallish cairn next to the Elf-Stone. "This, though, is what we're here for."`
 			`	You eye the worn and weather-beaten cairn with a faded name plate that has 'Hlewagast' carved into its base.`
@@ -3076,7 +3076,7 @@ mission "Home for Skadenga 1"
 	on complete
 		event "nifel waiting" 15
 		conversation
-			`	Upon landing, you get recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
+			`	Upon landing, you get a recorded voice message from Hjlod. "<first>, ve're busy evacuating isolated Skadenga communities. Come back in few veeks vhen things settle down."`
 			`	The message abruptly ends.`
 
 
@@ -3149,7 +3149,7 @@ mission "Home for Skadenga 2"
 			`	"Ah yes, don't worry. We have the port authority keeping your hill-witch friend busy. You'll likely be done before she is." The administrator nods to his guards, who close in on you.`
 			`	"Regrettably, this is not an invitation you are at liberty to ignore. So let us be on our way, shall we?"`
 			label fancypants
-			`	You are brought to large research complex just outside the spaceport, and dispoisted in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
+			`	You are brought to a large research complex just outside the spaceport, and deposited in a high-end, white, minimalistic conference room with two well-dressed and important looking men. "Thank you, Lars. Take the guards and wait for us outside," the man seated across from you says.`
 			`	"Of course, sir." The administrator, whose name seems to be Lars, turns and is followed outside by his two goons.`
 			`	The man who spoke looks at you with a friendly smile and, without a shred of irony, says, "I am so glad you agreed to meet with us. I realize an accomplished Captain like yourself is in great demand, so we will endeavor to keep this brief."`
 			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Incorporated, and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep. We've been monitoring you ever since you first arrived and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
@@ -3268,7 +3268,7 @@ mission "Home for Skadenga 4"
 			`	"That is no surprise," Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
 			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
-			`	"Now", Hjlod says, "Tell me about Setstokkr. Did you find it?"`
+			`	"Now," Hjlod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
 				`	"I found nothing definitive."`
 					goto nothing
@@ -3652,7 +3652,7 @@ mission "Home for Skadenga 9"
 					goto prenext
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
 			branch buffboi
-				"combat rating" >  8104
+				"combat rating" > 8104
 			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag.`
 			label prenext
 			`	"If it wasn't the Allen boys who sent you, who do you work for? The Leshinskis? Mad Mikkel's Gang? Or maybe the Hanovarian?" Hroar pauses. "Nah, not his style. So who?"`
@@ -3756,7 +3756,7 @@ mission "Home for Skadenga 11"
 
 conversation "land at windblain"
 	scene "scene/seasidecliffs"
-	`The reserved and limited government of Windblain pays you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
+	`The reserved and limited government of Windblain pays neither you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
 	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, The Ondurdis joins you.`
 	`	"So, you are the ice that falls from the stars?" asks Aldfrith with a hint of mirth in his eyes.`
 	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
@@ -3932,10 +3932,14 @@ mission "Homecoming to Skadenga"
 	on complete
 		payment 50000
 		event "hjlod waits" 360
+		conversation
+			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
+			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment> credits, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
 
 
 
 mission "Stones of Skadenga 1"
+	landing
 	name "Stones of Skadenga"
 	source "Nifel"
 	passengers 5
@@ -3943,11 +3947,6 @@ mission "Stones of Skadenga 1"
 	description "Return the Skadenga mourners to <destination>."
 	to offer
 		has "Homecoming to Skadenga: done"
-	on offer
-		conversation
-			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
-			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
-				accept
 	on complete
 		event "skadenga mourners" 90
 		dialog

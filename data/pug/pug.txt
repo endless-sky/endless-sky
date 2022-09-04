@@ -179,7 +179,7 @@ outfit "Pug Zapper"
 			"random start frame"
 			"delay" 6
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"velocity" 320
 		"lifetime" 1
@@ -206,7 +206,7 @@ outfit "Pug Zapper Turret"
 		"hardpoint sprite" "hardpoint/pug zapper turret"
 		"hardpoint offset" 7.
 		sound "zapper"
-		"hit effect" "skylance impact"
+		"hit effect" "zapper impact"
 		"inaccuracy" .3
 		"turret turn" 2.5
 		"velocity" 320
@@ -218,6 +218,14 @@ outfit "Pug Zapper Turret"
 		"hull damage" 5.8
 	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
+effect "zapper impact"
+	sprite "effect/zapper impact"
+		"frame rate" 60
+		"random start frame"
+	"lifetime" 2
+	"random angle" 360
+	"random spin" 1
+	"velocity scale" 0.
 
 outfit "Pug Seeker"
 	category "Guns"
@@ -482,7 +490,7 @@ outfit "Pug Biodefenses"
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 250
 	"unplunderable" 1
-	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other species, as well) but which have no effect at all on the Pug."
+	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe."
 
 outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"

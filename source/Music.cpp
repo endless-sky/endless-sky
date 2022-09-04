@@ -100,6 +100,7 @@ void Music::SetSource(const string &name)
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
 		return;
+	currentSource = name;
 	previousPath = path;
 
 	// Inform the decoding thread that it should switch to decoding a new file.
@@ -116,6 +117,14 @@ void Music::SetSource(const string &name)
 	// Notify the decoding thread that it can start.
 	lock.unlock();
 	condition.notify_all();
+}
+
+
+
+// Get the name of the current music source playing.
+const string &Music::GetSource() const
+{
+	return currentSource;
 }
 
 
@@ -246,7 +255,7 @@ void Music::Decode()
 					break;
 
 				// We'll alternate what channel we read from each time through the loop.
-				int channel = 0;
+				bool channel = false;
 				for(unsigned i = 0; i < 2 * synth.pcm.length; ++i)
 				{
 					// Read the next sample from the next channel.

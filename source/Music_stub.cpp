@@ -22,4 +22,4 @@ const std::vector<int16_t> &Music::NextChunk() { return next; }
 
 void Music::Decode() {}
 
-
+const std::string &Music::GetSource() const { return currentSource; }

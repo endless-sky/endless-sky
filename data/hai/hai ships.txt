@@ -46,7 +46,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai interplanetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
 ship "Aphid" "Aphid (Armed)"
 	outfits
@@ -271,7 +271,7 @@ ship "Grasshopper"
 		"drag" 1.5
 		"heat dissipation" .85
 		"fuel capacity" 300
-		"cargo space"  29
+		"cargo space" 29
 		"outfit space" 169
 		"weapon capacity" 38
 		"engine capacity" 61
@@ -807,7 +807,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -967,7 +967,7 @@ ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
 	attributes
-		category "Heavy Freighter"
+		category "Light Freighter"
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500

@@ -110,8 +110,8 @@ void BankPanel::Draw()
 	static const string prefix[2] = {"salary: ", "tribute: "};
 	for(int i = 0; i < 2; ++i)
 	{
-		auto it = player.Conditions().lower_bound(prefix[i]);
-		for( ; it != player.Conditions().end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+		auto it = player.Conditions().PrimariesLowerBound(prefix[i]);
+		for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
 			income[i] += it->second;
 	}
 	// Check if maintenance needs to be drawn.
@@ -278,7 +278,8 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");
 	}
-	else if(key == SDLK_RETURN && qualify) {
+	else if(key == SDLK_RETURN && qualify)
+	{
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 		DoHelp("bank advanced");
