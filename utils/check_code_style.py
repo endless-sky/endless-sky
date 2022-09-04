@@ -8,7 +8,7 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 import os
 
@@ -397,6 +397,7 @@ def check_copyright(lines, file):
 		["WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A", False],
 		["PARTICULAR PURPOSE. See the GNU General Public License for more details.", False],
 		["*/", False]
+		["", False]
 	]
 	index = 0
 	error_line = -1
