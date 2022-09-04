@@ -13,7 +13,6 @@ ship "Jje"
 	noun "creature"
 	"sprite" ship/jje/jje
 		"frame rate" 4
-	"thumbnail"
 	"never disabled"
 	attributes
 		category "Light Freighter"
@@ -63,7 +62,6 @@ ship "Ayym"
 	noun "creature"
 	"sprite" ship/ayym/ayym
 		"frame rate" 4
-	"thumbnail"
 	"never disabled"
 	attributes
 		category "Heavy Freighter"
