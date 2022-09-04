@@ -2823,7 +2823,7 @@ system Algieba
 			period 22.4237
 
 system Algol
-	pos -210 17
+	pos -197 9
 	government Syndicate
 	attributes "core"
 	arrival 3490
@@ -3796,7 +3796,7 @@ system "Alpha Centauri"
 		period 3022.55
 
 system "Alpha Hydri"
-	pos -97 98
+	pos -88 95
 	government Syndicate
 	attributes "core"
 	arrival 1450
@@ -8259,7 +8259,7 @@ system Denebola
 		period 2677.01
 
 system Diespiter
-	pos 332 210
+	pos 350 265
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 950
@@ -9013,7 +9013,7 @@ system Edusa
 		period 1365.41
 
 system Egeria
-	pos 288 146
+	pos 308 189
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 2030
@@ -12302,7 +12302,7 @@ system Hadar
 			period 13.7068
 
 system Hamal
-	pos -129 24
+	pos -100 11
 	government Syndicate
 	attributes "core"
 	arrival 1080
@@ -14713,13 +14713,14 @@ system Kochab
 		period 2474.09
 
 system "Kor Ak'Mari"
-	pos 43 42
+	pos 86 45
 	government Korath
 	attributes "korath" "wolf-rayet"
 	arrival 3000
 	habitable 3000
 	belt 1606
 	haze _menu/haze-full
+	link "Sagittarius A*"
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
@@ -14770,7 +14771,7 @@ system "Kor Ak'Mari"
 		period 706.633
 
 system "Kor En'lakfar"
-	pos -31 -33
+	pos -5 -34
 	government Korath
 	attributes "korath"
 	arrival 1080
@@ -14907,7 +14908,7 @@ system "Kor Fel'tar"
 			period 47.3517
 
 system "Kor Men"
-	pos 6 -5
+	pos 16 -5
 	government Korath
 	attributes "korath"
 	arrival 2340
@@ -15043,7 +15044,7 @@ system "Kor Nor'peli"
 			period 12.7057
 
 system "Kor Tar'bei"
-	pos 57 106
+	pos 75 107
 	government Korath
 	attributes "korath"
 	arrival 500
@@ -16960,7 +16961,7 @@ system Menkalinan
 			period 26.6433
 
 system Menkar
-	pos -183 -52
+	pos -173 -52
 	government Syndicate
 	attributes "core"
 	arrival 500
@@ -20200,7 +20201,7 @@ system Porrima
 
 system Postverta
 	hidden
-	pos 297 269
+	pos 263 299
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
@@ -20377,7 +20378,7 @@ system Procyon
 		period 3332.01
 
 system Prosa
-	pos 303 194
+	pos 310 248
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 5000
@@ -21973,12 +21974,13 @@ system Sadr
 		period 881.202
 
 system "Sagittarius A*"
-	pos 112 22
+	pos 489 29
 	government Uninhabited
 	arrival 5000
 	habitable 10000
 	belt 1500
 	haze _menu/haze-full
+	link "Kor Ak'Mari"
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
@@ -22866,7 +22868,7 @@ system Shaula
 			period 22.0718
 
 system Sheratan
-	pos -40 45
+	pos -10 44
 	government Syndicate
 	attributes "core"
 	arrival 2085
@@ -24162,7 +24164,7 @@ system Spica
 			period 26.1539
 
 system Statina
-	pos 385 198
+	pos 390 234
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
 	arrival 500
@@ -25662,7 +25664,7 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
-	pos 324 112
+	pos 392 206
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
@@ -26599,7 +26601,7 @@ system "Yed Prior"
 			period 10.8785
 
 system Zaurak
-	pos -109 -34
+	pos -104 -34
 	government Syndicate
 	attributes "core"
 	arrival 625
