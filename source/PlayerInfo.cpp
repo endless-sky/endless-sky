@@ -2639,6 +2639,111 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// The total number of ships the player has.
+	auto &&totalShipsProvider = conditions.GetProviderNamed("total ships");
+	totalShipsProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsDestroyed())
+				++retVal;
+		return retVal;
+	});
+
+	// Conditions to determine what outfits the player owns, with various possible locations to check.
+	// The following condition checks all sources of outfits which are present with the player.
+	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
+	// If landed, this means checking all landed ships for installed outfits, the pooled cargo hold,
+	// and any planetary storage.
+	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit (present): ");
+	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		const Planet *planet = GetPlanet();
+		if(planet)
+		{
+			retVal += Cargo().Get(outfit);
+			if(planetaryStorage.count(planet))
+				retVal += planetaryStorage[planet].Get(outfit);
+		}
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed() || ship->GetSystem() != system)
+				continue;
+			// If not on a planet, parked ships don't count. If on a planet, disabled ships don't count.
+			if((!planet && !ship->IsParked()) || (planet && !ship->IsDisabled()))
+			{
+				retVal += ship->OutfitCount(outfit);
+				retVal += ship->Cargo().Get(outfit);
+			}
+		}
+		return retVal;
+	});
+
+	// The following condition checks the player's entire fleet for installed outfits.
+	auto &&fleetOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet installed): ");
+	fleetOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += ship->OutfitCount(outfit);
+		}
+		return retVal;
+	});
+
+	// The following condition checks all cargo in the player's fleet.
+	auto &&fleetCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet cargo): ");
+	fleetCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		if(GetPlanet())
+			retVal += Cargo().Get(outfit);
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsDestroyed() && !ship->IsParked())
+				retVal += ship->Cargo().Get(outfit);
+		return retVal;
+	});
+
+	// The following condition checks the flagship's installed outfits.
+	auto &&flagshipOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship installed): ");
+	flagshipOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		if(flagship)
+			retVal += flagship->OutfitCount(outfit);
+		return retVal;
+	});
+	
+	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
+	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		if(GetPlanet())
+			retVal += Cargo().Get(outfit);
+		if(flagship)
+			retVal += flagship->Cargo().Get(outfit);
+		return retVal;
+	});
+
+	// The following condition checks planetary storage.
+	auto &&storedOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
+	storedOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		const Outfit *outfit = GameData::Outfits().Get(name);
+		for(const auto &storage : planetaryStorage)
+			retVal += storage.second.Get(outfit);
+		return retVal;
+	});
+
 	// Conditions to determine if flagship is in a system and on a planet.
 	auto &&flagshipSystemProvider = conditions.GetProviderPrefixed("flagship system: ");
 	auto flagshipSystemFun = [this](const string &name) -> bool
@@ -2659,6 +2764,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipPlanetProvider.SetHasFunction(flagshipPlanetFun);
 	flagshipPlanetProvider.SetGetFunction(flagshipPlanetFun);
+
+	// Read only exploration conditions.
+	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
+	auto visitedPlanetFun = [this](const string &name) -> bool { return HasVisited(*GameData::Planets().Get(name)); };
+	visitedPlanetProvider.SetGetFunction(visitedPlanetFun);
+	visitedPlanetProvider.SetHasFunction(visitedPlanetFun);
+
+	auto &&visitedSystemProvider = conditions.GetProviderPrefixed("visited system: ");
+	auto visitedSystemFun = [this](const string &name) -> bool { return HasVisited(*GameData::Systems().Get(name)); };
+	visitedSystemProvider.SetGetFunction(visitedSystemFun);
+	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
