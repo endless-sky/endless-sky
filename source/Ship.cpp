@@ -206,6 +206,8 @@ void Ship::Load(const DataNode &node)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
+	bool hitEffectSet = false;
+	bool shieldHitEffectSet = false;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -425,6 +427,18 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "hit effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			hullHitEffects[GameData::Effects().Get(child.Token(1))] += count;
+			hitEffectSet = true;
+		}
+		else if(key == "shield hit effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			shieldHitEffects[GameData::Effects().Get(child.Token(1))] += count;
+			shieldHitEffectSet = true;
+		}
 		else if(key == "outfits")
 		{
 			if(!hasOutfits)
@@ -489,6 +503,14 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	// Shield hit effects are, unless explicitly defined,
+	// presumed to be the same as the generic (hull) hit effects
+	// if there have been any hull hit effects defined
+	if(!shieldHitEffectSet && hitEffectSet)
+	{
+		for(const auto &it : HullHitEffects())
+			shieldHitEffects[*it.first] += it.second;
 	}
 }
 
@@ -2807,6 +2829,19 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 
 
+// Ship event effects
+const map<const Effect *, int> &Ship::ShieldHitEffects() const
+{
+	return shieldHitEffects;
+}
+
+
+const map<const Effect *, int> &Ship::HullHitEffects() const
+{
+	return hullHitEffects;
+}
+
+
 // Get this ship's custom swizzle.
 int Ship::CustomSwizzle() const
 {
@@ -3374,7 +3409,7 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, double intersection, Point hitVelocity, Angle hitAngle)
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
@@ -3443,6 +3478,24 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// Create target effect visuals, if there are any.
 	for(const auto &effect : damage.GetWeapon().TargetEffects())
 		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
+	
+	// Create hull/shield hit effect visuals at the point of impact, if there are any.
+	if(shields > 0.)
+	{
+		for(const auto &it : ShieldHitEffects())
+			for(int i = 0; i < it.second; ++i)
+			{
+				visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
+			}
+	}
+	else
+	{
+		for(const auto &it : HullHitEffects())
+			for(int i = 0; i < it.second; ++i)
+			{
+				visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
+			}
+	}
 
 	return type;
 }

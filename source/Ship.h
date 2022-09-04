@@ -138,6 +138,10 @@ public:
 	// Get the name of this particular ship.
 	const std::string &Name() const;
 
+	// Effects to be created upon certain events that occur to the ship
+	const std::map<const Effect *, int> &ShieldHitEffects() const;
+	const std::map<const Effect *, int> &HullHitEffects() const;
+
 	// Set / Get the name of this model of ship.
 	void SetModelName(const std::string &model);
 	const std::string &ModelName() const;
