@@ -427,9 +427,9 @@ fleet "Kor Efret Home"
 	cargo 3
 	personality
 		timid
-	variant 5
-		"Echo-Galleon"
 	variant 3
+		"Echo-Galleon"
+	variant 5
 		"Arch-Carrack"
 	variant 1
 		"Charm-Shallop"

@@ -6860,6 +6860,7 @@ system Chikatip
 	trade Metal 283
 	trade Plastic 278
 	fleet "Large Quarg" 2000
+	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
 		period 10
@@ -8463,7 +8464,7 @@ system Dokdobaru
 	trade Plastic 317
 	fleet Quarg 600
 	fleet "Large Quarg" 800
-	fleet "Kor Efret Home" 1500
+	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
 		period 10
@@ -12652,6 +12653,7 @@ system Hesselpost
 	trade Metal 536
 	trade Plastic 281
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
 		period 10
@@ -14075,7 +14077,7 @@ system Kashikt
 	trade Plastic 292
 	fleet Quarg 1000
 	fleet "Large Quarg" 2000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/f5
@@ -16661,6 +16663,7 @@ system Meftarkata
 	trade Metal 484
 	trade Plastic 334
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
 		distance 23.9954
@@ -22777,7 +22780,7 @@ system Sevrelect
 	trade Plastic 288
 	fleet Quarg 1000
 	fleet "Large Quarg" 3000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/m0
@@ -24515,7 +24518,7 @@ system Sumprast
 	trade Plastic 323
 	fleet Quarg 1000
 	fleet "Large Quarg" 2500
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
 	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/k0
