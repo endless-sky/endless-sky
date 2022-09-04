@@ -265,10 +265,6 @@ fleet "Korath Home"
 		"Kas'lor Ik 582"
 		"'olofez" 3
 	variant 1
-		"Rano'erek" 2
-		"'olofez" 2
-		"'olofez (Expeller)" 2
-	variant 1
 		"Lor'nag Ik 590"
 		"'olofez" 3
 
@@ -405,7 +401,7 @@ fleet "Korath Civilian Large"
 	variant 4
 		"Lor'nag Ik 590 (Grab)"
 		"'olofez (Expeller)" 3
-	variant 3
+	variant 2
 		"Rano'erek (Civilian)" 2
 		"'olofez (Digger)" 4
 		"'olofez (Expeller)" 4

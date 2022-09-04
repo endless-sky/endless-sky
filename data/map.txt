@@ -14738,9 +14738,10 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 2800
-	fleet "Korath Miners" 5000
-	fleet "Korath Large Raid" 2500
+	fleet "Korath Raid" 3600
+	fleet "Korath Miners" 7500
+	fleet "Korath Large Raid" 3600
+	fleet "Korath Defense" 3600
 	object
 		sprite star/carbon
 		period 100
@@ -14801,12 +14802,12 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 600
-	fleet "Korath Home" 900
+	fleet "Korath Raid" 1200
+	fleet "Korath Home" 720
 	fleet "Korath Large Raid" 15000
-	fleet "Korath Defense" 3500
+	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
-	fleet "Korath Civilian Large" 1300
+	fleet "Korath Civilian Large" 955
 	fleet "Korsmanath A'awojs" 1296
 	object
 		sprite star/g0
@@ -14870,9 +14871,9 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 1900
+	fleet "Korath Raid" 2000
 	fleet "Korath Home" 1200
-	fleet "Korath Defense" 2600
+	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korsmanath A'awojs" 600
@@ -15141,11 +15142,11 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 900
-	fleet "Korath Home" 1500
-	fleet "Korath Defense" 2400
+	fleet "Korath Raid" 1800
+	fleet "Korath Home" 1170
+	fleet "Korath Defense" 1660
 	fleet "Korath Large Raid" 16000
-	fleet "Korath Civilian Large" 1000
+	fleet "Korath Civilian Large" 845
 	fleet "Korsmanath A'awojs" 1662
 	object
 		sprite star/g5-old
