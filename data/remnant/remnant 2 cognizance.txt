@@ -53,8 +53,8 @@ mission "Remnant: Cognizance 1"
 			cargo 1
 			commodities "void sprite parts"
 			variant
-				"Korath Raider (Ember)"
-				"Korath Chaser" 2
+				"Palavret (Ember)"
+				"'olofez" 2
 	on enter "Nenia"
 		dialog
 			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them. You recall that Plume asked you to visit both planets.`
@@ -116,8 +116,8 @@ mission "Remnant: Cognizance 2"
 			cargo 1
 			commodities "void sprite parts"
 			variant
-				"Korath Raider (Ember)"
-				"Korath Chaser" 2
+				"Palavret (Ember)"
+				"'olofez" 2
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
 		event "korath hunting"
@@ -177,9 +177,9 @@ mission "Remnant: Cognizance 4"
 			cargo 2
 			commodities "void sprite parts"
 			variant
-				"Korath Dredger"
-				"Korath Raider (Ember)" 4
-				"Korath Chaser" 12
+				"Rano'erek"
+				"Palavret (Ember)" 4
+				"'olofez" 12
 		conversation
 			apply
 				set "remnant: cognizance: killed korath fleet"
@@ -237,9 +237,9 @@ mission "Remnant: Cognizance 5"
 			cargo 2
 			commodities "void sprite parts"
 			variant
-				"Korath Dredger"
-				"Korath Raider (Ember)" 4
-				"Korath Chaser" 12
+				"Rano'erek"
+				"Palavret (Ember)" 4
+				"'olofez" 12
 		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
@@ -319,8 +319,8 @@ mission "Remnant: Cognizance 7"
 		fleet
 			names "korath"
 			variant
-				"Korath Raider (Ember)" 2
-				"Korath Chaser" 4
+				"Palavret (Ember)" 2
+				"'olofez" 4
 	on complete
 		conversation
 			`Descending into the clouds of Nasqueron is becoming almost familiar to you. Wispy layers of gas give way to more voluminous formations and the occasional turbulent storm. Beside you, Plume is eagerly peering out the window, and you remind yourself that this may well be his first time actually seeing void sprites on their world.`
@@ -349,8 +349,8 @@ mission "Remnant: Cognizance 8"
 		fleet
 			names "korath"
 			variant
-				"Korath Raider (Ember)" 3
-				"Korath Chaser" 6
+				"Palavret (Ember)" 3
+				"'olofez" 6
 	on complete
 		conversation
 			`As you approach Aventine, Plume gestures toward the pad closest to his lab. "You might as well set down there. If the samples in my lab check out, I will have another mission for you right away. You will need to keep your high-pressure ship active for this one. Stop by the lab in an hour or two and we will be ready to start loading."`
@@ -559,7 +559,7 @@ mission "Remnant: Cognizance 16"
 	on enter Convector
 		dialog `It seems the analysis of the location was right. The creature quickly approaches you and repeats its previous dance, ending up with a slightly different frozen position. From this vantage, you suspect that it is probably Nenia. This time, as you watch it more closely, it looks like it is following in your wake somehow.`
 	on enter Nenia
-		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Korath Raider.`
+		dialog `You have never seen such activity from the void sprites. Many quickly congregate around the strange creature that has been guiding you, and escort it to Nasqueron. It seems like that is where it wanted to be. In the distance, you can see the Archon methodically pulverizing a Palavret.`
 	
 
 
@@ -632,9 +632,9 @@ mission "Remnant: Cognizance 18"
 		fleet
 			names "korath"
 			variant
-				"Korath Dredger"
-				"Korath Raider (Ember)" 3
-				"Korath Chaser" 10
+				"Rano'erek"
+				"Palavret (Ember)" 3
+				"'olofez" 10
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
 	on enter "Pantica"
@@ -1038,7 +1038,7 @@ mission "Remnant: Cognizance 23"
 			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
-				"Korath Dredger (Crippled)"
+				"Rano'erek (Crippled)"
 		dialog "You have destroyed the Korath ship that Taely sent you to hunt down. Return to <destination> to report the Mergansers' performance."
 	npc save
 		government "Remnant"
@@ -1113,7 +1113,7 @@ mission "Remnant: Cognizance 24"
 			`	"Thanks, many hands make light work." You quickly have all the equipment moved into the desired room.`
 				goto gavriilend
 			label rush
-			`	"Here, help me carry this and we can talk while we shift this." They hand you a lift and the two of you start moving the equipment. "Basically, we had a visitor out here. Not sure who they were, but they flew a Korath Raider with a wide mix of alien technology. Our scans said there was one Korath in charge, with a crew composed of both aliens and humans. And they came with enough firepower to make life miserable for everyone. We only had a few scouts in the area, so we stayed hidden and bargained. In the end, they gave us some 'inconsequential' data, and they got an hour to explore the station and take a few loose items. Our scans indicated that they took some stuff without much obvious value from these big halls." They gesture to the room around you with all the platforms.`
+			`	"Here, help me carry this and we can talk while we shift this." They hand you a lift and the two of you start moving the equipment. "Basically, we had a visitor out here. Not sure who they were, but they flew a Palavret with a wide mix of alien technology. Our scans said there was one Korath in charge, with a crew composed of both aliens and humans. And they came with enough firepower to make life miserable for everyone. We only had a few scouts in the area, so we stayed hidden and bargained. In the end, they gave us some 'inconsequential' data, and they got an hour to explore the station and take a few loose items. Our scans indicated that they took some stuff without much obvious value from these big halls." They gesture to the room around you with all the platforms.`
 			choice
 				`	"That is odd."`
 					goto movingon
@@ -1149,7 +1149,7 @@ mission "Remnant: Cognizance 25"
 	on offer
 		event "remnant: ssil vida inhabited"
 		conversation
-			`You have barely had a chance to check to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Korath Raider that was here recently, and I want to be sure that it left no surprises." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure that the raider did not leave anything behind." Their gestures switch to a tone of finality. "Can you help with this?"`
+			`You have barely had a chance to check to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Palavret that was here recently, and I want to be sure that it left no surprises." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure that the Palavret did not leave anything behind." Their gestures switch to a tone of finality. "Can you help with this?"`
 			choice
 				`	"Yes."`
 					accept
@@ -1166,14 +1166,14 @@ mission "Remnant: Cognizance 25"
 			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
-				"Korath Chaser" 3
-		dialog "You have destroyed the ships that the raider left behind."
+				"'olofez" 3
+		dialog "You have destroyed the ships that the Palavret left behind."
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on complete
 		payment 250000
 		conversation
-			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three Korath chasers that you located. "Three?" They sign quizzically. "That is an odd number. Raiders only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
+			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezs that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
 
 
 mission "Remnant: Cognizance 26"
@@ -1244,10 +1244,10 @@ mission "Remnant: Cognizance 28"
 			commodities Food Metal Plastic "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
-				"Korath Dredger" 1
-				"Korath Dredger (Ground Assault)" 4
-				"Korath Raider (Ember)" 6
-				"Korath Chaser" 32
+				"Rano'erek" 1
+				"Rano'erek (Ground Assault)" 4
+				"Palavret (Ember)" 6
+				"'olofez" 32
 
 
 
@@ -1265,7 +1265,7 @@ mission "Remnant: Cognizance 29"
 		has "Remnant: Cognizance 28: done"
 	on offer
 		conversation
-			`Punching through the Korath blockade finds you racing across the aurora filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of a chaser tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
+			`Punching through the Korath blockade finds you racing across the aurora filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of an 'olofez tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
 			`	As you approach the entrance to the hidden starport, directions appear on your comm panel guiding you to a spot where a large stack of equipment surrounds the landing pad. You ease inside and have barely touched down when a technician is dropping from the ceiling onto your hull with a refueling hose and repair equipment. Meanwhile, a swarm of Remnant are prepping and moving various equipment, many with lifts and loaders. You quickly open the cargo hold doors, and the Remnant rush to load and board the <ship>.`
 			`	The Remnant move fast, but you can hear the battle approaching. Even through the <ship>'s dampeners you can feel the heavy thud of anti-air artillery. The whine of generators being pushed to the limit fills the air as the shields crackle with incoming fire. Through the cacophony the Remnant move with purpose, gesturing instructions silently through the din. Finally the last load is packed onboard, and one of them comes up to the cockpit. "Thank you for your assistance, Captain <last>. As the explosive charges have been set, I recommend we leave promptly." They nod respectfully, then strap themselves into the nearest harness.`
 			`	The shield opens one final time to allow you to leave, and you practically leap into the teeth of a Korath attack. The anti-air artillery continues its rhythmic barrage against the incoming ships, but it is evident that both it and the shields around the base are failing under the assault. As you head for orbit, the last image you see is the artillery pieces sag and collapse as they melt into the ground. Your sensors record a sudden explosion from the cavern, to which the Remnant give a sad but satisfied nod. "Take us back to Caelian please, Captain."`
@@ -1280,10 +1280,10 @@ mission "Remnant: Cognizance 29"
 			commodities Food Metal Plastic "Heavy Metals"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
-				"Korath Dredger" 1
-				"Korath Dredger (Ground Assault)" 2
-				"Korath Raider (Ember)" 6
-				"Korath Chaser" 24
+				"Rano'erek" 1
+				"Rano'erek (Ground Assault)" 2
+				"Palavret (Ember)" 6
+				"'olofez" 24
 	on complete
 		payment 500000
 		conversation
@@ -1616,7 +1616,7 @@ mission "Remnant: Cognizance 38"
 			label cognizanceexplanation
 			`	The Remnant watch you attentively as you explain everything that went on at Postverta and the surrounding area. Once you hand over the data crystals, one Remnant slots one of them into a console on the spot while another pair take the case with the rest and hustle off toward the information desk.`
 			`	As you reach the end of your report, one of the Remnant nods in approval. "We are starting to disseminate your report along with the data Dusk and Gavriil collected. Both copies of the data match, and have passed the initial verifications, so it appears they were not affected by your departing... shift."`
-			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured Chasers. It is not much, but it may give you a little more ease of outfitting the <ship>.`
+			`	They look around at the surrounding Remnant, and you have the sudden feeling that there is an entire level of discussion happening around you. You spot Aeolus moving through the crowd to the front, and he gestures with tones of appreciation. "Thank you for all your work on this, <first>. We have a strong appreciation for the risks you have taken alongside us, and I hope we will continue to explore together. That being said, I suspect it will take much collective effort to determine our next course of action." He looks around, and then winks at you. "In the meantime, I have unlocked access to a few more bits of rarer Korath salvage, including access to captured 'olofezs. It is not much, but it may give you a little more ease of outfitting the <ship>.`
 
 
 
