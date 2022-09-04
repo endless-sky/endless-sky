@@ -777,7 +777,6 @@ bool PlayerInfo::HasLicense(string name) const
 
 
 
-// TODO: Setup 1 or 2-way sync for Licenses with the relevant conditions (where those salaries are currently stored)
 // TODO: Switch from internally using conditions for Licenses to those functions
 set<string> &PlayerInfo::Licenses()
 {
@@ -1866,22 +1865,27 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 
 
 
-// TODO: Setup 2-way sync for Tribute with the relevant conditions (where those salaries are currently stored)
 // TODO: Switch from internally using conditions for Tribute to those functions
 // TODO: Properly connect this function to the dominated property of planets
-void PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
+bool PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
 {
-	// Set the tribute both in tribute storage as well as in the conditions.
 	if(payment > 0)
-	{
 		tributeReceived[planet] = payment;
-		conditions["tribute: " + planet->TrueName()] = payment;
-	}
 	else
-	{
 		tributeReceived.erase(planet);
-		conditions.Erase("tribute: " + planet->TrueName());
-	}
+
+	return true;
+}
+
+
+
+bool PlayerInfo::SetTribute(const string &planetTrueName, int64_t payment)
+{
+	const Planet *planet = GameData::Planets().Find(planetTrueName);
+	if(!planet)
+		return false;
+
+	return SetTribute(planet, payment);
 }
 
 
@@ -1889,6 +1893,21 @@ void PlayerInfo::SetTribute(const Planet * planet, int64_t payment)
 const map<const Planet *, int64_t> PlayerInfo::GetTribute() const
 {
 	return tributeReceived;
+}
+
+
+
+int64_t PlayerInfo::GetTributeForPlanet(const string &planetTrueName) const
+{
+	const Planet *planet = GameData::Planets().Find(planetTrueName);
+	if(!planet)
+		return false;
+
+	auto it = tributeReceived.find(planet);
+	if(it==tributeReceived.end())
+		return 0;
+
+	return it->second;
 }
 
 
@@ -2623,6 +2642,33 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) { return accounts.CreditScore(); });
+
+	// Read/write assets and debts.
+	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
+	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
+	{
+		const map<string, int64_t> &si = accounts.SalariesIncome();
+		auto it = si.find(name);
+		if(it == si.end())
+			return 0;
+		return it->second;
+	};
+	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
+	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
+	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { accounts.SetSalaryIncome(name, value); return true; });
+	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool { accounts.SetSalaryIncome(name, 0); return true; });
+
+	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
+	tributeProvider.SetHasFunction([this](const string &name) -> bool { return GetTributeForPlanet(name); });
+	tributeProvider.SetGetFunction([this](const string &name) -> int64_t { return GetTributeForPlanet(name); });
+	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { return SetTribute(name, value); });
+	tributeProvider.SetEraseFunction([this](const string &name) -> bool	{ return SetTribute(name, 0); });
+
+	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
+	licenseProvider.SetHasFunction([this](const string &name) -> bool { return licenses.count(name); });
+	licenseProvider.SetGetFunction([this](const string &name) -> int64_t { return licenses.count(name); });
+	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool { if(!value) licenses.erase(name); else licenses.insert(name); return true; });
+	licenseProvider.SetEraseFunction([this](const string &name) -> bool	{ licenses.erase(name); return true; });
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");

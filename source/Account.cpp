@@ -305,7 +305,6 @@ const map<string, int64_t> &Account::SalariesIncome() const
 
 
 
-// TODO: Setup 2-way sync for SalariesIncome with the relevant conditions (where those salaries are currently stored)
 // TODO: Switch from internally using conditions for SalariesIncome to those functions
 // TODO: Add some tests for those new functions
 void Account::SetSalaryIncome(string name, int64_t ammount)
