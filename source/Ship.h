@@ -102,21 +102,20 @@ public:
 
 
 public:
-	/* Functions provided by the Body base class:
-	bool HasSprite() const;
-	const Sprite *GetSprite() const;
-	int Width() const;
-	int Height() const;
-	int GetSwizzle() const;
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	double Zoom() const;
-	const Government *GetGovernment() const;
-	*/
+	// Functions provided by the Body base class:
+	// bool HasSprite() const;
+	// const Sprite *GetSprite() const;
+	// int Width() const;
+	// int Height() const;
+	// int GetSwizzle() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// double Zoom() const;
+	// const Government *GetGovernment() const;
 
 	Ship() = default;
 	// Construct and Load() at the same time.
@@ -445,14 +444,13 @@ private:
 
 
 private:
-	/* Protected member variables of the Body class:
-	Point position;
-	Point velocity;
-	Angle angle;
-	double zoom;
-	int swizzle;
-	const Government *government;
-	*/
+	// Protected member variables of the Body class:
+	// Point position;
+	// Point velocity;
+	// Angle angle;
+	// double zoom;
+	// int swizzle;
+	// const Government *government;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;
