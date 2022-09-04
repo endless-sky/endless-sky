@@ -135,7 +135,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.first->DisplayName(), it.second);
 		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.

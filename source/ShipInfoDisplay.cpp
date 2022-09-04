@@ -362,7 +362,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const Depreciation &deprec
 
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-		listing[it.first->Category()][it.first->Name()] += it.second;
+		listing[it.first->Category()][it.first->DisplayName()] += it.second;
 
 	for(const auto &cit : listing)
 	{

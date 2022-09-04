@@ -159,7 +159,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->Name(), text);
+		int index = Search(list[i]->DisplayName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -246,7 +246,7 @@ void MapOutfitterPanel::DrawItems()
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
 			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
-				outfit->Name(), price, info, storage_details);
+				outfit->DisplayName(), price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}

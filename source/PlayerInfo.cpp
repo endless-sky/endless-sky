@@ -2943,11 +2943,11 @@ void PlayerInfo::Save(const string &path) const
 			using StockElement = pair<const Outfit *const, int>;
 			WriteSorted(stock,
 				[](const StockElement *lhs, const StockElement *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->DisplayName() < rhs->first->DisplayName(); },
 				[&out](const StockElement &it)
 				{
 					if(it.second)
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.first->DisplayName(), it.second);
 				});
 		}
 		out.EndChild();
@@ -3044,11 +3044,11 @@ void PlayerInfo::Save(const string &path) const
 					if(lhs->first != rhs->first)
 						return lhs->first->Name() < rhs->first->Name();
 					else
-						return lhs->second->Name() < rhs->second->Name();
+						return lhs->second->DisplayName() < rhs->second->DisplayName();
 				},
 				[&out](const HarvestLog &it)
 				{
-					out.Write(it.first->Name(), it.second->Name());
+					out.Write(it.first->Name(), it.second->DisplayName());
 				});
 		}
 		out.EndChild();

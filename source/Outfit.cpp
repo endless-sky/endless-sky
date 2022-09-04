@@ -187,22 +187,26 @@ namespace {
 void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-	{
-		name = node.Token(1);
-	}
+		trueName = node.Token(1);
+	
 	isDefined = true;
 
-	bool hasPluralName = false;
+	// Use bools to track whether the display and plural names are set as opposed to string.empty() to allow explicitly empty names.
+	bool displayNameSet = false;
+	bool pluralNameSet = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
+		{
 			displayName = child.Token(1);
+			displayNameSet = true;
+		}
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
 		{
 			pluralName = child.Token(1);
-			hasPluralName = true;
+			pluralNameSet = true;
 		}
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
@@ -291,7 +295,9 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(!hasPluralName)
+	if(!displayNameSet)
+		displayName = trueName;
+	if(!pluralNameSet)
 		pluralName = displayName + 's';
 
 	// Only outfits with the jump drive and jump range attributes can
@@ -344,21 +350,21 @@ bool Outfit::IsDefined() const
 // outfit was not fully defined (i.e. belongs to an inactive plugin).
 const string &Outfit::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-const string &Outfit::Name() const
+const string &Outfit::DisplayName() const
 {
 	return displayName;
 }
 
 
 
-void Outfit::SetName(const string &name)
+void Outfit::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
