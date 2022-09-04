@@ -395,7 +395,7 @@ def check_copyright(lines, file):
 		["", False],
 		["Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY", False],
 		["WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A", False],
-		["PARTICULAR PURPOSE.  See the GNU General Public License for more details.", False],
+		["PARTICULAR PURPOSE. See the GNU General Public License for more details.", False],
 		["*/", False]
 	]
 	index = 0
