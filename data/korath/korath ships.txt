@@ -297,7 +297,7 @@ ship "'nra'ret"
 	outfits
 		"Langrage Hyper-Heaver" 2
 		"Warder Anti-Missile"
-		"Korath Fire-Lance" 2
+		"Fire-Lance" 2
 		"Firelight Missile Bank" 6
 		"Firelight Missile" 190
 		"Firelight Storage Rack" 7
@@ -317,8 +317,8 @@ ship "'nra'ret"
 	engine -29 96
 	engine 29 96
 	engine 0 90 0.9
-	gun -28 -133.5 "Korath Fire-Lance"
-	gun 28 -133.5 "Korath Fire-Lance"
+	gun -28 -133.5 "Fire-Lance"
+	gun 28 -133.5 "Fire-Lance"
 	gun -48.5 -85.5 "Firelight Missile Bank"
 		angle 320
 	gun 48.5 -85.5 "Firelight Missile Bank"
@@ -481,7 +481,7 @@ ship "Ra'gru Ik 618"
 		"Grab-Strike Turret" 2
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		"Korath Inferno" 2
 		"Blaze-Pike Turret" 2
 		"Firelight Missile Bank" 2
@@ -510,9 +510,9 @@ ship "Ra'gru Ik 618"
 		over
 	"reverse engine" 19 -303 0.5
 		over
-	gun -75 -112 "Korath Fire-Lance"
-	gun 75 -112 "Korath Fire-Lance"
-	gun 0 -112 "Korath Fire-Lance"
+	gun -75 -112 "Fire-Lance"
+	gun 75 -112 "Fire-Lance"
+	gun 0 -112 "Fire-Lance"
 	gun 42 90 "Firelight Missile Bank"
 		angle 110
 	gun -42 90 "Firelight Missile Bank"
@@ -634,7 +634,7 @@ ship "Lor'nag Ik 590"
 		"Shunt-Strike Turret" 2
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
-		"Korath Fire-Lance" 2
+		"Fire-Lance" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -660,8 +660,8 @@ ship "Lor'nag Ik 590"
 	fighter -90 160 back
 	fighter 0 160 back
 	fighter 90 160 back
-	gun -45 -253 "Korath Fire-Lance"
-	gun 45 -253 "Korath Fire-Lance"
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
 	turret -77 -116.5 "Shunt-Strike Turret"
 	turret 77 -116.5 "Shunt-Strike Turret"
 	turret -87 -83 "Banisher Grav-Turret"
@@ -704,7 +704,7 @@ ship "Ra'at Ik 621"
 		"Grab-Strike Turret" 3
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -741,9 +741,9 @@ ship "Ra'at Ik 621"
 	drone 98 156 back
 	drone -50 303 back
 	drone 50 303 back
-	gun -71 -209 "Korath Fire-Lance"
-	gun 0 -209 "Korath Fire-Lance"
-	gun 71 -209 "Korath Fire-Lance"
+	gun -71 -209 "Fire-Lance"
+	gun 0 -209 "Fire-Lance"
+	gun 71 -209 "Fire-Lance"
 	turret -52 -295 "Banisher Grav-Turret"
 	turret 52 -295 "Warder Anti-Missile"
 	turret -104 -13 "Grab-Strike Turret"

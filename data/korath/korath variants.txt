@@ -524,7 +524,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 		"Blaze-Pike Turret" 2
 		"Banisher Grav-Turret" 1
 		"Warder Anti-Missile" 2
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		"Firelight Missile Bank" 2
 		"Firelight Missile" 36
 		
@@ -545,9 +545,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	turret "Blaze-Pike Turret"
@@ -568,7 +568,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack" 4
 		"Banisher Grav-Turret" 2
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		"Grab-Strike Turret" 6
 		"Warder Anti-Missile" 2
 
@@ -586,9 +586,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	turret "Grab-Strike Turret"
@@ -606,7 +606,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		"Korath Inferno" 2
 		"Warder Anti-Missile" 2
 		"Shunt-Strike Turret" 2
@@ -628,9 +628,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Thruster (Planetary Class)"
 		"Jump Drive"
 
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	turret "Korath Inferno"
@@ -647,11 +647,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	outfits
-		"Korath Slicer" 3
-		"Korath Slicer Turret" 3
-		"Korath Disruptor" 3
-		"Korath Minelayer" 2
-		"Korath Mine" 34
+		"Husk-Slike" 3
+		"Husk-Slike Turret" 3
+		"Shield Disruptor Turret" 3
+		"Cluster Mine Layer" 2
+		"Cluster Mine" 34
 		"Warder Anti-Missile" 4
 		
 		"Triple Plasma Core"
@@ -672,20 +672,20 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		
-	gun "Korath Slicer"
-	gun "Korath Slicer"
-	gun "Korath Slicer"
-	gun "Korath Minelayer"
-	gun "Korath Minelayer"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
+	gun "Husk-Slike"
+	gun "Husk-Slike"
+	gun "Husk-Slike"
+	gun "Cluster Mine Layer"
+	gun "Cluster Mine Layer"
+	turret "Husk-Slike Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slike Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
-	turret "Korath Disruptor"
+	turret "Shield Disruptor Turret"
 	turret "Warder Anti-Missile"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
+	turret "Husk-Slike Turret"
+	turret "Shield Disruptor Turret"
 	turret "Warder Anti-Missile"
 
 
@@ -878,7 +878,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2
 		"Warder Anti-Missile" 3
-		"Korath Fire-Lance" 3
+		"Fire-Lance" 3
 		"Firestorm Torpedo" 26
 		"Firestorm Turret" 2
 
@@ -894,9 +894,9 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 		"Thruster (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
-	gun "Korath Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun "Fire-Lance"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
 	turret "Warder Anti-Missile"
@@ -911,8 +911,8 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 		"Korath Detainer"
 		"Thermal Repeater" 2
 		"Thermal Repeater Turret" 2
-		"Korath Disruptor"
-		"Korath Slicer Turret"
+		"Shield Disruptor Turret"
+		"Husk-Slike Turret"
 		"Warder Anti-Missile" 3
 
 		"Triple Plasma Core"
@@ -935,8 +935,8 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	gun "Thermal Repeater"
 	gun "Korath Detainer"
 	gun "Thermal Repeater"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
+	turret "Husk-Slike Turret"
+	turret "Shield Disruptor Turret"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
 	turret "Thermal Repeater Turret"
@@ -950,7 +950,7 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 		"Grab-Strike Turret" 2
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
-		"Korath Fire-Lance" 2
+		"Fire-Lance" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -964,8 +964,8 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 		"Steering (Planetary Class)"
 		"Scram Drive"
 	
-	gun -45 -253 "Korath Fire-Lance"
-	gun 45 -253 "Korath Fire-Lance"
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
 	turret -77 -116.5 "Grab-Strike Turret"
 	turret 77 -116.5 "Grab-Strike Turret"
 	turret -87 -83 "Warder Anti-Missile"
@@ -978,7 +978,7 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 	outfits
 		"Banisher Grav-Turret" 3
 		"Warder Anti-Missile" 3
-		"Korath Fire-Lance" 2
+		"Fire-Lance" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -994,8 +994,8 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 		"Steering (Planetary Class)"
 		"Scram Drive"
 	
-	gun -45 -253 "Korath Fire-Lance"
-	gun 45 -253 "Korath Fire-Lance"
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
 	turret -77 -116.5 "Banisher Grav-Turret"
 	turret 77 -116.5 "Warder Anti-Missile"
 	turret -87 -83 "Warder Anti-Missile"
