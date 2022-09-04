@@ -976,7 +976,8 @@ void Engine::Draw() const
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
 		const Color *color = nullptr;
-		switch (it->importance) {
+		switch(it->importance)
+		{
 			case Messages::Importance::Highest:
 				color = GameData::Colors().Find("message importance highest");
 				break;
@@ -1126,7 +1127,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift)
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / RADAR_SCALE + center,
-			(to - radarCenter) / RADAR_SCALE  + center);
+			(to - radarCenter) / RADAR_SCALE + center);
 	else
 		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
 }

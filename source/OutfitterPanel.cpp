@@ -103,12 +103,10 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
-	if(GetUI()->IsTop(this) && !checkedHelp) {
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3")) {
+	if(GetUI()->IsTop(this) && !checkedHelp)
+		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
 			checkedHelp = true;
-		}
-	}
 }
 
 
@@ -829,7 +827,7 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -843,7 +841,7 @@ void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -857,7 +855,7 @@ void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}

@@ -280,7 +280,8 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");
 	}
-	else if(key == SDLK_RETURN && qualify) {
+	else if(key == SDLK_RETURN && qualify)
+	{
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 		DoHelp("bank advanced");
