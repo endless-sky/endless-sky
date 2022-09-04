@@ -493,7 +493,7 @@ ship "Ra'gru Ik 618"
 		"Fuel Processor"
 		"Brig"
 		"Microbot Defense Station" 23
-		"Thermal Repeater Rifle" 359
+		"Thermal Repeater Rifle" 794
 		
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
