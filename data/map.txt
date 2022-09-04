@@ -9570,9 +9570,7 @@ system E-4183
 	habitable 3699.2
 	belt 1542
 	haze _menu/haze-coal
-	link E-1829
 	link M-1188
-	link MS-1902
 	asteroids "medium rock" 32 1.12
 	asteroids "large rock" 5 1.32
 	asteroids "small metal" 85 1.076
@@ -9615,11 +9613,7 @@ system E-9182
 	habitable 3276.8
 	belt 1387
 	haze _menu/haze-coal
-	link E-1834
 	link M-1188
-	link M-1881
-	link MS-1902
-	link O-1843
 	link O-3184
 	asteroids "large rock" 1 4.29
 	asteroids "small metal" 14 3.09
@@ -12556,11 +12550,8 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-1970
 	link G-719
-	link MC-2004
 	link MC-42
-	link W-1973
 	link W-3197
 	asteroids "large metal" 1 3.4
 	minables neodymium 6 3.871
@@ -12597,7 +12588,6 @@ system G-719
 	belt 1870
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-1836
 	link G-6183
 	asteroids "large metal" 1 2.22
 	object
@@ -12648,8 +12638,6 @@ system G-819
 	habitable 9650
 	belt 1333
 	haze _menu/haze-none
-	link H-1879
-	link MC-2004
 	link MC-42
 	asteroids "small rock" 5 1.53
 	asteroids "medium rock" 5 2.4
@@ -13672,10 +13660,8 @@ system H-8188
 	belt 1254
 	"jump range" 50
 	haze _menu/haze-none
-	link H-1879
 	link H-9187
 	link M-1188
-	link M-1881
 	link MS-219
 	asteroids "small rock" 1 1.32
 	asteroids "medium rock" 3 1.36
@@ -13710,13 +13696,8 @@ system H-9187
 	habitable 583.2
 	belt 1102
 	haze _menu/haze-coal
-	link G-1908
-	link H-1888
 	link H-8188
 	link L-118
-	link L-1801
-	link L-1816
-	link MC-2004
 	link MC-42
 	link MS-219
 	asteroids "large metal" 1 4.9
@@ -17584,9 +17565,7 @@ system L-118
 	habitable 500
 	belt 1724
 	haze _menu/haze-coal
-	link H-1879
 	link H-9187
-	link L-1816
 	link MC-42
 	asteroids "small rock" 12 3.3
 	asteroids "medium rock" 6 2.4
@@ -17623,9 +17602,6 @@ system L-6181
 	habitable 182.5
 	belt 1758
 	haze _menu/haze-coal
-	link H-1879
-	link L-1801
-	link MS-1902
 	link MS-219
 	asteroids "small rock" 11 1.8
 	asteroids "medium rock" 33 2.79
@@ -18348,12 +18324,9 @@ system M-1188
 	belt 1676
 	"jump range" 50
 	haze _menu/haze-coal
-	link E-1829
 	link E-4183
 	link E-9182
-	link H-1888
 	link H-8188
-	link MS-1902
 	link MS-219
 	asteroids "large metal" 1 2.54
 	fleet "Iije" 600
@@ -18701,11 +18674,8 @@ system MC-42
 	belt 1290
 	"jump range" 50
 	haze _menu/haze-coal
-	link G-1836
-	link G-1908
 	link G-6183
 	link G-819
-	link H-1879
 	link H-9187
 	link L-118
 	minables platinum 7 4.2
@@ -20397,14 +20367,10 @@ system MS-219
 	belt 1404
 	"jump range" 30
 	haze _menu/haze-coal
-	link E-1829
-	link E-1834
 	link H-8188
 	link H-9187
-	link L-1816
 	link L-6181
 	link M-1188
-	link M-1881
 	asteroids "large metal" 1 4.22
 	fleet "Iije" 100
 	object
@@ -20870,7 +20836,6 @@ system Nisyros
 	belt 1175
 	haze _menu/haze-blackbody
 	link Jied
-	link Keelgou
 	link Kneirc
 	link Oihaug
 	asteroids "small rock" 26 3.9
@@ -21179,9 +21144,7 @@ system O-3184
 	habitable 259.2
 	belt 1119
 	haze _menu/haze-coal
-	link E-1829
 	link E-9182
-	link U-1885
 	link U-5188
 	asteroids "small rock" 28 5.85
 	asteroids "medium rock" 7 6.75
@@ -21282,7 +21245,6 @@ system Oihaug
 	belt 1756
 	haze _menu/haze-133
 	link Asio
-	link Keelgou
 	link Nisyros
 	link Ookmya
 	asteroids "small rock" 1 1.55
@@ -28341,9 +28303,7 @@ system U-5188
 	habitable 361.25
 	belt 1330
 	haze _menu/haze-33
-	link O-1843
 	link O-3184
-	link V-1892
 	link V-2189
 	asteroids "small rock" 2 2.24
 	asteroids "medium rock" 9 1.91
@@ -28942,7 +28902,6 @@ system V-2189
 	government Uninhabited
 	habitable 1907.2
 	belt 1985
-	link U-1885
 	link U-5188
 	asteroids "small rock" 1 5.74
 	asteroids "large rock" 3 5.6
@@ -29447,7 +29406,6 @@ system W-3197
 	belt 1887
 	"jump range" 50
 	haze _menu/haze-none
-	link G-1836
 	link G-6183
 	asteroids "small rock" 25 1
 	asteroids "medium rock" 5 0.91
