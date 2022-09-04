@@ -633,3 +633,46 @@ mission "Remnant: Shattered Light 6"
 			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
+
+
+
+mission "Remnant: Clouds Brewing 1"
+	landing
+	source
+		government "Remnant"
+	destination "Caelian"
+	to offer
+		has "Remnant: Cognizance 25: done"
+		random > 50
+	npc "scan outfits"
+		government "Korath"
+		personality waiting target
+		system
+			system "Egeria"
+		ship "Tubfalet"
+	npc
+		government "Korath"
+		personality waiting
+		system
+			system "Egeria"
+		fleet
+			names "korath"
+			cargo 3
+			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			outfitters "Korath Basics" "Korath Exiles"
+			variant
+				"'olofez" 3
+	on offer
+		conversation
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			choice
+				`	"Yes, I could do that."`
+				`	"I would rather not."`
+					decline
+			`	He signs appreciatively. "We appreciate your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
+				accept
+	on complete
+		conversation
+			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
+			`	"Well met, <first>, how goes your travels? Found anything interesting?`
+			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
