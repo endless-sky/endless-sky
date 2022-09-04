@@ -419,6 +419,29 @@ fleet "Korath Civilian Large"
 	variant 1
 		"'olofez (World-Ship)"
 
+fleet "Korsmanath A'awojs"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	variant 21
+		"Korsmanath A'awoj"
+		"'olofez" 14
+		"'olofez (Expeller)" 10
+	variant 9
+		"Korsmanath A'awoj (Strike)"
+		"'olofez" 17
+		"'olofez (Expeller)" 7
+	variant 6
+		"Korsmanath A'awoj (Special)"
+		"'olofez (Expeller)" 13
+		"'olofez (Digger)" 6
+		"'olofez" 5
+	variant
+		"Korsmanath A'awoj (Blaze)"
+		"'olofez (Expeller)" 15
+		"'olofez" 9
+
 
 fleet "Kor Efret Home"
 	government "Kor Efret"
