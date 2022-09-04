@@ -34,7 +34,7 @@ class CoreStartData {
 public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	
+
 	// The planet on which the player begins (or New Boston, if not set).
 	const Planet &GetPlanet() const;
 	// The system in which the game begins (or Rutilicus, if not set).
@@ -43,16 +43,16 @@ public:
 	Date GetDate() const;
 	// The initial credits, debts, and credit rating for the player.
 	const Account &GetAccounts() const noexcept;
-	
+
 	// Get the internal identifier for this starting scenario.
 	const std::string &Identifier() const noexcept;
-	
-	
+
+
 protected:
 	// Returns true if the child node was handled by this class.
 	bool LoadChild(const DataNode &child, bool isAddNode, bool isRemoveNode);
-	
-	
+
+
 protected:
 	// The planet on which the game begins.
 	const Planet *planet = nullptr;

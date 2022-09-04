@@ -72,6 +72,9 @@ phrase "band"
 		"Turais is Unbreakable"
 		"Windblain Aureo"
 		"Darkstone Ocean"
+		"Planck Massacre"
+		"Occam's Chainsaw"
+		"The Crimson Kippers"
 
 phrase "media name"
 	word
@@ -255,8 +258,33 @@ phrase "media name"
 	word
 		`"`
 
+phrase "drugs"
+	word
+		"bad blue"
+		"booster"
+		"core"
+		"death stick"
+		"deep"
+		"fire apple"
+		"flavor drop"
+		"good red"
+		"happy stick"
+		"hot wing"
+		"memory chip"
+		"quasar"
+		"red giant"
+		"ringworld shaving"
+		"solaris joyride"
+		"southern snack"
+		"space weed%"
+		"stardust%"
+		"steam%"
+		"toad juice%"
+		"whale blubber%"
+
 phrase "contraband"
 	word
+		"${drugs}%s" 21
 		"biochemical weapons"
 		"conflict minerals"
 		"counterfeit artwork"
@@ -300,6 +328,10 @@ phrase "contraband"
 		"weaponized chickens"
 		"weaponized pigs"
 		"weaponized cows"
+	replace
+		"%%s" ""
+		"%s" "s"
+		"%" ""
 
 phrase "visual media"
 	word
@@ -465,9 +497,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		""
-		""
-		""
+		"" 3
 		"Man, "
 		"Ugh, "
 		"You know, "
@@ -586,8 +616,7 @@ phrase "friendly civilian"
 	word
 		"!"
 	word
-		""
-		""
+		"" 2
 		" Have you heard it yet?"
 		" You gotta hear it!"
 		" I was into them before they were popular."
@@ -787,11 +816,11 @@ phrase "friendly civilian"
 		"have a fleet with interceptors to tie them up while the cargo ships can warp to safety"
 		"slap on a scram drive and easily jump away"
 		"overheat them with a plasma volley"
-		"leave yourself unarmed, so they don't prioritise you"
+		"leave yourself unarmed, so they don't prioritize you"
 		"use an array of Proton Turrets, to attack from afar"
 		"use bigger cargo ships, so your fleet is harder to destroy"
 		"avoid taking jobs near the frontier"
-		"not to use so many cargo ships that you become irresistable to them"
+		"not to use so many cargo ships that you become irresistible to them"
 	word
 		"."
 		"!"
@@ -803,7 +832,7 @@ phrase "friendly civilian"
 		"You couldn't imagine"
 		"It's absurd"
 		"It's ridiculous"
-		"It's bizzare"
+		"It's bizarre"
 	word
 		" how much "
 	word
@@ -868,8 +897,8 @@ phrase "friendly civilian"
 		"What did the beaver say to the log? It was nice gnawing you!"
 		"Why did the chicken cross the road? To get to the other side!"
 		"Where do astronauts hang out? At the space bar!"
-		"What is a Syndicate salesman's favorite drink? Whatever the Syndicate tell him it is!"
-		"Why does the Navy hate neighbours? Because the grass is greener on the other side!"
+		"What is a Syndicate salesman's favorite drink? Whatever the Syndicate tells him it is!"
+		"Why does the Navy hate neighbors? Because the grass is greener on the other side!"
 		"What has two heads, six feet, two arms, and one tail? A person on a horse!"
 		"What is the monster under your bed scared of? You!"
 		"You!"
@@ -889,7 +918,7 @@ phrase "friendly civilian"
 		"Why was the pirate warlord happy after taking Pherkad? Because it gave him Solace!"
 		"What's worse than snakes on a ship? Serpens 'round a system!"
 		"What's the most common name on Vinci? Leonardo!"
-		"What did they change Uranus's name to? Urass!"
+		"What did they change Uranus' name to? Urass!"
 		"Why doesn't the system of Kursa need a telescope? Because it's a Farseer!"
 		"Why was the pirate warlord disappointed after taking the system of Kochab? Because it was only a Mere victory!"
 		"Why wasn't anybody concerned when the system of Kaus Australis lost one of its legs? Because it was already a Hopper!"
@@ -905,6 +934,18 @@ phrase "friendly civilian"
 		"Why is it difficult to navigate through Dubhe? Because there's a thick Haze!"
 		"Why do engineers go to Diphda? Because they like to Tinker!"
 		"What is a robot's least favorite planet? Rust!"
+		"What do you call a spaceship with no engines? A groundship!"
+		"Don't trust stairs. They are always up to something."
+		"How many Hestians does it take to change a lightbulb? Four! An electrician does the work, and the butler, manager and housekeeper supervise."
+		"How many Wayfarers does it take to change a lightbulb? Zero, they don't use such old technology there!"
+		"How many Moonshakers does it take to change a lightbulb? Zero, it's all out-sourced to off-worlders."
+		"How many Alexandrians does it take to change a lightbulb? One, they are very educated and capable people."
+		"How many Earthlings does it take to change a lightbulb? Three, one to change the lightbulb and two to clear the way through the crowds of people."
+		"How many Venusians does it take to change a lightbulb? Zero, there are no people living on Venus!"
+		"How many Martians does it take to change a lightbulb? Zero, they let the visiting Earthy laborers change their lightbulbs."
+		"How many New Bostonians does it take to change a lightbulb? I have no idea, never been there."
+		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
+		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
 	word
 		""
 		""
@@ -1085,6 +1126,10 @@ phrase "friendly civilian"
 		"it turns out that I've accepted missions for two different planets in the one system."
 		"my ship spends all its power on regenerating shields instead of firing."
 		"my escorts suicide themselves into close-quarters with pirates."
+		"my passengers are afraid and cry during the whole trip."
+		"one of my passengers becomes space-sick and creates a horrible mess."
+		"one of my passengers throws up and I have to clean up for days."
+		"I can't unload my cargo because somebody messed up the paperwork."
 
 phrase "friendly civilian"
 	word
@@ -1536,7 +1581,7 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"a job that paid only" 
+		"a job that paid only"
 		"a gig for only"
 		"something for just"
 	word
@@ -1627,7 +1672,7 @@ phrase "friendly civilian"
 		" "
 	word
 		"an antique teapot"
-		"a convertable car"
+		"a convertible car"
 		"some old memory capsule"
 	word
 		" "
@@ -1708,6 +1753,85 @@ phrase "friendly civilian"
 		", but I still had to take a big loan to buy my first ship."
 		", but it was my grandma's inheritance that allowed me to buy this ship."
 
+phrase "friendly civilian"
+	word
+		"Don't be too picky about the jobs you take. It's better to"
+	word
+		" "
+	word
+		"ship crooks, than have a crooked ship."
+		"ship slugs, than have a sluggish ship."
+		"ship bad bands, than have your ship badly banned."
+		"be working hard at shipping, than have your ship hardly working."
+
+
+phrase "friendly civilian"
+	word
+		"Ey Comrade,"
+	word
+		" "
+	word
+		"your ship has loaded on a planet? I have loaded a planet onto my ship."
+		"you have cargo in your ship? I have ships in my cargo."
+		"you have fighters in your bays? We have bays in our fighters."
+
+phrase "friendly civilian"
+	word
+		"Somebody"
+		"Some nut"
+	word
+		" "
+	word
+		"put"
+		"placed"
+	word
+		" "
+	word
+		"a blue phonebooth"
+		"a silver car"
+	word
+		" "
+	word
+		"on my bridge"
+		"in my armory"
+		"in my cargo hold"
+	word
+		" and "
+	word
+		"claimed to be"
+	word
+		" "
+	word
+		"a time traveler"
+		"from another time"
+	word
+		", and suddenly they disappeared."
+		", but the only travel he did was to a mental institution."
+		". I still don't know how she got into my spaceship."
+		". The thing looked bigger on the inside than on the outside."
+
+phrase "friendly civilian"
+	word
+		"I bought "
+	word
+		"a power generator"
+		"explosives"
+		"my new thrusters"
+		"some toothpaste"
+	word
+		" "
+	word
+		"from"
+	word
+		" "
+	word
+		"the ACME company"
+		"the Astronomical Conglomeration of Manufacturing Entities"
+	word
+		", a company many times smaller than the Syndicate."
+		", a minor company, but with much better service than the Syndicate."
+		", a pretty insignificant company located on just one planet."
+		", but next time, I'll buy from the Syndicate again."
 
 phrase "friendly navy"
 	word
@@ -1803,6 +1927,64 @@ phrase "friendly navy"
 		"in the Republic"
 	word
 		"!"
+		
+phrase "friendly navy"
+	word
+		"Dying"
+		"Getting wounded"
+		"Taking a hit"
+	word
+		" "
+	word
+		"during"
+		"in"
+	word
+		" "
+	word
+		"a firefight"
+		"battle"
+		"space battle"
+		"war"
+	word
+		" is "
+	word
+		"heroic"
+		"honourable"
+		"respectable"
+	word
+		", "
+	word
+		"when it helps your brothers and sisters in arms to"
+		"if such action helps to"
+		"when on duty to"
+		"when it helps to"
+		"but if you ask me; our real job is to"
+		"our goal however is to"
+		"but our focus should be to"
+		"but only if it helps the Navy to"
+		"but my commander really prefers me to"
+		"but it seems more efficient if we instead"
+		"but the world actually expects us to"
+	word
+		" "
+	word
+		"destroy"
+		"kill"
+		"imprison"
+		"eliminate"
+		"expel"
+		"fend off"
+		"drive back"
+	word
+		" "
+	word
+		"pirates"
+		"criminals"
+		"our adversaries"
+		"our enemies"
+		"terrorists"
+	word
+		"."
 
 phrase "friendly navy"
 	word
@@ -2342,28 +2524,8 @@ phrase "friendly pirate"
 		" incredible "
 		" facinating "
 		" "
-	word
-		"bad blue"
-		"booster"
-		"core"
-		"death stick"
-		"deep"
-		"fire apple"
-		"flavor drop"
-		"good red"
-		"happy stick"
-		"hot wing"
-		"memory chip"
-		"quasar"
-		"red giant"
-		"ringworld shaving"
-		"solaris joyride"
-		"southern snack"
-		"space weed"
-		"stardust"
-		"steam"
-		"toad juice"
-		"whale blubber"
+	phrase
+		"drugs"
 	word
 		" "
 	word
@@ -2379,6 +2541,8 @@ phrase "friendly pirate"
 		" I wish I could afford more."
 		" I'm going to need to make money to buy more!"
 		" Best experience I've ever had!"
+	replace
+		"%" ""
 
 phrase "friendly pirate"
 	word
@@ -2392,7 +2556,7 @@ phrase "friendly pirate"
 		" horrendous "
 		" atrocious "
 		" horrid "
-		""
+		" "
 	word
 		"bad blue"
 		"booster"
@@ -2456,8 +2620,7 @@ phrase "friendly pirate"
 	word
 		" "
 	word
-		"selling drugs"
-		"selling slaves"
+		"selling ${contraband}"
 		"plundering merchants"
 		"fetching bounties"
 	word
@@ -2570,9 +2733,8 @@ phrase "friendly pirate"
 	word
 		" "
 	word
-		"buy drugs from"
-		"sell drugs to"
-		"sell slaves to"
+		"buy ${contraband} from"
+		"sell ${contraband} to"
 	word
 		" "
 	word
@@ -2611,8 +2773,7 @@ phrase "friendly pirate"
 		"and the militia starts chasing me."
 		"and the Syndicate starts chasing me."
 	word
-		""
-		""
+		"" 2
 		" More interference plating would have helped."
 		" This interference plating is useless!"
 		" I could have gotten out faster if I had a scram drive."
@@ -2621,33 +2782,37 @@ phrase "friendly pirate"
 
 phrase "friendly author"
 	word
-		"This game "
-		"Endless Sky "
+		"This game"
+		"Endless Sky"
 	word
-		"is open source. You can "
+		" is open source. You can "
 	word
-		"help out "
-		"improve the game "
-		"get involved "
-		"help make it a better game "
-		"assist us "
-		"make your mark on the universe "
-		"give back to the community "
+		"help out"
+		"improve the game"
+		"get involved"
+		"help make it a better game"
+		"assist us"
+		"make your mark on the universe"
+		"give back to the community"
 	word
-		"by contributing "
+		" by "
 	word
-		"detailed bug reports."
-		"typo fixes."
-		"constructive feedback."
-		"ideas for improvements."
-		"landscape photos."
-		"artwork."
-		"new ships of your own design."
-		"plugins."
-		"new special missions."
-		"new weapons or other outfits."
-		"improved planet descriptions."
-		"more varied hail messages."
+		"contributing detailed bug reports."
+		"contributing typo fixes."
+		"contributing constructive feedback."
+		"contributing ideas for improvements."
+		"contributing landscape photos."
+		"contributing artwork."
+		"contributing new ships of your own design."
+		"contributing plugins."
+		"contributing new special missions."
+		"contributing new weapons or other outfits."
+		"contributing improved planet descriptions."
+		"contributing more varied hail messages."
+		"joining conversations that create new content."
+		"joining the Endless Sky Community Discord."
+		"getting involved with the community."
+		"submitting new pull requests with improvements and ideas."
 
 
 phrase "friendly disabled"
@@ -2677,12 +2842,7 @@ phrase "friendly disabled"
 		"Good to see a friendly face! "
 		"Hey, please! "
 		"Over here! "
-		""
-		""
-		""
-		""
-		""
-		""
+		"" 6
 	word
 		"Our ship is disabled,"
 		"We're kinda stuck here,"
@@ -2704,10 +2864,7 @@ phrase "friendly disabled"
 		" so we can get out of here?"
 		" as soon as possible?"
 		"? I don't want to get stranded here!"
-		"?"
-		"?"
-		"?"
-		"?"
+		"?" 4
 
 phrase "friendly disabled"
 	word
@@ -2733,10 +2890,7 @@ phrase "friendly disabled"
 		" so we can get out of here?"
 		" as soon as possible?"
 		"? I don't want to get stranded here!"
-		"?"
-		"?"
-		"?"
-		"?"
+		"?" 4
 
 phrase "friendly disabled"
 	word
@@ -2755,9 +2909,7 @@ phrase "friendly disabled"
 		" pesky"
 		" sleazy"
 		" scummy"
-		""
-		""
-		""
+		"" 3
 	word
 		" "
 	word
@@ -2793,7 +2945,40 @@ phrase "friendly disabled"
 		"Please come and help!"
 		"Any chance you can get us out of this bind?"
 		"Any chance you could bail us out?"
-		
+
+phrase "disabled free worlds"
+	word
+		"Well, this sucks."
+		"Darn it!"
+		"Oh, great."
+		"" 4
+	word
+		" "
+	word
+		"I knew I should"
+		"I knew I shouldn't"
+	word
+		" "
+	word
+		"have"
+	word
+		" "
+	word
+		"installed those weapons"
+		"bought those engines"
+		"made a left"
+		"made a right"
+		"had a drink"
+		"waited to take off"
+		"listened to that top brass"
+		"tried that move I saw"
+		"swapped my ship out"
+	word
+		"." 4
+		"!" 2
+		". Don't rub it in, okay?"
+		" yesterday."
+
 # Shakespearean insults.
 phrase "hostile disabled"
 	word
@@ -2809,6 +2994,7 @@ phrase "hostile disabled"
 		"Stay away from me, you"
 		"How dare you, you"
 		"Back off, you"
+		"Alright, well played. Now go away, you"
 	word
 		" "
 	phrase
@@ -2816,6 +3002,33 @@ phrase "hostile disabled"
 	word
 		"."
 		"!"
+
+# Shakespearean insults.
+phrase "disabled hostile"
+	word
+		"You piece of"
+	word
+		" "
+	phrase
+		"shakespearean insults"
+	word
+		"!"
+		"."
+	word
+		" "
+	word
+		"Look what you did to my ship!"
+		"This is all your fault."
+		"This isn't over."
+		"You got lucky this time."
+		"I'll make you regret that!"
+		"My beautiful ship!"
+		"Look what you've done!"
+		"I'm ruined!"
+		"Happy now?"
+		"Want a medal?"
+		"What do you want from me?"
+		"You're nothing special, you know?"
 
 phrase "shakespearean insults"
 	word
@@ -2975,6 +3188,11 @@ phrase "shakespearean insults"
 		"vassal"
 		"whey-face"
 		"wagtail"
+		
+phrase "hostile disabled pirate"
+	word
+		"Don't hurt me! Please!"
+		"Waaaaaa! Mommy!"
 
 phrase "hostile civilian"
 	word
@@ -3233,9 +3451,7 @@ phrase "friendly deep"
 	word
 		" "
 	word
-		""
-		""
-		""
+		"" 3
 		"are called to "
 		"are diligent to "
 		"must constantly "
@@ -3254,9 +3470,7 @@ phrase "friendly deep"
 	word
 		" "
 	word
-		""
-		""
-		""
+		"" 3
 		"the forces of "
 		"perpetrators of "
 		"those who bring "
@@ -3539,10 +3753,10 @@ phrase "hostile bounty"
 		" "
 	word
 		"I"
-		"my ship" 
+		"my ship"
 	word
 		" "
-	word 
+	word
 		"was going to be"
 		"was to be"
 		"would be"
@@ -3965,6 +4179,7 @@ phrase "test dummy"
 		"I wish I was a real boy, then I'd show them. I'd kill them all."
 		"Life is about decisions. Make the wrong ones and you'll wind up face down in a pool of your own blood and urine."
 		"Hey baby, wanna kill all humans?"
+		"Your body contains 100 trillion bacterial cells, while mine is fully sterile. Doesn't that make me the superior lifeform?"
 		"Danger! Danger!"
 		"Warning! Warning!"
 		"Warning! Warning! Alien spacecraft approaching!"
@@ -3972,6 +4187,7 @@ phrase "test dummy"
 		"Look at your precious human ship, for the last time!"
 		"This is not a pre-recorded message."
 		"The answer is 42, I'm quite certain of it. Do you want me to calculate the question?"
+		`"Is there a God," they asked me... Yes, here is a God.`
 
 phrase "disabled test dummy"
 	word
@@ -3986,6 +4202,8 @@ phrase "disabled test dummy"
 		"I don't know what all this trouble is about, but I'm sure it must be your fault."
 		"I have a pain in all the diodes down my left side."
 		"When you're dying I'll be still alive."
+		"Some big robotic ships due East are my friends. Remember me when they blow you to pieces."
+		"Hey, can we be friends? Some of my best friends are slimy organics like you."
 
 
 # Wormhole Hails

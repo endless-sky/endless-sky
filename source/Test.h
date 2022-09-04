@@ -16,6 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Command.h"
 #include "ConditionSet.h"
 
+#include <SDL2/SDL.h>
+
 #include <map>
 #include <set>
 #include <string>
@@ -26,6 +28,7 @@ class Planet;
 class PlayerInfo;
 class UI;
 class System;
+class TestContext;
 
 
 
@@ -33,9 +36,9 @@ class System;
 class Test {
 public:
 	// Status indicators for the test that we selected (if any).
-	enum class Status {ACTIVE, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
-	
-	
+	enum class Status {ACTIVE, PARTIAL, BROKEN, KNOWN_FAILURE, MISSING_FEATURE};
+
+
 public:
 	// Class representing a single step in a test
 	class TestStep {
@@ -50,9 +53,11 @@ public:
 			// When a second label is given, then the second is to jump to on false.
 			// Does not cause the game to step, except when no step was done since last BRANCH or GOTO.
 			BRANCH,
+			// Step that calls another test to handle some generic common actions.
+			CALL,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
-			// Step that performs input (key, mouse, command). Does cause the game to step (to proces the inputs).
+			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).
 			INPUT,
 			// Label to jump to (similar as is done in conversations). Does not cause the game to step.
 			LABEL,
@@ -63,12 +68,13 @@ public:
 			WATCHDOG,
 		};
 
-		
-		
+
+
 	public:
 		TestStep(Type stepType);
-		
-		
+		void LoadInput(const DataNode &node);
+
+
 	public:
 		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
@@ -84,45 +90,40 @@ public:
 		// debug printing, so keeping the strings for now.
 		std::string jumpOnTrueTarget;
 		std::string jumpOnFalseTarget;
-		
+
 		unsigned int watchdog = 0;
+
+		// Input variables.
+		Command command;
+		std::set<std::string> inputKeys;
+		Uint16 modKeys;
+
+		// Mouse/Pointer input variables.
+		int XValue = 0;
+		int YValue = 0;
+		bool clickLeft = false;
+		bool clickMiddle = false;
+		bool clickRight = false;
 	};
-	
-	class Context {
-	friend class Test;
-	public:
-		// Pointer to the test we are running.
-		const Test *testToRun = nullptr;
-		
-		
-	protected:
-		// Teststep to run.
-		unsigned int stepToRun = 0;
-		unsigned int watchdog = 0;
-		std::set<unsigned int> branchesSinceGameStep;
-	};
-	
-	
+
+
 public:
 	const std::string &Name() const;
 	const std::string &StatusText() const;
-	
-	// PlayerInfo, the gamePanels and the MenuPanels together give the state of
-	// the game. We just provide them as parameter here, because they are not
-	// available when the test got created (and they can change due to loading
-	// and saving of games).
-	void Step(Context &context, UI &menuPanels, UI &gamePanels, PlayerInfo &player) const;
-	
+
+	// Check the game status and perform the next test action.
+	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const;
+
 	void Load(const DataNode &node);
-	
-	
+
+
 private:
 	void LoadSequence(const DataNode &node);
-	
+
 	// Fail the test using the given message as reason.
-	void Fail(const Context &context, const PlayerInfo &player, const std::string &testFailReason) const;
-	
-	
+	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;
+
+
 private:
 	std::string name;
 	Status status = Status::ACTIVE;

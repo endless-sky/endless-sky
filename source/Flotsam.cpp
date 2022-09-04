@@ -32,8 +32,8 @@ const int Flotsam::TONS_PER_BOX = 5;
 
 
 // Constructors for flotsam carrying either a commodity or an outfit.
-Flotsam::Flotsam(const string &commodity, int count)
-	: commodity(commodity), count(count)
+Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGovernment)
+	: commodity(commodity), count(count), sourceGovernment(sourceGovernment)
 {
 	lifetime = Random::Int(3600) + 7200;
 	// Scale lifetime in proportion to the expected amount per box.
@@ -43,8 +43,8 @@ Flotsam::Flotsam(const string &commodity, int count)
 
 
 
-Flotsam::Flotsam(const Outfit *outfit, int count)
-	: outfit(outfit), count(count)
+Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment)
+	: outfit(outfit), count(count), sourceGovernment(sourceGovernment)
 {
 	// The more the outfit costs, the faster this flotsam should disappear.
 	int lifetimeBase = 3000000000 / (outfit->Cost() * count + 1000000);
@@ -79,7 +79,7 @@ void Flotsam::Place(const Body &source, const Point &dv)
 	velocity = source.Velocity() + dv;
 	angle = Angle::Random();
 	spin = Angle::Random(10.);
-	
+
 	// Special case: allow a harvested outfit item to define its flotsam sprite
 	// using the field that usually defines a secondary weapon's icon.
 	if(outfit && outfit->FlotsamSprite())
@@ -100,14 +100,14 @@ void Flotsam::Move(vector<Visual> &visuals)
 	--lifetime;
 	if(lifetime > 0)
 		return;
-	
-	// This flotsam has reached the end of its life. 
+
+	// This flotsam has reached the end of its life.
 	const Effect *effect = GameData::Effects().Get("flotsam death");
 	for(int i = 0; i < 3; ++i)
 	{
 		Angle smokeAngle = Angle::Random();
 		velocity += smokeAngle.Unit() * Random::Real();
-		
+
 		visuals.emplace_back(*effect, position, velocity, smokeAngle);
 	}
 	MarkForRemoval();
@@ -119,6 +119,15 @@ void Flotsam::Move(vector<Visual> &visuals)
 const Ship *Flotsam::Source() const
 {
 	return source;
+}
+
+
+
+// Ships from this Government should not pick up this flotsam because it
+// was explicitly dumped by a member of this government.
+const Government *Flotsam::SourceGovernment() const
+{
+	return sourceGovernment;
 }
 
 
@@ -161,15 +170,15 @@ int Flotsam::TransferTo(Ship *collector)
 	int amount = outfit ?
 		collector->Cargo().Add(outfit, count) :
 		collector->Cargo().Add(commodity, count);
-	
+
 	Point relative = collector->Velocity() - velocity;
 	double proportion = static_cast<double>(amount) / count;
 	velocity += relative * proportion;
-	
+
 	count -= amount;
 	// If this flotsam is now empty, remove it.
 	if(count <= 0)
 		MarkForRemoval();
-	
+
 	return amount;
 }

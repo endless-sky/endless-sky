@@ -37,7 +37,7 @@ void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
@@ -58,6 +58,16 @@ void Effect::Load(const DataNode &node)
 			randomSpin = child.Value(1);
 		else if(child.Token(0) == "random frame rate" && child.Size() >= 2)
 			randomFrameRate = child.Value(1);
+		else if(child.Token(0) == "absolute angle" && child.Size() >= 2)
+		{
+			absoluteAngle = Angle(child.Value(1));
+			hasAbsoluteAngle = true;
+		}
+		else if(child.Token(0) == "absolute velocity" && child.Size() >= 2)
+		{
+			absoluteVelocity = child.Value(1);
+			hasAbsoluteVelocity = true;
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
