@@ -401,34 +401,30 @@ mission "HI2-IW"
 			`Kirrie, already donning his winter coat, instructs you to land near the equator. He says him and Tugroob will conduct some subtle interrogations, stating that it's 'all they can do' in this climate.`
 			`	You drop them off in one of the larger settlements there. After they leave, Iplora asks that you bring her close to the southern pole of the planet.`
 			`	"Suspiciously similar, independent reports on that area have been. Tasked with investigating it, I was."`
-			`	As you land on an isolated icy patch in the middle of a snowstorm, Iplora finishes her preparations, carrying a bag with some equipment and wearing what is - at least when compared to what her colleagues were wearing - fairly light clothing. Although she is a Saryd, you still worry that she might be frostbitten in this extreme weather, but she reassures you that she will be fine.`
-			`	You open your ship's hatch and she prepares to leave.`
+			`	As you land on an isolated icy patch, just out of reach of a growing snowstorm nearby, Iplora finishes her preparations, carrying a bag with some equipment and wearing what is - at least when compared to what her colleagues were wearing - fairly light clothing. Although she is a Saryd, you still worry that she might be frostbitten in this extreme weather, but she reassures you that she will be fine.`
+			`	She tells you she'll be back in a few hours, and waits for you to open the hatch.`
 			choice
 				`	"Good luck. Be careful not to get lost in all this snow."`
 					goto warm
 				`	"Hold up, I'll go with you so we can search faster."`
-			`	She pauses on the ramp, looking back at you.`
-			`	"Certain of that, are you, Captain? Treacherous, these storms can be."`
+			`	She pauses in thought for a few seconds, looking back at you. "Certain of that, are you, Captain? Treacherous, these storms can be."`
 			choice
 				`	"Don't worry, I can carry my weight through some snow."`
 					goto snow
 				`	"On second thought, you're right. Good luck out there."`
 			label warm
-			`	You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink. Iplora comes back, saying she couldn't find anything, so you leave and pick up Kirrie and Tugroob. They also return empty handed.`
+			`	You open the hatch, and she begins her trek. You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink. Iplora comes back, saying she couldn't find anything, so you leave and pick up Kirrie and Tugroob. They also return empty handed.`
 				accept
 			label snow
-			`	She remains silent, and walks back inside. You close the hatch and prepare yourself for what's to come with the warmest clothing you could find. You open the hatch once more, and the both of you head out into the white fields. Not long after leaving your ship, you can make out small, dark lines nearby, probably pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the snowfall.`
-			`	You continue deeper into the lifeless forest for what feels like hours, so long that your feet start feeling numb from the cold. After yet another turn, Iplora guides you out of the forest to snowy hills. The storm is not so terrible here, so you can faintly see cave entrances in some of the more distant hills. Looking back at the woods, you see that there's a small shack in the outskirts, not too far from where you are now.`
-			`	"Check the caverns, we must. More relentless, the storm will soon become," Iplora says.`
+			`	She remains silent, moving away from the hatch, and taking a seat to wait. You head to your room, and prepare yourself for what's to come with the warmest, best clothing you could find for the snowy grounds. When you're done, you head back to your controls to open the hatch, and the both of you head out into the white fields. Not long after leaving your ship, you can make out small, dark lines nearby, probably pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the increasingly denser snowfall.`
+			`	You continue deeper into the lifeless forest for what feels like hours, so long that your feet start feeling slightly numb from the cold. After yet another turn amidst identical trees, Iplora guides you out of the forest to a snowy plain, dotted with a few dozen small, sturdy houses. Iplora explains it was something of a resort, popular with Kimek families when the planet wasn't as cold as nowadays. The storm is not so terrible here, so you can also faintly see cave entrances in a few small mounds, at the edges of the resort grounds. Snow-covered boulders litter the entire plain, and Iplora warns you to take care not to trip on them.`
+			`	"Check the caverns, we must. More relentless, the storm will soon become," she says.`
 			choice
 				`	"Lead the way."`
 					goto bumpyroad
-				`	"You go ahead. I'll see if I can find anything in that shack."`
-			`	She nods, and starts making her way uphill. You start walking to the shack, but just a couple steps into it you trip on something hard, unlike the soft, deep snow you've been in up until now.`
-			`	Iplora notices it and walks over to you, "Many boulders, this area has. Buried by the snow they have been. Great care you must take, while walking here," she explains before getting on with her own path to the caverns.`
-			`	You reach the shack and knock to see if anyone is inside. Your question is answered as your soft knocks push open the door into an empty building. The place is abandoned, with only a few boxes laying around, small, empty bedrooms, and a fireplace that resembles the spiky design of Kimek ships. All of them are covered in a thin layer of dust. A large carpet covers the center of the living room.`
-			`	You pull it up but find nothing hidden underneath. You leave the shack, circling it, finding only a few tools on the ground around the back. You take another look around, and even start checking some of the nearby trees, but as the snowfall grows stronger, you decide to head to the caverns and catch up with Iplora.`
-			`	You trip over a few more of the small mounds, and right in the middle of the snowfield, you start wondering which cavern Iplora is in now. Though you can't be sure if you'll find her by entering the nearest one, it would certainly be better than standing outside in what will soon be a blizzard.`
+				`	"You go ahead. I'll see if I can find anything in the houses."`
+			`	She nods, tells you that the place is shut down, so you can force your way into the houses if needed, and starts making her way uphill. You head to the closest house, and blast the lock after a few failed attempts at opening it normally. You crouch past the entrance of the abandoned home, clearly not intended for any non-Kimek, and begin searching the interior. The furniture is still in surprisingly good shape, if a bit dusty, but you find nothing inside any of the containers, below any of the beds, or hidden under the flooring.`
+			`	You move on to the next house, and speed up the process as you go along and get used to the standard layout of the resort homes. After you're done with the fifth one, you leave to find the snowfall growing stronger. It might be best to try and look for Iplora, and see if she's found anything, before the blizzard sets in fully.`
 			choice
 				`	(Enter the nearest cavern.)`
 					goto shelter
@@ -442,25 +438,25 @@ mission "HI2-IW"
 				`	(Keep digging.)`
 					goto keepdig
 			label shelter
-			`	You rush inside the nearest cave, waiting for the weather to clear up a bit. After a while you notice a light coming from further inside the cave, and Iplora emerges soon after. "Found anything?" she asks, and you shake your head. Aside from some small campsites, she didn't either. You wait inside a bit more, and when the weather clears and night approaches, you follow her back to the ship.`
-			`	Once you're there, you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
+			`	You rush inside the nearest cave, and turn on your flashlight as you carefully explore the cavern. After a while, you notice another light coming from further inside the cave, and Iplora emerges soon after. "Found anything?" she asks, and you shake your head. Aside from some small campsites, she didn't either. You wait inside a bit more, and when the weather clears and night approaches, you follow her back to the ship.`
+			`	Once you're there, you leave to pick up Kirrie and Tugroob, who also come back empty handed. The agents head to their bunks, and you prepare to take off.`
 				accept
 			label bumpyroad
-			`	Following her up the hills proves difficult at first, with your legs sinking into the snow, but after a few minutes the ground below becomes more and more solid - if a bit bumpy. Iplora explains that the area has several small and medium sized boulders buried by the snow over the years. You try to watch your step, but as the snowfall grows stronger, you trip over one of the mounds. She helps you up, and the two of you eventually arrive at the entrance of one of the caverns.`
+			`	Following her up the hills proves difficult at first, with your legs sinking into the snow, but the ground below becomes more and more solid - if a bit bumpy - the further into the resort you go. You try to watch your step around the boulders scattered about, but after stepping on a patch with deeper snow than usual, you trip over one of the mounds. She helps you up, and the two of you eventually arrive at the entrance of one of the caverns.`
 			choice
 				`	(Go inside with Iplora.)`
 					goto cave
 				`	(Search around the snow field.)`
-			`	You tell her you'll look around the snow for a while and go inside if the storm gets rough again. Walking around in the blizzard, this time minding the bumpy ground below, you try to spot anything unusual in the snow. Although the scenery is a great sight, the task itself quickly becomes dull. Even after walking far away from the hills, your effort produces no results. The snow starts falling much faster, so you begin making your way back to the caverns.`
-			`	With all the snow blocking your vision, you end up tripping over some of the mounds on your way and realize you don't exactly remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
+			`	You tell her you'll look around the snow for a while and go inside if the storm gets rough again. Walking around in the developing blizzard, this time minding the bumpy ground below, you try to look for anything off about any of the resort homes, or perhaps spot something in the snow itself. Although the scenery is a great sight, the task quickly becomes dull. Even after walking around the entire resort, your efforts produce no results. The snow starts falling much faster, so you begin making your way back to the caverns.`
+			`	With your focus on blocking a gust of snow, you end up tripping over another one of the mounds on your way, and realize you don't remember which cave Iplora entered. Considering the weather, though, taking shelter in any of them would be a good choice.`
 			choice
 				`	(Enter the nearest cavern.)`
 					goto shelter
 				`	(Try and dig through the snowy mounds to find something.)`
 					goto dig
 			label cave
-			`	Iplora brings out a flashlight and lights up the way as you two explore the caverns. After some twists and turns she notices some large rocks that evidently broke free from the walls, but still hug them closely. She asks that you hold the flashlight for her and starts pushing the rocks, revealing a passage to a small campsite containing some makeshift beds, small wooden crates, and a worn down campfire in the middle.`
-			`	You search through the crates as she examines the room looking for some other hidden area, but neither of you find anything. She checks the campfire and concludes that nobody has been here for a few months. You continue exploring the cave and eventually loop back outside, leaving via another cave entrance, this time much further from the forest according to Iplora. You don't know how she can determine that because the blizzard has gotten so much stronger that you can't even see the trees anymore.`
+			`	You and Iplora bring out your flashlights to lights up the way as you two explore the caverns. After some twists and turns she notices some large rocks that evidently broke free from the walls, but still hug them closely. She puts down her flashlight, and starts pushing the rocks, revealing a passage to a small campsite containing some makeshift beds, knocked over equipment boxes, and a worn down campfire in the middle.`
+			`	You search through the boxes as she examines the room looking for some other hidden area, but neither of you find anything. She checks the campfire and concludes that nobody has been here for a few months. You continue exploring the cave and eventually loop back outside, leaving via another cave entrance, this time much further from the forest according to Iplora. Given the blizzard is now strong enough that you've lost sight of the forest from earlier, you wonder how she's even managing to tell where you are, and for how much longer she'll be able to do so.`
 			choice
 				`	(Suggest returning to the ship.)`
 					goto bumpyblizzard
