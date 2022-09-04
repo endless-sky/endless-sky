@@ -509,8 +509,7 @@ void Ship::Load(const DataNode &node)
 	// if there have been any hull hit effects defined
 	if(!shieldHitEffectSet && hitEffectSet)
 	{
-		for(const auto &it : HullHitEffects())
-			shieldHitEffects[*it.first] += it.second;
+			shieldHitEffects = hullHitEffects;
 	}
 }
 
@@ -3411,6 +3410,42 @@ double Ship::MaxReverseVelocity() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, double intersection, Point hitVelocity, Angle hitAngle)
 {
+	int type = DoDamage(visuals, damage);
+
+	// If this ship did not consider itself an enemy of the ship that hit it,
+	// it is now "provoked" against that government.
+	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
+			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
+			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
+		type |= ShipEvent::PROVOKE;
+
+	// Create hull/shield hit effect visuals at the point of impact for weapons
+	// fire, if there are any to create.
+		if(shields > 0.)
+		{
+			for(const auto &it : ShieldHitEffects())
+				for(int i = 0; i < it.second; ++i)
+				{
+					visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
+				}
+		}
+		else
+		{
+			for(const auto &it : HullHitEffects())
+				for(int i = 0; i < it.second; ++i)
+				{
+					visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
+				}
+		}
+
+	return type;
+}
+
+
+// Apply the actual damage to the ship, in the case of weather, this
+// is called directly and TakeDamage is skipped
+int Ship::DoDamage(vector<Visual> &visuals, const DamageDealt &damage)
+{
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
@@ -3468,34 +3503,9 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	// If this ship did not consider itself an enemy of the ship that hit it,
-	// it is now "provoked" against that government.
-	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
-			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
-			&& !personality.IsPacifist() && damage.GetWeapon().DoesDamage())
-		type |= ShipEvent::PROVOKE;
-
 	// Create target effect visuals, if there are any.
 	for(const auto &effect : damage.GetWeapon().TargetEffects())
 		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
-	
-	// Create hull/shield hit effect visuals at the point of impact, if there are any.
-	if(shields > 0.)
-	{
-		for(const auto &it : ShieldHitEffects())
-			for(int i = 0; i < it.second; ++i)
-			{
-				visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
-			}
-	}
-	else
-	{
-		for(const auto &it : HullHitEffects())
-			for(int i = 0; i < it.second; ++i)
-			{
-				visuals.emplace_back(*it.first, position + velocity * intersection, velocity, hitAngle, hitVelocity);
-			}
-	}
 
 	return type;
 }
