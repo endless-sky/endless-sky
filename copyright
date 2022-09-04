@@ -1397,7 +1397,7 @@ Files:
  images/asteroid/livecrystal/livecrystal*
  images/effect/burning?spark*
  images/effect/coalition?flare/*
- images/effect/corrosion?spark/*
+ images/effect/corrosion?spark*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
