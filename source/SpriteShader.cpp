@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Shader.h"
 #include "Sprite.h"
 
-#include <vector>
 #include <sstream>
+#include <vector>
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.

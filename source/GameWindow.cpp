@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #include <cstring>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace std;
 

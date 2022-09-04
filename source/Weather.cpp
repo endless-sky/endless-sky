@@ -14,9 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Hazard.h"
+#include "Random.h"
 #include "Screen.h"
 #include "Visual.h"
-#include "Random.h"
 
 #include <cmath>
 

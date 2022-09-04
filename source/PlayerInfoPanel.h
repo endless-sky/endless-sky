@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
-#include "Point.h"
 #include "text/layout.hpp"
+#include "Point.h"
 
 #include <set>
 #include <vector>

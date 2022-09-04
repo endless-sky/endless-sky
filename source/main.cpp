@@ -23,8 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "GameLoadingPanel.h"
+#include "GameWindow.h"
 #include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
@@ -53,8 +53,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifdef _WIN32
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
 #include <mmsystem.h>
+#include <windows.h>
 #endif
 
 using namespace std;

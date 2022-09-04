@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "es-test.hpp"
 
 #include "../../../source/Random.h"
+
 #include <ctime>
 
 int main(int argc, const char *const argv[])

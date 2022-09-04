@@ -16,8 +16,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 #include "Sprite.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Point;
 class StellarObject;

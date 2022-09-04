@@ -15,8 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "File.h"
 #include "Logger.h"
 
-#include <png.h>
 #include <jpeglib.h>
+#include <png.h>
 
 #include <cstdio>
 #include <stdexcept>

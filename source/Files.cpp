@@ -23,8 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
-#include <sys/stat.h>
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <utime.h>
 #endif

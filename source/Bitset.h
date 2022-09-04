@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef BITSET_H_
 #define BITSET_H_
 
-#include <limits>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <vector>
 
 

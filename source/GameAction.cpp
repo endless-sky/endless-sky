@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Ship.h"
 #include "Random.h"
+#include "Ship.h"
 #include "UI.h"
 
 #include <cstdlib>

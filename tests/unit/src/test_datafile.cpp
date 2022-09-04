@@ -17,8 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Include a helper functions.
 #include "datanode-factory.h"
-#include "output-capture.hpp"
 #include "../../../source/text/Format.h"
+#include "output-capture.hpp"
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
