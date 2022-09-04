@@ -2626,7 +2626,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The number of active ships the player has of the given category
+	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
 	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships: ");
 	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
@@ -2658,8 +2658,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&presentOutfitProvider = conditions.GetProviderPrefixed("outfit (present): ");
 	presentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (present): ")));
+		if(!outfit)
+			return 0;
 		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
 		const Planet *planet = GetPlanet();
 		if(planet)
 		{
@@ -2685,8 +2687,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&fleetOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet installed): ");
 	fleetOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (fleet installed): ")));
+		if(!outfit)
+			return 0;
 		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			if(ship->IsDestroyed())
@@ -2700,12 +2704,14 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&fleetCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet cargo): ");
 	fleetCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (fleet cargo): ")));
+		if(!outfit)
+			return 0;
 		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
 		if(GetPlanet())
 			retVal += Cargo().Get(outfit);
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && !ship->IsParked())
+			if(!ship->IsDestroyed())
 				retVal += ship->Cargo().Get(outfit);
 		return retVal;
 	});
@@ -2714,18 +2720,21 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&flagshipOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship installed): ");
 	flagshipOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
-		if(flagship)
-			retVal += flagship->OutfitCount(outfit);
-		return retVal;
+		if(!flagship)
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship installed): ")));
+		if(!outfit)
+			return 0;
+		return flagship->OutfitCount(outfit);
 	});
 
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
+		if(!outfit)
+			return 0;
 		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
 		if(GetPlanet())
 			retVal += Cargo().Get(outfit);
 		if(flagship)
@@ -2737,8 +2746,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&storedOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
 	storedOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
+		if(!outfit)
+			return 0;
 		int64_t retVal = 0;
-		const Outfit *outfit = GameData::Outfits().Get(name);
 		for(const auto &storage : planetaryStorage)
 			retVal += storage.second.Get(outfit);
 		return retVal;
@@ -2767,12 +2778,20 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Read only exploration conditions.
 	auto &&visitedPlanetProvider = conditions.GetProviderPrefixed("visited planet: ");
-	auto visitedPlanetFun = [this](const string &name) -> bool { return HasVisited(*GameData::Planets().Get(name)); };
+	auto visitedPlanetFun = [this](const string &name) -> bool
+	{
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("visited planet: ")));
+		return planet ? HasVisited(*planet) : false;
+	};
 	visitedPlanetProvider.SetGetFunction(visitedPlanetFun);
 	visitedPlanetProvider.SetHasFunction(visitedPlanetFun);
 
 	auto &&visitedSystemProvider = conditions.GetProviderPrefixed("visited system: ");
-	auto visitedSystemFun = [this](const string &name) -> bool { return HasVisited(*GameData::Systems().Get(name)); };
+	auto visitedSystemFun = [this](const string &name) -> bool
+	{
+		const System *system = GameData::Systems().Find(name.substr(strlen("visited system: ")));
+		return system ? HasVisited(*system) : false;
+	};
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
