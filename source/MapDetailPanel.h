@@ -44,8 +44,6 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	// Handle right-clicks within the "orbits" display.
 	virtual bool RClick(int x, int y) override;
-	// Handle drag events
-	virtual bool Drag(double dx, double dy) override;
 
 
 private:
@@ -60,9 +58,6 @@ private:
 private:
 	int governmentY = 0;
 	int tradeY = 0;
-	int scrollY = 0;
-	int scrollMin = 0;
-	bool do_drag = false;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;

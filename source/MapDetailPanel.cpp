@@ -214,10 +214,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y, int clicks)
 {
-	do_drag = false;
 	if(x < Screen::Left() + 160)
 	{
-		do_drag = true;
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
 		if(y >= tradeY && y < tradeY + 200)
@@ -228,16 +226,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
 		else if(y < governmentY)
-		{
 			SetCommodity(SHOW_REPUTATION);
-			return true;
-		}
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 20)
-		{
 			SetCommodity(SHOW_GOVERNMENT);
-			return true;
-		}
 		else
 		{
 			// The player clicked within the region associated with this system's planets.
@@ -268,9 +260,6 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 					return true;
 				}
 		}
-		// if we didn't return, then we didn't click on something clickable in
-		// this panel, so don't handle dragging.
-		do_drag = false;
 	}
 	else if(x >= Screen::Right() - 240 && y <= Screen::Top() + 270)
 	{
@@ -329,26 +318,6 @@ bool MapDetailPanel::RClick(int x, int y)
 	}
 
 	return true;
-}
-
-
-
-bool MapDetailPanel::Drag(double dx, double dy)
-{
-	if(do_drag)
-	{
-		if (scrollMin < 0)
-		{
-			// Only write scrollY once here, to prevent jitter on the drawing
-			// thread
-			scrollY = min(0, max(scrollY + static_cast<int>(dy), scrollMin));
-		}
-		return true;
-	}
-	else
-		MapPanel::Drag(dx, dy);
-
-	return false;
 }
 
 
@@ -483,9 +452,7 @@ void MapDetailPanel::DrawInfo()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 
-	// only read scrollY once here, since it is written by a different thread
-	int offsetY = scrollY;
-	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45. + offsetY);
+	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 
 	// System sprite goes from 0 to 90.
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
@@ -621,9 +588,6 @@ void MapDetailPanel::DrawInfo()
 
 		uiPoint.Y() += 20.;
 	}
-	uiPoint.Y() += 45.;
-
-	scrollMin = Screen::Bottom() - (uiPoint.Y() - offsetY);
 
 	if(selectedPlanet && !selectedPlanet->Description().empty()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
