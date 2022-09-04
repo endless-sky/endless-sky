@@ -15,21 +15,21 @@ fleet "Korsmanath A'awojs"
 	cargo 3
 	variant 21
 		"Korsmanath A'awoj"
-		"Korath Chaser" 14
-		"Korath Chaser (Expeller)" 10
+		"'olofez" 14
+		"'olofez (Expeller)" 10
 	variant 9
 		"Korsmanath A'awoj (Strike)"
-		"Korath Chaser" 17
-		"Korath Chaser (Expeller)" 7
+		"'olofez" 17
+		"'olofez (Expeller)" 7
 	variant 6
 		"Korsmanath A'awoj (Special)"
-		"Korath Chaser (Expeller)" 13
-		"Korath Chaser (Digger)" 6
-		"Korath Chaser" 5
+		"'olofez (Expeller)" 13
+		"'olofez (Digger)" 6
+		"'olofez" 5
 	variant
 		"Korsmanath A'awoj (Blaze)"
-		"Korath Chaser (Expeller)" 15
-		"Korath Chaser" 9
+		"'olofez (Expeller)" 15
+		"'olofez" 9
 
 mission "North Korsmanath A'awojs [0]"
 	invisible

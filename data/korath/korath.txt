@@ -245,11 +245,11 @@ fleet "Korath Civilian Miners"
 		"'olofez (Digger)" 2
 	variant 2
 		"Lor'kas Ik 577 (Digger)"
-		"Korath Chaser (Digger)" 3
+		"'olofez (Digger)" 3
 	variant 1
 		"Ra'at Ik 621 (Digger)"
-		"Korath Chaser (Digger)" 5
-		"Korath Chaser (Expeller)" 4
+		"'olofez (Digger)" 5
+		"'olofez (Expeller)" 4
 
 fleet "Korath Home"
 	government "Korath"
@@ -260,17 +260,17 @@ fleet "Korath Home"
 		timid opportunistic
 	variant 3
 		"Lor'kas Ik 577"
-		"Korath Chaser" 3
+		"'olofez" 3
 	variant 1
 		"Kas'lor Ik 582"
-		"Korath Chaser" 3
+		"'olofez" 3
 	variant 1
 		"Rano'erek" 2
 		"'olofez" 2
 		"'olofez (Expeller)" 2
 	variant 1
 		"Lor'nag Ik 590"
-		"Korath Chaser" 3
+		"'olofez" 3
 
 fleet "Korath Defense"
 	government "Korath"
@@ -283,7 +283,7 @@ fleet "Korath Defense"
 		"Ra'gru Ik 618"
 	variant 4
 		"Ra'at Ik 621"
-		"Korath Chaser" 9
+		"'olofez" 9
 	variant 2
 		"Rano'erek (Shunt)"
 		"'olofez" 2
@@ -292,15 +292,15 @@ fleet "Korath Defense"
 		"Rano'erek (Heaver)"
 		"'olofez" 4
 	variant 3
-		"Korath Raider" 3
-		"Korath Chaser" 6
+		"Palavret" 3
+		"'olofez" 6
 	variant 2
-		"Korath Raider" 2
-		"Korath Raider (Blaze)" 2
-		"Korath Chaser" 8
+		"Palavret" 2
+		"Palavret (Blaze)" 2
+		"'olofez" 8
 	variant 2
-		"Korath Raider (Ember Shunt)" 3
-		"Korath Chaser" 6
+		"Palavret (Ember Shunt)" 3
+		"'olofez" 6
 	variant 1
 		"Rano'erek"
 		"Palavret (Blaze)"
@@ -312,17 +312,17 @@ fleet "Korath Defense"
 		"Ra'gru Ik 618 (Storm)"
 	variant 1
 		"Ra'gru Ik 618"
-		"Korath Raider" 3
-		"Korath Chaser" 6
+		"Palavret" 3
+		"'olofez" 6
 	variant 1
 		"Ra'at Ik 621 (Storm)"
-		"Korath Raider" 3
-		"Korath Chaser" 11
-		"Korath Chaser (Expeller)" 4
-		"Korath Dredger"
-		"Korath Raider (Blaze)"
-		"Korath Chaser" 4
-		"Korath Chaser (Expeller)" 2
+		"Palavret" 3
+		"'olofez" 11
+		"'olofez (Expeller)" 4
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
 
 fleet "Korath Large Raid"
 	government "Korath"
@@ -366,19 +366,19 @@ fleet "Korath Ember Waste Raid Large"
 		"'olofez" 4
 	variant 1
 		"Ra'gru Ik 618 (Ember)"
-		"Korath Dredger (Heaver)"
-		"Korath Raider (Ember)" 3
-		"Korath Chaser" 10
+		"Rano'erek (Heaver)"
+		"Palavret (Ember)" 3
+		"'olofez" 10
 	variant 1
 		"Ra'at Ik 621"
-		"Korath Dredger (Heaver)"
-		"Korath Raider (Ember)" 3
-		"Korath Chaser" 19
+		"Rano'erek (Heaver)"
+		"Palavret (Ember)" 3
+		"'olofez" 19
 	variant 1
 		"Lor'kas Ik 577 (Ember)"
-		"Korath Raider (Ember Shunt)"
-		"Korath Raider (Ember Blaze)" 2
-		"Korath Chaser" 9
+		"Palavret (Ember Shunt)"
+		"Palavret (Ember Blaze)" 2
+		"'olofez" 9
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
@@ -389,29 +389,29 @@ fleet "Korath Civilian Large"
 		frugal opportunistic disables forbearing
 	variant 7
 		"Lor'nag Ik 590"
-		"Korath Chaser (Expeller)" 3
+		"'olofez (Expeller)" 3
 	variant 6
 		"Lor'kas Ik 577"
-		"Korath Chaser (Expeller)" 3
+		"'olofez (Expeller)" 3
 	variant 5
 		"Kasichara A'awoj"
-		"Korath Raider" 2
-		"Korath Chaser" 4
+		"Palavret" 2
+		"'olofez" 4
 	variant 8
 		"Kasichara A'awoj"
 	variant 5
 		"Kas'lor Ik 582"
-		"Korath Chaser (Expeller)" 3
+		"'olofez (Expeller)" 3
 	variant 4
 		"Lor'nag Ik 590 (Grab)"
-		"Korath Chaser (Expeller)" 3
+		"'olofez (Expeller)" 3
 	variant 3
 		"Rano'erek (Civilian)" 2
 		"'olofez (Digger)" 4
 		"'olofez (Expeller)" 4
 	variant 1
 		"Ra'at Ik 621"
-		"Korath Chaser" 9
+		"'olofez" 9
 	variant 1
 		"Ra'gru Ik 618"
 	variant 1

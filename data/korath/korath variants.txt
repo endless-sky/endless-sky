@@ -416,8 +416,8 @@ ship "Tubfalet" "Tubfalet (Crippler)"
 ship "'nra'ret" "'nra'ret (Crippler)"
 	outfits
 		"Korath Detainer" 2
-		"Korath Repeater Turret" 2
-		"Korath Warder"
+		"Thermal Repeater Turret" 2
+		"Warder Anti-Missile"
 		"Korath Piercer Launcher" 2
 		"Korath Piercer" 62
 		"Firelight Missile Bank" 4
@@ -430,7 +430,7 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt"
 		"Outfits Expansion"
-		"Korath Repeater Rifle" 219
+		"Thermal Repeater Rifle" 219
 
 		"Afterburner (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -445,9 +445,9 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
-	turret "Korath Repeater Turret"
-	turret "Korath Repeater Turret"
-	turret "Korath Warder"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
 
 
 
@@ -493,7 +493,7 @@ ship "'olofez" "'olofez (World-Ship)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	outfits
-		"Banisher Grav-Turret" 2
+		"Banisher Grav-Turret" 3
 		"Warder Anti-Missile"
 		
 		"Triple Plasma Core"
@@ -510,20 +510,20 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	
 	turret
 	turret
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Warder"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
 	turret
 	turret
-	turret "Korath Banisher"
+	turret "Banisher Grav-Turret"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 	outfits
 		"Shunt-Strike Turret" 5
 		"Blaze-Pike Turret" 2
-		"Korath Banisher" 1
-		"Korath Warder" 2
+		"Banisher Grav-Turret" 1
+		"Warder Anti-Missile" 2
 		"Korath Fire-Lance" 3
 		"Firelight Missile Bank" 2
 		"Firelight Missile" 36
@@ -535,7 +535,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 		"Large Heat Shunt"
 		"Small Heat Shunt"
 		"Fuel Processor" 2
-		"Korath Repeater Rifle" 480
+		"Thermal Repeater Rifle" 480
 		"Microbot Defense Station" 25
 		"Outfits Expansion" 2
 		
@@ -554,11 +554,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
-	turret "Korath Banisher"
+	turret "Banisher Grav-Turret"
 	turret "Blaze-Pike Turret"
 
 
@@ -567,10 +567,10 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 		"Firelight Missile" 72
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack" 4
-		"Korath Banisher" 2
+		"Banisher Grav-Turret" 2
 		"Korath Fire-Lance" 3
-		"Korath Grab-Strike" 6
-		"Korath Warder" 2
+		"Grab-Strike Turret" 6
+		"Warder Anti-Missile" 2
 
 		"Triple Plasma Core"
 		"Systems Core (Large)" 2
@@ -578,7 +578,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 		"Large Heat Shunt"
 		"Liquid Sodium Cooler"
 		"Outfits Expansion" 3
-		"Korath Repeater Rifle" 359
+		"Thermal Repeater Rifle" 359
 		"Microbot Defense Station" 23
 
 		"Afterburner (Planetary Class)"
@@ -591,16 +591,16 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	gun "Korath Fire-Lance"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
-	turret "Korath Grab-Strike"
-	turret "Korath Warder"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Warder"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
@@ -608,7 +608,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Blaze-Pike Turret" 2
 		"Korath Fire-Lance" 3
 		"Korath Inferno" 2
-		"Korath Warder" 2
+		"Warder Anti-Missile" 2
 		"Shunt-Strike Turret" 2
 		"Firelight Missile" 36
 		"Firelight Missile Bank" 2
@@ -622,7 +622,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Microbot Defense Station" 21
-		"Korath Repeater Rifle" 359
+		"Thermal Repeater Rifle" 359
 
 		"Steering (Stellar Class)"
 		"Thruster (Planetary Class)"
@@ -634,10 +634,10 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	turret "Korath Inferno"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
 	turret "Korath Inferno"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
 	turret "Firestorm Turret"
 	turret "Blaze-Pike Turret"
@@ -652,7 +652,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Korath Disruptor" 3
 		"Korath Minelayer" 2
 		"Korath Mine" 34
-		"Korath Warder" 4
+		"Warder Anti-Missile" 4
 		
 		"Triple Plasma Core"
 		"Double Plasma Core"
@@ -661,7 +661,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Large Heat Shunt"
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 272
+		"Thermal Repeater Rifle" 272
 		"Microbot Defense Station" 23
 		"Outfits Expansion"
 		"Reasoning Node"
@@ -680,24 +680,24 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 	turret "Korath Slicer Turret"
 	turret "Korath Disruptor"
 	turret "Korath Slicer Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 	turret "Korath Disruptor"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Korath Slicer Turret"
 	turret "Korath Disruptor"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	outfits
 		"Korath Detainer" 3
-		"Korath Repeater Turret" 4
-		"Korath Grab-Strike" 2
-		"Korath Banisher"
+		"Thermal Repeater Turret" 4
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret"
 		"Korath Piercer Launcher" 2
 		"Korath Piercer" 62
-		"Korath Warder" 3
+		"Warder Anti-Missile" 3
 		
 		"Triple Plasma Core"
 		"Double Plasma Core"
@@ -707,7 +707,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 369
+		"Thermal Repeater Rifle" 369
 		"Microbot Defense Station" 24
 		"Outfits Expansion" 3
 		"Control Transceiver"
@@ -722,23 +722,23 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	gun "Korath Detainer"
 	gun "Korath Piercer Launcher"
 	gun "Korath Piercer Launcher"
-	turret "Korath Repeater Turret"
-	turret "Korath Grab-Strike"
-	turret "Korath Warder"
-	turret "Korath Repeater Turret"
-	turret "Korath Repeater Turret"
-	turret "Korath Warder"
-	turret "Korath Repeater Turret"
-	turret "Korath Banisher"
-	turret "Korath Warder"
-	turret "Korath Grab-Strike"
+	turret "Thermal Repeater Turret"
+	turret "Grab-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
 
 
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 	outfits
-		"Korath Banisher" 2
-		"Korath Warder" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
 		"Digger Mining Turret" 3
 		"Digger Mining Beam" 2
 		
@@ -746,7 +746,7 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 237
+		"Thermal Repeater Rifle" 237
 		"Microbot Defense Station" 19
 		
 		"Thruster (Stellar Class)"
@@ -756,8 +756,8 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 	outfits
-		"Korath Banisher" 2
-		"Korath Warder" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
 		"Digger Mining Turret" 3
 		"Digger Mining Beam" 2
 		
@@ -765,7 +765,7 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Fuel Processor" 2
-		"Korath Repeater Rifle" 237
+		"Thermal Repeater Rifle" 237
 		"Microbot Defense Station" 17
 		
 		"Afterburner (Comet Class)"
@@ -778,26 +778,26 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 	gun "Digger Mining Beam"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
 	turret "Digger Mining Turret"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
 	outfits
 		"Digger Mining Beam" 2
-		"Korath Banisher" 2
-		"Korath Warder" 4
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 4
 		"Shunt-Strike Turret" 2
 
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Liquid Sodium Cooler"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 246
+		"Thermal Repeater Rifle" 246
 		"Microbot Defense Station" 17
 		"Scram Drive"
 
@@ -809,29 +809,29 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
 	gun "Digger Mining Beam"
 	gun "Digger Mining Beam"
 	turret "Shunt-Strike Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
 
 
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 	outfits
 		"Langrage Hyper-Heaver" 2
-		"Korath Banisher" 3
-		"Korath Warder" 3
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Brig"
-		"Security Station" 7
-		"Korath Repeater Rifle" 272
+		"Microbot Defense Station" 4
+		"Thermal Repeater Rifle" 272
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -844,7 +844,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 		"Digger Mining Beam" 3
 		"Digger Mining Turret" 4
 		"Shunt-Strike Turret" 1
-		"Korath Warder" 2
+		"Warder Anti-Missile" 2
 
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -854,7 +854,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 		"Fuel Processor" 2
 		"Asteroid Scanner"
 		"Cargo Expansion" 4
-		"Korath Repeater Rifle" 308
+		"Thermal Repeater Rifle" 308
 		"Jump Drive"
 		"Microbot Defense Station" 16
 
@@ -870,14 +870,14 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 	turret "Digger Mining Turret"
 	turret "Shunt-Strike Turret"
 	turret "Digger Mining Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	outfits
 		"Blaze-Pike Turret" 2
-		"Korath Warder" 3
+		"Warder Anti-Missile" 3
 		"Korath Fire-Lance" 3
 		"Firestorm Torpedo" 26
 		"Firestorm Turret" 2
@@ -886,7 +886,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 308
+		"Thermal Repeater Rifle" 308
 		"Microbot Defense Station" 18
 
 		"Reverser (Lunar Class)"
@@ -899,9 +899,9 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	gun "Korath Fire-Lance"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 	turret "Firestorm Turret"
 	turret "Firestorm Turret"
 
@@ -909,11 +909,11 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	outfits
 		"Korath Detainer"
-		"Korath Repeater" 2
-		"Korath Repeater Turret" 2
+		"Thermal Repeater" 2
+		"Thermal Repeater Turret" 2
 		"Korath Disruptor"
 		"Korath Slicer Turret"
-		"Korath Warder" 3
+		"Warder Anti-Missile" 3
 
 		"Triple Plasma Core"
 		"Plasma Core"
@@ -923,7 +923,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 		"Fuel Processor"
 		"Reasoning Node"
 		"Control Transceiver"
-		"Korath Repeater Rifle" 308
+		"Thermal Repeater Rifle" 308
 		"Jump Drive"
 		"Microbot Defense Station" 13
 
@@ -932,24 +932,24 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 		"Thruster (Planetary Class)"
 		"Steering (Stellar Class)"
 
-	gun "Korath Repeater"
+	gun "Thermal Repeater"
 	gun "Korath Detainer"
-	gun "Korath Repeater"
+	gun "Thermal Repeater"
 	turret "Korath Slicer Turret"
 	turret "Korath Disruptor"
-	turret "Korath Repeater Turret"
-	turret "Korath Warder"
-	turret "Korath Repeater Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Thermal Repeater Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 
 
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 	outfits
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 2
-		"Korath Warder" 2
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
 		"Korath Fire-Lance" 2
 		
 		"Triple Plasma Core"
@@ -958,7 +958,7 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 		"Fuel Processor"
 		"Brig"
 		"Microbot Defense Station" 15
-		"Korath Repeater Rifle" 272
+		"Thermal Repeater Rifle" 272
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -966,18 +966,18 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 	
 	gun -45 -253 "Korath Fire-Lance"
 	gun 45 -253 "Korath Fire-Lance"
-	turret -77 -116.5 "Korath Grab-Strike"
-	turret 77 -116.5 "Korath Grab-Strike"
-	turret -87 -83 "Korath Warder"
-	turret 87 -83 "Korath Banisher"
-	turret -51 276.5 "Korath Banisher"
-	turret 51 276.5 "Korath Warder"
+	turret -77 -116.5 "Grab-Strike Turret"
+	turret 77 -116.5 "Grab-Strike Turret"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
 
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 	outfits
-		"Korath Banisher" 3
-		"Korath Warder" 3
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
 		"Korath Fire-Lance" 2
 		
 		"Triple Plasma Core"
@@ -986,8 +986,7 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 		"Fuel Processor" 2
 		"Brig"
 		"Microbot Defense Station" 15
-		"Security Station" 7
-		"Korath Repeater Rifle" 493
+		"Thermal Repeater Rifle" 493
 		
 		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"
@@ -997,20 +996,20 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 	
 	gun -45 -253 "Korath Fire-Lance"
 	gun 45 -253 "Korath Fire-Lance"
-	turret -77 -116.5 "Korath Banisher"
-	turret 77 -116.5 "Korath Warder"
-	turret -87 -83 "Korath Warder"
-	turret 87 -83 "Korath Banisher"
-	turret -51 276.5 "Korath Banisher"
-	turret 51 276.5 "Korath Warder"
+	turret -77 -116.5 "Banisher Grav-Turret"
+	turret 77 -116.5 "Warder Anti-Missile"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
 
 
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 	outfits
-		"Korath Banisher" 7
-		"Korath Grab-Strike" 4
-		"Korath Warder" 5
+		"Banisher Grav-Turret" 7
+		"Grab-Strike Turret" 4
+		"Warder Anti-Missile" 5
 		"Shunt-Strike Turret" 4
 
 		"Firelight Missile Bank" 4
@@ -1024,7 +1023,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Systems Core (Large)" 2
 		"Fuel Processor" 7
 		"Liquid Sodium Cooler" 2
-		"Korath Repeater Rifle" 1954
+		"Thermal Repeater Rifle" 1954
 		"Microbot Defense Station" 214
 		"Scram Drive"
 
@@ -1035,28 +1034,28 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Thruster (Planetary Class)"
 		"Thruster (Stellar Class)"
 
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Grab-Strike"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Grab-Strike Turret"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
-	turret "Korath Grab-Strike"
-	turret "Korath Banisher"
+	turret "Grab-Strike Turret"
+	turret "Banisher Grav-Turret"
 	turret "Shunt-Strike Turret"
 	turret "Firestorm Turret"
 	turret "Firestorm Turret"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Warder"
-	turret "Korath Grab-Strike"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+	turret "Grab-Strike Turret"
 	turret "Shunt-Strike Turret"
-	turret "Korath Banisher"
-	turret "Korath Grab-Strike"
+	turret "Banisher Grav-Turret"
+	turret "Grab-Strike Turret"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
@@ -1065,9 +1064,9 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 	outfits
-		"Korath Banisher" 4
+		"Banisher Grav-Turret" 4
 		"Digger Mining Turret" 6
-		"Korath Warder" 5
+		"Warder Anti-Missile" 5
 		"Langrage Hyper-Heaver" 5
 		"Shunt-Strike Turret" 2
 
@@ -1079,7 +1078,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Systems Core (Large)" 2
 		"Fuel Processor" 11
 		"Liquid Sodium Cooler" 2
-		"Korath Repeater Rifle" 1954
+		"Thermal Repeater Rifle" 1954
 		"Microbot Defense Station" 214
 		"Luxury Accommodations"
 		"Brig"
@@ -1087,27 +1086,27 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Scram Drive"
 
 	turret "Langrage Hyper-Heaver"
-	turret "Korath Warder"
-	turret "Korath Banisher"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
 	turret "Langrage Hyper-Heaver"
 	turret "Langrage Hyper-Heaver"
-	turret "Korath Banisher"
+	turret "Banisher Grav-Turret"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
 	turret "Shunt-Strike Turret"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Langrage Hyper-Heaver"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
 	turret "Langrage Hyper-Heaver"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Digger Mining Turret"
 	turret "Digger Mining Turret"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
@@ -1116,9 +1115,9 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 
 ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 	outfits
-		"Korath Banisher" 4
-		"Korath Grab-Strike" 2
-		"Korath Warder" 8
+		"Banisher Grav-Turret" 4
+		"Grab-Strike Turret" 2
+		"Warder Anti-Missile" 8
 		"Blaze-Pike Turret" 6
 		"Korath Inferno" 2
 
@@ -1129,7 +1128,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 		"Systems Core (Large)" 2
 		"Fuel Processor" 7
 		"Liquid Sodium Cooler" 2
-		"Korath Repeater Rifle" 1954
+		"Thermal Repeater Rifle" 1954
 		"Microbot Defense Station" 214
 		"Scram Drive"
 
@@ -1141,27 +1140,27 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Blaze)"
 		"Thruster (Stellar Class)"
 
 	turret "Blaze-Pike Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
 	turret "Korath Inferno"
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
+	turret "Grab-Strike Turret"
+	turret "Grab-Strike Turret"
 	turret "Korath Inferno"
-	turret "Korath Banisher"
+	turret "Banisher Grav-Turret"
 	turret "Blaze-Pike Turret"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
-	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Banisher"
-	turret "Korath Banisher"
-	turret "Korath Warder"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"

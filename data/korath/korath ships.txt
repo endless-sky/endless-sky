@@ -296,7 +296,7 @@ ship "'nra'ret"
 			"hit force" 6600
 	outfits
 		"Langrage Hyper-Heaver" 2
-		"Korath Warder"
+		"Warder Anti-Missile"
 		"Korath Fire-Lance" 2
 		"Firelight Missile Bank" 6
 		"Firelight Missile" 190
@@ -307,7 +307,7 @@ ship "'nra'ret"
 		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
-		"Korath Repeater Rifle" 219
+		"Thermal Repeater Rifle" 219
 
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -333,7 +333,7 @@ ship "'nra'ret"
 		angle 170
 	turret -32.5 -53.5 "Langrage Hyper-Heaver"
 	turret 32.5 -53.5 "Langrage Hyper-Heaver"
-	turret 0 -23 "Korath Warder"
+	turret 0 -23 "Warder Anti-Missile"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
@@ -407,16 +407,16 @@ ship "Lor'kas Ik 577"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Banisher" 2
-		"Korath Warder" 4
-		"Korath Grab-Strike" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 4
+		"Grab-Strike Turret" 2
 		"Expeller Grav-Ray" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
-		"Korath Repeater Rifle" 237
+		"Thermal Repeater Rifle" 237
 		"Microbot Defense Station" 17
 		
 		"Thruster (Stellar Class)"
@@ -434,14 +434,14 @@ ship "Lor'kas Ik 577"
 		over
 	gun -47 -244 "Expeller Grav-Ray"
 	gun 47 -244 "Expeller Grav-Ray"
-	turret -73 -159 "Korath Warder"
-	turret 73 -159 "Korath Grab-Strike"
-	turret -56 -137 "Korath Warder"
-	turret 56 -137 "Korath Warder"
-	turret -58 -6 "Korath Banisher"
-	turret 58 -6 "Korath Banisher"
-	turret -58 25 "Korath Grab-Strike"
-	turret 58 25 "Korath Warder"
+	turret -73 -159 "Warder Anti-Missile"
+	turret 73 -159 "Grab-Strike Turret"
+	turret -56 -137 "Warder Anti-Missile"
+	turret 56 -137 "Warder Anti-Missile"
+	turret -58 -6 "Banisher Grav-Turret"
+	turret 58 -6 "Banisher Grav-Turret"
+	turret -58 25 "Grab-Strike Turret"
+	turret 58 25 "Warder Anti-Missile"
 	fighter -72 294 back
 	fighter 0 294 back
 	fighter 72 294 back
@@ -478,9 +478,9 @@ ship "Ra'gru Ik 618"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 2
-		"Korath Warder" 2
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
 		"Korath Fire-Lance" 3
 		"Korath Inferno" 2
 		"Blaze-Pike Turret" 2
@@ -493,7 +493,7 @@ ship "Ra'gru Ik 618"
 		"Fuel Processor"
 		"Brig"
 		"Microbot Defense Station" 23
-		"Korath Repeater Rifle" 359
+		"Thermal Repeater Rifle" 359
 		
 		"Thruster (Stellar Class)"
 		"Steering (Stellar Class)"
@@ -517,16 +517,16 @@ ship "Ra'gru Ik 618"
 		angle 110
 	gun -42 90 "Firelight Missile Bank"
 		angle 250
-	turret -56 -254 "Korath Warder"
-	turret 56 -254 "Korath Banisher"
+	turret -56 -254 "Warder Anti-Missile"
+	turret 56 -254 "Banisher Grav-Turret"
 	turret -73.5 -221 "Korath Inferno"
 	turret 73.5 -221 "Korath Inferno"
-	turret -56 -186.5 "Korath Grab-Strike"
-	turret 56 -186.5 "Korath Grab-Strike"
+	turret -56 -186.5 "Grab-Strike Turret"
+	turret 56 -186.5 "Grab-Strike Turret"
 	turret -83 163.5 "Blaze-Pike Turret"
 	turret 83 163.5 "Blaze-Pike Turret"
-	turret -68 195 "Korath Banisher"
-	turret 68 195 "Korath Warder"
+	turret -68 195 "Banisher Grav-Turret"
+	turret 68 195 "Warder Anti-Missile"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -562,8 +562,8 @@ ship "Kas'lor Ik 582"
 			"hit force" 12000
 	outfits
 		"Langrage Hyper-Heaver" 2
-		"Korath Banisher" 3
-		"Korath Warder" 3
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -589,14 +589,14 @@ ship "Kas'lor Ik 582"
 	fighter -70 51 back
 	fighter 0 51 back
 	fighter 70 51 back
-	turret -52.5 -80.5 "Korath Banisher"
-	turret 52.5 -80.5 "Korath Warder"
-	turret -57 -50.5 "Korath Warder"
-	turret 57.5 -50.5 "Korath Banisher"
+	turret -52.5 -80.5 "Banisher Grav-Turret"
+	turret 52.5 -80.5 "Warder Anti-Missile"
+	turret -57 -50.5 "Warder Anti-Missile"
+	turret 57.5 -50.5 "Banisher Grav-Turret"
 	turret -56.5 55 "Langrage Hyper-Heaver"
 	turret 56.5 55 "Langrage Hyper-Heaver"
-	turret -80 283 "Korath Banisher"
-	turret 80 283 "Korath Warder"
+	turret -80 283 "Banisher Grav-Turret"
+	turret 80 283 "Warder Anti-Missile"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -632,8 +632,8 @@ ship "Lor'nag Ik 590"
 			"hit force" 12000
 	outfits
 		"Shunt-Strike Turret" 2
-		"Korath Banisher" 2
-		"Korath Warder" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
 		"Korath Fire-Lance" 2
 		
 		"Triple Plasma Core"
@@ -642,7 +642,7 @@ ship "Lor'nag Ik 590"
 		"Fuel Processor"
 		"Brig"
 		"Microbot Defense Station" 15
-		"Korath Repeater Rifle" 272
+		"Thermal Repeater Rifle" 272
 		
 		"Thruster (Stellar Class)"
 		"Steering (Planetary Class)"
@@ -664,10 +664,10 @@ ship "Lor'nag Ik 590"
 	gun 45 -253 "Korath Fire-Lance"
 	turret -77 -116.5 "Shunt-Strike Turret"
 	turret 77 -116.5 "Shunt-Strike Turret"
-	turret -87 -83 "Korath Banisher"
-	turret 87 -83 "Korath Warder"
-	turret -51 276.5 "Korath Warder"
-	turret 51 276.5 "Korath Banisher"
+	turret -87 -83 "Banisher Grav-Turret"
+	turret 87 -83 "Warder Anti-Missile"
+	turret -51 276.5 "Warder Anti-Missile"
+	turret 51 276.5 "Banisher Grav-Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -701,9 +701,9 @@ ship "Ra'at Ik 621"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Grab-Strike" 3
-		"Korath Banisher" 2
-		"Korath Warder" 2
+		"Grab-Strike Turret" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
 		"Korath Fire-Lance" 3
 		
 		"Triple Plasma Core"
@@ -711,7 +711,7 @@ ship "Ra'at Ik 621"
 		"Large Heat Shunt" 2
 		"Fuel Processor"
 		"Microbot Defense Station" 16
-		"Korath Repeater Rifle" 308
+		"Thermal Repeater Rifle" 308
 		
 		"Reverser (Lunar Class)"
 		"Thruster (Stellar Class)"
@@ -744,13 +744,13 @@ ship "Ra'at Ik 621"
 	gun -71 -209 "Korath Fire-Lance"
 	gun 0 -209 "Korath Fire-Lance"
 	gun 71 -209 "Korath Fire-Lance"
-	turret -52 -295 "Korath Banisher"
-	turret 52 -295 "Korath Warder"
-	turret -104 -13 "Korath Grab-Strike"
-	turret 0 -13 "Korath Grab-Strike"
-	turret 104 -13 "Korath Grab-Strike"
-	turret -80.5 191.5 "Korath Warder"
-	turret 80.5 191.5 "Korath Banisher"
+	turret -52 -295 "Banisher Grav-Turret"
+	turret 52 -295 "Warder Anti-Missile"
+	turret -104 -13 "Grab-Strike Turret"
+	turret 0 -13 "Grab-Strike Turret"
+	turret 104 -13 "Grab-Strike Turret"
+	turret -80.5 191.5 "Warder Anti-Missile"
+	turret 80.5 191.5 "Banisher Grav-Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -785,9 +785,9 @@ ship "Kasichara A'awoj"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Banisher" 3
-		"Korath Warder" 3
-		"Korath Grab-Strike" 2
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		"Grab-Strike Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -796,7 +796,7 @@ ship "Kasichara A'awoj"
 		"Brig"
 		"Luxury Accommodations"
 		"Microbot Defense Station" 23
-		"Korath Repeater Rifle" 372
+		"Thermal Repeater Rifle" 372
 		
 		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"
@@ -810,14 +810,14 @@ ship "Kasichara A'awoj"
 	"reverse engine" 16 -336 0.9
 	"reverse engine" 0 -303 0.5
 		over
-	turret -78 -233.5 "Korath Banisher"
-	turret 78 -233.5 "Korath Warder"
-	turret -78 9.5 "Korath Grab-Strike"
-	turret 78 9.5 "Korath Grab-Strike"
-	turret -73.5 41 "Korath Banisher"
-	turret 73.5 41 "Korath Warder"
-	turret -78 231.5 "Korath Warder"
-	turret 78 231.5 "Korath Banisher"
+	turret -78 -233.5 "Banisher Grav-Turret"
+	turret 78 -233.5 "Warder Anti-Missile"
+	turret -78 9.5 "Grab-Strike Turret"
+	turret 78 9.5 "Grab-Strike Turret"
+	turret -73.5 41 "Banisher Grav-Turret"
+	turret 73.5 41 "Warder Anti-Missile"
+	turret -78 231.5 "Warder Anti-Missile"
+	turret 78 231.5 "Banisher Grav-Turret"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -855,10 +855,10 @@ ship "Korsmanath A'awoj"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Korath Banisher" 7
+		"Banisher Grav-Turret" 7
 		"Langrage Hyper-Heaver" 3
 		"Korath Inferno" 4
-		"Korath Warder" 7
+		"Warder Anti-Missile" 7
 		"Firelight Missile Bank" 4
 		"Firelight Storage Rack" 4
 		"Firelight Missile" 108
@@ -869,7 +869,7 @@ ship "Korsmanath A'awoj"
 		"Systems Core (Large)" 2
 		"Liquid Sodium Cooler" 2
 		"Fuel Processor" 7
-		"Korath Repeater Rifle" 1954
+		"Thermal Repeater Rifle" 1954
 		"Microbot Defense Station" 214
 		
 		"Afterburner (Stellar Class)"
@@ -940,28 +940,28 @@ ship "Korsmanath A'awoj"
 		zoom 0.8
 	engine 46 454.5
 		zoom 0.8
-	turret -19.5 -438.5 "Korath Banisher"
-	turret 19.5 -438.5 "Korath Warder"
-	turret -178 -332 "Korath Warder"
-	turret 178 -332 "Korath Banisher"
-	turret -186 -285.5 "Korath Banisher"
-	turret 186 -285.5 "Korath Warder"
+	turret -19.5 -438.5 "Banisher Grav-Turret"
+	turret 19.5 -438.5 "Warder Anti-Missile"
+	turret -178 -332 "Warder Anti-Missile"
+	turret 178 -332 "Banisher Grav-Turret"
+	turret -186 -285.5 "Banisher Grav-Turret"
+	turret 186 -285.5 "Warder Anti-Missile"
 	turret -131.5 -173.5 "Langrage Hyper-Heaver"
 	turret 131.5 -173.5 "Korath Inferno"
 	turret -131.5 -156 "Korath Inferno"
-	turret 131.5 -156 "Korath Warder"
-	turret 46 -12 "Korath Warder"
-	turret -16.5 16 "Korath Banisher"
+	turret 131.5 -156 "Warder Anti-Missile"
+	turret 46 -12 "Warder Anti-Missile"
+	turret -16.5 16 "Banisher Grav-Turret"
 	turret 62 128 "Langrage Hyper-Heaver"
 	turret -75.5 162.5 "Firestorm Turret"
-	turret -204.5 200 "Korath Banisher"
-	turret 204.5 200 "Korath Warder"
-	turret -192.5 257.5 "Korath Warder"
-	turret 192.5 257.5 "Korath Banisher"
+	turret -204.5 200 "Banisher Grav-Turret"
+	turret 204.5 200 "Warder Anti-Missile"
+	turret -192.5 257.5 "Warder Anti-Missile"
+	turret 192.5 257.5 "Banisher Grav-Turret"
 	turret -72.5 338.5 "Langrage Hyper-Heaver"
 	turret 72.5 338.5 "Korath Inferno"
 	turret -95.5 365.5 "Korath Inferno"
-	turret 95.5 365.5 "Korath Banisher"
+	turret 95.5 365.5 "Banisher Grav-Turret"
 	gun -170 -104 "Firelight Missile Bank"
 		angle 315
 	gun 170 -104 "Firelight Missile Bank"
@@ -1066,16 +1066,16 @@ ship "Echo-Galleon"
 			"hit force" 6000
 	outfits
 		"Digger Mining Beam" 4
-		"Korath Grab-Strike" 2
-		"Korath Banisher" 
-		"Korath Warder" 2
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 
+		"Warder Anti-Missile" 2
 		
 		"Double Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Korath Repeater Rifle" 150
+		"Thermal Repeater Rifle" 150
 		
 		"Nelmeb GP Hybrid Thruster"
 		"Nelmeb GP Hybrid Steering"
@@ -1085,11 +1085,11 @@ ship "Echo-Galleon"
 	"reverse engine" 31 -290
 	engine -69 230
 	engine 69 230
-	turret 0 -166 "Korath Grab-Strike"
-	turret -41 -69 "Korath Grab-Strike"
-	turret 41 -69 "Korath Warder"
-	turret -41.5 264 "Korath Warder"
-	turret 41.5 264 "Korath Banisher"
+	turret 0 -166 "Grab-Strike Turret"
+	turret -41 -69 "Grab-Strike Turret"
+	turret 41 -69 "Warder Anti-Missile"
+	turret -41.5 264 "Warder Anti-Missile"
+	turret 41.5 264 "Banisher Grav-Turret"
 	gun -75 -250 "Digger Mining Beam"
 	gun 75 -250 "Digger Mining Beam"
 	gun -60 -214.5 "Digger Mining Beam"
@@ -1131,9 +1131,9 @@ ship "Arch-Carrack"
 			"hull damage" 2300
 			"hit force" 5900
 	outfits
-		"Korath Banisher" 1
+		"Banisher Grav-Turret" 1
 		"Digger Mining Beam" 2
-		"Korath Warder" 2
+		"Warder Anti-Missile" 2
 		
 		"Systems Core (Medium)"
 		"Triple Plasma Core"
@@ -1151,9 +1151,9 @@ ship "Arch-Carrack"
 	engine -46 170 0.7
 	"reverse engine" 14.5 -187.5
 	"reverse engine" -14.5 -187.5
-	turret 0 -119.5 "Korath Warder"
-	turret 0 42 "Korath Banisher"
-	turret 0 138.5 "Korath Warder"
+	turret 0 -119.5 "Warder Anti-Missile"
+	turret 0 42 "Banisher Grav-Turret"
+	turret 0 138.5 "Warder Anti-Missile"
 	gun -37.5 -187 "Digger Mining Beam"
 	gun 37.5 -187 "Digger Mining Beam"
 	explode "tiny explosion" 120
@@ -1193,8 +1193,8 @@ ship "Charm-Shallop"
 			"hit force" 5400
 	outfits
 		"Digger Mining Beam" 3
-		"Korath Warder"
-		"Korath Banisher"
+		"Warder Anti-Missile"
+		"Banisher Grav-Turret"
 		
 		"Triple Plasma Core"
 		"Systems Core (Medium)"
@@ -1208,8 +1208,8 @@ ship "Charm-Shallop"
 
 	engine -17.5 139.5
 	engine 17.5 139.5
-	turret 0 -35 "Korath Warder"
-	turret 0 97 "Korath Banisher"
+	turret 0 -35 "Warder Anti-Missile"
+	turret 0 97 "Banisher Grav-Turret"
 	gun 0 -118 "Digger Mining Beam"
 	gun -16.5 -114.5 "Digger Mining Beam"
 	gun 16.5 -114.5 "Digger Mining Beam"
