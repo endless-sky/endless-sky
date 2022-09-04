@@ -61,7 +61,7 @@ ship "Jje"
 ship "Ayym"
 	noun "creature"
 	"sprite" ship/ayym/ayym
-		"frame rate" 4
+		"frame rate" 8
 	"never disabled"
 	attributes
 		category "Heavy Freighter"
