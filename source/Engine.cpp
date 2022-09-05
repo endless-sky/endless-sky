@@ -149,7 +149,7 @@ namespace {
 			return false;
 
 		// Ships that don't share a language with the player shouldn't send hails.
-		if(!gov->Language().empty() && !player.GetCondition("language: " + gov->Language()))
+		if(!gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 			return false;
 
 		return true;

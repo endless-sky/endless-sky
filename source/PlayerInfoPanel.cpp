@@ -50,9 +50,8 @@ namespace {
 	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
 		vector<pair<int64_t, string>> match;
-
-		auto it = player.Conditions().lower_bound(prefix);
-		for( ; it != player.Conditions().end(); ++it)
+		auto it = player.Conditions().PrimariesLowerBound(prefix);
+		for( ; it != player.Conditions().PrimariesEnd(); ++it)
 		{
 			if(it->first.compare(0, prefix.length(), prefix))
 				break;
@@ -598,7 +597,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		bright, Truncate::MIDDLE, true);
 
 	// Determine the player's combat rating.
-	int combatExperience = player.GetCondition("combat rating");
+	int combatExperience = player.Conditions().Get("combat rating");
 	int combatLevel = log(max<int64_t>(1, combatExperience));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
