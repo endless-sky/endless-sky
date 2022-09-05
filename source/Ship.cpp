@@ -3159,7 +3159,7 @@ double Ship::JumpFuel(const System *destination) const
 	bool linked = currentSystem->Links().count(destination);
 	// Figure out what sort of jump we're making.
 	double hyperFuelNeeded = HyperdriveFuel();
-	double jumpFuelNeeded =JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
+	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 	if(linked && hyperFuelNeeded < jumpFuelNeeded)
 		return HyperdriveFuel();
 
