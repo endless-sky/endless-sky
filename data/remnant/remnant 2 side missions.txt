@@ -672,6 +672,7 @@ mission "Remnant: Scent of Rain 1"
 			variant
 				"'olofez" 3
 	on offer
+		event "remnant: tubfalet appearance" 20 31
 		conversation
 			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
 			choice
@@ -684,7 +685,6 @@ mission "Remnant: Scent of Rain 1"
 		dialog
 			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: The one identified as the Ra'puk At 295. This would be the ship that Chilia would like a scan of.`
 	on complete
-		event "remnant: tubfalet appearance"
 		payment 150000
 		conversation
 			`Chilia is waiting for you when you land. He looks over the scan results, nodding thoughtfully, and listens to your account of visiting Kor Zena'i.`
