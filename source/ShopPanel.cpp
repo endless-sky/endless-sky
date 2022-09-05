@@ -92,7 +92,7 @@ void ShopPanel::Step()
 		if(selectedBottomY > mainBottomY)
 			DoScroll(max(-30., mainBottomY - selectedBottomY));
 		// Scroll down until the bottoms or the tops match.
-		else if(selectedBottomY < mainBottomY 
+		else if(selectedBottomY < mainBottomY
 			&& (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
 			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
 		// Details are in view.

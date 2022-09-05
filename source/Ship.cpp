@@ -2357,7 +2357,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 		return;
 
 	for(Bay &bay : bays)
-		if(bay.ship 
+		if(bay.ship
 			&& ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 			|| (ejecting && !Random::Int(6))))
 		{
@@ -3188,9 +3188,9 @@ double Ship::JumpFuel(const System *destination) const
 	if(attributes.Get("hyperdrive") && linked)
 		return HyperdriveFuel();
 
-	if(attributes.Get("jump drive") 
+	if(attributes.Get("jump drive")
 		&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return JumpDriveFuel((linked 
+		return JumpDriveFuel((linked
 			|| currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 
 	// If the given system is not a possible destination, return 0.
@@ -3559,7 +3559,7 @@ bool Ship::CanCarry(const Ship &ship) const
 void Ship::AllowCarried(bool allowCarried)
 {
 	const auto &bayCategories = GameData::Category(CategoryType::BAY);
-	canBeCarried = allowCarried 
+	canBeCarried = allowCarried
 		&& find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
 }
 
