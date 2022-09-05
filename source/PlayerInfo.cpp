@@ -2663,6 +2663,26 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// Conditions to determine what outfits the player owns, with various possible locations to check.
+	// The following condition checks all possible loctions for outfits in the player's posession.
+	auto &&outfitProvider = conditions.GetProviderPrefixed("outfit: ");
+	outfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit: ")));
+		if(!outfit)
+			return 0;
+		int64_t retVal = Cargo().Get(outfit);
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += ship->OutfitCount(outfit);
+			retVal += ship->Cargo().Get(outfit);
+		}
+		for(const auto &storage : planetaryStorage)
+			retVal += storage.second.Get(outfit);
+		return retVal;
+	});
+
 	// The following condition checks all sources of outfits which are present with the player.
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo hold,
@@ -2696,10 +2716,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the player's entire fleet for installed outfits.
-	auto &&fleetOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet installed): ");
-	fleetOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	auto &&installedOutfitProvider = conditions.GetProviderPrefixed("outfit (installed): ");
+	installedOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (fleet installed): ")));
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -2712,11 +2732,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The following condition checks all cargo in the player's fleet.
-	auto &&fleetCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (fleet cargo): ");
-	fleetCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	// The following condition checks all cargo locations in the player's fleet.
+	auto &&cargoOutfitProvider = conditions.GetProviderPrefixed("outfit (cargo): ");
+	cargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (fleet cargo): ")));
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -2740,6 +2760,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship->OutfitCount(outfit);
 	});
 
+	// The following condition checks the flagship's cargo or the pooled cargo if landed.
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -2754,7 +2775,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The following condition checks planetary storage.
+	// The following condition checks all planetary storage.
 	auto &&storedOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
 	storedOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
@@ -2765,6 +2786,19 @@ void PlayerInfo::RegisterDerivedConditions()
 		for(const auto &storage : planetaryStorage)
 			retVal += storage.second.Get(outfit);
 		return retVal;
+	});
+
+	// The following condition checks planetary storage on the current planet.
+	auto &&storedPresentOutfitProvider = conditions.GetProviderPrefixed("outfit (present storage): ");
+	storedPresentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (present storage): ")));
+		if(!outfit)
+			return 0;
+		const Planet *planet = GetPlanet();
+		if(!planet || !planetaryStorage.count(planet))
+			return 0;
+		return planetaryStorage[planet].Get(outfit);
 	});
 
 	// Conditions to determine if flagship is in a system and on a planet.
