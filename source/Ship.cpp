@@ -1764,7 +1764,11 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
+		bool linked = currentSystem->Links().count(hyperspaceSystem);
+		// Figure out what sort of jump we're making. Compare how much fuel each method uses.
+		double hyperFuelNeeded = HyperdriveFuel();
+		double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(hyperspaceSystem->Position()));
+		isUsingJumpDrive = hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive");
 		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
 	}
 
@@ -3160,7 +3164,12 @@ double Ship::JumpFuel(const System *destination) const
 	// Figure out what sort of jump we're making. Compare how much fuel each method uses.
 	double hyperFuelNeeded = HyperdriveFuel();
 	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
-	if(linked && hyperFuelNeeded < jumpFuelNeeded)
+	if(attributes.Get("jump drive"))
+	{
+		if(linked && hyperFuelNeeded < jumpFuelNeeded && attributes.Get("hyperdrivedrive"))
+			return HyperdriveFuel();
+	}
+	else if(linked && attributes.Get("hyperdrivedrive"))
 		return HyperdriveFuel();
 
 	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
