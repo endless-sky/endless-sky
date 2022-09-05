@@ -442,9 +442,9 @@ ship "Lor'kas Ik 577"
 	turret 58 -6 "Banisher Grav-Turret"
 	turret -58 25 "Grab-Strike Turret"
 	turret 58 25 "Warder Anti-Missile"
-	fighter -72 294 back
-	fighter 0 294 back
-	fighter 72 294 back
+	bay "Fighter" -72 294 back
+	bay "Fighter" 0 294 back
+	bay "Fighter" 72 294 back
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -586,9 +586,9 @@ ship "Kas'lor Ik 582"
 		over
 	"reverse engine" 19 -303 0.5
 		over
-	fighter -70 51 back
-	fighter 0 51 back
-	fighter 70 51 back
+	bay "Fighter" -70 51 back
+	bay "Fighter" 0 51 back
+	bay "Fighter" 70 51 back
 	turret -52.5 -80.5 "Banisher Grav-Turret"
 	turret 52.5 -80.5 "Warder Anti-Missile"
 	turret -57 -50.5 "Warder Anti-Missile"
@@ -658,9 +658,9 @@ ship "Lor'nag Ik 590"
 		over
 	"reverse engine" 19 -303 0.5
 		over
-	fighter -90 160 back
-	fighter 0 160 back
-	fighter 90 160 back
+	bay "Fighter" -90 160 back
+	bay "Fighter" 0 160 back
+	bay "Fighter" 90 160 back
 	gun -45 -253 "Digger Mining Beam"
 	gun 45 -253 "Digger Mining Beam"
 	turret -77 -116.5 "Grab-Strike Turret"
@@ -727,20 +727,20 @@ ship "Ra'at Ik 621"
 	engine 42 343 .6
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
-	fighter -100 -169
-	fighter 0 -169
-	fighter 100 -169
-	fighter -98 156 back
-	fighter 98 156 back
-	fighter -50 303 back
-	fighter -50 303 back
-	fighter 50 303 back
-	fighter 50 303 back
-	drone -100 -169
-	drone 100 -169
-	drone -98 156 back
-	drone 98 156 back
-	drone -50 303 back
+	bay "Fighter" -100 -169
+	bay "Fighter" 0 -169
+	bay "Fighter" 100 -169
+	bay "Fighter" -98 156 back
+	bay "Fighter" 98 156 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" 50 303 back
+	bay "Fighter" 50 303 back
+	bay "Drone" -100 -169
+	bay "Drone" 100 -169
+	bay "Drone" -98 156 back
+	bay "Drone" 98 156 back
+	bay "Drone" -50 303 back
 	drone 50 303 back
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
