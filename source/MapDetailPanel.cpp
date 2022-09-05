@@ -358,7 +358,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
 	}
-	if(y <= Screen::Top() + planetPanelHeight && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
+	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
 		if(maxScroll && x > Screen::Left() + planetCardWidth + arrowOffset - 10)
 		{
