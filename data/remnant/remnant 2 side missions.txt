@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
@@ -351,6 +354,7 @@ mission "Remnant: Teciimach Deployment"
 	landing
 	name "New EMP deployment"
 	description "The Remnant are deploying a new version of the EMP, and invite you to watch."
+	deadline 7
 	source
 		attributes "shipyard"
 		attributes "remnant"
@@ -400,6 +404,9 @@ mission "Remnant: Teciimach Deployment"
 	on complete
 		dialog
 			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
+	on fail
+		dialog
+			`You recall Taely mentioning something about new weaponry, so you decide to check your logs to see what your sensors have recorded lately. Looking over the most recent combat details, you note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
 
 
 
