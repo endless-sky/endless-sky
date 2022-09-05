@@ -24,7 +24,7 @@ import glob
 
 # String version of the regexes for easy editing
 # List of the standard operators that are checked
-std_op = "+/\\*<>&%=|!:\\-"
+std_op = "\\+/\\*<>&%=\\|!:\\-"
 # Dict of patterns for selection potential formatting issues in full lines.
 # These lines don't contain the contents of strings, chars or comments.
 # The dict also contains the error description for the patterns.
@@ -302,7 +302,9 @@ def sanitize(lines, file, skip_checks=False):
 	return line_segments
 
 
-# Runs checks on the contents of the file before sanitization.
+# Runs checks on the contents of the file before sanitization. Parameters:
+# lines: the lines of the file, without the terminating line separators. Contains the contents of strings and comments.
+# file: the path to the file
 def check_pre_sanitize(lines, file):
 	check_copyright(lines, file)
 	line_count = 0
@@ -378,6 +380,9 @@ def check_match(regex, part, segment, file, line_count, reason):
 
 
 # Checks certain global formatting properties of files, such as their copyright headers. Parameters:
+# sanitized_lines: the sanitized contents of the file
+# line_segments: the segments of each sanitized line
+# original_lines: the contents of the file, without sanitization
 # file: the path to the file
 def check_global_format(sanitized_lines, line_segments, original_lines, file):
 	check_include(sanitized_lines, original_lines, file)
@@ -400,10 +405,10 @@ def check_copyright(lines, file):
 		["", False],
 		["Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY", False],
 		["WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A", False],
-		["PARTICULAR PURPOSE.  See the GNU General Public License for more details.", False],
+		["PARTICULAR PURPOSE. See the GNU General Public License for more details.", False],
 		["", False],
 		["You should have received a copy of the GNU General Public License along with", False],
-		["this program.  If not, see <https://www.gnu.org/licenses/>.", False],
+		["this program. If not, see <https://www.gnu.org/licenses/>.", False],
 		["*/", False],
 		["", False]
 	]
