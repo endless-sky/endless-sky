@@ -1045,6 +1045,15 @@ interface "map buttons" bottom right
 	button - "_-"
 		from -50 -90 to -80 -120
 		size 18
+		
+	sprite "ui/star button"
+		from -80 -80 to -130 -130
+	button y "_"
+		from -70 -70 to -140 -140
+		size 18
+	button y "_"
+		from -70 -70 to -140 -140
+		size 18
 
 
 

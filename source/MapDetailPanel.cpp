@@ -432,7 +432,7 @@ void MapDetailPanel::DrawKey()
 
 		for(int i = 0; i <= 3; ++i)
 		{
-			RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, MapColor(i * (2. / 3.) - 1.));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
 			font.Draw(to_string(price), pos + textOff, dim);
 			pos.Y() += 20.;
@@ -448,7 +448,7 @@ void MapDetailPanel::DrawKey()
 
 		for(int i = 0; i < 4; ++i)
 		{
-			RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, MapColor(VALUE[i]));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -462,7 +462,7 @@ void MapDetailPanel::DrawKey()
 		};
 		for(int i = 0; i < 3; ++i)
 		{
-			RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, MapColor(1 - i));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
 			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -477,7 +477,7 @@ void MapDetailPanel::DrawKey()
 		sort(distances.begin(), distances.end());
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
-			RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, GovernmentColor(distances[i].second));
+			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
 			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -487,32 +487,32 @@ void MapDetailPanel::DrawKey()
 		// Each system is colored in accordance with the player's reputation
 		// with its owning government. The specific colors associated with a
 		// given reputation (0.1, 100, and 10000) are shown for each sign.
-		RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, ReputationColor(1e-1, true, false));
-		RingShader::Draw(pos + Point(12., 0.), DOTS_OUTER, DOTS_INNER, ReputationColor(1e2, true, false));
-		RingShader::Draw(pos + Point(24., 0.), DOTS_OUTER, DOTS_INNER, ReputationColor(1e4, true, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, ReputationColor(-1e-1, false, false));
-		RingShader::Draw(pos + Point(12., 0.), DOTS_OUTER, DOTS_INNER, ReputationColor(-1e2, false, false));
-		RingShader::Draw(pos + Point(24., 0.), DOTS_OUTER, DOTS_INNER, ReputationColor(-1e4, false, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
 		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, ReputationColor(0., false, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
 		font.Draw("Restricted", pos + textOff, dim);
 		pos.Y() += 20.;
 
-		RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, ReputationColor(0., false, true));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
 		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
 
-	RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, UninhabitedColor());
+	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 	font.Draw("Uninhabited", pos + textOff, dim);
 	pos.Y() += 20.;
 
-	RingShader::Draw(pos, DOTS_OUTER, DOTS_INNER, UnexploredColor());
+	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
 	font.Draw("Unexplored", pos + textOff, dim);
 }
 
