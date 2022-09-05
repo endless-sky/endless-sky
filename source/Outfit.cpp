@@ -188,7 +188,7 @@ void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		trueName = node.Token(1);
-	
+
 	isDefined = true;
 
 	// Use bools to track whether the display and plural names are set as opposed to string.empty() to allow explicitly empty names.
