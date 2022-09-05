@@ -141,7 +141,8 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 
 
 
-ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt) : condMapIt(it), condMapEnd(endIt)
+ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt)
+	: condMapIt(it), condMapEnd(endIt)
 {
 	MoveToValueCondition();
 };
