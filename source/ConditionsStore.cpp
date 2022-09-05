@@ -25,7 +25,8 @@ using namespace std;
 
 
 // Default constructor
-ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPrefixProvider): name(name), isPrefixProvider(isPrefixProvider)
+ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPrefixProvider)
+	: name(name), isPrefixProvider(isPrefixProvider)
 {
 }
 
