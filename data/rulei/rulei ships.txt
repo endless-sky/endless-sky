@@ -38,14 +38,15 @@ ship vyu'Ira
 			"hull damage" 10000
 			"hit force" 30000
 	outfits
-		"Antimatter Core"
-		"Ember Tear"
-		"Fate Sealer" 4
+		"Fate Sealer" 2
+		"Fate Divider" 2
 		"Nanotech Battery"
-	turret -67 26.5 "Fate Sealer"
-	turret 67 26.5 "Fate Sealer"
-	turret -93 41 "Fate Sealer"
-	turret 93 41 "Fate Sealer"
+		"Antimatter Core"
+
+	gun -67 26.5 "Fate Sealer"
+	gun 67 26.5 "Fate Sealer"
+	gun -93 41 "Fate Divider"
+	gun 93 41 "Fate Divider"
 	gun 0 -135 "Ember Tear"
 	explode "huge explosion" 15
 	explode "large explosion" 50

@@ -11,37 +11,80 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Fate Sealer"
-	category Turrets
+	category Guns
 	cost 77777777
 	mass 131
 	"outfit space" -131
-	"turret mounts" -1
+	"gun port" -1
 	"weapon capacity" -131
 	weapon
 		"hardpoint sprite" "hardpoint/pug gridfire turret"
-		sound gridfire
-		"fire effect" "fate sealer fire"
-		"hit effect" "gridfire hit" 2
-		"hit effect" "gridfire cloud"
-		lifetime 1
+		sound "fate fire"
+		"fire effect" "fate fire"
+		lifetime 60
 		reload 100
-		"burst reload" 2
-		velocity 1440
-		"turret turn" 20
-		"firing energy" 800
-		"firing force" 150
-		"firing heat" 400
-		"blast radius" 40
-		"hit force" -40
-		"shield damage" 600
-		"hull damage" 600
-		piercing 0.3
+		"homing" 2
+		"turn" 180
+		velocity 0
+		acceleration 0.01
 		cluster
+		"burst reload" 2
+		"firing energy" 800
+		"firing heat" 400
+		"submunition" "Fate Sealer Activated"
 
-effect "fate sealer fire"
-	sprite effect/blink/blink
-		"frame rate" 18
+outfit "Fate Sealer Activated"
+	weapon
+		"hit effect" "heavy rocket hit"
+		lifetime 4
+		velocity 1400
+		acceleration 0.01
+		"trigger radius" 50
+		"blast radius" 100
+		"hit force" -400
+		"shield damage" 400
+		"hull damage" 800
+
+outfit "Fate Divider"
+	category Guns
+	cost 77777777
+	mass 131
+	"outfit space" -131
+	"gun port" -1
+	"weapon capacity" -131
+	weapon
+		"hardpoint sprite" "hardpoint/pug gridfire turret"
+		sound "fate fire"
+		"fire effect" "fate fire"
+		lifetime 60
+		reload 100
+		"homing" 2
+		"turn" 180
+		velocity 0
+		acceleration 0.01
+		cluster
+		"burst reload" 2
+		"firing energy" 800
+		"firing heat" 400
+		"submunition" "Fate Divider Activated"
+
+outfit "Fate Divider Activated"
+	weapon
+		"hit effect" "heavy rocket hit"
+		lifetime 1
+		velocity 1400
+		acceleration 0.01
+		"trigger radius" 50
+		"blast radius" 100
+		"hit force" 400
+		"shield damage" 400
+		"hull damage" 800
+		
+effect "fate fire"
+	sprite effect/blink
+		"scale" 0.5
+		"frame rate" 22
 		"no repeat"
-	lifetime 30
+	lifetime 25
 	"random angle" 360
 
