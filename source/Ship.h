@@ -494,6 +494,8 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool hasHitEffect = false;
+	bool hasShieldHitEffect = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;

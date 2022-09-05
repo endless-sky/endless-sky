@@ -206,8 +206,6 @@ void Ship::Load(const DataNode &node)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
-	bool hitEffectSet = false;
-	bool shieldHitEffectSet = false;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -431,13 +429,13 @@ void Ship::Load(const DataNode &node)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hullHitEffects[GameData::Effects().Get(child.Token(1))] += count;
-			hitEffectSet = true;
+			hasHitEffect = true;
 		}
 		else if(key == "shield hit effect")
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			shieldHitEffects[GameData::Effects().Get(child.Token(1))] += count;
-			shieldHitEffectSet = true;
+			hasShieldHitEffect = true;
 		}
 		else if(key == "outfits")
 		{
@@ -507,9 +505,10 @@ void Ship::Load(const DataNode &node)
 	// Shield hit effects are, unless explicitly defined,
 	// presumed to be the same as the generic (hull) hit effects
 	// if there have been any hull hit effects defined
-	if(!shieldHitEffectSet && hitEffectSet)
+	if(!hasShieldHitEffect && hasHitEffect)
 	{
 			shieldHitEffects = hullHitEffects;
+			hasShieldHitEffect = true;
 	}
 }
 
@@ -1009,6 +1008,22 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
+		if(hasHitEffect)
+		{
+		WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
+				out.Write("hit effect", it.first->Name(), it.second);
+		});
+		}
+		if(hasShieldHitEffect)
+		{
+		WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
+		{
+			if(it.second)
+				out.Write("shield hit effect", it.first->Name(), it.second);
+		});
+		}
 
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
@@ -3421,17 +3436,15 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 	// Create hull/shield hit effect visuals at the point of impact for weapons
 	// fire, if there are any to create.
-	if(!damage.Hull())
+	if(damage.Shield() && hasShieldHitEffect)
 	{
 		for(const auto &it : ShieldHitEffects())
 			for(int i = 0; i < it.second; ++i)
 			{
 				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
-				//visuals.emplace_back(*it.first, velocity, velocity, hitAngle, hitVelocity);
-				//visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
 			}
 	}
-	else
+	if(damage.Hull() && hasHitEffect)
 	{
 		for(const auto &it : HullHitEffects())
 			for(int i = 0; i < it.second; ++i)
