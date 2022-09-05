@@ -684,7 +684,7 @@ outfit "Farves GP Hybrid Thruster"
 		"frame rate" 7.5
 	"flare sound" "ion small"
 	description "Exposure to the Quarg's graviton-thrusters, coupled with the forced retreat from research into interstellar jump drive technology, has left the Efreti engineers with little else to tinker with than subluminal propulsion. In this vein, Efreti engineers have turned to integrating previously theoretical unifications of quantum gravity with the other physical forces in these engines."
-	description "	These resulting thrusters are one important example of this effort. Synthesizing quantum-gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines, while at the same time increasing its energy consumption. The resulting thrusters produce less heat but consume substantially more energy."
+	description "	These resulting thrusters are one important example of this effort. Synthesizing quantum-gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines, while at the same time increasing its energy consumption. The result produces less heat but consumes substantially more energy."
 
 outfit "Gaktem GP Hybrid Thruster"
 	plural "Gaktem GP Hybrid Thrusters"
@@ -701,7 +701,7 @@ outfit "Gaktem GP Hybrid Thruster"
 		"frame rate" 7
 	"flare sound" "ion medium"
 	description "Korath physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. While their understanding of spacetime is well behind that of the Quarg, their grudging divorce from jump drive technology has pushed Efreti scientists and engineers to begin to instantiate their unified understandings of quantum gravity and the nuclear forces within their newer hybrid gravitoplasma thrusters."
-	description "	Despite the Efreti’s limited resources, these new hybrid gravitoplasma thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
+	description "	Despite the Efreti’s limited resources, these thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
 
 outfit "Nelmeb GP Hybrid Thruster"
 	plural "Nelmeb GP Hybrid Thrusters"
