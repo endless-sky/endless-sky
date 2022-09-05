@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Ship.h"
@@ -3466,10 +3469,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	if(!currentMass)
 		return;
 
-	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	acceleration += force / currentMass;
 }
 
 

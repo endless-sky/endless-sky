@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Note: this file contains outfits that are no longer used in the game, but that
 # must be maintained in case anyone installed one of them while they were available.
@@ -129,15 +132,6 @@ outfit "Reverse Thruster"
 	"reverse thrust" 15.4
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
-
-# Deprecated because it unbalances the capture dynamics, among other things.
-outfit "NDR-114 Android"
-	category "Systems"
-	cost 80000
-	thumbnail "outfit/android"
-	"required crew" -1
-	unplunderable 1
-	description "For the price of more than two year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
 
 # Deprecated for 0.9.2 due to long outfit names.
 outfit "Bullfrog Anti-Missile Turret"

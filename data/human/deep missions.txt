@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Deep: Syndicate Convoy"
 	minor
@@ -3155,12 +3158,10 @@ mission "Home for Skadenga 2"
 			`	"I am Jakob Forsyth, Vice Planetary-Governor of Nifel and CEO of Nifel-Research Solutions Incorporated, and the man sitting beside me is Henrik Fogel, Deputy Lieutenant-Sub-Director of the Census and Culture Bureau for The Deep. We've been monitoring you ever since you first arrived and became entangled with those sad, backwards, hill-witches." Jakob takes a sip from an elegant glass on the table.`
 			choice
 				`	"If you've been watching me, does that mean you knew about the Ice-Crawler accident and did nothing?"`
-			`	"Of course I knew." Jakob answers. "It is my business to know. The only people who live here anymore are employees of my firm and those hill-witches." Holding up both hands in a placating gesture, he adds, "And I really am sorry we could not extract you from that avalanche. But we did a cost-benefit analysis, and it just didn't make sense. You run a ship, a business, you understand. How often do you let crew die in boarding action to make a profit?"`
-			`	Jakob puts his hands down. "Anyways, we hardly have the infrastructure to support rescue missions. Our financial team ran the numbers a few generations back, and we realized we could significantly increase our profit margins if we downsized our research division workforce to nothing, and instead focused on managing our existing patents.`
-			`	"Since then we've been shutting things down, laying people off, and sending the rest offworld. Various services, including emergency ones, are only barely functional. It's much cheaper to shut this world down rather than try and keep managing it. That's why it will be completely uninhabited within 50 years."`
+			`	"Of course I knew." Jakob answers. "It is my business to know. The only people who live here anymore are employees of my firm and those hill-witches." Holding up both hands in a placating gesture, he adds, "And I really am sorry we could not extract you from that avalanche. We don't have the resources allocated to support rescue missions anymore; various services, including emergency ones, are only barely functional. The whole operation on this planet is being shut down, you know. Not enough opportunity to make a profit left here. That's why it will be completely uninhabited within 50 years."`
 			choice
-				`	"You're abandoning an entire planet to make a profit?"`
-			`	He leans forward with a sly look on his face. "Think about it. Instead of employing a worldwide workforce of 300,000 in the hope that we discover new pharmaceutical products, we instead employ 100 patent lawyers, and the rest of the profits go directly to the shareholders. We then raise the prices on our vast back catalog of patented medicine, and everyone wins.`
+				`	"You're abandoning an entire planet?"`
+			`	He leans forward with a sly look on his face. "Think about it. Why employ a worldwide workforce of 300,000 in the vain hope of discovering new pharmaceutical products on a snowy wasteland? There hasn't been a profitable discovery here in generations. It's a money pit. You run a ship, a business, you understand.`
 			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 600 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and whatnot. But, they are a cultural dead end, an atavistic blight on our corporate world. You know," he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
 			`	"Now, now." Henrik finally cuts in. "We here in the Deep do value all our resident people and cultures. We are not here to denigrate our citizens, no matter how unusual."`
 			choice
@@ -3756,7 +3757,7 @@ mission "Home for Skadenga 11"
 
 conversation "land at windblain"
 	scene "scene/seasidecliffs"
-	`The reserved and limited government of Windblain pays you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
+	`The reserved and limited government of Windblain pays neither you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
 	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, The Ondurdis joins you.`
 	`	"So, you are the ice that falls from the stars?" asks Aldfrith with a hint of mirth in his eyes.`
 	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
