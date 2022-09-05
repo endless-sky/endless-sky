@@ -644,9 +644,9 @@ mission "Remnant: Shattered Light 6"
 
 
 mission "Remnant: Scent of Rain 1"
+	landing
 	name "Search for the unknown Korath ship."
 	description "Chilia has asked you to find the Korath ship that can carry three 'olofez."
-	landing
 	source
 		government "Remnant"
 	destination "Caelian"
@@ -655,15 +655,13 @@ mission "Remnant: Scent of Rain 1"
 	npc "scan outfits"
 		government "Korath"
 		personality waiting target
-		system
-			system "Kor Zena'i"
+		system "Kor Zena'i"
 		ship "Tubfalet" "Ra'puk At 295"
-		dialog `In poor lighting this ship might have passed for a Palavret, but major structural difference suggest this is at least a different model, or perhaps an entirely different ship. Time to report this to Chilia.`
+		dialog `In poor lighting, this ship might have passed for a Palavret, but major structural differences suggest this is at least a different model, or perhaps an entirely different ship. Time to report this to Chilia.`
 	npc
 		government "Korath"
 		personality waiting
-		system
-			system "Kor Zena'i"
+		system "Kor Zena'i"
 		fleet
 			names "korath"
 			cargo 3
@@ -683,7 +681,7 @@ mission "Remnant: Scent of Rain 1"
 				accept
 	on enter "Kor Zena'i"
 		dialog
-			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the Ra'puk At 295. This would be the ship that Chilia would like a scan of.`
+			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the Ra'puk At 295. This must be the ship that Chilia would like a scan of.`
 	on complete
 		payment 150000
 		conversation
@@ -695,4 +693,4 @@ mission "Remnant: Scent of Rain 1"
 				`	"Are you expecting something?"`
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
 			label scanningpayment
-			`	"But no matter. Planning for the storm is my duty, not yours, and the stormfront is yet to appear. We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall storm is my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+			`	"But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear. We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall storm is my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
