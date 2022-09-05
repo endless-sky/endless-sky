@@ -265,7 +265,7 @@ fleet "Korath Home"
 		"Kas'lor Ik 582"
 		"'olofez" 3
 	variant 1
-		"Lor'nag Ik 590"
+		"Lor'nag Ik 590 (Grab)"
 		"'olofez" 3
 
 fleet "Korath Defense"
@@ -383,7 +383,7 @@ fleet "Korath Civilian Large"
 	cargo 3
 	personality
 		frugal opportunistic disables forbearing
-	variant 7
+	variant 11
 		"Lor'nag Ik 590"
 		"'olofez (Expeller)" 3
 	variant 6
@@ -397,9 +397,6 @@ fleet "Korath Civilian Large"
 		"Kasichara A'awoj"
 	variant 5
 		"Kas'lor Ik 582"
-		"'olofez (Expeller)" 3
-	variant 4
-		"Lor'nag Ik 590 (Grab)"
 		"'olofez (Expeller)" 3
 	variant 2
 		"Rano'erek (Civilian)" 2

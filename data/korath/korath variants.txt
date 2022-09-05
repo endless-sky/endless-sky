@@ -954,14 +954,16 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
 		"Brig"
-		"Microbot Defense Station" 15
-		"Thermal Repeater Rifle" 272
+		"Microbot Defense Station" 12
+		"Thermal Repeater Rifle" 493
 		
-		"Thruster (Stellar Class)"
+		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
 		"Scram Drive"
 	
 	gun -45 -253 "Fire-Lance"
@@ -976,28 +978,30 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 	outfits
-		"Banisher Grav-Turret" 3
-		"Warder Anti-Missile" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Shunt-Strike Turret" 2
 		"Fire-Lance" 2
 		
 		"Triple Plasma Core"
-		"Systems Core (Medium)"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
 		"Liquid Sodium Cooler"
 		"Fuel Processor" 2
 		"Brig"
-		"Microbot Defense Station" 15
-		"Thermal Repeater Rifle" 493
+		"Microbot Defense Station" 8
+		"Thermal Repeater Rifle" 1492
 		
-		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"
-		"Thruster (Stellar Class)"
+		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Scram Drive"
+		"Jump Drive"
 	
 	gun -45 -253 "Fire-Lance"
 	gun 45 -253 "Fire-Lance"
-	turret -77 -116.5 "Banisher Grav-Turret"
-	turret 77 -116.5 "Warder Anti-Missile"
+	turret -77 -116.5 "Shunt-Strike Turret"
+	turret 77 -116.5 "Shunt-Strike Turret"
 	turret -87 -83 "Warder Anti-Missile"
 	turret 87 -83 "Banisher Grav-Turret"
 	turret -51 276.5 "Banisher Grav-Turret"

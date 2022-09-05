@@ -631,17 +631,18 @@ ship "Lor'nag Ik 590"
 			"hull damage" 4000
 			"hit force" 12000
 	outfits
-		"Shunt-Strike Turret" 2
-		"Banisher Grav-Turret" 2
+		"Grab-Strike Turret" 1
+		"Banisher Grav-Turret" 3
 		"Warder Anti-Missile" 2
-		"Fire-Lance" 2
+		"Digger Mining Beam" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Brig"
-		"Microbot Defense Station" 15
+		"Microbot Defense Station" 17
 		"Thermal Repeater Rifle" 272
 		
 		"Thruster (Stellar Class)"
@@ -660,12 +661,12 @@ ship "Lor'nag Ik 590"
 	fighter -90 160 back
 	fighter 0 160 back
 	fighter 90 160 back
-	gun -45 -253 "Fire-Lance"
-	gun 45 -253 "Fire-Lance"
-	turret -77 -116.5 "Shunt-Strike Turret"
-	turret 77 -116.5 "Shunt-Strike Turret"
+	gun -45 -253 "Digger Mining Beam"
+	gun 45 -253 "Digger Mining Beam"
+	turret -77 -116.5 "Grab-Strike Turret"
+	turret 77 -116.5 "Warder Anti-Missile"
 	turret -87 -83 "Banisher Grav-Turret"
-	turret 87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
 	turret -51 276.5 "Warder Anti-Missile"
 	turret 51 276.5 "Banisher Grav-Turret"
 	explode "tiny explosion" 30
