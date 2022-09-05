@@ -643,25 +643,27 @@ mission "Remnant: Shattered Light 6"
 
 
 
-mission "Remnant: Clouds Brewing 1"
+mission "Remnant: Scent of Rain 1"
+	name "Search for the unknown Korath ship."
+	description "Chilia has asked you to find the Korath ship that can carry three 'olofez."
 	landing
 	source
 		government "Remnant"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 25: done"
-		random > 50
 	npc "scan outfits"
 		government "Korath"
 		personality waiting target
 		system
-			system "Egeria"
-		ship "Tubfalet"
+			system "Kor Zena'i"
+		ship "Tubfalet" "Ra'puk At 295"
+		dialog `In poor lighting this ship might have passed for a Palavret, but major structrual difference suggest this is at least a different model, perhaps an entirely different ship. Time to report this to Chilia.`
 	npc
 		government "Korath"
 		personality waiting
 		system
-			system "Egeria"
+			system "Kor Zena'i"
 		fleet
 			names "korath"
 			cargo 3
@@ -678,8 +680,19 @@ mission "Remnant: Clouds Brewing 1"
 					decline
 			`	He signs appreciatively. "We appreciate your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
 				accept
+	on enter "Kor Zena'i"
+		dialog
+			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: The one identified as the Ra'puk At 295. This would be the ship that Chilia would like a scan of.`
 	on complete
+		event "remnant: tubfalet appearance"
+		payment 150000
 		conversation
-			`Looking around the Viminal spaceport, you spot Taely using something that slightly resembles a small catapult to launch a sizable rock across the cavern. A nearby Merganser leaps into the air and chases after it, pouncing on the rock and vanishing from sight before reappearing next to Taely, dropping it next to her. Without looking away from the Merganser she waves you over.`
-			`	"Well met, <first>, how goes your travels? Found anything interesting?`
-			`	She listens to your description of the encounter with the ghostly ship whilst looking at the recording you pull up from your commlink. "This is very intriguing. I will need to consult a few people. If you are interested in investigating this, ensure your ship has a research laboratory installed, and meet me in the spaceport."`
+			`Chilia is waiting for you when you land. He looks over the scan results, nodding thoughtfully, and listens to your account of visiting Kor Zena'i.`
+			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
+			choice
+				`	"You are welcome."`
+					goto scanningpayment
+				`	"Are you expecting something?"`
+			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
+			label scanningpayment
+			`	"But no matter. Planning for the storm is my duty, not yours, and the stormfront is yet to appear. We have allocated you <payment> for the risks undertaken, please use it wisely: While the overall storm is my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
