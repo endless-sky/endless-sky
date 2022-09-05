@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PlayerInfoPanel.h"
@@ -50,9 +53,8 @@ namespace {
 	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
 		vector<pair<int64_t, string>> match;
-
-		auto it = player.Conditions().lower_bound(prefix);
-		for( ; it != player.Conditions().end(); ++it)
+		auto it = player.Conditions().PrimariesLowerBound(prefix);
+		for( ; it != player.Conditions().PrimariesEnd(); ++it)
 		{
 			if(it->first.compare(0, prefix.length(), prefix))
 				break;
@@ -598,7 +600,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		bright, Truncate::MIDDLE, true);
 
 	// Determine the player's combat rating.
-	int combatExperience = player.GetCondition("combat rating");
+	int combatExperience = player.Conditions().Get("combat rating");
 	int combatLevel = log(max<int64_t>(1, combatExperience));
 	const string &combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())

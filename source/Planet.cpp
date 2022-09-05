@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Planet.h"
@@ -561,11 +564,12 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	if(player.GetCondition("tribute: " + name))
+	auto &playerConditions = player.Conditions();
+	if(playerConditions.Get("tribute: " + name))
 		return "We are already paying you as much as we can afford.";
 	if(!tribute || defenseFleets.empty())
 		return "Please don't joke about that sort of thing.";
-	if(player.GetCondition("combat rating") < defenseThreshold)
+	if(playerConditions.Get("combat rating") < defenseThreshold)
 		return "You're not worthy of our time.";
 
 	// The player is scary enough for this planet to take notice. Check whether
@@ -598,7 +602,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!isDefeated)
 		return "We're not ready to surrender yet.";
 
-	player.Conditions()["tribute: " + name] = tribute;
+	playerConditions["tribute: " + name] = tribute;
 	GameData::GetPolitics().DominatePlanet(this);
 	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
 }
