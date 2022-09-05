@@ -687,12 +687,8 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
 		return false;
 
-	if(repeat)
-	{
-		auto cit = playerConditions.find(name + ": offered");
-		if(cit != playerConditions.end() && cit->second >= repeat)
-			return false;
-	}
+	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+		return false;
 
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, boardingShip))

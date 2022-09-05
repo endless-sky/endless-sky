@@ -602,6 +602,16 @@ outfit "Emergency Ramscoop"
 	"ramscoop" 0.5
 	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
 
+outfit "NDR-114 Android"
+	category "Unique"
+	cost 120000
+	thumbnail "outfit/android"
+	"required crew" -1
+	"energy consumption" 0.01
+	unplunderable 1
+	description "While these were once considered cutting-edge outfits, their lack of autonomous capabilities and economic benefit ensured they were never licensed by a manufacturer."
+	description "	Despite this, some captains commissioned these directly from their inventor, effectively replacing one of their crew members with a robotic counterpart. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the capability to captain a ship or take part in boarding actions."
+
 outfit "Research Laboratory"
 	category "Systems"
 	licenses
