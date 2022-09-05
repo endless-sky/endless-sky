@@ -1088,6 +1088,9 @@ void MapPanel::DrawWormholes()
 	static const Angle RIGHT(-30.);
 	const double zoom = Zoom();
 
+	if(Zoom() <= 0.5 && isStarry == false)
+		return;
+
 	for(const pair<const System *, const System *> &link : arrowsToDraw)
 	{
 		// Compute the start and end positions of the wormhole link.
