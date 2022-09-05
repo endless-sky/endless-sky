@@ -41,7 +41,9 @@ line_include = {
 	# where the statement is not at the beginning of the line.
 	"(?<!^inline\\s.*)[^\\w0-9]((?<!else\\s)if|else|else\\sif|switch|for|catch|try|do)(\\s{|\\()": "statement should begin on new line",
 	# Matches any semicolons not at the end of line, unless they are inside 'for' statements
-	";[^\\)}]+$": "semicolon should terminate line"
+	";[^\\)}]+$": "semicolon should terminate line",
+	# Matches any whitespaces at the end of a line
+	"\\s+$": "trailing whitespace at end of line",
 }
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
@@ -55,8 +57,6 @@ segment_include = {
 	# except if the whitespace is followed by a semicolon,
 	# or follows an all-caps method name.
 	"(?![A-Z]+)^.*\\(\\s(?!;)": "extra whitespace after opening parenthesis",
-	# Matches any whitespaces at the end of a line that are preceded by brackets, parentheses or semicolons.
-	"[;[{]\\s+$": "trailing whitespace at end of line",
 	# Matches any 'if', 'for', 'catch' or 'switch' statements where the '(' is preceded by a whitespace.
 	"(?:if|switch|for|catch)\\s+\\(": "extra whitespace before '('",
 	# Matches any 'try' or 'do' statements that are not followed by a whitespace and a '{'.
@@ -457,6 +457,8 @@ def check_copyright(lines, file):
 # original_lines: the lines of the file, without the terminating line separators
 # file: the path to the file
 def check_include(sanitized_lines, original_lines, file):
+	if file == "source/main.cpp":
+		return
 	# opengl.h is treated as a <> include in most cases
 	original_lines = [line if line != "#include \"opengl.h\"" else "#include <opengl.h>" for line in original_lines]
 
