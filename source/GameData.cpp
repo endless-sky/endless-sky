@@ -95,7 +95,8 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 
 	// Load plugin icons and description for preferences dialog.
-	bool LoadAboutPlugin(const string &path) {
+	bool LoadAboutPlugin(const string &path)
+	{
 		// Get the name of the folder containing the plugin.
 		size_t pos = path.rfind('/', path.length() - 2) + 1;
 		string name = path.substr(pos, path.length() - 1 - pos);
@@ -123,7 +124,8 @@ namespace {
 		// Enabling plugins is the default preference.
 		if(Plugins::IsEnabled(name))
 		{
-			Plugins::Set(name, true);
+			if(!Plugins::Has(name))
+				Plugins::Set(name, true);
 			return true;
 		}
 		// Do not add to sources for user-disabled plugins while preserving about.txt in preferences.

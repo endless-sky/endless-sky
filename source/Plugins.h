@@ -16,15 +16,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 
-
+// Tracks enabled and disabled plugins for loading plugin data or skipping it.
+// This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
 	static void Load();
 	static void Save();
 	static void Freeze();
 
-	static bool HasChanged(const std::string &name);
+	static bool Has(const std::string &name);
 	static bool HasChanged();
+	static bool HasChanged(const std::string &name);
 	static bool IsEnabled(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
 	static void TogglePlugin(const std::string &name);

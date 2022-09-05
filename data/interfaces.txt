@@ -433,9 +433,12 @@ interface "preferences"
 	visible if "show plugins changed"
 	sprite "ui/planet dialog button"
 		center 0 210
-	visible if "show plugins changed"
-	label "Restart game..."
-		center 0 210
+	label "Restart game"
+		center 0 201
+		dimensions 140 40
+		color "bright error"
+	label "to reload plugins."
+		center 0 219
 		dimensions 140 40
 		color "bright error"
 

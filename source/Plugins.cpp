@@ -54,7 +54,7 @@ void Plugins::Load()
 
 void Plugins::Save()
 {
-	if(settings.size() == 0)
+	if(settings.empty())
 		return;
 	DataWriter out(Files::Config() + "plugins.txt");
 
@@ -65,7 +65,6 @@ void Plugins::Save()
 			out.Write(it.first, it.second);
 	}
 	out.EndChild();
-
 }
 
 
@@ -78,12 +77,20 @@ void Plugins::Freeze()
 
 
 
+// Check if a plugin is known. It does not matter if it is enabled or disabled.
+bool Plugins::Has(const string &name)
+{
+	auto it = settings.find(name);
+	return it != settings.end();
+}
+
+
+
 // Determine if a plugin setting has changed since launching.
 bool Plugins::HasChanged(const string &name)
 {
 	return frozenSettings[name] != settings[name];
 }
-
 
 
 
@@ -96,7 +103,6 @@ bool Plugins::HasChanged()
 			return true;
 	return false;
 }
-
 
 
 
