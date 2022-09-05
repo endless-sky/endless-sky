@@ -7449,6 +7449,118 @@ system "Cor Caroli"
 		distance 2019.86
 		period 1104.91
 
+system "Cura Dic"
+	pos 325.933 -856.506
+	government Quarg
+	habitable 700
+	belt 1245
+	link Hui'uc
+	trade Clothing 362
+	trade Electronics 763
+	trade Equipment 644
+	trade Food 165
+	trade "Heavy Metals" 1280
+	trade Industrial 848
+	trade "Luxury Goods" 1055
+	trade Medical 509
+	trade Metal 457
+	trade Plastic 503
+	fleet Quarg 600
+	attributes ringworld
+	arrival 700
+	object
+		sprite star/g3
+		period 10
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 20
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 40
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 60
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 80
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 100
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 120
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 140
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 160
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 180
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 200
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 220
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 240
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 260
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 280
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 300
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 320
+	object "Spec Inci"
+		sprite planet/ringworld
+		distance 812
+		period 349.82
+		offset 340
+
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
@@ -8552,6 +8664,52 @@ system Dokdobaru
 		distance 812
 		period 349.820
 		offset 220
+
+system Dom'us
+	pos 255.716 -786.552
+	government "Incipias"
+	habitable 560.92
+	belt 1259
+	link Hui'uc
+	link Il'le
+	asteroids "small rock" 1 6.9552
+	asteroids "medium rock" 21 7.7004
+	asteroids "large rock" 18 4.0986
+	fleet "Nimbi" 600
+	minables copper 4 7.76463
+	minables iron 2 8.43123
+	minables silicon 5 10.4989
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/k5
+		distance 27.6777
+		period 20.8284
+	object
+		sprite star/m8
+		distance 87.3223
+		period 20.8284
+		offset 180
+	object
+		sprite planet/cloud6
+		distance 707.022
+		period 317.511
+	object Redias
+		sprite planet/gas6
+		distance 1536.91
+		period 1017.61
+		object "Pon'tes"
+			sprite planet/pontes
+			distance 600
+			period 12.484
 
 system Dschubba
 	pos -598 501
@@ -13121,6 +13279,78 @@ system Host
 			distance 360
 			period 41.3874
 
+system Hui'uc
+	pos 325.933 -781.506
+	habitable 1505.92
+	belt 1246
+	link Dom'us
+	link Il'le
+	link "Cura Dic"
+	asteroids "small rock" 17 1.859
+	asteroids "medium rock" 92 1.1726
+	asteroids "large rock" 16 1.9162
+	asteroids "small metal" 4 1.9734
+	asteroids "medium metal" 70 0.9438
+	asteroids "large metal" 6 0.9867
+	minables aluminum 10 2.29532
+	minables lead 11 1.44159
+	minables neodymium 23 1.22571
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/g0
+		distance 36.768
+		period 15.2783
+		offset 180
+	object
+		sprite star/k5
+		distance 93.232
+		period 15.2783
+	object
+		sprite planet/rock4
+		distance 391.392
+		period 79.8136
+		object
+			sprite planet/lava0
+			distance 157
+			period 17.9093
+	object
+		sprite planet/desert4
+		distance 683.802
+		period 184.312
+	object
+		sprite planet/desert2
+		distance 863.802
+		period 261.686
+	object
+		sprite planet/ice0
+		distance 1345.09
+		period 508.495
+	object
+		sprite planet/gas3
+		distance 2880.25
+		period 1593.33
+		object
+			sprite planet/dust3
+			distance 305
+			period 13.6055
+		object
+			sprite planet/rock0
+			distance 400
+			period 20.4341
+		object
+			sprite planet/rock14
+			distance 526
+			period 30.8137
+
 system Hunter
 	pos -968.587 590.051
 	government Coalition
@@ -13300,6 +13530,57 @@ system Ildaria
 		sprite planet/dust4-b
 		distance 2712.92
 		period 2260.86
+
+system Il'le
+	pos 280.933 -720.506
+	habitable 1715
+	belt 1165
+	link Dom'us
+	link Hui'uc
+	asteroids "small rock" 31 9.6432
+	asteroids "medium rock" 3 4.8608
+	asteroids "large rock" 16 10.0352
+	asteroids "small metal" 13 11.1328
+	asteroids "medium metal" 61 6.1936
+	asteroids "large metal" 21 8.8592
+	minables lead 1 11.688
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock11
+		distance 142.89
+		period 16.498
+	object
+		sprite planet/cloud2
+		distance 492.3
+		period 105.505
+		object
+			sprite planet/lava0
+			distance 188
+			period 20.7352
+	object
+		sprite planet/gas17
+		distance 1286.91
+		period 445.913
+		object
+			sprite planet/dust0
+			distance 195
+			period 11.6339
+	object
+		sprite planet/dust4
+		distance 2030.4
+		period 883.691
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -29875,6 +30156,13 @@ planet Poisonwood
 		threshold 2000
 		fleet "Large Militia" 7
 
+planet "Pon'tes"
+	government "Hicemus"
+	landscape land/station16
+	"required reputation" 1.0
+	description "The spacestation is not nearly as comfortable as stations in human space. Furthermore it is not build for beings with more than one cell, so there are no handles or even a floor. The Incipias are just gliding around in a way you can not explain yourself."
+	spaceport "This spacestation has no normal spaceport but a docking area where ships can dock to the station. A lot of people are around here but not many of them seem to be captains like you."
+
 planet Poseidos
 	attributes fishing rim
 	landscape land/sea9
@@ -29955,6 +30243,15 @@ planet Rand
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet Redias
+	landscape land/nasa15
+	attributes "requires: gaslining"
+	government "Incipias"
+	"required reputation" 1.0
+	description "You can not land on the home planet of the Incipas, because they have no spaceport fitting for ships like yours."
+	description  "While your drifting through the planets atmosphere you see some small floating platform and space ship equivalent objects gliding between them."
+	spaceport "Even though there is a spaceport, you can not land n it because it is not made for ships of your type."
 
 planet Redwatch
 	attributes hai station uninhabited
@@ -30508,6 +30805,14 @@ planet "Sopi Lefarkata"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet "Spec Inci"
+	attributes "hai quarg" quarg station
+	landscape land/station19
+	description `Although you have seen a lot of spacestations you are always impressed by the Quarg ringworlds, constructions that replace a whole planet.`
+	spaceport `Despite the size of the ringworld not many quargs are seen around the spaceport. It seems like they have nothing to do right now and are waiting for something to happen.`
+	bribe 0
+	security 0.9
 
 planet "Spera Anatrusk"
 	attributes korath

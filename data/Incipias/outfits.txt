@@ -1,0 +1,84 @@
+outfit "Compressor Cannon"
+	category "Secondary Weapons"
+	mass 25
+	"outfit space" -20
+	"gun ports" -1
+	weapon
+		sprite "projectile/meteor"
+			"no repeat"
+			"frame rate" .25
+		sound "meteor"
+		icon "icon/meteor"
+		"fire effect" "meteor fire"
+		"die effect" "missile death"
+		"hit effect" "missile hit"
+		ammo "Plasma Capsule"
+		"inaccuracy" 5
+		"velocity" 11
+		"lifetime" 350
+		"reload" 80
+		"firing energy" 1
+		"firing heat" 20
+		"acceleration" 1
+		"drag" .1
+		"turn" 1.8
+		"homing" 1
+		"infrared tracking" .65
+		"shield damage" 260
+		"hull damage" 160
+		"hit force" 220
+		"missile strength" 6
+		"minable damage" 200
+
+outfit "Plasma Capsule"
+	category "Ammunition"
+	cost 20
+	mass .1
+	"outfit space" -0.1
+
+
+
+
+outfit "Gas Class Shield"
+	category "Systems"
+	mass 20
+	"outfit space" -20
+	shields 1000
+	"shield generation" .05
+	"shield energy" .06
+
+outfit "Liquid Class Shield"
+	category "Systems"
+	mass 30
+	"outfit space" -30
+	shields 1250
+	"shield generation" .1
+	"shield energy" .11
+
+outfit "Solid Class Shield"
+	category "Systems"
+	mass 40
+	"outfit space" -40
+	shields 1500
+	"shield generation" .3
+	"shield energy" .31
+
+outfit "Liquid Hydrogen Cell"
+	category "Power"
+	mass 20
+	"outfit space" -20
+	"energy capacity" 2000
+	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld."
+
+outfit "Hydrogen Engine"
+	category "Engines"
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 40
+	"thrusting energy" 5
+	"thrusting heat" 10
+	"turn" 1000
+	"turning energy" 2.5
+	"turning heat" 12
+	description "This very simple engine just burns Liquid Hydrogen to get forward, but because the Incipias have not found something better until now, they made it very effective."

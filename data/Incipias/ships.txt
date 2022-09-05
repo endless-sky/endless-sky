@@ -1,0 +1,33 @@
+ship "Nimbus"
+	"plural" "Nimbus'"
+	"sprite" ship/nimbus
+	attributes
+		"category" "Transport"
+		"cost" 500000
+		"hull" 2500
+		"required crew" 20
+		"bunks" 40
+		"mass" 600
+		"drag" 13.3
+		"heat dissipation" .7
+		"cargo space" 100
+		"outfit space" 200
+		"engine capacity" 40
+		"weapon capacity" 40 
+		"gaslining"
+		"solar collection" 400
+		"fuel capacity" 1
+	outfits
+		"Solid Class Shield"
+		"Hydrogen Engine"
+		"Liquid Hydrogen Cell"
+		"Compressor Cannon" 2
+		"Plasma Capsule" 150
+	engine 1 155
+	gun -20 -128
+	gun 20 -128
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Nimbus is the largest ship of Incipias. Thanks to it large solar collectores it does not need any other power generation outfits. As all ships of the Incipias it can land on gas giants."

@@ -1,0 +1,46 @@
+government "Incipias"
+	swizzle 0
+	color 0.5 0.0 0.9 1.0
+	"player reputation" 1.0
+	"crew attack" 0.2
+	"crew defense" 1.0
+	"attitude toward"
+		"Quarg" 1.0
+		"Hicemus" 1.0
+	#language "Incups"
+
+government "Hicemus"
+	swizzle 0
+	color 0.6 0.0 0.4 1.0
+	"player reputation" 1.0
+	"crew attack" 0.2
+	"crew defense" 1.0
+	"attitude toward"
+		"Quarg" 1.0
+		"Incipias" 1.0
+	#language "Incups"
+
+phrase "Inci Names"
+	word
+		"An"
+		"Ab"
+		"Do"
+		"Na"
+	word
+		"is"
+		"as"
+		"os"
+		"im"
+		"it"
+	word
+		"en"
+
+fleet "Nimbi"
+	government "Hicemus"
+	names "Inci Names"
+	cargo 0
+	personality
+		timid mining harvests mute
+	variant 1
+		"Nimbus" 1
+
