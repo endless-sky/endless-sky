@@ -407,7 +407,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->TrueName()))
 		{
-			auto &entry = player.Conditions[LicenseName(selectedOutfit->TrueName())];
+			auto &entry = player.Conditions()[LicenseName(selectedOutfit->TrueName())];
 			if(entry <= 0)
 			{
 				entry = true;
