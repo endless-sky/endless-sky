@@ -136,7 +136,7 @@ protected:
 	int recentering = 0;
 	int commodity;
 	int step = 0;
-	bool isStarry;
+	bool isStarry = true;
 	std::string buttonCondition;
 
 	// Distance from the screen center to the nearest owned system,

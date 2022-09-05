@@ -1009,7 +1009,8 @@ void MapPanel::DrawTravelPlan()
 
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
-		Point unit = (from - to).Unit() * LINK_OFFSET;
+		float linkOffset = (isStarry == true) ? LINK_OFFSET : 0;
+		Point unit = (from - to).Unit() * linkOffset;
 		LineShader::Draw(from - unit, to + unit, WIDE_LINK, drawColor);
 
 		previous = next;
@@ -1121,6 +1122,8 @@ void MapPanel::DrawWormholes()
 void MapPanel::DrawLinks()
 {
 	double zoom = Zoom();
+	if(Zoom() <= 0.5 && isStarry == false)
+		return;
 	for(const Link &link : links)
 	{
 		Point from = zoom * (link.start + center);
@@ -1129,7 +1132,6 @@ void MapPanel::DrawLinks()
 		Point unit = (from - to).Unit() * linkOffset;
 		from -= unit;
 		to += unit;
-
 		LineShader::Draw(from, to, LINK_WIDTH, link.color);
 	}
 }
