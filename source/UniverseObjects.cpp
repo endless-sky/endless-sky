@@ -62,7 +62,7 @@ namespace {
 	template <class Type>
 	void NameAndWarn(const string &noun, pair<const string, Type> &it)
 	{
-		it.second.SetTrueName(it.first);
+		it.second.SetName(it.first);
 		Warn(noun, it.first);
 	}
 }
