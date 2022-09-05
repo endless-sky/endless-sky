@@ -18,12 +18,12 @@ outfit "Fate Sealer"
 	"gun port" -1
 	"weapon capacity" -131
 	weapon
-		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		sound "fate fire"
 		"fire effect" "fate fire"
 		lifetime 60
 		reload 100
 		"homing" 2
+		"tracking" 10
 		"turn" 180
 		velocity 0
 		acceleration 0.01
@@ -53,12 +53,12 @@ outfit "Fate Divider"
 	"gun port" -1
 	"weapon capacity" -131
 	weapon
-		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		sound "fate fire"
 		"fire effect" "fate fire"
 		lifetime 60
 		reload 100
 		"homing" 2
+		"tracking" 10
 		"turn" 180
 		velocity 0
 		acceleration 0.01

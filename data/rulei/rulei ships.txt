@@ -47,7 +47,7 @@ ship vyu'Ira
 	gun 67 26.5 "Fate Sealer"
 	gun -93 41 "Fate Divider"
 	gun 93 41 "Fate Divider"
-	gun 0 -135 "Ember Tear"
+	gun 0 -135
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
