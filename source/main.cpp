@@ -586,7 +586,7 @@ void PrintWeaponTable()
 	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
 		<< "energy/s" << '\t' << "heat/s" << '\t' << "recoil/s" << '\t'
 		<< "shield/s" << '\t' << "hull/s" << '\t' << "push/s" << '\t'
-		<< "homing" << '\t' << "strength" <<'\n';
+		<< "homing" << '\t' << "strength" << '\n';
 	for(auto &it : GameData::Outfits())
 	{
 		// Skip non-weapons and submunitions.

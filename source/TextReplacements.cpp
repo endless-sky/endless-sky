@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TextReplacements.h"
 
 #include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "DataNode.h"
 #include "PlayerInfo.h"
 
@@ -79,7 +80,7 @@ void TextReplacements::Revert(TextReplacements &other)
 // Add new text replacements to the given map after evaltuating all possible replacements.
 // This text replacement will overwrite the value of any existing keys in the given map
 // if the map and this TextReplacements share a key.
-void TextReplacements::Substitutions(map<string, string> &subs, const map<string, int64_t> &conditions) const
+void TextReplacements::Substitutions(map<string, string> &subs, const ConditionsStore &conditions) const
 {
 	for(const auto &sub : substitutions)
 	{

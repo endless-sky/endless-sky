@@ -3756,7 +3756,7 @@ mission "Home for Skadenga 11"
 
 conversation "land at windblain"
 	scene "scene/seasidecliffs"
-	`The reserved and limited government of Windblain pays you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
+	`The reserved and limited government of Windblain pays neither you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
 	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, The Ondurdis joins you.`
 	`	"So, you are the ice that falls from the stars?" asks Aldfrith with a hint of mirth in his eyes.`
 	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`

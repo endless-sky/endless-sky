@@ -101,12 +101,14 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		bool found = false;
 		for(char c : glsl)
 		{
-			if(!found && !isdigit(c)) {
+			if(!found && !isdigit(c))
+			{
 				continue;
 			}
 			if(isspace(c))
 				break;
-			if(isdigit(c)) {
+			if(isdigit(c))
+			{
 				found = true;
 				version += c;
 			}
