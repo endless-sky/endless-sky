@@ -391,16 +391,16 @@ outfit "Nerve Gas"
 	"unplunderable" 1
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
-outfit "Drugs"
-	plural "Drugs"
+outfit "Combat Methamphetamines"
+	plural "Combat Methamphetamines"
 	category "Hand to Hand"
 	cost 10000
-	thumbnail "outfit/Drugs"
+	thumbnail "outfit/drugs"
 	"capture attack"  2.2
 	"capture defense" 1.3
 	"illegal" 800000
 	"unplunderable" 1
-	description " Although they decrease your crew's jugment and are illegal, drugs can increase your crew's fighting spirit and will numb them to a certain amount of pain."
+	description "Although they decrease your crew's judgement and are illegal, these narcotics can increase your crew's fighting spirit and will numb a certain amount of pain."
 
 outfit "Local Map"
 	category "Special"
@@ -410,15 +410,12 @@ outfit "Local Map"
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
 
 outfit "Slave"
-	plural "Slaves"
 	category "Special"
-	cost 1000
-	thumbnail "outfit/Ball-and-chain"
-	"capture attack"  .4
-	"capture defense" .7
+	cost 25000
+	thumbnail "outfit/slave"
 	"required crew" -1
 	"outfit space" -1
-	"illegal" 20000000
+	"atrocity" 1
 	"unplunderable" 1
 	description "Slaves are highly illegal but can be a great asset if you are going on a long journey into the middle of nowhere. They take the place of a crew member, and you don't have to pay them a daily wage. They also come with a small bed and space to sleep in."
 

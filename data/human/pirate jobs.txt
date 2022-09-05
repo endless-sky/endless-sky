@@ -3405,12 +3405,8 @@ mission "Slave revolt"
 	on offer
 		require "Slave" 2
 		conversation
-			`	You are flicking through your diary in your cabin, when you hear your door start to open.`
-			`	You look up, one of your slaves is standing in the doorway... holding a large metal bar.`
-			choice
-				`    Grab for a weapon.`
-					goto grab
-			label "grab"
-			`	You immediately try to grab the antique sword hanging on the wall that your grandfather gave you before you left to be a space pilot.`
-			`	As you reach for it the slave rushes in and brings the bar down on your head. All goes black...`
+			`You are flicking through your diary in your cabin, when you hear your door start to open.`
+			`	You look up and see one of your slaves is standing in the doorway holding a large metal bar...`
+			`	You immediately reach for your small handgun that you always carry with you,`
+			`	the slave rushes in, you wip your gun out of its holster and try to point it towards him, but you are too late, the bar comes down on your head. All goes black...`
 				die
