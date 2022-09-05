@@ -3157,7 +3157,7 @@ double Ship::JumpFuel(const System *destination) const
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
 	bool linked = currentSystem->Links().count(destination);
-	// Figure out what sort of jump we're making.
+	// Figure out what sort of jump we're making. Compare how much fuel each method uses.
 	double hyperFuelNeeded = HyperdriveFuel();
 	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 	if(linked && hyperFuelNeeded < jumpFuelNeeded)
