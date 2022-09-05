@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 galaxy "Milky Way"
-	pos 303 26
+	pos 487 24
 	sprite ui/galaxy
 
 galaxy "label arachi"
