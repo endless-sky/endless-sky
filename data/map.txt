@@ -4952,7 +4952,7 @@ system Atch-werimoural-nikt
 	trade Medical 609
 	trade Metal 277
 	trade Plastic 436
-	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Heat" 50
 	object
 		sprite star/k5
 		period 10
@@ -14340,7 +14340,7 @@ system "Kaus Borealis"
 			period 35.2227
 
 system Kexo-Atch
-	pos 418 98
+	pos 418 78
 	link Rikt-pefaerilum
 	asteroids "small rock" 24 5.65
 	asteroids "medium rock" 33 6.35
@@ -14363,7 +14363,7 @@ system Kexo-Atch
 	trade Medical 622
 	trade Metal 245
 	trade Plastic 421
-	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Heat" 50
 	object
 		sprite star/k5
 		period 10
@@ -21592,7 +21592,7 @@ system Rigel
 			period 22.2115
 
 system Rikt-pefaerilum
-	pos 298 47
+	pos 298 37
 	link Atch-werimoural-nikt
 	link Kexo-Atch
 	asteroids "small rock" 84 2.64
@@ -21616,7 +21616,7 @@ system Rikt-pefaerilum
 	trade Medical 597
 	trade Metal 258
 	trade Plastic 442
-	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Heat" 50
 	object
 		sprite star/f5
 		distance 21.0713
@@ -24347,7 +24347,7 @@ system Spica
 			period 26.1539
 
 system Statina
-	pos 390 234
+	pos 390 244
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
 	arrival 500
@@ -25847,7 +25847,7 @@ system "Uwa Fahn"
 		period 5060.21
 
 system Vaticanus
-	pos 392 206
+	pos 392 176
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
 	arrival 500
