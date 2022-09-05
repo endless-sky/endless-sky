@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShopPanel.h"
@@ -899,7 +902,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.GetCondition("license: " + name))
+		if(!player.Conditions().Get("license: " + name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))
