@@ -156,7 +156,7 @@ void MissionAction::Save(DataWriter &out) const
 		if(!conversation->IsEmpty())
 			conversation->Save(out);
 		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->DisplayName(), it.second);
+			out.Write("require", it.first->TrueName(), it.second);
 
 		action.Save(out);
 	}

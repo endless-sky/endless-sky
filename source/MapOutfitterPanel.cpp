@@ -289,5 +289,5 @@ void MapOutfitterPanel::Init()
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), ByName<Outfit>());
+		sort(it.second.begin(), it.second.end(), ByDisplayName<Outfit>());
 }
