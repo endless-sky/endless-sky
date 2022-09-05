@@ -316,7 +316,7 @@ SCENARIO( "Constructing uniquely identifiable objects", "[uuid][creation]" ) {
 
 			THEN( "all IDs are unique" ) {
 				unsigned num = 1;
-				for (auto &&ic : results)
+				for(auto &&ic : results)
 				{
 					auto instanceIds = ic.GetIds();
 					for(auto &&id : instanceIds)

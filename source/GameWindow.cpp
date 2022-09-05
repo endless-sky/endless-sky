@@ -70,7 +70,8 @@ string GameWindow::SDLVersions()
 bool GameWindow::Init()
 {
 	// This needs to be called before any other SDL commands.
-	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
+	if(SDL_Init(SDL_INIT_VIDEO) != 0)
+	{
 		checkSDLerror();
 		return false;
 	}
@@ -90,7 +91,8 @@ bool GameWindow::Init()
 	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
-	if(maxWidth < minWidth || maxHeight < minHeight){
+	if(maxWidth < minWidth || maxHeight < minHeight)
+	{
 		ExitWithError("Monitor resolution is too small!");
 		return false;
 	}
@@ -118,7 +120,8 @@ bool GameWindow::Init()
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
 
-	if(!mainWindow){
+	if(!mainWindow)
+	{
 		ExitWithError("Unable to create window!");
 		return false;
 	}
@@ -139,12 +142,14 @@ bool GameWindow::Init()
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	context = SDL_GL_CreateContext(mainWindow);
-	if(!context){
+	if(!context)
+	{
 		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
 		return false;
 	}
 
-	if(SDL_GL_MakeCurrent(mainWindow, context)){
+	if(SDL_GL_MakeCurrent(mainWindow, context))
+	{
 		ExitWithError("Unable to set the current OpenGL context!");
 		return false;
 	}
@@ -152,7 +157,13 @@ bool GameWindow::Init()
 	// Initialize GLEW.
 #if !defined(__APPLE__) && !defined(ES_GLES)
 	glewExperimental = GL_TRUE;
-	if(glewInit() != GLEW_OK){
+	GLenum err = glewInit();
+#ifdef GLEW_ERROR_NO_GLX_DISPLAY
+	if(err != GLEW_OK && err != GLEW_ERROR_NO_GLX_DISPLAY)
+#else
+	if(err != GLEW_OK)
+#endif
+	{
 		ExitWithError("Unable to initialize GLEW!");
 		return false;
 	}
@@ -160,7 +171,8 @@ bool GameWindow::Init()
 
 	// Check that the OpenGL version is high enough.
 	const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-	if(!glVersion || !*glVersion){
+	if(!glVersion || !*glVersion)
+	{
 		ExitWithError("Unable to query the OpenGL version!");
 		return false;
 	}

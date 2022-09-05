@@ -894,7 +894,8 @@ void Ship::Save(DataWriter &out) const
 			WriteSorted(outfits,
 				[](const OutfitElement *lhs, const OutfitElement *rhs)
 					{ return lhs->first->Name() < rhs->first->Name(); },
-				[&out](const OutfitElement &it){
+				[&out](const OutfitElement &it)
+				{
 					if(it.second == 1)
 						out.Write(it.first->Name());
 					else
@@ -3564,10 +3565,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	if(!currentMass)
 		return;
 
-	// Reduce acceleration of small ships and increase acceleration of large
-	// ones by having 30% of the force be based on a fixed mass of 400, i.e. the
-	// mass of a typical light warship:
-	acceleration += force * (.3 / 400. + .7 / currentMass);
+	acceleration += force / currentMass;
 }
 
 

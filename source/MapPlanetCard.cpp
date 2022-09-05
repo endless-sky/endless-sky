@@ -132,7 +132,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const double extraLeasure = (governmentY < planetStartingY ? planetStartingY - governmentY : 0.);
 		const double planetLowestY = (textStartingPosition - textStart) + height / 2.;
 		if(availableTopSpace + extraLeasure >= height / 2. + spriteScale * sprite->Height() / 2. &&
-				availableBottomSpace >=  planetLowestY + spriteScale * sprite->Height() / 2.)
+				availableBottomSpace >= planetLowestY + spriteScale * sprite->Height() / 2.)
 			SpriteShader::Draw(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
 				uiPoint.Y() + planetLowestY), spriteScale);
 
