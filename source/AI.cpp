@@ -1929,7 +1929,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	double hyperFuelNeeded = ship.HyperdriveFuel();
 	double jumpFuelNeeded = ship.JumpDriveFuel((linked || ship.GetSystem()->JumpRange()) ? 0. : ship.GetSystem()->Position().Distance(ship.GetTargetSystem()->Position()));
 	bool isJump= hyperFuelNeeded > jumpFuelNeeded && ship.Attributes().Get("jump drive");
-	
+
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	if(!isJump && scramThreshold)
