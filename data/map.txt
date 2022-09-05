@@ -4929,6 +4929,70 @@ system Aspidiske
 		distance 2771.8
 		period 536.220
 
+system Atch-werimoural-nikt
+	pos 180 27
+	link Rikt-pefaerilum
+	asteroids "small rock" 21 4.335
+	asteroids "medium rock" 68 3.315
+	asteroids "large rock" 30 4.9725
+	asteroids "small metal" 2 5.015
+	asteroids "medium metal" 22 2.3375
+	asteroids "large metal" 2 4.9725
+	minables iron 38 5.09993
+	haze _menu/haze-full
+	habitable 425.92
+	belt 1945
+	trade Clothing 250
+	trade Electronics 813
+	trade Equipment 660
+	trade Food 290
+	trade "Heavy Metals" 682
+	trade Industrial 704
+	trade "Luxury Goods" 1161
+	trade Medical 609
+	trade Metal 277
+	trade Plastic 436
+	hazard "Ember Waste Base Heat" 100
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/europa
+		distance 104.96
+		period 20.8416
+	object
+		sprite planet/lava3
+		distance 284.77
+		period 93.1402
+	object
+		sprite planet/ice1
+		distance 514.26
+		period 226.032
+	object
+		sprite planet/gas5
+		distance 1104.75
+		period 711.692
+		object
+			sprite planet/luna
+			distance 252
+			period 13.303
+		object
+			sprite planet/rock3
+			distance 406
+			period 27.2042
+	object
+		sprite planet/gas7
+		distance 4023.84
+		period 4947.17
+		object
+			sprite planet/ice8
+			distance 247
+			period 13.8094
+		object
+			sprite planet/miranda
+			distance 395
+			period 27.9271
+
 system Atik
 	pos -66 -52
 	government Uninhabited
@@ -14275,6 +14339,71 @@ system "Kaus Borealis"
 			distance 371
 			period 35.2227
 
+system Kexo-Atch
+	pos 418 98
+	link Rikt-pefaerilum
+	asteroids "small rock" 24 5.65
+	asteroids "medium rock" 33 6.35
+	asteroids "large rock" 4 4.05
+	asteroids "small metal" 15 3.85
+	asteroids "medium metal" 243 7.25
+	asteroids "large metal" 2 4.9
+	minables aluminum 1 10.3595
+	minables platinum 52 12.5229
+	haze _menu/haze-full
+	habitable 425.92
+	belt 1562
+	trade Clothing 241
+	trade Electronics 861
+	trade Equipment 639
+	trade Food 375
+	trade "Heavy Metals" 703
+	trade Industrial 623
+	trade "Luxury Goods" 1236
+	trade Medical 622
+	trade Metal 245
+	trade Plastic 421
+	hazard "Ember Waste Base Heat" 100
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/rock10
+		distance 398.49
+		period 154.178
+		object
+			sprite planet/rock14
+			distance 194
+			period 22.7414
+	object
+		sprite planet/rock8
+		distance 793.18
+		period 432.966
+	object
+		sprite planet/desert1
+		distance 1023.54
+		period 634.678
+	object
+		sprite planet/gas9
+		distance 1498.83
+		period 1124.67
+	object
+		sprite planet/gas11
+		distance 3826.84
+		period 4588.35
+		object
+			sprite planet/ice0
+			distance 277
+			period 15.2054
+		object
+			sprite planet/dust4
+			distance 387
+			period 25.1099
+		object
+			sprite planet/desert4
+			distance 485
+			period 35.2282
+
 system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
@@ -14720,7 +14849,6 @@ system "Kor Ak'Mari"
 	habitable 3000
 	belt 1606
 	haze _menu/haze-full
-	link "Sagittarius A*"
 	asteroids "small metal" 13 3.024
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
@@ -21463,6 +21591,62 @@ system Rigel
 			distance 380
 			period 22.2115
 
+system Rikt-pefaerilum
+	pos 298 47
+	link Atch-werimoural-nikt
+	link Kexo-Atch
+	asteroids "small rock" 84 2.64
+	asteroids "medium rock" 156 4.917
+	asteroids "large rock" 13 3.927
+	asteroids "small metal" 8 3.663
+	asteroids "medium metal" 9 2.97
+	asteroids "large metal" 3 3.102
+	minables iron 40 4.17386
+	minables titanium 7 7.52591
+	haze _menu/haze-full
+	habitable 2035
+	belt 1096
+	trade Clothing 252
+	trade Electronics 833
+	trade Equipment 658
+	trade Food 369
+	trade "Heavy Metals" 717
+	trade Industrial 632
+	trade "Luxury Goods" 1243
+	trade Medical 597
+	trade Metal 258
+	trade Plastic 442
+	hazard "Ember Waste Base Heat" 100
+	object
+		sprite star/f5
+		distance 21.0713
+		period 13.7542
+	object
+		sprite star/m0
+		distance 112.929
+		period 13.7542
+		offset 180
+	object
+		sprite planet/rock12
+		distance 271.929
+		period 39.7613
+	object
+		sprite planet/cloud8
+		distance 530.169
+		period 108.243
+	object
+		sprite planet/ice5
+		distance 776.529
+		period 191.873
+	object
+		sprite planet/gas5
+		distance 2236.14
+		period 937.618
+		object
+			sprite planet/dust4
+			distance 262
+			period 14.1026
+
 system Ritilas
 	pos 11 523
 	government Uninhabited
@@ -21974,13 +22158,12 @@ system Sadr
 		period 881.202
 
 system "Sagittarius A*"
-	pos 489 29
+	pos 480 22
 	government Uninhabited
 	arrival 5000
 	habitable 10000
 	belt 1500
 	haze _menu/haze-full
-	link "Kor Ak'Mari"
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
