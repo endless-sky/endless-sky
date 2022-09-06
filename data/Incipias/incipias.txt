@@ -43,4 +43,3 @@ fleet "Nimbi"
 		timid mining harvests mute
 	variant 1
 		"Nimbus" 1
-
