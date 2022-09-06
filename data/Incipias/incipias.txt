@@ -7,7 +7,7 @@ government "Incipias"
 	"attitude toward"
 		"Quarg" 1.0
 		"Hicemus" 1.0
-	#language "Incups"
+	language "Incups"
 
 government "Hicemus"
 	swizzle 0
@@ -18,7 +18,7 @@ government "Hicemus"
 	"attitude toward"
 		"Quarg" 1.0
 		"Incipias" 1.0
-	#language "Incups"
+	language "Incups"
 
 phrase "Inci Names"
 	word
@@ -34,6 +34,12 @@ phrase "Inci Names"
 		"it"
 	word
 		"en"
+
+phrase "Hicemus friendly"
+	phrase
+		""
+		""
+		""
 
 fleet "Nimbi"
 	government "Hicemus"

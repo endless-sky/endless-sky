@@ -1,0 +1,33 @@
+mission "Incipias: First Contact I"
+    invisible        
+    landing        
+    to complete        
+        never        
+    on enter Dom'us        
+        fail
+        set "saw the Incipias"
+        conversation
+            `As you enter the system, you notice ships of a type you have never seen before. You try to hail but all that comes back is your monitory barely flackering. It would be best to call an expert on language to help. Maybe you can find one in Hai Space.` 
+
+mission "Incipias: First Contact II"
+    name "A language scientist"
+    to offer
+        has "saw the Incipias"
+    source
+        government "Hai"
+    on offer
+        conversation
+            `At the spaceport you are asking around for a very good translator and language scientist. One Hai finally gives you an address to go to.`
+            `    When you arrive at the address you find a friendly Hai who is willed to hear what you have to say. While you are explaining he listens carefully and when you mention that the monitor began flackering he looks very interested. In the end he is more than ready to come with you.`
+    waypoint Dom'us
+    on enter Dom'us
+        conversation
+            `Directly after you entered the system the scientist beginns hailing the new species. "This may take a while" he says, "you better get comfortable."`
+            `    After two hours he comes to you. "It seems like they understand what I am trying to do. This will make things a lot faster. But on the other hand it will take at least a day until I got some of the basics. After that we can go back and I can build you an translation device that learns while you are talking to them. This will save a lot of time."`
+            `    You lean back again waiting for him to finish.`
+            `    After a bit more than a day he again approaches you. "I am now finished with gathering the basics. We can now get back to my home, where I can build you the translation device."`
+        set "language: Incups"
+    on complete
+        set "language: Incups"
+        conversation
+            `When you arrived back at the home of the scientist, he immediatly begins to work. Seriously you never have seen a Hai being that excited about something. After some time passed he comes back to you. "So here are somethings you need to know", he says, " first of all they do not communicate over sounds but over light. Second ,and that is a bit more important, they do not talk like you and me via sentences and that kind of grammar but over feelings and emotions. That makes translating it to our language extremly difficult. I somehow managed to teach an AI what certain things mean, but there wont be any precise statements for you more like a general analysis of what the speaker is feeling."`
