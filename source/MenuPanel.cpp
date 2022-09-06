@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MenuPanel.h"
@@ -22,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Information.h"
 #include "LoadPanel.h"
+#include "Logger.h"
 #include "MainPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -60,7 +64,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		credits = Format::Split(Files::Read(Files::Resources() + "credits.txt"), "\n");
 	else if(showCreditsWarning)
 	{
-		Files::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		Logger::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
 		showCreditsWarning = false;
 	}
 
