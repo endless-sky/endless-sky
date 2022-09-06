@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Armament.h"
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Logger.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -193,6 +197,26 @@ int Armament::TurretCount() const
 	for(const Hardpoint &hardpoint : hardpoints)
 		count += hardpoint.IsTurret();
 	return count;
+}
+
+
+
+// Determine the installed weaponry's reusable ammunition. That is, all ammo outfits that are not also
+// weapons (as then they would be installed on hardpoints, like the "Nuclear Missile" and other one-shots).
+set<const Outfit *> Armament::RestockableAmmo() const
+{
+	auto restockable = set<const Outfit *>{};
+	for(auto &&hardpoint : Get())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(weapon)
+		{
+			const Outfit *ammo = weapon->Ammo();
+			if(ammo && !ammo->IsWeapon())
+				restockable.emplace(ammo);
+		}
+	}
+	return restockable;
 }
 
 

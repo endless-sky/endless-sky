@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Immigrant Workers"
 	description "This young couple wants to start a new life on <destination>."
@@ -4334,7 +4337,6 @@ mission "Saving Artifacts 4"
 			and
 				has "Saving Artifacts 2: done"
 				not "Duel Lokust"
-	landing
 	
 	on visit
 		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
