@@ -42,7 +42,8 @@ class System;
 // the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
+		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
