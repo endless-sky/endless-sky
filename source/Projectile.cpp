@@ -73,7 +73,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
-	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset), parent.velocity, parent.angle + angle),
+	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
+	parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
 	government = parent.government;

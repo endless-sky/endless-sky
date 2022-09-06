@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef CONDITIONS_STORE_H_
@@ -66,7 +69,8 @@ public:
 		// default implementations;
 		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
 		std::function<bool(const std::string &)> hasFunction = [](const std::string &name) { return true; };
-		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) { return false; };
+		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) {
+			return false; };
 		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
 	};
 

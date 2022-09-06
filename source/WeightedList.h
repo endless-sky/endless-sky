@@ -185,7 +185,8 @@ typename std::vector<Type>::iterator WeightedList<Type>::eraseAt(typename std::v
 
 
 template <class Type>
-typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first, typename std::vector<Type>::iterator last) noexcept
+typename std::vector<Type>::iterator WeightedList<Type>::erase(typename std::vector<Type>::iterator first,
+	typename std::vector<Type>::iterator last) noexcept
 {
 	auto firstWeight = std::next(weights.begin(), std::distance(choices.begin(), first));
 	auto lastWeight = std::next(weights.begin(), std::distance(choices.begin(), last));
