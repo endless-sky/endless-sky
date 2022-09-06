@@ -2548,8 +2548,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
-	netWorthProvider.SetGetFunction([this](const string &name) {
-		return min(limit, max(-limit, accounts.NetWorth())); });
+	netWorthProvider.SetGetFunction([this](const string &name)
+		{ return min(limit, max(-limit, accounts.NetWorth())); });
 
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
 	creditsProvider.SetGetFunction([this](const string &name) {
