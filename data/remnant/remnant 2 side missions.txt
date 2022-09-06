@@ -660,7 +660,7 @@ mission "Remnant: Scent of Rain 1"
 				`	"Yes, I could do that."`
 				`	"I would rather not."`
 					decline
-			`	He signs appreciatively. "We appreciate your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
+			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
 				accept
 	npc "scan outfits"
 		government "Korath"
@@ -692,5 +692,6 @@ mission "Remnant: Scent of Rain 1"
 					goto scanningpayment
 				`	"Are you expecting something?"`
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
+			`	He shakes his head "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
-			`	"But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear. We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall threats are my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall threats are my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
