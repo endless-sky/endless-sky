@@ -425,13 +425,13 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(key == "hit effect")
+		else if(key == "hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hullHitEffects[GameData::Effects().Get(child.Token(1))] += count;
 			hasHitEffect = true;
 		}
-		else if(key == "shield hit effect")
+		else if(key == "shield hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			shieldHitEffects[GameData::Effects().Get(child.Token(1))] += count;
