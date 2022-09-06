@@ -744,7 +744,7 @@ government "Test Dummy"
 	"fine" 0
 
 government "Uninhabited"
-	color .7 .7 .7
+	color .45 .45 .45
 	"bribe" 0
 	"fine" 0
 
