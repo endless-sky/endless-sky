@@ -516,7 +516,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
- 
+
 
   check-coding-style:
     runs-on: ubuntu-latest
