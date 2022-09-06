@@ -5293,7 +5293,7 @@ system Atke-babounriuer-rik
 			distance 397
 			period 299.01046
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l
 		distance 5347
 		period 18399.514
 		object
@@ -5342,7 +5342,7 @@ system Atlas
 			distance 257
 			period 155.74005
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 2304
 		period 864
 		object
@@ -6061,7 +6061,7 @@ system "Beta Carinae"
 			distance 278
 			period 175.2136
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 2015
 		period 538.39782
 		object
@@ -6205,7 +6205,7 @@ system "Beta Lyrae"
 		distance 2544
 		period 2268.3009
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 3995
 		period 4463.7533
 		object
@@ -10577,7 +10577,7 @@ system Electra
 		distance 3088
 		period 3033.4787
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 3828
 		period 4186.8066
 		object
@@ -10772,7 +10772,7 @@ system Embe'kor
 			distance 389
 			period 200.78997
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l
 		distance 4543
 		period 797.41221
 		object
@@ -12318,7 +12318,7 @@ system Feromansaath
 			distance 193
 			period 101.35299
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t
 		distance 1664
 		period 1305.349
 	object
@@ -23008,7 +23008,7 @@ system Poli'kor
 	trade Plastic 406
 	hazard "Core Sheltered Heat" 16
 	object
-		sprite star/giant
+		sprite star/k5-old
 		distance 159.5
 		period 100.71891
 	object
@@ -23033,7 +23033,7 @@ system Poli'kor
 		distance 2924
 		period 2795.0595
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 5485
 		period 7181.0832
 		object
@@ -25767,7 +25767,7 @@ system Sejuka
 		period 68.873863
 		offset 180
 	object
-		sprite star/giant
+		sprite star/k5-old
 		distance 46.992765
 		period 68.873863
 	object
@@ -29383,7 +29383,7 @@ system Vikinik-bounera
 	hazard "Core Heat Flare" 1200
 	hazard "Core Shadow Passing" 21000
 	object
-		sprite star/m4
+		sprite star/m3
 		period 10
 	object
 		sprite planet/io
@@ -30211,7 +30211,7 @@ system Xivik-soubiae-tock
 		distance 2544
 		period 2268.3009
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y
 		distance 3995
 		period 4463.7533
 		object Xivik-soubiae-tockrig
