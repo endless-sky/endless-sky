@@ -1010,19 +1010,19 @@ void Ship::Save(DataWriter &out) const
 		});
 		if(hasHitEffect)
 		{
-		WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
-		{
-			if(it.second)
-				out.Write("hit effect", it.first->Name(), it.second);
-		});
+			WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
+			{
+				if(it.second)
+					out.Write("hit effect", it.first->Name(), it.second);
+			});
 		}
 		if(hasShieldHitEffect)
 		{
-		WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
-		{
-			if(it.second)
-				out.Write("shield hit effect", it.first->Name(), it.second);
-		});
+			WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
+			{
+				if(it.second)
+					out.Write("shield hit effect", it.first->Name(), it.second);
+			});
 		}
 
 		if(currentSystem)
@@ -3440,9 +3440,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	{
 		for(const auto &it : ShieldHitEffects())
 			for(int i = 0; i < it.second; ++i)
-			{
 				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
-			}
 	}
 	if(damage.Hull() && hasHitEffect)
 	{

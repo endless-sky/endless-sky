@@ -2088,6 +2088,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		else if(hit)
 		{
 			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov, projectile.Position() + projectile.Velocity() * closestHit, hitVelocity, projectile.Facing());
+
 			if(eventType)
 				eventQueue.emplace_back(gov, hit, eventType);
 		}
