@@ -139,7 +139,8 @@ private:
 
 	class Status {
 	public:
-		Status(const Point &position, double outer, double inner, double disabled, double radius, int type, double angle = 0.);
+		Status(const Point &position, double outer, double inner,
+			double disabled, double radius, int type, double angle = 0.);
 
 		Point position;
 		double outer;

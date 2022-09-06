@@ -1,4 +1,4 @@
-/* MapPlanet.cpp
+/* MapPlanetCard.cpp
 Copyright (c) 2022 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -21,12 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Interface.h"
 #include "MapDetailPanel.h"
+#include "Planet.h"
 #include "Point.h"
 #include "PointerShader.h"
 #include "Politics.h"
-#include "Planet.h"
-#include "Interface.h"
 #include "Screen.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"

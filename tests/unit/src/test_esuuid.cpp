@@ -40,7 +40,7 @@ namespace detail {
 namespace Catch {
 	template<>
 	struct StringMaker<EsUuid> {
-		static std::string convert(const EsUuid &value ) {
+		static std::string convert(const EsUuid &value) {
 			return value.ToString();
 		}
 	};
@@ -292,9 +292,12 @@ SCENARIO( "Constructing uniquely identifiable objects", "[uuid][creation]" ) {
 	}
 
 	GIVEN( "multiple template identifiable objects" ) {
-		const auto parentIds = std::vector<std::string>{"0ac0837c-bbf8-452a-850d-79d08e667ca7", "33e28130-4e1e-4676-835a-98395c3bc3bb"};
-		const auto childIds = std::vector<std::string>{"4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4", "c4900540-2379-4c75-844b-64e6faf8716b"};
-		const auto otherIds = std::vector<std::string>{"fd228cb7-ae11-4ae3-864c-16f3910ab8fe", "d9dc8a3b-b784-432e-a781-5a1130a75963"};
+		const auto parentIds = std::vector<std::string>
+			{"0ac0837c-bbf8-452a-850d-79d08e667ca7", "33e28130-4e1e-4676-835a-98395c3bc3bb"};
+		const auto childIds = std::vector<std::string>
+			{"4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4", "c4900540-2379-4c75-844b-64e6faf8716b"};
+		const auto otherIds = std::vector<std::string>
+			{"fd228cb7-ae11-4ae3-864c-16f3910ab8fe", "d9dc8a3b-b784-432e-a781-5a1130a75963"};
 
 		std::map<unsigned, InstantiableContainer> collection;
 		collection.emplace(0U, MakeContainer(parentIds[0], childIds[0], otherIds[0]));
