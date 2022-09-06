@@ -2663,7 +2663,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// Conditions to determine what outfits the player owns, with various possible locations to check.
-	// The following condition checks all possible loctions for outfits in the player's posession.
+	// The following condition checks all possible locations for outfits in the player's possession.
 	auto &&outfitProvider = conditions.GetProviderPrefixed("outfit: ");
 	outfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
