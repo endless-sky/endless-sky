@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef WEIGHTED_LIST_H_
@@ -144,7 +147,7 @@ typename std::enable_if<
 >::type WeightedList<Type>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
-	if (tw == 0) return 0;
+	if(tw == 0) return 0;
 
 	auto sum = typename std::result_of<Callable(const Type &)>::type{};
 	for(unsigned index = 0; index < choices.size(); ++index)
