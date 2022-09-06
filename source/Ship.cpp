@@ -3189,7 +3189,7 @@ double Ship::JumpFuel(const System *destination) const
 		return HyperdriveFuel();
 
 	if(attributes.Get("jump drive")
-		&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
+			&& currentSystem->JumpNeighbors(JumpRange()).count(destination))
 		return JumpDriveFuel((linked
 			|| currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
 
