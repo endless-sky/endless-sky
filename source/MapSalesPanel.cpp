@@ -388,7 +388,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");
-		const Color textColor = isForSale ? mediumColor : storage.empty() ? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
+		const Color textColor = isForSale ? mediumColor : storage.empty()
+			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
