@@ -652,6 +652,16 @@ mission "Remnant: Scent of Rain 1"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 25: done"
+	on offer
+		event "remnant: tubfalet appearance" 20 31
+		conversation
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			choice
+				`	"Yes, I could do that."`
+				`	"I would rather not."`
+					decline
+			`	He signs appreciatively. "We appreciate your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
+				accept
 	npc "scan outfits"
 		government "Korath"
 		personality waiting target
@@ -669,23 +679,13 @@ mission "Remnant: Scent of Rain 1"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3
-	on offer
-		event "remnant: tubfalet appearance" 20 31
-		conversation
-			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
-			choice
-				`	"Yes, I could do that."`
-				`	"I would rather not."`
-					decline
-			`	He signs appreciatively. "We appreciate your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
-				accept
 	on enter "Kor Zena'i"
 		dialog
 			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the Ra'puk At 295. This must be the ship that Chilia would like a scan of.`
 	on complete
 		payment 150000
 		conversation
-			`Chilia is waiting for you when you land. He looks over the scan results, nodding thoughtfully, and listens to your account of visiting Kor Zena'i.`
+			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data." He comments. "What are your thoughts, having seen it?" He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice
 				`	"You are welcome."`
@@ -693,4 +693,4 @@ mission "Remnant: Scent of Rain 1"
 				`	"Are you expecting something?"`
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
 			label scanningpayment
-			`	"But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear. We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall storm is my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+			`	"But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear. We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall threats are my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
