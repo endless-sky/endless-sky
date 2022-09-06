@@ -681,7 +681,7 @@ mission "Remnant: Scent of Rain 1"
 				"'olofez" 3
 	on enter "Kor Zena'i"
 		dialog
-			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the Ra'puk At 295. This must be the ship that Chilia would like a scan of.`
+			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 295". This must be the ship that Chilia would like a scan of.`
 	on complete
 		payment 150000
 		conversation
