@@ -42,8 +42,8 @@ ship vyu'Ira
 		"Antimatter Core"
 		"Impulse Engine"
 
-	engine 0 100
-	"steering engine" 0 100
+	engine 0 200
+	"steering engine" 0 200
 	gun -67 26.5 "Fate Sealer"
 	gun 67 26.5 "Fate Sealer"
 	gun -93 41 "Fate Divider"

@@ -22,8 +22,8 @@ outfit "Impulse Engine"
 	"turn" 600
 	"turning energy" 10
 	"turning heat" 5
-	"flare sound" "ira hum"
-	"steering flare sound" "ira hum"
+	"flare sound" "impulse engine"
+	"steering flare sound" "impulse engine"
 	description "A mysterious propulsion device the vyu'Ira use to move."
 
 outfit "Fate Sealer"
@@ -51,7 +51,7 @@ outfit "Fate Sealer"
 
 outfit "Fate Sealer Activated"
 	weapon
-		"hit effect" "heavy rocket hit"
+		"hit effect" "fusion blast"
 		lifetime 4
 		velocity 1400
 		acceleration 0.01
@@ -86,7 +86,7 @@ outfit "Fate Divider"
 
 outfit "Fate Divider Activated"
 	weapon
-		"hit effect" "heavy rocket hit"
+		"hit effect" "fusion blast"
 		lifetime 1
 		velocity 1400
 		acceleration 0.01
@@ -99,8 +99,21 @@ outfit "Fate Divider Activated"
 effect "fate fire"
 	sprite effect/blink
 		"scale" 0.5
-		"frame rate" 22
+		"frame rate" 18
 		"no repeat"
-	lifetime 25
+	lifetime 30
 	"random angle" 360
+
+#placeholder
+effect "fusion blast"
+	sprite "effect/explosion/pug/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "fusion blast"
+	"lifetime" 36
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .01
 
