@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHIP_H_
@@ -63,7 +66,8 @@ public:
 		~Bay() = default;
 
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side),
+			facing(b.facing), launchEffects(b.launchEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 
 		Point point;
@@ -101,21 +105,20 @@ public:
 
 
 public:
-	/* Functions provided by the Body base class:
-	bool HasSprite() const;
-	const Sprite *GetSprite() const;
-	int Width() const;
-	int Height() const;
-	int GetSwizzle() const;
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	double Zoom() const;
-	const Government *GetGovernment() const;
-	*/
+	// Functions provided by the Body base class:
+	// bool HasSprite() const;
+	// const Sprite *GetSprite() const;
+	// int Width() const;
+	// int Height() const;
+	// int GetSwizzle() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// double Zoom() const;
+	// const Government *GetGovernment() const;
 
 	Ship() = default;
 	// Construct and Load() at the same time.
@@ -433,7 +436,8 @@ private:
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
+	double BestFuel(const std::string &type, const std::string &subtype,
+		double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
@@ -443,14 +447,13 @@ private:
 
 
 private:
-	/* Protected member variables of the Body class:
-	Point position;
-	Point velocity;
-	Angle angle;
-	double zoom;
-	int swizzle;
-	const Government *government;
-	*/
+	// Protected member variables of the Body class:
+	// Point position;
+	// Point velocity;
+	// Angle angle;
+	// double zoom;
+	// int swizzle;
+	// const Government *government;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;
