@@ -65,7 +65,8 @@ namespace {
 	}
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+		int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -494,7 +495,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 bool PlayerInfoPanel::Click(int x, int y, int clicks)
 {
 	// Sort the ships if the click was on one of the column headers.
-	Point mouse = Point(x,y);
+	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)
 		if(zone.Contains(mouse))
 		{
