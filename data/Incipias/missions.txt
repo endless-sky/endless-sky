@@ -30,4 +30,33 @@ mission "Incipias: First Contact II"
     on complete
         set "language: Incups"
         conversation
-            `When you arrived back at the home of the scientist, he immediatly begins to work. Seriously you never have seen a Hai being that excited about something. After some time passed he comes back to you. "So here are somethings you need to know", he says, " first of all they do not communicate over sounds but over light. Second ,and that is a bit more important, they do not talk like you and me via sentences and that kind of grammar but over feelings and emotions. That makes translating it to our language extremly difficult. I somehow managed to teach an AI what certain things mean, but there wont be any precise statements for you more like a general analysis of what the speaker is feeling."`
+            `When you arrived back at the home of the scientist, he immediatly begins to work. Seriously you never have seen a Hai being that excited about something. After some time passed he comes back to you. "So here are somethings you need to know", he says, " first of all they do not communicate over sounds but over light. Second ,and that is a bit more important, they do not talk like you and me via sentences and that kind of grammar but over feelings and emotions. That makes translating it to our language extremly difficult. I somehow managed to teach an AI what certain things mean, but there wont be any precise statements for you more like a general analysis of what the speaker is feeling. But I think you will get used to that. There is one other important thig right now before you go. They gave you the permission to land on their planet or stations. So make some contact."`
+            `    You say goodbye to him and thank him for all of his efforts.`
+
+mission "Incipias: First Contact III"
+    name "Talking to a new species"
+    landing
+    to complete        
+        never
+    source 
+        government "Incipias" "Hicemus"
+    on offer
+        conversation
+            `As soon as you landed you recieve a message in your ship:`
+            `    The Quarg inform you that they permitt you to have contact with this species. On the other hand the Quarg also inform you that they wont allow any greater interference with the scientific progress of this species. This means that if you will sell an advanced outfit like a hyperdrive to them we will destroy it out of distance.`
+            `    Surprised by that message you ask yourself how they know that you just landed. But as you recieved their permission to talk to them you see no problem for now. A little bit excited you want to open the shunt, but your ship informs you that you need to wear an oxygen mask because the air in the station is not breathable. Luckily you always have one in your ship. Finally you open the shunt and step out in the station.`
+            `    A foogy view opens in front of you. At first you see some weird shaped ballons in the air until you realise that these are the aliens. As mentioned they look like a balloon with some tentacles on the bottom and you think you saw something that could be eyes also in the lower part. They are floating in the air and you get the feeling that all of them are looking to you. Hastily you grab your translator:`
+            choice
+                `Say nothing`
+                    goto "Silent greeting"
+                `"I come in peace."`
+                    goto "Friendly greeting"
+                `"I am a human on an exploration through the galaxy."`
+                    goto "Friendly greeting"
+            label "Silent greeting"
+            `    Both sides stand there silent for some time until one of the aliens beginns flickering and the translator is doing its job: "(I/we) (are/am) the Incipias. (I/we) greet you (guest/new species/silent person)." It looks like the translator is doing its best replacing feelings with a lot of words that all combined have the actual meaning. "(I/we) welcome (you/your species) in our (system/home/safe place). (I/we) hope for a (friendly/productive/interesting) relationship. (You/your species) may (freely/carefully) move in this station." You tell them that you are happy to hear that and that you also hope for a nice relationship.`
+                decline
+            label "Friendly greeting"
+            `    "Greetings human. (I/we) welcome (you/your kind/guests) in our (system/home/safe place). (I/we) hope for a (friendly/productive/interesting) relationship. (You/your species) may (freely/carefully) move in this station." You tell them that you are happy to hear that and that you also hope for a nice relationship.`
+                decline
+                
