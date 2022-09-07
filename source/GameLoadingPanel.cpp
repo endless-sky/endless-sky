@@ -38,8 +38,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading)
-	: player(player), conversation(conversation), gamePanels(gamePanels), finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
+	UI &gamePanels, bool &finishedLoading)
+	: player(player), conversation(conversation), gamePanels(gamePanels),
+		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
 }

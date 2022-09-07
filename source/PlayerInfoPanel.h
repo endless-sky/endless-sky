@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
-#include "Point.h"
 #include "text/layout.hpp"
+#include "Point.h"
 
 #include <set>
 #include <vector>

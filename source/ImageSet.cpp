@@ -99,7 +99,8 @@ namespace {
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x) noexcept(false)
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x)
+		noexcept(false)
 	{
 		if(frameData.empty())
 			return;
@@ -120,14 +121,16 @@ namespace {
 		// Copy the sorted, valid paths from the map to the frame sequence vector.
 		size_t count = distance(frameData.begin(), next);
 		sequence.resize(count);
-		transform(frameData.begin(), next, sequence.begin(), [](const pair<size_t, string> &p) -> string { return p.second; });
+		transform(frameData.begin(), next, sequence.begin(),
+			[](const pair<size_t, string> &p) -> string { return p.second; });
 
 		// If `next` is not the end, then there was at least one discontinuous frame.
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Logger::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame " + to_string(it->first + 1) + " (" + to_string(ignored)
-					+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
+			Logger::LogError(prefix + "missing " + (is2x ? "@2x " : "") + "frame "
+				+ to_string(it->first + 1) + " (" + to_string(ignored)
+				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
 	}
 }
