@@ -24,7 +24,7 @@ outfit "Impulse Engine"
 	"turning heat" 5
 	"flare sound" "ira hum"
 	"steering flare sound" "ira hum"
-	description "A mysterios propusion device the vyu'Ira use to move."
+	description "A mysterious propulsion device the vyu'Ira use to move."
 
 outfit "Fate Sealer"
 	category Guns
