@@ -78,10 +78,10 @@ void Government::Load(const DataNode &node)
 
 		if(remove)
 		{
-			if(key == "restricted")
-				travelRestrictions = LocationFilter{};
-			else if(key == "provoked on scan")
+			if(key == "provoked on scan")
 				provokedOnScan = false;
+			else if(key == "restricted")
+				travelRestrictions = LocationFilter{};
 			else if(key == "raid")
 				raidFleet = nullptr;
 			else if(key == "display name")
@@ -98,6 +98,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "enforces")
+				enforcementZones.clear();
 			else
 				child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		}
@@ -202,6 +204,9 @@ void Government::Load(const DataNode &node)
 		friendlyDisabledHail = GameData::Phrases().Get("friendly disabled");
 	if(!hostileDisabledHail)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
+
+	// Store this bool to not have to check IsEmpty all the time.
+	hasTravelRestrictions = travelRestrictions.IsEmpty();
 }
 
 
@@ -457,14 +462,14 @@ bool Government::IsProvokedOnScan() const
 
 
 
-bool Government::AllowJumpingTo(const System &system) const
+bool Government::IsRestrictedFrom(const System &system) const
 {
-	return travelRestrictions.IsEmpty() || !travelRestrictions.Matches(&system);
+	return hasTravelRestrictions && travelRestrictions.Matches(&system);
 }
 
 
 
-bool Government::AllowLandingOn(const Planet &planet) const
+bool Government::IsRestrictedFrom(const Planet &planet) const
 {
-	return travelRestrictions.IsEmpty() || !travelRestrictions.Matches(&planet);
+	return hasTravelRestrictions && travelRestrictions.Matches(&planet);
 }

@@ -324,7 +324,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
-				if(!unconstrained && !government->AllowJumpingTo(*neighbor))
+				if(!unconstrained && government->IsRestrictedFrom(*neighbor))
 					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
@@ -341,7 +341,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-						&& (unconstrained || government->AllowLandingOn(*object.GetPlanet()))
+						&& (unconstrained || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 
@@ -353,7 +353,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet()
-						&& (unconstrained || government->AllowLandingOn(*object.GetPlanet()))
+						&& (unconstrained || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					planetVector.push_back(object.GetPlanet());
 			options = planetVector.size();
@@ -502,7 +502,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	bool canEnter = (source != nullptr || unconstrained || any_of(system.Links().begin(), system.Links().end(),
 		[&ship](const System *link) noexcept -> bool
 		{
-			return ship.GetGovernment()->AllowJumpingTo(*link);
+			return !ship.GetGovernment()->IsRestrictedFrom(*link);
 		}
 	));
 
@@ -519,7 +519,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		int totalWeight = 0;
 		for(const System *link : system.Links())
 		{
-			bool access = unconstrained || ship.GetGovernment()->AllowJumpingTo(*link);
+			bool access = unconstrained || ship.GetGovernment()->IsRestrictedFrom(*link);
 			systemWeights.emplace_back(access);
 			totalWeight += access;
 		}
@@ -527,7 +527,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 		int choice = Random::Int(totalWeight);
 		for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
 		{
-			if(!unconstrained && !ship.GetGovernment()->AllowJumpingTo(*(*it)))
+			if(!unconstrained && !ship.GetGovernment()->IsRestrictedFrom(*(*it)))
 				continue;
 			choice -= systemWeights[i];
 			if(choice < 0)

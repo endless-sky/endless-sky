@@ -122,8 +122,8 @@ public:
 	bool IsProvokedOnScan() const;
 
 	// Get if ships from this government can go to that system or planet.
-	bool AllowJumpingTo(const System &system) const;
-	bool AllowLandingOn(const Planet &planet) const;
+	bool IsRestrictedFrom(const System &system) const;
+	bool IsRestrictedFrom(const Planet &planet) const;
 
 
 private:
@@ -140,6 +140,7 @@ private:
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
+	bool hasTravelRestrictions = false;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *friendlyDisabledHail = nullptr;
