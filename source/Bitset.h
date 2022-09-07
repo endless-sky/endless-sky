@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef BITSET_H_
 #define BITSET_H_
 
-#include <limits>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <vector>
 
 
