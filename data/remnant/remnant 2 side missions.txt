@@ -667,7 +667,7 @@ mission "Remnant: Scent of Rain 1"
 		personality waiting target
 		system "Kor Zena'i"
 		ship "Tubfalet" "Ra'puk At 295"
-		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a different model, or perhaps an entirely different ship. Time to report this to Chilia.`
+		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different ship. Time to report this to Chilia.`
 	npc
 		government "Korath"
 		personality waiting
