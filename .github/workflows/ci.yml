@@ -519,6 +519,8 @@ jobs:
 
 
   check-coding-style:
+    needs: changed
+    if: needs.changed.outputs.game_code == 'true'
     runs-on: ubuntu-latest
     steps:
     - name: checkout
