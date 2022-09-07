@@ -20375,7 +20375,7 @@ system MS-219
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet "Iije" 100
+	fleet "Iije" 50
 	object
 		sprite star/a-dwarf
 		distance 36.112

@@ -29,8 +29,6 @@ ship vyu'Ira
 		"outfit space" 1000
 		"required crew" 1
 		shields 77777777
-		thrust 100
-		turn 500
 		"weapon capacity" 1000
 		weapon
 			"blast radius" 200
@@ -42,7 +40,10 @@ ship vyu'Ira
 		"Fate Divider" 2
 		"Nanotech Battery"
 		"Antimatter Core"
+		"Impulse Engine"
 
+	engine 0 100
+	"steering engine" 0 100
 	gun -67 26.5 "Fate Sealer"
 	gun 67 26.5 "Fate Sealer"
 	gun -93 41 "Fate Divider"

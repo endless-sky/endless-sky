@@ -14,6 +14,7 @@
 
 ship "Jje"
 	noun "creature"
+	swizzle 0
 	"sprite" ship/jje/jje
 		"frame rate" 4
 	"never disabled"
@@ -63,6 +64,7 @@ ship "Jje"
 
 ship "Ayym"
 	noun "creature"
+	swizzle 0
 	"sprite" ship/ayym/ayym
 		"frame rate" 8
 	"never disabled"
@@ -114,8 +116,8 @@ fleet "Iije"
 	government "Indigenous Lifeform"
 	cargo 0
 	personality
-		timid mute swarming unconstrained
-	variant 40
+		timid mute swarming unconstrained uninterested
+	variant 27
 		"Jje"
 	variant 
 		"Ayym"
