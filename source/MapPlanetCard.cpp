@@ -46,7 +46,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 		planet->GetGovernment()->IsEnemy() ? "Hostile" :
 		planet->CanLand() ? "Friendly" : "Restricted";
 
-	sprite = object.HasIcon() ? object.GetIcon() : object.GetSprite();
+	sprite = object.GetSprite();
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const float planetIconMaxSize = static_cast<float>(planetCardInterface->GetValue("planet icon max size"));
