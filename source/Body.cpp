@@ -765,6 +765,8 @@ void Body::SetStep(int step) const
 			if(frame >= lastFrame)
 				frameOffset -= (step - currentStep) * frameRate;
 			frame = min(frame, lastFrame);
+            // Rewind frame needs to be set since transition state can change during delay period.
+            rewindFrame = frame;
 		}
 		// Prevent any flickers from transitioning into states with randomized flares.
 		randomFrame = frame;
