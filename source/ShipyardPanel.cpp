@@ -166,7 +166,8 @@ int ShipyardPanel::DrawDetails(const Point &center)
 			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
 			: 1.f;
 
-		int swizzle = selectedShip->CustomSwizzle() >= 0 ? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+		int swizzle = selectedShip->CustomSwizzle() >= 0
+			? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 
 		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
@@ -189,7 +190,8 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(
+			descCenter, descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
