@@ -410,7 +410,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			{
 				distance = d;
 				selectedPlanet = it.first;
-				double place = 0.;
+				int place = 0;
 				for(auto &planetCard : planetCards)
 				{
 					planetCard.Select(planetCard.GetPlanet() == selectedPlanet);
