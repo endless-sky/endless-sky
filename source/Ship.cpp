@@ -507,14 +507,6 @@ void Ship::Load(const DataNode &node)
 		else if(key != "actions")
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	// Shield hit effects are, unless explicitly defined,
-	// presumed to be the same as the generic (hull) hit effects
-	// if there have been any hull hit effects defined
-	if(!hasShieldHitEffect && hasHitEffect)
-	{
-			shieldHitEffects = hullHitEffects;
-			hasShieldHitEffect = true;
-	}
 }
 
 
@@ -1015,22 +1007,16 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
-		if(hasHitEffect)
+		WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
 		{
-			WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
-			{
-				if(it.second)
-					out.Write("hit effect", it.first->Name(), it.second);
-			});
-		}
-		if(hasShieldHitEffect)
+			if(it.second)
+				out.Write("hit effect", it.first->Name(), it.second);
+		});
+		WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
 		{
-			WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
-			{
-				if(it.second)
-					out.Write("shield hit effect", it.first->Name(), it.second);
-			});
-		}
+			if(it.second)
+				out.Write("shield hit effect", it.first->Name(), it.second);
+		});
 
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
@@ -2870,19 +2856,6 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 
 
-// Ship event effects
-const map<const Effect *, int> &Ship::ShieldHitEffects() const
-{
-	return shieldHitEffects;
-}
-
-
-const map<const Effect *, int> &Ship::HullHitEffects() const
-{
-	return hullHitEffects;
-}
-
-
 // Get this ship's custom swizzle.
 int Ship::CustomSwizzle() const
 {
@@ -3467,13 +3440,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// fire, if there are any to create.
 	if(damage.Shield() && hasShieldHitEffect)
 	{
-		for(const auto &it : ShieldHitEffects())
+		for(const auto &it : shieldHitEffects)
 			for(int i = 0; i < it.second; ++i)
 				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
 	}
 	if(damage.Hull() && hasHitEffect)
 	{
-		for(const auto &it : HullHitEffects())
+		for(const auto &it : hullHitEffects)
 			for(int i = 0; i < it.second; ++i)
 			{
 				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
