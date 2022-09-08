@@ -1010,7 +1010,7 @@ void Ship::Save(DataWriter &out) const
 		WriteSorted(hullHitEffects, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
-				out.Write("hit effect", it.first->Name(), it.second);
+				out.Write("hull hit effect", it.first->Name(), it.second);
 		});
 		WriteSorted(shieldHitEffects, effectSort, [&out](const EffectElement &it)
 		{
