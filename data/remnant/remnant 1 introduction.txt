@@ -8,7 +8,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Remnant"
 	landing
@@ -2832,7 +2835,7 @@ mission "Remnant: Broken Jump Drive 5"
 		outfit "Jump Drive (Broken)" -1
 		"remnant: broken jump drive count" ++
 		payment 300000
-		event "remnant research update bjd1" 100 200
+		event "remnant: research update bjd1" 100 200
 		"reputation: Remnant" ++
 		conversation
 			`The landing pad on <planet> is tucked away just behind the spaceport. A handful of engineers have a conveyor belt already set up to offload the drive from your ship when you arrive. When you open the hatch they extend it right up the ramp, and quickly load the drive onto it. The machinery quickly whisks the drive into a nearby structure along with its escort. A couple of the engineers stop by to talk with you and hand you <payment>.`
@@ -2844,6 +2847,18 @@ mission "Remnant: Broken Jump Drive 5"
 			`	With a pleased expression they break into song about mining the deeps for the mysteries of the sky. As best you can tell, they are trying to figure out the materials that the drive is made with, followed by experiments to replicate those materials.`
 			label end
 			`	"Our experiments await. May your search be fruitful!" they trill as they head off.`
+
+
+
+mission "Remnant: remnant research update compatibility"
+	landing
+	invisible
+	to offer
+		has "event: remnant research update bjd1"
+	on offer
+		event "remnant: research update bjd1"
+		clear "event: remnant research update bjd1"
+		fail
 
 
 
