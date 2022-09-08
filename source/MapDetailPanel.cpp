@@ -473,7 +473,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 	SetScroll(0.);
 	unsigned number = 0;
 	for(const StellarObject &object : system.Objects())
-		if((object.HasSprite() && object.HasValidPlanet())
+		if(object.HasSprite() && object.HasValidPlanet())
 		{
 			// The same "planet" may appear multiple times in one system,
 			// providing multiple landing and departure points (e.g. ringworlds).
