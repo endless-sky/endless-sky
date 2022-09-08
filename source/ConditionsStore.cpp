@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Logger.h"
 
 #include <utility>
 
@@ -417,8 +418,26 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(prefix),
 		std::forward_as_tuple(prefix, true));
-	storage[prefix].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(VerifyProviderLocation(prefix))
+	{
+		storage[prefix].provider = provider;
+		// Check if any matching later entries within the prefixed range use the same provider.
+		auto checkIt = storage.find(prefix);
+		while(checkIt != storage.end() && (0 == checkIt->first.compare(0, prefix.length(), prefix)))
+		{
+			const string &ceName = checkIt->first;
+			ConditionEntry &ce = checkIt->second;
+			if(ce.provider != provider)
+			{
+				Logger::LogError("Error: replacing condition-entry for \"" + ceName + "\", because it is within range of prefixed derived provider \"" + prefix + "\".");
+				ce.provider = provider;
+				ce.fullKey = ceName;
+			}
+			++checkIt;
+		}
+	}
+	return *provider;
 }
 
 
@@ -429,8 +448,10 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(name),
 		std::forward_as_tuple(name, false));
-	storage[name].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(VerifyProviderLocation(name))
+		storage[name].provider = provider;
+	return *provider;
 }
 
 
@@ -474,4 +495,27 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	// And otherwise we don't have a match.
 	return nullptr;
+}
+
+
+
+// Helper function to check if we can safely add a provider with the given name.
+bool ConditionsStore::VerifyProviderLocation(const string &name) const
+{
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
+		return true;
+
+	--it;
+	// If the entry is already there, then it apparently was safe to add the entry.
+	if(name == it->first)
+		return true;
+
+	const ConditionEntry &ce = it->second;
+	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
+	{
+		Logger::LogError("Error: not adding provider for \"" + name + "\", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
+		return false;
+	}
+	return true;
 }

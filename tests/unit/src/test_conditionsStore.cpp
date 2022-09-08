@@ -708,8 +708,58 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 				REQUIRE( mockProvPrefixShips.values.size() == 3 );
 			}
 		}
+		WHEN( "adding a prefixed provider that is in the subset of the prefixed provider" )
+		{
+			auto mockProvPrefixShipsA = MockConditionsProvider();
+			mockProvPrefixShipsA.SetRWPrefixProvider(store, "ships: A:");
+			store["ships: A: something"] = 40;
+			THEN( "only the initial provider is used" )
+			{
+				REQUIRE( mockProvPrefixShipsA.values["ships: A: something"] == 0 );
+				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 40 );
+			}
+		}
+		WHEN( "adding a named provider that is in the subset of the prefixed provider" )
+		{
+			auto mockProvPrefixShipsA = MockConditionsProvider();
+			mockProvPrefixShipsA.SetRWNamedProvider(store, "ships: A:");
+			store["ships: A: something"] = 40;
+			THEN( "only the initial provider is used" )
+			{
+				REQUIRE( mockProvPrefixShipsA.values["ships: A: something"] == 0 );
+				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 40 );
+			}
+		}
+		WHEN( "adding a prefixed provider that is in the superset of the prefixed provider" )
+		{
+			auto mockProvPrefixShi = MockConditionsProvider();
+			mockProvPrefixShi.SetRWPrefixProvider(store, "shi");
+			store["ships: A: something"] = 40;
+			THEN( "only the superset provider is used" )
+			{
+				REQUIRE( mockProvPrefixShi.values["ships: A: something"] == 40 );
+				REQUIRE( mockProvPrefixShips.values["ships: A: something"] == 0 );
+			}
+		}
+	}
+	GIVEN( "A pre-existing condition in a store" )
+	{
+		auto store = ConditionsStore();
+		store["ships: A"] = 40;
+		WHEN(" a prefixed provider gets added which has the condition in range")
+		{
+			auto mockProvPrefixShips = MockConditionsProvider();
+			mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
+			THEN ( "The condition is lost/removed" )
+			{
+				REQUIRE( store["ships: A"] == 0 );
+				REQUIRE( mockProvPrefixShips.values["ships: A"] == 0);
+			}
+		}
 	}
 }
+
+
 // #endregion unit tests
 
 
