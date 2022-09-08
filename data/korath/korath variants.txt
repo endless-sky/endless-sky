@@ -135,7 +135,9 @@ ship "Rano'erek" "Rano'erek (Ground Assault)"
 	"crew" 449
 	add attributes
 		"bunks" 92
+		"mass" 115
 		"cargo space" -120
+		"outfit space" -370
 		"heat dissipation" -0.04
 	outfits
 		"Banisher Grav-Turret" 2
