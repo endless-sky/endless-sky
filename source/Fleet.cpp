@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Fleet.h"
@@ -222,7 +225,8 @@ void Fleet::Load(const DataNode &node)
 	}
 
 	if(variants.empty())
-		node.PrintTrace("Warning: " + (fleetName.empty() ? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+		node.PrintTrace("Warning: " + (fleetName.empty()
+			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
 }
 
 
@@ -560,7 +564,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName() + "\" in fleet \"" + fleetName + "\".");
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
 
