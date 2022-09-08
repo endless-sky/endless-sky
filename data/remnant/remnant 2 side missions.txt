@@ -646,7 +646,7 @@ mission "Remnant: Shattered Light 6"
 mission "Remnant: Scent of Rain 1"
 	landing
 	name "Search for the unknown Korath ship."
-	description "Chilia has asked you to find the Korath ship that can carry three 'olofez."
+	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofez. The Remnant believe it will be found in one of the southern Korath systems."
 	source
 		government "Remnant"
 	destination "Caelian"
