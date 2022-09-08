@@ -667,7 +667,7 @@ mission "Remnant: Scent of Rain 1"
 		personality waiting target
 		system "Kor Zena'i"
 		ship "Tubfalet" "Ra'puk At 295"
-		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different ship. Time to report this to Chilia.`
+		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different design. Time to report this to Chilia.`
 	npc
 		government "Korath"
 		personality waiting
@@ -685,7 +685,7 @@ mission "Remnant: Scent of Rain 1"
 	on complete
 		payment 150000
 		conversation
-			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data." He comments. "What are your thoughts, having seen it?" He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
+			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?" He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice
 				`	"You are welcome."`
@@ -694,4 +694,4 @@ mission "Remnant: Scent of Rain 1"
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
 			`	He shakes his head "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
-			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While the overall threats are my duty to anticipate, it is your duty to prepare yourself for the wind." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
+			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
