@@ -23,9 +23,9 @@ ship "Nimbus"
 		"Liquid Hydrogen Cell"
 		"Compressor Cannon" 2
 		"Plasma Capsule" 150
-	engine 1 155
-	gun -20 -128
-	gun 20 -128
+	engine 0 125
+	gun -31 -105
+	gun 31 -105
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10
