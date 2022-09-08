@@ -3442,6 +3442,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	{
 		for(const auto &it : shieldHitEffects)
 			visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
+	}
 	if(damage.Hull() && hasHitEffect)
 	{
 		for(const auto &it : hullHitEffects)
