@@ -430,7 +430,7 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
-		else if(key == "hit effect" && child.Size() >= 2)
+		else if(key == "hull hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			hullHitEffects[GameData::Effects().Get(child.Token(1))] += count;
@@ -3441,16 +3441,11 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.Shield() && hasShieldHitEffect)
 	{
 		for(const auto &it : shieldHitEffects)
-			for(int i = 0; i < it.second; ++i)
-				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
-	}
+			visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
 	if(damage.Hull() && hasHitEffect)
 	{
 		for(const auto &it : hullHitEffects)
-			for(int i = 0; i < it.second; ++i)
-			{
-				visuals.emplace_back(*it.first, intersection, velocity, hitAngle, hitVelocity);
-			}
+			visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
 	}
 
 	return type;
