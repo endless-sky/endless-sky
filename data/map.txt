@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 galaxy "Milky Way"
 	pos 0 0
@@ -28939,7 +28942,7 @@ planet "Keneska Fek"
 planet "Kessel Sepret"
 	attributes korath station
 	landscape land/station1
-	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
+	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
 
