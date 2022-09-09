@@ -2705,8 +2705,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		{
 			if(ship->IsDestroyed() || ship->GetSystem() != system)
 				continue;
-			// If not on a planet, parked ships don't count. If on a planet, disabled ships don't count.
-			if((!planet && !ship->IsParked()) || (planet && !ship->IsDisabled()))
+			// If not on a planet, parked ships don't count. If on a planet, the ship's planet must match.
+			if((!planet && !ship->IsParked()) || (planet && planet == ship->GetPlanet()))
 			{
 				retVal += ship->OutfitCount(outfit);
 				retVal += ship->Cargo().Get(outfit);
@@ -2724,11 +2724,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-		{
-			if(ship->IsDestroyed())
-				continue;
-			retVal += ship->OutfitCount(outfit);
-		}
+			if(!ship->IsDestroyed())
+				retVal += ship->OutfitCount(outfit);
 		return retVal;
 	});
 
@@ -2764,15 +2761,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&flagshipCargoOutfitProvider = conditions.GetProviderPrefixed("outfit (flagship cargo): ");
 	flagshipCargoOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
+		if(!flagship)
+			return 0;
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
 		if(!outfit)
 			return 0;
-		int64_t retVal = 0;
-		if(GetPlanet())
-			retVal += Cargo().Get(outfit);
-		if(flagship)
-			retVal += flagship->Cargo().Get(outfit);
-		return retVal;
+		return flagship->Cargo().Get(outfit) + (GetPlanet() ? Cargo().Get(outfit) : 0);
 	});
 
 	// The following condition checks all planetary storage.
@@ -2792,11 +2786,11 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&storedPresentOutfitProvider = conditions.GetProviderPrefixed("outfit (present storage): ");
 	storedPresentOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (present storage): ")));
-		if(!outfit)
-			return 0;
 		const Planet *planet = GetPlanet();
 		if(!planet || !planetaryStorage.count(planet))
+			return 0;
+		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (present storage): ")));
+		if(!outfit)
 			return 0;
 		return planetaryStorage[planet].Get(outfit);
 	});
