@@ -345,7 +345,7 @@ public:
 	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment,
 		Point intersection, Point hitVelocity, Angle hitAngle, bool splash);
 	// This ship just got hit by a weather hazard. Take damage according to
-	// the DamageDealth from that weather. The return value is a ShipEvent
+	// the DamageDealt from that weather. The return value is a ShipEvent
 	// type, which may be a combination of DISABLED and DESTROYED.
 	// Create any hit effects as sparks
 	int TakeWeatherDamage(std::vector<Visual> &visuals, const DamageDealt &damage);

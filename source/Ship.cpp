@@ -3466,7 +3466,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 
 // This ship just got hit by a weather hazard. Take damage according to
-// the DamageDealth from that weather. The return value is a ShipEvent
+// the DamageDealt from that weather. The return value is a ShipEvent
 // type, which may be a combination of DISABLED and DESTROYED.
 // Create any hit effects as sparks
 int Ship::TakeWeatherDamage(vector<Visual> &visuals, const DamageDealt &damage)
