@@ -2639,6 +2639,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
+	// The numver of ships the player has of the given category anywhere in their fleet.
+	auto &&shipTypesProvider = conditions.GetProviderPrefixed("ships (all): ");
+	shipTypesProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsDestroyed() && name == "ships: " + ship->Attributes().Category())
+				++retVal;
+		return retVal;
+	});
+
 	// The number of ships the player has of the given model active and present.
 	auto &&shipModelProvider = conditions.GetProviderPrefixed("ship model: ");
 	shipModelProvider.SetGetFunction([this](const string &name) -> int64_t
@@ -2647,6 +2658,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
 					&& name == "ship model: " + ship->ModelName())
+				++retVal;
+		return retVal;
+	});
+
+	// The number of ships that the player has of the given model anywhere in their fleet.
+	auto &&shipModelProvider = conditions.GetProviderPrefixed("ship model (all): ");
+	shipModelAllProvider.SetGetFunction([this](const string &name) -> int64_t
+	{
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsDestroyed() && name == "ship model: " + ship->ModelName())
 				++retVal;
 		return retVal;
 	});
