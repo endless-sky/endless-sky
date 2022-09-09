@@ -22,42 +22,55 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 
-// Used specifically for trigger based sprites
-enum Indication{INDICATE, NO_INDICATE, DEFAULT_INDICATE};
-
-// Class holding all of the animation parameters required to animate a sprite;
-class SpriteParameters
-{
-
-public:
-	SpriteParameters();
-	explicit SpriteParameters(const Sprite *sprite);
-
-	// Add a sprite-trigger mapping
-	void SetSprite(std::string trigger, const Sprite *sprite, Indication indication, float indicatePercentage);
-	// Get the sprite associated with the current trigger
-	const Sprite *GetSprite() const;
-	const Sprite *GetSprite(std::string trigger) const;
-	// Get the indication associated with the current trigger
-	Indication GetIndication() const;
-	Indication GetIndication(std::string trigger) const;
-	// Does the selected sprite want to indicate before doing the action
-	bool IndicateReady() const;
-	float IndicatePercentage() const;
-
-	// Set the current trigger
-	void SetTrigger(std::string trigger);
-	bool IsTrigger(std::string trigger) const;
-
-	// Used for saving the sprites.
-	const std::map<std::string, std::tuple<const Sprite*, Indication, float>> *GetAllSprites() const;
-
+class AnimationParameters{
 public:
 	// Act like a struct
 	// Animation parameters as found in Body.h
 	float frameRate = 2.f / 60.f;
 	float startFrame = 0.f;
 	float scale = 1.f;
+	float indicatePercentage = -1.0f;
+	int delay = 0;
+	int transitionDelay = 0;
+
+	bool startAtZero = false;
+	bool randomize = false;
+	bool randomizeStart = false;
+	bool repeat = true;
+	bool rewind = false;
+
+	// Defines what to do when a state transition is requested (eg. FLYING to LANDING)
+	bool transitionFinish = false;
+	bool transitionRewind = false;
+	bool indicateReady = false;
+};
+
+// Class holding all of the animation parameters required to animate a sprite;
+class SpriteParameters
+{
+public:
+	SpriteParameters();
+	explicit SpriteParameters(const Sprite *sprite);
+
+	// Add a sprite-trigger mapping
+	void SetSprite(std::string trigger, const Sprite *sprite, AnimationParameters data);
+	// Get the sprite associated with the current trigger
+	const Sprite *GetSprite() const;
+	const Sprite *GetSprite(std::string trigger) const;
+
+	// Set the current trigger
+	void SetTrigger(std::string trigger);
+	bool IsTrigger(std::string trigger) const;
+
+	// Used for saving the sprites.
+	const std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> *GetAllSprites() const;
+
+public:
+	// Animation parameters exposed to Body
+	float frameRate = 2.f / 60.f;
+	float startFrame = 0.f;
+	float scale = 1.f;
+	float indicatePercentage = -1.0f;
 	int delay = 0;
 	int transitionDelay = 0;
 
@@ -77,7 +90,7 @@ private:
 	std::string trigger = "default";
 
 	// Sprites to be animated
-	std::map<std::string, std::tuple<const Sprite*, Indication, float>> sprites;
+	std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> sprites;
 };
 
 #endif

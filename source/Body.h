@@ -75,7 +75,9 @@ public:
 
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node, BodyState state = BodyState::FLYING);
+	void LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
+	void SaveSpriteParameters(DataWriter &out, SpriteParameters* state) const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite, BodyState state = BodyState::FLYING);
 	void SetState(BodyState state);

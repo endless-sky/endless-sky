@@ -24,14 +24,15 @@ SpriteParameters::SpriteParameters()
 
 SpriteParameters::SpriteParameters(const Sprite* sprite)
 {
-	auto tuple = std::tuple<const Sprite*, Indication, float>{sprite, Indication::DEFAULT_INDICATE, -1.0f};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication, float>>("default", tuple));
+	AnimationParameters initDefault;
+	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, initDefault};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*,AnimationParameters>>("default", tuple));
 }
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, Indication indication, float indicatePercentage)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, AnimationParameters params)
 {
-	auto tuple = std::tuple<const Sprite*, Indication, float>{sprite, indication, indicatePercentage};
-	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, Indication, float>>(trigger, tuple));
+	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, params};
+	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>(trigger, tuple));
 }
 
 const Sprite *SpriteParameters::GetSprite() const
@@ -46,35 +47,32 @@ const Sprite *SpriteParameters::GetSprite(std::string trigger) const
 	return (it == this->sprites.end()) ? nullptr : std::get<0>(it->second);
 }
 
-Indication SpriteParameters::GetIndication() const
-{
-	auto it = this->sprites.find(this->trigger);
-	return (it == this->sprites.end()) ? Indication::DEFAULT_INDICATE : std::get<1>(it->second);
-}
-
-Indication SpriteParameters::GetIndication(std::string trigger) const
-{
-	auto it = this->sprites.find(trigger);
-	return (it == this->sprites.end()) ? Indication::DEFAULT_INDICATE : std::get<1>(it->second);
-}
-
-bool SpriteParameters::IndicateReady() const
-{
-	auto it = this->sprites.find(this->trigger);
-	return (it == this->sprites.end() || std::get<1>(it->second) == Indication::DEFAULT_INDICATE) ? this->indicateReady : std::get<1>(it->second) != Indication::NO_INDICATE;
-}
-
-float SpriteParameters::IndicatePercentage() const
-{
-	auto it = this->sprites.find(this->trigger);
-	auto defIt = this->sprites.find("default");
-	float defaultIndicatePercentage = std::get<2>(defIt->second);
-	return std::get<2>(it->second) <= 0.0f ? (defaultIndicatePercentage <= 0.0f ? 1.0f : defaultIndicatePercentage) : std::get<2>(it->second);
-}
-
 void SpriteParameters::SetTrigger(std::string trigger)
 {
 	this->trigger = trigger;
+
+	auto it = this->sprites.find(trigger);
+	auto def = this->sprites.find("default");
+	auto use = it == this->sprites.end() ? def : it;
+
+	AnimationParameters toExpose = std::get<1>(use->second);
+
+	this->frameRate = toExpose.frameRate;
+	this->startFrame = toExpose.startFrame;
+	this->scale = toExpose.scale;
+	this->indicatePercentage = toExpose.indicatePercentage;
+	this->delay = toExpose.delay;
+	this->transitionDelay = toExpose.transitionDelay;
+
+	this->startAtZero = toExpose.startAtZero;
+	this->randomize = toExpose.randomize;
+	this->randomizeStart = toExpose.randomizeStart;
+	this->repeat = toExpose.repeat;
+	this->rewind = toExpose.rewind;
+
+	this->transitionFinish = toExpose.transitionFinish;
+	this->transitionRewind = toExpose.transitionRewind;
+	this->indicateReady = toExpose.indicateReady;
 }
 
 bool SpriteParameters::IsTrigger(std::string trigger) const
@@ -83,7 +81,7 @@ bool SpriteParameters::IsTrigger(std::string trigger) const
 	return it != this->sprites.end();
 }
 
-const std::map<std::string, std::tuple<const Sprite*, Indication, float>> *SpriteParameters::GetAllSprites() const
+const std::map<std::string, std::tuple<const Sprite*, AnimationParameters>> *SpriteParameters::GetAllSprites() const
 {
 	return &this->sprites;
 }
