@@ -3453,8 +3453,38 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 }
 
 
-// Apply the actual damage to the ship, in the case of weather, this
-// is called directly and TakeDamage is skipped
+// This ship just got hit by a weather hazard. Take damage according to
+// the DamageDealth from that weather. The return value is a ShipEvent
+// type, which may be a combination of DISABLED and DESTROYED.
+// Create any hit effects as sparks
+int Ship::TakeWeatherDamage(vector<Visual> &visuals, const DamageDealt &damage)
+{
+	int type = DoDamage(visuals, damage);
+
+	// Create hull/shield hit effect visuals at the point of impact for weapons
+	// fire, if there are any to create.
+	if(damage.Shield() && hasShieldHitEffect)
+	{
+		for(const auto &it : shieldHitEffects)
+			if(!Random::Int(10))
+				for(int i = 0; it.second > i; i++)
+					CreateSparks(visuals, it.first, it.second * damage.Scaling());
+	}
+	if(damage.Hull() && hasHitEffect)
+	{
+		for(const auto &it : hullHitEffects)
+			if(!Random::Int(10))
+				for(int i = 0; it.second > i; i++)
+					CreateSparks(visuals, it.first, it.second * damage.Scaling());
+	}
+
+	return type;
+}
+
+
+// Apply the actual damage to the ship, this is called by all damage pathways
+// The return value is a ShipEvent type, which may be a combination of DISABLED
+// and DESTROYED.
 int Ship::DoDamage(vector<Visual> &visuals, const DamageDealt &damage)
 {
 	bool wasDisabled = IsDisabled();

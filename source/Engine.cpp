@@ -2139,7 +2139,7 @@ void Engine::DoWeather(Weather &weather)
 			: shipCollisions.Ring(weather.Origin(), hazard->MinRange(), hazard->MaxRange())))
 		{
 			Ship *hit = reinterpret_cast<Ship *>(body);
-			hit->DoDamage(visuals, damage.CalculateDamage(*hit));
+			hit->TakeWeatherDamage(visuals, damage.CalculateDamage(*hit));
 		}
 	}
 }
