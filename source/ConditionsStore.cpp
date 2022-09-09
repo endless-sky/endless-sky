@@ -205,6 +205,8 @@ void ConditionsStore::PrimariesIterator::MoveToValueCondition()
 	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
 		condMapIt++;
 
+	// We have a valid value when we are not at the end, and callers should
+	// not try to dereference the value when we actually are at the end.
 	if(condMapIt != condMapEnd)
 		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
 }
