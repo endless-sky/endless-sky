@@ -139,6 +139,9 @@ void PlayerInfo::Load(const string &path)
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
 
+	// Register derived conditions now, so old primary versions can load into them
+	RegisterDerivedConditions();
+
 	DataFile file(path);
 	for(const DataNode &child : file)
 	{
@@ -300,8 +303,6 @@ void PlayerInfo::Load(const string &path)
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
 		planet->Bribe();
-	// Make the derived conditions available again.
-	RegisterDerivedConditions();
 
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
