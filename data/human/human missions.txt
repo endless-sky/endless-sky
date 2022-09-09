@@ -4878,7 +4878,7 @@ mission "Riley"
 					goto suggest
 				`	(Say goodbye.)`
 					goto goodbye
-				`	"Riley, this isn't your father. You need to move on from his death."
+				`	"Riley, this isn't your father. You need to move on from his death."`
 					goto death
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
