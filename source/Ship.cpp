@@ -1767,12 +1767,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		bool linked = currentSystem->Links().count(hyperspaceSystem);
-		// Figure out what sort of jump we're making. Compare how much fuel each method uses.
-		double hyperFuelNeeded = HyperdriveFuel();
-		double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(hyperspaceSystem->Position()));
-		isUsingJumpDrive = hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive");
-		hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
+		isUsingJumpDrive = JumpDriveCheaper(hyperspaceSystem);
 	}
 
 	if(pilotError)
@@ -3163,20 +3158,20 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	bool linked = currentSystem->Links().count(destination);
-	// Figure out what sort of jump we're making. Compare how much fuel each method uses.
-	double hyperFuelNeeded = HyperdriveFuel();
-	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
-	if(attributes.Get("jump drive"))
+	if(attributes.Get("hyperdrive") && attributes.Get("jump drive"))
 	{
-		if(linked && hyperFuelNeeded < jumpFuelNeeded && attributes.Get("hyperdrivedrive"))
+		if(JumpDriveCheaper(destination))
+			return JumpDriveFuel((currentSystem->Links().count(destination) || currentSystem->JumpRange()) ?
+								 0. : currentSystem->Position().Distance(destination->Position()));
+		else
 			return HyperdriveFuel();
 	}
-	else if(linked && attributes.Get("hyperdrivedrive"))
-		return HyperdriveFuel();
-
-	if(attributes.Get("jump drive") && currentSystem->JumpNeighbors(JumpRange()).count(destination))
-		return jumpFuelNeeded;
+	if(attributes.Get("hyperdrive"))
+	   return HyperdriveFuel();
+	if(attributes.Get("jump drive"))
+		return JumpDriveFuel((currentSystem->Links().count(destination) || currentSystem->JumpRange()) ?
+							 0. : currentSystem->Position().Distance(destination->Position()));
+	
 
 	// If the given system is not a possible destination, return 0.
 	return 0.;
@@ -3239,6 +3234,24 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 		return 0.;
 
 	return BestFuel("jump drive", "", 200., jumpDistance);
+}
+
+
+
+bool Ship::JumpDriveCheaper(const System *destination) const
+{
+	bool linked = currentSystem->Links().count(destination);
+	double hyperFuelNeeded = HyperdriveFuel();
+	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
+	if(linked)
+	{
+		if(hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive"))
+			return true;
+		else
+			return false;
+	}
+	else
+		return true;
 }
 
 

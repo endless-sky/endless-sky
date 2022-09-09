@@ -1927,11 +1927,8 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
-	bool linked = ship.GetSystem()->Links().count(ship.GetTargetSystem());
-	// Figure out what sort of jump we're making. Compare how much fuel each method uses.
-	double hyperFuelNeeded = ship.HyperdriveFuel();
-	double jumpFuelNeeded = ship.JumpDriveFuel((linked || ship.GetSystem()->JumpRange()) ? 0. : ship.GetSystem()->Position().Distance(ship.GetTargetSystem()->Position()));
-	bool isJump= hyperFuelNeeded > jumpFuelNeeded && ship.Attributes().Get("jump drive");
+	
+	bool isJump= ship.JumpDriveCheaper(ship.GetTargetSystem()) && ship.Attributes().Get("jump drive");
 
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
