@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Test.h"
@@ -326,7 +329,8 @@ void Test::Load(const DataNode &node)
 		return;
 	}
 	// Validate if the testname contains valid characters.
-	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
+		!= std::string::npos)
 	{
 		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
@@ -524,7 +528,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
-	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i)
 	{
 		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
 		if(i->step < i->test->steps.size())

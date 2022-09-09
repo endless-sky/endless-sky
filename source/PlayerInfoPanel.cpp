@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PlayerInfoPanel.h"
@@ -62,7 +65,8 @@ namespace {
 	}
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+		int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -491,7 +495,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 bool PlayerInfoPanel::Click(int x, int y, int clicks)
 {
 	// Sort the ships if the click was on one of the column headers.
-	Point mouse = Point(x,y);
+	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)
 		if(zone.Contains(mouse))
 		{

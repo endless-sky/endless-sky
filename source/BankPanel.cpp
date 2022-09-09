@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "BankPanel.h"
@@ -119,7 +122,8 @@ void BankPanel::Draw()
 	int64_t maintenanceDue = player.Accounts().MaintenanceDue();
 	// Figure out how many rows of the display are for mortgages, and also check
 	// whether multiple mortgages have to be combined into the last row.
-	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0) - (b.assetsReturns != 0 || income[0] != 0 || income[1] != 0);
+	mortgageRows = MAX_ROWS - (salaries != 0 || salariesOwed != 0) - (b.maintenanceCosts != 0 || maintenanceDue != 0)
+		- (b.assetsReturns != 0 || income[0] != 0 || income[1] != 0);
 	int mortgageCount = player.Accounts().Mortgages().size();
 	mergedMortgages = (mortgageCount > mortgageRows);
 	if(!mergedMortgages)
