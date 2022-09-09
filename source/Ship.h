@@ -342,7 +342,8 @@ public:
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// Create any target effects as sparks.
-	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, Point intersection, Point hitVelocity, Angle hitAngle);
+	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment,
+		Point intersection, Point hitVelocity, Angle hitAngle, bool splash);
 	// This ship just got hit by a weather hazard. Take damage according to
 	// the DamageDealth from that weather. The return value is a ShipEvent
 	// type, which may be a combination of DISABLED and DESTROYED.

@@ -3425,7 +3425,8 @@ double Ship::MaxReverseVelocity() const
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 // Create any target effects as sparks.
-int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment, Point intersection, Point hitVelocity, Angle hitAngle)
+int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment,
+	Point intersection, Point hitVelocity, Angle hitAngle, bool splash)
 {
 	int type = DoDamage(visuals, damage);
 
@@ -3441,12 +3442,23 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.Shield() && hasShieldHitEffect)
 	{
 		for(const auto &it : shieldHitEffects)
-			visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
+		{
+			if(!splash)
+				visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
+			else
+				CreateSparks(visuals, it.first, it.second * damage.Scaling());
+
+		}
 	}
 	if(damage.Hull() && hasHitEffect)
 	{
 		for(const auto &it : hullHitEffects)
-			visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
+		{
+			if(!splash)
+				visuals.insert(visuals.end(), it.second, Visual(*it.first, intersection, velocity, hitAngle, hitVelocity));
+			else
+				CreateSparks(visuals, it.first, it.second * damage.Scaling());
+		}
 	}
 
 	return type;
@@ -3467,15 +3479,13 @@ int Ship::TakeWeatherDamage(vector<Visual> &visuals, const DamageDealt &damage)
 	{
 		for(const auto &it : shieldHitEffects)
 			if(!Random::Int(10))
-				for(int i = 0; it.second > i; i++)
-					CreateSparks(visuals, it.first, it.second * damage.Scaling());
+				CreateSparks(visuals, it.first, it.second * damage.Scaling());
 	}
 	if(damage.Hull() && hasHitEffect)
 	{
 		for(const auto &it : hullHitEffects)
 			if(!Random::Int(10))
-				for(int i = 0; it.second > i; i++)
-					CreateSparks(visuals, it.first, it.second * damage.Scaling());
+				CreateSparks(visuals, it.first, it.second * damage.Scaling());
 	}
 
 	return type;
