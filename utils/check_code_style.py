@@ -33,7 +33,7 @@ std_op = "\\+/\\*<>&%=\\|!:\\-"
 # The dict also contains the error description for the patterns.
 line_include = {
 	# Matches any '{' following an 'if', 'else if', 'for', 'while' or 'switch' statement.
-	"^(?:(}\\selse\\s)?if|else|for|switch|catch|while)\\W*{$": "'{' should be on new line",
+	"^(else\\sif|if|else|for|switch|catch|while)\\s?\\(.*{$": "'{' should be on new line",
 	# Matches any '{' not preceded by a whitespace or '(', except when the '{' is closed on the same line.
 	"(?<!^(struct|inline).*)[^\\s(]+{(?!.*})": "missing whitespace before '{'",
 	# Matches any parenthesis preceded by a whitespace,
