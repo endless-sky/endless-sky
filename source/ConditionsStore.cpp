@@ -421,7 +421,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 		std::forward_as_tuple(prefix),
 		std::forward_as_tuple(prefix, true));
 	DerivedProvider *provider = &(it.first->second);
-	if(VerifyProviderLocation(prefix))
+	if(VerifyProviderLocation(prefix, provider))
 	{
 		storage[prefix].provider = provider;
 		// Check if any matching later entries within the prefixed range use the same provider.
@@ -452,7 +452,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 		std::forward_as_tuple(name),
 		std::forward_as_tuple(name, false));
 	DerivedProvider *provider = &(it.first->second);
-	if(VerifyProviderLocation(name))
+	if(VerifyProviderLocation(name, provider))
 		storage[name].provider = provider;
 	return *provider;
 }
@@ -503,18 +503,26 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 
 // Helper function to check if we can safely add a provider with the given name.
-bool ConditionsStore::VerifyProviderLocation(const string &name) const
+bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider *provider) const
 {
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
 		return true;
 
 	--it;
-	// If the entry is already there, then it apparently was safe to add the entry.
-	if(name == it->first)
+	const ConditionEntry &ce = it->second;
+
+	// If we find the provider we are trying to add, then it apparently
+	// was safe to add the entry since it was already added before.
+	if(ce.provider == provider)
 		return true;
 
-	const ConditionEntry &ce = it->second;
+	if(!ce.provider && it->first == name)
+	{
+		Logger::LogError("Error: overwriting primary condition \"" + name + "\" with derived provider.");
+		return true;
+	}
+
 	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
 	{
 		Logger::LogError("Error: not adding provider for \"" + name + "\""

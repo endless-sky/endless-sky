@@ -748,10 +748,18 @@ SCENARIO( "Providing multiple derived conditions", "[ConditionStore][DerivedMult
 		{
 			auto mockProvPrefixShips = MockConditionsProvider();
 			mockProvPrefixShips.SetRWPrefixProvider(store, "ships: ");
-			THEN ( "The condition is lost/removed" )
+			THEN( "The condition is lost/removed" )
 			{
 				REQUIRE( store["ships: A"] == 0 );
 				REQUIRE( mockProvPrefixShips.values["ships: A"] == 0);
+			}
+			THEN( "Adding a sub-prefix-condition should not be possible")
+			{
+				auto mockProvPrefixShipsLarge = MockConditionsProvider();
+				mockProvPrefixShips.SetRWPrefixProvider(store, "ships: Large: ");
+				store["ships: Large: very"] = 10;
+				REQUIRE( mockProvPrefixShipsLarge.values["ships: Large: very"] == 0 );
+				REQUIRE( mockProvPrefixShips.values["ships: Large: very"] == 10 );
 			}
 		}
 	}
