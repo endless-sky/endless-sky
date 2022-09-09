@@ -107,12 +107,8 @@ void PlayerInfo::New(const StartConditions &start)
 	SetSystem(start.GetSystem());
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
-
-	// Register derived conditions before applying start conditions,
-	// so that any that belong in a derived provider go into that correctly.
-	// TODO This should be checked
-	RegisterDerivedConditions();
 	start.GetConditions().Apply(conditions);
+	RegisterDerivedConditions();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -143,9 +139,7 @@ void PlayerInfo::Load(const string &path)
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
 
-	// Register derived conditions before loading primary conditions from the
-	// savegame. Conditions that belong in a derived provider will then load into
-	// them correctly.
+	// Register derived conditions now, so old primary versions can load into them
 	RegisterDerivedConditions();
 
 	DataFile file(path);
@@ -186,8 +180,8 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					GameData::Governments().Get(grand.Token(0))->
-						SetReputation(grand.Value(1));
+					reputationChanges.emplace_back(
+						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
 
 		// Records of things you own:
