@@ -211,6 +211,11 @@ public:
 	// Find out what fraction of the scan is complete.
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
+	// Track scan complete
+	void CargoScannedBy(const Government *gov);
+	void OutfitScannedBy(const Government *gov);
+	bool CargoScanCompletedBy(const Government *gov) const;
+	bool OutfitScanCompletedBy(const Government *gov) const;
 
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
@@ -494,6 +499,9 @@ private:
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;
 	double weaponRadius = 0.;
+	// Track ally government surveillance on this ship.
+	std::vector<const Government *> cargoScannedBy;
+	std::vector<const Government *> outfitScannedBy;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;

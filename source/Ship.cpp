@@ -1221,6 +1221,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	cargoScannedBy.clear();
+	outfitScannedBy.clear();
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
@@ -1584,7 +1586,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		if(hyperspaceSystem)
+		{
 			fuel -= hyperspaceFuelCost / HYPER_C;
+			// Clear local government scans upon entering systems.  This enables
+			// the local government to scan the ship again.
+			cargoScannedBy.clear();
+			outfitScannedBy.clear();
+		}
 
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
@@ -2566,6 +2574,14 @@ int Ship::Scan()
 					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
 	}
 
+	// Government has successfully scanned cargo of the target ship.
+	if(result & ShipEvent::SCAN_CARGO)
+		GetTargetShip()->CargoScannedBy(government);
+
+	// Government has successfully scanned outfits of the target ship.
+	if(result & ShipEvent::SCAN_OUTFITS)
+		GetTargetShip()->OutfitScannedBy(government);
+
 	// Some governments are provoked when a scan is started on one of their ships.
 	const Government *gov = target->GetGovernment();
 	if(gov && gov->IsProvokedOnScan() && !gov->IsEnemy(government)
@@ -2589,6 +2605,44 @@ double Ship::CargoScanFraction() const
 double Ship::OutfitScanFraction() const
 {
 	return outfitScan / SCAN_TIME;
+}
+
+
+
+// Register cargo was scanned by government.
+void Ship::CargoScannedBy(const Government *gov)
+{
+	auto it = find(cargoScannedBy.begin(), cargoScannedBy.end(), gov);
+	if(it == cargoScannedBy.end())
+		cargoScannedBy.emplace_back(gov);
+}
+
+
+
+// Register outfits were scanned by government.
+void Ship::OutfitScannedBy(const Government *gov)
+{
+	auto it = find(outfitScannedBy.begin(), outfitScannedBy.end(), gov);
+	if(it == outfitScannedBy.end())
+		outfitScannedBy.emplace_back(gov);
+}
+
+
+
+// Check if the government has done a cargo scan of this ship.
+bool Ship::CargoScanCompletedBy(const Government *gov) const
+{
+	auto it = find(cargoScannedBy.begin(), cargoScannedBy.end(), gov);
+	return it != cargoScannedBy.end();
+}
+
+
+
+// Check if the government has done an outfit scan of this ship.
+bool Ship::OutfitScanCompletedBy(const Government *gov) const
+{
+	auto it = find(outfitScannedBy.begin(), outfitScannedBy.end(), gov);
+	return it != outfitScannedBy.end();
 }
 
 
