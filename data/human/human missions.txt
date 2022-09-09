@@ -4861,26 +4861,29 @@ mission "Riley"
 			`	You stay at a distance as you allow Riley to process the death of her father. She silently weeps as time passes without either of you noticing.`
 			label voice
 			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
-			`	"It... worked." He sounds shocked. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Please, don't be alarmed. I've been working on a personal project for over a decade now. My mind was uploaded to the modified Core you're looking at. I had to say goodbye - I didn't know if it would work. You can't upload a mind while it's still alive. I tried that many times."`
+			`	"It... worked." His voice fizzles, and his tone is not the one you recognize from before. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Do not be alarmed. I have been working on a personal project for over a decade now. My mind was uploaded to the modified Core you are looking at. I had to say goodbye in case the procedure failed - I did not know if it would work. You cannot upload a mind while it's still alive. I tried that many times." The tone of his voice sounds almost sorrowful, but still retains a robotic quality.`
 			choice
 				`	(Stay silent.)"`
 					goto continue
 				`	"Is this... legal?"`
-			`	"Well, no," he replies. "Not under Republic law. I assure you that my only intention is to continue my work; nothing more."`
+			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
 			`	The authorities would probably release a substantial reward if you informed them of this.`
 			label continue
 			`	"Riley, what do you think?" you ask.`
 			`	"Dad, is that really you? How do you feel?"`
-			`	She steps closer to the Core, and they talk for a few tentative minutes. As far as you can tell, the mind that she is talking to is indistinguishable from the man you came to meet.`
-			`	Finally, she turns to you. "It really is my dad. It's a lot to get used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back."`
+			`	She steps closer to the Core. The AI pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes. You soon begin to realize that despite the AI's advanced technology, what Riley is talking to is but a shallow reflection of her father.`
+			`	Finally, she turns to you. "I'll admit it's not perfect, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy, despite the AI being less-than-ideal.`
 			choice
 				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
 					goto suggest
 				`	(Say goodbye.)`
 					goto goodbye
+				`	"Riley, this isn't your father. You need to move on from his death."
+					goto death
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
+			label destroy
 			action
 				set "Shot Core"
 			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
@@ -4890,8 +4893,17 @@ mission "Riley"
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
-			`	You can feel her smile on your back until the door closes behind you. You catch yourself smiling as well, as you make your way back to your ship and return to the stars.`
+			`	You can feel her smile on your back until the door closes behind you. Despite her happiness, you wonder if her attachment to the AI is healthy.`
 				decline
+			label death
+			`	Riley is stunned for a moment. "I can't," she whispers. "You don't know what this means to me. Even if the AI isn't really my father, it's all I have. I can't turn my back on him."`
+			choice
+				`	(Say goodbye.)`
+					goto goodbye
+				`	(Turn the Core in for a bounty.)`
+					goto bounty
+				`	(Draw your gun and destroy the Core).`
+					goto destroy
 			label bounty
 			action
 				payment 100000
