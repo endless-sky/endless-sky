@@ -568,7 +568,6 @@ bool Body::ReadyForAction() const
 void Body::AssignStateTriggers(std::map<const Outfit*, int> &outfits)
 {
 	bool triggerSet[BodyState::NUM_STATES];
-
 	for(const auto it : outfits)
 	{
 		for(int i = 0; i < BodyState::NUM_STATES; i++)
@@ -765,8 +764,8 @@ void Body::SetStep(int step) const
 			if(frame >= lastFrame)
 				frameOffset -= (step - currentStep) * frameRate;
 			frame = min(frame, lastFrame);
-            // Rewind frame needs to be set since transition state can change during delay period.
-            rewindFrame = frame;
+			// Rewind frame needs to be set since transition state can change during delay period.
+			rewindFrame = frame;
 		}
 		// Prevent any flickers from transitioning into states with randomized flares.
 		randomFrame = frame;

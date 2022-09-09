@@ -1749,6 +1749,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			zoom -= .02f;
 			if(zoom < 0.f)
 			{
+				this->FinishStateTransition();
 				// If this is not a special ship, it ceases to exist when it
 				// lands on a true planet. If this is a wormhole, the ship is
 				// instantly transported.
@@ -1781,10 +1782,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			// Ship is moving upwards to space
 			if(zoom <= 0.f)
 			{
+				// Calculate all state triggers on launch
+				this->AssignStateTriggers(outfits);
 				// If the ship was transitioning states while landing, finish any animation transitions.
 				this->FinishStateTransition();
-				// Check upon takeoff if any state triggers need to be updated
-				this->AssignStateTriggers(outfits);
 			}
 			else if(zoom >= zoomTriggerStart)
 			{
@@ -3845,8 +3846,6 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// and cache this ship's jump range.
 		if(outfit->Get("jump drive"))
 			jumpRange = JumpRange(false);
-
-		this->AssignStateTriggers(outfits);
 	}
 }
 
