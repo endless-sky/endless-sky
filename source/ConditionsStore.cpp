@@ -430,7 +430,8 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 			ConditionEntry &ce = checkIt->second;
 			if(ce.provider != provider)
 			{
-				Logger::LogError("Error: replacing condition-entry for \"" + ceName + "\", because it is within range of prefixed derived provider \"" + prefix + "\".");
+				Logger::LogError("Error: replacing condition-entry for \"" + ceName + "\""
+						", because it is within range of prefixed derived provider \"" + prefix + "\".");
 				ce.provider = provider;
 				ce.fullKey = ceName;
 			}
@@ -514,7 +515,8 @@ bool ConditionsStore::VerifyProviderLocation(const string &name) const
 	const ConditionEntry &ce = it->second;
 	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
 	{
-		Logger::LogError("Error: not adding provider for \"" + name + "\", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
+		Logger::LogError("Error: not adding provider for \"" + name + "\""
+				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
 		return false;
 	}
 	return true;
