@@ -65,3 +65,31 @@ mission "Incipias: First Contact III"
 mission "Incipias: Intro"
 	name "Curiosity"
 	description "The Incipias want to see the systems next to them. You agreed to help them."
+	landing
+	source "Pon'tes"
+	waypoint "Hui'uc"
+	waypoint "Il'le"
+	to offer
+		has "Incipias: First Contact III: done"
+	on offer
+		conversation
+			`While you are stading around your ship a group of the aliens is floating towards you. One of them beginns "talking" to you. "Greetings (stranger/guest), (I/we) (am/are) a group of (searching people/scientists/curious people). (I/we)ask for your assistence in a (mission/journey/investigation). (I/we) want to see (my/our) neighbouring systems. Can you (help us/fullfil our wish)? (I/we) will also (reward/pay/show our gratitude to) you."`
+			choice
+				"It will be a pleasure for me."
+					goto yes
+				"Sorry I got other things to do."
+					goto no
+			label yes
+			`    Happy that you help them they come into your ship. "(I/we) want to (see/explore) the systems Hui'uc and Il'le."`
+			`    You note done where they want to go and you get ready for a short trip.`
+				accept
+			label no
+			`    "That is (unfortunate/sad). It seems (I/we) have to (wait/stay here) until we can do this trip ourselfes."`
+			`    You get the feeling you missed a great opportunity of interaction with them.`
+				decline
+	on waypoint
+		dialog "You stay in the system for a short time and the Incipias seem to take some notes."
+	on complete
+		dialog "The Incipias thank you very gratefull. They pay you 50k credits."
+		payment 50000
+
