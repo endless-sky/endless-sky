@@ -3580,7 +3580,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					firingCommands.SetFire(index);
 				++index;
 			}
-		} else {
+		}
+		else
+		{
 			// No longer wants to fire.
 			ship.SetFirePrimary(false);
 		}

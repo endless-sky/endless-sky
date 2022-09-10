@@ -1822,7 +1822,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP))
 	{
 		this->SetState(BodyState::JUMPING);
-		if(IsReadyToJump()){
+		if(IsReadyToJump())
+		{
 			hyperspaceSystem = GetTargetSystem();
 			isUsingJumpDrive = !attributes.Get("hyperdrive") || !currentSystem->Links().count(hyperspaceSystem);
 			hyperspaceFuelCost = JumpFuel(hyperspaceSystem);
@@ -2051,7 +2052,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// moment, its boarding target should be its parent ship.
 	if(CanBeCarried() && !(target && target == GetShipToAssist()))
 		target = GetParent();
-	if(!isDisabled){
+	if(!isDisabled)
+	{
 		if(target)
 		{
 			Point dp = (target->position - position);
@@ -2062,17 +2064,22 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			bool activeEnemyTarget = !target->IsDisabled() && government->IsEnemy(target->government);
 
-			if(!commands.Has(Command::JUMP) && !hasPrimary){
-
+			if(!commands.Has(Command::JUMP) && !hasPrimary)
+			{
 				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
 
-				if(activeEnemyTarget && target->isInSystem && targetInRange){
+				if(activeEnemyTarget && target->isInSystem && targetInRange)
+				{
 					this->SetState(BodyState::FIRING);
-				} else {
-					//Target is not an enemy
+				}
+				else
+				{
+					// Target is not an enemy
 					this->SetState(BodyState::FLYING);
 				}
-			} else if(hasPrimary){
+			}
+			else if(hasPrimary)
+			{
 				this->SetState(BodyState::FIRING);
 			}
 
@@ -2126,22 +2133,31 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					}
 				}
 			}
-		} else {
+		}
+		else
+		{
 
 			shared_ptr<Minable> target = this->GetTargetAsteroid();
 
-			if(!commands.Has(Command::JUMP) && !hasPrimary){
-				if(target && !isDisabled){
+			if(!commands.Has(Command::JUMP) && !hasPrimary)
+			{
+				if(target && !isDisabled)
+				{
 					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
 					// If in range, or the weapon range hasn't been calculated yet.
-					if(targetInRange){
+					if(targetInRange)
+					{
 						this->SetState(BodyState::FIRING);
 					}
-				} else {
+				}
+				else
+				{
 					// No target but still flying around and doesn't want to jump
 					this->SetState(BodyState::FLYING);
 				}
-			} else if(hasPrimary){
+			}
+			else if(hasPrimary)
+			{
 				this->SetState(BodyState::FIRING);
 			}
 		}
@@ -2721,16 +2737,16 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		if(weapon)
 		{
 			bool isAntiMissile = weapon->AntiMissile();
-			if(CanFire(weapon)){
+			if(CanFire(weapon))
+			{
 				if(isAntiMissile)
 					antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 				else if(firingCommands.HasFire(i))
 					armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 			}
 			// Calculate max range of firable weapons
-			if(!isAntiMissile){
+			if(!isAntiMissile)
 				weaponRange = max(weaponRange, weapon->Range());
-			}
 		}
 	}
 

@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteParameters.h"
 
 #include <cstdint>
-#include <string>
 #include <map>
+#include <string>
 
 class DataNode;
 class DataWriter;
@@ -77,7 +77,7 @@ public:
 	void LoadSprite(const DataNode &node, BodyState state = BodyState::FLYING);
 	void LoadTriggerSprite(const DataNode &node, BodyState state, AnimationParameters params);
 	void SaveSprite(DataWriter &out, const std::string &tag = "sprite", bool allStates = false) const;
-	void SaveSpriteParameters(DataWriter &out, SpriteParameters* state) const;
+	void SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const;
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite, BodyState state = BodyState::FLYING);
 	void SetState(BodyState state);
@@ -126,7 +126,9 @@ private:
 
 private:
 	// Animation parameters.
-	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters(), SpriteParameters()};
+	mutable SpriteParameters sprites[BodyState::NUM_STATES] = {SpriteParameters(), SpriteParameters(),
+																SpriteParameters(), SpriteParameters(),
+																SpriteParameters(), SpriteParameters()};
 	mutable BodyState currentState = BodyState::FLYING, transitionState = BodyState::FLYING;
 	mutable bool stateTransitionRequested = false;
 	bool returnDefaultSprite = false;

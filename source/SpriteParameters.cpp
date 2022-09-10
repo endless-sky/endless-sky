@@ -22,14 +22,14 @@ SpriteParameters::SpriteParameters()
 
 }
 
-SpriteParameters::SpriteParameters(const Sprite* sprite)
+SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	AnimationParameters initDefault;
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, initDefault};
 	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*,AnimationParameters>>("default", tuple));
 }
 
-void SpriteParameters::SetSprite(std::string trigger, const Sprite* sprite, AnimationParameters params)
+void SpriteParameters::SetSprite(std::string trigger, const Sprite *sprite, AnimationParameters params)
 {
 	auto tuple = std::tuple<const Sprite*, AnimationParameters>{sprite, params};
 	this->sprites.insert(std::pair<std::string, std::tuple<const Sprite*, AnimationParameters>>(trigger, tuple));

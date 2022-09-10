@@ -794,7 +794,9 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 				// Marks the players flagship for animation purposes
 				flagship->SetIsPlayerFlagship();
 				foundFlagship = true;
-			} else {
+			}
+			else
+			{
 				it->SetIsPlayerFlagship(false);
 			}
 	}

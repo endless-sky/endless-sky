@@ -16,13 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SPRITE_PARAMETERS_H
 #define SPRITE_PARAMETERS_H
 
-#include <string>
 #include <map>
+#include <string>
 #include <tuple>
 
 class Sprite;
 
-class AnimationParameters{
+class AnimationParameters {
 public:
 	// Act like a struct
 	// Animation parameters as found in Body.h
