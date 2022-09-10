@@ -304,7 +304,7 @@ void Body::LoadSprite(const DataNode &node, BodyState state)
 	spriteData->SetSprite("default", sprite, spriteAnimationParameters);
 
 	// Now load the trigger sprites.
-	for(int val = 0; val < triggerSpriteDefer.size(); ++val)
+	for(int val = 0; val < static_cast<int>(triggerSpriteDefer.size()); ++val)
 	{
 		DataNode node = triggerSpriteDefer.at(val);
 		this->LoadTriggerSprite(node, state, spriteAnimationParameters);
