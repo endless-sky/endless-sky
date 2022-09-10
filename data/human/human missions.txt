@@ -4224,7 +4224,7 @@ mission "Saving Artifacts 2"
 		has "Saving Artifacts 1: done"
 	on offer
 		conversation
-			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally mispellt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
+			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally misspelt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
 			label choice
 			choice
 				`	"Why can't you get the Navy involved with this?"`
@@ -4236,7 +4236,7 @@ mission "Saving Artifacts 2"
 					goto accept
 				`	"No way am I risking my life for some hunks of marble. Find someone else."`
 					decline
-			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in  their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
+			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
 				goto choice
 			label conservatory
 			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
