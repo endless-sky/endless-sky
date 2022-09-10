@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 fleet "Small Remnant"
 	government "Remnant"
@@ -39,6 +42,10 @@ fleet "Small Remnant"
 	variant 4
 		"Ibis"
 		"Petrel" 2
+		"Tern" 4
+	variant 4
+		"Ibis"
+		"Smew (Miner)" 2
 		"Tern" 4
 
 fleet "Large Remnant"
@@ -160,6 +167,8 @@ fleet "Remnant Home Guard"
 		"Tern" 1
 	variant 10
 		"Tern" 2
+	variant 10
+		"Smew" 1
 	variant 5
 		"Tern" 3
 	variant 5
@@ -168,6 +177,10 @@ fleet "Remnant Home Guard"
 	variant 5
 		"Petrel" 2
 		"Tern" 4
+	variant 3
+		"Smew (Miner)" 2
+	variant 2
+		"Smew (Runabout)"
 
 fleet "Remnant Decoy Defense"
 	government "Remnant"
@@ -974,6 +987,7 @@ shipyard "Remnant"
 	"Ibis"
 	"Pelican"
 	"Petrel"
+	"Smew"
 	"Tern"
 
 shipyard "Remnant Puffin"
@@ -1032,6 +1046,7 @@ outfitter "Remnant Core"
 	"Fuel Pod"
 	"Tuning Rifle"
 	"Salvage Scanner"
+	"EMP Torpedo"
 
 outfitter "Remnant Salvage"
 	"Generator (Furnace Class)"

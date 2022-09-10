@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Test.h"
@@ -32,7 +35,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace{
+namespace {
 	const auto STATUS_TO_TEXT = map<Test::Status, const string> {
 		{Test::Status::ACTIVE, "active"},
 		{Test::Status::BROKEN, "broken"},
@@ -127,7 +130,8 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
-			for(const DataNode &grand : child){
+			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "shift")
 					modKeys |= KMOD_SHIFT;
 				else if(grand.Token(0) == "alt")
@@ -325,7 +329,8 @@ void Test::Load(const DataNode &node)
 		return;
 	}
 	// Validate if the testname contains valid characters.
-	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-") != std::string::npos)
+	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
+		!= std::string::npos)
 	{
 		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
@@ -523,7 +528,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
-	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i )
+	for(auto i = context.callstack.rbegin(); i != context.callstack.rend(); ++i)
 	{
 		stackMessage += "- \"" + i->test->Name() + "\", step: " + to_string(1 + i->step);
 		if(i->step < i->test->steps.size())
@@ -560,13 +565,13 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	// Future versions of the test-framework could also print all conditions that are used in the test.
 	string conditions = "";
 	const string TEST_PREFIX = "test: ";
-	auto it = player.Conditions().lower_bound(TEST_PREFIX);
-	for( ; it != player.Conditions().end() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
+	auto it = player.Conditions().PrimariesLowerBound(TEST_PREFIX);
+	for( ; it != player.Conditions().PrimariesEnd() && !it->first.compare(0, TEST_PREFIX.length(), TEST_PREFIX); ++it)
 		conditions += "Condition: \"" + it->first + "\" = " + to_string(it->second) + "\n";
 
 	if(!conditions.empty())
 		Logger::LogError(conditions);
-	else if(player.Conditions().empty())
+	else if(player.Conditions().PrimariesBegin() == player.Conditions().PrimariesEnd())
 		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
 		Logger::LogError("No test conditions were set at the moment of failure.");

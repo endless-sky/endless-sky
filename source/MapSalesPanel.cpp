@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapSalesPanel.h"
@@ -385,7 +388,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 
 		const Color &mediumColor = *GameData::Colors().Get("medium");
 		const Color &dimColor = *GameData::Colors().Get("dim");
-		const Color textColor = isForSale ? mediumColor : storage.empty() ? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
+		const Color textColor = isForSale ? mediumColor : storage.empty()
+			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
