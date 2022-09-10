@@ -62,3 +62,6 @@ mission "Incipias: First Contact III"
 			`    "Greetings human. (I/we) welcome (you/your kind/guests) in our (system/home/safe place). (I/we) hope for a (friendly/productive/interesting) relationship. (You/your species) may (freely/carefully) move in this station." You tell them that you are happy to hear that and that you also hope for a nice relationship.`
 				decline
 				
+mission "Incipias: Intro"
+	name "Curiosity"
+	description "The Incipias want to see the systems next to them. You agreed to help them."

@@ -22,8 +22,7 @@ ship "Nimbus"
 		"Core Class Thruster"
 		"Core Class Steering"
 		"Liquid Hydrogen Cell"
-		"Compressor Cannon" 2
-		"Plasma Capsule" 150
+		"Plasma Discharger" 2
 	engine 0 125
 	gun -31 -105
 	gun 31 -105

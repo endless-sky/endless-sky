@@ -1,40 +1,22 @@
-outfit "Compressor Cannon"
-	category "Secondary Weapons"
+outfit "Plasma Discharger"
+	category "Guns"
 	mass 25
 	"outfit space" -20
 	"gun ports" -1
+	thumbnail "outfit/plasma discharger"
 	weapon
-		sprite "projectile/meteor"
-			"no repeat"
-			"frame rate" .25
-		sound "meteor"
-		icon "icon/meteor"
-		"fire effect" "meteor fire"
-		"die effect" "missile death"
-		"hit effect" "missile hit"
-		ammo "Plasma Capsule"
-		"inaccuracy" 5
-		"velocity" 11
-		"lifetime" 350
-		"reload" 80
-		"firing energy" 1
-		"firing heat" 20
-		"acceleration" 1
-		"drag" .1
-		"turn" 1.8
-		"homing" 1
-		"infrared tracking" .65
-		"shield damage" 260
-		"hull damage" 160
-		"hit force" 220
-		"missile strength" 6
-		"minable damage" 200
-
-outfit "Plasma Capsule"
-	category "Ammunition"
-	cost 20
-	mass .1
-	"outfit space" -0.1
+		sprite "projectile/blaster"
+		sound "blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 3
+		"velocity" 10.625
+		"lifetime" 48
+		"reload" 12
+		"firing energy" 5.8
+		"firing heat" 18
+		"shield damage" 10.6
+		"hull damage" 6.6
+		"minable damage" 20
 
 outfit "Gas Class Shield"
 	category "Systems"
