@@ -307,7 +307,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const Depreciation &dep
 		+ attributes.Get("turning heat")
 		+ attributes.Get("afterburner heat");
 	tableLabels.push_back("moving:");
-	energyTable.push_back(Format::Number(-60. * ship.GetMovingEnergyPerFrame()));
+	energyTable.push_back(Format::Number(-60. * ship.GetMovingTotalEnergyPerFrame()));
 	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
 
 	attributesHeight += 20;

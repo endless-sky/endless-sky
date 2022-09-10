@@ -4514,10 +4514,19 @@ double Ship::GetFiringEnergyPerFrame() const
 
 
 
+// Moving energy is thrusting excluding afterburner.
 double Ship::GetMovingEnergyPerFrame() const
 {
 	return max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
-		+ attributes.Get("turning energy") + attributes.Get("afterburner energy");
+		+ attributes.Get("turning energy");
+}
+
+
+
+// Total moving energy includes moving energy plus afterburner.
+double Ship::GetMovingTotalEnergyPerFrame() const
+{
+	return GetMovingEnergyPerFrame() + attributes.Get("afterburner energy");
 }
 
 
@@ -4586,7 +4595,7 @@ double Ship::GetPotentialIonEnergyLoss() const
 // Get the total energy consumption per frame combined from idle, moving, firing, shield regen, and hull regen.
 double Ship::GetEnergyConsumptionPerFrame() const
 {
-	return GetIdleEnergyPerFrame() - GetMovingEnergyPerFrame() - GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
+	return GetIdleEnergyPerFrame() - GetMovingTotalEnergyPerFrame() - GetFiringEnergyPerFrame() - GetRegenEnergyPerFrame();
 }
 
 

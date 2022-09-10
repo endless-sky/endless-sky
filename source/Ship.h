@@ -452,6 +452,7 @@ public:
 	double GetMaxWeaponRange() const;
 	double GetMinWeaponRange() const;
 	double GetMovingEnergyPerFrame() const;
+	double GetMovingTotalEnergyPerFrame() const;
 	double GetPotentialIonEnergyLoss() const;
 	double GetRamscoopRegenPerFrame() const;
 	double GetRegenEnergyPerFrame() const;
