@@ -30251,7 +30251,7 @@ planet Redias
 	"required reputation" 1.0
 	description "You can not land on the home planet of the Incipas, because they have no spaceport fitting for ships like yours."
 	description  "While your drifting through the planets atmosphere you see some small floating platform and space ship equivalent objects gliding between them."
-	spaceport "Even though there is a spaceport, you can not land n it because it is not made for ships of your type."
+	spaceport "Even though there is a spaceport, you can not land on it because it is not made for ships of your type."
 
 planet Redwatch
 	attributes hai station uninhabited

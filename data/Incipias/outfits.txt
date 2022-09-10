@@ -41,6 +41,7 @@ outfit "Plasma Capsule"
 
 outfit "Gas Class Shield"
 	category "Systems"
+	thumbnail outfit/gas class shield
 	mass 20
 	"outfit space" -20
 	shields 1000
@@ -49,6 +50,7 @@ outfit "Gas Class Shield"
 
 outfit "Liquid Class Shield"
 	category "Systems"
+	thumbnail outfit/liquid class shield
 	mass 30
 	"outfit space" -30
 	shields 1250
