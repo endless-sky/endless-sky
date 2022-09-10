@@ -49,3 +49,10 @@ fleet "Nimbi"
 		timid mining harvests mute
 	variant 1
 		"Nimbus" 1
+
+outfitter "Incipias All"
+	"Liquid Hydrogen Cell"
+	"Gas Class Shield"
+	"Liquid Class Shield"
+	"Core Class Thruster"
+	"Core Class Steering"

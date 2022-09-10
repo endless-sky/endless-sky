@@ -30160,6 +30160,7 @@ planet "Pon'tes"
 	government "Hicemus"
 	landscape land/station16
 	"required reputation" 1.0
+	outfitter "Incipias All"
 	description "The spacestation is not nearly as comfortable as stations in human space. Furthermore it is not build for beings with more than one cell, so there are no handles or even a floor. The Incipias are just gliding around in a way you can not explain yourself."
 	spaceport "This spacestation has no normal spaceport but a docking area where ships can dock to the station. A lot of people are around here but not many of them seem to be captains like you."
 

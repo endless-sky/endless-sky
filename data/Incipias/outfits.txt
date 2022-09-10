@@ -36,12 +36,9 @@ outfit "Plasma Capsule"
 	mass .1
 	"outfit space" -0.1
 
-
-
-
 outfit "Gas Class Shield"
 	category "Systems"
-	thumbnail outfit/gas class shield
+	thumbnail "outfit/gas class shield"
 	mass 20
 	"outfit space" -20
 	shields 1000
@@ -50,7 +47,7 @@ outfit "Gas Class Shield"
 
 outfit "Liquid Class Shield"
 	category "Systems"
-	thumbnail outfit/liquid class shield
+	thumbnail "outfit/liquid class shield"
 	mass 30
 	"outfit space" -30
 	shields 1250
@@ -67,20 +64,35 @@ outfit "Solid Class Shield"
 
 outfit "Liquid Hydrogen Cell"
 	category "Power"
+	thumbnail "outfit/liquid hydrogen cell"
 	mass 20
 	"outfit space" -20
 	"energy capacity" 2000
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of Hydrogen on their homeworld."
 
-outfit "Hydrogen Engine"
+outfit "Core Class Thruster"
 	category "Engines"
-	"mass" 20
-	"outfit space" -20
-	"engine capacity" -20
-	"thrust" 40
+	"flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+	"flare sound" "plasma huge"
+	thumbnail "outfit/core class thruster"
+	"mass" 60
+	"outfit space" -10
+	"engine capacity" -10
+	"thrust" 24
 	"thrusting energy" 5
 	"thrusting heat" 10
-	"turn" 1000
+
+
+outfit "Core Class Steering"
+	category "Engines"
+	"steering flare sprite" "effect/incipias flare/huge"
+		"frame rate" 9
+	"steering flare sound" "plasma huge"
+	thumbnail "outfit/core class steering"
+	"mass" 50
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 1207
 	"turning energy" 2.5
 	"turning heat" 12
-	description "This very simple engine just burns Liquid Hydrogen to get forward, but because the Incipias have not found something better until now, they made it very effective."

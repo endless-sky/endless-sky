@@ -11,15 +11,16 @@ ship "Nimbus"
 		"drag" 13.3
 		"heat dissipation" .7
 		"cargo space" 100
-		"outfit space" 200
-		"engine capacity" 40
-		"weapon capacity" 40 
+		"outfit space" 450
+		"engine capacity" 150
+		"weapon capacity" 50 
 		"gaslining"
 		"solar collection" 400
 		"fuel capacity" 1
 	outfits
 		"Solid Class Shield"
-		"Hydrogen Engine"
+		"Core Class Thruster"
+		"Core Class Steering"
 		"Liquid Hydrogen Cell"
 		"Compressor Cannon" 2
 		"Plasma Capsule" 150
