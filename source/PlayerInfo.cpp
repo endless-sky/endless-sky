@@ -139,6 +139,9 @@ void PlayerInfo::Load(const string &path)
 	// we provide the same access to services in this session, too.
 	bool hasFullClearance = false;
 
+	// Register derived conditions now, so old primary versions can load into them
+	RegisterDerivedConditions();
+
 	DataFile file(path);
 	for(const DataNode &child : file)
 	{
@@ -300,8 +303,6 @@ void PlayerInfo::Load(const string &path)
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
 		planet->Bribe();
-	// Make the derived conditions available again.
-	RegisterDerivedConditions();
 
 	// Based on the ships that were loaded, calculate the player's capacity for
 	// cargo and passengers.
@@ -1203,7 +1204,8 @@ void PlayerInfo::Land(UI *ui)
 	// do not name them all (since this would overflow the screen).
 	else if(ui && !inactiveMissions.empty())
 	{
-		string message = "These active missions or jobs were deactivated due to a missing definition - perhaps you recently removed a plugin?\n";
+		string message = "These active missions or jobs were deactivated due to a missing definition"
+			" - perhaps you recently removed a plugin?\n";
 		auto mit = inactiveMissions.rbegin();
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
@@ -2547,35 +2549,45 @@ void PlayerInfo::RegisterDerivedConditions()
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	auto &&netWorthProvider = conditions.GetProviderNamed("net worth");
-	netWorthProvider.SetGetFunction([this](const string &name) { return min(limit, max(-limit, accounts.NetWorth())); });
+	netWorthProvider.SetGetFunction([this](const string &name)
+		{ return min(limit, max(-limit, accounts.NetWorth())); });
 
 	auto &&creditsProvider = conditions.GetProviderNamed("credits");
-	creditsProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.Credits()); });
+	creditsProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.Credits()); });
 
 	auto &&unpaidMortgagesProvider = conditions.GetProviderNamed("unpaid mortgages");
-	unpaidMortgagesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.TotalDebt("Mortgage")); });
+	unpaidMortgagesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Mortgage")); });
 
 	auto &&unpaidFinesProvider = conditions.GetProviderNamed("unpaid fines");
-	unpaidFinesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.TotalDebt("Fine")); });
+	unpaidFinesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.TotalDebt("Fine")); });
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
-	unpaidSalariesProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.SalariesOwed()); });
+	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.SalariesOwed()); });
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
-	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) { return min(limit, accounts.MaintenanceDue()); });
+	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
+		return min(limit, accounts.MaintenanceDue()); });
 
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
-	creditScoreProvider.SetGetFunction([this](const string &name) { return accounts.CreditScore(); });
+	creditScoreProvider.SetGetFunction([this](const string &name) {
+		return accounts.CreditScore(); });
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
-	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Crew() : 0; });
+	flagshipCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->Crew() : 0; });
 
 	auto &&flagshipRequiredCrewProvider = conditions.GetProviderNamed("flagship required crew");
-	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->RequiredCrew() : 0; });
+	flagshipRequiredCrewProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->RequiredCrew() : 0; });
 
 	auto &&flagshipBunksProvider = conditions.GetProviderNamed("flagship bunks");
-	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Attributes().Get("bunks") : 0; });
+	flagshipBunksProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->Attributes().Get("bunks") : 0; });
 
 	auto &&flagshipModelProvider = conditions.GetProviderPrefixed("flagship model: ");
 	auto flagshipModelFun = [this](const string &name) -> bool
@@ -2589,10 +2601,12 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Conditions for your fleet's attractiveness to pirates.
 	auto &&cargoAttractivenessProvider = conditions.GetProviderNamed("cargo attractiveness");
-	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t { return RaidFleetFactors().first; });
+	cargoAttractivenessProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return RaidFleetFactors().first; });
 
 	auto &&armamentDeterrence = conditions.GetProviderNamed("armament deterrence");
-	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t { return RaidFleetFactors().second; });
+	armamentDeterrence.SetGetFunction([this](const string &name) -> int64_t {
+		return RaidFleetFactors().second; });
 
 	auto &&pirateAttractionProvider = conditions.GetProviderNamed("pirate attraction");
 	pirateAttractionProvider.SetGetFunction([this](const string &name) -> int64_t

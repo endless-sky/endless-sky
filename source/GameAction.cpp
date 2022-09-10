@@ -24,8 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Ship.h"
 #include "Random.h"
+#include "Ship.h"
 #include "UI.h"
 
 #include <cstdlib>
