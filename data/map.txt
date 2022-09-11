@@ -14811,7 +14811,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 1296
+	fleet "Korsmanath A'awojs" 2000
 	object
 		sprite star/g0
 		period 10
@@ -14879,7 +14879,7 @@ system "Kor Fel'tar"
 	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
-	fleet "Korsmanath A'awojs" 600
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/k3
 		period 10
@@ -15019,7 +15019,7 @@ system "Kor Nor'peli"
 	fleet "Korath Ember Waste Raid Large" 20000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 702
+	fleet "Korsmanath A'awojs" 1100
 	object
 		sprite star/k3
 		distance 22.4307
@@ -15093,7 +15093,7 @@ system "Kor Tar'bei"
 	fleet "Korath Defense" 2600
 	fleet "Korath Ember Waste Raid" 3000
 	fleet "Korath Ember Waste Raid Large" 30000
-	fleet "Korsmanath A'awojs" 600
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/m3
 		period 10
@@ -15150,7 +15150,7 @@ system "Kor Zena'i"
 	fleet "Korath Defense" 1660
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 1662
+	fleet "Korsmanath A'awojs" 2500
 	object
 		sprite star/g5-old
 		distance 11.9387
