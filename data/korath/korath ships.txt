@@ -795,9 +795,10 @@ ship "Kasichara A'awoj"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
+		"Systems Core (Small)"
 		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
 		"Fuel Processor" 2
-		"Brig"
 		"Luxury Accommodations"
 		"Microbot Defense Station" 23
 		"Thermal Repeater Rifle" 372
@@ -809,11 +810,10 @@ ship "Kasichara A'awoj"
 		"Scram Drive"
 	
 	engine -37 343 .8
+	engine 0 343 .8
 	engine 37 343 .8
 	"reverse engine" -16 -336 0.9
 	"reverse engine" 16 -336 0.9
-	"reverse engine" 0 -303 0.5
-		over
 	turret -78 -233.5 "Banisher Grav-Turret"
 	turret 78 -233.5 "Warder Anti-Missile"
 	turret -78 9.5 "Grab-Strike Turret"
