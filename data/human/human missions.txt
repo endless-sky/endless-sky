@@ -4884,11 +4884,25 @@ mission "Riley"
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
 			label destroy
-			action
-				set "Shot Core"
 			`	You pull out your gun and aim at the computer Church is in. Before you can fire, Riley runs out in front of the barrel, spreads her arms, and shouts, "No! Please, <first>, you have to understand! He's all I have left!"`
 			`	Behind her, Church says, "Riley, there is no need to be so loud. My microphones can hear you fine, and I do not want the nurse to become suspicious."`
+			choice
+				`	(Put your gun away.)`
+					goto away
+				`	(Shoot.)`
+			action
+				set "Shot Core"
+			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
+			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
+			label away
+			`	Riley relaxes slightly once she sees your gun put back in its holster. After the shock has subsided, she finally speaks. "Leave us alone," she says, her voice still trembling. Realizing your time here is up, you exit the hospital and make your way to the spaceport, hoping that that scene did not attract unwanted notice.`
+			choice
+				`	(Turn the Core in for a bounty.)`
+					goto bounty
+				`	(Go back to your ship.)`
+			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
+					decline
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
@@ -4899,11 +4913,13 @@ mission "Riley"
 			`	Riley is stunned for a moment. "You don't know that," she whispers. "Sure, he's a lot more forgetful, and doesn't seem as emotional, but... maybe it just takes some time for the system to warm up. Besides, you don't know what he means to me. What he's done for me. Even if this isn't really my father, I can't turn my back on him."`
 			choice
 				`	(Say goodbye.)`
-					goto goodbye
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
 				`	(Draw your gun and destroy the Core).`
 					goto destroy
+			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
+			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.
+				decline
 			label bounty
 			action
 				payment 100000
