@@ -494,6 +494,90 @@ ship "'olofez" "'olofez (World-Ship)"
 
 
 
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 237
+		"Microbot Defense Station" 19
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Jump Drive"
+
+
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 3
+		"Digger Mining Turret" 3
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Fuel Processor" 2
+		"Thermal Repeater Rifle" 237
+		"Microbot Defense Station" 17
+		
+		"Afterburner (Comet Class)"
+		"Reverser (Planetary Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Digger Mining Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Digger Mining Turret"
+	turret "Warder Anti-Missile"
+
+
+ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
+	outfits
+		"Digger Mining Beam" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 4
+		"Shunt-Strike Turret" 2
+
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 246
+		"Microbot Defense Station" 17
+		"Scram Drive"
+
+		"Reverser (Asteroid Class)"
+		"Reverser (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Stellar Class)"
+
+	gun "Digger Mining Beam"
+	gun "Digger Mining Beam"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
+	turret "Banisher Grav-Turret"
+	turret "Banisher Grav-Turret"
+	turret "Warder Anti-Missile"
+
+
+
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	outfits
 		"Banisher Grav-Turret" 3
@@ -738,90 +822,6 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 
 
 
-ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
-	outfits
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 3
-		"Digger Mining Turret" 3
-		"Digger Mining Beam" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
-		"Thermal Repeater Rifle" 237
-		"Microbot Defense Station" 19
-		
-		"Thruster (Stellar Class)"
-		"Steering (Planetary Class)"
-		"Jump Drive"
-
-
-ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
-	outfits
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 3
-		"Digger Mining Turret" 3
-		"Digger Mining Beam" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Medium)"
-		"Large Heat Shunt" 2
-		"Fuel Processor" 2
-		"Thermal Repeater Rifle" 237
-		"Microbot Defense Station" 17
-		
-		"Afterburner (Comet Class)"
-		"Reverser (Planetary Class)"
-		"Thruster (Stellar Class)"
-		"Steering (Planetary Class)"
-		"Scram Drive"
-
-	gun "Digger Mining Beam"
-	gun "Digger Mining Beam"
-	turret "Digger Mining Turret"
-	turret "Digger Mining Turret"
-	turret "Warder Anti-Missile"
-	turret "Warder Anti-Missile"
-	turret "Banisher Grav-Turret"
-	turret "Banisher Grav-Turret"
-	turret "Digger Mining Turret"
-	turret "Warder Anti-Missile"
-
-
-ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
-	outfits
-		"Digger Mining Beam" 2
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 4
-		"Shunt-Strike Turret" 2
-
-		"Triple Plasma Core"
-		"Systems Core (Medium)"
-		"Liquid Sodium Cooler"
-		"Fuel Processor"
-		"Thermal Repeater Rifle" 246
-		"Microbot Defense Station" 17
-		"Scram Drive"
-
-		"Reverser (Asteroid Class)"
-		"Reverser (Lunar Class)"
-		"Steering (Planetary Class)"
-		"Thruster (Stellar Class)"
-
-	gun "Digger Mining Beam"
-	gun "Digger Mining Beam"
-	turret "Shunt-Strike Turret"
-	turret "Warder Anti-Missile"
-	turret "Warder Anti-Missile"
-	turret "Shunt-Strike Turret"
-	turret "Warder Anti-Missile"
-	turret "Banisher Grav-Turret"
-	turret "Banisher Grav-Turret"
-	turret "Warder Anti-Missile"
-
-
-
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 	outfits
 		"Langrage Hyper-Heaver" 2
@@ -839,6 +839,70 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
+
+
+
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
+	outfits
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Brig"
+		"Microbot Defense Station" 12
+		"Thermal Repeater Rifle" 493
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Scram Drive"
+	
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
+	turret -77 -116.5 "Grab-Strike Turret"
+	turret 77 -116.5 "Grab-Strike Turret"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
+
+
+ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Shunt-Strike Turret" 2
+		"Fire-Lance" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 2
+		"Brig"
+		"Microbot Defense Station" 8
+		"Thermal Repeater Rifle" 1492
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+		"Jump Drive"
+	
+	gun -45 -253 "Fire-Lance"
+	gun 45 -253 "Fire-Lance"
+	turret -77 -116.5 "Shunt-Strike Turret"
+	turret 77 -116.5 "Shunt-Strike Turret"
+	turret -87 -83 "Warder Anti-Missile"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Banisher Grav-Turret"
+	turret 51 276.5 "Warder Anti-Missile"
 
 
 
@@ -945,70 +1009,6 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 	turret "Thermal Repeater Turret"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
-
-
-
-ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
-	outfits
-		"Grab-Strike Turret" 2
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 2
-		"Fire-Lance" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Liquid Sodium Cooler"
-		"Fuel Processor" 2
-		"Brig"
-		"Microbot Defense Station" 12
-		"Thermal Repeater Rifle" 493
-		
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Afterburner (Comet Class)"
-		"Reverser (Lunar Class)"
-		"Scram Drive"
-	
-	gun -45 -253 "Fire-Lance"
-	gun 45 -253 "Fire-Lance"
-	turret -77 -116.5 "Grab-Strike Turret"
-	turret 77 -116.5 "Grab-Strike Turret"
-	turret -87 -83 "Warder Anti-Missile"
-	turret 87 -83 "Banisher Grav-Turret"
-	turret -51 276.5 "Banisher Grav-Turret"
-	turret 51 276.5 "Warder Anti-Missile"
-
-
-ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
-	outfits
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 2
-		"Shunt-Strike Turret" 2
-		"Fire-Lance" 2
-		
-		"Triple Plasma Core"
-		"Systems Core (Large)"
-		"Systems Core (Small)"
-		"Liquid Sodium Cooler"
-		"Fuel Processor" 2
-		"Brig"
-		"Microbot Defense Station" 8
-		"Thermal Repeater Rifle" 1492
-		
-		"Reverser (Lunar Class)"
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Scram Drive"
-		"Jump Drive"
-	
-	gun -45 -253 "Fire-Lance"
-	gun 45 -253 "Fire-Lance"
-	turret -77 -116.5 "Shunt-Strike Turret"
-	turret 77 -116.5 "Shunt-Strike Turret"
-	turret -87 -83 "Warder Anti-Missile"
-	turret 87 -83 "Banisher Grav-Turret"
-	turret -51 276.5 "Banisher Grav-Turret"
-	turret 51 276.5 "Warder Anti-Missile"
 
 
 
