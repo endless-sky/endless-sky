@@ -2060,7 +2060,7 @@ mission "FW Defend New Tibet"
 				`	"I say we let the Syndicate have the terrorist, and focus on winning the battle against the Republic."`
 					goto surrender
 			label rescue
-			`	"Are you sure?" asks Freya. "The Syndicate have done a lot for us in the past."`
+			`	"Are you sure?" asks Freya. "The Syndicate has done a lot for us in the past."`
 			choice
 				`	"Yes, I'm sure. We rescue the defector."`
 					goto "definitely rescue"

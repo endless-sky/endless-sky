@@ -1424,7 +1424,7 @@ mission "FW Escort 0"
 					decline
 			
 			label accept
-			`	"Great!" he says. "The convoy will start at <destination> once all the escorts have arrived. I suggest you head there immediately."`
+			`	"Great!" he says. "The convoy will start from <destination> once all the escorts have arrived. I suggest you head there immediately."`
 				accept
 
 
