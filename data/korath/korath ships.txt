@@ -570,15 +570,14 @@ ship "Kas'lor Ik 582"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
-		"Brig"
-		"Thermal Repeater Rifle" 272
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Thermal Repeater Rifle" 317
 		"Microbot Defense Station" 4
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Scram Drive"
 	
 	engine -37 333 .8
 	engine 0 333 .8
@@ -801,7 +800,7 @@ ship "Kasichara A'awoj"
 		"Fuel Processor" 2
 		"Luxury Accommodations"
 		"Microbot Defense Station" 23
-		"Thermal Repeater Rifle" 372
+		"Thermal Repeater Rifle" 548
 		
 		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"

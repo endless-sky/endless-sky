@@ -830,11 +830,10 @@ ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
-		"Fuel Processor"
-		"Brig"
-		"Microbot Defense Station" 4
-		"Thermal Repeater Rifle" 272
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Microbot Defense Station" 7
+		"Thermal Repeater Rifle" 317
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
