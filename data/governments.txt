@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 government "Alpha"
 	swizzle 1
@@ -133,7 +136,7 @@ government "Free Worlds"
 
 government "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -153,7 +156,7 @@ government "Hai"
 government "Hai (Wormhole Access)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -172,7 +175,7 @@ government "Hai (Wormhole Access)"
 government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -191,7 +194,7 @@ government "Hai Merchant"
 government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -210,7 +213,7 @@ government "Hai Merchant (Sympathizers)"
 government "Hai Merchant (Human)"
 	"display name" "Hai"
 	swizzle 0
-	color .84 .42 .81
+	color .86 .48 .79
 	
 	"player reputation" 0
 	"attitude toward"
@@ -226,7 +229,7 @@ government "Hai Merchant (Human)"
 
 government "Hai (Unfettered)"
 	swizzle 4
-	color .69 .33 .82
+	color .55 .27 .76
 	
 	"player reputation" -1000
 	"attitude toward"
