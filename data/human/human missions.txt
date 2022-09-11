@@ -4841,7 +4841,7 @@ mission "Riley"
 			choice
 				`	"Riley chartered a flight here aboard my ship. I heard so much about you on the way; it's a pleasure to meet you."`
 				`	"Riley and I have gotten to know each other on the long flight here. You've raised an incredible woman."`
-			`	"<first> was the only captain willing to fly here from <origin>. I wouldn't be here without them," she says.`
+			`	"No other captain was willing to fly here from <origin>. I wouldn't be here without <first>," she says.`
 			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
 			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
 			`	Riley, in turn, had always surrounded herself with music, and moved to <origin> to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
@@ -4871,14 +4871,14 @@ mission "Riley"
 			label continue
 			`	"Riley, what do you think?" you ask.`
 			`	"Dad, is that really you? How do you feel?"`
-			`	She steps closer to the Core. The AI pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes. You soon begin to realize that despite the AI's advanced technology, what Riley is talking to is but a shallow reflection of her father.`
-			`	Finally, she turns to you. "I'll admit it's not perfect, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy, despite the AI being less-than-ideal.`
+			`	She steps closer to the Core. Church pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes, at first about how he's feeling, before moving onto the memories that Church retained during the transfer. You begin to relax as the two interact when you realize that Church is retelling the story of how he evaded the police to fix Riley's ankle for the third time in a row.`
+			`	Finally, she turns to you. "I'll admit that he doesn't sound as lively as he used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy.`
 			choice
 				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
 					goto suggest
 				`	(Say goodbye.)`
 					goto goodbye
-				`	"Riley, this isn't your father. You need to move on from his death."`
+				`	"Riley, I don't think you're talking to your father."`
 					goto death
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
@@ -4896,7 +4896,7 @@ mission "Riley"
 			`	You can feel her smile on your back until the door closes behind you. Despite her happiness, you wonder if her attachment to the AI is healthy.`
 				decline
 			label death
-			`	Riley is stunned for a moment. "I can't," she whispers. "You don't know what this means to me. Even if the AI isn't really my father, it's all I have. I can't turn my back on him."`
+			`	Riley is stunned for a moment. "You don't know that," she whispers. "Sure, he's a lot more forgetful, and doesn't seem as emotional, but... maybe it just takes some time for the system to warm up. Besides, you don't know what he means to me. What he's done for me. Even if this isn't really my father, I can't turn my back on him."`
 			choice
 				`	(Say goodbye.)`
 					goto goodbye
