@@ -94,4 +94,3 @@ mission "Incipias: Intro"
 	on complete
 		dialog "The Incipias thank you very gratefull. They pay you 50k credits."
 		payment 50000
-
