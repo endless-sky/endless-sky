@@ -28831,7 +28831,7 @@ planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
 	music ambient/machinery
-	description `This station is so run-down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	description `This station is so run-down that most of the workers carry oxygen masks in case a meteoroid punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment, there are no repair or refueling services available here.`
 	security 0.3
 	tribute 100
 		threshold 3500
