@@ -31,7 +31,7 @@ public:
 	static bool HasChanged();
 	static bool HasChanged(const std::string &name);
 	static bool IsEnabled(const std::string &name);
-	static void Set(const std::string &name, bool on = true);
+	static void Set(const std::string &name, bool on);
 	static void TogglePlugin(const std::string &name);
 };
 
