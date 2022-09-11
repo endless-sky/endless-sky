@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sprite;
 
+// A node defining the parameters for a certain trigger sprite
 class AnimationParameters {
 public:
 	// Act like a struct
@@ -45,7 +46,7 @@ public:
 	bool indicateReady = false;
 };
 
-// Class holding all of the animation parameters required to animate a sprite;
+// Class holding all of the animation parameters required to animate a sprite
 class SpriteParameters
 {
 public:
