@@ -28831,7 +28831,7 @@ planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
 	music ambient/machinery
-	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	description `This station is so run-down that most of the workers carry oxygen masks in case a meteoroid punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment, there are no repair or refueling services available here.`
 	security 0.3
 	tribute 100
 		threshold 3500
@@ -29319,7 +29319,7 @@ planet Millrace
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase in immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
 	spaceport `	Most of the restaurants are of the greasy spoon variety.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -30236,7 +30236,7 @@ planet "Separa Tiklar"
 	attributes korath station
 	landscape land/space1
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
-	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
 	security 0
 
 planet "Septar Lorku"
@@ -30663,7 +30663,7 @@ planet "Tebuteb's Table"
 planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station12
-	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+	description `This station is run-down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet "Third Umber"
 	attributes factory kimek research
@@ -30857,7 +30857,7 @@ planet Vail
 	landscape land/snow4
 	description `Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries supply the tourists and the large staffs that cater to them.`
 	description `	The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hoverboarding and wingsuit cliff skiing.`
-	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move peple and cargo from here to their ultimate destinations in the resort towns.`
+	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move people and cargo from here to their ultimate destinations in the resort towns.`
 	spaceport `	Consequently, the air is full of a confusing mixture of deep space ships and atmospheric vehicles. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe 0.04
 	security 0.6
