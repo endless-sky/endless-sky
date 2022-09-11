@@ -31,6 +31,8 @@ mission "Incipias: First Contact II"
 			`    After a bit more than a day he again approaches you. "I am now finished with gathering the basics. We can now get back to my home, where I can build you the translation device."`
 	on complete
 		set "language: Incups"
+		set "reputation: Hicemus" 1.0
+		set "reputation: Incipias" 1.0
 		conversation
 			`When you arrived back at the home of the scientist, he immediatly begins to work. Seriously you never have seen a Hai being that excited about something. After some time passed he comes back to you. "So here are somethings you need to know", he says, " first of all they do not communicate over sounds but over light. Second ,and that is a bit more important, they do not talk like you and me via sentences and that kind of grammar but over feelings and emotions. That makes translating it to our language extremly difficult. I somehow managed to teach an AI what certain things mean, but there wont be any precise statements for you more like a general analysis of what the speaker is feeling. But I think you will get used to that. There is one other important thig right now before you go. They gave you the permission to land on their planet or stations. So make some contact."`
 			`    You say goodbye to him and thank him for all of his efforts.`

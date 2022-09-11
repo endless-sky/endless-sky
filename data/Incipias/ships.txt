@@ -1,6 +1,7 @@
 ship "Nimbus"
 	"plural" "Nimbus'"
 	"sprite" ship/nimbus
+	"swizzle" 0
 	attributes
 		"category" "Transport"
 		"cost" 500000
@@ -14,9 +15,9 @@ ship "Nimbus"
 		"outfit space" 450
 		"engine capacity" 150
 		"weapon capacity" 50 
-		"gaslining"
+		"gaslining" 1
 		"solar collection" 400
-		"fuel capacity" 1
+		"fuel capacity" 200
 	outfits
 		"Solid Class Shield"
 		"Core Class Thruster"

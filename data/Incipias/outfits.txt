@@ -8,15 +8,15 @@ outfit "Plasma Discharger"
 		sprite "projectile/blaster"
 		sound "blaster"
 		"hit effect" "blaster impact"
-		"inaccuracy" 3
-		"velocity" 10.625
-		"lifetime" 48
-		"reload" 12
-		"firing energy" 5.8
-		"firing heat" 18
-		"shield damage" 10.6
-		"hull damage" 6.6
-		"minable damage" 20
+		"inaccuracy" 5
+		"velocity" 20.625
+		"lifetime" 32
+		"reload" 14
+		"firing energy" 8
+		"firing heat" 4
+		"shield damage" 30
+		"hull damage" 35
+		"minable damage" 50
 
 outfit "Gas Class Shield"
 	category "Systems"

@@ -35,12 +35,6 @@ phrase "Inci Names"
 	word
 		"en"
 
-phrase "Hicemus friendly"
-	phrase
-		""
-		""
-		""
-
 fleet "Nimbi"
 	government "Hicemus"
 	names "Inci Names"
@@ -50,10 +44,13 @@ fleet "Nimbi"
 	variant 1
 		"Nimbus" 1
 
-outfitter "Incipias All"
+outfitter "Incipias All Outfits"
 	"Liquid Hydrogen Cell"
 	"Gas Class Shield"
 	"Liquid Class Shield"
 	"Core Class Thruster"
 	"Core Class Steering"
 	"Plasma Discharger"
+
+shipyard "Incipias All Ships"
+	"Nimbus"
