@@ -4918,7 +4918,7 @@ mission "Riley"
 				`	(Draw your gun and destroy the Core).`
 					goto destroy
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
-			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.
+			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.`
 				decline
 			label bounty
 			action
