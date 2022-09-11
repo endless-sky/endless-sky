@@ -100,14 +100,14 @@ ship Shale
 		mass 121
 		bunks 7
 		"cargo space" 36
-		drag 1.7
+		drag 1.8
 		"engine capacity" 58
 		"fuel capacity" 400
 		"heat dissipation" 0.8
 		"heat protection" 3
 		"ion protection" 3
-		hull 825
-		"outfit space" 125
+		hull 760
+		"outfit space" 120
 		"required crew" 1
 		shields 0
 		"weapon capacity" 0
@@ -280,14 +280,14 @@ ship Slate
 		mass 121
 		bunks 7
 		"cargo space" 36
-		drag 1.7
+		drag 2
 		"engine capacity" 58
 		"fuel capacity" 400
 		"heat dissipation" 0.8
 		"heat protection" 3
 		"ion protection" 3
 		hull 825
-		"outfit space" 125
+		"outfit space" 100
 		"required crew" 1
 		shields 0
 		"weapon capacity" 0
