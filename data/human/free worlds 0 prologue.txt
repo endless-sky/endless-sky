@@ -1434,6 +1434,12 @@ mission "FW Escort: Escorts"
 	invisible
 	to offer
 		has "FW Escort 0: done"
+	to fail
+		or
+			has "chosen sides"
+			and
+				has "event: fw escorts abandon timer"
+				not "FW Escort 2: offered"
 	to complete
 		never
 	npc
@@ -1600,7 +1606,12 @@ mission "FW Escort 1B"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
+		event "fw escorts abandon timer"
 		dialog `Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
+
+
+
+event "fw escorts abandon timer"
 
 
 
@@ -1612,6 +1623,7 @@ mission "FW Escort 2"
 	destination "Wayfarer"
 	to offer
 		has "FW Escort 1B: done"
+		not "event: fw escorts abandon timer"
 	to fail
 		has "chosen sides"
 	
