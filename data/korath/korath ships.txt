@@ -391,7 +391,7 @@ ship "Lor'kas Ik 577"
 	thumbnail "thumbnail/world-ship a"
 	attributes
 		category "Heavy Freighter"
-		cost 28650000
+		cost 24650000
 		shields 32700
 		hull 29600
 		"required crew" 234
@@ -462,7 +462,7 @@ ship "Ra'gru Ik 618"
 	thumbnail "thumbnail/world-ship b"
 	attributes
 		category "Heavy Warship"
-		cost 37640000
+		cost 49640000
 		shields 51000
 		hull 39500
 		"required crew" 619
@@ -544,7 +544,7 @@ ship "Kas'lor Ik 582"
 	thumbnail "thumbnail/world-ship c"
 	attributes
 		category "Heavy Freighter"
-		cost 27690000
+		cost 23190000
 		shields 39750
 		hull 26100
 		"required crew" 314
@@ -614,7 +614,7 @@ ship "Lor'nag Ik 590"
 	thumbnail "thumbnail/world-ship d"
 	attributes
 		category "Space Liner"
-		cost 29640000
+		cost 25640000
 		shields 47000
 		hull 34800
 		"required crew" 538
@@ -686,7 +686,7 @@ ship "Ra'at Ik 621"
 	thumbnail "thumbnail/world-ship e"
 	attributes
 		category "Heavy Warship"
-		cost 33590000
+		cost 43590000
 		shields 48000
 		hull 31400
 		"required crew" 794
@@ -1112,12 +1112,12 @@ ship "Arch-Carrack"
 	thumbnail "thumbnail/arch-carrack"
 	attributes
 		category "Heavy Freighter"
-		"cost" 29370000
+		"cost" 15815000
 		"shields" 21800
 		"hull" 19300
-		"required crew" 89
-		"bunks" 158
-		"mass" 927
+		"required crew" 54
+		"bunks" 97
+		"mass" 1177
 		"drag" 14.9
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -1125,9 +1125,9 @@ ship "Arch-Carrack"
 		"outfit space" 582
 		"weapon capacity" 193
 		"engine capacity" 147
-		"disruption resistance" 0.35
-		"disruption resistance energy" 7
-		"disruption resistance heat" 3.5
+		"disruption resistance" 0.24
+		"disruption resistance energy" 2.4
+		"disruption resistance heat" 2.4
 		
 		weapon
 			"blast radius" 300
@@ -1142,7 +1142,7 @@ ship "Arch-Carrack"
 		"Systems Core (Medium)"
 		"Triple Plasma Core"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 90
 		
@@ -1178,8 +1178,8 @@ ship "Charm-Shallop"
 		"cost" 16570000
 		"shields" 19700
 		"hull" 15200
-		"required crew" 103
-		"bunks" 281
+		"required crew" 65
+		"bunks" 253
 		"mass" 575
 		"drag" 8.5
 		"heat dissipation" .6
@@ -1188,9 +1188,9 @@ ship "Charm-Shallop"
 		"outfit space" 569
 		"weapon capacity" 153
 		"engine capacity" 171
-		"disruption resistance" 0.3
-		"disruption resistance energy" 6
-		"disruption resistance heat" 3
+		"disruption resistance" 0.2
+		"disruption resistance energy" 2
+		"disruption resistance heat" 2
 		weapon
 			"blast radius" 250
 			"shield damage" 3600
