@@ -1247,6 +1247,8 @@ mission "FW Pirates: Attack 2"
 	clearance
 	to offer
 		has "FW Pirates: Attack 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1315,7 +1317,7 @@ mission "FW Pirates: Attack 2"
 				"Behemoth"
 				"Modified Argosy"
 				"Clipper (Speedy)"
-	npc kill
+	npc evade
 		government "Pirate"
 		personality plunders staying
 		system "Shaula"
@@ -1917,7 +1919,7 @@ mission "FW Early Warning 4"
 	
 	npc
 		government "Free Worlds"
-		personality heroic disables
+		personality heroic disables escort
 		fleet
 			names "free worlds capital"
 			variant
@@ -1930,7 +1932,7 @@ mission "FW Early Warning 4"
 				"Argosy (Missile)" 2
 	npc
 		government "Free Worlds"
-		personality heroic disables waiting
+		personality heroic disables waiting escort
 		fleet
 			names "free worlds capital"
 			variant
@@ -1952,7 +1954,7 @@ mission "FW Early Warning 4"
 				"Fury" 6
 	npc
 		government "Free Worlds"
-		personality heroic disables entering
+		personality heroic disables entering escort
 		fleet
 			names "free worlds capital"
 			variant
