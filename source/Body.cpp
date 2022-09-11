@@ -445,7 +445,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag, bool allStates) const
 		if(!allStates) return;
 	}
 }
-	
+
 void Body::SaveSpriteParameters(DataWriter &out, SpriteParameters *state) const
 {
 	if(state->frameRate != static_cast<float>(2. / 60.))
@@ -500,8 +500,8 @@ void Body::SetState(BodyState state)
 									this->transitionState == BodyState::DISABLED ||
 									this->transitionState == BodyState::LANDING;
 	bool delayActiveCurrentStep = (state == BodyState::FLYING ||
-								   state == BodyState::LAUNCHING ||
-								   state == BodyState::FIRING) && delayed < transitionDelay;
+									state == BodyState::LAUNCHING ||
+									state == BodyState::FIRING) && delayed < transitionDelay;
 	if(state == this->currentState && this->transitionState != this->currentState)
 	{
 		// Cancel transition
