@@ -7,90 +7,67 @@ mission "Incipias: First Contact I"
 		fail
 		set "saw the Incipias"
 		conversation
-			`As you enter the system, you notice ships of a type you have never seen before. You try to hail but all that comes back is your monitory barely flackering. It would be best to call an expert on language to help. Maybe you can find one in Hai Space.` 
+			`As you enter the system, you notice ships of a type you have never seen before. You try to hail them but all that comes back is your monitory barely flackering. After some attempts you give up. But maybe you can find some more information in nearby systems.` 
 
 mission "Incipias: First Contact II"
-	name "A language scientist"
-	description "Take a scientist to the Dom'us system to study the language of the new species."
+	invisible
 	landing
+	source "Spec Inci"
 	to offer
 		has "saw the Incipias"
-	source
-		government "Hai"
-	waypoint "Dom'us"
 	on offer
 		conversation
-			`At the spaceport you are asking around for a very good translator and language scientist. One Hai finally gives you an address to go to.`
-			`    When you arrive at the address you find a friendly Hai who is willed to hear what you have to say. While you are explaining he listens carefully and when you mention that the monitor began flackering he looks very interested. In the end he is more than ready to come with you.`
-				accept
-	on enter "Dom'us"
-		conversation
-			`Directly after you entered the system the scientist beginns hailing the new species. "This may take a while" he says, "you better get comfortable."`
-			`    After two hours he comes to you. "It seems like they understand what I am trying to do. This will make things a lot faster. But on the other hand it will take at least a day until I got some of the basics. After that we can go back and I can build you an translation device that learns while you are talking to them. This will save a lot of time."`
-			`    You lean back again waiting for him to finish.`
-			`    After a bit more than a day he again approaches you. "I am now finished with gathering the basics. We can now get back to my home, where I can build you the translation device."`
-	on complete
-		set "language: Incups"
-		"reputation: Hicemus" = 10
-		"reputation: Incipias" = 10
-		conversation
-			`When you arrived back at the home of the scientist, he immediately begins to work. Seriously you never have seen a Hai being that excited about something. After some time passed he comes back to you. "So here are somethings you need to know", he says, "first of all they do not communicate over sounds but over light. Second ,and that is a bit more important, they do not talk like you and me via sentences and that kind of grammar but over feelings and emotions. That makes translating it to our language extremely difficult. I somehow managed to teach an AI what certain things mean, but there wont be any precise statements for you more like a general analysis of what the speaker is feeling. But I think you will get used to that. There is one other important thig right now before you go. They gave you the permission to land on their planet or stations. So make some contact."`
-			`    You say goodbye to him and thank him for all of his efforts.`
+			set "talked to quarg about incipias"
+			`As you leave your ship you notice that it seems like the Quarg are every where intelligent life is, even there were the species is living in only one system. But maybe you can find out more about this new species here. Right after you finished this thought a Quarg is approaching you.`
+			`    "A human in this region of space? This is... uncommon. May I ask what someone of your kind is doing here?"`
+			choice
+				"I am exploring the depths of the galaxy."
+					goto explorer
+				"I am in search for new technoligies and species."
+					goto science
+			label explorer
+			`    "Exploring the whole galaxy? That is a great task you have burdened yourself with. But as long as you do not wish to conquer the regions of space you find, We do not mind you travelling around." He makes a short break looking at you very carefull. "On the other hand We do not know what your real goals are." For a moment you feel threatened by the presence of the Quarg, what is strange if you consider their physical strength. But tthe moment passes away and the Quarg seems friendly again. "But that aside, can I help you with something?"`
+				goto helpquarg
+			label science
+			`    "Is there are species in the galaxy that has not at some point searched for the greatest godkin technology? Only few have found it. Some gave up searching and concentrated on a easier life then on endless trials and errors. But I can understand your kind. You are a young species that has not yet seen the deep darknesses that exist in this galaxy. However we wont give you any technology, you probably know that. Still I can answer you some questions if you have some."`
+			label helpquarg
+			choice
+				"What do you know about the species in the Dom'us system?"
+					goto species
+				"What are the Quarg doing in this region of space?"
+					goto region
+			label species
+			`    "So you have seen them, the Incipias. Are species even younger than your kind. Gifted with intelligence equal to you. We are here to watch them and protect them of other species who might want harm to them." He looks at you very intense. "I hope you want no harm to them. If that would be the case we would have to take counter messures." He stops for a moment while looking at you carefull. "Sadly We do not have the power to see the intentions of a human being with our eyes. That is why we wont give you any more information about them, as long as we are not sure that you have no bad intentions. I hope you can understand that. Have you got more questions, that I can answer you?"`
+			choice
+				"How can I show you that I have no bad intentions?"
+					goto proove
+				"No, thank you."
+					goto end
+			label region
+			`    "We are here to protect and to watch a species in a nearby systems. I am sure you visited this system. We make sure no one can harm them and that they do not harm theirselfes too much. But until now nothing great happened. They are evolving fast so I am sure that they will visit us at some point in the not too distant future. Do you have another question?"`
+			choice
+				"What do you know about the species in the Dom'us system?"
+					goto species
+				"No, thank you."
+					goto end
+			label proove
+			`    "I can not tell you that We would prefer to have this species left alone until they travel out in the galaxy by themselfes. On the other hand if you give us some good reason why you want to make contact with them, we might reconsider. But I can not guarantee you anything."`
+			`    It does not seem like this will be easy. You remember that the Hai have some good connections to the Quarg, maybe they can give you some advice.`
+			`    "That were enough questions for now, it is time for you to leave."`
+			label end
+			`    The Quarg says goodbye to you and leaves. You stand there for some time thinking about the things he said, before you decide that it is time for you proceed.`
+				decline
+	to complete
+		never
 
 mission "Incipias: First Contact III"
-	name "Talking to a new species"
+	invisible
 	landing
-	to complete        
-		never
-	source 
-		government "Incipias" "Hicemus"
-	on offer
-		conversation
-			`As soon as you landed you receive a message in your ship:`
-			`    The Quarg inform you that they permitt you to have contact with this species. On the other hand the Quarg also inform you that they wont allow any greater interference with the scientific progress of this species. This means that if you will sell an advanced outfit like a hyperdrive to them we will destroy it out of distance.`
-			`    Surprised by that message you ask yourself how they know that you just landed. But as you received their permission to talk to them you see no problem for now. A little bit excited you want to open the shunt, but your ship informs you that you need to wear an oxygen mask because the air in the station is not breathable. Luckily you always have one in your ship. Finally you open the shunt and step out in the station.`
-			`    A foogy view opens in front of you. At first you see some weird shaped ballons in the air until you realize that these are the aliens. As mentioned they look like a balloon with some tentacles on the bottom and you think you saw something that could be eyes also in the lower part. They are floating in the air and you get the feeling that all of them are looking to you. Hastily you grab your translator:`
-			choice
-				`Say nothing`
-					goto "Silent greeting"
-				`"I come in peace."`
-					goto "Friendly greeting"
-				`"I am a human on an exploration through the galaxy."`
-					goto "Friendly greeting"
-			label "Silent greeting"
-			`    Both sides stand there silent for some time until one of the aliens beginns flickering and the translator is doing its job: "(I/we) (are/am) the Incipias. (I/we) greet you (guest/new species/silent person)." It looks like the translator is doing its best replacing feelings with a lot of words that all combined have the actual meaning. "(I/we) welcome (you/your species) in our (system/home/safe place). (I/we) hope for a (friendly/productive/interesting) relationship. (You/your species) may (freely/carefully) move in this station." You tell them that you are happy to hear that and that you also hope for a nice relationship.`
-				decline
-			label "Friendly greeting"
-			`    "Greetings human. (I/we) welcome (you/your kind/guests) in our (system/home/safe place). (I/we) hope for a (friendly/productive/interesting) relationship. (You/your species) may (freely/carefully) move in this station." You tell them that you are happy to hear that and that you also hope for a nice relationship.`
-				decline
-				
-mission "Incipias: Intro"
-	name "Curiosity"
-	description "The Incipias want to see the systems next to them. You agreed to help them."
-	landing
-	source "Pon'tes"
-	waypoint "Hui'uc"
-	waypoint "Il'le"
+	source Hai-home
 	to offer
-		has "Incipias: First Contact III: done"
+		has "talked to quarg about incipias"
 	on offer
 		conversation
-			`While you are stading around your ship a group of the aliens is floating towards you. One of them beginns "talking" to you. "Greetings (stranger/guest), (I/we) (am/are) a group of (searching people/scientists/curious people). (I/we)ask for your assistance in a (mission/journey/investigation). (I/we) want to see (my/our) neighboring systems. Can you (help us/fulfill our wish)? (I/we) will also (reward/pay/show our gratitude to) you."`
-			choice
-				"It will be a pleasure for me."
-					goto yes
-				"Sorry I got other things to do."
-					goto no
-			label yes
-			`    Happy that you help them they come into your ship. "(I/we) want to (see/explore) the systems Hui'uc and Il'le."`
-			`    You note done where they want to go and you get ready for a short trip.`
-				accept
-			label no
-			`    "That is (unfortunate/sad). It seems (I/we) have to (wait/stay here) until we can do this trip ourselves."`
-			`    You get the feeling you missed a great opportunity of interaction with them.`
-				decline
-	on waypoint
-		dialog "You stay in the system for a short time and the Incipias seem to take some notes."
-	on complete
-		dialog "The Incipias thank you very grateful. They pay you 50k credits."
-		payment 50000
+			``
+	to complete
+		never
