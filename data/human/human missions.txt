@@ -4892,7 +4892,7 @@ mission "Riley"
 				`	(Shoot.)`
 			action
 				set "Shot Core"
-			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned. 
+			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
 			`	Once you are finished, you make your way out of the hospital as quickly as possible, hoping you did not attract any unwanted attention.`
 			`	You board your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
