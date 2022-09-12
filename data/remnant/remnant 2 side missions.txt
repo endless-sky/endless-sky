@@ -664,13 +664,13 @@ mission "Remnant: Scent of Rain 1"
 				accept
 	npc "scan outfits"
 		government "Korath"
-		personality waiting target
+		personality staying target
 		system "Kor Zena'i"
 		ship "Tubfalet" "Ra'puk At 295"
 		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different design. Time to report this to Chilia.`
 	npc
 		government "Korath"
-		personality waiting
+		personality staying
 		system "Kor Zena'i"
 		fleet
 			names "korath"
@@ -681,7 +681,7 @@ mission "Remnant: Scent of Rain 1"
 				"'olofez" 3
 	on enter "Kor Zena'i"
 		dialog
-			`	The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 295". This must be the ship that Chilia would like a scan of.`
+			`The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 295." This must be the ship that Chilia would like a scan of.`
 	on complete
 		payment 150000
 		conversation
@@ -692,6 +692,6 @@ mission "Remnant: Scent of Rain 1"
 					goto scanningpayment
 				`	"Are you expecting something?"`
 			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
-			`	He shakes his head "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
+			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
 			label scanningpayment
 			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
