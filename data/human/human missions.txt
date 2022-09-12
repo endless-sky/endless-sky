@@ -4892,12 +4892,9 @@ mission "Riley"
 				`	(Shoot.)`
 			action
 				set "Shot Core"
-<<<<<<< Updated upstream
-			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
-=======
-			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned. Once you are finished, you make your way out of the hospital as quickly as possible, hoping you did not attract any unwanted attention.`
->>>>>>> Stashed changes
-			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
+			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned. 
+			`	Once you are finished, you make your way out of the hospital as quickly as possible, hoping you did not attract any unwanted attention.`
+			`	You board your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
 			label away
 			`	Riley relaxes slightly once she sees your gun put back in its holster. After the shock has subsided, she finally speaks. "Leave us alone," she says, her voice still trembling. Realizing your time here is up, you exit the hospital and make your way to the spaceport, hoping that that scene did not attract unwanted notice.`
