@@ -216,8 +216,10 @@ public:
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 
-	// Get the system this ship is in.
+	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
+	// Get the system this ship is in. If being carried, gets the parent's system.
+	const System *GetActualSystem() const;
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 

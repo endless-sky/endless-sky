@@ -2647,6 +2647,14 @@ const System *Ship::GetSystem() const
 
 
 
+const System *Ship::GetActualSystem() const
+{
+	auto p = GetParent();
+	return currentSystem ? currentSystem : (p ? p->GetSystem() : nullptr);
+}
+
+
+
 // If the ship is landed, get the planet it has landed on.
 const Planet *Ship::GetPlanet() const
 {

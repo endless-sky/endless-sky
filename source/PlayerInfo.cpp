@@ -2609,7 +2609,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return flagship->Cargo().Free();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				retVal += ship->Attributes().Get("cargo space");
 		return retVal;
 	});
@@ -2621,7 +2621,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return flagship->Cargo().BunksFree();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 		return retVal;
 	});
@@ -2633,7 +2633,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
 					&& name == "ships: " + ship->Attributes().Category())
 				++retVal;
 		return retVal;
@@ -2656,7 +2656,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
 					&& name == "ship model: " + ship->ModelName())
 				++retVal;
 		return retVal;
@@ -2724,7 +2724,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			if(ship->IsDestroyed() || ship->GetSystem() != system)
+			if(ship->IsDestroyed() || ship->GetActualSystem() != system)
 				continue;
 			// If not on a planet, parked ships don't count. If on a planet, the ship's planet must match.
 			if((!planet && !ship->IsParked()) || (planet && ship->GetPlanet() == planet))
