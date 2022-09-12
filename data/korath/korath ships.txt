@@ -713,9 +713,10 @@ ship "Ra'at Ik 621"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
 		"Fuel Processor"
-		"Microbot Defense Station" 16
-		"Thermal Repeater Rifle" 308
+		"Microbot Defense Station" 12
+		"Thermal Repeater Rifle" 799
 		
 		"Reverser (Lunar Class)"
 		"Thruster (Stellar Class)"
@@ -748,9 +749,9 @@ ship "Ra'at Ik 621"
 	gun -71 -209 "Fire-Lance"
 	gun 0 -209 "Fire-Lance"
 	gun 71 -209 "Fire-Lance"
-	turret -52 -295 "Banisher Grav-Turret"
+	turret -52 -295 "Grab-Strike Turret"
 	turret 52 -295 "Warder Anti-Missile"
-	turret -104 -13 "Grab-Strike Turret"
+	turret -104 -13 "Banisher Grav-Turret"
 	turret 0 -13 "Grab-Strike Turret"
 	turret 104 -13 "Grab-Strike Turret"
 	turret -80.5 191.5 "Warder Anti-Missile"

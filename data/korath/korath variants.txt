@@ -526,7 +526,7 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 3
-		"Fuel Processor" 2
+		"Fuel Processor"
 		"Thermal Repeater Rifle" 239
 		"Microbot Defense Station" 13
 		
@@ -913,35 +913,36 @@ ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
 	outfits
 		"Digger Mining Beam" 3
-		"Digger Mining Turret" 4
-		"Shunt-Strike Turret" 1
+		"Digger Mining Turret" 2
+		"Shunt-Strike Turret" 3
 		"Warder Anti-Missile" 2
 
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Systems Core (Medium)"
-		"Liquid Sodium Cooler"
-		"Large Heat Shunt"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
 		"Fuel Processor" 2
-		"Asteroid Scanner"
 		"Cargo Expansion" 4
-		"Thermal Repeater Rifle" 308
-		"Jump Drive"
-		"Microbot Defense Station" 16
+		"Thermal Repeater Rifle" 799
+		"Scram Drive"
+		"Microbot Defense Station" 15
 
 		"Reverser (Lunar Class)"
+		"Bow Drive (Meteor Class)"
+		"Afterburner (Comet Class)"
 		"Thruster (Planetary Class)"
-		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
 
 	gun "Digger Mining Beam"
 	gun "Digger Mining Beam"
 	gun "Digger Mining Beam"
 	turret "Digger Mining Turret"
-	turret "Digger Mining Turret"
-	turret "Digger Mining Turret"
+	turret "Shunt-Strike Turret"
+	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
 	turret "Digger Mining Turret"
-	turret "Warder Anti-Missile"
+	turret "Shunt-Strike Turret"
 	turret "Warder Anti-Missile"
 
 
@@ -956,11 +957,13 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 		"Triple Plasma Core"
 		"Systems Core (Large)"
 		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 308
-		"Microbot Defense Station" 18
+		"Brig"
+		"Thermal Repeater Rifle" 1037
+		"Microbot Defense Station" 16
 
-		"Reverser (Lunar Class)"
+		"Reverser (Comet Class)"
 		"Steering (Stellar Class)"
 		"Thruster (Stellar Class)"
 		"Jump Drive"
@@ -992,9 +995,9 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
 		"Liquid Sodium Cooler"
 		"Large Heat Shunt"
 		"Fuel Processor"
-		"Reasoning Node"
+		"Brig"
 		"Control Transceiver"
-		"Thermal Repeater Rifle" 308
+		"Thermal Repeater Rifle" 1037
 		"Jump Drive"
 		"Microbot Defense Station" 13
 
