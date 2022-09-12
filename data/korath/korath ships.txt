@@ -391,7 +391,7 @@ ship "Lor'kas Ik 577"
 	thumbnail "thumbnail/world-ship a"
 	attributes
 		category "Heavy Freighter"
-		cost 24650000
+		cost 29650000
 		shields 32700
 		hull 29600
 		"required crew" 234
@@ -544,7 +544,7 @@ ship "Kas'lor Ik 582"
 	thumbnail "thumbnail/world-ship c"
 	attributes
 		category "Heavy Freighter"
-		cost 23190000
+		cost 28190000
 		shields 39750
 		hull 26100
 		"required crew" 314
@@ -613,7 +613,7 @@ ship "Lor'nag Ik 590"
 	thumbnail "thumbnail/world-ship d"
 	attributes
 		category "Space Liner"
-		cost 25640000
+		cost 33640000
 		shields 47000
 		hull 34800
 		"required crew" 538
@@ -1138,10 +1138,9 @@ ship "Arch-Carrack"
 		"Digger Mining Beam" 2
 		"Warder Anti-Missile" 2
 		
+		"Double Plasma Core"
 		"Systems Core (Medium)"
-		"Triple Plasma Core"
-		"Large Heat Shunt" 2
-		"Small Heat Shunt" 2
+		"Large Heat Shunt"
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 90
 		
@@ -1200,9 +1199,9 @@ ship "Charm-Shallop"
 		"Warder Anti-Missile"
 		"Banisher Grav-Turret"
 		
-		"Triple Plasma Core"
+		"Double Plasma Core"
 		"Systems Core (Medium)"
-		"Large Heat Shunt" 2
+		"Large Heat Shunt"
 		"Small Heat Shunt"
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 104
