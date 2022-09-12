@@ -111,6 +111,7 @@ mission "Pookie, Part 2"
 
 
 mission "Pookie, Part 3"
+	minor
 	name "Stray Dog"
 	description `Find a home for a stray dog you picked up on <origin>. She might have been from one of the Paradise Worlds.`
 	source "Freedom"
@@ -122,8 +123,11 @@ mission "Pookie, Part 3"
 			`The weather on <origin> is unusually rough today; the sky ripples with thunder while rain whips against locals brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
 			choice
 				`	(Check it out.)`
+					goto begin
 				`	(Stay dry in my ship.)`
-					defer
+			`	You lean back in your seat and turn on your ship's heater. After a while, the neon sign shuts off, and the weather clears up.`
+					decline
+			label begin
 			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
 			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while worming your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
 			`	As you reach the boundary of the track, a loud siren fills the air, causing the crowd to fall silent.`
@@ -176,9 +180,9 @@ mission "Pookie, Part 3"
 				`	(Continue watching.)`
 				`	(Get away.)`
 					goto leave
-			`	Looking on, you are suddenly thrown backward when the beasts smash into the fence in front of you. Lying on the ground, you look down and see Zinc and Doom tearing into each other just beyond your feet.`
+			`	Looking on, you are suddenly thrown backward when the beasts smash into the fence in front of you. Lying on the ground, you look down and see Zinc and Doom tearing into each other outside of the track, inches from your feet.`
 			choice
-				`	(Get up and run.)`
+				`	(Get up and back away.)`
 					goto live
 				`	(Lie still.)`
 			`	As you lie still, Zinc is kicked on top of you, and Doom dashes in to continue the brawl. Within seconds, your skin is ripped to ribbons by two animals too deep in bloodlust to notice that another body has joined the fray. Your body bleeds out on the floor as the crowd cheers at the slaughter of a fellow human.`
@@ -226,34 +230,25 @@ mission "Pookie, Part 3"
 				`	(Bring Puny aboard your ship.)`
 				`	(Shoo Puny off.)`
 					goto shoo
-			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
 			branch remember
-				not "bet on hound racing"
-			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
+				has "bet on hound racing"
+			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
+				accept
 			label remember
-			``
+			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
+			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 				accept
 			label shoo
-			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
 			branch rememberdecline
-				not "bet on hound racing"
-			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
+				has "bet on hound racing"
+			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
+				decline
 			label rememberdecline
-			``
+			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
+			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 				decline
 	to complete
 		never
-
-
-
-mission "Pookie, Part 3a"
-	invisible
-	source "Freedom"
-	destination "Hestia"
-	to offer
-		has "Pookie, Part 2: done"
-	on complete
-		fail "Pookie, Part 3"
 
 
 
@@ -282,8 +277,9 @@ mission "Pookie, Part 5"
 	landing
 	source "Hestia"
 	to offer
-		has "Pookie, Part 3a: done"
+		has "Pookie, Part 3: active"
 	on offer
+		fail "Pookie, Part 3"
 		conversation
 			branch repeat
 				has "Pookie, Part 4: offered"
@@ -293,7 +289,7 @@ mission "Pookie, Part 5"
 			`You approach a receptionist to put a description of Puny on a planetwide notice board.`
 			label next
 			`	The next day, you visit the receptionist. When she sees you, she tells you that one message came in response, saying that the dog was theirs. You copy the address provided and hail down a taxi.`
-			`	The address brings you to a stark white mansion upon a cliff overlooking the ocean. A path snakes down from the entrance of the mansion to a large, gold-plated gate. You bring Puny out from the taxi and ring the doorbell next to the gate. A minute later, a servant in a prim suit approaches.`
+			`	The address brings you to a stark white mansion upon a cliff overlooking the ocean. A path snakes down from the entrance of the mansion to a large, gold-plated gate. You bring Puny out from the taxi and ring the doorbell next to the gate. A minute later, a servant in a prim suit approaches. As soon as she sees him, Puny straightens up, holding her head high.`
 			choice
 				`	"I'm <first>, and I'm here to return a missing pet."`
 				`	(Wait quietly.)`
@@ -304,17 +300,22 @@ mission "Pookie, Part 5"
 			`	When he spots you, the servant says, "Welcome. Come inside, mistress has been expecting you."`
 			label enter
 			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, checking that you're still following. You decide to look behind yourself, and see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her body is still little more than skin and bone.`
-			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. "Walters, who is this?" she says in a posh Paradise World accent.`
+			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. Puny breaks into barking as soon as she sees her, but the woman ignores the barking and says, "Walters, who is this?"`
 			`	"It's the captain who put out a description of Pookie, Madam Pemefrey," the servant replies.`
 			`	When she hears this, Pemefrey's expression changes from annoyance to elation. "Really? Oh, I can't thank enough for this, dearie. How was it rescuing her? Did you have to barter with smugglers to track her down? Chase down kidnappers to free her? Battle with warlords for her safety?"`
 			choice
 				`	"It was an adventure and a half saving her."`
 				`	"It wasn't anything too hard."`
 					goto humble
+				`	"Wait, did you say Pookie?"`
+					goto rude
 			`	"I'm sure it was. Now, where's my darling Pookie?"`
 				goto show
 			label humble
 			`	"Oh. Well, where's my darling Pookie?"`
+				goto show
+			label rude
+			`	Pemefrey chuckles haughtily. "Of course? Why, did you not realize that the purebred you saved is none other than the great Pocahontas? Now, show me my darling."`
 			label show
 			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
 			choice
@@ -334,16 +335,14 @@ mission "Pookie, Part 5"
 			`	Walters shoots a desperate glance at you while stepping back, but otherwise says nothing.`
 			`	"Now, where was I... oh, right. You. Out. Now." She claps twice, jumping Walters to attention, who beckons you and Puny back to the gate of the mansion.`
 			`	You slam the door of the taxi shut as Walters locks the gate. The return journey is somewhat somber, with even Puny wearing a frown. When you look back up from Puny, you find yourself in a far more humble region of <origin>. The grandiose manors built into impossible locations are far distant, replaced with a small suburban town that would not look out of place in the Dirt Belt were it not for the picturesque mountain ranges surrounding it.`
+			`	While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says "Antette and Co. Animal Adoption Agency."`
 			choice
-				`	(Take a reststop in the town.)`
-				`	(Keep on traveling to the spaceport.)`
-					goto traveler
-			`	You tell the taxi driver to pull into the town, and get off in the middle of the commercial district into a bustling crowd of people. As you try to find something to do, your eyes catch upon a storefront with a sign saying "Antette and Co. Animal Adoption Agency." You beckon Puny to follow and enter the adoption center.`
-				goto within
-			label traveler
-			`	You lean back in your seat and shift your eyes over to the side window. While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says "Antette and Co. Animal Adoption Agency." You tell the taxi driver to stop the car and step into the adoption center, leading Puny behind you.`
+				`	(Investigate.)`
+				`	(Ignore the sign.)`
+					goto lazy
 			label within
-			`	The inside of the store is decorated with pale blue wallpaper. To either side of you are rows of plastic chairs, and in front of you is a receptionist looking down at his nails. When he notices you, he lazily says, "Welcome, welcome. What can I do for you."`
+			`	You tell the taxi driver to stop the car and you walk into the adoption center, leading Puny behind you.`
+			`	The inside of the agency is decorated with pale blue wallpaper. To either side of you are rows of plastic chairs, and in front of you is a receptionist looking down at his nails. When he notices you, he lazily says, "Welcome, welcome. What can I do for you."`
 			`	You point down at Puny and say, "Could you find a home for this dog?"`
 			`	The receptionist leans over the counter to look. "Wow, that's a sorry-looking puppy. What's her name?"`
 			choice
@@ -360,7 +359,16 @@ mission "Pookie, Part 5"
 			label figure
 			`	"Well, I'm sure we'll figure out a name for her eventually." The receptionist steps forward to pick up the poodle before saying, "We'll make sure she gets plenty of care and love. Thank you for taking her to us."`
 			label end
+			action
+				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to give her up for adoption.`
+				log `Minor People` `Puny` `A poodle who was a former racer in a gambling ring. She might secretly be Pookie.`
 			`	You exit the center and head back to your taxi for the rest of the trip back to the spaceport.`
+				decline
+			label lazy
+			action
+				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to keep her as my own.`
+				outfit `"Puny"`
+			`	You lean back in your seat as the taxi passes through the town without interruption. Not long after you find yourself back in the spaceport, with Puny still in your care. With nowhere else to go, you decide to bring Puny aboard your ship. As you lead her, she happily strolls up the landing ramp and settles into one of your bunks.`
 				decline
 
 
