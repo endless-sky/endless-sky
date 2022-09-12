@@ -21,7 +21,11 @@ namespace {
 	int RAW_HEIGHT = 0;
 	int WIDTH = 0;
 	int HEIGHT = 0;
+#ifndef __ANDROID__
 	int USER_ZOOM = 100;
+#else
+	int USER_ZOOM = 200; // for android, default to maximum zoom, instead of minimum
+#endif
 	int EFFECTIVE_ZOOM = 100;
 	bool HIGH_DPI = false;
 }
