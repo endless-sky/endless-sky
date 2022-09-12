@@ -1016,34 +1016,33 @@ outfit "Firestorm Torpedo"
 	category "Ammunition"
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
-	"mass" 0.7
+	"mass" 1
 	"firestorm torpedo capacity" -1
 	"energy generation" 0.06
 	"heat generation" 0.3
-	description `More massive in both size and destructive capability, the Firestorm Torpedo dwarfs comparable weaponry. Its enormous blast radius makes it a dangerous part of larger ship arsenals, despite the lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Turret.`
+	description `Massive in both size and destructive capability, the Firestorm Torpedo's enormous blast radius makes it a dangerous part of larger ship arsenals, despite the lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Turret.`
 
 outfit "Firestorm Torpedo Rack"
-	plural "Firestorm Torpedo Racks"
 	category "Ammunition"
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
-	"mass" 6
+	"mass" 7
 	"outfit space" -20
 	"firestorm torpedo capacity" 13
 	ammo "Firestorm Torpedo"
-	description "This appears to be a modified Korath Mine Rack, designed to carry Firestorm Torpedoes."
+	description "This appears to be a modified Korath mine rack, designed to carry Firestorm Torpedoes."
 
 outfit "Firestorm Turret"
 	category "Secondary Weapons"
 	cost 2383000
 	thumbnail "outfit/firestorm turret"
-	"mass" 20
+	"mass" 35
 	"outfit space" -48
 	"weapon capacity" -48
+	"energy capacity" 1300
 	"turret mounts" -1
 	"required crew" 1
 	"firestorm torpedo capacity" 13
-	"energy capacity" 1300
 	weapon
 		sprite "projectile/firestorm torpedo"
 			"frame rate" 2

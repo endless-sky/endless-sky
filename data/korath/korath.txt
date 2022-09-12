@@ -318,6 +318,7 @@ fleet "Korath Defense"
 		"Palavret" 3
 		"'olofez" 11
 		"'olofez (Expeller)" 4
+	variant 1
 		"Rano'erek"
 		"Palavret (Blaze)"
 		"'olofez" 4
