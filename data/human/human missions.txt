@@ -4892,7 +4892,7 @@ mission "Riley"
 				`	(Shoot.)`
 			action
 				set "Shot Core"
-			`	You advance on the Core and start firing at it. Church begs for you to stop until his voice cuts off. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
+			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
 			`	You head back to your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
 				decline
 			label away
@@ -4906,8 +4906,7 @@ mission "Riley"
 			label suggest
 			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
 			label goodbye
-			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
-			`	You can feel her smile on your back until the door closes behind you. Despite her happiness, you wonder if her attachment to the AI is healthy.`
+			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door. You can feel her smile on your back until the door closes behind you.`
 				decline
 			label death
 			`	Riley is stunned for a moment. "You don't know that," she whispers. "Sure, he's a lot more forgetful, and doesn't seem as emotional, but... maybe it just takes some time for the system to warm up. Besides, you don't know what he means to me. What he's done for me. Even if this isn't really my father, I can't turn my back on him."`
@@ -4924,8 +4923,8 @@ mission "Riley"
 			action
 				payment 100000
 			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep Security office and report what you saw. A slick voice on the other side of your commlink responds.`
-			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip." A few minutes pass as you watch their forces descend on the house.`
-			`	Your bank account notifies you that 100,000 credits have been added to your account. Turning away, you head back to your ship.`
+			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."`
+			`	By the time you arrive back at the spaceport, your bank account notifies you that <payment> have been added to your account.`
 				decline
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
