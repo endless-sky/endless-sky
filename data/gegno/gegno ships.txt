@@ -107,7 +107,7 @@ ship Shale
 		"heat protection" 3
 		"ion protection" 3
 		hull 760
-		"outfit space" 120
+		"outfit space" 113
 		"required crew" 1
 		shields 0
 		"weapon capacity" 0
@@ -287,7 +287,7 @@ ship Slate
 		"heat protection" 3
 		"ion protection" 3
 		hull 825
-		"outfit space" 100
+		"outfit space" 122
 		"required crew" 1
 		shields 0
 		"weapon capacity" 0
@@ -691,7 +691,7 @@ ship Mica
 		"heat protection" 3
 		"ion protection" 3
 		hull 700
-		"outfit space" 120
+		"outfit space" 118
 		"required crew" 1
 		shields 0
 		"weapon capacity" 0
