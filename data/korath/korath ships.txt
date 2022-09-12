@@ -1078,15 +1078,15 @@ ship "Echo-Galleon"
 		"Warder Anti-Missile" 2
 		
 		"Double Plasma Core"
-		"Plasma Core"
+		"Generator (Inferno Class)"
 		"Systems Core (Large)"
-		"Small Heat Shunt"
+		"Large Heat Shunt"
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 246
 		
 		"Nelmeb GP Hybrid Thruster"
 		"Nelmeb GP Hybrid Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	"reverse engine" -31 -290
 	"reverse engine" 31 -290
@@ -1143,14 +1143,15 @@ ship "Arch-Carrack"
 		"Warder Anti-Missile" 2
 		
 		"Double Plasma Core"
-		"Systems Core (Medium)"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
 		"Large Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 90
+		"Thermal Repeater Rifle" 55
 		
-		"Nelmeb GP Hybrid Thruster"
+		"Gaktem GP Hybrid Thruster"
 		"Gaktem GP Hybrid Steering"
-		"Hyperdrive"
+		"Scram Drive"
 
 	engine 19.5 189.5
 	engine -19.5 189.5
@@ -1204,15 +1205,15 @@ ship "Charm-Shallop"
 		"Banisher Grav-Turret"
 		
 		"Double Plasma Core"
+		"Generator (Candle Class)"
 		"Systems Core (Medium)"
 		"Large Heat Shunt"
-		"Small Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 104
+		"Thermal Repeater Rifle" 66
 		
-		"Nelmeb GP Hybrid Thruster"
-		"Gaktem GP Hybrid Steering"
-		"Hyperdrive"
+		"Farves GP Hybrid Thruster"
+		"Farves GP Hybrid Steering"
+		"Scram Drive"
 
 	engine -17.5 139.5
 	engine 17.5 139.5
