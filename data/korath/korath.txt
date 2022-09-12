@@ -342,7 +342,7 @@ fleet "Korath Large Raid"
 		"Palavret (Blaze)"
 		"'olofez" 6
 
-fleet "Korath Ember Waste Raid Large"
+fleet "Korath Ember Waste Large Raid"
 	government "Korath"
 	names "korath"
 	fighters "korath"
