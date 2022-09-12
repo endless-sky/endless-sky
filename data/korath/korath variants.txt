@@ -585,29 +585,45 @@ ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Ember)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
 	outfits
-		"Banisher Grav-Turret" 3
+		"Shunt-Strike Turret" 2
 		"Warder Anti-Missile"
+		"Banisher Grav-Turret"
+		"Blaze-Pike Turret"
+		"Fire-Lance" 2
+		"Firelight Missile Bank"
+		"Firelight Missile" 10
 		
 		"Triple Plasma Core"
-		"Large Heat Shunt" 2
+		"Liquid Sodium Cooler"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 150
-		"Microbot Defense Station" 20
-		"Outfits Expansion"
+		"Thermal Repeater Rifle" 627
+		"Microbot Defense Station" 21
+		"Systems Core (Medium)"
+		"Systems Core (Small)"
 		
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
+		"Thruster (Lunar Class)"
+		"Thruster (Asteroid Class)"
+		"Steering (Lunar Class)"
+		"Steering (Comet Class)"
+		"Steering (Asteroid Class)"
 		"Jump Drive (Broken)"
 		"Hyperdrive"
 	
+	gun "Fire-Lance"
+	gun "Fire-Lance"
+	gun
+	gun
+	gun "Firelight Missile Bank"
+	turret
+	turret "Shunt-Strike Turret"
 	turret
 	turret
-	turret "Banisher Grav-Turret"
-	turret "Banisher Grav-Turret"
 	turret "Warder Anti-Missile"
 	turret
+	turret "Shunt-Strike Turret"
 	turret
 	turret "Banisher Grav-Turret"
+	turret "Blaze-Pike Turret"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
@@ -618,24 +634,22 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 		"Warder Anti-Missile" 2
 		"Fire-Lance" 3
 		"Firelight Missile Bank" 2
-		"Firelight Missile" 36
+		"Firelight Missile" 40
 		
 		"Triple Plasma Core"
 		"Double Plasma Core"
 		"Systems Core (Large)"
 		"Liquid Sodium Cooler"
 		"Large Heat Shunt"
-		"Small Heat Shunt"
 		"Fuel Processor" 2
-		"Thermal Repeater Rifle" 480
-		"Microbot Defense Station" 25
-		"Outfits Expansion" 2
+		"Thermal Repeater Rifle" 627
+		"Microbot Defense Station" 21
 		
-		"Afterburner (Comet Class)"
 		"Reverser (Lunar Class)"
-		"Thruster (Stellar Class)"
-		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
 		"Jump Drive"
+		"Hyperdrive"
 		
 	gun "Fire-Lance"
 	gun "Fire-Lance"
@@ -656,7 +670,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 	outfits
-		"Firelight Missile" 72
+		"Firelight Missile" 80
 		"Firelight Missile Bank" 2
 		"Firelight Storage Rack" 4
 		"Banisher Grav-Turret" 2
@@ -667,11 +681,11 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
 		"Triple Plasma Core"
 		"Systems Core (Large)" 2
 		"Fuel Processor"
-		"Large Heat Shunt"
+		"Small Heat Shunt" 2
 		"Liquid Sodium Cooler"
-		"Outfits Expansion" 3
-		"Thermal Repeater Rifle" 359
-		"Microbot Defense Station" 23
+		"Brig"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 11
 
 		"Afterburner (Planetary Class)"
 		"Steering (Stellar Class)"
@@ -702,7 +716,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Korath Inferno" 2
 		"Warder Anti-Missile" 2
 		"Shunt-Strike Turret" 2
-		"Firelight Missile" 36
+		"Firelight Missile" 40
 		"Firelight Missile Bank" 2
 		"Firestorm Torpedo" 26
 		"Firestorm Turret" 2
@@ -713,8 +727,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Liquid Sodium Cooler"
 		"Small Heat Shunt" 2
 		"Fuel Processor"
+		"Brig"
 		"Microbot Defense Station" 21
-		"Thermal Repeater Rifle" 359
+		"Thermal Repeater Rifle" 794
 
 		"Steering (Stellar Class)"
 		"Thruster (Planetary Class)"
@@ -751,12 +766,10 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
 		"Systems Core (Large)"
 		"Liquid Sodium Cooler"
 		"Large Heat Shunt"
-		"Small Heat Shunt"
+		"Small Heat Shunt" 2
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 272
-		"Microbot Defense Station" 23
-		"Outfits Expansion"
-		"Reasoning Node"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 16
 		"Brig"
 		
 		"Afterburner (Comet Class)"
@@ -797,12 +810,9 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 		"Systems Core (Large)"
 		"Liquid Sodium Cooler"
 		"Large Heat Shunt" 2
-		"Small Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 369
-		"Microbot Defense Station" 24
-		"Outfits Expansion" 3
-		"Control Transceiver"
+		"Thermal Repeater Rifle" 794
+		"Microbot Defense Station" 11
 		"Brig"
 		
 		"Thruster (Planetary Class)"

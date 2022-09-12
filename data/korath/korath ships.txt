@@ -492,11 +492,13 @@ ship "Ra'gru Ik 618"
 		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
+		"Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 3
 		"Fuel Processor"
 		"Brig"
-		"Microbot Defense Station" 23
+		"Microbot Defense Station" 13
 		"Thermal Repeater Rifle" 794
 		
 		"Thruster (Stellar Class)"
