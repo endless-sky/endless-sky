@@ -244,15 +244,13 @@ fleet "Korath Civilian Miners"
 		heroic disables frugal mining harvests coward
 	variant
 		"Rano'erek (Civilian)"
-		"'olofez (Expeller)" 2
-		"'olofez (Digger)" 2
+		"'olofez (Digger)" 4
 	variant 2
 		"Lor'kas Ik 577 (Digger)"
 		"'olofez (Digger)" 3
 	variant 1
 		"Ra'at Ik 621 (Digger)"
-		"'olofez (Digger)" 5
-		"'olofez (Expeller)" 4
+		"'olofez (Digger)" 9
 
 fleet "Korath Home"
 	government "Korath"
