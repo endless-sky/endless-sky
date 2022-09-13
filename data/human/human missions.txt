@@ -203,7 +203,7 @@ mission "Pookie, Part 3"
 				`	(Get out before it gets ugly.)`
 					goto nopelate
 				`	(Stay for a while longer.)`
-			`	Continuing to look on, you hear a loud bang to your right as the stagehand gasps in pain and collaspes. You turn to see that a mustached man next to you has his gun raised. Before you can react, you hear another gunshot and see a spurt of blood erupt from the man's temple. Almost instantly, the entire audience is up in arms as gunfire comes in from every direction. Acting instinctually, you duck down and crawl through the forest of legs towards the exit. Once there, you reach your hand up and push the door open before running out.`
+			`	Continuing to look on, you hear a loud bang to your right as the stagehand gasps in pain and collapses. You turn to see that a mustached man next to you has his gun raised. Before you can react, you hear another gunshot and see a spurt of blood erupt from the man's temple. Almost instantly, the entire audience is up in arms as gunfire comes in from every direction. Acting instinctually, you duck down and crawl through the forest of legs towards the exit. Once there, you reach your hand up and push the door open before running out.`
 				goto outside
 			label nopelate
 			`	As you turn around, you hear a volley of gunshots from behind, and decide to run out of the building, tackling the door open.`
