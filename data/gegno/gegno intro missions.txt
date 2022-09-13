@@ -52,7 +52,7 @@ mission "Gegno Vi: First Contact"
 			`	At this point, you have already invested a great amount of your energy into the situation. With a last "thump" of their foot, the alien now stands before you, giving you a much better look at them. They are at least several feet taller than you, extremely bulky, and slightly hunched over. Heavy-looking metallics surround a majority of their body, and in any exposed areas are rough-looking patches of skin and hair. A great deal of facial hair covers their face, and above human-like eyes are a pair of horns curved inward towards you.`
 			`	You aren't sure how to begin a conversation, but start by trying to greet the alien in a formal manner. Awkward silence ensues, and the alien looks you up and down in an almost unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of their species' planets.`
 			`	You hesitantly take the device and turn to make your way to your ship. There doesn't feel to be any emergency to the situation, but you still feel uncomfortable. Before heading out, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few notably small appendages are found at either end of it, almost like a salamander, but its surface is definitely scaly. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the alien utters a single intelligible word in a very deep voice:`
-			`	"Voord`t."`
+			`	"Voordt."`
 				flee
 			label watch
 			`	Cautiously retreating towards your ship, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble again, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the alien figure breathing intensely as they continue to battle the beast.`
@@ -97,7 +97,7 @@ mission "Gegno Vi: First Contact"
 			`	At this point, you have already invested a great amount of your energy into the situation. With a last "thump" of their foot, the Vi warrior now stands before you, giving you a much better look at them. They are at least several feet taller than both you and other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metallics surround a majority of their body, and in any exposed areas are rough-looking patches of skin and hair. A great deal of facial hair covers their face, and above human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an almost unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of compass or map, they point to a location on it, gesture to themselves, then lower the device slowly to you. They seem to be asking for transit.`
 			`	You hesitantly take the device and turn to make your way to your ship. There doesn't feel to be any emergency to the situation, but you still feel very uneasy, especially because of how the Vi have been described to you. Having a warrior from their faction on your ship could cause a serious problem, but leaving them here might be even worse. Before heading out, you take one last glimpse of the enormous creature in the background. Its head is very reptilian, close to dragon-like, with numerous eyes and a mane of spikes. A few notably small appendages are found at either end of it, almost like a salamander, but its surface is definitely scaly. The various signatures on your radar earlier must have been others of their kind. Glaring at you, then at the creature, the Vi warrior utters a single intelligible word in a very deep voice:`
-			`	"Voord`t."`
+			`	"Voordt."`
 				flee
 				
 			label observe
@@ -105,10 +105,7 @@ mission "Gegno Vi: First Contact"
 			choice
 				`	(Assist the Vi.)`
 					goto assist
-			label leave
-			`	With the situation beginning to spin out of your control, you quickly turn around and make for your ship, taking off as soon as you can. You wonder what will become of the Vi warrior as while their brothers' ships are seen often flying around this system and others nearby, it doesn't seem like any of them are in a hurry to land at this planet.`
-				depart
-				
+
 				
 			label "return encounter"
 			`	You find yourself approaching this desert world once again, wondering what happened to the alien figure you previously encountered. Knowing the world is home to a dangerous indigenous species, you are hesitant on landing, making sure to stay clear of any of those creatures' radar signatures.`
