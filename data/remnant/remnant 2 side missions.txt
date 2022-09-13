@@ -659,9 +659,12 @@ mission "Remnant: Scent of Rain 1"
 			choice
 				`	"Yes, I could do that."`
 				`	"I would rather not."`
-					decline
-			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "Based on the Korath's typical movement patterns, we suspect that the ship should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
+					goto rathernot
+			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "We are concerned that the Korath may have a new ship that can carry three fighters. Based on the Korath's typical movement patterns, we suspect that - if such a ship exists - it should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
 				accept
+			label rathernot
+			`	He nods respectfully. "Well, thank you for all that you have done for us. I will see who else is available." With that, he heads off into the starport.`
+				decline
 	npc "scan outfits"
 		government "Korath"
 		personality staying target
@@ -685,7 +688,11 @@ mission "Remnant: Scent of Rain 1"
 	on complete
 		payment 150000
 		conversation
-			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?" He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
+			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?"`
+			choice
+				`	(Describe the addition of the new bay and how it is used.)`
+				`	(Describe the structural changes and potential ways that could change the ship's performance.)`
+			`He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice
 				`	"You are welcome."`
