@@ -4812,13 +4812,8 @@ mission "Riley"
 				`	"Thank you, and good luck."`
 					goto end
 				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
-					goto credits
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
-			action
-				payment -13000
-			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
-				goto choice1
-			label credits
+					goto hold
 			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
@@ -4826,6 +4821,7 @@ mission "Riley"
 				`	"Thank you, and good luck."`
 					goto end
 				`	"Hold on to the credits. I'm a captain; I can always make more."`
+			label hold
 			action
 				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
