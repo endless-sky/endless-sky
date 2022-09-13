@@ -597,7 +597,7 @@ mission "Remnant: Shattered Light 5"
 mission "Remnant: Shattered Light 6"
 	landing
 	name "Shattered Light"
-	description "Ferry the team and their gear back to <destination>"
+	description "Ferry the team and their gear back to <destination>."
 	blocked "From your count at the information desk, you estimate that you need space for 11 people as well as 18 tons of cargo."
 	cargo "equipment" 18
 	passengers 11
@@ -646,21 +646,31 @@ mission "Remnant: Shattered Light 6"
 mission "Remnant: Scent of Rain 1"
 	landing
 	name "Search for the unknown Korath ship."
-	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofez. The Remnant believe it will be found in one of the southern Korath systems."
+	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofez, then report back to <destination>. The Remnant believe it will be found in one of the southern Korath systems."
 	source
 		government "Remnant"
 	destination "Caelian"
 	to offer
-		has "Remnant: Cognizance 25: done"
+		or
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+			has "event: remnant: cognizance calm"
 	on offer
 		event "remnant: tubfalet appearance" 20 31
 		conversation
+			branch scentssilvida
+				has "flagship planet: Ssil Vida"
 			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+				goto scentrainchoice
+			label scentssilvida
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez patrolling alone near here. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			label scentrainchoice
 			choice
 				`	"Yes, I could do that."`
 				`	"I would rather not."`
 					goto rathernot
-			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "We are concerned that the Korath may have a new ship that can carry three fighters. Based on the Korath's typical movement patterns, we suspect that - if such a ship exists - it should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find."`
+			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "We are concerned that the Korath may have a new ship that can carry three fighters. Based on the Korath's typical movement patterns, we suspect that - if such a ship exists - it should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find, and report back to me on <destination>."`
 				accept
 			label rathernot
 			`	He nods respectfully. "Well, thank you for all that you have done for us. I will see who else is available." With that, he heads off into the starport.`
