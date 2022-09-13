@@ -4,8 +4,6 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.thewierdnut.endless_mobile"
-    android:versionCode="21"
-    android:versionName="0.9.14-21"
     android:installLocation="auto">
 
     <!-- OpenGL ES 3.0 -->
