@@ -596,6 +596,7 @@ mission "Deep: Mystery Cubes 4"
 			variant
 				"Aerie" 2
 				"Dagger" 4
+				"Combat Drone" 4
 				"Corvette (Speedy)"
 	npc
 		government "Republic"
@@ -2179,6 +2180,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 			variant
 				"Aerie"
 				"Dagger" 2
+				"Combat Drone" 2
 
 
 

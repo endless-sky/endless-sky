@@ -1428,6 +1428,7 @@ fleet "Small Deep Merchants"
 	variant 4
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 	variant 6
 		"Mule"
 		"Dagger"
@@ -1462,16 +1463,19 @@ fleet "Large Deep Merchants"
 	variant 5
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette"
 	variant 3
 		"Aerie"
-		"Dagger" 2
+		"Dagger" 2	
+		"Combat Drone" 2
 		"Raven"
 	variant 3
 		"Headhunter" 2
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
+		"Combat Drone" 4
 	variant 8
 		"Bactrian"
 		"Dagger" 3
@@ -1481,12 +1485,14 @@ fleet "Large Deep Merchants"
 		"Raven"
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 	variant 2
 		"Bactrian"
 		"Dagger" 3
 		"Raven (Heavy)"
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 	variant 5
 		"Bactrian"
 		"Dagger" 3
@@ -1524,6 +1530,7 @@ fleet "Small Deep Security"
 	variant 4
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 	variant 3
 		"Raven"
 	variant 1
@@ -1553,26 +1560,32 @@ fleet "Large Deep Security"
 	variant 5
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette"
 	variant 2
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette (Missile)"
 	variant 2
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette (Speedy)"
 	variant 3
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Raven"
 	variant 1
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Raven (Heavy)"
 	variant 1
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Raven (Afterburner)"
 	variant 4
 		"Raven" 2
@@ -1588,6 +1601,7 @@ fleet "Large Deep Security"
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
+		"Combat Drone" 4
 	variant 8
 		"Corvette"
 		"Raven"
@@ -2211,9 +2225,11 @@ fleet "Small Northern Pirates"
 	variant 1
 		"Aerie"
 		"Lance" 2
+		"Combat Drone" 2
 	variant 1
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 	variant 3
 		"Headhunter"
 	variant 2
@@ -2286,21 +2302,26 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette"
 	variant 1
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Raven"
 	variant 2
 		"Aerie" 2
+		"Combat Drone" 4
 		"Dagger" 4
 	variant 2
 		"Aerie"
 		"Dagger" 2
+		"Combat Drone" 2
 		"Corvette (Missile)"
 	variant 1
 		"Aerie" 2
 		"Dagger" 4
+		"Combat Drone" 4
 		"Firebird"
 	variant 2
 		"Mule"
@@ -2542,6 +2563,7 @@ fleet "Bounty Hunters"
 	variant 1
 		"Aerie"
 		"Lance" 2
+		"Combat Drone" 2
 	variant 1
 		"Corvette"
 		"Fury (Missile)"
