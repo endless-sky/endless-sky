@@ -4825,7 +4825,6 @@ mission "Riley"
 			action
 				payment -13000
 			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
-			label choice1
 			choice
 				`	"Do you think I could come along? I've heard so much about your father."`
 				`	"Good luck."`
