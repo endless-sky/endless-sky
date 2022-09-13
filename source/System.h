@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SYSTEM_H_
@@ -59,18 +62,6 @@ public:
 		const Minable *type = nullptr;
 		int count;
 		double energy;
-	};
-
-	class Belt {
-	public:
-		Belt(double radius, int weight = 1);
-
-		double Radius() const;
-		int Weight() const;
-
-	private:
-		double radius;
-		int weight;
 	};
 
 
@@ -126,7 +117,7 @@ public:
 	// Get the radius of an asteroid belt.
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
-	const WeightedList<Belt> &AsteroidBelts() const;
+	const WeightedList<double> &AsteroidBelts() const;
 	// Get how far ships can jump from this system.
 	double JumpRange() const;
 	// Get the rate of solar collection and ramscoop refueling.
@@ -211,7 +202,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	WeightedList<Belt> belts;
+	WeightedList<double> belts;
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;

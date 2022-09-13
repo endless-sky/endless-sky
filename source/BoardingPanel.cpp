@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "BoardingPanel.h"
@@ -271,24 +274,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 			plunder[selected].Take(count);
 	}
-	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
-	{
-		// Scrolling the list of plunder.
-		if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-			Drag(0, 200 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP)));
-		else
-		{
-			if(key == SDLK_UP && selected)
-				--selected;
-			else if(key == SDLK_DOWN && selected < static_cast<int>(plunder.size() - 1))
-				++selected;
-
-			// Scroll down at least far enough to view the current item.
-			double minimumScroll = max(0., 20. * selected - 200.);
-			double maximumScroll = 20. * selected;
-			scroll = max(minimumScroll, min(maximumScroll, scroll));
-		}
-	}
+	else if(!isCapturing &&
+			(key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP
+			|| key == SDLK_PAGEDOWN || key == SDLK_HOME || key == SDLK_END))
+		DoKeyboardNavigation(key);
 	else if(key == 'c' && CanCapture())
 	{
 		// A ship that self-destructs checks once when you board it, and again
@@ -298,7 +287,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
+			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+				" They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;
@@ -501,6 +491,33 @@ bool BoardingPanel::CanCapture() const
 bool BoardingPanel::CanAttack() const
 {
 	return isCapturing;
+}
+
+
+// Handle the keyboard scrolling and selection in the panel list.
+void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
+{
+	// Scrolling the list of plunder.
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		// Keep one of the previous items onscreen while paging through.
+		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+	else if(key == SDLK_HOME)
+		selected = 0;
+	else if(key == SDLK_END)
+		selected = static_cast<int>(plunder.size() - 1);
+	else
+	{
+		if(key == SDLK_UP)
+			--selected;
+		else if(key == SDLK_DOWN)
+			++selected;
+	}
+	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+
+	// Scroll down at least far enough to view the current item.
+	double minimumScroll = max(0., 20. * selected - 200.);
+	double maximumScroll = 20. * selected;
+	scroll = max(minimumScroll, min(maximumScroll, scroll));
 }
 
 

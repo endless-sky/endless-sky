@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Aphid"
 	sprite "ship/hai aphid"
@@ -46,7 +49,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai inter-planetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
+	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai interplanetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
 ship "Aphid" "Aphid (Armed)"
 	outfits
@@ -171,6 +174,7 @@ ship "Flea"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
 	outfits
@@ -270,7 +274,7 @@ ship "Grasshopper"
 		"drag" 1.5
 		"heat dissipation" .85
 		"fuel capacity" 300
-		"cargo space"  29
+		"cargo space" 29
 		"outfit space" 169
 		"weapon capacity" 38
 		"engine capacity" 61
@@ -806,7 +810,7 @@ ship "Solifuge"
 	explode "large explosion" 50
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description `Impressed by the Alpha's "Giftbringer", the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
+	description `Impressed by the Alpha's "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
@@ -947,6 +951,7 @@ ship "Violin Spider"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
@@ -965,7 +970,7 @@ ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
 	attributes
-		category "Heavy Freighter"
+		category "Light Freighter"
 		"cost" 6500000
 		"shields" 7900
 		"hull" 4500

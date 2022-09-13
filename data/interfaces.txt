@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
@@ -17,7 +20,13 @@ color "inactive" .25 .25 .25 0.
 color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
 color "dim" .25 .25 .25 0.
+color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
+
+# Colors used for drawing ship list in player info panel.
+color "flagship" .5 .5 .1 0.
+color "disabled" .5 .3 .1 0.
+color "dead" .4 0. 0. 0.
 
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
@@ -111,6 +120,30 @@ color "map orbits fleet destination" 1. 1. 1. 1.
 
 
 
+interface "map detail panel"
+	value "planet starting Y" 90
+	value "planet max bottom Y" 340
+	value "relative trade Y after planet" 135
+	value "planet scroll speed" 25
+	value "starting X" 100
+	value "starting Y" 45
+	value "government top Y" 45
+	value "text margin" 15
+	value "trade height" 190
+	value "arrow offset" 10
+
+
+
+interface "map planet card"
+	value "text start" 13
+	value "category size" 20
+	value "height" 130
+	value "width" 230
+	value "planet icon max size" 100
+	value "categories" 5
+
+
+
 interface "menu background"
 	sprite "_menu/g5"
 		center 0 -280
@@ -121,13 +154,18 @@ interface "menu background"
 	sprite "_menu/compass"
 		center 0 0
 	sprite "_menu/title"
-		center 0 -170
+		center 0 -200
 
 
 
 interface "main menu"
+	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
+	box "credits"
+		from -470 -165
+		to -250 115
+
 	sprite "_menu/side panel"
 		center 360 0
 	
@@ -1134,6 +1172,12 @@ interface "info panel"
 		center 145 305
 	button A "Unpark All"
 		center 145 305
+		dimensions 90 30
+	visible if "show save order"
+	sprite "ui/wide button"
+		center -195 305
+	button v "Sa_ve Order"
+		center -195 305
 		dimensions 90 30
 
 

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 
@@ -77,7 +80,8 @@ namespace {
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
-	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it, double &sideScroll, bool checkVisibility)
+	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
+		double &sideScroll, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
@@ -255,7 +259,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 {
 	if(key == 'a' && CanAccept())
 	{
-		Accept();
+		Accept((mod & KMOD_CTRL));
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
@@ -282,6 +286,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == SDLK_UP)
 	{
 		SelectAnyMission();
+		// Select the previous mission, which may be at the end of the list.
 		if(availableIt != available.end())
 		{
 			// All available missions are, by definition, visible.
@@ -299,11 +304,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN && !SelectAnyMission())
+	else if(key == SDLK_DOWN)
 	{
-		// Keyed "Down," and didn't auto-select the first mission on a side,
-		// so update the existing selected mission.
-		if(availableIt != available.end())
+		if(SelectAnyMission())
+		{
+			// A mission was just auto-selected. Nothing else to do here.
+		}
+		else if(availableIt != available.end())
 		{
 			++availableIt;
 			if(availableIt == available.end())
@@ -736,7 +743,7 @@ bool MissionPanel::CanAccept() const
 
 
 
-void MissionPanel::Accept()
+void MissionPanel::Accept(bool force)
 {
 	const Mission &toAccept = *availableIt;
 	int cargoToSell = 0;
@@ -747,6 +754,11 @@ void MissionPanel::Accept()
 		crewToFire = toAccept.Passengers() - player.Cargo().BunksFree();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
+		if(force)
+		{
+			MakeSpaceAndAccept();
+			return;
+		}
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "

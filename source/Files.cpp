@@ -7,12 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Files.h"
 
 #include "File.h"
+#include "Logger.h"
 
 #include <SDL2/SDL.h>
 
@@ -21,11 +25,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
-
-#include <sys/stat.h>
+#else
 #include <dirent.h>
+#include <sys/stat.h>
 #include <unistd.h>
+#include <utime.h>
+#endif
 
 #include <algorithm>
 #include <cstdlib>
@@ -46,7 +51,6 @@ namespace {
 	string savePath;
 	string testPath;
 
-	mutex errorMutex;
 	File errorLog;
 
 	// Convert windows-style directory separators ('\\') to standard '/'.
@@ -430,6 +434,18 @@ void Files::Copy(const string &from, const string &to)
 	CopyFileW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), false);
 #else
 	Write(to, Read(from));
+	// Preserve the timestamps of the original file.
+	struct stat buf;
+	if(stat(from.c_str(), &buf))
+		Logger::LogError("Error: Cannot stat \"" + from + "\".");
+	else
+	{
+		struct utimbuf times;
+		times.actime = buf.st_atime;
+		times.modtime = buf.st_mtime;
+		if(utime(to.c_str(), &times))
+			Logger::LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
+	}
 #endif
 }
 
@@ -470,7 +486,9 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	FILE *file = nullptr;
+	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif
@@ -530,16 +548,15 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::LogError(const string &message)
+void Files::LogErrorToFile(const string &message)
 {
-	lock_guard<mutex> lock(errorMutex);
-	cerr << message << endl;
 	if(!errorLog)
 	{
 		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
-			cerr << "Unable to create \"errors.txt\" " << (config.empty() ? "in current directory" : "in \"" + config + "\"") << endl;
+			cerr << "Unable to create \"errors.txt\" " << (config.empty()
+				? "in current directory" : "in \"" + config + "\"") << endl;
 			return;
 		}
 	}

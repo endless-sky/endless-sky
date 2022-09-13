@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef CONVERSATION_H_
@@ -54,6 +57,9 @@ public:
 	static bool RequiresLaunch(int outcome);
 
 public:
+	Conversation() = default;
+	// Construct and Load() at the same time.
+	Conversation(const DataNode &node, const std::string &missionName = "");
 	// Read or write to files.
 	void Load(const DataNode &node, const std::string &missionName = "");
 	void Save(DataWriter &out) const;

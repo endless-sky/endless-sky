@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MISSION_H_
@@ -49,8 +52,8 @@ public:
 	// Copying a mission instance isn't allowed.
 	Mission(const Mission &) = delete;
 	Mission &operator=(const Mission &) = delete;
-	Mission(Mission &&) noexcept = default;
-	Mission &operator=(Mission &&) noexcept = default;
+	Mission(Mission &&) = default;
+	Mission &operator=(Mission &&) = default;
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
@@ -61,6 +64,8 @@ public:
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
+	// Add "never" to the toOffer ConditionSet, preventing this mission from offering.
+	void NeverOffer();
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
@@ -141,7 +146,7 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player

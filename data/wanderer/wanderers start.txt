@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "First Contact: Wanderer (Before Hai)"
 	landing
@@ -14,6 +17,7 @@ mission "First Contact: Wanderer (Before Hai)"
 		attributes "wanderer"
 	to offer
 		not "First Contact: Hai: offered"
+		not "First Contact: Unfettered: offered"
 	on offer
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
@@ -166,6 +170,10 @@ mission "Wanderers: Hai Diplomat"
 	on accept
 		"reputation: Hai" >?= 20
 		"reputation: Hai" += 30
+		"reputation: Hai (Wormhole Access)" += 30
+		"reputation: Hai Merchant" += 30
+		"reputation: Hai Merchant (Human)" += 30
+		"reputation: Hai Merchant (Sympathizers)" += 30
 
 
 
@@ -772,7 +780,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
-			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 
@@ -1131,8 +1139,8 @@ ship "Carrier" "Carrier (Alpha)"
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Korath Disruptor" 2
-		"Korath Slicer Turret" 2
+		"Shield Disruptor Turret" 2
+		"Husk-Slice Turret" 2
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -1154,10 +1162,10 @@ ship "Carrier" "Carrier (Alpha)"
 	gun "Hai Tracker Pod"
 	gun
 	gun
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
-	turret "Korath Disruptor"
-	turret "Korath Slicer Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
+	turret "Shield Disruptor Turret"
+	turret "Husk-Slice Turret"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -1892,7 +1900,7 @@ mission "Wanderers Invaded 3C (Pug)"
 			choice
 				`	(Return to my ship.)`
 					decline
-				`	(Keep insisting that they listen to you.)`
+				`	(Keep insisting that they listen.)`
 			`	With a somewhat contemptuous gesture, the Pug points the staff toward your face and a wave of wonderful rainbow light washes over you and bathes the whole world in iridescent sparkles that leap nimbly from the whiskers of things and nuzzle into your contented consciousness like flashing minnows of pure joy. You caper off to chase a trail of floating soapy baubles that burst with the sound of wind chimes and distant trumpets as you touch each one and the smell of ripe peaches fills the air until you stagger through your airlock and throw up in a corner.`
 			`	It may be time to leave this planet.`
 				decline
