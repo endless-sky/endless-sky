@@ -669,7 +669,7 @@ mission "Remnant: Scent of Rain 1"
 		government "Korath"
 		personality staying target
 		system "Kor Zena'i"
-		ship "Tubfalet" "Ra'puk At 295"
+		ship "Tubfalet" "Ra'puk At 333"
 		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different design. Time to report this to Chilia.`
 	npc
 		government "Korath"
@@ -684,7 +684,7 @@ mission "Remnant: Scent of Rain 1"
 				"'olofez" 3
 	on enter "Kor Zena'i"
 		dialog
-			`The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 295." This must be the ship that Chilia would like a scan of.`
+			`The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 333." This must be the ship that Chilia would like a scan of.`
 	on complete
 		payment 150000
 		conversation
