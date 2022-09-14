@@ -2444,6 +2444,10 @@ void Ship::DoGeneration()
 				heat -= activeCooling;
 		}
 	}
+	else if(!this->HasSpriteFor(BodyState::DISABLED))
+	{
+		this->PauseAnimation();
+	}
 
 	// Don't allow any levels to drop below zero.
 	shields = max(0., shields);

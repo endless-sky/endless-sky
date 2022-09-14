@@ -65,6 +65,13 @@ bool Body::HasSprite() const
 }
 
 
+// Check that this Body has a sprite for a specific BodyState
+bool Body::HasSpriteFor(BodyState state) const
+{
+	const Sprite *sprite = this->sprites[state].GetSprite();
+	return (sprite && sprite->Frames());
+}
+
 
 // Access the underlying Sprite object.
 const Sprite *Body::GetSprite(BodyState state) const
@@ -805,7 +812,7 @@ void Body::SetStep(int step) const
 			// Rewind frame needs to be set since transition state can change during delay period.
 			rewindFrame = frame;
 		}
-		// Prevent any flickers from transitioning into states with randomized flares.
+		// Prevent any flickers from transitioning into states with randomized frames.
 		randomFrame = frame;
 	}
 	currentStep = step;

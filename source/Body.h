@@ -44,6 +44,8 @@ public:
 
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
+	bool HasSpriteFor(BodyState state) const;
+
 	// Access the underlying Sprite object.
 	const Sprite *GetSprite(BodyState state = BodyState::CURRENT) const;
 	BodyState GetState() const;
