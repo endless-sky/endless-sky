@@ -3267,7 +3267,8 @@ bool Ship::JumpDriveCheaper(const System *destination) const
 {
 	bool linked = currentSystem->Links().count(destination);
 	double hyperFuelNeeded = HyperdriveFuel();
-	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange()) ? 0. : currentSystem->Position().Distance(destination->Position()));
+	double jumpFuelNeeded = JumpDriveFuel((linked || currentSystem->JumpRange())
+			? 0. : currentSystem->Position().Distance(destination->Position()));
 	if(linked)
 	{
 		if(hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive"))
