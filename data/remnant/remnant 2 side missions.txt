@@ -646,7 +646,7 @@ mission "Remnant: Shattered Light 6"
 mission "Remnant: Scent of Rain 1"
 	landing
 	name "Search for the unknown Korath ship."
-	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofez, then report back to <destination>. The Remnant believe it will be found in one of the southern Korath systems."
+	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofezes, then report back to <destination>. The Remnant believe it will be found in one of the southern Korath systems."
 	source
 		government "Remnant"
 	destination "Caelian"
@@ -661,10 +661,10 @@ mission "Remnant: Scent of Rain 1"
 		conversation
 			branch scentssilvida
 				has "flagship planet: Ssil Vida"
-			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
 				goto scentrainchoice
 			label scentssilvida
-			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofez patrolling alone near here. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes patrolling alone near here. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
 			label scentrainchoice
 			choice
 				`	"Yes, I could do that."`
