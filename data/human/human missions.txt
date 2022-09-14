@@ -5019,7 +5019,7 @@ mission "Syndicate Business 1, start"
 			`	"Excellent. To purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents, send over the payment, and a few other administrative tasks. I'll need to get a few approvals for the stock sale and set up the paperwork so it won't be ready today, but feel free to come back to my office anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
 				accept
 			label payup
-			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest with us, I will be here."`	
+			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
 			action
 				payment 91951
 		log `James from Maralex Controls offered to let you buy stock for 1 million credits on Sunracer.`
