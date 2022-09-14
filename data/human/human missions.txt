@@ -4986,7 +4986,7 @@ mission "Syndicate Business 1, start"
 				`	"What's the deal with you and that pirate?"`
 					goto piratedeal
 			label piratedeal
-			`"That pirate was a potential investor with the firm I work for. We had a disagreement over terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <destination>.`
+			`"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <destination>.`
 	on complete
 		"reputation: Independent (Killable)" = 10
 		conversation
