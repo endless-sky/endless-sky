@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MissionAction.h"
@@ -278,7 +281,8 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, const shared_ptr<Ship> &ship, const bool isUnique) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
+	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)
@@ -323,7 +327,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination, co
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
+	int jumps, int64_t payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;

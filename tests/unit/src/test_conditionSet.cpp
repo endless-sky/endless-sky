@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -118,7 +121,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
-			const auto conditionList = ConditionsStore{
+			const auto conditionList = ConditionsStore {
 				{"event: war begins", 1},
 			};
 			THEN( "the ConditionSet is satisfied" ) {
@@ -131,7 +134,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		REQUIRE_FALSE( neverSet.IsEmpty() );
 
 		AND_GIVEN( "a condition list containing the literal 'never'" ) {
-			const auto listWithNever = ConditionsStore{
+			const auto listWithNever = ConditionsStore {
 				{"never", 1},
 			};
 			THEN( "the ConditionSet is not satisfied" ) {
