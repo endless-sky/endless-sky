@@ -4930,7 +4930,7 @@ mission "Riley"
 
 mission "Syndicate Business 1, start"
 	name "Rescue Kidnapped Man on Moktar"
-	description "The mysterious man has been kidnapped by a heavy pirate warship in Moktar. Destroy the ship to rescue him"
+	description "A mysterious man has been kidnapped by a heavy pirate warship in Moktar. Destroy the ship to rescue him"
 	minor
 	to offer
 		random < 40
@@ -4942,28 +4942,28 @@ mission "Syndicate Business 1, start"
 	destination "Sunracer"
 	on offer
 		conversation
-			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified looking man in a suit appears on the screen. 'I don't have much time — I'm kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape shuttle."` 
-			`You hear banging and muffled shouting over the intercom. 'I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-'... the message cuts out...`
+			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified looking man in a suit appears on the screen. 'I don't have much time — I'm kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
+			`You hear banging and muffled shouting over the intercom. 'I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-' The message cuts out.`
 			choice
 				`	(Assist the mysterious man.)`
-						goto assist
+					goto assist
 				`	(Decline to assist the man.)`
-						decline
+					decline
 			label assist
 			`	You note that the distress signal came from a warship in Moktar and wonder why a Syndicate employee would be kidnapped by pirates. Anyway, time to get ready for a fight.`
 				accept
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter Moktar, your sensors detect a pirate Vanguard, but no sign of any escape shuttle. Before you can respond, your ship intercepts a hail, and it opens communication.`
+			`When you enter Moktar, your sensors detect a pirate Vanguard, but no sign of any escape pod. Before you can respond, your ship intercepts a hail, and it opens communication.`
 			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business dealings. Hand over that pompous salesman James and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
-						goto who
+					goto who
 				`	"I don't negotiate with pirates!"`
-						goto negotiate
+					goto negotiate
 				`	"You can take him, but I don't know where he is."`
-						goto who
+					goto who
 			label who
 			`	"Bah, you lying buffoon! I'll find him in your ship's wreckage!"`
 				goto power
@@ -4979,9 +4979,9 @@ mission "Syndicate Business 1, start"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"		
 		conversation 
-			`The Golden Jewel has been destroyed. You receive a hail from a small escape pod. "Thank you Captain, you've saved my life. I'm James, meet me on <destination> and I'll give you your reward"`
+			`The Golden Jewel has been destroyed. You receive a hail from a small escape pod. "Thank you Captain, you've saved my life. I'm James, meet me on <destination> and I'll give you your reward."`
 			choice
-				`	"Sounds good"`
+				`	"Sounds good."`
 					accept
 				`	"What's the deal with you and that pirate?"`
 					goto piratedeal
@@ -4990,7 +4990,7 @@ mission "Syndicate Business 1, start"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		conversation
-			`When you land on <destination>, James is waiting for you at the Spaceport. "Thank you, truly. I'm James Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits."`
+			`When you land on <destination>, James is waiting for you at the spaceport. "Thank you, truly. I'm James Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits."`
 			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but what if instead I get you into a private placement of Maralex stock? To purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
@@ -5002,14 +5002,14 @@ mission "Syndicate Business 1, start"
 				`	"No thanks, I'll take the money please."`
 					goto payup
 			label maralex
-			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We develop innovate micro-control solutions for high-performance commercial and military applications for vehicles traveling by sea, air, and of course space. Succinctly, we primarily develop fighter engines and drag designs. Would you like to invest?"`
+			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We develop innovative micro-control solutions for high-performance commercial and military applications for vehicles traveling by sea, air, and of course space. Succinctly, we primarily develop fighter engines and drag designs. Would you like to invest?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
 				`	"Nope, I'll stick with the 90k."`	
 					goto payup
 			label placement
-			`	"Almost, you will become a part owner of a partially owned subsidiary of Syndicated Systems -- Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
+			`	"Almost. You will own a fraction of a partially owned subsidiary of Syndicated Systems -- Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
@@ -5067,5 +5067,5 @@ mission "Syndicate Business 2, first stock purchase"
 			label low
 			action
 				"salary: Syndicate Business" = 300
-			`"Excellent, as a part owner of Maralex Controls, you will now receive a daily dividend. I have some business to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
+			`"Excellent. As a part owner of Maralex Controls, you will now receive a daily dividend. I have some work to attend to while I'm at our headquarters, but it was a pleasure doing business with you, Captain."`
 
