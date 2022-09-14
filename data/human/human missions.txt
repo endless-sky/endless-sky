@@ -4942,7 +4942,7 @@ mission "Syndicate Business 1, start"
 	destination "Sunracer"
 	on offer
 		conversation
-			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified-looking man in a suit appears on the screen. "I don't have much time — I've been kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
+			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified-looking man in a suit appears on the screen. "I don't have much time - I've been kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
 			`You hear banging and muffled shouting over the intercom. "I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-" The message cuts out.`
 			choice
 				`	(Assist the mysterious man.)`
@@ -4955,7 +4955,7 @@ mission "Syndicate Business 1, start"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <stopovers>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Before you can respond, your ship intercepts a hail, and it opens communication.`
+			`When you enter <stopovers>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
 			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman James and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
