@@ -192,22 +192,14 @@ void Outfit::Load(const DataNode &node)
 	isDefined = true;
 
 	// Use bools to track whether the display and plural names are set as opposed to string.empty() to allow explicitly empty names.
-	bool displayNameSet = false;
-	bool pluralNameSet = false;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "display name" && child.Size() >= 2)
-		{
 			displayName = child.Token(1);
-			displayNameSet = true;
-		}
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "plural" && child.Size() >= 2)
-		{
 			pluralName = child.Token(1);
-			pluralNameSet = true;
-		}
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 		{
 			flareSprites.emplace_back(Body(), 1);
@@ -295,9 +287,9 @@ void Outfit::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(!displayNameSet)
+	if(displayName.empty())
 		displayName = trueName;
-	if(!pluralNameSet)
+	if(pluralName.empty())
 		pluralName = displayName + 's';
 
 	// Only outfits with the jump drive and jump range attributes can
