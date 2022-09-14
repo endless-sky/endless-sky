@@ -5009,7 +5009,7 @@ mission "Syndicate Business 1, start"
 				`	"Nope, I'll stick with the 90k."`	
 					goto payup
 			label placement
-			`	"Almost. You will own a fraction of a partially owned subsidiary of Syndicated Systems -- Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest with us?"`
+			`	"Almost. You will own a fraction of a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
 			choice
 				`	"Sure, I'll invest. What do I need to do?"`
 					goto invest
