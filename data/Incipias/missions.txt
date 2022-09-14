@@ -16,8 +16,8 @@ mission "Incipias: First Contact II"
 	to offer
 		has "saw the Incipias"
 	on offer
+		set "talked to quarg about incipias"
 		conversation
-			set "talked to quarg about incipias"
 			`As you leave your ship you notice that it seems like the Quarg are every where intelligent life is, even there were the species is living in only one system. But maybe you can find out more about this new species here. Right after you finished this thought a Quarg is approaching you.`
 			`    "A human in this region of space? This is... uncommon. May I ask what someone of your kind is doing here?"`
 			choice
@@ -63,11 +63,15 @@ mission "Incipias: First Contact II"
 mission "Incipias: First Contact III"
 	invisible
 	landing
-	source Hai-home
+	source
+		government "Hai"
 	to offer
 		has "talked to quarg about incipias"
 	on offer
 		conversation
-			``
+			`Now that you are on a Hai world you think it would be a good opportunity to ask the Hai government how to proove yourself to the Quarg. You head to the closest embassy to ask for their support.`
+			`    At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told what you want. Annoyed by that you sit down and wait.`
+			`    After some time, you can not say how long because time in waiting rooms is flowing different, another Hai guides you to into an office. Both of you sit down. The Hai beginns to talk "What can I do for you today? It is not often that we have humans here." You beginn to tell the Hai your mater. While you are talking he listens carefully.`
+			`    When you finished he says "That seems like something very important, I fear I am not the right person to talk to. I will hand you over to my superior. He might be able to help you." Please wait here while I go and get him.`
 	to complete
 		never

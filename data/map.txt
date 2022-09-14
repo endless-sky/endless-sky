@@ -21530,62 +21530,6 @@ system Regulus
 			sprite planet/lava2-b
 			distance 346
 			period 20.065
-system Relic
-	pos 413.474 -814.659
-	habitable 659.2
-	belt 1722
-	link Hui'uc
-	asteroids "small rock" 1 2.7456
-	asteroids "medium rock" 23 6.24
-	asteroids "large rock" 2 5.3664
-	asteroids "medium metal" 12 4.2848
-	asteroids "large metal" 7 5.0752
-	minables aluminum 8 7.63269
-	minables lead 10 6.65692
-	minables tungsten 1 10.4787
-	trade Clothing 290
-	trade Electronics 740
-	trade Equipment 530
-	trade Food 350
-	trade "Heavy Metals" 960
-	trade Industrial 720
-	trade "Luxury Goods" 1220
-	trade Medical 680
-	trade Metal 390
-	trade Plastic 390
-	object
-		sprite star/k5
-		distance 29.0184
-		period 11.5684
-	object
-		sprite star/m4
-		distance 52.9816
-		period 11.5684
-		offset 180
-	object
-		sprite planet/rock5
-		distance 256.672
-		period 64.0646
-	object
-		sprite planet/ice2
-		distance 441.762
-		period 144.655
-	object
-		sprite planet/desert1
-		distance 668.522
-		period 269.293
-	object
-		sprite planet/titan
-		distance 1356.93
-		period 778.733
-	object
-		sprite planet/gas6
-		distance 3692.49
-		period 3495.67
-		object
-			sprite planet/rhea
-			distance 305
-			period 13.6055
 
 system Relifer
 	pos 19 603
