@@ -4956,7 +4956,7 @@ mission "Syndicate Business 1, start"
 		"reputation: Independent (Killable)" = -1000
 		conversation
 			`When you enter Moktar, your sensors detect a pirate Vanguard, but no sign of any escape pod. Before you can respond, your ship intercepts a hail, and it opens communication.`
-			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business dealings. Hand over that pompous salesman James and I'll let you live."`
+			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman James and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
 					goto who
