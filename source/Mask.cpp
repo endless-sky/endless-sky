@@ -7,13 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mask.h"
 
-#include "Files.h"
 #include "ImageBuffer.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cmath>
@@ -30,8 +33,10 @@ namespace {
 		const int height = image.Height();
 		const int numPixels = width * height;
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
-		auto LogError = [width, height](string reason) {
-			Files::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height) + " px image: " + std::move(reason));
+		auto LogError = [width, height](string reason)
+		{
+			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height)
+				+ " px image: " + std::move(reason));
 		};
 		raw.clear();
 

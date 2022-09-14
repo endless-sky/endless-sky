@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 effect "jump drive"
 	sprite "effect/jump drive"
@@ -61,16 +64,15 @@ effect "discharge spark"
 	"random spin" 10
 	"random velocity" 1
 
-# Needs unique graphics.
 effect "corrosion spark"
-	sprite "effect/nano spark"
+	sprite "effect/corrosion spark"
 		"no repeat"
-		"frame rate" 10
-	"lifetime" 30
-	"random angle" 360
-	"random spin" 30
-	"random velocity" 2
-	"velocity scale" -.005
+		"frame rate" 15
+	"lifetime" 60
+	"random angle" 120
+	"random spin" 5
+	"random velocity" -2
+	"velocity scale" .9
 
 # Needs unique graphics.
 effect "leakage spark"
@@ -83,15 +85,14 @@ effect "leakage spark"
 	"random velocity" 2
 	"velocity scale" -.005
 
-# Needs unique graphics.
 effect "burning spark"
-	sprite "effect/nano spark"
+	sprite "effect/burning spark"
 		"no repeat"
-		"frame rate" 10
-	"lifetime" 30
-	"random angle" 360
-	"random spin" 30
-	"random velocity" 2
+		"frame rate" 15
+	"lifetime" 40
+	"random angle" 90
+	"random spin" 3
+	"random velocity" -2
 	"velocity scale" -.005
 
 

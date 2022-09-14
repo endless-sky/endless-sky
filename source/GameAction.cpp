@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GameAction.h"
@@ -21,8 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
-#include "Ship.h"
 #include "Random.h"
+#include "Ship.h"
 #include "UI.h"
 
 #include <cstdlib>
@@ -365,9 +368,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
-	player.CheckReputationConditions();
 }
 
 
