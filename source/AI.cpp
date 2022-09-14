@@ -1930,7 +1930,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		return;
 
 	
-	bool isJump= ship.JumpDriveCheaper(ship.GetTargetSystem()) && ship.Attributes().Get("jump drive");
+	bool isJump = ship.JumpDriveCheaper(ship.GetTargetSystem()) && ship.Attributes().Get("jump drive");
 
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
