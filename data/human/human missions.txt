@@ -4981,10 +4981,10 @@ mission "Syndicate Business 1, start"
 		conversation 
 			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm James, meet me on <destination> to receive your reward."`
 			choice
-				`	"Sounds good."`
-					accept
-				`	"What's the deal with you and that pirate?"`
-					goto piratedeal
+			`	"Sounds good."`
+				accept
+			`	"What's the deal with you and that pirate?"`
+				goto piratedeal
 			label piratedeal
 			`"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <destination>.`
 	on complete
