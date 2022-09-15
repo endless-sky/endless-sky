@@ -4947,7 +4947,7 @@ mission "Syndicate Business 1, start"
 			choice
 			`	(Assist the mysterious man.)`
 					goto assist
-				`	(Don't assist the man.)`
+			`	(Don't assist the man.)`
 					decline
 			label assist
 			`	You note that the distress signal came from a warship in <stopovers> and wonder why a Syndicate employee would be kidnapped by pirates. Anyway, time to get ready for a fight.`
