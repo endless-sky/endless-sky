@@ -5026,7 +5026,7 @@ mission "Syndicate Business 1"
 
 
 
-mission "Syndicate Business 2, first stock purchase"
+mission "Syndicate Business 2"
 	name "Purchase Stock on Hephaestus"
 	description "Howard from Maralex Controls is letting you buy a share of the company for 1 million credits"
 	priority
