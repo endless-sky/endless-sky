@@ -4979,7 +4979,7 @@ mission "Syndicate Business 1, start"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"		
 		conversation 
-			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm James, meet me on <destination> to receive your reward."`
+			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm James. Meet me on <destination> to receive your reward."`
 			choice
 			`	"Sounds good."`
 				accept
