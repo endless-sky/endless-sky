@@ -5047,7 +5047,7 @@ mission "Syndicate Business 2, first stock purchase"
 				`	"Nope, I won't become an investor."`	
 					decline
 			label doit
-			`After you've signed numerous dotted lines James says,"Alright, we have your payment and signatures. All that's left is to submit the paperwork to our headquarters and conduct a biometric scan on <destination>. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+			`After you've signed numerous dotted lines, James says,"Alright, we have your payment and signatures. All that's left is to submit the paperwork to our headquarters and conduct a biometric scan at our secure facility on <destination>. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
 				accept
 	on accept
 		payment -1000000
