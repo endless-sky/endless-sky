@@ -5004,10 +5004,10 @@ mission "Syndicate Business 1, start"
 			label maralex
 			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
 			choice
-				`	"Sure, I'll invest. What do I need to do?"`
-					goto invest
-				`	"Nope, I'll stick with the 90k."`	
-					goto payup
+			`	"Sure, I'll invest. What do I need to do?"`
+				goto invest
+			`	"Nope, I'll stick with the 90k."`	
+				goto payup
 			label placement
 			`	"Almost. You will own a fraction of a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
 			choice
