@@ -4993,14 +4993,14 @@ mission "Syndicate Business 1, start"
 			`When you land on <destination>, James is waiting for you at the spaceport. "Thank you, truly. I'm James Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
 			`	However, I see you're clearly a captain of means. I'd have to pull a few strings, but what if instead I get you into a private placement of Maralex stock? To purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
-				`	"Sure, I'll invest. What do I need to do?"`
-					goto invest
-				`	"Maralex Controls? I thought you were part of the Syndicate."`
-					goto maralex
-				`	"Private placement? Does that mean I own part of the Syndicate?"`
-					goto placement
-				`	"No thanks. I'll take the money, please."`
-					goto payup
+			`	"Sure, I'll invest. What do I need to do?"`
+				goto invest
+			`	"Maralex Controls? I thought you were part of the Syndicate."`
+				goto maralex
+			`	"Private placement? Does that mean I own part of the Syndicate?"`
+				goto placement
+			`	"No thanks. I'll take the money, please."`
+				goto payup
 			label maralex
 			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
 			choice
