@@ -4956,7 +4956,7 @@ mission "Syndicate Business 1, start"
 		"reputation: Independent (Killable)" = -1000
 		conversation
 			`When you enter <stopovers>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
-			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman James and I'll let you live."`
+			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman Howard and I'll let you live."`
 			choice
 			`	"Uhhh... hand over who?"`
 				goto who
@@ -4979,7 +4979,7 @@ mission "Syndicate Business 1, start"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"		
 		conversation 
-			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm James. Meet me on <destination> to receive your reward."`
+			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm Howard. Meet me on <destination> to receive your reward."`
 			choice
 			`	"Sounds good."`
 				accept
@@ -4990,7 +4990,7 @@ mission "Syndicate Business 1, start"
 	on complete
 		"reputation: Independent (Killable)" = 10
 		conversation
-			`When you land on <destination>, James is waiting for you at the spaceport. "Thank you, truly. I'm James Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`When you land on <destination>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
 			`	However, I see you're clearly a captain of means. I'd have to pull a few strings, but what if instead I get you into a private placement of Maralex stock? To purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
 			`	"Sure, I'll invest. What do I need to do?"`
@@ -5022,13 +5022,13 @@ mission "Syndicate Business 1, start"
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
 			action
 				payment 91951
-		log `James from Maralex Controls offered to let you buy stock for 1 million credits on Sunracer.`
+		log `Howard Vendeur from Maralex Controls offered to let you buy stock for 1 million credits on Sunracer.`
 
 
 
 mission "Syndicate Business 2, first stock purchase"
 	name "Purchase Stock on Hephaestus"
-	description "James from Maralex Controls is letting you buy a share of the company for 1 million credits"
+	description "Howard from Maralex Controls is letting you buy a share of the company for 1 million credits"
 	priority
 	passengers 1
 	source 
@@ -5039,7 +5039,7 @@ mission "Syndicate Business 2, first stock purchase"
 		credits > 1000000
 	on offer
 		conversation
-			`James once again thanks you profusely for saving his life and excitedly tells you what an exclusive offer you've received to be able to purchase a share in Maralex Controls.`
+			`Howard once again thanks you profusely for saving his life and excitedly tells you what an exclusive offer you've received to be able to purchase a share in Maralex Controls.`
 			`	"To reiterate, to purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"
 			choice
 			`	"Sure, here's the 1 million credits."`
@@ -5047,13 +5047,13 @@ mission "Syndicate Business 2, first stock purchase"
 			`	"Nope, I won't become an investor."`	
 					decline
 			label doit
-			`After you've signed numerous dotted lines, James says,"Alright, we have your payment and signatures. All that's left is to submit the paperwork to our headquarters and conduct a biometric scan at our secure facility on <destination>. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+			`After you've signed numerous dotted lines, Howard says,"Alright, we have your payment and signatures. All that's left is to submit the paperwork to our headquarters and conduct a biometric scan at our secure facility on <destination>. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
 				accept
 	on accept
 		payment -1000000
 	on complete
 		conversation
-			`You land on <destination> and follow James' instructions to the biometric scan center. You hand in the paperwork, and after scanning your fingerprint, eyes, and getting a blood sample, James comes over and says, "Excellent, only one thing left to do.` 
+			`You land on <destination> and follow Howard' instructions to the biometric scan center. You hand in the paperwork, and after scanning your fingerprint, eyes, and getting a blood sample, Howard comes over and says, "Excellent, only one thing left to do.` 
 			`	New regulations dictate that you have a choice in investing in our full spectrum of activities, or use the alleged 'ethical investment' option to avoid funding more ambiguous activities such as strip mining, clearing endangered habitats, and doing business on worlds with alleged human rights violations.`
 			`	The second option would of course reduce your total returns by roughly 40%, resulting in a daily dividend of 300 credits. So, would you like to invest in the full investment suite or in the ethical investment option?"`
 			choice
