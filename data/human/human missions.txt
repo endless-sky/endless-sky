@@ -4946,7 +4946,7 @@ mission "Syndicate Business 1, start"
 			`You hear banging and muffled shouting over the intercom. "I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-" The message cuts out.`
 			choice
 			`	(Assist the mysterious man.)`
-					goto assist
+				goto assist
 			`	(Don't assist the man.)`
 				decline
 			label assist
