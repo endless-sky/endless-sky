@@ -5031,8 +5031,7 @@ mission "Syndicate Business 2"
 	description "Howard from Maralex Controls is letting you buy a share of the company for 1 million credits"
 	priority
 	passengers 1
-	source 
-		"Sunracer"
+	source "Sunracer"
 	destination Hephaestus
 	to offer
 		has "Syndicate Business 1, start: done"
