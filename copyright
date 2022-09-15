@@ -709,15 +709,15 @@ Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and c
 
 Files:
  images/land/station28*
-Copyright: mwewering
-License: Pixabay License
-Comment: Taken from https://pixabay.com/photos/corridor-tunnel-architecture-escape-2616414/ and cropped.
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
  images/land/station15*
-Copyright: mikecook
-License: Pixabay License
-Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
 
 Files:
  images/land/station5.jpg
@@ -1390,14 +1390,19 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/burning?spark/*
+ images/effect/burning?spark*
  images/effect/coalition?flare/*
- images/effect/corrosion?spark/*
+ images/effect/corrosion?spark*
  images/effect/explosion/pug/*
+ images/effect/finisher?impact*
  images/effect/korath?flare/*
  images/effect/plasma?flare/*
+ images/effect/pug?flare/*
+ images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
+ images/effect/zapper?impact*
  images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
  images/hardpoint/sunbeam?turret*
  images/hardpoint/wanderer?anti-missile*
@@ -1411,6 +1416,8 @@ Files:
  images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
  images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
  images/outfit/nuke*
  images/outfit/plasma?core*
  images/outfit/red?sun*
@@ -1423,18 +1430,23 @@ Files:
  images/outfit/wanderer?heat?sink*
  images/outfit/white?sun*
  images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/projectile/fire-lance*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
  images/ship/corvette*
+ images/ship/flivver*
  images/ship/mraven*
  images/ship/msplinter*
  images/ship/raven*
  images/ship/splinter*
  images/star/neutron*
  images/thumbnail/corvette*
+ images/thumbnail/flivver*
  images/thumbnail/mraven*
  images/thumbnail/msplinter*
  images/thumbnail/raven*
@@ -1492,11 +1504,17 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/modified?dromedary*
+ images/ship/modified?dromedary?wreck*
+ images/thumbnail/modified?dromedary*
+ images/thumbnail/modified?dromedary?wreck*
  sound/korath?afterburner*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/teciimach?bay*
+ images/outfit/teciimach?pod*
  images/planet/gas3-c*
  images/ship/aerie*
  images/ship/bactrian*
@@ -1548,11 +1566,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Becca Tommaso (under the same licence).
 
 Files:
- images/ship/raider?xlii*
- images/thumbnail/raider?xlii*
+ images/ship/tubfalet*
+ images/thumbnail/tubfalet*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and Lia Gerty (under the same licence).
+
+Files:
+ images/ship/-nra-ret*
+ images/thumbnail/-nra-ret*
+Copyright: Saugia <https://github.com/Saugia>
+License: CC-BY-SA-4.0
+Comment: Derived from works by NomadicVolcano (public domain).
 
 Files:
  images/outfit/microbot?defense?station*
@@ -1668,6 +1693,20 @@ Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 Files: images/outfits/skadetear*
 Copyright: Anarchist2
 License: CC-BY-SA-4.0
+
+Files:
+ images/thumbnail/smew*
+ images/ship/smew*
+Copyright: Dschiltt
+License: CC0 (Creative Commons Zero)/Public-Domain
+Comment: Derived from works by MZ (under the same license), and contributions by Zoura, Kitteh, Ejo Thims, and Saugia.
+
+Files:
+ images/ship/modified?dromedary?ghost*
+ images/ship/modified?dromedary?spectre*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Transparent materials by scrinarii1337.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

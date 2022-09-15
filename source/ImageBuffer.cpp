@@ -7,16 +7,19 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ImageBuffer.h"
 
 #include "File.h"
-#include "Files.h"
+#include "Logger.h"
 
-#include <png.h>
 #include <jpeglib.h>
+#include <png.h>
 
 #include <cstdio>
 #include <stdexcept>
@@ -223,10 +226,12 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} catch (const bad_alloc &) {
+		}
+		catch(const bad_alloc &)
+		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -235,9 +240,9 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 
@@ -300,10 +305,12 @@ namespace {
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
-		} catch (const bad_alloc &) {
+		}
+		catch(const bad_alloc &)
+		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
-			Files::LogError(message);
+			Logger::LogError(message);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -312,9 +319,9 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Files::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
 			if(height && height != buffer.Height())
-				Files::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
 			return false;
 		}
 
