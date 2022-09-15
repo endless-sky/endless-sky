@@ -4928,7 +4928,7 @@ mission "Riley"
 
 
 
-mission "Syndicate Business 1, start"
+mission "Syndicate Business 1"
 	name "Rescue Kidnapped Man on Moktar"
 	description "A mysterious man has been kidnapped by a heavy pirate warship in Moktar. Destroy the ship to rescue him"
 	minor
