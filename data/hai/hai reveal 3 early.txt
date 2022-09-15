@@ -149,9 +149,9 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		"Building Mountaintop Deferred" ++
 	on accept
 		event "role-play station before construction"
-		log `The diplomats have elected to double-down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. Agreed to fulfill the role of supervisor after being asked by the diplomats and completing some sort of test by the Hai Elders involving some odd questions.`
+		log `The diplomats have elected to double down on the role-play community angle, citing its success; however, the Hai are unwilling to trust a human government to see the inner workings of a station under construction in the wake of the civil war, and the Republic will not allow a station to be built on their side unsupervised. Agreed to fulfill the role of supervisor after being asked by the diplomats and completing some sort of test by the Hai Elders involving some odd questions.`
 	on stopover
-		dialog `A fleet of eight Geocoris are waiting to accompany you when you arrive, with just the final items being loaded as you come in to land. They will follow you to the site where the new station will be built.`
+		dialog `A fleet of eight Geocoris is waiting to accompany you when you arrive, with just the final items being loaded as you come in to land. They will follow you to the site where the new station will be built.`
 	to complete
 		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on complete
@@ -405,7 +405,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 	blocked `Sayari contacts you and says, "<first>, you're going to need 200 tons of cargo space for this." You should return here after freeing up <capacity>.`
 	on offer
 		conversation
-			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayari come to your personal device.`
+			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayari on your personal device.`
 			`	"Captain <last>! Glad I could get a hold of you on the other side of the wormhole there. I see the new relays are working. We've just discovered a problem: interest has soared in sign-ups for Mountaintop, but we've realized that most of our 'human' furnishings produced in Hai space aren't going to pass as having been manufactured with your technology. Mr Yang has pulled some strings, but now we urgently need someone to go pick them up from Prime in Betelgeuse. Everything else should be ready on our end soon enough, so if you can just handle that pick-up and delivery we'll be okay."`
 			`	You let her know you'll handle it and prepare to leave.`
 				accept

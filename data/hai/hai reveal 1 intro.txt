@@ -109,7 +109,7 @@ conversation "hai reveal republic or syndicate news"
 	`	It's difficult to be sure where you should start looking, but it seems that these 'Hai' are meant to be northward, and the biggest hub at that end of the known galaxy is Sunracer. Seems like that would be a good place to start.`
 		accept	
 	label "hai knowledge"
-	`	A clip of alien space ships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
+	`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize Shield Beetles hammering away at each other.`
 	`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as 'Hai'.`
 	`	You suspect it might be time to go visit your Hai friends again.`
 		accept
@@ -178,7 +178,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 		event "news: hai video clip published"
 		conversation "hai reveal republic or syndicate news"
 	on visit
-		dialog "You should visit Allhome, where the most humans are, first to see how things are going before you get more heavily involved."
+		dialog "You should first visit Allhome, where the most humans are, to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -203,7 +203,7 @@ mission "ZZ Event Hai Secret Leaks: FWHU"
 		event "news: hai video clip published"
 		conversation "hai reveal free worlds news"
 	on visit
-		dialog "You should visit Allhome, where the most humans are, first to see how things are going before you get more heavily involved."
+		dialog "You should first visit Allhome, where the most humans are, to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
 
@@ -396,7 +396,7 @@ mission "Hai Tour [2] Alta Hai"
 		conversation
 			`This star system has an unusual number of metallic asteroids, which you noticed the Hai harvesting for the raw materials before you landed. Stonebreak itself is home to incredibly large cities: massive, clearly planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards.`
 			`	From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is a dull and slightly irregular gray color, all made from the same material which seems to be some metallic alloy, and the corners of each building are slightly beveled instead of meeting at right angles.`
-			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, and warehouses and living quarters dot the inside of the ring.`
+			`	Even the spaceport is symmetrical: a ring of hangars face outwards at evenly spaced intervals, while warehouses and living quarters dot the inside of the ring.`
 			`	While the layout is utilitarian, it looks to be an incredibly comfortable place to live; the Hai have clearly given their individual community spaces quite a lot of character and life.`
 			`	As you are wandering around and getting a feel for the place, you overhear someone talking about an apparently complete ringworld in Alta Hai. It definitely sounds like something you should check out and asking around quickly gets you some clear directions.`
 				accept
@@ -460,7 +460,7 @@ mission "Hai Tour [5] Tour Ends"
 			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils."`
 				goto "that's awful"
 			label "skipped tours"
-			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. This unprecedented raid in broad daylight has security forces scrambling to redistribute appropriate resources to handle the threat, and all security personnel on leave have been reactivated until better support can be provided."`
+			`Soon after you land on <planet>, you notice a news broadcast on a nearby wall. "Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew kidnapped nearly four dozen Hai and hijacked a Geocoris before making off with their spoils. This unprecedented raid in broad daylight has the security forces scrambling to redistribute appropriate resources to handle the threat, and all security personnel on leave have been reactivated until better support can be provided."`
 			label "that's awful"
 			`	At a table nearby you hear a Hai staff member exclaim, "Oh, that's awful!"`
 			`	The rumors must be spreading further by the day. There's no doubt even more problems than this marauder will follow.`
@@ -528,7 +528,7 @@ mission "Hai Leaks Response 1"
 			`	You give it a moment of thought.`
 			choice
 				`	"That seems practical."`
-				`	"I don't really have an option to refuse do I?"`
+				`	"I don't really have an option to refuse, do I?"`
 			`	"Fantastic, you understand the situation," she says, though her tone is much more business like than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
 			`	She hands you an officially branded box containing what appears to be a diplomatic ID, which appears to both identify you in human standard and, from context, in Hai.`
 			choice
@@ -616,10 +616,10 @@ mission "Hai Leaks Response 2A"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
-		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free World's interests as a diplomat to the Hai.`
+		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free Worlds' interests as a diplomat to the Hai.`
 		conversation
 			`When you land on Deep, Katya is there waiting for you along with Alondo. "<first>! It's so good to see you again! When the Republic briefed the new Chancellor and his Cabinet on the Hai, he brought us in for advice. We thought to try and reach you, but of course you would somehow manage to be in the thick of it before we even knew what was going on."`
-			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
+			`	You hug them both in turn and return the greeting. "I thought it seemed odd when they said I was meeting you for this, Katya, but it makes much more sense if you were just easier to get a hold of than Alondo here."`
 			`	"Oh it was always going to be Alondo," she says, "but there's never a bad excuse for traveling with an old friend, especially when you're meeting other friends too."`
 			`	"Do we have time for a drink before we leave?" asks Alondo.`
 			`	You look around at the busy spaceport and see the workers haven't even noticed your ship waiting for refueling yet.`
@@ -685,7 +685,7 @@ mission "Hai Leaks Response 3"
 			`	"Extra security forces are being called in, but we've been busier than usual in Wah Ki with our northern brethren."`
 			`	Mr. Yang pulls out a datapad. "Well then, I'm afraid I may have some bad news. May I?"`
 			`	He gestures to a display and then takes control when indicated. "One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	A series of charts are thrown up on the screen. You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`

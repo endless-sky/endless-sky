@@ -13,21 +13,21 @@
 
 ########################################################################
 
-#Investigate a theorized smuggling route and rescue Hai. You have to do at least three of these missions.
+# Investigate a theorized smuggling route and rescue Hai. You have to do at least three of these missions.
 
-#NOTE: The Hai Leaks Response 6 and 7 missions will break if any of these missions have Hai-home as a destination.
+# NOTE: The Hai Leaks Response 6 and 7 missions will break if any of these missions have Hai-home as a destination.
 
-#Logic Register (don't delete)
-## Some subset of these are restricted so you can't pick up enough of them (total 3) to finish the quest at the same time as starting it.
+# Logic Register (don't delete)
+# # Some subset of these are restricted so you can't pick up enough of them (total 3) to finish the quest at the same time as starting it.
 #
 # Main Event:
-# #Gipeep
+# # Gipeep
 # - Minor People logs
 # - Cannot be discovered pre-story
 # - Includes information to support later progress (not critical)
 #
 # Secondary Events:
-# #Yeertle Family and Oonem
+# # Yeertle Family and Oonem
 # - Minor People logs
 # - Can be discovered pre-story (foreshadowing)
 # - Potential for recurring appearances
@@ -38,7 +38,7 @@
 # - needs: not "event: hai-human treaty signed"
 # 
 # Filler Events:
-# #Prison RPers, Meroot & Lucy 
+# # Prison RPers, Meroot & Lucy 
 # - Only mission logs
 # - Cannot be discovered pre-story
 # - to offer
@@ -89,10 +89,10 @@ mission "Hai Rescue: Yeertle Family"
 		conversation
 			branch nohint
 				not "Hai Rescue: Yeertle Hint: offered"
-			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 				goto start
 			label nohint
-			`Wandering around after dark you find yourself down an alley near the spaceport. The ongoing drizzle increases in intensity and you pause for a moment to huddle in an alcove for a while until it settles down. After a few moments, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like, features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
+			`Wandering around after dark you find yourself down an alley near the spaceport. The ongoing drizzle increases in intensity and you pause for a moment to huddle in an alcove for a while until it settles down. After a few moments, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			label start
 			`	Do you want to talk to him?`
 			choice
@@ -143,7 +143,7 @@ mission "Hai Rescue: Yeertle Family"
 			label looking
 			`	The man's holographic expression doesn't change, but his body language shifts in a way that speaks of distress.`
 			`	"The Hai government... no. No they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
-			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. Possible even it is that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
+			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. It is even possible that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
 					goto "ride offer"
@@ -157,7 +157,7 @@ mission "Hai Rescue: Yeertle Family"
 			`	You walk down a corridor to a stairway that leads to a brick wall. Duniip walks through the wall; apparently this is another of his holograms. You pass through and see a trio of energetic Hai children eating dinner with their mother.`
 			`	Duniip turns off his hologram and addresses his family. "I found us a pilot! They're going to take us all the way home."`
 			`	The whole family cheers and it turns out they were already packed to leave. Duniip explains they move regularly so they're not found. It takes them under two minutes to finish preparations and don their holoprojectors. Your walk back to the ship is largely uneventful until some men with strange scanners detect the Yeertle family. One man throws a small grenade with a green light on top. You recognize it as a low-level EMP device. All five holograms turn off, along with a nearby bank of lights, but by the time you stumble to a stop and identify the cause you're much closer to your ship than they are to you.`
-			`	In the sudden dimness surrounding your group, you quickly cross the remaining distance to your ship as hastily as possible before someone gets a good look at the Yeertle's. Looking back, you see the men were not following you; they were running to their own ships. Looks like they're planning to follow you into orbit.`
+			`	In the sudden dimness surrounding your group, you quickly cross the remaining distance to your ship as hastily as possible before someone gets a good look at the Yeertles. Looking back, you see the men were not following you; they were running to their own ships. Looks like they're planning to follow you into orbit.`
 				launch
 	on accept
 		dialog `It appears some unsavory types have followed you into orbit in pursuit of the Yeertle family. You could fight them, but they don't look equipped to make the journey back to Hai space successfully; so you could also probably outrun them if you prefer.`
@@ -432,7 +432,7 @@ mission "Hai Rescue: Meroot and Lucy"
 	on offer
 		"Hai Rescue: Meroot and Lucy (defer count)" ++
 		conversation
-			`As you walk through a major street, you notice a woman approach an alcove in the side of one building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You only had a moment to observe, but through the gap you spotted something hiding inside the small alcove which might have had tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
+			`As you walk through a major street, you notice a woman approach an alcove in the side of a building carrying some food. She looks around to see if she's being followed before entering the alcove and covering it with a sheet of steel. You only had a moment to observe, but through the gap you spotted something hiding inside the small alcove which might have had tufts of hair sticking out of the clothing across its body. It's probably a Hai.`
 			`	Do you want to investigate?`
 			choice
 				`	(Investigate.)`
