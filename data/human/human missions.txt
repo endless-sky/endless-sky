@@ -5056,7 +5056,7 @@ mission "Syndicate Business 2"
 			`	"New regulations dictate that you have a choice in investing in our full spectrum of activities, or use the alleged 'ethical investment' option to avoid funding more ambiguous activities such as strip mining, clearing endangered habitats, and doing business on worlds with alleged human rights violations."`
 			`	He then taps the documents on the right and says, "The second option would of course reduce your total returns by roughly 40%, resulting in a daily dividend of 300 credits. This is your final decision and set of paperwork. So, would you like to invest in the full investment suite or in the ethical investment option?"`
 			choice
-				`	"Full investment suite." Sign the left set of documents. (500 credits daily)`
+				`	"Full investment suite." (500 credits daily)`
 					goto high
 				`	"I'd prefer the ethical investment option." Sign the right set of documents. (300 credits daily)`	
 					goto low
