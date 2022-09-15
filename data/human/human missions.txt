@@ -4945,25 +4945,25 @@ mission "Syndicate Business 1"
 			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified-looking man in a suit appears on the screen. "I don't have much time - I've been kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
 			`You hear banging and muffled shouting over the intercom. "I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-" The message cuts out.`
 			choice
-			`	(Assist the mysterious man.)`
-				goto assist
-			`	(Don't assist the man.)`
-				decline
+				`	(Assist the mysterious man.)`
+					goto assist
+				`	(Don't assist the man.)`
+					decline
 			label assist
-			`	You note that the distress signal came from a warship in <stopovers> and wonder why a Syndicate employee would be kidnapped by pirates. Anyway, time to get ready for a fight.`
+			`	You note that the distress signal came from a warship in <waypoints> and wonder why a Syndicate employee would be kidnapped by pirates. Anyway, time to get ready for a fight.`
 				accept
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <stopovers>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard, but no sign of any escape pod. Your ship is immediately hailed, and the pirate opens communication.`
 			`	The voice of the captain of the Golden Jewel shouts out towards you. "You were unwise to get involved in our business. Hand over that pompous salesman Howard and I'll let you live."`
 			choice
-			`	"Uhhh... hand over who?"`
-				goto who
-			`	"I don't negotiate with pirates!"`
-				goto negotiate
-			`	"You can take him, but I don't know where he is."`
-				goto who
+				`	"Uhhh... hand over who?"`
+					goto who
+				`	"I don't negotiate with pirates!"`
+					goto negotiate
+				`	"You can take him, but I don't know where he is."`
+					goto who
 			label who
 			`	"Bah, you lying buffoon! I'll find him in your ship's wreckage!"`
 				goto power
@@ -4981,10 +4981,10 @@ mission "Syndicate Business 1"
 		conversation 
 			`The <npc> has been destroyed. You receive a hail from a small escape pod. "Thank you, Captain, you've saved my life. I'm Howard. Meet me on <destination> to receive your reward."`
 			choice
-			`	"Sounds good."`
-				accept
-			`	"What's the deal with you and that pirate?"`
-				goto piratedeal
+				`	"Sounds good."`
+					accept
+				`	"What's the deal with you and that pirate?"`
+					goto piratedeal
 			label piratedeal
 			`"That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to go to <destination>.`
 	on complete
@@ -4993,28 +4993,28 @@ mission "Syndicate Business 1"
 			`When you land on <destination>, Howard is waiting for you at the spaceport. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Maralex Controls. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
 			`	However, I see you're clearly a captain of means. I'd have to pull a few strings, but what if instead I get you into a private placement of Maralex stock? To purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits."`
 			choice
-			`	"Sure, I'll invest. What do I need to do?"`
-				goto invest
-			`	"Maralex Controls? I thought you were part of the Syndicate."`
-				goto maralex
-			`	"Private placement? Does that mean I own part of the Syndicate?"`
-				goto placement
-			`	"No thanks. I'll take the money, please."`
-				goto payup
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Maralex Controls? I thought you were part of the Syndicate."`
+					goto maralex
+				`	"Private placement? Does that mean I own part of the Syndicate?"`
+					goto placement
+				`	"No thanks. I'll take the money, please."`
+					goto payup
 			label maralex
 			`	"Maralex Controls is a partially-owned subsidiary of Syndicated Systems that accepts some private outside investment. We design, manufacture, and integrate innovative micro-control solutions for high-performance commercial and military air and space vehicles. Succinctly, we make the airframes of small planes and spacecraft. Would you like to invest?"`
 			choice
-			`	"Sure, I'll invest. What do I need to do?"`
-				goto invest
-			`	"Nope, I'll stick with the 90k."`	
-				goto payup
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Nope, I'll stick with the 90k."`	
+					goto payup
 			label placement
 			`	"Almost. You will own a fraction of a partially owned subsidiary of Syndicated Systems - Maralex Controls. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with quite high returns, I might add. Would you like to invest in us?"`
 			choice
-			`	"Sure, I'll invest. What do I need to do?"`
-				goto invest
-			`	"Nope, I'll stick with the 90k."`
-				goto payup
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Nope, I'll stick with the 90k."`
+					goto payup
 			label invest
 			`	"Excellent. To purchase 1 share of Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork so it won't be ready today, but feel free to come back to my office here anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
 				accept
@@ -5032,18 +5032,18 @@ mission "Syndicate Business 2"
 	priority
 	passengers 1
 	source "Sunracer"
-	destination "Hephaestus"
+	destination "Sunracer" #"Hephaestus"
 	to offer
-		has "Syndicate Business 1, start: done"
+		has "Syndicate Business 1: done"
 		credits > 1000000
 	on offer
 		conversation
 			`Howard once again thanks you profusely for saving his life and excitedly tells you what an exclusive offer you've received to be able to purchase a share in Maralex Controls.`
 			`	"To reiterate, to purchase 1 share of Maralex Controls I will need 1 million credits and for you to sign a few documents. Our historical returns are 20% per annum which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"
 			choice
-			`	"Sure, here's the 1 million credits."`
-				goto doit
-			`	"Nope, I won't become an investor."`	
+				`	"Sure, here's the 1 million credits."`
+					goto doit
+				`	"Nope, I won't become an investor."`	
 					decline
 			label doit
 			`After you've signed numerous dotted lines, Howard says,"Alright, we have your payment and preliminary signatures. All that's left is to submit this first set of paperwork to our headquarters and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
@@ -5052,15 +5052,14 @@ mission "Syndicate Business 2"
 		payment -1000000
 	on complete
 		conversation
-			`You land on <destination> and follow Howard' instructions to the biometric scan center. You hand in the first set of paperwork you filled, and after scanning your fingerprint, eyes, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign."` 
-			`	He places two sets of documents on the table. He taps the documents on the left.`
+			`You land on <destination> and follow Howard' instructions to the biometric scan center. You hand in the first set of paperwork you filled, and after scanning your fingerprint, eyes, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places two sets of documents on the table and taps the set on the left.`
 			`	"New regulations dictate that you have a choice in investing in our full spectrum of activities, or use the alleged 'ethical investment' option to avoid funding more ambiguous activities such as strip mining, clearing endangered habitats, and doing business on worlds with alleged human rights violations."`
 			`	He then taps the documents on the right and says, "The second option would of course reduce your total returns by roughly 40%, resulting in a daily dividend of 300 credits. This is your final decision and set of paperwork. So, would you like to invest in the full investment suite or in the ethical investment option?"`
 			choice
-			`	"Full investment suite." Sign the left set of documents. (500 credits daily)`
-				goto high
-			`	"I'd prefer the ethical investment option." Sign the right set of documents. (300 credits daily)`	
-				goto low
+				`	"Full investment suite." Sign the left set of documents. (500 credits daily)`
+					goto high
+				`	"I'd prefer the ethical investment option." Sign the right set of documents. (300 credits daily)`	
+					goto low
 			label high
 			action
 				"salary: Syndicate Business" = 500
