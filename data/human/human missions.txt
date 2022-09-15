@@ -5058,7 +5058,7 @@ mission "Syndicate Business 2"
 			choice
 				`	"Full investment suite." (500 credits daily)`
 					goto high
-				`	"I'd prefer the ethical investment option." Sign the right set of documents. (300 credits daily)`	
+				`	"I'd prefer the ethical investment option." (300 credits daily)`	
 					goto low
 			label high
 			action
