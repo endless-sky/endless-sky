@@ -5052,7 +5052,7 @@ mission "Syndicate Business 2"
 		payment -1000000
 	on complete
 		conversation
-			`You land on <destination> and follow Howard' instructions to the biometric scan center. You hand in the first set of paperwork you filled, and after scanning your fingerprint, eyes, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places two sets of documents on the table and taps the set on the left.`
+			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled, and after scanning your fingerprint, eyes, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places two sets of documents on the table and taps the set on the left.`
 			`	"New regulations dictate that you have a choice in investing in our full spectrum of activities, or use the alleged 'ethical investment' option to avoid funding more ambiguous activities such as strip mining, clearing endangered habitats, and doing business on worlds with alleged human rights violations."`
 			`	He then taps the documents on the right and says, "The second option would of course reduce your total returns by roughly 40%, resulting in a daily dividend of 300 credits. This is your final decision and set of paperwork. So, would you like to invest in the full investment suite or in the ethical investment option?"`
 			choice
