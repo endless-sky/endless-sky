@@ -877,11 +877,11 @@ outfit "Void Rifle"
 # Special
 
 outfit "Remnant License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 
 outfit "Remnant Capital License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
