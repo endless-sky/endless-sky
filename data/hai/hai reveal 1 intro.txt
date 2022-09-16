@@ -919,16 +919,25 @@ mission "Hai Leaks Response 5"
 	destination "Hai-home"
 	to offer
 		has "Hai Leaks Response 4: done"
+	on complete
+		event "allhome reinforced" 1
+		conversation
+			`When you return to Hai-home, you are greeted with a call from Sayari, who looks relieved to see you. "Captain <last>, thank you for your assistance to our security forces. They appreciated it greatly, and we should have them properly reinforced in a day or two. A few things have happened but you haven't missed anything important yet."`
+			`	She smiles and says, "Your diplomatic colleagues are still working on their solutions, so I don't think there's anything for you to do right at this moment. Whenever you're ready though, if you re-land at the secure port we can get you up to speed with our next steps in a day or two. I have no doubt that there'll be things for you to do by then, so you should be ready when you return."`
 
+event "allhome reinforced"
+	system "Heia Due"
+		add fleet "Anti-Pirate Hai (No Wormhole Travel)" 600
+
+# This non-landing mission allows you to take the game-play pause and go do other stuff if you need before getting too deeply involved in the story.
 mission "Hai Leaks Response 6"
 	name "Investigate rumors of kidnapped Hai"
 	description "It's a statistical oddity, but Sayari's friend thinks someone is kidnapping Hai. Check spaceports in nearby parts of Hai and human space for evidence of a Hai trafficking operation."
 	autosave
-	landing
 	source "Hai-home"
 	clearance
 	to offer
-		has "Hai Leaks Response 4: done"
+		has "Hai Leaks Response 5: done"
 	on offer
 		event "secret mountaintop"
 		event "role-play fleet deception"
@@ -937,7 +946,7 @@ mission "Hai Leaks Response 6"
 		"reputation: Hai" >?= 100
 		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise 'Our Fuzzy Paradise'. The presence of Hai who won't take off their costumes has been attributed to a 'fan community' that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
 		conversation
-			`When you return to Hai-home, you are met by a group of relieved diplomats. Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
+			`Arriving at the secure landing area on Hai-home, you are met by a group of relieved diplomats. Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
 			choice
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
@@ -952,10 +961,10 @@ mission "Hai Leaks Response 6"
 			`	Alondo gives you a quizzical look. "Of course you are <last>."`
 			label about
 			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones.`
-			`	"The production of the very first series was entirely funded through a government grants program though, as a cover for any accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself. The idea here is that since the last one was so successful, someone has decided that it's worth the risk to make a big budget movie production out of it and to potentially use that to kick off a sort of tourist trap type theme park destination. We've found a Jollywood producer who's willing to be all wounded on TV about the spoiling of his 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also decided that this project has a 'fan community' that have been hired on as a focus group to support the production for consistency and accuracy."`
+			`	"The production of the very first series was entirely funded through a government grants program though, as a cover for any accidental leaks about the Hai. Xilin tells me that since then it's pretty much run itself. The idea here is that since the last one was so successful, someone has decided that it's worth the risk to make a big budget movie production out of it and to potentially use that to kick off a sort of tourist trap type theme park destination. We've found a Seerwood producer who's willing to be all wounded on TV about the spoiling of his 'big surprise' release, and we're passing off the footage as leaked promotional material. For the sake of the cover, we've also decided that this project has a 'fan community' that have been hired on as a focus group to support the production for consistency and accuracy."`
 			`	He chuckles tiredly. "That's where the uh, furry, explanation came into things. It also probably can't hold up as a cover indefinitely. Still, things have been going very well while you've been away!`
 			label next
-			`	"I hear you've been instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
+			`	"I hear you were instrumental in driving off some opportunistic pirates and helping stem the information leak. Come on, I'll buy you a drink on the others' behalf."`
 			`	Some hours later, you leave the fancy cocktail bar Alondo took you to and begin making your way back to your ship to sleep. Your cabin by far seems to be the best place to not be bothered.`
 			`	Partway there, a hooded figure suddenly falls in step beside you.`
 			choice
