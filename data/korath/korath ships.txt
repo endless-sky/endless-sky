@@ -348,6 +348,7 @@ ship "'nra'ret"
 
 
 ship "'olofez"
+	plural "'olofezes"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
 	attributes
