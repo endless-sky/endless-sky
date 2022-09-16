@@ -11,9 +11,10 @@ outfit "Plasma Discharger"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"submunition" "plasma particles" 5
-		"inaccuracy" 5
+		"inaccuracy" 8
 		"velocity" 10
 		"lifetime" 64
+		"random lifetime" 12
 		"reload" 20
 		"firing energy" 8
 		"firing heat" 4
@@ -27,7 +28,7 @@ outfit "plasma particles"
 		"hit effect" "blaster impact"
 		"lifetime" 60
 		"random velocity" 2
-		"inaccuracy" 40
+		"inaccuracy" 20
 		"shield damage" 8
 		"hull damage" 9
 		"minable damage" 12
