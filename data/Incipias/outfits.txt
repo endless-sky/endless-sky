@@ -5,7 +5,7 @@ outfit "Plasma Discharger"
 	"gun ports" -1
 	thumbnail "outfit/plasma discharger"
 	weapon
-		sprite "projectile/blaster"
+		sprite "projectile/plasma discharge"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 5

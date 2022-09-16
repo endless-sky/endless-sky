@@ -73,5 +73,37 @@ mission "Incipias: First Contact III"
 			`    At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told what you want. Annoyed by that you sit down and wait.`
 			`    After some time, you can not say how long because time in waiting rooms is flowing different, another Hai guides you to into an office. Both of you sit down. The Hai beginns to talk "What can I do for you today? It is not often that we have humans here." You beginn to tell the Hai your mater. While you are talking he listens carefully.`
 			`    When you finished he says "That seems like something very important, I fear I am not the right person to talk to. I will hand you over to my superior. He might be able to help you." Please wait here while I go and get him.`
+			`    You do not have to wait long this time until an elder Hai enters the room. The doors are closed and both of you sit silent for a short moment. The Hai beginns to speak, "That is a serious matter you came here to discuss. I do not even know if we want to help you. Maybe it would be best if you start with giving us some reason. I am allowed to speak for our government so you better be cautious what you say."`
+			choice
+				"Because you do not want to seperate species by force?"
+					goto seperation
+				"Is it not a nice thought of species peacefully making contact?"
+					goto peace
+				"It is always better when species interact with each other early peacefully than making contact late but forcefully."
+					goto early
+			label seperation
+			`    You explain the Hai that you belief in a peaceful united galaxy where all species interact with each other. After you told that to the Hai he says that he has to talk to some people. "You have to wait here for a while." He says and leaves the room.`
+			`    This time you have to wait longer. But when he comes back he has good news for you. "We do not think that you lied about your intentions, but before we help you you have to give us a proof of at least one other peacefull contact you made to a species. If you can bring us this proof we will see how we can help you.`
+				goto offer
+			label peace
+			`    You explain that you like to make contact to new species and the cultural exchange. You tell the Hai of the positive impacts on both sides of a peacefull contact. The Hai listens carefully and after you finished he says "Now I understand your noble reasons for this. I will have to go to talk to some people." He leaves the room and tells you to wait there.`
+			`    You have to wait a longer period of time until he comes back. "I have good news for you. We belief you that your intentions are only this peaceful ones. We will help you if you fulfill the following condition: Bring us one other proof of a peaceful contact you made to another species."`
+				goto offer
+			label early
+			`    You explain the Hai that you think it is best to make contact to a species as soon as possible. Because at some point in the distant future there will be contact with them anyways so it is now the best time to establish peaceful connections. After the Hai heard that he stands up and says "I will talk to some people about the things you told me.Please wait here." and leaves the room.`
+			`    A long time is passing before the Hai is comming back. When he comes back he sits down and says "We are mostly sure now that you have no bad intentions. However, before we start helping you with this matter we want something from you that prooves you made peaceful contact to another species. If you can get this for us we will see how we can help you.`
+			label offer
+			`    You ask the Hai how this proove could look like. The Hai answers "That is something I have no answer for. Maybe it would be best if you talk to government of the species. It was a pleasure to talk to you. I will see you when you got the prove." With these words he guides you to the exit and you say goodbye to him.`
+				accept
 	to complete
-		never
+		or
+			has "wanderer peace prove: done"
+			has "coalition peace prove: done"
+
+mission "wanderer peace prove"
+	landing
+	name "Prove of Peace"
+
+mission "coalition peace prove"
+	landing
+	name "Prove of Peace"
