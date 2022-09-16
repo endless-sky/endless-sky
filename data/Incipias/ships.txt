@@ -19,7 +19,7 @@ ship "Nimbus"
 		"solar collection" 400
 		"fuel capacity" 200
 	outfits
-		"Solid Class Shield"
+		"Liquid Class Shield"
 		"Core Class Thruster"
 		"Core Class Steering"
 		"Liquid Hydrogen Cell"
@@ -27,6 +27,46 @@ ship "Nimbus"
 	engine 0 125
 	gun -31 -105
 	gun 31 -105
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Nimbus is the largest ship of Incipias. Thanks to it large solar collectores it does not need any other power generation outfits. As all ships of the Incipias it can land on gas giants."
+
+ship "Cumulonimbus"
+	"plural" "Cumulonimbus'"
+	"sprite" ship/cumulonimbus
+	"swizzle" 0
+	attributes
+		"category" "Medium Warship"
+		"cost" 500000
+		"hull" 2500
+		"required crew" 20
+		"bunks" 40
+		"mass" 600
+		"drag" 13.3
+		"heat dissipation" .7
+		"cargo space" 100
+		"outfit space" 450
+		"engine capacity" 150
+		"weapon capacity" 50 
+		"gaslining" 1
+		"solar collection" 400
+		"fuel capacity" 200
+	outfits
+		"Solid Class Shield"
+		"Core Class Thruster"
+		"Core Class Steering"
+		"Liquid Hydrogen Cell"
+		"Discharger Turret" 4
+	turret -30 16
+	turret -30 -27
+	turret 30 -27
+	turret 30 16
+	engine -57 90.5
+	engine -35 95
+	engine 34 95.5
+	engine 57 91.5
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10

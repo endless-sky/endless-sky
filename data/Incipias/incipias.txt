@@ -43,6 +43,8 @@ fleet "Nimbi"
 		timid mining harvests mute
 	variant 1
 		"Nimbus" 1
+	variant 1
+		"Cumulonimbus" 1
 
 outfitter "Incipias All Outfits"
 	"Liquid Hydrogen Cell"
