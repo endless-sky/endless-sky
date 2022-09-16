@@ -9315,85 +9315,85 @@ system Ekuarik
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 82
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 90
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 99
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 112
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 216
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 225
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 234
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 221
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 239
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 253
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 281
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 298
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 312
 
 system Elnath
@@ -14404,133 +14404,133 @@ system "Ki War Ek"
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 122
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 138
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 148
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 157
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 164
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 171
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 189
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 204
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 214
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 226
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 240
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 258
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 163
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 178
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 191
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 200
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 228
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 245
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 250
 
 system Kiro'ku
@@ -20627,205 +20627,205 @@ system Quaru
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 21
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 32
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 44
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 53
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 62
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 66
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 73
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 87
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 95
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 104
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 116
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 125
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 134
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 149
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 29
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 38
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 42
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 55
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 64
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 78
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 92
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 106
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 120
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 132
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 197
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 231
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 244
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 198
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 212
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 237
 
 system Queri
