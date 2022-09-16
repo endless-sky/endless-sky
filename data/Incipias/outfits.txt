@@ -1,3 +1,5 @@
+
+
 outfit "Plasma Discharger"
 	category "Guns"
 	mass 25
@@ -8,15 +10,27 @@ outfit "Plasma Discharger"
 		sprite "projectile/plasma discharge"
 		sound "blaster"
 		"hit effect" "blaster impact"
+		"submunition" "plasma particles" 5
 		"inaccuracy" 5
-		"velocity" 20.625
-		"lifetime" 32
-		"reload" 14
+		"velocity" 10
+		"lifetime" 64
+		"reload" 20
 		"firing energy" 8
 		"firing heat" 4
-		"shield damage" 30
-		"hull damage" 35
-		"minable damage" 50
+		"shield damage" 53
+		"hull damage" 42
+		"minable damage" 76
+
+outfit "plasma particles"
+	weapon
+		sprite "effect/plasma particle"
+		"hit effect" "blaster impact"
+		"lifetime" 60
+		"random velocity" 2
+		"inaccuracy" 40
+		"shield damage" 8
+		"hull damage" 9
+		"minable damage" 12
 
 outfit "Gas Class Shield"
 	category "Systems"
