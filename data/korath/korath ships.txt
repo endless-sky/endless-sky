@@ -1121,7 +1121,7 @@ ship "Arch-Carrack"
 		"hull" 19300
 		"required crew" 54
 		"bunks" 97
-		"mass" 1177
+		"mass" 1077
 		"drag" 14.9
 		"heat dissipation" .5
 		"fuel capacity" 600
@@ -1150,6 +1150,7 @@ ship "Arch-Carrack"
 		"Thermal Repeater Rifle" 55
 		
 		"Gaktem GP Hybrid Thruster"
+		"Farves GP Hybrid Thruster"
 		"Gaktem GP Hybrid Steering"
 		"Scram Drive"
 
@@ -1178,19 +1179,19 @@ ship "Charm-Shallop"
 	thumbnail "thumbnail/charm-shallop"
 	attributes
 		category "Utility"
-		"cost" 16570000
+		"cost" 14070000
 		"shields" 19700
 		"hull" 15200
 		"required crew" 65
-		"bunks" 253
-		"mass" 575
-		"drag" 8.5
-		"heat dissipation" .6
+		"bunks" 203
+		"mass" 495
+		"drag" 7.5
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 194
-		"outfit space" 569
-		"weapon capacity" 153
-		"engine capacity" 171
+		"outfit space" 473
+		"weapon capacity" 158
+		"engine capacity" 129
 		"disruption resistance" 0.2
 		"disruption resistance energy" 2
 		"disruption resistance heat" 2
@@ -1211,8 +1212,8 @@ ship "Charm-Shallop"
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 66
 		
-		"Farves GP Hybrid Thruster"
-		"Farves GP Hybrid Steering"
+		"Gaktem GP Hybrid Thruster"
+		"Gaktem GP Hybrid Steering"
 		"Scram Drive"
 
 	engine -17.5 139.5

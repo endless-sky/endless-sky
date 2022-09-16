@@ -725,8 +725,8 @@ outfit "Arkrof GP Hybrid Steering"
 	"outfit space" -12
 	"engine capacity" -12
 	"turn" 340
-	"turning energy" 1.26
-	"turning heat" 1.29
+	"turning energy" 1.25
+	"turning heat" 1.3
 	"steering flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "ion tiny"
@@ -741,7 +741,7 @@ outfit "Farves GP Hybrid Steering"
 	"engine capacity" -24
 	"turn" 780
 	"turning energy" 2.65
-	"turning heat" 2.91
+	"turning heat" 2.9
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
@@ -756,7 +756,7 @@ outfit "Gaktem GP Hybrid Steering"
 	"outfit space" -42
 	"engine capacity" -42
 	"turn" 1575
-	"turning energy" 4.86
+	"turning energy" 4.85
 	"turning heat" 5.8
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
