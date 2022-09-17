@@ -129,7 +129,7 @@ mission "wanderer peace prove"
 				"I want something to remember you."
 			`    "Let me think about this. What would present our species best..." The Wanderer gets silent while thinking. Than he suddenly stands up, "If I get the permission to give you this, you will get a perfect item that presents our species best. Let me go check it." The Wanderer leaves the room.`
 			label c1
-			`    Time is passing and you get a little bit nervous, but after some time the wanderer finally returns. He immedeatly begins to speak. "I just got the permission", he says "You will have to travel to <destination> to get this. You will receive it at the embassy ther, I already contacted some people there." You ask him what it his but all he tells you is "It is a surprise, you will see when you get there. Take this." He hands you a small card. "This will tell the people there that you are the right one." He says goodbye to you and you leave the embassy.`
+			`    Time is passing and you get a little bit nervous, but after some time the wanderer finally returns. He immedeatly begins to speak. "I just got the permission", he says "You will have to travel to <destination> to get this. You will receive it at the embassy there, I already contacted some people there." You ask him what it his but all he tells you is "It is a surprise, you will see when you get there. Take this." He hands you a small card. "This will tell the people there that you are the right one." He says goodbye to you and you leave the embassy.`
 				accept
 	on complete
 		conversation
