@@ -4942,7 +4942,7 @@ mission "Syndicate Business 1"
 	destination "Sunracer"
 	on offer
 		conversation
-			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words EMERGENCY DISTRESS SIGNAL flash in red. A terrified-looking man in a suit appears on the screen. "I don't have much time - I've been kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
+			`Returning to your ship after an uneventful dinner at the spaceport, your ship's communication screen blares an alarm as the words "EMERGENCY DISTRESS SIGNAL" flash in red. A terrified-looking man in a suit appears on the screen. "I don't have much time - I've been kidnapped. If you're receiving this message, I need you to destroy the ship. I've managed to barricade myself in an escape pod."` 
 			`You hear banging and muffled shouting over the intercom. "I'm a Syndicate employee - I can pay you! Help me captain, you're my only h-" The message cuts out.`
 			choice
 				`	(Assist the mysterious man.)`
