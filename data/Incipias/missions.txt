@@ -68,6 +68,7 @@ mission "Incipias: First Contact III"
 	to offer
 		has "talked to quarg about incipias"
 	on offer
+		set "searching for a prove"
 		conversation
 			`Now that you are on a Hai world you think it would be a good opportunity to ask the Hai government how to proove yourself to the Quarg. You head to the closest embassy to ask for their support.`
 			`    At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told what you want. Annoyed by that you sit down and wait.`
@@ -93,7 +94,7 @@ mission "Incipias: First Contact III"
 			`    You explain the Hai that you think it is best to make contact to a species as soon as possible. Because at some point in the distant future there will be contact with them anyways so it is now the best time to establish peaceful connections. After the Hai heard that he stands up and says "I will talk to some people about the things you told me.Please wait here." and leaves the room.`
 			`    A long time is passing before the Hai is comming back. When he comes back he sits down and says "We are mostly sure now that you have no bad intentions. However, before we start helping you with this matter we want something from you that prooves you made peaceful contact to another species. If you can get this for us we will see how we can help you.`
 			label offer
-			`    You ask the Hai how this proove could look like. The Hai answers "That is something I have no answer for. Maybe it would be best if you talk to government of the species. It was a pleasure to talk to you. I will see you when you got the prove." With these words he guides you to the exit and you say goodbye to him.`
+			`    You ask the Hai how this proove could look like. The Hai answers "That is something I have no answer for. Maybe it would be best if you talk to government of the species. It was a pleasure to talk to you. I will see you when you got the prove. Oh, and one last thing: I might be better to not tell this species exactly why you need this." With these words he guides you to the exit and you say goodbye to him.`
 				accept
 	to complete
 		or
@@ -103,7 +104,29 @@ mission "Incipias: First Contact III"
 mission "wanderer peace prove"
 	landing
 	name "Prove of Peace"
+	source
+		government "Wanderer"
+		not planet "Vara K'chrai"
+	to offer
+		has "searching for a prove"
+	on offer
+		conversation
+			`Now that you are on a wanderer world you decide this would be a good time for asking them about the prove the Hai requested from you. You head for a near embassy.`
+			`    At the embassy an older Wanderer ask you what you are there for. You remember the Hai telling you that you should not tell the other species about the Incipias, so you search for something else to tell them.`
+			choice
+				"I am searching for something unique that presents your species best."
+					goto unique
+				"I am gathering proves of friendship from all over the galaxy."
+			`   "That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I got an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
+				goto c1
+			label unique
+			`    "Why are you seatching for something like this?"`
+			label c1
+			`    Time is passing and you get a little bit nervous, but after some time the wanderer finally returns. He immedeatly begins to speak. "You will get something that`
+				accept
 
 mission "coalition peace prove"
 	landing
 	name "Prove of Peace"
+	source
+		government "Heliarch"
