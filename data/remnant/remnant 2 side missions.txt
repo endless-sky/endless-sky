@@ -645,7 +645,7 @@ mission "Remnant: Shattered Light 6"
 
 mission "Remnant: Scent of Rain 1"
 	landing
-	name "Search for the unknown Korath ship."
+	name "Search for the unknown Korath ship"
 	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofezes, then report back to <destination>. The Remnant believe it will be found in one of the southern Korath systems."
 	source
 		government "Remnant"
@@ -700,9 +700,9 @@ mission "Remnant: Scent of Rain 1"
 		conversation
 			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?"`
 			choice
-				`	(Describe the addition of the new bay and how it is used.)`
-				`	(Describe the structural changes and potential ways that could change the ship's performance.)`
-			`He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
+				`	"You were right in suspecting that this new ship carries an additional fighter. One more fighter might not change much in combat, but if the Korath are building new warships, they may also be building stronger fighters."`
+				`	"An extra fighter bay isn't the only thing this new ship has. It also comes with an extra gun, bigger engines, superior shields and hull, and likely other unseen improvements. Overall it's much more formidable than its predecessor."`
+			`	He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
 			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
 			choice
 				`	"You are welcome."`
