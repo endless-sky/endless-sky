@@ -7108,7 +7108,7 @@ system Chy'chra
 	fleet "Wanderer Freight" 1500
 	fleet "Wanderer Drones" 1000
 	fleet "Wanderer Defense" 300
-	fleet "Unfettered Raid" 5000
+	fleet "Unfettered Raid (Wanderers)" 5000
 	object
 		sprite star/g5
 		period 10
@@ -9083,7 +9083,7 @@ system "Ehma Ti"
 	trade Plastic 532
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
-	fleet "Unfettered Raid" 2500
+	fleet "Unfettered Raid (Wanderers)" 2500
 	object
 		sprite star/k0
 		period 10
@@ -20273,7 +20273,7 @@ system Prakacha'a
 	fleet "Wanderer Freight" 400
 	fleet "Wanderer Drones" 400
 	fleet "Wanderer Defense" 400
-	fleet "Unfettered Raid" 5000
+	fleet "Unfettered Raid (Wanderers)" 5000
 	object
 		sprite star/g0
 		distance 52.2281

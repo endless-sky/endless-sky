@@ -558,7 +558,7 @@ fleet "Large Unfettered"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 
-fleet "Unfettered Raid"
+fleet "Unfettered Raid (Wanderers)"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 1
@@ -573,3 +573,88 @@ fleet "Unfettered Raid"
 	variant
 		"Shield Beetle (Jump)" 1
 		"Shield Beetle (Jump, Tracker)" 2
+
+fleet "Unfettered Raid (Hai)"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		nemesis
+		disables
+		plunders
+		harvests
+	variant
+		"Shield Beetle"
+	variant
+		"Shield Beetle"
+		"Lightning Bug"
+	variant
+		"Lightning Bug"
+		"Lightning Bug (Pulse)"
+	variant
+		"Pond Strider"
+		"Flea" 8
+	variant
+		"Pond Strider"
+		"Flea (Pulse)" 8
+	variant
+		"Pond Strider (Tracker)"
+		"Flea" 8
+	variant
+		"Pond Strider (Tracker)"
+		"Flea (Pulse)" 8
+	variant
+		"Pond Strider"
+		"Flea" 8
+		"Lightning Bug"
+	variant
+		"Pond Strider"
+		"Flea (Pulse)" 8
+		"Lightning Bug" 2
+	variant
+		"Pond Strider (Tracker)"
+		"Flea" 8
+		"Lightning Bug" 2
+	variant
+		"Pond Strider (Tracker)"
+		"Flea (Pulse)" 8
+		"Lightning Bug"
+	variant
+		"Pond Strider (Ion)"
+		"Flea" 8
+	variant
+		"Pond Strider (Ion)"
+		"Flea (Pulse)" 8
+	variant
+		"Pond Strider (Pulse)"
+		"Flea" 8
+	variant
+		"Pond Strider (Pulse)"
+		"Flea (Pulse)" 8
+	variant
+		"Shield Beetle (Jump)"
+	variant
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+	variant
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+	variant
+		"Shield Beetle (Tracker)" 2
+	variant
+		"Shield Beetle"
+		"Pond Strider"
+		"Flea" 8
+	variant
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Lightning Bug" 2
+	variant
+		"Shield Beetle"
+		"Lightning Bug" 3
