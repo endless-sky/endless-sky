@@ -61,7 +61,8 @@ mission "Incipias: First Contact II"
 		never
 
 mission "Incipias: First Contact III"
-	invisible
+	name "A prove of friendship."
+	description "Get a prove of friendship with another species for the Hai to help you."
 	landing
 	source
 		government "Hai"
@@ -107,6 +108,8 @@ mission "wanderer peace prove"
 	source
 		government "Wanderer"
 		not planet "Vara K'chrai"
+		has "reputation: Wanderer" >= 5
+	destination "Vara K'chrai"
 	to offer
 		has "searching for a prove"
 	on offer
@@ -120,10 +123,19 @@ mission "wanderer peace prove"
 			`   "That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I got an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
 				goto c1
 			label unique
-			`    "Why are you seatching for something like this?"`
+			`    "Why are you searching for something like this? That is an quite unusual request."`
+			choice
+				"I am passionate collector."
+				"I want something to remeber you."
+			`    "Let me think about this. What would present our species best..." The Wanderer gets silent while thinking. Than he suddenly stands up, "If I get the permission to give you this, you will get a perfect item that presents our species best. Let me go check it." The Wanderer leaves the room.`
 			label c1
-			`    Time is passing and you get a little bit nervous, but after some time the wanderer finally returns. He immedeatly begins to speak. "You will get something that`
+			`    Time is passing and you get a little bit nervous, but after some time the wanderer finally returns. He immedeatly begins to speak. "I just got the permission", he says "You will have to travel to <destination> to get this. You will recieve it at the embassy ther, I already contacted some people there." You ask him what it his but all he tells you is "It is a surprise, you will see when you get there. Take this." He hands you a small card. "This will tell the people there that you are the right one." He says goodbye to you and you leave the embassy.`
 				accept
+	on complete
+		conversation
+			`    After you arrived at Vara K'chrai, you directly head to the embassy excited what the Wanderers will give you. At the embassy you show the small card the Wanderer gave you and a woman guides you to a seperate room, where three Wanderer are standing around a table. On the table is a small plant in a pot. But you have never seen a plant like this before on any Wanderer world. One of the three begins to talk. "This plant on the table there is our gift to you. It is a genmanipulated tree, that will survive under mostly any circumstances, it is something our species is specialized on and it will show our friendship in a very unique way. We hope you like it." Surprised by this unusual gift you thank the wanderers. "It needs nearly no water, so you do not have to care a lot about it, it survives on spaceship so you can take it with you anywhere." You again say thanks to them and then you leave.`
+			`    You now have a prove of the Wanderers friendship. You can show it to the Hai now.`
+
 
 mission "coalition peace prove"
 	landing
