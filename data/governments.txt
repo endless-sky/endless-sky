@@ -151,6 +151,7 @@ government "Hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+	"raid" "Unfettered Raid"
 
 # A government used for Hai mission escorts that are able to go through the wormhole.
 government "Hai (Wormhole Access)"
