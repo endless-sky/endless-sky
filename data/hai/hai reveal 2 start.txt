@@ -19,6 +19,8 @@
 
 # Logic Register (don't delete)
 # # Some subset of these are restricted so you can't pick up enough of them (total 3) to finish the quest at the same time as starting it.
+# # Rescues which don't trigger on landing have hints which don't expire until you visit the spaceport at the rescue site so players don't lose them.
+# # (Note: The overarching mission description tells you to check spaceports.)
 #
 # Main Event:
 # # Gipeep
@@ -70,9 +72,10 @@ mission "Hai Rescue: Yeertle Hint"
 			`	Apparently, there is a man-beast on <planet>, and when the other captain laughs at the idea of a modern "werewolf," the first one is quick to clarify that it's more like a meter and a half tall "were-squirrel." There seems to be some confused discussion about the mythology of such beasts being revealed when caught staring at bright lights until a third captain, listening in the same as you, butts in to inform them that one of them stole that from a popular show a few years back.`
 			`	You stop listening on your final approach as the conversation descends into a good-natured argument. Nevertheless, it sounds like a lead on a possible stranded Hai that would be worth following up.`
 				accept
+	to complete
+		has "Hai Rescue: Yeertle Family: Offered"
 
 mission "Hai Rescue: Yeertle Family"
-	landing
 	name "Return the Yeertle family"
 	description "Transport the Yeertle family to <destination>. Payment is <payment>."
 	source Prime
@@ -198,9 +201,10 @@ mission "Hai Rescue: Oonem Hint"
 			`	You listen in carefully as the speaker relays that there's some kind of hunt going on there. All the ships are being searched before departure, and there's a lot of paranoid goons with weapons hot. A merchant has been killed on his own ship, while it was parked in the spaceport, and random people keep getting into firefights with a short, hooded, 'angel of death' in dark alleyways. So far, no one claims to know what's going on.`
 			`	It's really hard to say what this could be, but it might be worth checking out.`
 				accept
+	to complete
+		has "Hai Rescue: Ooonem: Offered"
 
 mission "Hai Rescue: Ooonem"
-	landing
 	name "Return Ooonem"
 	description "Transport the Hai you rescued to <destination>. Payment is <payment>."
 	source "Stormhold"
@@ -416,9 +420,10 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 		conversation
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. You don't hear anything specific to Hai, but when the punchline of a joke is "deep crevasses" on <planet>, it occurs to you that there would be the perfect place for both illicit activities and escapees to hide out under the radar for a long time. It's probably worth a look...`
 				accept
+	to complete
+		has "Hai Rescue: Meroot and Lucy: Offered"
 
 mission "Hai Rescue: Meroot and Lucy"
-	landing
 	name "Return Meroot and Lucy"
 	description "Transport the scientists you rescued to <destination>. Payment is <payment>."
 	source Canyon
@@ -448,14 +453,25 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"No, I was just walking by. Sorry to bother you."`
 					decline
 			label hiding
-			`	Her expression immediately takes on a shade of panic. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping the men don't find us again.`
-			`	"Actually, if you can give us a ride to <planet>, we can pay when we get there. You'll be followed though, so I hope you have a fast ship."`
-				goto "come in"
+			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again.`
+				goto trustcheck
+
 			label help
-			`	"Yes! Some men kidnapped my friend and I, but she got us out and we managed to escape. We've been hiding here, hoping they don't find us again. If you can fly us to <planet>, we can pay you when we arrive. I hope you have a fast ship; they'll probably chase us."`
-				goto "come in"
+			`	"Yes! Some men kidnapped my friend and I, but she got us out and we managed to escape. We've been hiding here, hoping they don't find us again."`
+			label trustcheck
+			`	In the background you hear someone hiss, "Lucy! What are you doing, we can't trust them!"`
+			choice
+				`	"Uh, luf e ow, vai, luf e eh?"`
+					goto "come in"
+				`	"No really, you can trust me, I promise!"`
+			`	Lucy's face goes pale and she seems frozen in shock, while in the background you can hear sounds of someone who is definitely rushing to do something, though you can't see what.`
+			choice
+				`	"No wait! Luf e ow, vai, luf e eh?"`
 			label "come in"
-			`	"Come in, and we'll talk about it."`
+			`	The person in the background stills. "What did you say?"`
+			`	You repeat the phrase.`
+			`	Somewhere out of sight you hear a string Hai words that sound very exasperated before they address Lucy again. "Let them in Lucy, they probably actually are here to help."`
+			`	The emphasis placed on the 'are' is thick, and it seems to snap Lucy out of her frozen state. "Oh, uh, yes alright. If you could fly us to <planet>, we can pay you when we arrive. You'll likely be followed though, so I hope you have a fast ship. I think you should probably come in, and we'll talk about it."`
 			choice
 				`	(Enter their alcove.)`
 				`	"No, I can't help you get home."`
