@@ -4929,7 +4929,7 @@ mission "Riley"
 
 
 mission "Syndicate Business 1"
-	name "Rescue Kidnapped Man on Moktar"
+	name "Rescue Kidnapped Man in <waypoints>"
 	description "A mysterious man has been kidnapped by a heavy pirate warship in Moktar. Destroy the ship to rescue him."
 	minor
 	to offer
