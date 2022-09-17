@@ -5016,7 +5016,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. To purchase 1 share of Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork so it won't be ready today, but feel free to come back to my office here anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
+			`	"Excellent. To purchase 1 share of Maralex Controls I will need 1 million credits. Then you sign a few documents, send over the payment, and take care of a few other administrative tasks. I'll need to get approval for the stock sale and set up the paperwork, so it won't be ready today, but feel free to come back to my office here anytime to execute the purchase. Remember, you'll need to have at least 1 million credits for the stock purchase."`
 				accept
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`	
