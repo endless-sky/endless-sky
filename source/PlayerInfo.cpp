@@ -2639,7 +2639,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	});
 
-	// The numver of ships the player has of the given category anywhere in their fleet.
+	// The number of ships the player has of the given category anywhere in their fleet.
 	auto &&shipTypesAllProvider = conditions.GetProviderPrefixed("ships (all): ");
 	shipTypesAllProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
