@@ -9315,85 +9315,85 @@ system Ekuarik
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 82
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 90
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 99
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 112
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 216
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 225
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 234
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 221
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 239
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 253
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 281
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 298
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 312
 
 system Elnath
@@ -14404,133 +14404,133 @@ system "Ki War Ek"
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 122
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 138
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 148
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 157
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 164
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 171
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 189
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 204
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 214
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 226
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 240
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 258
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 163
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 178
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 191
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 200
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 228
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 245
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 250
 
 system Kiro'ku
@@ -20627,205 +20627,205 @@ system Quaru
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 21
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 32
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 44
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 53
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 62
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 66
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 73
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 87
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 95
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 104
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 116
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 125
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 134
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 149
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 29
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 38
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 42
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 55
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 64
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 78
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 92
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 106
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 120
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 132
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 197
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 231
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 244
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 198
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 212
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 237
 
 system Queri
@@ -28831,7 +28831,7 @@ planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
 	music ambient/machinery
-	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	description `This station is so run-down that most of the workers carry oxygen masks in case a meteoroid punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment, there are no repair or refueling services available here.`
 	security 0.3
 	tribute 100
 		threshold 3500
@@ -29319,7 +29319,7 @@ planet Millrace
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase in immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
 	spaceport `	Most of the restaurants are of the greasy spoon variety.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -30236,7 +30236,7 @@ planet "Separa Tiklar"
 	attributes korath station
 	landscape land/space1
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
-	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
 	security 0
 
 planet "Septar Lorku"
@@ -30663,7 +30663,7 @@ planet "Tebuteb's Table"
 planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station12
-	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+	description `This station is run-down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet "Third Umber"
 	attributes factory kimek research
@@ -30857,7 +30857,7 @@ planet Vail
 	landscape land/snow4
 	description `Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries supply the tourists and the large staffs that cater to them.`
 	description `	The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hoverboarding and wingsuit cliff skiing.`
-	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move peple and cargo from here to their ultimate destinations in the resort towns.`
+	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move people and cargo from here to their ultimate destinations in the resort towns.`
 	spaceport `	Consequently, the air is full of a confusing mixture of deep space ships and atmospheric vehicles. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe 0.04
 	security 0.6
