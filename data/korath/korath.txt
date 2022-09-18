@@ -217,12 +217,21 @@ fleet "Korath Ember Waste Raid"
 	outfitters "Korath Basics" "Korath Exiles"
 	personality
 		disables plunders opportunistic harvests
-	variant 7
+	variant 15
 		"Palavret (Ember)"
 		"'olofez" 2
-	variant 1
+	variant 3
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 3
 		"Palavret (Ember Shunt)"
 		"'olofez" 2
+	variant 2
+		"Rano'erek"
+		"'olofez" 4
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 4
 
 fleet "Korath Miners"
 	government "Korath"
@@ -294,29 +303,6 @@ fleet "Korath Large Raid"
 		"Rano'erek"
 		"Palavret (Blaze)"
 		"'olofez" 6
-
-fleet "Korath Ember Waste Raid"
-	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 1
-	personality
-		disables plunders opportunistic harvests
-	variant 15
-		"Palavret (Ember)"
-		"'olofez" 2
-	variant 3
-		"Palavret (Ember Blaze)"
-		"'olofez" 2
-	variant 3
-		"Palavret (Ember Shunt)"
-		"'olofez" 2
-	variant 2
-		"Rano'erek"
-		"'olofez" 4
-	variant 2
-		"Rano'erek (Shunt)"
-		"'olofez" 4
 
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
