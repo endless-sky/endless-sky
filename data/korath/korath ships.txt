@@ -871,7 +871,7 @@ ship "Korsmanath A'awoj"
 		"Firelight Storage Rack" 4
 		"Firelight Missile" 108
 		"Firestorm Torpedo" 13
-		"Firestorm Turret" 1
+		"Firestorm Battery" 1
 
 		"Triple Plasma Core" 3
 		"Systems Core (Large)" 2
@@ -961,7 +961,7 @@ ship "Korsmanath A'awoj"
 	turret 46 -12 "Warder Anti-Missile"
 	turret -16.5 16 "Banisher Grav-Turret"
 	turret 62 128 "Langrage Hyper-Heaver"
-	turret -75.5 162.5 "Firestorm Turret"
+	turret -75.5 162.5 "Firestorm Battery"
 	turret -204.5 200 "Banisher Grav-Turret"
 	turret 204.5 200 "Warder Anti-Missile"
 	turret -192.5 257.5 "Warder Anti-Missile"

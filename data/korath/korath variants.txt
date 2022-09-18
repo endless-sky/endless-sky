@@ -722,7 +722,7 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 		"Firelight Missile" 40
 		"Firelight Missile Bank" 2
 		"Firestorm Torpedo" 26
-		"Firestorm Turret" 2
+		"Firestorm Battery" 2
 
 		"Triple Plasma Core"
 		"Double Plasma Core"
@@ -749,10 +749,10 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
 	turret "Korath Inferno"
 	turret "Warder Anti-Missile"
 	turret "Shunt-Strike Turret"
-	turret "Firestorm Turret"
+	turret "Firestorm Battery"
 	turret "Blaze-Pike Turret"
 	turret "Blaze-Pike Turret"
-	turret "Firestorm Turret"
+	turret "Firestorm Battery"
 
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
@@ -965,7 +965,7 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 		"Warder Anti-Missile" 3
 		"Fire-Lance" 3
 		"Firestorm Torpedo" 26
-		"Firestorm Turret" 2
+		"Firestorm Battery" 2
 
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -989,8 +989,8 @@ ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
 	turret "Warder Anti-Missile"
-	turret "Firestorm Turret"
-	turret "Firestorm Turret"
+	turret "Firestorm Battery"
+	turret "Firestorm Battery"
 
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
@@ -1042,7 +1042,7 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 		"Firelight Missile Bank" 4
 		"Firelight Missile" 162
 		"Firelight Storage Rack" 10
-		"Firestorm Turret" 2
+		"Firestorm Battery" 2
 		"Firestorm Torpedo" 39
 		"Firestorm Torpedo Rack" 2
 
@@ -1073,8 +1073,8 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Strike)"
 	turret "Grab-Strike Turret"
 	turret "Banisher Grav-Turret"
 	turret "Shunt-Strike Turret"
-	turret "Firestorm Turret"
-	turret "Firestorm Turret"
+	turret "Firestorm Battery"
+	turret "Firestorm Battery"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
 	turret "Banisher Grav-Turret"
