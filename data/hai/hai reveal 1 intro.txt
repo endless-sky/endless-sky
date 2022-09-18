@@ -981,10 +981,10 @@ mission "Hai Leaks Response 6"
 			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
 			choice
 				`	"But what should I do about it?"`
-				goto dothings
+					goto dothings
 				`	"Are Hai kidnappings common?"`
 			`	"They're not, well, it can be hard to tell sometimes, but no I wouldn't say they're common. There have been instances in the past though where occasional pirate groups have been caught either trying or succeeding. My understanding is that those were dealt with effectively." She gives an odd shrug that is distorted by the cloak.`
-			`	"Still, my friend is very bright, and she is insistent that there is something beneath the noise that cannot be accounted for by normal circumstances. There has been a spike in disappearances since the leak, and not necessarily on worlds where they could be expected to have got themselves into trouble. With recent events her words have begun to trouble me, especially after that raid on Allhome. Nothing like that has ever happened before," she says.
+			`	"Still, my friend is very bright, and she is insistent that there is something beneath the noise that cannot be accounted for by normal circumstances. There has been a spike in disappearances since the leak, and not necessarily on worlds where they could be expected to have got themselves into trouble. With recent events her words have begun to trouble me, especially after that raid on Allhome. Nothing like that has ever happened before," she says.`
 			label dothings
 			`	"You are well-known, and must be canny to have got where you are. A Hai in trouble might recognize you, or you might perceive them when others would not. It would be in the interests of both our people to be sure that there is no such issue. Would you look for me? For both our sakes?"`
 			branch aboutthat
@@ -1005,10 +1005,13 @@ mission "Hai Leaks Response 6"
 				`	"What does it mean?"`
 			`	She winks at you. "It would be much less effective if I told you."`
 				accept
+	on visit
+		dialog "You have returned to Hai-home but haven't found anything actionable you can tell Sayari. There's still time to look for evidence."
 	to complete
 		"hai slave prereq" >= 3
+		has "Hai Rescue: Gipeep: offered"
 	on complete
-		log `You found proof of more kidnapped Hai. Sayari's fears appear to have been entirely justified...`
+		log `You found proof of more kidnapped Hai and something that seems out of place. Sayari's fears appear to have been justified...`
 
 mission "Hai Leaks Response 7"
 	landing

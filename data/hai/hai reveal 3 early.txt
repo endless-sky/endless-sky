@@ -101,13 +101,46 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 					defer
 			`	Following Sayari, you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she says, glancing at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
+			branch foundcat
+				has "Hai Rescue: Gipeep: done"
 			choice
-				`	"Yes, actually I found proof."`
-				`	"Unfortunately, I did find something."`
+				`	"Yes, I found several Hai that had been kidnapped."`
+					goto kidnapped
+				`	"I found something out of place on Maelstrom."`
+					goto maelstrom
+			label foundcat
+			choice
+				`	"Yes, I found several Hai that had been kidnapped."`
+					goto kidnapped
+				`	"I found a symbol being used with a captured Hai in a registered warehouse."`
+					goto angrycat
+			label kidnapped
+			`	Sayari looks crestfallen as you list off the Hai that you found, but as you finish describing the situations she frowns contemplatively. "That seems to be more Hai, and more easily found than I would have expected. It would seem that the problem may be larger than we've previously thought possible... but was that it? Was there nothing unusual?"`
+			branch foundcat2
+				has "Hai Rescue: Gipeep: done"
+			choice
+				`	"I found something out of place on Maelstrom."`
+					goto maelstrom
+			label foundcat2
+			choice
+				`	"I found a symbol being used with a captured Hai in a registered warehouse."`
+					goto angrycat
+			label maelstrom
+			`	"Maelstrom is a significant world, a lot of important corporations obtain their raw materials from there and keep an eye on its operations," she muses. "If there's something going on there it doesn't bode well, we'll have to investigate it."`
+			action
+				set investigatemaelstrom
+			`	She glances at the door, as if having heard something you didn't, before giving you an appraising look. "I trust you have recorded all this in some capacity that you can give to me?"`
+				goto datastick
+			label angrycat
+			`	When you show her the symbol an odd expression flashes over her face for the briefest of moments, there and gone so quickly that you could've blinked and missed it. "Yes, this is a very odd symbol, and not one I associate with any known groups. I will have to investigate and show this to my friend. See if it matches anything she's found."`
+			action
+				set catsymbolfound
+			`	She glances at the door, as if having heard something you didn't, and gestures for you to quickly put your data pad away. "I trust you have recorded all this in some capacity that you can give to me?"`
+			label datastick
 			`	You hand Sayari a data stick. "I saved everything from my logs on this."`
-			`	Sayari looks crestfallen and takes the data stick gingerly, looking at it as if it were some snake that might bite her at any moment.`
-			`	"I will have a look," is all she says.`
-			`	No sooner has she pocketed it than there is a knock at the door, and an aide looks in. "The Council will see you now."`
+			`	Gingerly, she takes the data stick and secretes it away on her person. Her expression of distaste looks like one she might give to some snake that could bite her at any moment.`
+			`	"I will have a thorough look later," is all she says.`
+			`	No sooner has she finished than there is a knock at the door, and an aide looks in. "The Council will see you now."`
 			`	The next twenty minutes prove to be an exercise in tedium as various members of the council interrogate you over apparently mundane details of your recent actions as recorded in the Freedom of Information report. You're not really sure what most of it has to do with anything, but eventually one of the Elders stands up.`
 			`	"I think we've generally had enough of this here. Answer me two questions, and then we shall make our decision. Firstly, do you think that a diplomatic post should be able to defend itself? Or should it trust to the strength of those who meet there to ensure its protection?"`
 			`	This seems like a very strange question...`

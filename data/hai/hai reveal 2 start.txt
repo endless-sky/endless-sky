@@ -26,7 +26,7 @@
 # # Gipeep
 # - Minor People logs
 # - Cannot be discovered pre-story
-# - Includes information to support later progress (not critical)
+# - Includes information to support later progress (critical to at least encounter)
 #
 # Secondary Events:
 # # Yeertle Family and Oonem
@@ -544,12 +544,12 @@ mission "Hai Rescue: Gipeep"
 				`	(Check it out.)`
 				`	(Leave.)`
 					decline
-			`	Surprisingly, when you arrive the warehouse is unattended, which is suspicious in and of itself. Poking around a little you walk by some cargo and hear loud thumping coming from a locked crate. A ring of keys is hanging nearby. Do you want to check it out?`
+			`	Surprisingly, when you arrive the warehouse is unattended, which is suspicious in and of itself. Poking around a little you walk by some cargo and hear loud thumping coming from a locked crate. A ring of keys is hanging nearby. Someone could appear at any moment and you could be in trouble. Do you want to check it out?`
 			choice
 				`	(Examine the crate.)`
 				`	(Leave.)`
 					decline
-			`	One key stands out, it has a symbol you don't recognize that looks like an angry cat in a circle. As you get closer to the thumping, the ordinary-looking crate starts to seem a little strange. At first glance it appears to be the sort of crate that is well-insulated against sound and temperature, but this one must have concealed breathing holes. You can still hear muffled thumping fairly clearly.`
+			`	One key stands out, it has a symbol you don't recognize that looks like an angry cat in a circle. As you get closer to the thumping, the ordinary-looking crate starts to seem a little strange. At first glance it appears to be the sort of crate that is well-insulated against sound and temperature, but this one must have concealed breathing holes. You can still hear muffled thumping fairly clearly, but outside you hear what sounds like a loading vehicle pull up, and you don't know what's in the crate.`
 			`	Do you want to try opening the crate?`
 			choice
 				`	(Open the crate.)`
