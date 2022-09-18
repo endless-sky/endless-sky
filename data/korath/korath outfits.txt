@@ -678,9 +678,9 @@ outfit "Farves GP Hybrid Thruster"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 33.5
-	"thrusting energy" 5.2
-	"thrusting heat" 6.1
+	"thrust" 32.5
+	"thrusting energy" 5.05
+	"thrusting heat" 5.9
 	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"flare sound" "ion small"
@@ -693,9 +693,9 @@ outfit "Gaktem GP Hybrid Thruster"
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
-	"thrust" 62
-	"thrusting energy" 8.9
-	"thrusting heat" 10.8
+	"thrust" 63.5
+	"thrusting energy" 9.1
+	"thrusting heat" 11.05
 	"flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"flare sound" "ion medium"
@@ -724,7 +724,7 @@ outfit "Arkrof GP Hybrid Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 340
+	"turn" 345
 	"turning energy" 1.25
 	"turning heat" 1.3
 	"steering flare sprite" "effect/efreti flare/tiny"
@@ -739,9 +739,9 @@ outfit "Farves GP Hybrid Steering"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 780
-	"turning energy" 2.65
-	"turning heat" 2.9
+	"turn" 800
+	"turning energy" 2.7
+	"turning heat" 2.95
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
@@ -755,9 +755,9 @@ outfit "Gaktem GP Hybrid Steering"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"turn" 1575
-	"turning energy" 4.85
-	"turning heat" 5.8
+	"turn" 1590
+	"turning energy" 4.9
+	"turning heat" 5.85
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
