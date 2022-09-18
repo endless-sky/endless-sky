@@ -597,7 +597,7 @@ mission "Remnant: Shattered Light 5"
 mission "Remnant: Shattered Light 6"
 	landing
 	name "Shattered Light"
-	description "Ferry the team and their gear back to <destination>"
+	description "Ferry the team and their gear back to <destination>."
 	blocked "From your count at the information desk, you estimate that you need space for 11 people as well as 18 tons of cargo."
 	cargo "equipment" 18
 	passengers 11
@@ -640,3 +640,75 @@ mission "Remnant: Shattered Light 6"
 			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
+
+
+
+mission "Remnant: Scent of Rain 1"
+	landing
+	name "Search for the unknown Korath ship"
+	description "Chilia has asked you to find and conduct an outfit scan of the Korath ship that can carry three 'olofezes, then report back to <destination>. The Remnant believe it will be found in one of the southern Korath systems."
+	source
+		government "Remnant"
+	destination "Caelian"
+	to offer
+		or
+			and
+				has "Remnant: Cognizance 25: done"
+				not "flagship planet: Ssil Vida"
+			has "event: remnant: cognizance calm"
+	on offer
+		event "remnant: tubfalet appearance" 20 31
+		conversation
+			branch scentssilvida
+				has "flagship planet: Ssil Vida"
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes out in the Postverta region. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+				goto scentrainchoice
+			label scentssilvida
+			`You step out of your airlock to see Prefect Chilia striding towards you. "Captain <first>! I read a report mentioning that you dealt with a trio of 'olofezes patrolling alone near here. Would you be interested in doing some reconnaissance for us? We would like to track down where those came from."`
+			label scentrainchoice
+			choice
+				`	"Yes, I could do that."`
+				`	"I would rather not."`
+					goto rathernot
+			`	He signs appreciatively. "We admire your willingness to help." He pulls up a hologram of the Ember Waste, and it shifts to display the systems towards the core. "We are concerned that the Korath may have a new ship that can carry three fighters. Based on the Korath's typical movement patterns, we suspect that - if such a ship exists - it should be somewhere in the nearer Korath systems. We will upload an algorithm to your targeting system to look for ship profiles that have no matches in our database. Please do an outfit scan of whatever ship you find, and report back to me on <destination>."`
+				accept
+			label rathernot
+			`	He nods respectfully. "Well, thank you for all that you have done for us. I will see who else is available." With that, he heads off into the starport.`
+				decline
+	npc "scan outfits"
+		government "Korath"
+		personality staying target
+		system "Kor Zena'i"
+		ship "Tubfalet" "Ra'puk At 333"
+		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different design. Time to report this to Chilia.`
+	npc
+		government "Korath"
+		personality staying
+		system "Kor Zena'i"
+		fleet
+			names "korath"
+			cargo 3
+			commodities Food Clothing Metal Plastic Medical "Heavy Metals"
+			outfitters "Korath Basics" "Korath Exiles"
+			variant
+				"'olofez" 3
+	on enter "Kor Zena'i"
+		dialog
+			`The algorithm quickly parses the ship signatures present here, and notifies you that one in particular does not match its database: the one identified as the "Ra'puk At 333." This must be the ship that Chilia would like a scan of.`
+	on complete
+		payment 150000
+		conversation
+			`Chilia is waiting for you when you land. Judging by the hologram floating before him, he appears to already be reviewing the data from your scan. As you approach, he pushes it to the side to focus on you. "This is interesting data," he comments. "What are your thoughts, having seen it first hand?"`
+			choice
+				`	"You were right in suspecting that this new ship carries an additional fighter. One more fighter might not change much in combat, but if the Korath are building new warships, they may also be building stronger fighters."`
+				`	"An extra fighter bay isn't the only thing this new ship has. It also comes with an extra gun, bigger engines, superior shields and hull, and likely other unseen improvements. Overall it's much more formidable than its predecessor."`
+			`	He listens attentively to your account of visiting Kor Zena'i, nodding thoughtfully at various insights.`
+			`	"Thank you for investigating this, <first>. I will ensure that our engineers get your data immediately, and brief our patrols to be aware of this increased capacity." His gestures have a tone of anticipation and regret.`
+			choice
+				`	"You are welcome."`
+					goto scanningpayment
+				`	"Are you expecting something?"`
+			`	Chilia smiles wistfully. "Do you know that feeling, when the whole world is still and the skies are clear, and yet you know in your bones that a storm is coming?" He continues without waiting for a response. "Well, I have had that feeling for decades, growing ever stronger. And now..." He pauses, drawing a deep breath. "Now, it feels like this is the first scent of rain. The first thing I can actually identify as a solid indicator that a storm is brewing."`
+			`	He shakes his head. "But no matter. Planning for the storm is my duty, not yours, and the front is yet to appear.`
+			label scanningpayment
+			`	"We have allocated you <payment> for the risks undertaken. Please use it wisely. While it is my duty to anticipate threats to us all, it is your duty to ensure you are prepared to face the winds they may bring." He turns and strides away, quickly vanishing into the tunnels beneath the spaceport.`
