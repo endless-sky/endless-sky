@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 event "ember waste label"
 	galaxy "label waste"
@@ -100,7 +103,7 @@ event "remnant: scanning tolerance"
 
 
 
-event "remnant research update bjd1"
+event "remnant: research update bjd1"
 
 
 
@@ -257,6 +260,13 @@ event "remnant: ssil vida inhabited"
 event "remnant: cognizance peregrine"
 	outfitter "Remnant"
 		"Bellows-Class Afterburner"
+	fleet "Small Remnant"
+		add variant 1
+			"Peregrine"
+	fleet "Large Remnant"
+		add variant 5
+			"Peregrine"
+			"Merganser" 3
 
 
 
@@ -1088,3 +1098,91 @@ event "remnant: cognizance salvage expansion"
 
 
 event "remnant: cognizance calm"
+
+
+
+event "remnant: teciimach deployment"
+	outfitter "Remnant"
+		remove "EMP Torpedo Bay"
+		remove "EMP Torpedo"
+		remove "EMP Torpedo Storage Bay"
+		add "Teciimach Bay"
+		add "Teciimach Pod"
+		add "Teciimach Canister"
+		add "Teciimach Canister Rack"
+	fleet "Small Remnant"
+		add variant 5
+			"Merganser (II)" 2
+		add variant 3
+			"Merganser (II)" 4
+		add variant 1
+			"Starling"
+			"Merganser (II)" 2
+	fleet "Large Remnant"
+		add variant 5
+			"Albatross"
+			"Merganser (II)" 4
+		add variant 4
+			"Ibis"
+			"Petrel" 2
+			"Tern" 4
+			"Merganser (II)" 8
+	fleet "Remnant Transport"
+		add variant 3
+			"Gull"
+			"Merganser (II)" 2
+		add variant 1
+			"Pelican"
+			"Merganser (II)" 4
+		remove variant 4
+			"Gull (Support)"
+		add variant 4
+			"Gull (Support II)"
+	fleet "Remnant Home Guard"
+		add variant 5
+			"Merganser (II)"
+		add variant 3
+			"Merganser (II)"
+			"Petrel" 2
+			"Tern" 4
+		add variant 3
+			"Smew (Teciimach Ferry)"
+	fleet "Small Remnant"
+		remove variant 1
+			"Peregrine"
+		add variant 2
+			"Peregrine (II)"
+	fleet "Large Remnant"
+		remove variant 4
+			"Peregrine"
+			"Merganser" 3
+		add variant 5
+			"Peregrine (II)"
+			"Merganser (II)" 3
+
+
+
+event "remnant: shattered light"
+	shipyard "Remnant"
+		add "Modified Dromedary"
+
+
+
+event "remnant: shattered light research" 
+
+event "remnant: tubfalet appearance"
+	fleet "Korath Raid"
+		add variant 1
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Ember Waste Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
+	fleet "Korath Large Raid"
+		add variant 3
+			"Tubfalet" 2
+			"'olofez"  6
+			
+
+
