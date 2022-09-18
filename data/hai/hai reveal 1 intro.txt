@@ -546,11 +546,11 @@ mission "Hai Leaks Response 2"
 	stopover "Deep"
 	stopover "Foundry"
 	destination "Hai-home"
-	blocked "You have a mission here for the Hai, but you need three bunks free."
+	blocked "You have a mission here for the Hai, but you need four bunks free."
 	clearance
 	to offer
 		has "Hai Leaks Response 1: done"
-	passengers 3
+	passengers 4
 	on offer
 		event "pirates respond to leaks"
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
@@ -573,16 +573,17 @@ mission "Hai Leaks Response 2"
 			`	You sit down opposite him and explain how the Hai have proposed that you be their official contact point for humanity on account of your fame from the war.`
 			`	He asks a few questions for clarity, and when you're done he requests you wait while he makes a call. He leaves the room for a long while, and at one point an aide comes in and offers you refreshments while deliberations continue elsewhere. Much to your surprise the fruity beverage is actually quite light and not too sweet, reminding you briefly that most of humanity's food styles originated here.`
 			`	Eventually Mr. Yang returns. "So sorry for that. I hope you were looked after suitably while you waited."`
-			`	Once you nod your assent, he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official "line" is that the government does not trade in rumors. However, an appropriate response is clearly needed. Republic Intelligence briefed the Cabinet of the Free Worlds Senate just yesterday. They have demanded that they have a diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you to meet two individuals known as Katya and Alastair on Deep and Foundry respectively. I believe you already know them?"`
+			`	Once you nod your assent, he continues, "Well, obviously the Republic knows about the Hai, but for the moment our official "line" is that the government does not trade in rumors. However, an appropriate response is clearly needed. Republic Intelligence briefed the Cabinet of the Free Worlds Senate just yesterday. They have demanded that they have a diplomatic representative along for any decisions. This is already standard practice for the Syndicate. If you are willing, I will come with you to meet two individuals known as Katya Reynolds and Samuel Remington on Deep and Foundry respectively. I believe you already know them?"`
 			choice
 				`	"Yes."`
-					goto conclude
-				`	"Alastair?"`
-			`	"Alastair Korban is the Syndicate CEO, naturally the CEO has some involvement here, but I trust that won't be a problem?"`
-			choice
-				`	"It should be fine."`
-			label conclude
-			`	"Excellent. The situation is progressing quickly and plans are still being made, so I am not entirely sure if it is they themselves who will be coming with us. Alastair is likely too busy to come personally, but we'll find out when we get there. In any case I think we should go to Deep first for speed, but you are the captain. Shall we be off?"`
+				`	"Samuel Remington?"`
+					goto sam
+			`	"Excellent," he says as he begins to gather stacks of papers, shoving them into a briefcase.`
+				goto end
+			label sam
+			`	"Remington is the Syndicate's head of public relations, and exactly the man we need in an event like this," he explains while gathering stacks of papers, shoving them into a briefcase.`
+			label end
+			`	"Now, the situation is progressing quickly and plans are still being made, so I am not entirely sure if it is they themselves who will be coming with us. Someone of Remington's caliber is likely too busy to come personally, but we'll find out when we get there. In any case I think we should go to Deep first for speed, but you are the captain. Shall we be off?"`
 				accept
 	on visit
 		dialog phrase "generic stopover on visit"
@@ -632,9 +633,7 @@ mission "Hai Leaks Response 2B"
 	landing
 	source
 		government "Republic" "Syndicate" "Free Worlds"
-		not planet
-			Deep
-			Foundry
+		not planet "Deep" "Foundry"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
@@ -649,18 +648,25 @@ mission "Hai Leaks Response 2C"
 	to offer
 		has "Hai Leaks Response 2: active"
 	on offer
-		log "People" "Terry Adrianopoulos" `Protege to the Syndicate CEO, Terry Adrianopoulos has been nominated by her mentor Alastair Korban to represent the Syndicate's interests in the crisis of the Hai's secrecy. She is a very capable woman who appears well equipped for climbing the corporate ladder.`
+		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is the secretary of Samuel Remington, or at least that's how he puts it. Remington mentioned an internal political situation within the Syndicate while glancing at Terry, so there may be something larger at play with her presence. Hopefully it doesn't conflict with resolving the situation with the Hai.`
 		conversation
-			`Approaching Foundry, you are hailed on a private encrypted channel and directed to a private hangar where you are greeted personally by Syndicate CEO Alastair Korban.`
-			`	He shakes your hand and smiles warmly. "Apologies, Captain <last>, do excuse the cloak and dagger, but in the current media climate you and I are both too well-known to be seen meeting without causing the rumor mill to grind out a new story."`
-			`	"Now, allow me to introduce you to my protege, Terry Adrianopolous. She will be accompanying you as the Syndicate representative."`
-			`	"Pleasure to meet you," she says with a broad smile. The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She is pleasant and approachable, and very articulate, but from your brief glimpse beforehand you have no doubt she's cut from the sort of cloth that makes her future CEO material. You are surprised that a woman would have made it this far in the Syndicate, but if she has gotten this far, she must be very skilled at what she does.`
-			`	"By the way," says Alastair, pausing briefly as he turns to leave, "The Navy and my security forces are working jointly to get some of our message relays up in the Far North to link through Ultima Thule. The pirates are wont to destroy them whenever they find them, but we should be able to rely on at least basic communication to get through if you need it, rather than flying back and forth for literally every question. That's all."`
-			branch delayedretire
-				not "free worlds reconciliation"
-			`	He leans in close to you and says quietly, "I know I said I was retiring, but Terry convinced me to clean up my mess first. I am atoning for my failures. Do look after her; she's a very loyal colleague."`
-			label delayedretire
-			`	Alastair says goodbye and departs, leaving you with Terry.`
+			`Approaching Foundry, you are hailed and directed to a private hangar where you are greeted personally by Samuel Remington. His appearance is rather casual compared to what you would expect, wearing khakis and a collared tee as opposed to the typical suit and tie business atire that you see on Syndicate businessmen. It is certainly in contrast to a young woman standing behind him, who is wearing the usual business attire in this region.`
+			branch met
+				has "met remington"
+			action
+				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before but I've sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+				goto next
+			
+			label met
+			action
+				log "People" "Samuel Remington" `Remington is being sent as the representative of the Syndicate to help deal with the situation regarding the Hai.`
+			`	"Captain <last>, is it? It's been a good while since we last met," he says while shaking your hand, perhaps a little too firmly. "You do remember me, right? I don't want this to be an awkward situation where only I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis.`
+			label next
+			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
+			`	"Terry Adrianopoulos. Pleasure to meet you," she says with a broad smile and a slight bow. The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She seems at once pleasant and approachable while at the same time being slightly off-putting and uncanny. It's an eerie feeling.`
+			`	"Terry will be accompanying me as... well, let's call her my secretary," Remington says with a sly smile. Terry seems none too please to hear that, but doesn't correct him. "I have men who can hold the fort here while I'm gone, and I really do need to get some fresh air, so the two of us will be joining you. There is an internal political situation going on within the Syndicate that has been causing me quite the headache recently," he says. You think that he may have glanced at Terry as he said that, but you aren't sure if it was just incidental or indicative of something. "Nothing I can discuss in detail, unfortunately, what with all the NDAs involved, but something I'll certainly enjoy taking a break from.`
+			`	"Now, let's be on our way," he says. "The Hai won't save themselves with us standing here."`
 				decline
 
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
