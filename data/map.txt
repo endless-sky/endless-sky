@@ -26402,64 +26402,124 @@ system "World's End"
 		sprite star/g3
 		period 10
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 20
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 35
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 50
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 70
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 90
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 105
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 120
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 140
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 160
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 180
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 200
 	object
-		sprite "planet/ringworld right"
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 220
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 235
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 250
+	object
+		sprite "planet/ringworld broken right"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 270
 	object
-		sprite "planet/ringworld left"
+		sprite "planet/ringworld broken left"
 			scale 0.5
 		distance 812
 		period 349.820
 		offset 290
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 310
+	object
+		sprite "planet/ringworld broken debris small"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 325
+	object
+		sprite "planet/ringworld broken debris"
+			scale 0.5
+		distance 812
+		period 349.820
+		offset 340
 
 system "Ya Hai"
 	pos -24.9453 -505.571

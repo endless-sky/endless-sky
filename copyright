@@ -1431,6 +1431,10 @@ Files:
  images/outfit/white?sun*
  images/outfit/yellow?sun*
  images/planet/ringworld*
+ images/planet/ringworld?broken?debris*
+ images/planet/ringworld?broken?debris?small*
+ images/planet/ringworld?broken?left*
+ images/planet/ringworld?broken?right*
  images/planet/ringworld?left*
  images/planet/ringworld?right*
  images/projectile/fire-lance*
