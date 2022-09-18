@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Immigrant Workers"
 	description "This young couple wants to start a new life on <destination>."
@@ -4221,7 +4224,7 @@ mission "Saving Artifacts 2"
 		has "Saving Artifacts 1: done"
 	on offer
 		conversation
-			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally mispellt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
+			`The librarian you met earlier flags you down in the spaceport. "Glad you could join me, Captain <last>. We've gotten word of a pirate warlord down south who fancies himself an art collector. Calls himself the Lokust, and his gang the Pestilance - names intentionally misspelt." He wrinkles his nose as if he's smelled something repulsive. "Given your history, I trust you're familiar with the Conservatory?" He doesn't wait for a response. "The shipment contained ancient Greek statues and was on its way there as part of a rotating exhibition, but our original transport was... unable to contend with the piracy threat in frontier regions. As a result, the shipment was 'diverted' to Greenrock, where the warlord in question is based. We want you to go to Greenrock and get these statues back any way you can, and then return with them back here. Our payment should cover the cost of any briberies you might have to make."`
 			label choice
 			choice
 				`	"Why can't you get the Navy involved with this?"`
@@ -4233,7 +4236,7 @@ mission "Saving Artifacts 2"
 					goto accept
 				`	"No way am I risking my life for some hunks of marble. Find someone else."`
 					decline
-			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in  their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
+			`	The librarian squints at you in a manner that suggests that the answer is obvious. "The Navy doesn't consider it worth the risk. Greenrock is 'not in their jurisdiction,' they say. So the most respected library in the galaxy has to resort to hiring privateers."`
 				goto choice
 			label conservatory
 			`	"The rotating exhibition was a new partnership with the Conservatory. Previously we had been hesitant to transport our valuables to frontier regions, but in this new partnership we decided to try shipping some of our artifacts to more distant planets, so that they too could benefit from seeing our collection. Those statues were part of that shipment. Evidently we were mistaken. Those statues are not safe as long as they're in the South."`
@@ -4334,7 +4337,6 @@ mission "Saving Artifacts 4"
 			and
 				has "Saving Artifacts 2: done"
 				not "Duel Lokust"
-	landing
 	
 	on visit
 		dialog `You land on <planet>, but realize you haven't acquired the statues from Greenrock yet. Better return to Shaula to make sure Lokust is defeated before claiming them on the planet.`
@@ -4490,7 +4492,7 @@ mission "Dangerous Games 2"
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
-			`	"No other path may you take \ Oiled skins flash and flicker \ Razer spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			`	"No other path may you take \ Oiled skins flash and flicker \ Razor spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
 			choice
 				`	(Go east).`
 					goto east
@@ -4739,21 +4741,187 @@ mission "Dangerous Games 2"
 				or
 					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
 					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
+			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
-			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
 			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label some
+			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
-			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, choking back sobs all the while. As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label onlyplayer
+			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
-			`	"Alright," he says. "Let's get back to <source>. <first>, kindly be our chariot and haul."`
 			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 			label end
 			`	After some time, the crystal-infected machine has been thoroughly inspected since being salvaged from the watery depths of <planet>. The crystals themselves are unlike anything anyone has seen before, but through somewhat questionable trial and error (although he insists it's genius), Karengo discovers that, when heated, they amplify the effect of the many recreational drugs he has on his person. However, they've proven to only grow near a power source that has been submerged in water from <planet>. Efforts to stimulate growth through other means have all failed. If cultivated, they could significantly boost the production of drugs for Karengo's operations.`
 			`	Before disappearing into the crowd, Karengo pays you <payment>. "Thanks for your help, <first>. Once I get this machine off of those pinheads over there, I'll be makin' a fortune in 'mind-altering experiences'. Watch for 'Karengo's Galactic Adventures' next time yer around here!"`
+				decline
+
+
+
+mission "Riley"
+	name "Visiting Home"
+	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
+	minor
+	source
+		attributes "deep"
+		attributes "urban"
+		not planet "Memory"
+	destination "Memory"
+	deadline
+	passengers 1
+	to offer
+		random < 15
+	on offer
+		conversation
+			`Entering the spaceport, you notice a young woman moving from captain to captain, probably looking to hire one.`
+			choice
+				`	(Ask the young woman if you can help her.)`
+				`	(Ignore her.)`
+					decline
+			`	You approach the woman and ask her if she is looking to hire a pilot.`
+			`	"I need to get to <destination> to see my father. He's dying. I have 13,000 credits to pay for the journey; please, will you help me? I need to be there by <day>, at the most."`
+			`	Her eyelids are baggy, her clothes wrinkled, and she holds herself rigidly.`
+			choice
+				`	"I can help you. We'll make haste to reach <planet> in time."`
+					goto help
+				`	"I don't have time to take on a passenger right now."`
+			`	She nods, and moves on to another captain to beseech instead.`
+				decline
+			label help
+			`	Her eyes widen, and she opens her mouth twice before words come out. "Thank you! This means the world to me. My name is Riley, by the way. I don't have much luggage; I'll be ready to leave as soon as you are."`
+				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Riley hasn't entered this system yet. Better depart and wait for it.`
+	on complete
+		payment 13000
+		conversation
+			`In the days since Riley came aboard, she has relaxed and cleaned up. She looks nearly unrecognizable from the tired, desperate woman you first saw.`
+			`	On the way, she told you stories of her past, mostly of time shared with her father. As a young teen, they spent summers riding the latest horse mechs through the forest, looking for beehives to steal honey from. At age 19, she broke her ankle hoverboarding on a restricted mountain peak. Her father rescued her, avoiding the police to hike up with a medical kit. She talks about his wild birthday gifts to her each year, always a different piece of clothing with embedded AI that was just shy of what was allowed by law. As you watch, she shows how her shirt warms and constricts if it detects stress, mimicking a hug.`
+			`	As you neared <system>, Riley told you about the last time she saw her father. He had become focused on his work - research into safe AI - and they hadn't seen each other for years. She had become a well-known DJ back on <origin> and had a break in her touring schedule, so she spent a good chunk of her savings meeting up with him on Memory. They spent most of a week together, reliving old times.`
+			`	He'd cried when it was time to leave, and she had, too, but life went on, and it was years before she heard from him again. His message nearly broke her. "Ri, please come as soon as you can. I may not have long, and wish to hold your hand one more time. All love, Dad."`
+			`	She doesn't mention it, but it's clear that she's concerned she'll arrive too late to say goodbye.`
+			`	Riley directs you to a pad near her old home, and you land the ship. She starts toward the door, then pauses and turns around with a self-conscious, but oddly sad, chuckle.`
+			`	"Right - your payment. <payment>, as I promised."`
+			choice
+				`	"Thank you. Do you think I could come along? I've heard so much about your father."`
+					goto father
+				`	"Thank you, and good luck."`
+					goto end
+				`	"This is a lot of credits for a trip. Does DJing pay that well?"`
+				`	"Hold on to the credits. I'm a captain; I can always make more."`
+					goto hold
+			`	"Not really, no. Honestly, this is most of my savings... but... it's my dad."`
+			choice
+				`	"Do you think I could come along? I've heard so much about your father."`
+					goto father
+				`	"Thank you, and good luck."`
+					goto end
+				`	"Hold on to the credits. I'm a captain; I can always make more."`
+			label hold
+			action
+				payment -13000
+			`	After a moment of stunned silence, she manages a choked "Thank you." You notice her eyes are brimming with tears.`
+			choice
+				`	"Do you think I could come along? I've heard so much about your father."`
+				`	"Good luck."`
+					goto end
+			label father
+			`	She is taken aback at first, but agrees to let you join, and you wind your way away from the landing pads, across rural, wooded countryside, and finally to a modest house nestled along a valley edge. Riley knocks, and a nurse lets you in.`
+			`	Her father is in a comfortable-looking medical cradle. Wires flow from it to the holoscreens around the room, showing vitals and other indecipherable information. Despite his wan, strained face and atrophied body, he raises his head to look at his daughter.`
+			`	"Ri," he says, face lighting up. "My love. You cannot know how happy it makes me to see you. And you have company, I see. My name's Church."`
+			choice
+				`	"Riley chartered a flight here aboard my ship. I heard so much about you on the way; it's a pleasure to meet you."`
+				`	"Riley and I have gotten to know each other on the long flight here. You've raised an incredible woman."`
+			`	"No other captain was willing to fly here from <origin>. I wouldn't be here without <first>," she says.`
+			`	He smiles at you, acknowledging your part in their reunion with an appreciative nod.`
+			`	You swap stories for hours, flowing between reminiscing over old times and catching up on their lives over the past few years. You learn that since he was young, Church researched AI that cannot develop into a threat; a project that the Deep has been quietly interested in.`
+			`	Riley, in turn, had always surrounded herself with music, and moved to <origin> to share her passion with other like-minded people. You talk about what it's like to call a ship your home, leaving behind everything you grew up knowing and embracing life as a starship captain.`
+			`	Finally, her father lies back. "Well, thank you for making the trip out to see your old man. I... have to go now, I think. Don't forget about me, hear? And..." Church hesitates for a moment. "Whatever happens, please don't think ill of me. I will always love you."`
+			`	His body relaxes, and he's gone.`
+			choice
+				`	(Let Riley be.)`
+					goto let
+				`	(Stay comfortingly close.)`
+					goto close
+				`	(Hold Riley.)`
+			`	You hold Riley as she silently weeps. Time goes by, but neither of you pay it any mind.`
+			label close
+			`	You take a seat, feeling the emotion of the moment wash over you as Riley silently weeps. Minutes go by, unnoticed.`
+				goto voice
+			label let
+			`	You stay at a distance as you allow Riley to process the death of her father. She silently weeps as time passes without either of you noticing.`
+			label voice
+			`	Without warning, you hear Church's voice from a corner of the room. It's coming from some sort of computer system, held aloft by hundreds of cables dangling from the ceiling.`
+			`	"It... worked." His voice fizzles, and his tone is not the one you recognize from before. Riley's head whips around, and you reflexively move your hand toward your holstered gun. "Do not be alarmed. I have been working on a personal project for over a decade now. My mind was uploaded to the modified Core you are looking at. I had to say goodbye in case the procedure failed - I did not know if it would work. You cannot upload a mind while it's still alive. I tried that many times." The tone of his voice sounds almost sorrowful, but still retains a robotic quality.`
+			choice
+				`	(Stay silent.)"`
+					goto continue
+				`	"Is this... legal?"`
+			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
+			`	The authorities would probably release a substantial reward if you informed them of this.`
+			label continue
+			`	"Riley, what do you think?" you ask.`
+			`	"Dad, is that really you? How do you feel?"`
+			`	She steps closer to the Core. Church pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes, at first about how he's feeling, before moving onto the memories that Church retained during the transfer. You begin to relax as the two interact when you realize that Church is retelling the story of how he evaded the police to fix Riley's ankle for the third time in a row.`
+			`	Finally, she turns to you. "I'll admit that he doesn't sound as lively as he used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy.`
+			choice
+				`	"Are you sure? There's enough room for all of us on my ship. You can stay for as long as you want."`
+					goto suggest
+				`	(Say goodbye.)`
+					goto goodbye
+				`	"Riley, I don't think you're talking to your father."`
+					goto death
+				`	(Turn the Core in for a bounty.)`
+					goto bounty
+				`	(Draw your gun and destroy the Core).`
+			label destroy
+			`	You pull out your gun and aim at the computer Church is in. Before you can fire, Riley runs out in front of the barrel, spreads her arms, and shouts, "No! Please, <first>, you have to understand! He's all I have left!"`
+			`	Behind her, Church says, "Riley, there is no need to be so loud. My microphones can hear you fine, and I do not want the nurse to become suspicious."`
+			choice
+				`	(Put your gun away.)`
+					goto away
+				`	(Shoot.)`
+			action
+				set "Shot Core"
+			`	You push Riley aside and start firing at the Core. Church's voice becomes a stream of static until it shuts off completely. Lights on the Core turn from white to red, then fade. Riley hasn't moved, stunned.`
+			`	Once you are finished, you make your way out of the hospital as quickly as possible, hoping you did not attract any unwanted attention.`
+			`	You board your ship, leaving behind a father survived by his daughter; no more and no less than nature intended.`
+				decline
+			label away
+			`	Riley relaxes slightly once she sees your gun put back in its holster. After the shock has subsided, she finally speaks. "Leave us alone," she says, her voice still trembling. Realizing your time here is up, you exit the hospital and make your way to the spaceport, hoping that that scene did not attract unwanted notice.`
+			choice
+				`	(Turn the Core in for a bounty.)`
+					goto bounty
+				`	(Go back to your ship.)`
+			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
+					decline
+			label suggest
+			`	"It's a nice idea," she smiles, "but I'm not a starfarer. The big city is where I'll end back up, eventually."`
+			label goodbye
+			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door. You can feel her smile on your back until the door closes behind you.`
+				decline
+			label death
+			`	Riley is stunned for a moment. "You don't know that," she whispers. "Sure, he's a lot more forgetful, and doesn't seem as emotional, but... maybe it just takes some time for the system to warm up. Besides, you don't know what he means to me. What he's done for me. Even if this isn't really my father, I can't turn my back on him."`
+			choice
+				`	(Say goodbye.)`
+				`	(Turn the Core in for a bounty.)`
+					goto bounty
+				`	(Draw your gun and destroy the Core).`
+					goto destroy
+			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
+			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.`
+				decline
+			label bounty
+			action
+				payment 100000
+			`	You say your goodbyes and leave. From across the street, you make a call to the local Deep Security office and report what you saw. A slick voice on the other side of your commlink responds.`
+			`	"Ah. Mr. Church has been on our watchlist for some time. This is not exactly surprising. However, we've been unable to get decisive proof on any illegal activity. This information, assuming it is correct, will be a great boon to us. Thank you for the tip."`
+			`	By the time you arrive back at the spaceport, your bank account notifies you that <payment> have been added to your account.`
+				decline
+			label end
+			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline

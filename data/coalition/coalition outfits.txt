@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Small Collector Module"
 	category "Power"
@@ -364,6 +367,6 @@ outfit "Enforcer Riot Staff"
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
 outfit "Coalition License"
-	category "Special"
+	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
