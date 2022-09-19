@@ -13281,10 +13281,6 @@ system Ildaria
 		sprite star/nova-small
 		period 10
 	object
-		sprite star/f-giant
-			scale 0.5
-		period 13
-	object
 		sprite planet/rock17-b
 		distance 694.26
 		period 292.686
