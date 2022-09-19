@@ -393,6 +393,7 @@ news "coalition games planet heliarch"
 		word
 			"Dozens of Heliarch agents are guarding the spaceport entrances, occasionally blocking passage as they try to control the flow of people to and from the Coalition Games events."
 			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying the Coalition Games broadcast more than the meals themselves."
+			"From the moment you arrive at the spaceport, Heliarch agents start showing you where you want to go if you're headed for the Coalition Games, which line leads to which sporting event, where to go to if you need some general assistance from the Heliarchy, and give you a schedule of the Games for today."
 			`"Heading to the Coalition Games, are you? If so, forgive us you must. Some trouble with organizing the crowds this morning, there was, so delayed by five minutes, the whole line is."`
 			`"A former athlete myself, I am. Earned my rank by winning in the Games, I did, so always eager to help organize the event, I am."`
 
@@ -411,8 +412,8 @@ news "coalition games planet people"
 			"Local Arach"
 	message
 		word
-			`An avid fan rushes out of a ship next to yours, and into the lines of people being admitted into the Coalition Games. For the next many minutes, an increasingly larger number of Heliarch agents attempt to explain they're not allowed to bring in so many sports goods with them.`
-			`You see a fan angrily stomping to a ship docked nearby, going inside, then coming back out with a coin of sorts. It seems they forgot the entry ticket for the Games, and will have to wait in line all over again.`
+			"An avid fan rushes out of a ship next to yours, and into the lines of people being admitted into the Coalition Games. For the next many minutes, an increasingly larger number of Heliarch agents attempt to explain they're not allowed to bring in so many sports goods with them."
+			"You see a fan angrily stomping to a ship docked nearby, going inside, then coming back out with a coin of sorts. It seems they forgot the entry ticket for the Games, and will have to wait in line all over again."
 			`"Brought my children to see the Games, I have. An important part of our culture, the Games are, so glad to share the experience with them, I am."`
 			`"Brought my children to see the Games, I have. Hope I do, that behave themselves this time, they will..."`
 			`"Here for the Games too, are you? The largest event in all the Coalition, it is. Come here to watch every year, I do!"`
@@ -428,6 +429,7 @@ news "coalition games crowd"
 			"Coalition Games crowds"
 	message
 		word
-			`The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs, being helped back to their feet one by one by Heliarch agents and others from the crowd.`
-			`You arrive at a particularly crowded part of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as they can to bring everyone back into orderly lines.`
-			`From the moment you arrive at the spaceport, Heliarch agents start showing you where you want to go if you're headed for the Coalition Games, which line leads to which sporting event, where to go to if you need some general assistance from the Heliarchy, and give you a schedule of the Games for today.`
+			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs, being helped back to their feet one by one by Heliarch agents and others from the crowd."
+			"You arrive at a particularly crowded part of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as they can to bring everyone back into orderly lines."
+			"Entering the tremendously crowded spaceport, you notice a Saryd pastry shop opening up for business, and decided to head there for a snack. When you finally get to the door, however, they're just done closing. It seems the masses heading to the Coalition Games bought all their products as the line was moving."
+			"Several children of visitors coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle between trying to get them to settle down, and keeping their spots in the waiting lines."
