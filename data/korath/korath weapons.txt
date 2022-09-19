@@ -1033,6 +1033,7 @@ outfit "Microbot Factory"
 		"shield damage" 48
 		"corrosion damage" 3
 		"minable damage" 200
+		"firing hull" -100
 		"piercing" 0.1
 		"safe"
 	description "This is a huge factory that digests incoming material with the aid of microbots. With intake bays large enough to swallow a drone whole, wrecking claws massive enough to tear apart the hulls of heavy warships, and a seemingly omnicidal swarm of microbots ready to break down anything that falls in to its component molecules, it is a fearsome sight that any captain would be foolish to fly within reach of."
