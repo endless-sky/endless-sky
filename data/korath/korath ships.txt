@@ -543,7 +543,7 @@ ship "Ik'atilajej"
 	explode "large explosion" 60
 	explode "huge explosion" 25
 	"final explode" "final explosion large"
-	description "The Refabricator is factory ship. Its microbot-run factory produces basic living supplies and ship parts, and are vast systems cores in battle."
+	description "The Refabricator is a factory ship. Its microbot-run factory produces basic living supplies and ship parts, and vast systems cores in battle."
 
 
 ship "Korath World-Ship"
