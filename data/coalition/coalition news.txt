@@ -429,5 +429,5 @@ news "coalition games crowd"
 	message
 		word
 			`The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs, being helped back to their feet one by one by Heliarch agents and others from the crowd.`
-			`You arrive to a particularly crowded moment of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as they can to bring everyone back into orderly lines.`
+			`You arrive at a particularly crowded part of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as they can to bring everyone back into orderly lines.`
 			`From the moment you arrive at the spaceport, Heliarch agents start showing you where you want to go if you're headed for the Coalition Games, which line leads to which sporting event, where to go to if you need some general assistance from the Heliarchy, and give you a schedule of the Games for today.`
