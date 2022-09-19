@@ -352,9 +352,9 @@ news "coalition games broadcast"
 			"Coalition Games broadcast"
 	message
 		word
-			"A Saryd game is playing on a monitor nearby. The athletes, separated into two teams, gallop around an uneven field, dotted with small mounds and holes, as they try to whack some balls into nets located around the arena edges. Your best guess is that it's an awfully convoluted mix of cricket, football and pool."
+			"A Saryd game is playing on a monitor nearby. The athletes, separated into two teams, gallop around an uneven field, dotted with small mounds and holes, as they try to whack some balls into nets located around the arena's edges. Your best guess is that it's an awfully convoluted mix of cricket, football and pool."
 			"A crowd has gathered for the transmission, waiting for some kind of race or marathon to start. The camera pans by the competitors, who are all Kimek, then pulls back as the race begins. You judge it to be a pretty standard race initially, until the camera spins around, and it's made clear that the Kimek are running upside down."
-			"Some Arachi attentively wait for a game to start. The screen shows the competitors, who are also Arachi, putting on various layers of plate armor. They then all move to a metal cable, just thick enough for them to grip it with all legs. They then stay there. For many minutes. Until they start falling one by one. Exhilarating."
+			"Some Arachi attentively wait for a game to start. The screen shows the competitors, who are also Arachi, putting on various layers of plate armor. They then all move to a metal cable, just thick enough for them to be gripped with all legs. They then stay there. For many minutes. Until they start falling one by one. Exhilarating."
 			"During a break from the games, some analysts go over some spreadsheets with the statistics for the competitors of the past few games. You can't read any of it, but passerby workers and captains stay a while to glance at the results."
 			"One of the competitors from the last game is giving an interview, still catching their breath from the event, and taking in some water every time the interviewer is talking. Given their excitement, you figure they must've performed very well."
 
@@ -392,7 +392,7 @@ news "coalition games planet heliarch"
 	message
 		word
 			"Dozens of Heliarch agents are guarding the spaceport entrances, occasionally blocking passage as they try to control the flow of people to and from the Coalition Games events."
-			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying Coalition Games broadcast more than the meals themselves."
+			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying the Coalition Games broadcast more than the meals themselves."
 			`"Heading to the Coalition Games, are you? If so, forgive us you must. Some trouble with organizing the crowds this morning, there was, so delayed by five minutes, the whole line is."`
 			`"A former athlete myself, I am. Earned my rank by winning in the Games, I did, so always eager to help organize the event, I am."`
 
@@ -429,5 +429,5 @@ news "coalition games crowd"
 	message
 		word
 			`The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs, being helped back to their feet one by one by Heliarch agents and others from the crowd.`
-			`You arrive to a particularly crowded moment of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Batallions of Heliarch agents work as they can to bring everyone back into orderly lines.`
+			`You arrive to a particularly crowded moment of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as they can to bring everyone back into orderly lines.`
 			`From the moment you arrive at the spaceport, Heliarch agents start showing you where you want to go if you're headed for the Coalition Games, which line leads to which sporting event, where to go to if you need some general assistance from the Heliarchy, and give you a schedule of the Games for today.`
