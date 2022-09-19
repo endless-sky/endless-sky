@@ -99,6 +99,8 @@
 		<Unit filename="source/Command.h" />
 		<Unit filename="source/ConditionSet.cpp" />
 		<Unit filename="source/ConditionSet.h" />
+		<Unit filename="source/ConditionsStore.cpp" />
+		<Unit filename="source/ConditionsStore.h" />
 		<Unit filename="source/Conversation.cpp" />
 		<Unit filename="source/Conversation.h" />
 		<Unit filename="source/ConversationPanel.cpp" />
@@ -134,6 +136,7 @@
 		<Unit filename="source/EscortDisplay.h" />
 		<Unit filename="source/EsUuid.cpp" />
 		<Unit filename="source/EsUuid.h" />
+		<Unit filename="source/ExclusiveItem.h" />
 		<Unit filename="source/File.cpp" />
 		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
@@ -192,6 +195,8 @@
 		<Unit filename="source/LoadPanel.h" />
 		<Unit filename="source/LocationFilter.cpp" />
 		<Unit filename="source/LocationFilter.h" />
+		<Unit filename="source/Logger.cpp" />
+		<Unit filename="source/Logger.h" />
 		<Unit filename="source/LogbookPanel.cpp" />
 		<Unit filename="source/LogbookPanel.h" />
 		<Unit filename="source/MainPanel.cpp" />
@@ -202,6 +207,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapPlanetCard.cpp" />
+		<Unit filename="source/MapPlanetCard.h" />
 		<Unit filename="source/MapSalesPanel.cpp" />
 		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />

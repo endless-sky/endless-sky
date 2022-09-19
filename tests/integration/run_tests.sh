@@ -56,10 +56,8 @@ function run_single_testrun () {
     return 2
   fi
 
-  local ES_SAVES_PATH="${ES_CONFIG_PATH}/saves"
   mkdir -p "${ES_CONFIG_PATH}"
-  mkdir -p "${ES_SAVES_PATH}"
-  if ! cp ${ES_CONFIG_TEMPLATE_PATH}/* "${ES_CONFIG_PATH}"; then
+  if ! cp -r ${ES_CONFIG_TEMPLATE_PATH}/* "${ES_CONFIG_PATH}"; then
     echo "not ok ${RUNNING_TEST} Couldn't copy default config data"
     return 2
   fi
@@ -152,7 +150,7 @@ fi
 # Set separator to newline (in case tests have spaces in their name)
 IFS=$'\n'
 
-TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}")
+TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_TEMPLATE_PATH}")
 TESTS_OK=($(echo "${TESTS}" | grep -e "^active" | cut -f2)) || true
 TESTS_NOK=($(echo "${TESTS}" | grep -e "^known failure" -e "^missing feature" | cut -f2)) || true
 NUM_TOTAL=${#TESTS_OK[@]}

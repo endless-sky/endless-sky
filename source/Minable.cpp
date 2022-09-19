@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Minable.h"
@@ -46,6 +49,8 @@ void Minable::Load(const DataNode &node)
 			SetSprite(SpriteSet::Get(child.Token(1)));
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
+		else if(child.Token(0) == "random hull" && child.Size() >= 2)
+			randomHull = max(0., child.Value(1));
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -121,6 +126,10 @@ void Minable::Place(double energy, double beltRadius)
 	// Calculate the object's initial position.
 	radius = scale / (1. + eccentricity * cos(theta));
 	position = radius * Point(cos(theta + rotation), sin(theta + rotation));
+
+	// Add a random amount of hull value to the object.
+	hull += Random::Real() * randomHull;
+	maxHull = hull;
 }
 
 
@@ -146,6 +155,9 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		for(const auto &it : payload)
 		{
+			if(it.second < 1)
+				continue;
+
 			// Each payload object has a 25% chance of surviving. This creates
 			// a distribution with occasional very good payoffs.
 			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= Flotsam::TONS_PER_BOX)
@@ -179,7 +191,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Damage this object (because a projectile collided with it).
 void Minable::TakeDamage(const Projectile &projectile)
 {
-	hull -= projectile.GetWeapon().HullDamage();
+	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
 }
 
 
