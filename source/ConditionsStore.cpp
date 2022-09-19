@@ -423,7 +423,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 	DerivedProvider *provider = &(it.first->second);
 	if(!provider->isPrefixProvider)
 	{
-		Logger::LogError("Error: Rewriting named provider \""+ prefix +"\" to prefixed provider.");
+		Logger::LogError("Error: Rewriting named provider \"" + prefix + "\" to prefixed provider.");
 		provider->isPrefixProvider = true;
 	}
 	if(VerifyProviderLocation(prefix, provider))
@@ -458,7 +458,7 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 		std::forward_as_tuple(name, false));
 	DerivedProvider *provider = &(it.first->second);
 	if(provider->isPrefixProvider)
-		Logger::LogError("Error: Retrieving prefixed provider \""+ name + "\" as named provider.");
+		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
 	else if(VerifyProviderLocation(name, provider))
 		storage[name].provider = provider;
 	return *provider;
