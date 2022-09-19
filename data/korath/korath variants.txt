@@ -133,13 +133,16 @@ ship "Rano'erek" "Rano'erek (Shunt)"
 
 ship "Rano'erek" "Rano'erek (Ground Assault)"
 	"crew" 449
+	add attributes
+		"bunks" 92
+		"mass" 115
+		"cargo space" -120
+		"outfit space" -248
 	outfits
 		"Banisher Grav-Turret" 2
 		"Warder Anti-Missile" 2
 		
-		"Outfits Expansion" 6
 		"Double Plasma Core"
-		"Bunk Room" 23
 		"Large Heat Shunt"
 		"Fuel Processor"
 		"Thermal Repeater Rifle" 449
