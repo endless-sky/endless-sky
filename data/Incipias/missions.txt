@@ -101,6 +101,9 @@ mission "Incipias: First Contact III"
 		or
 			has "wanderer peace prove: done"
 			has "coalition peace prove: done"
+	on complete
+		conversation 
+			`    `
 
 mission "wanderer peace prove"
 	landing
