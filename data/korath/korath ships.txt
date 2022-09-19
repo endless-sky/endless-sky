@@ -461,7 +461,7 @@ ship "Rai'arorej"
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath Refuges rescue the most vulnerable of the Korath from battle. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships are quick to respond."
+	description "Korath Refuges rescue the most vulnerable of Korath from battle. Onboard, there are incubators, nurseries, hospitals, and vast stores of medicine. When Korath are attacked, these ships are quick to respond."
 
 
 ship "Ik'atilajej"
