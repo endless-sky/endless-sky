@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "OutfitterPanel.h"
@@ -84,10 +87,10 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	// Add owned licenses
 	const string PREFIX = "license: ";
-	for(auto &it : player.Conditions())
-		if(it.first.compare(0, PREFIX.length(), PREFIX) == 0 && it.second > 0)
+	for(auto it = player.Conditions().PrimariesBegin(); it != player.Conditions().PrimariesEnd(); ++it)
+		if(it->first.compare(0, PREFIX.length(), PREFIX) == 0 && it->second > 0)
 		{
-			const string name = it.first.substr(PREFIX.length()) + " License";
+			const string name = it->first.substr(PREFIX.length()) + " License";
 			const Outfit *outfit = GameData::Outfits().Get(name);
 			if(outfit)
 				catalog[outfit->Category()].insert(name);
@@ -103,12 +106,10 @@ void OutfitterPanel::Step()
 {
 	CheckRefill();
 	ShopPanel::Step();
-	if(GetUI()->IsTop(this) && !checkedHelp) {
-		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3")) {
+	if(GetUI()->IsTop(this) && !checkedHelp)
+		if(!DoHelp("outfitter") && !DoHelp("outfitter 2") && !DoHelp("outfitter 3"))
 			// All help messages have now been displayed.
 			checkedHelp = true;
-		}
-	}
 }
 
 
@@ -183,7 +184,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
 		if(isLicense)
-			minCount = maxCount = player.GetCondition(LicenseName(name));
+			minCount = maxCount = player.Conditions().Get(LicenseName(name));
 		else if(mapSize)
 			minCount = maxCount = player.HasMapped(mapSize);
 		else
@@ -300,7 +301,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
+			descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
@@ -381,12 +383,13 @@ bool OutfitterPanel::CanBuy(bool checkAlreadyOwned) const
 void OutfitterPanel::Buy(bool alreadyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit);
+	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.GetCondition("license: " + licenseName))
-				player.Conditions()["license: " + licenseName] = true;
+			if(!playerConditions.Get("license: " + licenseName))
+				playerConditions.Set("license: " + licenseName, true);
 	}
 
 	int modifier = Modifier();
@@ -408,7 +411,7 @@ void OutfitterPanel::Buy(bool alreadyOwned)
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->Name()))
 		{
-			auto &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+			auto &entry = playerConditions[LicenseName(selectedOutfit->Name())];
 			if(entry <= 0)
 			{
 				entry = true;
@@ -828,7 +831,7 @@ void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -842,7 +845,7 @@ void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -856,7 +859,7 @@ void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
 
-	if (selectedOutfit && !HasItem(selectedOutfit->Name()))
+	if(selectedOutfit && !HasItem(selectedOutfit->Name()))
 	{
 		selectedOutfit = nullptr;
 	}
@@ -939,7 +942,7 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 bool OutfitterPanel::HasLicense(const string &name) const
 {
-	return (IsLicense(name) && player.GetCondition(LicenseName(name)) > 0);
+	return (IsLicense(name) && player.Conditions().Get(LicenseName(name)) > 0);
 }
 
 

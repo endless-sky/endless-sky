@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Liberate Kornephoros"
 	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
@@ -1622,7 +1625,7 @@ mission "FW Refinery 1"
 				goto next
 			label next
 			`	"So, what will happen to Tomek?" you ask.`
-			`	"He's out of the picture for now," says Freya. "But he's a tactical genius. We'll need his advice, if this war turns worse. In the meantime, though, we need your help with some peacemaking."`
+			`	"He's out of the picture for now," says Freya. "But he's a tactical genius, at least when he's not drunk with rage. We'll need his advice, if this war turns worse. In the meantime, though, we need your help with some peacemaking."`
 			choice
 				`	"How so?"`
 					goto repairs
