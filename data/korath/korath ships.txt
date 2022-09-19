@@ -387,9 +387,9 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
-ship "Rai'arorej"
-	sprite "ship/rai-arorej"
-	thumbnail "thumbnail/rai-arorej"
+ship "Rai'alorej"
+	sprite "ship/rai-alorej"
+	thumbnail "thumbnail/rai-alorej"
 	attributes
 		category "Utility"
 		cost 81970000
@@ -469,9 +469,9 @@ ship "Rai'arorej"
 	description "	The Rai'alorej-class Refuge, named for a pioneer in the field of microbot-assisted surgery, is thoroughly appointed with lifeform scanners, locator beacon receivers, ambulances, and search-and-rescue teams. Once onboard, crash victims are greeted with the finest hospital facilities, microbot treatments, and stores of medicine the Exiles have available. Even incubators and nurseries are aboard to treat the young who grow up aboard ship."
 
 
-ship "Ik'atilajej"
-	sprite "ship/ik-atilajej"
-	thumbnail "thumbnail/ik-atilajej"
+ship "Ikatila'ej"
+	sprite "ship/ikatila-ej"
+	thumbnail "thumbnail/ikatila-ej"
 	attributes
 		category "Utility"
 		"cost" 109375000
