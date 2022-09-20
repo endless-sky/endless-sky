@@ -687,14 +687,14 @@ mission "Remnant: Cognizance 19"
 mission "Remnant: Cognizance 20"
 	name "Preparation for expedition"
 	description "Install a research laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
-	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
-	cargo "supplies" 10
 	source
 		government "Remnant"
 	stopover
 		government "Remnant"
 		distance 1 5
 		not attributes "requires: gaslining"
+	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
+	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 19: done"
 		has "event: remnant: lab availability"
@@ -710,7 +710,7 @@ mission "Remnant: Cognizance 20"
 			choice
 				`	"Yes, sensors reported life signs."`
 				`	"I don't remember. Did you notice something?"`
-			`	One of the Remnant pulls up the relevant section and puts it up on the projector. "Right here, the logs show that there is ambient life-signs all over the system, but nothing of significance shows up on the physical scanners." He frowns at the projector. "All the equipment status signals in the records are nominal, and both the check digits and data hashes match."`
+			`	One of the Remnant pulls up the relevant section and puts it up on the projector. "Right here, the logs show that there are ambient life-signs all over the system, but nothing of significance shows up on the physical scanners." He frowns at the projector. "All the equipment status signals in the records are nominal, and both the check digits and data hashes match."`
 			choice
 				`	"So there are no problems with the data?"`
 				`	"Skip the technical jargon. What does it mean?"`
@@ -762,11 +762,11 @@ mission "Remnant: Cognizance 20"
 mission "Remnant: Cognizance 21"
 	name "Expedition to Ssil Vida"
 	description "Install a research laboratory, transport these Remnant researchers to <stopovers>, and then return to <destination>."
-	blocked "You need 10 free space for this mission."
-	cargo "supplies" 10
 	source
 		government "Remnant"
 	stopover "Ssil Vida"
+	blocked "You need 10 free space for this mission."
+	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 20: done"
 		not "remnant: dusk busy"
@@ -968,9 +968,9 @@ mission "Remnant: Cognizance 22"
 
 
 mission "Remnant: Cognizance 23"
+	landing
 	name "First Flight"
 	description "Escort the Merganser to <waypoints>, and destroy the Korath ship there."
-	landing
 	source
 		government "Remnant"
 		attributes "shipyard"
@@ -1062,12 +1062,12 @@ mission "Remnant: Cognizance 23"
 mission "Remnant: Cognizance 24"
 	name "Equipment to Ssil Vida"
 	description "Dusk needs a load of <cargo> picked up from Esquiline, then taken to Ssil Vida."
-	cargo "Outpost Equipment" 11
-	passengers 1
 	source
 		government "Remnant"
 	stopover "Esquiline"
 	destination "Ssil Vida"
+	cargo "Outpost Equipment" 11
+	passengers 1
 	to offer
 		has "Remnant: Cognizance 23: done"
 	on offer
@@ -1138,9 +1138,9 @@ mission "Remnant: Cognizance 24"
 
 
 mission "Remnant: Cognizance 25"
+	landing
 	name "Patrol systems near Postverta."
 	description "Gavriil has asked you to do a patrol through the nearby systems."
-	landing
 	source "Ssil Vida"
 	waypoint "Diespiter"
 	waypoint "Statina"
@@ -1207,9 +1207,9 @@ mission "Remnant: Cognizance 26"
 
 
 mission "Remnant: Cognizance 27"
+	landing
 	name "Check in with Torza on <planet>"
 	description "Torza should have a team ready on <planet>."
-	landing
 	source "Ssil Vida"
 	destination "Caelian"
 	to offer
@@ -1220,15 +1220,15 @@ mission "Remnant: Cognizance 27"
 
 
 mission "Remnant: Cognizance 28"
+	landing
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
-	landing
-	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
-	deadline 13
-	cargo "reserved" 280
-	passengers 20
 	source "Caelian"
 	destination "Baianus"
+	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
+	cargo "reserved" 280
+	passengers 20
+	deadline 13
 	to offer
 		has "Remnant: Cognizance 27: done"
 		not "remnant: dusk busy"
@@ -1255,15 +1255,15 @@ mission "Remnant: Cognizance 28"
 
 
 mission "Remnant: Cognizance 29"
+	landing
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
-	landing
-	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry <tons> of cargo and 20 passengers."`
-	deadline 13
-	cargo "equipment" 280
-	passengers 20
 	source "Baianus"
 	destination "Caelian"
+	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry <tons> of cargo and 20 passengers."`
+	cargo "equipment" 280
+	passengers 20
+	deadline 13
 	to offer
 		has "Remnant: Cognizance 28: done"
 	on offer
@@ -1298,11 +1298,11 @@ mission "Remnant: Cognizance 29"
 mission "Remnant: Cognizance 30"
 	name "Transport team to <planet>"
 	description "Torza has tasked you with transporting a team of technicians to <destination>."
+	source "Caelian"
+	destination "Ssil Vida"
 	blocked `You check in with Torza, who glances at his commlink. "You will need a ship with space for 15 people and 30 tons of cargo."`
 	cargo "equipment" 30
 	passengers 15
-	source "Caelian"
-	destination "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 29: done"
 	on offer
@@ -1337,9 +1337,9 @@ mission "Remnant: Cognizance 30"
 
 
 mission "Remnant: Cognizance 31"
+	landing
 	name "Deliver data crystal to <planet>"
 	description "Gavriil has asked you to take a data crystal to <destination>."
-	landing
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
@@ -1353,13 +1353,9 @@ mission "Remnant: Cognizance 31"
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
 	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
-	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."
-	deadline 19
-	illegal -1 "Your communication panel beeps insistently with a message that a scan has been detected, and thus the mission has been terminated."
-	stealth
-	infiltrating
 	source "Viminal"
 	destination "Clink"
+	deadline 19
 	to offer
 		has "Remnant: Cognizance 31: done"
 		has "license: Remnant Capital"
@@ -1413,15 +1409,15 @@ mission "Remnant: Cognizance 32"
 
 
 mission "Remnant: Cognizance 33"
+	landing
 	name "Drop off refined fuel"
 	description "Deliver the refined fuel to <destination> by <date>."
-	landing
-	deadline 19
-	cargo "Refined Fuel" 58
 	illegal 0
 	stealth
 	source "Clink"
 	destination "Ssil Vida"
+	cargo "refined fuel" 58
+	deadline 19
 	to offer
 		has "Remnant: Cognizance 32: done"
 	on offer
@@ -1452,9 +1448,9 @@ mission "Remnant: Cognizance 33"
 
 
 mission "Remnant: Cognizance 34"
+	landing
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
-	landing
 	source "Ssil Vida"
 	waypoint "Postverta"
 	to offer
@@ -1479,9 +1475,9 @@ mission "Remnant: Cognizance 34"
 
 
 mission "Remnant: Cognizance 35"
+	landing
 	name "Postverta system sweep"
 	description "Conduct a sweep of nearby systems and return to <origin>."
-	landing
 	source "Ssil Vida"
 	waypoint "Diespiter"
 	waypoint "Statina"
@@ -1534,10 +1530,10 @@ mission "Remnant: Cognizance 35"
 
 
 mission "Remnant: Cognizance 36"
-	name "De-activate Ssil Vida Power"
-	description "Accept this to signal everyone to cut the power."
 	job
 	repeat
+	name "De-activate Ssil Vida Power"
+	description "Accept this to signal everyone to cut the power."
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 35: done"
@@ -1552,10 +1548,10 @@ mission "Remnant: Cognizance 36"
 
 
 mission "Remnant: Cognizance 37"
-	name "Activate Ssil Vida Power"
-	description "Accept this to signal everyone to restore the power."
 	job
 	repeat
+	name "Activate Ssil Vida Power"
+	description "Accept this to signal everyone to restore the power."
 	source "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 35: done"
@@ -1570,9 +1566,9 @@ mission "Remnant: Cognizance 37"
 
 
 mission "Remnant: Cognizance 38"
+	landing
 	name "Take data to <planet>"
 	description "The rest of the Remnant need to know what is happening. Take this data to them on <destination>."
-	landing
 	source "Ssil Vida"
 	destination "Viminal"
 	to offer
