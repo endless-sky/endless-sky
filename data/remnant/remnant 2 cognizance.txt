@@ -12,14 +12,14 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Remnant: Cognizance 1"
+	minor
 	name "Follow-up Observations"
 	description "Plume would like you to do a follow-up visit to the planets in Nenia."
-	minor
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
-	cargo "scanning equipment" 8
 	blocked "The Remnant researcher has another job for you, but you're going to have to free up <tons> cargo space in order to take it on."
+	cargo "scanning equipment" 8
 	to offer
 		has "event: remnant: wait for plume"
 		has "Remnant: Learn Sign Follow Up: declined"
@@ -53,14 +53,13 @@ mission "Remnant: Cognizance 1"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 1
-			commodities "void sprite parts"
+			cargo 3
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
 	on enter "Nenia"
 		dialog
-			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: There are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them. You recall that Plume asked you to visit both planets.`
+			`As you scan the system, the first thing you notice is that the void sprites' behavior seems different: there are fewer of them flying around, and the few that you see seem to be almost timid - floating quietly, and dropping down into the cloud deck whenever your ship moves towards them. You recall that Plume asked you to visit both planets.`
 	on stopover
 		conversation
 			`The void sprites here prove to be elusive. You spend quite a while chasing radar signatures before you finally manage to get a small flock of them into visual range. You record them from a distance for several minutes, until they suddenly disperse into a storm and vanish.`
@@ -75,8 +74,7 @@ mission "Remnant: Cognizance 2"
 	name "Eliminate Korath Ship"
 	description "Plume ordered you to eliminate the Korath ship in the <waypoints> system."
 	source "Aventine"
-	waypoint
-		system "Nenia"
+	waypoint "Nenia"
 	to offer
 		has "Remnant: Cognizance 1: done"
 	on offer
@@ -94,7 +92,7 @@ mission "Remnant: Cognizance 2"
 				`	"Could you explain?"`
 			`	"While the Remnant have an all-encompassing hierarchy to ensure everyone answers to someone, we saw fit to keep all facets of our society merged to prevent fragmentation into 'civilian' or 'military' branches. Two aspects of this merging are the decision of when to invoke military force and what amount of force is worthwhile. According to my position as a researcher, I have the authority to designate something a threat to my projects or to the Remnant as a whole. I could even order someone to act on it. However, given that I am of low status in terms of military proficiency, I cannot dictate the magnitude of the military response, and I am subject to being overruled by those with higher military qualifications."`
 			`	"In our particular situation, I have higher xenobiology qualifications than you, so I can dictate to you, and most other xenobiologists, for that matter, that protecting the void sprites is a priority. However, you are more skilled at combat and military matters than I am. Therefore it is your decision as to how important it is relative to other military tasks. Likewise, it is your decision as to what amount of force is required, tactics used, or other such military considerations."`
-			`	"This is one of the aspects that set prefects apart: They are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, prefects are the adjudicators in determining the priority of our various tasks and the leaders who keep the Remnant unified."`
+			`	"This is one of the aspects that set prefects apart: they are Remnant who have demonstrated excellence in their field, sound judgment across a variety of fields, and an affinity for balancing a multitude of demands on Remnant resources. Humility is also a requirement, as they must always recognize that while their particular combination of skills may be unique, there is always someone else who is better than them at any one thing. As such, prefects are the adjudicators in determining the priorities of our various tasks and the leaders who keep the Remnant unified."`
 			choice
 				`	"Thanks for the explanation!"`
 					goto acceptance
@@ -116,8 +114,7 @@ mission "Remnant: Cognizance 2"
 		personality forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 1
-			commodities "void sprite parts"
+			cargo 3
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -125,14 +122,14 @@ mission "Remnant: Cognizance 2"
 	on complete
 		event "korath hunting"
 		conversation
-			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something, and then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
+			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something, and then looks back up to you. "Apparently, something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
 
 
 mission "Remnant: Cognizance 3"
+	landing
 	name "Go to <planet>"
 	description "Prefect Chilia left a message with Plume asking you to meet him on <destination> immediately."
-	landing
 	source "Aventine"
 	destination "Caelian"
 	to offer
@@ -142,10 +139,10 @@ mission "Remnant: Cognizance 3"
 
 
 mission "Remnant: Cognizance 4"
+	landing
 	name "Search for the Korath"
 	description "Prefect Chilia has asked you to track down a Korath fleet before returning to <destination>."
 	source "Caelian"
-	landing
 	to offer
 		has "Remnant: Cognizance 2: done"
 	on offer
@@ -162,7 +159,7 @@ mission "Remnant: Cognizance 4"
 			label main
 			branch voidrifle
 				has "Remnant: Face to Maw 2B: done"
-			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting void sprites, and we must take steps to prevent this from happening.`
+			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: it seems the Korath have discovered the void sprites and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. There are military implications of the Korath harvesting void sprites, and we must take steps to prevent this from happening.`
 				goto next
 			label voidrifle
 			`	His gestures take on an abrupt cadence without many of the normal connecting movements that you are accustomed to. "Now, for the task at hand: It seems the Korath have discovered the void sprites, and shot at enough of them that almost all have retreated into the depths of Nasqueron and Slylandro. You are aware of the potential military implications of the Korath harvesting void sprites and must realize the importance of stopping this.`
@@ -177,8 +174,7 @@ mission "Remnant: Cognizance 4"
 		system "Aescolanus"
 		fleet
 			names "korath"
-			cargo 2
-			commodities "void sprite parts"
+			cargo 3
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -210,9 +206,9 @@ mission "Remnant: Cognizance 4"
 mission "Remnant: Cognizance 5"
 	name "Destroy Korath"
 	description "Prefect Chilia has asked you to eliminate the Korath fleet before returning to <destination> by <date>."
-	deadline 20
 	source "Caelian"
 	waypoint "Aescolanus"
+	deadline 20
 	to offer
 		# 0.9.13 Compatibility patch
 		or
@@ -233,12 +229,11 @@ mission "Remnant: Cognizance 5"
 				accept
 	npc kill
 		government "Korath"
-		personality staying
+		personality staying target
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 2
-			commodities "void sprite parts"
+			cargo 3
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -246,7 +241,7 @@ mission "Remnant: Cognizance 5"
 		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
-		personality escort launching appeasing unconstrained disables plunders
+		personality escort launching appeasing unconstrained plunders
 		fleet
 			names "remnant"
 			variant
@@ -258,6 +253,8 @@ mission "Remnant: Cognizance 5"
 				"Tern" 8
 	on enter "Aescolanus"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
+	on enter "Nenia"
+		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
 		conversation
 			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to return to space for whenever it's needed. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
@@ -267,10 +264,10 @@ mission "Remnant: Cognizance 5"
 mission "Remnant: Cognizance 6"
 	name "Transport Plume"
 	description "Pick up Plume on <stopovers> and bring him to <origin> by <day>. Prefect Chilia wants to consult him about the void sprites."
-	passengers 1
-	deadline 5
 	source "Caelian"
 	stopover "Aventine"
+	passengers 1
+	deadline 5
 	to offer
 		has "Remnant: Cognizance 5: done"
 	on offer
@@ -333,9 +330,9 @@ mission "Remnant: Cognizance 7"
 
 
 mission "Remnant: Cognizance 8"
+	landing
 	name "Return Plume to <planet>"
 	description "Plume wants to check his records of the research on void sprites to verify some information."
-	landing
 	source "Nasqueron"
 	destination "Aventine"
 	to offer
@@ -364,10 +361,10 @@ mission "Remnant: Cognizance 9"
 	name "Transport engineer to <planet>"
 	description "An engineer working for Plume needs transportation for himself and some equipment to <planet>."
 	blocked "Plume's engineer needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
-	cargo equipment 8
-	passengers 1
 	source "Aventine"
 	destination "Esquiline"
+	cargo equipment 8
+	passengers 1
 	to offer
 		has "Remnant: Cognizance 8: done"
 	on offer
@@ -394,41 +391,54 @@ mission "Remnant: Cognizance 9"
 
 
 
-mission "Remnant: Cognizance 10"
-	name "Technician and supplies to <planet>"
-	description "You need to pick up a technician and their equipment from <stopovers> and take them to <planet>."
-	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
-	cargo equipment 8
-	passengers 1
+mission "Remnant: Cognizance 10A"
 	landing
+	name "Technician and supplies from <planet>"
+	description "You need to pick up a technician and their equipment from <destination> for transport to <origin>."
 	source "Esquiline"
-	stopover "Caelian"
+	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 9: done"
 	on offer
 		dialog
-			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and <tons> of equipment from <stopovers> and bring it back to <origin>. `
+			`As you look around this eerily silent station, you get a message on your commlink: Plume requests that you pick up another technician and 8 tons of equipment from <destination> and bring them back to <origin>. `
 				accept
-	on stopover
+
+
+
+mission "Remnant: Cognizance 10B"
+	landing
+	name "Technician and supplies to <planet>"
+	description "Transport this technician and their equipment to <destination>."
+	source "Caelian"
+	destination "Esquiline"
+	blocked "Plume's technician needs a free bunk and <tons> of cargo space for her equipment. Come back when you have enough space."
+	cargo equipment 8
+	passengers 1
+	to offer
+		has "Remnant: Cognizance 10A: done"
+	on accept
 		dialog
-			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. You shake your head, impressed at how quickly the Remnant make things happen when projects start to move.`
+			`Flight control gives you directions to a landing pad that already has a large pile of crates stacked next to it. As you land, workers swarm out to help load the equipment. Once everything is stowed, a young technician climbs aboard, stows their gear, and lets you know that everything is ready for departure. The Remnant can certainly make things happen quickly when projects start to move.`
 	on complete
 		payment 100000
 		conversation
 			`On the flight over, the technician joins you on the control deck to chat. She's a biotech specialist, adept at managing life-support systems in alien atmospheres, and a recent graduate from a Remnant educational program that seems to be similar to a university. Apparently she studied astrobiology and is part of a project aimed at supporting mutually exclusive environments in close proximity. She spends nearly an hour excitedly telling you the ins and outs of the station.`
 			`	As you approach <planet>, it occurs to you that the Remnant might appreciate you taking steps to maintain the secrecy of the station. Altering the <ship>'s path slightly, you swing down into <planet> in an oblique path then meander around the planet under the cloud layer until arriving at the station. Your passenger nods approvingly as she notices the flight path. "Secrecy is always good with projects like this. We appreciate the extra effort, and if anyone were to follow you, a path like that through the clouds would leave few signs to spot."`
-			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
+			`	The <ship> settles into the landing bay, and the technician quickly disembarks. Apparently, there must have been other shipments while you were gone, as there are now a handful of people visible and quite a bit more equipment stacked everywhere. The station itself feels more alive, the air fresher. As before, you promptly receive notification of another payment of <payment> to your account.`
 
 
 
 mission "Remnant: Cognizance 11"
+	landing
 	name "Remnant Data Delivery"
 	description "Deliver a data crystal to the engineers on <planet>."
-	landing
 	source "Esquiline"
 	destination "Viminal"
 	to offer
-		has "Remnant: Cognizance 10: done"
+		or
+			has "Remnant: Cognizance 10: done"
+			has "Remnant: Cognizance 10B: done"
 	on offer
 		conversation
 			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data.`
@@ -458,12 +468,11 @@ mission "Remnant: Cognizance 12"
 			label penguin
 			`	She nods at you and continues. "The Penguin will be even better than the Puffin for this task, and you are welcome to use her, but we do not have any available to accompany you. Continuing to rely on Puffins is not ideal, but we will make do with what we have." She turns to face the group of captains and gestures with tones of respect. "May the Embers bring interest to your journey."`
 				accept
-	npc accompany
+	npc accompany save
 		government "Remnant"
 		personality timid launching escort
 		fleet
 			names "remnant"
-			cargo 8 equipment
 			variant
 				Pelican
 				Puffin 4
@@ -479,9 +488,9 @@ mission "Remnant: Cognizance 12"
 
 
 mission "Remnant: Cognizance 13"
+	landing
 	name "Return to <planet>"
 	description "You have been informed that Prefect Chilia would like to meet with you on <destination>."
-	landing
 	source "Esquiline"
 	destination "Viminal"
 	to offer
@@ -491,14 +500,12 @@ mission "Remnant: Cognizance 13"
 
 
 mission "Remnant: Cognizance 14"
+	landing
 	name "Investigate strange sensor readings"
 	description "Long range sensors have picked up strange gravitational waves. Go investigate, then return to <destination>."
-	landing
 	source "Viminal"
-	waypoint
-		system Postverta
-	stopover
-		planet "Ssil Vida"
+	waypoint Postverta
+	stopover "Ssil Vida"
 	to offer
 		has "Remnant: Cognizance 12: done"
 	on offer
@@ -538,9 +545,9 @@ mission "Remnant: Cognizance 15"
 
 
 mission "Remnant: Cognizance 16"
+	landing
 	name "Follow the Creature"
 	description "The creature seems to be creating constellations and trying to get you to follow it."
-	landing
 	source "Viminal"
 	waypoint "Peragenor"
 	to offer
@@ -551,7 +558,7 @@ mission "Remnant: Cognizance 16"
 		conversation
 			`Quite a number of Remnant have gathered around the spaceport watching the movements of the strange creature. It gestures wildly in various ways, then freezes in several different positions with the tips of certain tentacles glowing with energy. You note that several anti-air batteries around the area have their formidable-looking weapons trained on the creature in case it turns violent.`
 			`	After several hours of watching the creature, one captain pushes his way forward to where you, Chilia, and Plume are talking. "I think I have an idea about this thing, Prefect!" the man signs excitedly. "Look at the positions of the glowing tips when it freezes. That pattern there matches the star positions of the main Ember Waste systems when viewed from Peragenor, and that second matches Convector." He pulls out a datapad and pulls up a projection of the starmap. "It is hard to tell due to the imprecision, but it looks like the third freeze is probably Antevorta or Nenia."`
-			`	Plume chimes in, "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating that it wants you to travel there. Please give it a try."`
+			`	Plume chimes in, "If those freezes indicate star positions, then the flying and landing behavior in between them may be indicating that it wants you to travel there. Please give it a try. Make sure to take a 'gaslined' ship; if the third system is Nenia, it may want you to enter the gas giants."`
 				accept
 	npc accompany
 		government "Ember Waste"
@@ -589,8 +596,7 @@ mission "Remnant: Cognizance 18"
 	landing
 	name "Collect void sprites"
 	description "Escort the Pelican fleet to <waypoints> and back to <planet>."
-	source
-		government "Remnant"
+	source "Viminal"
 	destination "Aventine"
 	waypoint "Nenia"
 	to offer
@@ -649,7 +655,7 @@ mission "Remnant: Cognizance 18"
 		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`	Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
+			`Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear onscreen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
 			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
 
 
@@ -658,8 +664,7 @@ mission "Remnant: Cognizance 19"
 	landing
 	name "Deliver navigation data"
 	description "Deliver navigational data on the new systems to <destination>."
-	source
-		government "Remnant"
+	source "Aventine"
 	destination
 		government "Remnant"
 		distance 1 5
@@ -681,7 +686,7 @@ mission "Remnant: Cognizance 19"
 
 mission "Remnant: Cognizance 20"
 	name "Preparation for expedition"
-	description "Outfit a research laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
+	description "Install a research laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
 	blocked "You need 10 free cargo space as well as a research laboratory for this mission."
 	cargo "supplies" 10
 	source
