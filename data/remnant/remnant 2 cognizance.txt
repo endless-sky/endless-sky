@@ -1218,7 +1218,7 @@ mission "Remnant: Cognizance 28"
 	name "Recover equipment from Baianus."
 	description "Torza has asked you to recover equipment from Baianus by <date>."
 	landing
-	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."``
+	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
 	deadline 13
 	cargo "reserved" 280
 	passengers 20
