@@ -53,7 +53,8 @@ void PrintData::Help()
 	cerr << "    -s, --ships: prints a table of ship stats (just the base stats, not considering any stored outfits)." << endl;
 	cerr << "    -s --sales: prints a table of ships with every 'shipyard' each appears in." << endl;
 	cerr << "    -s --loaded: prints a table of ship stats accounting for installed outfits. Does not include variants." << endl;
-	cerr << "    Use the modifier `-v` or `--variants` with the above command to include variants." << endl;
+	cerr << "    -s --list: prints a list of all ship names." << endl;
+	cerr << "    Use the modifier `-v` or `--variants` with the above two commands to include variants." << endl;
 	cerr << "    -w, --weapons: prints a table of weapon stats." << endl;
 	cerr << "    -e, --engines: prints a table of engine stats." << endl;
 	cerr << "    --power: prints a table of power outfit stats." << endl;
@@ -69,6 +70,7 @@ void PrintData::Ships(const char *const *argv)
 	bool loaded = false;
 	bool variants = false;
 	bool sales = false;
+	bool list = false;
 
 	for(const char *const *it = argv + 2; *it; ++it)
 	{
@@ -79,12 +81,16 @@ void PrintData::Ships(const char *const *argv)
 			sales = true;
 		else if(arg == "--loaded")
 			loaded = true;
+		else if(arg == "--list")
+			list = true;
 	}
 
 	if(sales)
 		PrintShipShipyards();
 	else if(loaded)
 		PrintLoadedShipStats(variants);
+	else if(list)
+		PrintShipList(variants);
 	else
 		PrintBaseShipStats();
 }
@@ -279,6 +285,20 @@ void PrintData::PrintLoadedShipStats(bool variants)
 
 
 
+void PrintData::PrintShipList(bool variants)
+{
+	for(auto &it : GameData::Ships())
+	{
+		// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
+		if(it.second.ModelName() != it.first && !variants)
+			continue;
+
+		cout << "\"" << it.first << "\"\n";
+	}
+}
+
+
+
 void PrintData::PrintWeaponStats()
 {
 	cout << "name" << ',' << "category" << ',' << "cost" << ',' << "space" << ',' << "range" << ','
@@ -427,25 +447,32 @@ void PrintData::PrintPowerStats()
 
 void PrintData::Outfits(const char *const *argv)
 {
+	bool sales = false;
+	bool all = false;
+
 	for(const char *const *it = argv + 2; *it; ++it)
 	{
 		string arg = *it;
 		if(arg == "-s" || arg == "--sales")
-			PrintOutfitOutfitters();
+			sales = true;
 		else if(arg == "-a" || arg == "--all")
-			PrintOutfitsAllStats();
-		else
-			PrintOutfitsList();
+			all = true;
 	}
+
+	if(sales)
+		PrintOutfitOutfitters();
+	else if(all)
+		PrintOutfitsAllStats();
+	else
+		PrintOutfitsList();
 }
 
 
 
 void PrintData::PrintOutfitsList()
 {
-	cout << "outfit name" << '\n';
 	for(auto &it : GameData::Outfits())
-		cout << it.first << '\n';
+		cout << "\"" << it.first << "\"\n";
 }
 
 

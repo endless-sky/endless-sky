@@ -28,6 +28,7 @@ private:
 	static void PrintBaseShipStats();
 	static void PrintShipShipyards();
 	static void PrintLoadedShipStats(bool variants = false);
+	static void PrintShipList(bool variants = false);
 
 	static void PrintWeaponStats();
 
