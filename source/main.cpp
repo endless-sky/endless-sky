@@ -9,7 +9,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Audio.h"
@@ -23,8 +26,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "GameWindow.h"
 #include "GameLoadingPanel.h"
+#include "GameWindow.h"
+#include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
 #include "Panel.h"
