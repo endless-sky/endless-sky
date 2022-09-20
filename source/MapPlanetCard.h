@@ -58,6 +58,8 @@ public:
 
 	const Planet *GetPlanet() const;
 
+	void Select(bool select = true);
+
 
 protected:
 	// Highlight this card; this is to be called when it is selected.
