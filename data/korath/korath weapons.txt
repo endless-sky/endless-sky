@@ -1045,8 +1045,8 @@ outfit "Firestorm Battery"
 	"firestorm torpedo capacity" 13
 	weapon
 		sprite "projectile/firestorm torpedo"
-			"frame rate" 2
-			"no repeat"
+			"frame rate" 6
+			"random start frame"
 		"hardpoint sprite" "hardpoint/firestorm battery"
 		sound "firestorm"
 		ammo "Firestorm Torpedo"
