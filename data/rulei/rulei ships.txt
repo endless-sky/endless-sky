@@ -30,6 +30,13 @@ ship vyu'Ira
 		"required crew" 1
 		shields 68000
 		"weapon capacity" 1000
+
+		"disruption protection" 2
+		"ion protection" 2
+		"energy protection" 2
+		"force protection" 1
+		"slowing protection" 1
+
 		weapon
 			"blast radius" 200
 			"shield damage" 20000
