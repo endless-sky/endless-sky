@@ -24,11 +24,11 @@ ship vyu'Ira
 		"engine capacity" 1000
 		"fuel capacity" 1000
 		"heat dissipation" 10
-		hull 77777777
+		hull 49000
 		hyperdrive 1
 		"outfit space" 1000
 		"required crew" 1
-		shields 77777777
+		shields 68000
 		"weapon capacity" 1000
 		weapon
 			"blast radius" 200
@@ -38,6 +38,7 @@ ship vyu'Ira
 	outfits
 		"Fate Sealer" 2
 		"Fate Divider" 2
+		"Abyssal Composer"
 		"Nanotech Battery"
 		"Antimatter Core"
 		"Impulse Engine"
@@ -48,7 +49,7 @@ ship vyu'Ira
 	gun 67 26.5 "Fate Sealer"
 	gun -93 41 "Fate Divider"
 	gun 93 41 "Fate Divider"
-	gun 0 -135
+	gun 0 -135 "Abyssal Composer"
 	explode "huge explosion" 15
 	explode "large explosion" 50
 	explode "medium explosion" 70
