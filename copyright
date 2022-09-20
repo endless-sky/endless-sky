@@ -1093,9 +1093,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
- images/ship/chaser*
- images/thumbnail/chaser*
  images/effect/korath?afterburner*
+ images/ship/chaser*
+ images/ship/world-ship*
+ images/thumbnail/chaser*
+ images/thumbnail/world-ship*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)
@@ -1393,6 +1395,7 @@ Files:
  images/effect/burning?spark*
  images/effect/coalition?flare/*
  images/effect/corrosion?spark*
+ images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
  images/effect/korath?flare/*
@@ -1415,6 +1418,8 @@ Files:
  images/outfit/dark?storm*
  images/outfit/double?plasma?core*
  images/outfit/dual?sunbeam?turret*
+ images/outfit/*efreti?steering*
+ images/outfit/*efreti?thruster*
  images/outfit/finisher?maegrolain*
  images/outfit/moonbeam*
  images/outfit/moonbeam?turret*
@@ -1504,6 +1509,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/hardpoint/firestorm battery*
+ images/outfit/firestorm?battery*
+ images/outfit/firestorm?rack*
+ images/outfit/firestorm?torpedo*
+ images/projectile/firestorm?torpedo*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/thumbnail/modified?dromedary*
@@ -1519,6 +1529,9 @@ Files:
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
+ images/ship/arch-carrack*
+ images/ship/charm-shallop*
+ images/ship/echo-galleon*
  images/ship/heavy?gust*
  images/ship/mining?drone*
  images/ship/mule*
@@ -1527,6 +1540,9 @@ Files:
  images/thumbnail/aerie*
  images/thumbnail/bactrian*
  images/thumbnail/hailstone*
+ images/thumbnail/arch-carrack*
+ images/thumbnail/charm-shallop*
+ images/thumbnail/echo-galleon*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
  images/thumbnail/mule*
@@ -1573,7 +1589,9 @@ Comment: Derived from works by Michael Zahniser (under the same license) and Lia
 
 Files:
  images/ship/-nra-ret*
+ images/ship/korsmanath?a-awoj*
  images/thumbnail/-nra-ret*
+ images/thumbnail/korsmanath?a-awoj*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 Comment: Derived from works by NomadicVolcano (public domain).
