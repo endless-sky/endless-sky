@@ -53,7 +53,7 @@ mission "Remnant: Cognizance 1"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 3
+			cargo 0
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -114,7 +114,7 @@ mission "Remnant: Cognizance 2"
 		personality forbearing timid uninterested surveillance staying
 		fleet
 			names "korath"
-			cargo 3
+			cargo 0
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
@@ -174,7 +174,7 @@ mission "Remnant: Cognizance 4"
 		system "Aescolanus"
 		fleet
 			names "korath"
-			cargo 3
+			cargo 0
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -233,7 +233,7 @@ mission "Remnant: Cognizance 5"
 		system "Nenia"
 		fleet
 			names "korath"
-			cargo 3
+			cargo 0
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 4
@@ -318,6 +318,7 @@ mission "Remnant: Cognizance 7"
 		system "Nenia"
 		fleet
 			names "korath"
+			cargo 0
 			variant
 				"Palavret (Ember)" 2
 				"'olofez" 4
@@ -348,6 +349,7 @@ mission "Remnant: Cognizance 8"
 		system "Nenia"
 		fleet
 			names "korath"
+			cargo 0
 			variant
 				"Palavret (Ember)" 3
 				"'olofez" 6
@@ -452,10 +454,10 @@ mission "Remnant: Cognizance 11"
 mission "Remnant: Cognizance 12"
 	name "Meet with escorts"
 	description "Travel with the <npc> to pick up a shipment of atmosphere from <stopovers>, and deliver it to <destination>."
-	cargo equipment 8
 	source "Viminal"
 	destination "Esquiline"
 	stopover "Nasqueron"
+	cargo equipment 8
 	to offer
 		has "Remnant: Cognizance 11: done"
 	on offer
@@ -473,6 +475,8 @@ mission "Remnant: Cognizance 12"
 		personality timid launching escort
 		fleet
 			names "remnant"
+			cargo 1
+			commodities Equipment
 			variant
 				Pelican
 				Puffin 4
@@ -628,6 +632,7 @@ mission "Remnant: Cognizance 18"
 		personality pacifist coward launching escort
 		fleet
 			names "remnant"
+			cargo 0
 			variant
 				"Pelican (Heavy Lift)" 6
 	npc
@@ -640,6 +645,7 @@ mission "Remnant: Cognizance 18"
 		system "Nenia"
 		fleet
 			names "korath"
+			cargo 0
 			variant
 				"Rano'erek"
 				"Palavret (Ember)" 3
