@@ -393,7 +393,6 @@ news "coalition games planet heliarch"
 		word
 			"Dozens of Heliarch agents are guarding the spaceport entrances, occasionally blocking passage as they try to control the flow of people to and from the Coalition Games events."
 			"You spot a few agents on their lunch break inside a local restaurant. They seem to be enjoying the Coalition Games broadcast more than the meals themselves."
-			"From the moment you arrive at the spaceport, Heliarch agents start showing you where you want to go if you're headed for the Coalition Games, which line leads to which sporting event, and where to go to if you need some general assistance from the Heliarchy. They give you a schedule of the Games for today."
 			`"Heading to the Coalition Games, are you? If so, forgive us you must. Some trouble with organizing the crowds this morning, there was, so delayed by five minutes, the whole line is."`
 			`"A former athlete myself, I am. Earned my rank by winning in the Games, I did, so always eager to help organize the event, I am."`
 
@@ -431,5 +430,4 @@ news "coalition games crowd"
 		word
 			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs and are being helped back to their feet one by one by both Heliarch agents and others from the crowd."
 			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
-			"Entering the tremendously crowded spaceport, you notice a Saryd pastry shop opening up for business, and decided to head there for a snack. When you finally get to the door, however, they're just done closing. It seems the masses heading to the Coalition Games bought all their products as the line was moving."
-			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle  to get them to settle down while keeping their spots in the waiting lines."
+			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle to get them to settle down while keeping their spots in the waiting lines."
