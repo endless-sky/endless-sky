@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.9.14
+version 0.9.15-alpha
 
 This game is open source.
 To report bugs, give feedback,
@@ -66,30 +66,31 @@ Editors & Proofreaders
   Zearth Goh aka TheMarksman
 
 Artwork
-  Michael Zahniser (CC-BY-SA 4.0)
-  Maximilian Korber (CC-BY-SA 4.0)
-  Iaz Poolar (CC-BY-SA 4.0)
-  Matthew Smestad (CC-BY-SA 4.0)
-  Amazinite (CC-BY-SA 4.0)
-  Nate Graham (CC-BY-SA 4.0)
-  Evan Fluharty (CC-BY-SA 4.0)
-  Nick Barry (CC-BY-SA 3.0)
+  Michael Zahniser (CC-BY-SA-4.0)
+  Maximilian Korber (CC-BY-SA-4.0)
+  Iaz Poolar (CC-BY-SA-4.0)
+  Matthew Smestad (CC-BY-SA-4.0)
+  Amazinite (CC-BY-SA-4.0)
+  Nate Graham (CC-BY-SA-4.0)
+  Evan Fluharty (CC-BY-SA-4.0)
+  Nick Barry (CC-BY-SA-3.0)
   ESO / L. Calcada (CC-BY-4.0)
-  Becca Tommaso (CC-BY-SA 4.0)
-  Frederick Goy IV (CC-BY-SA 4.0)
-  Zachary Siple (CC-BY-SA 4.0)
-  Darcy Manoel (CC-BY-SA 4.0)
-  Lia Gerty (CC-BY-SA 4.0)
+  Becca Tommaso (CC-BY-SA-4.0)
+  Frederick Goy IV (CC-BY-SA-4.0)
+  Zachary Siple (CC-BY-SA-4.0)
+  Darcy Manoel (CC-BY-SA-4.0)
+  Lia Gerty (CC-BY-SA-4.0)
   @Karirawri (CC-BY-SA-4.0)
-  Gefüllte Taubenbrust (CC-BY-SA-4.0)
+  Gef. Taubenbrust (CC-BY-SA-4.0)
+  Saugia (CC-BY-SA-4.0)
 
 Photos from Wikimedia Commons
-  Berthold Werner (CC-BY-SA 3.0)
-  Dmitry A. Mottl (CC-BY-SA 3.0)
-  Myrabella (CC-BY-SA 3.0)
-  Matthew Field (CC-BY-SA 3.0)
+  Berthold Werner (CC-BY-SA-3.0)
+  Dmitry A. Mottl (CC-BY-SA-3.0)
+  Myrabella (CC-BY-SA-3.0)
+  Matthew Field (CC-BY-SA-3.0)
 and other photographers
-  Chris Pickel (CC-BY-SA 4.0)
+  Chris Pickel (CC-BY-SA-4.0)
   Michael Wilson (CC-BY-SA-4.0)
   @harro.eu (CC-BY-SA-4.0)
   @Iridium Ore (CC-BY-SA-4.0)

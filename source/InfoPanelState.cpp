@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "InfoPanelState.h"
@@ -19,7 +22,7 @@ using namespace std;
 
 
 InfoPanelState::InfoPanelState(PlayerInfo &player)
-	:ships(player.Ships()), canEdit(player.GetPlanet())
+	: player(player), ships(player.Ships()), canEdit(player.GetPlanet())
 {
 }
 
@@ -40,11 +43,11 @@ void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 
 
 
-void InfoPanelState::SetSelected(const std::set<int> &selected)
+void InfoPanelState::SetSelected(set<int> selected)
 {
-	allSelected = selected;
-	if(!selected.empty())
-		selectedIndex = *selected.begin();
+	allSelected = std::move(selected);
+	if(!allSelected.empty())
+		selectedIndex = *allSelected.begin();
 }
 
 
@@ -70,7 +73,7 @@ void InfoPanelState::SelectMany(int start, int end)
 {
 	for(int i = start; i < end; ++i)
 		allSelected.insert(i);
-	
+
 	if(selectedIndex == -1)
 		selectedIndex = *allSelected.begin();
 }
@@ -99,7 +102,14 @@ void InfoPanelState::DeselectAll()
 
 
 
-const std::set<int> &InfoPanelState::AllSelected() const
+void InfoPanelState::Disown(vector<shared_ptr<Ship>>::const_iterator it)
+{
+	ships.erase(it);
+}
+
+
+
+const set<int> &InfoPanelState::AllSelected() const
 {
 	return allSelected;
 }
@@ -141,16 +151,26 @@ const vector<shared_ptr<Ship>> &InfoPanelState::Ships() const
 
 
 
+bool InfoPanelState::ReorderShipsTo(int toIndex)
+{
+	bool success = ReorderShips(allSelected, toIndex);
+	if(success)
+		player.SetShipOrder(ships);
+	return success;
+}
+
+
+
 // If the move accesses invalid indices, no moves are done.
 bool InfoPanelState::ReorderShips(const set<int> &fromIndices, int toIndex)
 {
 	if(fromIndices.empty() || static_cast<unsigned>(toIndex) >= ships.size())
 		return false;
-	
+
 	// When shifting ships up in the list, move to the desired index. If
 	// moving down, move after the selected index.
 	int direction = (*fromIndices.begin() < toIndex) ? 1 : 0;
-	
+
 	// Remove the ships from last to first, so that each removal leaves all the
 	// remaining indices in the set still valid.
 	vector<shared_ptr<Ship>> removed;
@@ -159,11 +179,11 @@ bool InfoPanelState::ReorderShips(const set<int> &fromIndices, int toIndex)
 		// The "it" pointer doesn't point to the beginning of the list, so it is
 		// safe to decrement it here.
 		--it;
-		
+
 		// Bail out if any invalid indices are encountered.
 		if(static_cast<unsigned>(*it) >= ships.size())
 			return false;
-		
+
 		removed.insert(removed.begin(), ships[*it]);
 		ships.erase(ships.begin() + *it);
 		// If this index is before the insertion point, removing it causes the
@@ -174,13 +194,13 @@ bool InfoPanelState::ReorderShips(const set<int> &fromIndices, int toIndex)
 	// Make sure the insertion index is within the list.
 	toIndex = min<int>(toIndex + direction, ships.size());
 	ships.insert(ships.begin() + toIndex, removed.begin(), removed.end());
-	
+
 	// Change the selected indices so they still refer to the block of ships
 	// that just got moved.
 	int lastIndex = toIndex + allSelected.size();
 	DeselectAll();
 	SelectMany(toIndex, lastIndex);
-	
+
 	// The ships are no longer sorted.
 	SetCurrentSort(nullptr);
 	return true;
