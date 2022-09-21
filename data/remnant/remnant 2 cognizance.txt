@@ -775,7 +775,7 @@ mission "Remnant: Cognizance 21"
 		conversation
 			branch duskknown
 				has "remnant met dusk"
-			`In the cafeteria the scene hasn't changed much: There is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
+			`In the cafeteria the scene hasn't changed much: there is still a large group of Remnant gathered around a cluster of projectors, with a constant stream of gestures discussing various points of the data. You understand enough to figure out that most of the conversation is deep into technical discussions of how the lifesign sensors might give the readings they do without having anything visible. The principal difference from before is the presence of five pressure-suited Remnant with a neat stack of equipment topped with helmets. One of them notices you and waves you over. "Captain <first>! My name is Dusk, and I am one of the researchers that you volunteered to transport to Ssil Vida."`
 			choice
 				`	"Pleased to meet you, Dusk."`
 					goto missiondescription
