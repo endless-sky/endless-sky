@@ -356,7 +356,7 @@ news "coalition games broadcast"
 			"A crowd has gathered for the transmission, waiting for some kind of race or marathon to start. The camera pans by the competitors, who are all Kimek, then pulls back as the race begins. You judge it to be a pretty standard race initially, until the camera spins around, and it's made clear that the Kimek are running upside down."
 			"Some Arachi attentively wait for a game to start. The screen shows the competitors, who are also Arachi, putting on various layers of plate armor. They then all move to a metal cable, just thick enough for them to be gripped with all legs. They then stay there. For many minutes. Until they start falling one by one. Exhilarating."
 			"During a break from the games, some analysts go over some spreadsheets with the statistics for the competitors of the past few games. You can't read any of it, but passerby workers and captains stay a while to glance at the results."
-			"One of the competitors from the last game is giving an interview, still catching their breath from the event, and taking in some water every time the interviewer is talking. Given their excitement, you figure they must've performed very well."
+			"One of the competitors from the last game, still catching their breath from the event, is giving an interview and gulping down water every time the interviewer talks. Given their excitement, you figure they must've performed very well."
 
 news "coalition games people"
 	to show
@@ -429,7 +429,7 @@ news "coalition games crowd"
 			"Coalition Games crowds"
 	message
 		word
-			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs, being helped back to their feet one by one by Heliarch agents and others from the crowd."
-			"You arrive at a particularly crowded part of the spaceport. The lines of people waiting for admission into the Games have now started looping around, heading inside some shops and restaurants, and even a bit into the docking area. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
+			"The lines of people heading to the Coalition Games seem to have stopped moving abruptly. Upon further investigation, you see some young Kimek have fallen on their backs and are being helped back to their feet one by one by both Heliarch agents and others from the crowd."
+			"This is a particularly crowded part of the spaceport today. The lines of people waiting for admission into the Games have started crossing and looping in on themselves. Some even head inside shops and restaurants while others stretch into docking areas. Battalions of Heliarch agents work as hard as they can to bring everyone back into orderly lines."
 			"Entering the tremendously crowded spaceport, you notice a Saryd pastry shop opening up for business, and decided to head there for a snack. When you finally get to the door, however, they're just done closing. It seems the masses heading to the Coalition Games bought all their products as the line was moving."
-			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle between trying to get them to settle down and keeping their spots in the waiting lines."
+			"Several children coming to see the Coalition Games are running and playing simplified versions of the events, sporting different colors and assets for different games. Their parents struggle  to get them to settle down while keeping their spots in the waiting lines."
