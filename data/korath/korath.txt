@@ -454,6 +454,17 @@ fleet "Korsmanath A'awojs"
 		"'olofez (Expeller)" 15
 		"'olofez" 9
 
+fleet "Korath Rescue"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters "korath"
+	cargo Medical
+	personality
+		timid disables coward surveillance harvests opportunistic
+	variant
+		"Rai'alorej"
+		"'olofez (World-Ship)" 2
+
 
 fleet "Kor Efret Home"
 	government "Kor Efret"

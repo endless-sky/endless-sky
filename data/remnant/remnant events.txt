@@ -36,6 +36,24 @@ event "remnant: defense timer"
 
 
 
+event "korath rescue: remnant small"
+	system "Perfica"
+		add fleet "Korath Rescue" 4500
+	system "Farinus"
+		add fleet "Korath Rescue" 6000
+	system "Edusa"
+		add fleet "Korath Rescue" 9000
+
+event "korath rescue: remnant small end"
+	system "Perfica"
+		remove fleet "Korath Rescue"
+	system "Farinus"
+		remove fleet "Korath Rescue"
+	system "Edusa"
+		remove fleet "Korath Rescue"
+
+
+
 event "remnant: surveillance begin"
 	system "Parca"
 		remove fleet "Korath Ember Waste Raid"
@@ -45,6 +63,16 @@ event "remnant: surveillance begin"
 event "remnant: surveillance end"
 	system "Parca"
 		add fleet "Korath Ember Waste Raid" 10000
+
+
+
+event "korath rescue: parca small"
+	system "Parca"
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: parca small end"
+	system "Parca"
+		remove fleet "Korath Rescue"
 
 
 
@@ -126,6 +154,34 @@ event "korath hunting"
 		"attitude toward"
 			"Indigenous Lifeform" -.01
 			"Ember Waste" -.01
+
+
+
+event "korath rescue: nenia small"
+	system Nenia
+		add fleet "Korath Rescue" 2000
+
+event "korath rescue: nenia small end"
+	system Nenia
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: aescolanus medium"
+	system Aescolanus
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: aescolanus medium end"
+	system Aescolanus
+		remove fleet "Korath Rescue"
+
+
+event "korath rescue: nenia medium"
+	system Nenia
+		add fleet "Korath Rescue" 1000
+
+event "korath rescue: nenia medium end"
+	system Nenia
+		remove fleet "Korath Rescue"
 
 
 
@@ -254,6 +310,16 @@ event "remnant: ssil vida inhabited"
 		spaceport `The Remnant have set up a fully self-contained base of operations in this part of the station. Independent life support, its own power system, and controls tapping into the rest of station occupy much of the space, while a research laboratory and additional equipment fill up the rest. A rudimentary cafeteria, communication links, basic repair equipment, and sleeping quarters round out the amenities of this research camp.`
 		bribe 0
 		government Remnant
+
+
+
+event "korath rescue: egeria tiny"
+	system Egeria
+		add fleet "Korath Rescue" 4000
+
+event "korath rescue: egeria tiny end"
+	system Egeria
+		remove fleet "Korath Rescue"
 
 
 

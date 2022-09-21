@@ -124,6 +124,8 @@ mission "Remnant: Cognizance 2"
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
 		event "korath hunting"
+		event "korath rescue: nenia small"
+		event "korath rescue: nenia small end" 18
 		conversation
 			`When you return to <planet>, you find Plume waiting for you. He eagerly reviews the recording of the combat. "Thank you for eliminating this hunter-" he is interrupted by a flashing light on his commlink. He briefly reads something, and then looks back up to you. "Apparently something about the Korath hunting the void sprites has concerned the defense prefect. Chilia has requested that you meet with him on Caelian immediately."`
 
@@ -193,6 +195,8 @@ mission "Remnant: Cognizance 4"
 	to complete
 		has "remnant: cognizance: found korath fleet"
 	on complete
+		event "korath rescue: aescolanus medium"
+		event "korath rescue: aescolanus medium end" 18
 		payment 500000
 		conversation
 			`This time, as you complete your post-flight checks you spot Prefect Chilia exiting the Starling next to you and watch as he strides across the pad to your airlock. You hit the open button as he clambers up the ladder. Without a word you pull up the sensor logs from Aescolanus, highlighting the position of the various ships. His eyes flit over the display for a moment, then he nods.`
@@ -259,6 +263,8 @@ mission "Remnant: Cognizance 5"
 	on enter "Aescolanus"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... Quickly.`
 	on complete
+		event "korath rescue: nenia medium"
+		event "korath rescue: nenia medium end" 18
 		conversation
 			`The task force streams back into <planet> without fanfare, its ships settling onto their landing pads with a sense of satisfaction. Within seconds, mechanics are climbing the hulls, and engineers drop from the ceiling on tethers to inspect the engines. Batteries are plugged in, fuel lines connected, and carts with replacement weaponry roll in. As always, the first responsibility of every captain is to ensure that their ship is ready to return to space for whenever it's needed. As the first footsteps echo on the hull of the <ship>, you switch the ship into maintenance mode before heading to the spaceport.`
 
@@ -1052,6 +1058,8 @@ mission "Remnant: Cognizance 23"
 				"Merganser" 4
 	on complete
 		event "remnant: merganser fleet"
+		event "korath rescue: remnant small"
+		event "korath rescue: remnant small end" 16
 		conversation
 			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hanger where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
 			`	Before long the technicians and pilots are trading stories while the Mergansers overshadow the group. Sometimes they poke various engineers or technicians, and the technicians frequently share messages from their commlinks. Apparently they have them hooked up to the Mergansers, so the ships are sharing their own accounts of the patrol. After several hours of the festivities, Taely announces that everyone needs to get to sleep because tomorrow is a new day. As everyone bids their farewells, you note that they include the ships, with most people patting or stroking one or more of the ships on their way out.`
@@ -1174,6 +1182,8 @@ mission "Remnant: Cognizance 25"
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on complete
+		event "korath rescue: egeria tiny"
+		event "korath rescue: egeria tiny end" 14
 		payment 250000
 		conversation
 			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezes that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`

@@ -327,6 +327,8 @@ mission "Remnant: Defense 2"
 	on visit
 		dialog phrase "generic bounty hunting on visit"
 	on complete
+		event "korath rescue: remnant small"
+		event "korath rescue: remnant small end" 16
 		payment 500000
 		dialog `The same woman meets you when you land on <planet>. "Again, thank you," she says. "I will suggest to others that they might offer you similar bounty hunting jobs in the future." She pays you <payment>.`
 		log "Factions" "Remnant" `Recently, Korath ships have begun raiding Remnant worlds. The Remnant have decided not to try to discourage these raids, because they are a perfect opportunity to steal jump drives and other valuable alien technology from the Korath.`
@@ -371,6 +373,8 @@ mission "Remnant: Defense 3"
 		dialog `You have returned to <planet>, but you haven't deployed the surveillance satellite yet. Return to <waypoints> and make sure that all of the Korath there have been eliminated.`
 	on complete
 		event "remnant: surveillance end"
+		event "korath rescue: parca small"
+		event "korath rescue: parca small end" 8
 		payment 500000
 		conversation
 			`When you return to <planet>, the same Remnant man meets you and says that they have begun receiving data from the surveillance satellite that you deployed. "Thank you for your assistance," he sings. He pays you <payment>.`
@@ -2365,6 +2369,8 @@ mission "Remnant: Salvage 4"
 	on abort
 		# No action, the player choose to just walk away from this mission(string)
 	on fail
+		event "korath rescue: remnant small"
+		event "korath rescue: remnant small end" 16
 		payment 350000
 		dialog `You are met by a prefect who looks upset. "The ship was supposed to be disabled so its contents could be salvaged!" he signs angrily. Nonetheless, he shoves a credit chip worth <payment> into your hand. "That's half what you would have earned if the ship had been disabled." He pauses and shakes his head. "I think Taely might have some more work for you in the spaceport, but in the meantime, why don't you go find some Korath to practice disabling? It is a valuable skill among the Remnant."`
 	on complete
