@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "System.h"
@@ -82,27 +85,6 @@ int System::Asteroid::Count() const
 double System::Asteroid::Energy() const
 {
 	return energy;
-}
-
-
-
-System::Belt::Belt(double radius, int weight)
-	: radius(radius), weight(weight)
-{
-}
-
-
-
-double System::Belt::Radius() const
-{
-	return radius;
-}
-
-
-
-int System::Belt::Weight() const
-{
-	return weight;
 }
 
 
@@ -273,19 +255,14 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "belt")
 		{
-			Belt belt(child.Value(valueIndex),
-				child.Size() >= valueIndex + 2 ? max<int>(1, child.Value(valueIndex + 1)) : 1);
+			double radius = child.Value(valueIndex);
 			if(remove)
-			{
-				for(auto it = belts.begin(); it != belts.end(); ++it)
-					if(it->Radius() == belt.Radius())
-					{
-						belts.eraseAt(it);
-						break;
-					}
-			}
+				erase(belts, radius);
 			else
-				belts.emplace_back(belt);
+			{
+				int weight = (child.Size() >= valueIndex + 2) ? max<int>(1, child.Value(valueIndex + 1)) : 1;
+				belts.emplace_back(weight, radius);
+			}
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
@@ -382,7 +359,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		node.PrintTrace("Warning: system will be ignored due to missing position:");
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
-		belts.emplace_back(1500.);
+		belts.emplace_back(1, 1500.);
 }
 
 
@@ -618,13 +595,13 @@ double System::HabitableZone() const
 // Get the radius of an asteroid belt.
 double System::AsteroidBeltRadius() const
 {
-	return belts.Get().Radius();
+	return belts.Get();
 }
 
 
 
 // Get the list of asteroid belts.
-const WeightedList<System::Belt> &System::AsteroidBelts() const
+const WeightedList<double> &System::AsteroidBelts() const
 {
 	return belts;
 }

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 fleet "Heliarch"
 	government "Heliarch"
@@ -62,12 +65,16 @@ fleet "Heliarch"
 		"Heliarch Breacher (Scrappy)"
 	variant 2
 		"Heliarch Interdictor (Bombardment)"
+	variant 12
+		"Heliarch Interdictor (Burst Fire)"
 	variant 8
 		"Heliarch Interdictor (Ions)"
 	variant 1
 		"Heliarch Interdictor (Missile)"
 	variant 1
 		"Heliarch Interdictor (Scrappy)"
+	variant 10
+		"Heliarch Hunter (Burst Fire)"
 	variant 2
 		"Heliarch Hunter (Interdicting)"
 	variant 2
@@ -76,6 +83,8 @@ fleet "Heliarch"
 		"Heliarch Hunter (Missile)"
 	variant 4
 		"Heliarch Hunter (Scrappy)"
+	variant 10
+		"Heliarch Punisher (Burst Fire)"
 	variant 1
 		"Heliarch Punisher (Interdicting)"
 	variant 7
@@ -272,6 +281,7 @@ outfitter "Coalition Basics"
 	"Small Repair Module"
 	"Cooling Module"
 	"Small Thrust Module"
+	"Small Reverse Module"
 	"Small Steering Module"
 	"Cargo Expansion"
 	"Outfits Expansion"
@@ -295,6 +305,8 @@ outfitter "Coalition Advanced"
 	"Cooling Module"
 	"Small Thrust Module"
 	"Large Thrust Module"
+	"Small Reverse Module"
+	"Large Reverse Module"	
 	"Small Steering Module"
 	"Large Steering Module"
 	"Cargo Expansion"
