@@ -1014,8 +1014,8 @@ effect "firelight ring"
 outfit "Microbot Factory"
 	category "Guns"
 	thumbnail "outfit/unknown"
-	"mass" 112
-	"outfit space" -112
+	"mass" 182
+	"outfit space" -212
 	"weapon capacity" -112
 	"required crew" 20
 	"gun ports" -1
