@@ -218,6 +218,7 @@ mission "Unfettered: Nemo Me Impune Lacessit"
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
 		not "unfettered: sold bars"
+		not "unfettered: took out mercenary leader"
 		random < 3
 	on offer
 		require "Gold Bars"
@@ -227,6 +228,8 @@ mission "Unfettered: Nemo Me Impune Lacessit"
 			distance 2 5
 		fleet "Marauders" 3
 		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever it is they were interested in on a planet (using U) or get rid of it.`
+	to fail
+		has "unfettered: took out mercenary leader"
 
 mission "Unfettered: Nemo Me Impune Lacessit 2"
 	invisible
@@ -238,6 +241,7 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 	to offer
 		has "Unfettered: Jump Drive Retrieval: done"
 		not "unfettered: sold bars"
+		not "unfettered: took out mercenary leader"
 		random < 1
 	on offer
 		require "Gold Bars" 20
@@ -247,6 +251,8 @@ mission "Unfettered: Nemo Me Impune Lacessit 2"
 			distance 2 5
 		fleet "Marauders" 5
 		dialog `After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or get rid of it.`
+	to fail
+		has "unfettered: took out mercenary leader"
 
 
 
@@ -482,6 +488,7 @@ mission "Unfettered: Duel Squared"
 			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and disrespecting the rules of the duel."
 			action
 				set "unfettered: thorn talon murdered"
+				event "unfettered: thorn talon vengeance" 180
 				set "unfettered: thorn talon death"
 				"reputation: Shadow" <?= -1000
 	on complete
@@ -510,6 +517,73 @@ mission "Unfettered: Stop The Duel"
 	on decline
 		set "unfettered: stop the duel"
 		fine 4000000
+
+ship "Marauder Falcon" "Marauder Falcon (Weapons, Bars)"
+	sprite "ship/mfalconw"
+	thumbnail "thumbnail/mfalconw"
+	add attributes
+		"weapon capacity" 45
+		"cargo space" -10
+		"outfit space" 55
+		"shields" 5000
+		"hull" 5000
+	outfits
+		"Pulse Cannon" 6
+		"Ionic Turret Prototype" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Helium Cooler"
+		"Laser Rifle" 80
+		
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+	cargo
+		outfits
+			"Gold Bars" 50
+	
+	engine -16.5 143
+	engine 16.5 143
+	gun -16 -86.5 "Pulse Cannon"
+	gun 16 -86.5 "Pulse Cannon"
+	gun -19 -76.5 "Pulse Cannon"
+	gun 19 -76.5 "Pulse Cannon"
+	gun -24.5 -66.5 "Pulse Cannon"
+	gun 24.5 -66.5 "Pulse Cannon"
+	turret -16 -29 "Ionic Turret Prototype"
+	turret 16 -29 "Ionic Turret Prototype"
+	turret -50 39.5 "Ionic Turret Prototype"
+	turret 50 39.5 "Ionic Turret Prototype"
+	description "Whoever modified this Falcon clearly believed that firepower was everything. Two additional gun ports have been integrated into the hull, and the ship's interior space has been reconfigured to accommodate nearly any set of weapons you can imagine. It also seems to have an enhanced shield matrix integrated to it, seemingly inspired by the Hai, and is protected by a special alloy added to its hull."
+
+mission "Unfettered: Daemons Unleashed"
+	landing
+	to offer
+		has "event: unfettered: thorn talon vengeance"
+	npc kill
+		system "Wah Yoot"
+		government "Shadow"
+		# placeholder until we get the ant lion probably
+		ship "Marauder Falcon (Weapons, Bars)" "Alpha Lion"
+		personality heroic nemesis staying vindictive target
+		conversation
+			`As soon as you destroy the flagship of this fleet other cease firing. The new flagship hails you. "I am now in command of the Mercenaries. I will stop the mistakes of my predecessor right now, before this becomes an incontrollable spiral of destruction. I have decided to make you a part of our organization. Keep the bars you have safe, <last>, that is all I ask of you." They then end the hail.`
+			action
+				"reputation: Mercenaries" >?= 100
+				"salary: Mercenaries" = 1000
+				set "unfettered: took out mercenary leader"
+	npc
+		system "Wah Yoot"
+		to despawn
+			has "unfettered: took out mercenary leader"
+		government "Mercenaries"
+		fleet "Marauders" 12
+		personality heroic nemesis staying vindictive
+	on enter "Wah Yoot"
+		dialog `As you enter Wah Yoot you spot a fleet of mercenaries, larger than anything you've seen from them before. The captain of the fleet hails you. "Nemo Me Impune Lacessit, <first> <last>. You have killed our own. We have come to bring justice upon you, whatever the cost. There will be no negotiations, no forgivness."`
 
 
 
