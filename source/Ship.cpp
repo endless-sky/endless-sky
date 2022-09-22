@@ -652,9 +652,8 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(VariantName(), Name(), 
-            "weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
-
+					LogWarning(VariantName(), Name(),
+							   "weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
