@@ -422,13 +422,13 @@ ship "Sea Scorpion"
 		"required crew" 14
 		"bunks" 36
 		"mass" 360
-		"drag" 4.7
+		"drag" 5.2
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 45
 		"outfit space" 510
 		"weapon capacity" 168
-		"engine capacity" 104
+		"engine capacity" 117
 		weapon
 			"blast radius" 84
 			"shield damage" 840
@@ -444,7 +444,7 @@ ship "Sea Scorpion"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		`"Bondir" Atomic Thruster`
-		`"Biroo" Atomic Steering`
+		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
@@ -453,11 +453,11 @@ ship "Sea Scorpion"
 	"steering engine" 64.5 23.5
 		zoom 0.8
 		angle -90
-		left
+		right
 	"steering engine" -64.5 23.5
 		zoom 0.8
 		angle 90
-		right
+		left
 	gun -13 -77.5
 	gun 13 -77.5
 	gun -27 -56
@@ -471,7 +471,7 @@ ship "Sea Scorpion"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "Most Unfettered ships aren't usable as missile boats, so they previously relied on pulse weapons instead. Only after several decades of hard work were they able to take the Sea Scorpion into mass production, but it was well worth it; its low price, agility and large number of gun ports make it perfect for its role, even at the cost of its weak hull and shielding."
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are able to mass produce them, enabling them to employ new tactics against the other Hai, alleviating some of their numerical, technological, and logistical disadvantages."
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
