@@ -503,6 +503,8 @@ mission "Unfettered: Duel Squared"
 			action
 				log "Won a duel against 2 mysterious ships that serve the Shadow of Mintaka, whatever that means. They allowed me to plunder their ships."
 
+event "unfettered: thorn talon vengeance"
+
 mission "Unfettered: Stop The Duel"
 	landing
 	source "New Tortuga"
