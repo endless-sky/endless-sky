@@ -482,6 +482,7 @@ mission "Unfettered: Duel Squared"
 			"You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered will not offer you any missions anymore, for having killed legends, and disrespecting the rules of the duel."
 			action
 				set "unfettered: thorn talon murdered"
+				set "unfettered: thorn talon death"
 				"reputation: Shadow" <?= -1000
 	on complete
 		conversation
