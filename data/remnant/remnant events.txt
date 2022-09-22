@@ -36,24 +36,6 @@ event "remnant: defense timer"
 
 
 
-event "korath rescue: remnant small"
-	system "Perfica"
-		add fleet "Korath Rescue" 4500
-	system "Farinus"
-		add fleet "Korath Rescue" 6000
-	system "Edusa"
-		add fleet "Korath Rescue" 9000
-
-event "korath rescue: remnant small end"
-	system "Perfica"
-		remove fleet "Korath Rescue"
-	system "Farinus"
-		remove fleet "Korath Rescue"
-	system "Edusa"
-		remove fleet "Korath Rescue"
-
-
-
 event "remnant: surveillance begin"
 	system "Parca"
 		remove fleet "Korath Ember Waste Raid"
@@ -63,16 +45,6 @@ event "remnant: surveillance begin"
 event "remnant: surveillance end"
 	system "Parca"
 		add fleet "Korath Ember Waste Raid" 10000
-
-
-
-event "korath rescue: parca small"
-	system "Parca"
-		add fleet "Korath Rescue" 2000
-
-event "korath rescue: parca small end"
-	system "Parca"
-		remove fleet "Korath Rescue"
 
 
 
@@ -398,6 +370,7 @@ event "remnant: ssil vida activation"
 		trade Metal 272
 		trade Plastic 289
 		fleet "Korath Ember Waste Raid" 20000
+		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
 		hazard "Ember Waste Base Heat" 100
@@ -563,6 +536,7 @@ event "remnant: ssil vida activation"
 		trade Metal 407
 		trade Plastic 222
 		fleet "Korath Ember Waste Raid" 10000
+		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
 		object
