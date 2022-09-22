@@ -137,8 +137,8 @@ outfit "Abyssal Composer"
 	"gun ports" -1
 	weapon
 		sound "drone2"
-		"hit effect" "composer" 2
-		"hit effect" "composer small"
+		"hit effect" "composed" 2
+		"hit effect" "drained"
 		"inaccuracy" 45
 		"velocity" 660
 		"lifetime" 1
@@ -159,7 +159,7 @@ outfit "Abyssal Composer"
 		"safe"
 	description "Placeholder."
 
-effect "composer"
+effect "composed"
 	sprite "effect/composed"
 		"no repeat"
 		"frame rate" 20
@@ -168,11 +168,11 @@ effect "composer"
 	"random velocity" 1
 	"velocity scale" -0.001
 
-effect "composer small"
-	sprite "effect/composed"
+effect "drained"
+	sprite "effect/drain"
 		"no repeat"
 		"frame rate" 30
-		"scale" 0.2
+		"scale" 0.3
 	sound "drone2"
 	"lifetime" 20
 	"random velocity" 1
