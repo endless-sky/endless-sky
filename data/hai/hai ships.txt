@@ -471,7 +471,7 @@ ship "Sea Scorpion"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are able to mass produce them, enabling them to employ new tactics against the other Hai, alleviating some of their numerical, technological, and logistical disadvantages."
+	description "The Sea Scorpion was designed to serve as a mobile platform to launch Trackers from. After decades of hard work, the Unfettered are finally able to mass produce them. The ever growing fleet of Sea Scorpions enables the Unfettered to employ new tactics against the other Hai which alleviate some of their numerical, technological, and logistical disadvantages."
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits

@@ -448,7 +448,7 @@ outfit "Value Detector"
 	"cargo scan power" 22
 	"cargo scan speed" 4
 	"tactical scan power" 27
-	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons.. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar. It also provides more detailed information about the tactical condition of enemy vessels; useful when testing new weapons."
+	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar. It also provides more detailed information about the tactical condition of enemy vessels; useful when testing new weapons."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
