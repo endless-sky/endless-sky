@@ -1560,7 +1560,6 @@ Files:
  images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
- images/projectile/ion?blast*
  sounds/ion?blast*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0

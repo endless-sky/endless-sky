@@ -811,13 +811,14 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hyperdrive"
 
 
+
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"True Unfettered"
+			"Unfettered Militia"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
