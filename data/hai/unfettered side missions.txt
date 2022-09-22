@@ -524,23 +524,23 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons, Bars)"
 	add attributes
 		"weapon capacity" 45
 		"cargo space" -10
-		"outfit space" 55
+		"outfit space" 80
 		"shields" 5000
 		"hull" 5000
 	outfits
 		"Pulse Cannon" 6
 		"Ionic Turret Prototype" 4
 		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Helium Cooler"
-		"Laser Rifle" 80
+		"Boulder Reactor"
+		"Hai Gorge Batteries"
+		"Systems Core (Medium)"
+		"Hai Zephyr Cooling" 2
+		"Pulse Rifle" 100
+		"Dual Pulse Pistols" 5
 		
-		"A370 Atomic Thruster"
-		"A525 Atomic Steering"
-		"Hyperdrive"
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Jump Drive"
 	cargo
 		outfits
 			"Gold Bars" 50
