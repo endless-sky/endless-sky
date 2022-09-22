@@ -669,6 +669,25 @@ ship "Clipper" "Clipper (Speedy)"
 		"Hyperdrive"
 
 
+ship "Clipper" "Clipper (Hai Trafficker)"
+	outfits
+		"Pulse Rifle" 3
+		Brig
+		Supercapacitor 2
+		"Fuel Pod"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
+		"Hai Tracker Pod" 3
+		Ramscoop
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"Breeder Reactor"
+		"Security Station" 2
+
+
 
 ship "Container Transport" "Container Transport (Blaster)"
 	outfits
@@ -865,25 +884,6 @@ ship "Corvette" "Corvette (Hai Trafficker)"
 		"Outfits Expansion" 2
 		"Liquid Nitrogen Cooler"
 		"Security Station" 4
-
-
-ship "Clipper" "Clipper (Hai Trafficker)"
-	outfits
-		"Pulse Rifle" 3
-		Brig
-		Supercapacitor 2
-		"Fuel Pod"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
-		Hyperdrive
-		"Hai Tracker Pod" 3
-		Ramscoop
-		"Hai Corundum Regenerator"
-		"Hai Chasm Batteries"
-		"Outfits Expansion" 3
-		"Liquid Nitrogen Cooler"
-		"Breeder Reactor"
-		"Security Station" 2
 
 
 
@@ -1289,6 +1289,26 @@ ship "Freighter" "Freighter (Secret Cargo)"
 	turret "Blaster Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Blaster Turret"
+
+
+ship "Freighter" "Freighter (Hai Trafficker)"
+	outfits
+		"Pulse Rifle" 3
+		Brig
+		Supercapacitor 2
+		"Fuel Pod"
+		`"Biroo" Atomic Thruster`
+		"A255 Atomic Steering"
+		Hyperdrive
+		"Bullfrog Anti-Missile"
+		"Pulse Turret" 2
+		Ramscoop
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"Breeder Reactor"
+		"Security Station"
 
 
 

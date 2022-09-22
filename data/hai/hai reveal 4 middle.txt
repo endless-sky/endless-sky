@@ -48,39 +48,39 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 	to offer
 		has "event: hai rescue: teeneep message"
 		has "Hai Building Mountaintop [3] Furnishings: done"
-		or
-			has "Pirate Troubles [4]: done"
-			has "Pirate Troubles [4]: declined"
+#		or
+#			has "Pirate Troubles [4]: done"
+#			has "Pirate Troubles [4]: declined"
 	on offer
 		conversation
-			`You receive an emergency communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. They need to talk to you again as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>.`
+			`You receive a high priority communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. It advises that she needs to talk to you as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>.`
 				accept
 
-mission "Hai Rescue [A02] Microtransceiver Identification"
+mission "Hai Rescue [A02] Symbol Identification"
 	landing
-	name "Missing Researchers"
+	name "Symbol Identification"
 	description "Fly to <destination> to ask the Quarg about the microtransceivers."
 	source Darkwaste
-	destination "Kuwaru Efreti"
+	destination Hai-home
 	to offer
 		has "Hai Rescue [A01] Visit Darkwaste: done"
 	on offer
-		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped scientists.`
-		log `Many Hai and humans have gone missing over the past few decades. The ones who have subsequently been rescued all have microtransceivers that are not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
+		log "People" "Teeneep Goot'r" `Teeneep is an activist and social leader among the Hai who heads an organization with hundreds of employees and many sponsors. She's used her extensive resources to search for answers about kidnapped specialists.`
+		log `Many Hai and humans have gone missing over the past few decades. Many of the ones who have subsequently been rescued have had mild cadmium poisoning from some technology not of human or Hai origin. Teeneep, a Hai social leader, is using her network of information-gatherers to find out what's going on. Heading to the Quarg south of Hai space to begin the search.`
 		conversation
-			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; you notice it has non-standard outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
+			`You follow the landing coordinates to a flat area of hardened dirt near a cave. A Hai Centipede is parked next to you; it draws your attention immediately as it is equipped with some non-standard human outfits. You can see the emission components of a Scram Drive sticking out the back, and the collection prongs of a Catalytic Ramscoop. The steering is Hai, but the thrusters are human. The ship appears ready to fly rapidly through unfriendly territory without stopping.`
 			choice
 				`	(Walk into the cave.)`
 				`	(Come back later.)`
 					defer
-			`	You walk twenty meters into the cave and pass through an open doorway. There's a variety of medical machinery and some computers in a makeshift base. Some of the people you've rescued are present, with some more humans and Hai you haven't met. A few of them have pulse rifles. A woman walks towards you.`
-			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and humans victims are here; they were rescued by other kind merchants in human space."`
-			`	"My organization researched their problem and discovered some patterns to the disappearances. We've found these kidnappings have been going on for several years. What is strangest is the microtransceivers in most of the kidnapped victims."`
+			`	You walk twenty meters into the cave and enter an open doorway before passing through a presently unmanned security post into a small and roughly designed underground facility. There's a variety of medical machinery in rooms with large glass windows immediately to the left, and several computers arrayed around a makeshift living area with what looks to be some sleeping quarters off to the back and right. Some of the people you've rescued are present, though there are many more humans and Hai that you haven't met. A few of them have pulse rifles, but your attention is quickly captured by a woman walking towards you.`
+			`	"Greetings Captain <last>, my name is Teeneep Goot'r. I'm a social advocate among the Hai, and I'm trying to help your friends with a problem. As you know, they were kidnapped by humans. A few other Hai and human victims are here; they were mostly rescued by other kind merchants in human space, but around half of those here are my staff."`
+			`	"My organization has been researching the issue of disappearing Hai ever since some humans also began disappearing here under similar circumstances, and we've discovered some patterns to the disappearances. Perhaps more pertinently though, since we've found those patterns we've been able to reach some of the victims more quickly upon their return, and even rescue a couple ourselves. One of those that you rescued, and several other's beside, have something very strange. These kidnap victims are all experiencing mild cadmium poisoning."`
 			choice
 				`	"What patterns have you noticed in the kidnappings?"`
 					goto patterns
-				`	"Tell me about the microtransceivers."`
-					goto microtransceivers
+				`	"Tell me about the cadmium poisoning."`
+					goto cadmium
 				`	"How long have the kidnappings been happening?"`
 					goto kidnappings
 			label questions
@@ -94,60 +94,87 @@ mission "Hai Rescue [A02] Microtransceiver Identification"
 					goto anyone
 				`	"What patterns have you noticed in the kidnappings?"`
 					goto patterns
-				`	"Tell me about the microtransceivers."`
-					goto microtransceivers
+				`	"Tell me about the cadmium poisoning."`
+					goto cadmium
 				`	"How long have the kidnappings been happening?"`
 					goto kidnappings
 				`	"How can I help you?"`
 					goto help
 			label uninhabited
-			`	Teeneep looks at you as if you were daft. "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide any critical people or information. Plus, once we've removed enough of the microtransceivers, they no longer function effectively. We have plenty of space here to keep samples and people far enough apart for safety without the obvious precautions that would be necessary somewhere more populated."`
+			`	Teeneep looks at you as if you were daft. "The kidnappings happen on Hai and human worlds. The kidnappers have no reason to search an uninhabited planet for potential victims. This gives us a safe place to hide any critical people or information. We have reason to believe that if there is a coordinated organization behind this as we suspect, they would have strong reason to track us down and silence some those who have previously escaped, and probably shut us down too. We have plenty of space here to do our work and investigate what we need to without the precautions that would be necessary somewhere more populated."`
 				goto questions
-			label microtransceivers
-			`	A Hai in a medical uniform explains, "The victims each have have thousands of microscale transmitter-receivers in their body, each the size of a single blood cell. We call them microtransceivers. They act together as one big transmitter and receiver, sending and receiving directional messages over great distances."`
-			`	"This technology is clearly not of human or Hai origin. It has similarities to some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, but the construction of these is significantly beyond our science, and some materials involved have properties unlike anything we've ever studied up close. Another race's hand has been involved in this technology; we're looking for one that has mastered miniaturized technology and is comfortable with its principles."`
-			`	"What is most troubling is that we don't know how to detect the signals beyond about thirty meters. We can tell they send messages over much longer distances through hyperspace, but they use a method we don't understand."`
+			label cadmium
+			`	A Hai in a medical uniform explains, "The victims each seem to have been exposed to airborne particulates containing cadmium which must be circulating through their ships ventilation. I should also clarify that it's not strictly 'poisoning'. The level of exposure is quite low, but enough that testing shortly after being rescued does show clearly elevated levels in many who were taken.`
+			`	"No known technology of human or Hai origin exhausts anything which could create this effect. There are some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, and their dispenser cannisters have residual cadmium dust in them as residue, but that's the only thing we even bring onto a ship that uses it, and those are self-contained for disposal and the molecular bonding doesn't match anyway. There are some materials involved have properties unlike anything either of us make, which suggests this is coming from another race's technology."`
+			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
 				not "00 Hai Leaks Response 4B: declined"
-			`	"Interestingly, the self-repair systems on the Geocoris you rescued appear to use much the same technology, and we suspect they came from the same place. How such a technology ended up in the hands of lowlives like that we have no idea."`
+			`	"We did; however, get a hold of the scan results from the Geocoris you rescued. Interestingly, the self-repair systems it has appear to use a technology which could be responsible for something like this, and we suspect they came from the same place."`
 				goto questions
 			label patterns
 			`	Teeneep explains, "I head a large activist organization for social direction and civil rights alignment; we have some resources of our own. We've combed police records for the past few decades and noticed patterns in disappearances."`
-			`	"There are violent crimes and kidnappings in Hai space, though much less frequently than in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved."`
-			`	"A disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are gifted researchers in their field, but not prominent enough for the field to be crippled by their absence. The same is happening in human space. In research institutions, people are occasionally disappearing. The patterns are exactly the same. We believe someone is collecting researchers."`
+			`	"There are violent crimes and kidnappings in Hai space, though much less frequently than in human space. Murder, assault, estranged parents kidnapping their children, all of that happens here. Many of those crimes are solved: the victim is found dead or alive. Some of them are not solved. There are also disappearances that go unreported until long after they occur. Hai who simply get up and decide to go on an adventure one day out of boredom, and then get stuck up a mountain, fall into a crevasse, or any encounter any number of other fatal natural phenomena. Their bodies are sometimes found, but they're usually only hard to find when they're local to the destination with the danger."`
+			`	"In recent years a disproportionate number are from the intelligentsia: doctors, scientists, engineers, architects. In particular, they are specialists of some kind in their field, but not prominent enough for the field to be significantly set back by their absence. The same is happening in human space, people with niche skills are occasionally disappearing. In Hai space particularly, some of these disappearances are from world where we would expect to be able to track them to the general area of their disappearance, but instead they are simply... gone. We believe someone is targeting researchers and specialists and trying to hide it beneath the noise."`
 				goto questions
 			label kidnappings
-			`	Teeneep answers, "In human space, we don't know, but in Hai space it dates back to about a year after we made contact with the humans, though it doesn't seem to have been entirely consistent in either time or method of operation. This of course means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
-			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. Maybe five times that number of humans."`
+			`	Teeneep answers, "In human space, we don't know, but after collating records in Hai space it seems to have happened in three spates each lasting several years. The first of which date back to only about a decade after we made contact with humans, though it doesn't seem to have been consistent in either time or method, merely in the type of people targeted. This of course means that we can't even say for sure if it's even been the same people, but every investigation has ultimately dead-ended with similar difficulties."`
+			`	"Nevertheless, from the rate at which the disappearances have happened, possibly as many as five thousand Hai have vanished this way. The number may be less; some of those cases may be undiscovered murders, secret changes of identity, or defections to the Unfettered. We have no idea how many humans, we don't have that level of access to your records and they're not that good anyway."`
 				goto questions
 			label know
 			`	Teeneep explains, "The organization I lead has contacts with sympathetic individuals and organizations throughout Hai space. We have enough funding to hire a few hundred full-time employees of our own. Most of them are lawyers, social workers, or administrative employees. A few are investigative journalists or various types of researchers."`
-			`	"We've spent the last two years researching this problem, but it helped a lot to meet the people who have been rescued."`
+			`	"We've spent the last three years researching this problem, but it helped a lot to meet the people who have been rescued."`
 				goto questions
 			label anyone
-			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, and sometimes find the missing person. Other times, they eventually have to give up and work on other crimes."`
-			`	"Our biggest problem is the lack of help in human space. Local police are generally overwhelmed with crime in the regions where the kidnapping victims are found. There, kidnappings are commonplace. In the areas where the victims were taken, there's virtually no evidence. Your navies and intelligence agencies haven't the time to help us; they're busy cleaning up after the war. There is a lot of unfinished business in Syndicate space they don't want to talk about."`
-			`	"While the crime in Hai space is rather more manageable, the same lack of evidence makes it hard for the Elders to justify a dedicated task force when more visible priorities still dominate the news feeds. They tell me that if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything."`
-			`	"What we need is a skilled pilot with a jump drive to visit some locations we cannot easily access."`
+			`	A Hai near Teeneep responds. "Yes... and no. Apart from our own people, we're regularly in contact with police. They investigate the disappearances, and sometimes find the missing person. Other times, they eventually have to give up and work on other crimes.`
+			`	"Our biggest problem is the lack of help in human space. Local police are generally overwhelmed with crime in the regions where the kidnapping victims are found. There, kidnappings are commonplace. In the areas where the victims were taken, there's virtually no evidence. Your navies and intelligence agencies haven't the time to help us; they're busy cleaning up after the war. There is a lot of unfinished business in Syndicate space they don't want to talk about.`
+			`	"While the crime in Hai space is rather more manageable, the evidence of a pattern just isn't strong enough for the Elders to justify a dedicated task force when more visible priorities still dominate the news feeds. They tell me that if we can prove the kidnappings are from a coordinated effort, they'll put all the resources they can spare into stopping the crime. So far, they say, their investigators have been unable to discover anything though, and there are some cases where there are things about the Elder's responses that simply don't add up, and we presume must be classified for some reason."`
+			`	Teeneep nods. "What we need is a skilled pilot with the strength and connections to investigate some locations we cannot easily access... and that pilot needs to be someone we can trust. You are recommended by our mutual friend."`
 				goto questions
 			label help
-			`	"We have some leads in human and Korath space we need you to follow. The Quarg at Alta Hai had me talk to scientists on <destination>. They say they can help, but they need a sample of the microtransceivers. I know the humans gave you a jump drive; I need you to use it to deliver the microtransceivers."`
-			`	She hands you a data card. "This has some info on it that you might find useful. Right now though, the Quarg in Korath space might eliminate some leads and add new ones. Follow the leads. Once you have proof the kidnappings are an organized effort, return here, and we will pay you 2,000,000 credits."`
+			branch gipeep
+				has "Hai Rescue: Gipeep: done"
+			`	Teeneep smiles and gestures for you to follow as she walks over to a desk where an elderly Hai is conversing with another, younger, Hai. "Wayou, sorry to interrupt you. Could you please show Captain <last> the symbol?"`
+			`	Wayou taps on the controls for a moment and brings up a symbol that looks like an angry cat in a circle. Teeneep asks, "Have you seen this before?"`
+			choice
+				`	"Yes"`
+				`	"No"`
+			`	She nods. "This symbol has been found a number of times in association with the circumstances where rescued Hai have had some level of cadmium poisoning. We have not been able to identify where it originates from. We must know and seek out who they are and where they are hiding, though I believe our mutual friend will be satisfied with merely the 'who' for now."`
+			
+			label gipeep
+			`	Teeneep smiles and gestures for you to follow as she walks over to a desk where an elderly Hai is in conversation with someone who you realize, to your surprise, is Gipeep. "Captain <last>! It's good to see you again. I still can't thank you enough," he enthuses.`
+			`	Teeneep smiles and cuts in to address the older Hai, "Wayou, sorry to interrupt you. Could you please show Captain <last> the symbol?"`
+			`	Wayou taps on the controls for a moment and brings up a symbol that looks like an angry cat in a circle. Teeneep asks, "Do you remember this?"`
+			choice
+				`	"Yes"`
+				`	"No"`
+			`	She nods. "This symbol was on the key to the crate Gipeep had been locked in. He swiped it and brought it back with you. It has been found a number of times in association with the circumstances where rescued Hai have had some level of cadmium poisoning. We have not been able to identify where it originates from. We must know and seek out who they are and where they are hiding, though I believe our mutual friend will be satisfied with merely the 'who' for now."`
+			`	She hands you a data card. "This has as many images of the symbol as we have, and information on where we've found it so far. Perhaps you might find it useful. Think about who you might be able to ask, and follow any leads. If you can find out where this symbol comes from or who uses it, return here, and we will pay you 2,000,000 credits."`
 			choice
 				`	"I'll start right away."`
-					accept
-				`	"No, I'm not interested."`
-					decline
+					goto questaccept
+				`	"No, I don't know if I'm willing to do that."`
+			`	Her eyes narrow at you. "Are you sure? Are you absolutely sure you won't help us?"`
+			`	You've had a lot of information to absorb in the last few minutes but with a moment of thought you realize that the entire crisis may depend upon you helping to find the source of this.`
+			choice
+				`	"Yes, sorry, I'll start right away."`
+					goto questaccept
+				`	"No, that's definitely in too deep for me."`
+			`	Teeneep's expression goes blank. Behind you, you get to hear the sound of a pulse rifle firing before everything goes dark.`
+				die
+			label questaccept
+			# This will need to be a different branch for each campaign where you just start by asking the one you know the best.
+			`	As you return to your ship you can't help but think you have no idea where you would find this information, but you are pretty sure you can ask Alondo for an idea of where to start.`
+				accept
 
 # Must be after the Quarg and Korath intro missions:
-mission "ZZ Hai Rescue [A03] Microtransceiver Identification"
+mission "Hai Rescue [A03a] Symbol Identification"
 	landing
-	name "Missing Researchers"
+	name "Symbol Identification"
 	description "Fly to <destination> to talk to Tarazed Shipyards about the microtransceivers."
-	source "Kuwaru Efreti"
-	destination "Wayfarer"
+	source "Hai-home"
+	destination "Earth"
 	to offer
-		has "Hai Rescue [A02] Microtransceiver Identification: done"
+		has "Hai Rescue [A02] Symbol Identification: done"
 	on offer
 		log `The Korath identified the microtransceivers as using the same materials and design principles as their own technology, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
 		conversation
@@ -168,9 +195,10 @@ fleet "Smuggler (Hai Traffickers)"
 		"Blackbird (Hai Trafficker)"
 	variant 2
 		"Clipper (Hai Trafficker)"
+	variant 2
+		"Freighter (Hai Trafficker)"
 	variant 1
-		# The Corvettes are infrequent because they're nearly impossible to catch and
-		# serve mostly to show that the smugglers are desperate to avoid capture.
+		# The Corvettes are infrequent because they're nearly impossible to catch and serve mostly to show that the smugglers are desperate to avoid capture.
 		"Corvette (Hai Trafficker)"
 
 event "devil-run smugglers visible"
@@ -253,7 +281,7 @@ mission "Hai Rescue [A04] Tarazed Analysis"
 	destination Earth
 	clearance `Curious about your story, the authorities let you land.`
 	to offer
-		has "ZZ Hai Rescue [A03] Microtransceiver Identification: done"
+		has "ZZ Hai Rescue [A03a] Symbol Identification: done"
 	to complete
 		has "Hai Rescue [A05] Boarded Smuggler: offered"
 	on visit

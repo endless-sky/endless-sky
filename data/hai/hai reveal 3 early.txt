@@ -454,7 +454,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 	to offer
 		has "Hai Building Mountaintop [2] Recruits: done"
 	cargo "human furnishings" 200
-	blocked `Sayari contacts you and says, "<first>, you're going to need 200 tons of cargo space for this." You should return here after freeing up <capacity>.`
+	blocked `A message left for you by Sayari reads, "<first>, we need your help and you're going to need 200 tons of cargo space for this." You should return here after freeing up <capacity>.`
 	on offer
 		conversation
 			`As you and Terry offload her remaining supplies on Mountaintop where she intends to manage the arrivals and setup personally, you get a communication from Sayari on your personal device.`

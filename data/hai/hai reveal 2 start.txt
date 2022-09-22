@@ -568,16 +568,16 @@ mission "Hai Rescue: Gipeep"
 				`	"No. You'll have to find another pilot."`
 					decline
 			label accept
-			`	You can hear men approaching through the warehouse entry and you both run quickly in the other direction. Soon you hear shots fired, and see them hit a nearby wall. They passed quite close to your head.`
+			`	You can hear men approaching through the warehouse entry and the Hai quickly retrieves something from the crate before you both run quickly in the other direction. Soon you hear shots fired, and see them hit a nearby wall. They passed quite close to your head.`
 			`	Through luck and skill, the two of you make it to your ship and quickly launch. The escape seemed a little too easy though; they may have been taking pains to avoid hitting your new passenger.`
 			`	It appears ships are following you into orbit.`
 				launch
 	on complete
 		log `Rescued a Hai ship architect named Gipeep who was kidnapped near his home on <destination> and transported in a locked cargo crate. The crate's key had a marking on it like an angry cat in a circle.`
-		log "Minor People" "Gipeep" `A Hai of no stated profession who was actively rescued from his captors. His tenacity of spirit may have `
+		log "Minor People" "Gipeep Anl'ooh" `A Hai of no stated profession who was actively rescued from his captors. His tenacity of spirit may have `
 		payment 285000
 		"hai slave prereq" ++
-		dialog `The Hai, who has since introduced himself as Gipeep, thanks you for helping him finally finish his long walk home from the store. His grateful family give you <payment>. None of them know who kidnapped him or why.`
+		dialog `The Hai, who has since introduced himself as Gipeep Anl'ooh, thanks you for helping him finally finish his long walk home from the store. His grateful family give you <payment>. None of them know who kidnapped him or why.`
 	npc
 		government "Bounty Hunter that Won't Enter Hai Space"
 		personality plunders disables unconstrained
