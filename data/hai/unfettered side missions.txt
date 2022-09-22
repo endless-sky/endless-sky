@@ -471,8 +471,8 @@ mission "Unfettered: Duel Squared"
 		to despawn
 			has "unfettered: stop the duel"
 		personality waiting heroic uninterested staying disables
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
+		ship "Sea Dragon (Tripulse, JD)" "Thorn"
+		ship "Sea Dragon (Tripulse, JD)" "Talon"
 		conversation
 			`Seeing the fight is over, they hail you, "Indeed you know how to fight, <last>," the first one compliments to you, "That was just luck!" the other one argues. "Whatever the case, you have gained the right to plunder our ships. But do not dare even think about trying to capture it. We will be leaving once you land."`
 			action

@@ -1205,9 +1205,9 @@ mission "Unfettered: Materials Intercepted"
 			label cargo
 			`	"You well deserve these <payment> for it! I will post jobs in the job board if this event happens again."`
 
-ship "Sea Scorpion" "Marauder Sea Scorpion (Tripulse, JD)"
-	sprite "ship/hai marauder sea scorpion"
-	thumbnail "thumbnail/hai marauder sea scorpion"
+ship "Sea Scorpion" "Sea Dragon (Tripulse, JD)"
+	sprite "ship/hai sea dragon"
+	thumbnail "thumbnail/hai sea dragon"
 	outfits
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
@@ -1249,8 +1249,8 @@ mission "Unfettered: Cavalry Arrives"
 		system "Misam"
 		government "Shadow"
 		personality entering heroic uninterested staying disables
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Thorn"
-		ship "Marauder Sea Scorpion (Tripulse, JD)" "Talon"
+		ship "Sea Dragon (Tripulse, JD)" "Thorn"
+		ship "Sea Dragon (Tripulse, JD)" "Talon"
 	npc
 		system "Misam"
 		government "Hydra"
@@ -2326,9 +2326,9 @@ ship "Shield Beetle" "Enhanced Shield Beetle (Pulse)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-ship "Shield Beetle Prototype" "Shield Beetle Prototype (Black)"
-	sprite "ship/hai marauder shield beetle"
-	thumbnail "thumbnail/hai marauder shield beetle"
+ship "Shield Beetle Prototype" "Stag Beetle"
+	sprite "ship/hai stag beetle"
+	thumbnail "thumbnail/hai stag beetle"
 	add attributes
 		"hull" 1000
 		"spinal mount" 1
@@ -2425,7 +2425,7 @@ mission "Unfettered: Start Of The War"
 		to spawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenge)"
-		ship "Shield Beetle Prototype (Black)" "Tejolis"
+		ship "Stag Beetle" "Tejolis"
 		personality disables staying heroic target launching
 		conversation
 			action
