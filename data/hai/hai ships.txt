@@ -448,6 +448,7 @@ ship "Sea Scorpion"
 		"Hai Diamond Regenerator"
 		`"Bondir" Atomic Thruster`
 		`"Bondir" Atomic Steering`
+		"Value Detector"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
@@ -487,6 +488,7 @@ ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 		"Hai Diamond Regenerator" 2
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
+		"Value Detector"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
