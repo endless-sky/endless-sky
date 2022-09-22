@@ -10,83 +10,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship Augen
-	sprite ship/augen
-	thumbnail thumbnail/augen
-	swizzle 0
-	attributes
-		category "Heavy Warship"
-		cost 3700000
-		mass 5000
-		bunks 360
-		"cargo space" 84
-		drag 40
-		"engine capacity" 460
-		"fuel capacity" 500
-		"heat dissipation" 0.4
-		"heat protection" 2
-		"ion protection" 2
-		hull 67000
-		"outfit space" 1800
-		"required crew" 280
-		shields 0
-		"weapon capacity" 900
-		weapon
-			"blast radius" 450
-			"shield damage" 2000
-			"hull damage" 2700
-			"hit force" 2100
-	outfits
-		"Ballistic Cannon" 6
-		"C17 Warzone Core"
-		"C27 Campaign Core"
-		"Chloeric Cannon" 2
-		Hyperdrive
-		"Irate Cannon" 3
-		"R04 Crusade Battery"
-		"RG3 Torch Steering" 2
-		"RG3 Torch Thruster" 4
-	engine 94 297
-	engine 55.5 373.5
-	engine -22.5 373.5
-	engine -52 297
-	"steering engine" 131 54.5
-		angle -60
-		zoom 0.5
-		left
-	"steering engine" 128.5 116
-		zoom 0.5
-		angle -60
-		left
-	"steering engine" -107 161.5
-		zoom 0.5
-		angle 60
-		right
-	"steering engine" -121 97
-		zoom 0.5
-		angle 60
-		right
-	turret 14 -304.5 "Ballistic Cannon"
-	turret 13.5 -219 "Ballistic Cannon"
-	turret 27.5 -129 "Ballistic Cannon"
-	turret 27 134 "Ballistic Cannon"
-	turret 17.5 221.5 "Ballistic Cannon"
-	turret 18.5 301.5 "Ballistic Cannon"
-	gun 57.5 -385 "Chloeric Cannon"
-	gun 57.5 -385 "Chloeric Cannon"
-	gun -37 -372.5 "Irate Cannon"
-	gun -41 -368 "Irate Cannon"
-	gun -45 -362 "Irate Cannon"
-	leak leak 50 50
-	leak flame 80 140
-	explode "huge explosion" 36
-	explode "large explosion" 40
-	explode "medium explosion" 60
-	explode "small explosion" 20
-	explode "tiny explosion" 60
-	"final explode" "final explosion large"
-	description "The Augen-class is an ancient battleship design proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in the huge canyon shipyard present on the foggy world of Enbi, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet."
-	description `	This project was meant to result in two sister-ship behemoths, not one, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
+# Gegno:
 
 ship Shale
 	sprite ship/shale
@@ -266,6 +190,86 @@ ship Gypsum
 	"final explode" "final explosion medium"
 	description "To fuel their exponentially increasing construction rates, and corresponding need for materials, the Gegno decided to design a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture."
 	description `	Because of the Gegno's limited technology, the Gypsum is much more sluggish than similarly sized ships elsewhere in the galaxy, making it too slow to effectively catch faster asteroids. For those asteroids it can catch up to, the powerful excavator drill is able to grind materials out with ease.`
+
+# Gegno Vi:
+
+ship Augen
+	sprite ship/augen
+	thumbnail thumbnail/augen
+	swizzle 0
+	attributes
+		category "Heavy Warship"
+		cost 3700000
+		mass 5000
+		bunks 360
+		"cargo space" 84
+		drag 40
+		"engine capacity" 460
+		"fuel capacity" 500
+		"heat dissipation" 0.4
+		"heat protection" 2
+		"ion protection" 2
+		hull 67000
+		"outfit space" 1800
+		"required crew" 280
+		shields 0
+		"weapon capacity" 900
+		weapon
+			"blast radius" 450
+			"shield damage" 2000
+			"hull damage" 2700
+			"hit force" 2100
+	outfits
+		"Ballistic Cannon" 6
+		"C17 Warzone Core"
+		"C27 Campaign Core"
+		"Chloeric Cannon" 2
+		Hyperdrive
+		"Irate Cannon" 3
+		"R04 Crusade Battery"
+		"RG3 Torch Steering" 2
+		"RG3 Torch Thruster" 4
+	engine 94 297
+	engine 55.5 373.5
+	engine -22.5 373.5
+	engine -52 297
+	"steering engine" 131 54.5
+		angle -60
+		zoom 0.5
+		left
+	"steering engine" 128.5 116
+		zoom 0.5
+		angle -60
+		left
+	"steering engine" -107 161.5
+		zoom 0.5
+		angle 60
+		right
+	"steering engine" -121 97
+		zoom 0.5
+		angle 60
+		right
+	turret 14 -304.5 "Ballistic Cannon"
+	turret 13.5 -219 "Ballistic Cannon"
+	turret 27.5 -129 "Ballistic Cannon"
+	turret 27 134 "Ballistic Cannon"
+	turret 17.5 221.5 "Ballistic Cannon"
+	turret 18.5 301.5 "Ballistic Cannon"
+	gun 57.5 -385 "Chloeric Cannon"
+	gun 57.5 -385 "Chloeric Cannon"
+	gun -37 -372.5 "Irate Cannon"
+	gun -41 -368 "Irate Cannon"
+	gun -45 -362 "Irate Cannon"
+	leak leak 50 50
+	leak flame 80 140
+	explode "huge explosion" 36
+	explode "large explosion" 40
+	explode "medium explosion" 60
+	explode "small explosion" 20
+	explode "tiny explosion" 60
+	"final explode" "final explosion large"
+	description "The Augen-class is an ancient battleship design proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in the huge canyon shipyard present on the foggy world of Enbi, and for many periods of time its construction was put on hold. The recent civil war with the Gegno Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet."
+	description `	This project was meant to result in two sister-ship behemoths, not one, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship Slate
 	sprite ship/slate
@@ -627,6 +631,8 @@ ship Protolith
 	explode "small explosion" 25
 	"final explode" "final explosion large"
 	description "Protoliths are descendants of the Gegno's early City-Ships used to colonize nearby systems. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive."
+
+# Gegno Scin:
 
 ship Halite
 	sprite ship/halite
@@ -1005,4 +1011,62 @@ ship Muscovite
 	"final explode" "final explosion large"
 	description "Since Protoliths were largely acquired by the Vi before spaceship developmented progressed too far, the Scin had to design a brand new heavy freighter vessel from scratch. The Muscovite is able to perform in many roles, having a very large crew capability and cargo capacity."
 	description `	Each Muscovite is also equipped with a rear fighter bay capable of carrying a Halite, allowing the Scin to transport fighters to outposts that need them for Feldspars. Like the Felspar, the Muscovite is also equipped with a brand new engine system, making a ship that can take a bit of a pounding faster as well.`
+
+ship Kyanite
+	sprite ship/kyanite
+	thumbnail thumbnail/kyanite
+	swizzle 0
+	attributes
+		category "Utility"
+		cost 3700000
+		mass 1146
+		bunks 192
+		"cargo space" 82
+		drag 15
+		"engine capacity" 182
+		"fuel capacity" 500
+		"heat dissipation" 1.4
+		hull 18800
+		"outfit space" 866
+		"required crew" 133
+		shields 0
+		"weapon capacity" 212
+		weapon
+			"blast radius" 180
+			"shield damage" 1650
+			"hull damage" 1200
+			"hit force" 1000
+	outfits
+		"C27 Campaign Core"
+		"Guile Anti-Missile" 2
+		Hyperdrive
+		"R02 Battlezone Battery"
+		"R03 Warforge Battery"
+		"SC-12 Plasma Steering" 2
+		"SC-12 Plasma Thruster" 2
+	engine -24.4 210
+		over
+	engine 24.4 210
+		over
+	engine -16.5 186
+	engine 16.5 186
+	engine 0 187.5
+	"steering engine" 69 -17
+		angle -59.002075
+		left
+	"steering engine" -69 -17
+		angle 59.002075
+		right
+	turret -37.5 -18.5 "Guile Anti-Missile"
+	turret 37.5 -18.5 "Guile Anti-Missile"
+	gun 0 -4.5
+	leak leak 50 50
+	leak flame 80 140
+	explode "huge explosion" 18
+	explode "large explosion" 30
+	explode "medium explosion" 46
+	explode "small explosion" 50
+	explode "tiny explosion" 40
+	"final explode" "final explosion large"
+	description Test
 
