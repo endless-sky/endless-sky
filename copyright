@@ -109,12 +109,6 @@ Copyright: Amazinite
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matthew Smestad (under the same license).
 
-Files: images/outfit/*photovoltaic*
-Copyright: Nick Barry (github.com/itsnickbarry)
-License: CC-BY-SA-3.0
-Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
- David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
-
 Files:
  images/outfit/pug*
  images/planet/*-b*
@@ -1426,10 +1420,12 @@ Files:
  images/outfit/nuke*
  images/outfit/plasma?core*
  images/outfit/red?sun*
+ images/outfit/small?photovoltaic*
  images/outfit/sunbeam*
  images/outfit/sunbeam?turret*
  images/outfit/thunderhead?launcher*
  images/outfit/thunderhead?storage*
+ images/outfit/tiny?photovoltaic*
  images/outfit/triple?plasma?core*
  images/outfit/wanderer?anti-missile*
  images/outfit/wanderer?heat?sink*
