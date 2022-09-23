@@ -4052,29 +4052,20 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 
 	auto CalculateFuelCost = [this, mass, jumpDistance](const Outfit &outfit) -> double
 	{
+		// If the FTL drive has an attached "jump mass penalty"
+		// then the base fuel cost is assumed to be at 0 tons.
+		// Otherwise, base fuel cost is established to be at "jump mass".
+		
+		// Temporary note: jump mass cost is fuel cost per 100 additional tons.
+		
 		double fuel = outfit.Get("jump fuel");
-		// If the jump drive or hyperdrive has an attached
-		// (mass/distance) (reference/exponent), calculate
-		// the fuel about to be used for this jump.
-		double driveMassExp = outfit.Get("drive mass exponent");
-		double driveMassRef = outfit.Get("drive mass reference");
-		double driveDistExp = outfit.Get("drive distance exponent");
-		double driveDistRef = outfit.Get("drive distance reference");
-
-		if(!driveMassRef)
-			driveMassRef = 400;
-		if(!driveDistRef)
-			driveDistRef = 100;
-
-		if(driveMassExp || driveMassRef)
-			fuel *= pow((mass / driveMassRef), driveMassExp);
-		if(driveDistExp || driveDistRef)
-			fuel *= pow((jumpDistance / driveDistRef), driveDistExp);
-
-		// if a "startup" fuel is provided, add that to the above formula.
-		// It's a constant fuel consumption regardless of mass or distance of jump.
-		fuel += outfit.Get("jump startup fuel");
-
+		
+		// If any of these are not defined, they default to 0, so nothing will break.
+		fuel += .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
+		
+		// It is possible to generate a negative jump fuel, but I
+		// do not think this will mess with things in any major way,
+		// so I will not stop it.
 		return fuel;
 	};
 
