@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Generator (Candle Class)"
 	plural "Generators (Candle Class)"
@@ -652,7 +655,131 @@ outfit "Steering (Stellar Class)"
 		"frame rate" 6
 	"steering flare sound" "plasma huge"
 	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
-	
+
+outfit "Arkrof GP Hybrid Thruster"
+	category "Engines"
+	"cost" 165000
+	thumbnail "outfit/tiny efreti thruster"
+	"mass" 19
+	"outfit space" -19
+	"engine capacity" -19
+	"thrust" 16.5
+	"thrusting energy" 2.6
+	"thrusting heat" 3
+	"flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"flare sound" "ion tiny"
+	description "Efreti engineers have begun to grudgingly take inspiration from their not-entirely-welcome Quarg guardians. The incorporation of gravitational propulsion increases the thrust output for engines in this line, at the cost of even higher energy use. These are the smallest such gravitoplasma-based thrusters."
+
+outfit "Farves GP Hybrid Thruster"
+	category "Engines"
+	"cost" 405000
+	thumbnail "outfit/small efreti thruster"
+	"mass" 33
+	"outfit space" -33
+	"engine capacity" -33
+	"thrust" 32.5
+	"thrusting energy" 5.05
+	"thrusting heat" 5.9
+	"flare sprite" "effect/efreti flare/small"
+		"frame rate" 7.5
+	"flare sound" "ion small"
+	description "The forced retreat from research into interstellar jump drive technology has left the Efreti engineers with little else to tinker with than subluminal propulsion. These resulting thrusters are one important example of this effort. Synthesizing gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines."
+
+outfit "Gaktem GP Hybrid Thruster"
+	category "Engines"
+	"cost" 883000
+	thumbnail "outfit/medium efreti thruster"
+	"mass" 57
+	"outfit space" -57
+	"engine capacity" -57
+	"thrust" 63.5
+	"thrusting energy" 9.1
+	"thrusting heat" 11.05
+	"flare sprite" "effect/efreti flare/medium"
+		"frame rate" 7
+	"flare sound" "ion medium"
+	description "The design of these engines suggests Efreti physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. Despite the Efreti’s limited resources, these thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
+
+outfit "Nelmeb GP Hybrid Thruster"
+	category "Engines"
+	"cost" 1649000
+	thumbnail "outfit/large efreti thruster"
+	"mass" 86
+	"outfit space" -86
+	"engine capacity" -86
+	"thrust" 105
+	"thrusting energy" 14
+	"thrusting heat" 18
+	"flare sprite" "effect/efreti flare/large"
+		"frame rate" 6.5
+	"flare sound" "ion large"
+	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and the forces that bind quarks and gluons together. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
+	description "	These are the largest gravitoplasma thrusters that the Efreti have to offer, and as such are usually only found on their gargantuan civilian ships. Despite their size and thrusting power, the Quarg are still rather unimpressed with the inefficient nature of the design."
+
+outfit "Arkrof GP Hybrid Steering"
+	category "Engines"
+	"cost" 131000
+	thumbnail "outfit/tiny efreti steering"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"turn" 345
+	"turning energy" 1.25
+	"turning heat" 1.3
+	"steering flare sprite" "effect/efreti flare/tiny"
+		"frame rate" 8
+	"steering flare sound" "ion tiny"
+	description "Unlike most Korath engines, Efreti engines do not rely solely on plasma. Gravitoplasma engines combine traditional Korath plasma thrust with Quarg-inspired forays into gravitation-based propulsion. The smallest steering manages to develop a great deal of torque at the expense of higher energy costs."
+
+outfit "Farves GP Hybrid Steering"
+	category "Engines"
+	"cost" 413000
+	thumbnail "outfit/small efreti steering"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"turn" 800
+	"turning energy" 2.7
+	"turning heat" 2.95
+	"steering flare sprite" "effect/efreti flare/small"
+		"frame rate" 7.5
+	"steering flare sound" "ion small"
+	description "An important product of Efreti engineers’ ongoing effort to evolve their understanding of fundamental physics and how it can be put into practice is this compact steering system. A classic example of Korath technology, it is small, powerful, and woefully inefficient. It appears that the Quarg influence on the Efreti has not changed the underlying design philosophy of the Korath living here."
+
+
+outfit "Gaktem GP Hybrid Steering"
+	category "Engines"
+	"cost" 833000
+	thumbnail "outfit/medium efreti steering"
+	"mass" 42
+	"outfit space" -42
+	"engine capacity" -42
+	"turn" 1590
+	"turning energy" 4.9
+	"turning heat" 5.85
+	"steering flare sprite" "effect/efreti flare/medium"
+		"frame rate" 7
+	"steering flare sound" "ion medium"
+	description "In these hybrid gravitoplasma thrusters, Efreti scientists and engineers have begun to instantiate the newest, unified understandings of quantum gravity with the nuclear forces."
+	description "	Unless accompanied by some Korath power systems, this Efreti steering system's energy consumption will often be more than a ship can handle. Their main advantage when compared to other Korath engines of the same size is reduced heat production."
+
+outfit "Nelmeb GP Hybrid Steering"
+	category "Engines"
+	"cost" 1439000
+	thumbnail "outfit/large efreti steering"
+	"mass" 67
+	"outfit space" -67
+	"engine capacity" -67
+	"turn" 2800
+	"turning energy" 7.85
+	"turning heat" 10
+	"steering flare sprite" "effect/efreti flare/large"
+		"frame rate" 6.5
+	"steering flare sound" "ion large"
+	description "Prompted by the grim will to trudge onwards and innovate despite being forced to abandon jump drive technology, Efreti engineers have recently begun to utilize their theoretical knowledge to incorporate gravitational propulsion into their more traditional fusion-based plasma engines."
+	description "	More stable than one would expect from Korath engines this large, these steering thrusters were developed by the Efreti as a means of guiding their most massive ships. Their high energy usage is tempered by the fact that they are usually powered by the most massive Korath fusion reactors."
+
 outfit "Thermal Repeater Rifle"
 	category "Hand to Hand"
 	cost 53000

@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 galaxy "Milky Way"
 	pos 0 0
@@ -6860,6 +6863,7 @@ system Chikatip
 	trade Metal 283
 	trade Plastic 278
 	fleet "Large Quarg" 2000
+	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
 		period 10
@@ -8463,7 +8467,7 @@ system Dokdobaru
 	trade Plastic 317
 	fleet Quarg 600
 	fleet "Large Quarg" 800
-	fleet "Kor Efret Home" 1500
+	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
 		period 10
@@ -9312,85 +9316,85 @@ system Ekuarik
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 82
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 90
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 99
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 112
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 216
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 225
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 234
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 221
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 239
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 253
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 281
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 298
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 312
 
 system Elnath
@@ -12652,6 +12656,7 @@ system Hesselpost
 	trade Metal 536
 	trade Plastic 281
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
 		period 10
@@ -14075,7 +14080,8 @@ system Kashikt
 	trade Plastic 292
 	fleet Quarg 1000
 	fleet "Large Quarg" 2000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/f5
 		period 10
@@ -14401,133 +14407,133 @@ system "Ki War Ek"
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 122
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 138
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 148
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 157
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 164
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 171
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 189
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 204
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 214
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 226
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 240
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 258
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 163
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 178
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 191
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 200
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 228
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 245
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 250
 
 system Kiro'ku
@@ -14735,9 +14741,10 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 2800
-	fleet "Korath Miners" 5000
-	fleet "Korath Large Raid" 2500
+	fleet "Korath Raid" 3600
+	fleet "Korath Miners" 7500
+	fleet "Korath Large Raid" 3600
+	fleet "Korath Defense" 3600
 	object
 		sprite star/carbon
 		period 100
@@ -14798,11 +14805,13 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 600
-	fleet "Korath Home" 2000
-	fleet "Korath Large Raid" 25000
-	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 5000
+	fleet "Korath Raid" 1200
+	fleet "Korath Home" 720
+	fleet "Korath Large Raid" 15000
+	fleet "Korath Defense" 1775
+	fleet "Korath Civilian Miners" 6000
+	fleet "Korath Civilian Large" 955
+	fleet "Korsmanath A'awojs" 2000
 	object
 		sprite star/g0
 		period 10
@@ -14865,10 +14874,12 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 1600
-	fleet "Korath Home" 2500
+	fleet "Korath Raid" 2000
+	fleet "Korath Home" 1200
+	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 4000
+	fleet "Korath Civilian Large" 1600
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/k3
 		period 10
@@ -14935,10 +14946,12 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 1300
-	fleet "Korath Large Raid" 25000
+	fleet "Korath Raid" 2000
+	fleet "Korath Defense" 2900
+	fleet "Korath Large Raid" 21000
 	fleet "Korath Civilian Large" 1500
-	fleet "Korath Civilian Miners" 10000
+	fleet "Korath Civilian Miners" 8000
+	fleet "Korsmanath A'awojs" 2808
 	object
 		sprite star/f5
 		distance 28.0824
@@ -15000,9 +15013,13 @@ system "Kor Nor'peli"
 	trade Medical 850
 	trade Metal 517
 	trade Plastic 423
-	fleet "Korath Large Raid" 30000
-	fleet "Korath Ember Waste Raid" 2500
-	fleet "Korath Home" 500
+	fleet "Korath Defense" 1700
+	fleet "Korath Large Raid" 16000
+	fleet "Korath Ember Waste Raid" 1300
+	fleet "Korath Ember Waste Large Raid" 20000
+	fleet "Korath Civilian Large" 2000
+	fleet "Korath Home" 900
+	fleet "Korsmanath A'awojs" 1100
 	object
 		sprite star/k3
 		distance 22.4307
@@ -15073,6 +15090,10 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
+	fleet "Korath Defense" 2600
+	fleet "Korath Ember Waste Raid" 3000
+	fleet "Korath Ember Waste Large Raid" 30000
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/m3
 		period 10
@@ -15124,10 +15145,12 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 800
-	fleet "Korath Home" 1500
-	fleet "Korath Large Raid" 20000
-	fleet "Korath Civilian Large" 1000
+	fleet "Korath Raid" 1800
+	fleet "Korath Home" 1170
+	fleet "Korath Defense" 1660
+	fleet "Korath Large Raid" 16000
+	fleet "Korath Civilian Large" 845
+	fleet "Korsmanath A'awojs" 2500
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -16650,6 +16673,7 @@ system Meftarkata
 	trade Metal 484
 	trade Plastic 334
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
 		distance 23.9954
@@ -20624,205 +20648,205 @@ system Quaru
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 21
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 32
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 44
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 53
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 62
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 66
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 73
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 87
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 95
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 104
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 116
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 125
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 134
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 149
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 29
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 38
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 42
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 55
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 64
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 78
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 92
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 106
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 120
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 132
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 197
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 231
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 244
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 198
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 212
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 237
 
 system Queri
@@ -22766,7 +22790,8 @@ system Sevrelect
 	trade Plastic 288
 	fleet Quarg 1000
 	fleet "Large Quarg" 3000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/m0
 		period 10
@@ -24503,7 +24528,8 @@ system Sumprast
 	trade Plastic 323
 	fleet Quarg 1000
 	fleet "Large Quarg" 2500
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/k0
 		period 10
@@ -28828,7 +28854,7 @@ planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
 	music ambient/machinery
-	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	description `This station is so run-down that most of the workers carry oxygen masks in case a meteoroid punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment, there are no repair or refueling services available here.`
 	security 0.3
 	tribute 100
 		threshold 3500
@@ -29316,7 +29342,7 @@ planet Millrace
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase in immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
 	spaceport `	Most of the restaurants are of the greasy spoon variety.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -30233,7 +30259,7 @@ planet "Separa Tiklar"
 	attributes korath station
 	landscape land/space1
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
-	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
 	security 0
 
 planet "Septar Lorku"
@@ -30660,7 +30686,7 @@ planet "Tebuteb's Table"
 planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station12
-	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+	description `This station is run-down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet "Third Umber"
 	attributes factory kimek research
@@ -30854,7 +30880,7 @@ planet Vail
 	landscape land/snow4
 	description `Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries supply the tourists and the large staffs that cater to them.`
 	description `	The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hoverboarding and wingsuit cliff skiing.`
-	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move peple and cargo from here to their ultimate destinations in the resort towns.`
+	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move people and cargo from here to their ultimate destinations in the resort towns.`
 	spaceport `	Consequently, the air is full of a confusing mixture of deep space ships and atmospheric vehicles. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe 0.04
 	security 0.6

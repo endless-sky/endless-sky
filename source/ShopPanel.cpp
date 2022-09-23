@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ShopPanel.h"
@@ -89,7 +92,8 @@ void ShopPanel::Step()
 		if(selectedBottomY > mainBottomY)
 			DoScroll(max(-30., mainBottomY - selectedBottomY));
 		// Scroll down until the bottoms or the tops match.
-		else if(selectedBottomY < mainBottomY && (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
+		else if(selectedBottomY < mainBottomY
+			&& (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
 			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
 		// Details are in view.
 		else
@@ -149,7 +153,8 @@ void ShopPanel::Draw()
 		}
 		else
 		{
-			int swizzle = dragShip->CustomSwizzle() >= 0 ? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			int swizzle = dragShip->CustomSwizzle() >= 0
+				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
 	}
@@ -328,7 +333,8 @@ void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+		*GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -899,7 +905,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.GetCondition("license: " + name))
+		if(!player.Conditions().Get("license: " + name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))

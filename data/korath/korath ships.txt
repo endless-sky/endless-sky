@@ -7,14 +7,17 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 ship "Rano'erek"
 	sprite "ship/dredger"
 	thumbnail "thumbnail/dredger"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		"cost" 29370000
 		"shields" 32500
 		"hull" 16500
@@ -296,8 +299,8 @@ ship "'nra'ret"
 			"hit force" 6600
 	outfits
 		"Langrage Hyper-Heaver" 2
-		"Korath Warder"
-		"Korath Fire-Lance" 2
+		"Warder Anti-Missile"
+		"Fire-Lance" 2
 		"Firelight Missile Bank" 6
 		"Firelight Missile" 190
 		"Firelight Storage Rack" 7
@@ -307,7 +310,7 @@ ship "'nra'ret"
 		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
-		"Korath Repeater Rifle" 219
+		"Thermal Repeater Rifle" 219
 
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
@@ -317,8 +320,8 @@ ship "'nra'ret"
 	engine -29 96
 	engine 29 96
 	engine 0 90 0.9
-	gun -28 -133.5 "Korath Fire-Lance"
-	gun 28 -133.5 "Korath Fire-Lance"
+	gun -28 -133.5 "Fire-Lance"
+	gun 28 -133.5 "Fire-Lance"
 	gun -48.5 -85.5 "Firelight Missile Bank"
 		angle 320
 	gun 48.5 -85.5 "Firelight Missile Bank"
@@ -333,7 +336,7 @@ ship "'nra'ret"
 		angle 170
 	turret -32.5 -53.5 "Langrage Hyper-Heaver"
 	turret 32.5 -53.5 "Langrage Hyper-Heaver"
-	turret 0 -23 "Korath Warder"
+	turret 0 -23 "Warder Anti-Missile"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
@@ -345,6 +348,7 @@ ship "'nra'ret"
 
 
 ship "'olofez"
+	plural "'olofezes"
 	sprite "ship/chaser"
 	thumbnail "thumbnail/chaser"
 	attributes
@@ -383,24 +387,96 @@ ship "'olofez"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
-ship "Korath World-Ship"
+ship "Lor'kas Ik 577"
 	sprite "ship/world-ship a"
 	thumbnail "thumbnail/world-ship a"
 	attributes
-		category "Utility"
-		cost 27690000
-		shields 47000
-		hull 34000
-		"required crew" 794
-		"bunks" 1492
-		"mass" 1735
-		"drag" 21
+		category "Heavy Freighter"
+		cost 29650000
+		shields 32700
+		hull 29600
+		"required crew" 234
+		"bunks" 453
+		"mass" 1885
+		"drag" 19
 		"heat dissipation" .4
 		"fuel capacity" 1000
-		"cargo space" 264
-		"outfit space" 839
-		"weapon capacity" 314
-		"engine capacity" 165
+		"cargo space" 1375
+		"outfit space" 883
+		"weapon capacity" 338
+		"engine capacity" 238
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 4
+		"Grab-Strike Turret" 2
+		"Expeller Grav-Ray" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 238
+		"Microbot Defense Station" 15
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	engine -37 333 .8
+	engine 0 333 .8
+	engine 37 333 .8
+	"reverse engine" -19 -303 0.5
+		over
+	"reverse engine" 0 -303 0.5
+		over
+	"reverse engine" 19 -303 0.5
+		over
+	gun -47 -244 "Expeller Grav-Ray"
+	gun 47 -244 "Expeller Grav-Ray"
+	turret -73 -159 "Warder Anti-Missile"
+	turret 73 -159 "Grab-Strike Turret"
+	turret -56 -137 "Warder Anti-Missile"
+	turret 56 -137 "Warder Anti-Missile"
+	turret -58 -6 "Banisher Grav-Turret"
+	turret 58 -6 "Banisher Grav-Turret"
+	turret -58 25 "Grab-Strike Turret"
+	turret 58 25 "Warder Anti-Missile"
+	bay "Fighter" -72 294 back
+	bay "Fighter" 0 294 back
+	bay "Fighter" 72 294 back
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This simple ship has been adapted for hauling materials between refinery and factory stations."
+
+
+ship "Ra'gru Ik 618"
+	sprite "ship/world-ship b"
+	thumbnail "thumbnail/world-ship b"
+	attributes
+		category "Heavy Warship"
+		cost 49640000
+		shields 51000
+		hull 39500
+		"required crew" 619
+		"bunks" 794
+		"mass" 1745
+		"drag" 21
+		"heat dissipation" .48
+		"fuel capacity" 1000
+		"cargo space" 191
+		"outfit space" 1278
+		"weapon capacity" 633
+		"engine capacity" 263
 		weapon
 			"blast radius" 400
 			"shield damage" 8000
@@ -408,64 +484,752 @@ ship "Korath World-Ship"
 			"hit force" 12000
 	outfits
 		"Grab-Strike Turret" 2
-		"Banisher Grav-Turret" 3
-		"Warder Anti-Missile" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Fire-Lance" 3
+		"Korath Inferno" 2
+		"Blaze-Pike Turret" 2
+		"Firelight Missile Bank" 2
+		"Firelight Missile" 36
 		
 		"Triple Plasma Core"
+		"Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 2
+		"Liquid Sodium Cooler"
+		"Small Heat Shunt" 3
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 150
-		"Microbot Defense Station" 19
+		"Brig"
+		"Microbot Defense Station" 13
+		"Thermal Repeater Rifle" 794
 		
-		"Thruster (Planetary Class)"
-		"Steering (Planetary Class)"
-		"Hyperdrive"
+		"Thruster (Stellar Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
 	
-	engine -37 343 .8
-	engine 0 343 .9
-	engine 37 343 .8
-	turret -76 -157 "Grab-Strike Turret"
-	turret 76 -157 "Banisher Grav-Turret"
-	turret -59 -135 "Warder Anti-Missile"
-	turret 59 -135 "Grab-Strike Turret"
-	turret -61 -6 "Banisher Grav-Turret"
-	turret 61 -6 "Warder Anti-Missile"
-	turret -66 210 "Warder Anti-Missile"
-	turret 66 210 "Banisher Grav-Turret"
+	engine -37 333 .7
+	engine 0 333 .7
+	engine 37 333 .7
+	engine -55 323 .4
+	engine 55 323 .4
+	"reverse engine" -19 -303 0.5
+		over
+	"reverse engine" 0 -303 0.5
+		over
+	"reverse engine" 19 -303 0.5
+		over
+	gun -75 -112 "Fire-Lance"
+	gun 75 -112 "Fire-Lance"
+	gun 0 -112 "Fire-Lance"
+	gun 42 90 "Firelight Missile Bank"
+		angle 110
+	gun -42 90 "Firelight Missile Bank"
+		angle 250
+	turret -56 -254 "Warder Anti-Missile"
+	turret 56 -254 "Banisher Grav-Turret"
+	turret -73.5 -221 "Korath Inferno"
+	turret 73.5 -221 "Korath Inferno"
+	turret -56 -186.5 "Grab-Strike Turret"
+	turret 56 -186.5 "Grab-Strike Turret"
+	turret -83 163.5 "Blaze-Pike Turret"
+	turret 83 163.5 "Blaze-Pike Turret"
+	turret -68 195 "Banisher Grav-Turret"
+	turret 68 195 "Warder Anti-Missile"
 	explode "tiny explosion" 30
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 50
 	"final explode" "final explosion large"
-	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This deceptively spindly ship bristles with weapon emplacements for heavy raiding or defending other vessels."  
 
 
-ship "Korath World-Ship" "Korath World-Ship B"
-	sprite "ship/world-ship b"
-	thumbnail "thumbnail/world-ship b"
-	turret -76 -219 "Grab-Strike Turret"
-	turret 76 -219 "Grab-Strike Turret"
-	turret -75 -112 "Banisher Grav-Turret"
-	turret 75 -112 "Banisher Grav-Turret"
-	turret 0 -92 "Warder Anti-Missile"
-	turret -83 165 "Warder Anti-Missile"
-	turret 83 165 "Warder Anti-Missile"
-	turret 0 277 "Banisher Grav-Turret"
-
-
-ship "Korath World-Ship" "Korath World-Ship C"
+ship "Kas'lor Ik 582"
 	sprite "ship/world-ship c"
 	thumbnail "thumbnail/world-ship c"
-	turret -45 -243 "Warder Anti-Missile"
-	turret 45 -243 "Grab-Strike Turret"
-	turret -47 -136 "Grab-Strike Turret"
-	turret 47 -136 "Banisher Grav-Turret"
-	turret -70 57 "Warder Anti-Missile"
-	turret 70 57 "Banisher Grav-Turret"
-	turret -91 290 "Banisher Grav-Turret"
-	turret 91 290 "Warder Anti-Missile"
+	attributes
+		category "Heavy Freighter"
+		cost 28190000
+		shields 39750
+		hull 26100
+		"required crew" 314
+		"bunks" 551
+		"mass" 1901
+		"drag" 17
+		"heat dissipation" .35
+		"solar collection" 3.8
+		"fuel capacity" 32700
+		"cargo space" 734
+		"outfit space" 839
+		"weapon capacity" 321
+		"engine capacity" 241
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Langrage Hyper-Heaver" 2
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Liquid Sodium Cooler"
+		"Fuel Processor" 6
+		"Thermal Repeater Rifle" 317
+		"Microbot Defense Station" 4
+		
+		"Thruster (Planetary Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	engine -37 333 .8
+	engine 0 333 .8
+	engine 37 333 .8
+	"reverse engine" -19 -303 0.5
+		over
+	"reverse engine" 0 -303 0.5
+		over
+	"reverse engine" 19 -303 0.5
+		over
+	bay "Fighter" -70 51 back
+	bay "Fighter" 0 51 back
+	bay "Fighter" 70 51 back
+	turret -52.5 -80.5 "Banisher Grav-Turret"
+	turret 52.5 -80.5 "Warder Anti-Missile"
+	turret -57 -50.5 "Warder Anti-Missile"
+	turret 57.5 -50.5 "Banisher Grav-Turret"
+	turret -56.5 55 "Langrage Hyper-Heaver"
+	turret 56.5 55 "Langrage Hyper-Heaver"
+	turret -80 283 "Banisher Grav-Turret"
+	turret 80 283 "Warder Anti-Missile"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This relatively streamlined ship has been adapted to collect, refine, and transport hyperspace fuel."
+
+
+ship "Lor'nag Ik 590"
+	sprite "ship/world-ship d"
+	thumbnail "thumbnail/world-ship d"
+	attributes
+		category "Space Liner"
+		cost 33640000
+		shields 47000
+		hull 34800
+		"required crew" 538
+		"bunks" 1492
+		"mass" 1929
+		"drag" 18
+		"heat dissipation" .37
+		"solar collection" 5.6
+		"fuel capacity" 1000
+		"cargo space" 264
+		"outfit space" 856
+		"weapon capacity" 321
+		"engine capacity" 241
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Grab-Strike Turret" 1
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 2
+		"Digger Mining Beam" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Brig"
+		"Microbot Defense Station" 17
+		"Thermal Repeater Rifle" 272
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	engine -37 333 .8
+	engine 0 333 .8
+	engine 37 333 .8
+	"reverse engine" -19 -303 0.5
+		over
+	"reverse engine" 0 -303 0.5
+		over
+	"reverse engine" 19 -303 0.5
+		over
+	bay "Fighter" -90 160 back
+	bay "Fighter" 0 160 back
+	bay "Fighter" 90 160 back
+	gun -45 -253 "Digger Mining Beam"
+	gun 45 -253 "Digger Mining Beam"
+	turret -77 -116.5 "Grab-Strike Turret"
+	turret 77 -116.5 "Warder Anti-Missile"
+	turret -87 -83 "Banisher Grav-Turret"
+	turret 87 -83 "Banisher Grav-Turret"
+	turret -51 276.5 "Warder Anti-Missile"
+	turret 51 276.5 "Banisher Grav-Turret"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This bulbous ship has been adapted to carry passengers between stations, or boarding parties into enemy strongholds."
+
+
+ship "Ra'at Ik 621"
+	sprite "ship/world-ship e"
+	thumbnail "thumbnail/world-ship e"
+	attributes
+		category "Heavy Warship"
+		cost 43590000
+		shields 48000
+		hull 31400
+		"required crew" 794
+		"bunks" 1037
+		"mass" 1755
+		"drag" 27
+		"heat dissipation" .41
+		"fuel capacity" 1000
+		"cargo space" 228
+		"outfit space" 999
+		"weapon capacity" 407
+		"engine capacity" 277
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Grab-Strike Turret" 3
+		"Banisher Grav-Turret" 2
+		"Warder Anti-Missile" 2
+		"Fire-Lance" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Fuel Processor"
+		"Microbot Defense Station" 12
+		"Thermal Repeater Rifle" 799
+		
+		"Reverser (Lunar Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	
+	engine -42 343 .6
+	engine -22 343 .6
+	engine -22 343 .6
+	engine 22 343 .6
+	engine 22 343 .6
+	engine 42 343 .6
+	"reverse engine" -16 -336 0.9
+	"reverse engine" 16 -336 0.9
+	bay "Fighter" -100 -169
+	bay "Fighter" 0 -169
+	bay "Fighter" 100 -169
+	bay "Fighter" -98 156 back
+	bay "Fighter" 98 156 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" -50 303 back
+	bay "Fighter" 50 303 back
+	bay "Fighter" 50 303 back
+	bay "Drone" -100 -169
+	bay "Drone" 100 -169
+	bay "Drone" -98 156 back
+	bay "Drone" 98 156 back
+	bay "Drone" -50 303 back
+	drone 50 303 back
+	gun -71 -209 "Fire-Lance"
+	gun 0 -209 "Fire-Lance"
+	gun 71 -209 "Fire-Lance"
+	turret -52 -295 "Grab-Strike Turret"
+	turret 52 -295 "Warder Anti-Missile"
+	turret -104 -13 "Banisher Grav-Turret"
+	turret 0 -13 "Grab-Strike Turret"
+	turret 104 -13 "Grab-Strike Turret"
+	turret -80.5 191.5 "Warder Anti-Missile"
+	turret 80.5 191.5 "Banisher Grav-Turret"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "The largest of Korath production vessels are derived from a common and ancient chassis. This many-lobed ship has been adapted to carry fighters into large-scale raids, or mining craft into asteroid belts. Its radial arrangements of hangars allows fighters a maximum variety of safe approach patterns in combat."
+
+
+ship "Kasichara A'awoj"
+	sprite "ship/world-ship f"
+	thumbnail "thumbnail/world-ship f"
+	attributes
+		category "Space Liner"
+		cost 42290000
+		shields 44000
+		hull 49600
+		"required crew" 543
+		"bunks" 1997
+		"mass" 2105
+		"drag" 24
+		"heat dissipation" .43
+		"solar collection" 12.7
+		"fuel capacity" 600
+		"cargo space" 532
+		"outfit space" 1038
+		"weapon capacity" 331
+		"engine capacity" 251
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Banisher Grav-Turret" 3
+		"Warder Anti-Missile" 3
+		"Grab-Strike Turret" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Small)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 3
+		"Fuel Processor" 2
+		"Luxury Accommodations"
+		"Microbot Defense Station" 23
+		"Thermal Repeater Rifle" 548
+		
+		"Afterburner (Comet Class)"
+		"Reverser (Lunar Class)"
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+	
+	engine -37 343 .8
+	engine 0 343 .8
+	engine 37 343 .8
+	"reverse engine" -16 -336 0.9
+	"reverse engine" 16 -336 0.9
+	turret -78 -233.5 "Banisher Grav-Turret"
+	turret 78 -233.5 "Warder Anti-Missile"
+	turret -78 9.5 "Grab-Strike Turret"
+	turret 78 9.5 "Grab-Strike Turret"
+	turret -73.5 41 "Banisher Grav-Turret"
+	turret 73.5 41 "Warder Anti-Missile"
+	turret -78 231.5 "Warder Anti-Missile"
+	turret 78 231.5 "Banisher Grav-Turret"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "Originally designed as a luxury habitat for those wealthy enough to escape living on the polluted surface of Korath worlds, when the Korath were exiled, it was into these gargantuan 'world-ships' they first crammed themselves into and fled to the core on. Nostalgically, the class was then renamed after the devastated and now forbidden Korath homeworld."
+	description "	Since the introduction of purpose-built city ships, these ancient vessels have mostly been decommissioned, turned into stations, or reconfigured into smaller, specialized vessels. Yet a few still ply the starlanes, crewed by those too restless to live on stations yet not bold enough to go on raids."
+
+
+ship "Korsmanath A'awoj"
+	sprite "ship/korsmanath a-awoj"
+	thumbnail "thumbnail/korsmanath a-awoj"
+	"uncapturable"
+	attributes
+		category "Utility"
+		cost 276900000
+		shields 196420
+		hull 320690
+		"required crew" 1940
+		"bunks" 31920
+		"mass" 12000
+		"drag" 84
+		"heat dissipation" .22
+		"solar collection" 4.2
+		"fuel capacity" 1000
+		"cargo space" 1864
+		"outfit space" 3180
+		"weapon capacity" 1148
+		"engine capacity" 480
+		"atmosphere scan" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 8000
+			"hull damage" 4000
+			"hit force" 12000
+	outfits
+		"Banisher Grav-Turret" 7
+		"Langrage Hyper-Heaver" 3
+		"Korath Inferno" 4
+		"Warder Anti-Missile" 7
+		"Firelight Missile Bank" 4
+		"Firelight Storage Rack" 4
+		"Firelight Missile" 108
+		"Firestorm Torpedo" 13
+		"Firestorm Battery" 1
+
+		"Triple Plasma Core" 3
+		"Systems Core (Large)" 2
+		"Liquid Sodium Cooler" 2
+		"Fuel Processor" 7
+		"Thermal Repeater Rifle" 1954
+		"Microbot Defense Station" 214
+		
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Thruster (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Scram Drive"
+
+	"reverse engine" -90 -464 0.8
+	"reverse engine" 90 -464 0.8
+	"reverse engine" -115.5 -445.5 0.7
+	"reverse engine" 115.5 -445.5 0.7
+	"steering engine" -90 -464
+		zoom 0.7
+		left
+		angle 180
+	"steering engine" 90 -464
+		zoom 0.7
+		right
+		angle 180
+	"steering engine" -115.5 -445.5
+		zoom 0.6
+		left
+		angle 180
+	"steering engine" 115.5 -445.5
+		zoom 0.6
+		right
+		angle 180
+	"steering engine" -152.5 -270
+		angle 45
+		right
+		zoom 0.6
+	"steering engine" 152.5 -270
+		angle 315
+		left
+		zoom 0.6
+	"steering engine" -172 169
+		angle 135
+		left
+		zoom 0.6
+	"steering engine" 172 169
+		angle 225
+		right
+		zoom 0.6
+	"steering engine" -135.5 444
+		zoom 1.2
+		right
+	"steering engine" 135.5 444
+		zoom 1.2
+		left
+	engine 0 481.5
+		zoom 1.7
+	engine -135.5 444
+		zoom 1.6
+	engine 135.5 444
+		zoom 1.6
+	engine -88.5 430.5
+		zoom 0.7
+	engine 88.5 430.5
+		zoom 0.7
+	engine -77 436
+		zoom 0.7
+	engine 77 436
+		zoom 0.7
+	engine -46 454.5
+		zoom 0.8
+	engine 46 454.5
+		zoom 0.8
+	turret -19.5 -438.5 "Banisher Grav-Turret"
+	turret 19.5 -438.5 "Warder Anti-Missile"
+	turret -178 -332 "Warder Anti-Missile"
+	turret 178 -332 "Banisher Grav-Turret"
+	turret -186 -285.5 "Banisher Grav-Turret"
+	turret 186 -285.5 "Warder Anti-Missile"
+	turret -131.5 -173.5 "Langrage Hyper-Heaver"
+	turret 131.5 -173.5 "Korath Inferno"
+	turret -131.5 -156 "Korath Inferno"
+	turret 131.5 -156 "Warder Anti-Missile"
+	turret 46 -12 "Warder Anti-Missile"
+	turret -16.5 16 "Banisher Grav-Turret"
+	turret 62 128 "Langrage Hyper-Heaver"
+	turret -75.5 162.5 "Firestorm Battery"
+	turret -204.5 200 "Banisher Grav-Turret"
+	turret 204.5 200 "Warder Anti-Missile"
+	turret -192.5 257.5 "Warder Anti-Missile"
+	turret 192.5 257.5 "Banisher Grav-Turret"
+	turret -72.5 338.5 "Langrage Hyper-Heaver"
+	turret 72.5 338.5 "Korath Inferno"
+	turret -95.5 365.5 "Korath Inferno"
+	turret 95.5 365.5 "Banisher Grav-Turret"
+	gun -170 -104 "Firelight Missile Bank"
+		angle 315
+	gun 170 -104 "Firelight Missile Bank"
+		angle 45
+	gun -178 -84 "Firelight Missile Bank"
+		angle 290
+	gun 178 -84 "Firelight Missile Bank"
+		angle 70
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	bay "Fighter" -167.5 -420
+		angle 315
+	bay "Fighter" 167.5 -420
+		angle 45
+	bay "Fighter" -179.5 80
+		angle 45
+		back
+	bay "Fighter" 179.5 80
+		angle 315
+		back
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description "Korsmanath A'awojs, named in memory of the Korath home system, are massive nomadic habitats that hold much of their remaining population. True flying cities, they could be self-contained miniature worlds were it not for their heavy defensive armament and reliance on unsustainable materials, methods, and sources of power."
+	description "	Commission of new Korsmanath A'awojs is a resource-demanding, labor-intensive, painstaking process fraught with political intrigue. Navarchs fight with the civilian government for resources and yard time they would rather devote to building raiding and defensive fleets, civilians vie with each other for a place on the next ship, and planning committees argue with engineers over what methods and technologies to use. This leads to construction delays, corner-cutting, and over-militarization of the design at best, and violent feuds at worst."
+
+
+
+ship "Echo-Galleon"
+	sprite "ship/echo-galleon"
+	thumbnail "thumbnail/echo-galleon"
+	attributes
+		category "Utility"
+		cost 27690000
+		shields 39000
+		hull 27000
+		"required crew" 243
+		"bunks" 972
+		"mass" 1535
+		"drag" 21
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 734
+		"outfit space" 721
+		"weapon capacity" 285
+		"engine capacity" 155
+		weapon
+			"blast radius" 1000
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Digger Mining Beam" 4
+		"Grab-Strike Turret" 2
+		"Banisher Grav-Turret" 
+		"Warder Anti-Missile" 2
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 246
+		
+		"Nelmeb GP Hybrid Thruster"
+		"Nelmeb GP Hybrid Steering"
+		"Scram Drive"
+
+	"reverse engine" -31 -290
+	"reverse engine" 31 -290
+	engine -69 230
+	engine 69 230
+	turret 0 -166 "Grab-Strike Turret"
+	turret -41 -69 "Grab-Strike Turret"
+	turret 41 -69 "Warder Anti-Missile"
+	turret -41.5 264 "Warder Anti-Missile"
+	turret 41.5 264 "Banisher Grav-Turret"
+	gun -75 -250 "Digger Mining Beam"
+	gun 75 -250 "Digger Mining Beam"
+	gun -60 -214.5 "Digger Mining Beam"
+	gun 60 -214.5 "Digger Mining Beam"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 50
+	"final explode" "final explosion large"
+	description `The largest of Korath production vessels are derived from a common and ancient chassis, including this large Efreti vessel. Facing very different challenges, and taking some inspiration from their Quarg protectors, the Efreti descendant of the "World-Ships" of old is lighter, faster, and more efficient, but less powerful than its Exile counterparts.`
+
+
+ship "Arch-Carrack"
+	sprite "ship/arch-carrack"
+	thumbnail "thumbnail/arch-carrack"
+	attributes
+		category "Heavy Freighter"
+		"cost" 15815000
+		"shields" 21800
+		"hull" 19300
+		"required crew" 54
+		"bunks" 97
+		"mass" 1077
+		"drag" 14.9
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 635
+		"outfit space" 582
+		"weapon capacity" 193
+		"engine capacity" 147
+		"disruption resistance" 0.24
+		"disruption resistance energy" 2.4
+		"disruption resistance heat" 2.4
+		weapon
+			"blast radius" 300
+			"shield damage" 4600
+			"hull damage" 2300
+			"hit force" 5900
+	outfits
+		"Banisher Grav-Turret" 1
+		"Digger Mining Beam" 2
+		"Warder Anti-Missile" 2
+		
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Large)"
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 55
+		
+		"Gaktem GP Hybrid Thruster"
+		"Farves GP Hybrid Thruster"
+		"Gaktem GP Hybrid Steering"
+		"Scram Drive"
+
+	engine 19.5 189.5
+	engine -19.5 189.5
+	engine 46 170 0.7
+	engine -46 170 0.7
+	"reverse engine" 14.5 -187.5
+	"reverse engine" -14.5 -187.5
+	turret 0 -119.5 "Warder Anti-Missile"
+	turret 0 42 "Banisher Grav-Turret"
+	turret 0 138.5 "Warder Anti-Missile"
+	gun -37.5 -187 "Digger Mining Beam"
+	gun 37.5 -187 "Digger Mining Beam"
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large"
+	description "Although they do not effectively provide for their own defense, the Efreti remain responsible for the day-to-day needs of civilian and cargo transportation. While not as bulky or powerful as other Korath designs, this freighter is much faster at making runs back and forth between the Efreti's handful of remaining planets, while still holding enough defensive loadout to ward off the odd Mereti drone that slips past the Quarg."
+
+
+ship "Charm-Shallop"
+	sprite "ship/charm-shallop"
+	thumbnail "thumbnail/charm-shallop"
+	attributes
+		category "Utility"
+		"cost" 14070000
+		"shields" 19700
+		"hull" 15200
+		"required crew" 65
+		"bunks" 203
+		"mass" 495
+		"drag" 7.5
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 194
+		"outfit space" 473
+		"weapon capacity" 158
+		"engine capacity" 129
+		"disruption resistance" 0.2
+		"disruption resistance energy" 2
+		"disruption resistance heat" 2
+		weapon
+			"blast radius" 250
+			"shield damage" 3600
+			"hull damage" 1800
+			"hit force" 5400
+	outfits
+		"Digger Mining Beam" 3
+		"Warder Anti-Missile"
+		"Banisher Grav-Turret"
+		
+		"Double Plasma Core"
+		"Generator (Candle Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Thermal Repeater Rifle" 66
+		
+		"Gaktem GP Hybrid Thruster"
+		"Gaktem GP Hybrid Steering"
+		"Scram Drive"
+
+	engine -17.5 139.5
+	engine 17.5 139.5
+	turret 0 -35 "Warder Anti-Missile"
+	turret 0 97 "Banisher Grav-Turret"
+	gun 0 -118 "Digger Mining Beam"
+	gun -16.5 -114.5 "Digger Mining Beam"
+	gun 16.5 -114.5 "Digger Mining Beam"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "A recent design, this Efreti multi-role vessel is found taking up many jobs previously relegated to a now scrapped fleet of early-model raiders. While some are used primarily for passenger transport, others are used in local mining to satiate the Efreti's perpetual demand for ores. Incorporating Quarg-inspired structural elements, its light frame allows it to complete tasks more nimbly than any other independent Korath ship." 
 
 
 
