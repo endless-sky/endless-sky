@@ -191,7 +191,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 		has "Hai Building Mountaintop [1a] Construction Escorts: done"
 	on complete
 		event "role-play station after construction"
-	
+
 
 mission "Hai Building Mountaintop [1a] Construction Escorts"
 	landing
@@ -214,6 +214,7 @@ mission "Hai Building Mountaintop [1a] Construction Escorts"
 		ship Geocoris "Du Eh"
 		ship Geocoris "Mon e Ow"
 		ship Geocoris "Eek lo Pok"
+
 
 mission "Hai Building Mountaintop [1b] Return"
 	landing
@@ -272,7 +273,6 @@ event "role-play station before construction"
 		description `There's a construction site rapidly assembling a station from Hai Geocoris orbiting this wormhole.`
 		"required reputation" -10
 		security 0.2
-
 
 event "role-play station after construction"
 	system "Ultima Thule"

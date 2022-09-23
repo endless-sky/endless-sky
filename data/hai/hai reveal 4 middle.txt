@@ -56,6 +56,8 @@ mission "Hai Rescue [A01] Visit Darkwaste"
 			`You receive a high priority communication from a Hai woman named Teeneep. The message is brief and cryptic, but you deduce that it refers to the Hai you've rescued from human space in the past. It advises that she needs to talk to you as soon as possible. There is a set of landing coordinates on the uninhabited Hai planet, <destination>.`
 				accept
 
+
+
 mission "Hai Rescue [A02] Symbol Identification"
 	landing
 	name "Symbol Identification"
@@ -105,7 +107,7 @@ mission "Hai Rescue [A02] Symbol Identification"
 				goto questions
 			label cadmium
 			`	A Hai in a medical uniform explains, "The victims each seem to have been exposed to airborne particulates containing cadmium which must be circulating through their ships ventilation. I should also clarify that it's not strictly 'poisoning'. The level of exposure is quite low, but enough that testing shortly after being rescued does show clearly elevated levels in many who were taken.`
-			`	"No known technology of human or Hai origin exhausts anything which could create this effect. There are some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, and their dispenser cannisters have residual cadmium dust in them as residue, but that's the only thing we even bring onto a ship that uses it, and those are self-contained for disposal and the molecular bonding doesn't match anyway. There are some materials involved have properties unlike anything either of us make, which suggests this is coming from another race's technology."`
+			`	"No known technology of human or Hai origin exhausts anything which could create this effect. There are some microbots used in Hai medicine that are used to seal off ruptures causing internal bleeding, and their dispenser canisters have residual cadmium dust in them as residue, but that's the only thing we even bring onto a ship that uses it, and those are self-contained for disposal and the molecular bonding doesn't match anyway. There are some materials involved have properties unlike anything either of us make, which suggests this is coming from another race's technology."`
 			`	They share a glance with Teeneep, "We have our suspicions but they're not conclusive yet."`
 			branch questions
 				not "00 Hai Leaks Response 4B: declined"
@@ -166,24 +168,535 @@ mission "Hai Rescue [A02] Symbol Identification"
 			`	As you return to your ship you can't help but think you have no idea where you would find this information, but you are pretty sure you can ask Alondo for an idea of where to start.`
 				accept
 
-# Must be after the Quarg and Korath intro missions:
+
+
+# Eventually needs a whole conversation variant for each main campaign. Potentially needs whole different goals. (To be a, b and c versions.)
 mission "Hai Rescue [A03a] Symbol Identification"
+	autosave
 	landing
 	name "Symbol Identification"
-	description "Fly to <destination> to talk to Tarazed Shipyards about the microtransceivers."
+	description "Check out the worlds near Allhome and make sure the Hai seem normal."
 	source "Hai-home"
-	destination "Earth"
 	to offer
 		has "Hai Rescue [A02] Symbol Identification: done"
 	on offer
-		log `The Korath identified the microtransceivers as using the same materials and design principles as their own technology, but extremely primitive and poorly-made. The Quarg provided a data card that Tarazed Shipyards may be able to use.`
+		event "alondo symbol timer" 12
+		log `Been asked to check out the Hai spaceports in various systems near the wormhole, just to check nothing unexpected is happening.`
 		conversation
-			`After you land, a hovering gray platform lowers to the entrance of your ship. You step on, and it raises you to a higher level of the ringworld where many Quarg and a few Korath are present. You find the first Quarg who will talk to you and show it the vial of microtransceivers.`
-			`	The Quarg makes a series of wheezing sounds which approximate a laugh. "I am merely a pilot. I know nothing of microtransceivers. That is the technology of the Korath, and I will take you to one who is knowledgeable."`
-			`	You pass through another two gray platform transports and reach a warm cave-like structure with a group of Korath and Quarg. From the holograms and equipment, it appears they're discussing science. One hologram looks like a blood cell attached to a tiny machine; this may be a microscale medicine laboratory.`
-			`	The Quarg and Korath discuss your microtransceivers for a few minutes, placing them in various instruments.`
-			`	Finally, you have your answer. A Quarg scientist tells you, "These appear to be Korath in origin, but makeshift and primitive. Even the Korath Exiles are more advanced. Those who made these have little resources and simple machinery. This will tell you how to detect these microtransceivers," it explains, handing you a standard data card compatible with human computers. "Take this to Tarazed Shipyards."`
-			`	You recall Teeneep gave you a contact at Tarazed Shipyards.`
+			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do end up having to wait for nearly half an hour while he finishes up some kind of meeting with a Hai official of some kind. When he's finished he waves you into the room gestures for you to take a seat, though the seat in question is clearly designed to be ergonomic for a Hai which makes for a rather strange experience for a human.`
+			`	<You have a conversation where you show him the symbol, and ask him for leads. He says he knows some people who can be discreet and he'll see if he can find someone who might know something. Also something about him working with Remington lately.>`
+			`	"In the meantime," he says, "could I ask you to stop by some of the Hai worlds nearer the wormhole? They have obviously ramped up security on Allhome, and I'd like to have a pair of eyes check that they're not using that as a cover to move more military through other nearby worlds into a threatening position... not that I think they'd do that but we've just been through one war, I think it's making me a little paranoid while I sit here in the most Hai place that there is."`
+			`	He shrugs. "Plus, they say they're ok, but it'd be nice for someone else on our side to check on them still. It will probably be a couple of weeks till I can track someone down for you. So, go check on that for me, and I'll let you know."`
+				accept
+	to complete
+		has "event: alondo symbol timer"
+		
+event "alondo symbol timer"
+
+
+mission "Hai Rescue [A03a1]"
+	minor
+	invisible
+	source
+		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		attributes "spaceport"
+	to offer
+		has "event: alondo symbol timer"
+		has "Pirate Troubles [0]: done"
+	on offer
+		fail "Hai Rescue [A03a] Symbol Identification"
+		# This presumably does nothing if it's already failed.
+		dialog `A message from Alondo informs you that he has a tenuous lead he can give you when you're not busy.`
+
+
+mission "Hai Rescue [A03a2]"
+	minor
+	invisible
+	source
+		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		attributes "spaceport"
+	to offer
+		has "Pirate Troubles [0]: done"
+	on offer
+		fail "Hai Rescue [A03a] Symbol Identification"
+
+
+
+mission "Pirate Troubles [0]"
+	name "Defend <system>"
+	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
+	source
+		near "Waypoint" 3
+		government "Hai"
+		not planet "Allhome"
+	to offer
+		has "Hai Rescue [A03a] Symbol Identification: offered"
+		# Now integrated into the plot, previous conditions temporarily kept for posterity.
+		# has "First Contact: Unfettered: offered"
+		# or
+		#	has "event: pirates respond to leaks"
+		#	and
+		#		"combat rating" > 1100
+		#		random < 10
+	on offer
+		conversation
+			`The peaceful spaceport is suddenly filled with the harsh sound of sirens. You spot some Hai and a small number of humans running to their ships and speeding quickly into orbit. It appears that the system is under attack, but this is behind the security front and the Unfettered Hai never reach this far south... A loud speaker begins blaring throughout the spaceport: "Unfettered humans have entered the system in a large fleet and have begun attacking! Requesting all combat-worthy pilots to assist in the defense of our space. These enemies of harmony are not welcome here."`
+			branch unfettered
+				has "Unfettered: Jump Drive Source: offered"
+			`	You find the phrase "unfettered humans" odd, but guess that they may be referring to pirates who have somehow slipped through. The Hai probably expect you help with your reputation, and this is certainly a significant threat to be attacking here.`
+				goto choice
+			label unfettered
+			`	Your heart drops at the phrase "unfettered humans," as the last time you heard that was when the Unfettered Hai used that phrase to refer to the Alphas. If it is really the Alphas attacking the Hai, then it is probably a good idea to help.`
+			label choice
+			choice
+				`	(Join the defense fleet.)`
+					launch
+				`	(Stay here until the fight is over.)`
+					decline
+	on decline
+		dialog `You have declined an essential narrative mission. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+		# Maybe we'll put in a workaround alternative pathway later.
+	npc
+		government "Hai"
+		personality staying
+		fleet "Large Hai"
+	npc
+		government "Merchant"
+		personality staying
+		fleet "Large Human Merchants (Hai)"
+	npc evade
+		government "Pirate"
+		personality staying
+		fleet
+			names "pirate"
+			variant
+				"Leviathan" 2
+				"Mule" 2
+				"Firebird"
+				"Headhunter" 3
+				"Raven" 3
+
+
+
+mission "Pirate Troubles [1]"
+	landing
+	name "Unfettered Humans"
+	description `Track down the leaders of the pirate gang "Scar's Legion" and "persuade" them to stop attacking Hai space, then return to <destination> to tell the Hai.`
+	source
+		government "Hai"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Pirate Troubles [0]: done"
+	on offer
+		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
+		conversation
+			`The battle has ended, but the spaceport still seems more hectic than usual. Ships are jumping in from the surrounding systems to help any injured and to repair any damage that may have occurred. After some hours pass and the commotion has died down, a Hai in uniform approaches you. "We have heard from several people here that you are considered a seasoned fighter among your people, and learned of your current status assisting our government on other matters. May you lend your combat prowess to us to resolve this issue?"`
+			choice
+				`	"I'd be glad to help. What can I do?"`
+					goto explain
+				`	"What issue?"`
+			`	"I understand that you just defended this system from human pirates. That is the issue that needs resolved.`
+			label explain
+			`	"Human attacks on our systems are very rare, but recently we have experienced an increased number of raids. I'm told you are well aware of, and recently assisted in dealing with, a much more successful one on Allhome. We captured a crew member of this most recent attack who was attempting to flee in an escape pod, and he gave us information that a gang that calls themselves 'Scar's Legion' has discovered our territory and is responsible for the recent raids.`
+			`	"Unfortunately, he would not tell us where this gang is, or who the leader is, so there is nothing we are able to do about it. Many humans who live peacefully among us told us that you might be capable of assistance, though."`
+			choice
+				`	"I'll see what I can do."`
+					goto yes
+				`	"You want me to hunt down Scar's Legion to stop them from attacking you?"`
+				`	"Sorry, I'm not interested."`
+					decline
+			`	"We understand that these humans are likely misguided. We ask that you resolve this peacefully if possible, but the loss of life from these continued attacks is unacceptable."`
+			choice
+				`	"I'll see what I can do."`
+					goto yes
+				`	"Sorry, but I'm not interested."`
+					decline
+			label yes
+			`	"Thank you. Please return to <destination> after you have sought to resolve this situation."`
+				accept
+	on enter
+		dialog `You receive a short message from Teeneep. "I heard what happened <last>. This is not one of the groups that was already on our radar, so once you're done I would very much like to hear what you find out."`
+	on visit
+		dialog "You've returned to <planet>, but you haven't yet tracked down Scar's Legion. Perhaps you should ask around the spaceport of pirate planets near the wormhole into Hai space for information."
+	to complete
+		or
+			has "accepted scar's legion tribute"
+			has "defeated scar's legion"
+
+
+
+mission "Pirate Troubles [1]: Farpoint"
+	landing
+	invisible
+	source "Farpoint"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		conversation
+			`You visit the Navy outpost on <origin> and ask the officers there if they have any information on Scar's Legion. After running a background check on you to make sure you're not up to no good, and sheepishly apologizing once they recognize you, an officer hands you a copy of a folder containing all the information that the Navy has on the gang. "Nothing in here is classified, so you're free to keep it," the officer says.`
+			`	You return to your ship and sift through the files. The leader of the gang is named Scar (to no one's surprise), who used to be an important member of another pirate gang before forming his own. The Navy estimates their numbers to be in the low thousands, mostly responsible for petty crime in the Far North and not a cause of too much trouble, but the files all date back to a number of years ago. Clearly something has changed in the time since these files were last updated if Scar's Legion is now powerful enough to even attempt to attack the Hai.`
+				decline
+
+
+
+mission "Pirate Troubles [1]: Freedom or Zenith"
+	landing
+	invisible
+	source
+		planet "Freedom" "Zenith"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		payment -5000
+		conversation
+			`You wander the <origin> spaceport on the lookout for anyone who might have any information on the whereabouts of Scar's Legion. A self-described fixer promises you information in exchange for payment, but after handing her the few credits that she's asking for, she runs off with her gun in her hands to discourage you from following. Perhaps someone on another nearby pirate planet will have actual information for you.`
+				decline
+
+
+
+mission "Pirate Troubles [1]: Haven"
+	landing
+	invisible
+	source "Haven"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		payment -100
+		"scar's legion information" ++
+		conversation
+			`You order a drink from a small rundown bar in the <origin> spaceport and try to make small talk with the bartender to get him open to giving information about Scar's Legion. He seems reluctant at first, but eventually warms up to you. A few other patrons of the bar join in on the conversation. Luckily no one seems mad about you asking about Scar's Legion. One of the patrons makes it clear that Scar's Legion has no friends on this world, "at least not anymore."`
+			`	You leave the bar after an hour or two. Once you return to your ship, you write down all the information you can remember. The gang used to operate exclusively out of the Far North until they crossed one of the larger gangs, causing them to flee the region a few years ago. One of the pirates guessed that they fled for the Core.`
+			`	Another person mentioned that the leader of the gang used to always talk about making their own base in an uninhabited system where no one would find it. "He always talked about hollowing out an asteroid to use as a hideout. My guess is he was just always high on the ringworld shavings his gang was dealing."`
+				decline
+
+
+
+mission "Pirate Troubles [1]: Stormhold"
+	landing
+	invisible
+	source "Stormhold"
+	to offer
+		has "Pirate Troubles [1]: active"
+	on offer
+		"scar's legion information" ++
+		conversation
+			`It doesn't take long for you to find someone who knows something about Scar's Legion. You meet someone who says he'll give you information "free of charge."`
+			`	"Scar's Legion have been a thorn in my side for months now. Wrecked my ship a while back, and have been causing me trouble ever since. If you're planning on taking them out, then I'll tell you everything you need to know."`
+			`	The pirate tells you that he doesn't know where the base of Scar's Legion is, but he mentions that they spend a lot of time in the uninhabited systems of the Far North. "Nothing out there but cold rocks and gas giants, but if they're spending so much time out there then they must have set up a base of some sort on one of those frozen planets."`
+				decline
+
+
+
+mission "Pirate Troubles [2]"
+	landing
+	name "Scar's Legion"
+	description "You've pieced together enough information to find out that the Scar's Legion hideout is in one of four systems in the Far North. Search those systems for the gang's hideout and confront them."
+	waypoint "Danoa"
+	waypoint "Rajak"
+	waypoint "Sumar"
+	waypoint "Hassaleh"
+	to offer
+		"scar's legion information" >= 2
+	on offer
+		event "scar's hideout"
+		conversation
+			`After having visited various pirate worlds asking about Scar's Legion, you believe that you know where their hideout is.`
+			`	You know that the leader of Scar's Legion used to talk about wanting a hollowed out asteroid as a base. You also know that Scar's Legion has recently been very active in the uninhabited systems of the Far North. You conclude that the gang's hideout is likely an asteroid located in one of a few systems that are in proximity to the wormhole that leads to the Hai. You mark <waypoints> on your map and get ready to confront them.`
+				accept
+	to complete
+		never
+	to fail
+		has "Pirate Troubles [3]: offered"
+
+event "scar's hideout"
+	system "Danoa"
+		object
+			sprite star/m3
+			period 10
+		object
+			sprite planet/desert7-b
+			distance 168.64
+			period 75.3935
+		object
+			sprite planet/fog0-b
+			distance 693.93
+			period 629.313
+			object
+				sprite planet/mercury
+				distance 174
+				period 15.1961
+		object
+			sprite planet/gas6
+			distance 2069.42
+			period 3240.9
+			object
+				sprite planet/lava1-b
+				distance 293
+				period 11.3672
+			object
+				sprite planet/rock0-b
+				distance 440
+				period 20.9186
+			object
+				sprite planet/lava2-b
+				distance 607
+				period 33.895
+			object "Scar's Hideout"
+				sprite "planet/asteroid base"
+				distance 809
+				period 52.153
+
+planet "Scar's Hideout"
+	attributes uninhabited
+	landscape land/loc1
+	description "Scar's Hideout is a hollowed-out asteroid used by Scar's Legion as their main base of operations. From here they harass anyone making the journey through the uninhabited systems of the Far North. Recently the gang has discovered the wormhole to Hai space, leading them to start causing trouble for more than just unlucky merchants."
+	spaceport "The spaceport of Scar's Hideout is a massive hangar dug into the core of the asteroid, accessible only by a single blast door on the ceiling. Judging by the size of the hangar, you'd guess that about a third of the entire asteroid was hollowed out for the spaceport alone."
+	security 0
+	government "Scar's Legion"
+
+
+
+
+mission "Pirate Troubles [3]"
+	landing
+	name "Scar's Legion"
+	description "Having declined the tribute, the leader of Scar's Legion has challenged you to a fight to the death. Defeat the <npc>, then return to <destination>."
+	source "Scar's Hideout"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "event: scar's hideout"
+	on offer
+		conversation
+			`You've located the Scar's Hideout, a massive asteroid in orbit around a gas giant. As you fly over the asteroid's surface, you spot an open blast door. They must be inviting you inside. It surprises you that a gang of pirates would be capable of creating such a base, as the materials and time needed to make something like this are immense.`
+			`	Upon entering the blast door, it closes behind you, leaving you in complete dark. Suddenly, floodlights flash on all around your ship. The brightness of the lights prevents you from seeing anyone beyond them, but you suspect that there are a number of weapons pointed at your ship right now.`
+			`	"Who are you and what do you want?" a voice booms from a loud speaker. You press a button to activate your ship's external speakers.`
+			choice
+				`	"I'm <first> <last>, here to negotiate on behalf of the Hai."`
+					goto negotiate
+				`	"I'm <first> <last>, here to take this gang down."`
+			`	The voice laughs. "Well too bad, because you're right in the middle of a hornet's nest. Fire, boys!"`
+				goto die
+			
+			label negotiate
+			`	The voice laughs. "Ah, yes. Those squirrels. I take it they've had enough of us plundering their systems. Boys!"`
+			`	The floodlights turn off, revealing a large room with what must be hundreds of pirates with guns of various sizes trained on your ship. One wrong move and you're toast. "Please, Captain. Step out of your ship."`
+			choice
+				`	(Comply with the orders.)`
+					goto comply
+				`	(Attempt to escape.)`
+			`	You activate your ship's engines to escape. The floodlights suddenly reactivate.`
+			
+			label die
+			`	Before you can even react, several dozen lasers and streams of bullets come flying out from behind the floodlights. You attempt to pull your ship up and fly straight through the ceiling before your ship is too damaged to move, but then you spot a number of rockets flying straight at your cockpit. You die instantly as the rockets impact the glass in front of you.`
+				die
+			
+			label comply
+			`	You step out of your ship, and a tall man with a scar across his cheek steps forward from the crowd of pirates, presumably the leader of the gang.`
+			choice
+				`	"The Hai ask that you stop attacking their systems."`
+					goto negotiations
+				`	"You must be Scar."`
+			`	"No. Scar is long dead," the leader says.`
+			choice
+				`	"Oh, so does that make you Scab?"`
+				`	"The Hai ask that you stop attacking their systems."`
+					goto negotiations
+			`	The leader grimaces. "I'll cut your tongue out if you don't watch your mouth."`
+			`	You take a step back. "The Hai ask that you stop attacking their systems," you say, attempting not to get shanked.`
+			
+			label negotiations
+			`	"Perhaps we will stop," the leader says with a smile. "Under one condition. We'd like a one time shipment of various Hai weapons and technology. The shipment should be as big as possible. I've seen the freighters those aliens have. They're massive. Load two or three up with the goods and we'll consider focusing our attention elsewhere."`
+			choice
+				`	"Okay. I'll meet with the Hai and see what they can provide."`
+					goto tribute
+				`	"I'm afraid that I can't allow that."`
+					goto disallow
+			label disallow
+			`	The crowd of pirates response with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
+			`	The leader paces back and forth in silence for a moment. "Well if we don't get what we want, then we're just going to need to keep on attacking. Which means that your presence here is pretty useless."`
+			`	The leader turns to the crowd. "How about a fight? To the death!" The crowd erupts in cheers. The leader turns back to you. "We fight in this system only. Just you and me. You attempt to run, my men hunt you down. How's that sound?" You attempt to respond, but before you can, the leader pulls his gun and aims it at you. "Run."`
+				launch
+			
+			label tribute
+			`	"Excellent!" the pirate says, which is met with cheers from the rest of the pirates in the room. "But make it quick. Wouldn't want to keep us waiting." The blast doors reopen, and you return to your ship to leave immediately.`
+				flee
+	
+	on decline
+		set "accepted scar's legion tribute"
+	on accept
+		event "battle against scar's legion"
+	
+	npc kill
+		government "Scar's Legion (Killable)"
+		personality nemesis
+		ship "Leviathan (Hai Weapons)" "Keloid"
+		dialog "You've defeated the leader of Scar's Legion. The various spectators to the fight aren't attacking you, but it may only be a matter of time before they decide to turn their guns on you for killing their leader. Better head to <destination> before that happens."
+	
+	npc
+		government "Scar's Legion"
+		personality nemesis
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates" 4
+	
+	on enter
+	on enter
+		"reputation: Scar's Legion" = -1000
+	
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+		
+	on complete
+		set "defeated scar's legion"
+		event "battle against scar's legion over"
+
+event "battle against scar's legion"
+	system "Danoa"
+		fleet "Human Miners" 1600
+
+event "battle against scar's legion over"
+	system "Danoa"
+		fleet "Small Northern Merchants" 15000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 16000
+		fleet "Large Republic" 30000
+		fleet "Human Miners" 1600
+
+
+
+mission "Pirate Troubles [4]"
+	landing
+	name "Pirate Tribute"
+	description "Escort the three Hai freighters carrying Hai weapons and technology to <stopovers>, then escort the freighters back to <destination>."
+	source "Hai-home"
+	stopover "Scar's Hideout"
+	clearance
+	to offer
+		or
+			has "defeated scar's legion"
+			has "accepted scar's legion tribute"
+	on offer
+		"reputation: Hai" += 20
+		"reputation: Hai (Wormhole Access)" += 20
+		"reputation: Hai Merchant" += 20
+		"reputation: Hai Merchant (Human)" += 20
+		"reputation: Hai Merchant (Sympathizers)" += 20
+		payment 2500000
+		conversation
+			`Upon landing on <origin>, the authorities at the secure spaceport give you <payment> for your assistance in defending their systems and for helping to track down the culprits. They also direct you to an emergency session of the council of elders, the now increasingly familiar elected ruling body of the Hai, to tell them about Scar's Legion. Unlike last time there is almost no wait and the Elders are very direct. The very first one of them to address you says, "Please, tell us what has occurred."`
+			branch defeated
+				has "defeated scar's legion"
+			
+			`	"They asked that you load three large freighters with various weapons and technology to give to them. Only then will they stop attacking you."`
+			`	"A simple request," the elders says. "Little more than what the Unfettered ask of us. We shall load three Geocoris immediately."`
+			`	"Who is to say that they will not use our own weapons against us?" another elder chimes in. "This deal could only hurt us."`
+			choice
+				`	"There's no guarantee that they will not attack again, but they promised that they would focus elsewhere."`
+					goto guarantee
+				`	"I could return to them and defeat them if you desire."`
+			`	"No," says the elder. "We are not interested in condemning these humans to death if all they ask is for technology."`
+			
+			label guarantee
+			`	"I believe a bigger issue here is how this will impact our human friends beyond the wormhole," an elder says. "If these pirates are not attacking us, then who will they be attacking? Will we not simply become weapons dealers for a far off war?"`
+			`	"We will inform the Republic Ambassador that we are providing these pirates with our technology for our own sake. They have been capable of combating our technology in the past. I am sure that they will be able to handle it now. Please, <first>, escort the freighters to these pirates so that they may leave us alone."`
+				accept
+			
+			label defeated
+			`	"I defeated the leader of Scar's Legion. They shouldn't cause any more trouble for you now."`
+			`	One of the elders frowns. "Did you kill their leader in cold blood, or was it self defense?"`
+			choice
+				`	"They asked for a tribute of your weapons and technology, but I refused the offer, so they attacked me."`
+					goto refused
+				`	"They were not willing to negotiate, and I was forced to defend myself."`
+			`	"This is most unfortunate," another elder says. "But I am happy to hear that they will not cause any more loss of life among our people."`
+				goto end
+			
+			label refused
+			`	"This is most unfortunate," another elder says. "We would have been willing to provide them the technology they sought if only they had asked nicely in the first place."`
+			`	"Better that we eliminate a threat instead of making them stronger through becoming their weapons dealer," the first elder says. "These pirates might have attacked us with our own technology, or worse still, attacked other humans with them, making us complicit in this slaughter."`
+			
+			label end
+			`	The elders thank you for your assistance in this situation and send you on your way.`
+				decline
+	
+	on decline
+		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
+	
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality escort
+		fleet
+			names "hai"
+			cargo 10
+			variant
+				"Geocoris" 3
+	
+	on stopover
+		dialog `You lead the Hai freighters into the blast doors. Despite the massive size of the freighters, they all manage to fit into the asteroid's spaceport with some room to spare, a testament to how much work was put into this base. The pirates of Scar's Legion unload all the Hai technology from the freighters. After the last crate is gone, the freighters quickly launch from the asteroid.`
+	
+	on visit
+		dialog phrase "generic arrived-without-npc dialog"
+	
+	on complete
+		"reputation: Hai" += 40
+		"reputation: Hai (Wormhole Access)" += 40
+		"reputation: Hai Merchant" += 40
+		"reputation: Hai Merchant (Human)" += 40
+		"reputation: Hai Merchant (Sympathizers)" += 40
+		payment 500000
+		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
+
+
+
+
+mission "Hai Rescue [A04] Tarazed Analysis"
+	landing
+	name "Missing Researchers"
+	description `Find and board a ship that has microtransceivers. Your display will identify such ships as belonging to the "Smuggler" government. Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
+	source Wayfarer
+	destination Earth
+	clearance `Curious about your story, the authorities let you land.`
+	to offer
+		has "ZZ Hai Rescue [A03a] Symbol Identification: done"
+	to complete
+		has "Hai Rescue [A05] Boarded Smuggler: offered"
+	on visit
+		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
+	on offer
+		event "devil-run smugglers visible"
+		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
+		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special microtransceivers. They are probably carrying human or Hai researchers.`
+		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with microtransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
+		conversation
+			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named Goraz Zoltof who works in their communications research laboratory. There's an address and detailed information about the man, whose wife went missing under mysterious circumstances some time ago. After a series of shuttles and trains, you reach his house and knock on the door.`
+			`	He's a little groggy, but manages to ask, "Yes?" You explain about the microtransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them. He seems to awaken immediately. "You found a lead on my wife's disappearance? Yes, I think I can help you. Let's go to my laboratory at once."`
+			choice
+				`	(Head to the laboratory.)`
+			`	After another series of shuttles and trains, you reach what looks like a spaceport. From the extra equipment and unusual ship designs, you realize it is a research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird. Despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has few assistants that are typically off-world most of the time as he walks you to the communications room.`
+			`	"Here, let me take a look at what you've brought me." He takes the data card you got from the Quarg and plugs it into the communicator. After several minutes of typing and muttering incoherently to himself he pauses as a simulation plays on his screen. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
+			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps. That station sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means."`
+			`	He pauses, realizing he's been rambling. "Sorry, that was probably way more explanation than you needed. There's a small group of us comms people that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. Now though, well, what you've given me is a match!"`
+			`	He casts around for a moment and then plugs a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
+			choice
+				`	(Sit down.)`
+				`	(Stand around idly.)`
+			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one, now loaded up with whatever he was putting on it. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local station when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
+			`	"Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. You should focus your search on the uninhabited areas between the Far North and Syndicate space, plus any nearby pirate systems. That's where we've noticed the most suspicious activity."`
+			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
+			choice
+				`	(Return to your ship.)`
+			`	After one last ride through the shuttles and trains of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
+			`	It may be risky, but you should disable one and board it.`
+			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named Giti Gilani if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
 				accept
 
 fleet "Smuggler (Hai Traffickers)"
@@ -273,46 +786,7 @@ event "devil-run smugglers visible"
 		add fleet "Smuggler (Hai Traffickers)" 1000
 	
 
-mission "Hai Rescue [A04] Tarazed Analysis"
-	landing
-	name "Missing Researchers"
-	description `Find and board a ship that has microtransceivers. Your display will identify such ships as belonging to the "Smuggler" government. Try the uninhabited systems and pirate systems near Ultima Thule. Head to <destination> afterwards.`
-	source Wayfarer
-	destination Earth
-	clearance `Curious about your story, the authorities let you land.`
-	to offer
-		has "ZZ Hai Rescue [A03a] Symbol Identification: done"
-	to complete
-		has "Hai Rescue [A05] Boarded Smuggler: offered"
-	on visit
-		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
-	on offer
-		event "devil-run smugglers visible"
-		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
-		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") carry slaves with special microtransceivers. They are probably carrying human or Hai researchers.`
-		log `Goraz Zoltof used the galactic network of television transmitters to scan for evidence of smuggling ships carrying kidnapping victims with microtransceivers. He detected hints of transmissions in the uninhabited space between the Far North and the Syndicate, and also near pirate systems.`
-		conversation
-			`You read Teeneep's contact information for Tarazed Shipyards, and it talks about a man named Goraz Zoltof who works in their communications research laboratory. There's an address and detailed information about the man, whose wife went missing under mysterious circumstances some time ago. After a series of shuttles and trains, you reach his house and knock on the door.`
-			`	He's a little groggy, but manages to ask, "Yes?" You explain about the microtransceivers, the Quarg, and the kidnappings. You avoid mentioning that some of the people are Hai, just in case he's never heard of them. He seems to awaken immediately. "You found a lead on my wife's disappearance? Yes, I think I can help you. Let's go to my laboratory at once."`
-			choice
-				`	(Head to the laboratory.)`
-			`	After another series of shuttles and trains, you reach what looks like a spaceport. From the extra equipment and unusual ship designs, you realize it is a research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird. Despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has few assistants that are typically off-world most of the time as he walks you to the communications room.`
-			`	"Here, let me take a look at what you've brought me." He takes the data card you got from the Quarg and plugs it into the communicator. After several minutes of typing and muttering incoherently to himself he pauses as a simulation plays on his screen. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
-			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps. That station sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means."`
-			`	He pauses, realizing he's been rambling. "Sorry, that was probably way more explanation than you needed. There's a small group of us comms people that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. Now though, well, what you've given me is a match!"`
-			`	He casts around for a moment and then plugs a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
-			choice
-				`	(Sit down.)`
-				`	(Stand around idly.)`
-			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one, now loaded up with whatever he was putting on it. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local station when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work.`
-			`	"Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. You should focus your search on the uninhabited areas between the Far North and Syndicate space, plus any nearby pirate systems. That's where we've noticed the most suspicious activity."`
-			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
-			choice
-				`	(Return to your ship.)`
-			`	After one last ride through the shuttles and trains of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
-			`	It may be risky, but you should disable one and board it.`
-			`	Teeneep gave you the name of a contact within a historical archive on <destination>. She wants you to speak to a woman named Giti Gilani if you find one of the smuggling ships. Giti specializes in history of ship designs and space-faring groups, including the Hai.`
-				accept
+
 
 
 mission "Hai Rescue [A05] Boarded Smuggler"

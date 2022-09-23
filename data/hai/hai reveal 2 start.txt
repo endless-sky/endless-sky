@@ -75,6 +75,7 @@ mission "Hai Rescue: Yeertle Hint"
 	to complete
 		has "Hai Rescue: Yeertle Family: Offered"
 
+
 mission "Hai Rescue: Yeertle Family"
 	name "Return the Yeertle family"
 	description "Transport the Yeertle family to <destination>. Payment is <payment>."
@@ -178,6 +179,7 @@ mission "Hai Rescue: Yeertle Family"
 		fleet "Small Core Pirates" 1
 
 
+
 mission "Hai Rescue: Oonem Hint"
 	landing
 	name "A (Short) Angel of Death"
@@ -203,6 +205,7 @@ mission "Hai Rescue: Oonem Hint"
 				accept
 	to complete
 		has "Hai Rescue: Ooonem: Offered"
+
 
 mission "Hai Rescue: Ooonem"
 	name "Return Ooonem"
@@ -314,6 +317,7 @@ mission "Hai Rescue: Ooonem"
 		fleet "Small Core Pirates" 1
 
 
+
 mission "Hai Rescue: Prison RP Hint"
 	landing
 	name "Phantom Distress Calls"
@@ -337,6 +341,7 @@ mission "Hai Rescue: Prison RP Hint"
 			`	It seems a handful of merchants have all been picking up a very faint distress signal in the vicinity of <planet>, but every time they've gone to look for it, they've either experienced some kind of engine warning, or a large group of pirates has jumped into the system, and they've bugged out. Mysteriously the pirates don't seem to have been looking for or pursuing the merchants when they've appeared though.`
 			`	It seems like a long-shot, but you wonder if perhaps this might be a legitimate call for help, maybe from someone who can't risk broadcasting themselves too aggressively...`
 				accept
+
 
 mission "Hai Rescue: Prison Role-Players"
 	# You get to rescue the Hai from "First Contact: Hai"
@@ -423,6 +428,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	to complete
 		has "Hai Rescue: Meroot and Lucy: Offered"
 
+
 mission "Hai Rescue: Meroot and Lucy"
 	name "Return Meroot and Lucy"
 	description "Transport the scientists you rescued to <destination>. Payment is <payment>."
@@ -497,7 +503,8 @@ mission "Hai Rescue: Meroot and Lucy"
 		personality plunders disables unconstrained
 		fleet "Large Core Pirates" 1
 		fleet "Small Core Pirates" 1
-			
+
+
 
 mission "Hai Rescue: Gipeep Hint"
 	landing
@@ -521,6 +528,7 @@ mission "Hai Rescue: Gipeep Hint"
 		conversation
 			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 				accept
+
 
 mission "Hai Rescue: Gipeep"
 	landing

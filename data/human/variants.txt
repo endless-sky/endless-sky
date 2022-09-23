@@ -1296,7 +1296,7 @@ ship "Freighter" "Freighter (Hai Trafficker)"
 		"Pulse Rifle" 3
 		Brig
 		Supercapacitor 2
-		"Fuel Pod"
+		"Fuel Pod" 2
 		`"Biroo" Atomic Thruster`
 		"A255 Atomic Steering"
 		Hyperdrive
@@ -1305,10 +1305,10 @@ ship "Freighter" "Freighter (Hai Trafficker)"
 		Ramscoop
 		"Hai Corundum Regenerator"
 		"Hai Chasm Batteries"
-		"Outfits Expansion" 3
+		"Outfits Expansion" 5
 		"Liquid Nitrogen Cooler"
 		"Breeder Reactor"
-		"Security Station"
+		"Security Station" 2
 
 
 

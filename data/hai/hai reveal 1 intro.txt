@@ -25,11 +25,6 @@ mission "Hai Secret Leaker Begins"
 event "pug media coverage"
 
 
-event "hai ladybug available"
-	shipyard "Hai Intermediate"
-		"Ladybug"
-	shipyard "Hai Advanced"
-		"Ladybug"
 
 mission "Hai Reveal: Reputation Reset"
 	landing
@@ -52,6 +47,8 @@ mission "Hai Reveal: Reputation Reset"
 		"reputation: Pirate (Devil-Run Gang)" = -1000
 		fail
 
+
+
 mission "Event: Pug Media Coverage"
 	landing
 	source
@@ -71,6 +68,7 @@ mission "Event: Pug Media Coverage"
 				decline
 
 event "hai secret leaks"
+
 
 
 conversation "hai reveal free worlds news"
@@ -152,6 +150,7 @@ conversation "What is going on in Hai space? (Met the Unfettered.)"
 		decline
 
 
+
 # Six possibilities for origin and destination, which works around bug 1938 - but also has coherency advantages.
 # When other campaigns get added there will be even more possible combinations. As such the objective here is to matrix it out, so that all geographic starting points are defined by the missions - and then the conversations handle the combination of branches required for each campaign in a given geographic area. This makes it clearer and easier to work on and expand in the future when required.
 # Symbols RS=Republic or Syndicate FW = Free Worlds
@@ -181,6 +180,7 @@ mission "ZZ Event Hai Secret Leaks: RSHU"
 		dialog "You should first visit Allhome, where the most humans are, to see how things are going before you get more heavily involved."
 	on stopover
 		conversation "What is going on in Hai space? (Met the Unfettered.)"
+
 
 mission "ZZ Event Hai Secret Leaks: FWHU"
 	landing
@@ -228,6 +228,7 @@ mission "ZZ Event Hai Secret Leaks: RSH"
 		conversation "hai reveal republic or syndicate news"
 	on complete
 		conversation "What is going on in Hai space? (Have not met Unfettered.)"
+
 
 mission "ZZ Event Hai Secret Leaks: FWH"
 	landing
@@ -295,6 +296,7 @@ event "pirates investigate leaks"
 		government "Pirate"
 		add fleet "Marauder fleet IX" 2000
 		add fleet "Anti-Pirate Hai (No Wormhole Travel)" 700
+
 
 
 mission "Trader Directions to Hai Space"
@@ -442,6 +444,8 @@ mission "00 Hai Tour [4] Cloudfire"
 			`	The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 			`	It does not take long to realize that this conflict really is constant, even if the friendlier Hai on this side seem to be maintaining their defense without apparently taxing their civilization to any great extent.`
 
+
+
 # Both tours merge here
 mission "Hai Tour [5] Tour Ends"
 	landing
@@ -536,8 +540,9 @@ mission "Hai Leaks Response 1"
 			`	"Oh," she says, "we've treated the Syndicate as a de facto government for many decades now; with the amount of influence they have it was the only prudent thing to do."`
 			`	You take the boxed item with you, and an escort awaits to return you to your ship. As the door behind you closes, you hear Sayari mutter to someone, "It really was much easier when they just had one government though. What a mess."`
 				accept
-	
-	
+
+
+
 mission "Hai Leaks Response 2"
 	landing
 	name "Collect Representatives"
@@ -590,8 +595,6 @@ mission "Hai Leaks Response 2"
 	on complete
 		log `Brought human diplomatic representatives from each human faction to Hai-home to address the crisis. Something drastic needs to be done to keep the secret from entirely bursting, but they know how long they will have to work with. Asked to rout pirates hoping to benefit from the chaos while they work on a solution.`
 
-	
-	
 event "pirates respond to leaks"
 	#Add pirate spawns to Waypoint and Heia Due
 	system "Waypoint"
@@ -669,6 +672,8 @@ mission "Hai Leaks Response 2C"
 			`	"Now, let's be on our way," he says. "The Hai won't save themselves with us standing here."`
 				decline
 
+
+
 #This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
 #No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
 mission "Hai Leaks Response 3"
@@ -702,6 +707,7 @@ mission "Hai Leaks Response 3"
 				`	"I'll do what I can."`
 					accept
 #If a republic/syndicate campaign gets added this text will need variants.
+
 
 
 #Go kill pirates mission with chat on Allhome.
@@ -791,6 +797,13 @@ event "waypoint pirates vanquished"
 		remove fleet "Large Northern Pirates"
 		remove fleet "Large Core Pirates"
 
+event "hai ladybug available"
+	shipyard "Hai Intermediate"
+		"Ladybug"
+	shipyard "Hai Advanced"
+		"Ladybug"
+
+
 # It is impossible to implement a "capture and return npc" mission. 
 # Once the ship is captured, the NPC is gone and the mission is failed.
 # The NPC has an outfit used to determine if you managed to get it back safely.
@@ -812,6 +825,7 @@ mission "Hai Leaks Response 4A"
 #	on fail
 #		dialog `You have failed to recover the Geocoris. This is not critical, but does have long-term consequences. If you want the most complete ending, revert to the autosave or another earlier snapshot of the game.`
 #Too hand-holdy for present implementation and content.
+
 
 # Must be able to resolve earlier than the rest in this set.
 #The Geodesic Geocoris may become available to purchase specially later on.
@@ -916,6 +930,8 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	turret "Electron Turret"
 	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
 
+
+
 mission "Hai Leaks Response 5"
 	landing
 	name "Talk to Hai authorities on <planet>"
@@ -934,6 +950,8 @@ mission "Hai Leaks Response 5"
 event "allhome reinforced"
 	system "Heia Due"
 		add fleet "Anti-Pirate Hai (No Wormhole Travel)" 600
+
+
 
 # This non-landing mission allows you to take the game-play pause and go do other stuff if you need before getting too deeply involved in the story.
 mission "Hai Leaks Response 6"
@@ -1018,6 +1036,8 @@ mission "Hai Leaks Response 6"
 		has "Hai Rescue: Gipeep: offered"
 	on complete
 		log `You found proof of more kidnapped Hai and something that seems out of place. Sayari's fears appear to have been justified...`
+
+
 
 mission "Hai Leaks Response 7"
 	landing
