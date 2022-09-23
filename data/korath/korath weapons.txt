@@ -959,7 +959,6 @@ outfit "Firelight Missile Bank"
 outfit "Firelight Turning"
 	weapon
 		sprite "projectile/firelight"
-			"frame rate" 12
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 0.1
@@ -979,6 +978,7 @@ outfit "Firelight Activated"
 	weapon
 		sprite "projectile/firelight active"
 			"frame rate" 12
+			"random start frame"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
@@ -1045,8 +1045,8 @@ outfit "Firestorm Battery"
 	"firestorm torpedo capacity" 13
 	weapon
 		sprite "projectile/firestorm torpedo"
-			"frame rate" 2
-			"no repeat"
+			"frame rate" 6
+			"random start frame"
 		"hardpoint sprite" "hardpoint/firestorm battery"
 		sound "firestorm"
 		ammo "Firestorm Torpedo"

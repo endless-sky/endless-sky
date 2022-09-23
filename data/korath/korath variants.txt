@@ -1112,6 +1112,13 @@ ship "Korsmanath A'awoj" "Korsmanath A'awoj (Special)"
 		"Cargo Expansion" 8
 		"Scram Drive"
 
+		"Afterburner (Stellar Class)"
+		"Reverser (Stellar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Thruster (Planetary Class)"
+		"Thruster (Stellar Class)"
+
 	turret "Langrage Hyper-Heaver"
 	turret "Warder Anti-Missile"
 	turret "Banisher Grav-Turret"
