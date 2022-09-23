@@ -533,7 +533,7 @@ mission "Hai Leaks Response 1"
 			choice
 				`	"That seems practical."`
 				`	"I don't really have an option to refuse, do I?"`
-			`	"Fantastic, you understand the situation," she says, though her tone is much more business like than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
+			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
 			`	She hands you an officially branded box containing what appears to be a diplomatic ID, which appears to both identify you in human standard and, from context, in Hai.`
 			choice
 				`	"Various? We only have two governments."`

@@ -526,7 +526,7 @@ mission "Hai Rescue: Gipeep Hint"
 		random < 80
 	on offer
 		conversation
-			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
+			`As you come in to land at the spaceport, you listen to the usual chatter of captains coming and going. One guy is bragging particularly odiously about some lucrative transport jobs he'd picked up on <planet>. Of course, it could mean nothing, but it's also very suspicious for that particular world. <planet> is not known for lucrative transport jobs and it could likely be contraband, or worse...`
 				accept
 
 
