@@ -367,7 +367,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 		const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
-	Color selectionColor(0.f, .3f);
+	const Color &selectionColor = *GameData::Colors().Get("item selected");
 
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
