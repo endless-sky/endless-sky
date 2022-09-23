@@ -4055,14 +4055,14 @@ double Ship::BestFuel(const string &type, const string &subtype, double defaultF
 		// If the FTL drive has an attached "jump mass penalty"
 		// then the base fuel cost is assumed to be at 0 tons.
 		// Otherwise, base fuel cost is established to be at "jump mass".
-		
+
 		// Temporary note: jump mass cost is fuel cost per 100 additional tons.
-		
+
 		double fuel = outfit.Get("jump fuel");
-		
+
 		// If any of these are not defined, they default to 0, so nothing will break.
 		fuel += .01 * outfit.Get("jump mass cost") * (mass - outfit.Get("jump base mass"));
-		
+
 		// It is possible to generate a negative jump fuel, but I
 		// do not think this will mess with things in any major way,
 		// so I will not stop it.
