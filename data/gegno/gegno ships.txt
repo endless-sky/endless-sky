@@ -881,7 +881,7 @@ ship Feldspar
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 14760000
-		mass 1146
+		mass 1090
 		bunks 192
 		"cargo space" 82
 		drag 15
@@ -962,7 +962,7 @@ ship Muscovite
 			"Scin Architect"
 			"Scin Hoplologist"
 		cost 16460000
-		mass 1090
+		mass 1146
 		bunks 166
 		"cargo space" 700
 		drag 16.1
@@ -1018,48 +1018,56 @@ ship Kyanite
 	swizzle 0
 	attributes
 		category "Utility"
-		cost 3700000
-		mass 1146
-		bunks 192
+		cost 41780000
+		mass 1270
+		bunks 108
 		"cargo space" 82
-		drag 15
-		"engine capacity" 182
-		"fuel capacity" 500
-		"heat dissipation" 1.4
-		hull 18800
-		"outfit space" 866
-		"required crew" 133
+		drag 17.2
+		"engine capacity" 160
+		"fuel capacity" 400
+		"heat dissipation" 1.2
+		hull 16200
+		"outfit space" 340
+		"required crew" 98
 		shields 0
 		"weapon capacity" 212
+
+		"energy capacity" 2400
+		"energy generation" 31.2
+		"heat generation" 99.4
+
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
 			"hull damage" 1200
 			"hit force" 1000
 	outfits
-		"C27 Campaign Core"
+		"Acuit Blaster"
+		"Astuit Battery" 1
 		"Guile Anti-Missile" 2
 		Hyperdrive
-		"R02 Battlezone Battery"
-		"R03 Warforge Battery"
-		"SC-12 Plasma Steering" 2
-		"SC-12 Plasma Thruster" 2
-	engine -24.4 210
-		over
-	engine 24.4 210
-		over
-	engine -16.5 186
-	engine 16.5 186
-	engine 0 187.5
-	"steering engine" 69 -17
-		angle -59.002075
-		left
-	"steering engine" -69 -17
-		angle 59.002075
+		"SC-14 Plasma Steering"
+		"SC-14 Plasma Thruster"
+
+	"steering engine" -90 -121
+		angle 59
 		right
-	turret -37.5 -18.5 "Guile Anti-Missile"
-	turret 37.5 -18.5 "Guile Anti-Missile"
-	gun 0 -4.5
+		scale 0.5
+		scale 0.5
+	"steering engine" 90 -121
+		angle -59
+		left
+	engine 22 148 0.6
+	engine -22 148 0.6
+	engine 32 177 0.6
+		over
+	engine -32 177 0.6
+		over
+	engine 0 157
+	turret -50.5 -121.5 "Guile Anti-Missile"
+	turret 50.5 -121.5 "Guile Anti-Missile"
+	turret 0 68 "Astuit Battery"
+	gun 0.5 -100 "Acuit Blaster"
 	leak leak 50 50
 	leak flame 80 140
 	explode "huge explosion" 18

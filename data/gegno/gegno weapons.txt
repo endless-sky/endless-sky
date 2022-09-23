@@ -189,15 +189,15 @@ outfit "Astuit Battery"
 		sound astuit
 		"hit effect" "astuit hit"
 		lifetime 44
-		reload 4
+		reload 6
 		velocity 8
 		"hardpoint offset" 6
 		inaccuracy 5
 		"turret turn" 2.2
 		"firing energy" 13.2
 		"firing heat" 34
-		"shield damage" 8
-		"hull damage" 8.2
+		"shield damage" 8.4
+		"hull damage" 8.8
 	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat. Asuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With 4 blasters on a turreted mount, it produces a constant stream of damage upon a target."
 	description "	Although each shot does not hit very hard, consistent fire adds up - but so does energy usage."
 
@@ -340,3 +340,31 @@ effect drilling
 	"random spin" 2
 	"random frame rate" 5
 
+outfit "Acuit Blaster"
+	category Guns
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+	cost 1406000
+	mass 61
+	thumbnail outfit/acuit
+	"outfit space" -61
+	"gun ports" -1
+	"weapon capacity" -61
+	weapon
+		sprite projectile/acuit
+			"random start frame"
+		"hit effect" "acuit hit"
+		sound scinshot
+		lifetime 60
+		reload 56
+		"burst reload" 10
+		velocity 14
+		"hardpoint offset" 26
+		inaccuracy 3
+		"firing energy" 200
+		"firing heat" 280
+		"shield damage" 152
+		"hull damage" 260
+		"hit force" 40
+	description "Test."
