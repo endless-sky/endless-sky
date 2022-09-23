@@ -158,18 +158,6 @@ tip "disruption resistance heat:"
 tip "drag:"
 	`Limits the maximum speed of a ship.`
 	
-tip "drive mass reference:"
-	`If your ship has this mass, this drive will function as advertised.`
-
-tip "drive mass exponent:"
-	`When your ship mass is doubled, fuel consumption of this drive will increase twofold this many times.`
-
-tip "drive distance reference:"
-	`The distance to your target destination at which this drive will function as advertised.`
-
-tip "drive distance exponent:"
-	`When the distance to your target destination is doubled, fuel consumption of this drive will increase twofold this many times.`
-
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
@@ -313,9 +301,12 @@ tip "jump fuel:"
 
 tip "jump range:"
 	`How far you can jump between systems using this drive.`
-	
-tip "jump startup fuel:"
-	`Initial drive fuel consumption, unaffected by either the mass of your ship, or the distance to your destination.`
+
+tip "jump mass cost:"
+	`How much fuel this drive consumes, per 100 tons of mass. Additive with jump fuel.`
+
+tip "jump base mass:"
+	`The mass of your ship at which this drive will consume exactly the amount advertised by its jump fuel.`
 
 tip "leak protection:"
 	`Protection against weapons that cause fuel leakage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
