@@ -157,7 +157,7 @@ outfit "Ionic Blaster Prototype"
 		"shield damage" 70
 		"hull damage" 30
 		"ion damage" 1
-	description "Since the beginning of their conflict with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that end, they began developing the Ionic Blaster, much smaller than the venerable Ion Cannon, but still able to apply the same weapon jamming and energy draining ion effects, albeit to a much lesser extent. It also has enough raw damage to be useful in all situations."
+	description "Since the beginning of their conflict with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that end, they began developing the Ionic Blaster. Much smaller than the venerable Ion Cannon but still able to apply the same weapon jamming and energy draining effects, albeit to a much lesser extent, it also has enough raw damage to be useful in all situations."
 	description "The design goal for the Ionic Blaster was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles. The result is also small enough to be equipped on the Unfettered's new fighters."
 	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
