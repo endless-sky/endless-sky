@@ -87,7 +87,7 @@ ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump Full)"
 		"Thruster (Planetary Class)"
 		"Fuel Processor" 2
 
-# Ambassadorial Centipede designed to fly deep into hostile space:
+# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
 ship "Centipede" "Centipede (Teeneep)"
 	# Add some ambassadorial staff:
 	add attributes

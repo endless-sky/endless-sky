@@ -38,7 +38,7 @@ event "hai rescue: teeneep message"
 
 mission "Hai Rescue [A01] Visit Darkwaste"
 	landing
-	name "Missing Researchers"
+	name "Meet Teeneep"
 	description "Fly to <destination> to visit the Hai you rescued."
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
@@ -461,7 +461,6 @@ planet "Scar's Hideout"
 
 
 
-
 mission "Pirate Troubles [3]"
 	landing
 	name "Scar's Legion"
@@ -518,7 +517,7 @@ mission "Pirate Troubles [3]"
 				`	"I'm afraid that I can't allow that."`
 					goto disallow
 			label disallow
-			`	The crowd of pirates response with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
+			`	The crowd of pirates respond with a cacophony of jeers and boos. The leader raises his fist in the air, and the crowd falls silent. "Well I'm afraid that just won't do."`
 			`	The leader paces back and forth in silence for a moment. "Well if we don't get what we want, then we're just going to need to keep on attacking. Which means that your presence here is pretty useless."`
 			`	The leader turns to the crowd. "How about a fight? To the death!" The crowd erupts in cheers. The leader turns back to you. "We fight in this system only. Just you and me. You attempt to run, my men hunt you down. How's that sound?" You attempt to respond, but before you can, the leader pulls his gun and aims it at you. "Run."`
 				launch
@@ -613,6 +612,8 @@ mission "Pirate Troubles [4]"
 				`	"They asked for a tribute of your weapons and technology, but I refused the offer, so they attacked me."`
 					goto refused
 				`	"They were not willing to negotiate, and I was forced to defend myself."`
+			action
+				set "lied to elders"
 			`	"This is most unfortunate," another elder says. "But I am happy to hear that they will not cause any more loss of life among our people."`
 				goto end
 			
@@ -655,6 +656,102 @@ mission "Pirate Troubles [4]"
 		payment 500000
 		dialog `With the freighters safely returned, the Hai thank you for resolving the situation with Scar's Legion and hand you <payment> for your help.`
 
+
+
+mission "Hai Rescue [A04] Report to Teeneep"
+	landing
+	name "Report to Teeneep"
+	description `Tell Teeneep about the experience with Scar's Legion.`
+	source Hai-home
+	destination Darkwaste
+	to offer
+		or
+			has "Pirate Troubles [4]: done"
+			has "Pirate Troubles [4]: declined"
+	on offer
+		dialog `Alondo is apparently away somewhere and unavailable for a short while. So, now that the situation with Scar's Legion is resolved, it's time to report to Teeneep about the experience. Maybe it will shed some light on what's going on?`
+
+
+
+mission "Hai Rescue [A05] Take Teeneep to Hai-home"
+	landing
+	name "Return to Hai-home"
+	description `Tell Teeneep about the experience with Scar's Legion.`
+	source Darkwaste
+	destination Hai-home
+	passengers 1
+	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
+	to offer
+		has "Hai Rescue [A04] Report to Teeneep: done"
+	on offer
+		conversation
+			`Teeneep is waiting for you when you return to her base on Darkwaste, though notably the security point at the front is properly manned this time. Perhaps the most recent raid has given them cause for concern. There is a quiet corner of the living area that is unoccupied at the time, and she gestures for you to join her there.`
+			`	"So," she says, "please, tell me everything about this recent experience. I must know what happened and what the Elders chose to do."`
+			`	You briefly relay the initial events. Starting with the raid, the request for your assistance, the search that you went on, and the eventual discovery of Scar's Legion and their secret base in Danoa where they issued their demands.`
+			branch "appeased scar"
+				has "Pirate Troubles [4]: done"
+			branch lied
+				has "lied to elders"
+			choice
+				`	"The Elders were glad they were dealt with, but some would have handed over your technology to appease them."`
+					goto "wanted to appease"
+				`	"The Elders would have handed them Hai tech, but I could not allow them to use it to terrorize other humans."`
+			`	Teeneep's eyebrows shoot up but she restrains herself at the tone of your response. "Indeed, it would not be wise to enable more of your people to suffer their predations. I must be clear on something though; the Elders, you said they'd have given them what they wanted? They said that? They explicitly said they'd have rather dealt arms to human pirates rather than eliminate a threat?"`
+			choice
+				`	"Yes, they were very focused on a peaceful solution and felt the outcome was unfortunate."`
+					goto unfortunate
+				`	"Actually, they said they'd have handed it over if they'd only asked nicely."`
+					goto fury
+			label "wanted to appease"
+			`	Teeneep's eyebrows shoot up in an extremely human-like expression. "They said that? They explicitly said they'd have rather dealt arms to human pirates rather than eliminate a threat?"`
+			choice
+				`	"Yes, they said it was most unfortunate."`
+					goto unfortunate
+				`	"Actually, they said they'd have handed it over if they'd only asked nicely."`
+					goto fury
+			
+			label "appeased scar"
+			choice
+				`	"Scar's Legion wanted Hai tech. The Elders have handed over your technology to appease them."`
+					goto fury
+				`	"Scar's Legion wanted Hai tech. Some Elders argued against dealing arms, but they handed them over anyway."`
+			`	When you mention the Elders who argued against dealing arms she nods as if expecting to be satisfied and the rest of the sentence seems to take a brief moment to register as her face flashes through a range of expressions too quickly for you to follow.`
+			
+			label fury
+			`	"WHAT!?"`
+			`	Teeneep's exclamation is loud enough that every head in the room turns towards you both. "The Elders would prioritize our secrecy over our safety, even when the purpose of the secrecy is to maintain our safety?! Some among them must have grown mold in their brains!"`
+			`	Teeneep seems to lapse into either some very colorful phrasing, or perhaps a string of Hai expletives. It's all in Hai, and completely unintelligible to you, but around the room you can hear much muttering and several Hai give each other pointed glances. Realizing this Teeneep gives them a look, composes herself and lowers her voice back to a tone of restrained fury.`
+			label unfortunate
+			`	"Clearly many of the Elders have become weak and misguided, lost in the miasma of our current difficulties. I must speak to our mutual friend and investigate this. No Hai should be accepting of this subversion of our society's critical values.`
+				goto conclusion
+			
+			label lied
+			choice
+				`	"Scar's Legion wanted Hai tech, but I could not allow them to use it to terrorize other humans."`
+				`	"The Elders seemed intent on a peaceful solution, but I do not believe that was truly possible."`
+			`	She nods seriously, "Indeed, I would expect that a serious threat capable of slipping the current heightened security and raiding our worlds should not be expected to actually engage in peace, nor trusted to do so. You say the Elders wanted a peaceful solution though, yet it sounds like that did not happen. Did you destroy them?"`
+			choice
+				`	"I defeated their leader."`
+				`	"I destroyed their ships."`
+					goto ships
+			`	"Ah, so bloodied, but perhaps not gone," she muses.`
+			label ships
+			`	"Even with the ships they had their destroyed, doubtless there will be remnants of the group. We shall have to do some investigation of our own in Danoa." She narrows her eyes at you suddenly. "You did not tell the Elders everything you have told me did you? What did you tell them?"`
+			`	Teeneep seems to have an incredibly perceptive sense of both humans and their use of language to have picked up on this.`
+			choice
+				`	"I told them Scar's Legion was not willing to negotiate, and I was forced to defend myself."`
+					goto "complete honesty"
+				`	"I simply did not mention the terms which I found unacceptable, and said I was forced to defend myself."`
+			`	She cocks her head and looks at you searchingly for a moment, but doesn't seem to reach any particular conclusion.`
+			label "complete honesty"
+			`	"Yes, well, I suppose you would have to defend yourself in any situation where you didn't give them what they wanted," she says. "In any event, this raises some serious questions about what exactly is going on in those chambers when they make decisions.`
+				goto conclusion
+			
+			label conclusion
+			`	"You must take me to <destination> immediately. My people here can analyze any sensor logs or other data you have on Scar's legion, it doesn't sound like they're connected to our mystery but we can do our due diligence. I must personally investigate these new concerns though and I cannot do that from here, nor can I fly my own ship there without becoming snarled in bureaucracy right now, but if I come with you I can catch up with our mutual friend easily from the secure spaceport. I have sufficient privileges to be there, even if I have no existing clearance for landing my ship."`
+			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <destination> far too long as it is. My sources suggest that there may be those there who are already awaiting your return.`
+			`	You have barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
+				accept
 
 
 
