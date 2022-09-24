@@ -4464,15 +4464,15 @@ system Antevorta
 		sprite star/carbon-core
 		period 10
 	object
-		sprite planet/desert8
+		sprite planet/io
 		distance 152.41
 		period 13.7410
 	object
-		sprite planet/io
+		sprite planet/lava7-b
 		distance 449.3
 		period 69.5510
 	object
-		sprite planet/lava7-b
+		sprite planet/desert8
 		distance 622.34
 		period 113.381
 	object
@@ -6240,8 +6240,8 @@ system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
 	attributes "ember waste"
-	arrival 625
-	habitable 625
+	arrival 5000
+	habitable 50000
 	belt 1797
 	haze _menu/haze-red
 	link Stercutus
@@ -6269,20 +6269,20 @@ system Caeculus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr1
+		sprite star/wr
 		period 10
 	object
 		sprite planet/dust6-b
 		distance 127.09
-		period 22.9238
+		period 8.10479
 	object
 		sprite planet/desert9
 		distance 341.05
-		period 100.773
+		period 35.6288
 	object
 		sprite planet/gas5-b
 		distance 993.81
-		period 501.273
+		period 177.227
 		object
 			sprite planet/rock14-b
 			distance 258
@@ -6294,11 +6294,11 @@ system Caeculus
 	object
 		sprite planet/rock3
 		distance 1683.81
-		period 1105.50
+		period 390.854
 	object
 		sprite planet/jupiter-b
 		distance 2187.82
-		period 1637.33
+		period 578.885
 		object
 			sprite planet/rhea-b
 			distance 273
@@ -12060,9 +12060,9 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
-	attributes "north"
-	arrival 625
-	habitable 625
+	attributes "north" "wolf-rayet"
+	arrival 5000
+	habitable 50000
 	belt 1345
 	haze _menu/haze-133
 	link Mintaka
@@ -12089,24 +12089,24 @@ system Gorvi
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava0
 		distance 342.184
-		period 101.276
+		period 35.8067
 	object
 		sprite planet/lava7
 		distance 580.224
-		period 223.621
+		period 79.0621
 	object
 		sprite planet/titan-b
 		distance 1076.43
-		period 565.065
+		period 199.780
 	object
 		sprite planet/gas16
 		distance 2298.59
-		period 1763.24
+		period 623.400
 		object
 			sprite planet/rock17
 			distance 215
@@ -13251,9 +13251,9 @@ system Ik'kara'ka
 system Ildaria
 	pos -702 317
 	government Republic
-	attributes "rim" "wolf-rayet"
-	arrival 625
-	habitable 625
+	attributes "rim" "nova"
+	arrival 500
+	habitable 100
 	belt 1132
 	haze _menu/haze-133
 	link Kochab
@@ -13280,28 +13280,28 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/wr0
+		sprite star/nova-small
 		period 10
 	object
-		sprite planet/ice4-b
+		sprite planet/rock17-b
 		distance 694.26
-		period 292.686
+		period 103.480
+	object
+		sprite planet/rock6-b
+		distance 1135.47
+		period 216.440
+	object
+		sprite planet/ice4-b
+		distance 1893.08
+		period 465.938
 		object
 			sprite planet/ice8
 			distance 130
 			period 16.9135
 	object
-		sprite planet/rock6-b
-		distance 1135.47
-		period 612.186
-	object
-		sprite planet/rock17-b
-		distance 1893.08
-		period 1317.87
-	object
 		sprite planet/dust4-b
 		distance 2712.92
-		period 2260.86
+		period 799.338
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -14721,9 +14721,9 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "korath" "wolf-rayet"
-	arrival 3000
-	habitable 3000
+	attributes "korath"
+	arrival 3100
+	habitable 3100
 	belt 1606
 	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
@@ -14752,29 +14752,33 @@ system "Kor Ak'Mari"
 		sprite star/carbon-core
 		period 100
 	object
-		sprite planet/lava6
-		distance 179.89
-		period 17.6201
-	object
 		sprite planet/lava0-b
 		distance 492.58
-		period 79.8388
+		period 78.5406
 	object
-		sprite planet/cloud2-b
-		distance 874.19
-		period 188.759
+		sprite star/k-dwarf
+		distance 790
+		period 159.521
+		object
+			sprite planet/lava6
+			distance 79.89
+			period 38.6038
+	object
+		sprite planet/oberon
+		distance 1807.64
+		period 552.137
+	object
+		sprite planet/ocean6-b
+		distance 2874.19
+		period 1107.01
 		object
 			sprite planet/callisto-b
 			distance 166
 			period 16.2305
 	object
-		sprite planet/dust3-b
-		distance 1777.8
-		period 547.423
-	object
-		sprite planet/oberon
-		distance 2107.64
-		period 706.633
+		sprite planet/ice0-b
+		distance 3777.8
+		period 1668.15
 
 system "Kor En'lakfar"
 	pos -31 -33
@@ -23992,9 +23996,9 @@ system Solifar
 system Sospi
 	pos -317 -161
 	government Republic
-	attributes "north"
-	arrival 625
-	habitable 625
+	attributes "north" "wolf-rayet"
+	arrival 5000
+	habitable 50000
 	belt 1715
 	haze _menu/haze-133
 	link Nihal
@@ -24025,24 +24029,24 @@ system Sospi
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava2-b
 		distance 152.96
-		period 30.2682
+		period 10.7014
 	object
 		sprite planet/lava7
 		distance 362.32
-		period 110.346
+		period 39.0133
 	object
 		sprite planet/lava4
 		distance 656.93
-		period 269.400
+		period 95.2475
 	object
 		sprite planet/gas16-b
 		distance 2355.57
-		period 1829.21
+		period 646.724
 		object
 			sprite planet/dust3
 			distance 185
@@ -26374,11 +26378,11 @@ system Wezen
 	object
 		sprite planet/miranda-b
 		distance 255.401
-		period 32.2681
+		period 31.3623
 	object
 		sprite planet/gas5-b
 		distance 664.041
-		period 135.279
+		period 131.482
 		object "Phoenix Station"
 			sprite planet/station1
 				scale 0.5
@@ -26387,11 +26391,11 @@ system Wezen
 	object
 		sprite planet/water0-b
 		distance 1273.29
-		period 359.195
+		period 349.113
 	object Alfheim
 		sprite planet/forest0
 		distance 1768.53
-		period 587.974
+		period 571.470
 		object
 			sprite planet/ice0-b
 			distance 181
@@ -26399,7 +26403,7 @@ system Wezen
 	object
 		sprite planet/gas9-b
 		distance 3579.78
-		period 1693.26
+		period 1645.73
 		object
 			sprite planet/rock0
 			distance 220
@@ -30550,7 +30554,7 @@ planet Splashdown
 		fleet "Large Republic" 3
 
 planet "Ssil Vida"
-	attributes emitter sheragi "remnant station" uninhabited
+	attributes emitter "remnant station" sheragi uninhabited
 	landscape land/station11
 	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you. Either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 	spaceport `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
