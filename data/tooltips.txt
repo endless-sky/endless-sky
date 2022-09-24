@@ -157,7 +157,7 @@ tip "disruption resistance heat:"
 
 tip "drag:"
 	`Limits the maximum speed of a ship.`
-	
+
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
