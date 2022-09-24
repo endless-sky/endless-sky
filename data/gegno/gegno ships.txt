@@ -1025,7 +1025,7 @@ ship Kyanite
 		drag 17.2
 		"engine capacity" 160
 		"fuel capacity" 400
-		"heat dissipation" 0.67
+		"heat dissipation" 0.74
 		hull 16200
 		"outfit space" 340
 		"required crew" 98

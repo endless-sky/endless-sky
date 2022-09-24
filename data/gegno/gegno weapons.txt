@@ -360,8 +360,7 @@ outfit "Acuit Blaster"
 		reload 56
 		"burst reload" 10
 		velocity 14
-		"hardpoint offset" 26
-		inaccuracy 3
+		inaccuracy 5
 		"firing energy" 200
 		"firing heat" 280
 		"shield damage" 152

@@ -18,10 +18,10 @@ outfit "Impulse Engine"
 	"engine capacity" -70
 	"thrust" 50
 	"thrusting energy" 20
-	"reverse thrust" 40
+	"reverse thrust" 50
 	"reverse thrusting energy" 20
 	"thrusting heat" 10
-	"turn" 300
+	"turn" 600
 	"turning energy" 10
 	"turning heat" 5
 	"flare sound" "impulse engine"
@@ -143,8 +143,9 @@ outfit "Abyssal Composer"
 		"velocity" 660
 		"lifetime" 1
 		"range override" 600
-		"reload" 1
+		"reload" 0
 		"ammo" "Impulse Engine" 0
+		"hardpoint offset" 20
 		"firing energy" 60
 		"firing heat" 20
 		"shield damage" 260
@@ -152,8 +153,8 @@ outfit "Abyssal Composer"
 		"energy damage" 100
 		"hull damage" 180
 		"piercing" 0.3
-		"firing force" 20
-		"hit force" -140
+		"firing force" 25
+		"hit force" -125
 		"firing shields" -50
 		"firing hull" -10
 		"safe"
@@ -162,6 +163,7 @@ outfit "Abyssal Composer"
 effect "composed"
 	sprite "effect/composed"
 		"no repeat"
+		"scale" 0.75
 		"frame rate" 20
 	sound "drone2"
 	"lifetime" 30
