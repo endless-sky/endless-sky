@@ -3,11 +3,11 @@ Version 0.9.15:
     * Over a year's worth of new content and bug fixes! We hope it was worth the wait!
     * Made a large number of graphical improvements, such as the addition of parallax for planets, stars, and haze, and the remodeling and improvement of various assets. See the graphics section for more details.
     * Made a variety of sweeping balance changes to various ships and outfits in order to improve lesser used items or strategies and turn certain choices into a question of what fits best for the role you're looking for instead of there being single no-brainer choices as to which ship or outfit is the best. See the balance section of the changelog for more details.
-    * Added over 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. (@Zitchas, @Azure3141, @beccabunny, @GefullteTaubenbrust2, jeverett#3344)
+    * Added over 20 new missions to the Remnant storyline, following the Remnant as they further investigate the Ember Waste and deal with the troubles that it throws at them. Includes the addition of new ships and outfits. (@Zitchas, @Azure3141, @beccabunny, @Dschiltt, @GefullteTaubenbrust2, jeverett#3344, @Saugia, scrinarii1337)
     * Added a massive amount of new content to the Korath Exiles, including two new systems near the core, multiple new ships, over two dozen new weapons and outfits, improved models for some older ships and outfits, and a new set of names for the outfits and ships that avoid having "Korath" as a prefix for every name. (@ravenshining, @Dragenhart, @EjoThims, @GefullteTaubenbrust2, @MasterOfGrey, @Saugia, @warp-core)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @fakepass, @Galaucus, @Hurleveur, @infinitewarp, @MasterOfGrey, @McloughlinGuy, @nathan-b, @NRK4, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @Wedge009, @W1zrad, @warp-core, @Zitchas)
+      * Typo fixes. (@alex116, @alextd, @Amazinite, @Anarchist2, @Arachi-Lover, @Arrow2thekn33, @dragonmaus, @fakepass, @Galaucus, @Hurleveur, @infinitewarp, @MasterOfGrey, @McloughlinGuy, @nathan-b, @NRK4, @oo13, @pilover100, @Pointedstick, @quyykk, @RestingImmortal, @roadrunner56, @samrocketman, @tehhowch, @Terin, @theweirdnut, @thomasballinger, @tibetiroka, @W1zrad, @warp-core, @Wedge009, @williaji, @Zitchas)
       * Removed a duplicate "landing" tag on a mission. (@shitwolfymakes)
       * Deep merchant fleets no longer have Deep Security names. (@peteryager)
       * Ensured all ship, thumbnail, and outfit sprites have even dimensions to avoid blurriness caused by scaling. (@Anarchist2)
@@ -35,6 +35,7 @@ Version 0.9.15:
       * The Unfettered Tribute jobs now mention both possible missing objectives in the on visit dialog. (@Hurleveur)
       * The Coalition Finisher now plays a sound effect when it impacts a target. (@Arachi-Lover)
       * The Pre-Hai first contact mission for the Wanderers no longer offers if you've met the Unfettered, but not the Hai. (@Arachi-Lover)
+      * Fixed errors in various ship images. (@leklachu)
     * Engine bugs:
       * Ships that are already being carried are no longer double-counted when calculating the number of available bays. (@benflodge)
       * The destination of an invisible mission is no longer visible when opening the map during a conversation or dialog from the mission. (@Amazinite)
@@ -91,6 +92,8 @@ Version 0.9.15:
       * The player's ships will now properly pursue targets that are beyond the system fence. (@kaol)
       * The carried ships of a defense fleet now have proper personalities. (@kaol)
       * The game will now be able to initialize GLEW on Wayland. (@eternal-sorrow, @quyykk)
+      * Changed derived conditions to register before reading from the save file as to have auto-generated conditions properly function. (@leklachu)
+      * Fixed the formatting of some values in the bank panel as to not overflow into neighboring text. (@warp-core)
   * Game content:
     * New content:
       * More spaceport news for Coalition, Hai, human, Remnant, Wanderer, and Quarg planets. (@Anarchist2, @Arachi-Lover, @BlazingDiesel, @dorbarker, @jerith, @NRK4, @petervdmeer, @roadrunner56, @tibetiroka)
@@ -149,12 +152,9 @@ Version 0.9.15:
       * Created a larger and more powerful version of the Finisher Pod for some Heliarch ships. (@Arachi-Lover)
       * Various new superstructures in Coalition space. (@Arachi-Lover, @Saugia)
       * A new mission chain where you investigate a long lost Coalition satellite sent into human space. (@Arachi-Lover)
-      * A new mission where you can help a laborer down on his luck. (@roadrunner56)
       * The Coalition now has a set of reverse thrusters. (@Hecter64)
       * The player will now be confronted by Republic personnel upon returning to Republic space from their first time in Hai space. (@Amazinite)
-      * A new set of missions and jobs involving transporting goods and people between planets within Sol. (@roadrunner56)
-      * A new mission chain involving transporting valuable artifacts. (@roadrunner56)
-      * A newset of missions about taking thrill-seekers to exotic and dangerous locations around the galaxy. (@roadrunner56)
+      * Created various new individual and short chains of mission around human space. (@roadrunner56)
     * Mission changes:
       * Killing both Arfecta that defend the Wanderer planets now causes hostility with the Wanderers upon landing on any of their planets, not just one specific planet. (@Terin)
       * The Deep Archaeology and Unfettered first contact missions now contain branches if the player knows about the Pug or Sheragi respectively before reaching those missions. (@BlazingDiesel)
@@ -269,10 +269,11 @@ Version 0.9.15:
       * Modeled the Tear of Skade for new missions in the Deep. (@Anarchist2)
       * Added unique graphics for Wanderer engine flares, corrosion and burn damage-over-time sparks, and Pug Zapper impacts. (@GefullteTaubenbrust2)
       * Redid plasma, Coalition, Pug, and Korath engine flares. (@GefullteTaubenbrust2)
-      * Redid Pug ship and Coalition Finisher impact explosion effects. (@GefullteTaubenbrust2)
+      * Redid Pug ship, Coalition Finisher, and Hai Tracker explosion effects. (@GefullteTaubenbrust2)
       * Created models for the upcoming Sunder, Mining Drone, Hailstone, Heavy Gust, and Squall. (@Saugia)
       * Created a whole new scene for the plasma repeater. (@1010todd)
       * Doubled the resolution of all station graphics. (@Anarchist2)
+      * Remodeled Quarg ringworlds. (@GefullteTaubenbrust2)
     * Other:
       * The Pug worlds at the end of the main campaign now appear as uninhabited after the Pug flee before becoming inhabited by humanity. (@Anarchist2)
       * Reworded a technically incorrect news entry. (@Anarchist2)
@@ -305,6 +306,7 @@ Version 0.9.15:
       * Changed the Korati Efreti station to always be located between the planet and the sun in the system as the description suggests. (@warp-core)
       * Added two new ship categories. Space Liner, for very large transport ships, and Utility, for ships which didn't really fit their previous category because they were a hybrid of multiple categories. (@MasterOfGrey)
       * Changed the stars for some systems in human space to match what is known about the real star system of the same name. (@ravenshining)
+      * Created new "Mineral," "License," and "Unique" outfit categories, the former two breaking out of the "Special" category and the latter for one-time outfits gifted to the player. (@Anarchist2, @DarcyManoel, @Zitchas)
   * Game mechanics:
     * New mechanics:
       * Expanded the total number of swizzles from 7 to 27. (@Amazinite)
@@ -363,6 +365,7 @@ Version 0.9.15:
       * Escorts ordered to leave the system will now ignore hostiles to leave instead of continuing to fight. (@alextd)
       * Music no longer restarts from the beginning if the track trying to be played is the same as the one already playing. (@samrocketman)
       * Overheating has been nerfed from completely disabling an overheated ship to only disabling an overheated ship's power generation. (@Amazinite)
+      * Reverted how hit force is applied to ships to how it was before v0.9.9: only take the ship's mass into account instead of adding a fixed mass that reduced the hit force to small ships while increasing the hit force to large ships. (@1010todd)
   * User interface:
     * Pilot playtime is now visible in the player info panel. (@Terin)
     * The map is now able to be opened when at the end of a conversation. (@Amazinite)
@@ -393,7 +396,7 @@ Version 0.9.15:
     * Added a new button to the outfitter for toggling the visibility of stored outfits. (@Amacita)
     * The map now shows what outfits you have stored in a system if you hover over it. (@jostephd)
     * The job marker on systems for available jobs is now drawn before the one for active jobs. (@Jamibaraki)
-    * It is now possible to sort your fleet in the player info panel by model, system, and various other metrics. (@yjhn)
+    * It is now possible to sort your fleet in the player info panel by model, system, and various other metrics. (@yjhn, @quyykk)
     * Added a new "fleet jump" command, activated by pressing shift+jump, as an alternative to holding the jump key. Your fleet will jump automatically once every member is ready. (@petervdmeer, @yjhn)
     * Pressing space or double clicking now pauses and unpauses the scrolling of the credits on the main menu. (@quyykk, @tehhowch)
     * The Home and End keys can now be used to jump to the top and bottom of various panels. (@MagicMuscleMan)
@@ -405,6 +408,7 @@ Version 0.9.15:
     * The map UI is now capable of displaying an unlimited number of landable objects in a system, as opposed to before where only three planets could be shown and the fourth would begin to push UI off the screen. (@Hurleveur)
     * Laser weapons which fire in a burst no longer display their per-shot values, instead displaying their rate of fire as "continuous" with some percentage value next to them for the amount of time they maintain continuous fire. (@warp-core)
     * Moved the title on the main menu up 30 pixels so that it doesn't get overlapped by other UI elements that can appear in the middle of the screen. (@Amazinite)
+    * Tweaked the government colors of the Hai governments to better differentiate them on the map. (@mOctave)
   * Under the hood:
     * Unified the code for damage dealt to ships by hazards and projectiles. (@petervdmeer)
     * Updated the Code::Blocks URL in the README files to use https. (@TotalCaesar659)
@@ -468,6 +472,9 @@ Version 0.9.15:
     * Removed Terminal=false and added PrefersNonDefaultGPU and SingleMainWindow keys to the desktop file. (@Pointedstick)
     * Save files now record the name of all installed plugins. (@Terin)
     * Renamed various spaceport news entries for consistency. (@NRK4)
+    * Implemented on-demand auto-generated conditions, massively overhauling how auto-generated conditions are handled. (@petervdmeer)
+    * Updated copyright headers across all files in the game to provide a link to the full GPL license. (@tibetiroka)
+    * Made various code style fixes across the game. (@tibetiroka)
   * CI/CD and development environment:
     * Added unit tests for the Account class. (@petervdmeer)
     * Removed Ubuntu-16.04 from the CICD pipeline. (@tehhowch)
