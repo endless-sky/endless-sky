@@ -79,20 +79,20 @@ def check_copyright(file, lines):
             break
     if text_index == 0:
         print_error(file, 1, "incorrect copyright header")
-    for line in lines:
+        return
+    for line in lines[text_index:]:
         if re.search(second, line):
             text_index += 1
         else:
             break
+    if len(lines) - text_index < len(third):
+        print_error(file, len(third) - 1, "incomplete copyright header")
     else:
-        if len(lines) - text_index < len(third):
-            print_error(file, len(third) - 1, "incomplete copyright header")
-        else:
-            for index, (line, standard) in enumerate(zip(lines[text_index:], third)):
-                standard = standard.strip()
-                if standard != line:
-                    print_error(file, text_index + index + 1, "incorrect copyright header")
-                    break
+        for index, (line, standard) in enumerate(zip(lines[text_index:], third)):
+            standard = standard.strip()
+            if standard != line:
+                print_error(file, text_index + index + 1, "incorrect copyright header")
+                break
 
 
 # Checks whether the file contains any non-ASCII characters. Extended ASCII codes are not accepted.
