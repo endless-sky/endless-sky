@@ -405,7 +405,7 @@ Files:
  images/outfit/flamethrower*
  images/outfit/fuel?pod*
  images/outfit/gat*
- images/oufit/hai?ionic?blaster*
+ images/outfit/hai?ionic?blaster*
  images/outfit/hai?ionic?turret*
  images/outfit/hai?zephyr*
  images/outfit/heavy?anti-missile*
@@ -1612,7 +1612,6 @@ Files:
  images/planet/station7cb*
  images/projectile/firelight*
  images/projectile/firelight?active*
- images/projectile/ion?blast*
  sounds/ion?blast*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0

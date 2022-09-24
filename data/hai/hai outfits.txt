@@ -149,7 +149,7 @@ outfit "Ionic Blaster Prototype"
 	"weapon capacity" -19
 	"gun ports" -1
 	weapon
-		sprite "projectile/ion blast"
+		sprite "projectile/ion bolt"
 			"frame rate" 5
 		sound "ion blast"
 		"hit effect" "ion impact"
@@ -164,8 +164,9 @@ outfit "Ionic Blaster Prototype"
 		"shield damage" 70
 		"hull damage" 30
 		"ion damage" 1
-	description "Since the start of the war with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that goal, they began developing the Ionic Blaster, which does a small amount of ion damage that scrambles the weapons of the target, sometimes disabling it if its power generation is low enough. It also has enough raw damage to be useful in all situations. To be able to make such a weapon, they inspired themselves of the Pulse Cannon, and added ionic elements into it."
-	description "The main focus the Unfettered had in mind when developing the weapon was making sure they could fill all of a Shield Beetle's gun ports with them, unlike the bigger Ion Cannon. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
+	description "Since the beginning of their conflict with the rest of the Hai, the Unfettered have attempted to gain a technological edge despite their limited resources. To that end, they began developing the Ionic Blaster. Much smaller than the venerable Ion Cannon but still able to apply the same weapon jamming and energy draining effects, albeit to a much lesser extent, it also has enough raw damage to be useful in all situations."
+	description "The design goal for the Ionic Blaster was to produce a smaller ion weapon that can can fill all the gun ports on Shield Beetles. The result is also small enough to be equipped on the Unfettered's new fighters."
+	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -184,7 +185,7 @@ outfit "Ionic Turret Prototype"
 		sound "ion blast"
 		"hit effect" "ion impact" 5
 		"inaccuracy" 2
-		"turret turn" 2.5
+		"turret turn" 2.4
 		"velocity" 12
 		"lifetime" 70
 		"reload" 70
@@ -195,8 +196,8 @@ outfit "Ionic Turret Prototype"
 		"shield damage" 100
 		"hull damage" 50
 		"ion damage" 14
-	description "This is a turret version of the Ion Cannon. The Unfettered refined the ion in the shots to be more coherent, and thus apply more disruption, at the cost of dealing less damage, and needing a lot more energy. This weapon quickly disables any small ships that lack power generation, and jams the weapons of others."
-	description "Its larger size is explained by the need for extra ionizers, and the fast rotating base, intended to be able to keep up with agile ships such as drones or fighters. The Unfettered lack the resources to mass-produce them, so it is only a prized possession of a lucky few."
+	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
+	description "This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 
 outfit "Railgun Slug"
@@ -464,10 +465,10 @@ outfit "Value Detector"
 	thumbnail "outfit/value detector"
 	"mass" 3
 	"outfit space" -3
-	"cargo scan power" 33
+	"cargo scan power" 22
 	"cargo scan speed" 4
-	"tactical scan power" 15
-	description "In order to know which ship is worth plundering, or presents less risks to do so, the Unfettered use this scanner. It is quite rudimentary compared to normal Hai technology, but it still does what it's supposed to do: get quick information on what ships are carrying from afar. The Unfettered also prefer to know more detailed information about their enemy, as they often test the effectiveness of new technologies on their victims."
+	"tactical scan power" 27
+	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar. It also provides more detailed information about the tactical condition of enemy vessels; useful when testing new weapons."
 
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
