@@ -316,7 +316,7 @@ outfit "Acuit Artillery"
 	weapon
 		sprite projectile/acuit
 			"random start frame"
-		"hardpoint sprite" hardpoint/scinturret
+		"hardpoint sprite" hardpoint/acuit
 		"hit effect" "acuit hit"
 		sound acuit
 		lifetime 60
