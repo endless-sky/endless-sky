@@ -307,37 +307,22 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					continue;
 				}
 
-				int index = removeIt - objects.begin();
-				StellarObject &toRemove = objects[index];
-				if(toRemove.GetPlanet())
-					planets.Get(toRemove.GetPlanet()->TrueName())->RemoveSystem(this);
-				objects.erase(removeIt);
+	auto index = removedIt - objects.begin();
+	auto next = objects.erase(it);
+	size_t removed = 1;
+	// Remove any child objects too.
+	while(next != object->objects.end() && next->parent == index)
+	{
+		if(next->planet)
+			planets.Get(next->planet->TrueName())->RemoveSystem(object);
+		next = objects.erase(next);
+		++removed;
+	}
 
-				// Remove any objects orbiting the one that was removed.
-				vector<int> indicesToRemove;
-				for(int i = 0; i < static_cast<int>(objects.size()); i++)
-				{
-					StellarObject &object = objects[i];
-					if(object.parent == index)
-					{
-						if(object.GetPlanet())
-							planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
-						indicesToRemove.push_back(i);
-					}
-				}
-				int removed = 0;
-				for(int indexToRemove : indicesToRemove)
-					objects.erase(objects.begin() + indexToRemove - removed++);
-
-				// Update the parent indices of all StellarObjects here.
-				for(StellarObject &object : objects)
-				{
-					if(object.parent > index)
-						object.parent--;
-					for(int removedIndex : indicesToRemove)
-						if(object.parent > removedIndex)
-							object.parent--;
-				}
+	// Recalculate every parent index.
+	for(auto it = next; it != objects.end(); ++it)
+		if(it->parent >= index)
+			it->parent -= removed;
 			}
 			else
 				LoadObject(child, planets);
