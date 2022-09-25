@@ -123,7 +123,8 @@ warnings = 0
 error_list = []
 
 
-# A class used for buffering error messages.
+# A class representing error messages.
+# These are stored in the error_list list to be displayed after all checks are done.
 # text: the text where the error originates from
 # file: the path to the file
 # line: the current line number
@@ -146,7 +147,8 @@ class Error(object):
 		print("\tReason:", self.reason)
 
 
-# A class used for buffering error messages.
+# A class representing warning messages.
+# These are stored in the error_list list to be displayed after all checks are done.
 # text: the text where the warning originates from
 # file: the path to the file
 # line: the current line number
