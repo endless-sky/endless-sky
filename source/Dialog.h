@@ -132,7 +132,8 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate trun
 
 
 template <class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue, Truncate truncate, bool allowsFastForward)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
+	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	input(std::to_string(initialValue))

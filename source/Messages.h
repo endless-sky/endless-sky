@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MESSAGES_H_
 #define MESSAGES_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
-#include <cstdint>
 
 
 

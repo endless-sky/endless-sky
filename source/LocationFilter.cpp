@@ -490,7 +490,8 @@ void LocationFilter::LoadChild(const DataNode &child)
 	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
-		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'. These keywords must be nested if used together.");
+		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
+			" These keywords must be nested if used together.");
 	else if(key == "planet")
 	{
 		for(int i = valueIndex; i < child.Size(); ++i)

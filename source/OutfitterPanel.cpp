@@ -301,7 +301,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter, descDimensions, std::string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
+			descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)

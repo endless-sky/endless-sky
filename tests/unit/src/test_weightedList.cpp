@@ -408,7 +408,9 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 				{
 					INFO("alpha = 0.05");
 					CHECK( computeChiStat(totalPicks) <= 5.991 );
-				} else {
+				}
+				else
+				{
 					SUCCEED( "null hypothesis is not rejected" );
 				}
 			}

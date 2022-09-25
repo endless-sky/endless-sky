@@ -173,8 +173,14 @@ private:
 	void DrawMissions();
 	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
+
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
 	void DrawNames();
+
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+
+
 
 private:
 	// This is the coloring mode currently used in the cache.
@@ -182,8 +188,14 @@ private:
 
 	class Node {
 	public:
+
 		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government, const std::vector<std::string> &mapIcon, bool isVisited)
 			: position(position), color(color), name(name), nameColor(nameColor), government(government), mapIcon(mapIcon), isVisited(isVisited) {}
+
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government)
+			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+
 
 		Point position;
 		Color color;

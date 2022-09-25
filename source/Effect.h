@@ -33,14 +33,13 @@ class Sound;
 // template provided by an Effect.
 class Effect : public Body {
 public:
-	/* Functions provided by the Body base class:
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	double Zoom() const;
-	*/
+	// Functions provided by the Body base class:
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// double Zoom() const;
 
 	const std::string &Name() const;
 	void SetName(const std::string &name);

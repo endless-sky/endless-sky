@@ -79,8 +79,6 @@ system "1 Axis"
 	pos -1274.63 267.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 745
 	habitable 745
 	belt 1112
@@ -160,7 +158,6 @@ system "10 Pole"
 	pos -1356.63 19.2137
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1765
@@ -234,8 +231,6 @@ system "11 Autumn Above"
 	pos -1278.63 148.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1570
 	habitable 1570
 	belt 1099
@@ -319,8 +314,6 @@ system "11 Spring Below"
 	pos -1272.63 380.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 915
 	habitable 915
 	belt 1932
@@ -402,8 +395,6 @@ system "12 Autumn Above"
 	pos -1276.63 -19.7863
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1050
 	habitable 1050
 	belt 1283
@@ -498,7 +489,6 @@ system "14 Pole"
 	pos -1343.63 -119.786
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1881
@@ -561,8 +551,6 @@ system "14 Summer Above"
 	pos -1436.63 182.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1400
 	habitable 1400
 	belt 1093
@@ -630,8 +618,6 @@ system "14 Winter Below"
 	pos -1143.63 341.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1173
@@ -709,7 +695,6 @@ system "16 Autumn Rising"
 	pos -1305.63 74.2137
 	government Coalition
 	attributes "kimek"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1424
@@ -781,7 +766,6 @@ system "3 Axis"
 	pos -1235.63 299.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/f-star
 	arrival 2560
 	habitable 2560
 	belt 1202
@@ -851,7 +835,6 @@ system "3 Pole"
 	pos -1344.63 162.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1617
@@ -913,7 +896,6 @@ system "3 Spring Rising"
 	pos -1414.63 356.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1613
@@ -988,7 +970,6 @@ system "4 Axis"
 	pos -1169.63 365.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1838
@@ -1053,7 +1034,6 @@ system "4 Spring Rising"
 	pos -1309.63 321.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1801
@@ -1120,7 +1100,6 @@ system "4 Summer Rising"
 	pos -1377.63 207.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1860
@@ -1182,7 +1161,6 @@ system "4 Winter Rising"
 	pos -1259.63 248.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1345
@@ -1259,7 +1237,6 @@ system "5 Axis"
 	pos -1142.63 394.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1775
@@ -1334,8 +1311,6 @@ system "5 Spring Below"
 	pos -1213.63 415.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-old-star
-	mapicon map/m-dwarf-star
 	arrival 2320
 	habitable 2320
 	belt 1104
@@ -1409,7 +1384,6 @@ system "5 Summer Above"
 	pos -1387.63 118.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1133
@@ -1478,7 +1452,6 @@ system "5 Winter Above"
 	pos -1216.63 208.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1414
@@ -1544,7 +1517,6 @@ system "7 Autumn Rising"
 	pos -1235.63 177.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1289
@@ -1612,7 +1584,6 @@ system "8 Winter Below"
 	pos -1179.63 284.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1285
@@ -1679,8 +1650,6 @@ system "9 Spring Above"
 	pos -1377.63 281.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1050
 	habitable 1050
 	belt 1397
@@ -1758,7 +1727,6 @@ system Ablodab
 	pos -854.587 592.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1368
@@ -1850,7 +1818,6 @@ system Ablub
 	pos -581.587 637.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1641
@@ -1906,7 +1873,6 @@ system Acamar
 	pos -284 -3
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1013
@@ -1967,7 +1933,6 @@ system Achernar
 	pos -93 154
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1963
@@ -2041,8 +2006,6 @@ system Acrux
 	pos -808 192
 	government Republic
 	attributes "rim"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 585
 	habitable 585
 	belt 1407
@@ -2124,8 +2087,6 @@ system Adhara
 	pos -669 -200
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 680
 	habitable 680
 	belt 1014
@@ -2192,7 +2153,6 @@ system Aescolanus
 	pos -15 340
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1323
@@ -2237,8 +2197,6 @@ system Aki'il
 	pos -83 722
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1505
 	habitable 1505
 	belt 1500
@@ -2292,7 +2250,6 @@ system "Al Dhanab"
 	pos -177 207
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1432
@@ -2364,8 +2321,6 @@ system Albaldah
 	pos -350 484
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 560
 	habitable 560
 	belt 1622
@@ -2442,8 +2397,6 @@ system Albireo
 	pos -270 503
 	government Republic
 	attributes "south"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 760
 	habitable 760
 	belt 1030
@@ -2503,8 +2456,6 @@ system Alcyone
 	pos -80 -144
 	government Pirate
 	attributes "core"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 295
 	belt 1438
@@ -2574,7 +2525,6 @@ system Aldebaran
 	pos -356 -26
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1296
@@ -2622,8 +2572,6 @@ system Alderamin
 	pos -272 258
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
-	mapicon map/g-star
 	arrival 1705
 	habitable 1705
 	belt 1908
@@ -2690,7 +2638,6 @@ system Aldhibain
 	pos -659 451
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1840
@@ -2753,7 +2700,6 @@ system Algenib
 	pos -118 341
 	government Pirate
 	attributes "core"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1330
@@ -2812,8 +2758,6 @@ system Algieba
 	pos -691 -52
 	government Republic
 	attributes "deep"
-	mapicon map/f-star
-	mapicon map/m-dwarf-star
 	arrival 2720
 	habitable 2720
 	belt 1070
@@ -2885,8 +2829,6 @@ system Algol
 	pos -210 17
 	government Syndicate
 	attributes "core"
-	mapicon map/a-star
-	mapicon map/k-small-star
 	arrival 3490
 	habitable 3490
 	belt 1839
@@ -2950,7 +2892,6 @@ system Algorel
 	pos -631 145
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1993
@@ -3018,7 +2959,6 @@ system Alheka
 	pos -350 -271
 	government Republic
 	attributes "north"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1380
@@ -3080,8 +3020,6 @@ system Alhena
 	pos -430 -80
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 995
 	habitable 995
 	belt 1078
@@ -3153,7 +3091,6 @@ system Alioth
 	pos -620 315
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1889
@@ -3208,7 +3145,6 @@ system Alkaid
 	pos -825 318
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1142
@@ -3278,7 +3214,6 @@ system Almaaz
 	pos -349 -538
 	government Pirate
 	attributes "north"
-	mapicon map/f-giant-star
 	arrival 5000
 	habitable 5600
 	belt 2873
@@ -3327,7 +3262,6 @@ system Almach
 	pos -7 232
 	government Pirate
 	attributes "core"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1914
@@ -3393,7 +3327,6 @@ system Alnair
 	pos -272 314
 	government Syndicate
 	attributes "core"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1969
@@ -3464,8 +3397,6 @@ system Alnasl
 	pos -553 380
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/k-old-star
 	arrival 1375
 	habitable 1375
 	belt 1912
@@ -3530,7 +3461,6 @@ system Alnilam
 	pos -487 -513
 	government Pirate
 	attributes "north"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1099
@@ -3610,7 +3540,6 @@ system Alnitak
 	pos -331 -412
 	government Republic
 	attributes "north"
-	mapicon map/f-star
 	arrival 1310
 	habitable 1310
 	belt 1907
@@ -3663,8 +3592,6 @@ system Alniyat
 	pos -691 501
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 560
 	habitable 560
 	belt 1760
@@ -3739,8 +3666,6 @@ system "Alpha Arae"
 	pos -481 394
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 995
 	habitable 995
 	belt 1405
@@ -3813,8 +3738,6 @@ system "Alpha Centauri"
 	pos -429 125
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1190
 	habitable 1190
 	belt 1116
@@ -3879,8 +3802,6 @@ system "Alpha Hydri"
 	pos -97 98
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1839
@@ -3936,8 +3857,6 @@ system Alphard
 	pos -588 -47
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1101
@@ -4006,8 +3925,6 @@ system Alphecca
 	pos -546 308
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1101
@@ -4059,8 +3976,6 @@ system Alpheratz
 	pos -176 125
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1645
@@ -4130,8 +4045,6 @@ system Altair
 	pos -357 161
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 995
 	habitable 995
 	belt 1830
@@ -4196,7 +4109,6 @@ system Aludra
 	pos -606 -374
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1511
@@ -4262,8 +4174,6 @@ system "Ancient Hope"
 	pos -1159.59 702.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 455
 	belt 1439
@@ -4335,7 +4245,6 @@ system Ankaa
 	pos -230 100
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1003
@@ -4392,7 +4301,6 @@ system Answer
 	pos -1086.59 631.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1636
@@ -4459,7 +4367,6 @@ system Antares
 	pos -711 541
 	government Pirate
 	attributes "south"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1778
@@ -4523,7 +4430,6 @@ system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/carbon-star
 	arrival 3000
 	habitable 3000
 	belt 1994
@@ -4558,15 +4464,15 @@ system Antevorta
 		sprite star/carbon-core
 		period 10
 	object
-		sprite planet/desert8
+		sprite planet/io
 		distance 152.41
 		period 13.7410
 	object
-		sprite planet/io
+		sprite planet/lava7-b
 		distance 449.3
 		period 69.5510
 	object
-		sprite planet/lava7-b
+		sprite planet/desert8
 		distance 622.34
 		period 113.381
 	object
@@ -4593,7 +4499,6 @@ system Antevorta
 system Ap'arak
 	pos -164.62 -781.858
 	government Wanderer
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1385
@@ -4651,7 +4556,6 @@ system Arcturus
 	pos -589 226
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1422
@@ -4717,7 +4621,6 @@ system Arculus
 	pos 308.87 393.242
 	government Remnant
 	attributes "ember waste"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1536
@@ -4792,7 +4695,6 @@ system Arneb
 	pos -523 -580
 	government Pirate
 	attributes "north"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1947
@@ -4843,8 +4745,6 @@ system Ascella
 	pos -376 328
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 740
 	habitable 740
 	belt 1971
@@ -4912,7 +4812,6 @@ system Asikafarnut
 	pos 253.431 -584.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1342
@@ -4979,7 +4878,6 @@ system Aspidiske
 	pos -690 -282
 	government Republic
 	attributes "deep"
-	mapicon map/a-supergiant-star
 	arrival 5000
 	habitable 11850
 	belt 2385
@@ -5038,8 +4936,6 @@ system Atik
 	pos -66 -52
 	government Uninhabited
 	arrival 5000
-	mapicon map/b-giant-star
-	mapicon map/a-star
 	habitable 15105
 	belt 1240
 	link Durax
@@ -5101,7 +4997,6 @@ system Atria
 	pos -551 532
 	government Republic
 	attributes "south"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1340
@@ -5169,8 +5064,6 @@ system Avior
 	pos -658 -317
 	government Republic
 	attributes "deep"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1215
 	habitable 1215
 	belt 1097
@@ -5243,7 +5136,6 @@ system Aya'k'k
 	pos -434.245 -616.57
 	government Wanderer
 	arrival 500
-	mapicon map/k-small-star
 	habitable 490
 	belt 1586
 	haze _menu/haze-67
@@ -5304,7 +5196,6 @@ system Beginning
 	pos -912.587 694.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1833
@@ -5369,8 +5260,6 @@ system Bellatrix
 	pos -225 -82
 	government Syndicate
 	attributes "core"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 680
 	habitable 680
 	belt 1564
@@ -5432,7 +5321,6 @@ system Belonging
 	pos -1007.59 658.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1407
@@ -5494,7 +5382,6 @@ system Belug
 	pos -1024.59 388.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1170
@@ -5566,7 +5453,6 @@ system Belugt
 	pos -838.587 668.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1517
@@ -5643,7 +5529,6 @@ system "Beta Lupi"
 	pos -851 417
 	government Republic
 	attributes "south"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1261
@@ -5704,7 +5589,6 @@ system Betelgeuse
 	pos -384 -322
 	government Republic
 	attributes "north"
-	mapicon map/m-supergiant-star
 	arrival 3450
 	habitable 3450
 	belt 2141
@@ -5785,7 +5669,6 @@ system Bloptab
 	pos -813.587 727.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1061
@@ -5848,7 +5731,6 @@ system Blubipad
 	pos -650.587 594.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1567
@@ -5907,7 +5789,6 @@ system Blugtad
 	pos -771.587 680.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1841
@@ -5982,7 +5863,6 @@ system Boral
 	pos -502 331
 	government Republic
 	attributes "dirt belt"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1867
@@ -6048,7 +5928,6 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1823
@@ -6115,8 +5994,6 @@ system "Bore Fah"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	mapicon map/f-star
-	mapicon map/k-old-star
 	arrival 3180
 	habitable 3180
 	belt 1753
@@ -6220,8 +6097,6 @@ system "Bright Void"
 	pos -1059.59 605.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/f-star
-	mapicon map/g-star
 	arrival 2795
 	habitable 2795
 	belt 1385
@@ -6304,7 +6179,6 @@ system "Broken Bowl"
 	pos -956.587 566.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1648
@@ -6366,9 +6240,8 @@ system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/wr1-star
-	arrival 625
-	habitable 625
+	arrival 5000
+	habitable 50000
 	belt 1797
 	haze _menu/haze-red
 	link Stercutus
@@ -6396,20 +6269,20 @@ system Caeculus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/wr1
+		sprite star/wr
 		period 10
 	object
 		sprite planet/dust6-b
 		distance 127.09
-		period 22.9238
+		period 8.10479
 	object
 		sprite planet/desert9
 		distance 341.05
-		period 100.773
+		period 35.6288
 	object
 		sprite planet/gas5-b
 		distance 993.81
-		period 501.273
+		period 177.227
 		object
 			sprite planet/rock14-b
 			distance 258
@@ -6421,11 +6294,11 @@ system Caeculus
 	object
 		sprite planet/rock3
 		distance 1683.81
-		period 1105.50
+		period 390.854
 	object
 		sprite planet/jupiter-b
 		distance 2187.82
-		period 1637.33
+		period 578.885
 		object
 			sprite planet/rhea-b
 			distance 273
@@ -6439,7 +6312,6 @@ system Canopus
 	pos -421 -225
 	government Republic
 	attributes "north"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1530
@@ -6488,7 +6360,6 @@ system Capella
 	pos -378 -13
 	government Republic
 	attributes "paradise"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1722
@@ -6561,7 +6432,6 @@ system Caph
 	pos -295 77
 	government Syndicate
 	attributes "near earth"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1173
@@ -6628,8 +6498,6 @@ system Cardax
 	pos -211 -215
 	government Republic
 	attributes "north"
-	mapicon map/g-star
-	mapicon map/g-star
 	arrival 1705
 	habitable 1705
 	belt 1228
@@ -6694,8 +6562,6 @@ system Cardea
 	pos -89.1297 417.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/k-old-star
-	mapicon map/k-small-star
 	arrival 1375
 	habitable 1375
 	belt 1775
@@ -6764,8 +6630,6 @@ system Castor
 	pos -452 -17
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1570
 	habitable 1570
 	belt 1675
@@ -6852,7 +6716,6 @@ system Cebalrai
 	pos -461 282
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1955
@@ -6915,7 +6778,6 @@ system Celeborim
 	pos 181.431 -633.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1296
@@ -6976,7 +6838,6 @@ system Chikatip
 	pos -77.5695 -307.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1929
@@ -7002,6 +6863,7 @@ system Chikatip
 	trade Metal 283
 	trade Plastic 278
 	fleet "Large Quarg" 2000
+	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
 		period 10
@@ -7035,8 +6897,6 @@ system Chimitarp
 	pos 150.431 -287.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 915
 	habitable 915
 	belt 1932
@@ -7111,7 +6971,6 @@ system Chimitarp
 system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1425
@@ -7163,7 +7022,6 @@ system Chornifath
 	pos 40.4305 -214.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1434
@@ -7226,7 +7084,6 @@ system Chornifath
 system Chy'chra
 	pos 85.5308 -829.667
 	government Wanderer
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1120
@@ -7293,7 +7150,6 @@ system Cinxia
 	pos 265.87 415.242
 	government Remnant
 	attributes "ember waste"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1788
@@ -7351,8 +7207,6 @@ system Coluber
 	pos 149.504 197.389
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/k-old-star
-	mapicon map/m-dwarf-star
 	arrival 1110
 	habitable 1110
 	belt 1590
@@ -7416,7 +7270,6 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1786
@@ -7476,8 +7329,6 @@ system Convector
 	pos -14.1297 379.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/f-giant-star
-	mapicon map/m-dwarf-star
 	arrival 5000
 	habitable 5920
 	belt 2111
@@ -7543,7 +7394,6 @@ system "Cor Caroli"
 	pos -682 201
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1474
@@ -7603,7 +7453,6 @@ system "Cor Caroli"
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1161
@@ -7681,7 +7530,6 @@ system "Da Ent"
 system "Da Lest"
 	pos -23.2239 -413.536
 	government Hai
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1108
@@ -7749,8 +7597,6 @@ system Dabih
 	pos -253 427
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 680
 	habitable 680
 	belt 1088
@@ -7812,7 +7658,6 @@ system Danoa
 	pos -239 -321
 	government Republic
 	attributes "north"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1689
@@ -7883,7 +7728,6 @@ system "Dark Hills"
 	pos -926.587 619.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1367
@@ -7952,8 +7796,6 @@ system Debrugt
 	pos -869.587 513.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 640
 	habitable 640
 	belt 1224
@@ -8025,7 +7867,6 @@ system Delia
 	pos -41 757
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1500
@@ -8110,8 +7951,6 @@ system "Delta Capricorni"
 	pos -285 202
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 855
 	habitable 855
 	belt 1329
@@ -8176,7 +8015,6 @@ system "Delta Sagittarii"
 	pos -414 416
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1414
@@ -8245,7 +8083,6 @@ system "Delta Velorum"
 	pos -740 90
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1221
@@ -8305,7 +8142,6 @@ system "Delta Velorum"
 system Deneb
 	pos -348 225
 	government Pug
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1890
@@ -8363,8 +8199,6 @@ system Denebola
 	pos -478 70
 	government Republic
 	attributes "near earth"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 560
 	habitable 560
 	belt 1050
@@ -8432,7 +8266,6 @@ system Diespiter
 	pos 332 210
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	mapicon map/k-old-star
 	arrival 950
 	habitable 950
 	belt 1500
@@ -8473,8 +8306,6 @@ system Diphda
 	pos -262 61
 	government Syndicate
 	attributes "near earth"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 585
 	habitable 585
 	belt 1559
@@ -8534,7 +8365,6 @@ system Dixere
 	pos 33 708
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/k-old-star
 	arrival 980
 	habitable 980
 	belt 1500
@@ -8608,7 +8438,6 @@ system Dokdobaru
 	pos -21.5695 -241.812
 	government Quarg
 	attributes "korath" "ringworld"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1935
@@ -8638,7 +8467,7 @@ system Dokdobaru
 	trade Plastic 317
 	fleet Quarg 600
 	fleet "Large Quarg" 800
-	fleet "Kor Efret Home" 1500
+	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
 		period 10
@@ -8729,8 +8558,6 @@ system Dschubba
 	pos -598 501
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 505
 	habitable 505
 	belt 1429
@@ -8806,8 +8633,6 @@ system Dubhe
 	pos -577 -103
 	government Republic
 	attributes "deep"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1120
@@ -8865,7 +8690,6 @@ system Dubhe
 system "Due Yoot"
 	pos -167.547 -426.683
 	government Hai
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1854
@@ -8939,7 +8763,6 @@ system Durax
 	pos -59 -90
 	government Pirate
 	attributes "core"
-	mapicon map/g-old-star
 	arrival 2160
 	habitable 2160
 	belt 1287
@@ -9011,7 +8834,6 @@ system Eber
 	pos -532 406
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-old-star
 	arrival 950
 	habitable 950
 	belt 1350
@@ -9077,7 +8899,6 @@ system Eblumab
 	pos -767.587 703.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1804
@@ -9145,7 +8966,6 @@ system Edusa
 	pos 273.87 347.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/g-giant-star
 	arrival 4050
 	habitable 4050
 	belt 1167
@@ -9200,8 +9020,6 @@ system Egeria
 	pos 288 146
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	mapicon map/k-old-star
-	mapicon map/g-star
 	arrival 2030
 	habitable 2030
 	belt 1500
@@ -9242,7 +9060,6 @@ system Egeria
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1094
@@ -9311,7 +9128,6 @@ system "Ehma Ti"
 system Ek'kek'ru
 	pos -287.517 -727.738
 	government Wanderer
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1517
@@ -9373,7 +9189,6 @@ system Ekuarik
 	pos -1029.63 426.214
 	government Heliarch
 	attributes "ringworld"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1711
@@ -9501,92 +9316,91 @@ system Ekuarik
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 82
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 90
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 99
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 112
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 216
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 225
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 234
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 221
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 239
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 253
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 281
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 298
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 312
 
 system Elnath
 	pos -288 -77
 	government Republic
 	attributes "north"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1462
@@ -9654,7 +9468,6 @@ system Eltanin
 	pos -328 433
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1859
@@ -9716,7 +9529,6 @@ system Eneremprukt
 	pos 311.431 -448.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1421
@@ -9774,7 +9586,6 @@ system Enif
 	pos -177 498
 	government Quarg
 	attributes "ringworld" "south"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1974
@@ -9875,8 +9686,6 @@ system "Epsilon Leonis"
 	pos -619 -229
 	government Republic
 	attributes "deep"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1527
@@ -9952,7 +9761,6 @@ system "Epsilon Leonis"
 system Es'sprak'ai
 	pos -469.044 -733.375
 	government Wanderer
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1928
@@ -10015,8 +9823,6 @@ system Eshkoshtar
 	pos 156.431 -381.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 810
 	habitable 810
 	belt 1105
@@ -10092,7 +9898,6 @@ system Esix
 	pos 142 532
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	mapicon map/b-large-star
 	arrival 5000
 	habitable 5600
 	belt 1500
@@ -10155,7 +9960,6 @@ system Eteron
 	pos -330 33
 	government Republic
 	attributes "near earth"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1479
@@ -10221,7 +10025,6 @@ system Eteron
 system "Fah Root"
 	pos -264.065 -400.135
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1057
@@ -10297,7 +10100,6 @@ system "Fah Root"
 system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1185
@@ -10371,7 +10173,6 @@ system Fala
 	pos -690 64
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-old-star
 	arrival 1250
 	habitable 1250
 	belt 1264
@@ -10434,7 +10235,6 @@ system "Fallen Leaf"
 	pos -903.587 717.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1327
@@ -10489,7 +10289,6 @@ system "Far Horizon"
 	pos -1108.59 726.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1242
@@ -10547,7 +10346,6 @@ system Farbutero
 	pos 93.4305 -251.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1175
@@ -10625,8 +10423,6 @@ system Farinus
 	pos 202.87 440.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/k-old-star
-	mapicon map/m-dwarf-star
 	arrival 1270
 	habitable 1270
 	belt 1225
@@ -10701,7 +10497,6 @@ system Faronektu
 	pos 292.431 -309.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1630
@@ -10771,7 +10566,6 @@ system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	mapicon map/nova-star
 	arrival 500
 	habitable 100
 	belt 1670
@@ -10822,7 +10616,6 @@ system Fearis
 	pos -16 643
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	mapicon map/k-old-star
 	arrival 980
 	habitable 980
 	belt 1500
@@ -10888,7 +10681,6 @@ system "Fell Omen"
 	pos -1156.59 475.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1240
@@ -10965,7 +10757,6 @@ system Feraticus
 	pos 58 630
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/brown-dwarf-star
 	arrival 500
 	habitable 10
 	belt 1500
@@ -11012,7 +10803,6 @@ system Fereti
 	pos -39 600
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/a-star
 	arrival 3200
 	habitable 3200
 	belt 1500
@@ -11072,7 +10862,6 @@ system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/a-star
 	arrival 4075
 	habitable 4075
 	belt 1419
@@ -11159,7 +10948,6 @@ system Ferukistek
 	pos 307.431 -515.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1520
@@ -11215,7 +11003,6 @@ system Fingol
 	pos -482 113
 	government Republic
 	attributes "near earth"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1976
@@ -11275,7 +11062,6 @@ system Flugbu
 	pos -903.587 534.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1843
@@ -11342,7 +11128,6 @@ system Fomalhaut
 	pos -314 124
 	government Syndicate
 	attributes "near earth"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1854
@@ -11407,7 +11192,6 @@ system Fornarep
 	pos 79.4305 -309.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1922
@@ -11474,7 +11258,6 @@ system "Four Pillars"
 	pos -1210.59 772.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1061
@@ -11538,7 +11321,6 @@ system Furmeliki
 	pos -35.5695 -281.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1577
@@ -11603,8 +11385,6 @@ system Gacrux
 	pos -713 184
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 530
 	habitable 530
 	belt 1188
@@ -11674,7 +11454,6 @@ system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
 	attributes "core"
-	mapicon map/b-large-star
 	arrival 5000
 	habitable 7000
 	belt 1779
@@ -11735,8 +11514,6 @@ system "Gamma Corvi"
 	pos -906 64
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1530
 	habitable 1530
 	belt 1556
@@ -11804,7 +11581,6 @@ system Gerenus
 	pos 197 514
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/k-giant-star
 	arrival 3000
 	habitable 3000
 	belt 1500
@@ -11866,8 +11642,6 @@ system Gienah
 	pos -176 354
 	government Pirate
 	attributes "core"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 600
 	habitable 600
 	belt 1965
@@ -11933,8 +11707,6 @@ system Giribea
 	pos -6 674
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-old-star
-	mapicon map/g-star
 	arrival 1800
 	habitable 1800
 	belt 1500
@@ -12010,7 +11782,6 @@ system Girtab
 	pos -430 481
 	government Republic
 	attributes "south"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1387
@@ -12077,7 +11848,6 @@ system Glubatub
 	pos -650.587 693.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1093
@@ -12157,8 +11927,6 @@ system Gomeisa
 	pos -600 -161
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 980
 	habitable 980
 	belt 1616
@@ -12230,7 +11998,6 @@ system "Good Omen"
 	pos -941.587 746.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1598
@@ -12293,10 +12060,9 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
-	attributes "north"
-	mapicon map/wr0-star
-	arrival 625
-	habitable 625
+	attributes "north" "wolf-rayet"
+	arrival 5000
+	habitable 50000
 	belt 1345
 	haze _menu/haze-133
 	link Mintaka
@@ -12323,24 +12089,24 @@ system Gorvi
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava0
 		distance 342.184
-		period 101.276
+		period 35.8067
 	object
 		sprite planet/lava7
 		distance 580.224
-		period 223.621
+		period 79.0621
 	object
 		sprite planet/titan-b
 		distance 1076.43
-		period 565.065
+		period 199.780
 	object
 		sprite planet/gas16
 		distance 2298.59
-		period 1763.24
+		period 623.400
 		object
 			sprite planet/rock17
 			distance 215
@@ -12354,8 +12120,6 @@ system Graffias
 	pos -784 517
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 980
 	habitable 980
 	belt 1977
@@ -12421,8 +12185,6 @@ system Gupta
 	pos -808.587 625.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 915
 	habitable 915
 	belt 1771
@@ -12485,7 +12247,6 @@ system Hadar
 	pos -788 283
 	government Republic
 	attributes "rim"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1520
@@ -12548,7 +12309,6 @@ system Hamal
 	pos -129 24
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1241
@@ -12605,8 +12365,6 @@ system Han
 	pos -610 561
 	government Republic
 	attributes "south"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1517
@@ -12667,8 +12425,6 @@ system Hassaleh
 	pos -291 -287
 	government Republic
 	attributes "north"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 680
 	habitable 680
 	belt 1924
@@ -12731,8 +12487,6 @@ system Hatysa
 	pos -474 -542
 	government Pirate
 	attributes "north"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 525
 	habitable 525
 	belt 1163
@@ -12794,7 +12548,6 @@ system Hatysa
 system "Heia Due"
 	pos -146.177 -481.694
 	government Hai
-	mapicon map/g-star
 	arrival 1215
 	habitable 1215
 	belt 1079
@@ -12879,7 +12632,6 @@ system Hesselpost
 	pos -30.5695 -187.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1327
@@ -12904,6 +12656,7 @@ system Hesselpost
 	trade Metal 536
 	trade Plastic 281
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
 		period 10
@@ -12953,7 +12706,6 @@ system "Hevru Hai"
 	pos -189 -310
 	government Quarg
 	attributes "ringworld"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1245
@@ -13093,7 +12845,6 @@ system "Hevru Hai"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1655
@@ -13150,7 +12901,6 @@ system Hintar
 	pos -422 311
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1725
@@ -13212,7 +12962,6 @@ system Holeb
 	pos -590 287
 	government Republic
 	attributes "dirt belt"
-	mapicon map/f-star
 	arrival 3430
 	habitable 3430
 	belt 1181
@@ -13262,7 +13011,6 @@ system Homeward
 	pos -1045.59 477.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1499
@@ -13329,7 +13077,6 @@ system Homeward
 system Host
 	pos 384.431 -543.812
 	government Uninhabited
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1669
@@ -13380,7 +13127,6 @@ system Hunter
 	pos -968.587 590.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1498
@@ -13443,7 +13189,6 @@ system Hunter
 system Ik'kara'ka
 	pos 56.2159 -888.296
 	government Wanderer
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1497
@@ -13506,10 +13251,9 @@ system Ik'kara'ka
 system Ildaria
 	pos -702 317
 	government Republic
-	attributes "rim" "wolf-rayet"
-	mapicon map/wr0-star
-	arrival 625
-	habitable 625
+	attributes "rim" "nova"
+	arrival 500
+	habitable 100
 	belt 1132
 	haze _menu/haze-133
 	link Kochab
@@ -13536,33 +13280,32 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/wr0
+		sprite star/nova-small
 		period 10
 	object
-		sprite planet/ice4-b
+		sprite planet/rock17-b
 		distance 694.26
-		period 292.686
+		period 103.480
+	object
+		sprite planet/rock6-b
+		distance 1135.47
+		period 216.440
+	object
+		sprite planet/ice4-b
+		distance 1893.08
+		period 465.938
 		object
 			sprite planet/ice8
 			distance 130
 			period 16.9135
 	object
-		sprite planet/rock6-b
-		distance 1135.47
-		period 612.186
-	object
-		sprite planet/rock17-b
-		distance 1893.08
-		period 1317.87
-	object
 		sprite planet/dust4-b
 		distance 2712.92
-		period 2260.86
+		period 799.338
 
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1416
@@ -13639,8 +13382,6 @@ system Insitor
 	pos -28.1296 400.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 550
 	habitable 550
 	belt 1170
@@ -13696,7 +13437,6 @@ system Insitor
 system "Io Lowe"
 	pos -94.7566 -527.728
 	government Hai
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1552
@@ -13770,8 +13510,6 @@ system "Io Lowe"
 system "Io Mann"
 	pos -192.955 -447.669
 	government Hai
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 980
 	habitable 980
 	belt 1132
@@ -13858,8 +13596,6 @@ system Ipsing
 	pos -549 160
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-old-star
-	mapicon map/k-small-star
 	arrival 2585
 	habitable 2585
 	belt 1107
@@ -13927,7 +13663,6 @@ system Ipsing
 system Iyech'yek
 	pos -277.37 -693.913
 	government Wanderer
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1613
@@ -13983,8 +13718,6 @@ system Izar
 	pos -784 231
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1400
 	habitable 1400
 	belt 1449
@@ -14051,7 +13784,6 @@ system Izar
 system Ka'ch'chrai
 	pos -240.163 -822.448
 	government Wanderer
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1745
@@ -14110,8 +13842,6 @@ system Ka'ch'chrai
 system Ka'pru
 	pos -76.6756 -994.955
 	government Wanderer
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1505
 	habitable 1505
 	belt 1808
@@ -14184,7 +13914,6 @@ system Kaliptari
 	pos 85.4305 -402.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1089
@@ -14261,8 +13990,6 @@ system "Kappa Centauri"
 	pos -867 480
 	government Republic
 	attributes "south"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1215
 	habitable 1215
 	belt 1508
@@ -14325,7 +14052,6 @@ system Kashikt
 	pos -73.5695 -219.812
 	government "Kor Efret"
 	attributes "korath"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1013
@@ -14354,7 +14080,8 @@ system Kashikt
 	trade Plastic 292
 	fleet Quarg 1000
 	fleet "Large Quarg" 2000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/f5
 		period 10
@@ -14396,7 +14123,6 @@ system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	mapicon map/nova-star
 	arrival 500
 	habitable 100
 	belt 1539
@@ -14442,7 +14168,6 @@ system "Kaus Australis"
 	pos -284 395
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1281
@@ -14496,8 +14221,6 @@ system "Kaus Borealis"
 	pos -456 350
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 585
 	habitable 585
 	belt 1074
@@ -14562,7 +14285,6 @@ system "Ki War Ek"
 	pos -1106.63 368.214
 	government Heliarch
 	attributes "ringworld"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1777
@@ -14685,140 +14407,138 @@ system "Ki War Ek"
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 122
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 138
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 148
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 157
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 164
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 171
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 189
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 204
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 214
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 226
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 240
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 258
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 163
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 178
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 191
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 200
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 228
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 245
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 250
 
 system Kiro'ku
 	pos -131.923 -884.46
 	government Wanderer
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1308
@@ -14896,8 +14616,6 @@ system Kiro'ku
 system Kiru'kichi
 	pos -195.063 -662.343
 	government Wanderer
-	mapicon map/f-star
-	mapicon map/g-star
 	arrival 2795
 	habitable 2795
 	belt 1465
@@ -14959,7 +14677,6 @@ system Kochab
 	pos -731 279
 	government Republic
 	attributes "rim"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1912
@@ -15004,10 +14721,9 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "korath" "wolf-rayet"
-	mapicon map/carbon-star
-	arrival 3000
-	habitable 3000
+	attributes "korath"
+	arrival 3100
+	habitable 3100
 	belt 1606
 	haze _menu/haze-full
 	asteroids "small metal" 13 3.024
@@ -15025,9 +14741,10 @@ system "Kor Ak'Mari"
 	trade Medical 726
 	trade Metal 217
 	trade Plastic 524
-	fleet "Korath Raid" 2800
-	fleet "Korath Miners" 5000
-	fleet "Korath Large Raid" 2500
+	fleet "Korath Raid" 3600
+	fleet "Korath Miners" 7500
+	fleet "Korath Large Raid" 3600
+	fleet "Korath Defense" 3600
 	object
 		sprite star/carbon
 		period 100
@@ -15035,35 +14752,38 @@ system "Kor Ak'Mari"
 		sprite star/carbon-core
 		period 100
 	object
-		sprite planet/lava6
-		distance 179.89
-		period 17.6201
-	object
 		sprite planet/lava0-b
 		distance 492.58
-		period 79.8388
+		period 78.5406
 	object
-		sprite planet/cloud2-b
-		distance 874.19
-		period 188.759
+		sprite star/k-dwarf
+		distance 790
+		period 159.521
+		object
+			sprite planet/lava6
+			distance 79.89
+			period 38.6038
+	object
+		sprite planet/oberon
+		distance 1807.64
+		period 552.137
+	object
+		sprite planet/ocean6-b
+		distance 2874.19
+		period 1107.01
 		object
 			sprite planet/callisto-b
 			distance 166
 			period 16.2305
 	object
-		sprite planet/dust3-b
-		distance 1777.8
-		period 547.423
-	object
-		sprite planet/oberon
-		distance 2107.64
-		period 706.633
+		sprite planet/ice0-b
+		distance 3777.8
+		period 1668.15
 
 system "Kor En'lakfar"
 	pos -31 -33
 	government Korath
 	attributes "korath"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1115
@@ -15089,11 +14809,13 @@ system "Kor En'lakfar"
 	trade Medical 840
 	trade Metal 236
 	trade Plastic 488
-	fleet "Korath Raid" 600
-	fleet "Korath Home" 2000
-	fleet "Korath Large Raid" 25000
-	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 5000
+	fleet "Korath Raid" 1200
+	fleet "Korath Home" 720
+	fleet "Korath Large Raid" 15000
+	fleet "Korath Defense" 1775
+	fleet "Korath Civilian Miners" 6000
+	fleet "Korath Civilian Large" 955
+	fleet "Korsmanath A'awojs" 2000
 	object
 		sprite star/g0
 		period 10
@@ -15131,7 +14853,6 @@ system "Kor Fel'tar"
 	pos 29 -66
 	government Korath
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1444
@@ -15157,10 +14878,12 @@ system "Kor Fel'tar"
 	trade Medical 841
 	trade Metal 256
 	trade Plastic 478
-	fleet "Korath Raid" 1600
-	fleet "Korath Home" 2500
+	fleet "Korath Raid" 2000
+	fleet "Korath Home" 1200
+	fleet "Korath Defense" 2400
 	fleet "Korath Civilian Miners" 5000
-	fleet "Korath Civilian Large" 4000
+	fleet "Korath Civilian Large" 1600
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/k3
 		period 10
@@ -15202,8 +14925,6 @@ system "Kor Men"
 	pos 6 -5
 	government Korath
 	attributes "korath"
-	mapicon map/f-star
-	mapicon map/g-star
 	arrival 2340
 	habitable 2340
 	belt 1260
@@ -15229,10 +14950,12 @@ system "Kor Men"
 	trade Metal 240
 	trade Plastic 497
 	fleet "Korath Home" 800
-	fleet "Korath Raid" 1300
-	fleet "Korath Large Raid" 25000
+	fleet "Korath Raid" 2000
+	fleet "Korath Defense" 2900
+	fleet "Korath Large Raid" 21000
 	fleet "Korath Civilian Large" 1500
-	fleet "Korath Civilian Miners" 10000
+	fleet "Korath Civilian Miners" 8000
+	fleet "Korsmanath A'awojs" 2808
 	object
 		sprite star/f5
 		distance 28.0824
@@ -15272,8 +14995,6 @@ system "Kor Nor'peli"
 	pos 52 160
 	government Korath
 	attributes "korath"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 585
 	habitable 585
 	belt 1213
@@ -15296,9 +15017,13 @@ system "Kor Nor'peli"
 	trade Medical 850
 	trade Metal 517
 	trade Plastic 423
-	fleet "Korath Large Raid" 30000
-	fleet "Korath Ember Waste Raid" 2500
-	fleet "Korath Home" 500
+	fleet "Korath Defense" 1700
+	fleet "Korath Large Raid" 16000
+	fleet "Korath Ember Waste Raid" 1300
+	fleet "Korath Ember Waste Large Raid" 20000
+	fleet "Korath Civilian Large" 2000
+	fleet "Korath Home" 900
+	fleet "Korsmanath A'awojs" 1100
 	object
 		sprite star/k3
 		distance 22.4307
@@ -15342,7 +15067,6 @@ system "Kor Tar'bei"
 	pos 57 106
 	government Korath
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1614
@@ -15370,6 +15094,10 @@ system "Kor Tar'bei"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Home" 1000
 	fleet "Korath Civilian Large" 1000
+	fleet "Korath Defense" 2600
+	fleet "Korath Ember Waste Raid" 3000
+	fleet "Korath Ember Waste Large Raid" 30000
+	fleet "Korsmanath A'awojs" 900
 	object
 		sprite star/m3
 		period 10
@@ -15403,8 +15131,6 @@ system "Kor Zena'i"
 	pos -2 83
 	government Korath
 	attributes "korath"
-	mapicon map/g-old-star
-	mapicon map/m-dwarf-star
 	arrival 1385
 	habitable 1385
 	belt 1866
@@ -15423,10 +15149,12 @@ system "Kor Zena'i"
 	trade Medical 785
 	trade Metal 478
 	trade Plastic 381
-	fleet "Korath Raid" 800
-	fleet "Korath Home" 1500
-	fleet "Korath Large Raid" 20000
-	fleet "Korath Civilian Large" 1000
+	fleet "Korath Raid" 1800
+	fleet "Korath Home" 1170
+	fleet "Korath Defense" 1660
+	fleet "Korath Large Raid" 16000
+	fleet "Korath Civilian Large" 845
+	fleet "Korsmanath A'awojs" 2500
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -15462,8 +15190,6 @@ system Kornephoros
 	pos -612 424
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 980
 	habitable 980
 	belt 1168
@@ -15546,7 +15272,6 @@ system Korsmanath
 	pos 97.4305 -185.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1775
@@ -15608,7 +15333,6 @@ system Kraz
 	pos -876 204
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1056
@@ -15677,7 +15401,6 @@ system Kugel
 	pos -230 -26
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1051
@@ -15748,8 +15471,6 @@ system Kursa
 	pos -366 -105
 	government Republic
 	attributes "paradise"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 505
 	habitable 505
 	belt 1624
@@ -15804,7 +15525,6 @@ system Kursa
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1761
@@ -15870,7 +15590,6 @@ system Lesath
 	pos -516 485
 	government Republic
 	attributes "south"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1865
@@ -15937,8 +15656,6 @@ system Levana
 	pos 203.504 247.389
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/a-giant-star
-	mapicon map/k-small-star
 	arrival 5000
 	habitable 8325
 	belt 1202
@@ -16010,7 +15727,6 @@ system Limen
 	pos -791.99 -12.2491
 	government Republic
 	attributes "dirt belt"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1463
@@ -16065,7 +15781,6 @@ system Lire
 	pos -59 676
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1500
@@ -16131,8 +15846,6 @@ system Lolami
 	pos -628 -10
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1215
 	habitable 1215
 	belt 1072
@@ -16197,7 +15910,6 @@ system Lolami
 system "Lom Tahr"
 	pos -94.0437 -446.586
 	government Hai
-	mapicon map/f-star
 	arrival 2560
 	habitable 2560
 	belt 1445
@@ -16277,7 +15989,6 @@ system "Lone Cloud"
 	pos -1239.59 747.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1730
@@ -16330,7 +16041,6 @@ system Lucina
 	pos 175.504 176.389
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1466
@@ -16390,7 +16100,6 @@ system Lurata
 	pos -279 463
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1151
@@ -16455,8 +16164,6 @@ system Makferuti
 	pos 288.431 -628.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 525
 	habitable 525
 	belt 1782
@@ -16534,7 +16241,6 @@ system Markab
 	pos -241 168
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1411
@@ -16619,7 +16325,6 @@ system Markeb
 	pos -602 -305
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1556
@@ -16687,7 +16392,6 @@ system Matar
 	pos -218 272
 	government Syndicate
 	attributes "core"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1308
@@ -16747,7 +16451,6 @@ system Mebla
 	pos -814.587 555.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1114
@@ -16807,8 +16510,6 @@ system Meblumem
 	pos -722.587 616.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/f-star
-	mapicon map/k-small-star
 	arrival 2205
 	habitable 2205
 	belt 1794
@@ -16875,8 +16576,6 @@ system Mebsuta
 	pos -482 -394
 	government Republic
 	attributes "north"
-	mapicon map/g-supergiant-star
-	mapicon map/m-dwarf-star
 	arrival 5000
 	habitable 6110
 	belt 2340
@@ -16953,8 +16652,6 @@ system Meftarkata
 	pos 52.4305 -276.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/f-star
-	mapicon map/k-small-star
 	arrival 2205
 	habitable 2205
 	belt 1232
@@ -16980,6 +16677,7 @@ system Meftarkata
 	trade Metal 484
 	trade Plastic 334
 	fleet "Large Quarg" 1000
+	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
 		distance 23.9954
@@ -17017,7 +16715,6 @@ system Meftarkata
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1075
@@ -17091,8 +16788,6 @@ system Mekislepti
 	pos 137.431 -335.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/g-star
-	mapicon map/g-star
 	arrival 1705
 	habitable 1705
 	belt 1673
@@ -17159,7 +16854,6 @@ system Men
 	pos -888 361
 	government Pirate
 	attributes "south"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1580
@@ -17228,8 +16922,6 @@ system Menkalinan
 	pos -400 -61
 	government Republic
 	attributes "paradise"
-	mapicon map/f-old-star
-	mapicon map/f-star
 	arrival 5000
 	habitable 5145
 	belt 1424
@@ -17299,7 +16991,6 @@ system Menkar
 	pos -183 -52
 	government Syndicate
 	attributes "core"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1634
@@ -17365,8 +17056,6 @@ system Menkent
 	pos -495 218
 	government Republic
 	attributes "dirt belt"
-	mapicon map/f-star
-	mapicon map/g-star
 	arrival 2340
 	habitable 2340
 	belt 1728
@@ -17439,8 +17128,6 @@ system Merak
 	pos -553 60
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1769
@@ -17507,7 +17194,6 @@ system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-old-star
 	arrival 950
 	habitable 950
 	belt 1215
@@ -17578,7 +17264,6 @@ system Miaplacidus
 	pos -524 -69
 	government Republic
 	attributes "paradise"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1236
@@ -17655,7 +17340,6 @@ system Miblulub
 	pos -630.587 670.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1757
@@ -17739,7 +17423,6 @@ system Mimosa
 	pos -895 168
 	government Republic
 	attributes "rim"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1484
@@ -17792,8 +17475,6 @@ system Minkar
 	pos -823 138
 	government Republic
 	attributes "rim"
-	mapicon map/k-old-star
-	mapicon map/m-dwarf-star
 	arrival 1300
 	habitable 1300
 	belt 1354
@@ -17861,8 +17542,6 @@ system Mintaka
 	pos -304 -462
 	government Republic
 	attributes "north"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 860
 	habitable 860
 	belt 1753
@@ -17928,7 +17607,6 @@ system Mirach
 	pos -166 250
 	government Syndicate
 	attributes "core"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 260
 	belt 1980
@@ -17999,7 +17677,6 @@ system Mirfak
 	pos -187 -128
 	government Syndicate
 	attributes "core"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1887
@@ -18057,7 +17734,6 @@ system Mirzam
 	pos -498 -301
 	government Republic
 	attributes "north"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1025
@@ -18120,8 +17796,6 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
-	mapicon map/f-old-star
-	mapicon map/k-small-star
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -18202,7 +17876,6 @@ system Mizar
 	pos -579 184
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1876
@@ -18257,8 +17930,6 @@ system Moktar
 	pos -169 -170
 	government Syndicate
 	attributes "core"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 530
 	habitable 530
 	belt 1888
@@ -18328,7 +17999,6 @@ system Mora
 	pos -755 23
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1176
@@ -18391,7 +18061,6 @@ system Muhlifain
 	pos -702 242
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1265
@@ -18440,8 +18109,6 @@ system Muphrid
 	pos -495 152
 	government Republic
 	attributes "near earth"
-	mapicon map/g-old-star
-	mapicon map/m-dwarf-star
 	arrival 1570
 	habitable 1570
 	belt 1759
@@ -18501,7 +18168,6 @@ system Naos
 	pos -653 -396
 	government Republic
 	attributes "deep"
-	mapicon map/f-star
 	arrival 1310
 	habitable 1310
 	belt 1045
@@ -18577,7 +18243,6 @@ system Naper
 	pos -416 369
 	government Republic
 	attributes "dirt belt"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1445
@@ -18641,8 +18306,6 @@ system Nenia
 	pos -39.1297 467.242
 	government Uninhabited
 	attributes "archon" "ember waste" "void sprites"
-	mapicon map/f-old-star
-	mapicon map/g-old-star
 	arrival 4680
 	habitable 4680
 	belt 1393
@@ -18723,8 +18386,6 @@ system Nihal
 	pos -262 -121
 	government Republic
 	attributes "north"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 530
 	habitable 530
 	belt 1329
@@ -18799,7 +18460,6 @@ system Nocte
 	pos -467 172
 	government Republic
 	attributes "near earth"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1304
@@ -18868,7 +18528,6 @@ system Nona
 	pos 166 558
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1500
@@ -18926,7 +18585,6 @@ system Nunki
 	pos -393 537
 	government Pirate
 	attributes "south"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1930
@@ -18998,7 +18656,6 @@ system Oblate
 	pos -124 -119
 	government Pirate
 	attributes "core"
-	mapicon map/m-giant-star
 	arrival 2300
 	habitable 2300
 	belt 1954
@@ -19059,8 +18716,6 @@ system Orbona
 	pos -735.99 -97.2491
 	government Republic
 	attributes "dirt belt"
-	mapicon map/b-giant-star
-	mapicon map/k-small-star
 	arrival 5000
 	habitable 11840
 	belt 1507
@@ -19134,8 +18789,6 @@ system Orvala
 	pos -334 303
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
-	mapicon map/brown-dwarf-star
 	arrival 520
 	habitable 520
 	belt 1431
@@ -19202,8 +18855,6 @@ system Ossipago
 	pos 6.87033 429.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/f-old-star
-	mapicon map/m-dwarf-star
 	arrival 3590
 	habitable 3590
 	belt 1803
@@ -19272,10 +18923,6 @@ system Ossipago
 system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	attributes "pleiades"
 	arrival 1895
 	habitable 1895
@@ -19312,7 +18959,6 @@ system Paeli
 	pos 129 497
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	mapicon map/brown-dwarf-star
 	arrival 500
 	habitable 10
 	belt 1500
@@ -19361,7 +19007,6 @@ system Pantica
 	pos 303.87 445.242
 	government Remnant
 	attributes "ember waste"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1253
@@ -19420,8 +19065,6 @@ system Parca
 	pos 150.504 151.389
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/g-old-star
-	mapicon map/m-dwarf-star
 	arrival 1385
 	habitable 1385
 	belt 1315
@@ -19499,7 +19142,6 @@ system Patir
 	pos -38 553
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/black-hole-star
 	arrival 500
 	habitable 100
 	belt 1500
@@ -19549,7 +19191,6 @@ system Peacock
 	pos -307 350
 	government Republic
 	attributes "dirt belt"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1870
@@ -19626,8 +19267,6 @@ system Pelubta
 	pos -757.587 575.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/b-large-star
-	mapicon map/a-dwarf
 	arrival 5000
 	habitable 7050
 	belt 1709
@@ -19708,7 +19347,6 @@ system Peragenor
 	pos 86.8703 356.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/g-old-star
 	arrival 2160
 	habitable 2160
 	belt 1920
@@ -19775,7 +19413,6 @@ system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
 	attributes "archon" "korath" "nova"
-	mapicon map/nova-star
 	arrival 500
 	habitable 100
 	belt 1065
@@ -19824,7 +19461,6 @@ system Perfica
 	pos 185.87 419.242
 	government Uninhabited
 	attributes "ember waste"
-	mapicon map/brown-dwarf-star
 	arrival 500
 	habitable 10
 	belt 1160
@@ -19872,8 +19508,6 @@ system Persian
 	pos -203 331
 	government Syndicate
 	attributes "core"
-	mapicon map/f-old-star
-	mapicon map/k-small-star
 	arrival 3920
 	habitable 3920
 	belt 1308
@@ -19943,7 +19577,6 @@ system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
 	attributes "korath" "nova"
-	mapicon map/nova-star
 	arrival 500
 	habitable 100
 	belt 1948
@@ -19986,8 +19619,6 @@ system Phact
 	pos -375 -191
 	government Republic
 	attributes "north"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1115
 	habitable 1115
 	belt 1704
@@ -20062,7 +19693,6 @@ system Phecda
 	pos -607 88
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1375
@@ -20122,7 +19752,6 @@ system Pherkad
 	pos -798 451
 	government Republic
 	attributes "south"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1924
@@ -20180,7 +19809,6 @@ system Phurad
 	pos -494 -153
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1881
@@ -20241,7 +19869,6 @@ system Phurad
 system Pik'ro'iyak
 	pos -378.845 -677.001
 	government Wanderer
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 230
 	belt 1279
@@ -20292,7 +19919,6 @@ system Plort
 	pos -708.587 723.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1490
@@ -20353,7 +19979,6 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1906
@@ -20409,8 +20034,6 @@ system Polerius
 	pos 88 482
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-star
-	mapicon map/k-old-star
 	arrival 2030
 	habitable 2030
 	belt 1500
@@ -20482,7 +20105,6 @@ system Pollux
 	pos -465 4
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1161
@@ -20539,8 +20161,6 @@ system Porrima
 	pos -556 123
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 760
 	habitable 760
 	belt 1636
@@ -20611,7 +20231,6 @@ system Postverta
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1500
@@ -20650,8 +20269,6 @@ system Postverta
 system Prakacha'a
 	pos -35.1114 -802.607
 	government Wanderer
-	mapicon map/g-star
-	mapicon map/k-old-star
 	arrival 2030
 	habitable 2030
 	belt 1660
@@ -20732,7 +20349,6 @@ system Procyon
 	pos -411 23
 	government Republic
 	attributes "near earth"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1763
@@ -20792,7 +20408,6 @@ system Prosa
 	pos 303 194
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	mapicon map/o-giant-star
 	arrival 5000
 	habitable 22300
 	belt 1500
@@ -20838,7 +20453,6 @@ system Prosa
 system "Pug Iyik"
 	pos -361.149 -883.233
 	government "Pug (Wanderer)"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1286
@@ -20898,7 +20512,6 @@ system Quaru
 	pos -1080.63 448.214
 	government Heliarch
 	attributes "ringworld"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1440
@@ -21039,212 +20652,211 @@ system Quaru
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 21
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 32
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 44
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 53
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 62
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 66
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 73
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 87
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 95
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 104
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 116
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 125
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 134
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 149
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 29
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 38
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 42
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 55
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 64
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 78
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 92
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 106
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 120
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 132
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 145
 	object
 		sprite planet/panels1
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 185
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 197
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 207
 	object
 		sprite planet/panels5
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 218
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 231
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 800
-		period 342.094
+		period 349.820
 		offset 244
 	object
 		sprite planet/panels2
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 198
 	object
 		sprite planet/panels3
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 212
 	object
 		sprite planet/panels4
 			scale 0.5
 		distance 830
-		period 361.516
+		period 349.820
 		offset 237
 
 system Queri
 	pos 69 518
 	government Uninhabited
 	attributes "ember waste" "graveyard"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1500
@@ -21273,7 +20885,6 @@ system Rajak
 	pos -270 -236
 	government Republic
 	attributes "north"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1410
@@ -21343,7 +20954,6 @@ system Rasalhague
 	pos -413 246
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1282
@@ -21406,7 +21016,6 @@ system Rastaban
 	pos -463 446
 	government Republic
 	attributes "south"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1041
@@ -21468,7 +21077,6 @@ system Rastaban
 system "Rati Cal"
 	pos -116.765 -391.123
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1538
@@ -21535,7 +21143,6 @@ system Regor
 	pos -702 -335
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1305
@@ -21600,7 +21207,6 @@ system Regulus
 	pos -544 25
 	government Republic
 	attributes "near earth"
-	mapicon map/b-large-star
 	arrival 5000
 	habitable 7000
 	belt 1605
@@ -21673,7 +21279,6 @@ system Relifer
 	pos 19 603
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	mapicon map/k-old-star
 	arrival 980
 	habitable 980
 	belt 1500
@@ -21753,7 +21358,6 @@ system Remembrance
 	pos -884.587 641.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1536
@@ -21812,7 +21416,6 @@ system Rigel
 	pos -324 -363
 	government Republic
 	attributes "north"
-	mapicon map/b-supergiant-star
 	arrival 5000
 	habitable 17025
 	belt 1882
@@ -21891,7 +21494,6 @@ system Ritilas
 	pos 11 523
 	government Uninhabited
 	attributes "ember waste" "graveyard" "wormhole"
-	mapicon map/k-old-star
 	arrival 980
 	habitable 980
 	belt 1500
@@ -21966,7 +21568,6 @@ system Ruchbah
 	pos -174 69
 	government Syndicate
 	attributes "core"
-	mapicon map/f-star
 	arrival 2560
 	habitable 2560
 	belt 1598
@@ -22040,7 +21641,6 @@ system Rutilicus
 	pos -535 273
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1771
@@ -22111,7 +21711,6 @@ system Sabik
 	pos -675 379
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1609
@@ -22165,8 +21764,6 @@ system Sabriset
 	pos 151.724 -426.518
 	government Uninhabited
 	attributes "korath"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1570
 	habitable 1570
 	belt 1025
@@ -22221,7 +21818,6 @@ system Sadalmelik
 	pos -145 472
 	government Quarg
 	attributes "south"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1273
@@ -22279,8 +21875,6 @@ system Sadalsuud
 	pos -134 508
 	government Quarg
 	attributes "south"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1859
@@ -22344,8 +21938,6 @@ system Sadr
 	pos -287 543
 	government Republic
 	attributes "south"
-	mapicon map/a-star
-	mapicon map/m-dwarf-star
 	arrival 3430
 	habitable 3430
 	belt 1388
@@ -22411,7 +22003,6 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	mapicon map/supermassive-black-hole-star
 	arrival 5000
 	habitable 10000
 	belt 1500
@@ -22430,7 +22021,6 @@ system Saiph
 	pos -375 -390
 	government Republic
 	attributes "north"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 370
 	belt 1690
@@ -22486,7 +22076,6 @@ system Salipastart
 	pos 250.431 -370.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1056
@@ -22556,7 +22145,6 @@ system Saquergen
 	pos -482 561
 	government Uninhabited
 	attributes "nova"
-	mapicon map/nova-old-star
 	arrival 500
 	habitable 100
 	belt 1435
@@ -22590,8 +22178,6 @@ system Sargas
 	pos -542 445
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/k-small-star
 	arrival 980
 	habitable 980
 	belt 1642
@@ -22644,7 +22230,6 @@ system Sarin
 	pos -670 293
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1752
@@ -22696,8 +22281,6 @@ system Sayaiban
 	pos 250.431 -274.812
 	government Drak
 	attributes "archon" "korath"
-	mapicon map/f-star
-	mapicon map/m-dwarf-star
 	arrival 3750
 	habitable 3750
 	belt 1803
@@ -22755,7 +22338,6 @@ system Scheat
 	pos -205 233
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1536
@@ -22816,7 +22398,6 @@ system Schedar
 	pos -93 229
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1903
@@ -22887,7 +22468,6 @@ system Segesta
 	pos 111.87 294.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/k-old-star
 	arrival 950
 	habitable 950
 	belt 1120
@@ -22958,7 +22538,6 @@ system Seginus
 	pos -557 356
 	government Republic
 	attributes "dirt belt"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1906
@@ -23026,7 +22605,6 @@ system Seketra
 	pos -24.5695 -356.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1465
@@ -23080,7 +22658,6 @@ system Sepetrosk
 	pos 192.431 -243.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1286
@@ -23144,8 +22721,6 @@ system Sepriaptu
 	pos 139.431 -448.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/f-star
-	mapicon map/m-dwarf-star
 	arrival 2035
 	habitable 2035
 	belt 1120
@@ -23200,7 +22775,6 @@ system Sevrelect
 	pos -114.569 -239.812
 	government "Kor Efret"
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1763
@@ -23220,7 +22794,8 @@ system Sevrelect
 	trade Plastic 288
 	fleet Quarg 1000
 	fleet "Large Quarg" 3000
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/m0
 		period 10
@@ -23254,7 +22829,6 @@ system Shaula
 	pos -460 527
 	government Pirate
 	attributes "south"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1814
@@ -23324,8 +22898,6 @@ system Sheratan
 	pos -40 45
 	government Syndicate
 	attributes "core"
-	mapicon map/f-star
-	mapicon map/k-small-star
 	arrival 2085
 	habitable 2085
 	belt 1183
@@ -23386,8 +22958,6 @@ system Sheratan
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1310
 	habitable 1310
 	belt 1985
@@ -23469,7 +23039,6 @@ system Si'yak'ku
 system Sich'ka'ara
 	pos -97.1237 -831.921
 	government Wanderer
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1744
@@ -23523,7 +23092,6 @@ system Silikatakfar
 	pos 248.431 -481.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1641
@@ -23577,7 +23145,6 @@ system "Silver Bell"
 	pos -1045.59 541.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1406
@@ -23657,7 +23224,6 @@ system "Silver String"
 	pos -1022.59 517.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1986
@@ -23724,7 +23290,6 @@ system Similisti
 	pos 210.431 -313.812
 	government "Kor Mereti"
 	attributes "korath"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1349
@@ -23795,8 +23360,6 @@ system Sirius
 	pos -378 44
 	government Republic
 	attributes "near earth"
-	mapicon map/f-star
-	mapicon map/m-dwarf-star
 	arrival 1850
 	habitable 1850
 	belt 1407
@@ -23862,7 +23425,6 @@ system Skeruto
 	pos 28.4305 -339.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1198
@@ -23915,7 +23477,6 @@ system Skeruto
 system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1805
@@ -23970,8 +23531,6 @@ system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
 	attributes "korath"
-	mapicon map/a-star
-	mapicon map/f-dwarf-star
 	arrival 3355
 	habitable 3355
 	belt 1314
@@ -24036,7 +23595,6 @@ system Sol
 	pos -400 100
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1529
@@ -24150,7 +23708,6 @@ system "Sol Arach"
 	pos -711.587 649.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1147
@@ -24224,7 +23781,6 @@ system "Sol Kimek"
 	pos -1310.63 227.214
 	government Coalition
 	attributes "kimek"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1490
@@ -24300,8 +23856,6 @@ system "Sol Saryd"
 	pos -1037.59 675.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1310
 	habitable 1310
 	belt 1720
@@ -24386,7 +23940,6 @@ system Solifar
 	pos 47.4305 -435.812
 	government Uninhabited
 	attributes "korath"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1517
@@ -24443,10 +23996,9 @@ system Solifar
 system Sospi
 	pos -317 -161
 	government Republic
-	attributes "north"
-	mapicon map/wr0-star
-	arrival 625
-	habitable 625
+	attributes "north" "wolf-rayet"
+	arrival 5000
+	habitable 50000
 	belt 1715
 	haze _menu/haze-133
 	link Nihal
@@ -24477,24 +24029,24 @@ system Sospi
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
 	object
-		sprite star/wr0
+		sprite star/wr
 		period 10
 	object
 		sprite planet/lava2-b
 		distance 152.96
-		period 30.2682
+		period 10.7014
 	object
 		sprite planet/lava7
 		distance 362.32
-		period 110.346
+		period 39.0133
 	object
 		sprite planet/lava4
 		distance 656.93
-		period 269.400
+		period 95.2475
 	object
 		sprite planet/gas16-b
 		distance 2355.57
-		period 1829.21
+		period 646.724
 		object
 			sprite planet/dust3
 			distance 185
@@ -24512,7 +24064,6 @@ system Speloog
 	pos -967.587 445.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1159
@@ -24581,7 +24132,6 @@ system Spica
 	pos -906 120
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1940
@@ -24644,7 +24194,6 @@ system Statina
 	pos 385 198
 	government Uninhabited
 	attributes "ember waste" "inaccessible" "wormhole"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1500
@@ -24692,7 +24241,6 @@ system "Steep Roof"
 	pos -1113.59 570.051
 	government Coalition
 	attributes "saryd"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1100
@@ -24767,8 +24315,6 @@ system Stercutus
 	pos 140.87 320.242
 	government Uninhabited
 	attributes "ember waste" "wormhole"
-	mapicon map/g-old-star
-	mapicon map/m-dwarf-star
 	arrival 1570
 	habitable 1570
 	belt 1492
@@ -24836,7 +24382,6 @@ system Suhail
 	pos -774 -338
 	government Republic
 	attributes "deep"
-	mapicon map/k-giant-star
 	arrival 3000
 	habitable 3000
 	belt 2715
@@ -24900,7 +24445,6 @@ system Sumar
 	pos -236 -273
 	government Republic
 	attributes "north"
-	mapicon map/f-star
 	arrival 2560
 	habitable 2560
 	belt 1778
@@ -24962,7 +24506,6 @@ system Sumprast
 	pos -101.569 -262.812
 	government "Kor Efret"
 	attributes "korath"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1958
@@ -24989,7 +24532,8 @@ system Sumprast
 	trade Plastic 323
 	fleet Quarg 1000
 	fleet "Large Quarg" 2500
-	fleet "Kor Efret Home" 1000
+	fleet "Kor Efret Home" 500
+	fleet "Kor Efret Miners" 3600
 	object
 		sprite star/k0
 		period 10
@@ -25030,7 +24574,6 @@ system Tais
 	pos -346 381
 	government Republic
 	attributes "dirt belt"
-	mapicon map/a-star
 	arrival 3200
 	habitable 3200
 	belt 1379
@@ -25090,8 +24633,6 @@ system Talita
 	pos -519 -26
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
-	mapicon map/g-star
 	arrival 1705
 	habitable 1705
 	belt 1403
@@ -25159,7 +24700,6 @@ system "Tania Australis"
 	pos -671 7
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1738
@@ -25234,8 +24774,6 @@ system Tarazed
 	pos -194 448
 	government Republic
 	attributes "south"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1215
 	habitable 1215
 	belt 1169
@@ -25301,8 +24839,6 @@ system Tebuteb
 	pos -615.587 710.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 550
 	habitable 550
 	belt 1855
@@ -25366,8 +24902,6 @@ system Tejat
 	pos -489 -107
 	government Republic
 	attributes "paradise"
-	mapicon map/g-star
-	mapicon map/m-dwarf-star
 	arrival 1215
 	habitable 1215
 	belt 1447
@@ -25447,7 +24981,6 @@ system Terminus
 	pos -727.99 -23.2491
 	government Republic
 	attributes "dirt belt" "wormhole"
-	mapicon map/k-old-star
 	arrival 950
 	habitable 950
 	belt 1221
@@ -25503,7 +25036,6 @@ system "Terra Incognita"
 	pos 9921.5 7086.5
 	government Uninhabited
 	attributes "pleiades"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1500
@@ -25551,8 +25083,6 @@ system Torbab
 	pos -949.587 490.051
 	government Coalition
 	attributes "arachi"
-	mapicon map/k-old-star
-	mapicon map/g-star
 	arrival 2030
 	habitable 2030
 	belt 1727
@@ -25631,7 +25161,6 @@ system Tortor
 	pos -255 -424
 	government Republic
 	attributes "north"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1243
@@ -25700,7 +25229,6 @@ system Turais
 	pos -691 134
 	government Republic
 	attributes "dirt belt"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1471
@@ -25758,8 +25286,6 @@ system Turais
 system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
-	mapicon map/m-dwarf-star
-	mapicon map/m-dwarf-star
 	arrival 640
 	habitable 640
 	belt 1574
@@ -25848,7 +25374,6 @@ system "Ultima Thule"
 	pos -336 -211
 	government Republic
 	attributes "north" "wormhole"
-	mapicon map/f-star
 	arrival 2560
 	habitable 2560
 	belt 1635
@@ -25904,8 +25429,6 @@ system Umbral
 	pos -164 406
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 1300
 	habitable 1300
 	belt 1375
@@ -25985,7 +25508,6 @@ system Unagi
 	pos -306 -578
 	government Pirate
 	attributes "north"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1960
@@ -26041,7 +25563,6 @@ system Unukalhai
 	pos -710 405
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1968
@@ -26103,7 +25624,6 @@ system Unukalhai
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1913
@@ -26175,7 +25695,6 @@ system Vaticanus
 	pos 324 112
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 320
 	belt 1500
@@ -26228,8 +25747,6 @@ system Vega
 	pos -402 182
 	government Republic
 	attributes "near earth"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1744
@@ -26295,7 +25812,6 @@ system Vindemiatrix
 	pos -635 257
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1957
@@ -26350,7 +25866,6 @@ system Volax
 	pos -256 -179
 	government Republic
 	attributes "north"
-	mapicon map/f-star
 	arrival 1715
 	habitable 1715
 	belt 1424
@@ -26406,7 +25921,6 @@ system Volax
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1585
@@ -26482,7 +25996,6 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
-	mapicon map/a-star
 	arrival 3650
 	habitable 3650
 	belt 1194
@@ -26573,7 +26086,6 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
-	mapicon map/g-star
 	arrival 1080
 	habitable 1080
 	belt 1222
@@ -26640,7 +26152,6 @@ system Waypoint
 	pos -184 -515
 	government Hai
 	attributes "wormhole"
-	mapicon map/m-dwarf-star
 	arrival 500
 	habitable 135
 	belt 1610
@@ -26700,8 +26211,6 @@ system Wazn
 	pos -385 -131
 	government Republic
 	attributes "paradise"
-	mapicon map/k-small-star
-	mapicon map/m-dwarf-star
 	arrival 530
 	habitable 530
 	belt 1414
@@ -26769,7 +26278,6 @@ system Wei
 	pos -598 369
 	government Republic
 	attributes "dirt belt"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1927
@@ -26829,8 +26337,6 @@ system Wezen
 	pos -664 -433
 	government Republic
 	attributes "deep"
-	mapicon map/f-star
-	mapicon map/g-dwarf-star
 	arrival 2710
 	habitable 2710
 	belt 1913
@@ -26872,11 +26378,11 @@ system Wezen
 	object
 		sprite planet/miranda-b
 		distance 255.401
-		period 32.2681
+		period 31.3623
 	object
 		sprite planet/gas5-b
 		distance 664.041
-		period 135.279
+		period 131.482
 		object "Phoenix Station"
 			sprite planet/station1
 				scale 0.5
@@ -26885,11 +26391,11 @@ system Wezen
 	object
 		sprite planet/water0-b
 		distance 1273.29
-		period 359.195
+		period 349.113
 	object Alfheim
 		sprite planet/forest0
 		distance 1768.53
-		period 587.974
+		period 571.470
 		object
 			sprite planet/ice0-b
 			distance 181
@@ -26897,7 +26403,7 @@ system Wezen
 	object
 		sprite planet/gas9-b
 		distance 3579.78
-		period 1693.26
+		period 1645.73
 		object
 			sprite planet/rock0
 			distance 220
@@ -26915,7 +26421,6 @@ system "World's End"
 	pos 9966.5 7017.5
 	government Uninhabited
 	attributes "pleiades"
-	mapicon map/g-star
 	arrival 700
 	habitable 700
 	belt 1500
@@ -26986,7 +26491,6 @@ system "World's End"
 system "Ya Hai"
 	pos -24.9453 -505.571
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1120
@@ -27070,7 +26574,6 @@ system "Yed Prior"
 	pos -810 374
 	government Republic
 	attributes "south"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1837
@@ -27129,7 +26632,6 @@ system Zaurak
 	pos -109 -34
 	government Syndicate
 	attributes "core"
-	mapicon map/g-star
 	arrival 625
 	habitable 625
 	belt 1130
@@ -27189,8 +26691,6 @@ system "Zeta Aquilae"
 	pos -369 276
 	government Republic
 	attributes "dirt belt"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 1450
 	habitable 1450
 	belt 1829
@@ -27267,7 +26767,6 @@ system "Zeta Centauri"
 	pos -835 257
 	government Republic
 	attributes "rim"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1488
@@ -27325,7 +26824,6 @@ system Zosma
 	pos -640 -123
 	government Republic
 	attributes "deep"
-	mapicon map/k-small-star
 	arrival 500
 	habitable 450
 	belt 1436
@@ -27394,7 +26892,6 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
-	mapicon map/k-small-star
 	arrival 500
 	habitable 425
 	belt 1911
@@ -27473,8 +26970,6 @@ system Zubenelgenubi
 	pos -710 353
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
-	mapicon map/k-small-star
 	arrival 995
 	habitable 995
 	belt 1475
@@ -27542,7 +27037,6 @@ system Zubenelhakrabi
 	hidden
 	pos -755 365
 	government Uninhabited
-	mapicon map/k-small-star
 	arrival 500
 	habitable 490
 	belt 1669
@@ -27619,8 +27113,6 @@ system Zubeneschamali
 	pos -759 338
 	government Republic
 	attributes "rim"
-	mapicon map/g-star
-	mapicon map/g-star
 	arrival 1250
 	habitable 1250
 	belt 1543
@@ -29366,7 +28858,7 @@ planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/sivael5
 	music ambient/machinery
-	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	description `This station is so run-down that most of the workers carry oxygen masks in case a meteoroid punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment, there are no repair or refueling services available here.`
 	security 0.3
 	tribute 100
 		threshold 3500
@@ -29854,7 +29346,7 @@ planet Millrace
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly.`
-	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
+	spaceport `	As the population of Millrace has grown, the spaceport has been expanded to support the increase in immigration; you can recognize the different sections because in the newer ones, the bare concrete walls are lighter and have accumulated less soot and grime.`
 	spaceport `	Most of the restaurants are of the greasy spoon variety.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -30771,7 +30263,7 @@ planet "Separa Tiklar"
 	attributes korath station
 	landscape land/space1
 	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
-	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+	spaceport `From the outside this station appears as run-down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
 	security 0
 
 planet "Septar Lorku"
@@ -31062,7 +30554,7 @@ planet Splashdown
 		fleet "Large Republic" 3
 
 planet "Ssil Vida"
-	attributes emitter sheragi "remnant station" uninhabited
+	attributes emitter "remnant station" sheragi uninhabited
 	landscape land/station11
 	description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you. Either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 	spaceport `Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
@@ -31198,7 +30690,7 @@ planet "Tebuteb's Table"
 planet "Tefkar Ret"
 	attributes korath station
 	landscape land/station12
-	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
+	description `This station is run-down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet "Third Umber"
 	attributes factory kimek research
@@ -31392,7 +30884,7 @@ planet Vail
 	landscape land/snow4
 	description `Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries supply the tourists and the large staffs that cater to them.`
 	description `	The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hoverboarding and wingsuit cliff skiing.`
-	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move peple and cargo from here to their ultimate destinations in the resort towns.`
+	spaceport `The spaceport is near the equator, where the weather will be most amenable for landing starships. In addition to vertical take-off pads, the port has airplane shuttle runways and high speed rail lines to move people and cargo from here to their ultimate destinations in the resort towns.`
 	spaceport `	Consequently, the air is full of a confusing mixture of deep space ships and atmospheric vehicles. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe 0.04
 	security 0.6

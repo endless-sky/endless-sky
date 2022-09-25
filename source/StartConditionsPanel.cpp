@@ -28,8 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "PlayerInfo.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
 #include "ShipyardPanel.h"
@@ -45,7 +45,8 @@ using namespace std;
 
 
 
-StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &scenarios, const Panel *parent)
+StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
+	const StartConditionsList &scenarios, const Panel *parent)
 	: player(player), gamePanels(gamePanels), parent(parent), scenarios(scenarios), startIt(scenarios.begin()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),

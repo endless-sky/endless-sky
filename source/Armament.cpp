@@ -60,7 +60,8 @@ int Armament::Add(const Outfit *outfit, int count)
 	// Do not equip weapons that do not define how they are mounted.
 	if(!isTurret && !outfit->Get("gun ports"))
 	{
-		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\". Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
+		Logger::LogError("Error: Skipping unmountable outfit \"" + outfit->Name() + "\"."
+			" Weapon outfits must specify either \"gun ports\" or \"turret mounts\".");
 		return 0;
 	}
 
@@ -256,7 +257,8 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, vector<Visual> &visuals, bool jammed)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile,
+	vector<Visual> &visuals, bool jammed)
 {
 	if(static_cast<unsigned>(index) >= hardpoints.size() || !hardpoints[index].IsReady())
 		return false;
