@@ -2703,8 +2703,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		else
 		{
-			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet())
+			for(const StellarObject &object : system->Objects())
+				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet()))
 					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
 		}
 		for(const shared_ptr<Ship> &ship : ships)
@@ -2850,8 +2850,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		else
 		{
 			int64_t retVal = 0;
-			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet())
+			for(const StellarObject &object : system->Objects())
+				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet()))
 					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
 			return retVal;
 		}
