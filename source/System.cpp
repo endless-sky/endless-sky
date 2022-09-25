@@ -307,22 +307,22 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					continue;
 				}
 
-	auto index = removedIt - objects.begin();
-	auto next = objects.erase(it);
-	size_t removed = 1;
-	// Remove any child objects too.
-	while(next != object->objects.end() && next->parent == index)
-	{
-		if(next->planet)
-			planets.Get(next->planet->TrueName())->RemoveSystem(object);
-		next = objects.erase(next);
-		++removed;
-	}
+				auto index = removeIt - objects.begin();
+				auto next = objects.erase(removeIt);
+				size_t removed = 1;
+				// Remove any child objects too.
+				while(next != objects.end() && next->parent != -1)
+				{
+					if(next->planet)
+						planets.Get(next->planet->TrueName())->RemoveSystem(this);
+					next = objects.erase(next);
+					++removed;
+				}
 
-	// Recalculate every parent index.
-	for(auto it = next; it != objects.end(); ++it)
-		if(it->parent >= index)
-			it->parent -= removed;
+				// Recalculate every parent index.
+				for(auto it = next; it != objects.end(); ++it)
+					if(it->parent >= index)
+						it->parent -= removed;
 			}
 			else
 				LoadObject(child, planets);
