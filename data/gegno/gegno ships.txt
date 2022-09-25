@@ -220,7 +220,7 @@ ship Augen
 			"hull damage" 2700
 			"hit force" 2100
 	outfits
-		"Ballistic Cannon" 6
+		"Ballistic Cannon Turret" 6
 		"C17 Warzone Core"
 		"C27 Campaign Core"
 		"Chloeric Cannon" 2
@@ -249,12 +249,12 @@ ship Augen
 		zoom 0.5
 		angle 60
 		right
-	turret 14 -304.5 "Ballistic Cannon"
-	turret 13.5 -219 "Ballistic Cannon"
-	turret 27.5 -129 "Ballistic Cannon"
+	turret 14 -304.5 "Ballistic Cannon Turret"
+	turret 13.5 -219 "Ballistic Cannon Turret"
+	turret 27.5 -129 "Ballistic Cannon Turret"
 	turret 27 134 "Ballistic Cannon"
-	turret 17.5 221.5 "Ballistic Cannon"
-	turret 18.5 301.5 "Ballistic Cannon"
+	turret 17.5 221.5 "Ballistic Cannon Turret"
+	turret 18.5 301.5 "Ballistic Cannon Turret"
 	gun 57.5 -385 "Chloeric Cannon"
 	gun 57.5 -385 "Chloeric Cannon"
 	gun -37 -372.5 "Irate Cannon"
@@ -429,6 +429,61 @@ ship Eclogite
 	"final explode" "final explosion small"
 	description "The Eclogite is one of the newest designs in the Gegno Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Gegno Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another pounding."
 
+ship Diorite
+	sprite ship/diorite
+	thumbnail thumbnail/diorite
+	swizzle 0
+	attributes
+		category "Medium Warship"
+		licenses
+			"Gegno Civilian"
+			"Vi Evocati"
+			"Vi Centurion"
+		cost 2500000
+		mass 642
+		bunks 68
+		"cargo space" 40
+		drag 6.3
+		"engine capacity" 124
+		"fuel capacity" 500
+		"heat dissipation" 0.5
+		"heat protection" 3
+		"ion protection" 3
+		hull 11600
+		"outfit space" 511
+		"required crew" 41
+		shields 0
+		"weapon capacity" 251
+		weapon
+			"blast radius" 90
+			"shield damage" 540
+			"hull damage" 770
+			"hit force" 810
+	outfits
+		"C17 Warzone Core"
+		"Ballistic Cannon" 2
+		Hyperdrive
+		"Irate Cannon Turret" 2
+		"R03 Warforge Battery"
+		"RG18 Torch Thruster"
+		"RG3 Torch Steering"
+
+	gun -8.5 -193
+	gun 8.5 -193
+	turret -24 -76.5
+	turret 24 -76.5 
+	engine -14.5 142
+	engine 0 138
+	engine 14.5 142
+	leak leak 30 50
+	leak flame 50 90
+	explode "large explosion" 9
+	explode "medium explosion" 15
+	explode "small explosion" 20
+	explode "tiny explosion" 17
+	"final explode" "final explosion medium"
+	description "Placeholder".
+
 ship Hornfel
 	sprite ship/hornfel
 	thumbnail thumbnail/hornfel
@@ -461,7 +516,7 @@ ship Hornfel
 			"hit force" 900
 	outfits
 		"C17 Warzone Core"
-		"Chloeric Turret" 2
+		"Chloeric Cannon Turret" 2
 		Hyperdrive
 		"Irate Cannon" 4
 		"R03 Warforge Battery"
@@ -473,8 +528,8 @@ ship Hornfel
 	gun 13.5 -228 "Irate Cannon"
 	gun -22.5 -204 "Irate Cannon"
 	gun 22.5 -204 "Irate Cannon"
-	turret 0 -112 "Chloeric Turret"
-	turret 0 -41.5 "Chloeric Turret"
+	turret 0 -112 "Chloeric Cannon Turret"
+	turret 0 -41.5 "Chloeric Cannon Turret"
 	leak leak 60 50
 	leak flame 60 80
 	explode "large explosion" 10
@@ -509,9 +564,9 @@ ship Hornfel "Hornfel Heavy"
 		drag 1.1
 		"weapon capacity" 60
 	outfits
-		"Ballistic Cannon"
+		"Ballistic Cannon Turret"
 		"C17 Warzone Core"
-		"Chloeric Turret"
+		"Chloeric Cannon Turret"
 		Hyperdrive
 		"Irate Cannon" 2
 		"R03 Warforge Battery"
@@ -550,7 +605,7 @@ ship Gneiss
 			"hull damage" 1570
 			"hit force" 1200
 	outfits
-		"Ballistic Cannon" 3
+		"Ballistic Cannon Turret" 3
 		"C17 Warzone Core"
 		Hyperdrive
 		"Irate Cannon" 4
@@ -562,9 +617,9 @@ ship Gneiss
 	gun 17.4 -282 "Irate Cannon"
 	gun -24.5 -263 "Irate Cannon"
 	gun 24.5 -263 "Irate Cannon"
-	turret 0 -107 "Ballistic Cannon"
-	turret 0 -30.5 "Ballistic Cannon"
-	turret 0 42.5 "Ballistic Cannon"
+	turret 0 -107 "Ballistic Cannon Turret"
+	turret 0 -30.5 "Ballistic Cannon Turret"
+	turret 0 42.5 "Ballistic Cannon Turret"
 	leak leak 50 50
 	leak flame 80 140
 	explode "huge explosion" 18
@@ -609,7 +664,7 @@ ship Protolith
 			"hit force" 3950
 	outfits
 		"C7 Brawl Cell" 2
-		"Chloeric Turret" 2
+		"Chloeric Cannon Turret" 2
 		Hyperdrive
 		"Irate Cannon" 2
 		"R02 Battlezone Battery"
@@ -620,8 +675,8 @@ ship Protolith
 	engine 39 250
 	gun 37 -212 "Irate Cannon"
 	gun 45 -199.5 "Irate Cannon"
-	turret 0 -33 "Chloeric Turret"
-	turret 0 8 "Chloeric Turret"
+	turret 0 -33 "Chloeric Cannon Turret"
+	turret 0 8 "Chloeric Cannon Turret"
 	leak leak 30 50
 	leak flame 30 80
 	leak "big leak" 50 30

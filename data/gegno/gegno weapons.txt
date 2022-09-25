@@ -38,6 +38,36 @@ outfit "Irate Cannon"
 		"hit force" 40
 	description "Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed energy and metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers."
 
+outfit "Irate Cannon Turret"
+	category Turrets
+	cost 576000
+	mass 28
+	thumbnail "outfit/irate cannon"
+	"turret mounts" -1
+	"required crew" 2
+	"outfit space" -28
+	"weapon capacity" -28
+	licenses
+		"Gegno Civilian" 
+		"Vi Evocati"
+	weapon
+		sprite projectile/irate
+		sound irate
+		"fire effect" "irate fire"
+		"hit effect" "tiny explosion"
+		lifetime 15
+		reload 12
+		velocity 22
+		"hardpoint offset" 1.5
+		inaccuracy 2
+		"turret turn" 1
+		"firing energy" 13
+		"firing heat" 95
+		"shield damage" 6
+		"hull damage" 16
+		"hit force" 40
+	description "Placeholder."
+
 outfit "Chloeric Cannon"
 	category Guns
 	cost 610000
@@ -57,7 +87,7 @@ outfit "Chloeric Cannon"
 		"hit effect" "small explosion"
 		lifetime 55
 		reload 90
-		"missile strength" 18
+		"missile strength" 12
 		velocity 11
 		"hardpoint offset" -11
 		inaccuracy 2
@@ -71,7 +101,7 @@ outfit "Chloeric Cannon"
 	description "	A flaw in the shell design, however, is that point defense systems are just able to make them out as valid targets on account of their slower speed, material make-up, and size nearing a small missile."
 
 
-outfit "Chloeric Turret"
+outfit "Chloeric Cannon Turret"
 	category Turrets
 	cost 816000
 	mass 42
@@ -105,8 +135,40 @@ outfit "Chloeric Turret"
 	description "Mounted on a turret, a Chloeric Cannon is much more devastating without the need to keep a target in front to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment."
 	description "	As with the regular mount, the shells are large and slow enough to be targeted by point defense systems."
 
-
 outfit "Ballistic Cannon"
+	category Guns
+	cost 1025000
+	mass 96
+	thumbnail "outfit/ballistic cannon"
+	"outfit space" -96
+	"gun ports" -1
+	"weapon capacity" -96
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	weapon
+		sprite projectile/ballistic
+		sound ballistic
+		"fire effect" "ballistic fire"
+		"hit effect" "ballistic hit"
+		"hardpoint offset" -12
+		lifetime 100
+		reload 130
+		"missile strength" 18
+		"stream"
+		velocity 8
+		inaccuracy 3
+		"firing energy" 252
+		"firing heat" 566
+		"shield damage" 145
+		"hull damage" 776
+		"hit force" 360
+	description "Placeholder."
+
+
+outfit "Ballistic Cannon Turret"
 	category Turrets
 	cost 1370000
 	mass 120
@@ -256,7 +318,7 @@ outfit "Acuit Artillery"
 			"random start frame"
 		"hardpoint sprite" hardpoint/scinturret
 		"hit effect" "acuit hit"
-		sound scinshot
+		sound acuit
 		lifetime 60
 		reload 56
 		"burst reload" 10
@@ -305,7 +367,7 @@ effect "scin anti-missile"
 	sprite effect/scinAM
 		"frame rate" 4
 		"no repeat"
-	sound scinAM
+	sound "guile anti-missile"
 	lifetime 16
 
 outfit Excavator
@@ -355,7 +417,7 @@ outfit "Acuit Blaster"
 		sprite projectile/acuit
 			"random start frame"
 		"hit effect" "acuit hit"
-		sound scinshot
+		sound acuit
 		lifetime 60
 		reload 56
 		"burst reload" 10
