@@ -338,16 +338,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						if(object.parent > removedIndex)
 							object.parent--;
 				}
-				/*for(StellarObject &oldObject : oldObjects)
-				{
-					if(oldObject.parent == index)
-					{
-						if(oldObject.GetPlanet())
-							planets.Get(oldObject.GetPlanet()->TrueName())->RemoveSystem(this);
-						continue;
-					}
-					objects.push_back(oldObject);
-				}*/
 			}
 			else
 				LoadObject(child, planets);
