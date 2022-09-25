@@ -313,7 +313,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					planets.Get(toRemove.GetPlanet()->TrueName())->RemoveSystem(this);
 				objects.erase(removeIt);
 
-				// Selectively discard any objects orbiting the one that was removed.
+				// Remove any objects orbiting the one that was removed.
 				vector<int> indicesToRemove;
 				for(int i = 0; i < static_cast<int>(objects.size()); i++)
 				{
