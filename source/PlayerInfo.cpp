@@ -2701,6 +2701,12 @@ void PlayerInfo::RegisterDerivedConditions()
 			if(planetaryStorage.count(planet))
 				retVal += planetaryStorage[planet].Get(outfit);
 		}
+		else
+		{
+			for(const StellarObject &object : system.Objects())
+				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet())
+					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
+		}
 		for(const shared_ptr<Ship> &ship : ships)
 		{
 			if(ship->IsDestroyed() || ship->GetActualSystem() != system)
@@ -2836,12 +2842,19 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&presentStorageOutfitProvider = conditions.GetProviderPrefixed("outfit (storage): ");
 	presentStorageOutfitProvider.SetGetFunction([this](const string &name) -> int64_t
 	{
-		if(!planet || !planetaryStorage.count(planet))
-			return 0;
 		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
 		if(!outfit)
 			return 0;
-		return planetaryStorage[planet].Get(outfit);
+		if(planet)
+			return planetaryStorage.count(planet) ? planetaryStorage[planet].Get(outfit) : 0;
+		else
+		{
+			int64_t retVal = 0;
+			for(const StellarObject &object : system.Objects())
+				if(object.HasValidPlanet() && planetaryStorage.count(object.GetPlanet())
+					retVal += planetaryStorage[object.GetPlanet()].Get(outfit);
+			return retVal;
+		}
 	});
 
 	// The following condition checks all planetary storage.
