@@ -410,10 +410,10 @@ news "hai attacked by pirates"
 			`"`
 		word
 			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well be joining the Unfettered now, I have nothing to lose."
-			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look what that got them! I will join the Unfettered, they are right."
-			"Human ships are so frail... My sister was on one, and she told me it lost all of his shields in a few shots! Thankfully, human weapons are not that strong either so they were able to escape."
-			"You call these human vessels ships? They barely have enough to protect them against the void. Given the danger of human space, I would expect humans to have more heavy transporters able to defend themselves, such as the Behemoth!"
-			"No wonder you have so many pirates in your space, with the kind of freighters you have... So much cargo for so little protection is pure madness! That is why I love humans."
+			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look what that got them! I will join the Unfettered; they are right."
+			"Human ships are so frail... My sister was on one, and she told me it lost all of his shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape."
+			"You call these human vessels ships? They just barely protect against the void. Given the danger of human space, I would expect humans to have more heavy transport can at least try to defend themselves, such as the Behemoth!"
+			"No wonder you have so many pirates in your space, with the fragile freighters you have. So much cargo with so little protection is pure madness! That is why I love humans."
 		word
 			`"`
 
@@ -432,8 +432,8 @@ news "hai joining unfettered"
 		word
 			"Apparently our brothers and sisters to the north are in need of help. I may go there someday."
 			"Some very big things are going to happen in Unfettered space, and I wish to be a part of it!"
-			"I have lost everything... I knew I should not have taken that big loan. I will be heading for Unfettered space for a new life now."
-			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the new living conditions."
+			"I have lost everything... I knew I should not have taken that big loan. I will be heading to Unfettered space for a new life now."
+			"I come from Unfettered space. The Hai there are quite dynamic and friendly once you get to know them, but I could not stand the poor living conditions."
 			"Have you heard? The art in Unfettered space is ever changing, never dull. I wish I could go there and see it in person."
 			"Art in Unfettered space is very different from here. We could learn a lot from it."
 			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed."
@@ -454,7 +454,7 @@ news "hai joining unfettered"
 			`"`
 		word
 			"So many people need relocation. I have made it my job to carry them around, asking for little if anything. Some are Hai going into Unfettered space because they have lost themselves."
-			"With the rumors of action soon in the north, the demand in transport here has greatly increased. I cannot possibly fit all of them. Time to buy a new ship, I guess."
+			"With the rumors of action soon here in the north, the demand for transportation has greatly increased. I cannot possibly fit all of them. Time to buy a new ship, I guess."
 			"Many of those who transport Hai here ask for little - too little. Have you seen the increase in demand? I'm going to raise my price; I can't be transporting people around all day for nothing."
 			"Once I'm done transporting people, I will stay here and be a part of the action."
 			"I've just finished transporting some passengers to Unfettered space, and now I have to transport more? Maybe you could help us, Captain."
