@@ -199,7 +199,7 @@ ship Augen
 	swizzle 0
 	attributes
 		category "Heavy Warship"
-		cost 3700000
+		cost 58800000
 		mass 5000
 		bunks 360
 		"cargo space" 84
@@ -439,7 +439,7 @@ ship Diorite
 			"Gegno Civilian"
 			"Vi Evocati"
 			"Vi Centurion"
-		cost 2500000
+		cost 6980000
 		mass 642
 		bunks 68
 		"cargo space" 40
