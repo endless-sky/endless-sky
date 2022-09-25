@@ -653,7 +653,7 @@ mission "Hai Leaks Response 2C"
 	on offer
 		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is the secretary of Samuel Remington, or at least that's how he puts it. Remington mentioned an internal political situation within the Syndicate while glancing at Terry, so there may be something larger at play with her presence. Hopefully it doesn't conflict with resolving the situation with the Hai.`
 		conversation
-			`Approaching Foundry, you are hailed and directed to a private hangar where you are greeted personally by Samuel Remington. His appearance is rather casual compared to what you would expect, wearing khakis and a collared tee as opposed to the typical suit and tie business atire that you see on Syndicate businessmen. It is certainly in contrast to a young woman standing behind him, who is wearing the usual business attire in this region.`
+			`Approaching Foundry, you are hailed and directed to a private hangar where you are greeted personally by Samuel Remington. His appearance is rather casual compared to what you would expect, wearing khakis and a collared tee as opposed to the typical suit and tie business attire that you see on Syndicate businessmen. It is certainly in contrast to a young woman standing behind him, who is wearing the usual business attire in this region.`
 			branch met
 				has "met remington"
 			action

@@ -676,13 +676,15 @@ mission "Hai Rescue [A04] Report to Teeneep"
 mission "Hai Rescue [A05] Take Teeneep to Hai-home"
 	landing
 	name "Return to Hai-home"
-	description `Tell Teeneep about the experience with Scar's Legion.`
+	description `Take Teeneep to Hai-home.`
 	source Darkwaste
 	destination Hai-home
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste, you should return when your spare bunks are unoccupied.`
 	to offer
 		has "Hai Rescue [A04] Report to Teeneep: done"
+	on visit
+		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
 		conversation
 			`Teeneep is waiting for you when you return to her base on Darkwaste, though notably the security point at the front is properly manned this time. Perhaps the most recent raid has given them cause for concern. There is a quiet corner of the living area that is unoccupied at the time, and she gestures for you to join her there.`
@@ -749,9 +751,177 @@ mission "Hai Rescue [A05] Take Teeneep to Hai-home"
 			
 			label conclusion
 			`	"You must take me to <destination> immediately. My people here can analyze any sensor logs or other data you have on Scar's legion, it doesn't sound like they're connected to our mystery but we can do our due diligence. I must personally investigate these new concerns though and I cannot do that from here, nor can I fly my own ship there without becoming snarled in bureaucracy right now, but if I come with you I can catch up with our mutual friend easily from the secure spaceport. I have sufficient privileges to be there, even if I have no existing clearance for landing my ship."`
-			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <destination> far too long as it is. My sources suggest that there may be those there who are already awaiting your return.`
+			`	She waves over Wayou towards you. "Please, give Wayou any relevant data files while I pack for departure. I suspect that I have kept you away from <destination> far too long as it is. My sources suggest that there may be those there who are already awaiting your return."`
 			`	You have barely had time to load your logs onto a data stick and hand them to Wayou before Teeneep is packed and waiting to depart. It would seem your course is set.`
 				accept
+
+
+
+# Eventually needs a whole conversation variant for each main campaign. This time with similar goals. (To be a, b and c versions.)
+mission "Hai Rescue [A06a] The Calm"
+	landing
+	name "Preparation & Investigation"
+	description `Stop by <destination> on your way to following up the lead from Alondo.`
+	source Hai-home
+	destination Mountaintop
+	cargo "hyperspace relays" 8
+	blocked `When you advise Alondo of your return he requests you ensure you have at least 8 tonnes of cargo space available.`
+	to offer
+		has "Hai Rescue [A05] Take Teeneep to Hai-home: done"
+	on offer
+		conversation
+			`As soon as you disembark Teeneep slips off through an entirely different security checkpoint. She definitely shows them some sort of ID but you're some distance away by that point. A quick inquiry confirms that Alondo is actually around this time and you send him a message to alert him that you're heading his way.`
+			`	As you approach the office where Alondo seems to have been set up for the time being you can hear voices through the open door and you slow to a stop as you realize they sound agitated. "Look, Gruyere, you can't expect me to not organize some things around you when you're off being busy elsewhere. Regardless of whether it was your idea."`
+			`	You clearly identify Alondo when he responds, "I wouldn't blame you if you'd at least tried to contact me, or left a message, but it's just typical of how you operate."`
+			`	"You were eleven hours out of sync across timezones, it was four in the morning where you are, and you know damn well we've all been more than busy enough to let a message slip here or there. Especially since terry is now on Mountaintop and I am absent any assistance."`
+			`	"Sam, it's done, it's fine, the things that need to be happening are happening. I don't care, just stop expecting me to thank you for it. I'm not doing this again," says Alondo, exasperated.`
+			`	The man you now recognize as Remington pauses for a moment before speaking in a low tone. "Are you going to hold that one against me forever Gru?"`
+			`	"Don't call me Gru."`
+			`	A protracted silence ensues.`
+			choice
+				`	(Walk loudly towards the doorway.)`
+					goto doorway
+				`	(Remain silent and wait.)`
+			`	You almost expect the silence to be broken by a cough, but instead you hear the sound of a datapad being firmly set to one side. "Anyway, Captain <last> will be here momentarily. Why don't you see if they're on their way?"`
+			`	You hear someone, presumably Remington, stand up and you quickly backpedal a few steps before resuming a nonchalant walk towards the office just as Remington steps out to look for you.`
+				goto meeting
+			label doorway
+			`	You quietly backpedal a couple steps and then stride confidently towards the office where you hear a click as something is set aside and momentarily come face to face with Remington who has stood up to greet you.`
+			label meeting
+			`	"Ah, <last>, please come in." Remington moves over and clears your path to the nearest seat.`
+			`	"It's good to see you back again <last>," says Alondo, "and just in time for something that I think it's best to ask you to do. Would you like to tell the good Captain what the plan is Remington?"`
+			`	After what you've just overheard the slightly accentuated formality on 'Remington' is not lost on you, but the Syndicate PR man doesn't appear to react to it at all as he hands you a datapad with a hyperspace relay displayed on it. "Since very near the start of this the Navy has successfully maintained new hyperspace relays in Rajak and Hasseleh, linking our communication network to the Hai's through a secure portal. However, while this has allowed us to communicate to anywhere back home it has some disadvantages. What you see there is the solution.`
+			`	"There are fourteen relays between the wormhole and Earth, which is theoretically the same number as there are to Markab, but for us that means routing through Elnath or Aldebaran. Those two relays are owned and maintained by Lovelace Labs who ferry an enormous volume of data back and forth between those two systems. This means that communications back to the Syndicate tend to either get held up in a buffer waiting on priority data streams that Lovelace reserves for itself, or it gets routed for eighteen links through Sirius, or seventeen through Sol itself. Both of which are systems which have strained infrastructure with high throughput latencies as it is, even for priority communications. So while Xilin has the highest priority access and the shortest distance and Alondo here has all his comms routing a whole different way entirely, the Syndicate is getting many of our comms held up to sometimes problematic degrees."`
+			choice
+				`	"And you want me to place some more relays?"`
+					goto relays
+				`	"So why haven't you placed more relays?"`
+			`	Remington makes an unimpressed face. "We have. They keep getting blown up by marauders."`
+			choice
+				`	"I thought even pirates wouldn't blow up relays?"`
+				`	"Why would they be doing that, don't they use them too?"`
+			label relays
+			`	Remingont nods. "Yes, well, this deep end of space has never had relays. No one out here has needed them; and for a long time the marauders have been using the communications darkness out this way to be able to get around and do their business with impunity. There are no worlds disconnected, so there's no benefit to them, only disadvantage because ships out this way can then call for help when they couldn't before. So the relays the Syndicate have been putting up have been getting destroyed, along with several of our security ships.`
+			`	"This one that you see in front of you is different though." He makes eye contact with Alondo and very deliberately emphases the word as he continues, "WE have been working with the Hai to make some relays that look like they're human-made, but utilize some more advanced Hai technology to baffle any scanners attempting to identify their location within a system. These should allow us to make the communication links without having marauders come through and destroy them."`
+			`	He looks at you, "But of course, since they have Hai tech in them, they need to be delivered by someone human, trustworthy, and who's not likely to get blown up by a marauder. Which would be you."`
+			choice
+				`	"Sounds easy enough."`
+					goto accepted
+				`	"Not sure I want to do this."`
+			`	Alondo looks at you and says, "We need you to do this. It'll be very helpful."`
+			`	The emphasis he places on the words 'you' and 'helpful' suddenly give you the sense that this might be coordinated specifically for your benefit. Realizing this, you nod and accept it, on his account.`
+			label accepted
+			`	"Excellent," says Remington, standing up and flicking over the pickup details to your pad. "Check in with Terry on your way; she may have updated scouting information on their precise placement. Now I have another meeting to get to momentarily though, but thank you Captain. It's been a pleasure seeing you again."`
+			`	He gives a meaningful look to Alondo on his way out, but exactly what its meaning is is not clear to you. Alondo's posture relaxes somewhat as he briefly gets up and quietly closes the door.`
+			`	"Now that that's over with, we have business. I have a lead on this symbol you wanted investigating. I still wish you'd tell me why you're looking for it, but for now, I'll continue to accept that it's important." he fishes around in a small satchel bag that usually carries his pad and unexpectedly pulls out a piece of actual physical paper. The text on it reads, 'Adjunct Research Library, Navy Intelligence Observatory, Moscow. Room number: 3017A19'.`
+			`	"Fortunately, I have been able to not only find you someone to speak to, but also find you a cover for being there in the first place. Xilin has decided he needs a trusted aide to stay on top of things here. Especially as Mountaintop progresses. So far he's found the staff provided him on Mountaintop to be... lacking. I get the sense from him that he's expecting things to get more complicated, not less; though he hasn't said as such in quite so many words just yet. So, you get to go to Earth to pick up his chosen assistant, and while you're there you can go and speak to a certain Ms. Giti Gilani. She's an expert in the history of space flight and related archaic topics. Meanwhile the aide you'll be picking up is a young man called Batu Cegeen. You'll have to land at the Ulaanbaatar spaceport for him and travel locally for your business with Ms. Gilani."`
+			choice
+				`	"Thank you."`
+					goto finish
+				`	"Do I need to speak to Xilin myself?"`
+			`	Alondo shakes his head. "No, I have already told him about the plan to have you drop off some relays, and explained that it's just a minor detour to ask you to go on a bit further. It saves them having to try and arrange suitably secure transport all the way from Earth to <source> and then back to <destination>. This way the worst he'll have to deal with is the one trip from here back to wormhole later, which is easy enough."`
+			label finish
+			`	Alondo leans forward on his desk. "And <last>, I don't know what's going on but if you won't even tell me it must be dangerous. Please, be careful."`
+			choice
+				`	"I will."`
+					accept
+		
+		
+		
+mission "Hai Rescue [A07] Deliver the Relays"
+	autosave
+	landing
+	name "Preparation & Investigation"
+	description `Stop by <destination> on your way to following up the lead from Alondo.`
+	source Mountaintop
+	waypoint Sumar
+	waypoint Cardax
+	waypoint Moktar
+	waypoint Volax
+	destination Earth
+	cargo "hyperspace relays" 8
+	to offer
+		has "Hai Rescue [A06a] The Calm: done"
+	on offer
+		conversation
+			`<Check up on mountaintop, have Terry tell you all about how well it's going with David Cohen's directing. Learn about her background as COO - explains her competency>`
+			`<Meet Turner properly, hear about how well the movie is going with brief synopsis - also hear about the latency/black spot and tourist security reasons for needing relays in the target systems.>`
+			`	The station is working, and the cover is gaining traction. From what I hear they're even actually making the movie now, but this poses a `
+			`<call out the syndicate advertising over the wormhole (make sure it's happened by this point)>
+			`<Describe the hypercomms relays with Hai features - borrow code from free world plot where you have to deposit it in a system while there are no pirates around>`
+	on enter Sumar
+		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
+	on enter Cardax
+		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
+	on enter Moktar
+		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
+	on enter Volax
+		dialog `You fly to the coordinates given to deploy the relay and eject it from an airlock, making sure that there are no ships in range to see it happen. The relay gives you a confirmation ping when it's successfully activated.`
+
+
+
+# (Rework the below now) - your lead from Alondo was to talk to Giti, but only one symbol, and then you still need to pick up Xilin's Aide and return. NOT suddenly run off to Devil's Run.
+mission "Hai Rescue [A08] Symbol Identification"
+	landing
+	name "Preparation & Investigation"
+	description "Return to <destination> with Batu Cegeen and your new information."
+	source Earth
+	destination Hai-home
+	passengers 1
+	to offer
+		has "Hai Rescue [A07] Deliver the Relays: offered"
+	on visit
+		dialog `Batu is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
+	on offer
+		log "People" "Giti Gilani" `Giti is a research librarian on Earth that specializes in the history of space flight and related archaic topics.`
+		log "Factions" "Base Principles" `A clandestine organization that existed within the Syndicate that was founded upon anarcho-syndicalist ideals. Its ranks eventually became bloated by enthusiastic recruits from Freedom that were keen to get rich on top of their freedom, and more anarchist than anarcho-syndicalist. The resulting tensions undermined the group, and Syndicate Internal Affairs scoured them from the organization.`
+		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
+		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
+		
+		conversation
+			`After landing, you search up the way to the adjunct research library at the navy intelligence observatory in Moscow. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours. For someone of your background there are parts of this trip that seem dizzyingly unreal. As well traveled as you now are, actually navigating the urban environments of <source> away from any particular spaceport is an experience not quite like any other. Once you reach the building in question you take a moment at the reception desk to interpret 'room number: 3017A19' - the 301st floor, section 7A, room 19 - and get directions. It's amazing how large Earth's megabuildings have become. Some planets have smaller populations than the building you are standing in right now, and it is but one of hundreds you've seen on your short journey.`
+			`	Reaching the room in question you knock on the door which has a nameplate that reads, 'Giti Gilani' with the title 'Research Librarian' in small print underneath. You are swiftly greeted by a short, energetic looking lady. She looks you up and down and nods. "Captain <last>, you're not as tall as I thought you'd be in person. Please, please come in."`
+			`	Clearly someone took the liberty of informing Giti of at least the basic information about what was being searched for, and that it was you doing so. Once the door is shut and locked though it becomes clear she is quite excited about this search as she gestures to a seat near her work desk and briefly tidies some of the more egregiously scattered research items. "Would you like a drink? Tea, coffee, vodka? I already have some notes on the cat symbol but I need to discuss some things with you. Do you have any more images?"`
+			choice
+				`	"Tea please."`
+				`	"Coffee would be good."`
+				`	"Uh, vodka?"`
+				`	"I'm fine thanks."`
+				`	"I do have some other pictures here with me."`
+					goto pictures
+			`	She acknowledges your selection and then pours herself a coffee from the pot with a quarter shot of vodka added in. "Gives it some kick," she says with a wink. "And did you have other pictures?"`
+			`	When you indicate that you do she beams and flounces into her seat with a flourish.`
+				goto explain
+			label pictures
+			`	"Oh excellent," she says, quickly pouring herself a coffee from the pot and practically skipping over to take her seat.`
+			label explain
+			`	"Well, you'll probably be disappointed with what I have so far," she begins, "but I'll start with what I have found and then you can show me any new pictures you have and we can see what I can do." She waits for you to indicate your understanding before she continues.`
+			`	So, this cat symbol was originally used by a clandestine organization that worked within the Syndicate over a half-century ago. They called themselves 'Base Principles.' They were anarcho-syndicalists infiltrating the Syndicate from within, supposedly advancing their positions through research findings gleaned from captured alien equipment, but nobody knows where they got it. The organization was eventually torn in two by a collection of regular anarchists and other unsavory characters looking to profit off the backdoor access to the Syndicate; this group kidnapped researchers from other institutes to expand their capabilities.`
+			`	"These others didn't cover their tracks well enough, the trail led back to the syndicalists that started it all in the first place, and Syndicate Internal Affairs put a stop to the organization with extreme prejudice. Most of the anarchist leaders were killed in battle or executed after capture, but the internal players simply... disappeared.`
+			`	"Officially, the Syndicate maintains that they wiped Base Principles out to the last individual, but evidence never proved it had been conclusively terminated."`
+			choice
+				`	"That's it?"`
+					goto rude
+				`	"Was there anything else?"`
+			`	"Yes. That was over a century ago, but only a few decades back the same symbol came up again in conjunction with a smuggling ring that was kidnapping gifted children. It seems that a minor error resulted in a crate being misplaced by the smugglers, complete with a child inside and the symbol surreptitiously stamped on the corner plate. The ship the crate was meant to be on self-destructed when it was caught, and any potential affiliates went to ground. A handful of ships and individuals were identified retrospectively to have been involved, but none of them were ever seen again. The kidnappings stopped."`
+				goto newpictures
+			label rude
+			`	She frowns at you. "No. Somewhat more recently, only a few decades back in fact, the same symbol came up again in conjunction with a smuggling ring that was kidnapping gifted children. It seems that a minor error resulted in a crate being misplaced by the smugglers, complete with a child inside and the symbol surreptitiously stamped on the corner plate. The ship the crate was meant to be on self-destructed when it was caught, and any potential affiliates went to ground. A handful of ships and individuals were identified retrospectively to have been involved, but none of them were ever seen again. The kidnappings stopped."`
+			label newpictures
+			`	She waves a hand dismissively at her screen. "Of course, I only received the one image to refer to, and the older records are not necessarily very good quality or captured with future research librarians in mind. So, please, show me what else you have."`
+			`	You pull out your datapad and hand it to her with the folder of relevant pictures, some carefully redacted of Hai paraphernalia, for her to look at. As she begins flicking through them she makes some comments.`
+			`	"You know, there's quite a lot more of these than I expected. All quite recent too judging by the file quality and also by that crate design. They really are exactly the same as the original. Someone clearly has made a deliberate decision to reuse the exact symbol, no re-imagining or stylistic alterations whatsoever. If you ask me that sounds like a group that has set itself to having the same goals, which means the Syndicate would probably be very interested in this. Though I suppose you'd have the connections there if... Oh!" She pauses. "Now this is interesting."`
+			`	She turns the datapad to you and shows you what looks like an amulet or maybe a jewelry charm. The scale in the image isn't very clear. "Do you see this patterning around the outside of the symbol on this? I'm quite sure nearly everyone in the galaxy would simply pass that off as decorative, but it's not. This is an archaic written shorthand notation used for ship's logs back when they were considering data storage requirements for the thousands of people on board the slow ships they sent to Alpha Centauri. You'd be amazed how much space just logs and diaries can take up when the journey takes as long as theirs did." She smiles at you, "As it happens I wrote my Ph.D. thesis about that notation! Now I finally need that information for something other than getting a degree!"`
+			`	She frowns at it for a long moment, "There's quite a lot of notation here actually and... well gosh it's been twenty-eight years since I did that thesis. I can't just translate this on the fly. It'll take me some time to dig up my resources and work on it. Am I allowed to keep these pictures?"`
+			choice
+				`	"Absolutely, I'll send you the folder."`
+				`	"Yes, and I can also give you some other data too."`
+			`	"Excellent, look, leave it with me and give me your contact info. I'll see if I can work out whether there's anything meaningful there and let you know."`
+			`	You thank Giti for her time and depart to make the return trip to the Ulaanbaatar spaceport. You message ahead once you're on your way and arrive to find Batu waiting for you ready to depart.`
+			`	For now it's back to Hai-home, and hope that Giti turns up something useful. At this point though, maybe this whole thing is just a red herring?`
+				accept
+
+
 
 
 
@@ -951,29 +1121,34 @@ mission "Hai Rescue [A06B] Smuggler Ambush"
 		personality nemesis harvests plunders entering
 		fleet "pirate raid" 2
 
-mission "Hai Rescue [A07] Logo Identification"
-	landing
-	name "Missing Researchers"
-	description "Fly through the wormhole in the middle of Syndicate space, and return to Giti at <destination>."
-	source Earth
-	waypoint "Devil-Run"
-	waypoint "Deep Space 7C"
-	to offer
-		has "Hai Rescue [A05] Boarded Smuggler: offered"
-	on visit
-		dialog `You need to pass through the wormhole at Devil-Run before returning here.`
-	on enter "Devil-Run"
-		log `Found a red wormhole in the most pirate-infested region of Syndicate space.`
-		dialog `There is, indeed, a red wormhole here, in the middle of the most pirate-infested region of Syndicate space.`
-	on enter "Deep Space 7C"
-		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
-		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Giti now and see what more she's found out.`
-	on offer
-		log "People" "Giti Gilani" `Giti is a research librarian on Earth that specializes in archaic space flight knowledge.`
-		log "Factions" "Base Principles" `A clandestine organization that existed within the Syndicate that was founded upon anarcho-syndicalist ideals. Its ranks eventually became bloated by enthusiastic recruits from Freedom that were keen to get rich on top of their freedom, and more anarchist than anarcho-syndicalist. The resulting tensions undermined the group, and Syndicate Internal Affairs scoured them from the organization.`
-		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
-		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
-		conversation
+
+
+
+# Used Up
+#mission "Hai Rescue [A08] Symbol Identification"
+#	landing
+#	name "Preparation & Investigation"
+#	description "Fly through the wormhole in the middle of Syndicate space, and return to Giti at <destination>."
+#	source Earth
+#	waypoint "Devil-Run"
+#	waypoint "Deep Space 7C"
+#	to offer
+#		has "Hai Rescue [A05] Boarded Smuggler: offered"
+#	on visit
+#		dialog `You need to pass through the wormhole at Devil-Run before returning here.`
+#	on enter "Devil-Run"
+#		log `Found a red wormhole in the most pirate-infested region of Syndicate space.`
+#		dialog `There is, indeed, a red wormhole here, in the middle of the most pirate-infested region of Syndicate space.`
+#	on enter "Deep Space 7C"
+#		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
+#		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now in intergalactic space. Your computer is identifying the system name as "Deep Space 7C" from old astronomical surveys done in the late 21st century. This is definitely a good place to hide. You should return to Giti now and see what more she's found out.`
+#	on offer
+#		log "People" "Giti Gilani" `Giti is a research librarian on Earth that specializes in archaic space flight knowledge.`
+#		log "Factions" "Base Principles" `A clandestine organization that existed within the Syndicate that was founded upon anarcho-syndicalist ideals. Its ranks eventually became bloated by enthusiastic recruits from Freedom that were keen to get rich on top of their freedom, and more anarchist than anarcho-syndicalist. The resulting tensions undermined the group, and Syndicate Internal Affairs scoured them from the organization.`
+#		log "Factions" "Syndicate Internal Affairs" `An internal police force within the Syndicate that enforces the Syndicate's laws.`
+#		log "Giti identified the angry cat symbol. It is from a long-defunct subversive group within the Syndicate called Base Principles. Somehow they obtained alien technology, and used the knowledge gained from it to advance their influence within the organization. A half-century ago, Syndicate Internal Affairs scoured them from the Syndicate's ranks in an extremely thorough and prejudiced inquisition."
+		
+		conversation legacy
 			`After landing, you search for the "Republic Historical Space-Flight Museum," and find there are seventeen museums by that name on Earth. Only one has a research library, so you contact the library. Giti Gilani no longer works there; she's moved to a library in the Navy Intelligence Observatory in Moscow.`
 			`	The Navy observatory was easier to find; when they hear your name, they put you in contact with Giti immediately. She is excited to see the two symbols you found and asks you to visit her. It takes three shuttle journeys and one high-speed rail trip, but you reach the building in under three hours.`
 			choice
@@ -1013,6 +1188,10 @@ mission "Hai Rescue [A07] Logo Identification"
 			`	"Okay. I've arranged for some advanced scanning equipment that can see past most types of radiation and a few hundred meters of solid rock. I'll have to come with you on this trip."`
 			`	"Oh! I almost forgot to tell you the good news. I found some people who know about the microtransceiver transmissions. Navy Carriers have sensitive communication arrays that can pick up the transmissions. The Navy is combing their communication logs and will have some answers when we return."`
 			`	"Meet me in the spaceport when you have a bunk and 7 tons of cargo space free. Oh, and make sure you have a ramscoop. The Navy will pay for this trip."`
+
+
+
+
 
 mission "Hai Rescue [A08] Scanner"
 	name "Missing Researchers"
