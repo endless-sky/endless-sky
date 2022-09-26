@@ -4371,7 +4371,7 @@ mission "Dangerous Games 1"
 				`	(Leave.)`
 					decline
 			`	"... so then he asks me, 'Have you ever ridden one?' And I look back at this crazy joithead and I say, 'You're a crazy joithead.' But he's got me thinking, y'know? Nobody has ever ridden one. Least, not nobody that could talk after." He lets out a sharp laugh, then raises his voice. "So I ask you all: who wants to join Karengo to make history? Who wants to ride a dragon? I'll supply the jetpacks, you supply the courage."`
-			`	You've heard the stories of the dragons flying through <planet>'s skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. <planet> is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
+			`	You've heard the stories of the dragons flying through Skymoot's skies as a child. Great beasts; graceful and dangerous, the apex predators of the air; they are strikingly similar to the dragons described in ancient legends. Skymoot is host to many dangerous creatures, and these living myths hold a place at the top of that list.`
 			`	A cheer goes up from the men, especially the drunk ones. Karengo starts to hand out death and accident waivers and collect money for the expedition. Suddenly, his expression darkens as he cocks his head, listening to an earpiece. "Listen up!" he yells. "Seems my regular pilot got in the way of some less reputable folk, and my replacement pilot lost his balls this evening and can't find 'em! We need ourselves a ship and a captain to bring this lot to <stopovers>! Who's brave enough? Who else wants to make history?"`
 			choice
 				`	"Captain <last>, at your service. We leave at dawn!"`
@@ -4380,7 +4380,7 @@ mission "Dangerous Games 1"
 					goto money
 				`	(Stay silent.)`
 			`	You remain silent as Karengo surveys the crowd. "What, nobody with a ship has the cojones to make history? I didn't know this bar was full of a bunch of sissies."`
-			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to <planet>." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
+			`	One captain in the back of the bar jumps up. "Mama didn't raise no sissy! I'll bring you all to Skymoot." A cheer rises up from the crowd and the captain is treated to several rounds of drinks. After the captain and all the passengers are sufficiently drunk, they saunter their way out of the bar, drunkenly singing about adventure as they go.`
 				decline
 			label accept
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
