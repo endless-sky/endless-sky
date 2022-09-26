@@ -1772,7 +1772,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		isUsingJumpDrive = JumpDriveCheaper(hyperspaceSystem);
+		isUsingJumpDrive = JumpDriveCheaper(hyperspaceSystem).first == JUMPDRIVE;
 	}
 
 	if(pilotError)
@@ -3182,24 +3182,8 @@ double Ship::JumpFuel(const System *destination) const
 	if(!destination)
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
-	if(attributes.Get("hyperdrive") && attributes.Get("jump drive"))
-	{
-		if(JumpDriveCheaper(destination))
-			return JumpDriveFuel((currentSystem->Links().count(destination) || currentSystem->JumpRange()) ?
-								 0. : currentSystem->Position().Distance(destination->Position()));
-		else
-			return HyperdriveFuel();
-	}
-	if(attributes.Get("hyperdrive"))
-	   return HyperdriveFuel();
-	if(attributes.Get("jump drive"))
-		return JumpDriveFuel((currentSystem->Links().count(destination) || currentSystem->JumpRange()) ?
-							 0. : currentSystem->Position().Distance(destination->Position()));
-	
-
-
-	// If the given system is not a possible destination, return 0.
-	return 0.;
+	std::pair<JumpType, double> jumpUsed = JumpDriveCheaper(destination);
+	return jumpUsed.second;
 }
 
 
@@ -3263,7 +3247,7 @@ double Ship::JumpDriveFuel(double jumpDistance) const
 
 
 
-bool Ship::JumpDriveCheaper(const System *destination) const
+std::pair<Ship::JumpType, double> Ship::JumpDriveCheaper(const System *destination) const
 {
 	bool linked = currentSystem->Links().count(destination);
 	double hyperFuelNeeded = HyperdriveFuel();
@@ -3272,12 +3256,16 @@ bool Ship::JumpDriveCheaper(const System *destination) const
 	if(linked)
 	{
 		if(hyperFuelNeeded > jumpFuelNeeded && attributes.Get("jump drive"))
-			return true;
+			return std::make_pair(JUMPDRIVE, jumpFuelNeeded);
+		else if(attributes.Get("hyperdrive"))
+			return std::make_pair(HYPERDRIVE, hyperFuelNeeded);
 		else
-			return false;
+			return std::make_pair(NONE, 0.0);
 	}
+	else if(attributes.Get("jump drive"))
+		return std::make_pair(JUMPDRIVE, jumpFuelNeeded);
 	else
-		return true;
+		return std::make_pair(NONE, 0.0);
 }
 
 

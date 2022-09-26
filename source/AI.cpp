@@ -1930,8 +1930,8 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 		return;
 
 	
-	bool isJump = ship.JumpDriveCheaper(ship.GetTargetSystem()) && ship.Attributes().Get("jump drive");
-
+	std::pair<Ship::JumpType, double> jumpUsed = ship.JumpDriveCheaper(ship.GetTargetSystem());
+	bool isJump = jumpUsed.first == Ship::JUMPDRIVE;
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	if(!isJump && scramThreshold)
