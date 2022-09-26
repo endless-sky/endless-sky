@@ -20,7 +20,6 @@ outfitter "Gegno Outfits"
 	"C3 Scrap Cell"
 	"C7 Brawl Cell"
 	Hyperdrive
-	"Irate Cannon"
 	"Local Map"
 	"R01 Skirmish Battery"
 	"RG15 Torch Steering"

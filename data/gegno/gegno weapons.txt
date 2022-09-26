@@ -42,7 +42,7 @@ outfit "Irate Cannon Turret"
 	category Turrets
 	cost 576000
 	mass 28
-	thumbnail "outfit/irate cannon"
+	thumbnail "outfit/irate turret"
 	"turret mounts" -1
 	"required crew" 2
 	"outfit space" -28
@@ -54,11 +54,12 @@ outfit "Irate Cannon Turret"
 		sprite projectile/irate
 		sound irate
 		"fire effect" "irate fire"
+		"hardpoint sprite" hardpoint/irate
 		"hit effect" "tiny explosion"
 		lifetime 15
 		reload 12
 		velocity 22
-		"hardpoint offset" 1.5
+		"hardpoint offset" 12
 		inaccuracy 2
 		"turret turn" 1
 		"firing energy" 13
@@ -124,7 +125,7 @@ outfit "Chloeric Cannon Turret"
 		reload 80
 		"missile strength" 12
 		velocity 9
-		"hardpoint offset" 5
+		"hardpoint offset" 3
 		inaccuracy 2
 		"turret turn" 1.2
 		"firing energy" 120
@@ -172,7 +173,7 @@ outfit "Ballistic Cannon Turret"
 	category Turrets
 	cost 1370000
 	mass 120
-	thumbnail "outfit/ballistic cannon"
+	thumbnail "outfit/ballistic turret"
 	"outfit space" -120
 	"required crew" 3
 	"turret mounts" -1
@@ -192,7 +193,7 @@ outfit "Ballistic Cannon Turret"
 		reload 110
 		"missile strength" 18
 		velocity 8
-		"hardpoint offset" 1.1 4.8
+		"hardpoint offset" -1
 		inaccuracy 3
 		"turret turn" 0.6
 		"firing energy" 247
@@ -253,7 +254,7 @@ outfit "Astuit Battery"
 		lifetime 44
 		reload 6
 		velocity 8
-		"hardpoint offset" 6
+		"hardpoint offset" 8
 		inaccuracy 5
 		"turret turn" 2.2
 		"firing energy" 13.2
@@ -323,7 +324,7 @@ outfit "Acuit Artillery"
 		reload 56
 		"burst reload" 10
 		velocity 18
-		"hardpoint offset" 26
+		"hardpoint offset" 14
 		inaccuracy 3
 		"turret turn" 1.3
 		"firing energy" 130
@@ -358,7 +359,7 @@ outfit "Guile Anti-Missile"
 		reload 12
 		anti-missile 14
 		velocity 170
-		"hardpoint offset" 10
+		"hardpoint offset" 4
 		"firing energy" 26
 		"firing heat" 8
 	description "Although the Gegno have yet to create space-rated engine systems small and efficient enough to support missile technology, the Scin developed a type of anti-missile system based on their new beam technology. Guiles are able to predict the trajectory of large Vi cannon shells, as well as any other similar projectile-based weapons, to lower and eliminate heavy damage in a battle."
