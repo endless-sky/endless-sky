@@ -2066,7 +2066,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 			if(!commands.Has(Command::JUMP) && !hasPrimary)
 			{
-				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+				bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange 
+									|| this->weaponRange == 0.0;
 
 				if(activeEnemyTarget && target->isInSystem && targetInRange)
 				{
@@ -2143,7 +2144,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			{
 				if(target && !isDisabled)
 				{
-					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange || this->weaponRange == 0.0;
+					bool targetInRange = target->Position().Distance(this->Position()) < weaponsRangeMultiplier * this->weaponRange 
+										|| this->weaponRange == 0.0;
 					// If in range, or the weapon range hasn't been calculated yet.
 					if(targetInRange)
 					{
@@ -2948,7 +2950,8 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(left == stillLeft)
 			return false;
 	}
-	// For any ship that is not the player flagship, jumps should not be restricted by animation if they are not in the system
+	// For any ship that is not the player flagship,
+	// jumps should not be restricted by animation if they are not in the system
 	return (this->GetState() == BodyState::JUMPING && this->ReadyForAction()) || !(this->isPlayerFlagship || isInSystem);
 }
 
