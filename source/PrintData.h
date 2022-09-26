@@ -40,6 +40,15 @@ private:
 	static void PrintOutfitsList();
 	static void PrintOutfitOutfitters();
 	static void PrintOutfitsAllStats();
+
+	static void Planets(const char *const *argv);
+	static void PlanetDescriptions();
+	static void PlanetAttributes();
+	static void PlanetsByAttribute();
+
+	static void Systems(const char *const *argv);
+	static void SystemAttributes();
+	static void SystemsByAttribute();
 };
 
 #endif

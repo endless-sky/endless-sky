@@ -17,7 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "Ship.h"
+#include "System.h"
 
 #include <iostream>
 #include <map>
@@ -43,6 +45,10 @@ void PrintData::Print(const char *const *argv)
 		PrintPowerStats();
 	else if(arg == "-o" || arg == "--outfits")
 		Outfits(argv);
+	else if(arg == "--planets")
+		Planets(argv);
+	else if(arg == "--systems")
+		Systems(argv);
 	cout.flush();
 }
 
@@ -61,6 +67,11 @@ void PrintData::Help()
 	cerr << "    -o, --outfits: prints a list of outfits." << endl;
 	cerr << "    -o --sales: prints a list of outfits and every 'outfitter' each appears in." << endl;
 	cerr << "    -o -a, --all: prints a table of outfits and all attributes used by any outfits present." << endl;
+	cerr << "    --planets --descriptions: prints a table of all planets and their descriptions." << endl;
+	cerr << "    --planets --attributes: prints a table of all planets and their attributes." << endl;
+	cerr << "    --planets --attributes --reverse: prints a table of all planet attributes and which planets have them." << endl;
+	cerr << "    --systems --attributes: prints a list of all systems and their attributes." << endl;
+	cerr << "    --systems --attributes --reverse: prints a list of all system attributes and which systems have them." << endl;
 }
 
 
@@ -524,4 +535,147 @@ void PrintData::PrintOutfitsAllStats()
 		cout << '\n';
 	}
 }
+
+
+
+void PrintData::Planets(const char *const *argv)
+{
+	bool descriptions = false;
+	bool attributes = false;
+	bool byAttribute = false;
+
+	for(const char *const *it = argv + 2; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "--descriptions")
+			descriptions = true;
+		else if(arg == "--attributes")
+			attributes = true;
+		else if(arg == "--reverse")
+			byAttribute = true;
+	}
+	if(descriptions)
+		PlanetDescriptions();
+	if(attributes && byAttribute)
+		PlanetsByAttribute();
+	else if(attributes)
+		PlanetAttributes();
+}
+
+
+
+void PrintData::PlanetDescriptions()
+{
+	cout << "planet::description::spaceport\n";
+	for(auto &it : GameData::Planets())
+	{
+		cout << it.first << "::";
+		const Planet &planet = it.second;
+		cout << planet.Description() << "::";
+		cout << planet.SpaceportDescription() << "\n";
+	}
+}
+
+
+
+void PrintData::PlanetAttributes()
+{
+	cout << "planet" << ',' << "attributes" << '\n';
+	for(auto &it : GameData::Planets())
+	{
+		cout << it.first;
+		const Planet &planet = it.second;
+		for(const string &attribute : planet.Attributes())
+			cout << ',' << attribute;
+		cout << '\n';
+	}
+}
+
+
+
+void PrintData::PlanetsByAttribute()
+{
+	cout << "attribute" << ',' << "planets" << '\n';
+	set<string> attributes;
+	for(auto &it : GameData::Planets())
+	{
+		const Planet &planet = it.second;
+		for(const string &attribute : planet.Attributes())
+			attributes.insert(attribute);
+	}
+	for(const string &attribute : attributes)
+	{
+		cout << attribute;
+		for(auto &it : GameData::Planets())
+		{
+			const Planet &planet = it.second;
+			if(planet.Attributes().count(attribute))
+				cout << ',' << it.first;
+		}
+		cout << '\n';
+	}
+}
+
+
+
+void PrintData::Systems(const char *const *argv)
+{
+	bool attributes = false;
+	bool byAttribute = false;
+
+	for(const char *const *it = argv + 2; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "--attributes")
+			attributes = true;
+		else if(arg == "--reverse")
+			byAttribute = true;
+	}
+	if(attributes && byAttribute)
+		SystemsByAttribute();
+	else if(attributes)
+		SystemAttributes();
+}
+
+
+
+void PrintData::SystemAttributes()
+{
+	cout << "system" << ',' << "attributes" << '\n';
+	for(auto &it : GameData::Systems())
+	{
+		cout << it.first;
+		const System &system = it.second;
+		for(const string &attribute : system.Attributes())
+			cout << ',' << attribute;
+		cout << '\n';
+	}
+}
+
+
+
+void PrintData::SystemsByAttribute()
+{
+	cout << "attribute" << ',' << "systems" << '\n';
+	set<string> attributes;
+	for(auto &it : GameData::Systems())
+	{
+		const System &system = it.second;
+		for(const string &attribute : system.Attributes())
+			attributes.insert(attribute);
+	}
+	for(const string &attribute : attributes)
+	{
+		cout << attribute;
+		for(auto &it : GameData::Systems())
+		{
+			const System &system = it.second;
+			if(system.Attributes().count(attribute))
+				cout << ',' << it.first;
+		}
+		cout << '\n';
+	}
+}
+
+
 
