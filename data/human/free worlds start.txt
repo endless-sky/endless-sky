@@ -333,6 +333,7 @@ mission "FW Syndicate Diplomacy 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		set "met remington"
 		log "Visited the Syndicate and worked out a deal where they promised to stay neutral. They are expecting to profit from selling weapons to both sides in this war. Also discovered that Katya is in the Republic's custody and is accused of terrorist activity."
 		log "People" "Katya Reynolds" `Katya was on Clink when the Navy invaded the Kornephoros system, and was taken captive by them and imprisoned as a war criminal.`
 		log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations, and he seemed to help get the Free Worlds a better deal with the Syndicate than they might have otherwise received. He and Alondo seem to have a history together, although it is one that neither will discuss in detail.`
