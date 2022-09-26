@@ -27834,7 +27834,7 @@ planet Covert
 planet Crataegusa
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa30
-	description "At a distance, Crataegusa appears utterly linear with its shear cloud lines circling the planet. Beneath the surface, however, the atmosphere is a turbulent maelstrom of cyclonic winds at odds with the surface appearance."
+	description "At a distance, Crataegusa has a plain appearance, with linear shear cloud lines circling the planet. Beneath the surface, however, the atmosphere is a turbulent maelstrom of cyclonic winds at odds with the surface appearance."
 	description "	As you skim through the clouds your sensors report intense energy fluctuations from all directions, some of which echo the readings from the wormholes."
 	government Uninhabited
 	security 0
