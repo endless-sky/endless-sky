@@ -1929,7 +1929,6 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
-
 	std::pair<Ship::JumpType, double> jumpUsed = ship.JumpDriveCheaper(ship.GetTargetSystem());
 	bool isJump = jumpUsed.first == Ship::JUMPDRIVE;
 
