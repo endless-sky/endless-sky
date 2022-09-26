@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ImageBuffer.h"
@@ -15,8 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "File.h"
 #include "Logger.h"
 
-#include <png.h>
 #include <jpeglib.h>
+#include <png.h>
 
 #include <cstdio>
 #include <stdexcept>
@@ -224,7 +227,7 @@ namespace {
 		try {
 			buffer.Allocate(width, height);
 		}
-		catch (const bad_alloc &)
+		catch(const bad_alloc &)
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";
@@ -303,7 +306,7 @@ namespace {
 		try {
 			buffer.Allocate(width, height);
 		}
-		catch (const bad_alloc &)
+		catch(const bad_alloc &)
 		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path + "\"";

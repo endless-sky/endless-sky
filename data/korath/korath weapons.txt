@@ -7,7 +7,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Grab-Strike Turret"
 	category "Turrets"
@@ -949,14 +952,13 @@ outfit "Firelight Missile Bank"
 		"missile strength" 60
 		submunition "Firelight Turning"
 		"stream"
-	description "Korath engineers were able to scale down reactor elements to fit in a missile casing for use on and against smaller vessels."
+	description "As the Firestorm torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to further scale down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 
 
 outfit "Firelight Turning"
 	weapon
 		sprite "projectile/firelight"
-			"frame rate" 12
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 0.1
@@ -976,6 +978,7 @@ outfit "Firelight Activated"
 	weapon
 		sprite "projectile/firelight active"
 			"frame rate" 12
+			"random start frame"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
@@ -1005,4 +1008,82 @@ effect "firelight ring"
 	sound "firelight hit"
 	"random angle" 360
 	"random velocity" 2
+	"velocity scale" 0.1
+
+
+outfit "Firestorm Torpedo"
+	plural "Firestorm Torpedoes"
+	category "Ammunition"
+	cost 19800
+	thumbnail "outfit/firestorm torpedo"
+	"mass" 1
+	"firestorm torpedo capacity" -1
+	"energy generation" 0.06
+	"heat generation" 0.3
+	description `Massive in both size and destructive capability, the Firestorm Torpedo's enormous blast radius makes it a dangerous part of larger ship arsenals, despite the lack of more recent Korath innovations. The Firestorm Torpedo is used as ammo for the Firestorm Battery.`
+
+outfit "Firestorm Torpedo Rack"
+	category "Ammunition"
+	cost "135000"
+	thumbnail "outfit/firestorm torpedo rack"
+	"mass" 7
+	"outfit space" -20
+	"firestorm torpedo capacity" 13
+	ammo "Firestorm Torpedo"
+	description "This large cage-like rack is designed to be able to house several deadly Firestorm Torpedoes."
+
+outfit "Firestorm Battery"
+	category "Secondary Weapons"
+	cost 2383000
+	thumbnail "outfit/firestorm battery"
+	"mass" 35
+	"outfit space" -48
+	"weapon capacity" -48
+	"energy capacity" 1300
+	"turret mounts" -1
+	"required crew" 1
+	"firestorm torpedo capacity" 13
+	weapon
+		sprite "projectile/firestorm torpedo"
+			"frame rate" 6
+			"random start frame"
+		"hardpoint sprite" "hardpoint/firestorm battery"
+		sound "firestorm"
+		ammo "Firestorm Torpedo"
+		"turret turn" 2.7
+		icon "icon/firestorm torpedo"
+		"hit effect" "firestorm ring" 40
+		"die effect" "small explosion"
+		stream
+		"reload" 210
+		"firing energy" 635
+		"firing heat" 451
+		"inaccuracy" 3
+		"lifetime" 1900
+		"velocity" 6.6
+		"acceleration" .6
+		"drag" .12
+		"turn" 1.6
+		"homing" 4
+		"infrared tracking" .7
+		"optical tracking" .9
+		"trigger radius" 40
+		"blast radius" 95
+		"shield damage" 2760
+		"hull damage" 2760
+		"heat damage" 5320
+		"burn damage" 40
+		"corrosion damage" 5
+		"hit force" 4000
+		"missile strength" 115
+	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
+
+effect "firestorm ring"
+	sprite "effect/firestorm ring"
+		"no repeat"
+		"frame rate" 7
+	"lifetime" 110
+	sound "firestorm hit"
+	"random angle" 360
+	"random velocity" 3
 	"velocity scale" 0.1
