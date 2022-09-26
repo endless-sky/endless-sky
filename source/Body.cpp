@@ -137,7 +137,7 @@ float Body::GetFrame(int step) const
 {
 	if(step >= 0)
 		SetStep(step);
-	// Select between frame and random frame based on the randomize parameter
+	// Choose between frame and random frame based on the randomize parameter
 	return !this->randomize || stateTransitionRequested ? frame : randomFrame;
 }
 
@@ -782,7 +782,7 @@ void Body::SetStep(int step) const
 		{
 			if(transitionFinish && !transitionRewind)
 			{
-				// Finish the ongoing state's animation then transition
+				// Finish the ongoing state's animation, then transition
 				frame = min(frame, lastFrame);
 
 				if(frame >= lastFrame)
